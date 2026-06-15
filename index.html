@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ranker's Masterbooks — Limits &amp; Inverse Trigonometry</title>
+<meta name="description" content="Two masterbooks for the very top of JEE Advanced and the Mathematical Olympiad: LIMITS (The Edge of Calculus) and ARC (The Inverse Circular Functions). 200 original problems, each solved more than one way.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz@0,6..72;1,6..72&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#f4efe4; --ink:#1c1a16; --ink2:#5b5446; --ink3:#8b8474; --line:#e2d8c2;
+         --gold:#a36a12; --gold2:#caa24a; --teal:#0c7b6e; --teal2:#13a892;
+         --serif:'Fraunces',Georgia,serif; --read:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,sans-serif; }
+  *{box-sizing:border-box} html,body{margin:0;padding:0}
+  body{ background:radial-gradient(1100px 700px at 85% -10%, #f6ecd6, transparent 60%), var(--paper);
+        color:var(--ink); font-family:var(--sans); line-height:1.6; min-height:100vh;
+        -webkit-font-smoothing:antialiased; display:flex; flex-direction:column; }
+  .wrap{ max-width:1000px; margin:0 auto; padding:64px 28px 48px; flex:1; width:100%; }
+  .kick{ font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); font-weight:700; }
+  h1{ font-family:var(--serif); font-weight:900; font-size:54px; line-height:1; margin:12px 0 6px; letter-spacing:.01em; }
+  h1 .dot{ color:var(--gold2); }
+  .lede{ font-family:var(--read); font-style:italic; font-size:20px; color:var(--ink2); max-width:640px; margin:0 0 6px; }
+  .meta{ color:var(--ink3); font-size:14px; margin-bottom:40px; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:24px; }
+  .book{ border:1px solid var(--line); border-radius:20px; background:#fffdf8; padding:30px 28px 26px;
+         box-shadow:0 1px 2px rgba(40,32,14,.05),0 14px 40px rgba(40,32,14,.08); position:relative; overflow:hidden;
+         display:flex; flex-direction:column; transition:transform .18s, box-shadow .18s; }
+  .book:hover{ transform:translateY(-3px); box-shadow:0 3px 9px rgba(40,32,14,.09),0 26px 60px rgba(40,32,14,.14); }
+  .book .glyph{ position:absolute; right:-6px; top:-10px; font-family:var(--serif); font-weight:900; font-size:120px; opacity:.06; line-height:1; }
+  .book .bk{ font-size:10px; letter-spacing:.26em; text-transform:uppercase; font-weight:700; }
+  .book h2{ font-family:var(--serif); font-weight:900; font-size:40px; margin:6px 0 0; line-height:.98; }
+  .book .sub{ font-family:var(--read); font-style:italic; color:var(--ink2); font-size:16px; margin-top:2px; }
+  .book p{ color:var(--ink2); font-size:14.5px; margin:14px 0 18px; flex:1; }
+  .book .stats{ display:flex; gap:18px; margin-bottom:18px; }
+  .book .stats b{ font-family:var(--serif); font-weight:900; font-size:20px; display:block; line-height:1; }
+  .book .stats span{ font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-top:2px; display:block; }
+  .open{ display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:15px; text-decoration:none;
+         padding:11px 18px; border-radius:12px; color:#fff; width:fit-content; }
+  .open:hover{ filter:brightness(1.06); }
+  .pdfs{ margin-top:14px; display:flex; gap:14px; font-size:13px; }
+  .pdfs a{ color:var(--ink2); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:1px; }
+  .pdfs a:hover{ color:var(--ink); }
+  .limits .bk{ color:var(--gold); } .limits .glyph{ color:var(--gold); } .limits .open{ background:var(--gold); }
+  .limits .stats b{ color:var(--gold); }
+  .arc .bk{ color:var(--teal); } .arc .glyph{ color:var(--teal); } .arc .open{ background:var(--teal); }
+  .arc .stats b{ color:var(--teal); }
+  footer{ color:var(--ink3); font-size:12.5px; text-align:center; padding:22px; border-top:1px solid var(--line); }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#100f0c; --ink:#efe8d8; --ink2:#bcb4a1; --ink3:#857e6c; --line:#2b271e; --gold2:#e6b860; --teal2:#3fd6bf; }
+    body{ background:radial-gradient(1100px 700px at 85% -10%, #1a160d, transparent 60%), var(--paper); }
+    .book{ background:#1a1813; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="kick">The Ranker's Masterbooks</div>
+    <h1>Two books for the top<span class="dot">.</span></h1>
+    <p class="lede">Original problems for the very top of JEE Advanced and the Mathematical Olympiad — where the obvious move is the wrong move, and every problem is solved more than one way.</p>
+    <div class="meta">200 problems · 20 chapters · multi-method · adversarially verified in Python.</div>
+
+    <div class="grid">
+      <div class="book arc">
+        <div class="glyph">sin⁻¹</div>
+        <div class="bk">The Inverse Circular Functions</div>
+        <h2>ARC<span style="color:var(--teal2)">.</span></h2>
+        <div class="sub">Branches, identities &amp; the ±π/2 cliff</div>
+        <p>One hundred problems on the inverse trigonometric functions — principal branches, ±π corrections, telescoping arctangents, identities, equations, calculus and Machin-like π formulas. Where the branch you forget is the mark you lose.</p>
+        <div class="stats"><div><b>100</b><span>Problems</span></div><div><b>10</b><span>Chapters</span></div><div><b>3–5</b><span>Difficulty</span></div></div>
+        <a class="open" href="itf-masterbook/index.html">Open the book →</a>
+        <div class="pdfs"><a href="itf-masterbook/ARC-Problems.pdf">↓ Problems PDF</a><a href="itf-masterbook/ARC-Solutions.pdf">↓ Solutions PDF</a></div>
+      </div>
+
+      <div class="book limits">
+        <div class="glyph">lim</div>
+        <div class="bk">The Edge of Calculus</div>
+        <h2>LIMITS<span style="color:var(--gold2)">.</span></h2>
+        <div class="sub">Where the obvious move is wrong</div>
+        <p>One hundred limits on floor, fractional part, signum, modulus, inverse-trig, logarithmic and trigonometric functions — exotic indeterminate forms, squeeze and discrete sums, and the grand hybrids that fuse them.</p>
+        <div class="stats"><div><b>100</b><span>Problems</span></div><div><b>10</b><span>Chapters</span></div><div><b>3–5</b><span>Difficulty</span></div></div>
+        <a class="open" href="limits-masterbook/index.html">Open the book →</a>
+        <div class="pdfs"><a href="limits-masterbook/LIMITS-Problems.pdf">↓ Problems PDF</a><a href="limits-masterbook/LIMITS-Solutions.pdf">↓ Solutions PDF</a></div>
+      </div>
+    </div>
+  </div>
+  <footer>Built as static sites — Fraunces · Inter · KaTeX. No build step, no tracking. Open any <code>index.html</code> directly or serve the folder.</footer>
+</body>
+</html>

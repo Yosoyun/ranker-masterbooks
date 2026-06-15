@@ -1,0 +1,13 @@
+{
+  "name": "limits-masterbook-tools",
+  "private": true,
+  "type": "module",
+  "description": "Build the LIMITS Problems/Solutions PDFs from problems.js (pre-renders KaTeX, prints via headless Chrome).",
+  "scripts": {
+    "build-pdf": "node build-pdf.mjs"
+  },
+  "dependencies": {
+    "katex": "^0.16.11",
+    "puppeteer-core": "^25.1.0"
+  }
+}
