@@ -1,0 +1,13 @@
+{
+  "name": "diff-masterbook-tools",
+  "private": true,
+  "type": "module",
+  "description": "Build the f-prime (Differentiability) Problems/Solutions PDFs.",
+  "scripts": {
+    "build-pdf": "node build-pdf.mjs"
+  },
+  "dependencies": {
+    "katex": "^0.16.11",
+    "puppeteer-core": "^25.1.0"
+  }
+}
