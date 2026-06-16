@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Ranker's Masterbooks — Limits &amp; Inverse Trigonometry</title>
-<meta name="description" content="Two masterbooks for the very top of JEE Advanced and the Mathematical Olympiad: LIMITS (The Edge of Calculus) and ARC (The Inverse Circular Functions). 200 original problems, each solved more than one way.">
+<title>The Ranker's Masterbooks — Trigonometry, Inverse Trig &amp; Limits</title>
+<meta name="description" content="Three masterbooks for the very top of JEE Advanced and the Mathematical Olympiad: TRIG (The Circular Arsenal), ARC (The Inverse Circular Functions) and LIMITS (The Edge of Calculus). 306 original problems, each solved more than one way.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz@0,6..72;1,6..72&display=swap" rel="stylesheet">
 <style>
   :root{ --paper:#f4efe4; --ink:#1c1a16; --ink2:#5b5446; --ink3:#8b8474; --line:#e2d8c2;
-         --gold:#a36a12; --gold2:#caa24a; --teal:#0c7b6e; --teal2:#13a892;
+         --gold:#a36a12; --gold2:#caa24a; --teal:#0c7b6e; --teal2:#13a892; --cobalt:#1e50c8; --cobalt2:#3b76f0;
          --serif:'Fraunces',Georgia,serif; --read:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,sans-serif; }
   *{box-sizing:border-box} html,body{margin:0;padding:0}
   body{ background:radial-gradient(1100px 700px at 85% -10%, #f6ecd6, transparent 60%), var(--paper);
@@ -45,9 +45,11 @@
   .limits .stats b{ color:var(--gold); }
   .arc .bk{ color:var(--teal); } .arc .glyph{ color:var(--teal); } .arc .open{ background:var(--teal); }
   .arc .stats b{ color:var(--teal); }
+  .trig .bk{ color:var(--cobalt); } .trig .glyph{ color:var(--cobalt); } .trig .open{ background:var(--cobalt); }
+  .trig .stats b{ color:var(--cobalt); }
   footer{ color:var(--ink3); font-size:12.5px; text-align:center; padding:22px; border-top:1px solid var(--line); }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#100f0c; --ink:#efe8d8; --ink2:#bcb4a1; --ink3:#857e6c; --line:#2b271e; --gold2:#e6b860; --teal2:#3fd6bf; }
+    :root{ --paper:#100f0c; --ink:#efe8d8; --ink2:#bcb4a1; --ink3:#857e6c; --line:#2b271e; --gold2:#e6b860; --teal2:#3fd6bf; --cobalt2:#6f9bff; }
     body{ background:radial-gradient(1100px 700px at 85% -10%, #1a160d, transparent 60%), var(--paper); }
     .book{ background:#1a1813; }
   }
@@ -56,11 +58,22 @@
 <body>
   <div class="wrap">
     <div class="kick">The Ranker's Masterbooks</div>
-    <h1>Two books for the top<span class="dot">.</span></h1>
+    <h1>Three books for the top<span class="dot">.</span></h1>
     <p class="lede">Original problems for the very top of JEE Advanced and the Mathematical Olympiad — where the obvious move is the wrong move, and every problem is solved more than one way.</p>
-    <div class="meta">200 problems · 20 chapters · multi-method · adversarially verified in Python.</div>
+    <div class="meta">306 problems · 30 chapters · multi-method · adversarially verified in Python.</div>
 
     <div class="grid">
+      <div class="book trig">
+        <div class="glyph">sin</div>
+        <div class="bk">The Circular Arsenal</div>
+        <h2>TRIG<span style="color:var(--cobalt2)">.</span></h2>
+        <div class="sub">Where the identity is only half the battle</div>
+        <p>Olympiad trigonometry — conditional identities, telescoping products, roots of unity, Chebyshev polynomials, substitution, inequalities, the auxiliary angle, equations and the triangle. In the spirit of Titu Andreescu's <em>103 Trigonometry Problems</em>.</p>
+        <div class="stats"><div><b>106</b><span>Problems</span></div><div><b>10</b><span>Chapters</span></div><div><b>3–5</b><span>Difficulty</span></div></div>
+        <a class="open" href="trig-masterbook/index.html">Open the book →</a>
+        <div class="pdfs"><a href="trig-masterbook/TRIG-Problems.pdf">↓ Problems PDF</a><a href="trig-masterbook/TRIG-Solutions.pdf">↓ Solutions PDF</a></div>
+      </div>
+
       <div class="book arc">
         <div class="glyph">sin⁻¹</div>
         <div class="bk">The Inverse Circular Functions</div>
