@@ -12,3 +12,6 @@ node_modules/
 .DS_Store
 *.log
 Thumbs.db
+
+# PDFs live as GitHub Release assets (tag: pdfs), not committed — keeps Pages + git lean
+*.pdf
