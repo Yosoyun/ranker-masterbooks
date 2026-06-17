@@ -1,13 +1,20 @@
 # The Ranker's Masterbooks
 
-Two static problem books for the very top of **JEE Advanced** and the **Mathematical Olympiad**.
-200 original problems, organised by the *instrument* that powers each one, and every problem solved
+Nine static problem books for the very top of **JEE Advanced** and the **Mathematical Olympiad**.
+906 original problems, organised by the *instrument* that powers each one, and every problem solved
 **more than one way**. No build step, no dependencies, no tracking — just open `index.html`.
 
 🌐 **Live:** https://yosoyun.github.io/ranker-masterbooks/
 
 | Book | What | Problems |
 |------|------|----------|
+| **[∫ · The Definite Integral](definite-masterbook/)** | Symmetry & parity, the king rule, the limit of a sum, reduction & Wallis, differentiation under the integral, estimation & the MVT, floor & periodic integrands, famous integrals, improper integrals, grand hybrids | 100 |
+| **[ℂ · The Argand Plane](complex-masterbook/)** | The algebra of a+bi, modulus & argument, De Moivre, roots of unity, the geometry of the plane, loci, Möbius maps, triangles & polygons, polynomial equations, grand hybrids | 100 |
+| **[x² · Roots, Discriminant & Vieta](quadratics-masterbook/)** | Vieta, the discriminant, root location, common roots, ranges of fractions, max–min, disguised quadratics, parameters, inequalities, grand hybrids | 100 |
+| **[f′ · The Derivative & Where It Fails](diff-masterbook/)** | First principles, non-differentiability, the MVT, Darboux, differentiable functional equations, smoothness, tangents, monotonicity, derivative limits, grand hybrids | 100 |
+| **[C⁰ · The Continuous & the Broken](continuity-masterbook/)** | ε–δ proofs, types of discontinuity, continuous functional equations, the IVT, pathological functions, sequential continuity, parametric gluing, the EVT, monotone functions, grand hybrids | 100 |
+| **[MATRIX · The Determinant & Its Eigenworld](matrix-masterbook/)** | The alternating form, Cayley–Hamilton, rank, special determinants, block & Schur, the trace, determinant bounds, combinatorial matrices, matrix equations, grand hybrids | 100 |
+| **[TRIG · The Circular Arsenal](trig-masterbook/)** | Conditional identities, transformations, equations, extrema, sums & products, polynomial connections, inverse functions, geometry, inequalities, grand hybrids | 106 |
 | **[ARC · The Inverse Circular Functions](itf-masterbook/)** | Principal branches & the range trap, ±π corrections, telescoping arctangents, identities, equations, trig-of-inverse-trig, domain/range, calculus, Machin & Olympiad identities, grand hybrids | 100 |
 | **[LIMITS · The Edge of Calculus](limits-masterbook/)** | Floor, fractional part, signum, modulus, inverse-trig, log/exp, advanced trig, exotic indeterminate forms, squeeze & discrete sums, grand hybrids | 100 |
 
