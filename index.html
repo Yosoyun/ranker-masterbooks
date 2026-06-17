@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Ranker's Masterbooks — Quadratics, Differentiability, Continuity, Matrices, Trig, Inverse Trig &amp; Limits</title>
-<meta name="description" content="Seven masterbooks for the very top of JEE Advanced and the Mathematical Olympiad: x² (Quadratics), f′ (Differentiability), C⁰ (Continuity), MATRIX (Determinants), TRIG (The Circular Arsenal), ARC (Inverse Circular Functions) and LIMITS (The Edge of Calculus). 706 original problems, each solved more than one way.">
+<title>The Ranker's Masterbooks — Complex Numbers, Quadratics, Calculus, Matrices, Trigonometry &amp; more</title>
+<meta name="description" content="Eight masterbooks for the very top of JEE Advanced and the Mathematical Olympiad: ℂ (Complex Numbers), x² (Quadratics), f′ (Differentiability), C⁰ (Continuity), MATRIX (Determinants), TRIG (The Circular Arsenal), ARC (Inverse Trig) and LIMITS (The Edge of Calculus). 806 original problems, each solved more than one way.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz@0,6..72;1,6..72&display=swap" rel="stylesheet">
 <style>
   :root{ --paper:#f4efe4; --ink:#1c1a16; --ink2:#5b5446; --ink3:#8b8474; --line:#e2d8c2;
-         --gold:#a36a12; --gold2:#caa24a; --teal:#0c7b6e; --teal2:#13a892; --cobalt:#1e50c8; --cobalt2:#3b76f0; --violet:#6d28d9; --violet2:#8b5cf6; --crimson:#be123c; --crimson2:#e11d48; --amber:#b45309; --amber2:#ea580c; --emerald:#047857; --emerald2:#059669;
+         --gold:#a36a12; --gold2:#caa24a; --teal:#0c7b6e; --teal2:#13a892; --cobalt:#1e50c8; --cobalt2:#3b76f0; --violet:#6d28d9; --violet2:#8b5cf6; --crimson:#be123c; --crimson2:#e11d48; --amber:#b45309; --amber2:#ea580c; --emerald:#047857; --emerald2:#059669; --fuchsia:#a21caf; --fuchsia2:#c026d3;
          --serif:'Fraunces',Georgia,serif; --read:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,sans-serif; }
   *{box-sizing:border-box} html,body{margin:0;padding:0}
   body{ background:radial-gradient(1100px 700px at 85% -10%, #f6ecd6, transparent 60%), var(--paper);
@@ -55,9 +55,11 @@
   .diff .stats b{ color:var(--amber); }
   .quad .bk{ color:var(--emerald); } .quad .glyph{ color:var(--emerald); } .quad .open{ background:var(--emerald); }
   .quad .stats b{ color:var(--emerald); }
+  .complex .bk{ color:var(--fuchsia); } .complex .glyph{ color:var(--fuchsia); } .complex .open{ background:var(--fuchsia); }
+  .complex .stats b{ color:var(--fuchsia); }
   footer{ color:var(--ink3); font-size:12.5px; text-align:center; padding:22px; border-top:1px solid var(--line); }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#100f0c; --ink:#efe8d8; --ink2:#bcb4a1; --ink3:#857e6c; --line:#2b271e; --gold2:#e6b860; --teal2:#3fd6bf; --cobalt2:#6f9bff; --violet2:#a78bfa; --crimson2:#fb7185; --amber2:#fbbf24; --emerald2:#34d399; }
+    :root{ --paper:#100f0c; --ink:#efe8d8; --ink2:#bcb4a1; --ink3:#857e6c; --line:#2b271e; --gold2:#e6b860; --teal2:#3fd6bf; --cobalt2:#6f9bff; --violet2:#a78bfa; --crimson2:#fb7185; --amber2:#fbbf24; --emerald2:#34d399; --fuchsia2:#e879f9; }
     body{ background:radial-gradient(1100px 700px at 85% -10%, #1a160d, transparent 60%), var(--paper); }
     .book{ background:#1a1813; }
   }
@@ -66,11 +68,22 @@
 <body>
   <div class="wrap">
     <div class="kick">The Ranker's Masterbooks</div>
-    <h1>Seven books for the top<span class="dot">.</span></h1>
+    <h1>Eight books for the top<span class="dot">.</span></h1>
     <p class="lede">Original problems for the very top of JEE Advanced and the Mathematical Olympiad — where the obvious move is the wrong move, and every problem is solved more than one way.</p>
-    <div class="meta">706 problems · 70 chapters · multi-method · adversarially verified in Python.</div>
+    <div class="meta">806 problems · 80 chapters · multi-method · adversarially verified in Python.</div>
 
     <div class="grid">
+      <div class="book complex">
+        <div class="glyph">ℂ</div>
+        <div class="bk">The Argand Plane</div>
+        <h2>ℂ<span style="color:var(--fuchsia2)">.</span></h2>
+        <div class="sub">One letter, two dimensions</div>
+        <p>Olympiad/JEE complex numbers — the algebra of a+bi, modulus &amp; argument, De Moivre, roots of unity, the geometry of the Argand plane, loci, Möbius transformations, triangles &amp; polygons, and polynomial equations over ℂ.</p>
+        <div class="stats"><div><b>100</b><span>Problems</span></div><div><b>10</b><span>Chapters</span></div><div><b>3–5</b><span>Difficulty</span></div></div>
+        <a class="open" href="complex-masterbook/index.html">Open the book →</a>
+        <div class="pdfs"><a href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/COMPLEX-Problems.pdf">↓ Problems PDF</a><a href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/COMPLEX-Solutions.pdf">↓ Solutions PDF</a></div>
+      </div>
+
       <div class="book quad">
         <div class="glyph">x²</div>
         <div class="bk">Roots, Discriminant &amp; Vieta</div>
