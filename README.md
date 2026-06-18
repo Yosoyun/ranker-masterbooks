@@ -1,13 +1,14 @@
 # The Ranker's Masterbooks
 
-Nine static problem books for the very top of **JEE Advanced** and the **Mathematical Olympiad**.
-906 original problems, organised by the *instrument* that powers each one, and every problem solved
+Ten static problem books for the very top of **JEE Advanced** and the **Mathematical Olympiad**.
+1006 original problems, organised by the *instrument* that powers each one, and every problem solved
 **more than one way**. No build step, no dependencies, no tracking — just open `index.html`.
 
 🌐 **Live:** https://yosoyun.github.io/ranker-masterbooks/
 
 | Book | What | Problems |
 |------|------|----------|
+| **[n! · The Art of Counting](pnc-masterbook/)** | The two principles, permutations, combinations, circular & necklace arrangements, stars & bars, inclusion–exclusion & derangements, combinatorial identities, recurrences & Catalan, lattice paths, grand hybrids | 100 |
 | **[∫ · The Definite Integral](definite-masterbook/)** | Symmetry & parity, the king rule, the limit of a sum, reduction & Wallis, differentiation under the integral, estimation & the MVT, floor & periodic integrands, famous integrals, improper integrals, grand hybrids | 100 |
 | **[ℂ · The Argand Plane](complex-masterbook/)** | The algebra of a+bi, modulus & argument, De Moivre, roots of unity, the geometry of the plane, loci, Möbius maps, triangles & polygons, polynomial equations, grand hybrids | 100 |
 | **[x² · Roots, Discriminant & Vieta](quadratics-masterbook/)** | Vieta, the discriminant, root location, common roots, ranges of fractions, max–min, disguised quadratics, parameters, inequalities, grand hybrids | 100 |
