@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Dashboard — Ranker's Masterbooks</title>
+<style>
+  :root{ --paper:#f4efe4; --ink:#1c1a16; --ink2:#5b5446; --ink3:#8b8474; --line:#e2d8c2; --acc:#0e7490; --acc2:#0891b2;
+         --bad:#be123c; --ok:#047857; --warn:#b45309; }
+  @media(prefers-color-scheme:dark){ :root{ --paper:#100f0c; --ink:#efe8d8; --ink2:#bcb4a1; --ink3:#857e6c; --line:#2b271e; --acc2:#22d3ee; } body{background:#100f0c} .card,.t{background:#1a1813 !important} }
+  *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 system-ui,-apple-system,Inter,sans-serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:36px 22px 60px}
+  h1{font:800 30px/1 Georgia,serif;margin:0 0 4px} .sub{color:var(--ink3);font-size:14px;margin:0 0 22px}
+  .card{background:#fffdf8;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:18px}
+  label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3);margin:10px 0 5px}
+  input,select{width:100%;font:inherit;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:transparent;color:inherit}
+  .row{display:flex;gap:12px;flex-wrap:wrap} .row>div{flex:1;min-width:220px}
+  button{cursor:pointer;border:0;border-radius:10px;padding:10px 16px;font:700 14px system-ui;color:#fff;background:var(--acc)}
+  button.ghost{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:6px 0 4px}
+  .kpi{background:#fffdf8;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .kpi b{font:800 26px/1 Georgia,serif;display:block} .kpi span{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink3)}
+  table{width:100%;border-collapse:collapse;font-size:14px} th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink3);cursor:pointer}
+  tr.stu{cursor:pointer} tr.stu:hover{background:rgba(14,116,144,.07)}
+  .bar{height:7px;border-radius:4px;background:rgba(128,128,128,.18);overflow:hidden;min-width:60px}
+  .bar i{display:block;height:100%;background:var(--acc)}
+  .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:700}
+  .muted{color:var(--ink3)} .err{color:var(--bad);font-size:13px;margin-top:8px}
+  .note{background:rgba(180,83,9,.12);border-radius:11px;padding:11px 14px;font-size:13px;margin-top:12px}
+  details{margin-top:10px} summary{cursor:pointer;font-weight:700} .drill{padding:10px 0}
+  .tag{font-size:12px;color:var(--ink2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Teacher Dashboard</h1>
+  <p class="sub">The Ranker’s Masterbooks · student progress, understanding, confidence & satisfaction</p>
+
+  <div class="card" id="setup">
+    <label>Supabase Project URL</label>
+    <input id="url" placeholder="https://YOUR-PROJECT.supabase.co">
+    <label>Service role key <span class="muted">(Settings → API → service_role. Stored only in this browser; grants full read access — use on your own device.)</span></label>
+    <input id="key" type="password" placeholder="eyJ… (service_role secret)">
+    <div class="row" style="margin-top:14px">
+      <div style="flex:0 0 auto"><button id="load">Load data</button></div>
+      <div style="flex:0 0 auto"><button class="ghost" id="forget">Forget key</button></div>
+    </div>
+    <div class="err" id="err"></div>
+    <div class="note">Tip: leave this tab open and click <b>Load data</b> to refresh. Filter by class code below once loaded.</div>
+  </div>
+
+  <div id="dash" style="display:none">
+    <div class="card">
+      <div class="row">
+        <div><label>Class code</label><select id="fclass"><option value="">All classes</option></select></div>
+        <div><label>Book</label><select id="fbook"><option value="">All books</option></select></div>
+        <div style="flex:0 0 auto;align-self:flex-end"><button id="refresh">↻ Refresh</button></div>
+      </div>
+    </div>
+    <div class="kpis" id="kpis"></div>
+    <div class="card">
+      <h3 style="margin:0 0 10px">Students</h3>
+      <table id="tbl"><thead><tr>
+        <th data-s="name">Student</th><th data-s="class_code">Class</th><th data-s="solved">Solved</th>
+        <th data-s="got">Got-it %</th><th data-s="conf">Confidence</th><th data-s="sat">Satisfaction</th>
+        <th data-s="weak">Needs help</th><th data-s="last">Last active</th>
+      </tr></thead><tbody></tbody></table>
+      <p class="muted" id="empty" style="display:none">No data yet — once students sign in and rate problems, they’ll appear here.</p>
+    </div>
+  </div>
+</div>
+<script>
+var $ = function(s){ return document.querySelector(s); };
+var LS = { url:'rmb_t_url', key:'rmb_t_key' };
+$('#url').value = localStorage.getItem(LS.url) || '';
+$('#key').value = localStorage.getItem(LS.key) || '';
+$('#forget').onclick = function(){ localStorage.removeItem(LS.key); $('#key').value=''; };
+var EVENTS = [], LABELS = {};
+
+$('#load').onclick = $('#refresh') ? load : load;
+function load(){
+  var url = $('#url').value.trim().replace(/\/$/,''), key = $('#key').value.trim();
+  $('#err').textContent='';
+  if(!/^https:\/\/.+\.supabase\.co$/.test(url) || key.length<40){ $('#err').textContent='Enter a valid Supabase URL and service_role key.'; return; }
+  localStorage.setItem(LS.url,url); localStorage.setItem(LS.key,key);
+  $('#load').textContent='Loading…';
+  fetch(url+'/rest/v1/events?select=*&order=created_at.asc&limit=100000',{headers:{apikey:key,Authorization:'Bearer '+key}})
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status+' — check the key and that the events table exists.'); return r.json(); })
+    .then(function(rows){ EVENTS=rows||[]; $('#load').textContent='Load data'; buildFilters(); render(); $('#dash').style.display=''; })
+    .catch(function(e){ $('#load').textContent='Load data'; $('#err').textContent=String(e.message||e); });
+}
+if(localStorage.getItem(LS.key) && localStorage.getItem(LS.url)) load();
+$('#refresh') && ($('#refresh').onclick = load);
+
+function buildFilters(){
+  var cls={}, bk={};
+  EVENTS.forEach(function(e){ if(e.class_code)cls[e.class_code]=1; if(e.book)bk[e.book]=1; });
+  fill('#fclass', Object.keys(cls).sort()); fill('#fbook', Object.keys(bk).sort());
+  $('#fclass').onchange=render; $('#fbook').onchange=render;
+}
+function fill(sel, vals){ var s=$(sel), cur=s.value; s.innerHTML='<option value="">'+(sel=='#fclass'?'All classes':'All books')+'</option>'+vals.map(function(v){return '<option'+(v==cur?' selected':'')+'>'+v+'</option>';}).join(''); }
+
+function render(){
+  var fc=$('#fclass').value, fb=$('#fbook').value;
+  var ev = EVENTS.filter(function(e){ return (!fc||e.class_code==fc) && (!fb||e.book==fb); });
+  var stu = {}; // device_id -> agg
+  ev.forEach(function(e){
+    var k=e.device_id||(e.name+'|'+e.class_code);
+    var s=stu[k]||(stu[k]={name:e.name,class_code:e.class_code,solved:{},got:[],conf:[],sat:[],tconf:[],theme:{},last:e.created_at,notes:[]});
+    if(e.created_at>s.last)s.last=e.created_at; s.name=e.name||s.name; s.class_code=e.class_code||s.class_code;
+    if(e.kind==='solved')s.solved[e.book+'#'+e.problem_id]=1;
+    if(e.kind==='unsolved')delete s.solved[e.book+'#'+e.problem_id];
+    if(e.kind==='understood'){s.got.push(+e.value); th(s,e.theme,'u',+e.value);}
+    if(e.kind==='confidence'){s.conf.push(+e.value); th(s,e.theme,'c',+e.value);}
+    if(e.kind==='satisfaction'){ if(e.value!=null)s.sat.push(+e.value); if(e.note)s.notes.push(e.note); }
+    if(e.kind==='topic_confidence'){ if(e.value!=null)s.tconf.push(+e.value); if(e.note)s.notes.push(e.note); }
+  });
+  function th(s,t,k,v){ if(!t)return; s.theme[t]=s.theme[t]||{u:[],c:[]}; s.theme[t][k].push(v); }
+  var rows = Object.keys(stu).map(function(k){
+    var s=stu[k];
+    var got = s.got.length? Math.round(100*s.got.filter(function(x){return x==1;}).length/s.got.length):null;
+    var conf = avg(s.conf), sat = avg(s.sat.concat(s.tconf));
+    var weak=null,ws=2;
+    Object.keys(s.theme).forEach(function(t){var d=s.theme[t];var ur=d.u.length?d.u.filter(function(x){return x==1;}).length/d.u.length:1;var cr=d.c.length?avg(d.c)/5:1;var sc=Math.min(ur,cr);if(sc<ws){ws=sc;weak=t;}});
+    return {name:s.name,class_code:s.class_code,solved:Object.keys(s.solved).length,got:got,conf:conf,sat:sat,
+      weak:weak?(LABELS[weak]||weak):'—',last:s.last,notes:s.notes};
+  });
+  // KPIs
+  var k={students:rows.length,solved:sum(rows.map(function(r){return r.solved;})),
+    got:avgOf(rows,'got'),conf:avgOf(rows,'conf'),sat:avgOf(rows,'sat')};
+  $('#kpis').innerHTML=
+    kpi(k.students,'Students')+kpi(k.solved,'Problems solved')+
+    kpi(k.got==null?'—':k.got+'%','Avg got-it')+kpi(k.conf==null?'—':k.conf.toFixed(1),'Avg confidence /5')+
+    kpi(k.sat==null?'—':k.sat.toFixed(1),'Avg satisfaction /5');
+  // sort
+  rows.sort(function(a,b){ return (b.last||'').localeCompare(a.last||''); });
+  window._SORT && rows.sort(window._SORT);
+  var tb=$('#tbl tbody'); tb.innerHTML='';
+  $('#empty').style.display = rows.length?'none':'';
+  rows.forEach(function(r){
+    var tr=document.createElement('tr'); tr.className='stu';
+    tr.innerHTML='<td><b>'+esc(r.name)+'</b></td><td>'+esc(r.class_code)+'</td><td>'+r.solved+'</td>'+
+      '<td>'+badge(r.got,'%',[40,70])+'</td>'+
+      '<td>'+meter(r.conf)+'</td><td>'+meter(r.sat)+'</td>'+
+      '<td class="tag">'+esc(r.weak)+'</td><td class="muted">'+ago(r.last)+'</td>';
+    var dr=document.createElement('tr'); dr.style.display='none';
+    dr.innerHTML='<td colspan="8" class="drill"><b>Notes from '+esc(r.name)+':</b> '+
+      (r.notes.length?r.notes.map(esc).join(' · '):'<span class="muted">none yet</span>')+'</td>';
+    tr.onclick=function(){ dr.style.display=dr.style.display==='none'?'':'none'; };
+    tb.appendChild(tr); tb.appendChild(dr);
+  });
+  document.querySelectorAll('#tbl th[data-s]').forEach(function(th){ th.onclick=function(){ var k=th.getAttribute('data-s');
+    window._SORT=function(a,b){ var x=a[k],y=b[k]; if(typeof x==='number'||x==null){return (y||0)-(x||0);} return String(x).localeCompare(String(y)); }; render(); }; });
+}
+function avg(a){ a=a.filter(function(x){return x!=null && !isNaN(x);}); return a.length?a.reduce(function(p,c){return p+c;},0)/a.length:null; }
+function avgOf(rows,k){ return avg(rows.map(function(r){return r[k];})); }
+function sum(a){ return a.reduce(function(p,c){return p+c;},0); }
+function kpi(v,l){ return '<div class="kpi"><b>'+v+'</b><span>'+l+'</span></div>'; }
+function meter(v){ if(v==null)return '<span class="muted">—</span>'; var pct=Math.round(v/5*100); return '<div style="display:flex;align-items:center;gap:7px"><div class="bar" style="flex:1"><i style="width:'+pct+'%"></i></div><span>'+v.toFixed(1)+'</span></div>'; }
+function badge(v,suf,th){ if(v==null)return '<span class="muted">—</span>'; var c=v<th[0]?'var(--bad)':v<th[1]?'var(--warn)':'var(--ok)'; return '<span class="pill" style="background:'+c+';color:#fff">'+v+(suf||'')+'</span>'; }
+function ago(t){ if(!t)return '—'; var d=(Date.now()-new Date(t).getTime())/1000; if(d<3600)return Math.round(d/60)+'m ago'; if(d<86400)return Math.round(d/3600)+'h ago'; return Math.round(d/86400)+'d ago'; }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];}); }
+</script>
+</body>
+</html>
