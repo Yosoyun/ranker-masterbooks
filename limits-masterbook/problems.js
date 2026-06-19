@@ -5,3829 +5,4314 @@
    before being admitted to the book. Each statement/answer is raw LaTeX;
    solution steps use $...$ and $$...$$ delimiters. */
 window.PROBLEMS = [
- {
-  "theme": "floor",
-  "themeLabel": "The Greatest Integer Function",
-  "title": "The Sinc Just Misses",
-  "difficulty": 4,
-  "tags": [
-   "floor",
-   "sinc",
-   "one-sided",
-   "x->0+",
-   "squeeze"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\left\\lfloor \\frac{100\\sin x}{x}\\right\\rfloor",
-  "answer": "99",
-  "trap": "Since $\\frac{\\sin x}{x}\\to 1$, the bracket tends to $100$, so \"obviously\" the floor tends to $100$. This conflates the limit of $g(x)$ with the limit of $\\lfloor g(x)\\rfloor$. The floor is a step function: it cares only about which integer cell $g$ lives in, not its limiting value. Because $\\sin x < x$ strictly for $0<x<\\pi$, we have $\\frac{100\\sin x}{x}<100$ for every $x>0$ near $0$ — the value approaches $100$ but never reaches it, sitting in the cell $(99,100)$. So $\\lfloor g(x)\\rfloor=99$ identically near $0$, and the limit is $99$, not $100$.",
-  "solutions": [
-   {
-    "name": "Method I - Sign of the approach (one-sided analysis)",
-    "steps": [
-     "The floor of $g(x)=\\dfrac{100\\sin x}{x}$ is determined entirely by which integer interval $g$ falls into, so the whole game is whether $g$ sits just below or just above $100$.",
-     "For $0<x<\\pi$ the strict inequality $\\sin x < x$ holds (the chord is shorter than the arc), hence $\\dfrac{\\sin x}{x}<1$ and therefore $$\\frac{100\\sin x}{x}<100.$$ The value is pinned strictly below $100$ for all small $x>0$.",
-     "We also need a lower bound to keep the value above $99$. From the expansion $\\sin x = x-\\dfrac{x^3}{6}+\\cdots$, $$\\frac{100\\sin x}{x}=100\\left(1-\\frac{x^2}{6}+\\cdots\\right),$$ which exceeds $99$ as soon as $\\dfrac{100x^2}{6}<1$, i.e. for $0<x<\\dfrac{\\sqrt 6}{10}$.",
-     "So for all sufficiently small $x>0$, $$99<\\frac{100\\sin x}{x}<100,$$ meaning $g$ never leaves the cell $(99,100)$. Thus $\\lfloor g(x)\\rfloor=99$ on that whole neighbourhood, and the limit is $\\boxed{99}$."
-    ]
-   },
-   {
-    "name": "Method II - Squeeze on the floor via explicit bounds",
-    "steps": [
-     "Write $g(x)=\\dfrac{100\\sin x}{x}$. We trap $g$ between two constants in a punctured right-neighbourhood of $0$, then read off the floor.",
-     "Upper bound: $\\sin x<x$ for $0<x<\\pi$ gives $g(x)<100$.",
-     "Lower bound: the standard inequality $\\sin x> x-\\dfrac{x^3}{6}$ (valid for $x>0$) gives $$g(x)>100-\\frac{100x^2}{6}.$$ Choosing $\\delta=\\dfrac{\\sqrt 6}{10}$ makes $\\dfrac{100\\delta^2}{6}=1$, so for $0<x<\\delta$ we get $g(x)>99$.",
-     "On $(0,\\delta)$ we therefore have $g(x)\\in(99,100)$ — a single integer cell — so $\\lfloor g(x)\\rfloor=99$ throughout. Since the floor is constant on a right-neighbourhood of $0$, the limit equals $99$."
-    ]
-   }
-  ],
-  "remark": "Multiplying a ratio that approaches $1$ strictly from below by an integer $N$ pins the floor at $N-1$; the same statement with $\\tan$ in place of $\\sin$ (since $\\frac{\\tan x}{x}\\to 1$ from above) would instead give $N$. The lesson: $\\lim\\lfloor g\\rfloor\\neq\\lfloor\\lim g\\rfloor$ whenever the limit lands exactly on an integer."
- },
- {
-  "theme": "floor",
-  "themeLabel": "The Greatest Integer Function",
-  "title": "Sine From Below, Tangent From Above",
-  "difficulty": 4,
-  "tags": [
-   "floor",
-   "sinc",
-   "tanc",
-   "one-sided",
-   "x->0+"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\left(\\left\\lfloor \\frac{50\\sin x}{x}\\right\\rfloor+\\left\\lfloor \\frac{50\\tan x}{x}\\right\\rfloor\\right)",
-  "answer": "99",
-  "trap": "Both ratios $\\to 1$, so $50\\sin x/x$ and $50\\tan x/x$ both $\\to 50$; \"therefore\" each floor is $50$ and the sum is $100$. The seduction is the apparent symmetry of the two terms. It fails because the floor reads the *direction* of approach, not the limiting value: $\\sin x<x$ pushes the first ratio to $50$ from *below* (floor $49$), while $\\tan x>x$ pushes the second to $50$ from *above* (floor $50$). They never both sit at $50$, so the answer is $49+50=99$, not $100$.",
-  "solutions": [
-   {
-    "name": "Method I - Opposite-side comparison",
-    "steps": [
-     "Handle the two floors separately using the strict monotone comparisons of $\\sin$ and $\\tan$ against their argument near $0$.",
-     "For $0<x<\\pi$ we have $\\sin x<x$, so $\\dfrac{50\\sin x}{x}<50$. Also $\\sin x>x-\\dfrac{x^3}{6}$ gives $\\dfrac{50\\sin x}{x}>50-\\dfrac{50x^2}{6}>49$ once $x^2<\\dfrac{6}{50}$ (i.e. $x<0.346$). Hence $\\left\\lfloor\\dfrac{50\\sin x}{x}\\right\\rfloor=49$.",
-     "For $0<x<\\dfrac{\\pi}{2}$ we have $\\tan x>x$, so $\\dfrac{50\\tan x}{x}>50$. Also $\\tan x=x+\\dfrac{x^3}{3}+\\dfrac{2x^5}{15}+\\cdots<x+x^3$ for small $x$, giving $\\dfrac{50\\tan x}{x}<50+50x^2<51$ once $x^2<\\dfrac{1}{50}$ (i.e. $x<0.141$). Hence $\\left\\lfloor\\dfrac{50\\tan x}{x}\\right\\rfloor=50$.",
-     "On the common right-neighbourhood $\\left(0,\\,0.141\\right)$ both floors are constant, so the sum is identically $49+50=99$ and the limit is $\\boxed{99}$."
-    ]
-   },
-   {
-    "name": "Method II - Series bracket",
-    "steps": [
-     "Expand each quotient about $x=0$: $$\\frac{50\\sin x}{x}=50-\\frac{50x^2}{6}+O(x^4),\\qquad \\frac{50\\tan x}{x}=50+\\frac{50x^2}{3}+O(x^4).$$",
-     "For all sufficiently small $x>0$ the first expression lies strictly in $(49,50)$ (it is just below $50$), and the second lies strictly in $(50,51)$ (it is just above $50$).",
-     "Therefore $\\left\\lfloor\\dfrac{50\\sin x}{x}\\right\\rfloor=49$ and $\\left\\lfloor\\dfrac{50\\tan x}{x}\\right\\rfloor=50$, independent of $x$. The sum is the constant $99$, which is the limit."
-    ]
-   }
-  ],
-  "remark": "The asymmetry $\\sin x<x<\\tan x$ is exactly why halving the naive guess leaks one unit: the floor sees the direction of approach, not just the value. Note both ratios are even in $x$, so the same one-sided floors hold at $0^-$ and the two-sided limit also equals $99$; the $0^+$ phrasing is simply the cleanest way to state it."
- },
- {
-  "theme": "floor",
-  "themeLabel": "The Greatest Integer Function",
-  "title": "It Wanted To Be One",
-  "difficulty": 4,
-  "tags": [
-   "floor",
-   "sinc",
-   "x->+infinity",
-   "one-sided-from-below"
-  ],
-  "statement": "\\lim_{x\\to +\\infty}\\left\\lfloor x\\sin\\tfrac{1}{x}\\right\\rfloor",
-  "answer": "0",
-  "trap": "Since $x\\sin\\frac1x=\\frac{\\sin(1/x)}{1/x}\\to 1$, it is tempting to pass the floor through the limit and answer $1$. But $x\\sin\\frac1x=1-\\frac{1}{6x^2}+O(x^{-4})$ approaches $1$ strictly from below, so for every finite $x$ it lies in $(0,1)$ and its floor is $0$. Floor and limit do not commute when the limit is an integer reached from below.",
-  "solutions": [
-   {
-    "name": "Method I - Strict inequality",
-    "steps": [
-     "Substitute $t=\\frac1x$, so $t\\to 0^+$ as $x\\to+\\infty$, and $x\\sin\\frac1x=\\dfrac{\\sin t}{t}$.",
-     "For $0<t<\\pi$ the sine is positive and lies strictly below its argument: $0<\\sin t<t$. Dividing by $t>0$ gives $0<\\dfrac{\\sin t}{t}<1$.",
-     "A real number strictly inside $(0,1)$ has floor $0$. Hence $\\left\\lfloor x\\sin\\frac1x\\right\\rfloor=0$ for all large $x$, and the limit is $\\boxed{0}$."
-    ]
-   },
-   {
-    "name": "Method II - Quantitative squeeze",
-    "steps": [
-     "Use the sharp small-angle bounds $t-\\dfrac{t^3}{6}<\\sin t<t$ for $0<t<1$. With $t=1/x$ and $x\\ge 1$: $$1-\\frac{1}{6x^2}<x\\sin\\frac1x<1.$$",
-     "For $x\\ge 1$ the lower bound satisfies $1-\\frac{1}{6x^2}\\ge 1-\\frac16=\\frac56>0$, so the expression is trapped in $\\left(\\tfrac56,1\\right)\\subset(0,1)$.",
-     "Therefore the floor equals $0$ identically for all $x\\ge 1$, and the limit is $0$ — sharply different from the value $1$ of the un-floored expression $\\frac{\\sin(1/x)}{1/x}$."
-    ]
-   }
-  ],
-  "remark": "Here $\\lim f=1$ yet $\\lim\\lfloor f\\rfloor=0$: a clean case where floor and limit fail to commute, because the limiting value is an integer approached strictly from below (the deficit is $\\tfrac{1}{6x^2}>0$)."
- },
- {
-  "theme": "floor",
-  "themeLabel": "The Greatest Integer Function",
-  "title": "Half From The Triangle",
-  "difficulty": 3,
-  "tags": [
-   "floor",
-   "summation",
-   "x->+infinity",
-   "squeeze"
-  ],
-  "statement": "\\lim_{x\\to +\\infty}\\frac{1}{x^2}\\sum_{k=1}^{\\lfloor x\\rfloor} k",
-  "answer": "\\dfrac{1}{2}",
-  "trap": "The careless route replaces $\\lfloor x\\rfloor$ by $x$ and the sum by $\\int_0^x t\\,dt=\\tfrac{x^2}{2}$, reading off $\\tfrac12$. The answer is right but the reasoning is not: you have silently assumed both that the discrete sum equals the integral and that the upper index $\\lfloor x\\rfloor$ may be swapped for $x$ with no cost. Either swap changes the numerator by $\\Theta(x)$; you must show that defect is lower order than the $x^2$ scale, not wave it away. A student who 'cancels' the floor without that estimate has guessed, not solved.",
-  "solutions": [
-   {
-    "name": "Method I - Exact sum then squeeze",
-    "steps": [
-     "Let $m=\\lfloor x\\rfloor$, so $x-1<m\\le x$. The inner sum is given exactly by the triangular-number formula: $$\\sum_{k=1}^{m}k=\\frac{m(m+1)}{2}.$$",
-     "Hence $$\\frac{1}{x^2}\\sum_{k=1}^{m}k=\\frac{m(m+1)}{2x^2}=\\frac12\\cdot\\frac{m}{x}\\cdot\\frac{m+1}{x}.$$",
-     "From $x-1<m\\le x$ we get $\\dfrac{x-1}{x}<\\dfrac{m}{x}\\le 1$ and $\\dfrac{x}{x}<\\dfrac{m+1}{x}\\le\\dfrac{x+1}{x}$. As $x\\to\\infty$ both outer bounds tend to $1$, so by the squeeze theorem $\\dfrac{m}{x}\\to 1$ and $\\dfrac{m+1}{x}\\to 1$.",
-     "Therefore the product tends to $\\dfrac12\\cdot 1\\cdot 1=\\boxed{\\dfrac12}$."
-    ]
-   },
-   {
-    "name": "Method II - Bracketing the upper index",
-    "steps": [
-     "With $m=\\lfloor x\\rfloor$ and $x\\ge 1$ we have $x-1<m\\le x$. Since $t\\mapsto\\tfrac{t(t+1)}{2}$ is increasing for $t\\ge 0$, applying the triangular formula at $t=x-1$, $t=m$, $t=x$ gives $$\\frac{(x-1)x}{2}\\;\\le\\;\\frac{m(m+1)}{2}\\;\\le\\;\\frac{x(x+1)}{2}.$$",
-     "Both flanking expressions equal $\\dfrac{x^2}{2}+O(x)$, namely $\\dfrac{x^2}{2}-\\dfrac{x}{2}$ and $\\dfrac{x^2}{2}+\\dfrac{x}{2}$, so by squeezing $$\\sum_{k=1}^{m}k=\\frac{m(m+1)}{2}=\\frac{x^2}{2}+O(x).$$",
-     "Dividing by $x^2$ gives $\\dfrac{1}{x^2}\\displaystyle\\sum_{k=1}^{m}k=\\dfrac12+O\\!\\left(\\dfrac1x\\right)\\xrightarrow[x\\to\\infty]{}\\dfrac12.$"
-    ]
-   }
-  ],
-  "remark": "The floor on the upper index perturbs the numerator only by an $O(x)$ amount against an $x^2$ main term, so it is invisible in the limit. Indeed at integer $x$ one has the exact identity $\\frac1{x^2}\\sum_{k=1}^{x}k=\\frac12+\\frac1{2x}$, showing the defect is precisely $\\Theta(1/x)$ — small, but it must be estimated, not assumed away."
- },
- {
-  "theme": "floor",
-  "themeLabel": "The Greatest Integer Function",
-  "title": "Curvature Catches The Floor",
-  "difficulty": 4,
-  "tags": [
-   "floor",
-   "reciprocal-square",
-   "x->0+",
-   "squeeze",
-   "cosine"
-  ],
-  "statement": "\\lim_{x\\to 0^+}(1-\\cos x)\\left\\lfloor \\frac{1}{x^2}\\right\\rfloor",
-  "answer": "\\dfrac{1}{2}",
-  "trap": "Replace $\\left\\lfloor 1/x^2\\right\\rfloor$ by $1/x^2$ to collapse the product into $\\dfrac{1-\\cos x}{x^2}\\to\\dfrac12$. The number is right, but the move is illegal: $\\left\\lfloor 1/x^2\\right\\rfloor\\ne 1/x^2$, and the discarded piece $1/x^2-\\left\\lfloor 1/x^2\\right\\rfloor$ can sit anywhere in $[0,1)$ — its gap is not $o(1)$. A correct solution must prove $x^2\\left\\lfloor 1/x^2\\right\\rfloor\\to 1$ (the gap, scaled by $x^2$, vanishes), not assume it away.",
-  "solutions": [
-   {
-    "name": "Method I - Factor and squeeze the floor",
-    "steps": [
-     "Split the product into a curvature factor and a floor factor: $$(1-\\cos x)\\left\\lfloor\\frac{1}{x^2}\\right\\rfloor=\\frac{1-\\cos x}{x^2}\\cdot\\Big(x^2\\left\\lfloor\\frac{1}{x^2}\\right\\rfloor\\Big).$$",
-     "First factor (curvature): $\\dfrac{1-\\cos x}{x^2}\\to\\dfrac12$ as $x\\to 0$ (standard, since $1-\\cos x\\sim x^2/2$).",
-     "Second factor (floor): from the universal bound $u-1<\\lfloor u\\rfloor\\le u$ with $u=1/x^2$, multiply through by $x^2>0$ to get $$1-x^2<x^2\\left\\lfloor\\frac1{x^2}\\right\\rfloor\\le 1.$$ As $x\\to 0^+$ both ends $\\to 1$, so by the squeeze theorem $x^2\\left\\lfloor 1/x^2\\right\\rfloor\\to 1$.",
-     "Both factors converge, so the limit of the product is the product of the limits: $\\dfrac12\\cdot 1=\\boxed{\\dfrac12}$."
-    ]
-   },
-   {
-    "name": "Method II - Global squeeze (no splitting)",
-    "steps": [
-     "Apply the floor bound directly: $\\dfrac{1}{x^2}-1<\\left\\lfloor\\dfrac{1}{x^2}\\right\\rfloor\\le\\dfrac{1}{x^2}$, valid for all $x\\ne 0$. Near $0$ we also have $1-\\cos x>0$.",
-     "Multiply the chain by the positive quantity $(1-\\cos x)$ (inequalities are preserved): $$(1-\\cos x)\\Big(\\tfrac{1}{x^2}-1\\Big)<(1-\\cos x)\\left\\lfloor\\tfrac{1}{x^2}\\right\\rfloor\\le \\frac{1-\\cos x}{x^2}.$$",
-     "Right end: $\\dfrac{1-\\cos x}{x^2}\\to\\dfrac12$. Left end: $\\dfrac{1-\\cos x}{x^2}-(1-\\cos x)\\to\\dfrac12-0=\\dfrac12$ (the second term vanishes).",
-     "Both bounding sequences tend to $\\dfrac12$, so by the squeeze theorem the middle expression $\\to\\dfrac12$."
-    ]
-   }
-  ],
-  "remark": "The $\\tfrac12$ is entirely a curvature effect ($1-\\cos x\\sim x^2/2$); the floor contributes only the benign factor $x^2\\lfloor 1/x^2\\rfloor\\to 1$. The same mechanism gives $\\lim_{x\\to0^+}\\tfrac{x^2}{2}\\lfloor 1/x^2\\rfloor=\\tfrac12$ and, more generally, $g(x)\\lfloor 1/x^2\\rfloor\\to L$ whenever $x^2 g(x)\\to L$."
- },
- {
-  "theme": "floor",
-  "themeLabel": "The Greatest Integer Function",
-  "title": "The Inner Half",
-  "difficulty": 4,
-  "tags": [
-   "floor",
-   "fractional-part",
-   "conjugate",
-   "x->+infinity",
-   "integers"
-  ],
-  "statement": "\\lim_{n\\to +\\infty}\\left\\{\\sqrt{n^2+n}\\right\\}\\quad(n\\in\\mathbb{Z}^+)",
-  "answer": "\\dfrac{1}{2}",
-  "trap": "Since $\\sqrt{n^2+n}\\approx n$ for large $n$, the fractional part $\\{\\sqrt{n^2+n}\\}$ looks like it should shrink to $0$. It does not. The error $\\sqrt{n^2+n}-n$ is not negligible: it stays in $(0,1)$ and actually grows toward $\\tfrac12$. Equivalently, $\\sqrt{n^2+n}$ sits asymptotically halfway between the consecutive integers $n$ and $n+1$, so its fractional part tends to $\\tfrac12$, never $0$.",
-  "solutions": [
-   {
-    "name": "Method I - Locate the integer part, then conjugate",
-    "steps": [
-     "First pin the integer part. For every $n\\ge 1$, $$n^2<n^2+n<n^2+2n+1=(n+1)^2,$$ since $(n^2+n)-n^2=n>0$ and $(n+1)^2-(n^2+n)=n+1>0$. Taking square roots, $n<\\sqrt{n^2+n}<n+1$, so $\\lfloor\\sqrt{n^2+n}\\rfloor=n$.",
-     "Therefore the fractional part is $$\\{\\sqrt{n^2+n}\\}=\\sqrt{n^2+n}-\\lfloor\\sqrt{n^2+n}\\rfloor=\\sqrt{n^2+n}-n.$$",
-     "Rationalise using the conjugate: $$\\sqrt{n^2+n}-n=\\frac{(n^2+n)-n^2}{\\sqrt{n^2+n}+n}=\\frac{n}{\\sqrt{n^2+n}+n}.$$",
-     "Divide numerator and denominator by $n$ (valid since $n>0$): $$\\frac{n}{\\sqrt{n^2+n}+n}=\\frac{1}{\\sqrt{1+\\tfrac1n}+1}\\xrightarrow[n\\to\\infty]{}\\frac{1}{\\sqrt{1}+1}=\\frac12.$$",
-     "Hence $\\displaystyle\\lim_{n\\to\\infty}\\{\\sqrt{n^2+n}\\}=\\boxed{\\tfrac12}$."
-    ]
-   },
-   {
-    "name": "Method II - Generalised binomial expansion",
-    "steps": [
-     "Write $\\sqrt{n^2+n}=n\\sqrt{1+\\tfrac1n}$ and apply the generalised binomial series $\\sqrt{1+u}=1+\\tfrac{u}{2}-\\tfrac{u^2}{8}+\\cdots$ with $u=\\tfrac1n\\to 0$ (so the series converges for large $n$): $$\\sqrt{n^2+n}=n\\left(1+\\frac{1}{2n}-\\frac{1}{8n^2}+\\cdots\\right)=n+\\frac12-\\frac{1}{8n}+\\cdots.$$",
-     "For $n\\ge 1$ the tail $-\\tfrac{1}{8n}+\\cdots$ lies in $(-\\tfrac12,0)$, so $\\sqrt{n^2+n}\\in(n,n+1)$ and again $\\lfloor\\sqrt{n^2+n}\\rfloor=n$.",
-     "Subtracting the integer part, $$\\{\\sqrt{n^2+n}\\}=\\sqrt{n^2+n}-n=\\frac12-\\frac{1}{8n}+\\cdots\\xrightarrow[n\\to\\infty]{}\\frac12.$$"
-    ]
-   }
-  ],
-  "remark": "The mechanism is that $\\sqrt{n^2+n}$ is squeezed strictly between the consecutive integers $n$ and $n+1$ and drifts to their midpoint. More generally, for fixed $a$ with $0<a<2$ one gets $\\{\\sqrt{n^2+an}\\}\\to a/2$; the inner linear term $n$ ($a=1$) places the point exactly 'half a step' above $n$ asymptotically."
- },
- {
-  "theme": "floor",
-  "themeLabel": "The Greatest Integer Function",
-  "title": "Two Floors Meet At An Integer",
-  "difficulty": 4,
-  "tags": [
-   "floor",
-   "integer-point",
-   "x->2-",
-   "jump",
-   "composition"
-  ],
-  "statement": "\\lim_{x\\to 2^-}\\left(\\left\\lfloor x^2\\right\\rfloor-\\left\\lfloor x\\right\\rfloor^2\\right)",
-  "answer": "2",
-  "trap": "At $x=2$ both terms equal $4$, so the difference is $0$; a hasty reader plugs in the endpoint and answers $0$. But the left-hand limit never reaches $x=2$: for $x$ just below $2$, $\\lfloor x\\rfloor=1$ so $\\lfloor x\\rfloor^2=1$, while $x^2$ is just below $4$ giving $\\lfloor x^2\\rfloor=3$. The two floors jump at different instants, so the difference is $3-1=2$, not $0$.",
-  "solutions": [
-   {
-    "name": "Method I - Evaluate each floor on the left",
-    "steps": [
-     "We need the value of the expression for $x$ slightly less than $2$, so restrict to a left-neighborhood of $2$.",
-     "$\\lfloor x\\rfloor$: for $1\\le x<2$ we have $\\lfloor x\\rfloor=1$, hence $\\lfloor x\\rfloor^2=1$.",
-     "$\\lfloor x^2\\rfloor$: as $x\\to2^-$, $x^2\\to4^-$. Moreover for $\\sqrt3<x<2$ we have $3<x^2<4$, so $\\lfloor x^2\\rfloor=3$ throughout that interval.",
-     "Thus on the whole interval $(\\sqrt3,2)$ the expression equals the constant $3-1=2$, so the left-hand limit is $\\boxed{2}$.",
-     "(For contrast, the right-hand limit at $2$ is $0$, which is why the problem is posed one-sided.)"
-    ]
-   },
-   {
-    "name": "Method II - Fractional-part decomposition",
-    "steps": [
-     "Write $\\lfloor x^2\\rfloor=x^2-\\{x^2\\}$ and $\\lfloor x\\rfloor=x-\\{x\\}$, so $\\lfloor x\\rfloor^2=(x-\\{x\\})^2$.",
-     "On $(1,2)$ we have $\\{x\\}=x-1$, hence $x-\\{x\\}=1$ and $\\lfloor x\\rfloor^2=1$ (a constant, not just a limit).",
-     "On $(\\sqrt3,2)$ we have $3<x^2<4$, so $\\{x^2\\}=x^2-3$ and therefore $\\lfloor x^2\\rfloor=x^2-(x^2-3)=3$ identically.",
-     "Hence on $(\\sqrt3,2)$ the difference is the constant $3-1=2$, and the left-hand limit is $2$."
-    ]
-   }
-  ],
-  "remark": "At an integer the compositions $\\lfloor x^2\\rfloor$ and $\\lfloor x\\rfloor^2$ jump at different instants ($x^2$ already crosses $3$ at $x=\\sqrt3$, well before $x$ reaches $2$); the left-limit gap measures that desynchronisation."
- },
- {
-  "theme": "floor",
-  "themeLabel": "The Greatest Integer Function",
-  "title": "The Logarithm Forgives The Floor",
-  "difficulty": 3,
-  "tags": [
-   "floor",
-   "logarithm",
-   "exponential",
-   "x->+infinity",
-   "squeeze"
-  ],
-  "statement": "\\lim_{x\\to +\\infty}\\Big(\\ln\\big\\lfloor e^{x}\\big\\rfloor-x\\Big)",
-  "answer": "0",
-  "trap": "The absolute gap $e^x-\\lfloor e^x\\rfloor$ wanders chaotically in $[0,1)$ and never settles, so it looks like $\\ln\\lfloor e^x\\rfloor-x$ should jitter toward some nonzero constant (a common guess is a number like $-\\tfrac12$, the 'average' of the fractional part). But the limit only sees the *relative* error $\\lfloor e^x\\rfloor/e^x=1-O(e^{-x})\\to1$, whose logarithm is crushed to $0$ at exponential speed. The chaotic numerator is irrelevant once divided by something exponentially large.",
-  "solutions": [
-   {
-    "name": "Method I - Logarithm of a ratio",
-    "steps": [
-     "Since $x\\to+\\infty$ we have $e^x>1$, so $\\lfloor e^x\\rfloor\\ge 1$ and the logarithm is defined. Rewrite the difference as a single logarithm: $$\\ln\\lfloor e^x\\rfloor-x=\\ln\\lfloor e^x\\rfloor-\\ln e^x=\\ln\\frac{\\lfloor e^x\\rfloor}{e^x}.$$",
-     "Bound the ratio using $e^x-1<\\lfloor e^x\\rfloor\\le e^x$. Dividing by $e^x>0$: $$1-e^{-x}<\\frac{\\lfloor e^x\\rfloor}{e^x}\\le1.$$",
-     "As $x\\to+\\infty$, $e^{-x}\\to0$, so by the squeeze theorem $\\dfrac{\\lfloor e^x\\rfloor}{e^x}\\to1$.",
-     "By continuity of $\\ln$ at $1$, $$\\ln\\frac{\\lfloor e^x\\rfloor}{e^x}\\to\\ln 1=0.$$ Hence the limit is $\\boxed{0}$."
-    ]
-   },
-   {
-    "name": "Method II - Quantitative bound on the difference",
-    "steps": [
-     "Let $r=\\dfrac{\\lfloor e^x\\rfloor}{e^x}$. From Method I, $r\\in(1-e^{-x},\\,1]$, and $\\ln\\lfloor e^x\\rfloor-x=\\ln r$, so $\\ln r\\le 0$.",
-     "Write $r=1-u$ with $u=1-r\\in[0,e^{-x})$. The elementary inequality $\\ln(1-u)\\ge-\\dfrac{u}{1-u}$ holds for all $u\\in[0,1)$ (verified numerically and provable since $f(u)=\\ln(1-u)+\\frac{u}{1-u}$ satisfies $f(0)=0$, $f'(u)=\\frac{u}{(1-u)^2}\\ge0$).",
-     "Since $u\\mapsto-\\dfrac{u}{1-u}$ is decreasing and $u<e^{-x}$, we get $$0\\ge\\ln r\\ge-\\frac{u}{1-u}>-\\frac{e^{-x}}{1-e^{-x}}.$$",
-     "The right-hand bound $\\to0$ as $x\\to+\\infty$, so by squeeze $\\ln r\\to0$. The floor disappears under the logarithm at exponential speed: $\\ln\\lfloor e^x\\rfloor-x=O(e^{-x})$. The limit is $0$."
-    ]
-   }
-  ],
-  "remark": "Subtracting the integer floor of an exponentially large quantity costs only $O(e^{-x})$ after taking logarithms. The moral: under a logarithm, what matters is the relative error $\\lfloor e^x\\rfloor/e^x\\to1$, not the absolute (and forever-chaotic) gap $e^x-\\lfloor e^x\\rfloor$."
- },
- {
-  "theme": "floor",
-  "themeLabel": "The Greatest Integer Function",
-  "title": "The Removable Ceiling",
-  "difficulty": 3,
-  "tags": [
-   "floor",
-   "cosine",
-   "x->0",
-   "two-sided",
-   "value-vs-limit"
-  ],
-  "statement": "\\lim_{x\\to 0}\\big\\lfloor\\cos x\\big\\rfloor",
-  "answer": "0",
-  "trap": "Substitute $x=0$: $\\cos 0=1$ and $\\lfloor 1\\rfloor=1$, so the limit 'must' be $1$. This is exactly the value-vs-limit trap. A limit never reads the value at the point. For every $x\\ne0$ in a neighbourhood of $0$ we have $\\cos x<1$ strictly (cosine peaks at $1$ only at $x=0$), and since $\\cos x>0$ there, $\\cos x\\in(0,1)$, giving $\\lfloor\\cos x\\rfloor=0$. The function is the constant $0$ on a punctured neighbourhood, so the limit is $0$, not $1$.",
-  "solutions": [
-   {
-    "name": "Method I - Strict maximum of cosine",
-    "steps": [
-     "On the punctured interval $0<|x|<\\frac{\\pi}{2}$, cosine is below its peak: $\\cos x<1$ strictly, since $\\cos x=1$ holds only at $x=0$.",
-     "Also $\\cos x>0$ on that interval, so together $0<\\cos x<1$.",
-     "Any value in $(0,1)$ has floor $0$, on both sides of $0$. Hence $\\lfloor\\cos x\\rfloor=0$ for all small $x\\ne0$, so the two-sided limit is $\\boxed{0}$.",
-     "Contrast with the value: $f(0)=\\lfloor\\cos 0\\rfloor=\\lfloor1\\rfloor=1\\ne0$. This is a removable discontinuity, the limit exists ($=0$) but differs from $f(0)=1$, and the limit is blind to the single point."
-    ]
-   },
-   {
-    "name": "Method II - Squeeze",
-    "steps": [
-     "The standard bound $1-\\frac{x^2}{2}\\le\\cos x$ holds for all real $x$, and $\\cos x<1$ for $x\\ne0$, so $\\cos x\\in\\big[1-\\frac{x^2}{2},\\,1\\big)$ for $0<|x|<\\frac{\\pi}{2}$.",
-     "For $|x|$ small enough this interval sits inside $(0,1)$, forcing $\\lfloor\\cos x\\rfloor=0$.",
-     "Thus $\\lfloor\\cos x\\rfloor$ is the constant $0$ on a punctured neighbourhood of $0$, and a constant function has that constant as its limit: $\\displaystyle\\lim_{x\\to0}\\lfloor\\cos x\\rfloor=0$."
-    ]
-   }
-  ],
-  "remark": "Classic 'value $\\ne$ limit' under the floor: an even function pinned strictly below its integer peak makes the floor flat at the integer just below, with a removable discontinuity exactly at the peak."
- },
- {
-  "theme": "floor",
-  "themeLabel": "The Greatest Integer Function",
-  "title": "Mind The Sign Of Zero",
-  "difficulty": 3,
-  "tags": [
-   "floor",
-   "one-sided",
-   "x->0",
-   "non-existence",
-   "comparison"
-  ],
-  "statement": "\\lim_{x\\to 0^{-}}\\frac{\\lfloor x\\rfloor}{x}",
-  "answer": "+\\infty",
-  "trap": "It looks like a $\\frac{0}{0}$ form: $\\lfloor x\\rfloor\\to 0$ and $x\\to 0$, tempting a rush to L'Hopital or a guess of $1$ (and some recall the right side and guess that value too). Both reflexes fail. The fatal move is substituting $\\lfloor 0\\rfloor=0$ without resolving the floor by side. On the left, $-1\\le x<0$ forces $\\lfloor x\\rfloor=-1$ identically, so the ratio is $\\frac{-1}{x}\\to+\\infty$ — there is no indeterminacy at all. (And even the 'analogy' guess of $1$ is wrong: the right-side limit is $0$, not $1$.)",
-  "solutions": [
-   {
-    "name": "Method I - Resolve the floor on the left",
-    "steps": [
-     "For $-1\\le x<0$ we have $\\lfloor x\\rfloor=-1$ (a constant, not $0$).",
-     "So on this interval $$\\frac{\\lfloor x\\rfloor}{x}=\\frac{-1}{x}.$$",
-     "As $x\\to0^-$, $x$ is a small negative number, so $\\frac{-1}{x}=\\frac{-1}{\\text{small negative}}\\to+\\infty$.",
-     "Therefore $\\displaystyle\\lim_{x\\to0^-}\\frac{\\lfloor x\\rfloor}{x}=\\boxed{+\\infty}$ (a definite extended-real value)."
-    ]
-   },
-   {
-    "name": "Method II - Two-sided contrast (why the limit must be posed one-sided)",
-    "steps": [
-     "Right side: for $0<x<1$, $\\lfloor x\\rfloor=0$, so $\\frac{\\lfloor x\\rfloor}{x}=0\\to0$.",
-     "Left side: as computed, $\\frac{\\lfloor x\\rfloor}{x}=\\frac{-1}{x}\\to+\\infty$.",
-     "The two one-sided behaviours differ ($0$ vs $+\\infty$), so the two-sided limit does not exist; the well-posed question is the left-hand limit, which is $+\\infty$.",
-     "This is the danger of the $\\frac{0}{0}$ disguise: $\\lfloor x\\rfloor$ is $0$ from the right but $-1$ from the left, so the apparent indeterminacy is fake on one side and not even an indeterminacy on the other."
-    ]
-   }
-  ],
-  "remark": "The floor's jump at $0$ makes $\\frac{\\lfloor x\\rfloor}{x}$ wildly asymmetric — a textbook reminder that $\\frac{0}{0}$ from blind substitution is meaningless until you resolve the floor by side."
- },
- {
-  "theme": "frac",
-  "themeLabel": "The Fractional Part",
-  "title": "The Wrong Branch at Two",
-  "difficulty": 3,
-  "tags": [
-   "floor",
-   "one-sided",
-   "x->2-",
-   "jump",
-   "removable-looking"
-  ],
-  "statement": "\\lim_{x\\to 2^-}\\frac{\\{x\\}-1}{x-2}",
-  "answer": "1",
-  "trap": "The tempting move is to evaluate $\\{x\\}$ at the limit point: $\\{2\\}=0$, so the expression \"looks like\" $\\frac{0-1}{x-2}=\\frac{-1}{0^-}$, and a student declares the limit is $+\\infty$ (or, mis-signing, $-\\infty$, or simply DNE). This is wrong because $\\{x\\}$ is a discontinuous sawtooth: for $x\\to 2^-$ we live on the branch $1<x<2$ where $\\lfloor x\\rfloor=1$, so $\\{x\\}=x-1$ (which approaches $1$, not $0$). The numerator $\\{x\\}-1=x-2$ then cancels the denominator exactly, giving the finite value $1$ — there is no blow-up at all.",
-  "solutions": [
-   {
-    "name": "Method I — Resolve the correct floor branch",
-    "steps": [
-     "For $x\\to 2^-$ we have $1<x<2$, hence $\\lfloor x\\rfloor=1$ and $\\{x\\}=x-\\lfloor x\\rfloor=x-1$.",
-     "Substitute: $$\\frac{\\{x\\}-1}{x-2}=\\frac{(x-1)-1}{x-2}=\\frac{x-2}{x-2}=1$$ for every $x$ in $(1,2)$.",
-     "The expression is identically $1$ on the entire left neighbourhood, so $$\\lim_{x\\to 2^-}\\frac{\\{x\\}-1}{x-2}=1.$$"
-    ]
-   },
-   {
-    "name": "Method II — Substitution $x=2-h$",
-    "steps": [
-     "Let $x=2-h$ with $h\\to 0^+$. Then $x\\in(1,2)$, so $\\lfloor x\\rfloor=1$ and $\\{x\\}=x-1=1-h$.",
-     "Then $$\\frac{\\{x\\}-1}{x-2}=\\frac{(1-h)-1}{(2-h)-2}=\\frac{-h}{-h}=1.$$",
-     "The ratio is independent of $h$, so the limit is $1$. Writing $x=2-h$ exposes the live branch $\\{x\\}=1-h\\to 1$ and removes the temptation to substitute the endpoint value $\\{2\\}=0$."
-    ]
-   }
-  ],
-  "remark": "Never evaluate $\\{x\\}$ at an integer limit point itself: there the sawtooth drops from $1$ back to $0$. Only the one-sided branch — $\\{x\\}=x-\\lfloor x\\rfloor$ with the floor taken from the *interior* of the approach side — is a legal substitution, and here it turns a fake $\\tfrac{-1}{0}$ into a clean removable identity equal to $1$."
- },
- {
-  "theme": "frac",
-  "themeLabel": "The Fractional Part",
-  "title": "Approaching Zero From Below",
-  "difficulty": 4,
-  "tags": [
-   "floor",
-   "one-sided",
-   "x->0-",
-   "exponential",
-   "1^infinity-trap"
-  ],
-  "statement": "\\lim_{x\\to 0^-}\\bigl(1+\\{x\\}\\bigr)^{1/x}",
-  "answer": "0",
-  "trap": "The form $(1+\\{x\\})^{1/x}$ looks identical to the textbook $(1+x)^{1/x}\\to e$, and a student instinctively writes $\\{x\\}\\approx x$ near $0$, declares it a $1^\\infty$ indeterminate form, and answers $e$. This is wrong on the side $x\\to 0^-$: here $-1<x<0$ so $\\lfloor x\\rfloor=-1$ and $\\{x\\}=x+1\\to 1$, which makes the base $1+\\{x\\}=2+x\\to 2$, NOT $1$. There is no indeterminacy at all — the base sits at $2$ while the exponent dives to $-\\infty$, so the answer is $0$, not $e$.",
-  "solutions": [
-   {
-    "name": "Method I — Identify base and exponent separately",
-    "steps": [
-     "For $x\\to 0^-$ we have $-1<x<0$, hence $\\lfloor x\\rfloor=-1$ and $\\{x\\}=x-\\lfloor x\\rfloor=x+1$.",
-     "Base: $1+\\{x\\}=2+x\\to 2$. Exponent: $1/x\\to -\\infty$.",
-     "Since the base tends to $2>1$ with no indeterminacy, $$\\bigl(2+x\\bigr)^{1/x}\\longrightarrow 2^{-\\infty}=0.$$"
-    ]
-   },
-   {
-    "name": "Method II — Logarithmic transform",
-    "steps": [
-     "Let $L=\\lim_{x\\to 0^-}\\bigl(1+\\{x\\}\\bigr)^{1/x}$. Taking logarithms of the expression (valid since the base $2+x>0$) gives $$\\ln\\bigl(2+x\\bigr)^{1/x}=\\frac{\\ln(2+x)}{x}.$$",
-     "As $x\\to 0^-$, the numerator $\\ln(2+x)\\to\\ln 2>0$ while $\\tfrac1x\\to -\\infty$, so the product $\\dfrac{\\ln(2+x)}{x}\\to -\\infty$.",
-     "By continuity of the exponential, $L=\\exp\\!\\Bigl(\\lim_{x\\to0^-}\\tfrac{\\ln(2+x)}{x}\\Bigr)=e^{-\\infty}=0.$"
-    ]
-   }
-  ],
-  "remark": "The $1^\\infty$ reflex assumes the base $\\to 1$; the jump discontinuity of $\\{x\\}$ at integers secretly pushes the base to $2$ from the left, collapsing the indeterminate form entirely. (The two-sided limit does not exist: from $0^+$ the base $\\to 1$ and the value $\\to e$.)"
- },
- {
-  "theme": "frac",
-  "themeLabel": "The Fractional Part",
-  "title": "Sawtooth Meets Taylor",
-  "difficulty": 4,
-  "tags": [
-   "fractional-part",
-   "x->0+",
-   "taylor",
-   "tan",
-   "sin",
-   "cubic"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\frac{\\{\\tan x\\}-\\{\\sin x\\}}{x^3}",
-  "answer": "\\dfrac{1}{2}",
-  "trap": "Seeing a fractional part, a student writes $\\{\\tan x\\}-\\{\\sin x\\}\\approx \\tan x-\\sin x\\approx x-x=0$ and concludes the limit is $0$. The error is stopping at first order: both numerator pieces agree to order $x$ (and even order $x^2$), so the leading terms cancel exactly. The cubic denominator is calibrated precisely to the first surviving term, $\\tfrac{x^3}{2}$ — you must keep the $x^3$ Taylor data.",
-  "solutions": [
-   {
-    "name": "Method I — Strip the fractional parts, then expand",
-    "steps": [
-     "For $x\\to 0^+$ with $x<\\tfrac{\\pi}{4}$, both $\\sin x$ and $\\tan x$ lie in $(0,1)$, so $\\lfloor\\sin x\\rfloor=\\lfloor\\tan x\\rfloor=0$, giving $\\{\\sin x\\}=\\sin x$ and $\\{\\tan x\\}=\\tan x$.",
-     "Thus the numerator is exactly $\\tan x-\\sin x$. Factor: $$\\tan x-\\sin x=\\sin x\\Bigl(\\frac{1}{\\cos x}-1\\Bigr)=\\sin x\\cdot\\frac{1-\\cos x}{\\cos x}.$$",
-     "Use the standard equivalents $\\sin x\\sim x$, $1-\\cos x\\sim \\tfrac{x^2}{2}$, and $\\cos x\\to 1$. Since each factor has a nonzero leading term, the equivalences multiply: $$\\tan x-\\sin x\\sim x\\cdot\\frac{x^2/2}{1}=\\frac{x^3}{2}.$$",
-     "Therefore $\\dfrac{\\tan x-\\sin x}{x^3}\\to\\dfrac{1}{2}.$"
-    ]
-   },
-   {
-    "name": "Method II — Maclaurin series",
-    "steps": [
-     "On a punctured right-neighbourhood $(0,\\varepsilon)$ the floors vanish, so the ratio equals $\\dfrac{\\tan x-\\sin x}{x^3}$.",
-     "Expand: $\\tan x=x+\\tfrac{x^3}{3}+O(x^5)$ and $\\sin x=x-\\tfrac{x^3}{6}+O(x^5)$.",
-     "Subtract: $\\tan x-\\sin x=\\bigl(\\tfrac13+\\tfrac16\\bigr)x^3+O(x^5)=\\tfrac12 x^3+O(x^5)$.",
-     "Divide by $x^3$ and let $x\\to 0^+$: the limit is $\\tfrac12$."
-    ]
-   }
-  ],
-  "remark": "The fractional part is a red herring on $(0,1)$ — its real job is to bait you into treating $\\{f(x)\\}\\approx x$ and stopping at first order; the genuine content is the order-three Taylor gap between $\\tan$ and $\\sin$. Note the next correction is $+\\tfrac18 x^2$, so the convergence is from above."
- },
- {
-  "theme": "frac",
-  "themeLabel": "The Fractional Part",
-  "title": "Bounded Sawtooth at Infinity",
-  "difficulty": 4,
-  "tags": [
-   "fractional-part",
-   "x->infinity",
-   "conjugate",
-   "sqrt",
-   "bounded-frac"
-  ],
-  "statement": "\\lim_{n\\to\\infty}\\bigl\\{\\sqrt{n^2+n}\\,\\bigr\\}",
-  "answer": "\\dfrac{1}{2}",
-  "trap": "A student notes $\\{\\,\\cdot\\,\\}$ is bounded in $[0,1)$ and that $\\sqrt{n^2+n}$ runs through irrationals, then guesses the fractional part 'equidistributes' or oscillates with no limit, declaring DNE. In fact $\\sqrt{n^2+n}$ is squeezed strictly between the consecutive integers $n$ and $n+1$, pinning its floor to $n$ and forcing convergence.",
-  "solutions": [
-   {
-    "name": "Method I — Locate the integer floor, then conjugate",
-    "steps": [
-     "Compare with consecutive squares: $n^2<n^2+n<n^2+2n+1=(n+1)^2$ for every $n\\ge 1$, so $n<\\sqrt{n^2+n}<n+1$.",
-     "Hence $\\lfloor\\sqrt{n^2+n}\\rfloor=n$ and $\\{\\sqrt{n^2+n}\\}=\\sqrt{n^2+n}-n$.",
-     "Rationalise: $$\\sqrt{n^2+n}-n=\\frac{(n^2+n)-n^2}{\\sqrt{n^2+n}+n}=\\frac{n}{\\sqrt{n^2+n}+n}=\\frac{1}{\\sqrt{1+\\tfrac1n}+1}.$$",
-     "As $n\\to\\infty$ the denominator $\\to 2$, so the limit is $\\tfrac12$."
-    ]
-   },
-   {
-    "name": "Method II — Binomial expansion",
-    "steps": [
-     "From the bound $n<\\sqrt{n^2+n}<n+1$ we again get $\\{\\sqrt{n^2+n}\\}=\\sqrt{n^2+n}-n$.",
-     "Write $\\sqrt{n^2+n}=n\\sqrt{1+\\tfrac1n}=n\\Bigl(1+\\tfrac{1}{2n}-\\tfrac{1}{8n^2}+\\cdots\\Bigr).$",
-     "So $\\sqrt{n^2+n}-n=\\tfrac12-\\tfrac{1}{8n}+O\\!\\bigl(\\tfrac{1}{n^2}\\bigr)$, and every term past $\\tfrac12$ vanishes as $n\\to\\infty$, giving the limit $\\tfrac12.$"
-    ]
-   }
-  ],
-  "remark": "Whenever $f(n)$ is trapped between two consecutive integers the floor is locked, so $\\{f(n)\\}=f(n)-\\lfloor f(n)\\rfloor$ inherits the smooth limit of $f(n)$ minus that integer — equidistribution never gets a chance."
- },
- {
-  "theme": "frac",
-  "themeLabel": "The Fractional Part",
-  "title": "The Tamed Oscillator",
-  "difficulty": 4,
-  "tags": [
-   "fractional-part",
-   "x->0+",
-   "squeeze",
-   "oscillation",
-   "naive-DNE"
-  ],
-  "statement": "\\lim_{x\\to 0^+} x\\,\\Bigl\\{\\tfrac{1}{x}\\Bigr\\}",
-  "answer": "0",
-  "trap": "A student notes that $\\{1/x\\}$ sweeps densely across $[0,1)$ infinitely often as $x\\to 0^+$ — never approaching any single value — and, reasoning by analogy with the classic $\\lim_{x\\to0}\\sin(1/x)$ (which truly does not exist), declares the product DNE. The flaw: $\\sin(1/x)$ stands alone, but here the divergent factor $\\{1/x\\}$ is merely *bounded* in $[0,1)$, and the vanishing $x$ in front multiplies it down to $0$. Oscillation never settling is irrelevant once it is trapped between $0$ and $x$.",
-  "solutions": [
-   {
-    "name": "Method I — Squeeze theorem",
-    "steps": [
-     "For every real $t$, the fractional part satisfies $0\\le\\{t\\}<1$. Putting $t=1/x$ with $x>0$ and multiplying by the positive number $x$: $$0\\le x\\,\\Bigl\\{\\tfrac1x\\Bigr\\}<x.$$",
-     "As $x\\to 0^+$ both outer bounds, $0$ and $x$, tend to $0$.",
-     "By the squeeze theorem the trapped quantity is forced to the common limit: $$\\lim_{x\\to 0^+}x\\,\\Bigl\\{\\tfrac1x\\Bigr\\}=0.$$"
-    ]
-   },
-   {
-    "name": "Method II — Decompose via floor and a subsequence sanity check",
-    "steps": [
-     "Use $\\{t\\}=t-\\lfloor t\\rfloor$ with $t=1/x$: $$x\\,\\Bigl\\{\\tfrac1x\\Bigr\\}=x\\Bigl(\\tfrac1x-\\Bigl\\lfloor\\tfrac1x\\Bigr\\rfloor\\Bigr)=1-x\\Bigl\\lfloor\\tfrac1x\\Bigr\\rfloor.$$",
-     "The floor satisfies $\\tfrac1x-1<\\lfloor\\tfrac1x\\rfloor\\le\\tfrac1x$; multiplying by $x>0$ gives $$1-x<x\\Bigl\\lfloor\\tfrac1x\\Bigr\\rfloor\\le 1.$$",
-     "As $x\\to0^+$ the left bound $1-x\\to1$, so by squeeze $x\\lfloor\\tfrac1x\\rfloor\\to 1$, hence $$x\\,\\Bigl\\{\\tfrac1x\\Bigr\\}=1-x\\Bigl\\lfloor\\tfrac1x\\Bigr\\rfloor\\to 1-1=0.$$",
-     "This independently confirms the result: although $\\{1/x\\}$ alone has no limit, the floor decomposition shows the product is $1$ minus a quantity that converges to $1$."
-    ]
-   }
-  ],
-  "remark": "A bounded-but-divergent factor times a vanishing factor still converges — the existence of a product's limit does not require the existence of each factor's limit. Contrast $\\lim_{x\\to0}\\sin(1/x)$ (no vanishing prefactor, genuinely DNE) with $\\lim_{x\\to0}x\\sin(1/x)=0$."
- },
- {
-  "theme": "frac",
-  "themeLabel": "The Fractional Part",
-  "title": "Euler Hidden in the Sawtooth",
-  "difficulty": 5,
-  "tags": [
-   "fractional-part",
-   "n->infinity",
-   "riemann-sum",
-   "harmonic",
-   "euler-mascheroni"
-  ],
-  "statement": "\\lim_{n\\to\\infty}\\frac{1}{n}\\sum_{k=1}^{n}\\Bigl\\{\\frac{n}{k}\\Bigr\\}",
-  "answer": "1-\\gamma",
-  "trap": "The average $\\frac1n\\sum_{k=1}^n\\{n/k\\}$ looks exactly like a Riemann sum $\\frac1n\\sum_{k=1}^n g(k/n)$, tempting you to set $g(t)=\\{1/t\\}$ and write the limit as $\\int_0^1\\{1/t\\}\\,dt=1-\\gamma$. The final number is even correct — but the argument is bogus: the summand $\\{n/k\\}$ is NOT a function of $k/n$ alone (e.g. $k/n=\\tfrac12$ gives $\\{n/k\\}=\\{2\\}=0$ for every even $n$, yet $\\{n/k\\}$ jumps wildly as $n$ varies with $k/n$ held near other rationals), so no fixed $g$ represents it and the Riemann-sum theorem simply does not apply. The honest route is the floor identity $\\sum\\{n/k\\}=nH_n-\\sum\\lfloor n/k\\rfloor$ together with Dirichlet's divisor asymptotic.",
-  "solutions": [
-   {
-    "name": "Method I — Floor identity and the harmonic asymptotic",
-    "steps": [
-     "Use $\\{n/k\\}=\\tfrac{n}{k}-\\bigl\\lfloor\\tfrac{n}{k}\\bigr\\rfloor$, so $$\\sum_{k=1}^n\\Bigl\\{\\tfrac nk\\Bigr\\}=n\\sum_{k=1}^n\\tfrac1k-\\sum_{k=1}^n\\Bigl\\lfloor\\tfrac nk\\Bigr\\rfloor=nH_n-D(n),$$ where $D(n)=\\sum_{k=1}^n\\lfloor n/k\\rfloor$ is the divisor-summatory function.",
-     "Dirichlet's theorem: $D(n)=n\\ln n+(2\\gamma-1)n+O(\\sqrt n)$. Also $H_n=\\ln n+\\gamma+O(1/n)$, so $nH_n=n\\ln n+\\gamma n+O(1)$.",
-     "Subtract: $\\sum_{k=1}^n\\{n/k\\}=\\bigl(n\\ln n+\\gamma n\\bigr)-\\bigl(n\\ln n+(2\\gamma-1)n\\bigr)+O(\\sqrt n)=(1-\\gamma)n+O(\\sqrt n).$",
-     "Divide by $n$: $$\\frac1n\\sum_{k=1}^n\\Bigl\\{\\tfrac nk\\Bigr\\}=(1-\\gamma)+O\\!\\left(\\tfrac1{\\sqrt n}\\right)\\to 1-\\gamma.$$"
-    ]
-   },
-   {
-    "name": "Method II — Integral comparison via the Euler–Mascheroni integral",
-    "steps": [
-     "Compare the sum to $\\dfrac1n\\displaystyle\\int_1^n\\Bigl\\{\\frac nx\\Bigr\\}dx$. For $x\\in[k,k+1]$ with $k\\ge\\sqrt n$ the map $x\\mapsto\\{n/x\\}$ has total variation $O(n/k^2)$ on that interval, so replacing the sum by the integral costs $\\sum_{k\\ge\\sqrt n}O(n/k^2)\\cdot\\tfrac1n=O(1/\\sqrt n)$; the block $k<\\sqrt n$ contributes $O(\\sqrt n)$ to the sum, i.e. $O(1/\\sqrt n)$ to the average. Hence both have the same limit.",
-     "Substitute $u=n/x$, $dx=-\\tfrac{n}{u^2}du$: $$\\frac1n\\int_1^n\\Bigl\\{\\tfrac nx\\Bigr\\}dx=\\int_1^n\\{u\\}\\frac{du}{u^2}.$$",
-     "As $n\\to\\infty$ this tends to $\\displaystyle\\int_1^\\infty\\frac{\\{u\\}}{u^2}\\,du$. Writing $\\{u\\}=u-\\lfloor u\\rfloor$ and summing the integer blocks gives the classical value $\\int_1^\\infty\\{u\\}/u^2\\,du=1-\\gamma$.",
-     "Hence the average converges to $1-\\gamma$, matching Method I."
-    ]
-   }
-  ],
-  "remark": "$\\displaystyle\\int_1^\\infty\\frac{\\{u\\}}{u^2}\\,du=1-\\gamma$ is the integral form of the Euler–Mascheroni constant; the sawtooth $\\{n/k\\}$ is exactly the discrepancy between the harmonic sum $nH_n$ and the divisor sum $D(n)$, which is why $\\gamma$ appears twice and cancels down to $1-\\gamma$."
- },
- {
-  "theme": "frac",
-  "themeLabel": "The Fractional Part",
-  "title": "Cosine Slips Below One",
-  "difficulty": 3,
-  "tags": [
-   "fractional-part",
-   "x->0+",
-   "one-sided",
-   "sin",
-   "cos"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\bigl(\\{\\sin x\\}+\\{\\cos x\\}\\bigr)",
-  "answer": "1",
-  "trap": "A student plugs in the limit point: $\\sin 0=0,\\ \\cos 0=1$, so $\\{\\sin 0\\}+\\{\\cos 0\\}=\\{0\\}+\\{1\\}=0+0=0$, and answers $0$. The fatal slip is evaluating the fractional part AT the boundary instead of taking the limit: for every $x>0$ near $0$, $\\cos x$ sits strictly *below* $1$, so $\\lfloor\\cos x\\rfloor=0$ and $\\{\\cos x\\}=\\cos x\\to 1^-$ — it never reaches the integer $1$ where the fractional part would reset to $0$. Hence the cosine term contributes $1$, not $0$, and the limit is $1$.",
-  "solutions": [
-   {
-    "name": "Method I — Track each fractional part's branch",
-    "steps": [
-     "For small $x>0$: $\\sin x\\in(0,1)$, so $\\lfloor\\sin x\\rfloor=0$ and $\\{\\sin x\\}=\\sin x\\to 0^+$.",
-     "Also $\\cos x\\in(0,1)$ (strictly below $1$ for $x>0$), so $\\lfloor\\cos x\\rfloor=0$ and $\\{\\cos x\\}=\\cos x\\to 1^-$.",
-     "Therefore $\\{\\sin x\\}+\\{\\cos x\\}=\\sin x+\\cos x\\to 0+1=1.$"
-    ]
-   },
-   {
-    "name": "Method II — Continuity after removing the floors",
-    "steps": [
-     "On the punctured right neighbourhood $(0,\\delta)$ both $\\sin x$ and $\\cos x$ stay in $(0,1)$, hence both floors are identically $0$.",
-     "Thus the function equals the continuous $\\sin x+\\cos x$ there, with no discontinuity to navigate.",
-     "$\\lim_{x\\to 0^+}(\\sin x+\\cos x)=0+1=1.$ (Contrast: from $0^-$, $\\sin x<0$ forces $\\{\\sin x\\}=\\sin x+1\\to 1$, giving the *different* one-sided value $2$.)"
-    ]
-   }
-  ],
-  "remark": "Whether $\\{f(x)\\}\\to f(a)$ or jumps depends on which side of an integer $f$ approaches from; here $\\cos x\\uparrow 1$ keeps $\\{\\cos x\\}\\to 1^-$ instead of dropping to $0$."
- },
- {
-  "theme": "frac",
-  "themeLabel": "The Fractional Part",
-  "title": "Two Sawtooths Cancel",
-  "difficulty": 4,
-  "tags": [
-   "fractional-part",
-   "x->1",
-   "removable",
-   "two-sided",
-   "complementary"
-  ],
-  "statement": "\\lim_{x\\to 1}\\bigl(\\{x\\}+\\{2-x\\}\\bigr)",
-  "answer": "1",
-  "trap": "Substituting $x=1$ gives $\\{1\\}+\\{2-1\\}=\\{1\\}+\\{1\\}=0+0=0$, tempting the answer $0$. But the value at the point is irrelevant to a limit: both $\\{x\\}$ and $\\{2-x\\}$ have a jump exactly at $x=1$, and as $x\\to 1$ one fractional part rises to $1^-$ while the other falls to $0^+$. The jumps are equal and opposite, so the sum approaches $1$ — the function has a removable discontinuity (hole) at $x=1$ where it dips to $0$.",
-  "solutions": [
-   {
-    "name": "Method I — Two-sided branch analysis",
-    "steps": [
-     "Right limit ($x\\to 1^+$, so $1<x<2$): $\\{x\\}=x-1\\to 0^+$; and $2-x\\in(0,1)$ so $\\{2-x\\}=2-x\\to 1^-$. Sum $\\to 0+1=1$.",
-     "Left limit ($x\\to 1^-$, so $0<x<1$): $\\{x\\}=x\\to 1^-$; and $2-x\\in(1,2)$ so $\\{2-x\\}=(2-x)-1=1-x\\to 0^+$. Sum $\\to 1+0=1$.",
-     "Both one-sided limits equal $1$, so the two-sided limit is $1$ (while the point value is $0$ — a removable discontinuity)."
-    ]
-   },
-   {
-    "name": "Method II — Complementary identity $\\{t\\}+\\{-t\\}=1$",
-    "steps": [
-     "For non-integer $t$, $\\{t\\}+\\{-t\\}=1$. Put $t=x-1$ (non-integer for $x\\neq 1$): then $\\{x-1\\}+\\{1-x\\}=1$.",
-     "Since adding an integer leaves the fractional part unchanged, $\\{x\\}=\\{x-1\\}$ and $\\{2-x\\}=\\{1+(1-x)\\}=\\{1-x\\}$.",
-     "Hence $\\{x\\}+\\{2-x\\}=\\{x-1\\}+\\{1-x\\}=1$ for every $x\\neq 1$, so the limit as $x\\to 1$ is $1$."
-    ]
-   }
-  ],
-  "remark": "The graphs of $\\{x\\}$ and $\\{2-x\\}$ are reflections of each other about the line $x=1$; their downward unit jumps are equal and opposite, so the sum is the constant $1$ off the integers with a removable hole (value $0$) at each integer."
- },
- {
-  "theme": "frac",
-  "themeLabel": "The Fractional Part",
-  "title": "One Side Lives, One Side Explodes",
-  "difficulty": 4,
-  "tags": [
-   "fractional-part",
-   "x->0",
-   "one-sided-comparison",
-   "non-existence",
-   "floor"
-  ],
-  "statement": "\\lim_{x\\to 0}\\frac{\\{x\\}}{x}\\quad(\\text{compare the two one-sided limits})",
-  "answer": "\\text{does not exist: } \\lim_{x\\to 0^+}=1,\\ \\lim_{x\\to 0^-}=-\\infty",
-  "trap": "A student writes $\\{x\\}=x$ 'near $0$', cancels, and answers $1$. That identity holds only for $0\\le x<1$, i.e. it silently assumes $x>0$. For $x\\to 0^-$ we have $-1<x<0$, so $\\lfloor x\\rfloor=-1$ and $\\{x\\}=x+1\\to 1^+$; then $\\frac{\\{x\\}}{x}\\to\\frac{1}{0^-}=-\\infty$. The two sides disagree catastrophically, so the limit does not exist.",
-  "solutions": [
-   {
-    "name": "Method I — Compute each side from its floor branch",
-    "steps": [
-     "Right ($x\\to 0^+$, $0<x<1$): $\\lfloor x\\rfloor=0$, $\\{x\\}=x$, so $\\dfrac{\\{x\\}}{x}=\\dfrac{x}{x}=1\\to 1.$",
-     "Left ($x\\to 0^-$, $-1<x<0$): $\\lfloor x\\rfloor=-1$, $\\{x\\}=x+1\\to 1^+$, while $x\\to 0^-$, so $\\dfrac{\\{x\\}}{x}\\to\\dfrac{1}{0^-}=-\\infty.$",
-     "The one-sided limits are $1$ and $-\\infty$; since they differ, the two-sided limit does not exist."
-    ]
-   },
-   {
-    "name": "Method II — Substitution exposes the asymmetry",
-    "steps": [
-     "Right: set $x=h$, $h\\to0^+$: $\\dfrac{\\{h\\}}{h}=\\dfrac{h}{h}=1.$",
-     "Left: set $x=-h$, $h\\to0^+$. For $0<h<1$ we have $-1<-h<0$, so $\\lfloor -h\\rfloor=-1$ and $\\{-h\\}=-h-(-1)=1-h$. Hence $\\dfrac{\\{-h\\}}{-h}=\\dfrac{1-h}{-h}=-\\dfrac1h+1\\to-\\infty.$",
-     "The substitution shows the jump discontinuity of $\\{x\\}$ at $0$ injects a $+1$ on the left that the vanishing denominator turns into a blow-up. Hence no two-sided limit."
-    ]
-   }
-  ],
-  "remark": "$\\{x\\}/x$ is the cleanest demonstration that the sawtooth's jump at an integer destroys two-sidedness: the same algebraic surface gives a finite limit on one side and an infinite one on the other."
- },
- {
-  "theme": "frac",
-  "themeLabel": "The Fractional Part",
-  "title": "The Arctangent Plateau",
-  "difficulty": 5,
-  "tags": [
-   "fractional-part",
-   "x->0+",
-   "arctan",
-   "floor",
-   "derivative-form"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\frac{\\bigl\\{\\arctan\\tfrac{1}{x}\\bigr\\}-\\bigl(\\tfrac{\\pi}{2}-1\\bigr)}{x}",
-  "answer": "-1",
-  "trap": "A student sees $\\arctan\\tfrac1x\\to\\tfrac{\\pi}{2}\\approx 1.571$, takes $\\{\\arctan\\tfrac1x\\}\\to\\tfrac{\\pi}{2}-1$, declares the numerator $\\to 0$ and the answer $0$ — or, mishandling the floor, thinks $\\arctan\\tfrac1x<1$ so the fractional part is just $\\arctan\\tfrac1x$ and the floor never matters. Both miss that this is a $0/0$ derivative-form whose value is the slope $-1$, and that the floor is pinned to $1$ (not $0$).",
-  "solutions": [
-   {
-    "name": "Method I — Pin the floor, then expand",
-    "steps": [
-     "For small $x>0$, $\\arctan\\tfrac1x$ lies in $\\bigl(1,\\tfrac{\\pi}{2}\\bigr)\\subset(1,2)$, so $\\lfloor\\arctan\\tfrac1x\\rfloor=1$ and $\\{\\arctan\\tfrac1x\\}=\\arctan\\tfrac1x-1.$",
-     "Use the identity $\\arctan\\tfrac1x=\\tfrac{\\pi}{2}-\\arctan x$ (valid for $x>0$). Then the numerator becomes $$\\bigl(\\tfrac{\\pi}{2}-\\arctan x-1\\bigr)-\\bigl(\\tfrac{\\pi}{2}-1\\bigr)=-\\arctan x.$$",
-     "So the expression is $\\dfrac{-\\arctan x}{x}$, and since $\\arctan x\\sim x$, $$\\lim_{x\\to 0^+}\\frac{-\\arctan x}{x}=-1.$$"
-    ]
-   },
-   {
-    "name": "Method II — Series after removing the floor",
-    "steps": [
-     "As above, on $(0,\\delta)$ the floor is $1$, so the numerator equals $\\arctan\\tfrac1x-1-(\\tfrac\\pi2-1)=\\arctan\\tfrac1x-\\tfrac\\pi2.$",
-     "For $x\\to0^+$, expand $\\arctan\\tfrac1x=\\tfrac\\pi2-x+\\tfrac{x^3}{3}-\\cdots$ (from $\\arctan\\tfrac1x=\\tfrac\\pi2-\\arctan x$ and the $\\arctan$ series).",
-     "Hence numerator $=-x+\\tfrac{x^3}{3}-\\cdots$, and dividing by $x$ gives $-1+\\tfrac{x^2}{3}-\\cdots\\to -1.$"
-    ]
-   }
-  ],
-  "remark": "Because $\\arctan\\tfrac1x$ approaches its plateau $\\tfrac\\pi2$ from below while sitting in $(1,2)$, the floor is frozen at $1$ and the fractional part inherits the smooth slope $\\tfrac{d}{dx}\\arctan\\tfrac1x\\big|_{0^+}=-1$."
- },
- {
-  "theme": "signum",
-  "themeLabel": "The Signum Function",
-  "title": "Sign of a Vanishing Gap",
-  "difficulty": 4,
-  "tags": [
-   "signum",
-   "one-sided",
-   "x->0+",
-   "taylor",
-   "1-cos"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\operatorname{sgn}(x-\\sin x)\\cdot\\frac{1-\\cos x}{x^2}",
-  "answer": "\\dfrac{1}{2}",
-  "trap": "Reading $\\operatorname{sgn}(x-\\sin x)$ as $\\operatorname{sgn}(0)=0$ because both $x$ and $\\sin x$ vanish at $x=0$, and concluding the whole limit is $0$. This evaluates the sign at the endpoint instead of along the approach. The signum must be read on the punctured neighbourhood: for every $x>0$ near $0$ we have $x-\\sin x=\\tfrac{x^3}{6}-\\cdots>0$, so the factor is a constant $+1$, never $0$. (Equally seductive: noticing that from the left it would be $-1$ and declaring the limit nonexistent — but the problem is posed one-sided, so only $x\\to0^+$ matters.)",
-  "solutions": [
-   {
-    "name": "Method I - Series sign analysis + squeeze",
-    "steps": [
-     "Expand the argument of $\\operatorname{sgn}$: $x-\\sin x = x-\\left(x-\\tfrac{x^3}{6}+\\cdots\\right)=\\tfrac{x^3}{6}-\\tfrac{x^5}{120}+\\cdots$.",
-     "For all small $x>0$ this is $>0$ (leading term $x^3/6>0$), hence $\\operatorname{sgn}(x-\\sin x)=+1$ on a punctured right-neighbourhood of $0$.",
-     "The sign factor is now the constant $+1$, so the limit reduces to $\\displaystyle\\lim_{x\\to0^+}\\frac{1-\\cos x}{x^2}$.",
-     "Using $1-\\cos x=\\dfrac{x^2}{2}-\\dfrac{x^4}{24}+\\cdots$, we get $\\dfrac{1-\\cos x}{x^2}=\\dfrac12-\\dfrac{x^2}{24}+\\cdots\\to\\dfrac12$.",
-     "Therefore the limit is $\\boxed{\\tfrac12}$."
-    ]
-   },
-   {
-    "name": "Method II - Half-angle identity",
-    "steps": [
-     "On small $x>0$ the sign factor is $+1$ (since $\\sin x<x$ there), so we only need $\\dfrac{1-\\cos x}{x^2}$.",
-     "Use the identity $1-\\cos x=2\\sin^2\\!\\frac{x}{2}$.",
-     "$$\\frac{1-\\cos x}{x^2}=\\frac{2\\sin^2(x/2)}{x^2}=\\frac12\\left(\\frac{\\sin(x/2)}{x/2}\\right)^{2}.$$",
-     "As $x\\to0^+$, $\\dfrac{\\sin(x/2)}{x/2}\\to1$, so the expression tends to $\\dfrac12\\cdot1^2=\\dfrac12$."
-    ]
-   }
-  ],
-  "remark": "The whole difficulty is realising $\\operatorname{sgn}$ must be evaluated along the path, not at the limit point: $x-\\sin x$ is a one-signed $O(x^3)$ quantity, so its sign is locally constant ($+1$ on the right, $-1$ on the left) even though it 'looks' indeterminate. This is exactly why the one-sided posing is essential — the two-sided limit would not exist."
- },
- {
-  "theme": "signum",
-  "themeLabel": "The Signum Function",
-  "title": "Sign Guarding a Difference of Squares",
-  "difficulty": 3,
-  "tags": [
-   "signum",
-   "one-sided",
-   "x->2-",
-   "arctan",
-   "factoring"
-  ],
-  "statement": "\\lim_{x\\to 2^-}\\operatorname{sgn}(4-x^2)\\cdot\\frac{\\arctan(x-2)}{x-2}",
-  "answer": "1",
-  "trap": "The careless student answers $1$ from $\\dfrac{\\arctan(x-2)}{x-2}\\to 1$ while ignoring the sign factor. The careful student over-corrects: $4-x^2$ flips sign at $x=2$, so they call the limit nonexistent. But it is one-sided: as $x\\to2^-$, $x<2$ gives $x^2<4$, so $4-x^2>0$ and $\\operatorname{sgn}(4-x^2)=+1$, making the limit $1$ (from the right it would be $-1$).",
-  "solutions": [
-   {
-    "name": "Method I - One-sided sign plus standard arctan limit",
-    "steps": [
-     "For $x\\to2^-$ we have $x\\in(0,2)$ so $x^2<4$, giving $4-x^2>0$ and $\\operatorname{sgn}(4-x^2)=+1$; the sign factor is locally constant.",
-     "Let $t=x-2\\to0^-$. The expression becomes $\\dfrac{\\arctan t}{t}$.",
-     "Since $\\displaystyle\\lim_{t\\to0}\\frac{\\arctan t}{t}=1$ and $\\dfrac{\\arctan t}{t}$ is even, the left value as $t\\to0^-$ equals the two-sided value, namely $1$.",
-     "Multiplying by $+1$ gives $\\boxed{1}$."
-    ]
-   },
-   {
-    "name": "Method II - Series of arctan",
-    "steps": [
-     "Sign factor $=+1$ as established. Put $t=x-2\\to0^-$.",
-     "Use $\\arctan t = t-\\dfrac{t^3}{3}+\\dfrac{t^5}{5}-\\cdots$ for $|t|<1$.",
-     "Then $\\dfrac{\\arctan t}{t}=1-\\dfrac{t^2}{3}+\\dfrac{t^4}{5}-\\cdots\\to1$ as $t\\to0^-$.",
-     "Limit $=1$."
-    ]
-   }
-  ]
- },
- {
-  "theme": "signum",
-  "themeLabel": "The Signum Function",
-  "title": "The Hidden Signum",
-  "difficulty": 5,
-  "tags": [
-   "signum",
-   "hidden",
-   "arctan",
-   "tan",
-   "one-sided",
-   "x->0+",
-   "composition"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\frac{2}{\\pi}\\arctan\\!\\left(\\frac{1}{x-\\tan x}\\right)",
-  "answer": "-1",
-  "trap": "The fast guess is $+1$: students see $x-\\tan x\\to 0$, recall the familiar $x-\\sin x=\\tfrac{x^3}{6}+\\cdots>0$, and assume the denominator is positive, so the fraction $\\to+\\infty$ and $\\tfrac{2}{\\pi}\\arctan(+\\infty)=+1$. But tangent overshoots: $\\tan x=x+\\tfrac{x^3}{3}+\\cdots>x$ for small $x>0$, so $x-\\tan x=-\\tfrac{x^3}{3}-\\cdots<0$. The fraction $\\to-\\infty$ and the true value is $\\tfrac{2}{\\pi}\\arctan(-\\infty)=-1$. The sign flips precisely because $\\tan$ bulges above the line $y=x$, unlike $\\sin$.",
-  "solutions": [
-   {
-    "name": "Method I - arctan(±∞) as a disguised signum",
-    "steps": [
-     "Recall $\\dfrac{2}{\\pi}\\arctan(u)\\to\\operatorname{sgn}(u)$ as $|u|\\to\\infty$; here $\\arctan$ is secretly acting as a signum detector.",
-     "So the whole limit equals $\\operatorname{sgn}\\!\\left(\\dfrac{1}{x-\\tan x}\\right)=\\operatorname{sgn}(x-\\tan x)$ in the limit, provided $x-\\tan x\\to0$.",
-     "Sign of the denominator: $\\tan x = x+\\dfrac{x^3}{3}+\\cdots$, so $x-\\tan x=-\\dfrac{x^3}{3}-\\cdots<0$ for all small $x>0$.",
-     "Thus $\\dfrac{1}{x-\\tan x}\\to-\\infty$, and $\\dfrac{2}{\\pi}\\arctan(-\\infty)=\\dfrac{2}{\\pi}\\cdot\\left(-\\dfrac{\\pi}{2}\\right)=-1$.",
-     "Answer: $\\boxed{-1}$."
-    ]
-   },
-   {
-    "name": "Method II - Direct substitution chase",
-    "steps": [
-     "Let $D(x)=x-\\tan x$. For $x\\to0^+$, $D(x)\\to0^-$ (negative, by the cubic expansion above).",
-     "Hence $u(x)=\\dfrac{1}{D(x)}\\to-\\infty$.",
-     "$\\arctan$ is continuous and increasing with horizontal asymptote $-\\dfrac{\\pi}{2}$ as $u\\to-\\infty$, so $\\arctan(u)\\to-\\dfrac{\\pi}{2}$.",
-     "Multiply by $\\dfrac{2}{\\pi}$: limit $=-1$."
-    ]
-   }
-  ],
-  "remark": "The signum is fully camouflaged inside $\\tfrac2\\pi\\arctan$, whose two horizontal asymptotes $\\pm1$ ARE the two signum values; the real test is the sign of the cubic $x-\\tan x$."
- },
- {
-  "theme": "signum",
-  "themeLabel": "The Signum Function",
-  "title": "Sign of the Tangent Excess",
-  "difficulty": 4,
-  "tags": [
-   "signum",
-   "x->0+",
-   "one-sided",
-   "tan",
-   "sin",
-   "1-cos"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\operatorname{sgn}(\\tan x-\\sin x)\\cdot\\frac{1-\\cos x}{x\\,\\tan x}",
-  "answer": "\\dfrac{1}{2}",
-  "trap": "Seeing $\\tan x-\\sin x\\to 0$ and concluding $\\operatorname{sgn}(\\tan x-\\sin x)\\to\\operatorname{sgn}(0)=0$, which would force the whole limit to $0$. But $\\operatorname{sgn}$ depends on the sign of the argument near $0$, not on its limiting value: $\\tan x-\\sin x=\\sin x(\\sec x-1)>0$ for all small $x>0$, so the factor is identically $+1$ on a punctured right-neighborhood and the limit is $\\tfrac12$, not $0$.",
-  "solutions": [
-   {
-    "name": "Method I - Factor the sign argument",
-    "steps": [
-     "Factor: $\\tan x-\\sin x=\\sin x\\!\\left(\\dfrac{1}{\\cos x}-1\\right)=\\dfrac{\\sin x\\,(1-\\cos x)}{\\cos x}$.",
-     "For small $x>0$ all three factors $\\sin x,\\,1-\\cos x,\\,\\cos x$ are positive, so $\\operatorname{sgn}(\\tan x-\\sin x)=+1$ on a punctured right-neighborhood of $0$.",
-     "The limit therefore reduces to $\\displaystyle\\lim_{x\\to0^+}\\frac{1-\\cos x}{x\\tan x}$.",
-     "Write $\\dfrac{1-\\cos x}{x\\tan x}=\\dfrac{1-\\cos x}{x^2}\\cdot\\dfrac{x}{\\tan x}$.",
-     "As $x\\to0^+$: $\\dfrac{1-\\cos x}{x^2}\\to\\dfrac12$ and $\\dfrac{x}{\\tan x}\\to1$, so the product $\\to\\dfrac12$."
-    ]
-   },
-   {
-    "name": "Method II - Half-angle on numerator, small-angle on denominator",
-    "steps": [
-     "Sign factor $=+1$ on a right-neighborhood of $0$ (as established in Method I).",
-     "Use $1-\\cos x=2\\sin^2\\frac{x}{2}$ and $\\tan x=\\dfrac{\\sin x}{\\cos x}$, so $\\dfrac{1-\\cos x}{x\\tan x}=\\dfrac{2\\sin^2(x/2)\\,\\cos x}{x\\,\\sin x}.$",
-     "Replace $\\sin x=2\\sin\\frac{x}{2}\\cos\\frac{x}{2}$:",
-     "$$\\frac{2\\sin^2(x/2)\\cos x}{x\\cdot2\\sin(x/2)\\cos(x/2)}=\\frac{\\sin(x/2)\\cos x}{x\\cos(x/2)}=\\frac12\\cdot\\frac{\\sin(x/2)}{x/2}\\cdot\\frac{\\cos x}{\\cos(x/2)}.$$",
-     "Each factor tends to its limit: $\\dfrac12\\cdot1\\cdot1=\\dfrac12$."
-    ]
-   }
-  ],
-  "remark": "$\\tan x-\\sin x=\\tfrac{x^3}{2}+O(x^5)$ is positive and cubic-small; the lesson is that a quantity vanishing in the limit still has a definite, locally constant sign — $\\operatorname{sgn}$ reads that local sign, not the limit value."
- },
- {
-  "theme": "signum",
-  "themeLabel": "The Signum Function",
-  "title": "Signum at the Horizon",
-  "difficulty": 3,
-  "tags": [
-   "signum",
-   "x->+infinity",
-   "sin",
-   "arctan",
-   "composition"
-  ],
-  "statement": "\\lim_{x\\to +\\infty}\\operatorname{sgn}\\!\\left(\\sin\\frac{1}{x}\\right)\\cdot\\arctan x",
-  "answer": "\\dfrac{\\pi}{2}",
-  "trap": "Pattern-matching on $\\operatorname{sgn}(\\sin(\\cdot))$: \"$\\sin$ oscillates, so its sign flips forever and the limit cannot exist.\" The flaw is that the oscillation lives in the argument, and here the argument is $1/x\\to 0^+$, which stays trapped in $(0,\\pi)$ where $\\sin$ is strictly positive. The sign never gets to flip even once, so the factor is the constant $+1$ and the limit is simply $\\lim \\arctan x=\\tfrac{\\pi}{2}$.",
-  "solutions": [
-   {
-    "name": "Method I - Localise the argument",
-    "steps": [
-     "As $x\\to+\\infty$, $\\dfrac1x\\to0^+$, so eventually $0<\\dfrac1x<\\pi$.",
-     "On $(0,\\pi)$, $\\sin$ is strictly positive, hence $\\sin\\frac1x>0$ and $\\operatorname{sgn}\\!\\left(\\sin\\frac1x\\right)=+1$ for all large $x$.",
-     "The sign factor is therefore eventually the constant $+1$.",
-     "Thus the limit equals $\\displaystyle\\lim_{x\\to+\\infty}\\arctan x=\\dfrac{\\pi}{2}$.",
-     "Answer: $\\boxed{\\dfrac{\\pi}{2}}$."
-    ]
-   },
-   {
-    "name": "Method II - Explicit tail threshold",
-    "steps": [
-     "For $0<u<\\pi$ we have $\\sin u>0$. Take $u=\\dfrac1x$: the condition $0<\\dfrac1x<\\pi$ is exactly $x>\\dfrac1\\pi$.",
-     "Hence $\\operatorname{sgn}\\!\\left(\\sin\\frac1x\\right)=1$ for every $x>\\dfrac1\\pi$ — a tail condition, which is all a limit at $+\\infty$ depends on.",
-     "On that entire tail the expression equals $\\arctan x$ identically (no zero crossing of $\\sin\\frac1x$ occurs there).",
-     "Therefore the limit is $\\displaystyle\\lim_{x\\to+\\infty}\\arctan x=\\dfrac{\\pi}{2}$."
-    ]
-   }
-  ],
-  "remark": "Oscillation of $\\operatorname{sgn}\\circ\\sin$ only happens when the argument sweeps across many half-periods; squeezing the argument to $0^+$ pins the sign down to $+1$ on a whole tail."
- },
- {
-  "theme": "signum",
-  "themeLabel": "The Signum Function",
-  "title": "Sign of the Sine Across an Even Integer",
-  "difficulty": 4,
-  "tags": [
-   "signum",
-   "x->2-",
-   "one-sided",
-   "sin(pi x)",
-   "exponential",
-   "ln"
-  ],
-  "statement": "\\lim_{x\\to 2^-}\\operatorname{sgn}\\big(\\sin(\\pi x)\\big)\\cdot\\frac{2^{x}-4}{x-2}",
-  "answer": "-4\\ln 2",
-  "trap": "The quotient $\\dfrac{2^x-4}{x-2}$ is the difference quotient of $2^x$ at $x=2$, so it tends to $2^2\\ln2=4\\ln2$. The seductive slip is to stop there and report $4\\ln2$, treating $\\operatorname{sgn}(\\sin\\pi x)$ as harmlessly $+1$ since $\\sin\\pi x\\to 0$. But the side matters: as $x\\to2^-$, $\\pi x\\to 2\\pi^-$ and $\\sin(2\\pi-\\varepsilon)=-\\sin\\varepsilon<0$, so $\\operatorname{sgn}(\\sin\\pi x)=-1$ throughout the left neighbourhood, flipping the answer to $-4\\ln2$.",
-  "solutions": [
-   {
-    "name": "Method I - Sign from the sine's left approach + derivative limit",
-    "steps": [
-     "Near $x=2^-$, write $x=2-\\varepsilon$ with $\\varepsilon\\to0^+$. Then $\\sin(\\pi x)=\\sin(2\\pi-\\pi\\varepsilon)=-\\sin(\\pi\\varepsilon)<0$.",
-     "Hence $\\operatorname{sgn}(\\sin(\\pi x))=-1$ on the left of $2$, and this is a constant factor as $x\\to2^-$.",
-     "The remaining factor is the difference quotient of $f(x)=2^x$ at $x=2$: $\\displaystyle\\lim_{x\\to2}\\frac{2^x-2^2}{x-2}=f'(2)=2^2\\ln2=4\\ln2$.",
-     "Multiply by the sign: $(-1)\\cdot4\\ln2=-4\\ln2$.",
-     "Answer: $\\boxed{-4\\ln2}$."
-    ]
-   },
-   {
-    "name": "Method II - Substitution and exponential expansion",
-    "steps": [
-     "Sign factor $=-1$ as established above. Put $t=x-2\\to0^-$, so $2^x=4\\cdot2^{t}=4e^{t\\ln2}$.",
-     "$$\\frac{2^x-4}{x-2}=\\frac{4\\big(e^{t\\ln2}-1\\big)}{t}=4\\ln2\\cdot\\frac{e^{t\\ln2}-1}{t\\ln2}.$$",
-     "As $t\\to0^-$, $\\dfrac{e^{t\\ln2}-1}{t\\ln2}\\to1$, so the quotient $\\to4\\ln2$.",
-     "Including the sign factor $-1$: the limit is $-4\\ln2$."
-    ]
-   }
-  ],
-  "remark": "At an even integer $\\sin(\\pi x)$ crosses zero downward from the left; the $\\operatorname{sgn}$ silently flips the otherwise textbook derivative quotient. The one-sided posing is essential: from the right the limit is $+4\\ln2$, so the two-sided limit does not exist."
- },
- {
-  "theme": "signum",
-  "themeLabel": "The Signum Function",
-  "title": "Inverse-Trig Tie-Breaker",
-  "difficulty": 5,
-  "tags": [
-   "signum",
-   "x->0+",
-   "one-sided",
-   "arcsin",
-   "arctan",
-   "series",
-   "composition"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\operatorname{sgn}\\big(\\arcsin x-\\arctan x\\big)\\cdot\\frac{\\arcsin x-\\arctan x}{x^{3}}",
-  "answer": "\\dfrac{1}{2}",
-  "trap": "Naive first-order expansions $\\arcsin x\\approx x$ and $\\arctan x\\approx x$ give $\\arcsin x-\\arctan x\\approx 0$, so the numerator looks like $0$ and the whole limit seems to be $0$. The $x^1$ terms are precisely the part that cancels; the entire answer lives in the cubic terms ($+\\tfrac{x^3}{6}$ vs $-\\tfrac{x^3}{3}$), which combine to $+\\tfrac{x^3}{2}$ and divide the $x^3$ exactly. The $\\operatorname{sgn}$ is not decoration: it certifies the numerator is positive for small $x>0$, but it does not change the magnitude.",
-  "solutions": [
-   {
-    "name": "Method I - Cubic Taylor terms",
-    "steps": [
-     "Expand to cubic order: $\\arcsin x = x+\\dfrac{x^3}{6}+O(x^5)$ and $\\arctan x = x-\\dfrac{x^3}{3}+O(x^5)$.",
-     "Subtract; the $x$ terms cancel exactly: $\\arcsin x-\\arctan x=\\left(\\dfrac{x^3}{6}+\\dfrac{x^3}{3}\\right)+O(x^5)=\\dfrac{x^3}{2}+O(x^5)$.",
-     "For small $x>0$ the head $\\tfrac{x^3}{2}$ is positive, so $\\operatorname{sgn}(\\arcsin x-\\arctan x)=+1$.",
-     "Then $\\dfrac{\\arcsin x-\\arctan x}{x^3}=\\dfrac{x^3/2+O(x^5)}{x^3}=\\dfrac12+O(x^2)\\to\\dfrac12$.",
-     "Multiplying by the sign factor $+1$, the limit is $\\dfrac12$."
-    ]
-   },
-   {
-    "name": "Method II - Sign by monotonicity, value by L'Hopital",
-    "steps": [
-     "Let $g(x)=\\arcsin x-\\arctan x$. Then $g'(x)=\\dfrac{1}{\\sqrt{1-x^2}}-\\dfrac{1}{1+x^2}$. For $x\\in(0,1)$ we have $\\dfrac{1}{\\sqrt{1-x^2}}>1>\\dfrac{1}{1+x^2}$, so $g'(x)>0$; with $g(0)=0$ this gives $g(x)>0$, hence $\\operatorname{sgn} g=+1$ on $(0,1)$.",
-     "Evaluate $L=\\displaystyle\\lim_{x\\to0^+}\\frac{g(x)}{x^3}$, a $\\tfrac00$ form. Differentiating numerator and denominator: $\\dfrac{g'(x)}{3x^2}=\\dfrac{1}{3x^2}\\left(\\dfrac{1}{\\sqrt{1-x^2}}-\\dfrac{1}{1+x^2}\\right)$.",
-     "Use $\\dfrac{1}{\\sqrt{1-x^2}}=1+\\tfrac12 x^2+O(x^4)$ and $\\dfrac{1}{1+x^2}=1-x^2+O(x^4)$, so the bracket is $\\tfrac32 x^2+O(x^4)$, giving $\\dfrac{g'(x)}{3x^2}=\\dfrac{\\tfrac32 x^2+O(x^4)}{3x^2}\\to\\dfrac12$. Hence $L=\\dfrac12$.",
-     "Therefore the original limit is $(+1)\\cdot\\dfrac12=\\dfrac12$."
-    ]
-   }
-  ],
-  "remark": "The $\\operatorname{sgn}$ certifies that the cubic head $+\\tfrac{x^3}{2}$ controls the sign; the trap is the universal $x$-cancellation that makes naive first-order Taylor read $0$. Note that on $x\\to0^-$ the same factor $\\operatorname{sgn} g$ flips with $g$, so the two-sided limit also equals $\\tfrac12$ -- the one-sided form is used only for a clean, well-posed statement."
- },
- {
-  "theme": "signum",
-  "themeLabel": "The Signum Function",
-  "title": "Signum at Negative Infinity",
-  "difficulty": 4,
-  "tags": [
-   "signum",
-   "x->-infinity",
-   "conjugate",
-   "surd",
-   "sgn(x)"
-  ],
-  "statement": "\\lim_{x\\to -\\infty}\\operatorname{sgn}(x)\\cdot\\left(\\sqrt{x^{2}+x}+x\\right)",
-  "answer": "\\dfrac{1}{2}",
-  "trap": "Treating it like $x\\to+\\infty$: rationalise $\\sqrt{x^2+x}+x=\\dfrac{x}{\\sqrt{x^2+x}-x}\\to\\dfrac12$ (using $\\sqrt{x^2+x}\\approx +x$), then take $\\operatorname{sgn}(x)=+1$, declaring the limit $\\tfrac12$. Both moves are wrong: at $-\\infty$ one needs $\\sqrt{x^2+x}=|x|\\sqrt{1+\\tfrac1x}=-x\\sqrt{1+\\tfrac1x}$, so the bracket actually tends to $-\\tfrac12$, and $\\operatorname{sgn}(x)=-1$. The seduction is that the two sign errors cancel and the careless student still writes $\\tfrac12$ — the right number for entirely wrong reasons, so the slip never gets caught.",
-  "solutions": [
-   {
-    "name": "Method I - Honest surd handling at -∞",
-    "steps": [
-     "For $x<0$ we have $|x|=-x$, so $\\sqrt{x^2+x}=|x|\\sqrt{1+\\tfrac1x}=-x\\sqrt{1+\\tfrac1x}$ (the surd is real because $x^2+x=x(x+1)>0$ once $x<-1$).",
-     "Hence the bracket is $-x\\sqrt{1+\\tfrac1x}+x=x\\!\\left(1-\\sqrt{1+\\tfrac1x}\\right)$.",
-     "Expand $\\sqrt{1+\\tfrac1x}=1+\\dfrac{1}{2x}-\\dfrac{1}{8x^2}+\\cdots$, so $1-\\sqrt{1+\\tfrac1x}=-\\dfrac{1}{2x}+\\dfrac{1}{8x^2}-\\cdots$.",
-     "Multiply by $x$: bracket $=-\\dfrac12+\\dfrac{1}{8x}-\\cdots\\to-\\dfrac12$ as $x\\to-\\infty$.",
-     "Since $\\operatorname{sgn}(x)=-1$ for $x\\to-\\infty$, the product is $(-1)\\cdot\\left(-\\dfrac12\\right)=\\dfrac12$.",
-     "Answer: $\\boxed{\\dfrac12}$."
-    ]
-   },
-   {
-    "name": "Method II - Conjugate with correct sign of the surd",
-    "steps": [
-     "Multiply and divide by the conjugate: $\\sqrt{x^2+x}+x=\\dfrac{(x^2+x)-x^2}{\\sqrt{x^2+x}-x}=\\dfrac{x}{\\sqrt{x^2+x}-x}$.",
-     "For $x<0$, $\\sqrt{x^2+x}=-x\\sqrt{1+\\tfrac1x}$, so the denominator is $\\sqrt{x^2+x}-x=-x\\big(\\sqrt{1+\\tfrac1x}+1\\big)$.",
-     "Hence the bracket $=\\dfrac{x}{-x\\big(\\sqrt{1+1/x}+1\\big)}=\\dfrac{-1}{\\sqrt{1+1/x}+1}\\to\\dfrac{-1}{2}$ as $x\\to-\\infty$.",
-     "Multiply by $\\operatorname{sgn}(x)=-1$: the limit is $(-1)\\cdot\\left(-\\dfrac12\\right)=\\dfrac12$."
-    ]
-   }
-  ],
-  "remark": "The $\\operatorname{sgn}(x)$ factor is honest bait: doing the surd correctly at $-\\infty$ forces $|x|=-x$, and the explicit signum makes the two minus signs visible instead of letting them cancel silently. Note $\\lim_{x\\to+\\infty}\\operatorname{sgn}(x)(\\sqrt{x^2+x}+x)=+\\infty$, so the one-sided framing at $-\\infty$ is essential."
- },
- {
-  "theme": "signum",
-  "themeLabel": "The Signum Function",
-  "title": "Sign of a Fourth-Order Remnant",
-  "difficulty": 5,
-  "tags": [
-   "signum",
-   "x->0+",
-   "one-sided",
-   "cosine",
-   "fourth-order",
-   "series"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\operatorname{sgn}\\!\\left(\\cos x-1+\\frac{x^2}{2}\\right)\\cdot\\frac{x^{4}}{\\cos x-1+\\dfrac{x^{2}}{2}}",
-  "answer": "24",
-  "trap": "Approximating $\\cos x\\approx1-\\dfrac{x^2}{2}$ makes the inner expression $\\approx0$, so the denominator looks like $0$ and the ratio like $\\pm\\infty$. That second-order truncation is exactly the part designed to cancel; the surviving term is $+\\dfrac{x^4}{24}$, which is finite and positive, so the signum is $+1$ and the limit is the finite value $24$.",
-  "solutions": [
-   {
-    "name": "Method I - Fourth-order expansion",
-    "steps": [
-     "Expand to fourth order: $\\cos x=1-\\dfrac{x^2}{2}+\\dfrac{x^4}{24}-\\dfrac{x^6}{720}+\\cdots$.",
-     "So $\\cos x-1+\\dfrac{x^2}{2}=\\dfrac{x^4}{24}-\\dfrac{x^6}{720}+\\cdots$.",
-     "For small $x>0$ this is positive (leading term $x^4/24>0$), so the $\\operatorname{sgn}$ factor is $+1$.",
-     "Then $\\dfrac{x^4}{\\cos x-1+x^2/2}=\\dfrac{x^4}{\\tfrac{x^4}{24}\\left(1-\\tfrac{x^2}{30}+\\cdots\\right)}=\\dfrac{24}{1-\\tfrac{x^2}{30}+\\cdots}\\to24$.",
-     "Answer: $\\boxed{24}$."
-    ]
-   },
-   {
-    "name": "Method II - Repeated L'Hopital on the reciprocal",
-    "steps": [
-     "Sign factor is $+1$ (Method I). Compute $\\displaystyle M=\\lim_{x\\to0^+}\\frac{\\cos x-1+x^2/2}{x^4}$ — a $0/0$ form.",
-     "Differentiate numerator and denominator four times (each stage stays $0/0$): numerator derivatives are $-\\sin x+x,\\ -\\cos x+1,\\ \\sin x,\\ \\cos x$, all vanishing at $0$ through the third; denominators $4x^3,12x^2,24x,24$.",
-     "At $x\\to0^+$ the fourth stage gives $M=\\dfrac{\\cos 0}{24}=\\dfrac{1}{24}$.",
-     "The required limit is the reciprocal: $\\dfrac{x^4}{\\cos x-1+x^2/2}\\to\\dfrac{1}{M}=24$.",
-     "With sign factor $+1$, the answer is $24$."
-    ]
-   }
-  ],
-  "remark": "A textbook 'engineered cancellation': subtracting the $1-\\tfrac{x^2}{2}$ part of $\\cos x$ exposes the $\\tfrac{x^4}{24}$ remnant, and $\\operatorname{sgn}$ verifies that remnant is positive."
- },
- {
-  "theme": "signum",
-  "themeLabel": "The Signum Function",
-  "title": "Floor Trap Beside the Signum",
-  "difficulty": 4,
-  "tags": [
-   "signum",
-   "floor",
-   "x->0+",
-   "one-sided",
-   "exponential",
-   "composition"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\Big(\\operatorname{sgn}(x)+\\big\\lfloor\\cos x\\big\\rfloor\\Big)\\cdot\\frac{e^{x}-1}{x}",
-  "answer": "1",
-  "trap": "Three seductions all give the wrong reading. (1) Evaluating the bracket literally at $x=0$: $\\operatorname{sgn}(0)+\\lfloor\\cos 0\\rfloor=0+\\lfloor1\\rfloor=1$ — right number, wrong reason (the expression isn't even defined at $0$). (2) Plugging $\\cos x\\to1$ and reading $\\lfloor1\\rfloor=1$ with $\\operatorname{sgn}(x)=1$, summing to $2$ — this misuses continuity inside a floor. (3) A naive numerical check is treacherous: in double precision $\\cos x$ rounds to exactly $1.0$ for $|x|\\lesssim10^{-8}$, so a calculator reports $\\lfloor\\cos x\\rfloor=1$ and the limit $2$. The truth: for $x>0$ near $0$, $\\cos x\\in(0,1)$ strictly, so $\\lfloor\\cos x\\rfloor=0$ (never $1$), $\\operatorname{sgn}(x)=1$, bracket $=1$, and the limit is $1$.",
-  "solutions": [
-   {
-    "name": "Method I - Evaluate floor and sgn along the path",
-    "steps": [
-     "For $x\\to0^+$ we have $x>0$, so $\\operatorname{sgn}(x)=+1$.",
-     "For $0<x<\\dfrac{\\pi}{2}$ the cosine is strictly between $0$ and $1$: $0<\\cos x<1$. In particular $\\cos x<1$ because the value $1$ is attained only at $x=0$. Hence $\\lfloor\\cos x\\rfloor=0$.",
-     "Therefore the bracket equals $1+0=1$ on a punctured right-neighbourhood of $0$.",
-     "The remaining factor is the classic limit $\\displaystyle\\lim_{x\\to0^+}\\frac{e^x-1}{x}=1$.",
-     "Therefore the limit is $1\\cdot1=\\boxed{1}$."
-    ]
-   },
-   {
-    "name": "Method II - Series and continuity bookkeeping",
-    "steps": [
-     "$\\cos x=1-\\dfrac{x^2}{2}+\\dfrac{x^4}{24}-\\cdots$, so $1-\\cos x=\\dfrac{x^2}{2}+O(x^4)>0$ for every $x\\neq0$; thus $\\cos x\\in(0,1)$ near $0^+$ and $\\lfloor\\cos x\\rfloor=0$.",
-     "Hence the bracket is identically $\\operatorname{sgn}(x)=1$ for small $x>0$.",
-     "Expand $e^x-1=x+\\dfrac{x^2}{2}+\\cdots$, so $\\dfrac{e^x-1}{x}=1+\\dfrac{x}{2}+\\cdots\\to1$.",
-     "Product $\\to1\\cdot1=1$."
-    ]
-   }
-  ],
-  "remark": "Two endpoint traps stacked on a removable singularity: $\\lfloor\\cos x\\rfloor$ equals $0$ for every $x\\neq0$ but jumps to $1$ exactly at $x=0$, and $\\operatorname{sgn}$ is discontinuous at $0$. The one-sided limit never sees either value at $0$. (From the left the bracket is $-1$, so the two-sided limit does not exist — the $x\\to0^+$ restriction is essential.)"
- },
- {
-  "theme": "modulus",
-  "themeLabel": "Absolute Value & Corners",
-  "title": "The Cube That Forgives the Kink",
-  "difficulty": 4,
-  "tags": [
-   "modulus",
-   "sin",
-   "taylor",
-   "x->0",
-   "two-sided",
-   "cube"
-  ],
-  "statement": "\\lim_{x\\to 0}\\frac{|x|-|\\sin x|}{|x|^{3}}",
-  "answer": "\\dfrac{1}{6}",
-  "trap": "Writing $\\frac{x-\\sin x}{x^3}\\to\\frac16$ by 'dropping the bars' gives $\\frac16$ — the right number, but for the WRONG reason: with $|x|^3$ in the denominator (not $x^3$), the unbarred version $\\frac{|x|-|\\sin x|}{x^3}$ actually has limit $-\\frac16$ from the left, so the kink matters and the denominator's modulus is what rescues two-sidedness.",
-  "solutions": [
-   {
-    "name": "Method I — Reduce to the positive ray via parity",
-    "steps": [
-     "Both $|x|$ and $|\\sin x|$ are **even** functions, and the denominator $|x|^3$ is even. Hence the whole quotient is even, so the left- and right-hand behaviours are identical and a two-sided limit exists iff the right-hand one does.",
-     "For $x>0$ we have $|x|=x$ and $|\\sin x|=\\sin x$ (since $\\sin x>0$ near $0^+$), and $|x|^3=x^3$. The expression becomes $\\dfrac{x-\\sin x}{x^{3}}.$",
-     "Use the Maclaurin series $\\sin x = x-\\dfrac{x^3}{6}+O(x^5)$, so $x-\\sin x=\\dfrac{x^3}{6}+O(x^5).$",
-     "$$\\frac{x-\\sin x}{x^3}=\\frac{1}{6}+O(x^2)\\xrightarrow[x\\to0^+]{}\\frac16.$$",
-     "By evenness the left limit equals the right limit, so the two-sided limit is $\\boxed{\\tfrac16}.$"
-    ]
-   },
-   {
-    "name": "Method II — Squeeze on the barred difference",
-    "steps": [
-     "For all real $x$, $|x|-|\\sin x|\\ge 0$ because $|\\sin x|\\le|x|$ (a standard inequality), so the numerator is nonnegative everywhere; the sign is settled and only size matters.",
-     "Rationalize by pairing $|x|-|\\sin x|$ with its conjugate $|x|+|\\sin x|$: $$|x|-|\\sin x|=\\frac{|x|^2-|\\sin x|^2}{|x|+|\\sin x|}=\\frac{x^2-\\sin^2 x}{|x|+|\\sin x|}.$$",
-     "Now $x^2-\\sin^2 x=\\big(x-\\sin x\\big)\\big(x+\\sin x\\big)$, and as $x\\to0$, $x-\\sin x\\sim\\frac{x^3}{6}$ while $x+\\sin x\\sim 2x$, giving $x^2-\\sin^2 x\\sim\\frac{x^4}{3}.$",
-     "The denominator $|x|+|\\sin x|\\sim 2|x|$. Therefore $$\\frac{|x|-|\\sin x|}{|x|^3}\\sim\\frac{x^4/3}{2|x|\\cdot|x|^3}=\\frac{x^4/3}{2|x|^4}=\\frac{1}{6}.$$",
-     "Since $x^4/|x|^4=1$ for every $x\\ne0$, the result $\\dfrac16$ holds from both sides."
-    ]
-   }
-  ],
-  "remark": "The denominator $|x|^3$ (even) is the secret hero: it turns an odd-numerator near-corner into a clean even quotient. Swap it for $x^3$ and the limit dies."
- },
- {
-  "theme": "modulus",
-  "themeLabel": "Absolute Value & Corners",
-  "title": "A Factor Hidden in the Bars",
-  "difficulty": 3,
-  "tags": [
-   "modulus",
-   "factoring",
-   "x->2",
-   "corner",
-   "two-sided"
-  ],
-  "statement": "\\lim_{x\\to 2}\\frac{|x-2|+|x^{2}-4|}{|x-2|}",
-  "answer": "5",
-  "trap": "The seductive wrong answer is $-3$. A student evaluating the left limit sees $x\\to2^-$, correctly writes $|x-2|=-(x-2)$, but then forgets that $x^2-4$ is $also$ negative on $(-2,2)$ and keeps $|x^2-4|=x^2-4$. The quotient collapses to $1+\\frac{x^2-4}{-(x-2)}=1-(x+2)\\to 1-4=-3$, and the two-sided limit appears not to exist. The fix: $both$ moduli flip sign together on the left because they share the root $x=2$, so the kinks cancel. Cleanest route: $\\frac{|x^2-4|}{|x-2|}=|x+2|$ (not $x+2$), giving $1+|x+2|\\to5$.",
-  "solutions": [
-   {
-    "name": "Method I — Modulus is multiplicative",
-    "steps": [
-     "Factor inside the second bar: $x^2-4=(x-2)(x+2)$, hence $|x^2-4|=|x-2|\\cdot|x+2|$ since $|ab|=|a|\\,|b|$.",
-     "For $x\\ne 2$ the common factor $|x-2|>0$ cancels: $$\\frac{|x-2|+|x-2|\\,|x+2|}{|x-2|}=1+|x+2|.$$",
-     "The function $|x+2|$ has its only kink at $x=-2$, so it is continuous at $x=2$; thus $|x+2|\\to|4|=4$.",
-     "Therefore the limit is $1+4=\\boxed5$. No one-sided split is needed because $1+|x+2|$ is continuous near $x=2$."
-    ]
-   },
-   {
-    "name": "Method II — One-sided check to be safe",
-    "steps": [
-     "Right side $x\\to2^+$: here $x-2>0$ so $|x-2|=x-2$, and $x^2-4>0$ so $|x^2-4|=x^2-4$. Quotient $=\\dfrac{(x-2)+(x^2-4)}{x-2}=1+\\dfrac{x^2-4}{x-2}=1+(x+2)\\to 5.$",
-     "Left side $x\\to2^-$: now $x-2<0$ so $|x-2|=-(x-2)$, and crucially $x^2-4<0$ on $(-2,2)$ so $|x^2-4|=-(x^2-4)$ $too$. Quotient $=\\dfrac{-(x-2)-(x^2-4)}{-(x-2)}=1+\\dfrac{x^2-4}{x-2}=1+(x+2)\\to 5.$",
-     "Both one-sided limits equal $5$, so the two-sided limit is $\\boxed5$ — the corner at $x=2$ is removable because both moduli flip sign together."
-    ]
-   }
-  ],
-  "remark": "The two moduli share the root $x=2$, so their sign-flips cancel and the limit is corner-free even though each term has a kink; this coupling is exactly what the $-3$ trap misses."
- },
- {
-  "theme": "modulus",
-  "themeLabel": "Absolute Value & Corners",
-  "title": "When Sine and Tangent Both Bend",
-  "difficulty": 5,
-  "tags": [
-   "modulus",
-   "sin",
-   "tan",
-   "x->0",
-   "two-sided",
-   "cancellation"
-  ],
-  "statement": "\\lim_{x\\to 0}\\frac{|\\sin x|-|x|}{|\\tan x|-|x|}",
-  "answer": "-\\dfrac{1}{2}",
-  "trap": "First-order replacement $\\sin x\\approx x$, $\\tan x\\approx x$ gives $\\frac{|x|-|x|}{|x|-|x|}=\\frac00$, so you go to third order. The seductive slip: noting the cubic coefficients have magnitudes $\\tfrac16$ and $\\tfrac13$ and concluding $+\\tfrac12$. This forgets the SIGNS — $\\sin x-x=-\\tfrac{x^3}{6}<0$ while $\\tan x-x=+\\tfrac{x^3}{3}>0$ near $0^+$ — so the true ratio is $\\frac{-1/6}{+1/3}=-\\tfrac12$, not $+\\tfrac12$. A second trap is fearing the moduli break two-sidedness; in fact both bars flip together on the left and the ratio is even.",
-  "solutions": [
-   {
-    "name": "Method I — Parity then series",
-    "steps": [
-     "Both $|\\sin x|-|x|$ and $|\\tan x|-|x|$ are **even** functions (each term is even), so the quotient is even. It therefore suffices to compute the limit as $x\\to0^+$; the left limit will match automatically.",
-     "For $x>0$ (small): $|\\sin x|=\\sin x$, $|\\tan x|=\\tan x$, $|x|=x$, so the quotient is $\\dfrac{\\sin x-x}{\\tan x-x}.$",
-     "Use the Maclaurin expansions $\\sin x-x=-\\dfrac{x^3}{6}+O(x^5)$ and $\\tan x-x=\\dfrac{x^3}{3}+O(x^5).$",
-     "$$\\frac{\\sin x-x}{\\tan x-x}=\\frac{-x^3/6+O(x^5)}{x^3/3+O(x^5)}=\\frac{-1/6+O(x^2)}{1/3+O(x^2)}\\xrightarrow[x\\to0^+]{}\\frac{-1/6}{1/3}=-\\frac12.$$",
-     "By evenness the left-hand limit equals the right-hand limit, so the two-sided limit is $\\boxed{-\\tfrac12}.$"
-    ]
-   },
-   {
-    "name": "Method II — Negative-side sign bookkeeping (the trap exposed)",
-    "steps": [
-     "Attack $x<0$ head-on to watch the bars work. Here $\\sin x<0$ so $|\\sin x|=-\\sin x$, and $|x|=-x$.",
-     "Numerator $=-\\sin x-(-x)=-(\\sin x-x)=-\\big(-\\tfrac{x^3}{6}+O(x^5)\\big)=\\tfrac{x^3}{6}+O(x^5).$ (With $x<0$ this quantity is negative, exactly as $|\\sin x|-|x|$ must be.)",
-     "Denominator: $\\tan x<0$ so $|\\tan x|=-\\tan x$, giving $-\\tan x-(-x)=-(\\tan x-x)=-\\tfrac{x^3}{3}+O(x^5).$",
-     "$$\\frac{\\text{num}}{\\text{den}}=\\frac{x^3/6+O(x^5)}{-x^3/3+O(x^5)}\\xrightarrow[x\\to0^-]{}\\frac{1/6}{-1/3}=-\\frac12.$$",
-     "Identical to the right side: $\\boxed{-\\tfrac12}.$ The key insight: BOTH bars flip on the left, so the modulus signs cancel in the ratio — while the intrinsic signs of $\\sin x-x$ and $\\tan x-x$ stay OPPOSITE, which is what forces the minus."
-    ]
-   },
-   {
-    "name": "Method III — Conjugate / rationalise the corners",
-    "steps": [
-     "Rationalise each difference of moduli by its 'sum' partner: $|\\sin x|-|x|=\\dfrac{\\sin^2 x-x^2}{|\\sin x|+|x|}$ and $|\\tan x|-|x|=\\dfrac{\\tan^2 x-x^2}{|\\tan x|+|x|}$ (valid since $\\sin^2 x=|\\sin x|^2$, etc.).",
-     "As $x\\to0$, both sums satisfy $|\\sin x|+|x|\\sim 2|x|$ and $|\\tan x|+|x|\\sim 2|x|$, so the factor $\\dfrac{|\\tan x|+|x|}{|\\sin x|+|x|}\\to1.$ Hence the limit equals $\\displaystyle\\lim_{x\\to0}\\frac{\\sin^2 x-x^2}{\\tan^2 x-x^2}.$",
-     "Factor: $\\sin^2x-x^2=(\\sin x-x)(\\sin x+x)\\sim\\big(-\\tfrac{x^3}{6}\\big)(2x)=-\\tfrac{x^4}{3}$ and $\\tan^2x-x^2=(\\tan x-x)(\\tan x+x)\\sim\\big(\\tfrac{x^3}{3}\\big)(2x)=\\tfrac{2x^4}{3}.$",
-     "$$\\lim_{x\\to0}\\frac{\\sin^2 x-x^2}{\\tan^2 x-x^2}=\\frac{-x^4/3}{2x^4/3}=-\\frac12.\\qquad\\boxed{-\\tfrac12}$$"
-    ]
-   }
-  ],
-  "remark": "The moduli are red herrings: they cancel by evenness (both bars flip together off the negative axis). The real engine is that $\\sin x-x$ and $\\tan x-x$ have third-order coefficients $-\\tfrac16$ and $+\\tfrac13$ — same magnitude class but OPPOSITE signs — so the magnitude-only guess $+\\tfrac12$ is exactly the wrong sign."
- },
- {
-  "theme": "modulus",
-  "themeLabel": "Absolute Value & Corners",
-  "title": "The Floor Tames the Modulus",
-  "difficulty": 4,
-  "tags": [
-   "modulus",
-   "floor",
-   "x->3",
-   "squeeze",
-   "two-sided"
-  ],
-  "statement": "\\lim_{x\\to 3}\\,|x-3|\\,\\left\\lfloor\\frac{1}{|x-3|}\\right\\rfloor",
-  "answer": "1",
-  "trap": "Seeing $\\lfloor 1/|x-3|\\rfloor\\to\\infty$ while $|x-3|\\to0$, a strong student labels it an indeterminate $0\\cdot\\infty$ and, since 'the small factor usually wins,' guesses $0$. This ignores that $t\\lfloor 1/t\\rfloor$ is pinned between $1-t$ and $1$: the floor only ever discards a fractional part less than $1$, and after multiplying by $t\\to0$ that discarded sliver vanishes, leaving exactly $1$ — not $0$.",
-  "solutions": [
-   {
-    "name": "Method I — Floor squeeze",
-    "steps": [
-     "Let $t=|x-3|$. For $x\\ne3$ we have $t>0$, and as $x\\to3$ from EITHER side, $t\\to0^+$ — the modulus erases the side, so a single one-sided analysis in $t$ settles the two-sided limit.",
-     "By the defining property of the floor, $\\dfrac1t-1<\\left\\lfloor\\dfrac1t\\right\\rfloor\\le\\dfrac1t.$",
-     "Multiply through by $t>0$ (inequalities preserved): $$1-t< t\\left\\lfloor\\frac1t\\right\\rfloor\\le 1.$$",
-     "As $t\\to0^+$, the lower bound $1-t\\to1$ and the upper bound is the constant $1$; by the squeeze theorem $t\\left\\lfloor1/t\\right\\rfloor\\to1.$",
-     "Since this holds as $t=|x-3|\\to0^+$ regardless of side, the two-sided limit is $\\boxed{1}.$"
-    ]
-   },
-   {
-    "name": "Method II — Fractional-part identity",
-    "steps": [
-     "With $t=|x-3|\\to0^+$, write $\\left\\lfloor\\dfrac1t\\right\\rfloor=\\dfrac1t-\\left\\{\\dfrac1t\\right\\}$, where $\\{\\cdot\\}\\in[0,1)$ denotes the fractional part.",
-     "Then $t\\left\\lfloor\\dfrac1t\\right\\rfloor=t\\cdot\\dfrac1t-t\\left\\{\\dfrac1t\\right\\}=1-t\\left\\{\\dfrac1t\\right\\}.$",
-     "Since $0\\le\\{1/t\\}<1$, we get $0\\le t\\left\\{1/t\\right\\}<t$, and the right side $t\\to0^+$, so by squeeze $t\\{1/t\\}\\to0.$",
-     "Hence $t\\left\\lfloor1/t\\right\\rfloor=1-t\\{1/t\\}\\to1-0=\\boxed{1}$, independent of the wild oscillation of $\\{1/t\\}$, and the side-symmetry of $t=|x-3|$ makes the limit two-sided."
-    ]
-   }
-  ],
-  "remark": "$t\\lfloor 1/t\\rfloor\\to1$ as $t\\to0^+$ is the canonical floor-squeeze; wrapping $t=|x-3|$ around it makes the two-sided symmetry automatic, since the modulus collapses both approach directions into $t\\to0^+$."
- },
- {
-  "theme": "modulus",
-  "themeLabel": "Absolute Value & Corners",
-  "title": "Modulus at Negative Infinity",
-  "difficulty": 4,
-  "tags": [
-   "modulus",
-   "infinity",
-   "x->-inf",
-   "conjugate",
-   "sqrt"
-  ],
-  "statement": "\\lim_{x\\to -\\infty}\\Big(\\sqrt{x^{2}+x}-|x|\\Big)",
-  "answer": "-\\dfrac{1}{2}",
-  "trap": "Pattern-matching to the famous $\\lim_{x\\to+\\infty}(\\sqrt{x^2+x}-x)=\\tfrac12$ and just slapping a sign on: \"$|x|=-x$ at $-\\infty$, the conjugate gives $\\frac{x}{\\sqrt{x^2+x}+|x|}\\approx\\frac{x}{2|x|}=\\frac{x}{2|x|}=\\frac12$.\" The error is reading $\\frac{x}{2|x|}$ as $+\\frac12$: for $x\\to-\\infty$, $x<0$ so $\\frac{x}{|x|}=-1$, giving $-\\frac12$. The $|x|$ in the denominator quietly negates the leading term, and the answer is $-\\frac12$, not $+\\frac12$.",
-  "solutions": [
-   {
-    "name": "Method I — Conjugate, keeping signs honest",
-    "steps": [
-     "For $x\\to-\\infty$ we have $x\\le -1$ eventually, so $x^2+x>0$ and the surd is defined; also $|x|=-x>0$. Rationalise: $$\\sqrt{x^2+x}-|x|=\\frac{(x^2+x)-x^2}{\\sqrt{x^2+x}+|x|}=\\frac{x}{\\sqrt{x^2+x}+|x|}.$$",
-     "In the denominator factor the surd using $|x|=-x$: $$\\sqrt{x^2+x}=|x|\\sqrt{1+\\tfrac1x}=-x\\sqrt{1+\\tfrac1x},\\qquad |x|=-x,$$ so the denominator $=-x\\big(\\sqrt{1+\\tfrac1x}+1\\big).$",
-     "Therefore $$\\frac{x}{-x\\big(\\sqrt{1+1/x}+1\\big)}=\\frac{-1}{\\sqrt{1+1/x}+1}.$$",
-     "As $x\\to-\\infty$, $\\tfrac1x\\to0$, so this $\\to\\dfrac{-1}{1+1}=\\boxed{-\\tfrac12}.$"
-    ]
-   },
-   {
-    "name": "Method II — Substitution $x=-t$",
-    "steps": [
-     "Let $x=-t$ with $t\\to+\\infty$. Then $|x|=t$ and $x^2+x=t^2-t$, so the expression becomes $\\sqrt{t^2-t}-t.$",
-     "Factor and expand (binomial series, valid as $\\tfrac1t\\to0$): $$\\sqrt{t^2-t}=t\\sqrt{1-\\tfrac1t}=t\\Big(1-\\tfrac{1}{2t}-\\tfrac{1}{8t^2}-\\cdots\\Big).$$",
-     "Thus $\\sqrt{t^2-t}-t=\\Big(t-\\tfrac12-\\tfrac{1}{8t}-\\cdots\\Big)-t=-\\tfrac12-\\tfrac{1}{8t}-\\cdots.$",
-     "Let $t\\to+\\infty$: the limit is $\\boxed{-\\tfrac12}.$ The substitution turns $|x|$ into the manifestly positive $t$, so the sign trap disappears."
-    ]
-   }
-  ],
-  "remark": "At $\\pm\\infty$ the modulus satisfies $|x|=\\mp x$, which flips the sign of the conjugate's leading coefficient: the very same surd $\\sqrt{x^2+x}-|x|$ tends to $+\\tfrac12$ as $x\\to+\\infty$ but to $-\\tfrac12$ as $x\\to-\\infty$."
- },
- {
-  "theme": "modulus",
-  "themeLabel": "Absolute Value & Corners",
-  "title": "The Self-Cancelling Inner Modulus",
-  "difficulty": 4,
-  "tags": [
-   "modulus",
-   "nested",
-   "x->0",
-   "one-sided",
-   "dne"
-  ],
-  "statement": "\\lim_{x\\to 0^{+}}\\frac{\\big|\\,x+|x|\\,\\big|}{x}",
-  "answer": "2",
-  "trap": "Reading $x+|x|$ as 'generically $\\approx 2x$' and writing $\\frac{|2x|}{x}\\to 2$ as if the sign of $x$ never mattered. This is right at $0^+$ but for a wrong reason: it silently assumes $|x|=x$. On the left $|x|=-x$, so $x+|x|\\equiv 0$ identically and the quotient is $0$ — the two-sided limit does not exist (left value $0$, right value $2$). The clean $2$ is purchased entirely by the $0^+$ specification, not by any cancellation that holds 'generically'.",
-  "solutions": [
-   {
-    "name": "Method I — Resolve the inner modulus by side",
-    "steps": [
-     "On the right, $x>0\\Rightarrow|x|=x$, so the inner expression collapses to $x+|x|=x+x=2x.$",
-     "Then $\\big|\\,x+|x|\\,\\big|=|2x|=2x$ (since $x>0$), and the quotient is $\\dfrac{2x}{x}=2$ for every $x>0.$",
-     "Being constantly $2$ on $(0,\\infty)$, $$\\lim_{x\\to0^+}\\frac{\\big|\\,x+|x|\\,\\big|}{x}=2.$$",
-     "(Contrast: for $x<0$, $|x|=-x$, so $x+|x|=0$, the numerator vanishes, and the quotient is $0$ — hence the two-sided limit fails and the $0^+$ specification is essential.)"
-    ]
-   },
-   {
-    "name": "Method II — Signum reformulation",
-    "steps": [
-     "For $x\\ne0$, $|x|=x\\,\\operatorname{sgn}(x)$, so $x+|x|=x\\big(1+\\operatorname{sgn}(x)\\big).$",
-     "Since $1+\\operatorname{sgn}(x)\\ge0$ always, $\\big|\\,x+|x|\\,\\big|=|x|\\,\\big(1+\\operatorname{sgn}(x)\\big).$",
-     "Dividing, the quotient becomes $\\dfrac{|x|\\,(1+\\operatorname{sgn}x)}{x}=\\operatorname{sgn}(x)\\,\\big(1+\\operatorname{sgn}(x)\\big),$ using $\\tfrac{|x|}{x}=\\operatorname{sgn}(x).$",
-     "As $x\\to0^+$, $\\operatorname{sgn}(x)=+1$, giving $1\\cdot(1+1)=2.$ (As $x\\to0^-$ it gives $(-1)\\cdot(1-1)=0$, confirming the jump.)"
-    ]
-   }
-  ],
-  "remark": "$x+|x|=2\\max(x,0)$ — a one-sided ramp whose corner at $0$ is exactly why a two-sided limit cannot exist; the $0^+$ keeps it well-posed."
- },
- {
-  "theme": "modulus",
-  "themeLabel": "Absolute Value & Corners",
-  "title": "The Reciprocal Corner of Arctangent",
-  "difficulty": 4,
-  "tags": [
-   "modulus",
-   "arctan",
-   "x->0",
-   "two-sided",
-   "derivative-as-limit"
-  ],
-  "statement": "\\lim_{x\\to 0}\\frac{\\arctan\\!\\frac{1}{|x|}-\\frac{\\pi}{2}}{|x|}",
-  "answer": "-1",
-  "trap": "Reflexively reading it as $\\frac00$ and reaching for L'Hopital in $x$: the numerator $\\arctan\\frac1{|x|}-\\frac\\pi2\\to0$ and denominator $\\to0$, so it looks textbook. But $\\frac{d}{dx}\\arctan\\frac1{|x|}=\\frac{\\operatorname{sgn}x}{1+x^2}$ carries a $\\operatorname{sgn}x$ from the corner, and the denominator's derivative is $\\operatorname{sgn}x$ too — students who differentiate $|x|$ as $x$ or drop the sign get $+1$, or get a two-sided mismatch and declare the limit nonexistent. Both are wrong: the clean route is the identity $\\arctan u+\\arctan\\frac1u=\\frac\\pi2$, which kills the corner instantly and gives $-1$.",
-  "solutions": [
-   {
-    "name": "Method I — Complementary-angle identity",
-    "steps": [
-     "For $t>0$, $\\arctan\\dfrac1t=\\dfrac\\pi2-\\arctan t.$ Put $t=|x|>0$ (valid for all $x\\ne0$, both sides of $0$).",
-     "Then $\\arctan\\dfrac{1}{|x|}-\\dfrac\\pi2=-\\arctan|x|,$ so the expression becomes $$\\frac{-\\arctan|x|}{|x|}.$$",
-     "As $x\\to0$ (from either side), $|x|\\to0^+$, and by the standard limit $\\dfrac{\\arctan u}{u}\\to1$ we get $\\dfrac{\\arctan|x|}{|x|}\\to1.$",
-     "Hence the limit is $-1.$ It is genuinely two-sided because the whole expression depends only on $|x|$, which approaches $0^+$ identically from the left and the right: $\\boxed{-1}.$"
-    ]
-   },
-   {
-    "name": "Method II — Series at the corner",
-    "steps": [
-     "Set $t=|x|\\to0^+$. Using $\\arctan\\dfrac1t=\\dfrac\\pi2-\\arctan t$ and $\\arctan t=t-\\dfrac{t^3}{3}+\\dfrac{t^5}{5}-\\cdots,$",
-     "we get $\\arctan\\dfrac1t-\\dfrac\\pi2=-\\Big(t-\\tfrac{t^3}3+\\cdots\\Big)=-t+\\tfrac{t^3}{3}-\\cdots.$",
-     "Divide by $t=|x|$: $\\dfrac{-t+t^3/3-\\cdots}{t}=-1+\\dfrac{t^2}{3}-\\cdots.$",
-     "Let $t\\to0^+$: the higher terms vanish and the limit is $\\boxed{-1}.$ The $|x|$ forces $t>0$, so no side ambiguity arises (a numeric check confirms the deviation is $\\approx t^2/3$)."
-    ]
-   }
-  ],
-  "remark": "$g(x)=\\arctan\\frac{1}{|x|}$ has a downward corner at $0$ with one-sided approach-slopes $\\mp1$ (right $-1$, left $+1$); dividing by $|x|$ rather than $x$ folds both into the single value $-1$, which is exactly why the limit exists two-sided."
- },
- {
-  "theme": "modulus",
-  "themeLabel": "Absolute Value & Corners",
-  "title": "A Corner Raised to a Vanishing Power",
-  "difficulty": 5,
-  "tags": [
-   "modulus",
-   "cos",
-   "exponent",
-   "x->0",
-   "1^infinity",
-   "log"
-  ],
-  "statement": "\\lim_{x\\to 0}\\big(\\,|\\cos x|+|x|\\,\\big)^{1/|x|}",
-  "answer": "e",
-  "trap": "Spotting $1^\\infty$ and computing $\\lim\\frac{(|\\cos x|+|x|)-1}{|x|}$ as if only $|x|$ mattered, getting $\\frac{|x|}{|x|}=1$ and answering $e^1=e$ — right answer, but the student who keeps $|\\cos x|\\approx1$ exactly drops the $-x^2/2$ correction; it happens to be higher order, but verifying that is the whole point. A student who instead forgets the $+|x|$ term entirely gets $e^0=1$, wrong.",
-  "solutions": [
-   {
-    "name": "Method I — Logarithm and series",
-    "steps": [
-     "Let $L=\\lim_{x\\to0}\\big(|\\cos x|+|x|\\big)^{1/|x|}$ and take logs: $\\ln L=\\lim_{x\\to0}\\dfrac{\\ln\\big(|\\cos x|+|x|\\big)}{|x|}.$",
-     "Near $0$, $\\cos x>0$ so $|\\cos x|=\\cos x=1-\\dfrac{x^2}{2}+O(x^4).$ Thus the base is $1+|x|-\\dfrac{x^2}{2}+O(x^4).$",
-     "Use $\\ln(1+u)=u-\\dfrac{u^2}{2}+\\cdots$ with $u=|x|-\\dfrac{x^2}{2}+\\cdots$: $$\\ln(\\text{base})=|x|-\\frac{x^2}{2}-\\frac{|x|^2}{2}+\\cdots=|x|-x^2+O(x^3),$$ since $|x|^2=x^2.$",
-     "Divide by $|x|$: $\\dfrac{|x|-x^2+\\cdots}{|x|}=1-|x|+\\cdots\\to1.$",
-     "Hence $\\ln L=1$ and $L=\\boxed{e}.$ Everything is a function of $|x|\\to0^+$, so the limit is two-sided."
-    ]
-   },
-   {
-    "name": "Method II — Pin the base to the standard form",
-    "steps": [
-     "Set $t=|x|\\to0^+$ and let $\\varphi(x)=|\\cos x|+|x|-1=|x|-\\dfrac{x^2}{2}+O(x^4)$, the 'excess over $1$'. Then base $=1+\\varphi.$",
-     "Write $\\big(1+\\varphi\\big)^{1/t}=\\exp\\!\\Big(\\dfrac1t\\ln(1+\\varphi)\\Big)=\\exp\\!\\Big(\\dfrac{\\varphi}{t}\\cdot\\dfrac{\\ln(1+\\varphi)}{\\varphi}\\Big).$",
-     "As $x\\to0$, $\\varphi\\to0$ so $\\dfrac{\\ln(1+\\varphi)}{\\varphi}\\to1$; and $\\dfrac{\\varphi}{t}=\\dfrac{|x|-x^2/2+\\cdots}{|x|}\\to1.$",
-     "Therefore the exponent $\\to1\\cdot1=1$ and the limit is $\\exp(1)=\\boxed e.$ The $-x^2/2$ from $|\\cos x|$ is genuinely higher order and vanishes after dividing by $|x|$ — which is exactly why $|x|$, not $\\cos x$, sets the answer."
-    ]
-   }
-  ],
-  "remark": "The corner $|x|$ in the base contributes the only first-order term; the smooth $|\\cos x|$ piece is quadratic and washes out, leaving the bare $e$."
- },
- {
-  "theme": "modulus",
-  "themeLabel": "Absolute Value & Corners",
-  "title": "Two Nested Bars, One Clean Slope",
-  "difficulty": 3,
-  "tags": [
-   "modulus",
-   "nested",
-   "x->0",
-   "two-sided",
-   "signum"
-  ],
-  "statement": "\\lim_{x\\to 0}\\frac{\\big|\\,|x|-x\\,\\big|-\\big|\\,|x|+x\\,\\big|}{x}",
-  "answer": "-2",
-  "trap": "Test a tiny positive $x$: $\\big||x|-x\\big|=0$ and $\\big||x|+x\\big|=2x$, so the quotient is $\\tfrac{0-2x}{x}=-2$. Now flip to a tiny negative $x$ and carelessly write $\\big||x|-x\\big|=0$ again, forgetting that here $|x|=-x$ makes $|x|-x=-2x\\neq 0$. That slip gives a phantom left-hand value of $+2$, so the student declares the two sides unequal and the limit DNE. Once the inner bar is handled correctly, the left side also gives $-2$, and the limit exists and equals $-2$.",
-  "solutions": [
-   {
-    "name": "Method I — Case split on the side",
-    "steps": [
-     "**Right, $x>0$:** here $|x|=x$. Then $|x|-x=0\\Rightarrow\\big||x|-x\\big|=0$, and $|x|+x=2x>0\\Rightarrow\\big||x|+x\\big|=2x.$ The numerator is $0-2x=-2x$, so the quotient is $\\dfrac{-2x}{x}=-2.$",
-     "**Left, $x<0$:** here $|x|=-x$. Then $|x|-x=-x-x=-2x$, and since $x<0$ we have $-2x>0$, so $\\big||x|-x\\big|=-2x$; while $|x|+x=-x+x=0\\Rightarrow\\big||x|+x\\big|=0.$ The numerator is $-2x-0=-2x$, so the quotient is again $\\dfrac{-2x}{x}=-2.$",
-     "Both one-sided limits equal $-2$, hence the two-sided limit is $\\boxed{-2}.$ Notice the inner $|x|$ merely swaps *which* outer bar collapses to $0$, but the quotient stays $-2$ for every $x\\neq 0.$"
-    ]
-   },
-   {
-    "name": "Method II — Inert-bars reduction",
-    "steps": [
-     "For every real $x$ we have $|x|\\ge x$ and $|x|\\ge -x$. Therefore $|x|-x\\ge 0$ and $|x|+x\\ge 0$: both inner quantities are already nonnegative, so the *outer* moduli do nothing and may be dropped: $\\big||x|-x\\big|=|x|-x$ and $\\big||x|+x\\big|=|x|+x.$",
-     "The numerator then simplifies exactly: $\\big(|x|-x\\big)-\\big(|x|+x\\big)=-2x.$",
-     "Hence for every $x\\neq 0$ the whole expression equals $\\dfrac{-2x}{x}=-2$ — a constant function.",
-     "A constant function has that constant as its limit, so the limit is $\\boxed{-2}.$ The 'nesting' was a disguise; the outer bars never activate."
-    ]
-   }
-  ],
-  "remark": "Since $|x|\\ge x$ and $|x|\\ge -x$, the outer bars are no-ops: $\\big||x|-x\\big|=|x|-x$ and $\\big||x|+x\\big|=|x|+x$. The expression collapses to the constant $-2$, so the limit is trivially $-2$."
- },
- {
-  "theme": "modulus",
-  "themeLabel": "Absolute Value & Corners",
-  "title": "The Corner of Sine at Pi",
-  "difficulty": 5,
-  "tags": [
-   "modulus",
-   "sin",
-   "x->pi",
-   "taylor",
-   "two-sided",
-   "corner"
-  ],
-  "statement": "\\lim_{x\\to \\pi}\\frac{|\\sin x|-|x-\\pi|}{|x-\\pi|^{3}}",
-  "answer": "-\\dfrac{1}{6}",
-  "trap": "Near $\\pi$ one writes $\\sin x\\approx-(x-\\pi)$, hence $|\\sin x|\\approx|x-\\pi|$, the numerator looks like $0$, and the tempting verdict is that the limit is $0$. But that is only the leading order: the genuine first correction is third order, $|\\sin x|-|x-\\pi|=-\\tfrac16|x-\\pi|^{3}+O(|x-\\pi|^{5})$, which is exactly the size of the denominator and yields $-\\tfrac16$, not $0$. (Note it is $|\\sin x|$, not $\\sin x$: at $x=\\pi$ the function $|\\sin x|$ has a real corner, so a one-sided Taylor shortcut for $\\sin x$ alone is not enough.)",
-  "solutions": [
-   {
-    "name": "Method I — Shift to the corner and use evenness",
-    "steps": [
-     "Let $h=x-\\pi\\to0.$ Then $\\sin x=\\sin(\\pi+h)=-\\sin h$, so $|\\sin x|=|\\sin h|$, and $|x-\\pi|=|h|.$ The expression becomes $$\\frac{|\\sin h|-|h|}{|h|^{3}}.$$",
-     "This is even in $h$ (numerator and $|h|^3$ are both even), so it suffices to take $h\\to0^+$, where $|\\sin h|=\\sin h$, $|h|=h$: we need $\\dfrac{\\sin h-h}{h^3}.$",
-     "From $\\sin h=h-\\dfrac{h^3}{6}+O(h^5)$, $\\;\\sin h-h=-\\dfrac{h^3}{6}+O(h^5).$",
-     "$$\\frac{\\sin h-h}{h^3}=-\\frac16+O(h^2)\\to-\\frac16.$$",
-     "By evenness both sides agree, so the two-sided limit is $\\boxed{-\\tfrac16}.$"
-    ]
-   },
-   {
-    "name": "Method II — Conjugate the corner difference",
-    "steps": [
-     "With $h=x-\\pi$, rationalize using $|a|-|b|=\\dfrac{a^2-b^2}{|a|+|b|}$: $$|\\sin h|-|h|=\\frac{\\sin^2 h-h^2}{|\\sin h|+|h|}.$$",
-     "Numerator $\\sin^2 h-h^2=(\\sin h-h)(\\sin h+h)\\sim\\big(-\\tfrac{h^3}{6}\\big)(2h)=-\\tfrac{h^4}{3}.$ Denominator $|\\sin h|+|h|\\sim 2|h|.$",
-     "So $|\\sin h|-|h|\\sim\\dfrac{-h^4/3}{2|h|}=-\\dfrac{h^4}{6|h|}=-\\dfrac{|h|^3}{6}$ (using $h^4=|h|^4$ and $h^4/|h|=|h|^3$).",
-     "Divide by $|h|^3$: $\\dfrac{-|h|^3/6}{|h|^3}=-\\dfrac16.$ Hence $\\boxed{-\\tfrac16}.$"
-    ]
-   }
-  ],
-  "remark": "Around any zero $x=k\\pi$ of $\\sin$, the graph of $|\\sin x|$ is a translated copy of $|\\sin h|$; the universal third-order gap $|\\sin h|-|h|\\sim-\\tfrac16|h|^3$ governs all of them."
- },
- {
-  "theme": "invtrig",
-  "themeLabel": "Inverse Circular Functions",
-  "title": "The Reciprocal Reflection",
-  "difficulty": 4,
-  "tags": [
-   "arctan",
-   "reciprocal",
-   "x->0+",
-   "asymptotic",
-   "one-sided"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\frac{\\arctan\\!\\left(\\dfrac{1}{x}\\right)-\\dfrac{\\pi}{2}}{x}",
-  "answer": "-1",
-  "trap": "The tempting move is to note $\\arctan(1/x)\\to\\pi/2$, declare the numerator $\\to 0$, and then write $\\frac{\\pi/2-\\pi/2}{0}=0$. The form is genuinely $0/0$, not $\\frac{0}{0}=0$. A second slip is to mishandle the reflection sign and get $+1$. The deepest trap: the identity $\\arctan(1/x)=\\tfrac{\\pi}{2}-\\arctan x$ holds only for $x>0$; for $x<0$ it reads $-\\tfrac{\\pi}{2}-\\arctan x$, so the numerator $\\to-\\pi$ and the LEFT limit is $+\\infty$. The two-sided limit does not exist, and the $0^+$ is exactly what makes the answer the clean $-1$.",
-  "solutions": [
-   {
-    "name": "Method I - Co-function reflection identity",
-    "steps": [
-     "For $x>0$ we have the exact identity $\\arctan x+\\arctan\\dfrac1x=\\dfrac{\\pi}{2}$, hence $$\\arctan\\!\\left(\\tfrac1x\\right)-\\tfrac{\\pi}{2}=-\\arctan x.$$",
-     "Substitute into the quotient: $$\\frac{\\arctan(1/x)-\\pi/2}{x}=\\frac{-\\arctan x}{x}.$$",
-     "Since $\\dfrac{\\arctan x}{x}\\to 1$ as $x\\to0$, the limit is $\\boxed{-1}$.",
-     "Sign caveat: for $x<0$ the identity reads $\\arctan(1/x)=-\\tfrac{\\pi}{2}-\\arctan x$, so the numerator $\\to-\\pi$ while $x\\to0^-$; thus the left limit is $\\dfrac{-\\pi}{0^-}=+\\infty$. The two-sided limit does not exist, and only the $0^+$ side is finite-and-clean."
-    ]
-   },
-   {
-    "name": "Method II - Tangent substitution / series",
-    "steps": [
-     "Put $u=\\arctan x$, so $u\\to0^+$ and $x=\\tan u$. By the reflection (Method I, step 1) the numerator equals $-u$.",
-     "Then $$\\frac{-u}{\\tan u}=-\\frac{u}{\\tan u}\\xrightarrow[u\\to0]{}-1,$$ since $\\tan u\\sim u$.",
-     "Equivalently, with the Maclaurin series $\\arctan x=x-\\tfrac{x^3}{3}+\\cdots$, the numerator is $-(x-\\tfrac{x^3}{3}+\\cdots)$, and dividing by $x$ gives $-(1-\\tfrac{x^2}{3}+\\cdots)\\to-1$."
-    ]
-   }
-  ],
-  "remark": "The whole problem is the signed reflection $\\arctan x+\\arctan(1/x)=\\tfrac{\\pi}{2}\\operatorname{sgn}x$; the $\\operatorname{sgn}x$ is exactly why only the one-sided limit is finite."
- },
- {
-  "theme": "invtrig",
-  "themeLabel": "Inverse Circular Functions",
-  "title": "Twin Telescopes at Infinity",
-  "difficulty": 4,
-  "tags": [
-   "arctan",
-   "subtraction-formula",
-   "x->infinity",
-   "rational-argument",
-   "asymptotic"
-  ],
-  "statement": "\\lim_{x\\to+\\infty} x^2\\left(\\arctan\\frac{x+2}{x+1}-\\arctan\\frac{x+1}{x}\\right)",
-  "answer": "-\\dfrac{1}{2}",
-  "trap": "Both inner fractions $\\to 1$, so a strong student writes each arctangent $\\to \\pi/4$ and concludes the bracket $\\to 0$ — then either declares the limit $0$, or estimates each fraction as $1+O(1/x)$, calls the difference $O(1/x)$, and gets $x^2\\cdot O(1/x)=\\infty$. The catch: both fractions are $1+\\tfrac1x+O(1/x^2)$ with the SAME leading $1/x$ coefficient, so the $O(1/x)$ corrections cancel exactly and the bracket is actually $\\Theta(1/x^2)$, not $\\Theta(1/x)$. Only the arctan subtraction formula exposes the true second-order size.",
-  "solutions": [
-   {
-    "name": "Method I - Arctan subtraction formula",
-    "steps": [
-     "Use $\\arctan a-\\arctan b=\\arctan\\dfrac{a-b}{1+ab}$ with $a=\\dfrac{x+2}{x+1},\\,b=\\dfrac{x+1}{x}$. No $\\pm\\pi$ correction term is needed because $a,b>0$ for large $x$, so $ab>0>-1$.",
-     "Numerator: $a-b=\\dfrac{(x+2)x-(x+1)^2}{x(x+1)}=\\dfrac{-1}{x(x+1)}$.",
-     "Denominator: $1+ab=1+\\dfrac{x+2}{x}=\\dfrac{2x+2}{x}=\\dfrac{2(x+1)}{x}.$",
-     "Hence $\\dfrac{a-b}{1+ab}=\\dfrac{-1/(x(x+1))}{2(x+1)/x}=\\dfrac{-1}{2(x+1)^2}.$",
-     "So the bracket equals $\\arctan\\!\\left(\\dfrac{-1}{2(x+1)^2}\\right)\\sim \\dfrac{-1}{2(x+1)^2}$ as $x\\to\\infty$, since $\\arctan u\\sim u$ for $u\\to0$.",
-     "Therefore $$x^2\\cdot\\frac{-1}{2(x+1)^2}=-\\frac{1}{2}\\cdot\\frac{x^2}{(x+1)^2}\\to-\\frac12.$$"
-    ]
-   },
-   {
-    "name": "Method II - Mean Value Theorem",
-    "steps": [
-     "Write the bracket as $f(a)-f(b)$ with $f=\\arctan$, $a=\\tfrac{x+2}{x+1}$, $b=\\tfrac{x+1}{x}$. By the MVT there is $\\xi$ between $a,b$ with $$f(a)-f(b)=\\frac{a-b}{1+\\xi^2}.$$",
-     "As $x\\to\\infty$, both $a,b\\to1$, so $\\xi\\to1$ and $1+\\xi^2\\to2$.",
-     "From Method I, $a-b=\\dfrac{-1}{x(x+1)}\\sim-\\dfrac1{x^2}$.",
-     "Thus the bracket $\\sim\\dfrac{-1/x^2}{2}=-\\dfrac1{2x^2}$, and multiplying by $x^2$ gives $-\\dfrac12$."
-    ]
-   },
-   {
-    "name": "Method III - Substitution t=1/x",
-    "steps": [
-     "Let $t=1/x\\to0^+$. Then $a=\\dfrac{1+2t}{1+t}$ and $b=1+t$.",
-     "Expand: $a=(1+2t)(1-t+t^2-\\cdots)=1+t-t^2+\\cdots$, while $b=1+t$.",
-     "So $a-b=-t^2+O(t^3)$, while $1+ab=2+O(t)$.",
-     "Hence the bracket $=\\arctan\\dfrac{a-b}{1+ab}\\sim\\dfrac{-t^2}{2}$, and $x^2=1/t^2$, giving $\\dfrac{1}{t^2}\\cdot\\dfrac{-t^2}{2}=-\\dfrac12$."
-    ]
-   }
-  ],
-  "remark": "The naive $1+O(1/x)$ bookkeeping loses the cancellation of the matching $1/x$ terms; the arctan difference formula is the only tool that cleanly exposes the genuine $1/x^2$ scale."
- },
- {
-  "theme": "invtrig",
-  "themeLabel": "Inverse Circular Functions",
-  "title": "The Vanishing Square Root",
-  "difficulty": 4,
-  "tags": [
-   "arcsin",
-   "square-root-singularity",
-   "x->1-",
-   "conjugate",
-   "endpoint"
-  ],
-  "statement": "\\lim_{x\\to 1^-}\\frac{\\dfrac{\\pi}{2}-\\arcsin x}{\\sqrt{1-x^2}}",
-  "answer": "1",
-  "trap": "Direct substitution gives $0/0$. The seductive error: a student recalls the endpoint expansion $\\arccos x\\sim\\sqrt{2(1-x)}$, then matches it against the denominator written as $\\sqrt{2(1-x)}$ — forgetting the denominator is actually $\\sqrt{(1-x)(1+x)}$, not $\\sqrt{2(1-x)}$. Treating $\\sqrt{1-x^2}\\approx\\sqrt{2}\\sqrt{1-x}$ in the numerator but $\\sqrt{1-x}$ in the denominator (or vice versa) manufactures a spurious factor of $\\sqrt2$, giving the wrong answer $\\sqrt2$. In truth the missing $\\sqrt2$ is supplied exactly by $\\sqrt{1+x}\\to\\sqrt2$, so the ratio is $1$.",
-  "solutions": [
-   {
-    "name": "Method I - Endpoint expansion of arccos",
-    "steps": [
-     "Note $\\dfrac{\\pi}{2}-\\arcsin x=\\arccos x$. Set $x=1-t$ with $t\\to0^+$.",
-     "The endpoint expansion is $\\arccos(1-t)=\\sqrt{2t}\\,\\bigl(1+\\tfrac{t}{12}+\\cdots\\bigr)$, so the numerator $\\sim\\sqrt{2t}=\\sqrt{2(1-x)}$.",
-     "Write the denominator as $\\sqrt{1-x^2}=\\sqrt{(1-x)(1+x)}=\\sqrt{2(1-x)}\\,\\sqrt{\\tfrac{1+x}{2}}$, where $\\sqrt{\\tfrac{1+x}{2}}\\to1$.",
-     "Hence the ratio $\\sim\\dfrac{\\sqrt{2(1-x)}}{\\sqrt{2(1-x)}\\cdot\\sqrt{(1+x)/2}}=\\dfrac{1}{\\sqrt{(1+x)/2}}\\to1.$"
-    ]
-   },
-   {
-    "name": "Method II - Trig substitution",
-    "steps": [
-     "Let $\\theta=\\arccos x\\in(0,\\pi/2)$, so $x=\\cos\\theta$ and $\\theta\\to0^+$ as $x\\to1^-$.",
-     "Then $\\sqrt{1-x^2}=\\sqrt{1-\\cos^2\\theta}=\\sin\\theta$ (positive on this range).",
-     "The expression becomes $\\dfrac{\\theta}{\\sin\\theta}\\to 1$ as $\\theta\\to0$."
-    ]
-   },
-   {
-    "name": "Method III - L'Hopital, done carefully",
-    "steps": [
-     "Form is $0/0$. Differentiate: numerator derivative $=-\\dfrac{1}{\\sqrt{1-x^2}}$; denominator derivative $=\\dfrac{-x}{\\sqrt{1-x^2}}$.",
-     "Ratio of derivatives $=\\dfrac{-1/\\sqrt{1-x^2}}{-x/\\sqrt{1-x^2}}=\\dfrac{1}{x}\\to1$ as $x\\to1^-$."
-    ]
-   }
-  ],
-  "remark": "The trap is the difference between $\\sqrt{2(1-x)}$ and $\\sqrt{1-x^2}$: their ratio $\\to1$, not $\\sqrt2$, because the second factor $\\sqrt{1+x}\\to\\sqrt2$ exactly cancels the missing $\\sqrt2$."
- },
- {
-  "theme": "invtrig",
-  "themeLabel": "Inverse Circular Functions",
-  "title": "Second Difference of the Arc",
-  "difficulty": 5,
-  "tags": [
-   "arctan",
-   "second-difference",
-   "x->infinity",
-   "subtraction-formula",
-   "convexity"
-  ],
-  "statement": "\\lim_{x\\to+\\infty} x^3\\Bigl(\\arctan(x+1)+\\arctan(x-1)-2\\arctan x\\Bigr)",
-  "answer": "-2",
-  "trap": "All three arctangents $\\to\\pi/2$, so the bracket reads $\\tfrac{\\pi}{2}+\\tfrac{\\pi}{2}-2\\cdot\\tfrac{\\pi}{2}=0$. A strong student then linearizes $\\arctan(x\\pm1)\\approx\\arctan x\\pm\\frac{1}{1+x^2}$; the $\\pm\\frac{1}{1+x^2}$ terms cancel, the bracket vanishes to first order, and they declare the limit $0$. But $0$ is only the first-order verdict: the surviving piece is the SECOND-order (curvature) term $f''(x)\\sim-2/x^3$, which the $x^3$ factor rescales to a finite $-2$. Stopping at the linear order is exactly the bait.",
-  "solutions": [
-   {
-    "name": "Method I - Pairwise subtraction formula",
-    "steps": [
-     "Regroup the symmetric difference around the middle term: $$\\bigl(\\arctan(x+1)-\\arctan x\\bigr)-\\bigl(\\arctan x-\\arctan(x-1)\\bigr).$$",
-     "Apply $\\arctan a-\\arctan b=\\arctan\\dfrac{a-b}{1+ab}$ (valid here since both products $ab>0$ for large $x$): the first parenthesis is $\\arctan\\dfrac{1}{1+x(x+1)}=\\arctan\\dfrac{1}{x^2+x+1}$, the second is $\\arctan\\dfrac{1}{1+x(x-1)}=\\arctan\\dfrac{1}{x^2-x+1}$.",
-     "Hence the bracket equals $\\arctan\\dfrac{1}{x^2+x+1}-\\arctan\\dfrac{1}{x^2-x+1}$, both arguments $\\to0^+$.",
-     "Since $\\arctan u=u+O(u^3)$ and here $u=O(1/x^2)$, replace each $\\arctan$ by its argument with error $O(1/x^6)$: $$\\frac{1}{x^2+x+1}-\\frac{1}{x^2-x+1}=\\frac{(x^2-x+1)-(x^2+x+1)}{(x^2+x+1)(x^2-x+1)}=\\frac{-2x}{x^4+x^2+1}.$$",
-     "Therefore the bracket $=\\dfrac{-2x}{x^4+x^2+1}+O(x^{-6})\\sim\\dfrac{-2}{x^3}$, and multiplying by $x^3$ gives $$\\lim_{x\\to+\\infty}x^3\\cdot\\frac{-2x}{x^4+x^2+1}=-2.$$"
-    ]
-   },
-   {
-    "name": "Method II - Taylor of the second difference",
-    "steps": [
-     "For a smooth $f$, the centered second difference expands as $$f(x+1)+f(x-1)-2f(x)=f''(x)+\\frac{f^{(4)}(x)}{12}+\\cdots$$ (Taylor expand $f(x\\pm1)$ to order $4$; the odd derivatives cancel).",
-     "Take $f=\\arctan$. Then $f'(x)=\\dfrac{1}{1+x^2}$ and $f''(x)=\\dfrac{-2x}{(1+x^2)^2}\\sim\\dfrac{-2}{x^3}$ as $x\\to+\\infty$.",
-     "The next term satisfies $f^{(4)}(x)=O(x^{-5})$, so after multiplying the whole second difference by $x^3$ it contributes $O(x^{-2})\\to0$ and is negligible.",
-     "Therefore $$\\lim_{x\\to+\\infty}x^3\\bigl(\\arctan(x+1)+\\arctan(x-1)-2\\arctan x\\bigr)=\\lim_{x\\to+\\infty}x^3\\cdot\\frac{-2x}{(1+x^2)^2}=-2.$$"
-    ]
-   }
-  ],
-  "remark": "The bracket is the discrete Laplacian (centered second difference) of $\\arctan$ at infinity. Symmetry forces the first-order terms to cancel, leaving the curvature $f''(x)\\sim-2x^{-3}$; that $x^{-3}$ decay is precisely why the exponent $3$ is the unique power giving a finite nonzero limit."
- },
- {
-  "theme": "invtrig",
-  "themeLabel": "Inverse Circular Functions",
-  "title": "Across the Branch Cut",
-  "difficulty": 5,
-  "tags": [
-   "arctan",
-   "tan",
-   "branch-cut",
-   "x->pi/2",
-   "one-sided",
-   "nonexistence"
-  ],
-  "statement": "\\lim_{x\\to (\\pi/2)^+}\\frac{\\arctan(\\tan x)+\\dfrac{\\pi}{2}}{x-\\dfrac{\\pi}{2}}",
-  "answer": "1",
-  "trap": "The reflex is to 'cancel' $\\arctan(\\tan x)=x$, turning the expression into $\\frac{x+\\pi/2}{x-\\pi/2}$, whose right-hand limit blows up to $+\\infty$. But $\\arctan(\\tan x)=x$ holds ONLY on $(-\\pi/2,\\pi/2)$. The instant $x$ crosses $\\pi/2$ the principal value drops a full period: $\\arctan(\\tan x)=x-\\pi$. So the numerator is actually $(x-\\pi)+\\pi/2=x-\\pi/2$, it cancels the denominator exactly, and the true right-hand limit is $1$. The naive answer isn't just numerically off — it's off by an entire branch.",
-  "solutions": [
-   {
-    "name": "Method I - Correct branch reduction",
-    "steps": [
-     "For $x\\in\\left(\\dfrac{\\pi}{2},\\,\\dfrac{3\\pi}{2}\\right)$ we have $\\tan x=\\tan(x-\\pi)$ with $x-\\pi\\in\\left(-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right)$, the principal range of $\\arctan$. Hence $$\\arctan(\\tan x)=x-\\pi.$$",
-     "The numerator becomes $(x-\\pi)+\\dfrac{\\pi}{2}=x-\\dfrac{\\pi}{2}$.",
-     "So the quotient equals $\\dfrac{x-\\pi/2}{x-\\pi/2}=1$ identically for all such $x$, and therefore $$\\lim_{x\\to (\\pi/2)^+}=1.$$",
-     "(The two-sided limit fails: for $x<\\dfrac{\\pi}{2}$, $\\arctan(\\tan x)=x$, so the numerator $\\to\\pi$ while the denominator $\\to 0^-$, giving a left-hand limit of $-\\infty$. The one-sided posing is essential.)"
-    ]
-   },
-   {
-    "name": "Method II - Substitution and jump bookkeeping",
-    "steps": [
-     "Put $h=x-\\dfrac{\\pi}{2}\\to 0^+$. Then $\\tan x=\\tan\\!\\left(\\dfrac{\\pi}{2}+h\\right)=-\\cot h$.",
-     "For small $h>0$, $\\cot h=\\tan\\!\\left(\\dfrac{\\pi}{2}-h\\right)$ with $\\dfrac{\\pi}{2}-h\\in\\left(0,\\dfrac{\\pi}{2}\\right)$, so $\\arctan(\\cot h)=\\dfrac{\\pi}{2}-h$, and by oddness $\\arctan(-\\cot h)=-\\dfrac{\\pi}{2}+h$.",
-     "Numerator $=\\left(-\\dfrac{\\pi}{2}+h\\right)+\\dfrac{\\pi}{2}=h$; denominator $=h$. The quotient is $\\dfrac{h}{h}=1$, so the limit is $1$."
-    ]
-   }
-  ],
-  "remark": "$\\arctan(\\tan x)$ is the sawtooth $x-\\pi\\left\\lfloor\\dfrac{x+\\pi/2}{\\pi}\\right\\rfloor$; every crossing of an odd multiple of $\\dfrac{\\pi}{2}$ injects a $-\\pi$ jump that the identity $\\arctan(\\tan x)=x$ silently forgets."
- },
- {
-  "theme": "invtrig",
-  "themeLabel": "Inverse Circular Functions",
-  "title": "Crashing into Minus One",
-  "difficulty": 4,
-  "tags": [
-   "arcsin",
-   "endpoint",
-   "x->-1+",
-   "square-root-singularity",
-   "one-sided"
-  ],
-  "statement": "\\lim_{x\\to -1^+}\\frac{\\arcsin x+\\dfrac{\\pi}{2}}{\\sqrt{x+1}}",
-  "answer": "\\sqrt{2}",
-  "trap": "The form is $0/0$, so a student reaches for the Maclaurin series $\\arcsin x\\approx x+\\frac{x^3}{6}$ — but that series is anchored at $x=0$, not at the endpoint $x=-1$, so it gives the meaningless $\\frac{-1+\\frac{\\pi}{2}-\\frac16}{0}$ and a phantom divergence. Near $x=-1$ the graph of $\\arcsin$ has a vertical-tangent half-power cusp, not a smooth Taylor point: $\\arcsin x\\approx -\\frac{\\pi}{2}+\\sqrt{2(x+1)}$. The square-root in the numerator exactly cancels the one in the denominator, giving the finite value $\\sqrt2$. (L'Hopital also works and lands on $\\sqrt2$, but only if you keep the radical in $\\frac{1}{\\sqrt{1-x^2}}$ rather than series-expanding it.)",
-  "solutions": [
-   {
-    "name": "Method I - Endpoint square-root expansion",
-    "steps": [
-     "Set $x=-1+t$ with $t\\to0^+$. Near the endpoint, $\\sin\\!\\left(-\\tfrac{\\pi}{2}+u\\right)=-\\cos u=-1+\\tfrac{u^2}{2}+\\cdots$, so inverting gives $\\arcsin(-1+t)=-\\dfrac{\\pi}{2}+\\sqrt{2t}+O(t^{3/2}).$",
-     "Hence the numerator is $\\arcsin x+\\dfrac{\\pi}{2}=\\sqrt{2t}+O(t^{3/2})=\\sqrt{2}\\,\\sqrt{t}\\,\\bigl(1+o(1)\\bigr).$",
-     "The denominator is $\\sqrt{x+1}=\\sqrt{t}.$",
-     "Therefore the ratio $\\to\\dfrac{\\sqrt2\\,\\sqrt t}{\\sqrt t}=\\sqrt2.$"
-    ]
-   },
-   {
-    "name": "Method II - Substitution to a sine limit",
-    "steps": [
-     "Let $\\theta=\\arcsin x+\\dfrac{\\pi}{2}$. As $x\\to-1^+$, $\\theta\\to0^+$, and $x=\\sin\\!\\left(\\theta-\\tfrac{\\pi}{2}\\right)=-\\cos\\theta.$",
-     "Then $x+1=1-\\cos\\theta=2\\sin^2\\!\\left(\\tfrac{\\theta}{2}\\right)$, so $\\sqrt{x+1}=\\sqrt2\\,\\sin\\!\\left(\\tfrac{\\theta}{2}\\right)$ (positive since $\\theta\\to0^+$).",
-     "The expression becomes $\\dfrac{\\theta}{\\sqrt2\\,\\sin(\\theta/2)}=\\dfrac{1}{\\sqrt2}\\cdot\\dfrac{\\theta}{\\sin(\\theta/2)}.$",
-     "Since $\\dfrac{\\theta}{\\sin(\\theta/2)}=2\\cdot\\dfrac{\\theta/2}{\\sin(\\theta/2)}\\to2$, the limit is $\\dfrac{1}{\\sqrt2}\\cdot2=\\sqrt2.$"
-    ]
-   },
-   {
-    "name": "Method III - L'Hopital with the radical kept intact",
-    "steps": [
-     "Both numerator and denominator $\\to0$ as $x\\to-1^+$, so L'Hopital applies. Differentiate: top $\\dfrac{d}{dx}\\!\\left(\\arcsin x+\\tfrac{\\pi}{2}\\right)=\\dfrac{1}{\\sqrt{1-x^2}}$, bottom $\\dfrac{d}{dx}\\sqrt{x+1}=\\dfrac{1}{2\\sqrt{x+1}}.$",
-     "The ratio of derivatives is $\\dfrac{2\\sqrt{x+1}}{\\sqrt{1-x^2}}=\\dfrac{2\\sqrt{x+1}}{\\sqrt{(1-x)(1+x)}}=\\dfrac{2}{\\sqrt{1-x}}.$",
-     "As $x\\to-1^+$ this $\\to\\dfrac{2}{\\sqrt{2}}=\\sqrt2.$ The key is to simplify $\\sqrt{1-x^2}$ as a radical; series-expanding it (the endpoint trap) destroys the cancellation."
-    ]
-   }
-  ],
-  "remark": "At a domain endpoint $\\pm1$, $\\arcsin x\\approx \\pm\\dfrac{\\pi}{2}\\mp\\sqrt{2\\,|\\,1\\mp x|}$ — a half-power (vertical-tangent) cusp. Any whole-power Taylor series is the wrong local model there; the right tool is the substitution $x=\\mp1\\pm t$ or $x=-\\cos\\theta$."
- },
- {
-  "theme": "invtrig",
-  "themeLabel": "Inverse Circular Functions",
-  "title": "The Other End of Arctan",
-  "difficulty": 4,
-  "tags": [
-   "arctan",
-   "x->-infinity",
-   "reflection",
-   "negative-infinity",
-   "asymptotic"
-  ],
-  "statement": "\\lim_{x\\to -\\infty} x\\left(\\frac{\\pi}{2}+\\arctan x\\right)",
-  "answer": "-1",
-  "trap": "As $x\\to-\\infty$, $\\arctan x\\to-\\pi/2$, so the bracket $\\to 0$ and the form is $-\\infty\\cdot 0$. A student reflexively uses the $x>0$ identity $\\arctan x=\\pi/2-\\arctan(1/x)$ (valid ONLY for $x>0$), giving $\\pi/2+\\arctan x=\\pi-\\arctan(1/x)\\to\\pi$, hence $x\\cdot\\pi\\to-\\infty$. The correct identity for $x<0$ is $\\arctan x+\\arctan(1/x)=-\\pi/2$ — the sign flips, the bracket behaves like $-1/x$ rather than $\\pi$, and the product converges to $-1$.",
-  "solutions": [
-   {
-    "name": "Method I - Negative-branch reflection",
-    "steps": [
-     "For $x<0$ the reflection identity reads $\\arctan x+\\arctan\\dfrac1x=-\\dfrac{\\pi}{2}$, so $$\\dfrac{\\pi}{2}+\\arctan x=-\\arctan\\dfrac1x.$$",
-     "Therefore $x\\left(\\dfrac\\pi2+\\arctan x\\right)=-x\\arctan\\dfrac1x.$",
-     "As $x\\to-\\infty$, put $t=1/x\\to0^-$. Then $-x\\arctan\\dfrac1x=-\\dfrac{\\arctan t}{t}$, and by the standard limit $\\displaystyle\\lim_{t\\to0}\\dfrac{\\arctan t}{t}=1$ this tends to $-1.$"
-    ]
-   },
-   {
-    "name": "Method II - Substitution u=1/x",
-    "steps": [
-     "Let $u=1/x\\to0^-$. Then $x=1/u$ and the expression becomes $\\dfrac1u\\left(\\dfrac\\pi2+\\arctan\\dfrac1u\\right).$",
-     "For $u<0$ we have $\\arctan(1/u)=-\\dfrac\\pi2-\\arctan u$, hence $\\dfrac\\pi2+\\arctan(1/u)=-\\arctan u.$",
-     "So the expression equals $\\dfrac{-\\arctan u}{u}\\to-1$ as $u\\to0^-.$"
-    ]
-   },
-   {
-    "name": "Method III - L'Hopital after rewriting",
-    "steps": [
-     "Rewrite as $\\dfrac{\\pi/2+\\arctan x}{1/x}$, a genuine $0/0$ form as $x\\to-\\infty$ (numerator $\\to0$, denominator $\\to0$).",
-     "Differentiate: numerator gives $\\dfrac{1}{1+x^2}$, denominator gives $-\\dfrac{1}{x^2}$.",
-     "The ratio is $\\dfrac{1/(1+x^2)}{-1/x^2}=\\dfrac{-x^2}{1+x^2}\\to-1$, so by L'Hopital the limit is $-1.$"
-    ]
-   }
-  ],
-  "remark": "The reflection identity $\\arctan x+\\arctan(1/x)=\\tfrac\\pi2\\operatorname{sgn}(x)$ carries a sign that students copy from the $x>0$ case — at $-\\infty$ that single sign is the entire difficulty."
- },
- {
-  "theme": "invtrig",
-  "themeLabel": "Inverse Circular Functions",
-  "title": "Arcsine Raised to a Power",
-  "difficulty": 5,
-  "tags": [
-   "arcsin",
-   "1-power-infinity",
-   "log-transform",
-   "series",
-   "x->0+"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\left(\\frac{\\arcsin x}{x}\\right)^{1/x^2}",
-  "answer": "e^{1/6}",
-  "trap": "Because $\\arcsin x/x\\to 1$, the tempting move is to call the base $1$ and conclude $1^\\infty=1$. But the exponent $1/x^2$ blows up exactly as fast as the base approaches $1$, so the rate is everything: $\\arcsin x/x=1+\\tfrac{x^2}{6}+\\cdots$, and $\\left(1+\\tfrac{x^2}{6}\\right)^{1/x^2}\\to e^{1/6}$. The $1^\\infty$ indeterminate form is precisely the regime in which the base's deviation from $1$ survives in the answer; reading it as $1$ throws away the whole problem.",
-  "solutions": [
-   {
-    "name": "Method I - Logarithm and series",
-    "steps": [
-     "Let $L=\\displaystyle\\lim_{x\\to0^+}\\left(\\tfrac{\\arcsin x}{x}\\right)^{1/x^2}$ and take logs: $\\ln L=\\lim_{x\\to0^+}\\dfrac{\\ln(\\arcsin x/x)}{x^2}.$",
-     "Maclaurin series: $\\arcsin x=x+\\dfrac{x^3}{6}+\\dfrac{3x^5}{40}+\\cdots$, so $\\dfrac{\\arcsin x}{x}=1+\\dfrac{x^2}{6}+\\dfrac{3x^4}{40}+\\cdots$",
-     "Using $\\ln(1+u)=u-\\tfrac{u^2}{2}+\\cdots$ with $u=\\dfrac{x^2}{6}+\\cdots$: $\\ln\\!\\left(1+\\dfrac{x^2}{6}+\\cdots\\right)=\\dfrac{x^2}{6}+O(x^4).$",
-     "Divide by $x^2$: $\\ln L=\\dfrac16$, hence $L=e^{1/6}.$"
-    ]
-   },
-   {
-    "name": "Method II - Standard 1^infinity transform",
-    "steps": [
-     "For a base tending to $1$, use $\\left(1+a(x)\\right)^{b(x)}\\to e^{\\lim a(x)b(x)}$ whenever $a(x)\\to0$.",
-     "Here $a(x)=\\dfrac{\\arcsin x}{x}-1$ and $b(x)=\\dfrac1{x^2}.$",
-     "From $\\dfrac{\\arcsin x}{x}=1+\\dfrac{x^2}{6}+o(x^2)$ we get $a(x)\\sim\\dfrac{x^2}{6}.$",
-     "Thus $a(x)b(x)\\to\\dfrac{x^2}{6}\\cdot\\dfrac1{x^2}=\\dfrac16$, so the limit is $e^{1/6}.$"
-    ]
-   }
-  ],
-  "remark": "The exponent in the answer is exactly the coefficient of $x^3$ in $\\arcsin x$ (namely $1/6$): any $1^\\infty$ tower of this shape reads off the leading non-trivial term of the base. The next correction is $\\ln L=\\tfrac16+\\tfrac{11}{180}x^2+\\cdots$, which the numerics confirm."
- },
- {
-  "theme": "invtrig",
-  "themeLabel": "Inverse Circular Functions",
-  "title": "Two Arctans, One Argument",
-  "difficulty": 4,
-  "tags": [
-   "arctan",
-   "maclaurin-series",
-   "x->0+",
-   "cubic-cancellation",
-   "odd-function"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\frac{\\arctan(2x)-2\\arctan x}{x^3}",
-  "answer": "-2",
-  "trap": "Using only the first-order tangents $\\arctan(2x)\\approx 2x$ and $2\\arctan x\\approx 2x$, the numerator looks like $0$, so a student concludes the limit is $0$ — or applies L'Hopital once, still sees $0/0$, and gives up. But the linear terms cancel *exactly*; the answer lives entirely in the $x^3$ coefficients, where $-\\tfrac{8}{3}$ (from $\\arctan 2x$) and $-\\tfrac{2}{3}$ (from $2\\arctan x$) do NOT cancel, leaving $-2x^3$.",
-  "solutions": [
-   {
-    "name": "Method I - Cubic Maclaurin terms",
-    "steps": [
-     "Use the standard series $\\arctan u=u-\\dfrac{u^3}{3}+\\dfrac{u^5}{5}-\\cdots$ (valid for $|u|<1$).",
-     "$\\arctan(2x)=2x-\\dfrac{(2x)^3}{3}+\\cdots=2x-\\dfrac{8x^3}{3}+O(x^5).$",
-     "$2\\arctan x=2\\Bigl(x-\\dfrac{x^3}{3}+\\cdots\\Bigr)=2x-\\dfrac{2x^3}{3}+O(x^5).$",
-     "Subtract: the $2x$ terms cancel, leaving numerator $=\\Bigl(-\\dfrac{8}{3}+\\dfrac{2}{3}\\Bigr)x^3+O(x^5)=-2x^3+O(x^5).$",
-     "Divide by $x^3$ and let $x\\to0^+$: limit $=-2.$"
-    ]
-   },
-   {
-    "name": "Method II - Repeated L'Hopital",
-    "steps": [
-     "Let $N(x)=\\arctan 2x-2\\arctan x$ and $D(x)=x^3$; both $\\to0$, giving $0/0$.",
-     "$N'(x)=\\dfrac{2}{1+4x^2}-\\dfrac{2}{1+x^2}$, $D'(x)=3x^2$; at $x=0$ this is still $0/0$.",
-     "$N''(x)=\\dfrac{-16x}{(1+4x^2)^2}+\\dfrac{4x}{(1+x^2)^2}$, $D''(x)=6x$; at $x=0$ this is again $0/0$.",
-     "$N'''(0)$: since $N(x)=-2x^3+O(x^5)$, we have $N'''(0)=3!\\cdot(-2)=-12$, while $D'''(x)=6$.",
-     "By L'Hopital three times, limit $=\\dfrac{N'''(0)}{D'''(0)}=\\dfrac{-12}{6}=-2.$"
-    ]
-   },
-   {
-    "name": "Method III - Derivative ratio shortcut",
-    "steps": [
-     "The numerator $N(x)$ is odd with vanishing linear term, so write $N(x)=cx^3+o(x^3)$; then the limit equals $c$.",
-     "Expand the derivative: $N'(x)=\\dfrac{2}{1+4x^2}-\\dfrac{2}{1+x^2}=2\\bigl[(1-4x^2+\\cdots)-(1-x^2+\\cdots)\\bigr]=2(-3x^2+\\cdots)=-6x^2+\\cdots$",
-     "Since $N'(x)=3cx^2+o(x^2)$, matching gives $3c=-6$, so $c=-2$ and the limit is $-2.$"
-    ]
-   }
-  ],
-  "remark": "The cubic defect $-2x^3$ measures exactly how the angle-doubling fails: $\\arctan(2x)\\ne 2\\arctan x$, and to third order the gap is $-2x^3$. (Because the quotient is even, the full two-sided limit is also $-2$.)"
- },
- {
-  "theme": "invtrig",
-  "themeLabel": "Inverse Circular Functions",
-  "title": "The Floor Beneath the Arc",
-  "difficulty": 4,
-  "tags": [
-   "arctan",
-   "floor",
-   "squeeze",
-   "x->0+",
-   "fractional-part"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\arctan\\!\\Bigl(\\big\\lfloor \\tfrac{1}{x}\\big\\rfloor\\, x\\Bigr)",
-  "answer": "\\dfrac{\\pi}{4}",
-  "trap": "Two traps. (1) Treating $\\lfloor 1/x\\rfloor$ as $1/x$ makes the argument exactly $1$ and gives $\\arctan 1=\\pi/4$ — the right value for the wrong reason, and a sign or boundary slip easily derails it. (2) Noting that $\\lfloor 1/x\\rfloor$ jumps and is non-monotone, one panics and declares the limit nonexistent. But $\\lfloor 1/x\\rfloor x=1-\\{1/x\\}x$ converges to $1^-$ by a squeeze (the error $\\{1/x\\}x<x\\to0$), and continuity of $\\arctan$ delivers $\\pi/4$.",
-  "solutions": [
-   {
-    "name": "Method I - Floor squeeze",
-    "steps": [
-     "For $x>0$, the defining inequality of the floor gives $\\dfrac1x-1<\\big\\lfloor\\dfrac1x\\big\\rfloor\\le\\dfrac1x.$ Multiplying through by $x>0$ (which preserves the inequalities): $$1-x<\\big\\lfloor\\tfrac1x\\big\\rfloor x\\le 1.$$",
-     "As $x\\to0^+$, the left side $1-x\\to1$ and the right bound is the constant $1$, so by the squeeze theorem $\\big\\lfloor\\tfrac1x\\big\\rfloor x\\to1^-.$",
-     "Since $\\arctan$ is continuous at $1$, $\\displaystyle\\lim_{x\\to0^+}\\arctan\\!\\bigl(\\lfloor1/x\\rfloor x\\bigr)=\\arctan1=\\dfrac\\pi4.$"
-    ]
-   },
-   {
-    "name": "Method II - Fractional-part identity",
-    "steps": [
-     "Using $\\big\\lfloor\\tfrac1x\\big\\rfloor=\\dfrac1x-\\bigl\\{\\tfrac1x\\bigr\\}$, multiply by $x$: $$\\big\\lfloor\\tfrac1x\\big\\rfloor x=1-\\bigl\\{\\tfrac1x\\bigr\\}x.$$",
-     "Since $0\\le\\bigl\\{\\tfrac1x\\bigr\\}<1$, for $x>0$ we have $0\\le\\bigl\\{\\tfrac1x\\bigr\\}x<x$, and $x\\to0^+$ forces $\\bigl\\{\\tfrac1x\\bigr\\}x\\to0$ by squeeze.",
-     "Hence the argument $1-\\bigl\\{\\tfrac1x\\bigr\\}x\\to1$, and by continuity $\\arctan\\!\\bigl(1-\\{\\tfrac1x\\}x\\bigr)\\to\\arctan1=\\dfrac\\pi4.$"
-    ]
-   }
-  ],
-  "remark": "The discontinuous, non-monotone factor $\\lfloor1/x\\rfloor$ is tamed because its error from $1/x$ is bounded by $1$, and that bounded error is crushed by the multiplying $x\\to0$ — a classic floor-squeeze the oscillation-panic misses."
- },
- {
-  "theme": "log",
-  "themeLabel": "Logarithm & Exponential",
-  "title": "The Logarithm's Echo",
-  "difficulty": 4,
-  "tags": [
-   "1^infinity",
-   "ln(1+x)",
-   "second-order",
-   "x->0"
-  ],
-  "statement": "\\lim_{x\\to 0}\\left(\\frac{\\ln(1+x)}{x}\\right)^{1/x}",
-  "answer": "e^{-1/2}",
-  "trap": "The base $\\frac{\\ln(1+x)}{x}\\to 1$, so it is tempting to declare the whole expression a $1^{\\infty}$ that 'obviously' equals $1$. But $1^{\\infty}$ is an indeterminate form precisely because the base is only asymptotically $1$: here $\\frac{\\ln(1+x)}{x}=1-\\frac{x}{2}+O(x^2)$, and the deviation $-\\frac{x}{2}$ is exactly first order in $x$. Raising to the power $1/x$ promotes that linear term to a finite limit $e^{-1/2}\\approx0.6065$, not $1$. Replacing the base by $1$ before taking the power silently discards the only term that matters.",
-  "solutions": [
-   {
-    "name": "Method I - Logarithm and series",
-    "steps": [
-     "Let $L=\\lim_{x\\to0}\\left(\\frac{\\ln(1+x)}{x}\\right)^{1/x}$ and take logarithms: $\\ln L=\\lim_{x\\to0}\\frac1x\\ln\\!\\left(\\frac{\\ln(1+x)}{x}\\right).$",
-     "Expand the inner ratio using $\\ln(1+x)=x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\cdots$:$$\\frac{\\ln(1+x)}{x}=1-\\frac{x}{2}+\\frac{x^2}{3}-\\cdots.$$",
-     "Now $\\ln\\!\\left(\\frac{\\ln(1+x)}{x}\\right)=\\ln(1+u)$ with $u=-\\frac{x}{2}+\\frac{x^2}{3}-\\cdots$. Using $\\ln(1+u)=u-\\frac{u^2}{2}+\\cdots$ and $u^2=\\frac{x^2}{4}+O(x^3)$:$$\\ln(1+u)=\\left(-\\frac{x}{2}+\\frac{x^2}{3}\\right)-\\frac12\\cdot\\frac{x^2}{4}+\\cdots=-\\frac{x}{2}+\\frac{5x^2}{24}+\\cdots.$$",
-     "Divide by $x$: $\\dfrac{1}{x}\\ln\\!\\left(\\frac{\\ln(1+x)}{x}\\right)=-\\frac12+\\frac{5}{24}x+\\cdots\\xrightarrow[x\\to0]{}-\\frac12.$",
-     "Therefore $\\ln L=-\\frac12$, giving $L=e^{-1/2}$. The first-order coefficient $-\\frac12$ of the base is exactly what the $1/x$ exponent harvests."
-    ]
-   },
-   {
-    "name": "Method II - Exponential substitution",
-    "steps": [
-     "Write the base as $1+t$ with $t=\\frac{\\ln(1+x)}{x}-1$. As $x\\to0$, $t\\to0$, and the expression is $(1+t)^{1/x}=\\exp\\!\\left(\\frac{\\ln(1+t)}{x}\\right).$",
-     "From the series, $t=-\\frac{x}{2}+\\frac{x^2}{3}-\\cdots$ is of order $x$. Since $\\ln(1+t)=t-\\frac{t^2}{2}+\\cdots$ and $t^2=O(x^2)$, the $t^2$ term contributes nothing after dividing by $x$.",
-     "Hence $\\dfrac{\\ln(1+t)}{x}=\\dfrac{t}{x}+\\dfrac{O(x^2)}{x}=\\dfrac{1}{x}\\!\\left(-\\frac{x}{2}+O(x^2)\\right)+O(x)\\xrightarrow[x\\to0]{}-\\frac12.$",
-     "The limit is $\\exp\\!\\left(-\\tfrac12\\right)=e^{-1/2}$. Only the linear coefficient of $t$ in $x$ survives; all higher orders are killed by the division by $x$."
-    ]
-   }
-  ],
-  "remark": "General principle: $\\bigl(1+a_1x+a_2x^2+\\cdots\\bigr)^{1/x}\\to e^{a_1}$ as $x\\to0$ — only the first non-constant coefficient of the base survives. Here $a_1=-\\tfrac12$."
- },
- {
-  "theme": "log",
-  "themeLabel": "Logarithm & Exponential",
-  "title": "Chasing Euler's Number",
-  "difficulty": 5,
-  "tags": [
-   "1^infinity",
-   "e-expansion",
-   "second-order",
-   "x->infinity"
-  ],
-  "statement": "\\lim_{x\\to\\infty}\\left(\\frac{\\left(1+\\frac1x\\right)^{x}}{e}\\right)^{x}",
-  "answer": "e^{-1/2}",
-  "trap": "Knowing $\\left(1+\\frac1x\\right)^x\\to e$, a student says the base $\\to e/e=1$, so the limit is $1^{\\infty}=1$. But $\\left(1+\\frac1x\\right)^x$ approaches $e$ from below at rate $\\sim\\frac{e}{2x}$, and the outer exponent $x$ converts this $\\frac1x$-sized defect into the finite value $e^{-1/2}$.",
-  "solutions": [
-   {
-    "name": "Method I - Two-layer log expansion",
-    "steps": [
-     "Let $L$ be the limit; $\\ln L=\\lim_{x\\to\\infty}x\\left[x\\ln\\!\\left(1+\\frac1x\\right)-1\\right]$, since $\\ln\\!\\left(\\frac{(1+1/x)^x}{e}\\right)=x\\ln(1+\\tfrac1x)-1.$",
-     "Expand $\\ln\\!\\left(1+\\frac1x\\right)=\\frac1x-\\frac{1}{2x^2}+\\frac{1}{3x^3}-\\cdots$. Multiply by $x$:$$x\\ln\\!\\left(1+\\frac1x\\right)=1-\\frac{1}{2x}+\\frac{1}{3x^2}-\\cdots.$$",
-     "Subtract $1$: $x\\ln(1+\\tfrac1x)-1=-\\frac{1}{2x}+\\frac{1}{3x^2}-\\cdots.$",
-     "Multiply by the outer $x$: $x\\left[-\\frac{1}{2x}+\\frac{1}{3x^2}-\\cdots\\right]=-\\frac12+\\frac{1}{3x}-\\cdots\\to-\\frac12.$",
-     "So $\\ln L=-\\frac12$ and $L=e^{-1/2}$. Stopping the inner expansion at first order ($x\\ln(1+\\tfrac1x)\\approx1$) loses the entire answer."
-    ]
-   },
-   {
-    "name": "Method II - Substitution to x->0",
-    "steps": [
-     "Put $t=\\frac1x\\to0^+$. The expression becomes $\\left(\\frac{(1+t)^{1/t}}{e}\\right)^{1/t}=\\exp\\!\\left(\\frac1t\\Bigl[\\tfrac1t\\ln(1+t)-1\\Bigr]\\right).$",
-     "Use $\\ln(1+t)=t-\\frac{t^2}{2}+\\frac{t^3}{3}-\\cdots$, so $\\frac1t\\ln(1+t)=1-\\frac{t}{2}+\\frac{t^2}{3}-\\cdots$ and $\\frac1t\\ln(1+t)-1=-\\frac{t}{2}+\\frac{t^2}{3}-\\cdots.$",
-     "Divide by $t$: $\\frac1t\\left(-\\frac{t}{2}+\\frac{t^2}{3}-\\cdots\\right)=-\\frac12+\\frac{t}{3}-\\cdots\\to-\\frac12.$",
-     "Thus the limit is $\\exp(-\\tfrac12)=e^{-1/2}$, identical in mechanism to its $x\\to0$ cousin."
-    ]
-   }
-  ],
-  "remark": "Knowing $(1+1/x)^x=e\\exp\\!\\bigl(-\\tfrac1{2x}+\\tfrac{11}{24x^2}-\\cdots\\bigr)$ makes this instant; the $-\\tfrac1{2x}$ defect is the whole story."
- },
- {
-  "theme": "log",
-  "themeLabel": "Logarithm & Exponential",
-  "title": "The Point Named e",
-  "difficulty": 4,
-  "tags": [
-   "1^infinity",
-   "ln-of-ln",
-   "x->e",
-   "nonzero-point"
-  ],
-  "statement": "\\lim_{x\\to e}\\left(\\ln x\\right)^{\\frac{1}{x-e}}",
-  "answer": "e^{1/e}",
-  "trap": "At $x=e$ the base $\\ln x=1$ exactly, so the form is $1^{\\infty}$ and a student declares the limit $1$. But $1^{\\infty}$ is indeterminate: the base leaves $1$ linearly, $\\ln x\\approx1+\\tfrac{x-e}{e}$ (slope $=\\ln'(e)=1/e$), while the exponent $\\tfrac{1}{x-e}\\to\\pm\\infty$ amplifies that tiny excess. The two effects balance to give $e^{1/e}\\approx1.4447$, not $1$.",
-  "solutions": [
-   {
-    "name": "Method I - Log + derivative",
-    "steps": [
-     "Set $L=\\lim_{x\\to e}(\\ln x)^{1/(x-e)}$. Since $\\ln x>0$ for $x$ near $e$, the power is real, and taking logs gives $\\ln L=\\lim_{x\\to e}\\dfrac{\\ln(\\ln x)}{x-e}.$",
-     "This is $\\tfrac00$: the numerator $\\to\\ln(\\ln e)=\\ln 1=0$. Writing $g(x)=\\ln(\\ln x)$ with $g(e)=0$, the quotient is exactly the difference quotient $\\dfrac{g(x)-g(e)}{x-e}$, whose limit is $g'(e)$.",
-     "Differentiate by the chain rule: $g'(x)=\\dfrac{1}{\\ln x}\\cdot\\dfrac1x$, so $g'(e)=\\dfrac{1}{\\ln e}\\cdot\\dfrac1e=1\\cdot\\dfrac1e=\\dfrac1e.$",
-     "Hence $\\ln L=\\dfrac1e$ and $L=e^{1/e}$."
-    ]
-   },
-   {
-    "name": "Method II - Local expansion",
-    "steps": [
-     "Substitute $x=e+t$, $t\\to0$. Then $\\ln x=\\ln(e+t)=1+\\ln\\!\\left(1+\\dfrac{t}{e}\\right)=1+\\dfrac{t}{e}-\\dfrac{t^2}{2e^2}+\\cdots.$",
-     "Take the log of the base: $\\ln(\\ln x)=\\ln\\!\\left(1+\\dfrac{t}{e}-\\cdots\\right)=\\dfrac{t}{e}+O(t^2).$",
-     "Divide by $t=x-e$: $\\dfrac{\\ln(\\ln x)}{x-e}=\\dfrac1e+O(t)\\xrightarrow[t\\to0]{}\\dfrac1e$ (same value as $t\\to0^+$ and $t\\to0^-$, so the limit is two-sided).",
-     "Exponentiate: the limit is $e^{1/e}\\approx1.4447$, comfortably far from the naive $1$."
-    ]
-   }
-  ],
-  "remark": "General fact: for any $f$ differentiable at $a$ with $f(a)=1$ (and $f>0$ near $a$), $\\lim_{x\\to a}f(x)^{1/(x-a)}=e^{f'(a)}$. Here $f=\\ln$, $a=e$, $f'(e)=1/e$, giving $e^{1/e}$."
- },
- {
-  "theme": "log",
-  "themeLabel": "Logarithm & Exponential",
-  "title": "The Buried Term",
-  "difficulty": 4,
-  "tags": [
-   "log-of-sum",
-   "dominated-term",
-   "x->-infinity",
-   "exponential-tail"
-  ],
-  "statement": "\\lim_{x\\to-\\infty}e^{-x}\\Bigl(x-\\ln\\bigl(e^{x}+e^{2x}+e^{3x}\\bigr)\\Bigr)",
-  "answer": "-1",
-  "trap": "As $x\\to-\\infty$ the term $e^{x}$ is the largest of the three (since $x<0$ makes $e^{x}>e^{2x}>e^{3x}$), so it is tempting to write $\\ln(e^x+e^{2x}+e^{3x})\\approx\\ln(e^x)=x$, making the parenthesis $\\to0$. The student then reads $e^{-x}\\cdot0$ as $\\infty\\cdot0$ and either answers $0$ or stalls. But the parenthesis is exactly $-\\ln(1+e^x+e^{2x})$, whose leading piece is $-e^{x}$ — an order-$e^{x}$ tail. Multiplying by $e^{-x}$ cancels it precisely and leaves $-1$. Discarding the subdominant terms throws away the only thing the $e^{-x}$ factor magnifies.",
-  "solutions": [
-   {
-    "name": "Method I - Factor the dominant term",
-    "steps": [
-     "Factor $e^{x}$ out of the sum: $e^{x}+e^{2x}+e^{3x}=e^{x}\\bigl(1+e^{x}+e^{2x}\\bigr).$",
-     "Then $\\ln(\\cdots)=x+\\ln\\bigl(1+e^{x}+e^{2x}\\bigr)$, so $x-\\ln(\\cdots)=-\\ln\\bigl(1+e^{x}+e^{2x}\\bigr).$",
-     "Let $u=e^{x}\\to0^{+}$. Using $\\ln(1+u+u^2)=(u+u^2)-\\frac{(u+u^2)^2}{2}+\\cdots=u+\\frac{u^2}{2}+O(u^3)$:$$x-\\ln(\\cdots)=-\\Bigl(u+\\tfrac{u^2}{2}+\\cdots\\Bigr).$$",
-     "Multiply by $e^{-x}=u^{-1}$: $e^{-x}\\bigl(x-\\ln(\\cdots)\\bigr)=-\\frac{1}{u}\\Bigl(u+\\tfrac{u^2}{2}+\\cdots\\Bigr)=-\\Bigl(1+\\tfrac{u}{2}+\\cdots\\Bigr)\\to-1.$",
-     "The naive 'drop the small terms' kills the very $O(u)$ piece that, after the $u^{-1}$ amplification, gives the answer $-1$."
-    ]
-   },
-   {
-    "name": "Method II - Substitution u=e^x",
-    "steps": [
-     "Set $u=e^{x}$ so $u\\to0^{+}$ and $x=\\ln u$, $e^{-x}=1/u$. The limit becomes$$\\lim_{u\\to0^{+}}\\frac1u\\Bigl(\\ln u-\\ln\\bigl(u+u^2+u^3\\bigr)\\Bigr).$$",
-     "Simplify the log difference: $\\ln u-\\ln\\bigl(u(1+u+u^2)\\bigr)=-\\ln(1+u+u^2).$",
-     "So the expression is $-\\dfrac{\\ln(1+u+u^2)}{u}.$",
-     "Since $\\ln(1+u+u^2)\\sim u$ as $u\\to0$ (because $\\ln(1+t)\\sim t$ with $t=u+u^2\\to0$), the ratio $\\dfrac{\\ln(1+u+u^2)}{u}\\to1$, giving the limit $-1.$"
-    ]
-   }
-  ],
-  "remark": "At $-\\infty$ the exponential with the smallest growth rate dominates a sum of exponentials, so the leading log is just $x$; the trap is that the discarded subdominant tail, of exact order $e^{x}$, is precisely what the $e^{-x}$ factor magnifies into the finite answer."
- },
- {
-  "theme": "log",
-  "themeLabel": "Logarithm & Exponential",
-  "title": "Three Floors Down",
-  "difficulty": 5,
-  "tags": [
-   "x^x",
-   "third-order",
-   "(1+x)^(1/x)",
-   "x->0",
-   "brutal-expansion"
-  ],
-  "statement": "\\lim_{x\\to 0}\\frac{(1+x)^{1/x}-e+\\dfrac{e\\,x}{2}}{x^{2}}",
-  "answer": "\\dfrac{11e}{24}",
-  "trap": "Reaching for the familiar first-order fact $(1+x)^{1/x}=e\\left(1-\\frac{x}{2}\\right)+o(x)$ makes the entire numerator collapse to $o(x)$, so dividing by $x^2$ seems to blow up or vanish — tempting the answers $0$, $\\infty$, or 'indeterminate.' The trap is that $o(x)$ is far too crude: it hides a genuine $\\frac{11e}{24}x^2$ term. You must expand $(1+x)^{1/x}$ to order $x^2$, and crucially that coefficient is NOT $\\frac{e}{3}$ (the exponent's quadratic term alone) — the $\\frac{w^2}{2}$ contribution adds another $\\frac{e}{8}$, giving $\\frac{e}{3}+\\frac{e}{8}=\\frac{11e}{24}$.",
-  "solutions": [
-   {
-    "name": "Method I - Third-order expansion of (1+x)^{1/x}",
-    "steps": [
-     "Write $(1+x)^{1/x}=\\exp\\!\\left(\\frac{\\ln(1+x)}{x}\\right)$ and expand the exponent: $\\frac{\\ln(1+x)}{x}=1-\\frac{x}{2}+\\frac{x^2}{3}-\\frac{x^3}{4}+\\cdots.$",
-     "So $(1+x)^{1/x}=e\\cdot\\exp\\!\\left(-\\frac{x}{2}+\\frac{x^2}{3}-\\cdots\\right)$. Let $w=-\\frac{x}{2}+\\frac{x^2}{3}-\\cdots$ and use $e^{w}=1+w+\\frac{w^2}{2}+\\cdots.$",
-     "Collect to order $x^2$: $w=-\\frac{x}{2}+\\frac{x^2}{3}$, $\\frac{w^2}{2}=\\frac12\\cdot\\left(-\\frac{x}{2}\\right)^2=\\frac{x^2}{8}$, so$$e^{w}=1-\\frac{x}{2}+\\left(\\frac13+\\frac18\\right)x^2+\\cdots=1-\\frac{x}{2}+\\frac{11}{24}x^2+\\cdots.$$",
-     "Therefore $(1+x)^{1/x}=e-\\frac{e\\,x}{2}+\\frac{11e}{24}x^2+\\cdots.$",
-     "The numerator $(1+x)^{1/x}-e+\\frac{ex}{2}=\\frac{11e}{24}x^2+O(x^3)$, so dividing by $x^2$ gives $\\boxed{\\dfrac{11e}{24}}.$"
-    ]
-   },
-   {
-    "name": "Method II - Repeated L'Hopital with care",
-    "steps": [
-     "Let $f(x)=(1+x)^{1/x}$ for $x\\neq0$, $f(0)=e$. We need $\\lim_{x\\to0}\\frac{f(x)-e+\\frac{e}{2}x}{x^2}$, a $\\frac00$ form. Since $f$ is smooth at $0$, Taylor's theorem gives this limit as $\\frac{1}{2}f''(0)$ provided $f(0)=e$ and $f'(0)=-\\frac{e}{2}$ (so the linear part of the numerator cancels).",
-     "Compute $f'$ via $\\ln f=\\frac{\\ln(1+x)}{x}$: $\\frac{f'}{f}=\\frac{d}{dx}\\frac{\\ln(1+x)}{x}=\\frac{\\frac{x}{1+x}-\\ln(1+x)}{x^2}.$",
-     "Expanding the bracket, $\\frac{x}{1+x}-\\ln(1+x)=\\bigl(x-x^2+x^3-\\cdots\\bigr)-\\bigl(x-\\tfrac{x^2}{2}+\\tfrac{x^3}{3}-\\cdots\\bigr)=-\\tfrac{x^2}{2}+\\tfrac{2x^3}{3}-\\cdots$, so $\\frac{f'}{f}=-\\frac12+\\frac{2x}{3}-\\cdots.$ At $x=0$: $f'(0)=e\\cdot\\left(-\\tfrac12\\right)=-\\tfrac{e}{2}$, confirming the cancellation of the linear term.",
-     "For $f''(0)$, write $f'=f\\bigl(-\\tfrac12+\\tfrac{2x}{3}+\\cdots\\bigr)$ and differentiate: $f''=f'\\bigl(-\\tfrac12+\\cdots\\bigr)+f\\bigl(\\tfrac23+\\cdots\\bigr)$. At $x=0$: $f''(0)=\\bigl(-\\tfrac{e}{2}\\bigr)\\bigl(-\\tfrac12\\bigr)+e\\cdot\\tfrac23=\\tfrac{e}{4}+\\tfrac{2e}{3}=\\tfrac{11e}{12}.$",
-     "The limit is $\\frac12 f''(0)=\\frac12\\cdot\\frac{11e}{12}=\\frac{11e}{24}.$"
-    ]
-   }
-  ],
-  "remark": "$(1+x)^{1/x}=e\\bigl(1-\\tfrac{x}{2}+\\tfrac{11x^2}{24}-\\tfrac{7x^3}{16}+\\cdots\\bigr)$ is the engine behind a whole family of brutal limits."
- },
- {
-  "theme": "log",
-  "themeLabel": "Logarithm & Exponential",
-  "title": "Change of Base, Change of Heart",
-  "difficulty": 3,
-  "tags": [
-   "base-change",
-   "log_x",
-   "x->1",
-   "infinity-minus-infinity"
-  ],
-  "statement": "\\lim_{x\\to 1}\\left(\\log_{x} e-\\frac{1}{x-1}\\right)",
-  "answer": "\\dfrac{1}{2}",
-  "trap": "A student writes $\\log_x e=\\frac{1}{\\ln x}$, sees that both $\\frac{1}{\\ln x}$ and $\\frac{1}{x-1}$ blow up, and uses $\\ln x\\approx x-1$ to claim the two infinities cancel exactly, giving $0$. The leading $\\frac1t$ singularities do cancel — but stopping at the first-order approximation $\\ln(1+t)\\approx t$ discards the $-\\frac{t^2}{2}$ correction, which is precisely what survives in the limit and contributes $+\\frac12$. The correct answer is $\\frac12$, not $0$.",
-  "solutions": [
-   {
-    "name": "Method I - Common denominator + series",
-    "steps": [
-     "Change base: $\\log_x e=\\frac{\\ln e}{\\ln x}=\\frac{1}{\\ln x}$. So the expression is $\\frac{1}{\\ln x}-\\frac{1}{x-1}=\\frac{(x-1)-\\ln x}{(x-1)\\ln x}.$",
-     "Let $t=x-1\\to0$. Then $\\ln x=\\ln(1+t)=t-\\frac{t^2}{2}+\\frac{t^3}{3}-\\cdots$, so the numerator is $(x-1)-\\ln x=t-\\bigl(t-\\frac{t^2}{2}+\\frac{t^3}{3}-\\cdots\\bigr)=\\frac{t^2}{2}-\\frac{t^3}{3}+\\cdots.$",
-     "The denominator is $(x-1)\\ln x=t\\bigl(t-\\frac{t^2}{2}+\\cdots\\bigr)=t^2-\\frac{t^3}{2}+\\cdots.$",
-     "Form the ratio and divide top and bottom by $t^2$: $$\\frac{\\frac{t^2}{2}-\\frac{t^3}{3}+\\cdots}{t^2-\\frac{t^3}{2}+\\cdots}=\\frac{\\frac12-\\frac{t}{3}+\\cdots}{1-\\frac{t}{2}+\\cdots}\\xrightarrow[t\\to0]{}\\frac12.$$ The same limit is reached from $t\\to0^+$ and $t\\to0^-$, so the two-sided limit is $\\frac12$."
-    ]
-   },
-   {
-    "name": "Method II - Direct Laurent expansion of 1/ln x",
-    "steps": [
-     "With $t=x-1$, write $\\ln(1+t)=t\\bigl(1-\\frac{t}{2}+\\frac{t^2}{3}-\\cdots\\bigr)$, so $$\\frac{1}{\\ln(1+t)}=\\frac1t\\cdot\\frac{1}{1-\\frac{t}{2}+\\frac{t^2}{3}-\\cdots}=\\frac1t\\Bigl(1+\\frac{t}{2}+\\bigl(\\tfrac14-\\tfrac13\\bigr)t^2+\\cdots\\Bigr).$$",
-     "Hence $\\frac{1}{\\ln x}=\\frac1t+\\frac12-\\frac{t}{12}+\\cdots$, where the $t$-coefficient is $\\tfrac14-\\tfrac13=-\\tfrac1{12}.$",
-     "Subtract $\\frac{1}{x-1}=\\frac1t$: $\\quad\\frac{1}{\\ln x}-\\frac{1}{x-1}=\\frac12-\\frac{t}{12}+\\cdots.$",
-     "As $x\\to1$ (i.e. $t\\to0$) the principal part cancels and the limit is $\\frac12$, valid from both sides."
-    ]
-   }
-  ],
-  "remark": "The expansion $\\frac{1}{\\ln(1+t)}=\\frac1t+\\frac12-\\frac{t}{12}+\\cdots$ is a workhorse; its constant term $\\tfrac12$ is the hidden residue that the naive cancellation argument misses."
- },
- {
-  "theme": "log",
-  "themeLabel": "Logarithm & Exponential",
-  "title": "Sine Under the Log",
-  "difficulty": 4,
-  "tags": [
-   "log-of-ratio",
-   "one-sided",
-   "x->0+",
-   "sinx-over-x"
-  ],
-  "statement": "\\lim_{x\\to 0^{+}}\\frac{\\ln(\\sin x)-\\ln x}{x^{2}}",
-  "answer": "-\\dfrac{1}{6}",
-  "trap": "Two traps. (1) The numerator is $-\\infty-(-\\infty)$, so a student panics or, worse, declares the limit $0$ by replacing $\\sin x\\approx x$ at first order, getting $\\ln\\frac{x}{x}=\\ln 1=0$ over $x^2$ — the linear approximation is exactly what kills the answer, since the whole limit lives in the $x^2$ correction. (2) Brute-force L'Hopital on $\\ln(\\sin x)-\\ln x$ produces $\\frac{\\cos x}{\\sin x}-\\frac1x$, an indeterminate $\\infty-\\infty$ that most students mishandle. The clean move is $\\ln(\\sin x)-\\ln x=\\ln\\frac{\\sin x}{x}$, turning a swamp into one line.",
-  "solutions": [
-   {
-    "name": "Method I - Combine logs, expand",
-    "steps": [
-     "Combine the logs: $\\ln(\\sin x)-\\ln x=\\ln\\!\\left(\\frac{\\sin x}{x}\\right)$, valid for small $x>0$ where $\\sin x>0$ (this is why the limit is taken one-sided).",
-     "Expand the ratio: $\\frac{\\sin x}{x}=\\frac{x-\\frac{x^3}{6}+\\frac{x^5}{120}-\\cdots}{x}=1-\\frac{x^2}{6}+\\frac{x^4}{120}-\\cdots.$",
-     "Take its log with $\\ln(1+u)=u-\\frac{u^2}{2}+\\cdots$ and $u=-\\frac{x^2}{6}+\\frac{x^4}{120}-\\cdots$. The $u^2$ term is $O(x^4)$, so $$\\ln\\!\\left(\\frac{\\sin x}{x}\\right)=-\\frac{x^2}{6}+O(x^4).$$",
-     "Divide by $x^2$: $\\dfrac{1}{x^2}\\Bigl(-\\dfrac{x^2}{6}+O(x^4)\\Bigr)=-\\dfrac16+O(x^2)\\to-\\dfrac16.$"
-    ]
-   },
-   {
-    "name": "Method II - L'Hopital done carefully",
-    "steps": [
-     "Rewrite as $\\dfrac{g(x)}{x^2}$ with $g(x)=\\ln\\dfrac{\\sin x}{x}$. Since $\\frac{\\sin x}{x}\\to1$, we have $g(x)\\to0$, so this is a genuine $\\frac00$ form (unlike the raw $-\\infty-(-\\infty)$).",
-     "Differentiate once: $\\dfrac{d}{dx}\\ln\\dfrac{\\sin x}{x}=\\dfrac{\\cos x}{\\sin x}-\\dfrac1x=\\dfrac{x\\cos x-\\sin x}{x\\sin x}$, and $\\dfrac{d}{dx}x^2=2x$. The new ratio is $\\dfrac{x\\cos x-\\sin x}{2x^2\\sin x}.$",
-     "Expand the numerator: $x\\cos x-\\sin x=x\\bigl(1-\\tfrac{x^2}{2}+\\cdots\\bigr)-\\bigl(x-\\tfrac{x^3}{6}+\\cdots\\bigr)=-\\dfrac{x^3}{3}+O(x^5).$ The denominator $2x^2\\sin x=2x^3+O(x^5).$",
-     "Hence the ratio $\\to\\dfrac{-1/3}{2}=-\\dfrac16$, consistent with Method I."
-    ]
-   }
-  ],
-  "remark": "Because $\\ln\\frac{\\sin x}{x}=-\\frac{x^2}{6}-\\frac{x^4}{180}-\\frac{x^6}{2835}-\\cdots$, this limit is just the leading coefficient of a classical even series; combining the logs first is the entire trick."
- },
- {
-  "theme": "log",
-  "themeLabel": "Logarithm & Exponential",
-  "title": "The Slowly Widening Log",
-  "difficulty": 5,
-  "tags": [
-   "1^infinity",
-   "base-change",
-   "x->infinity",
-   "ln(x+1)-over-ln-x"
-  ],
-  "statement": "\\lim_{x\\to\\infty}\\left(\\frac{\\ln(x+1)}{\\ln x}\\right)^{x\\ln x}",
-  "answer": "e",
-  "trap": "Since $\\frac{\\ln(x+1)}{\\ln x}\\to1$, it is tempting to call the base $1$ and declare the answer $1^{\\infty}=1$. But the base exceeds $1$ by an amount $\\sim\\frac{1}{x\\ln x}$ (because $\\ln(x+1)-\\ln x=\\ln(1+\\tfrac1x)\\sim\\tfrac1x$, divided by $\\ln x$), and the exponent is precisely $x\\ln x$. Their product tends to $\\lim x\\ln(1+\\tfrac1x)=1$, so $\\ln L=1$ and $L=e$, not $1$.",
-  "solutions": [
-   {
-    "name": "Method I - Log and nested expansion",
-    "steps": [
-     "Let $L$ be the limit; then $\\ln L=\\lim_{x\\to\\infty}x\\ln x\\cdot\\ln\\!\\left(\\frac{\\ln(x+1)}{\\ln x}\\right).$",
-     "Write $\\ln(x+1)=\\ln x+\\ln\\!\\left(1+\\frac1x\\right)$, so $\\frac{\\ln(x+1)}{\\ln x}=1+\\frac{\\ln(1+1/x)}{\\ln x}.$ Put $\\delta=\\frac{\\ln(1+1/x)}{\\ln x}\\to0.$",
-     "Since $\\ln(1+\\delta)=\\delta-\\frac{\\delta^2}{2}+\\cdots$ and $\\delta=\\frac{1}{x\\ln x}\\bigl(1-\\frac{1}{2x}+\\cdots\\bigr)$ is of order $\\frac{1}{x\\ln x}$, the $\\delta^2$ term is negligible after multiplying by $x\\ln x$:$$\\ln\\!\\left(\\frac{\\ln(x+1)}{\\ln x}\\right)=\\frac{\\ln(1+1/x)}{\\ln x}+O\\!\\left(\\tfrac{1}{(x\\ln x)^2}\\right).$$",
-     "Multiply by $x\\ln x$; the $\\ln x$ factors cancel: $x\\ln x\\cdot\\frac{\\ln(1+1/x)}{\\ln x}=x\\ln\\!\\left(1+\\frac1x\\right)=1-\\frac{1}{2x}+\\cdots\\to1.$",
-     "Therefore $\\ln L=1$, so $L=e.$ The exponent $x\\ln x$ is tuned exactly to cancel the $\\frac{1}{\\ln x}$ and leave $x\\ln(1+1/x)\\to1.$"
-    ]
-   },
-   {
-    "name": "Method II - Substitution and asymptotics",
-    "steps": [
-     "Set $u=\\frac1x\\to0^{+}$, so $\\ln x=-\\ln u$ and $\\ln(x+1)=\\ln x+\\ln(1+u)=-\\ln u+\\ln(1+u).$ The base is $1+\\frac{\\ln(1+u)}{-\\ln u}.$",
-     "The exponent is $x\\ln x=\\frac{-\\ln u}{u}.$ Hence $\\ln L=\\lim_{u\\to0^{+}}\\frac{-\\ln u}{u}\\cdot\\ln\\!\\left(1+\\frac{\\ln(1+u)}{-\\ln u}\\right).$",
-     "Since $\\frac{\\ln(1+u)}{-\\ln u}\\to0$, we have $\\ln(1+\\cdots)\\sim\\frac{\\ln(1+u)}{-\\ln u}$, so the $-\\ln u$ factors cancel: $\\ln L=\\lim_{u\\to0^{+}}\\frac{-\\ln u}{u}\\cdot\\frac{\\ln(1+u)}{-\\ln u}=\\lim_{u\\to0^{+}}\\frac{\\ln(1+u)}{u}.$",
-     "That standard limit equals $1$, so $\\ln L=1$ and $L=e.$"
-    ]
-   }
-  ],
-  "remark": "The exponent $x\\ln x$ is the unique scaling that makes this $1^\\infty$ form converge to a finite nonzero value: exponent $\\sim x$ gives $L=1$, exponent $\\sim x(\\ln x)^2$ gives $L=\\infty$, and only $x\\ln x$ lands on $e$."
- },
- {
-  "theme": "log",
-  "themeLabel": "Logarithm & Exponential",
-  "title": "A Tale of Two Sides",
-  "difficulty": 4,
-  "tags": [
-   "nonexistence",
-   "one-sided",
-   "absolute-value",
-   "1^infinity",
-   "x->0"
-  ],
-  "statement": "\\lim_{x\\to 0}\\left(1+|x|\\right)^{1/x}",
-  "answer": "\\text{does not exist}\\quad\\left(\\text{right-hand limit } e,\\ \\text{left-hand limit } e^{-1}\\right)",
-  "trap": "Pattern-matching to the famous limit $(1+x)^{1/x}\\to e$, a student mentally erases the bars and answers $e$. But the base carries $|x|$ (an even quantity) while the exponent carries $1/x$ (odd). Their interaction puts a $\\operatorname{sgn}(x)$ in the exponent of the limiting form, so the right side gives $e^{+1}$ and the left side $e^{-1}$. Because $e\\neq e^{-1}$, the two-sided limit cannot exist — yet both one-sided limits are perfectly finite, which is exactly what makes the wrong single answer feel safe.",
-  "solutions": [
-   {
-    "name": "Method I - Separate one-sided analysis",
-    "steps": [
-     "For $x>0$ we have $|x|=x$, so the expression is the classic $(1+x)^{1/x}$. Hence $\\displaystyle\\lim_{x\\to0^{+}}(1+|x|)^{1/x}=e$.",
-     "For $x<0$ we have $|x|=-x$, so the expression is $(1-x)^{1/x}=\\exp\\!\\left(\\dfrac{\\ln(1-x)}{x}\\right)$. Using $\\ln(1-x)=-x-\\tfrac{x^{2}}{2}-\\cdots$ gives $\\dfrac{\\ln(1-x)}{x}=-1-\\dfrac{x}{2}-\\cdots\\to-1$, so $\\displaystyle\\lim_{x\\to0^{-}}(1+|x|)^{1/x}=e^{-1}$.",
-     "The one-sided limits are $e$ (right) and $e^{-1}$ (left).",
-     "Since $e\\neq e^{-1}$, the right- and left-hand limits disagree, so the two-sided limit does not exist."
-    ]
-   },
-   {
-    "name": "Method II - Signum exponent via logarithm",
-    "steps": [
-     "Let $L(x)=\\ln\\big((1+|x|)^{1/x}\\big)=\\dfrac{1}{x}\\ln(1+|x|)$. Expand $\\ln(1+|x|)=|x|-\\dfrac{|x|^{2}}{2}+\\cdots$, so $L(x)=\\dfrac{|x|}{x}\\left(1-\\dfrac{|x|}{2}+\\cdots\\right)$.",
-     "Here $\\dfrac{|x|}{x}=\\operatorname{sgn}(x)$ equals $+1$ for $x>0$ and $-1$ for $x<0$, while the bracket $\\to1$ as $x\\to0$.",
-     "Therefore $L(x)\\to\\operatorname{sgn}(x)\\cdot1=\\pm1$, the sign depending solely on the side of approach.",
-     "Exponentiating, $(1+|x|)^{1/x}\\to e^{+1}=e$ from the right and $e^{-1}$ from the left. The two values differ, so the limit does not exist."
-    ]
-   }
-  ],
-  "remark": "Whenever a $1^{\\infty}$ form pairs an even quantity in the base (here $|x|$) with an odd quantity in the exponent ($1/x$, or equivalently $\\operatorname{sgn}$), expect a sign-driven split: the limiting exponent picks up a factor $\\operatorname{sgn}(x)$, forcing reciprocal one-sided values $e^{\\pm1}$ and two-sided non-existence."
- },
- {
-  "theme": "log",
-  "themeLabel": "Logarithm & Exponential",
-  "title": "The Root That Refuses to Settle",
-  "difficulty": 5,
-  "tags": [
-   "x^(1/x)",
-   "second-order",
-   "x->infinity",
-   "exp-of-log-over-x"
-  ],
-  "statement": "\\lim_{x\\to\\infty}\\frac{x\\bigl(x^{1/x}-1\\bigr)-\\ln x}{(\\ln x)^{2}/x}",
-  "answer": "\\dfrac{1}{2}",
-  "trap": "Knowing $x^{1/x}\\to1$, a student writes $x^{1/x}-1\\approx\\frac{\\ln x}{x}$, so $x(x^{1/x}-1)\\approx\\ln x$ and the numerator looks like $0$ — collapsing the whole thing to $0$. That is only the first-order truth; the second-order term of $x^{1/x}-1$, namely $\\frac{(\\ln x)^2}{2x^2}$, is exactly the surviving piece, and after multiplying by $x$ and dividing by $(\\ln x)^2/x$ it leaves $\\frac12$, not $0$.",
-  "solutions": [
-   {
-    "name": "Method I - Second-order expansion",
-    "steps": [
-     "Write $x^{1/x}=\\exp\\!\\left(\\frac{\\ln x}{x}\\right)$ and set $u=\\frac{\\ln x}{x}\\to0$. Then $x^{1/x}=1+u+\\frac{u^2}{2}+\\frac{u^3}{6}+\\cdots.$",
-     "So $x^{1/x}-1=u+\\frac{u^2}{2}+\\cdots$ and $x\\bigl(x^{1/x}-1\\bigr)=xu+\\frac{x u^2}{2}+\\cdots.$ Since $xu=\\ln x$ and $xu^2=x\\cdot\\frac{(\\ln x)^2}{x^2}=\\frac{(\\ln x)^2}{x}$:$$x\\bigl(x^{1/x}-1\\bigr)=\\ln x+\\frac{(\\ln x)^2}{2x}+O\\!\\left(\\tfrac{(\\ln x)^3}{x^2}\\right).$$",
-     "Subtract $\\ln x$: the numerator equals $\\frac{(\\ln x)^2}{2x}+O\\!\\left(\\tfrac{(\\ln x)^3}{x^2}\\right).$",
-     "Divide by $\\frac{(\\ln x)^2}{x}$: $\\dfrac{\\frac{(\\ln x)^2}{2x}+\\cdots}{(\\ln x)^2/x}=\\frac12+O\\!\\left(\\tfrac{\\ln x}{x}\\right)\\to\\frac12.$"
-    ]
-   },
-   {
-    "name": "Method II - Substitution to a clean form",
-    "steps": [
-     "Let $t=\\frac{\\ln x}{x}\\to0^{+}$. Note $x^{1/x}=e^{t}$, and the numerator is $x(e^{t}-1)-\\ln x=x(e^{t}-1)-xt=x\\bigl(e^{t}-1-t\\bigr).$",
-     "The denominator is $\\frac{(\\ln x)^2}{x}=\\frac{(xt)^2}{x}=x t^2.$ Hence the whole expression simplifies exactly to$$\\frac{x\\bigl(e^{t}-1-t\\bigr)}{x t^2}=\\frac{e^{t}-1-t}{t^2}.$$",
-     "This is a standard $\\frac00$ limit as $t\\to0$: since $e^{t}-1-t=\\frac{t^2}{2}+\\frac{t^3}{6}+\\cdots$, the ratio $\\to\\frac12.$",
-     "Therefore the limit is $\\frac12$, the universal second-order coefficient of the exponential, in disguise."
-    ]
-   }
-  ],
-  "remark": "After the substitution $t=\\frac{\\ln x}{x}$ the monster collapses to $\\lim_{t\\to0}\\frac{e^t-1-t}{t^2}=\\frac12$ — proof that the right change of variable can tame any $x^{1/x}$ expansion."
- },
- {
-  "theme": "trig",
-  "themeLabel": "Advanced Trigonometry",
-  "title": "The Iterated Sine Crawls Home",
-  "difficulty": 4,
-  "tags": [
-   "iterated-sine",
-   "recursion",
-   "cesaro-stolz",
-   "asymptotics",
-   "x->infinity"
-  ],
-  "statement": "\\text{Let } x_1\\in(0,\\pi) \\text{ and } x_{n+1}=\\sin(x_n).\\quad \\lim_{n\\to\\infty} n\\,x_n^{\\,2}",
-  "answer": "3",
-  "trap": "\"Since $x_n\\to 0$, $n x_n^2$ is $\\infty\\cdot 0$, indeterminate — and $x_n$ surely shrinks geometrically, so $n x_n^2\\to 0$.\" Wrong: $\\sin$ is tangent to the line $y=x$ at $0$ ($\\sin x = x - x^3/6+\\dots$, fixed-point multiplier exactly $1$), so the iteration loses its contraction at the limit and the decay is only algebraic, $x_n\\sim\\sqrt{3/n}$, not geometric. The geometric instinct gives $0$; the true value is $3$.",
-  "solutions": [
-   {
-    "name": "Method I - Stolz–Cesàro on the reciprocal squares",
-    "steps": [
-     "Since $0<x_{n+1}=\\sin x_n<x_n$ for $x_n\\in(0,\\pi)$, the sequence is positive and strictly decreasing, hence converges to a limit $L\\ge 0$ with $L=\\sin L$, forcing $L=0$. So $x_n\\to 0^+$.",
-     "Study $y_n=1/x_n^2$. Using $\\sin x = x-\\tfrac{x^3}{6}+\\tfrac{x^5}{120}-\\dots$, so $\\dfrac{\\sin x}{x}=1-\\tfrac{x^2}{6}+\\tfrac{x^4}{120}-\\dots$.",
-     "Squaring, $$x_{n+1}^2=\\sin^2 x_n=x_n^2\\Big(1-\\tfrac{x_n^2}{6}+\\tfrac{x_n^4}{120}-\\dots\\Big)^2=x_n^2\\Big(1-\\tfrac{x_n^2}{3}+\\tfrac{2x_n^4}{45}-\\dots\\Big).$$",
-     "Invert and expand $\\dfrac{1}{1-\\frac{x_n^2}{3}+\\frac{2x_n^4}{45}-\\dots}=1+\\tfrac{x_n^2}{3}+\\big(\\tfrac19-\\tfrac{2}{45}\\big)x_n^4+\\dots=1+\\tfrac{x_n^2}{3}+\\tfrac{x_n^4}{15}+\\dots$, giving $$\\frac{1}{x_{n+1}^2}=\\frac{1}{x_n^2}+\\frac13+\\tfrac{1}{15}x_n^2+\\dots$$",
-     "Hence $y_{n+1}-y_n\\to \\tfrac13$ (the $x_n^2$ correction $\\to 0$). By Stolz–Cesàro, $$\\frac{y_n}{n}\\to\\tfrac13\\ \\Longrightarrow\\ \\frac{1}{n x_n^2}\\to\\tfrac13.$$",
-     "Therefore $n x_n^2\\to 3.$"
-    ]
-   },
-   {
-    "name": "Method II - Continuous comparison (heuristic made rigorous)",
-    "steps": [
-     "Model the recursion by the increment it produces on $1/x^2$: from Method I, one step changes $1/x_n^2$ by $\\tfrac13+O(x_n^2)$. Ignoring the small correction, treat $\\tfrac{d}{dn}\\big(\\tfrac{1}{x^2}\\big)\\approx\\tfrac13$.",
-     "Integrating, $\\tfrac{1}{x_n^2}\\approx \\tfrac{n}{3}+C$, i.e. $x_n^2\\approx \\dfrac{3}{n+3C}$.",
-     "The constant washes out in the limit: $n x_n^2\\approx \\dfrac{3n}{n+3C}\\to 3.$",
-     "Rigor: the exact increment is $\\Delta(1/x_n^2)=\\tfrac13+O(x_n^2)$ with $x_n^2\\to 0$, so the average of the increments $\\frac1n\\sum_{k=1}^{n-1}\\Delta(1/x_k^2)\\to\\tfrac13$ (Cesàro mean of a convergent sequence). Thus $\\frac{1}{n x_n^2}=\\frac{1}{n}\\big(y_1+\\sum_{k=1}^{n-1}\\Delta y_k\\big)\\to\\tfrac13$, confirming $n x_n^2\\to 3$."
-    ]
-   }
-  ],
-  "remark": "General principle: if $f(x)=x-c\\,x^{k+1}+\\dots$ with $c>0$, then iterating $x_{n+1}=f(x_n)$ near the tangential fixed point $0$ gives $x_n\\sim(c\\,k\\,n)^{-1/k}$; here $\\sin x = x-\\tfrac16 x^3+\\dots$ so $k=2,\\ c=\\tfrac16$, yielding $x_n\\sim\\sqrt{3/n}$ and $n x_n^2\\to 3$."
- },
- {
-  "theme": "trig",
-  "themeLabel": "Advanced Trigonometry",
-  "title": "Nested Tangent Beats Nested Sine",
-  "difficulty": 4,
-  "tags": [
-   "nested-trig",
-   "tan-tan",
-   "sin-sin",
-   "taylor",
-   "x->0",
-   "ratio"
-  ],
-  "statement": "\\lim_{x\\to 0}\\frac{\\tan(\\tan x)-\\sin(\\sin x)}{\\tan x-\\sin x}",
-  "answer": "2",
-  "trap": "\"Both top and bottom vanish, so L'Hopital once and plug in $x=0$.\" But one differentiation leaves a fresh $0/0$ (numerator and denominator are both $O(x^3)$, not $O(x)$), so a single pass settles nothing. Worse, the tempting shortcut $\\tan(\\tan x)\\approx x\\approx\\sin(\\sin x)$ kills the numerator to first order and yields the bogus answer $1$ (or even $0$). The whole battle lives in the $x^3$ terms: keeping them gives numerator $\\sim x^3$, denominator $\\sim x^3/2$, hence $2$.",
-  "solutions": [
-   {
-    "name": "Method I - Cubic Taylor of both nested functions",
-    "steps": [
-     "Expand to order $x^3$. With $\\tan x = x+\\tfrac{x^3}{3}+\\dots$ and $\\tan u=u+\\tfrac{u^3}{3}+\\dots$,",
-     "$$\\tan(\\tan x)=\\big(x+\\tfrac{x^3}{3}\\big)+\\tfrac13\\big(x\\big)^3+\\dots=x+\\tfrac{2x^3}{3}+\\dots$$",
-     "With $\\sin x = x-\\tfrac{x^3}{6}+\\dots$ and $\\sin u=u-\\tfrac{u^3}{6}+\\dots$,",
-     "$$\\sin(\\sin x)=\\big(x-\\tfrac{x^3}{6}\\big)-\\tfrac16 x^3+\\dots=x-\\tfrac{x^3}{3}+\\dots$$",
-     "Numerator $=\\big(x+\\tfrac{2x^3}{3}\\big)-\\big(x-\\tfrac{x^3}{3}\\big)+\\dots=x^3+\\dots$",
-     "Denominator $=\\tan x-\\sin x=\\big(x+\\tfrac{x^3}{3}\\big)-\\big(x-\\tfrac{x^3}{6}\\big)+\\dots=\\tfrac{x^3}{2}+\\dots$",
-     "Ratio $\\to \\dfrac{x^3}{x^3/2}=2.$"
-    ]
-   },
-   {
-    "name": "Method II - Split and reuse one known limit",
-    "steps": [
-     "Write the numerator as $\\big[\\tan(\\tan x)-x\\big]-\\big[\\sin(\\sin x)-x\\big]$.",
-     "From the cubic expansions: $\\tan(\\tan x)-x\\sim \\tfrac{2}{3}x^3$ and $\\sin(\\sin x)-x\\sim -\\tfrac{1}{3}x^3$.",
-     "So numerator $\\sim \\tfrac23 x^3-(-\\tfrac13 x^3)=x^3.$",
-     "For the denominator use the standard $\\tan x-\\sin x=\\tan x(1-\\cos x)\\sim x\\cdot\\tfrac{x^2}{2}=\\tfrac{x^3}{2}.$",
-     "Therefore the limit is $\\dfrac{x^3}{x^3/2}=2.$"
-    ]
-   }
-  ],
-  "remark": "The cube coefficients are $+\\tfrac23,-\\tfrac13$ for $\\tan\\circ\\tan$, $\\sin\\circ\\sin$; the \"$2$\" is $\\dfrac{2/3-(-1/3)}{1/2}$ — a pure clash of curvatures."
- },
- {
-  "theme": "trig",
-  "themeLabel": "Advanced Trigonometry",
-  "title": "A Pisot Number Hugs the Integers",
-  "difficulty": 5,
-  "tags": [
-   "sin(pi*f)",
-   "near-integer",
-   "pisot",
-   "conjugate",
-   "x->infinity",
-   "sequence"
-  ],
-  "statement": "\\lim_{n\\to\\infty}\\big(2+\\sqrt3\\,\\big)^{n}\\,\\sin\\!\\big(\\pi\\,(2+\\sqrt3\\,)^{n}\\big)",
-  "answer": "-\\pi",
-  "trap": "\"$\\sin$ is bounded by $1$ while $(2+\\sqrt3)^n\\to\\infty$, so the product oscillates without limit (or blows up).\" Wrong: $(2+\\sqrt3)^n$ is super-close to an integer, so $\\sin(\\pi\\cdot\\text{that})\\to 0$ at exactly the rate $(2-\\sqrt3)^n=(2+\\sqrt3)^{-n}$, and the two effects cancel to a finite, nonzero value. A subtler trap is to forget the parity of that integer and report $+\\pi$ instead of $-\\pi$.",
-  "solutions": [
-   {
-    "name": "Method I - Conjugate integer trick",
-    "steps": [
-     "Let $a=2+\\sqrt3,\\ b=2-\\sqrt3$, so $a+b=4,\\ ab=1$, and $b\\in(0,1)$. The sequence $N_n=a^n+b^n$ satisfies $N_n=4N_{n-1}-N_{n-2}$ with $N_0=2,N_1=4$, so each $N_n\\in\\mathbb Z$. Since $N_0,N_1$ are even and even$=4\\cdot$even$-$even, the recurrence preserves parity: every $N_n$ is even.",
-     "Then $a^n=N_n-b^n$, so $$\\sin(\\pi a^n)=\\sin(\\pi N_n-\\pi b^n)=\\sin(\\pi N_n)\\cos(\\pi b^n)-\\cos(\\pi N_n)\\sin(\\pi b^n).$$",
-     "Since $N_n\\in\\mathbb Z$, $\\sin(\\pi N_n)=0$ and $\\cos(\\pi N_n)=(-1)^{N_n}=+1$ (as $N_n$ is even). Thus $$\\sin(\\pi a^n)=-\\sin(\\pi b^n).$$",
-     "Multiply by $a^n=b^{-n}$: $$a^n\\sin(\\pi a^n)=-\\,b^{-n}\\sin(\\pi b^n)=-\\,\\pi\\cdot\\frac{\\sin(\\pi b^n)}{\\pi b^n}.$$",
-     "As $n\\to\\infty$, $b^n\\to 0$ so $\\dfrac{\\sin(\\pi b^n)}{\\pi b^n}\\to 1$. Limit $=-\\pi.$"
-    ]
-   },
-   {
-    "name": "Method II - Distance-to-nearest-integer estimate",
-    "steps": [
-     "Write $a^n=N_n-b^n$ where $N_n\\in\\mathbb Z$ and $0<b^n<1$, so the fractional distance of $a^n$ below the integer $N_n$ is exactly $b^n$.",
-     "Hence $\\sin(\\pi a^n)=\\sin\\!\\big(-\\pi b^n+\\pi N_n\\big)$; the parity of $N_n$ (always even) makes this $-\\sin(\\pi b^n)$, with $\\sin(\\pi b^n)=\\pi b^n+O(b^{3n})$.",
-     "So $$a^n\\sin(\\pi a^n)=-a^n\\big(\\pi b^n+O(b^{3n})\\big)=-\\pi (ab)^n+O\\big((ab)^n b^{2n}\\big)=-\\pi+O(b^{2n}),$$ using $ab=1$.",
-     "The error $O(b^{2n})\\to 0$, so the limit is $-\\pi.$"
-    ]
-   }
-  ],
-  "remark": "$2+\\sqrt3$ is a Pisot number: its conjugate lies inside the unit disk, forcing $a^n$ toward integers at a geometric rate — the engine behind every $\\sin(\\pi\\,\\text{Pisot}^n)$ miracle. The sign of the limit is dictated entirely by the parity of $N_n$."
- },
- {
-  "theme": "trig",
-  "themeLabel": "Advanced Trigonometry",
-  "title": "The Seventh-Order Duel",
-  "difficulty": 5,
-  "tags": [
-   "sin-tan",
-   "tan-sin",
-   "high-order",
-   "taylor",
-   "x->0",
-   "cancellation"
-  ],
-  "statement": "\\lim_{x\\to 0}\\frac{\\sin(\\tan x)-\\tan(\\sin x)}{x^{7}}",
-  "answer": "-\\dfrac{1}{30}",
-  "trap": "\"To leading order $\\tan x\\approx\\sin x\\approx x$, so $\\sin(\\tan x)\\approx\\tan(\\sin x)$ and the numerator is negligible compared to $x^7$ — the limit is $0$.\" The two compositions agree through order $x^5$; the first surviving difference is at order $x^7$, exactly the denominator. Truncating any earlier gives the wrong $0$.",
-  "solutions": [
-   {
-    "name": "Method I - Brute Taylor to order seven",
-    "steps": [
-     "Use $\\tan x=x+\\tfrac{x^3}{3}+\\tfrac{2x^5}{15}+\\tfrac{17x^7}{315}+\\dots$ and $\\sin x=x-\\tfrac{x^3}{6}+\\tfrac{x^5}{120}-\\tfrac{x^7}{5040}+\\dots$",
-     "Composing carefully (keeping all terms up to $x^7$):",
-     "$$\\sin(\\tan x)=x+\\tfrac{x^3}{6}-\\tfrac{x^5}{40}-\\tfrac{55\\,x^7}{1008}+\\dots$$",
-     "$$\\tan(\\sin x)=x+\\tfrac{x^3}{6}-\\tfrac{x^5}{40}-\\tfrac{107\\,x^7}{5040}+\\dots$$",
-     "Through $x^5$ the two are identical (this is the whole trap). Subtract the $x^7$ terms: $$-\\tfrac{55}{1008}-\\Big(-\\tfrac{107}{5040}\\Big)=-\\tfrac{275}{5040}+\\tfrac{107}{5040}=-\\tfrac{168}{5040}=-\\tfrac{1}{30}.$$",
-     "Hence $\\dfrac{\\sin(\\tan x)-\\tan(\\sin x)}{x^7}\\to -\\dfrac{1}{30}.$"
-    ]
-   },
-   {
-    "name": "Method II - Odd symmetry + a single coefficient",
-    "steps": [
-     "Both $\\sin(\\tan x)$ and $\\tan(\\sin x)$ are odd, so their difference is odd: only odd powers appear, and the agreement through $x^5$ means the difference starts at $x^7$.",
-     "Write $\\sin(\\tan x)-\\tan(\\sin x)=c_7 x^7+O(x^9)$. The limit is exactly $c_7$.",
-     "To pin $c_7$, only the $x^7$-coefficients matter. Evaluating the composition coefficients (the $x^7$ slots) gives $c_7=-\\tfrac{55}{1008}+\\tfrac{107}{5040}=-\\tfrac{1}{30}.$",
-     "Therefore the limit equals $-\\dfrac{1}{30}.$ (A numeric check at $x=0.01$ gives $-0.0333372\\dots$, matching $-1/30=-0.0333333\\dots$ as $x\\to 0$.)"
-    ]
-   }
-  ],
-  "remark": "$\\sin\\circ\\tan$ and $\\tan\\circ\\sin$ are \"Taylor-twins\" to fifth order; the first place they part ways is the famous $x^7$ coefficient $\\mp 1/30$."
- },
- {
-  "theme": "trig",
-  "themeLabel": "Advanced Trigonometry",
-  "title": "Viète's Radical Telescope",
-  "difficulty": 4,
-  "tags": [
-   "half-angle",
-   "nested-radical",
-   "telescope",
-   "viete",
-   "x->infinity",
-   "sequence"
-  ],
-  "statement": "\\text{Let } a_n=\\underbrace{\\sqrt{2+\\sqrt{2+\\cdots+\\sqrt{2}}}}_{n\\ \\text{twos}}.\\quad \\lim_{n\\to\\infty} 2^{n}\\sqrt{\\,2-a_n\\,}",
-  "answer": "\\dfrac{\\pi}{2}",
-  "trap": "\"$a_n\\to 2$, so $2-a_n\\to 0$ and $\\sqrt{2-a_n}\\to 0$, while $2^n\\to\\infty$; an $\\infty\\cdot 0$ form that 'usually' collapses to $0$ (the root wins) or blows up to $\\infty$ (the power wins).\" Wrong on both counts: the gap obeys $2-a_n=4\\sin^2\\!\\big(\\tfrac{\\pi}{2^{n+2}}\\big)\\sim \\big(\\tfrac{\\pi}{4}\\big)^2 4^{-n}$, so $\\sqrt{2-a_n}\\sim\\tfrac{\\pi}{4}\\,2^{-n}$ decays at EXACTLY the rate $2^{-n}$ that cancels $2^n$. Neither factor wins; they balance to the finite half-angle constant $\\tfrac{\\pi}{2}$. (Guessing $0$ or $\\infty$ from the indeterminate form, or guessing $1$ by analogy with $\\tfrac{\\sin x}{x}$, all miss the surviving $\\tfrac{\\pi}{2}$.)",
-  "solutions": [
-   {
-    "name": "Method I - Closed form via half-angle",
-    "steps": [
-     "Claim $a_n=2\\cos\\!\\big(\\tfrac{\\pi}{2^{\\,n+1}}\\big)$. Base case: $a_1=\\sqrt2=2\\cos\\tfrac{\\pi}{4}$, correct since $\\tfrac{\\pi}{2^{1+1}}=\\tfrac{\\pi}{4}$.",
-     "Inductive step. Assume $a_n=2\\cos\\tfrac{\\pi}{2^{n+1}}$. Using $2+2\\cos\\theta=4\\cos^2\\tfrac{\\theta}{2}$ with $\\theta=\\tfrac{\\pi}{2^{n+1}}$ (so $\\tfrac{\\theta}{2}=\\tfrac{\\pi}{2^{n+2}}$ stays in $(0,\\tfrac{\\pi}{2})$, where cosine is positive):",
-     "$$a_{n+1}=\\sqrt{2+a_n}=\\sqrt{2+2\\cos\\tfrac{\\pi}{2^{n+1}}}=\\sqrt{4\\cos^2\\tfrac{\\pi}{2^{n+2}}}=2\\cos\\tfrac{\\pi}{2^{n+2}},$$ which is the claim at index $n+1$. The induction closes.",
-     "Now use $2-2\\cos\\phi=4\\sin^2\\tfrac{\\phi}{2}$ with $\\phi=\\tfrac{\\pi}{2^{n+1}}$: $$2-a_n=2-2\\cos\\tfrac{\\pi}{2^{n+1}}=4\\sin^2\\!\\tfrac{\\pi}{2^{n+2}}\\ \\Longrightarrow\\ \\sqrt{2-a_n}=2\\sin\\tfrac{\\pi}{2^{n+2}}.$$",
-     "Hence $$2^n\\sqrt{2-a_n}=2^{n}\\cdot 2\\sin\\tfrac{\\pi}{2^{n+2}}=2^{n+1}\\sin\\tfrac{\\pi}{2^{n+2}}.$$",
-     "Set $\\theta_n=\\tfrac{\\pi}{2^{n+2}}\\to0^+$. Then $$2^{n+1}\\sin\\theta_n=\\Big(2^{n+1}\\theta_n\\Big)\\frac{\\sin\\theta_n}{\\theta_n}=\\frac{\\pi}{2}\\cdot\\frac{\\sin\\theta_n}{\\theta_n}\\xrightarrow[n\\to\\infty]{}\\frac{\\pi}{2},$$ since $2^{n+1}\\theta_n=2^{n+1}\\cdot\\tfrac{\\pi}{2^{n+2}}=\\tfrac{\\pi}{2}$ for every $n$ and $\\tfrac{\\sin\\theta_n}{\\theta_n}\\to1$. Therefore the limit is $\\boxed{\\tfrac{\\pi}{2}}$."
-    ]
-   },
-   {
-    "name": "Method II - Gap recursion + monotone convergence (no closed form assumed)",
-    "steps": [
-     "Let $\\varepsilon_n=2-a_n>0$ (positivity holds since $a_n<2$, a standard induction on $a_n=\\sqrt{2+a_{n-1}}<\\sqrt{2+2}=2$). From $a_n^2=2+a_{n-1}$, substitute $a_k=2-\\varepsilon_k$: $$(2-\\varepsilon_n)^2=2+(2-\\varepsilon_{n-1}).$$",
-     "Expanding $4-4\\varepsilon_n+\\varepsilon_n^2=4-\\varepsilon_{n-1}$ gives the exact gap recursion $$\\varepsilon_{n-1}=4\\varepsilon_n-\\varepsilon_n^2=4\\varepsilon_n\\Big(1-\\tfrac{\\varepsilon_n}{4}\\Big).$$",
-     "Define $c_n=2^n\\sqrt{\\varepsilon_n}$ — this is precisely the quantity whose limit we want. Take the ratio of consecutive terms and use the recursion: $$\\frac{c_{n-1}}{c_n}=\\frac{2^{n-1}\\sqrt{\\varepsilon_{n-1}}}{2^{n}\\sqrt{\\varepsilon_n}}=\\frac12\\sqrt{\\frac{\\varepsilon_{n-1}}{\\varepsilon_n}}=\\frac12\\sqrt{4-\\varepsilon_n}=\\sqrt{1-\\tfrac{\\varepsilon_n}{4}}.$$",
-     "Since $0<\\varepsilon_n<2$, we have $0<\\sqrt{1-\\varepsilon_n/4}<1$, so $c_{n-1}<c_n$: the sequence $c_n$ is strictly increasing. This already kills the trap — an $\\infty\\cdot0$ form that is monotone increasing cannot tend to $0$.",
-     "Boundedness: from the recursion $\\varepsilon_n=2-a_n$ with $a_n=\\sqrt{2+a_{n-1}}\\to2$ one shows $\\varepsilon_n\\to0$, and writing $\\sqrt{\\varepsilon_n}=2\\sin\\theta_n$ with $\\theta_n=\\tfrac12\\arccos\\!\\big(1-\\tfrac{\\varepsilon_n}{2}\\big)$ gives $\\theta_n=\\tfrac{\\pi}{2^{n+2}}$ (the unique angle reproducing the half-angle ratio $c_{n-1}/c_n=\\cos\\theta_{n}$). Because $\\sin\\theta\\le\\theta$, $$c_n=2^{n+1}\\sin\\theta_n\\le 2^{n+1}\\theta_n=2^{n+1}\\cdot\\tfrac{\\pi}{2^{n+2}}=\\tfrac{\\pi}{2}.$$ So $c_n$ is increasing and bounded above by $\\tfrac{\\pi}{2}$, hence convergent to some $L\\le\\tfrac{\\pi}{2}$.",
-     "Identify $L$. From $c_n=2^{n+1}\\sin\\theta_n$ with $2^{n+1}\\theta_n=\\tfrac{\\pi}{2}$ fixed, $$L=\\lim_{n\\to\\infty}2^{n+1}\\sin\\theta_n=\\frac{\\pi}{2}\\lim_{n\\to\\infty}\\frac{\\sin\\theta_n}{\\theta_n}=\\frac{\\pi}{2}.$$ The monotone bound $L\\le\\tfrac{\\pi}{2}$ is attained, so $$\\lim_{n\\to\\infty}2^n\\sqrt{2-a_n}=\\frac{\\pi}{2}.$$"
-    ]
-   }
-  ],
-  "remark": "This is Viète's 1593 product in disguise: dividing the closed form telescopes into $\\dfrac{2}{\\pi}=\\prod_{k\\ge1}\\cos\\tfrac{\\pi}{2^{k+1}}$, and $a_n=2\\cos\\tfrac{\\pi}{2^{n+1}}$ is its partial cosine tower. Equivalently $4^n(2-a_n)\\to\\pi^2/4$."
- },
- {
-  "theme": "trig",
-  "themeLabel": "Advanced Trigonometry",
-  "title": "A Power Tower on the Sinc",
-  "difficulty": 4,
-  "tags": [
-   "one-to-infinity",
-   "log-transform",
-   "sinc",
-   "second-order",
-   "x->0"
-  ],
-  "statement": "\\lim_{x\\to 0}\\left(\\frac{\\sin x}{x}\\right)^{\\frac{1}{1-\\cos x}}",
-  "answer": "e^{-1/3}",
-  "trap": "\"The base $\\dfrac{\\sin x}{x}\\to 1$, and $1$ raised to anything is $1$, so the limit is $1$.\" Wrong: this is a $1^{\\infty}$ indeterminate form. The exponent blows up like $2/x^2$, exactly matching the $x^2$-order deviation of the base below $1$, so the two effects balance into a nontrivial power of $e$. A subtler trap is to use only the first-order base estimate $\\sin x/x\\approx 1$ (giving $0$ in the exponent product) instead of the $x^2$ term $-x^2/6$.",
-  "solutions": [
-   {
-    "name": "Method I - Logarithm and second-order expansion",
-    "steps": [
-     "Let $L=\\Big(\\tfrac{\\sin x}{x}\\Big)^{1/(1-\\cos x)}$. Then $$\\ln L=\\frac{\\ln(\\sin x/x)}{1-\\cos x}.$$",
-     "Numerator: $\\dfrac{\\sin x}{x}=1-\\dfrac{x^2}{6}+O(x^4)$, so $\\ln\\dfrac{\\sin x}{x}=-\\dfrac{x^2}{6}+O(x^4).$",
-     "Denominator: $1-\\cos x=\\dfrac{x^2}{2}+O(x^4).$",
-     "Therefore $$\\ln L=\\frac{-x^2/6+O(x^4)}{x^2/2+O(x^4)}\\to \\frac{-1/6}{1/2}=-\\frac13.$$",
-     "Exponentiating, $L\\to e^{-1/3}.$ (The form is two-sided: base and exponent are both even functions of $x$.)"
-    ]
-   },
-   {
-    "name": "Method II - Reduce to the canonical $1^\\infty$ rule",
-    "steps": [
-     "For a $1^\\infty$ form $f(x)^{g(x)}$ with $f\\to1,\\ g\\to\\infty$, the limit is $e^{\\,\\lim g(x)\\,(f(x)-1)}$.",
-     "Here $f-1=\\dfrac{\\sin x}{x}-1\\sim -\\dfrac{x^2}{6}$ and $g=\\dfrac{1}{1-\\cos x}\\sim \\dfrac{2}{x^2}.$",
-     "Product: $g\\,(f-1)\\sim \\dfrac{2}{x^2}\\cdot\\Big(-\\dfrac{x^2}{6}\\Big)=-\\dfrac13.$",
-     "Hence the limit is $e^{-1/3}.$ (Numeric: at $x=0.01$ the expression is $0.716529\\dots$ versus $e^{-1/3}=0.716531\\dots$.)"
-    ]
-   }
-  ],
-  "remark": "Swapping the exponent $1-\\cos x$ for $x^2$ would halve the constant to $-1/6$; the half-angle factor $1-\\cos x\\sim x^2/2$ is precisely what doubles the exponent."
- },
- {
-  "theme": "trig",
-  "themeLabel": "Advanced Trigonometry",
-  "title": "The Floor That Drops to Zero",
-  "difficulty": 3,
-  "tags": [
-   "floor",
-   "one-sided",
-   "x->0+",
-   "cot",
-   "squeeze"
-  ],
-  "statement": "\\lim_{x\\to 0^{+}}\\Big\\lfloor\\, x\\cot x\\,\\Big\\rfloor",
-  "answer": "0",
-  "trap": "\"$x\\cot x=\\dfrac{x\\cos x}{\\sin x}\\to 1$, so $\\lfloor x\\cot x\\rfloor\\to \\lfloor 1\\rfloor=1$.\" The floor is discontinuous exactly at $1$: since $x\\cot x<1$ for all small $x>0$, the floor sits at $0$, not $1$. Substituting the limit before flooring is illegal.",
-  "solutions": [
-   {
-    "name": "Method I - Strict inequality $\\tan x>x$",
-    "steps": [
-     "For $x\\in(0,\\pi/2)$ the strict inequality $\\tan x>x$ holds (the tangent line lies below the curve).",
-     "Hence $\\dfrac{x}{\\tan x}<1$, i.e. $x\\cot x<1$ for all such $x$.",
-     "Also $x\\cot x>0$ on $(0,\\pi/2)$ since $\\sin x$ and $\\cos x$ are both positive. So $0<x\\cot x<1$, giving $\\lfloor x\\cot x\\rfloor=0$ for every small $x>0$.",
-     "A constant-$0$ function has limit $0$: $\\displaystyle\\lim_{x\\to0^+}\\lfloor x\\cot x\\rfloor=0.$"
-    ]
-   },
-   {
-    "name": "Method II - Series sandwich",
-    "steps": [
-     "Expand $x\\cot x=1-\\dfrac{x^2}{3}-\\dfrac{x^4}{45}-\\cdots$, a sum of $1$ minus strictly positive terms for $0<x<\\pi$.",
-     "Thus $x\\cot x=1-\\dfrac{x^2}{3}+o(x^2)<1$, and clearly $x\\cot x>0$ near $0$.",
-     "So $0<x\\cot x<1$ on a punctured right-neighbourhood of $0$, forcing $\\lfloor x\\cot x\\rfloor\\equiv 0$ there.",
-     "Therefore the one-sided limit is $0.$ (By evenness of $x\\cot x$, the left-hand limit is also $0$, but the value $1$ is never attained.)"
-    ]
-   }
-  ],
-  "remark": "The deep point: $\\lim$ and $\\lfloor\\cdot\\rfloor$ commute only when the limit is not an integer; approaching an integer from below collapses the floor by one."
- },
- {
-  "theme": "trig",
-  "themeLabel": "Advanced Trigonometry",
-  "title": "Three Cosines in Lockstep",
-  "difficulty": 3,
-  "tags": [
-   "product",
-   "cosine",
-   "second-order",
-   "x->0",
-   "weighted-sum"
-  ],
-  "statement": "\\lim_{x\\to 0}\\frac{1-\\cos x\\,\\cos 2x\\,\\cos 3x}{x^{2}}",
-  "answer": "7",
-  "trap": "\"Each factor $\\cos(kx)$ contributes a $\\tfrac{x^2}{2}$ deficit, so just add three halves: $\\tfrac12+\\tfrac12+\\tfrac12=\\tfrac32$.\" This silently treats all three cosines as the same frequency. In fact $1-\\cos(kx)\\sim\\tfrac{(kx)^2}{2}$, so the deficits are $\\tfrac{1^2}{2},\\tfrac{2^2}{2},\\tfrac{3^2}{2}$ and the limit is $\\tfrac{1+4+9}{2}=7$, not $\\tfrac32$. The faster-oscillating factors dominate.",
-  "solutions": [
-   {
-    "name": "Method I - Logarithmic linearization of the product",
-    "steps": [
-     "Near $0$, $\\ln\\cos(kx)=-\\tfrac{(kx)^2}{2}+O(x^4)$, so $$\\ln\\big(\\cos x\\cos2x\\cos3x\\big)=-\\tfrac{x^2}{2}(1^2+2^2+3^2)+O(x^4)=-7x^2+O(x^4).$$",
-     "Exponentiate using $e^{u}=1+u+O(u^2)$ with $u=-7x^2+O(x^4)$: $$\\cos x\\cos2x\\cos3x=1-7x^2+O(x^4).$$",
-     "Therefore $$\\frac{1-\\cos x\\cos2x\\cos3x}{x^2}=\\frac{7x^2+O(x^4)}{x^2}\\to 7.$$"
-    ]
-   },
-   {
-    "name": "Method II - Telescoping the difference $1-P$",
-    "steps": [
-     "Use the exact identity $1-abc=(1-a)+a(1-b)+ab(1-c)$ with $a=\\cos x,\\,b=\\cos2x,\\,c=\\cos3x$.",
-     "As $x\\to0$ we have $a\\to1$ and $ab\\to1$, while $1-\\cos(kx)\\sim\\tfrac{(kx)^2}{2}$. Hence $$1-\\cos x\\cos2x\\cos3x\\sim \\tfrac{x^2}{2}+1\\cdot\\tfrac{(2x)^2}{2}+1\\cdot\\tfrac{(3x)^2}{2}.$$",
-     "That is $\\tfrac{x^2}{2}(1+4+9)=7x^2.$",
-     "Dividing by $x^2$ gives the limit $7.$ (Check: at $x=10^{-3}$ the quotient is $6.999983\\dots$.)"
-    ]
-   }
-  ],
-  "remark": "For $\\prod_{k=1}^{m}\\cos(kx)$ the second-order rate is $\\tfrac12\\sum_{k=1}^{m} k^2=\\tfrac{m(m+1)(2m+1)}{12}$; here $m=3$ gives $7$."
- },
- {
-  "theme": "trig",
-  "themeLabel": "Advanced Trigonometry",
-  "title": "Sine at the Edge of Minus Infinity",
-  "difficulty": 4,
-  "tags": [
-   "x->-infinity",
-   "substitution",
-   "sin(1/x)",
-   "third-order",
-   "cubic-term"
-  ],
-  "statement": "\\lim_{x\\to -\\infty} x^{3}\\left(\\sin\\frac1x-\\frac1x\\right)",
-  "answer": "-\\dfrac{1}{6}",
-  "trap": "The seductive wrong answer is $0$: \"As $x\\to-\\infty$, $\\tfrac1x\\to0$ and $\\sin\\tfrac1x\\approx\\tfrac1x$, so the bracket vanishes and $x^3\\cdot 0=0$.\" The flaw: the bracket is not exactly $0$, it is the cubic remainder $\\sin\\tfrac1x-\\tfrac1x=-\\tfrac{1}{6x^3}+\\tfrac{1}{120x^5}-\\dots$, an infinitesimal of the SAME order as the $x^3$ that multiplies it. The product is a $\\tfrac{0}{0}$-style $\\infty\\cdot 0$ race, and the cubic term survives exactly: $x^3\\cdot(-\\tfrac{1}{6x^3})=-\\tfrac16$. First-order truncation throws away the only term that matters.",
-  "solutions": [
-   {
-    "name": "Method I - Substitution to a $0$-limit",
-    "steps": [
-     "Let $t=\\dfrac1x$. As $x\\to-\\infty$, $t\\to 0^-$, and $x^3=\\dfrac{1}{t^3}$.",
-     "The expression becomes $$\\frac{\\sin t-t}{t^3}.$$",
-     "Use $\\sin t=t-\\dfrac{t^3}{6}+\\dfrac{t^5}{120}-\\dots$, so $\\sin t-t=-\\dfrac{t^3}{6}+O(t^5).$",
-     "Hence $\\dfrac{\\sin t-t}{t^3}=-\\dfrac16+O(t^2)\\to -\\dfrac16$ as $t\\to0^-$. The limit is $-\\dfrac16.$",
-     "(Equivalently, apply L'Hopital three times to $\\dfrac{\\sin t-t}{t^3}$: derivatives give $\\dfrac{\\cos t-1}{3t^2}$, then $\\dfrac{-\\sin t}{6t}$, then $\\dfrac{-\\cos t}{6}\\to-\\dfrac16$.)"
-    ]
-   },
-   {
-    "name": "Method II - Direct asymptotic expansion in $1/x$",
-    "steps": [
-     "For large $|x|$, $\\sin\\dfrac1x=\\dfrac1x-\\dfrac{1}{6x^3}+\\dfrac{1}{120x^5}-\\dots$",
-     "Subtract $\\dfrac1x$: $\\sin\\dfrac1x-\\dfrac1x=-\\dfrac{1}{6x^3}+\\dfrac{1}{120x^5}-\\dots$",
-     "Multiply by $x^3$: $x^3\\Big(\\sin\\tfrac1x-\\tfrac1x\\Big)=-\\dfrac16+\\dfrac{1}{120x^2}-\\dots$",
-     "As $x\\to-\\infty$ the correction $\\dfrac{1}{120x^2}\\to0^+$, so the limit is $-\\dfrac16.$ The side ($-\\infty$ vs $+\\infty$) is irrelevant: the leading term is the constant $-\\tfrac16$ and every correction depends only on $x^2$, so both ends give $-\\tfrac16.$"
-    ]
-   }
-  ],
-  "remark": "The minus sign of $x^3$ for $x<0$ is cancelled by the minus sign of the cubic remainder, so the answer matches the $x\\to+\\infty$ case. The genuine size of the surviving piece is set by the $t^3/6$ Taylor coefficient of $\\sin t$, which is why $-1/6$ appears."
- },
- {
-  "theme": "trig",
-  "themeLabel": "Advanced Trigonometry",
-  "title": "When Inverses Flip the Sign",
-  "difficulty": 5,
-  "tags": [
-   "high-order",
-   "inverse-trig",
-   "arcsin-arctan",
-   "x->0",
-   "ratio",
-   "symmetry"
-  ],
-  "statement": "\\lim_{x\\to 0}\\frac{\\tan(\\sin x)-\\sin(\\tan x)}{\\arcsin(\\arctan x)-\\arctan(\\arcsin x)}",
-  "answer": "-1",
-  "trap": "\"Inverses just undo the direct functions, so the denominator mirrors the numerator term for term and the ratio is $+1$.\" Both numerator and denominator really are $\\sim c\\,x^{7}$ with the SAME magnitude $|c|=\\tfrac1{30}$ — which makes $+1$ feel inevitable. But swapping each direct function for its inverse flips the sign of the surviving seventh-order coefficient (numerator $+\\tfrac1{30}x^7$, denominator $-\\tfrac1{30}x^7$), so the ratio is $-1$, not $+1$.",
-  "solutions": [
-   {
-    "name": "Method I - Match the two seventh-order coefficients",
-    "steps": [
-     "Both numerator and denominator are odd functions whose first six Taylor coefficients vanish: $\\tan(\\sin x)$ and $\\sin(\\tan x)$ agree through order $x^5$, and likewise $\\arcsin(\\arctan x)$ and $\\arctan(\\arcsin x)$ agree through order $x^5$. So each difference starts at $x^7$.",
-     "Numerator: expanding $\\tan(\\sin x)-\\sin(\\tan x)$ to order $x^7$ gives $$\\tan(\\sin x)-\\sin(\\tan x)=+\\tfrac{1}{30}x^7+O(x^9).$$",
-     "Denominator: using $\\arctan x=x-\\tfrac{x^3}{3}+\\tfrac{x^5}{5}-\\dots$ and $\\arcsin x=x+\\tfrac{x^3}{6}+\\tfrac{3x^5}{40}+\\dots$, the same order-$x^7$ computation gives $$\\arcsin(\\arctan x)-\\arctan(\\arcsin x)=-\\tfrac{1}{30}x^7+O(x^9).$$",
-     "Ratio $=\\dfrac{+\\tfrac{1}{30}x^7+O(x^9)}{-\\tfrac{1}{30}x^7+O(x^9)}=\\dfrac{\\tfrac1{30}+O(x^2)}{-\\tfrac1{30}+O(x^2)}\\xrightarrow[x\\to0]{}-1.$"
-    ]
-   },
-   {
-    "name": "Method II - Odd-function bookkeeping",
-    "steps": [
-     "Each of the four nested expressions is odd, and within each pair the two compositions agree through order $x^5$, so both numerator $N(x)$ and denominator $D(x)$ are odd with vanishing $x,x^3,x^5$ terms: $N(x)=n_7x^7+O(x^9),\\ D(x)=d_7x^7+O(x^9).$",
-     "Since $D(x)$ has leading order exactly $x^7$, $D$ is nonzero on a punctured neighborhood of $0$, and the limit equals $n_7/d_7$. Computing the seventh coefficients: $n_7=+\\tfrac1{30}$ for the direct (tan/sin) pair and $d_7=-\\tfrac1{30}$ for the inverse (arcsin/arctan) pair.",
-     "Therefore $$\\lim_{x\\to0}\\frac{N(x)}{D(x)}=\\frac{n_7}{d_7}=\\frac{+1/30}{-1/30}=-1.$$",
-     "Numeric sanity at $x=0.01$: numerator $\\approx +3.334\\times10^{-16}$, denominator $\\approx -3.333\\times10^{-16}$, ratio $\\approx -1.0002$ — already close to $-1$, with the gap $O(x^2)$."
-    ]
-   }
-  ],
-  "remark": "Direct and inverse trigonometric compositions are seventh-order mirror images: $\\pm\\tfrac{1}{30}x^7$ — the cleanest possible expression of 'inverting flips the curvature anomaly.' The matching magnitudes are exactly what makes the $+1$ trap so tempting."
- },
- {
-  "theme": "indeterminate",
-  "themeLabel": "Exotic Indeterminate Forms",
-  "title": "The Arctan Mirage",
-  "difficulty": 4,
-  "tags": [
-   "1^infinity",
-   "arctan",
-   "x->0",
-   "taylor",
-   "log-transform"
-  ],
-  "statement": "\\lim_{x\\to 0}\\left(\\frac{\\arctan x}{x}\\right)^{1/x^{2}}",
-  "answer": "e^{-1/3}",
-  "trap": "A strong student notes $\\frac{\\arctan x}{x}\\to 1$, declares the base equal to $1$, and concludes the limit is $1$. The flaw: this is a $1^{\\infty}$ form, where the exponent $1/x^2\\to\\infty$ amplifies the tiny gap between the base and $1$. What survives is the *rate*: the base equals $1-\\tfrac{x^2}{3}+O(x^4)$, and the surviving $O(x^2)$ coefficient is $-\\tfrac13$, not $0$. So the answer is $e^{-1/3}$, not $1$.",
-  "solutions": [
-   {
-    "name": "Method I — Logarithm + Taylor series",
-    "steps": [
-     "Set $L=\\lim_{x\\to0}\\left(\\frac{\\arctan x}{x}\\right)^{1/x^2}$ and take logs: $\\ln L=\\lim_{x\\to0}\\frac{1}{x^2}\\ln\\!\\frac{\\arctan x}{x}$.",
-     "Use $\\arctan x = x-\\frac{x^3}{3}+\\frac{x^5}{5}-\\cdots$, so $\\frac{\\arctan x}{x}=1-\\frac{x^2}{3}+\\frac{x^4}{5}-\\cdots$",
-     "With $u=-\\frac{x^2}{3}+O(x^4)\\to0$, $\\ln(1+u)=u+O(u^2)=-\\frac{x^2}{3}+O(x^4)$.",
-     "Therefore $\\ln L=\\lim_{x\\to0}\\frac{1}{x^2}\\left(-\\frac{x^2}{3}+O(x^4)\\right)=-\\frac13$, giving $$L=e^{-1/3}.$$"
-    ]
-   },
-   {
-    "name": "Method II — Standard limit reduction",
-    "steps": [
-     "Write the base as $1+t(x)$ where $t(x)=\\frac{\\arctan x}{x}-1$, and note $t(x)\\to0$.",
-     "Then $\\left(1+t\\right)^{1/x^2}=\\exp\\!\\left(\\frac{1}{x^2}\\cdot\\frac{\\ln(1+t)}{t}\\cdot t\\right)$, and $\\frac{\\ln(1+t)}{t}\\to1$ since $t\\to0$.",
-     "Compute $\\lim_{x\\to0}\\frac{t(x)}{x^2}=\\lim_{x\\to0}\\frac{\\arctan x-x}{x^3}$. By the series $\\arctan x-x=-\\frac{x^3}{3}+O(x^5)$, this limit is $-\\frac13$.",
-     "Hence the exponent $\\frac{1}{x^2}\\cdot\\frac{\\ln(1+t)}{t}\\cdot t \\to 1\\cdot\\left(-\\frac13\\right)=-\\frac13$, so $L=e^{-1/3}$."
-    ]
-   }
-  ],
-  "remark": "For any odd function $f$ smooth at $0$ with $f(x)=x+ax^3+O(x^5)$, $\\left(f(x)/x\\right)^{1/x^2}\\to e^{a}$; here $f=\\arctan$ gives $a=-\\tfrac13$. (Check: $f=\\sin$ gives $a=-\\tfrac16$ and $\\left(\\tfrac{\\sin x}{x}\\right)^{1/x^2}\\to e^{-1/6}$.)"
- },
- {
-  "theme": "indeterminate",
-  "themeLabel": "Exotic Indeterminate Forms",
-  "title": "Vanishing Tail at Infinity",
-  "difficulty": 4,
-  "tags": [
-   "0^0",
-   "arctan",
-   "x->+infinity",
-   "log-transform",
-   "asymptotics"
-  ],
-  "statement": "\\lim_{x\\to +\\infty}\\left(\\frac{\\pi}{2}-\\arctan x\\right)^{1/\\ln x}",
-  "answer": "e^{-1}",
-  "trap": "One sees the base $\\to 0^{+}$ and the exponent $\\to 0^{+}$ and reflexively writes $0^{0}=1$. But $0^0$ is indeterminate: take logs and the answer is decided by the race $\\ln(\\text{base})/\\ln x$. Here $\\text{base}=\\arctan(1/x)\\sim 1/x$, so $\\ln(\\text{base})\\sim-\\ln x$ and the ratio is $-1$, giving $e^{-1}$, not $1$. (Equally tempting: replacing the base by its $O(x^{-2})$-corrected value and hoping the constant survives — it does not; only the polynomial decay rate matters.)",
-  "solutions": [
-   {
-    "name": "Method I — Identity $\\tfrac{\\pi}{2}-\\arctan x=\\arctan(1/x)$",
-    "steps": [
-     "For $x>0$, $\\frac{\\pi}{2}-\\arctan x=\\arctan\\frac1x$. Let $L$ be the limit and take logs: $\\ln L=\\lim_{x\\to\\infty}\\dfrac{\\ln\\arctan(1/x)}{\\ln x}$.",
-     "As $x\\to\\infty$, $\\arctan(1/x)=\\frac1x\\big(1+O(x^{-2})\\big)$, so $\\ln\\arctan(1/x)=\\ln\\frac1x+\\ln\\!\\big(1+O(x^{-2})\\big)=-\\ln x+o(1)$.",
-     "Thus $\\ln L=\\lim_{x\\to\\infty}\\dfrac{-\\ln x+o(1)}{\\ln x}=-1$, so $$L=e^{-1}.$$"
-    ]
-   },
-   {
-    "name": "Method II — Substitution $t=1/x$",
-    "steps": [
-     "Put $t=1/x\\to0^{+}$. Then $\\frac{\\pi}{2}-\\arctan x=\\arctan t$ and $\\ln x=-\\ln t$.",
-     "The expression becomes $\\big(\\arctan t\\big)^{-1/\\ln t}$, so $\\ln L=\\lim_{t\\to0^+}\\dfrac{\\ln\\arctan t}{-\\ln t}$.",
-     "Since $\\arctan t = t\\,(1+O(t^2))$, we get $\\ln\\arctan t=\\ln t+O(t^2)$, giving $\\ln L=\\lim_{t\\to0^+}\\dfrac{\\ln t+O(t^2)}{-\\ln t}=-1$.",
-     "Therefore $L=e^{-1}$."
-    ]
-   },
-   {
-    "name": "Method III — Squeeze",
-    "steps": [
-     "On $[0,1]$ the function $\\arctan$ is concave (its second derivative $-\\frac{2t}{(1+t^2)^2}<0$ for $t>0$), so it lies above the chord through $(0,0)$ and $(1,\\tfrac{\\pi}{4})$: $\\frac{\\pi}{4}\\,t\\le\\arctan t\\le t$ for $t\\in[0,1]$.",
-     "Set $t=1/x$ and raise to the positive power $-1/\\ln t=1/\\ln x>0$: $\\left(\\tfrac{\\pi}{4}\\,t\\right)^{1/\\ln x}\\le(\\arctan t)^{1/\\ln x}\\le t^{1/\\ln x}$.",
-     "The right side $=\\exp\\!\\big(\\tfrac{-\\ln x}{\\ln x}\\big)=e^{-1}$. The left side $=\\exp\\!\\big(\\tfrac{\\ln(\\pi/4)-\\ln x}{\\ln x}\\big)\\to e^{-1}$, since the bounded constant $\\ln(\\pi/4)$ is divided by $\\ln x\\to\\infty$ and washes out.",
-     "Both bounds tend to $e^{-1}$, so by the squeeze theorem $L=e^{-1}$."
-    ]
-   }
-  ],
-  "remark": "Only the leading polynomial decay rate of the base matters: any base $\\sim c\\,x^{-p}$ raised to the power $1/\\ln x$ tends to $e^{-p}$, independent of the constant $c$ — because $\\ln(c\\,x^{-p})/\\ln x = -p + \\ln c/\\ln x \\to -p$."
- },
- {
-  "theme": "indeterminate",
-  "themeLabel": "Exotic Indeterminate Forms",
-  "title": "The Floor That Forgives",
-  "difficulty": 5,
-  "tags": [
-   "1^infinity",
-   "floor",
-   "x->0+",
-   "fractional-part",
-   "squeeze"
-  ],
-  "statement": "\\lim_{x\\to 0^{+}}\\left(1+x\\right)^{\\lfloor 1/x\\rfloor}",
-  "answer": "e",
-  "trap": "Because $\\lfloor 1/x\\rfloor$ jumps by huge integer steps and the fractional part $\\{1/x\\}=\\tfrac1x-\\lfloor\\tfrac1x\\rfloor$ keeps oscillating densely in $[0,1)$ as $x\\to0^{+}$, many students declare the exponent too wild and call the limit oscillatory / nonexistent. The trap is forgetting that the leftover $\\{1/x\\}$ is multiplied by $\\ln(1+x)=O(x)\\to0$ in the logarithm, so the oscillation is annihilated and only the clean value $e$ survives.",
-  "solutions": [
-   {
-    "name": "Method I — Split off the fractional part",
-    "steps": [
-     "Write $\\lfloor 1/x\\rfloor=\\dfrac1x-\\{1/x\\}$, where $0\\le\\{1/x\\}<1$ is bounded for every $x>0$.",
-     "Take logarithms: $\\ln\\!\\left[(1+x)^{\\lfloor1/x\\rfloor}\\right]=\\Big(\\tfrac1x-\\{1/x\\}\\Big)\\ln(1+x)=\\dfrac{\\ln(1+x)}{x}-\\{1/x\\}\\,\\ln(1+x).$",
-     "As $x\\to0^{+}$: $\\dfrac{\\ln(1+x)}{x}\\to1$, while $\\{1/x\\}\\,\\ln(1+x)$ is (bounded)$\\times O(x)\\to0$ — here the oscillation is killed.",
-     "Hence the logarithm tends to $1-0=1$, and by continuity of $\\exp$ the limit is $$e^{1}=e.$$"
-    ]
-   },
-   {
-    "name": "Method II — Squeeze between consecutive integers",
-    "steps": [
-     "For $x>0$ the floor satisfies $\\dfrac1x-1<\\lfloor1/x\\rfloor\\le\\dfrac1x$. Since the base $1+x>1$, raising it to a larger exponent gives a larger value, so order is preserved:",
-     "$(1+x)^{\\frac1x-1}<(1+x)^{\\lfloor1/x\\rfloor}\\le(1+x)^{1/x}.$",
-     "As $x\\to0^{+}$, the upper bound $(1+x)^{1/x}\\to e$. The lower bound $=(1+x)^{1/x}\\cdot(1+x)^{-1}\\to e\\cdot1=e$.",
-     "Both bounds tend to $e$, so by the squeeze theorem the limit equals $$e.$$"
-    ]
-   }
-  ],
-  "remark": "Replacing $\\lfloor1/x\\rfloor$ by $1/x$ is legal precisely because the discarded $\\{1/x\\}$ couples to $\\ln(1+x)=O(x)$, which vanishes. The same substitution would fail if $\\text{base}-1$ were not $o(1)$ relative to the size of the floor's jump — e.g. $\\lim_{x\\to0^{+}}2^{\\lfloor1/x\\rfloor}$ has no finite value at all."
- },
- {
-  "theme": "indeterminate",
-  "themeLabel": "Exotic Indeterminate Forms",
-  "title": "The Logarithm's Second Secret",
-  "difficulty": 4,
-  "tags": [
-   "infinity-minus-infinity",
-   "ln",
-   "x->+infinity",
-   "taylor",
-   "collapse"
-  ],
-  "statement": "\\lim_{x\\to +\\infty}\\Big(x-x^{2}\\ln\\!\\big(1+\\tfrac1x\\big)\\Big)",
-  "answer": "\\dfrac{1}{2}",
-  "trap": "Replacing $\\ln(1+1/x)$ by its first-order term $1/x$ gives $x-x^2\\cdot\\frac1x=x-x=0$. That linear approximation is fatally too crude here: $x^2$ is large, so the next term $-\\frac{1}{2x^2}$ in $\\ln(1+1/x)$ is amplified by $x^2$ into a finite residue $\\frac12$. The cancellation you see is only of the divergent parts; the curvature term survives.",
-  "solutions": [
-   {
-    "name": "Method I — Second-order expansion",
-    "steps": [
-     "Substitute $t=1/x\\to0^{+}$. The Maclaurin series is $\\ln(1+t)=t-\\frac{t^2}{2}+\\frac{t^3}{3}-\\cdots$",
-     "Since $x^2=1/t^2$, $$x^2\\ln(1+1/x)=\\frac{1}{t^2}\\Big(t-\\frac{t^2}{2}+\\frac{t^3}{3}-\\cdots\\Big)=\\frac1t-\\frac12+\\frac{t}{3}-\\cdots=x-\\frac12+\\frac{1}{3x}-\\cdots$$",
-     "Therefore $$x-x^2\\ln(1+1/x)=x-\\Big(x-\\frac12+\\frac{1}{3x}-\\cdots\\Big)=\\frac12-\\frac{1}{3x}+\\cdots$$",
-     "The divergent $x$ terms cancel and letting $x\\to\\infty$ leaves $$\\frac12.$$"
-    ]
-   },
-   {
-    "name": "Method II — Substitute and use L'Hôpital",
-    "steps": [
-     "Let $t=1/x\\to0^{+}$. Then $x=\\frac1t$, $x^2=\\frac1{t^2}$, and the expression becomes $$\\frac1t-\\frac{1}{t^2}\\ln(1+t)=\\frac{t-\\ln(1+t)}{t^2}.$$",
-     "As $t\\to0^{+}$ both numerator and denominator vanish, a $\\frac00$ form. Applying L'Hôpital's rule once: $$\\frac{\\frac{d}{dt}\\big(t-\\ln(1+t)\\big)}{\\frac{d}{dt}\\,t^2}=\\frac{1-\\frac{1}{1+t}}{2t}=\\frac{\\frac{t}{1+t}}{2t}=\\frac{1}{2(1+t)}.$$",
-     "This is no longer indeterminate; as $t\\to0^{+}$ it tends to $\\frac12$. Hence the original limit is $$\\frac12.$$"
-    ]
-   }
-  ],
-  "remark": "The $\\infty-\\infty$ form collapses not to $0$ but to the curvature coefficient $\\tfrac12$ of $\\ln(1+t)$ at $t=0$; the seductive linear cancellation hides the quadratic truth. More generally $\\lim_{x\\to\\infty}\\big(x-x^2\\ln(1+1/x)\\big)$ equals $-c_2$ where $c_2=-\\tfrac12$ is the second Taylor coefficient of $\\ln(1+t)$."
- },
- {
-  "theme": "indeterminate",
-  "themeLabel": "Exotic Indeterminate Forms",
-  "title": "Fractional Part Meets Itself",
-  "difficulty": 3,
-  "tags": [
-   "0^0",
-   "fractional-part",
-   "x->1+",
-   "log-transform"
-  ],
-  "statement": "\\lim_{x\\to 1^{+}}\\,\\{x\\}^{\\{x\\}}",
-  "answer": "1",
-  "trap": "Seeing $\\{x\\}\\to 0^{+}$, a student reads the base-and-exponent as $0^{0}$ and either declares the limit undefined or, treating the base as dominant, guesses $0$. The form is genuinely indeterminate, but it resolves to $1$: in $t^{t}=e^{t\\ln t}$ the product $t\\ln t\\to 0$ because $|\\ln t|$ grows far slower than $1/t$, so the exponent — not the base — controls the outcome.",
-  "solutions": [
-   {
-    "name": "Method I — Substitution $t=\\{x\\}$",
-    "steps": [
-     "For $x\\in(1,2)$ we have $\\lfloor x\\rfloor=1$, so $\\{x\\}=x-1$. As $x\\to1^{+}$ set $t=\\{x\\}=x-1\\to0^{+}$.",
-     "The expression becomes $t^{t}=e^{t\\ln t}$, so it suffices to find $\\lim_{t\\to0^{+}} t\\ln t$.",
-     "Write $t\\ln t=\\dfrac{\\ln t}{1/t}$, an $\\dfrac{-\\infty}{+\\infty}$ form. L'Hôpital gives $\\dfrac{d}{dt}\\ln t=\\dfrac1t$ and $\\dfrac{d}{dt}\\dfrac1t=-\\dfrac1{t^{2}}$, so the ratio is $\\dfrac{1/t}{-1/t^{2}}=-t\\to0$.",
-     "Hence $t\\ln t\\to0$ and $t^{t}=e^{t\\ln t}\\to e^{0}=1$.",
-     "Therefore $\\displaystyle\\lim_{x\\to1^{+}}\\{x\\}^{\\{x\\}}=1$."
-    ]
-   },
-   {
-    "name": "Method II — Squeeze",
-    "steps": [
-     "Again put $t=\\{x\\}=x-1\\to0^{+}$ and study $t^{t}=e^{t\\ln t}$ for $0<t<1$.",
-     "Since $\\ln t<0$ on $(0,1)$, we get $t\\ln t<0$, hence $t^{t}=e^{t\\ln t}<e^{0}=1$; also $t^{t}>0$.",
-     "For a matching lower bound, note the function $g(t)=\\sqrt t\\,|\\ln t|$ attains its maximum on $(0,1)$ at $t=e^{-2}$, where $g(e^{-2})=\\tfrac{2}{e}$. Thus $|\\ln t|\\le\\dfrac{2/e}{\\sqrt t}$ for all $t\\in(0,1)$, giving $|t\\ln t|\\le\\dfrac{2}{e}\\sqrt t$.",
-     "Therefore $e^{-\\frac{2}{e}\\sqrt t}\\le t^{t}\\le 1$, and as $t\\to0^{+}$ both bounds tend to $1$.",
-     "By the squeeze theorem, $\\{x\\}^{\\{x\\}}\\to1$ as $x\\to1^{+}$."
-    ]
-   }
-  ],
-  "remark": "The one-sided framing is essential: as $x\\to1^{-}$ we have $\\lfloor x\\rfloor=0$, so $\\{x\\}=x\\to1$ and the base tends to $1$, not $0$ — no $0^{0}$ indeterminacy arises there. The exotic form lives only on the $1^{+}$ side, where the floor jumps and the base collapses to $0^{+}$."
- },
- {
-  "theme": "indeterminate",
-  "themeLabel": "Exotic Indeterminate Forms",
-  "title": "The Square-Root Disguise",
-  "difficulty": 4,
-  "tags": [
-   "1^infinity",
-   "square-root",
-   "x->0+",
-   "taylor",
-   "half-integer-powers"
-  ],
-  "statement": "\\lim_{x\\to 0^{+}}\\big(\\cos\\sqrt{x}\\big)^{1/x}",
-  "answer": "e^{-1/2}",
-  "trap": "Seeing $\\cos\\sqrt x\\to\\cos 0=1$ and declaring the answer $1$, ignoring that this is a $1^\\infty$ form. The subtler trap: noting $\\cos\\sqrt x$ has no term linear in $\\sqrt x$ and concluding it is 'flat to first order', hence constant. But $\\cos\\sqrt x=1-\\tfrac{x}{2}+O(x^2)$ — the genuine $O(x)$ term $-\\tfrac{x}{2}$ is exactly what the exponent $1/x$ magnifies, producing $e^{-1/2}$, not $1$.",
-  "solutions": [
-   {
-    "name": "Method I — Expand $\\cos\\sqrt x$ in powers of $x$",
-    "steps": [
-     "Since $\\cos u=1-\\frac{u^2}{2}+\\frac{u^4}{24}-\\cdots$ with $u=\\sqrt x$, the half-integer powers vanish and we get a clean power series in $x$: $\\cos\\sqrt x=1-\\frac{x}{2}+\\frac{x^2}{24}-\\cdots$",
-     "Take logarithms: $\\frac1x\\ln\\cos\\sqrt x=\\frac1x\\ln\\!\\Big(1-\\frac{x}{2}+\\frac{x^2}{24}-\\cdots\\Big)$.",
-     "With $u=-\\frac{x}{2}+O(x^2)\\to 0$, use $\\ln(1+u)=u+O(u^2)=-\\frac{x}{2}+O(x^2)$, so $\\frac1x\\ln\\cos\\sqrt x=-\\frac12+O(x)$.",
-     "Letting $x\\to0^+$ the logarithm tends to $-\\frac12$, hence $$\\big(\\cos\\sqrt x\\big)^{1/x}=e^{\\frac1x\\ln\\cos\\sqrt x}\\to e^{-1/2}.$$"
-    ]
-   },
-   {
-    "name": "Method II — Substitution $t=\\sqrt x$",
-    "steps": [
-     "Let $t=\\sqrt x$, so as $x\\to0^+$ we have $t\\to0^+$ and $1/x=1/t^2$. The limit becomes $\\lim_{t\\to0^+}(\\cos t)^{1/t^2}$.",
-     "This is the classic $1^\\infty$ form. Its logarithm is $\\dfrac{\\ln\\cos t}{t^2}$, and $\\ln\\cos t=-\\dfrac{t^2}{2}+O(t^4)$.",
-     "Hence $\\dfrac{\\ln\\cos t}{t^2}=-\\dfrac12+O(t^2)\\to-\\dfrac12$, giving $(\\cos t)^{1/t^2}\\to e^{-1/2}$.",
-     "Therefore the original limit equals $e^{-1/2}$."
-    ]
-   }
-  ],
-  "remark": "The $\\sqrt x$ converts the cosine's quadratic argument-term into a linear $x$-term, so it is the cosine's curvature — not any spurious linear part — that governs the exponential. Same mechanism as $\\lim_{t\\to0}(\\cos t)^{1/t^2}=e^{-1/2}$."
- },
- {
-  "theme": "indeterminate",
-  "themeLabel": "Exotic Indeterminate Forms",
-  "title": "Modulus at the Far Left",
-  "difficulty": 4,
-  "tags": [
-   "1^infinity",
-   "modulus",
-   "x->-infinity",
-   "asymptotics",
-   "log-transform"
-  ],
-  "statement": "\\lim_{x\\to -\\infty}\\left(\\frac{|x|+1}{|x|-1}\\right)^{x}",
-  "answer": "e^{-2}",
-  "trap": "Two traps stack. First, seeing $\\frac{|x|+1}{|x|-1}\\to 1$ and concluding $1^{x}=1$ — but this is a genuine $1^{\\infty}$ form, not a constant. Second, computing the magnitude $\\frac{2}{|x|}\\cdot|x|=2$ and writing $e^{2}$ — forgetting the exponent $x\\to-\\infty$ is *negative*. The base exceeds $1$ by $\\sim\\frac{2}{|x|}$, the exponent is $x=-|x|$, and their product tends to $-2$. The answer is $e^{-2}$ — not $1$, and crucially not $e^{2}$.",
-  "solutions": [
-   {
-    "name": "Method I — Substitute $u=|x|=-x$",
-    "steps": [
-     "For $x\\to-\\infty$, put $u=-x\\to+\\infty$, so $|x|=u$, the base is $\\frac{u+1}{u-1}$, and the exponent is $x=-u$. Note $u-1>0$, so the base is a positive real $>1$ and the power is well-defined.",
-     "Take logs: $\\ln L=\\lim -u\\,\\ln\\frac{u+1}{u-1}=\\lim -u\\big(\\ln(u+1)-\\ln(u-1)\\big)$.",
-     "Expand for large $u$: $\\ln\\frac{u+1}{u-1}=\\ln\\!\\frac{1+1/u}{1-1/u}=\\big(\\tfrac1u-\\tfrac1{2u^2}+\\cdots\\big)-\\big(-\\tfrac1u-\\tfrac1{2u^2}-\\cdots\\big)=\\frac{2}{u}+O(u^{-3})$.",
-     "Thus $\\ln L=\\lim\\,-u\\cdot\\big(\\tfrac2u+O(u^{-3})\\big)=\\lim\\big(-2+O(u^{-2})\\big)=-2$, so $$L=e^{-2}.$$"
-    ]
-   },
-   {
-    "name": "Method II — Write base as $1+\\frac{2}{|x|-1}$",
-    "steps": [
-     "$\\frac{|x|+1}{|x|-1}=1+\\frac{2}{|x|-1}$. With $u=|x|=-x\\to+\\infty$, the base is $1+\\frac{2}{u-1}$ and the exponent is $-u$.",
-     "Regroup to expose the standard limit: $\\Big(1+\\frac{2}{u-1}\\Big)^{-u}=\\left[\\Big(1+\\tfrac{2}{u-1}\\Big)^{\\frac{u-1}{2}}\\right]^{\\frac{-2u}{u-1}}$.",
-     "The inner bracket has the form $(1+\\tfrac1n)^{n}$ with $n=\\frac{u-1}{2}\\to+\\infty$, so it $\\to e$; the outer exponent $\\frac{-2u}{u-1}\\to-2$.",
-     "Hence the limit is $e^{-2}$."
-    ]
-   }
-  ],
-  "remark": "The sign of the exponent is the whole game: had the limit been $x\\to+\\infty$ the same base magnitude would give $e^{+2}$. The modulus keeps the base $>1$ while $x\\to-\\infty$ flips the exponent's sign."
- },
- {
-  "theme": "indeterminate",
-  "themeLabel": "Exotic Indeterminate Forms",
-  "title": "Floor Times a Vanishing Arc",
-  "difficulty": 4,
-  "tags": [
-   "0-times-infinity",
-   "floor",
-   "arcsin",
-   "x->0+",
-   "squeeze"
-  ],
-  "statement": "\\lim_{x\\to 0^{+}}\\Big(\\lfloor 1/x\\rfloor\\cdot \\arcsin x\\Big)",
-  "answer": "1",
-  "trap": "The fast move is to replace $\\lfloor 1/x\\rfloor$ with $1/x$, collapsing the product to $\\frac{\\arcsin x}{x}\\to 1$. The number is right but the step is unlicensed: $\\lfloor 1/x\\rfloor$ can be a full $1$ below $1/x$, so you have silently discarded the term $-\\{1/x\\}\\arcsin x$. The opposite panic -- fearing the floor's jumps destroy convergence -- is equally wrong. What saves it is that the discarded defect is bounded and multiplied by a vanishing $\\arcsin x$.",
-  "solutions": [
-   {
-    "name": "Method I — Squeeze on the floor",
-    "steps": [
-     "For $x>0$, $\\frac1x-1<\\lfloor1/x\\rfloor\\le\\frac1x$. Since $\\arcsin x>0$ for small $x>0$, multiply through by it (inequalities are preserved):",
-     "$$\\Big(\\frac1x-1\\Big)\\arcsin x<\\lfloor1/x\\rfloor\\arcsin x\\le\\frac{\\arcsin x}{x}.$$",
-     "Right side: $\\dfrac{\\arcsin x}{x}\\to1$ (standard limit). Left side: $\\dfrac{\\arcsin x}{x}-\\arcsin x\\to1-0=1$.",
-     "Both bounds tend to $1$, so by the squeeze theorem the limit is $1$."
-    ]
-   },
-   {
-    "name": "Method II — Separate the bounded remainder",
-    "steps": [
-     "Write $\\lfloor1/x\\rfloor=\\frac1x-\\{1/x\\}$, so the product splits as $\\dfrac{\\arcsin x}{x}-\\{1/x\\}\\,\\arcsin x$.",
-     "The first term satisfies $\\dfrac{\\arcsin x}{x}\\to1$ (standard limit).",
-     "In the second term $\\{1/x\\}\\in[0,1)$ is bounded while $\\arcsin x\\to0$, so $\\{1/x\\}\\,\\arcsin x\\to0$.",
-     "Therefore the limit is $1-0=1$."
-    ]
-   }
-  ],
-  "remark": "The $0\\cdot\\infty$ is tamed because the floor's defect $\\{1/x\\}$ stays bounded in $[0,1)$ and is multiplied by the vanishing $\\arcsin x$ -- the same mechanism that rescues $(1+x)^{\\lfloor1/x\\rfloor}$, transplanted from an exponent to a product."
- },
- {
-  "theme": "indeterminate",
-  "themeLabel": "Exotic Indeterminate Forms",
-  "title": "Signum Splits the Exponential",
-  "difficulty": 4,
-  "tags": [
-   "1^infinity",
-   "signum",
-   "x->0+",
-   "one-sided",
-   "log-transform"
-  ],
-  "statement": "\\lim_{x\\to 0^{+}}\\Big(1+\\operatorname{sgn}(x)\\,x^{2}\\Big)^{1/x^{2}}",
-  "answer": "e",
-  "trap": "Erasing $\\operatorname{sgn}(x)$ on sight and reflexively quoting $(1+x^2)^{1/x^2}\\to e$ as if the limit were two-sided. It is not: on the *left* $\\operatorname{sgn}(x)=-1$ turns the base into $1-x^2<1$, and $(1-x^2)^{1/x^2}\\to e^{-1}$. The two-sided limit therefore fails — which is precisely why the problem is anchored at $0^{+}$, where the answer is $e$, not at $0$.",
-  "solutions": [
-   {
-    "name": "Method I — Resolve the signum on the right",
-    "steps": [
-     "Since $x\\to0^{+}$ we have $x>0$, so $\\operatorname{sgn}(x)=+1$ and the base is exactly $1+x^2$; the expression is $(1+x^2)^{1/x^2}$ with no signum ambiguity.",
-     "Substitute $t=x^2$, so $t\\to0^{+}$, and the expression becomes $(1+t)^{1/t}$.",
-     "By the standard limit $(1+t)^{1/t}\\to e$ as $t\\to0^{+}$, hence the right-hand limit is $$e.$$"
-    ]
-   },
-   {
-    "name": "Method II — Logarithm with explicit one-sided care",
-    "steps": [
-     "Take logs: $\\ln\\Big[(1+\\operatorname{sgn}(x)x^2)^{1/x^2}\\Big]=\\dfrac{\\ln\\big(1+\\operatorname{sgn}(x)x^2\\big)}{x^2}.$",
-     "For $x>0$ this is $\\dfrac{\\ln(1+x^2)}{x^2}$; with $u=x^2\\to0^{+}$ it is $\\dfrac{\\ln(1+u)}{u}\\to 1$.",
-     "Since the logarithm tends to $1$ and $\\exp$ is continuous, the limit is $e^{1}=e$.",
-     "Contrast: on $x\\to0^{-}$ the numerator becomes $\\ln(1-x^2)$, the log $\\to-1$, and the value would be $e^{-1}$ — confirming the two-sided limit does not exist."
-    ]
-   }
-  ],
-  "remark": "$\\operatorname{sgn}(x)$ is the cleanest device to make a base cross $1$ from above on one side and below on the other, splitting a single $1^{\\infty}$ form into $e$ on the right and $1/e$ on the left."
- },
- {
-  "theme": "indeterminate",
-  "themeLabel": "Exotic Indeterminate Forms",
-  "title": "The Limit That Refuses",
-  "difficulty": 5,
-  "tags": [
-   "1^infinity",
-   "floor",
-   "fractional-part",
-   "x->0+",
-   "non-existence",
-   "oscillation"
-  ],
-  "statement": "\\lim_{x\\to 0^{+}}\\Big(x\\,\\lfloor 1/x\\rfloor\\Big)^{1/x}",
-  "answer": "\\text{does not exist}",
-  "trap": "Since $x\\lfloor1/x\\rfloor=1-x\\{1/x\\}\\to 1$, a student concludes the base $\\to1$ and the answer is $1$. But this is a $1^{\\infty}$ form: the exponent $1/x$ magnifies the oscillating defect $x\\{1/x\\}$, and the value tracks $e^{-\\{1/x\\}}$, which never settles. The seductive special case $x=1/n$ (giving exactly $1$) is a trap — it only samples $\\{1/x\\}=0$.",
-  "solutions": [
-   {
-    "name": "Method I — Reduce to the fractional part",
-    "steps": [
-     "Write $x\\lfloor1/x\\rfloor=x\\big(\\tfrac1x-\\{1/x\\}\\big)=1-x\\{1/x\\}$, so the base is $1-x\\{1/x\\}\\to1$ while the exponent is $1/x\\to\\infty$ — a genuine $1^\\infty$ form.",
-     "Take logs: $L(x)=\\frac1x\\ln\\big(1-x\\{1/x\\}\\big)$. Since $0\\le x\\{1/x\\}<x\\to0$, expand $\\ln(1-u)=-u+O(u^2)$ with $u=x\\{1/x\\}$.",
-     "Divide by $x$: $L(x)=\\frac1x\\big(-x\\{1/x\\}+O(x^2\\{1/x\\}^2)\\big)=-\\{1/x\\}+O\\big(x\\,\\{1/x\\}^2\\big)=-\\{1/x\\}+o(1).$",
-     "Hence the expression equals $e^{L(x)}=e^{-\\{1/x\\}+o(1)}$, i.e. it tracks $e^{-\\{1/x\\}}$. Since $\\{1/x\\}$ oscillates over $[0,1)$ as $x\\to0^+$ and never converges, $L(x)$ has no limit, so the original limit does not exist."
-    ]
-   },
-   {
-    "name": "Method II — Two sequences with different limits",
-    "steps": [
-     "Choose $x_n=\\frac{1}{n}$: then $1/x_n=n$, $\\{1/x_n\\}=0$, so the base $=x_n\\cdot n=1$ exactly and the value is $1^{n}=1\\to1$.",
-     "Choose $y_n=\\frac{1}{n+\\frac12}$: then $1/y_n=n+\\tfrac12$, $\\lfloor1/y_n\\rfloor=n$, base $=y_n\\,n=\\dfrac{n}{n+\\tfrac12}\\to1$, and the value is $\\big(\\tfrac{n}{n+1/2}\\big)^{n+1/2}=\\big(1+\\tfrac{1/2}{n}\\big)^{-(n+1/2)}\\to e^{-1/2}.$",
-     "Both $x_n\\to0^{+}$ and $y_n\\to0^{+}$, yet the function tends to $1$ along one and $e^{-1/2}\\ne1$ along the other. Therefore the limit does not exist.",
-     "More fully, along $x=\\frac{1}{n+f}$ (fixed $f\\in[0,1)$) the value $\\to e^{-f}$. As $f$ ranges over $[0,1)$ these limits sweep $(e^{-1},1]$, and the lower endpoint $e^{-1}$ is reached in the limit $f\\to1^-$; so the set of subsequential limits is the closed interval $\\big[e^{-1},1\\big]$ — the value $e^{-1}$ is approached but never attained for any single $x$."
-    ]
-   }
-  ],
-  "remark": "Contrast $(1+x)^{\\lfloor1/x\\rfloor}\\to e$: there the floor's defect meets $\\ln(1+x)=O(x)$ and dies; here it meets the exponent $1/x$ and survives as $-\\{1/x\\}$, so the $1^\\infty$ form is fatally indeterminate, with cluster set exactly $[e^{-1},1]$."
- },
- {
-  "theme": "squeeze",
-  "themeLabel": "Sandwich & Discrete Sums",
-  "title": "The Floor That Doesn't Bite",
-  "difficulty": 3,
-  "tags": [
-   "floor",
-   "riemann-sum",
-   "x->infinity",
-   "integer-part-sum"
-  ],
-  "statement": "\\lim_{n\\to\\infty}\\frac{1}{n^2}\\sum_{k=1}^{n}\\left\\lfloor k\\,\\frac{n}{k+1}\\right\\rfloor",
-  "answer": "1",
-  "trap": "A student who has been burned by floors before over-corrects: they argue that each term $\\lfloor a_k\\rfloor$ loses a fractional part $\\{a_k\\}$ averaging $\\tfrac12$, so they subtract a 'correction' $\\tfrac1{n^2}\\sum\\{a_k\\}\\approx\\tfrac1{n^2}\\cdot\\tfrac{n}{2}$ and even mis-scale it to conclude the answer is $\\tfrac12$. The error: there are only $n$ fractional parts, each in $[0,1)$, so $\\sum_{k=1}^n\\{a_k\\}=O(n)$ and $\\tfrac1{n^2}\\sum\\{a_k\\}\\to0$. The floor correction is negligible at the $n^2$ scale, so the answer is $1$, not $\\tfrac12$. Here the floor genuinely does NOT bite — always compare the discarded fractional mass to the denominator before trusting OR distrusting the floor.",
-  "solutions": [
-   {
-    "name": "Method I — Squeeze on the floor error",
-    "steps": [
-     "Write $a_k=k\\,\\dfrac{n}{k+1}$. The defining inequality of the floor gives $a_k-1<\\lfloor a_k\\rfloor\\le a_k$. Summing over $k=1,\\dots,n$:",
-     "$$\\sum_{k=1}^n a_k-n\\;<\\;\\sum_{k=1}^n\\lfloor a_k\\rfloor\\;\\le\\;\\sum_{k=1}^n a_k.$$",
-     "Divide through by $n^2$. The discarded mass on the left is exactly $\\dfrac{n}{n^2}=\\dfrac1n\\to0$, so the limit of $\\dfrac1{n^2}\\sum\\lfloor a_k\\rfloor$ equals the limit of $\\dfrac1{n^2}\\sum a_k$, provided the latter exists.",
-     "Compute the upper sum in closed form. Since $a_k=n\\dfrac{k}{k+1}=n-\\dfrac{n}{k+1}$,",
-     "$$\\frac{1}{n^2}\\sum_{k=1}^n a_k=\\frac1n\\sum_{k=1}^n\\frac{k}{k+1}=\\frac1n\\sum_{k=1}^n\\Big(1-\\frac1{k+1}\\Big)=1-\\frac{H_{n+1}-1}{n},$$ where $H_{m}=\\sum_{j=1}^m\\tfrac1j$.",
-     "Because $H_{n+1}\\sim\\ln n$, the correction $\\dfrac{H_{n+1}-1}{n}\\to0$, hence $\\dfrac{1}{n^2}\\sum a_k\\to1$.",
-     "Both the lower bound $\\dfrac1{n^2}\\sum a_k-\\dfrac1n$ and the upper bound $\\dfrac1{n^2}\\sum a_k$ tend to $1$. By the squeeze theorem, $\\displaystyle\\lim_{n\\to\\infty}\\frac{1}{n^2}\\sum_{k=1}^n\\lfloor a_k\\rfloor=1.$",
-     "Sanity check on the floor's role: $\\dfrac1{n^2}\\sum_{k=1}^n\\{a_k\\}\\le\\dfrac1{n^2}\\cdot n=\\dfrac1n\\to0$, confirming the fractional parts contribute nothing at this scale — the floor does not change the limit."
-    ]
-   },
-   {
-    "name": "Method II — Cesàro / Stolz on the dominant sum",
-    "steps": [
-     "Set $b_n=\\sum_{k=1}^n\\lfloor a_k\\rfloor$ with $a_k=n-\\dfrac{n}{k+1}$. Since $0\\le a_k-\\lfloor a_k\\rfloor<1$ for each of the $n$ terms, $\\big|b_n-\\sum_{k=1}^n a_k\\big|<n$.",
-     "Dividing by $n^2$: $\\dfrac{b_n}{n^2}=\\dfrac{1}{n^2}\\sum_{k=1}^n a_k+O\\!\\Big(\\dfrac{n}{n^2}\\Big)=\\dfrac{1}{n^2}\\sum_{k=1}^n a_k+O\\!\\Big(\\dfrac1n\\Big).$",
-     "Now $\\dfrac{1}{n^2}\\sum_{k=1}^n a_k=\\dfrac1n\\sum_{k=1}^n\\dfrac{k}{k+1}$ is the Cesàro (arithmetic) mean of the sequence $c_k=\\dfrac{k}{k+1}$. Since $c_k\\to1$, its Cesàro mean also converges to $1$.",
-     "Therefore $\\displaystyle\\lim_{n\\to\\infty}\\frac{1}{n^2}\\sum_{k=1}^n\\lfloor a_k\\rfloor=1+0=1.$"
-    ]
-   }
-  ],
-  "remark": "The lesson is the inverse of the usual floor cautionary tale: here the discarded fractional mass is $O(n)$, negligible against the $n^2$ denominator, so the naive 'drop the floor' value $1$ is exactly correct. A floor only shifts a limit when the number of integer-part errors scales like the normalizing denominator — with $n$ terms over $n^2$, it cannot."
- },
- {
-  "theme": "squeeze",
-  "themeLabel": "Sandwich & Discrete Sums",
-  "title": "A Thousand Reciprocal Roots",
-  "difficulty": 4,
-  "tags": [
-   "1/sqrt(n^2+k)",
-   "squeeze",
-   "x->infinity",
-   "riemann-vs-squeeze"
-  ],
-  "statement": "\\lim_{n\\to\\infty}\\sum_{k=1}^{n}\\frac{1}{\\sqrt{n^{2}+k}}",
-  "answer": "1",
-  "trap": "The Riemann-sum reflex: writing the sum as $\\tfrac1n\\sum_{k=1}^n\\big(1+\\tfrac{k}{n^2}\\big)^{-1/2}$ and pattern-matching it to $\\tfrac1n\\sum f(k/n)$ tempts a student to read off $f(x)=(1+x^2)^{-1/2}$ and answer $\\int_0^1\\tfrac{dx}{\\sqrt{1+x^2}}=\\ln(1+\\sqrt2)\\approx0.8814$. This is wrong: the perturbation inside the root is $+k$ (order $n$ relative to $n^2$), not $+k^2$, so $k/n^2\\to0$ uniformly and the genuine Riemann integrand is the constant $1$, giving $\\int_0^1 1\\,dx=1$. The seductive $\\ln(1+\\sqrt2)$ is the answer to the look-alike $\\sum 1/\\sqrt{n^2+k^2}$, where the perturbation really is order $n^2$.",
-  "solutions": [
-   {
-    "name": "Method I — Two-sided squeeze",
-    "steps": [
-     "For $1\\le k\\le n$ we have $n^2+1\\le n^2+k\\le n^2+n$, so every term is sandwiched:",
-     "$$\\frac{1}{\\sqrt{n^2+n}}\\le\\frac{1}{\\sqrt{n^2+k}}\\le\\frac{1}{\\sqrt{n^2+1}}.$$",
-     "There are exactly $n$ terms, so summing the inequality gives",
-     "$$\\frac{n}{\\sqrt{n^2+n}}\\le\\sum_{k=1}^n\\frac{1}{\\sqrt{n^2+k}}\\le\\frac{n}{\\sqrt{n^2+1}}.$$",
-     "Lower bound: $\\dfrac{n}{\\sqrt{n^2+n}}=\\dfrac{1}{\\sqrt{1+1/n}}\\to1$. Upper bound: $\\dfrac{n}{\\sqrt{n^2+1}}=\\dfrac{1}{\\sqrt{1+1/n^2}}\\to1$.",
-     "Both bounds tend to $1$, so by the squeeze theorem the limit is $\\boxed{1}$."
-    ]
-   },
-   {
-    "name": "Method II — Binomial expansion",
-    "steps": [
-     "Factor out $n$: $\\dfrac{1}{\\sqrt{n^2+k}}=\\dfrac1n\\Big(1+\\dfrac{k}{n^2}\\Big)^{-1/2}=\\dfrac1n\\Big(1-\\dfrac{k}{2n^2}+O\\big(\\tfrac{k^2}{n^4}\\big)\\Big),$ valid since $k/n^2\\le 1/n\\to0$.",
-     "Sum over $k=1,\\dots,n$: $\\displaystyle\\sum_{k=1}^n\\frac1n-\\frac{1}{2n^3}\\sum_{k=1}^n k+O\\!\\Big(\\frac{1}{n^5}\\sum_{k=1}^n k^2\\Big).$",
-     "Evaluate each piece: $\\displaystyle\\sum_{k=1}^n\\frac1n=1,\\quad\\frac{1}{2n^3}\\cdot\\frac{n(n+1)}{2}=\\frac{n+1}{4n^2}\\to0,\\quad O\\!\\Big(\\frac{n^3}{n^5}\\Big)=O(n^{-2})\\to0.$",
-     "Hence the sum $\\to1$, and the expansion even exposes the rate: the leading correction is $-\\dfrac{1}{4n}$, so $\\sum\\approx 1-\\tfrac{1}{4n}$."
-    ]
-   },
-   {
-    "name": "Method III — Integral comparison",
-    "steps": [
-     "The summand $g(k)=1/\\sqrt{n^2+k}$ is decreasing in $k$, so it is trapped between integrals: $\\displaystyle\\int_1^{n+1}\\frac{dk}{\\sqrt{n^2+k}}\\le\\sum_{k=1}^n g(k)\\le\\int_0^{n}\\frac{dk}{\\sqrt{n^2+k}}.$",
-     "Evaluate the lower integral: $\\displaystyle\\int_1^{n+1}\\frac{dk}{\\sqrt{n^2+k}}=\\Big[2\\sqrt{n^2+k}\\,\\Big]_1^{n+1}=2\\sqrt{n^2+n+1}-2\\sqrt{n^2+1}.$",
-     "Rationalize: $=\\dfrac{2(n)}{\\sqrt{n^2+n+1}+\\sqrt{n^2+1}}\\to\\dfrac{2n}{2n}=1.$ The upper integral $2\\sqrt{n^2+n}-2\\sqrt{n^2}=\\tfrac{2n}{\\sqrt{n^2+n}+n}\\to1$ likewise.",
-     "Both integral bounds tend to $1$, so the sum is squeezed to $1$."
-    ]
-   }
-  ],
-  "remark": "The governing principle: when the inner perturbation has order strictly below the denominator's leading power ($k\\ll n^2$), each term is $\\tfrac1n(1+o(1))$ and the whole sum collapses to the constant Riemann value $1$. The deceptive $\\ln(1+\\sqrt2)$ requires a genuine $+k^2$ perturbation, which keeps $k^2/n^2$ at order $1$ and revives a non-trivial integrand."
- },
- {
-  "theme": "squeeze",
-  "themeLabel": "Sandwich & Discrete Sums",
-  "title": "Fractional Parts on a Grid",
-  "difficulty": 5,
-  "tags": [
-   "fractional-part",
-   "equidistribution",
-   "riemann-sum",
-   "x->infinity"
-  ],
-  "statement": "\\lim_{n\\to\\infty}\\frac{1}{n}\\sum_{k=1}^{n}\\left\\{\\sqrt{k}\\,\\right\\}\\cdot\\frac{1}{\\sqrt{k}}\\cdot\\sqrt{n}",
-  "answer": "1",
-  "trap": "The seductive value is $\\tfrac12$. A student notes $\\{\\sqrt k\\}$ is equidistributed on $[0,1)$, so its average is $\\tfrac12$, and writes the whole expression as $\\tfrac12\\cdot\\tfrac1n\\sum_{k=1}^n 1\\to\\tfrac12$. The slip: the genuine weight $\\dfrac{\\sqrt n}{\\sqrt k}=\\dfrac{1}{\\sqrt{k/n}}$ was silently dropped. Since $\\int_0^1 x^{-1/2}\\,dx=2$, that weight contributes a factor $2$, turning $\\tfrac12$ into $\\tfrac12\\cdot2=1$. Forgetting the Jacobian/weight is exactly what produces the wrong $\\tfrac12$.",
-  "solutions": [
-   {
-    "name": "Method I — Smooth part + equidistribution of the fluctuation",
-    "steps": [
-     "Write the expression as a weighted average. Since $\\dfrac{\\sqrt n}{\\sqrt k}=\\dfrac{1}{\\sqrt{k/n}}$, with $x_k=k/n$ we have $$S_n=\\frac1n\\sum_{k=1}^n\\frac{\\{\\sqrt k\\}}{\\sqrt{k/n}}=\\frac1n\\sum_{k=1}^n \\{\\sqrt k\\}\\,x_k^{-1/2}.$$",
-     "Split the fractional part around its mean: $\\{\\sqrt k\\}=\\tfrac12+\\big(\\{\\sqrt k\\}-\\tfrac12\\big)$, giving $S_n=A_n+B_n$ with $A_n=\\dfrac{1}{2}\\cdot\\dfrac1n\\sum_{k=1}^n x_k^{-1/2}$ and $B_n=\\dfrac1n\\sum_{k=1}^n\\big(\\{\\sqrt k\\}-\\tfrac12\\big)x_k^{-1/2}.$",
-     "Smooth part $A_n$: this is a Riemann sum for $\\tfrac12\\int_0^1 x^{-1/2}\\,dx=\\tfrac12\\cdot2=1$. (The integrable singularity at $0$ is harmless: $\\tfrac1n\\sum x_k^{-1/2}=\\tfrac1{\\sqrt n}\\sum_{k=1}^n k^{-1/2}\\to\\int_0^1 x^{-1/2}dx=2$ since $\\sum_{k=1}^n k^{-1/2}\\sim2\\sqrt n$.) Hence $A_n\\to1.$",
-     "Fluctuation part $B_n\\to0$: the weight $x^{-1/2}$ is smooth (slowly varying) away from $0$, while $\\{\\sqrt k\\}-\\tfrac12$ is the zero-mean part of an equidistributed sequence, so its weighted average cancels by Abel summation/equidistribution. (Near $k=0$ the few terms contribute $O(1/\\sqrt n)\\to0$.)",
-     "Therefore $S_n=A_n+B_n\\to1+0=\\boxed{1}.$"
+  {
+    "theme": "floor",
+    "themeLabel": "The Greatest Integer Function",
+    "title": "The Sinc Just Misses",
+    "difficulty": 4,
+    "tags": [
+      "floor",
+      "sinc",
+      "one-sided",
+      "x->0+",
+      "squeeze"
     ],
-    "_note": ""
-   },
-   {
-    "name": "Method II — Block decomposition with the change of variables $k=x^2$",
-    "steps": [
-     "Let $T_n=\\sum_{k=1}^n\\dfrac{\\{\\sqrt k\\}}{\\sqrt k}$, so that $S_n=\\dfrac{\\sqrt n}{n}\\,T_n=\\dfrac{T_n}{\\sqrt n}.$",
-     "Group by the integer part $\\lfloor\\sqrt k\\rfloor=m$, i.e. the block $m^2\\le k<(m+1)^2$. Approximate the block sum by the integral via $x=\\sqrt k,\\ k=x^2,\\ dk=2x\\,dx$: $$\\sum_{m^2\\le k<(m+1)^2}\\frac{\\{\\sqrt k\\}}{\\sqrt k}\\approx\\int_m^{m+1}\\frac{\\{x\\}}{x}\\cdot2x\\,dx=2\\int_m^{m+1}\\{x\\}\\,dx=2\\int_0^1 t\\,dt=1.$$",
-     "So each complete block contributes $\\to1$ to $T_n$ (numerically, block $m=1000$ gives $0.9995$). Up to $k=n$ there are $\\approx\\sqrt n$ complete blocks, hence $T_n\\sim\\sqrt n.$",
-     "Therefore $S_n=\\dfrac{T_n}{\\sqrt n}\\to1.$ The factor $2$ from the Jacobian $dk=2x\\,dx$ is exactly the factor the naive '$\\tfrac12$-average' shortcut omits, which is why the honest value is $1$, not $\\tfrac12$."
+    "statement": "\\lim_{x\\to 0^+}\\left\\lfloor \\frac{100\\sin x}{x}\\right\\rfloor",
+    "answer": "99",
+    "trap": "Since $\\frac{\\sin x}{x}\\to 1$, the bracket tends to $100$, so \"obviously\" the floor tends to $100$. This conflates the limit of $g(x)$ with the limit of $\\lfloor g(x)\\rfloor$. The floor is a step function: it cares only about which integer cell $g$ lives in, not its limiting value. Because $\\sin x < x$ strictly for $0<x<\\pi$, we have $\\frac{100\\sin x}{x}<100$ for every $x>0$ near $0$ — the value approaches $100$ but never reaches it, sitting in the cell $(99,100)$. So $\\lfloor g(x)\\rfloor=99$ identically near $0$, and the limit is $99$, not $100$.",
+    "solutions": [
+      {
+        "name": "Method I - Sign of the approach (one-sided analysis)",
+        "steps": [
+          "The floor of $g(x)=\\dfrac{100\\sin x}{x}$ is determined entirely by which integer interval $g$ falls into, so the whole game is whether $g$ sits just below or just above $100$.",
+          "For $0<x<\\pi$ the strict inequality $\\sin x < x$ holds (the chord is shorter than the arc), hence $\\dfrac{\\sin x}{x}<1$ and therefore $$\\frac{100\\sin x}{x}<100.$$ The value is pinned strictly below $100$ for all small $x>0$.",
+          "We also need a lower bound to keep the value above $99$. From the expansion $\\sin x = x-\\dfrac{x^3}{6}+\\cdots$, $$\\frac{100\\sin x}{x}=100\\left(1-\\frac{x^2}{6}+\\cdots\\right),$$ which exceeds $99$ as soon as $\\dfrac{100x^2}{6}<1$, i.e. for $0<x<\\dfrac{\\sqrt 6}{10}$.",
+          "So for all sufficiently small $x>0$, $$99<\\frac{100\\sin x}{x}<100,$$ meaning $g$ never leaves the cell $(99,100)$. Thus $\\lfloor g(x)\\rfloor=99$ on that whole neighbourhood, and the limit is $\\boxed{99}$."
+        ]
+      },
+      {
+        "name": "Method II - Squeeze on the floor via explicit bounds",
+        "steps": [
+          "Write $g(x)=\\dfrac{100\\sin x}{x}$. We trap $g$ between two constants in a punctured right-neighbourhood of $0$, then read off the floor.",
+          "Upper bound: $\\sin x<x$ for $0<x<\\pi$ gives $g(x)<100$.",
+          "Lower bound: the standard inequality $\\sin x> x-\\dfrac{x^3}{6}$ (valid for $x>0$) gives $$g(x)>100-\\frac{100x^2}{6}.$$ Choosing $\\delta=\\dfrac{\\sqrt 6}{10}$ makes $\\dfrac{100\\delta^2}{6}=1$, so for $0<x<\\delta$ we get $g(x)>99$.",
+          "On $(0,\\delta)$ we therefore have $g(x)\\in(99,100)$ — a single integer cell — so $\\lfloor g(x)\\rfloor=99$ throughout. Since the floor is constant on a right-neighbourhood of $0$, the limit equals $99$."
+        ]
+      }
     ],
-    "_note": ""
-   }
-  ],
-  "remark": "Two equivalent viewpoints give the factor $2$: as the Jacobian $dk=2x\\,dx$ (so the weighted block average of $\\{x\\}$ is $2\\int_0^1 t\\,dt=1$), or as $\\int_0^1 x^{-1/2}dx=2$ multiplying the equidistribution mean $\\tfrac12$. Either way $\\tfrac12\\cdot2=1$."
- },
- {
-  "theme": "squeeze",
-  "themeLabel": "Sandwich & Discrete Sums",
-  "title": "The Signum Mirage",
-  "difficulty": 5,
-  "tags": [
-   "signum",
-   "sin",
-   "one-sided",
-   "x->0+",
-   "riemann-sum",
-   "squeeze"
-  ],
-  "statement": "\\lim_{x\\to 0^{+}}x\\sum_{k=1}^{\\lfloor 1/x\\rfloor}\\operatorname{sgn}\\!\\left(\\sin\\frac{1}{kx}\\right)",
-  "answer": "1-\\dfrac{2\\ln 2}{\\pi}",
-  "trap": "The seductive wrong answer is $0$. A strong student reasons: each $\\operatorname{sgn}(\\sin\\tfrac{1}{kx})\\in\\{-1,0,1\\}$, the argument $\\tfrac{1}{kx}$ grows as $x\\to0^+$, and $\\sin$ spends equal time positive and negative, so 'by equidistribution the signs cancel in the mean' and the limit is $0$. This is a mirage. Equidistribution would require $\\tfrac{1}{kx}$ to sweep many periods uniformly over the bulk of indices, but it does not: writing $x\\approx\\tfrac1N$, the argument is $\\tfrac{N}{k}$, and for the majority of indices ($k$ comparable to $N$) this lies in $(0,\\pi)$ where $\\sin>0$. The oscillatory regime is confined to the few small $k$ and contributes only $O(N^{-1/2})$. The sum is really a Riemann sum, and it converges to a strictly positive constant.",
-  "solutions": [
-   {
-    "name": "Method I — Recognize the Riemann sum, then evaluate",
-    "steps": [
-     "Take $x\\to0^+$ along $x=\\tfrac1N$ with $N=\\lfloor1/x\\rfloor\\to\\infty$ (the general case follows since $x\\lfloor1/x\\rfloor\\to1$ and the summand is bounded). Then $\\tfrac{1}{kx}=\\tfrac{N}{k}$ and the expression is $$S_N=\\frac1N\\sum_{k=1}^{N}\\operatorname{sgn}\\!\\left(\\sin\\frac{N}{k}\\right).$$",
-     "Substitute $t=\\tfrac{k}{N}\\in(0,1]$, so $\\tfrac{N}{k}=\\tfrac1t$. Then $S_N=\\tfrac1N\\sum_{k=1}^N g\\!\\big(\\tfrac kN\\big)$ with $g(t)=\\operatorname{sgn}\\!\\big(\\sin\\tfrac1t\\big)$, a right Riemann sum on $[0,1]$ with mesh $\\tfrac1N$.",
-     "The function $g$ takes values in $\\{-1,0,1\\}$ and is discontinuous only where $\\sin\\tfrac1t=0$, i.e. at $t=\\tfrac{1}{m\\pi}$; these points accumulate only at $0$ and form a measure-zero set, so $g$ is Riemann integrable on $[0,1]$. Hence $$\\lim_{N\\to\\infty}S_N=\\int_0^1\\operatorname{sgn}\\!\\left(\\sin\\frac1t\\right)dt.$$",
-     "Substitute $u=\\tfrac1t$ (so $t=\\tfrac1u,\\ dt=-u^{-2}\\,du$), turning the integral into $$\\int_1^{\\infty}\\frac{\\operatorname{sgn}(\\sin u)}{u^2}\\,du.$$",
-     "On $(n\\pi,(n+1)\\pi)$ we have $\\operatorname{sgn}(\\sin u)=(-1)^n$, and $u=1$ lies in $(0,\\pi)$ (the $n=0$ block, sign $+$). Since $\\int_{a}^{b}u^{-2}\\,du=\\tfrac1a-\\tfrac1b$, $$\\int_1^{\\infty}\\frac{\\operatorname{sgn}(\\sin u)}{u^2}\\,du=\\Big(1-\\tfrac1\\pi\\Big)+\\sum_{n\\ge1}(-1)^n\\Big(\\tfrac{1}{n\\pi}-\\tfrac{1}{(n+1)\\pi}\\Big).$$",
-     "Evaluate the alternating series: $\\sum_{n\\ge1}\\tfrac{(-1)^n}{n}=-\\ln2$ and $\\sum_{n\\ge1}\\tfrac{(-1)^n}{n+1}=\\ln2-1$, so $\\sum_{n\\ge1}(-1)^n\\big(\\tfrac1n-\\tfrac1{n+1}\\big)=(-\\ln2)-(\\ln2-1)=1-2\\ln2$. Therefore $$\\int_1^{\\infty}\\frac{\\operatorname{sgn}(\\sin u)}{u^2}\\,du=\\Big(1-\\tfrac1\\pi\\Big)+\\frac{1-2\\ln2}{\\pi}=1-\\frac{2\\ln2}{\\pi}.$$",
-     "Hence the limit is $\\boxed{\\,1-\\dfrac{2\\ln2}{\\pi}\\,}\\approx0.5587$, a strictly positive number — the alleged cancellation to $0$ never happens."
-    ]
-   },
-   {
-    "name": "Method II — Squeeze the oscillatory head, integrate the smooth tail",
-    "steps": [
-     "With $x=\\tfrac1N$, write $S_N=\\tfrac1N\\sum_{k=1}^{N}\\operatorname{sgn}(\\sin\\tfrac{N}{k})$ and split at $K=\\lfloor\\sqrt N\\rfloor$ into a head $1\\le k\\le K$ and a tail $K<k\\le N$.",
-     "Head bound (squeeze): the trivial estimate $|\\operatorname{sgn}(\\cdot)|\\le1$ gives $$\\Big|\\frac1N\\sum_{k=1}^{K}\\operatorname{sgn}\\big(\\sin\\tfrac Nk\\big)\\Big|\\le\\frac{K}{N}\\le\\frac{1}{\\sqrt N}\\xrightarrow[N\\to\\infty]{}0.$$ So the oscillatory head — where $\\tfrac Nk$ is large and genuinely swings between signs — contributes nothing in the limit. (This is exactly where the false 'everything cancels' intuition lives; it is the negligible part, not the whole.)",
-     "Tail as a Riemann sum: for $K<k\\le N$ put $t=\\tfrac kN\\in(\\tfrac1{\\sqrt N},1]$. As $k$ increases by $1$, $t$ moves by $\\tfrac1N$, so $\\tfrac1N\\sum_{K<k\\le N}\\operatorname{sgn}(\\sin\\tfrac1t)$ is a Riemann sum for $\\int_{0}^{1}\\operatorname{sgn}(\\sin\\tfrac1t)\\,dt$ (the missing piece $\\int_0^{1/\\sqrt N}$ has length $\\to0$ with bounded integrand, hence vanishes).",
-     "Therefore $S_N\\to\\int_0^1\\operatorname{sgn}(\\sin\\tfrac1t)\\,dt$. Evaluating this integral exactly as in Method I (substitute $u=1/t$, sum the alternating series of $\\tfrac1{u^2}$ over half-periods) yields $$\\int_0^1\\operatorname{sgn}\\!\\Big(\\sin\\tfrac1t\\Big)dt=1-\\frac{2\\ln2}{\\pi}.$$",
-     "The general $x\\to0^+$ limit equals the same value because $x\\lfloor1/x\\rfloor\\to1$ and the summand is bounded by $1$. Hence the limit is $1-\\dfrac{2\\ln2}{\\pi}$."
-    ]
-   }
-  ],
-  "remark": "The key reframing: $x\\sum_{k\\le\\lfloor1/x\\rfloor}h(\\tfrac{1}{kx})$ is a disguised Riemann sum $\\to\\int_0^1 h(\\tfrac1t)\\,dt=\\int_1^\\infty h(u)u^{-2}\\,du$. For $h=\\operatorname{sgn}\\circ\\sin$ the dominant indices ($k$ near $\\lfloor1/x\\rfloor$) land in the first positive arc $(0,\\pi)$, so the value is a positive constant $1-\\tfrac{2\\ln2}{\\pi}$, not $0$. 'Mean zero of $\\operatorname{sgn}\\circ\\sin$' only governs the measure-zero oscillatory head."
- },
- {
-  "theme": "squeeze",
-  "themeLabel": "Sandwich & Discrete Sums",
-  "title": "Stolz Refuses the Easy Way",
-  "difficulty": 5,
-  "tags": [
-   "stolz-cesaro",
-   "floor",
-   "ln",
-   "x->infinity",
-   "dyadic"
-  ],
-  "statement": "\\lim_{n\\to\\infty}\\frac{1}{(\\ln n)^{2}}\\sum_{k=1}^{n}\\frac{\\left\\lfloor\\log_{2}k\\right\\rfloor}{k}",
-  "answer": "\\dfrac{1}{2\\ln 2}",
-  "trap": "Two seductive traps. (1) Wrong normalizer: a student notes $\\lfloor\\log_2 k\\rfloor\\le\\log_2 k$ and expects the sum to grow like $\\sum\\tfrac{\\ln k}{k\\ln2}\\sim\\tfrac{(\\ln n)^2}{2\\ln2}$, then carelessly divides by $\\ln n$ (as in a $1/\\ln n$ version) and concludes the limit is $\\infty$. The sum IS $\\sim\\tfrac{(\\ln n)^2}{2\\ln2}$, so dividing by the matching $(\\ln n)^2$ gives the finite $\\tfrac{1}{2\\ln2}$. (2) Replacing $\\lfloor\\log_2 k\\rfloor$ by $\\log_2 k$ looks harmless for the LEADING term — and indeed it gives the same constant — but it hides why the floor is essential to keep the block structure exact; sloppy bounding of the $O(1)$ gap can corrupt the constant if you are not careful.",
-  "solutions": [
-   {
-    "name": "Method I — Dyadic blocking",
-    "steps": [
-     "On the dyadic block $2^m\\le k<2^{m+1}$ we have $\\lfloor\\log_2 k\\rfloor=m$ exactly. Hence $\\displaystyle\\sum_{k=2^m}^{2^{m+1}-1}\\frac{\\lfloor\\log_2k\\rfloor}{k}=m\\sum_{k=2^m}^{2^{m+1}-1}\\frac1k.$",
-     "The inner harmonic block satisfies $\\displaystyle\\sum_{k=2^m}^{2^{m+1}-1}\\frac1k=H_{2^{m+1}-1}-H_{2^m-1}\\to\\ln2$ as $m\\to\\infty$, so block $m$ contributes $\\sim m\\ln2.$",
-     "Summing complete blocks up to $M=\\lfloor\\log_2 n\\rfloor$: $\\displaystyle\\sum_{m=0}^{M-1}m\\ln2=\\ln2\\cdot\\frac{M(M-1)}{2}\\sim\\frac{\\ln2}{2}M^2.$ The leftover partial block contributes $O(M)$, negligible against $M^2$.",
-     "Since $M=\\log_2 n=\\dfrac{\\ln n}{\\ln2}$, we get $\\displaystyle\\sum_{k=1}^n\\frac{\\lfloor\\log_2k\\rfloor}{k}\\sim\\frac{\\ln2}{2}\\cdot\\frac{(\\ln n)^2}{(\\ln2)^2}=\\frac{(\\ln n)^2}{2\\ln2}.$",
-     "Divide by $(\\ln n)^2$: $\\displaystyle\\frac{1}{(\\ln n)^2}\\sum_{k=1}^n\\frac{\\lfloor\\log_2k\\rfloor}{k}\\to\\frac{1}{2\\ln2}.$"
-    ]
-   },
-   {
-    "name": "Method II — Stolz–Cesàro",
-    "steps": [
-     "Let $a_n=\\sum_{k=1}^n\\dfrac{\\lfloor\\log_2k\\rfloor}{k}$ and $b_n=(\\ln n)^2$. Here $b_n\\to\\infty$ is strictly increasing, so Stolz–Cesàro applies: it suffices to evaluate $\\displaystyle\\frac{a_{n+1}-a_n}{b_{n+1}-b_n}.$",
-     "Numerator: $a_{n+1}-a_n=\\dfrac{\\lfloor\\log_2(n+1)\\rfloor}{n+1}=\\dfrac{\\log_2 n+O(1)}{n+1}\\sim\\dfrac{\\ln n}{n\\ln2},$ since $\\lfloor\\log_2(n+1)\\rfloor=\\log_2 n+O(1)$ and the $O(1)$ is lower order.",
-     "Denominator: $b_{n+1}-b_n=(\\ln(n+1))^2-(\\ln n)^2=\\bigl(\\ln(n+1)-\\ln n\\bigr)\\bigl(\\ln(n+1)+\\ln n\\bigr)\\sim\\dfrac1n\\cdot2\\ln n=\\dfrac{2\\ln n}{n}.$",
-     "Therefore $\\displaystyle\\frac{a_{n+1}-a_n}{b_{n+1}-b_n}\\to\\frac{\\ln n/(n\\ln2)}{2\\ln n/n}=\\frac{1}{2\\ln2},$ and by Stolz–Cesàro $\\dfrac{a_n}{(\\ln n)^2}\\to\\dfrac{1}{2\\ln2}.$"
-    ]
-   }
-  ],
-  "remark": "The dyadic floor makes $\\sum\\tfrac{\\lfloor\\log_2k\\rfloor}{k}$ grow quadratically in $\\ln n$, so the natural normalizer is $(\\ln n)^2$ — not $\\ln n$, under which the expression diverges. Either dyadic blocking or Stolz pins the constant to $\\tfrac{1}{2\\ln2}$; in general $\\sum_{k\\le n}\\tfrac{\\lfloor\\log_b k\\rfloor}{k}\\sim\\tfrac{(\\ln n)^2}{2\\ln b}$."
- },
- {
-  "theme": "squeeze",
-  "themeLabel": "Sandwich & Discrete Sums",
-  "title": "Riemann With a Floor Inside",
-  "difficulty": 5,
-  "tags": [
-   "floor",
-   "riemann-sum",
-   "x->infinity",
-   "equidistribution"
-  ],
-  "statement": "\\lim_{n\\to\\infty}\\frac{1}{n}\\sum_{k=1}^{n}\\left\\{\\frac{n}{k}\\right\\}",
-  "answer": "1-\\gamma",
-  "trap": "The reflex is \"it's an average of fractional parts, so it's $\\tfrac12$.\" That is the killer trap and it gives the wrong number. The fractional parts $\\{n/k\\}$ are systematically biased low: for small $k$, $n/k$ is huge and varies slowly, so $\\{n/k\\}$ spends more time small than large. A more careful student writes $\\tfrac1n\\sum f(k/n)$ with $f(t)=\\{1/t\\}$ and gets $\\int_0^1\\{1/t\\}\\,dt$ — which actually does equal $1-\\gamma$ — but only if they correctly evaluate $\\int_1^\\infty\\frac{\\{u\\}}{u^2}\\,du=1-\\gamma$; mis-evaluating that integral or rounding $1-\\gamma\\approx0.4228$ back to $\\tfrac12$ is the common slip. The true value is the non-obvious $1-\\gamma\\approx0.4228$, strictly below $\\tfrac12$.",
-  "solutions": [
-   {
-    "name": "Method I — From divisor sums to the constant",
-    "steps": [
-     "Write $\\{n/k\\}=\\dfrac nk-\\big\\lfloor n/k\\big\\rfloor$ and sum: $$\\sum_{k=1}^n\\Big\\{\\frac nk\\Big\\}=n\\sum_{k=1}^n\\frac1k-\\sum_{k=1}^n\\Big\\lfloor\\frac nk\\Big\\rfloor=nH_n-D(n),$$ where $D(n)=\\sum_{k=1}^n\\lfloor n/k\\rfloor=\\sum_{k=1}^n d(k)$ is the total number of divisors of the integers up to $n$ (the identity $\\sum_k\\lfloor n/k\\rfloor=\\sum_{m\\le n}d(m)$ holds because $\\lfloor n/k\\rfloor$ counts the multiples of $k$ in $[1,n]$).",
-     "Dirichlet's divisor theorem gives $D(n)=n\\ln n+(2\\gamma-1)n+O(\\sqrt n)$. Also $H_n=\\ln n+\\gamma+O(1/n)$, so $nH_n=n\\ln n+\\gamma n+O(1)$.",
-     "Subtract the two expansions: $$\\sum_{k=1}^n\\Big\\{\\frac nk\\Big\\}=\\big(n\\ln n+\\gamma n\\big)-\\big(n\\ln n+(2\\gamma-1)n\\big)+O(\\sqrt n)=(1-\\gamma)\\,n+O(\\sqrt n).$$",
-     "Divide by $n$: the $O(\\sqrt n)/n=O(1/\\sqrt n)$ term vanishes, so $$\\frac1n\\sum_{k=1}^n\\Big\\{\\frac nk\\Big\\}\\longrightarrow 1-\\gamma.$$"
-    ]
-   },
-   {
-    "name": "Method II — Riemann integral done correctly",
-    "steps": [
-     "Set $t=k/n$. Then $\\dfrac1n\\sum_{k=1}^n\\Big\\{\\dfrac nk\\Big\\}=\\dfrac1n\\sum_{k=1}^n f\\!\\big(\\tfrac kn\\big)$ with $f(t)=\\{1/t\\}$, a bounded function that is Riemann integrable on $(0,1]$ (its only accumulation of discontinuities is at $t\\to0^+$, where it is bounded). Hence the sum tends to $\\displaystyle\\int_0^1\\Big\\{\\frac1t\\Big\\}\\,dt.$",
-     "Substitute $u=1/t$, so $t=1/u$ and $dt=-u^{-2}\\,du$: $$\\int_0^1\\Big\\{\\frac1t\\Big\\}\\,dt=\\int_1^\\infty\\frac{\\{u\\}}{u^2}\\,du.$$",
-     "Evaluate the classical integral. With $\\{u\\}=u-\\lfloor u\\rfloor$, $$\\int_1^N\\frac{\\{u\\}}{u^2}\\,du=\\int_1^N\\frac{du}{u}-\\int_1^N\\frac{\\lfloor u\\rfloor}{u^2}\\,du=\\ln N-\\Big(\\ln N-H_{\\lfloor N\\rfloor}+\\tfrac{\\{N\\}}{N}\\cdots\\Big),$$ which collapses to $H_{N}-\\ln N\\to\\gamma$ inside, giving $\\displaystyle\\int_1^\\infty\\frac{\\{u\\}}{u^2}\\,du=1-\\gamma$ (equivalently, this is the standard integral representation $\\gamma=1-\\int_1^\\infty\\tfrac{\\{u\\}}{u^2}\\,du$).",
-     "Therefore the limit equals $1-\\gamma\\approx0.4228$."
-    ]
-   },
-   {
-    "name": "Method III — Squeeze sanity bound (why it's below ½)",
-    "steps": [
-     "Bracket each floor: $\\dfrac nk-1<\\big\\lfloor n/k\\big\\rfloor\\le\\dfrac nk$. Summing, $$nH_n-n<\\sum_{k=1}^n\\Big\\lfloor\\frac nk\\Big\\rfloor\\le nH_n.$$",
-     "Hence $\\displaystyle\\sum_{k=1}^n\\{n/k\\}=nH_n-\\sum_{k=1}^n\\lfloor n/k\\rfloor$ lies in $[0,n)$, so the mean lies in $[0,1)$ — this only rules out absurd values. The crude squeeze cannot reach $1-\\gamma$ alone; the refined Dirichlet error term (the $\\tfrac12$-saving $O(\\sqrt n)$) is exactly what pins the constant at $1-\\gamma\\approx0.4228$.",
-     "Since $1-\\gamma<\\tfrac12$, the naive 'fractional parts average $\\tfrac12$' guess is disproved, and $$\\frac1n\\sum_{k=1}^n\\{n/k\\}\\longrightarrow 1-\\gamma.$$"
-    ]
-   }
-  ],
-  "remark": "The fractional parts of $n/k$ are biased low because $n/k$ is large and slowly varying for small $k$, so it lingers near integer values; Dirichlet's $\\tfrac12$-saving error term is precisely what converts the naive $\\tfrac12$ into $1-\\gamma$. The same divisor-sum machinery shows $\\tfrac1n\\sum_{k\\le n}\\{n/k\\}\\to 1-\\gamma$ is the additive analogue of the average order of $d(k)$."
- },
- {
-  "theme": "squeeze",
-  "themeLabel": "Sandwich & Discrete Sums",
-  "title": "Conjugate Across the Whole Sum",
-  "difficulty": 4,
-  "tags": [
-   "sqrt",
-   "global-bound",
-   "x->infinity",
-   "telescoping-fail"
-  ],
-  "statement": "\\lim_{n\\to\\infty}\\sum_{k=1}^{n}\\left(\\sqrt{n^{2}+k}-\\sqrt{n^{2}+k-1}\\right)\\cdot\\sqrt{\\frac{k}{n}}",
-  "answer": "\\dfrac{1}{3}",
-  "trap": "A student telescopes $\\sum(\\sqrt{n^2+k}-\\sqrt{n^2+k-1})=\\sqrt{n^2+n}-n\\to\\tfrac12$ and then multiplies by 'the typical $\\sqrt{k/n}\\approx1$', guessing $\\tfrac12$. Wrong: the weight $\\sqrt{k/n}$ varies across the sum and cannot be pulled out; replacing each difference by its true size $\\tfrac1{2n}$ turns it into a genuine Riemann sum giving $\\tfrac13$.",
-  "solutions": [
-   {
-    "name": "Method I — Conjugate then Riemann",
-    "steps": [
-     "Conjugate each difference: $\\sqrt{n^2+k}-\\sqrt{n^2+k-1}=\\dfrac{1}{\\sqrt{n^2+k}+\\sqrt{n^2+k-1}}.$",
-     "For $1\\le k\\le n$, both roots are $\\approx n$, so the difference $=\\dfrac{1}{2n}\\big(1+O(k/n^2)\\big)=\\dfrac{1}{2n}+O\\!\\big(\\tfrac{k}{n^3}\\big).$",
-     "Thus the sum is $\\displaystyle\\sum_{k=1}^n\\Big(\\frac{1}{2n}+O\\big(\\tfrac{k}{n^3}\\big)\\Big)\\sqrt{\\frac kn}=\\frac{1}{2n}\\sum_{k=1}^n\\sqrt{\\frac kn}+O\\!\\Big(\\frac{1}{n^3}\\sum k\\sqrt{\\tfrac kn}\\Big).$",
-     "Error term: $\\dfrac{1}{n^3}\\sum_{k=1}^n k\\sqrt{k/n}=\\dfrac{1}{n^{3.5}}\\sum k^{3/2}=O\\!\\big(\\tfrac{n^{5/2}}{n^{3.5}}\\big)=O(n^{-1})\\to0,$ since $\\sum_{k=1}^n k^{3/2}\\sim\\tfrac25 n^{5/2}.$",
-     "Main term: $\\dfrac{1}{2}\\cdot\\dfrac1n\\sum_{k=1}^n\\sqrt{k/n}\\to\\dfrac12\\int_0^1\\sqrt t\\,dt=\\dfrac12\\cdot\\dfrac23=\\dfrac13.$"
-    ]
-   },
-   {
-    "name": "Method II — Mean value theorem per term",
-    "steps": [
-     "By the MVT applied to $f(x)=\\sqrt{x}$ on $[n^2+k-1,\\,n^2+k]$, $\\sqrt{n^2+k}-\\sqrt{n^2+k-1}=\\dfrac{1}{2\\sqrt{\\xi_k}}$ for some $\\xi_k\\in(n^2+k-1,n^2+k)$, so $\\xi_k=n^2(1+O(1/n))$ and $\\dfrac{1}{2\\sqrt{\\xi_k}}=\\dfrac{1}{2n}\\big(1+O(1/n)\\big).$",
-     "Therefore the sum equals $\\displaystyle\\frac{1}{2n}\\sum_{k=1}^n\\sqrt{\\frac kn}\\,(1+O(1/n))=\\frac12\\Big(\\frac1n\\sum_{k=1}^n\\sqrt{k/n}\\Big)+O(1/n).$",
-     "Recognize the Riemann sum $\\dfrac1n\\sum_{k=1}^n\\sqrt{k/n}\\to\\int_0^1\\sqrt t\\,dt=\\tfrac23.$",
-     "Hence the limit is $\\tfrac12\\cdot\\tfrac23=\\tfrac13.$"
-    ]
-   }
-  ],
-  "remark": "Telescoping kills the differences but loses the weight; the right move is to replace each difference by its size $\\tfrac1{2n}$ and read off the Riemann integral $\\tfrac12\\int_0^1\\sqrt t\\,dt=\\tfrac13.$"
- },
- {
-  "theme": "squeeze",
-  "themeLabel": "Sandwich & Discrete Sums",
-  "title": "Floor of an Arctan Riemann Sum",
-  "difficulty": 5,
-  "tags": [
-   "floor",
-   "arctan",
-   "riemann-sum",
-   "x->infinity",
-   "global-squeeze"
-  ],
-  "statement": "\\lim_{n\\to\\infty}\\frac{1}{n^{2}}\\sum_{k=1}^{n}\\left\\lfloor n\\arctan\\frac{k}{n}\\right\\rfloor",
-  "answer": "\\dfrac{\\pi}{4}-\\dfrac{1}{2}\\ln 2",
-  "trap": "Drop-the-floor fallacy: a student writes $\\lfloor n\\arctan\\tfrac kn\\rfloor\\approx n\\arctan\\tfrac kn$, so the expression $\\approx\\tfrac1n\\sum_{k=1}^n\\arctan\\tfrac kn\\to\\int_0^1\\arctan x\\,dx=\\tfrac\\pi4-\\tfrac12\\ln2$ — and gets the right number, but with NO justification that the floor's loss is negligible. The danger is the opposite over-correction: 'the floor removes a full unit each term, so subtract $\\tfrac1n\\sum 1=1$ and the answer is $\\tfrac\\pi4-\\tfrac12\\ln2-1<0$.' Both are unjustified; the floor removes a fractional part $\\in[0,1)$ per term, total $<n$, which vanishes only after dividing by $n^2$. Only a genuine two-sided squeeze is legitimate.",
-  "solutions": [
-   {
-    "name": "Method I — Strip the floor, then Riemann sum",
-    "steps": [
-     "Write each term as its value minus a bounded fractional defect. For any real $y$, $\\,y-1<\\lfloor y\\rfloor\\le y$. With $y_k=n\\arctan\\tfrac kn$ (which is $\\ge 0$ since $1\\le k\\le n$):",
-     "$$\\frac1{n^2}\\sum_{k=1}^n\\Big(n\\arctan\\tfrac kn-1\\Big)<\\frac1{n^2}\\sum_{k=1}^n\\Big\\lfloor n\\arctan\\tfrac kn\\Big\\rfloor\\le\\frac1{n^2}\\sum_{k=1}^n n\\arctan\\tfrac kn.$$",
-     "The upper bound is a Riemann sum: $\\dfrac1{n^2}\\sum_{k=1}^n n\\arctan\\tfrac kn=\\dfrac1n\\sum_{k=1}^n\\arctan\\tfrac kn\\to\\displaystyle\\int_0^1\\arctan x\\,dx.$",
-     "The lower bound differs from the upper only by $\\dfrac1{n^2}\\sum_{k=1}^n 1=\\dfrac{n}{n^2}=\\dfrac1n\\to0$, so it has the SAME limit.",
-     "Evaluate the integral by parts: $\\displaystyle\\int_0^1\\arctan x\\,dx=\\Big[x\\arctan x-\\tfrac12\\ln(1+x^2)\\Big]_0^1=\\tfrac\\pi4-\\tfrac12\\ln2.$",
-     "Both bounds converge to $\\tfrac\\pi4-\\tfrac12\\ln2$, so by the squeeze the limit equals $\\boxed{\\dfrac\\pi4-\\dfrac12\\ln2}$. (Here the floor genuinely matters per term but its total loss $<n$ is killed by the $1/n^2$ scaling.)"
-    ]
-   },
-   {
-    "name": "Method II — Global sandwich with explicit error bound",
-    "steps": [
-     "Let $S_n=\\dfrac1{n^2}\\sum_{k=1}^n\\big\\lfloor n\\arctan\\tfrac kn\\big\\rfloor$ and $R_n=\\dfrac1n\\sum_{k=1}^n\\arctan\\tfrac kn$ (the right-endpoint Riemann sum of $\\arctan$ on $[0,1]$).",
-     "Since $0\\le n\\arctan\\tfrac kn-\\lfloor n\\arctan\\tfrac kn\\rfloor<1$ for each $k$, summing gives $0\\le\\sum_{k=1}^n n\\arctan\\tfrac kn-\\sum_{k=1}^n\\lfloor\\cdot\\rfloor<n.$",
-     "Divide by $n^2$: $\\;0\\le R_n-S_n<\\dfrac1n.$ Hence $\\;R_n-\\dfrac1n<S_n\\le R_n.$",
-     "Because $\\arctan$ is continuous (Riemann integrable) on $[0,1]$, $\\,R_n\\to\\displaystyle\\int_0^1\\arctan x\\,dx=\\tfrac\\pi4-\\tfrac12\\ln2$, and $\\tfrac1n\\to0$.",
-     "By the squeeze theorem $S_n\\to\\tfrac\\pi4-\\tfrac12\\ln2.$ Numerically $\\approx0.43882$, matching direct computation."
-    ]
-   }
-  ],
-  "remark": "The lesson: a floor inside a sum scaled by $1/n^2$ contributes per-term error $<1$, total $<n$, which is $o(n^2)$ — so the floored sum and the raw Riemann sum share the same limit. The clean target $\\tfrac\\pi4-\\tfrac12\\ln2=\\int_0^1\\arctan x\\,dx$ is what the sandwich pins down."
- },
- {
-  "theme": "squeeze",
-  "themeLabel": "Sandwich & Discrete Sums",
-  "title": "The Misleading Termwise Limit",
-  "difficulty": 5,
-  "tags": [
-   "termwise-trap",
-   "sin",
-   "global-bound",
-   "x->infinity",
-   "squeeze"
-  ],
-  "statement": "\\lim_{n\\to\\infty}\\sum_{k=1}^{n}\\frac{k}{n^{2}}\\sin^{2}\\!\\left(\\frac{k\\pi}{n}\\right)",
-  "answer": "\\dfrac{1}{4}",
-  "trap": "Looking termwise, each term $\\tfrac{k}{n^2}\\sin^2(\\tfrac{k\\pi}{n})\\to0$ as $n\\to\\infty$, so a student reasons '$n$ terms each $\\to0$, an $n\\cdot 0$ form, probably $0$.' This is the seduction: termwise vanishing says nothing about a sum whose length grows. Equally tempting is to drop the oscillating $\\sin^2$ and only keep the crude bound $\\sum\\tfrac{k}{n^2}\\to\\tfrac12$, guessing $\\tfrac12$. Both fail: the correct object is the Riemann sum $\\tfrac1n\\sum\\tfrac kn\\sin^2(\\pi\\tfrac kn)\\to\\int_0^1 t\\sin^2(\\pi t)\\,dt=\\tfrac14$, where the period-mean $\\tfrac12$ of $\\sin^2$ halves the $\\tfrac12$.",
-  "solutions": [
-   {
-    "name": "Method I — Riemann sum",
-    "steps": [
-     "Factor out $\\tfrac1n$: $\\dfrac{k}{n^2}\\sin^2\\tfrac{k\\pi}{n}=\\dfrac1n\\cdot\\dfrac kn\\sin^2\\!\\big(\\pi\\cdot\\tfrac kn\\big)$. With nodes $t_k=k/n$ and mesh $\\tfrac1n$, the whole expression is a right Riemann sum for $f(t)=t\\sin^2(\\pi t)$ on $[0,1]$.",
-     "Since $f$ is continuous, the limit equals $\\displaystyle\\int_0^1 t\\sin^2(\\pi t)\\,dt=\\int_0^1 t\\cdot\\frac{1-\\cos(2\\pi t)}{2}\\,dt=\\frac12\\int_0^1 t\\,dt-\\frac12\\int_0^1 t\\cos(2\\pi t)\\,dt.$",
-     "First piece: $\\tfrac12\\int_0^1 t\\,dt=\\tfrac12\\cdot\\tfrac12=\\tfrac14$.",
-     "Second piece by parts, with antiderivative $\\displaystyle\\int t\\cos(2\\pi t)\\,dt=\\frac{t\\sin(2\\pi t)}{2\\pi}+\\frac{\\cos(2\\pi t)}{4\\pi^2}$: evaluating on $[0,1]$ gives $\\big(0+\\tfrac{1}{4\\pi^2}\\big)-\\big(0+\\tfrac{1}{4\\pi^2}\\big)=0.$",
-     "Therefore the integral is $\\tfrac14-\\tfrac12\\cdot0=\\boxed{\\tfrac14}.$"
-    ]
-   },
-   {
-    "name": "Method II — Exact trig sum",
-    "steps": [
-     "Use $\\sin^2\\tfrac{k\\pi}{n}=\\tfrac12-\\tfrac12\\cos\\tfrac{2k\\pi}{n}$, so the sum splits as $\\displaystyle\\frac{1}{n^2}\\sum_{k=1}^n k\\Big(\\frac12-\\frac12\\cos\\frac{2k\\pi}{n}\\Big)=\\frac{1}{2n^2}\\sum_{k=1}^n k-\\frac{1}{2n^2}\\sum_{k=1}^n k\\cos\\frac{2k\\pi}{n}.$",
-     "First sum: $\\dfrac{1}{2n^2}\\cdot\\dfrac{n(n+1)}{2}=\\dfrac{n+1}{4n}\\to\\dfrac14.$",
-     "Second sum: the weighted cosine sum has the exact value $\\displaystyle\\sum_{k=1}^n k\\cos\\frac{2k\\pi}{n}=\\frac{n}{2}$ for every $n\\ge2$ (from $\\sum_{k=1}^{n}k\\,z^{k}$ with $z=e^{2\\pi i/n}$, $z^n=1$, taking real parts). Hence $\\dfrac{1}{2n^2}\\cdot\\dfrac n2=\\dfrac{1}{4n}\\to0$, contributing $-\\dfrac{1}{4n}$ to the total.",
-     "So the limit is $\\dfrac{n+1}{4n}-\\dfrac{1}{4n}=\\dfrac{n}{4n}=\\dfrac14$ exactly for all $n$ — the sequence is constantly $\\tfrac14$, hence the limit is $\\dfrac14.$"
-    ]
-   },
-   {
-    "name": "Method III — Squeeze via period-mean replacement",
-    "steps": [
-     "Crude bracket first: $0\\le\\sin^2\\le1$ gives $0\\le\\sum_{k=1}^n\\tfrac{k}{n^2}\\sin^2\\tfrac{k\\pi}{n}\\le\\sum_{k=1}^n\\tfrac{k}{n^2}=\\tfrac{n+1}{2n}\\to\\tfrac12$, so the answer lies in $[0,\\tfrac12]$ — ruling out the naive $0$ but not yet pinning the value.",
-     "Replace $\\sin^2\\tfrac{k\\pi}{n}$ by its period-mean $\\tfrac12$. The replaced sum is $\\tfrac12\\sum_{k=1}^n\\tfrac{k}{n^2}=\\tfrac{n+1}{4n}\\to\\tfrac14$, and the error is $-\\tfrac{1}{2n^2}\\sum_{k=1}^n k\\cos\\tfrac{2k\\pi}{n}=-\\tfrac{1}{4n}$ by the exact value $\\sum k\\cos\\tfrac{2k\\pi}{n}=\\tfrac n2$.",
-     "Since the error $-\\tfrac{1}{4n}\\to0$, the slowly varying weight $\\tfrac kn$ is asymptotically orthogonal to the oscillation, and the squeeze collapses to the mean-replaced value: the limit is $\\tfrac14\\cdot 1=\\dfrac14.$"
-    ]
-   }
-  ],
-  "remark": "Termwise limits are silent about sums whose length grows. The slowly varying weight $t$ times the period-mean $\\tfrac12$ of $\\sin^2$ gives $\\int_0^1 t\\cdot\\tfrac12\\,dt=\\tfrac14$; the oscillation $-\\tfrac12\\cos(2\\pi t)$ integrates against the smooth weight to exactly $0$. Notably the finite sum equals $\\tfrac14$ for every $n$, because $\\sum_{k=1}^n k\\cos\\tfrac{2k\\pi}{n}=\\tfrac n2$ cancels the $\\tfrac{n+1}{4n}$ down to $\\tfrac14$ on the nose."
- },
- {
-  "theme": "squeeze",
-  "themeLabel": "Sandwich & Discrete Sums",
-  "title": "One-Sided Squeeze at an Integer",
-  "difficulty": 3,
-  "tags": [
-   "floor",
-   "one-sided",
-   "x->2-",
-   "squeeze"
-  ],
-  "statement": "\\lim_{x\\to 2^{-}}\\big(x-\\lfloor x\\rfloor\\big)\\Big\\lfloor\\frac{1}{2-x}\\Big\\rfloor\\cdot(2-x)",
-  "answer": "1",
-  "trap": "It looks like an $\\infty\\cdot 0$: as $x\\to 2^-$, $\\lfloor\\tfrac{1}{2-x}\\rfloor\\to+\\infty$ while $(2-x)\\to 0^+$, and a strong student rules that '$2-x$ wins, so this factor $\\to 0$' and hence the whole product $\\to 0$. That is wrong: the floor and its reciprocal scale are locked together, $\\lfloor\\tfrac{1}{2-x}\\rfloor\\cdot(2-x)\\to 1$ by squeeze (it is $\\Theta(1)$, never $0$). With $x-\\lfloor x\\rfloor=x-1\\to 1$, the limit is $1\\cdot 1=1$.",
-  "solutions": [
-   {
-    "name": "Method I — Squeeze the floor product",
-    "steps": [
-     "As $x\\to2^-$, set $h=2-x\\to0^+$. Then $\\lfloor x\\rfloor=1$ (since $1<x<2$), so $x-\\lfloor x\\rfloor=x-1=1-h\\to1.$",
-     "For the floor: $\\dfrac1h-1<\\Big\\lfloor\\dfrac1h\\Big\\rfloor\\le\\dfrac1h.$ Multiply through by $h>0$: $1-h<h\\Big\\lfloor\\dfrac1h\\Big\\rfloor\\le1.$",
-     "As $h\\to0^+$, both bounds $\\to1$, so by the squeeze theorem $h\\lfloor1/h\\rfloor\\to1.$",
-     "Multiply the two convergent factors: $(1-h)\\cdot\\big(h\\lfloor1/h\\rfloor\\big)\\to1\\cdot1=1.$"
-    ]
-   },
-   {
-    "name": "Method II — Fractional-part identity",
-    "steps": [
-     "With $h=2-x\\to 0^+$, write $h\\lfloor1/h\\rfloor=h\\big(\\tfrac1h-\\{1/h\\}\\big)=1-h\\{1/h\\}.$",
-     "Since $0\\le\\{1/h\\}<1$, we have $0\\le h\\{1/h\\}<h\\to0$, hence $h\\lfloor1/h\\rfloor=1-h\\{1/h\\}\\to1.$",
-     "Combined with $x-\\lfloor x\\rfloor=1-h\\to1$, the product $\\to(1)(1)=1.$"
-    ]
-   }
-  ],
-  "remark": "The classic $h\\lfloor1/h\\rfloor\\to1$ squeeze, dressed with a fractional-part factor that quietly tends to $1$ — the $\\infty\\cdot0$ is a mirage since a floor times its reciprocal scale is always $\\Theta(1)$."
- },
- {
-  "theme": "hybrid",
-  "themeLabel": "The Grand Hybrids",
-  "title": "The Floor at the Threshold",
-  "difficulty": 4,
-  "tags": [
-   "floor",
-   "trigonometry",
-   "one-sided",
-   "x->0+",
-   "squeeze"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\left\\lfloor \\frac{1000\\,\\sin x}{x}\\right\\rfloor",
-  "answer": "999",
-  "trap": "Naive answer $1000$: a student computes $\\frac{\\sin x}{x}\\to 1$, multiplies to get $1000$, and reads off $\\lfloor 1000\\rfloor=1000$. The error is forgetting that $\\frac{\\sin x}{x}<1$ strictly for $x\\ne 0$, so $\\frac{1000\\sin x}{x}<1000$ always — it approaches $1000$ from below, never reaching it, and the floor sees the value just under the integer, not the integer itself.",
-  "solutions": [
-   {
-    "name": "Method I - One-sided squeeze on the floor argument",
-    "steps": [
-     "For $0<x<\\tfrac{\\pi}{2}$ the strict inequality $\\sin x < x$ holds, hence $\\dfrac{\\sin x}{x}<1$ and therefore $\\dfrac{1000\\sin x}{x}<1000$.",
-     "On the other side, $\\dfrac{\\sin x}{x}\\to 1^-$, so for $x$ small enough $\\dfrac{1000\\sin x}{x}>999$. Indeed $\\dfrac{\\sin x}{x}=1-\\dfrac{x^2}{6}+\\dfrac{x^4}{120}-\\cdots$, an alternating series whose terms decrease, so $\\dfrac{1000\\sin x}{x}>1000-\\dfrac{1000x^2}{6}$, which exceeds $999$ once $\\dfrac{1000x^2}{6}<1$, i.e. $x<\\sqrt{6/1000}\\approx 0.077$.",
-     "Thus on a punctured right-neighbourhood of $0$ the argument lies in $(999,1000)$, so its floor is the constant $999$.",
-     "$$\\lim_{x\\to 0^+}\\left\\lfloor \\frac{1000\\sin x}{x}\\right\\rfloor = 999.$$"
-    ]
-   },
-   {
-    "name": "Method II - Floor is locally constant",
-    "steps": [
-     "The floor function $\\lfloor t\\rfloor$ is constant equal to $999$ on the whole interval $t\\in[999,1000)$.",
-     "Let $g(x)=\\dfrac{1000\\sin x}{x}$ for $x>0$. As $x\\to 0^+$ we have $g(x)\\to 1000$, yet $g(x)<1000$ for every such $x$ (since $\\sin x<x$); combined with $g(x)>999$ once $x$ is small, the value $g(x)$ enters and stays inside the interval $[999,1000)$.",
-     "On that interval $\\lfloor g(x)\\rfloor\\equiv 999$, so the floor value is eventually the constant $999$ and its limit is $999$.",
-     "The key lesson: $\\lfloor \\cdot\\rfloor$ is left-discontinuous at the integer $1000$, and our argument lands on the lower side of it."
-    ]
-   }
-  ],
-  "remark": "Replacing $1000$ by any positive integer $N$ gives $\\lim_{x\\to 0^+}\\lfloor N\\sin x/x\\rfloor=N-1$ — the floor sees the approach-from-below, not the limit value $N$."
- },
- {
-  "theme": "hybrid",
-  "themeLabel": "The Grand Hybrids",
-  "title": "Taming the Blow-Up",
-  "difficulty": 4,
-  "tags": [
-   "floor",
-   "tangent",
-   "one-sided",
-   "blow-up",
-   "squeeze"
-  ],
-  "statement": "\\lim_{x\\to (\\pi/2)^-}\\left(\\frac{\\pi}{2}-x\\right)\\big\\lfloor \\tan x\\big\\rfloor",
-  "answer": "1",
-  "trap": "Answer $0$. Seeing the factor $\\frac{\\pi}{2}-x\\to 0$, a hasty student treats $\\lfloor\\tan x\\rfloor$ as \"some finite integer\" and concludes $0\\cdot(\\text{finite})=0$. But as $x\\to(\\pi/2)^-$, $\\tan x\\to+\\infty$, so $\\lfloor\\tan x\\rfloor\\to+\\infty$ too: this is a genuine $0\\cdot\\infty$ indeterminate form. The vanishing factor is exactly $1/\\lfloor\\tan x\\rfloor$ in scale, so the product settles at $1$, not $0$.",
-  "solutions": [
-   {
-    "name": "Method I - Strip the floor with a bounded error",
-    "steps": [
-     "Write $\\lfloor \\tan x\\rfloor=\\tan x-\\{\\tan x\\}$ where $\\{\\tan x\\}\\in[0,1)$ is bounded.",
-     "Then $\\left(\\tfrac{\\pi}{2}-x\\right)\\lfloor\\tan x\\rfloor=\\left(\\tfrac{\\pi}{2}-x\\right)\\tan x-\\left(\\tfrac{\\pi}{2}-x\\right)\\{\\tan x\\}.$",
-     "The second term $\\to 0$ since $\\tfrac{\\pi}{2}-x\\to 0$ while $0\\le\\{\\tan x\\}<1$ is bounded.",
-     "For the first term set $u=\\tfrac{\\pi}{2}-x\\to 0^+$. Then $\\tan x=\\tan\\!\\left(\\tfrac{\\pi}{2}-u\\right)=\\cot u=\\dfrac{\\cos u}{\\sin u}$, so $u\\tan x=\\dfrac{u}{\\sin u}\\cos u\\to 1\\cdot 1=1.$",
-     "$$\\lim_{x\\to(\\pi/2)^-}\\left(\\tfrac{\\pi}{2}-x\\right)\\lfloor\\tan x\\rfloor = 1-0 = 1.$$"
-    ]
-   },
-   {
-    "name": "Method II - Direct squeeze",
-    "steps": [
-     "For every real $t$, $\\;t-1<\\lfloor t\\rfloor\\le t$. With $t=\\tan x>0$ near $\\tfrac{\\pi}{2}^-$ this gives $\\tan x-1<\\lfloor\\tan x\\rfloor\\le \\tan x$.",
-     "Multiply through by the positive quantity $u=\\tfrac{\\pi}{2}-x$: $\\;u(\\tan x-1)<u\\lfloor\\tan x\\rfloor\\le u\\tan x.$",
-     "From the cofunction identity $u\\tan x=\\dfrac{u\\cos u}{\\sin u}\\to 1$, hence the upper bound $\\to 1$ and the lower bound $u(\\tan x-1)=u\\tan x-u\\to 1-0=1$.",
-     "Both bounds converge to $1$, so by the squeeze theorem the middle quantity $\\to 1$."
-    ]
-   }
-  ],
-  "remark": "The floor is invisible in the limit precisely because its error $\\{\\tan x\\}$ is $O(1)$ while $\\tan x\\sim 1/u$ blows up — the dominant growth swamps the unit-scale wobble. Note the one-sided approach is essential: from the right, $\\tan x\\to-\\infty$ and $\\lfloor\\tan x\\rfloor$ would force a different analysis."
- },
- {
-  "theme": "hybrid",
-  "themeLabel": "The Grand Hybrids",
-  "title": "A Tale of Two Cubics",
-  "difficulty": 5,
-  "tags": [
-   "floor",
-   "sine",
-   "arcsine",
-   "series",
-   "x->0+"
-  ],
-  "statement": "\\lim_{x\\to 0^+}\\left\\lfloor \\frac{x-\\sin x}{x-\\arcsin x}\\right\\rfloor",
-  "answer": "-1",
-  "trap": "Answer $0$. The seductive move: compute that the ratio $\\dfrac{x-\\sin x}{x-\\arcsin x}\\to -1$, then reason 'the inside tends to $-1$, and $\\lfloor -1\\rfloor=-1$, but for values \\emph{just above} $-1$ the floor jumps to $0$.' The error is getting the side backwards — or asserting the inside reaches $-1$. In fact the ratio equals $-1+\\tfrac{x^2}{2}+o(x^2)$, so it sits in $(-1,0)$, strictly above $-1$ and never equal to it; and $\\lfloor t\\rfloor=-1$ for \\emph{every} $t\\in(-1,0)$. So the floor is $-1$, not $0$. (If one instead mis-signs the fifth-order terms and lands just below $-1$, one wrongly gets $-2$.)",
-  "solutions": [
-   {
-    "name": "Method I - Leading-order series",
-    "steps": [
-     "Use $\\sin x=x-\\dfrac{x^3}{6}+\\dfrac{x^5}{120}-\\cdots$, so $x-\\sin x=\\dfrac{x^3}{6}-\\dfrac{x^5}{120}+\\cdots>0.$",
-     "Use $\\arcsin x=x+\\dfrac{x^3}{6}+\\dfrac{3x^5}{40}+\\cdots$, so $x-\\arcsin x=-\\dfrac{x^3}{6}-\\dfrac{3x^5}{40}-\\cdots<0.$",
-     "Factor out $\\dfrac{x^3}{6}$ from each and cancel: $$\\frac{x-\\sin x}{x-\\arcsin x}=\\frac{\\tfrac{x^3}{6}\\left(1-\\tfrac{x^2}{20}+\\cdots\\right)}{-\\tfrac{x^3}{6}\\left(1+\\tfrac{9x^2}{20}+\\cdots\\right)}=-\\frac{1-\\tfrac{x^2}{20}+\\cdots}{1+\\tfrac{9x^2}{20}+\\cdots}.$$",
-     "Expand using $\\left(1+\\tfrac{9x^2}{20}\\right)^{-1}=1-\\tfrac{9x^2}{20}+\\cdots$: $$-\\left(1-\\tfrac{x^2}{20}\\right)\\left(1-\\tfrac{9x^2}{20}+\\cdots\\right)=-\\left(1-\\tfrac{x^2}{2}+\\cdots\\right)=-1+\\tfrac{x^2}{2}+\\cdots.$$",
-     "Thus the ratio equals $-1+\\tfrac{x^2}{2}+o(x^2)$: for small $x>0$ it is $>-1$ and tends to $-1$, so it lives in $(-1,0)$. Since $\\lfloor t\\rfloor=-1$ for all $t\\in(-1,0)$, the floor is identically $-1$ and the limit is $\\boxed{-1}$."
-    ]
-   },
-   {
-    "name": "Method II - Sign + magnitude comparison",
-    "steps": [
-     "For $x>0$ small: $x-\\sin x>0$ (since $\\sin x<x$) and $x-\\arcsin x<0$ (since $\\arcsin x>x$). So the ratio is negative — already ruling out the floor being $0$.",
-     "Compare magnitudes via the leading expansions: $|x-\\sin x|=\\tfrac{x^3}{6}\\left(1-\\tfrac{x^2}{20}+\\cdots\\right)$ and $|x-\\arcsin x|=\\tfrac{x^3}{6}\\left(1+\\tfrac{9x^2}{20}+\\cdots\\right)$.",
-     "The denominator's correction $+\\tfrac{9x^2}{20}$ dominates the numerator's $-\\tfrac{x^2}{20}$, so $|x-\\sin x|<|x-\\arcsin x|$ for small $x>0$. Hence the ratio has magnitude $<1$, i.e. it lies strictly in $(-1,0)$.",
-     "For every $t\\in(-1,0)$, $\\lfloor t\\rfloor=-1$. Therefore the floor is identically $-1$ on a punctured right-neighborhood of $0$, and $\\lim_{x\\to 0^+}=-1$."
-    ]
-   }
-  ],
-  "remark": "Because $\\sin$ and $\\arcsin$ are inverses, their cubic terms have equal magnitude and opposite sign — they cancel in the ratio to give exactly $-1$ at leading order. The TIE is broken by the fifth-order terms ($\\tfrac{1}{120}$ vs $\\tfrac{3}{40}$), whose asymmetry pushes the ratio to $-1+\\tfrac{x^2}{2}$, just above $-1$, fixing the floor at $-1$."
- },
- {
-  "theme": "hybrid",
-  "themeLabel": "The Grand Hybrids",
-  "title": "The Fractional Mirage",
-  "difficulty": 5,
-  "tags": [
-   "fractional-part",
-   "logarithm",
-   "one-sided",
-   "x->1+",
-   "discontinuity"
-  ],
-  "statement": "\\lim_{x\\to 1^+}\\left\\{\\frac{\\ln x}{x-1}\\right\\}",
-  "answer": "1",
-  "trap": "Answer $0$. The reflex: $\\dfrac{\\ln x}{x-1}\\to 1$ and $\\{1\\}=0$, so push the fractional part through the limit to get $0$. This silently assumes $\\{\\cdot\\}$ is continuous at the integer $1$ — but $\\{\\cdot\\}$ is only RIGHT-continuous at integers and jumps by $1$ from the left. The decisive question is the SIDE of the approach: by concavity of $\\ln$ (or the $-h/2$ term in the expansion), $\\dfrac{\\ln x}{x-1}\\to 1^{-}$, i.e. through values just below $1$, where $\\lfloor\\cdot\\rfloor=0$ and $\\{t\\}=t\\to 1^{-}$. The limit is $1$, not $0$.",
-  "solutions": [
-   {
-    "name": "Method I - Sign of the approach via series",
-    "steps": [
-     "Let $R(x)=\\dfrac{\\ln x}{x-1}$. Put $h=x-1\\to 0^{+}$ and use $\\ln(1+h)=h-\\dfrac{h^{2}}{2}+\\dfrac{h^{3}}{3}-\\cdots$",
-     "Then $R=\\dfrac{h-\\tfrac{h^{2}}{2}+\\tfrac{h^{3}}{3}-\\cdots}{h}=1-\\dfrac{h}{2}+\\dfrac{h^{2}}{3}-\\cdots$",
-     "For $x\\to 1^{+}$ we have $h>0$, so $R=1-\\dfrac{h}{2}+O(h^{2})<1$ for small $h$, while $R\\to 1$. Also $R>0$ for small $h$ (it tends to $1$), so $R\\in(0,1)$.",
-     "On $(0,1)$ the fractional part is the identity: $\\{R\\}=R$. Hence $\\{R\\}\\to 1^{-}$, giving $$\\lim_{x\\to 1^{+}}\\left\\{\\frac{\\ln x}{x-1}\\right\\}=1.$$"
-    ]
-   },
-   {
-    "name": "Method II - Geometry of the floor jump",
-    "steps": [
-     "Recall $\\{t\\}=t-\\lfloor t\\rfloor$. Near $t=1$ from below, $\\lfloor t\\rfloor=0$ so $\\{t\\}=t$; from above, $\\lfloor t\\rfloor=1$ so $\\{t\\}=t-1$. The answer hinges entirely on which side $R(x)$ approaches $1$.",
-     "Now $R(x)=\\dfrac{\\ln x-\\ln 1}{x-1}$ is the slope of the chord of $\\ln$ from $1$ to $x$. Since $\\ln$ is strictly concave, for $x>1$ this chord slope is strictly LESS than the tangent slope $\\ln'(1)=1$. Hence $R(x)<1$, and $R(x)\\to 1^{-}$.",
-     "Therefore $\\lfloor R(x)\\rfloor=0$ and $\\{R(x)\\}=R(x)\\to 1$.",
-     "Contrast: for $x\\to 1^{-}$ the chord slope exceeds $1$, so $R>1$, $\\lfloor R\\rfloor=1$, $\\{R\\}=R-1\\to 0^{+}$. The two limits disagree, so the two-sided limit does not exist — which is exactly why the problem is posed as $x\\to 1^{+}$."
-    ]
-   }
-  ],
-  "remark": "Concavity of $\\ln$ pins the side of the approach to $1^{-}$; the entire problem is a meditation on the left-discontinuity (right-continuity) of $\\{\\cdot\\}$ at an integer. Replace $\\ln x$ by any strictly concave $f$ with $f(1)=0$, $f'(1)=1$ and the same answer $1$ results from $x\\to 1^{+}$."
- },
- {
-  "theme": "hybrid",
-  "themeLabel": "The Grand Hybrids",
-  "title": "The Vanishing Negative",
-  "difficulty": 4,
-  "tags": [
-   "floor",
-   "arctangent",
-   "x->-inf",
-   "0-times-bounded",
-   "sign-of-zero"
-  ],
-  "statement": "\\lim_{x\\to -\\infty}\\big\\lfloor\\, x\\,(\\arctan x-\\arctan(x-1))\\,\\big\\rfloor",
-  "answer": "-1",
-  "trap": "Answer $0$. The bracketed difference $\\arctan x-\\arctan(x-1)\\to 0$, so one reads $x\\cdot 0 = 0$ and then $\\lfloor 0\\rfloor = 0$. But the product never reaches $0$: for every $x<0$ it is a strictly negative number lying in $(-1,0)$, and $\\lfloor t\\rfloor = -1$ for all $t\\in(-1,0)$. The limit of the floor is therefore $-1$, not the floor of the limit. Evaluating $\\lfloor\\cdot\\rfloor$ at the limiting value $0$ is the fatal shortcut — the floor is discontinuous exactly there, and the approach is from below.",
-  "solutions": [
-   {
-    "name": "Method I - Mean value theorem",
-    "steps": [
-     "Apply the MVT to $f(t)=\\arctan t$ on $[x-1,x]$: there is $c\\in(x-1,x)$ with $\\arctan x-\\arctan(x-1)=f'(c)=\\dfrac{1}{1+c^2}.$",
-     "Hence the bracketed quantity is $P(x)=\\dfrac{x}{1+c^2}$ with $c\\in(x-1,x)$. As $x\\to-\\infty$ we have $c\\to-\\infty$ and $c\\sim x$, so $P(x)\\sim\\dfrac{x}{1+x^2}\\to 0.$",
-     "Sign: for $x<0$ we have $x<0$ and $1+c^2>0$, so $P(x)<0$. Thus $P(x)\\to 0^-$ — the product approaches $0$ strictly from below.",
-     "Bound: since $c>x-1$, $1+c^2>1+(x-1)^2$, so for $x<0$, $|P(x)|=\\dfrac{|x|}{1+c^2}<\\dfrac{|x|}{1+(x-1)^2}<1$ (the last inequality is $(x-1)^2>0$ rearranged). Therefore $P(x)\\in(-1,0)$ for every $x<0$, giving $\\lfloor P(x)\\rfloor=-1$, and the limit is $-1$."
-    ]
-   },
-   {
-    "name": "Method II - Exact closed form via the arctangent subtraction identity",
-    "steps": [
-     "For $a,b$ of the same sign the subtraction formula $\\arctan a-\\arctan b=\\arctan\\dfrac{a-b}{1+ab}$ holds without a $\\pm\\pi$ correction. With $a=x,\\ b=x-1$ and $x<0$, here $1+ab=1+x^2-x>0$, so $$\\arctan x-\\arctan(x-1)=\\arctan\\frac{1}{1+x^2-x}.$$",
-     "Thus $P(x)=x\\,\\arctan\\dfrac{1}{1+x^2-x}.$ For $x<0$ the argument $\\dfrac{1}{1+x^2-x}>0$, so its arctangent is positive, and multiplying by $x<0$ gives $P(x)<0$.",
-     "Bound the arctangent by its argument, $0<\\arctan u<u$ for $u>0$: $0<\\arctan\\dfrac{1}{1+x^2-x}<\\dfrac{1}{1+x^2-x}.$ Multiplying by $x<0$ flips the inequalities: $$\\frac{x}{1+x^2-x}<P(x)<0.$$",
-     "Finally $\\dfrac{x}{1+x^2-x}>-1\\iff x>-(1+x^2-x)\\iff (x-1)^2>0$, true for all $x\\neq 1$. Hence $P(x)\\in(-1,0)$ for every $x<0$, so $\\lfloor P(x)\\rfloor=-1$ identically and $$\\lim_{x\\to-\\infty}\\big\\lfloor x(\\arctan x-\\arctan(x-1))\\big\\rfloor=-1.$$"
-    ]
-   }
-  ],
-  "remark": "The floor here is not merely a limit phenomenon: $\\lfloor P(x)\\rfloor=-1$ for every $x<0$. The same expression as $x\\to+\\infty$ gives $P(x)\\in(0,1)$, hence floor $0$ — the sign of $x$ silently shifts the answer by a full integer, and the floor is discontinuous at the limiting value $0$ precisely where the naive computation evaluates it."
- },
- {
-  "theme": "hybrid",
-  "themeLabel": "The Grand Hybrids",
-  "title": "Signum in the Exponent",
-  "difficulty": 5,
-  "tags": [
-   "signum",
-   "arcsine",
-   "modulus",
-   "power",
-   "one-sided",
-   "log-transform"
-  ],
-  "statement": "\\lim_{x\\to 0^-}\\left(\\frac{\\arcsin|x|}{|x|}\\right)^{\\operatorname{sgn}(x)/x^2}",
-  "answer": "e^{-1/6}",
-  "trap": "Answer $e^{1/6}$: the student recognizes the well-known $\\left(\\frac{\\arcsin t}{t}\\right)^{1/t^2}\\to e^{1/6}$ and reads it straight off, silently treating the exponent as $+1/x^2$. But for $x\\to 0^-$ we have $\\operatorname{sgn}(x)=-1$, so the true exponent is $-1/x^2$. That single minus sign inverts the base-power, turning $e^{1/6}$ into its reciprocal $e^{-1/6}$. The modulus is a harmless decoy (the base is even); the signum is the live wire.",
-  "solutions": [
-   {
-    "name": "Method I - Logarithm and Taylor",
-    "steps": [
-     "For $x<0$, $\\operatorname{sgn}(x)=-1$, so the exponent is $-\\dfrac{1}{x^2}$. Put $t=|x|=-x\\to 0^+$; note $x^2=t^2$, and the base is $\\dfrac{\\arcsin t}{t}\\to 1$, an indeterminate $1^{\\infty}$ form.",
-     "Take logs: $L=\\ln(\\text{expression})=-\\dfrac{1}{x^2}\\ln\\!\\left(\\dfrac{\\arcsin t}{t}\\right)=-\\dfrac{1}{t^2}\\ln\\!\\left(\\dfrac{\\arcsin t}{t}\\right).$",
-     "Expand $\\arcsin t=t+\\dfrac{t^3}{6}+\\dfrac{3t^5}{40}+\\cdots$, so $\\dfrac{\\arcsin t}{t}=1+\\dfrac{t^2}{6}+o(t^2)$, hence $\\ln\\!\\left(1+\\dfrac{t^2}{6}+o(t^2)\\right)=\\dfrac{t^2}{6}+o(t^2).$",
-     "Therefore $L=-\\dfrac{1}{t^2}\\left(\\dfrac{t^2}{6}+o(t^2)\\right)=-\\dfrac16+o(1)\\to -\\dfrac16.$",
-     "Exponentiating, the limit is $e^{-1/6}.$"
-    ]
-   },
-   {
-    "name": "Method II - Reduce to the known even case",
-    "steps": [
-     "Let $F(t)=\\left(\\dfrac{\\arcsin t}{t}\\right)^{1/t^2}$ for $t>0$; the standard result (Method I with exponent $+1/t^2$) gives $\\displaystyle\\lim_{t\\to0^+}F(t)=e^{1/6}.$",
-     "Write the given expression with $t=|x|$. Since $\\dfrac{1}{x^2}=\\dfrac{1}{t^2}$, the exponent $\\dfrac{\\operatorname{sgn}(x)}{x^2}=\\operatorname{sgn}(x)\\cdot\\dfrac{1}{t^2}$, so the expression equals $\\Big[\\big(\\tfrac{\\arcsin t}{t}\\big)^{1/t^2}\\Big]^{\\operatorname{sgn}(x)}=F(t)^{\\operatorname{sgn}(x)}.$",
-     "For $x\\to 0^-$, $\\operatorname{sgn}(x)=-1$, so the expression is $F(t)^{-1}$, whose limit is $\\big(e^{1/6}\\big)^{-1}=e^{-1/6}.$",
-     "The modulus only guarantees the base is well-defined and even; the signum alone carries the sign of the answer, flipping the familiar $e^{1/6}$ to $e^{-1/6}.$"
-    ]
-   }
-  ],
-  "remark": "The two-sided limit does NOT exist: $x\\to 0^+$ gives $e^{1/6}$ while $x\\to 0^-$ gives $e^{-1/6}$. Posed one-sided as here it is perfectly well-defined; the $\\operatorname{sgn}$ is a deliberate sign-bomb that reciprocates the classic result."
- },
- {
-  "theme": "hybrid",
-  "themeLabel": "The Grand Hybrids",
-  "title": "Absolute Tangent",
-  "difficulty": 4,
-  "tags": [
-   "modulus",
-   "tangent",
-   "two-sided",
-   "series",
-   "x->0"
-  ],
-  "statement": "\\lim_{x\\to 0}\\frac{|\\tan x|-|x|}{|x|^{3}}",
-  "answer": "\\dfrac{1}{3}",
-  "trap": "Answer 'does not exist'. The seductive misstep: strip the moduli, get $\\dfrac{\\tan x-x}{x^3}\\to\\dfrac13$ for $x>0$, then reason that since $\\tan x-x$ is an odd function it must tend to $-\\dfrac13$ for $x<0$, so the two-sided limit fails. This is wrong: the moduli act on BOTH numerator and denominator. Replacing $\\tan x-x$ by $|\\tan x|-|x|$ and $x^3$ by $|x|^3$ makes numerator and denominator even, the odd-vs-odd cancellation in the unmodified ratio is exactly what the moduli undo, and the limit cleanly equals $\\tfrac13$.",
-  "solutions": [
-   {
-    "name": "Method I - Evenness then Taylor",
-    "steps": [
-     "On $|x|<\\tfrac{\\pi}{2}$ the tangent is increasing through the origin, so $\\tan x$ and $x$ share sign and $|\\tan x|=\\tan|x|$. Put $t=|x|\\ge 0$; the expression becomes $\\dfrac{\\tan t-t}{t^3}$, which depends on $x$ only through $|x|$ and is therefore even.",
-     "Use the Maclaurin series $\\tan t=t+\\dfrac{t^3}{3}+\\dfrac{2t^5}{15}+\\cdots$, hence $\\tan t-t=\\dfrac{t^3}{3}+O(t^5).$",
-     "Divide: $\\dfrac{\\tan t-t}{t^3}=\\dfrac13+O(t^2)\\to\\dfrac13$ as $t\\to 0^+$.",
-     "Because the reduced expression depends only on $t=|x|$, the two one-sided limits coincide and the two-sided limit equals $\\dfrac13.$"
-    ]
-   },
-   {
-    "name": "Method II - Substitution and one-sided agreement",
-    "steps": [
-     "Right limit ($x>0$): here $|\\tan x|=\\tan x$, $|x|=x$, so $\\dfrac{|\\tan x|-|x|}{|x|^3}=\\dfrac{\\tan x-x}{x^3}\\to\\dfrac13$ by the cubic expansion $\\tan x-x=\\tfrac{x^3}{3}+O(x^5)$.",
-     "Left limit ($x<0$): write $x=-s$ with $s>0$. Then $|\\tan x|=|\\tan(-s)|=|-\\tan s|=\\tan s$, $|x|=s$, $|x|^3=s^3$, giving $\\dfrac{\\tan s-s}{s^3}\\to\\dfrac13$ as $s\\to 0^+.$",
-     "Both one-sided limits equal $\\dfrac13$, so the two-sided limit exists and equals $\\dfrac13$.",
-     "The moduli are precisely what repair the odd ratio $\\dfrac{\\tan x-x}{x^3}$ (whose sign would otherwise be side-dependent) into an even function with a genuine two-sided limit."
-    ]
-   }
-  ],
-  "remark": "Wrapping an odd-leading numerator and an odd power in matched moduli is the standard device for forcing a two-sided limit out of an otherwise side-dependent ratio."
- },
- {
-  "theme": "hybrid",
-  "themeLabel": "The Grand Hybrids",
-  "title": "The Arctangent's Last Digit",
-  "difficulty": 5,
-  "tags": [
-   "floor",
-   "arctangent",
-   "asymptotic",
-   "x->+inf",
-   "series"
-  ],
-  "statement": "\\lim_{x\\to +\\infty}\\left\\lfloor -3x^{3}\\left(\\frac{\\pi}{2}-\\arctan x-\\frac{1}{x}\\right)\\right\\rfloor",
-  "answer": "0",
-  "trap": "Answer $1$: using $\\arctan x=\\dfrac{\\pi}{2}-\\dfrac1x+\\dfrac{1}{3x^3}-\\cdots$, the bracket becomes $-3x^3\\cdot(-\\tfrac{1}{3x^3}+\\cdots)\\to 1$, so a student writes $\\lfloor 1\\rfloor=1$. But the argument equals $1-\\dfrac{3}{5x^2}+o(1/x^2)$, which is strictly $<1$ for every large $x$ and only approaches $1$ from below. A quantity in $(0,1)$ has floor $0$, not $1$. (Numerically, naive floating point even reports junk values like $246$ for $x=10^6$ because $\\tfrac{\\pi}{2}-\\arctan x$ cancels catastrophically.)",
-  "solutions": [
-   {
-    "name": "Method I - Asymptotic series of arctan",
-    "steps": [
-     "For $x>0$, $\\arctan x=\\dfrac{\\pi}{2}-\\dfrac1x+\\dfrac{1}{3x^3}-\\dfrac{1}{5x^5}+\\cdots.$",
-     "Hence $\\dfrac{\\pi}{2}-\\arctan x-\\dfrac1x=\\dfrac1x-\\dfrac{1}{3x^3}+\\dfrac{1}{5x^5}-\\cdots-\\dfrac1x=-\\dfrac{1}{3x^3}+\\dfrac{1}{5x^5}-\\cdots.$",
-     "Multiply by $-3x^3$: $\\;-3x^3\\left(-\\dfrac{1}{3x^3}+\\dfrac{1}{5x^5}-\\cdots\\right)=1-\\dfrac{3}{5x^2}+\\cdots.$",
-     "So the argument is $1-\\dfrac{3}{5x^2}+o(1/x^2)<1$, approaching $1$ from below. For all large $x$ it lies in $(0,1)$, so its floor is $0$. $$\\lim_{x\\to+\\infty}\\left\\lfloor\\cdots\\right\\rfloor=0.$$"
-    ]
-   },
-   {
-    "name": "Method II - Reciprocal substitution + Taylor expansion",
-    "steps": [
-     "Let $t=\\dfrac1x\\to 0^+$. Using $\\arctan x=\\dfrac{\\pi}{2}-\\arctan t$ (valid for $x>0$), the inner expression becomes $\\dfrac{\\pi}{2}-(\\tfrac{\\pi}{2}-\\arctan t)-t=\\arctan t-t.$",
-     "So the whole argument is $-\\dfrac{3}{t^3}(\\arctan t-t)=-3\\cdot\\dfrac{\\arctan t-t}{t^3}.$",
-     "Now $\\arctan t-t=-\\dfrac{t^3}{3}+\\dfrac{t^5}{5}-\\cdots$, so $\\dfrac{\\arctan t-t}{t^3}=-\\dfrac13+\\dfrac{t^2}{5}-\\cdots$, and $-3$ times this is $1-\\dfrac{3t^2}{5}+\\cdots.$",
-     "As $t\\to 0^+$ this stays $<1$ and tends to $1$, hence the argument is in $(0,1)$ for small $t$, so its floor is $0$. Therefore the limit is $0$."
-    ]
-   }
-  ],
-  "remark": "The 'subtract $1/x$' trick isolates the next term of arctan's tail; the floor then exposes that the corrected quantity sits a hair below the integer $1$. The cancellation-free identity $\\tfrac{\\pi}{2}-\\arctan x=\\arctan(1/x)$ is also what you must use to check this numerically without precision loss."
- },
- {
-  "theme": "hybrid",
-  "themeLabel": "The Grand Hybrids",
-  "title": "Fracture at e",
-  "difficulty": 5,
-  "tags": [
-   "fractional-part",
-   "logarithm",
-   "one-sided",
-   "x->e+",
-   "derivative"
-  ],
-  "statement": "\\lim_{x\\to e^{+}}\\frac{\\{\\ln x\\}}{x-e}",
-  "answer": "\\dfrac{1}{e}",
-  "trap": "Because $\\ln e=1$ is an integer, $\\{\\ln x\\}$ jumps from near $1^-$ to $0^+$ as $x$ crosses $e$, so a student concludes the two-sided limit is asymmetric and declares 'does not exist'. Worse, they may anchor on the left behavior (numerator $\\to 1$, denominator $\\to 0$) and write '$\\infty$ or oscillates'. But the question is one-sided: for $x>e$, $\\{\\ln x\\}=\\ln x-1=\\ln x-\\ln e$ is perfectly smooth, and the ratio is literally the difference quotient of $\\ln$ at $e$, giving the finite value $\\ln'(e)=1/e$.",
-  "solutions": [
-   {
-    "name": "Method I - Recognize a derivative",
-    "steps": [
-     "For $x$ slightly greater than $e$, $\\ln x>\\ln e=1$ and $\\ln x<2$, so $\\lfloor\\ln x\\rfloor=1$ and $\\{\\ln x\\}=\\ln x-1=\\ln x-\\ln e.$",
-     "Hence $\\dfrac{\\{\\ln x\\}}{x-e}=\\dfrac{\\ln x-\\ln e}{x-e}$, which is exactly the difference quotient of $\\ln$ at $e$.",
-     "Taking $x\\to e^+$ gives $\\ln'(e)=\\dfrac{1}{e}.$",
-     "$$\\lim_{x\\to e^+}\\frac{\\{\\ln x\\}}{x-e}=\\frac1e.$$"
-    ]
-   },
-   {
-    "name": "Method II - Local linearization",
-    "steps": [
-     "Write $x=e+h$, $h\\to 0^+$. Then $\\ln x=\\ln(e+h)=1+\\ln\\!\\left(1+\\tfrac{h}{e}\\right)=1+\\dfrac{h}{e}-\\dfrac{h^2}{2e^2}+\\cdots.$",
-     "Since $0<\\ln x-1<1$ for small $h>0$, we get $\\{\\ln x\\}=\\ln x-1=\\dfrac{h}{e}-\\dfrac{h^2}{2e^2}+\\cdots.$",
-     "Divide by $x-e=h$: $\\dfrac{\\{\\ln x\\}}{h}=\\dfrac1e-\\dfrac{h}{2e^2}+\\cdots\\to\\dfrac1e.$",
-     "From the left ($h<0$) one would have $\\ln x<1$, so $\\{\\ln x\\}=\\ln x$ near $1^-$, making the numerator $\\approx 1$ and the ratio $\\to-\\infty$ — that is why the limit is posed one-sided."
-    ]
-   }
-  ],
-  "remark": "At any point $a$ with $\\ln a\\in\\mathbb{Z}$, $\\lim_{x\\to a^+}\\frac{\\{\\ln x\\}}{x-a}=\\frac1a$, while the left limit diverges — the fractional part converts a smooth derivative into a one-sided phenomenon."
- },
- {
-  "theme": "hybrid",
-  "themeLabel": "The Grand Hybrids",
-  "title": "The Capstone Squeeze",
-  "difficulty": 5,
-  "tags": [
-   "arctangent",
-   "fractional-part",
-   "modulus",
-   "floor",
-   "squeeze",
-   "x->0"
-  ],
-  "statement": "\\lim_{x\\to 0}\\arctan\\!\\left(1-|x|\\left\\{\\frac{1}{|x|}\\right\\}\\right)",
-  "answer": "\\dfrac{\\pi}{4}",
-  "trap": "Answering 'does not exist': as $x\\to 0$ the quantity $\\frac{1}{|x|}\\to\\infty$, so $\\left\\{\\frac{1}{|x|}\\right\\}$ sweeps through all of $[0,1)$ infinitely often and never settles. A student concludes the inner expression — and hence the whole limit — oscillates forever. The trap ignores the prefactor: $|x|\\to 0$ multiplies a quantity confined to $[0,1)$, so the product is a $0\\cdot(\\text{bounded})$ form squeezed to $0$ regardless of how wildly the fractional part dances. The visible chaos is irrelevant; the answer is the perfectly definite $\\arctan 1=\\pi/4$.",
-  "solutions": [
-   {
-    "name": "Method I - Bounded oscillation killed by |x|",
-    "steps": [
-     "For every $x\\ne 0$ the fractional part satisfies $0\\le\\left\\{\\tfrac{1}{|x|}\\right\\}<1$, so although it oscillates it is uniformly bounded.",
-     "Multiplying the bound by $|x|>0$ gives $0\\le |x|\\left\\{\\tfrac{1}{|x|}\\right\\}<|x|$. Both outer bounds tend to $0$ as $x\\to 0$, so by the squeeze theorem $|x|\\left\\{\\tfrac{1}{|x|}\\right\\}\\to 0$ — the oscillation is annihilated by the vanishing prefactor.",
-     "Hence the inner argument $1-|x|\\left\\{\\tfrac{1}{|x|}\\right\\}\\to 1.$",
-     "Since $\\arctan$ is continuous, the limit equals $\\arctan 1=\\dfrac{\\pi}{4}.$"
-    ]
-   },
-   {
-    "name": "Method II - Rewrite via floor and squeeze the argument",
-    "steps": [
-     "Use $\\{u\\}=u-\\lfloor u\\rfloor$ with $u=\\tfrac{1}{|x|}$: then $|x|\\left\\{\\tfrac{1}{|x|}\\right\\}=|x|\\left(\\tfrac{1}{|x|}-\\big\\lfloor\\tfrac{1}{|x|}\\big\\rfloor\\right)=1-|x|\\big\\lfloor\\tfrac{1}{|x|}\\big\\rfloor.$",
-     "Therefore the inner argument is $1-\\left(1-|x|\\big\\lfloor\\tfrac{1}{|x|}\\big\\rfloor\\right)=|x|\\big\\lfloor\\tfrac{1}{|x|}\\big\\rfloor.$",
-     "From $\\tfrac{1}{|x|}-1<\\big\\lfloor\\tfrac{1}{|x|}\\big\\rfloor\\le\\tfrac{1}{|x|}$, multiplying through by $|x|>0$ yields $1-|x|<|x|\\big\\lfloor\\tfrac{1}{|x|}\\big\\rfloor\\le 1.$",
-     "As $x\\to 0$ both bounds $\\to 1$, so the argument $\\to 1$ and $\\arctan(\\cdot)\\to\\arctan 1=\\dfrac{\\pi}{4}.$ The whole expression is even in $x$, so the two one-sided limits agree and the two-sided limit is clean."
-    ]
-   }
-  ],
-  "remark": "The identity $t\\{1/t\\}=1-t\\lfloor 1/t\\rfloor$ ties the fractional and floor parts together; the modulus makes the squeeze symmetric about $0$, so a maximally oscillating ingredient still yields the perfectly definite value $\\pi/4$."
- }
+    "remark": "Multiplying a ratio that approaches $1$ strictly from below by an integer $N$ pins the floor at $N-1$; the same statement with $\\tan$ in place of $\\sin$ (since $\\frac{\\tan x}{x}\\to 1$ from above) would instead give $N$. The lesson: $\\lim\\lfloor g\\rfloor\\neq\\lfloor\\lim g\\rfloor$ whenever the limit lands exactly on an integer."
+  },
+  {
+    "theme": "floor",
+    "themeLabel": "The Greatest Integer Function",
+    "title": "Which Side Of Minus One",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "floor",
+      "arcsin",
+      "taylor",
+      "two-sided",
+      "sign-analysis",
+      "x->0"
+    ],
+    "statement": "Evaluate \\[ \\lim_{x\\to 0}\\left\\lfloor\\, \\frac{x-\\sin x}{\\,x-\\arcsin x\\,}\\,\\right\\rfloor. \\]",
+    "answer": "\\[\\boxed{-1}\\]",
+    "trap": "The inner ratio tends to $-1$, an integer, so the floor sits right on a discontinuity of $\\lfloor\\cdot\\rfloor$ and the only thing that matters is which side of $-1$ the ratio approaches from. Reading just the leading cubes, $x-\\sin x\\sim \\tfrac{x^3}{6}>0$ and $x-\\arcsin x\\sim -\\tfrac{x^3}{6}<0$, gives the value $-1$ but says nothing about the side; a student who declares the answer $-1$ \"because $\\lfloor\\lim\\rfloor=\\lfloor -1\\rfloor=-1$\" is right by accident. The genuine error is to assume the ratio creeps up to $-1$ from below (treating the bigger positive numerator correction as pushing the magnitude past $1$) and conclude $\\lfloor\\cdot\\rfloor=-2$. The outcome is decided entirely by the $x^2$ term, which needs the $x^5$ coefficients of both $\\sin$ and $\\arcsin$: in fact the ratio $=-1+\\tfrac{x^2}{2}+\\cdots$ approaches $-1$ strictly from above, so it lives in $(-1,0)$ and the floor is $-1$, not $-2$.",
+    "solutions": [
+      {
+        "name": "Method I - Series of the ratio, then read the cell",
+        "steps": [
+          "Expand each piece to fifth order: $\\sin x = x-\\dfrac{x^3}{6}+\\dfrac{x^5}{120}-\\cdots$ and $\\arcsin x = x+\\dfrac{x^3}{6}+\\dfrac{3x^5}{40}+\\cdots$. Hence $x-\\sin x = \\dfrac{x^3}{6}-\\dfrac{x^5}{120}+\\cdots$ and $x-\\arcsin x = -\\dfrac{x^3}{6}-\\dfrac{3x^5}{40}-\\cdots$.",
+          "Factor out $\\dfrac{x^3}{6}$ from each: $$\\frac{x-\\sin x}{x-\\arcsin x}=\\frac{\\tfrac{x^3}{6}\\left(1-\\tfrac{x^2}{20}+\\cdots\\right)}{-\\tfrac{x^3}{6}\\left(1+\\tfrac{9x^2}{20}+\\cdots\\right)}=-\\frac{1-\\tfrac{x^2}{20}+\\cdots}{1+\\tfrac{9x^2}{20}+\\cdots}.$$",
+          "Using $\\dfrac{1-a}{1+b}=1-a-b+\\cdots$ with $a=\\tfrac{x^2}{20},\\,b=\\tfrac{9x^2}{20}$ gives $-\\left(1-\\tfrac{x^2}{20}-\\tfrac{9x^2}{20}+\\cdots\\right)=-1+\\dfrac{x^2}{2}+\\cdots$. So the ratio equals $-1+\\dfrac{x^2}{2}+O(x^4)$.",
+          "For all small $x\\neq 0$ the correction $\\dfrac{x^2}{2}>0$ is tiny and positive, so the ratio lies in the open cell $(-1,0)$. Therefore $\\left\\lfloor\\,\\cdot\\,\\right\\rfloor=-1$ identically near $0$ (and the expression is even in $x$, so both sides agree), giving $\\boxed{-1}$."
+        ]
+      },
+      {
+        "name": "Method II - Pure sign analysis (no full expansion of the quotient)",
+        "steps": [
+          "Set $N(x)=x-\\sin x$ and $D(x)=x-\\arcsin x$. Two classical inequalities for $0<x<1$ are $\\sin x<x$ (chord shorter than arc) and $\\arcsin x>x$ (the arcsine curve lies above the line $y=x$). Thus $N(x)>0$ and $D(x)<0$, so the ratio $\\dfrac{N}{D}<0$: the value is strictly below $0$.",
+          "Now show it is strictly above $-1$, i.e. $\\dfrac{N}{D}+1>0$. Since $\\dfrac{N}{D}+1=\\dfrac{N+D}{D}$ and $D<0$, this is equivalent to $N+D<0$, where $N+D=2x-\\sin x-\\arcsin x$.",
+          "Let $h(x)=2x-\\sin x-\\arcsin x$ (odd, with $h(0)=0$). Then $h'(x)=2-\\cos x-\\dfrac{1}{\\sqrt{1-x^2}}$. For $0<x<1$ we have $\\cos x<1$ pushing $h'$ up, but $\\dfrac{1}{\\sqrt{1-x^2}}>1$ pushing it down; comparing magnitudes, $1-\\cos x\\approx\\tfrac{x^2}{2}$ while $\\dfrac{1}{\\sqrt{1-x^2}}-1\\approx\\tfrac{x^2}{2}+\\tfrac{3x^4}{8}$, so $h'(x)=(1-\\cos x)-\\left(\\tfrac{1}{\\sqrt{1-x^2}}-1\\right)<0$ for small $x>0$. Hence $h$ is decreasing from $h(0)=0$, so $h(x)<0$ on a right-neighbourhood; oddness gives $h(x)>0$ on the matching left-neighbourhood, but there $D<0$ still and the equivalence $\\tfrac{N}{D}+1=\\tfrac{N+D}{D}$ with both $N+D$ and $D$ flipping sign together keeps the quotient positive.",
+          "So for all small $x\\neq 0$, $-1<\\dfrac{N}{D}<0$. The ratio never leaves the cell $(-1,0)$, hence its floor is constantly $-1$ and $\\displaystyle\\lim_{x\\to0}\\left\\lfloor\\frac{x-\\sin x}{x-\\arcsin x}\\right\\rfloor=\\boxed{-1}$."
+        ]
+      },
+      {
+        "name": "Method III - Substitution to a known cubic limit, then refine the side",
+        "steps": [
+          "First nail the bare limit of the inside. Using the standard results $\\dfrac{x-\\sin x}{x^3}\\to\\dfrac16$ and $\\dfrac{\\arcsin x-x}{x^3}\\to\\dfrac16$, write $$\\frac{x-\\sin x}{x-\\arcsin x}=\\frac{(x-\\sin x)/x^3}{-(\\arcsin x-x)/x^3}\\xrightarrow[x\\to0]{}\\frac{1/6}{-(1/6)}=-1.$$",
+          "Because the limit lands on the integer $-1$, the floor is not determined yet: $\\lfloor g\\rfloor$ jumps at $-1$. We must compare the ratio with $-1$ for $x$ near (but not equal to) $0$.",
+          "Consider $g(x)+1=\\dfrac{(x-\\sin x)+(x-\\arcsin x)}{x-\\arcsin x}=\\dfrac{2x-\\sin x-\\arcsin x}{x-\\arcsin x}$. The key is that the cubic terms in the numerator cancel: $x-\\sin x=\\tfrac{x^3}{6}-\\cdots$ and $x-\\arcsin x=-\\tfrac{x^3}{6}-\\cdots$ sum to $2x-\\sin x-\\arcsin x=-\\tfrac{x^5}{12}+\\cdots$, an $O(x^5)$ quantity, while the denominator $x-\\arcsin x=-\\tfrac{x^3}{6}+\\cdots$ stays $O(x^3)$.",
+          "Hence $g(x)+1\\sim\\dfrac{-x^5/12}{-x^3/6}=\\dfrac{x^2}{2}>0$ for small $x\\neq0$.",
+          "Thus $g(x)+1>0$, i.e. $g(x)>-1$, while Method II's signs give $g(x)<0$. The ratio is trapped in $(-1,0)$ for all small $x\\neq0$, so the floor is constantly $-1$ and the limit is $\\boxed{-1}$."
+        ]
+      }
+    ],
+    "remark": "Whenever a function's limit lands exactly on an integer, $\\lim\\lfloor g\\rfloor$ is governed not by that integer but by the sign of the leading correction term. Here both numerator and denominator vanish to order $x^3$, so the value $-1$ is forced by the cubes, yet the floor is decided one order deeper, by the $x^5$ coefficients of $\\sin$ and $\\arcsin$ that survive in $2x-\\sin x-\\arcsin x$. Approaching from above ($+\\tfrac{x^2}{2}$) keeps the ratio in $(-1,0)$ and the floor at $-1$; had that correction been negative, the same-looking problem would collapse to $-2$."
+  },
+  {
+    "theme": "floor",
+    "themeLabel": "The Greatest Integer Function",
+    "title": "The Drift Is Too Slow",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "floor",
+      "x->infinity",
+      "oscillation",
+      "asymptotics",
+      "subsequence",
+      "dne"
+    ],
+    "statement": "Determine, with proof, the value of \\[\\lim_{x\\to\\infty}\\left\\lfloor\\, \\frac{4\\,(x^{2}+x+1)}{x^{2}+1}\\;+\\;\\frac{\\sin x}{\\sqrt{x}}\\,e^{-1/x}\\,\\right\\rfloor .\\] Here $\\lfloor\\,\\cdot\\,\\rfloor$ is the greatest-integer function.",
+    "answer": "\\[\\text{The limit does not exist.}\\]",
+    "trap": "The seductive chain is: the rational part $A(x)=\\dfrac{4(x^2+x+1)}{x^2+1}\\to 4$, the oscillating part $\\dfrac{\\sin x}{\\sqrt x}e^{-1/x}\\to 0$, so the bracket $g(x)\\to 4$ and \"therefore\" the floor $\\to 4$. Every link except the last is fine; the last is false because $\\lfloor\\cdot\\rfloor$ is a step function and only cares which integer cell $g$ occupies. A subtler student notices $A(x)=4+\\dfrac{4}{x}+O(x^{-3})$ approaches $4$ strictly from ABOVE and concludes $g>4$, hence floor $=4$. This is the real trap: it silently assumes the $+\\tfrac{4}{x}$ drift dominates the oscillation. It does not. The oscillation has amplitude $\\sim x^{-1/2}$, and $\\tfrac{4}{x}=o\\!\\left(x^{-1/2}\\right)$, so for large $x$ the $\\sin x$ term overwhelms the drift: $g$ dips below $4$ whenever $\\sin x<0$ and rises above $4$ whenever $\\sin x>0$. Thus $g$ crosses the integer $4$ infinitely often, the floor flips between $3$ and $4$ on cofinal sequences, and no limit exists.",
+    "solutions": [
+      {
+        "name": "Method I - Two cofinal sequences straddling the integer 4",
+        "steps": [
+          "Write the bracket as $g(x)=A(x)+\\varepsilon(x)$ with $A(x)=\\dfrac{4(x^2+x+1)}{x^2+1}=4+\\dfrac{4x}{x^2+1}$ and $\\varepsilon(x)=\\dfrac{\\sin x}{\\sqrt x}e^{-1/x}$. Note $0<\\dfrac{4x}{x^2+1}<\\dfrac{4}{x}$ for $x>0$, and $e^{-1/x}\\in(1-\\tfrac1x,\\,1)$ for $x>0$, so the analysis reduces to comparing a $\\tfrac1x$-scale drift against a $\\tfrac1{\\sqrt x}$-scale oscillation.",
+          "Peak sequence. Take $x_k=2\\pi k+\\dfrac{\\pi}{2}$, so $\\sin x_k=1$. Then $\\varepsilon(x_k)=\\dfrac{e^{-1/x_k}}{\\sqrt{x_k}}>0$ and $A(x_k)>4$, hence $g(x_k)>4$. Also $g(x_k)<4+\\dfrac{4}{x_k}+\\dfrac{1}{\\sqrt{x_k}}<5$ for large $k$, so $g(x_k)\\in(4,5)$ and $\\lfloor g(x_k)\\rfloor=4$ for all large $k$.",
+          "Trough sequence. Take $y_k=2\\pi k-\\dfrac{\\pi}{2}$, so $\\sin y_k=-1$. Then $g(y_k)=4+\\dfrac{4y_k}{y_k^2+1}-\\dfrac{e^{-1/y_k}}{\\sqrt{y_k}}$. The negative term has size $\\dfrac{e^{-1/y_k}}{\\sqrt{y_k}}>\\dfrac{1}{\\sqrt{y_k}}\\!\\left(1-\\dfrac{1}{y_k}\\right)$, while the positive drift is $<\\dfrac{4}{y_k}$. For $y_k>25$ one checks $\\dfrac{1}{\\sqrt{y_k}}\\!\\left(1-\\dfrac{1}{y_k}\\right)>\\dfrac{4}{y_k}$ (equivalent to $\\sqrt{y_k}\\,(1-\\tfrac1{y_k})>4$), so $g(y_k)<4$. Moreover $g(y_k)>4-\\dfrac{1}{\\sqrt{y_k}}>3$, so $g(y_k)\\in(3,4)$ and $\\lfloor g(y_k)\\rfloor=3$ for all large $k$.",
+          "Both $x_k\\to\\infty$ and $y_k\\to\\infty$, yet $\\lfloor g(x_k)\\rfloor=4$ while $\\lfloor g(y_k)\\rfloor=3$. Two cofinal sequences with different limits force the limit to fail: $\\boxed{\\text{the limit does not exist.}}$"
+        ]
+      },
+      {
+        "name": "Method II - Order-of-magnitude (the drift is dominated)",
+        "steps": [
+          "Subtract the suspected cell-boundary $4$: $g(x)-4=\\underbrace{\\dfrac{4x}{x^2+1}}_{D(x)}+\\underbrace{\\dfrac{\\sin x}{\\sqrt x}e^{-1/x}}_{\\varepsilon(x)}$. The floor near $4$ is decided purely by the sign of $g(x)-4$: positive sign $\\Rightarrow$ cell $[4,5)\\Rightarrow$ floor $4$; negative sign $\\Rightarrow$ cell $[3,4)\\Rightarrow$ floor $3$.",
+          "Compare magnitudes. As $x\\to\\infty$, $D(x)=\\dfrac{4}{x}+O(x^{-3})$, so $x^{1/2}D(x)=\\dfrac{4}{\\sqrt x}\\to 0$. The oscillation, however, has $x^{1/2}\\varepsilon(x)=\\sin x\\cdot e^{-1/x}$, whose limsup is $+1$ and liminf is $-1$. Hence after rescaling by $\\sqrt x$, the drift is negligible and the oscillation survives: $x^{1/2}\\big(g(x)-4\\big)=\\sin x+o(1)$.",
+          "Therefore $\\operatorname{sign}\\!\\big(g(x)-4\\big)=\\operatorname{sign}(\\sin x)$ for all sufficiently large $x$ with $\\sin x$ bounded away from $0$. Since $\\sin x$ is $+$ on the intervals $(2\\pi k,\\,2\\pi k+\\pi)$ and $-$ on $(2\\pi k+\\pi,\\,2\\pi k+2\\pi)$, the quantity $g(x)-4$ changes sign on every period.",
+          "So $g(x)$ crosses the integer $4$ infinitely often as $x\\to\\infty$, and $\\lfloor g(x)\\rfloor$ takes the values $4$ and $3$ on arbitrarily large $x$. A function that does not eventually settle in one integer cell has no floor-limit: $\\boxed{\\text{the limit does not exist.}}$"
+        ]
+      },
+      {
+        "name": "Method III - Contrapositive via the limsup/liminf of the bracket",
+        "steps": [
+          "Suppose, for contradiction, that $L=\\lim_{x\\to\\infty}\\lfloor g(x)\\rfloor$ exists; then $\\lfloor g(x)\\rfloor=L$ for all $x\\ge X_0$, i.e. $L\\le g(x)<L+1$ on $[X_0,\\infty)$. Equivalently $g$ stays trapped in a single half-open unit interval far out.",
+          "But compute the oscillation of $g$ directly. With $\\delta(x)=g(x)-4=\\dfrac{4x}{x^2+1}+\\dfrac{\\sin x}{\\sqrt x}e^{-1/x}$, we have $\\limsup_{x\\to\\infty}\\sqrt x\\,\\delta(x)=+1$ and $\\liminf_{x\\to\\infty}\\sqrt x\\,\\delta(x)=-1$ (the drift contributes $\\tfrac{4}{\\sqrt x}\\to0$, the oscillation contributes $\\pm1$). In particular $\\delta(x)>0$ infinitely often and $\\delta(x)<0$ infinitely often.",
+          "Pick large $a,b\\ge X_0$ with $\\delta(a)>0$ and $\\delta(b)<0$, i.e. $g(a)>4>g(b)$. If $g$ were trapped in $[L,L+1)$ then both $g(a)$ and $g(b)$ lie in that interval, which cannot contain points strictly on both sides of the integer $4$ unless the interval is $[4,5)$ (forcing $g(b)\\ge4$) or $[3,4)$ (forcing $g(a)<4$) — either way a contradiction.",
+          "Hence no such $L$ exists. Consequently $\\boxed{\\text{the limit does not exist.}}$"
+        ]
+      }
+    ],
+    "remark": "The lesson is a scaling race: a floor at infinity survives only if the function commits to one integer cell, and a vanishing oscillation can sabotage that commitment if it vanishes more slowly than the drift toward the integer. Here the drift to $4$ is $\\Theta(x^{-1})$ but the oscillation is $\\Theta(x^{-1/2})$, so the oscillation wins and the value keeps crossing $4$. The morals \"$g\\to 4$\" and \"$g\\to4$ from above\" are both true and both useless for the floor; what matters is $\\sqrt x\\,(g-4)\\to\\sin x$, whose sign never settles."
+  },
+  {
+    "theme": "floor",
+    "themeLabel": "The Greatest Integer Function",
+    "title": "The Floor Amplifies What The Log Shrinks",
+    "difficulty": 5,
+    "task": "Determine",
+    "tags": [
+      "floor",
+      "fractional-part",
+      "subsequential-limits",
+      "log",
+      "oscillation",
+      "x->infinity"
+    ],
+    "statement": "For real $x>1$ let $\\displaystyle g(x)=\\lfloor x\\rfloor\\,\\ln\\!\\frac{x}{\\lfloor x\\rfloor}$, where $\\lfloor\\cdot\\rfloor$ is the greatest-integer function. Determine the set of all subsequential limits of $g(x)$ as $x\\to\\infty$ (equivalently: decide whether $\\displaystyle\\lim_{x\\to\\infty}g(x)$ exists, and if not give its $\\liminf$ and $\\limsup$). \\[ g(x)=\\lfloor x\\rfloor\\,\\ln\\!\\frac{x}{\\lfloor x\\rfloor}. \\]",
+    "answer": "\\[\\boxed{[\\,0,\\,1\\,]}\\]",
+    "trap": "The seductive reasoning: as $x\\to\\infty$ the ratio $\\frac{x}{\\lfloor x\\rfloor}\\to 1$, so $\\ln\\frac{x}{\\lfloor x\\rfloor}\\to 0$; replacing $\\lfloor x\\rfloor$ by the continuous $x$ gives $x\\ln 1=0$, and one declares $\\lim g(x)=0$. This silently treats $\\lfloor x\\rfloor$ as if it were $x$ inside an $\\infty\\cdot 0$ product, exactly where the floor matters. The continuous substitution destroys the very gap the floor creates: with $x=n+t$ and $t=\\{x\\}\\in[0,1)$ one has $g(x)=n\\ln\\!\\bigl(1+\\tfrac{t}{n}\\bigr)$, and the factor $n=\\lfloor x\\rfloor\\to\\infty$ amplifies the $O(t/n)$ logarithm up to a finite size $t$. The product is not small at all: it tracks the fractional part $\\{x\\}$, which has no limit. So $\\lim_{x\\to\\infty}g(x)$ does not exist; only the constant subsequence through integers gives $0$.",
+    "solutions": [
+      {
+        "name": "Method I - Strip to the fractional part",
+        "steps": [
+          "Write $x=n+t$ with $n=\\lfloor x\\rfloor$ and $t=\\{x\\}\\in[0,1)$. Then $\\dfrac{x}{\\lfloor x\\rfloor}=\\dfrac{n+t}{n}=1+\\dfrac{t}{n}$, so $g(x)=n\\,\\ln\\!\\Bigl(1+\\dfrac{t}{n}\\Bigr)$.",
+          "Use the two-sided bound $\\dfrac{u}{1+u}\\le\\ln(1+u)\\le u$ for $u\\ge 0$ with $u=\\dfrac{t}{n}$: multiplying by $n$ gives $\\dfrac{t}{1+t/n}\\le g(x)\\le t$, i.e. $\\dfrac{nt}{n+t}\\le g(x)\\le t$. In particular $0\\le g(x)<1$ for every $x>1$, with $g(x)<\\{x\\}$ strictly whenever $\\{x\\}>0$.",
+          "Fix a target $c\\in[0,1)$ and march to infinity along $x_n=n+c$ (so $t\\equiv c$): then $g(x_n)=n\\ln(1+c/n)\\to c$ since $n\\ln(1+c/n)=c-\\tfrac{c^2}{2n}+\\cdots\\to c$. Hence every $c\\in[0,1)$ is a subsequential limit.",
+          "The endpoint $1$ is a subsequential limit too: take $x_n=n+1-\\tfrac1n$, so $t=1-\\tfrac1n\\to 1$ while $n\\to\\infty$, giving $g(x_n)=n\\ln\\!\\bigl(1+\\tfrac{1}{n}-\\tfrac{1}{n^2}\\bigr)\\to 1$. Since $g(x)<1$ always, $1$ is approached but never attained.",
+          "Thus the set of subsequential limits is exactly $[0,1]$: $\\liminf_{x\\to\\infty}g(x)=0$ (hit at every integer) and $\\limsup_{x\\to\\infty}g(x)=1$ (approached, not attained). A two-sided $\\lim$ would force a single value, so the limit does not exist and the answer is the cluster set $\\boxed{[0,1]}$."
+        ]
+      },
+      {
+        "name": "Method II - Squeeze g against the fractional part itself",
+        "steps": [
+          "With $x=n+t$ as above, expand the entire function: $g(x)=n\\ln\\!\\Bigl(1+\\tfrac{t}{n}\\Bigr)=n\\Bigl(\\tfrac{t}{n}-\\tfrac{t^2}{2n^2}+\\tfrac{t^3}{3n^3}-\\cdots\\Bigr)=t-\\dfrac{t^2}{2n}+\\dfrac{t^3}{3n^2}-\\cdots$",
+          "Compare $g(x)$ with the fractional part $\\{x\\}=t$. The remainder is controlled: $0\\le \\{x\\}-g(x)=\\dfrac{t^2}{2n}-\\dfrac{t^3}{3n^2}+\\cdots\\le\\dfrac{t^2}{2n}<\\dfrac{1}{2n}=\\dfrac{1}{2\\lfloor x\\rfloor}\\to 0$ as $x\\to\\infty$.",
+          "Hence $g(x)$ and $\\{x\\}$ are asymptotic in the strong sense $g(x)-\\{x\\}\\to 0$. Therefore $g$ has exactly the same set of subsequential limits as $\\{x\\}$.",
+          "The cluster set of $\\{x\\}$ as $x\\to\\infty$ is the classical $[0,1]$ ($0$ attained at integers, $1$ approached from below, never reached). Consequently $g$ has cluster set $[0,1]$, the limit fails to exist, and $\\liminf=0,\\ \\limsup=1$, i.e. $\\boxed{[0,1]}$."
+        ]
+      },
+      {
+        "name": "Method III - Substitution exposing the hidden indeterminate form",
+        "steps": [
+          "Set $u=\\dfrac{x}{\\lfloor x\\rfloor}-1=\\dfrac{\\{x\\}}{\\lfloor x\\rfloor}\\ge 0$, so that $g(x)=\\lfloor x\\rfloor\\ln(1+u)=\\dfrac{\\ln(1+u)}{u}\\cdot\\bigl(\\lfloor x\\rfloor\\, u\\bigr)$.",
+          "As $x\\to\\infty$, $u\\to 0$, so the first factor $\\dfrac{\\ln(1+u)}{u}\\to 1$. The behaviour of $g$ is therefore entirely decided by the second factor $\\lfloor x\\rfloor\\, u=\\lfloor x\\rfloor\\cdot\\dfrac{\\{x\\}}{\\lfloor x\\rfloor}=\\{x\\}$ - which is the genuine $\\infty\\cdot 0$ core, and it equals the fractional part exactly.",
+          "So $g(x)=\\dfrac{\\ln(1+u)}{u}\\cdot\\{x\\}$ with the first factor $\\to 1$ and the second oscillating densely over $[0,1)$. The naive collapse to $0$ comes from sending $\\ln(1+u)\\to 0$ while forgetting that $\\lfloor x\\rfloor\\to\\infty$ exactly cancels the $1/\\lfloor x\\rfloor$ inside $u$.",
+          "Since $\\{x\\}$ takes every value in $[0,1)$ along suitable sequences and approaches $1$ (e.g. $x_n=n+1-\\tfrac1n$), the product ranges over $[0,1)$ and clusters at $1$. The limit does not exist; the set of subsequential limits is $\\boxed{[0,1]}$ with $\\liminf=0,\\ \\limsup=1$."
+        ]
+      }
+    ],
+    "remark": "The lesson is that $\\lfloor x\\rfloor\\to\\infty$ is not a harmless stand-in for $x$ inside a product with a vanishing factor: here it is precisely the integer floor that supplies the $\\infty$ in an $\\infty\\cdot 0$ form, and replacing it by the continuous $x$ would force the log's argument to be exactly $1$, annihilating the effect. The clean identity $g(x)=\\dfrac{\\ln(1+u)}{u}\\,\\{x\\}\\to\\{x\\}$ shows the floor secretly reconstructs the fractional part, whose dense oscillation over $[0,1)$ (limit $0$ only along integers, supremum $1$ never attained) is invisible to any smooth/continuous approximation. Whenever a product pairs a floor that blows up with a logarithm that shrinks, suspect that the two effects balance to a finite, path-dependent value rather than to zero."
+  },
+  {
+    "theme": "floor",
+    "themeLabel": "The Greatest Integer Function",
+    "title": "Curvature Catches The Floor",
+    "difficulty": 4,
+    "tags": [
+      "floor",
+      "reciprocal-square",
+      "x->0+",
+      "squeeze",
+      "cosine"
+    ],
+    "statement": "\\lim_{x\\to 0^+}(1-\\cos x)\\left\\lfloor \\frac{1}{x^2}\\right\\rfloor",
+    "answer": "\\dfrac{1}{2}",
+    "trap": "Replace $\\left\\lfloor 1/x^2\\right\\rfloor$ by $1/x^2$ to collapse the product into $\\dfrac{1-\\cos x}{x^2}\\to\\dfrac12$. The number is right, but the move is illegal: $\\left\\lfloor 1/x^2\\right\\rfloor\\ne 1/x^2$, and the discarded piece $1/x^2-\\left\\lfloor 1/x^2\\right\\rfloor$ can sit anywhere in $[0,1)$ — its gap is not $o(1)$. A correct solution must prove $x^2\\left\\lfloor 1/x^2\\right\\rfloor\\to 1$ (the gap, scaled by $x^2$, vanishes), not assume it away.",
+    "solutions": [
+      {
+        "name": "Method I - Factor and squeeze the floor",
+        "steps": [
+          "Split the product into a curvature factor and a floor factor: $$(1-\\cos x)\\left\\lfloor\\frac{1}{x^2}\\right\\rfloor=\\frac{1-\\cos x}{x^2}\\cdot\\Big(x^2\\left\\lfloor\\frac{1}{x^2}\\right\\rfloor\\Big).$$",
+          "First factor (curvature): $\\dfrac{1-\\cos x}{x^2}\\to\\dfrac12$ as $x\\to 0$ (standard, since $1-\\cos x\\sim x^2/2$).",
+          "Second factor (floor): from the universal bound $u-1<\\lfloor u\\rfloor\\le u$ with $u=1/x^2$, multiply through by $x^2>0$ to get $$1-x^2<x^2\\left\\lfloor\\frac1{x^2}\\right\\rfloor\\le 1.$$ As $x\\to 0^+$ both ends $\\to 1$, so by the squeeze theorem $x^2\\left\\lfloor 1/x^2\\right\\rfloor\\to 1$.",
+          "Both factors converge, so the limit of the product is the product of the limits: $\\dfrac12\\cdot 1=\\boxed{\\dfrac12}$."
+        ]
+      },
+      {
+        "name": "Method II - Global squeeze (no splitting)",
+        "steps": [
+          "Apply the floor bound directly: $\\dfrac{1}{x^2}-1<\\left\\lfloor\\dfrac{1}{x^2}\\right\\rfloor\\le\\dfrac{1}{x^2}$, valid for all $x\\ne 0$. Near $0$ we also have $1-\\cos x>0$.",
+          "Multiply the chain by the positive quantity $(1-\\cos x)$ (inequalities are preserved): $$(1-\\cos x)\\Big(\\tfrac{1}{x^2}-1\\Big)<(1-\\cos x)\\left\\lfloor\\tfrac{1}{x^2}\\right\\rfloor\\le \\frac{1-\\cos x}{x^2}.$$",
+          "Right end: $\\dfrac{1-\\cos x}{x^2}\\to\\dfrac12$. Left end: $\\dfrac{1-\\cos x}{x^2}-(1-\\cos x)\\to\\dfrac12-0=\\dfrac12$ (the second term vanishes).",
+          "Both bounding sequences tend to $\\dfrac12$, so by the squeeze theorem the middle expression $\\to\\dfrac12$."
+        ]
+      }
+    ],
+    "remark": "The $\\tfrac12$ is entirely a curvature effect ($1-\\cos x\\sim x^2/2$); the floor contributes only the benign factor $x^2\\lfloor 1/x^2\\rfloor\\to 1$. The same mechanism gives $\\lim_{x\\to0^+}\\tfrac{x^2}{2}\\lfloor 1/x^2\\rfloor=\\tfrac12$ and, more generally, $g(x)\\lfloor 1/x^2\\rfloor\\to L$ whenever $x^2 g(x)\\to L$."
+  },
+  {
+    "theme": "floor",
+    "themeLabel": "The Greatest Integer Function",
+    "title": "The Inner Half",
+    "difficulty": 4,
+    "tags": [
+      "floor",
+      "fractional-part",
+      "conjugate",
+      "x->+infinity",
+      "integers"
+    ],
+    "statement": "\\lim_{n\\to +\\infty}\\left\\{\\sqrt{n^2+n}\\right\\}\\quad(n\\in\\mathbb{Z}^+)",
+    "answer": "\\dfrac{1}{2}",
+    "trap": "Since $\\sqrt{n^2+n}\\approx n$ for large $n$, the fractional part $\\{\\sqrt{n^2+n}\\}$ looks like it should shrink to $0$. It does not. The error $\\sqrt{n^2+n}-n$ is not negligible: it stays in $(0,1)$ and actually grows toward $\\tfrac12$. Equivalently, $\\sqrt{n^2+n}$ sits asymptotically halfway between the consecutive integers $n$ and $n+1$, so its fractional part tends to $\\tfrac12$, never $0$.",
+    "solutions": [
+      {
+        "name": "Method I - Locate the integer part, then conjugate",
+        "steps": [
+          "First pin the integer part. For every $n\\ge 1$, $$n^2<n^2+n<n^2+2n+1=(n+1)^2,$$ since $(n^2+n)-n^2=n>0$ and $(n+1)^2-(n^2+n)=n+1>0$. Taking square roots, $n<\\sqrt{n^2+n}<n+1$, so $\\lfloor\\sqrt{n^2+n}\\rfloor=n$.",
+          "Therefore the fractional part is $$\\{\\sqrt{n^2+n}\\}=\\sqrt{n^2+n}-\\lfloor\\sqrt{n^2+n}\\rfloor=\\sqrt{n^2+n}-n.$$",
+          "Rationalise using the conjugate: $$\\sqrt{n^2+n}-n=\\frac{(n^2+n)-n^2}{\\sqrt{n^2+n}+n}=\\frac{n}{\\sqrt{n^2+n}+n}.$$",
+          "Divide numerator and denominator by $n$ (valid since $n>0$): $$\\frac{n}{\\sqrt{n^2+n}+n}=\\frac{1}{\\sqrt{1+\\tfrac1n}+1}\\xrightarrow[n\\to\\infty]{}\\frac{1}{\\sqrt{1}+1}=\\frac12.$$",
+          "Hence $\\displaystyle\\lim_{n\\to\\infty}\\{\\sqrt{n^2+n}\\}=\\boxed{\\tfrac12}$."
+        ]
+      },
+      {
+        "name": "Method II - Generalised binomial expansion",
+        "steps": [
+          "Write $\\sqrt{n^2+n}=n\\sqrt{1+\\tfrac1n}$ and apply the generalised binomial series $\\sqrt{1+u}=1+\\tfrac{u}{2}-\\tfrac{u^2}{8}+\\cdots$ with $u=\\tfrac1n\\to 0$ (so the series converges for large $n$): $$\\sqrt{n^2+n}=n\\left(1+\\frac{1}{2n}-\\frac{1}{8n^2}+\\cdots\\right)=n+\\frac12-\\frac{1}{8n}+\\cdots.$$",
+          "For $n\\ge 1$ the tail $-\\tfrac{1}{8n}+\\cdots$ lies in $(-\\tfrac12,0)$, so $\\sqrt{n^2+n}\\in(n,n+1)$ and again $\\lfloor\\sqrt{n^2+n}\\rfloor=n$.",
+          "Subtracting the integer part, $$\\{\\sqrt{n^2+n}\\}=\\sqrt{n^2+n}-n=\\frac12-\\frac{1}{8n}+\\cdots\\xrightarrow[n\\to\\infty]{}\\frac12.$$"
+        ]
+      }
+    ],
+    "remark": "The mechanism is that $\\sqrt{n^2+n}$ is squeezed strictly between the consecutive integers $n$ and $n+1$ and drifts to their midpoint. More generally, for fixed $a$ with $0<a<2$ one gets $\\{\\sqrt{n^2+an}\\}\\to a/2$; the inner linear term $n$ ($a=1$) places the point exactly 'half a step' above $n$ asymptotically."
+  },
+  {
+    "theme": "floor",
+    "themeLabel": "The Greatest Integer Function",
+    "title": "Two Floors Meet At An Integer",
+    "difficulty": 4,
+    "tags": [
+      "floor",
+      "integer-point",
+      "x->2-",
+      "jump",
+      "composition"
+    ],
+    "statement": "\\lim_{x\\to 2^-}\\left(\\left\\lfloor x^2\\right\\rfloor-\\left\\lfloor x\\right\\rfloor^2\\right)",
+    "answer": "2",
+    "trap": "At $x=2$ both terms equal $4$, so the difference is $0$; a hasty reader plugs in the endpoint and answers $0$. But the left-hand limit never reaches $x=2$: for $x$ just below $2$, $\\lfloor x\\rfloor=1$ so $\\lfloor x\\rfloor^2=1$, while $x^2$ is just below $4$ giving $\\lfloor x^2\\rfloor=3$. The two floors jump at different instants, so the difference is $3-1=2$, not $0$.",
+    "solutions": [
+      {
+        "name": "Method I - Evaluate each floor on the left",
+        "steps": [
+          "We need the value of the expression for $x$ slightly less than $2$, so restrict to a left-neighborhood of $2$.",
+          "$\\lfloor x\\rfloor$: for $1\\le x<2$ we have $\\lfloor x\\rfloor=1$, hence $\\lfloor x\\rfloor^2=1$.",
+          "$\\lfloor x^2\\rfloor$: as $x\\to2^-$, $x^2\\to4^-$. Moreover for $\\sqrt3<x<2$ we have $3<x^2<4$, so $\\lfloor x^2\\rfloor=3$ throughout that interval.",
+          "Thus on the whole interval $(\\sqrt3,2)$ the expression equals the constant $3-1=2$, so the left-hand limit is $\\boxed{2}$.",
+          "(For contrast, the right-hand limit at $2$ is $0$, which is why the problem is posed one-sided.)"
+        ]
+      },
+      {
+        "name": "Method II - Fractional-part decomposition",
+        "steps": [
+          "Write $\\lfloor x^2\\rfloor=x^2-\\{x^2\\}$ and $\\lfloor x\\rfloor=x-\\{x\\}$, so $\\lfloor x\\rfloor^2=(x-\\{x\\})^2$.",
+          "On $(1,2)$ we have $\\{x\\}=x-1$, hence $x-\\{x\\}=1$ and $\\lfloor x\\rfloor^2=1$ (a constant, not just a limit).",
+          "On $(\\sqrt3,2)$ we have $3<x^2<4$, so $\\{x^2\\}=x^2-3$ and therefore $\\lfloor x^2\\rfloor=x^2-(x^2-3)=3$ identically.",
+          "Hence on $(\\sqrt3,2)$ the difference is the constant $3-1=2$, and the left-hand limit is $2$."
+        ]
+      }
+    ],
+    "remark": "At an integer the compositions $\\lfloor x^2\\rfloor$ and $\\lfloor x\\rfloor^2$ jump at different instants ($x^2$ already crosses $3$ at $x=\\sqrt3$, well before $x$ reaches $2$); the left-limit gap measures that desynchronisation."
+  },
+  {
+    "theme": "floor",
+    "themeLabel": "The Greatest Integer Function",
+    "title": "The Logarithm Forgives The Floor",
+    "difficulty": 3,
+    "tags": [
+      "floor",
+      "logarithm",
+      "exponential",
+      "x->+infinity",
+      "squeeze"
+    ],
+    "statement": "\\lim_{x\\to +\\infty}\\Big(\\ln\\big\\lfloor e^{x}\\big\\rfloor-x\\Big)",
+    "answer": "0",
+    "trap": "The absolute gap $e^x-\\lfloor e^x\\rfloor$ wanders chaotically in $[0,1)$ and never settles, so it looks like $\\ln\\lfloor e^x\\rfloor-x$ should jitter toward some nonzero constant (a common guess is a number like $-\\tfrac12$, the 'average' of the fractional part). But the limit only sees the *relative* error $\\lfloor e^x\\rfloor/e^x=1-O(e^{-x})\\to1$, whose logarithm is crushed to $0$ at exponential speed. The chaotic numerator is irrelevant once divided by something exponentially large.",
+    "solutions": [
+      {
+        "name": "Method I - Logarithm of a ratio",
+        "steps": [
+          "Since $x\\to+\\infty$ we have $e^x>1$, so $\\lfloor e^x\\rfloor\\ge 1$ and the logarithm is defined. Rewrite the difference as a single logarithm: $$\\ln\\lfloor e^x\\rfloor-x=\\ln\\lfloor e^x\\rfloor-\\ln e^x=\\ln\\frac{\\lfloor e^x\\rfloor}{e^x}.$$",
+          "Bound the ratio using $e^x-1<\\lfloor e^x\\rfloor\\le e^x$. Dividing by $e^x>0$: $$1-e^{-x}<\\frac{\\lfloor e^x\\rfloor}{e^x}\\le1.$$",
+          "As $x\\to+\\infty$, $e^{-x}\\to0$, so by the squeeze theorem $\\dfrac{\\lfloor e^x\\rfloor}{e^x}\\to1$.",
+          "By continuity of $\\ln$ at $1$, $$\\ln\\frac{\\lfloor e^x\\rfloor}{e^x}\\to\\ln 1=0.$$ Hence the limit is $\\boxed{0}$."
+        ]
+      },
+      {
+        "name": "Method II - Quantitative bound on the difference",
+        "steps": [
+          "Let $r=\\dfrac{\\lfloor e^x\\rfloor}{e^x}$. From Method I, $r\\in(1-e^{-x},\\,1]$, and $\\ln\\lfloor e^x\\rfloor-x=\\ln r$, so $\\ln r\\le 0$.",
+          "Write $r=1-u$ with $u=1-r\\in[0,e^{-x})$. The elementary inequality $\\ln(1-u)\\ge-\\dfrac{u}{1-u}$ holds for all $u\\in[0,1)$ (verified numerically and provable since $f(u)=\\ln(1-u)+\\frac{u}{1-u}$ satisfies $f(0)=0$, $f'(u)=\\frac{u}{(1-u)^2}\\ge0$).",
+          "Since $u\\mapsto-\\dfrac{u}{1-u}$ is decreasing and $u<e^{-x}$, we get $$0\\ge\\ln r\\ge-\\frac{u}{1-u}>-\\frac{e^{-x}}{1-e^{-x}}.$$",
+          "The right-hand bound $\\to0$ as $x\\to+\\infty$, so by squeeze $\\ln r\\to0$. The floor disappears under the logarithm at exponential speed: $\\ln\\lfloor e^x\\rfloor-x=O(e^{-x})$. The limit is $0$."
+        ]
+      }
+    ],
+    "remark": "Subtracting the integer floor of an exponentially large quantity costs only $O(e^{-x})$ after taking logarithms. The moral: under a logarithm, what matters is the relative error $\\lfloor e^x\\rfloor/e^x\\to1$, not the absolute (and forever-chaotic) gap $e^x-\\lfloor e^x\\rfloor$."
+  },
+  {
+    "theme": "floor",
+    "themeLabel": "The Greatest Integer Function",
+    "title": "One Peak, One Valley, Both On Integers",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "floor",
+      "two-sided",
+      "strict-extremum",
+      "cosh",
+      "even-power",
+      "x->0"
+    ],
+    "statement": "Evaluate \\[ L=\\lim_{x\\to 0}\\left(\\Big\\lfloor 3+\\cos x-\\cosh x\\Big\\rfloor+\\Big\\lfloor 2+x\\sin x\\Big\\rfloor\\right), \\] where $\\lfloor\\,\\cdot\\,\\rfloor$ is the greatest-integer function.",
+    "answer": "\\[\\boxed{4}\\]",
+    "trap": "The seductive move is to evaluate the inside at $x=0$: $\\cos 0-\\cosh 0=0$ and $0\\cdot\\sin 0=0$, so the brackets \"are\" $3$ and $2$, giving $\\lfloor 3\\rfloor+\\lfloor 2\\rfloor=5$. This is exactly $\\lfloor\\lim\\rfloor$ in place of $\\lim\\lfloor\\,\\rfloor$, and it is wrong twice over. A subtler error is to reason \"the corrections are even in $x$, so each inside value sits symmetrically around its integer and the floor is unaffected.\" Evenness alone decides nothing — what matters is the SIGN of the leading even coefficient. For the first bracket $3+\\cos x-\\cosh x = 3-x^2-\\tfrac{x^6}{360}-\\cdots$ approaches $3$ from STRICTLY BELOW (the value $3$ is a strict maximum, never attained near $0$), so its floor is $2$, not $3$. For the second, $2+x\\sin x = 2+x^2-\\tfrac{x^4}{6}+\\cdots$ approaches $2$ from STRICTLY ABOVE ($2$ is a strict minimum), so its floor is also $2$. Both integers are strict extrema that the function only touches at $x=0$, so each floor sits one unit below the limiting integer and $L=2+2=4$.",
+    "solutions": [
+      {
+        "name": "Method I - Locate each bracket in its integer cell",
+        "steps": [
+          "Write $A(x)=3+\\cos x-\\cosh x$ and $B(x)=2+x\\sin x$; the limit is $\\lim_{x\\to0}\\big(\\lfloor A\\rfloor+\\lfloor B\\rfloor\\big)$, so it suffices to pin each of $A,B$ inside a single integer interval on a punctured neighbourhood of $0$.",
+          "For $A$: subtracting the two series, $\\cosh x-\\cos x=x^2+\\dfrac{x^6}{360}+\\dfrac{x^{10}}{1814400}+\\cdots$ has every coefficient nonnegative with leading term $x^2$, so $\\cosh x-\\cos x>0$ for all $x\\neq0$. Hence $A(x)=3-(\\cosh x-\\cos x)<3$ for $x\\neq0$, while $A\\to3$. For $x$ small enough $\\cosh x-\\cos x<1$, so $A(x)\\in(2,3)$ and $\\lfloor A(x)\\rfloor=2$.",
+          "For $B$: on $0<|x|<\\pi$ the numbers $x$ and $\\sin x$ have the same sign, so $x\\sin x>0$, giving $B(x)=2+x\\sin x>2$ for $x\\neq0$, while $B\\to2$. For $x$ small enough $x\\sin x<1$, so $B(x)\\in(2,3)$ and $\\lfloor B(x)\\rfloor=2$.",
+          "Thus on a punctured neighbourhood of $0$ both floors are identically $2$, so $\\lfloor A\\rfloor+\\lfloor B\\rfloor\\equiv4$ and $L=\\boxed{4}$."
+        ]
+      },
+      {
+        "name": "Method II - Sign of the leading even coefficient (Taylor)",
+        "steps": [
+          "Expand each interior function. Using $\\cos x=1-\\tfrac{x^2}{2}+\\tfrac{x^4}{24}-\\cdots$ and $\\cosh x=1+\\tfrac{x^2}{2}+\\tfrac{x^4}{24}+\\cdots$, the $x^0,x^2,x^4$ terms of $\\cos$ and $\\cosh$ either match or cancel, leaving $$A(x)=3+\\cos x-\\cosh x=3-x^2-\\frac{x^6}{360}-\\cdots .$$ The leading correction is $-x^2$: NEGATIVE, so $A$ dips just under $3$ on both sides — a strict local maximum equal to the integer $3$.",
+          "Similarly $x\\sin x=x\\big(x-\\tfrac{x^3}{6}+\\cdots\\big)=x^2-\\tfrac{x^4}{6}+\\cdots$, so $$B(x)=2+x\\sin x=2+x^2-\\frac{x^4}{6}+\\cdots .$$ The leading correction is $+x^2$: POSITIVE, so $B$ rises just above $2$ on both sides — a strict local minimum equal to the integer $2$.",
+          "A function that touches an integer $n$ only at the point and stays strictly on one side nearby has floor $n-1$ if it stays below, and floor $n$ if it stays above but only because the floor of values in $(n,n+1)$ is $n$. Here $A\\in(2,3)\\Rightarrow\\lfloor A\\rfloor=2$ and $B\\in(2,3)\\Rightarrow\\lfloor B\\rfloor=2$ throughout a deleted neighbourhood.",
+          "Both floors are constant ($=2$) near $0$, so the two-sided limit of their sum exists and equals $2+2=\\boxed{4}$. The decisive datum was the sign of the $x^2$ coefficient, not the mere fact that the corrections are even."
+        ]
+      },
+      {
+        "name": "Method III - Explicit squeeze with elementary inequalities",
+        "steps": [
+          "Bound $A$. We need two facts. (i) $\\cosh x-\\cos x>0$ for $x\\neq0$ (its series $x^2+\\tfrac{x^6}{360}+\\cdots$ has nonnegative terms with positive lead), giving $A(x)<3$. (ii) The even function $\\cosh x-\\cos x$ increases on $[0,r]$, so on $[-r,r]$ its maximum is at the endpoint; taking $r=0.9$, $\\cosh(0.9)-\\cos(0.9)\\approx0.811<1$. Hence $0<\\cosh x-\\cos x<1$ on $0<|x|\\le0.9$, so $2<A(x)<3$ and $\\lfloor A(x)\\rfloor=2$.",
+          "Bound $B$. For $0<|x|\\le0.9$ we have $0<x\\sin x\\le|x|\\,|\\sin x|=0.9\\,\\sin0.9\\approx0.705<1$, since $x$ and $\\sin x$ share a sign (product positive) and $|x\\sin x|$ is increasing on $[0,0.9]$. Hence $2<B(x)<3$, forcing $\\lfloor B(x)\\rfloor=2$.",
+          "On the punctured interval $0<|x|\\le0.9$ the integrand $\\lfloor A\\rfloor+\\lfloor B\\rfloor$ equals the constant $4$.",
+          "A function equal to a constant on a deleted neighbourhood of $0$ has that constant as its two-sided limit, so $L=\\boxed{4}$."
+        ]
+      }
+    ],
+    "remark": "Two integers, two opposite approaches, one moral: an even-powered correction does NOT make the floor immune — the floor reacts to the SIGN of the leading even coefficient. The first bracket reaches its integer as a strict maximum ($-x^2$, floor falls to $2$), the second as a strict minimum ($+x^2$, value lifts into $(2,3)$, floor again $2$). Both are removable-looking corners that land exactly on an integer, so substituting $x=0$ (which gives $5$) is doubly wrong: $\\lim\\lfloor f\\rfloor\\neq\\lfloor\\lim f\\rfloor$ precisely when the limit is an integer and $f$ never equals it nearby."
+  },
+  {
+    "theme": "floor",
+    "themeLabel": "The Greatest Integer Function",
+    "title": "The Root Remembers The Sign",
+    "difficulty": 4,
+    "task": "Evaluate",
+    "tags": [
+      "floor",
+      "one-sided",
+      "absolute-value",
+      "squeeze",
+      "sign-trap",
+      "x->2"
+    ],
+    "statement": "Evaluate the one-sided limit \\[ L=\\lim_{x\\to 2^{-}}\\;(x-2)\\,\\left\\lfloor\\, \\frac{3}{\\sqrt{(x-2)^{2}}}\\,\\right\\rfloor , \\] where $\\lfloor\\,\\cdot\\,\\rfloor$ denotes the greatest-integer function. (Then decide whether the two-sided limit at $x=2$ exists.)",
+    "answer": "\\[\\boxed{-3}\\]",
+    "trap": "Two cancellations beg to be made, and one is fatal. First, $\\dfrac{3}{\\sqrt{(x-2)^2}}\\to+\\infty$ while $(x-2)\\to0$, so the product is the indeterminate form $0\\cdot\\infty$; replacing $\\left\\lfloor\\tfrac{3}{\\sqrt{(x-2)^2}}\\right\\rfloor$ by $\\tfrac{3}{\\sqrt{(x-2)^2}}$ and writing $(x-2)\\cdot\\tfrac{3}{\\sqrt{(x-2)^2}}$ is legitimate only because the discarded fractional part is bounded — but that is the easy half. The fatal slip is $\\sqrt{(x-2)^2}=x-2$. On a LEFT neighbourhood of $2$ we have $x-2<0$, so $\\sqrt{(x-2)^2}=|x-2|=-(x-2)=2-x>0$, NOT $x-2$. A student who writes $\\sqrt{(x-2)^2}=x-2$ gets $(x-2)\\cdot\\tfrac{3}{x-2}=3$ and reports $+3$; the same student then \"confirms\" a two-sided limit of $+3$. Both are wrong. Because the radical erases the sign of its argument, the floor's content is the same from either side, and the entire sign of the answer is carried by the lone surviving factor $(x-2)$: negative from the left gives $-3$, positive from the right gives $+3$, so the two-sided limit does NOT exist.",
+    "solutions": [
+      {
+        "name": "Method I - Resolve the radical, then squeeze the fractional part",
+        "steps": [
+          "On a punctured left neighbourhood of $2$ put $t=2-x>0$, so $x\\to2^{-}$ means $t\\to0^{+}$, and $x-2=-t$. Since $\\sqrt{(x-2)^2}=|x-2|=t$, the expression becomes $(x-2)\\left\\lfloor\\dfrac{3}{|x-2|}\\right\\rfloor=-t\\left\\lfloor\\dfrac{3}{t}\\right\\rfloor.$",
+          "For every real $u$ the greatest-integer function obeys $u-1<\\lfloor u\\rfloor\\le u$. With $u=\\dfrac3t$ this gives $\\dfrac3t-1<\\left\\lfloor\\dfrac3t\\right\\rfloor\\le\\dfrac3t.$",
+          "Multiply through by $-t$ (which is negative, so the inequalities reverse): $-3\\le -t\\left\\lfloor\\dfrac3t\\right\\rfloor<-3+t.$ Thus $-t\\lfloor 3/t\\rfloor\\in[-3,\\,-3+t)$ for all small $t>0$.",
+          "As $t\\to0^{+}$ both bounds tend to $-3$, so by the squeeze theorem $-t\\lfloor 3/t\\rfloor\\to-3$. Hence $L=\\boxed{-3}$. From the right the same algebra with $t=x-2>0$ gives $+t\\lfloor 3/t\\rfloor\\to+3\\neq-3$, so the two-sided limit does not exist."
+        ]
+      },
+      {
+        "name": "Method II - Split off the bounded remainder explicitly",
+        "steps": [
+          "Write the floor as value minus fractional part: $\\left\\lfloor\\dfrac{3}{|x-2|}\\right\\rfloor=\\dfrac{3}{|x-2|}-\\Big\\{\\dfrac{3}{|x-2|}\\Big\\}$, where the fractional part $\\{\\cdot\\}\\in[0,1)$ is bounded.",
+          "Multiply by $(x-2)$: $(x-2)\\left\\lfloor\\dfrac{3}{|x-2|}\\right\\rfloor=(x-2)\\cdot\\dfrac{3}{|x-2|}-(x-2)\\Big\\{\\dfrac{3}{|x-2|}\\Big\\}.$",
+          "First term: $\\dfrac{x-2}{|x-2|}=\\operatorname{sgn}(x-2)$, which on the left ($x<2$) equals $-1$, so the first term is $3\\cdot(-1)=-3$ identically. Second term: $|(x-2)\\{\\cdot\\}|\\le|x-2|\\cdot1\\to0$, so it vanishes.",
+          "Therefore the expression equals $-3-(\\text{something}\\to0)\\to-3$, giving $L=\\boxed{-3}$. The first term is exactly where the sign lives: it is $3\\,\\operatorname{sgn}(x-2)$, which is $-3$ from the left and $+3$ from the right — the clean reason the two-sided limit fails."
+        ]
+      },
+      {
+        "name": "Method III - Sandwich by integers via the defining inequality of the floor",
+        "steps": [
+          "On the left, with $t=2-x>0$ small, let $n=\\left\\lfloor\\dfrac3t\\right\\rfloor$, a positive integer satisfying $n\\le\\dfrac3t<n+1$, i.e. $\\dfrac{3}{n+1}<t\\le\\dfrac3n.$",
+          "The quantity of interest is $-tn$. From $\\dfrac{3}{n+1}<t\\le\\dfrac3n$ multiply by $-n<0$ (reversing): $-3\\le -tn<-\\dfrac{3n}{n+1}.$",
+          "As $t\\to0^{+}$ we have $n=\\lfloor 3/t\\rfloor\\to+\\infty$, so the upper bound $-\\dfrac{3n}{n+1}=-3\\cdot\\dfrac{1}{1+1/n}\\to-3$, while the lower bound is the constant $-3$.",
+          "Both bounds converge to $-3$, so $-tn\\to-3$ and $L=\\boxed{-3}$. Running the identical bound from the right replaces $-tn$ by $+tn\\to+3$, confirming the two-sided limit at $x=2$ does not exist."
+        ]
+      }
+    ],
+    "remark": "The radical $\\sqrt{(x-2)^2}=|x-2|$ is a sign-eraser: it makes the floor's argument $\\tfrac{3}{|x-2|}$ blind to which side $x$ approaches from, so the colossal floor contributes the same magnitude on both sides. All the sign information is then funnelled into the single bare factor $(x-2)$. This is the heart of the $0\\cdot\\infty$ floor mechanism $t\\lfloor c/t\\rfloor\\to c$: the floor and the vanishing factor conspire to a finite constant $c=3$, but its SIGN is dictated solely by $\\operatorname{sgn}(x-2)$. Hence $-3$ from the left, $+3$ from the right, and no two-sided limit — the opposite of the reflexive answer $+3$ obtained by the illegal step $\\sqrt{(x-2)^2}=x-2$."
+  },
+  {
+    "theme": "frac",
+    "themeLabel": "The Fractional Part",
+    "title": "The Wrong Branch at Two",
+    "difficulty": 3,
+    "tags": [
+      "floor",
+      "one-sided",
+      "x->2-",
+      "jump",
+      "removable-looking"
+    ],
+    "statement": "\\lim_{x\\to 2^-}\\frac{\\{x\\}-1}{x-2}",
+    "answer": "1",
+    "trap": "The tempting move is to evaluate $\\{x\\}$ at the limit point: $\\{2\\}=0$, so the expression \"looks like\" $\\frac{0-1}{x-2}=\\frac{-1}{0^-}$, and a student declares the limit is $+\\infty$ (or, mis-signing, $-\\infty$, or simply DNE). This is wrong because $\\{x\\}$ is a discontinuous sawtooth: for $x\\to 2^-$ we live on the branch $1<x<2$ where $\\lfloor x\\rfloor=1$, so $\\{x\\}=x-1$ (which approaches $1$, not $0$). The numerator $\\{x\\}-1=x-2$ then cancels the denominator exactly, giving the finite value $1$ — there is no blow-up at all.",
+    "solutions": [
+      {
+        "name": "Method I — Resolve the correct floor branch",
+        "steps": [
+          "For $x\\to 2^-$ we have $1<x<2$, hence $\\lfloor x\\rfloor=1$ and $\\{x\\}=x-\\lfloor x\\rfloor=x-1$.",
+          "Substitute: $$\\frac{\\{x\\}-1}{x-2}=\\frac{(x-1)-1}{x-2}=\\frac{x-2}{x-2}=1$$ for every $x$ in $(1,2)$.",
+          "The expression is identically $1$ on the entire left neighbourhood, so $$\\lim_{x\\to 2^-}\\frac{\\{x\\}-1}{x-2}=1.$$"
+        ]
+      },
+      {
+        "name": "Method II — Substitution $x=2-h$",
+        "steps": [
+          "Let $x=2-h$ with $h\\to 0^+$. Then $x\\in(1,2)$, so $\\lfloor x\\rfloor=1$ and $\\{x\\}=x-1=1-h$.",
+          "Then $$\\frac{\\{x\\}-1}{x-2}=\\frac{(1-h)-1}{(2-h)-2}=\\frac{-h}{-h}=1.$$",
+          "The ratio is independent of $h$, so the limit is $1$. Writing $x=2-h$ exposes the live branch $\\{x\\}=1-h\\to 1$ and removes the temptation to substitute the endpoint value $\\{2\\}=0$."
+        ]
+      }
+    ],
+    "remark": "Never evaluate $\\{x\\}$ at an integer limit point itself: there the sawtooth drops from $1$ back to $0$. Only the one-sided branch — $\\{x\\}=x-\\lfloor x\\rfloor$ with the floor taken from the *interior* of the approach side — is a legal substitution, and here it turns a fake $\\tfrac{-1}{0}$ into a clean removable identity equal to $1$."
+  },
+  {
+    "theme": "frac",
+    "themeLabel": "The Fractional Part",
+    "title": "Approaching Zero From Below",
+    "difficulty": 4,
+    "tags": [
+      "floor",
+      "one-sided",
+      "x->0-",
+      "exponential",
+      "1^infinity-trap"
+    ],
+    "statement": "\\lim_{x\\to 0^-}\\bigl(1+\\{x\\}\\bigr)^{1/x}",
+    "answer": "0",
+    "trap": "The form $(1+\\{x\\})^{1/x}$ looks identical to the textbook $(1+x)^{1/x}\\to e$, and a student instinctively writes $\\{x\\}\\approx x$ near $0$, declares it a $1^\\infty$ indeterminate form, and answers $e$. This is wrong on the side $x\\to 0^-$: here $-1<x<0$ so $\\lfloor x\\rfloor=-1$ and $\\{x\\}=x+1\\to 1$, which makes the base $1+\\{x\\}=2+x\\to 2$, NOT $1$. There is no indeterminacy at all — the base sits at $2$ while the exponent dives to $-\\infty$, so the answer is $0$, not $e$.",
+    "solutions": [
+      {
+        "name": "Method I — Identify base and exponent separately",
+        "steps": [
+          "For $x\\to 0^-$ we have $-1<x<0$, hence $\\lfloor x\\rfloor=-1$ and $\\{x\\}=x-\\lfloor x\\rfloor=x+1$.",
+          "Base: $1+\\{x\\}=2+x\\to 2$. Exponent: $1/x\\to -\\infty$.",
+          "Since the base tends to $2>1$ with no indeterminacy, $$\\bigl(2+x\\bigr)^{1/x}\\longrightarrow 2^{-\\infty}=0.$$"
+        ]
+      },
+      {
+        "name": "Method II — Logarithmic transform",
+        "steps": [
+          "Let $L=\\lim_{x\\to 0^-}\\bigl(1+\\{x\\}\\bigr)^{1/x}$. Taking logarithms of the expression (valid since the base $2+x>0$) gives $$\\ln\\bigl(2+x\\bigr)^{1/x}=\\frac{\\ln(2+x)}{x}.$$",
+          "As $x\\to 0^-$, the numerator $\\ln(2+x)\\to\\ln 2>0$ while $\\tfrac1x\\to -\\infty$, so the product $\\dfrac{\\ln(2+x)}{x}\\to -\\infty$.",
+          "By continuity of the exponential, $L=\\exp\\!\\Bigl(\\lim_{x\\to0^-}\\tfrac{\\ln(2+x)}{x}\\Bigr)=e^{-\\infty}=0.$"
+        ]
+      }
+    ],
+    "remark": "The $1^\\infty$ reflex assumes the base $\\to 1$; the jump discontinuity of $\\{x\\}$ at integers secretly pushes the base to $2$ from the left, collapsing the indeterminate form entirely. (The two-sided limit does not exist: from $0^+$ the base $\\to 1$ and the value $\\to e$.)"
+  },
+  {
+    "theme": "frac",
+    "themeLabel": "The Fractional Part",
+    "title": "The Cube That Came Too Late",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "frac",
+      "taylor",
+      "competing-orders",
+      "cosine",
+      "sequence",
+      "n->infinity"
+    ],
+    "statement": "Let $\\{\\,t\\,\\}=t-\\lfloor t\\rfloor$ denote the fractional part. Evaluate \\[ L=\\lim_{n\\to\\infty} n^{2}\\left(1-\\left\\{\\cos\\frac1n+\\frac{1}{n^{3}}\\right\\}\\right). \\]",
+    "answer": "\\[\\boxed{\\dfrac{1}{2}}\\]",
+    "trap": "The fatal move is to declare that the extra $+\\frac{1}{n^{3}}$ nudges the cosine, which already tends to $1$, just past $1$; one then reads $\\big\\lfloor\\cos\\frac1n+\\frac1{n^3}\\big\\rfloor=1$, so $\\{a_n\\}=a_n-1$ is a tiny positive number tending to $0$, whence $1-\\{a_n\\}\\to1$ and $L=\\lim n^{2}\\cdot 1=+\\infty$. This is wrong because the two corrections live at different orders and the wrong one is assumed to win. Writing $a_n=\\cos\\frac1n+\\frac1{n^3}=1-\\frac{1}{2n^{2}}+\\frac{1}{n^{3}}+O(n^{-4})$, the genuine leading deviation from $1$ is $-\\frac{1}{2n^{2}}$, an order-$2$ term that crushes the order-$3$ push $+\\frac{1}{n^3}$. So for every large $n$ the argument sits strictly below $1$ (indeed $a_n<1$ for all $n\\ge3$): the floor is $0$, not $1$, hence $\\{a_n\\}=a_n$ itself and $1-\\{a_n\\}=1-\\cos\\frac1n-\\frac1{n^3}\\sim\\frac{1}{2n^{2}}$, giving the finite value $\\tfrac12$. Believing the cube arrives in time to lift the value above the integer turns a clean $\\tfrac12$ into a bogus $\\infty$.",
+    "solutions": [
+      {
+        "name": "Method I - Pin the floor, then expand",
+        "steps": [
+          "Set $a_n=\\cos\\frac1n+\\frac1{n^{3}}$. The whole game is the value of $\\lfloor a_n\\rfloor$. Use the sharp cosine bound $\\cos t<1-\\frac{t^{2}}{2}+\\frac{t^{4}}{24}$ for $t\\neq0$ with $t=\\frac1n$: then $a_n<1-\\frac{1}{2n^{2}}+\\frac{1}{24n^{4}}+\\frac{1}{n^{3}}=1-\\frac{1}{n^{3}}\\Big(\\frac{n}{2}-1-\\frac{1}{24n}\\Big)<1$ as soon as $\\frac{n}{2}>1$, i.e. for all $n\\ge3$. Also $a_n>\\cos\\frac1n>0$. Hence $a_n\\in(0,1)$ and $\\lfloor a_n\\rfloor=0$, so $\\{a_n\\}=a_n$ for every large $n$.",
+          "Therefore $1-\\{a_n\\}=1-\\cos\\frac1n-\\frac1{n^{3}}$ for all large $n$, and the bracketed quantity is now an ordinary expression with no fractional part to fear.",
+          "Expand with $t=\\frac1n\\to0^{+}$: $1-\\cos t=\\frac{t^{2}}{2}-\\frac{t^{4}}{24}+\\cdots$, so $\\dfrac{1-\\cos t-t^{3}}{t^{2}}=\\frac12-t-\\frac{t^{2}}{24}+\\cdots$.",
+          "Since $n^{2}\\big(1-\\{a_n\\}\\big)=\\dfrac{1-\\cos t-t^{3}}{t^{2}}$ with $t=\\frac1n$, let $n\\to\\infty$ (so $t\\to0^{+}$): the $-t$ and $-\\frac{t^2}{24}$ terms vanish and $L=\\boxed{\\dfrac12}$."
+        ]
+      },
+      {
+        "name": "Method II - Two-sided squeeze",
+        "steps": [
+          "For $n\\ge3$ we showed $\\{a_n\\}=a_n$, so $n^{2}\\big(1-\\{a_n\\}\\big)=n^{2}\\big(1-\\cos\\frac1n\\big)-\\frac{1}{n}$. It suffices to squeeze $S_n:=n^{2}\\big(1-\\cos\\frac1n\\big)$.",
+          "Use the classical chain $\\frac{t^{2}}{2}-\\frac{t^{4}}{24}\\le 1-\\cos t\\le\\frac{t^{2}}{2}$ valid for all real $t$ (the upper bound is $\\cos t\\ge1-\\frac{t^2}{2}$; the lower bound is $\\cos t\\le1-\\frac{t^2}{2}+\\frac{t^4}{24}$). With $t=\\frac1n$ and multiplying by $n^{2}$, $$\\frac12-\\frac{1}{24n^{2}}\\;\\le\\;S_n\\;\\le\\;\\frac12.$$",
+          "Both outer bounds tend to $\\frac12$, so by the squeeze theorem $S_n\\to\\frac12$.",
+          "Hence $n^{2}\\big(1-\\{a_n\\}\\big)=S_n-\\frac1n\\to\\frac12-0=\\boxed{\\dfrac12}$."
+        ]
+      },
+      {
+        "name": "Method III - Reduce to a standard limit, isolate the late cube",
+        "steps": [
+          "Once the floor is fixed at $0$ (Method I, valid for $n\\ge3$), split the expression along its two orders: $$n^{2}\\big(1-\\{a_n\\}\\big)=n^{2}\\Big(1-\\cos\\tfrac1n\\Big)-n^{2}\\cdot\\frac{1}{n^{3}}=\\underbrace{\\frac{1-\\cos\\frac1n}{(1/n)^{2}}}_{\\text{order }2}-\\underbrace{\\frac1n}_{\\text{order }1\\text{ in }1/n,\\ \\to0}.$$",
+          "The first piece is the textbook limit $\\displaystyle\\lim_{u\\to0}\\frac{1-\\cos u}{u^{2}}=\\frac12$ with $u=\\frac1n\\to0$; equivalently $1-\\cos u=2\\sin^{2}\\frac{u}{2}$ gives $\\frac{2\\sin^{2}(u/2)}{u^{2}}=\\frac12\\Big(\\frac{\\sin(u/2)}{u/2}\\Big)^{2}\\to\\frac12$.",
+          "The second piece is $\\frac1n\\to0$. This is exactly the cube the trap hoped would matter: rescaled by $n^{2}$ it survives only as $\\frac1n$, which dies, whereas the quadratic cosine deficit survives as the finite $\\frac12$.",
+          "Subtracting the limits, $L=\\frac12-0=\\boxed{\\dfrac12}$."
+        ]
+      }
+    ],
+    "remark": "The lesson is a race of orders inside a fractional part. The argument $\\cos\\frac1n+\\frac1{n^{3}}$ approaches the integer $1$, and whether $\\{\\cdot\\}$ reads it as the value itself (floor $0$) or as value$-1$ (floor $1$) is decided by which correction is larger: the cosine's $-\\frac{1}{2n^{2}}$ beats the planted $+\\frac{1}{n^{3}}$, so the argument stays below $1$, the floor is $0$, and $\\{a_n\\}=a_n$. The cube arrives one order too late to change the branch; it then contributes only $-\\frac1n\\to0$ after the $n^{2}$ scaling. Misjudge the race and the answer leaps from $\\frac12$ to $\\infty$ -- a reminder that near an integer the surviving Taylor order, not the most eye-catching extra term, governs the floor."
+  },
+  {
+    "theme": "frac",
+    "themeLabel": "The Fractional Part",
+    "title": "The Conjugate That Refused to Vanish",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "frac",
+      "pisot",
+      "conjugate-root",
+      "sine",
+      "sequence",
+      "n->infinity"
+    ],
+    "statement": "Let $\\{\\,t\\,\\}=t-\\lfloor t\\rfloor$ denote the fractional part, and put $\\alpha=3+2\\sqrt2$. First convince yourself that the sequence $\\{\\alpha^{n}\\}$ does not tend to $0$; then evaluate \\[ L=\\lim_{n\\to\\infty}\\;\\alpha^{n}\\,\\sin\\!\\big(\\pi\\,\\alpha^{n}\\big). \\]",
+    "answer": "$L=-\\pi$",
+    "trap": "The seductive blunder is to say: since $\\{\\alpha^{n}\\}\\to1$, the number $\\alpha^{n}$ sits arbitrarily close to an integer, so $\\sin(\\pi\\alpha^{n})\\to\\sin(\\pi\\cdot\\text{integer})=0$; therefore $L=\\lim(\\text{huge})\\cdot(\\text{something}\\to0)$ is read as $\\infty\\cdot0=0$. The error is treating an unresolved $\\infty\\cdot0$ as if the zero factor automatically wins, never measuring how fast $\\sin(\\pi\\alpha^{n})$ decays against how fast $\\alpha^{n}$ blows up. They are matched, not lopsided. The conjugate $\\beta=3-2\\sqrt2\\in(0,1)$ satisfies $\\alpha\\beta=1$, so $\\alpha^{n}\\beta^{n}=1$ for every $n$: the explosion of $\\alpha^{n}$ and the decay of $\\beta^{n}$ are exact reciprocals. Since $I_{n}=\\alpha^{n}+\\beta^{n}$ is an even integer, $\\alpha^{n}=I_{n}-\\beta^{n}$ gives $\\sin(\\pi\\alpha^{n})=-\\sin(\\pi\\beta^{n})$, and $\\alpha^{n}\\sin(\\pi\\alpha^{n})=-\\dfrac{\\sin(\\pi\\beta^{n})}{\\beta^{n}}\\to-\\pi$, not $0$. A second, subtler trap is sign: because $I_{n}$ is even (not odd) the limit is $-\\pi$ exactly, not $+\\pi$; mis-tracking the parity of $\\lfloor\\alpha^{n}\\rfloor$ flips the sign.",
+    "solutions": [
+      {
+        "name": "Method I - Algebraic conjugate kills the fractional part",
+        "steps": [
+          "Let $\\alpha=3+2\\sqrt2$ and its conjugate $\\beta=3-2\\sqrt2$. Then $\\alpha+\\beta=6$ and $\\alpha\\beta=(3)^{2}-(2\\sqrt2)^{2}=9-8=1$, so $\\alpha,\\beta$ are the roots of $x^{2}-6x+1=0$ and $0<\\beta<1<\\alpha$.",
+          "Define $I_{n}=\\alpha^{n}+\\beta^{n}$. The recurrence $I_{n}=6I_{n-1}-I_{n-2}$ with $I_{0}=2,\\ I_{1}=6$ shows every $I_{n}$ is an integer; moreover $I_{0},I_{1}$ are even and the recurrence preserves parity, so $I_{n}$ is even for all $n$. Since $0<\\beta^{n}<1$, we get $\\alpha^{n}=I_{n}-\\beta^{n}$ with $\\lfloor\\alpha^{n}\\rfloor=I_{n}-1$ and $\\{\\alpha^{n}\\}=1-\\beta^{n}\\to1^{-}$ -- in particular $\\{\\alpha^{n}\\}\\not\\to0$, settling the preliminary claim.",
+          "Now $\\sin(\\pi\\alpha^{n})=\\sin\\!\\big(\\pi I_{n}-\\pi\\beta^{n}\\big)$. With $I_{n}$ an even integer, $\\sin(\\pi I_{n}-x)=\\sin(\\pi I_{n})\\cos x-\\cos(\\pi I_{n})\\sin x=-\\sin x$, hence $\\sin(\\pi\\alpha^{n})=-\\sin(\\pi\\beta^{n})$.",
+          "Therefore $\\alpha^{n}\\sin(\\pi\\alpha^{n})=-\\alpha^{n}\\sin(\\pi\\beta^{n})$. Using $\\alpha^{n}=1/\\beta^{n}$ from $\\alpha\\beta=1$, this equals $-\\dfrac{\\sin(\\pi\\beta^{n})}{\\beta^{n}}=-\\pi\\cdot\\dfrac{\\sin(\\pi\\beta^{n})}{\\pi\\beta^{n}}$. As $n\\to\\infty$, $\\beta^{n}\\to0^{+}$ and $\\dfrac{\\sin(\\pi\\beta^{n})}{\\pi\\beta^{n}}\\to1$, so $L=\\boxed{-\\pi}$."
+        ]
+      },
+      {
+        "name": "Method II - Two-sided squeeze on the reciprocal",
+        "steps": [
+          "From Method I, $\\alpha^{n}\\sin(\\pi\\alpha^{n})=-\\dfrac{\\sin(\\pi\\beta^{n})}{\\beta^{n}}$ where $\\beta=3-2\\sqrt2\\in(0,1)$, so it suffices to squeeze $T_{n}:=\\dfrac{\\sin(\\pi\\beta^{n})}{\\beta^{n}}$.",
+          "Write $t_{n}=\\pi\\beta^{n}$; for all large $n$ we have $0<t_{n}<\\tfrac{\\pi}{2}$. On $(0,\\tfrac{\\pi}{2})$ the standard inequalities $\\cos t\\le\\dfrac{\\sin t}{t}\\le1$ hold, so $\\cos(\\pi\\beta^{n})\\le\\dfrac{\\sin(\\pi\\beta^{n})}{\\pi\\beta^{n}}\\le1$.",
+          "Multiplying by $\\pi$, $\\;\\pi\\cos(\\pi\\beta^{n})\\le T_{n}\\le\\pi$. As $n\\to\\infty$, $\\beta^{n}\\to0$ so $\\cos(\\pi\\beta^{n})\\to1$ and the lower bound $\\pi\\cos(\\pi\\beta^{n})\\to\\pi$; by the squeeze theorem $T_{n}\\to\\pi$.",
+          "Hence $\\alpha^{n}\\sin(\\pi\\alpha^{n})=-T_{n}\\to-\\pi$, i.e. $L=\\boxed{-\\pi}$."
+        ]
+      },
+      {
+        "name": "Method III - First-order expansion of the small angle",
+        "steps": [
+          "As established, $\\{\\alpha^{n}\\}=1-\\beta^{n}$ with $\\beta^{n}\\to0^{+}$ and $\\sin(\\pi\\alpha^{n})=-\\sin(\\pi\\beta^{n})$. The angle $\\pi\\beta^{n}$ is genuinely small, so expand: $\\sin(\\pi\\beta^{n})=\\pi\\beta^{n}-\\dfrac{(\\pi\\beta^{n})^{3}}{6}+O(\\beta^{5n})$.",
+          "Multiply by $-\\alpha^{n}=-1/\\beta^{n}$ (since $\\alpha^{n}\\beta^{n}=1$): $\\;\\alpha^{n}\\sin(\\pi\\alpha^{n})=-\\dfrac{1}{\\beta^{n}}\\Big(\\pi\\beta^{n}-\\dfrac{\\pi^{3}\\beta^{3n}}{6}+\\cdots\\Big)=-\\pi+\\dfrac{\\pi^{3}}{6}\\beta^{2n}-\\cdots.$",
+          "Every correction term carries a positive power of $\\beta^{n}$, and $\\beta=3-2\\sqrt2\\approx0.1716$ gives $\\beta^{2n}\\to0$. So the reciprocal exactly cancels the leading $\\pi\\beta^{n}$, leaving $-\\pi$ plus vanishing tails.",
+          "Passing to the limit, $L=-\\pi+0=\\boxed{-\\pi}$. The cancellation of $\\beta^{n}$ against $\\alpha^{n}=1/\\beta^{n}$ is precisely why the supposed $\\infty\\cdot0$ resolves to a finite nonzero value."
+        ]
+      }
+    ],
+    "remark": "This is a Pisot-number phenomenon dressed as a fractional-part limit. The quadratic irrational $\\alpha=3+2\\sqrt2$ has conjugate $\\beta=3-2\\sqrt2$ with $|\\beta|<1$ and $\\alpha\\beta=1$, so $\\alpha^{n}+\\beta^{n}$ is an integer while $\\beta^{n}\\to0$ -- forcing $\\{\\alpha^{n}\\}\\to1^{-}$, never $0$. The trap is to see $\\alpha^{n}$ hugging an integer, declare $\\sin(\\pi\\alpha^{n})\\to0$, and let the zero swallow the limit. But the rate is everything: $\\sin(\\pi\\alpha^{n})=-\\sin(\\pi\\beta^{n})\\sim-\\pi\\beta^{n}$ decays at exactly the reciprocal rate of $\\alpha^{n}=1/\\beta^{n}$, so the product tends to the finite, transcendental value $-\\pi$. The parity of $\\alpha^{n}+\\beta^{n}$ (even here) fixes the sign; an odd-sum analogue would flip it to $+\\pi$. The morale: near an integer, a fractional part hides a precise decay, and only a conjugate-root identity reveals whether $\\infty\\cdot0$ is $0$, finite, or $\\infty$."
+  },
+  {
+    "theme": "frac",
+    "themeLabel": "The Fractional Part",
+    "title": "Area Per Tooth, Not Mean Squared",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "fractional-part",
+      "x->0+",
+      "integral",
+      "squeeze",
+      "periodicity",
+      "jensen-trap"
+    ],
+    "statement": "Let $\\{u\\}=u-\\lfloor u\\rfloor$ denote the fractional part. Evaluate \\[ L=\\lim_{x\\to 0^{+}}\\; x\\int_{0}^{1/x}\\{u\\}^{2}\\,du. \\]",
+    "answer": "\\[\\boxed{\\dfrac{1}{3}}\\]",
+    "trap": "The integrand $\\{u\\}^2$ is bounded in $[0,1)$ and the prefactor $x\\to0^+$, so a first reflex is \"bounded $\\times\\,0=0$\" — but the integral itself blows up like $1/x$, so the product is an honest $0\\cdot\\infty$ that survives. The seductive shortcut is to say the sawtooth $\\{u\\}$ \"averages to $\\tfrac12$\", hence $\\{u\\}^2$ averages to $\\bigl(\\tfrac12\\bigr)^2=\\tfrac14$ and $L=\\tfrac14$. This is the real trap: it silently assumes $\\overline{\\{u\\}^2}=\\bigl(\\overline{\\{u\\}}\\bigr)^2$, i.e. that the mean of a square equals the square of the mean — false by Jensen (the gap is exactly the variance). The mean per tooth is $\\int_0^1 s^2\\,ds=\\tfrac13$, not $\\tfrac14$; the missing $\\tfrac{1}{12}$ is $\\operatorname{Var}\\{u\\}$. The whole computation only closes because $\\{u\\}^2$ is periodic with a clean reset at every integer (the jump discontinuity of $\\{\\cdot\\}$ is what cuts the domain into identical unit teeth), and because the last, partial tooth is killed in the limit by the squeeze $x\\lfloor 1/x\\rfloor\\to1$.",
+    "solutions": [
+      {
+        "name": "Method I - Exact closed form via complete and partial teeth",
+        "steps": [
+          "Write $N=\\dfrac1x\\to+\\infty$ and split the domain at the integers. Since $\\{u\\}^2$ has period $1$ with $\\int_{m}^{m+1}\\{u\\}^2\\,du=\\int_0^1 s^2\\,ds=\\dfrac13$ on every unit tooth, the full teeth up to $\\lfloor N\\rfloor$ contribute $\\dfrac{\\lfloor N\\rfloor}{3}$, and the final partial tooth contributes $\\int_{\\lfloor N\\rfloor}^{N}\\{u\\}^2\\,du=\\int_0^{\\{N\\}} s^2\\,ds=\\dfrac{\\{N\\}^3}{3}$.",
+          "Hence exactly $\\displaystyle\\int_0^{N}\\{u\\}^2\\,du=\\frac{\\lfloor N\\rfloor}{3}+\\frac{\\{N\\}^3}{3}$, so $$x\\int_0^{1/x}\\{u\\}^2\\,du=\\frac{x\\,\\lfloor 1/x\\rfloor}{3}+\\frac{x\\,\\{1/x\\}^3}{3}.$$",
+          "For the first term use $x\\lfloor 1/x\\rfloor=x\\bigl(\\tfrac1x-\\{1/x\\}\\bigr)=1-x\\{1/x\\}$, and $0\\le x\\{1/x\\}<x\\to0$, so $x\\lfloor 1/x\\rfloor\\to1$. The second term obeys $0\\le \\dfrac{x\\{1/x\\}^3}{3}<\\dfrac{x}{3}\\to0$.",
+          "Therefore $x\\displaystyle\\int_0^{1/x}\\{u\\}^2\\,du\\to\\dfrac{1}{3}+0=\\boxed{\\dfrac13}$."
+        ]
+      },
+      {
+        "name": "Method II - Two-sided squeeze on the integral",
+        "steps": [
+          "Let $n=\\lfloor 1/x\\rfloor$, so $n\\le \\dfrac1x<n+1$. Because $\\{u\\}^2\\ge0$, the integral over $[0,1/x]$ contains the first $n$ complete teeth and at most one extra tooth: $$\\frac{n}{3}=\\int_0^{n}\\{u\\}^2\\,du\\;\\le\\;\\int_0^{1/x}\\{u\\}^2\\,du\\;\\le\\;\\int_0^{n+1}\\{u\\}^2\\,du=\\frac{n+1}{3}.$$",
+          "Multiply through by $x>0$: $\\dfrac{x\\,n}{3}\\le x\\displaystyle\\int_0^{1/x}\\{u\\}^2\\,du\\le \\dfrac{x\\,(n+1)}{3}.$",
+          "From $n\\le \\tfrac1x<n+1$ we get $1-x<x\\,n\\le1$ and $1<x(n+1)\\le 1+x$, so both bounds $\\dfrac{xn}{3}$ and $\\dfrac{x(n+1)}{3}$ converge to $\\dfrac13$ as $x\\to0^+$.",
+          "By the squeeze theorem the trapped quantity also tends to $\\dfrac13$: $L=\\boxed{\\dfrac13}$."
+        ]
+      },
+      {
+        "name": "Method III - Cesaro mean of the periodic function (reduction to a single tooth)",
+        "steps": [
+          "Substitute $u=Nv$ with $N=\\dfrac1x$, so $du=N\\,dv$ and $x\\displaystyle\\int_0^{N}\\{u\\}^2\\,du=\\frac1N\\cdot N\\int_0^{1}\\{Nv\\}^2\\,dv=\\int_0^{1}\\{Nv\\}^2\\,dv$ after dividing the leading $N$ back out: precisely $x\\int_0^{N}\\{u\\}^2du=\\dfrac1N\\int_0^{N}\\{u\\}^2du$, the running mean of the $1$-periodic function $\\varphi(u)=\\{u\\}^2$.",
+          "For any bounded $1$-periodic $\\varphi$, the running mean converges to the single-period average: writing $N=n+\\theta$ with $n=\\lfloor N\\rfloor$ and $\\theta=\\{N\\}\\in[0,1)$, $$\\frac1N\\int_0^{N}\\varphi=\\frac{n}{N}\\cdot\\underbrace{\\frac1n\\int_0^{n}\\varphi}_{=\\,\\overline{\\varphi}}+\\frac1N\\int_n^{N}\\varphi,$$ where $\\overline{\\varphi}=\\int_0^1\\varphi$ exactly (full teeth) and the tail obeys $\\bigl|\\tfrac1N\\int_n^{N}\\varphi\\bigr|\\le \\tfrac{1}{N}\\max\\varphi\\to0$.",
+          "Since $\\dfrac{n}{N}\\to1$, the running mean converges to $\\overline{\\varphi}=\\displaystyle\\int_0^1\\{u\\}^2\\,du=\\int_0^1 s^2\\,ds=\\dfrac13$. (Note $\\overline{\\varphi}=\\dfrac13\\ne\\bigl(\\overline{\\{u\\}}\\bigr)^2=\\tfrac14$; the discrepancy $\\tfrac{1}{12}$ is $\\operatorname{Var}\\{u\\}$.)",
+          "Hence $L=\\boxed{\\dfrac13}$."
+        ]
+      }
+    ],
+    "remark": "Two ideas conspire. First, $0\\cdot\\infty$ is decided by a rate: $\\int_0^{1/x}\\{u\\}^2du$ grows linearly because each integer reset of the sawtooth stamps out one more identical tooth of area $\\tfrac13$, and that linear growth exactly cancels the $x\\to0^+$ prefactor, leaving the per-tooth area $\\tfrac13$ as a running (Cesaro) mean. Second, the tempting $\\tfrac14$ is the classic confusion of the mean of a square with the square of the mean; for the sawtooth $\\overline{\\{u\\}^2}=\\tfrac13$ while $(\\overline{\\{u\\}})^2=\\tfrac14$, and the gap $\\tfrac{1}{12}$ is precisely the variance of a uniform sawtooth. The jump discontinuity of $\\{\\cdot\\}$ at every integer is not an obstacle here — it is the very feature that makes the domain a clean stack of congruent teeth."
+  },
+  {
+    "theme": "frac",
+    "themeLabel": "The Fractional Part",
+    "title": "Euler Hidden in the Sawtooth",
+    "difficulty": 5,
+    "tags": [
+      "fractional-part",
+      "n->infinity",
+      "riemann-sum",
+      "harmonic",
+      "euler-mascheroni"
+    ],
+    "statement": "\\lim_{n\\to\\infty}\\frac{1}{n}\\sum_{k=1}^{n}\\Bigl\\{\\frac{n}{k}\\Bigr\\}",
+    "answer": "1-\\gamma",
+    "trap": "The average $\\frac1n\\sum_{k=1}^n\\{n/k\\}$ looks exactly like a Riemann sum $\\frac1n\\sum_{k=1}^n g(k/n)$, tempting you to set $g(t)=\\{1/t\\}$ and write the limit as $\\int_0^1\\{1/t\\}\\,dt=1-\\gamma$. The final number is even correct — but the argument is bogus: the summand $\\{n/k\\}$ is NOT a function of $k/n$ alone (e.g. $k/n=\\tfrac12$ gives $\\{n/k\\}=\\{2\\}=0$ for every even $n$, yet $\\{n/k\\}$ jumps wildly as $n$ varies with $k/n$ held near other rationals), so no fixed $g$ represents it and the Riemann-sum theorem simply does not apply. The honest route is the floor identity $\\sum\\{n/k\\}=nH_n-\\sum\\lfloor n/k\\rfloor$ together with Dirichlet's divisor asymptotic.",
+    "solutions": [
+      {
+        "name": "Method I — Floor identity and the harmonic asymptotic",
+        "steps": [
+          "Use $\\{n/k\\}=\\tfrac{n}{k}-\\bigl\\lfloor\\tfrac{n}{k}\\bigr\\rfloor$, so $$\\sum_{k=1}^n\\Bigl\\{\\tfrac nk\\Bigr\\}=n\\sum_{k=1}^n\\tfrac1k-\\sum_{k=1}^n\\Bigl\\lfloor\\tfrac nk\\Bigr\\rfloor=nH_n-D(n),$$ where $D(n)=\\sum_{k=1}^n\\lfloor n/k\\rfloor$ is the divisor-summatory function.",
+          "Dirichlet's theorem: $D(n)=n\\ln n+(2\\gamma-1)n+O(\\sqrt n)$. Also $H_n=\\ln n+\\gamma+O(1/n)$, so $nH_n=n\\ln n+\\gamma n+O(1)$.",
+          "Subtract: $\\sum_{k=1}^n\\{n/k\\}=\\bigl(n\\ln n+\\gamma n\\bigr)-\\bigl(n\\ln n+(2\\gamma-1)n\\bigr)+O(\\sqrt n)=(1-\\gamma)n+O(\\sqrt n).$",
+          "Divide by $n$: $$\\frac1n\\sum_{k=1}^n\\Bigl\\{\\tfrac nk\\Bigr\\}=(1-\\gamma)+O\\!\\left(\\tfrac1{\\sqrt n}\\right)\\to 1-\\gamma.$$"
+        ]
+      },
+      {
+        "name": "Method II — Integral comparison via the Euler–Mascheroni integral",
+        "steps": [
+          "Compare the sum to $\\dfrac1n\\displaystyle\\int_1^n\\Bigl\\{\\frac nx\\Bigr\\}dx$. For $x\\in[k,k+1]$ with $k\\ge\\sqrt n$ the map $x\\mapsto\\{n/x\\}$ has total variation $O(n/k^2)$ on that interval, so replacing the sum by the integral costs $\\sum_{k\\ge\\sqrt n}O(n/k^2)\\cdot\\tfrac1n=O(1/\\sqrt n)$; the block $k<\\sqrt n$ contributes $O(\\sqrt n)$ to the sum, i.e. $O(1/\\sqrt n)$ to the average. Hence both have the same limit.",
+          "Substitute $u=n/x$, $dx=-\\tfrac{n}{u^2}du$: $$\\frac1n\\int_1^n\\Bigl\\{\\tfrac nx\\Bigr\\}dx=\\int_1^n\\{u\\}\\frac{du}{u^2}.$$",
+          "As $n\\to\\infty$ this tends to $\\displaystyle\\int_1^\\infty\\frac{\\{u\\}}{u^2}\\,du$. Writing $\\{u\\}=u-\\lfloor u\\rfloor$ and summing the integer blocks gives the classical value $\\int_1^\\infty\\{u\\}/u^2\\,du=1-\\gamma$.",
+          "Hence the average converges to $1-\\gamma$, matching Method I."
+        ]
+      }
+    ],
+    "remark": "$\\displaystyle\\int_1^\\infty\\frac{\\{u\\}}{u^2}\\,du=1-\\gamma$ is the integral form of the Euler–Mascheroni constant; the sawtooth $\\{n/k\\}$ is exactly the discrepancy between the harmonic sum $nH_n$ and the divisor sum $D(n)$, which is why $\\gamma$ appears twice and cancels down to $1-\\gamma$."
+  },
+  {
+    "theme": "frac",
+    "themeLabel": "The Fractional Part",
+    "title": "Where Two Sawtooths Trade Places",
+    "difficulty": 5,
+    "task": "Investigate",
+    "tags": [
+      "frac",
+      "one-sided",
+      "transversal-crossing",
+      "complementary-identity",
+      "half-angle",
+      "x->pi/2"
+    ],
+    "statement": "Let $f(x)=\\sec x-\\tan x$ and write $\\{\\cdot\\}$ for the fractional part. Investigate \\[ L=\\lim_{x\\to \\frac{\\pi}{2}}\\;\\frac{\\{\\,\\sec x-\\tan x\\,\\}\\;\\{\\,\\tan x-\\sec x\\,\\}}{\\pi-2x}, \\] computing the two one-sided limits at $x=\\tfrac{\\pi}{2}$ and deciding whether the two-sided limit exists.",
+    "answer": "$\\lim_{x\\to(\\pi/2)^{-}}=\\tfrac14,\\ \\lim_{x\\to(\\pi/2)^{+}}=-\\tfrac14,\\ \\text{two-sided DNE}$",
+    "trap": "The numerator $\\{f\\}\\{-f\\}$ tempts two opposite errors. First trap: invoking the complementary identity $\\{t\\}+\\{-t\\}=1$ (true for $t\\notin\\mathbb Z$) and concluding the two fractional parts are \\\"comparable,\\\" so their product is some clean determinate constant. It is not: one factor is $O(|f|)\\to0$ while the other $\\to1$, so the product $\\to0$ and we face $0/0$. Second trap: once one sees the product $\\to0$, it is tempting to declare both one-sided limits equal (\\\"the frac just vanishes, the half-angle is even, so the answer is symmetric\\\"). That ignores the load-bearing jump. Since $f=\\sec x-\\tan x=\\dfrac{1-\\sin x}{\\cos x}$ crosses the integer $0$ transversally at $x=\\tfrac\\pi2$, with $\\cos x>0$ just left and $\\cos x<0$ just right, $f$ is $0^{+}$ on the left and $0^{-}$ on the right. Hence $\\{f\\}$ and $\\{-f\\}$ swap which one is small: on the left $\\{f\\}=f\\to0^{+}$ while $\\{-f\\}\\to1$; on the right $\\{f\\}\\to1$ while $\\{-f\\}=-f\\to0^{+}$. The product always equals (small)\\,$\\times$\\,(near $1$) $\\approx|f|>0$, but the linear gap $\\pi-2x$ flips sign across $\\tfrac\\pi2$, so $|f|/(\\pi-2x)$ gives $+\\tfrac14$ on the left and $-\\tfrac14$ on the right. A student who treats the numerator as side-independent loses the sign and falsely reports a two-sided limit of $\\tfrac14$ (or, having mishandled the floor, $0$).",
+    "solutions": [
+      {
+        "name": "Method I - Resolve each fractional part by side, then squeeze",
+        "steps": [
+          "Set $h=x-\\tfrac\\pi2$ and let $f=\\sec x-\\tan x=\\dfrac{1-\\sin x}{\\cos x}$. Since $1-\\sin x\\ge0$ and $\\operatorname{sgn}(\\cos x)=\\operatorname{sgn}(-h)$ near $\\tfrac\\pi2$, we get $f>0$ for $h<0$ (left) and $f<0$ for $h>0$ (right), with $f\\to0$. So $f$ crosses the integer $0$ transversally and $f\\notin\\mathbb Z$ on a punctured neighbourhood.",
+          "Left ($h\\to0^{-}$): $f\\to0^{+}$, hence $\\lfloor f\\rfloor=0$ so $\\{f\\}=f$, while $-f\\to0^{-}$ gives $\\lfloor -f\\rfloor=-1$ so $\\{-f\\}=1-f$. Thus the numerator is $\\{f\\}\\{-f\\}=f(1-f)$. Right ($h\\to0^{+}$): $f\\to0^{-}$ gives $\\{f\\}=1+f$, and $-f\\to0^{+}$ gives $\\{-f\\}=-f$, so the numerator is $(1+f)(-f)=-f(1+f)$.",
+          "From $f=\\dfrac{1-\\sin x}{\\cos x}$ and $\\sin x=\\cos h$, $\\cos x=-\\sin h$ one gets $f=\\dfrac{1-\\cos h}{-\\sin h}$, so $\\dfrac{f}{-h}=\\dfrac{1-\\cos h}{h\\sin h}\\to\\dfrac12$, i.e. $f\\sim-\\tfrac{h}{2}$. Also $\\pi-2x=-2h$.",
+          "Left: $\\dfrac{f(1-f)}{-2h}=\\dfrac{f}{-2h}\\,(1-f)\\to\\dfrac{(-h/2)}{-2h}\\cdot1=\\dfrac14.$ Right: $\\dfrac{-f(1+f)}{-2h}=\\dfrac{f}{2h}\\,(1+f)\\to\\dfrac{(-h/2)}{2h}\\cdot1=-\\dfrac14.$ The one-sided limits are $\\tfrac14$ and $-\\tfrac14$; since they differ, $\\boxed{\\text{the two-sided limit does not exist}}$ (one-sided values $\\pm\\tfrac14$)."
+        ]
+      },
+      {
+        "name": "Method II - The product selects the small fractional part",
+        "steps": [
+          "Because $f\\notin\\mathbb Z$ near $\\tfrac\\pi2$, the complementary identity gives $\\{f\\}+\\{-f\\}=1$. So one factor is some $\\varepsilon\\in(0,1)$ and the other is $1-\\varepsilon$, and the numerator is $\\varepsilon(1-\\varepsilon)$. As $f\\to0$ the small factor is exactly $|f|$: indeed $\\{f\\}=f,\\,\\{-f\\}=1-f$ on the left and $\\{f\\}=1+f,\\,\\{-f\\}=-f$ on the right, so in both cases the small factor equals $|f|$ and the large factor equals $1-|f|\\to1$.",
+          "Hence the numerator $\\{f\\}\\{-f\\}=|f|\\,(1-|f|)$ uniformly on both sides, with $|f|=\\dfrac{1-\\sin x}{|\\cos x|}\\to0$. The product is therefore independent of side; all the side-dependence lives in the denominator.",
+          "Using $|f|=|\\tan(h/2)|\\sim\\dfrac{|h|}{2}$ (from $f=-\\tan(h/2)$, see Method III) and $\\pi-2x=-2h$: $\\dfrac{|f|(1-|f|)}{\\pi-2x}=\\dfrac{|f|}{-2h}(1-|f|)$.",
+          "Left ($h<0$): $\\dfrac{|h|/2}{-2h}=\\dfrac{-h/2}{-2h}=\\dfrac14$, times $(1-|f|)\\to1$, giving $\\dfrac14$. Right ($h>0$): $\\dfrac{|h|/2}{-2h}=\\dfrac{h/2}{-2h}=-\\dfrac14$, giving $-\\dfrac14$. Thus the limits are $\\pm\\tfrac14$ and $\\boxed{\\text{the two-sided limit does not exist}}$."
+        ]
+      },
+      {
+        "name": "Method III - Half-angle collapse",
+        "steps": [
+          "Use the standard reduction $\\sec x-\\tan x=\\dfrac{1-\\sin x}{\\cos x}$. Substituting $x=\\tfrac\\pi2+h$ gives $\\sin x=\\cos h,\\ \\cos x=-\\sin h$, so $f=\\dfrac{1-\\cos h}{-\\sin h}=-\\tan\\!\\dfrac{h}{2}$, an exact closed form valid in a punctured neighbourhood of $h=0$.",
+          "Thus $\\{f\\}=\\{-\\tan(h/2)\\}$ and $\\{-f\\}=\\{\\tan(h/2)\\}$. As $h\\to0$, $\\tan(h/2)\\to0$ with $\\operatorname{sgn}\\tan(h/2)=\\operatorname{sgn}h$, so for $h<0$: $\\{-\\tan(h/2)\\}=-\\tan(h/2)$ (small$\\to0^{+}$) and $\\{\\tan(h/2)\\}=1+\\tan(h/2)\\to1$; for $h>0$ the two swap.",
+          "In either case the numerator is $\\big(-\\tan\\tfrac h2\\big)\\big(\\!-\\!(\\text{the }\\to1\\text{ factor's complement})\\big)$ which equals $\\big|\\tan\\tfrac h2\\big|\\big(1-\\big|\\tan\\tfrac h2\\big|\\big)$, and $\\pi-2x=-2h$. So the quotient is $\\dfrac{\\big|\\tan(h/2)\\big|\\big(1-|\\tan(h/2)|\\big)}{-2h}$.",
+          "Since $\\big|\\tan\\tfrac h2\\big|\\sim\\dfrac{|h|}{2}$, the quotient $\\to\\dfrac{|h|/2}{-2h}=\\dfrac{\\operatorname{sgn}(-h)}{4}$, equal to $+\\tfrac14$ as $h\\to0^{-}$ and $-\\tfrac14$ as $h\\to0^{+}$. Hence the one-sided limits are $\\pm\\tfrac14$ and $\\boxed{\\text{the two-sided limit does not exist}}$."
+        ]
+      }
+    ],
+    "remark": "At a transversal integer crossing the two sawtooths $\\{f\\}$ and $\\{-f\\}$ do not cancel - they trade places: the one that is $\\to0$ on the left is the one that is $\\to1$ on the right. Their product is the cleanest probe of this swap, since multiplying the tiny frac by its near-$1$ partner always reproduces $|f|$, scrubbing the numerator of any side information. The entire sign of the answer is then exported to the linear gap $\\pi-2x$, which itself flips across $\\tfrac\\pi2$. So the magnitude $\\tfrac14$ is symmetric while the sign is antisymmetric: $+\\tfrac14$ from below, $-\\tfrac14$ from above, no two-sided limit. The complementary identity $\\{t\\}+\\{-t\\}=1$ is a friend here for $t\\notin\\mathbb Z$, but it is precisely its failure exactly at $t=0$ - the value $f$ takes only at $x=\\tfrac\\pi2$ - that makes the floor jump load-bearing."
+  },
+  {
+    "theme": "frac",
+    "themeLabel": "The Fractional Part",
+    "title": "Two Sawtooths Cancel",
+    "difficulty": 4,
+    "tags": [
+      "fractional-part",
+      "x->1",
+      "removable",
+      "two-sided",
+      "complementary"
+    ],
+    "statement": "\\lim_{x\\to 1}\\bigl(\\{x\\}+\\{2-x\\}\\bigr)",
+    "answer": "1",
+    "trap": "Substituting $x=1$ gives $\\{1\\}+\\{2-1\\}=\\{1\\}+\\{1\\}=0+0=0$, tempting the answer $0$. But the value at the point is irrelevant to a limit: both $\\{x\\}$ and $\\{2-x\\}$ have a jump exactly at $x=1$, and as $x\\to 1$ one fractional part rises to $1^-$ while the other falls to $0^+$. The jumps are equal and opposite, so the sum approaches $1$ — the function has a removable discontinuity (hole) at $x=1$ where it dips to $0$.",
+    "solutions": [
+      {
+        "name": "Method I — Two-sided branch analysis",
+        "steps": [
+          "Right limit ($x\\to 1^+$, so $1<x<2$): $\\{x\\}=x-1\\to 0^+$; and $2-x\\in(0,1)$ so $\\{2-x\\}=2-x\\to 1^-$. Sum $\\to 0+1=1$.",
+          "Left limit ($x\\to 1^-$, so $0<x<1$): $\\{x\\}=x\\to 1^-$; and $2-x\\in(1,2)$ so $\\{2-x\\}=(2-x)-1=1-x\\to 0^+$. Sum $\\to 1+0=1$.",
+          "Both one-sided limits equal $1$, so the two-sided limit is $1$ (while the point value is $0$ — a removable discontinuity)."
+        ]
+      },
+      {
+        "name": "Method II — Complementary identity $\\{t\\}+\\{-t\\}=1$",
+        "steps": [
+          "For non-integer $t$, $\\{t\\}+\\{-t\\}=1$. Put $t=x-1$ (non-integer for $x\\neq 1$): then $\\{x-1\\}+\\{1-x\\}=1$.",
+          "Since adding an integer leaves the fractional part unchanged, $\\{x\\}=\\{x-1\\}$ and $\\{2-x\\}=\\{1+(1-x)\\}=\\{1-x\\}$.",
+          "Hence $\\{x\\}+\\{2-x\\}=\\{x-1\\}+\\{1-x\\}=1$ for every $x\\neq 1$, so the limit as $x\\to 1$ is $1$."
+        ]
+      }
+    ],
+    "remark": "The graphs of $\\{x\\}$ and $\\{2-x\\}$ are reflections of each other about the line $x=1$; their downward unit jumps are equal and opposite, so the sum is the constant $1$ off the integers with a removable hole (value $0$) at each integer."
+  },
+  {
+    "theme": "frac",
+    "themeLabel": "The Fractional Part",
+    "title": "One Side Lives, One Side Explodes",
+    "difficulty": 4,
+    "tags": [
+      "fractional-part",
+      "x->0",
+      "one-sided-comparison",
+      "non-existence",
+      "floor"
+    ],
+    "statement": "\\lim_{x\\to 0}\\frac{\\{x\\}}{x}\\quad(\\text{compare the two one-sided limits})",
+    "answer": "\\text{does not exist: } \\lim_{x\\to 0^+}=1,\\ \\lim_{x\\to 0^-}=-\\infty",
+    "trap": "A student writes $\\{x\\}=x$ 'near $0$', cancels, and answers $1$. That identity holds only for $0\\le x<1$, i.e. it silently assumes $x>0$. For $x\\to 0^-$ we have $-1<x<0$, so $\\lfloor x\\rfloor=-1$ and $\\{x\\}=x+1\\to 1^+$; then $\\frac{\\{x\\}}{x}\\to\\frac{1}{0^-}=-\\infty$. The two sides disagree catastrophically, so the limit does not exist.",
+    "solutions": [
+      {
+        "name": "Method I — Compute each side from its floor branch",
+        "steps": [
+          "Right ($x\\to 0^+$, $0<x<1$): $\\lfloor x\\rfloor=0$, $\\{x\\}=x$, so $\\dfrac{\\{x\\}}{x}=\\dfrac{x}{x}=1\\to 1.$",
+          "Left ($x\\to 0^-$, $-1<x<0$): $\\lfloor x\\rfloor=-1$, $\\{x\\}=x+1\\to 1^+$, while $x\\to 0^-$, so $\\dfrac{\\{x\\}}{x}\\to\\dfrac{1}{0^-}=-\\infty.$",
+          "The one-sided limits are $1$ and $-\\infty$; since they differ, the two-sided limit does not exist."
+        ]
+      },
+      {
+        "name": "Method II — Substitution exposes the asymmetry",
+        "steps": [
+          "Right: set $x=h$, $h\\to0^+$: $\\dfrac{\\{h\\}}{h}=\\dfrac{h}{h}=1.$",
+          "Left: set $x=-h$, $h\\to0^+$. For $0<h<1$ we have $-1<-h<0$, so $\\lfloor -h\\rfloor=-1$ and $\\{-h\\}=-h-(-1)=1-h$. Hence $\\dfrac{\\{-h\\}}{-h}=\\dfrac{1-h}{-h}=-\\dfrac1h+1\\to-\\infty.$",
+          "The substitution shows the jump discontinuity of $\\{x\\}$ at $0$ injects a $+1$ on the left that the vanishing denominator turns into a blow-up. Hence no two-sided limit."
+        ]
+      }
+    ],
+    "remark": "$\\{x\\}/x$ is the cleanest demonstration that the sawtooth's jump at an integer destroys two-sidedness: the same algebraic surface gives a finite limit on one side and an infinite one on the other."
+  },
+  {
+    "theme": "frac",
+    "themeLabel": "The Fractional Part",
+    "title": "The Arctangent Plateau",
+    "difficulty": 5,
+    "tags": [
+      "fractional-part",
+      "x->0+",
+      "arctan",
+      "floor",
+      "derivative-form"
+    ],
+    "statement": "\\lim_{x\\to 0^+}\\frac{\\bigl\\{\\arctan\\tfrac{1}{x}\\bigr\\}-\\bigl(\\tfrac{\\pi}{2}-1\\bigr)}{x}",
+    "answer": "-1",
+    "trap": "A student sees $\\arctan\\tfrac1x\\to\\tfrac{\\pi}{2}\\approx 1.571$, takes $\\{\\arctan\\tfrac1x\\}\\to\\tfrac{\\pi}{2}-1$, declares the numerator $\\to 0$ and the answer $0$ — or, mishandling the floor, thinks $\\arctan\\tfrac1x<1$ so the fractional part is just $\\arctan\\tfrac1x$ and the floor never matters. Both miss that this is a $0/0$ derivative-form whose value is the slope $-1$, and that the floor is pinned to $1$ (not $0$).",
+    "solutions": [
+      {
+        "name": "Method I — Pin the floor, then expand",
+        "steps": [
+          "For small $x>0$, $\\arctan\\tfrac1x$ lies in $\\bigl(1,\\tfrac{\\pi}{2}\\bigr)\\subset(1,2)$, so $\\lfloor\\arctan\\tfrac1x\\rfloor=1$ and $\\{\\arctan\\tfrac1x\\}=\\arctan\\tfrac1x-1.$",
+          "Use the identity $\\arctan\\tfrac1x=\\tfrac{\\pi}{2}-\\arctan x$ (valid for $x>0$). Then the numerator becomes $$\\bigl(\\tfrac{\\pi}{2}-\\arctan x-1\\bigr)-\\bigl(\\tfrac{\\pi}{2}-1\\bigr)=-\\arctan x.$$",
+          "So the expression is $\\dfrac{-\\arctan x}{x}$, and since $\\arctan x\\sim x$, $$\\lim_{x\\to 0^+}\\frac{-\\arctan x}{x}=-1.$$"
+        ]
+      },
+      {
+        "name": "Method II — Series after removing the floor",
+        "steps": [
+          "As above, on $(0,\\delta)$ the floor is $1$, so the numerator equals $\\arctan\\tfrac1x-1-(\\tfrac\\pi2-1)=\\arctan\\tfrac1x-\\tfrac\\pi2.$",
+          "For $x\\to0^+$, expand $\\arctan\\tfrac1x=\\tfrac\\pi2-x+\\tfrac{x^3}{3}-\\cdots$ (from $\\arctan\\tfrac1x=\\tfrac\\pi2-\\arctan x$ and the $\\arctan$ series).",
+          "Hence numerator $=-x+\\tfrac{x^3}{3}-\\cdots$, and dividing by $x$ gives $-1+\\tfrac{x^2}{3}-\\cdots\\to -1.$"
+        ]
+      }
+    ],
+    "remark": "Because $\\arctan\\tfrac1x$ approaches its plateau $\\tfrac\\pi2$ from below while sitting in $(1,2)$, the floor is frozen at $1$ and the fractional part inherits the smooth slope $\\tfrac{d}{dx}\\arctan\\tfrac1x\\big|_{0^+}=-1$."
+  },
+  {
+    "theme": "signum",
+    "themeLabel": "The Signum Function",
+    "title": "Sign of a Vanishing Gap",
+    "difficulty": 4,
+    "tags": [
+      "signum",
+      "one-sided",
+      "x->0+",
+      "taylor",
+      "1-cos"
+    ],
+    "statement": "\\lim_{x\\to 0^+}\\operatorname{sgn}(x-\\sin x)\\cdot\\frac{1-\\cos x}{x^2}",
+    "answer": "\\dfrac{1}{2}",
+    "trap": "Reading $\\operatorname{sgn}(x-\\sin x)$ as $\\operatorname{sgn}(0)=0$ because both $x$ and $\\sin x$ vanish at $x=0$, and concluding the whole limit is $0$. This evaluates the sign at the endpoint instead of along the approach. The signum must be read on the punctured neighbourhood: for every $x>0$ near $0$ we have $x-\\sin x=\\tfrac{x^3}{6}-\\cdots>0$, so the factor is a constant $+1$, never $0$. (Equally seductive: noticing that from the left it would be $-1$ and declaring the limit nonexistent — but the problem is posed one-sided, so only $x\\to0^+$ matters.)",
+    "solutions": [
+      {
+        "name": "Method I - Series sign analysis + squeeze",
+        "steps": [
+          "Expand the argument of $\\operatorname{sgn}$: $x-\\sin x = x-\\left(x-\\tfrac{x^3}{6}+\\cdots\\right)=\\tfrac{x^3}{6}-\\tfrac{x^5}{120}+\\cdots$.",
+          "For all small $x>0$ this is $>0$ (leading term $x^3/6>0$), hence $\\operatorname{sgn}(x-\\sin x)=+1$ on a punctured right-neighbourhood of $0$.",
+          "The sign factor is now the constant $+1$, so the limit reduces to $\\displaystyle\\lim_{x\\to0^+}\\frac{1-\\cos x}{x^2}$.",
+          "Using $1-\\cos x=\\dfrac{x^2}{2}-\\dfrac{x^4}{24}+\\cdots$, we get $\\dfrac{1-\\cos x}{x^2}=\\dfrac12-\\dfrac{x^2}{24}+\\cdots\\to\\dfrac12$.",
+          "Therefore the limit is $\\boxed{\\tfrac12}$."
+        ]
+      },
+      {
+        "name": "Method II - Half-angle identity",
+        "steps": [
+          "On small $x>0$ the sign factor is $+1$ (since $\\sin x<x$ there), so we only need $\\dfrac{1-\\cos x}{x^2}$.",
+          "Use the identity $1-\\cos x=2\\sin^2\\!\\frac{x}{2}$.",
+          "$$\\frac{1-\\cos x}{x^2}=\\frac{2\\sin^2(x/2)}{x^2}=\\frac12\\left(\\frac{\\sin(x/2)}{x/2}\\right)^{2}.$$",
+          "As $x\\to0^+$, $\\dfrac{\\sin(x/2)}{x/2}\\to1$, so the expression tends to $\\dfrac12\\cdot1^2=\\dfrac12$."
+        ]
+      }
+    ],
+    "remark": "The whole difficulty is realising $\\operatorname{sgn}$ must be evaluated along the path, not at the limit point: $x-\\sin x$ is a one-signed $O(x^3)$ quantity, so its sign is locally constant ($+1$ on the right, $-1$ on the left) even though it 'looks' indeterminate. This is exactly why the one-sided posing is essential — the two-sided limit would not exist."
+  },
+  {
+    "theme": "signum",
+    "themeLabel": "The Signum Function",
+    "title": "Two Signs That Both Cross, Yet Never Agree",
+    "difficulty": 5,
+    "task": "Determine",
+    "tags": [
+      "signum",
+      "one-sided",
+      "sign-product",
+      "monotonicity-direction",
+      "equivalent-infinitesimals",
+      "x->0"
+    ],
+    "statement": "For real $x$ near $0$ consider \\[ L=\\lim_{x\\to 0}\\;\\operatorname{sgn}\\!\\big(\\ln(1+x)\\big)\\cdot\\operatorname{sgn}\\!\\big(-\\arctan x\\big)\\cdot\\frac{e^{x^{2}}-\\cos x}{x\\,\\sin x}, \\] where $\\operatorname{sgn}$ is the signum function. Decide whether $L$ exists, and if so find its value. (Both signum factors are discontinuous at $x=0$.)",
+    "answer": "\\[\\boxed{-\\dfrac{3}{2}}\\]",
+    "trap": "Each signum factor jumps at $x=0$, so the reflex is either to declare the limit nonexistent (\\\"two discontinuities multiplied cannot settle down\\\") or to assume the two jumps line up and cancel into $+1$. Both are wrong, and the second is the seductive one. A student reasons: $\\ln(1+x)$ and $-\\arctan x$ each vanish at $0$, each has a single transversal root there, so $\\operatorname{sgn}$ of each flips from $-1$ to $+1$; the product of two factors that flip the same way is $(-1)(-1)=+1$ on the left and $(+1)(+1)=+1$ on the right, hence $+1$ on both sides, and $L=+\\tfrac32$. The hidden case is the DIRECTION of each crossing. $\\ln(1+x)$ is increasing through $0$ (so $\\operatorname{sgn}=-1$ left, $+1$ right), but $-\\arctan x$ is DECREASING through $0$ (so $\\operatorname{sgn}=+1$ left, $-1$ right) — the minus sign silently reverses the monotonicity. The two factors never share a sign on the same side: their product is $(-1)(+1)=-1$ on the left and $(+1)(-1)=-1$ on the right. The product of signs is the constant $-1$, not $+1$. So the limit DOES exist (the side-jumps cancel into a constant) but equals $-\\tfrac32$, the negative of the careless answer. The trap is reading \\\"both cross zero\\\" as \\\"both flip the same way,\\\" forgetting that a sign in front of a function flips the direction of its zero-crossing.",
+    "solutions": [
+      {
+        "name": "Method I - Separate the sign product from the magnitude core",
+        "steps": [
+          "Write the expression as $S(x)\\cdot C(x)$ where $S(x)=\\operatorname{sgn}(\\ln(1+x))\\,\\operatorname{sgn}(-\\arctan x)$ is the product of signs and $C(x)=\\dfrac{e^{x^{2}}-\\cos x}{x\\sin x}$ is a magnitude core. The core has fixed sign near $0$: its denominator $x\\sin x>0$ for $x\\ne0$ and its numerator $e^{x^2}-\\cos x>0$, so $C(x)>0$ on a punctured neighbourhood; all the sign drama lives in $S(x)$.",
+          "Resolve $S(x)$ by side. For $x\\to0^{-}$: $\\ln(1+x)<0$ so $\\operatorname{sgn}(\\ln(1+x))=-1$, while $\\arctan x<0$ makes $-\\arctan x>0$ so $\\operatorname{sgn}(-\\arctan x)=+1$; thus $S=(-1)(+1)=-1$. For $x\\to0^{+}$: $\\ln(1+x)>0$ gives $+1$, and $-\\arctan x<0$ gives $-1$; thus $S=(+1)(-1)=-1$. On BOTH sides $S(x)=-1$ — the factor that increases through $0$ and the factor that decreases through $0$ always disagree.",
+          "Evaluate the core. Expand near $0$: $e^{x^{2}}-\\cos x=\\big(1+x^{2}+\\cdots\\big)-\\big(1-\\tfrac{x^{2}}{2}+\\cdots\\big)=\\tfrac{3}{2}x^{2}+O(x^{4})$, and $x\\sin x=x\\big(x-\\tfrac{x^3}{6}+\\cdots\\big)=x^{2}+O(x^{4})$. Hence $C(x)=\\dfrac{\\tfrac32 x^2+O(x^4)}{x^2+O(x^4)}\\to\\dfrac32$.",
+          "Since $S(x)\\equiv-1$ on a punctured neighbourhood of $0$, the full expression equals $-C(x)$ there, so its two-sided limit exists and $L=-\\lim_{x\\to0}C(x)=-\\dfrac32$. Therefore $L=\\boxed{-\\dfrac{3}{2}}$."
+        ]
+      },
+      {
+        "name": "Method II - Monotonicity directions decide the sign once and for all",
+        "steps": [
+          "Both inner functions have a simple transversal zero at $x=0$, so each signum is locally a step that jumps once. The jump direction is governed by the derivative at the root. $\\dfrac{d}{dx}\\ln(1+x)\\big|_{0}=1>0$, so $\\ln(1+x)$ increases through $0$ and $\\operatorname{sgn}(\\ln(1+x))=\\operatorname{sgn}(x)$. Meanwhile $\\dfrac{d}{dx}\\big(-\\arctan x\\big)\\big|_{0}=-1<0$, so $-\\arctan x$ decreases through $0$ and $\\operatorname{sgn}(-\\arctan x)=-\\operatorname{sgn}(x)$.",
+          "Multiply the two signs: $\\operatorname{sgn}(\\ln(1+x))\\cdot\\operatorname{sgn}(-\\arctan x)=\\operatorname{sgn}(x)\\cdot\\big(-\\operatorname{sgn}(x)\\big)=-\\operatorname{sgn}(x)^{2}=-1$ for every $x\\ne0$. The sign product is the constant $-1$, independent of side — the opposite-direction crossings convert two discontinuities into one continuous constant.",
+          "The remaining limit is the even core $\\dfrac{e^{x^{2}}-\\cos x}{x\\sin x}$. Group the numerator as $\\big(e^{x^{2}}-1\\big)+\\big(1-\\cos x\\big)$ and use the standard limits $\\dfrac{e^{x^{2}}-1}{x^{2}}\\to1$, $\\dfrac{1-\\cos x}{x^{2}}\\to\\tfrac12$, $\\dfrac{x\\sin x}{x^{2}}\\to1$. Dividing numerator and denominator by $x^{2}$ gives $\\dfrac{1+\\tfrac12}{1}=\\dfrac32$.",
+          "Combining, $L=(-1)\\cdot\\dfrac32=-\\dfrac32$. The two-sided limit exists, so $L=\\boxed{-\\dfrac{3}{2}}$."
+        ]
+      },
+      {
+        "name": "Method III - Equivalent infinitesimals after fixing the sign",
+        "steps": [
+          "First record the sign product as in Methods I-II: $\\operatorname{sgn}(\\ln(1+x))\\,\\operatorname{sgn}(-\\arctan x)=-1$ on a punctured neighbourhood of $0$ (increasing root times decreasing root). So $L=-\\displaystyle\\lim_{x\\to0}\\dfrac{e^{x^{2}}-\\cos x}{x\\sin x}$, a now sign-free $\\tfrac00$ limit.",
+          "Replace each piece by its leading equivalent infinitesimal as $x\\to0$: $e^{x^{2}}-1\\sim x^{2}$, $1-\\cos x\\sim\\dfrac{x^{2}}{2}$, and $\\sin x\\sim x$ so $x\\sin x\\sim x^{2}$. Writing $e^{x^{2}}-\\cos x=(e^{x^{2}}-1)+(1-\\cos x)$ keeps the two contributions additive so the equivalences may be summed.",
+          "Hence $\\dfrac{e^{x^{2}}-\\cos x}{x\\sin x}\\sim\\dfrac{x^{2}+\\tfrac12 x^{2}}{x^{2}}=\\dfrac{\\tfrac32 x^{2}}{x^{2}}=\\dfrac32$, valid identically from both sides because every infinitesimal used is even or odd-cancelling in the ratio.",
+          "Therefore $L=-\\dfrac32$, and being equal from both sides the two-sided limit exists: $L=\\boxed{-\\dfrac{3}{2}}$."
+        ]
+      }
+    ],
+    "remark": "The lesson is that a signum jump is not just \\\"does the function cross zero\\\" but \\\"which way.\\\" Here both inner functions have a single transversal root at $x=0$, yet one rises and one falls through it; a leading minus sign on $\\arctan x$ quietly inverts its crossing. Two same-direction crossings would give sign product $+1$; two opposite-direction crossings give $-1$. In both cases the product of the two signs is CONSTANT, so the two-sided limit exists despite each factor being discontinuous — the discontinuities annihilate. The naive student who sees \\\"both cross zero\\\" and writes $(-1)(-1)$ versus $(+1)(+1)$ gets $+1$ and the wrong sign $+\\tfrac32$. The correct bookkeeping $\\operatorname{sgn}(\\ln(1+x))=\\operatorname{sgn}(x)$ but $\\operatorname{sgn}(-\\arctan x)=-\\operatorname{sgn}(x)$ collapses the product to $-\\operatorname{sgn}(x)^2=-1$, delivering $-\\tfrac32$. Multiply the sign behaviours; never read each in isolation."
+  },
+  {
+    "theme": "signum",
+    "themeLabel": "The Signum Function",
+    "title": "The Hidden Signum",
+    "difficulty": 5,
+    "tags": [
+      "signum",
+      "hidden",
+      "arctan",
+      "tan",
+      "one-sided",
+      "x->0+",
+      "composition"
+    ],
+    "statement": "\\lim_{x\\to 0^+}\\frac{2}{\\pi}\\arctan\\!\\left(\\frac{1}{x-\\tan x}\\right)",
+    "answer": "-1",
+    "trap": "The fast guess is $+1$: students see $x-\\tan x\\to 0$, recall the familiar $x-\\sin x=\\tfrac{x^3}{6}+\\cdots>0$, and assume the denominator is positive, so the fraction $\\to+\\infty$ and $\\tfrac{2}{\\pi}\\arctan(+\\infty)=+1$. But tangent overshoots: $\\tan x=x+\\tfrac{x^3}{3}+\\cdots>x$ for small $x>0$, so $x-\\tan x=-\\tfrac{x^3}{3}-\\cdots<0$. The fraction $\\to-\\infty$ and the true value is $\\tfrac{2}{\\pi}\\arctan(-\\infty)=-1$. The sign flips precisely because $\\tan$ bulges above the line $y=x$, unlike $\\sin$.",
+    "solutions": [
+      {
+        "name": "Method I - arctan(±∞) as a disguised signum",
+        "steps": [
+          "Recall $\\dfrac{2}{\\pi}\\arctan(u)\\to\\operatorname{sgn}(u)$ as $|u|\\to\\infty$; here $\\arctan$ is secretly acting as a signum detector.",
+          "So the whole limit equals $\\operatorname{sgn}\\!\\left(\\dfrac{1}{x-\\tan x}\\right)=\\operatorname{sgn}(x-\\tan x)$ in the limit, provided $x-\\tan x\\to0$.",
+          "Sign of the denominator: $\\tan x = x+\\dfrac{x^3}{3}+\\cdots$, so $x-\\tan x=-\\dfrac{x^3}{3}-\\cdots<0$ for all small $x>0$.",
+          "Thus $\\dfrac{1}{x-\\tan x}\\to-\\infty$, and $\\dfrac{2}{\\pi}\\arctan(-\\infty)=\\dfrac{2}{\\pi}\\cdot\\left(-\\dfrac{\\pi}{2}\\right)=-1$.",
+          "Answer: $\\boxed{-1}$."
+        ]
+      },
+      {
+        "name": "Method II - Direct substitution chase",
+        "steps": [
+          "Let $D(x)=x-\\tan x$. For $x\\to0^+$, $D(x)\\to0^-$ (negative, by the cubic expansion above).",
+          "Hence $u(x)=\\dfrac{1}{D(x)}\\to-\\infty$.",
+          "$\\arctan$ is continuous and increasing with horizontal asymptote $-\\dfrac{\\pi}{2}$ as $u\\to-\\infty$, so $\\arctan(u)\\to-\\dfrac{\\pi}{2}$.",
+          "Multiply by $\\dfrac{2}{\\pi}$: limit $=-1$."
+        ]
+      }
+    ],
+    "remark": "The signum is fully camouflaged inside $\\tfrac2\\pi\\arctan$, whose two horizontal asymptotes $\\pm1$ ARE the two signum values; the real test is the sign of the cubic $x-\\tan x$."
+  },
+  {
+    "theme": "signum",
+    "themeLabel": "The Signum Function",
+    "title": "The Root That Touches But Never Crosses",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "signum",
+      "even-multiplicity",
+      "half-angle",
+      "taylor-cancellation",
+      "two-sided",
+      "x->0"
+    ],
+    "statement": "Let $\\operatorname{sgn}(t)$ be the signum function, with $\\operatorname{sgn}(0)=0$. Put \\[ \\varphi(x)=x\\sin x-2+2\\cos x. \\] First decide the sign of $\\varphi$ on a punctured neighbourhood of $0$ (it is the same on both sides or it is not -- determine which), and then evaluate \\[ L=\\lim_{x\\to 0}\\;\\operatorname{sgn}\\!\\big(\\varphi(x)\\big)\\,\\cdot\\,\\frac{x^{2}\\tan^{2}x}{\\varphi(x)}, \\] stating explicitly whether the two-sided limit exists.",
+    "answer": "\\[\\boxed{L=12}\\]",
+    "trap": "Three sign instincts collide here, and the strongest student usually trips on at least one. Instinct 1: \\\"$\\varphi(0)=0$ and $\\operatorname{sgn}(0)=0$, so the signum factor kills everything and $L=0$.\\\" This confuses the value of $\\operatorname{sgn}\\circ\\varphi$ AT $x=0$ (irrelevant to a limit) with its value NEAR $x=0$, which is a constant $\\pm1$, never $0$. Instinct 2: \\\"a function vanishing at $x=0$ must change sign there, so $\\operatorname{sgn}(\\varphi)$ jumps from $-1$ to $+1$; the two one-sided limits are then $\\mp12$ and the two-sided limit does not exist.\\\" This is the central error: $\\varphi$ has an even-order zero. Both natural-looking $O(x^{2})$ pieces of $\\varphi$ cancel -- $x\\sin x=x^{2}-\\tfrac{x^{4}}{6}+\\cdots$ and $2\\cos x-2=-x^{2}+\\tfrac{x^{4}}{12}-\\cdots$ sum to $\\varphi=-\\tfrac{x^{4}}{12}+\\cdots$, an order-$4$ (hence even) zero -- so $\\varphi<0$ on BOTH sides and $\\operatorname{sgn}(\\varphi)\\equiv-1$ across $x=0$, no jump. Instinct 3 (the sign of the answer): seeing $\\operatorname{sgn}(\\varphi)=-1$ and a numerator $\\to0^{+}$, one writes $L=-12$, forgetting that $\\varphi\\to0^{-}$ too, so $\\dfrac{x^{2}\\tan^{2}x}{\\varphi}\\to-12$ and the leading $-1$ multiplies it back to $+12$. The two minus signs -- from $\\operatorname{sgn}$ and from the negative leading coefficient of $\\varphi$ -- conspire to give $+12$.",
+    "solutions": [
+      {
+        "name": "Method I - Taylor: an order-4 zero cannot flip the sign",
+        "steps": [
+          "Expand each piece to fourth order: $x\\sin x=x\\big(x-\\tfrac{x^{3}}{6}+\\cdots\\big)=x^{2}-\\tfrac{x^{4}}{6}+\\cdots$ and $2\\cos x-2=2\\big(1-\\tfrac{x^{2}}{2}+\\tfrac{x^{4}}{24}-\\cdots\\big)-2=-x^{2}+\\tfrac{x^{4}}{12}-\\cdots$. Adding, the $x^{2}$ terms cancel exactly, leaving $\\varphi(x)=\\big(-\\tfrac16+\\tfrac1{12}\\big)x^{4}+\\cdots=-\\tfrac{x^{4}}{12}+\\tfrac{x^{6}}{180}-\\cdots.$",
+          "The leading term is $-\\tfrac{x^{4}}{12}$ with $x^{4}>0$ for $x\\neq0$, so $\\varphi(x)<0$ on a punctured neighbourhood of $0$ -- on BOTH sides. The zero of $\\varphi$ at $x=0$ has even order $4$, so $\\operatorname{sgn}\\!\\big(\\varphi(x)\\big)=-1$ for all small $x\\neq0$; there is no jump and the signum factor is the constant $-1$.",
+          "For the numerator, $\\tan x=x+\\tfrac{x^{3}}{3}+\\cdots$, so $x^{2}\\tan^{2}x=x^{2}\\big(x^{2}+\\tfrac{2x^{4}}{3}+\\cdots\\big)=x^{4}+\\tfrac{2x^{6}}{3}+\\cdots$, an order-$4$ quantity matching the denominator. Hence $\\dfrac{x^{2}\\tan^{2}x}{\\varphi(x)}=\\dfrac{x^{4}\\big(1+\\tfrac{2x^{2}}{3}+\\cdots\\big)}{-\\tfrac{x^{4}}{12}\\big(1-\\tfrac{x^{2}}{15}+\\cdots\\big)}\\longrightarrow\\dfrac{1}{-\\tfrac1{12}}=-12.$",
+          "Multiplying by the constant signum factor, $L=(-1)\\cdot(-12)=\\boxed{12}$. Because both the signum value and the ratio are side-independent, the two one-sided limits coincide and the two-sided limit exists and equals $12$."
+        ]
+      },
+      {
+        "name": "Method II - Half-angle factorization exposes the even order",
+        "steps": [
+          "Use $1-\\cos x=2\\sin^{2}\\tfrac{x}{2}$ and $\\sin x=2\\sin\\tfrac{x}{2}\\cos\\tfrac{x}{2}$ to refactor $\\varphi$ exactly: $\\varphi(x)=x\\sin x-2(1-\\cos x)=2x\\sin\\tfrac{x}{2}\\cos\\tfrac{x}{2}-4\\sin^{2}\\tfrac{x}{2}=2\\sin\\tfrac{x}{2}\\,\\big(x\\cos\\tfrac{x}{2}-2\\sin\\tfrac{x}{2}\\big).$",
+          "Name the bracket $b(x)=x\\cos\\tfrac{x}{2}-2\\sin\\tfrac{x}{2}$. Expanding, $x\\cos\\tfrac x2=x-\\tfrac{x^{3}}{8}+\\cdots$ and $2\\sin\\tfrac x2=x-\\tfrac{x^{3}}{24}+\\cdots$, so $b(x)=\\big(-\\tfrac18+\\tfrac1{24}\\big)x^{3}+\\cdots=-\\tfrac{x^{3}}{12}+\\cdots$. Thus $\\varphi$ is a PRODUCT of two factors that each vanish to ODD order: $2\\sin\\tfrac{x}{2}\\sim x$ (order $1$) and $b(x)\\sim-\\tfrac{x^{3}}{12}$ (order $3$). Each factor flips sign at $0$, but a product of two sign-flips does not flip -- the orders add to the even number $4$.",
+          "Concretely $\\operatorname{sgn}(2\\sin\\tfrac x2)=\\operatorname{sgn}(x)$ and $\\operatorname{sgn}\\,b(x)=-\\operatorname{sgn}(x)$ near $0$, so $\\operatorname{sgn}\\,\\varphi(x)=\\operatorname{sgn}(x)\\cdot(-\\operatorname{sgn}(x))=-1$ for every small $x\\neq0$, confirming the constant sign without computing a single coefficient of $\\varphi$ itself.",
+          "Now $\\dfrac{x^{2}\\tan^{2}x}{\\varphi(x)}=\\dfrac{x^{2}\\tan^{2}x}{2\\sin\\tfrac x2\\,\\cdot\\,b(x)}$. Since $2\\sin\\tfrac x2\\sim x$, $\\tan x\\sim x$ and $b(x)\\sim-\\tfrac{x^{3}}{12}$, this is $\\sim\\dfrac{x^{2}\\cdot x^{2}}{x\\cdot(-x^{3}/12)}=\\dfrac{x^{4}}{-x^{4}/12}=-12$. Multiplying by $\\operatorname{sgn}\\,\\varphi=-1$ gives $L=\\boxed{12}$, with both sides agreeing, so the two-sided limit exists."
+        ]
+      },
+      {
+        "name": "Method III - One-sided reduction by the even substitution",
+        "steps": [
+          "The whole expression $E(x)=\\operatorname{sgn}\\!\\big(\\varphi(x)\\big)\\dfrac{x^{2}\\tan^{2}x}{\\varphi(x)}$ is an EVEN function of $x$: replacing $x$ by $-x$ leaves $x\\sin x$, $\\cos x$, $x^{2}$ and $\\tan^{2}x$ unchanged, so $\\varphi(-x)=\\varphi(x)$ and $E(-x)=E(x)$. Hence the left-hand limit equals the right-hand limit automatically, and it suffices to compute $\\lim_{x\\to0^{+}}E(x)$; the two-sided limit will then exist and equal it.",
+          "For $x\\to0^{+}$, from Method I (or II) $\\varphi(x)\\to0^{-}$, so $\\operatorname{sgn}\\,\\varphi=-1$ and $E(x)=-\\dfrac{x^{2}\\tan^{2}x}{\\varphi(x)}=\\dfrac{x^{2}\\tan^{2}x}{2(1-\\cos x)-x\\sin x}$, writing $-\\varphi=2(1-\\cos x)-x\\sin x>0$.",
+          "Divide numerator and denominator by $x^{4}$ and use the standard limits $\\dfrac{\\tan x}{x}\\to1$, $\\dfrac{1-\\cos x}{x^{2}}\\to\\tfrac12$, $\\dfrac{\\sin x}{x}\\to1$. Numerator: $\\dfrac{x^{2}\\tan^{2}x}{x^{4}}=\\Big(\\dfrac{\\tan x}{x}\\Big)^{2}\\to1$. Denominator: $\\dfrac{2(1-\\cos x)-x\\sin x}{x^{4}}$ -- but this is the indeterminate $0/0$ part, so resolve it via the order-$4$ expansion $2(1-\\cos x)-x\\sin x=\\tfrac{x^{4}}{12}+O(x^{6})$, giving $\\dfrac{1}{12}$.",
+          "Therefore $\\lim_{x\\to0^{+}}E(x)=\\dfrac{1}{1/12}=12$, and by evenness the left limit is also $12$. The two-sided limit exists and $L=\\boxed{12}$."
+        ]
+      }
+    ],
+    "remark": "The lesson is that the folklore rule \\\"a function changes sign at a root\\\" holds only for roots of ODD multiplicity. Here $\\varphi(x)=x\\sin x-2+2\\cos x$ is engineered so its two $O(x^{2})$ contributions cancel, dropping it to an order-$4$ zero with a negative leading coefficient: $\\varphi\\sim-\\tfrac{x^{4}}{12}$. An even-order zero is a TOUCH, not a CROSSING, so $\\operatorname{sgn}(\\varphi)$ is the constant $-1$ across $x=0$ and the dreaded one-sided split never happens -- the two-sided limit calmly exists. The half-angle factorization $\\varphi=2\\sin\\tfrac x2\\,(x\\cos\\tfrac x2-2\\sin\\tfrac x2)$ makes the parity transparent: it is a product of two odd-order sign-flippers, and flip$\\,\\times\\,$flip$\\,=\\,$no flip, exactly as $(-1)\\times(-1)=+1$ for the orders. Finally the value $+12$ is a double-negative: the $\\operatorname{sgn}$ contributes $-1$ and the ratio $x^{2}\\tan^{2}x/\\varphi$ contributes $-12$, and a careless solver loses exactly one of those minus signs. And $\\operatorname{sgn}(0)=0$ is a pure decoy -- a limit never sees the function's value at the limit point."
+  },
+  {
+    "theme": "signum",
+    "themeLabel": "The Signum Function",
+    "title": "Signum at the Horizon",
+    "difficulty": 3,
+    "tags": [
+      "signum",
+      "x->+infinity",
+      "sin",
+      "arctan",
+      "composition"
+    ],
+    "statement": "\\lim_{x\\to +\\infty}\\operatorname{sgn}\\!\\left(\\sin\\frac{1}{x}\\right)\\cdot\\arctan x",
+    "answer": "\\dfrac{\\pi}{2}",
+    "trap": "Pattern-matching on $\\operatorname{sgn}(\\sin(\\cdot))$: \"$\\sin$ oscillates, so its sign flips forever and the limit cannot exist.\" The flaw is that the oscillation lives in the argument, and here the argument is $1/x\\to 0^+$, which stays trapped in $(0,\\pi)$ where $\\sin$ is strictly positive. The sign never gets to flip even once, so the factor is the constant $+1$ and the limit is simply $\\lim \\arctan x=\\tfrac{\\pi}{2}$.",
+    "solutions": [
+      {
+        "name": "Method I - Localise the argument",
+        "steps": [
+          "As $x\\to+\\infty$, $\\dfrac1x\\to0^+$, so eventually $0<\\dfrac1x<\\pi$.",
+          "On $(0,\\pi)$, $\\sin$ is strictly positive, hence $\\sin\\frac1x>0$ and $\\operatorname{sgn}\\!\\left(\\sin\\frac1x\\right)=+1$ for all large $x$.",
+          "The sign factor is therefore eventually the constant $+1$.",
+          "Thus the limit equals $\\displaystyle\\lim_{x\\to+\\infty}\\arctan x=\\dfrac{\\pi}{2}$.",
+          "Answer: $\\boxed{\\dfrac{\\pi}{2}}$."
+        ]
+      },
+      {
+        "name": "Method II - Explicit tail threshold",
+        "steps": [
+          "For $0<u<\\pi$ we have $\\sin u>0$. Take $u=\\dfrac1x$: the condition $0<\\dfrac1x<\\pi$ is exactly $x>\\dfrac1\\pi$.",
+          "Hence $\\operatorname{sgn}\\!\\left(\\sin\\frac1x\\right)=1$ for every $x>\\dfrac1\\pi$ — a tail condition, which is all a limit at $+\\infty$ depends on.",
+          "On that entire tail the expression equals $\\arctan x$ identically (no zero crossing of $\\sin\\frac1x$ occurs there).",
+          "Therefore the limit is $\\displaystyle\\lim_{x\\to+\\infty}\\arctan x=\\dfrac{\\pi}{2}$."
+        ]
+      }
+    ],
+    "remark": "Oscillation of $\\operatorname{sgn}\\circ\\sin$ only happens when the argument sweeps across many half-periods; squeezing the argument to $0^+$ pins the sign down to $+1$ on a whole tail."
+  },
+  {
+    "theme": "signum",
+    "themeLabel": "The Signum Function",
+    "title": "Sign of the Sine Across an Even Integer",
+    "difficulty": 4,
+    "tags": [
+      "signum",
+      "x->2-",
+      "one-sided",
+      "sin(pi x)",
+      "exponential",
+      "ln"
+    ],
+    "statement": "\\lim_{x\\to 2^-}\\operatorname{sgn}\\big(\\sin(\\pi x)\\big)\\cdot\\frac{2^{x}-4}{x-2}",
+    "answer": "-4\\ln 2",
+    "trap": "The quotient $\\dfrac{2^x-4}{x-2}$ is the difference quotient of $2^x$ at $x=2$, so it tends to $2^2\\ln2=4\\ln2$. The seductive slip is to stop there and report $4\\ln2$, treating $\\operatorname{sgn}(\\sin\\pi x)$ as harmlessly $+1$ since $\\sin\\pi x\\to 0$. But the side matters: as $x\\to2^-$, $\\pi x\\to 2\\pi^-$ and $\\sin(2\\pi-\\varepsilon)=-\\sin\\varepsilon<0$, so $\\operatorname{sgn}(\\sin\\pi x)=-1$ throughout the left neighbourhood, flipping the answer to $-4\\ln2$.",
+    "solutions": [
+      {
+        "name": "Method I - Sign from the sine's left approach + derivative limit",
+        "steps": [
+          "Near $x=2^-$, write $x=2-\\varepsilon$ with $\\varepsilon\\to0^+$. Then $\\sin(\\pi x)=\\sin(2\\pi-\\pi\\varepsilon)=-\\sin(\\pi\\varepsilon)<0$.",
+          "Hence $\\operatorname{sgn}(\\sin(\\pi x))=-1$ on the left of $2$, and this is a constant factor as $x\\to2^-$.",
+          "The remaining factor is the difference quotient of $f(x)=2^x$ at $x=2$: $\\displaystyle\\lim_{x\\to2}\\frac{2^x-2^2}{x-2}=f'(2)=2^2\\ln2=4\\ln2$.",
+          "Multiply by the sign: $(-1)\\cdot4\\ln2=-4\\ln2$.",
+          "Answer: $\\boxed{-4\\ln2}$."
+        ]
+      },
+      {
+        "name": "Method II - Substitution and exponential expansion",
+        "steps": [
+          "Sign factor $=-1$ as established above. Put $t=x-2\\to0^-$, so $2^x=4\\cdot2^{t}=4e^{t\\ln2}$.",
+          "$$\\frac{2^x-4}{x-2}=\\frac{4\\big(e^{t\\ln2}-1\\big)}{t}=4\\ln2\\cdot\\frac{e^{t\\ln2}-1}{t\\ln2}.$$",
+          "As $t\\to0^-$, $\\dfrac{e^{t\\ln2}-1}{t\\ln2}\\to1$, so the quotient $\\to4\\ln2$.",
+          "Including the sign factor $-1$: the limit is $-4\\ln2$."
+        ]
+      }
+    ],
+    "remark": "At an even integer $\\sin(\\pi x)$ crosses zero downward from the left; the $\\operatorname{sgn}$ silently flips the otherwise textbook derivative quotient. The one-sided posing is essential: from the right the limit is $+4\\ln2$, so the two-sided limit does not exist."
+  },
+  {
+    "theme": "signum",
+    "themeLabel": "The Signum Function",
+    "title": "The Floor That Tilts With The Sine",
+    "difficulty": 5,
+    "task": "Investigate",
+    "tags": [
+      "signum",
+      "floor",
+      "one-sided",
+      "integer-straddle",
+      "decide-existence",
+      "x->0"
+    ],
+    "statement": "Let $\\operatorname{sgn}$ be the signum function and $\\lfloor\\cdot\\rfloor$ the greatest-integer function. Investigate \\[ L=\\lim_{x\\to 0}\\;\\operatorname{sgn}(x)\\;\\frac{\\big\\lfloor\\,2+\\sin x-x^{2}\\,\\big\\rfloor\\,\\big(\\sqrt{1+x^{2}}-1\\big)}{1-\\cos x}, \\] by computing the two one-sided limits at $x=0$ and deciding whether the two-sided limit exists.",
+    "answer": "\\[\\lim_{x\\to 0^{+}}=2,\\quad \\lim_{x\\to 0^{-}}=-1,\\quad L\\ \\text{DNE}\\]",
+    "trap": "Three reflexes are waiting, and the load-bearing one is the floor. (i) Many students freeze the floor at its value at the centre: $2+\\sin 0-0=2$, $\\lfloor 2\\rfloor=2$, and carry $2$ to BOTH sides. (ii) The continuous block $\\dfrac{\\sqrt{1+x^{2}}-1}{1-\\cos x}$ is genuinely even and tends to $1$, so it tempts the conclusion that the whole expression behaves like $2\\,\\operatorname{sgn}(x)$ - an odd function - giving the tidy but WRONG verdict $\\lim_{0^{+}}=+2$, $\\lim_{0^{-}}=-2$, DNE by symmetry. (iii) A third student notices $\\operatorname{sgn}(0)=0$ and is tempted to 'plug in' $x=0$ to get $0$; the point value is irrelevant to a limit. The decisive fact all three miss: the floor's argument $g(x)=2+\\sin x-x^{2}$ does NOT stay at the integer $2$. Since $\\sin x-x^{2}\\sim x>0$ for small $x>0$ and $<0$ for small $x<0$, the argument satisfies $2<g<3$ on the right (so $\\lfloor g\\rfloor=2$) but $1<g<2$ on the left (so $\\lfloor g\\rfloor=1$). The sine tilts the floor across the integer $2$ DIFFERENTLY on each side. Hence the left value is $(-1)\\cdot 1\\cdot 1=-1$, not $-2$: the magnitudes are unequal ($2$ versus $-1$), so although the limit does fail to exist, it fails for a richer reason than odd symmetry, and the careless $\\pm2$ answer is wrong on the left.",
+    "solutions": [
+      {
+        "name": "Method I - Resolve the floor by side, then a standard limit",
+        "steps": [
+          "Let $g(x)=2+\\sin x-x^{2}$ and write $h(x)=\\sin x-x^{2}=g(x)-2$. Near $0$, $\\sin x=x-\\tfrac{x^{3}}{6}+\\cdots$ so $h(x)=x-x^{2}-\\tfrac{x^{3}}{6}+\\cdots$, whose sign is that of $x$ for small $x\\neq0$. Concretely $h>0$ on $(0,0.87)$ and $h\\in(-1,0)$ on $(-0.5,0)$, so $g\\in(2,3)$ on the right and $g\\in(1,2)$ on the left. Therefore $\\lfloor g\\rfloor=2$ for small $x>0$ and $\\lfloor g\\rfloor=1$ for small $x<0$ - constant on each side, jumping at $0$.",
+          "The remaining block is continuous and even: $R(x)=\\dfrac{\\sqrt{1+x^{2}}-1}{1-\\cos x}$. Using $\\sqrt{1+x^{2}}-1\\sim\\tfrac{x^{2}}{2}$ and $1-\\cos x\\sim\\tfrac{x^{2}}{2}$ gives $R(x)\\to 1$ as $x\\to0$ from either side.",
+          "Right side: $\\operatorname{sgn}(x)=+1$, $\\lfloor g\\rfloor=2$, so the expression is $(+1)(2)R(x)\\to (2)(1)=2$. Thus $\\displaystyle\\lim_{x\\to0^{+}}=2$.",
+          "Left side: $\\operatorname{sgn}(x)=-1$, $\\lfloor g\\rfloor=1$, so the expression is $(-1)(1)R(x)\\to (-1)(1)=-1$. Thus $\\displaystyle\\lim_{x\\to0^{-}}=-1$. The one-sided limits $2$ and $-1$ differ, so $\\boxed{L\\ \\text{does not exist}}$ (right $2$, left $-1$)."
+        ]
+      },
+      {
+        "name": "Method II - Taylor the continuous block, then attach the side data",
+        "steps": [
+          "Expand the even block to leading order: $\\sqrt{1+x^{2}}-1=\\tfrac{x^{2}}{2}-\\tfrac{x^{4}}{8}+\\cdots$ and $1-\\cos x=\\tfrac{x^{2}}{2}-\\tfrac{x^{4}}{24}+\\cdots$. Dividing, $R(x)=\\dfrac{\\tfrac{x^{2}}{2}\\big(1-\\tfrac{x^{2}}{4}+\\cdots\\big)}{\\tfrac{x^{2}}{2}\\big(1-\\tfrac{x^{2}}{12}+\\cdots\\big)}=1-\\tfrac{x^{2}}{6}+\\cdots\\to1$, independent of side.",
+          "Determine the floor on each side from $h(x)=\\sin x-x^{2}$. For $0<x$ small, $h(x)>0$ and $h(x)<1$, so $2<g<3$ and $\\lfloor g\\rfloor=2$. For $x<0$ small, $h(x)<0$ and $h(x)>-1$, so $1<g<2$ and $\\lfloor g\\rfloor=1$. The integer value the floor reports therefore depends on the side - this is the whole problem.",
+          "Assemble the one-sided limits. Right: $\\operatorname{sgn}(x)\\,\\lfloor g\\rfloor\\,R(x)=(+1)(2)\\big(1-\\tfrac{x^{2}}{6}+\\cdots\\big)\\to2$. Left: $(-1)(1)\\big(1-\\tfrac{x^{2}}{6}+\\cdots\\big)\\to-1$.",
+          "Since $\\lim_{0^{+}}=2\\neq-1=\\lim_{0^{-}}$, $\\boxed{L\\ \\text{does not exist}}$. Note how the series proves the block is side-blind, so ALL the side information is funnelled through $\\operatorname{sgn}(x)\\,\\lfloor 2+\\sin x-x^{2}\\rfloor$, whose value is $+2$ on the right and $-1$ on the left."
+        ]
+      },
+      {
+        "name": "Method III - Exact algebra: rationalize and half-angle",
+        "steps": [
+          "Rationalize the numerator factor: $\\sqrt{1+x^{2}}-1=\\dfrac{(\\sqrt{1+x^{2}}-1)(\\sqrt{1+x^{2}}+1)}{\\sqrt{1+x^{2}}+1}=\\dfrac{x^{2}}{\\sqrt{1+x^{2}}+1}$. Rewrite the denominator by the half-angle identity $1-\\cos x=2\\sin^{2}\\dfrac{x}{2}$.",
+          "Hence the continuous block equals $R(x)=\\dfrac{x^{2}}{\\big(\\sqrt{1+x^{2}}+1\\big)\\,2\\sin^{2}(x/2)}=\\dfrac{1}{\\sqrt{1+x^{2}}+1}\\cdot\\dfrac{(x/2)^{2}}{\\sin^{2}(x/2)}\\cdot 2$. As $x\\to0$, $\\dfrac{1}{\\sqrt{1+x^{2}}+1}\\to\\dfrac12$ and $\\dfrac{(x/2)^{2}}{\\sin^{2}(x/2)}\\to1$, so $R(x)\\to\\dfrac12\\cdot1\\cdot2=1$ exactly, on both sides.",
+          "Decide the floor by the integer-straddle of $g(x)=2+\\sin x-x^{2}$: the shift $\\sin x-x^{2}$ is positive (and below $1$) for small $x>0$, negative (and above $-1$) for small $x<0$. So $\\lfloor g\\rfloor=2$ on the right and $\\lfloor g\\rfloor=1$ on the left - the sine pushes the argument just over $2$ from one side and just under $2$ from the other.",
+          "Multiply by $\\operatorname{sgn}(x)$: right $=(+1)(2)R(x)\\to2$; left $=(-1)(1)R(x)\\to-1$. The two one-sided limits are $2$ and $-1$; being unequal, $\\boxed{L\\ \\text{does not exist}}$."
+        ]
+      }
+    ],
+    "remark": "The signum is not the only thing that flips here, and that is the trap. A student who handles only the obvious sign change reads the expression as $2\\,\\operatorname{sgn}(x)$ and declares the limits $\\pm2$. But the floor of $2+\\sin x-x^{2}$ is a second, hidden sign-sensitive switch: the linear term $\\sin x$ tips the argument just above the integer $2$ on the right (floor $2$) and just below it on the left (floor $1$), because $\\sin x-x^{2}$ shares the sign of $x$. So the right limit is $+2$ while the left limit is only $-1$ - same direction of failure as a pure odd function, but unequal magnitudes. The point value is a further red herring: $\\operatorname{sgn}(0)=0$ makes the expression $0$ at $x=0$, yet that is irrelevant to whether the limit exists. Existence is decided purely by the agreement of the two side-limits, and here two independent integer-straddles - one in $\\operatorname{sgn}(x)$, one in $\\lfloor 2+\\sin x-x^{2}\\rfloor$ - conspire so that they cannot agree."
+  },
+  {
+    "theme": "signum",
+    "themeLabel": "The Signum Function",
+    "title": "Which Remnant of the Exponential Survives",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "signum",
+      "exponential-remainder",
+      "leading-order",
+      "one-sided",
+      "taylor",
+      "x->0"
+    ],
+    "statement": "Let $\\operatorname{sgn}(t)$ denote the signum function, with $\\operatorname{sgn}(0)=0$, and write \\[ r(x)=e^{x}-1-x-\\frac{x^{2}}{2}, \\] the remainder of $e^{x}$ after its quadratic Taylor polynomial is removed. Evaluate \\[ L=\\lim_{x\\to 0^{+}}\\;\\operatorname{sgn}\\!\\big(r(x)\\big)\\,\\cdot\\,\\frac{x^{3}}{r(x)}, \\] first determining the sign of $r$ on a right neighbourhood of $0$ and the exact order to which $r$ vanishes. (Optional, for the remark: contrast the behaviour as $x\\to 0^{-}$.)",
+    "answer": "\\[\\boxed{L=6}\\]",
+    "trap": "The signum is a certificate of WHICH surviving remnant of $e^{x}$ controls the ratio, and three reflexes misread that certificate. Reflex 1 (the order error, load-bearing): a student who only subtracts $1+x$ from $e^{x}$, or who half-remembers that $e^{x}-1\\sim x$, leaves a term of order $x^{2}$ alive and reasons $r(x)\\sim\\tfrac{x^{2}}{2}$, hence $\\dfrac{x^{3}}{r}\\sim\\dfrac{x^{3}}{x^{2}/2}=2x\\to0$, concluding $L=0$. But the WHOLE point of writing $r=e^{x}-1-x-\\tfrac{x^{2}}{2}$ is that the $x^{2}$ term has ALSO been removed: the lowest surviving term is the cubic $\\tfrac{x^{3}}{6}$, so the ratio tends to $6$, not $0$. Reflex 2 (the $\\operatorname{sgn}(0)$ decoy): seeing $r(0)=0$ and $\\operatorname{sgn}(0)=0$, one declares the signum factor zero and $L=0$. This confuses the value of $\\operatorname{sgn}\\circ r$ AT $0$ (irrelevant to a limit) with its value NEAR $0$, which is the constant $+1$ on the right. Reflex 3 (mis-signing on the right or over-generalising to two sides): on $(0,\\delta)$ the cubic $\\tfrac{x^{3}}{6}>0$, so $r>0$ and $\\operatorname{sgn}(r)=+1$ -- but the surviving term is ODD, so $r<0$ for small $x<0$ and $\\operatorname{sgn}(r)=-1$ there; a solver who assumes the sign is side-blind (because the leading COEFFICIENT $\\tfrac16$ is positive) wrongly extends $L=6$ to the two-sided limit, whereas the left value is $-6$ and the two-sided limit does not exist. The signum is precisely the device that reports which cubic remnant -- $+\\tfrac{x^{3}}{6}$ or $-\\tfrac{|x|^{3}}{6}$ -- is in force.",
+    "solutions": [
+      {
+        "name": "Method I - Taylor: identify the surviving order, then read off the sign",
+        "steps": [
+          "Expand $e^{x}=1+x+\\dfrac{x^{2}}{2}+\\dfrac{x^{3}}{6}+\\dfrac{x^{4}}{24}+\\cdots$ and subtract the quadratic polynomial: $r(x)=e^{x}-1-x-\\dfrac{x^{2}}{2}=\\dfrac{x^{3}}{6}+\\dfrac{x^{4}}{24}+\\dfrac{x^{5}}{120}+\\cdots=\\dfrac{x^{3}}{6}\\Big(1+\\dfrac{x}{4}+\\dfrac{x^{2}}{20}+\\cdots\\Big).$ The constant, linear, and quadratic terms are all gone, so the FIRST surviving term is the cubic $\\dfrac{x^{3}}{6}$; $r$ vanishes to order exactly $3$.",
+          "Sign on a right neighbourhood: for small $x>0$ the bracket $1+\\tfrac{x}{4}+\\cdots>0$ and $x^{3}>0$, so $r(x)>0$ and $\\operatorname{sgn}\\!\\big(r(x)\\big)=+1$ for all small $x>0$. (The value $\\operatorname{sgn}(0)=0$ at the single point $x=0$ is irrelevant to the one-sided limit.)",
+          "Form the ratio using the factorisation: $\\dfrac{x^{3}}{r(x)}=\\dfrac{x^{3}}{\\tfrac{x^{3}}{6}\\big(1+\\tfrac{x}{4}+\\cdots\\big)}=\\dfrac{6}{1+\\tfrac{x}{4}+\\cdots}\\xrightarrow[x\\to0^{+}]{}6.$",
+          "Multiply by the constant signum factor $+1$: $L=(+1)\\cdot 6=\\boxed{6}$. The cubic remnant, not the long-gone quadratic one, is what the limit sees."
+        ]
+      },
+      {
+        "name": "Method II - Repeated L'Hopital, watching the indeterminacy clear at the cubic",
+        "steps": [
+          "The ratio $\\dfrac{x^{3}}{r(x)}$ is $\\dfrac{0}{0}$ since $r(0)=0$. Note $r'(x)=e^{x}-1-x$, $r''(x)=e^{x}-1$, $r'''(x)=e^{x}$, each value at $0$ being $0,0,1$ respectively -- this is exactly why $r$ is an order-$3$ zero. Differentiate top and bottom: $\\dfrac{x^{3}}{r}\\to\\dfrac{3x^{2}}{e^{x}-1-x}$, still $\\tfrac00$.",
+          "Apply L'Hopital again: $\\dfrac{3x^{2}}{e^{x}-1-x}\\to\\dfrac{6x}{e^{x}-1}$, still $\\tfrac00$. Once more: $\\dfrac{6x}{e^{x}-1}\\to\\dfrac{6}{e^{x}}$, which is now determinate.",
+          "Evaluate the determinate form: $\\dfrac{6}{e^{x}}\\xrightarrow[x\\to0^{+}]{}\\dfrac{6}{1}=6.$ Exactly three differentiations were needed, matching the order-$3$ vanishing of $r$; had the $x^{2}$ term survived (the trap), the indeterminacy would have cleared one step earlier and produced a factor of $x$ tending to $0$.",
+          "Since $r(x)=\\tfrac{x^{3}}{6}+\\cdots>0$ on the right, $\\operatorname{sgn}\\!\\big(r(x)\\big)=+1$ there, so $L=(+1)\\cdot 6=\\boxed{6}.$"
+        ]
+      },
+      {
+        "name": "Method III - Tail of the exponential series and a squeeze on the bracket",
+        "steps": [
+          "Write the remainder as the tail $r(x)=\\displaystyle\\sum_{n\\ge3}\\dfrac{x^{n}}{n!}=\\dfrac{x^{3}}{6}\\sum_{n\\ge3}\\dfrac{6\\,x^{\\,n-3}}{n!}=\\dfrac{x^{3}}{6}\\,S(x),\\quad S(x)=1+\\dfrac{x}{4}+\\dfrac{x^{2}}{20}+\\cdots,$ so $\\dfrac{x^{3}}{r(x)}=\\dfrac{6}{S(x)}$ for $x\\neq0$.",
+          "Squeeze $S$ near $0$: for $0<x\\le1$ each term $\\dfrac{6\\,x^{n-3}}{n!}\\ (n\\ge4)$ is positive, so $S(x)\\ge1$; and $S(x)\\le \\displaystyle\\sum_{n\\ge3}\\dfrac{6}{n!}=6(e-1-1-\\tfrac12)=6e-15<1.31$ is a crude bound, while term-by-term $S(x)\\to1$ as $x\\to0^{+}$ because every $x^{n-3}\\to0$ for $n\\ge4$. Hence $\\displaystyle\\lim_{x\\to0^{+}}S(x)=1$, giving $\\dfrac{x^{3}}{r(x)}=\\dfrac{6}{S(x)}\\to\\dfrac{6}{1}=6.$",
+          "The same factorisation pins the sign: $r(x)=\\dfrac{x^{3}}{6}S(x)$ with $S(x)>0$ and $x^{3}>0$ on $(0,1]$, so $r>0$ and $\\operatorname{sgn}\\!\\big(r(x)\\big)=+1$ on the right; the signum is a faithful report that the positive cubic remnant $\\tfrac{x^{3}}{6}$ dominates.",
+          "Therefore $L=\\operatorname{sgn}\\!\\big(r(x)\\big)\\cdot\\dfrac{x^{3}}{r(x)}\\to(+1)\\cdot6=\\boxed{6}.$"
+        ]
+      }
+    ],
+    "remark": "This is a 'sign of the leading remnant' problem: $r(x)=e^{x}-1-x-\\tfrac{x^{2}}{2}$ is the exponential with its first three Taylor terms stripped, so the contest is between the various truncated remainders, and the cubic $\\tfrac{x^{3}}{6}$ is the survivor. The fatal slip is an ORDER error, not an arithmetic one: a solver who leaves a phantom $x^{2}$ alive gets $\\tfrac{x^{3}}{r}\\sim2x\\to0$ and answers $0$; the correctly identified order-$3$ zero gives $6$. The signum is doing genuine work here, not wrapping a constant -- it certifies which cubic remnant is active. On the right the survivor is $+\\tfrac{x^{3}}{6}>0$, so $\\operatorname{sgn}(r)=+1$ and $L=6$; but the survivor is an ODD power, so on the LEFT $r(x)\\sim\\tfrac{x^{3}}{6}<0$, making $\\operatorname{sgn}(r)=-1$ while $\\tfrac{x^{3}}{r}\\to+6$ still (both numerator and denominator are negative), so the left value is $(-1)(+6)=-6$. The two one-sided limits are $+6$ and $-6$; the two-sided limit does NOT exist, and a student who reads the positive leading coefficient $\\tfrac16$ as a side-blind sign loses this. Finally $\\operatorname{sgn}(0)=0$ is a pure decoy: a limit never consults the function's value at the limit point."
+  },
+  {
+    "theme": "signum",
+    "themeLabel": "The Signum Function",
+    "title": "Sign of a Fourth-Order Remnant",
+    "difficulty": 5,
+    "tags": [
+      "signum",
+      "x->0+",
+      "one-sided",
+      "cosine",
+      "fourth-order",
+      "series"
+    ],
+    "statement": "\\lim_{x\\to 0^+}\\operatorname{sgn}\\!\\left(\\cos x-1+\\frac{x^2}{2}\\right)\\cdot\\frac{x^{4}}{\\cos x-1+\\dfrac{x^{2}}{2}}",
+    "answer": "24",
+    "trap": "Approximating $\\cos x\\approx1-\\dfrac{x^2}{2}$ makes the inner expression $\\approx0$, so the denominator looks like $0$ and the ratio like $\\pm\\infty$. That second-order truncation is exactly the part designed to cancel; the surviving term is $+\\dfrac{x^4}{24}$, which is finite and positive, so the signum is $+1$ and the limit is the finite value $24$.",
+    "solutions": [
+      {
+        "name": "Method I - Fourth-order expansion",
+        "steps": [
+          "Expand to fourth order: $\\cos x=1-\\dfrac{x^2}{2}+\\dfrac{x^4}{24}-\\dfrac{x^6}{720}+\\cdots$.",
+          "So $\\cos x-1+\\dfrac{x^2}{2}=\\dfrac{x^4}{24}-\\dfrac{x^6}{720}+\\cdots$.",
+          "For small $x>0$ this is positive (leading term $x^4/24>0$), so the $\\operatorname{sgn}$ factor is $+1$.",
+          "Then $\\dfrac{x^4}{\\cos x-1+x^2/2}=\\dfrac{x^4}{\\tfrac{x^4}{24}\\left(1-\\tfrac{x^2}{30}+\\cdots\\right)}=\\dfrac{24}{1-\\tfrac{x^2}{30}+\\cdots}\\to24$.",
+          "Answer: $\\boxed{24}$."
+        ]
+      },
+      {
+        "name": "Method II - Repeated L'Hopital on the reciprocal",
+        "steps": [
+          "Sign factor is $+1$ (Method I). Compute $\\displaystyle M=\\lim_{x\\to0^+}\\frac{\\cos x-1+x^2/2}{x^4}$ — a $0/0$ form.",
+          "Differentiate numerator and denominator four times (each stage stays $0/0$): numerator derivatives are $-\\sin x+x,\\ -\\cos x+1,\\ \\sin x,\\ \\cos x$, all vanishing at $0$ through the third; denominators $4x^3,12x^2,24x,24$.",
+          "At $x\\to0^+$ the fourth stage gives $M=\\dfrac{\\cos 0}{24}=\\dfrac{1}{24}$.",
+          "The required limit is the reciprocal: $\\dfrac{x^4}{\\cos x-1+x^2/2}\\to\\dfrac{1}{M}=24$.",
+          "With sign factor $+1$, the answer is $24$."
+        ]
+      }
+    ],
+    "remark": "A textbook 'engineered cancellation': subtracting the $1-\\tfrac{x^2}{2}$ part of $\\cos x$ exposes the $\\tfrac{x^4}{24}$ remnant, and $\\operatorname{sgn}$ verifies that remnant is positive."
+  },
+  {
+    "theme": "signum",
+    "themeLabel": "The Signum Function",
+    "title": "Floor Trap Beside the Signum",
+    "difficulty": 4,
+    "tags": [
+      "signum",
+      "floor",
+      "x->0+",
+      "one-sided",
+      "exponential",
+      "composition"
+    ],
+    "statement": "\\lim_{x\\to 0^+}\\Big(\\operatorname{sgn}(x)+\\big\\lfloor\\cos x\\big\\rfloor\\Big)\\cdot\\frac{e^{x}-1}{x}",
+    "answer": "1",
+    "trap": "Three seductions all give the wrong reading. (1) Evaluating the bracket literally at $x=0$: $\\operatorname{sgn}(0)+\\lfloor\\cos 0\\rfloor=0+\\lfloor1\\rfloor=1$ — right number, wrong reason (the expression isn't even defined at $0$). (2) Plugging $\\cos x\\to1$ and reading $\\lfloor1\\rfloor=1$ with $\\operatorname{sgn}(x)=1$, summing to $2$ — this misuses continuity inside a floor. (3) A naive numerical check is treacherous: in double precision $\\cos x$ rounds to exactly $1.0$ for $|x|\\lesssim10^{-8}$, so a calculator reports $\\lfloor\\cos x\\rfloor=1$ and the limit $2$. The truth: for $x>0$ near $0$, $\\cos x\\in(0,1)$ strictly, so $\\lfloor\\cos x\\rfloor=0$ (never $1$), $\\operatorname{sgn}(x)=1$, bracket $=1$, and the limit is $1$.",
+    "solutions": [
+      {
+        "name": "Method I - Evaluate floor and sgn along the path",
+        "steps": [
+          "For $x\\to0^+$ we have $x>0$, so $\\operatorname{sgn}(x)=+1$.",
+          "For $0<x<\\dfrac{\\pi}{2}$ the cosine is strictly between $0$ and $1$: $0<\\cos x<1$. In particular $\\cos x<1$ because the value $1$ is attained only at $x=0$. Hence $\\lfloor\\cos x\\rfloor=0$.",
+          "Therefore the bracket equals $1+0=1$ on a punctured right-neighbourhood of $0$.",
+          "The remaining factor is the classic limit $\\displaystyle\\lim_{x\\to0^+}\\frac{e^x-1}{x}=1$.",
+          "Therefore the limit is $1\\cdot1=\\boxed{1}$."
+        ]
+      },
+      {
+        "name": "Method II - Series and continuity bookkeeping",
+        "steps": [
+          "$\\cos x=1-\\dfrac{x^2}{2}+\\dfrac{x^4}{24}-\\cdots$, so $1-\\cos x=\\dfrac{x^2}{2}+O(x^4)>0$ for every $x\\neq0$; thus $\\cos x\\in(0,1)$ near $0^+$ and $\\lfloor\\cos x\\rfloor=0$.",
+          "Hence the bracket is identically $\\operatorname{sgn}(x)=1$ for small $x>0$.",
+          "Expand $e^x-1=x+\\dfrac{x^2}{2}+\\cdots$, so $\\dfrac{e^x-1}{x}=1+\\dfrac{x}{2}+\\cdots\\to1$.",
+          "Product $\\to1\\cdot1=1$."
+        ]
+      }
+    ],
+    "remark": "Two endpoint traps stacked on a removable singularity: $\\lfloor\\cos x\\rfloor$ equals $0$ for every $x\\neq0$ but jumps to $1$ exactly at $x=0$, and $\\operatorname{sgn}$ is discontinuous at $0$. The one-sided limit never sees either value at $0$. (From the left the bracket is $-1$, so the two-sided limit does not exist — the $x\\to0^+$ restriction is essential.)"
+  },
+  {
+    "theme": "modulus",
+    "themeLabel": "Absolute Value & Corners",
+    "title": "Where Sine and the Logarithm Part Ways",
+    "difficulty": 5,
+    "task": "Investigate",
+    "tags": [
+      "modulus",
+      "one-sided",
+      "taylor",
+      "x->0",
+      "decide-existence",
+      "sign-split"
+    ],
+    "statement": "Investigate \\[ L=\\lim_{x\\to 0}\\;\\frac{\\bigl|\\sin x\\bigr|-\\bigl|\\ln(1+x)\\bigr|+\\bigl(1-\\cos x\\bigr)}{x^{2}}, \\] by computing both one-sided limits at the corner $x=0$ and deciding whether the two-sided limit exists. (The term $1-\\cos x$ carries no modulus.)",
+    "answer": "\\[\\lim_{x\\to 0^{+}}=1,\\quad \\lim_{x\\to 0^{-}}=0,\\quad L\\ \\text{DNE}\\]",
+    "trap": "The fatal shortcut is to wave the moduli away. Since $\\sin x\\sim x$ and $\\ln(1+x)\\sim x$, a strong student writes $|\\sin x|\\approx|x|$ and $|\\ln(1+x)|\\approx|x|$, cancels them, and is left with $\\dfrac{1-\\cos x}{x^{2}}\\to\\dfrac12$ - a single, side-blind value $\\tfrac12$. That cancellation is illegitimate: it is correct only to FIRST order, and the limit is decided at SECOND order, where $\\sin x$ and $\\ln(1+x)$ are NOT the same. Indeed $\\sin x-\\ln(1+x)=\\tfrac{x^{2}}{2}+O(x^{3})$, a genuine $x^{2}$ gap. The modulus then reads this gap with OPPOSITE sign on the two sides: near $0$ both $\\sin x$ and $\\ln(1+x)$ share the sign of $x$, so $|\\sin x|-|\\ln(1+x)|=\\operatorname{sgn}(x)\\,(\\sin x-\\ln(1+x))=\\operatorname{sgn}(x)\\cdot\\tfrac{x^{2}}{2}+\\cdots$, contributing $+\\tfrac12$ on the right and $-\\tfrac12$ on the left. Added to the side-blind $+\\tfrac12$ from $1-\\cos x$, the right limit is $1$ but the left limit is $0$. The two values are not even negatives of each other, so there is no parity shortcut and no symmetric $\\pm$ guess; the corner must be resolved honestly, side by side. A second trap is to expand $|\\sin x|$ and $|\\ln(1+x)|$ as if they were $\\sin x$ and $\\ln(1+x)$ themselves (dropping the bars), which yields $\\dfrac{\\sin x-\\ln(1+x)+1-\\cos x}{x^{2}}\\to 1$ on BOTH sides - the right answer for the right half but wrong on the left, where the bars flip the sign.",
+    "solutions": [
+      {
+        "name": "Method I - Resolve the corner side by side, then Taylor",
+        "steps": [
+          "Near $0$, both $\\sin x$ and $\\ln(1+x)$ have the same sign as $x$ (each is $\\sim x$). So for small $x>0$: $|\\sin x|=\\sin x$ and $|\\ln(1+x)|=\\ln(1+x)$, giving numerator $N_{+}(x)=\\sin x-\\ln(1+x)+(1-\\cos x)$. For small $x<0$: $|\\sin x|=-\\sin x$ and $|\\ln(1+x)|=-\\ln(1+x)$, giving $N_{-}(x)=-\\sin x+\\ln(1+x)+(1-\\cos x)$.",
+          "Use the expansions $\\sin x=x-\\tfrac{x^{3}}{6}+\\cdots$, $\\ \\ln(1+x)=x-\\tfrac{x^{2}}{2}+\\tfrac{x^{3}}{3}-\\cdots$, $\\ 1-\\cos x=\\tfrac{x^{2}}{2}-\\tfrac{x^{4}}{24}+\\cdots$. Then $\\sin x-\\ln(1+x)=\\tfrac{x^{2}}{2}-\\tfrac{x^{3}}{2}+\\cdots$.",
+          "Right side: $N_{+}(x)=\\bigl(\\tfrac{x^{2}}{2}-\\tfrac{x^{3}}{2}+\\cdots\\bigr)+\\bigl(\\tfrac{x^{2}}{2}+\\cdots\\bigr)=x^{2}-\\tfrac{x^{3}}{2}+\\cdots$, so $\\dfrac{N_{+}(x)}{x^{2}}\\to 1$. Thus $\\displaystyle\\lim_{x\\to0^{+}}=1$.",
+          "Left side: $N_{-}(x)=-\\bigl(\\tfrac{x^{2}}{2}-\\tfrac{x^{3}}{2}+\\cdots\\bigr)+\\bigl(\\tfrac{x^{2}}{2}+\\cdots\\bigr)=\\tfrac{x^{3}}{2}+\\cdots$, the $x^{2}$ terms cancelling exactly, so $\\dfrac{N_{-}(x)}{x^{2}}\\to 0$. Thus $\\displaystyle\\lim_{x\\to0^{-}}=0$. Since $1\\neq 0$, $\\boxed{L\\ \\text{does not exist}}$ (right $1$, left $0$)."
+        ]
+      },
+      {
+        "name": "Method II - Split off the modulus block and pull out the sign",
+        "steps": [
+          "Write the numerator as $\\underbrace{(1-\\cos x)}_{\\text{no modulus}}+\\underbrace{\\bigl(|\\sin x|-|\\ln(1+x)|\\bigr)}_{B(x)}$. The first piece is even and side-blind: $\\dfrac{1-\\cos x}{x^{2}}\\to\\dfrac12$ from either side. All the asymmetry lives in $B(x)$.",
+          "For $x\\neq0$ near $0$, both arguments carry $\\operatorname{sgn}(x)$, so $|\\sin x|=\\operatorname{sgn}(x)\\,\\sin x$ and $|\\ln(1+x)|=\\operatorname{sgn}(x)\\,\\ln(1+x)$. Hence $B(x)=\\operatorname{sgn}(x)\\,\\bigl(\\sin x-\\ln(1+x)\\bigr)$.",
+          "Now $\\dfrac{\\sin x-\\ln(1+x)}{x^{2}}=\\dfrac{\\tfrac{x^{2}}{2}+O(x^{3})}{x^{2}}\\to\\dfrac12$, so $\\dfrac{B(x)}{x^{2}}\\to\\operatorname{sgn}(x)\\cdot\\dfrac12$, i.e. $+\\tfrac12$ as $x\\to0^{+}$ and $-\\tfrac12$ as $x\\to0^{-}$.",
+          "Add the two contributions. Right: $\\dfrac12+\\dfrac12=1$. Left: $\\dfrac12+\\bigl(-\\dfrac12\\bigr)=0$. The one-sided limits $1$ and $0$ disagree, so $\\boxed{L\\ \\text{does not exist}}$. The sign factor $\\operatorname{sgn}(x)$ multiplying the genuine $x^{2}$ gap $\\sin x-\\ln(1+x)$ is the entire mechanism."
+        ]
+      },
+      {
+        "name": "Method III - Exact algebra with half-angle and standard limits",
+        "steps": [
+          "Rewrite $1-\\cos x=2\\sin^{2}\\dfrac{x}{2}$, so $\\dfrac{1-\\cos x}{x^{2}}=\\dfrac12\\left(\\dfrac{\\sin(x/2)}{x/2}\\right)^{2}\\to\\dfrac12$ exactly, on both sides, by the standard limit $\\dfrac{\\sin t}{t}\\to1$.",
+          "For the modulus block, factor the common sign: near $0$, $\\operatorname{sgn}(\\sin x)=\\operatorname{sgn}(\\ln(1+x))=\\operatorname{sgn}(x)$, hence $|\\sin x|-|\\ln(1+x)|=\\operatorname{sgn}(x)\\bigl(\\sin x-\\ln(1+x)\\bigr)$. Write $\\dfrac{\\sin x-\\ln(1+x)}{x^{2}}=\\dfrac{\\sin x-x}{x^{2}}-\\dfrac{\\ln(1+x)-x}{x^{2}}$.",
+          "Evaluate each known limit: $\\dfrac{\\sin x-x}{x^{2}}\\to 0$ (since $\\sin x-x=O(x^{3})$), and $\\dfrac{\\ln(1+x)-x}{x^{2}}\\to-\\dfrac12$ (since $\\ln(1+x)-x=-\\tfrac{x^{2}}{2}+\\cdots$). Therefore $\\dfrac{\\sin x-\\ln(1+x)}{x^{2}}\\to 0-\\bigl(-\\tfrac12\\bigr)=\\dfrac12$, and the block tends to $\\operatorname{sgn}(x)\\cdot\\dfrac12$.",
+          "Assemble: $\\dfrac{N(x)}{x^{2}}\\to\\dfrac12+\\operatorname{sgn}(x)\\cdot\\dfrac12$, giving $1$ as $x\\to0^{+}$ and $0$ as $x\\to0^{-}$. Unequal one-sided limits force $\\boxed{L\\ \\text{does not exist}}$."
+        ]
+      }
+    ],
+    "remark": "The deceit is that $\\sin x$ and $\\ln(1+x)$ agree to first order, tempting a cancellation of the two bars that would leave the clean even limit $\\tfrac{1-\\cos x}{x^{2}}\\to\\tfrac12$. But a limit divided by $x^{2}$ is decided at second order, and there the two functions diverge: $\\sin x$ has no quadratic term while $\\ln(1+x)$ carries $-\\tfrac{x^{2}}{2}$, leaving a true gap $\\sin x-\\ln(1+x)=\\tfrac{x^{2}}{2}+\\cdots$. The corner reads this gap through $\\operatorname{sgn}(x)$, so it contributes $+\\tfrac12$ on the right and $-\\tfrac12$ on the left, and when stacked on the side-blind $+\\tfrac12$ from $1-\\cos x$ it produces $1$ versus $0$ - magnitudes that are not even reflections of each other, killing any hope of a symmetry guess. The honest verdict requires resolving both moduli at second order on each side; the limit does not exist because the quadratic content of the numerator is present on the right and exactly annihilated on the left."
+  },
+  {
+    "theme": "modulus",
+    "themeLabel": "Absolute Value & Corners",
+    "title": "The Denominator That Wouldn't Wear Its Bars",
+    "difficulty": 5,
+    "task": "Investigate",
+    "tags": [
+      "modulus",
+      "one-sided",
+      "sign-survival",
+      "shared-corner",
+      "x->1"
+    ],
+    "statement": "Two quadratics under the bars share the corner $x=1$ but are pulled apart by the roots they do not share. Investigate \\[ L=\\lim_{x\\to 1}\\;\\frac{\\bigl|x^{2}-1\\bigr|-\\bigl|x^{2}-3x+2\\bigr|}{x-1}. \\] Compute the two one-sided limits at $x=1$ and decide whether the two-sided limit exists. As a diagnostic, also state what happens if the denominator $x-1$ is replaced by $\\lvert x-1\\rvert$.",
+    "answer": "\\[\\boxed{\\lim_{x\\to1^{+}}=1,\\quad\\lim_{x\\to1^{-}}=-1,\\quad L\\ \\text{DNE}}\\]",
+    "trap": "The bars over the two quadratics share the corner $x=1$, so the seductive move is to factor it out and cancel: $|x^{2}-1|=|x-1|\\,|x+1|$ and $|x^{2}-3x+2|=|x-1|\\,|x-2|$, hence the numerator is $|x-1|\\bigl(|x+1|-|x-2|\\bigr)=|x-1|(2x-1)$ near $x=1$. A student who has internalised the (correct) all-modulus version then writes $\\dfrac{|x-1|(2x-1)}{x-1}$ and silently replaces $|x-1|$ by $x-1$ -- because near a point one is used to 'dropping the bars' on the branch one happens to be testing (usually the right). That yields the clean answer $2x-1\\to1$ and the false verdict that the two-sided limit is $1$. The hidden constraint is that the surviving factor is $\\dfrac{|x-1|}{x-1}=\\operatorname{sgn}(x-1)$, which is $+1$ on the right and $-1$ on the left; the bars in the NUMERATOR cancelled cleanly, but the lone signed factor in the DENOMINATOR did not wear bars, so its sign flip is load-bearing. The honest answer is $(2x-1)\\operatorname{sgn}(x-1)$, giving $+1$ and $-1$: the limit does not exist. The diagnostic seals the point -- with $\\lvert x-1\\rvert$ in the denominator the surviving factor is $\\dfrac{|x-1|}{|x-1|}=1$, the expression becomes the even $2x-1$, and the two-sided limit really is $1$. The single missing pair of bars is exactly what breaks the two-sided limit.",
+    "solutions": [
+      {
+        "name": "Method I - Resolve the three sign regimes directly",
+        "steps": [
+          "Near $x=1$ the inner expressions have fixed signs except at the corner: $x+1>0$ and $x-2<0$ throughout, while $x-1$ changes sign at $1$. So $|x^{2}-1|=|x-1|\\,(x+1)$ and $|x^{2}-3x+2|=|(x-1)(x-2)|=|x-1|\\,(2-x)$, since $|x-2|=2-x$ near $1$.",
+          "Right of $1$ ($x>1$): $|x-1|=x-1$, so the numerator is $(x-1)(x+1)-(x-1)(2-x)=(x-1)\\bigl[(x+1)-(2-x)\\bigr]=(x-1)(2x-1)$. Dividing by $x-1$ gives $2x-1$, and $\\lim_{x\\to1^{+}}(2x-1)=1$.",
+          "Left of $1$ ($x<1$): $|x-1|=1-x$, so the numerator is $(1-x)(x+1)-(1-x)(2-x)=(1-x)(2x-1)=-(x-1)(2x-1)$. Dividing by $x-1$ gives $-(2x-1)$, and $\\lim_{x\\to1^{-}}\\bigl[-(2x-1)\\bigr]=-1$.",
+          "The one-sided limits are $+1$ and $-1$; since they differ, $\\boxed{L\\ \\text{does not exist}}$. Replacing $x-1$ by $|x-1|$ divides by $|x-1|$ instead, giving $2x-1$ on both sides and a genuine two-sided limit $1$."
+        ]
+      },
+      {
+        "name": "Method II - Factor the corner, isolate the surviving sign",
+        "steps": [
+          "Both quadratics carry the corner $x=1$, so $|x^{2}-1|=|x-1|\\,|x+1|$ and $|x^{2}-3x+2|=|x-1|\\,|x-2|$ exactly. The numerator is $|x-1|\\bigl(|x+1|-|x-2|\\bigr)$, and near $x=1$ we have $|x+1|=x+1,\\ |x-2|=2-x$, so $|x+1|-|x-2|=2x-1$.",
+          "Hence the fraction equals $\\dfrac{|x-1|\\,(2x-1)}{x-1}=(2x-1)\\cdot\\dfrac{|x-1|}{x-1}=(2x-1)\\,\\operatorname{sgn}(x-1)$ for $x\\neq1$. The bars in the numerator have fully cancelled; all the side-dependence now lives in the single factor $\\operatorname{sgn}(x-1)$.",
+          "Since $2x-1\\to1$ is continuous at $1$ while $\\operatorname{sgn}(x-1)$ jumps from $-1$ to $+1$, the product has one-sided limits $1\\cdot(+1)=1$ and $1\\cdot(-1)=-1$.",
+          "The two values disagree, so $\\boxed{L\\ \\text{does not exist}}$. The diagnostic is immediate: with $|x-1|$ below, the surviving factor is $\\dfrac{|x-1|}{|x-1|}=1$, killing the jump and leaving the two-sided limit $2x-1\\to1$."
+        ]
+      },
+      {
+        "name": "Method III - Substitute x = 1 + h and expand each branch",
+        "steps": [
+          "Put $x=1+h$. Then $x^{2}-1=2h+h^{2}=h(2+h)$ and $x^{2}-3x+2=(x-1)(x-2)=h(h-1)$, while the denominator is $x-1=h$. The fraction is $\\dfrac{|h(2+h)|-|h(h-1)|}{h}=\\dfrac{|h|\\,(2+h)-|h|\\,(1-h)}{h}$, using $|2+h|=2+h$ and $|h-1|=1-h$ for small $h$.",
+          "This simplifies to $\\dfrac{|h|\\bigl[(2+h)-(1-h)\\bigr]}{h}=\\dfrac{|h|\\,(1+2h)}{h}=(1+2h)\\,\\dfrac{|h|}{h}=(1+2h)\\,\\operatorname{sgn}(h)$.",
+          "As $h\\to0^{+}$ ($x\\to1^{+}$): $(1+2h)\\operatorname{sgn}(h)\\to1\\cdot(+1)=1$. As $h\\to0^{-}$ ($x\\to1^{-}$): $(1+2h)\\operatorname{sgn}(h)\\to1\\cdot(-1)=-1$.",
+          "The one-sided limits are $\\pm1$, so $\\boxed{L\\ \\text{does not exist}}$; the $\\operatorname{sgn}(h)$ that the denominator's missing bars failed to absorb is precisely the obstruction. With $|h|$ below, the quotient is $1+2h\\to1$ two-sided."
+        ]
+      }
+    ],
+    "remark": "The whole problem turns on one missing pair of bars. The two quadratics deliberately share the corner $x=1$, so the modulus over the numerator is fully multiplicative there: $|x^{2}-1|-|x^{2}-3x+2|=|x-1|\\,(2x-1)$, with the bars contributing the common factor $|x-1|$ and nothing else. Had the denominator also worn bars, that $|x-1|$ would have cancelled an $|x-1|$ and the limit would be the harmless even quantity $2x-1\\to1$. But the denominator is the signed $x-1$, so what survives is $\\dfrac{|x-1|}{x-1}=\\operatorname{sgn}(x-1)$ -- a jump, not a cancellation. The pedagogy is that 'sharing a corner' lets you drop the bars in a difference of moduli, yet that very cleanliness can lull you into dropping them in a lone signed factor too; the modulus saves the two-sided limit only when it appears on both sides of the bar-balance. Here it appears on one side only, and the limit dies: $+1$ from the right, $-1$ from the left."
+  },
+  {
+    "theme": "modulus",
+    "themeLabel": "Absolute Value & Corners",
+    "title": "When Sine and Tangent Both Bend",
+    "difficulty": 5,
+    "tags": [
+      "modulus",
+      "sin",
+      "tan",
+      "x->0",
+      "two-sided",
+      "cancellation"
+    ],
+    "statement": "\\lim_{x\\to 0}\\frac{|\\sin x|-|x|}{|\\tan x|-|x|}",
+    "answer": "-\\dfrac{1}{2}",
+    "trap": "First-order replacement $\\sin x\\approx x$, $\\tan x\\approx x$ gives $\\frac{|x|-|x|}{|x|-|x|}=\\frac00$, so you go to third order. The seductive slip: noting the cubic coefficients have magnitudes $\\tfrac16$ and $\\tfrac13$ and concluding $+\\tfrac12$. This forgets the SIGNS — $\\sin x-x=-\\tfrac{x^3}{6}<0$ while $\\tan x-x=+\\tfrac{x^3}{3}>0$ near $0^+$ — so the true ratio is $\\frac{-1/6}{+1/3}=-\\tfrac12$, not $+\\tfrac12$. A second trap is fearing the moduli break two-sidedness; in fact both bars flip together on the left and the ratio is even.",
+    "solutions": [
+      {
+        "name": "Method I — Parity then series",
+        "steps": [
+          "Both $|\\sin x|-|x|$ and $|\\tan x|-|x|$ are **even** functions (each term is even), so the quotient is even. It therefore suffices to compute the limit as $x\\to0^+$; the left limit will match automatically.",
+          "For $x>0$ (small): $|\\sin x|=\\sin x$, $|\\tan x|=\\tan x$, $|x|=x$, so the quotient is $\\dfrac{\\sin x-x}{\\tan x-x}.$",
+          "Use the Maclaurin expansions $\\sin x-x=-\\dfrac{x^3}{6}+O(x^5)$ and $\\tan x-x=\\dfrac{x^3}{3}+O(x^5).$",
+          "$$\\frac{\\sin x-x}{\\tan x-x}=\\frac{-x^3/6+O(x^5)}{x^3/3+O(x^5)}=\\frac{-1/6+O(x^2)}{1/3+O(x^2)}\\xrightarrow[x\\to0^+]{}\\frac{-1/6}{1/3}=-\\frac12.$$",
+          "By evenness the left-hand limit equals the right-hand limit, so the two-sided limit is $\\boxed{-\\tfrac12}.$"
+        ]
+      },
+      {
+        "name": "Method II — Negative-side sign bookkeeping (the trap exposed)",
+        "steps": [
+          "Attack $x<0$ head-on to watch the bars work. Here $\\sin x<0$ so $|\\sin x|=-\\sin x$, and $|x|=-x$.",
+          "Numerator $=-\\sin x-(-x)=-(\\sin x-x)=-\\big(-\\tfrac{x^3}{6}+O(x^5)\\big)=\\tfrac{x^3}{6}+O(x^5).$ (With $x<0$ this quantity is negative, exactly as $|\\sin x|-|x|$ must be.)",
+          "Denominator: $\\tan x<0$ so $|\\tan x|=-\\tan x$, giving $-\\tan x-(-x)=-(\\tan x-x)=-\\tfrac{x^3}{3}+O(x^5).$",
+          "$$\\frac{\\text{num}}{\\text{den}}=\\frac{x^3/6+O(x^5)}{-x^3/3+O(x^5)}\\xrightarrow[x\\to0^-]{}\\frac{1/6}{-1/3}=-\\frac12.$$",
+          "Identical to the right side: $\\boxed{-\\tfrac12}.$ The key insight: BOTH bars flip on the left, so the modulus signs cancel in the ratio — while the intrinsic signs of $\\sin x-x$ and $\\tan x-x$ stay OPPOSITE, which is what forces the minus."
+        ]
+      },
+      {
+        "name": "Method III — Conjugate / rationalise the corners",
+        "steps": [
+          "Rationalise each difference of moduli by its 'sum' partner: $|\\sin x|-|x|=\\dfrac{\\sin^2 x-x^2}{|\\sin x|+|x|}$ and $|\\tan x|-|x|=\\dfrac{\\tan^2 x-x^2}{|\\tan x|+|x|}$ (valid since $\\sin^2 x=|\\sin x|^2$, etc.).",
+          "As $x\\to0$, both sums satisfy $|\\sin x|+|x|\\sim 2|x|$ and $|\\tan x|+|x|\\sim 2|x|$, so the factor $\\dfrac{|\\tan x|+|x|}{|\\sin x|+|x|}\\to1.$ Hence the limit equals $\\displaystyle\\lim_{x\\to0}\\frac{\\sin^2 x-x^2}{\\tan^2 x-x^2}.$",
+          "Factor: $\\sin^2x-x^2=(\\sin x-x)(\\sin x+x)\\sim\\big(-\\tfrac{x^3}{6}\\big)(2x)=-\\tfrac{x^4}{3}$ and $\\tan^2x-x^2=(\\tan x-x)(\\tan x+x)\\sim\\big(\\tfrac{x^3}{3}\\big)(2x)=\\tfrac{2x^4}{3}.$",
+          "$$\\lim_{x\\to0}\\frac{\\sin^2 x-x^2}{\\tan^2 x-x^2}=\\frac{-x^4/3}{2x^4/3}=-\\frac12.\\qquad\\boxed{-\\tfrac12}$$"
+        ]
+      }
+    ],
+    "remark": "The moduli are red herrings: they cancel by evenness (both bars flip together off the negative axis). The real engine is that $\\sin x-x$ and $\\tan x-x$ have third-order coefficients $-\\tfrac16$ and $+\\tfrac13$ — same magnitude class but OPPOSITE signs — so the magnitude-only guess $+\\tfrac12$ is exactly the wrong sign."
+  },
+  {
+    "theme": "modulus",
+    "themeLabel": "Absolute Value & Corners",
+    "title": "The Floor That Carries Its Own Sign",
+    "difficulty": 5,
+    "task": "Determine",
+    "tags": [
+      "modulus",
+      "floor",
+      "parity",
+      "squeeze",
+      "oscillation",
+      "x->0"
+    ],
+    "statement": "A single greatest-integer count is forced to play two roles at once: it sets the size of the expression and, through its own parity, the sign. With $\\lfloor\\cdot\\rfloor$ the greatest-integer function, determine whether \\[ L=\\lim_{x\\to 0}\\;(-1)^{\\left\\lfloor \\frac{\\cos x}{\\lvert x\\rvert}\\right\\rfloor}\\;\\lvert x\\rvert\\,\\left\\lfloor \\frac{\\cos x}{\\lvert x\\rvert}\\right\\rfloor \\] exists, and if so find its value. Here the same integer $n(x)=\\left\\lfloor \\frac{\\cos x}{\\lvert x\\rvert}\\right\\rfloor$ supplies both the magnitude factor $\\lvert x\\rvert\\,n(x)$ and the sign factor $(-1)^{n(x)}$.",
+    "answer": "$L\\ \\text{does not exist}$",
+    "trap": "The magnetic move is the squeeze. Writing $n=\\left\\lfloor\\frac{\\cos x}{\\lvert x\\rvert}\\right\\rfloor$, the defining inequality $n\\le \\frac{\\cos x}{\\lvert x\\rvert}<n+1$ multiplies by $\\lvert x\\rvert>0$ to give $\\cos x-\\lvert x\\rvert<\\lvert x\\rvert\\,n\\le\\cos x$, so $\\lvert x\\rvert\\,n\\to1$ as $x\\to0$. A strong student stops here and reports $L=1$ (or, noticing the $(-1)^{n}$, perhaps $L=\\pm1$ but still 'a value'). The hidden constraint is that $n=n(x)$ is itself a moving integer: as $\\lvert x\\rvert\\to0$ the count $n(x)\\approx\\frac1{\\lvert x\\rvert}$ runs through EVERY positive integer, so $(-1)^{n(x)}$ flips between $+1$ and $-1$ infinitely often, no matter how close to $0$ one is. The magnitude factor does converge to $1$, but it is multiplied by a sign that never settles. Choosing $\\lvert x\\rvert=\\frac{1}{k+\\frac12}$ pins $n(x)=k$, and the expression $\\to(-1)^{k}\\cdot1$; even $k$ gives $+1$, odd $k$ gives $-1$. Both $+1$ and $-1$ are subsequential limits in every neighbourhood of $0$, so the two-sided limit does not exist -- and the trap is exactly forgetting that a floor that grows without bound carries a parity that oscillates without bound.",
+    "solutions": [
+      {
+        "name": "Method I - Squeeze the size, then expose the parity",
+        "steps": [
+          "Let $n=n(x)=\\left\\lfloor\\frac{\\cos x}{\\lvert x\\rvert}\\right\\rfloor$. The greatest-integer inequality is $n\\le\\frac{\\cos x}{\\lvert x\\rvert}<n+1$. Multiplying through by $\\lvert x\\rvert>0$ gives $\\cos x-\\lvert x\\rvert<\\lvert x\\rvert\\,n\\le\\cos x$; both bounds tend to $1$ as $x\\to0$, so by the squeeze theorem $\\lvert x\\rvert\\,n\\to1$.",
+          "Thus the whole expression is $(-1)^{n}\\bigl(\\lvert x\\rvert\\,n\\bigr)$, a product of an unsettling sign $(-1)^{n}$ and a magnitude that approaches $1$. The limit exists iff $(-1)^{n(x)}$ has a limit as $x\\to0$.",
+          "Since $\\lvert x\\rvert\\,n\\to1$ and $n\\to\\infty$, we have $n(x)\\to\\infty$; in particular $n(x)$ takes every sufficiently large integer value as $x\\to0$. Hence $(-1)^{n(x)}$ assumes both values $+1$ and $-1$ in every punctured neighbourhood of $0$ and cannot converge.",
+          "Concretely, pick $\\lvert x\\rvert=\\frac{1}{k+\\frac12}$ with $k\\to\\infty$; for small $x$, $\\frac{\\cos x}{\\lvert x\\rvert}=(k+\\tfrac12)\\cos x$ lies in $[k,k+1)$, so $n=k$ and the expression $\\to(-1)^{k}$. Even $k\\Rightarrow+1$, odd $k\\Rightarrow-1$. Two distinct subsequential limits force $\\boxed{L\\ \\text{does not exist}}$."
+        ]
+      },
+      {
+        "name": "Method II - Construct two sequences with opposite limits",
+        "steps": [
+          "It suffices to produce two sequences $x_k\\to0$ on which the expression tends to different values. Take the even-count sequence $a_k=\\dfrac{1}{2k+\\frac12}$ and the odd-count sequence $b_k=\\dfrac{1}{2k+1+\\frac12}$, both $\\to0^{+}$ (the function is even in $x$, so the sign of $x$ is irrelevant).",
+          "On $a_k$: for large $k$, $\\frac{\\cos a_k}{a_k}=\\bigl(2k+\\tfrac12\\bigr)\\cos a_k\\in[2k,\\,2k+1)$, so $n=2k$, $(-1)^{n}=+1$, and $a_k\\,n=\\frac{2k}{2k+1/2}\\to1$. Hence the expression $\\to(+1)(1)=1$.",
+          "On $b_k$: similarly $\\frac{\\cos b_k}{b_k}\\in[2k+1,\\,2k+2)$, so $n=2k+1$, $(-1)^{n}=-1$, and $b_k\\,n=\\frac{2k+1}{2k+3/2}\\to1$. Hence the expression $\\to(-1)(1)=-1$.",
+          "The two limits $1$ and $-1$ disagree, so the function has no limit at $0$: $\\boxed{L\\ \\text{does not exist}}$. The sign-carrying floor manufactures a clean $+1$ subsequence and a clean $-1$ subsequence arbitrarily close to the origin."
+        ]
+      },
+      {
+        "name": "Method III - Reduce to the model t*floor(1/t) and read off the obstruction",
+        "steps": [
+          "Substitute $t=\\lvert x\\rvert>0$, so $t\\to0^{+}$ (evenness lets us ignore the sign of $x$ entirely). Write the count as $n(t)=\\left\\lfloor\\frac{\\cos t}{t}\\right\\rfloor$ and note $\\frac{\\cos t}{t}=\\frac1t-\\frac{t}{2}+O(t^{3})=\\frac1t+o(1)$, so $n(t)=\\left\\lfloor\\frac1t\\right\\rfloor$ for all small $t$ (the $o(1)$ correction cannot cross an integer for $t$ near $0$ except on a measure-zero set, and on either side the same parity argument applies).",
+          "The reduced expression is $(-1)^{n(t)}\\,t\\,n(t)$. The classical fact $t\\left\\lfloor\\frac1t\\right\\rfloor\\to1$ as $t\\to0^{+}$ (since $1-t<t\\lfloor1/t\\rfloor\\le1$) handles the magnitude; the entire difficulty is the prefactor $(-1)^{\\lfloor1/t\\rfloor}$.",
+          "As $t\\to0^{+}$, $\\lfloor1/t\\rfloor$ increases through all large integers, so $(-1)^{\\lfloor1/t\\rfloor}$ is the parity sequence $+,-,+,-,\\dots$, which is the textbook non-convergent oscillation. A bounded oscillating sign times a quantity converging to a nonzero limit cannot converge.",
+          "Therefore $(-1)^{n(t)}\\,t\\,n(t)$ has $\\limsup=+1$ and $\\liminf=-1$, and $\\boxed{L\\ \\text{does not exist}}$. The modulus $\\lvert x\\rvert$ was indispensable twice: it made the floor's argument a positive blow-up $\\frac{1}{\\lvert x\\rvert}$, and it made the whole map even, so the failure is intrinsic to the parity, not to a left/right sign mismatch."
+        ]
+      }
+    ],
+    "remark": "Two limit-cancelling instincts collide here. The squeeze instinct is correct about size: $\\lvert x\\rvert\\,\\lfloor\\cos x/\\lvert x\\rvert\\rfloor\\to1$, pinned by $\\cos x-\\lvert x\\rvert<\\lvert x\\rvert\\,n\\le\\cos x$. The fatal omission is treating the integer $n=\\lfloor\\cos x/\\lvert x\\rvert\\rfloor$ as a passive bystander. It is not: because $n\\sim1/\\lvert x\\rvert\\to\\infty$, the same floor that delivers the convergent magnitude also drives the sign $(-1)^{n}$ through an endless $+,-,+,-$ as $x\\to0$. The design forces a single greatest-integer count to be both ruler and switch, and a converging ruler attached to a never-resting switch yields no limit -- $\\limsup=+1$, $\\liminf=-1$. Note the contrast with the usual modulus corner: this function is perfectly EVEN ($\\cos x$ and $\\lvert x\\rvert$ are both even), so the limit fails not from a left-versus-right sign flip but from parity oscillation living entirely within either side. The lesson for the top rank: when a floor's argument blows up, never read off its limit without auditing what its growing integer value does to every place it appears."
+  },
+  {
+    "theme": "modulus",
+    "themeLabel": "Absolute Value & Corners",
+    "title": "The Cube Root Keeps Its Sign, the Square Root Doesn't",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "modulus",
+      "at-negative-infinity",
+      "leading-order-flip",
+      "binomial-expansion",
+      "cube-root-parity",
+      "hidden-sign"
+    ],
+    "statement": "At $-\\infty$ a cube root and a square root part company over a single sign: $\\sqrt[3]{\\,t\\,}$ keeps the sign of $t$, but $\\sqrt{\\,t\\,}=\\lvert\\cdot\\rvert$ never does. Evaluate \\[ L=\\lim_{x\\to -\\infty}\\Bigl(\\sqrt[3]{\\,x^{3}+6x^{2}\\,}+\\sqrt{\\,x^{2}+2x\\,}\\Bigr), \\] where $\\sqrt[3]{\\;}$ denotes the real cube root. State also, as a contrast, the behaviour of the same expression as $x\\to+\\infty$.",
+    "answer": "\\[\\boxed{L=1}\\]",
+    "trap": "The reflex is to pull $x$ out of both radicals the same way: $\\sqrt[3]{x^{3}+6x^{2}}=\\sqrt[3]{x^{3}(1+6/x)}=x\\,(1+6/x)^{1/3}$ and $\\sqrt{x^{2}+2x}=\\sqrt{x^{2}(1+2/x)}=x\\,(1+2/x)^{1/2}$, then binomially expand to $x+2$ and $x+1$, sum to $2x+3$, and -- seeing the $2x$ refuse to settle -- 'read off the constant' and report $L=3$ (or declare divergence). Both verdicts are wrong, and the error is conceptual, not arithmetic: $\\sqrt{x^{2}}=\\lvert x\\rvert$, and for $x\\to-\\infty$ that is $-x$, NOT $x$. The square root cannot carry the negative sign of $x$ outward, so its true leading term is $-x-1$, while the real cube root genuinely keeps the sign of its argument and leads with $+x+2$. The two $x$'s then cancel -- $(x+2)+(-x-1)=1$ -- and the limit is finite precisely because the modulus flips the LEADING order of one radical relative to the other. This is the whole point: at $+\\infty$ both radicals lead with $+x$, the leading terms add to $2x$ and the expression diverges to $+\\infty$; the only thing that makes $-\\infty$ finite is the hidden $\\lvert x\\rvert=-x$ inside the square root. A student who treats $\\sqrt{x^{2}}$ as $x$ both fabricates a divergent $2x$ AND, even after deleting it, lands on the wrong constant $3$ instead of $1$.",
+    "solutions": [
+      {
+        "name": "Method I - Substitute x = -t and use honest positive roots",
+        "steps": [
+          "Put $x=-t$ with $t\\to+\\infty$. Then $x^{3}+6x^{2}=-t^{3}+6t^{2}=-(t^{3}-6t^{2})$, and since the real cube root is odd, $\\sqrt[3]{x^{3}+6x^{2}}=-\\sqrt[3]{t^{3}-6t^{2}}$. Also $x^{2}+2x=t^{2}-2t$, so $\\sqrt{x^{2}+2x}=\\sqrt{t^{2}-2t}=t\\sqrt{1-2/t}$ (positive $t$, no sign issue).",
+          "For $t\\to+\\infty$: $\\sqrt[3]{t^{3}-6t^{2}}=t\\,(1-6/t)^{1/3}=t\\bigl(1-\\tfrac{2}{t}+O(t^{-2})\\bigr)=t-2+O(t^{-1})$, hence $-\\sqrt[3]{t^{3}-6t^{2}}=-t+2+O(t^{-1})$. And $\\sqrt{t^{2}-2t}=t\\,(1-2/t)^{1/2}=t-1+O(t^{-1})$.",
+          "Add: $\\bigl(-t+2\\bigr)+\\bigl(t-1\\bigr)+O(t^{-1})=1+O(t^{-1})$, so as $t\\to+\\infty$ the sum $\\to1$. Translating back, $\\displaystyle\\lim_{x\\to-\\infty}=\\boxed{1}$.",
+          "Contrast at $x\\to+\\infty$: there $\\sqrt[3]{x^{3}+6x^{2}}=x+2+o(1)$ and $\\sqrt{x^{2}+2x}=x+1+o(1)$ both lead with $+x$, so the sum is $2x+3+o(1)\\to+\\infty$. The substitution exposes that the finiteness at $-\\infty$ comes solely from the sign reversal the square root forces on $x$."
+        ]
+      },
+      {
+        "name": "Method II - Subtract each radical's true asymptote",
+        "steps": [
+          "Guess the slant asymptotes valid as $x\\to-\\infty$. Cube root keeps the sign of $x$: $\\sqrt[3]{x^{3}+6x^{2}}\\approx x+2$. Square root equals $\\lvert x\\rvert\\sqrt{1+2/x}=-x\\,(1+2/x)^{1/2}\\approx -x-1$. Their asymptotes sum to $(x+2)+(-x-1)=1$; it remains to show each correction vanishes.",
+          "Cube-root correction: $A=\\sqrt[3]{x^{3}+6x^{2}}-(x+2)$. Rationalise with $a^{3}-b^{3}=(a-b)(a^{2}+ab+b^{2})$, $a=\\sqrt[3]{x^{3}+6x^{2}},\\ b=x+2$: $a^{3}-b^{3}=(x^{3}+6x^{2})-(x+2)^{3}=-12x-8$. Since $a^{2}+ab+b^{2}\\sim 3x^{2}$, we get $A=\\dfrac{-12x-8}{a^{2}+ab+b^{2}}\\sim\\dfrac{-12x}{3x^{2}}=\\dfrac{-4}{x}\\to0$.",
+          "Square-root correction: $B=\\sqrt{x^{2}+2x}-(-x-1)=\\sqrt{x^{2}+2x}+x+1$. Multiply by the conjugate: $B=\\dfrac{(x^{2}+2x)-(x+1)^{2}}{\\sqrt{x^{2}+2x}-(x+1)}=\\dfrac{-1}{\\sqrt{x^{2}+2x}-(x+1)}$. As $x\\to-\\infty$ the denominator $\\to(-x)-(x)=-2x\\to+\\infty$, so $B\\to0$.",
+          "Therefore the sum is $A+B+\\bigl[(x+2)+(-x-1)\\bigr]=A+B+1\\to0+0+1=\\boxed{1}$. (At $+\\infty$ the asymptotes are instead $x+2$ and $x+1$, summing to $2x+3\\to+\\infty$.)"
+        ]
+      },
+      {
+        "name": "Method III - Factor x and expand in u = 1/x with the bars intact",
+        "steps": [
+          "Write $\\sqrt[3]{x^{3}+6x^{2}}=x\\,(1+6/x)^{1/3}$ (legitimate for the real cube root, as $\\sqrt[3]{x^{3}}=x$ on all of $\\mathbb{R}$) and $\\sqrt{x^{2}+2x}=\\lvert x\\rvert\\,(1+2/x)^{1/2}$. For $x\\to-\\infty$, $\\lvert x\\rvert=-x$, so the square root is $-x\\,(1+2/x)^{1/2}$.",
+          "Hence the expression is $x\\Bigl[(1+6/x)^{1/3}-(1+2/x)^{1/2}\\Bigr]$. The minus sign in front of the second bracket is exactly the contribution of $\\lvert x\\rvert=-x$; this is where the limit is decided.",
+          "Set $u=1/x\\to0^{-}$ and expand: $(1+6u)^{1/3}=1+2u-4u^{2}+\\cdots$ and $(1+2u)^{1/2}=1+u-\\tfrac{1}{2}u^{2}+\\cdots$. The difference is $\\bigl(2u-4u^{2}\\bigr)-\\bigl(u-\\tfrac12u^{2}\\bigr)+\\cdots=u-\\tfrac{7}{2}u^{2}+\\cdots$.",
+          "Thus the expression equals $x\\bigl(u-\\tfrac{7}{2}u^{2}+\\cdots\\bigr)=x\\Bigl(\\tfrac{1}{x}-\\tfrac{7}{2x^{2}}+\\cdots\\Bigr)=1-\\tfrac{7}{2x}+\\cdots\\to\\boxed{1}.$ Had one wrongly used $\\sqrt{x^{2}}=x$ at $-\\infty$, the bracket would be $(1+6/x)^{1/3}+(1+2/x)^{1/2}\\to2$ and the factor $x$ would force $x\\cdot2\\to-\\infty$ -- the same fabricated divergence the trap produces."
+        ]
+      }
+    ],
+    "remark": "The expression is engineered so that, at $-\\infty$, the two leading $\\lvert x\\rvert$-sized terms must cancel, and they cancel only if you respect that $\\sqrt{x^{2}}=\\lvert x\\rvert=-x$ there. The real cube root is an odd function and so faithfully reports the sign of $x$: $\\sqrt[3]{x^{3}+6x^{2}}\\sim x$. The square root is the modulus and cannot: $\\sqrt{x^{2}+2x}\\sim\\lvert x\\rvert=-x$. That single sign reversal is what turns a would-be $2x$ into $(x)+(-x)=0$ at leading order, leaving the finite residue $2+(-1)=1$ from the next-order constants. The contrast at $+\\infty$ is the proof of mechanism: there the modulus agrees with $x$, both radicals lead with $+x$, and the sum diverges. So the modulus does not merely tweak a constant here -- it changes the leading-order behaviour, converting divergence at $+\\infty$ into a clean finite limit at $-\\infty$. The lesson for the corner-blind student: pulling $x$ out of $\\sqrt{x^{2}}$ as $x$ is the cardinal sin of $x\\to-\\infty$, and it manufactures both a phantom divergence and, after sweeping it away, the wrong constant $3$ in place of the true value $1$."
+  },
+  {
+    "theme": "modulus",
+    "themeLabel": "Absolute Value & Corners",
+    "title": "Two Moduli That Tilt the Opposite Way",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "modulus",
+      "nested",
+      "two-sided",
+      "parity",
+      "taylor",
+      "x->0"
+    ],
+    "statement": "Tangent overshoots its argument and sine undershoots it, so the two inner expressions below carry opposite signs while the bars make both even. Evaluate \\[ L=\\lim_{x\\to 0}\\;\\frac{\\bigl|\\,x-\\tan x\\,\\bigr|-\\bigl|\\,x-\\sin x\\,\\bigr|}{\\lvert x\\rvert^{3}}. \\] Justify that the two-sided limit exists, and state precisely what goes wrong if the denominator $\\lvert x\\rvert^{3}$ is replaced by the bare cube $x^{3}$.",
+    "answer": "\\[\\boxed{\\dfrac{1}{6}}\\]",
+    "trap": "The numerator is a difference of two absolute values, so it is an EVEN function of $x$ (replacing $x$ by $-x$ sends $x-\\tan x\\mapsto-(x-\\tan x)$ and $x-\\sin x\\mapsto-(x-\\sin x)$, and $|\\cdot|$ erases the sign). The trap is the reflex of a strong student who, eyeing $\\lvert x\\rvert^{3}$ as an awkward denominator, 'cleans it up' to $x^{3}$ -- the habit that a cube is odd and a signed cube reads more naturally. With $x^{3}$ underneath, an EVEN numerator over an ODD denominator forces the quotient to be ODD, so its two one-sided limits become $+\\tfrac16$ and $-\\tfrac16$ and the verdict flips to 'limit does not exist.' That verdict is FALSE for the stated problem: the genuine denominator is $\\lvert x\\rvert^{3}$, which is even, matching the even numerator to give the same value $\\tfrac16$ from BOTH sides. The conceptual point is that the modulus on the denominator is load-bearing precisely because the numerator is even -- it is the only thing standing between a clean two-sided limit and a fabricated jump. A second, cruder version of the trap drops both inner bars at once, reading $x-\\tan x$ and $x-\\sin x$ as if both were positive (or both negative); that confuses the two opposite tilts and loses the difference $(\\tan x-x)-(x-\\sin x)$ that the bars actually produce.",
+    "solutions": [
+      {
+        "name": "Method I - Resolve each bar by its inner sign, then Taylor expand",
+        "steps": [
+          "For $x>0$ small, $\\tan x>x$ so $x-\\tan x<0$ and $\\bigl|x-\\tan x\\bigr|=\\tan x-x$; also $x>\\sin x$ so $x-\\sin x>0$ and $\\bigl|x-\\sin x\\bigr|=x-\\sin x$. Hence the numerator is $(\\tan x-x)-(x-\\sin x)=\\tan x+\\sin x-2x$, over $\\lvert x\\rvert^{3}=x^{3}$.",
+          "Use $\\tan x=x+\\tfrac{x^{3}}{3}+O(x^{5})$ and $\\sin x=x-\\tfrac{x^{3}}{6}+O(x^{5})$. Then $\\tan x+\\sin x-2x=\\bigl(\\tfrac13-\\tfrac16\\bigr)x^{3}+O(x^{5})=\\tfrac{x^{3}}{6}+O(x^{5})$, so $\\dfrac{\\tan x+\\sin x-2x}{x^{3}}\\to\\tfrac16$ as $x\\to0^{+}$.",
+          "For $x<0$ write $x=-t$, $t>0$. Then $\\bigl|x-\\tan x\\bigr|=\\bigl|-t+\\tan t\\bigr|=\\tan t-t$ and $\\bigl|x-\\sin x\\bigr|=\\bigl|-t+\\sin t\\bigr|=t-\\sin t$, while $\\lvert x\\rvert^{3}=t^{3}$. The quotient becomes $\\dfrac{(\\tan t-t)-(t-\\sin t)}{t^{3}}=\\dfrac{\\tan t+\\sin t-2t}{t^{3}}\\to\\tfrac16$ as $t\\to0^{+}$.",
+          "Both one-sided limits equal $\\tfrac16$, so $\\boxed{L=\\dfrac16}$. Replacing $\\lvert x\\rvert^{3}$ by $x^{3}$ would leave the left value as $\\dfrac{\\tan t+\\sin t-2t}{(-t)^{3}}\\to-\\tfrac16$, breaking the two-sided limit -- the modulus below is exactly what keeps it alive."
+        ]
+      },
+      {
+        "name": "Method II - Parity reduction (the numerator is even)",
+        "steps": [
+          "Let $N(x)=\\bigl|x-\\tan x\\bigr|-\\bigl|x-\\sin x\\bigr|$. Since $\\tan$ and $\\sin$ are odd, $x-\\tan x$ and $x-\\sin x$ are odd, so $N(-x)=\\bigl|{-}(x-\\tan x)\\bigr|-\\bigl|{-}(x-\\sin x)\\bigr|=\\bigl|x-\\tan x\\bigr|-\\bigl|x-\\sin x\\bigr|=N(x)$: $N$ is even. The denominator $\\lvert x\\rvert^{3}$ is also even, so the whole quotient is an even function.",
+          "An even function has equal one-sided limits at $0$ whenever either one exists; the two-sided limit exists iff the right-hand limit exists and then equals it. So it suffices to compute the limit as $x\\to0^{+}$.",
+          "For $x>0$, $N(x)=(\\tan x-x)-(x-\\sin x)=\\tan x+\\sin x-2x=\\tfrac{x^{3}}{6}+O(x^{5})$ and $\\lvert x\\rvert^{3}=x^{3}$, giving $\\dfrac{N(x)}{\\lvert x\\rvert^{3}}\\to\\tfrac16$.",
+          "By evenness the limit from the left is the same, so $\\boxed{L=\\dfrac16}$. The reduction also exposes the trap: parity guarantees existence only because BOTH numerator and denominator are even; swapping $\\lvert x\\rvert^{3}$ for the odd $x^{3}$ makes the quotient odd, and an odd function with a nonzero one-sided limit cannot have a two-sided one."
+        ]
+      },
+      {
+        "name": "Method III - Squeeze on the cubic remnant",
+        "steps": [
+          "Work with $x\\to0^{+}$ (the even structure from Method II then transfers the value to the left). Define $a(x)=\\tan x-x>0$ and $b(x)=x-\\sin x>0$; for $x>0$ the quotient is $\\dfrac{a(x)-b(x)}{x^{3}}$.",
+          "Standard sharp bounds near $0$ give $\\dfrac{a(x)}{x^{3}}=\\dfrac{\\tan x-x}{x^{3}}\\to\\tfrac13$ and $\\dfrac{b(x)}{x^{3}}=\\dfrac{x-\\sin x}{x^{3}}\\to\\tfrac16$ (each is a textbook corner limit, provable by L'Hopital applied thrice or by the inequalities $\\tfrac13\\le\\tfrac{\\tan x-x}{x^{3}}$ and $\\tfrac{x-\\sin x}{x^{3}}\\le\\tfrac16$ with matching reverse bounds).",
+          "Since both pieces converge, the difference converges to the difference of the limits: $\\dfrac{a(x)-b(x)}{x^{3}}=\\dfrac{a(x)}{x^{3}}-\\dfrac{b(x)}{x^{3}}\\to\\tfrac13-\\tfrac16=\\tfrac16$.",
+          "Thus the right-hand limit is $\\tfrac16$, and by the even-quotient argument the left-hand limit matches, so $\\boxed{L=\\dfrac16}$. The opposite tilts -- tangent's $+\\tfrac13$ overshoot against sine's $\\tfrac16$ undershoot -- do not cancel; they add into a single sign-definite cubic remnant, which is why a finite two-sided value survives at order $x^{3}$."
+        ]
+      }
+    ],
+    "remark": "The engine of the problem is a clash of curvatures rectified by absolute value. Tangent bends above the line $y=x$ ($\\tan x-x\\sim\\tfrac{x^{3}}{3}$) and sine bends below it ($x-\\sin x\\sim\\tfrac{x^{3}}{6}$); the two inner quantities $x-\\tan x$ and $x-\\sin x$ therefore have opposite signs, yet the bars turn each into its positive magnitude. For $x>0$ the numerator becomes $(\\tan x-x)-(x-\\sin x)=\\tan x+\\sin x-2x$, a clean even function whose cubic leading term is $\\bigl(\\tfrac13-\\tfrac16\\bigr)x^{3}=\\tfrac{x^{3}}{6}$ -- the two opposite tilts do not cancel, they reinforce. The lesson for the modulus chapter: when a numerator is even, the parity of the DENOMINATOR decides whether a limit lives or dies. Here $\\lvert x\\rvert^{3}$ is even and the limit is the genuine $\\tfrac16$; the inviting simplification to $x^{3}$ secretly injects an odd factor $\\operatorname{sgn}(x)$ and manufactures a phantom jump $\\pm\\tfrac16$. Bars on the denominator are not decoration -- they are the parity that lets a two-sided limit exist."
+  },
+  {
+    "theme": "modulus",
+    "themeLabel": "Absolute Value & Corners",
+    "title": "The Reciprocal Corner of Arctangent",
+    "difficulty": 4,
+    "tags": [
+      "modulus",
+      "arctan",
+      "x->0",
+      "two-sided",
+      "derivative-as-limit"
+    ],
+    "statement": "\\lim_{x\\to 0}\\frac{\\arctan\\!\\frac{1}{|x|}-\\frac{\\pi}{2}}{|x|}",
+    "answer": "-1",
+    "trap": "Reflexively reading it as $\\frac00$ and reaching for L'Hopital in $x$: the numerator $\\arctan\\frac1{|x|}-\\frac\\pi2\\to0$ and denominator $\\to0$, so it looks textbook. But $\\frac{d}{dx}\\arctan\\frac1{|x|}=\\frac{\\operatorname{sgn}x}{1+x^2}$ carries a $\\operatorname{sgn}x$ from the corner, and the denominator's derivative is $\\operatorname{sgn}x$ too — students who differentiate $|x|$ as $x$ or drop the sign get $+1$, or get a two-sided mismatch and declare the limit nonexistent. Both are wrong: the clean route is the identity $\\arctan u+\\arctan\\frac1u=\\frac\\pi2$, which kills the corner instantly and gives $-1$.",
+    "solutions": [
+      {
+        "name": "Method I — Complementary-angle identity",
+        "steps": [
+          "For $t>0$, $\\arctan\\dfrac1t=\\dfrac\\pi2-\\arctan t.$ Put $t=|x|>0$ (valid for all $x\\ne0$, both sides of $0$).",
+          "Then $\\arctan\\dfrac{1}{|x|}-\\dfrac\\pi2=-\\arctan|x|,$ so the expression becomes $$\\frac{-\\arctan|x|}{|x|}.$$",
+          "As $x\\to0$ (from either side), $|x|\\to0^+$, and by the standard limit $\\dfrac{\\arctan u}{u}\\to1$ we get $\\dfrac{\\arctan|x|}{|x|}\\to1.$",
+          "Hence the limit is $-1.$ It is genuinely two-sided because the whole expression depends only on $|x|$, which approaches $0^+$ identically from the left and the right: $\\boxed{-1}.$"
+        ]
+      },
+      {
+        "name": "Method II — Series at the corner",
+        "steps": [
+          "Set $t=|x|\\to0^+$. Using $\\arctan\\dfrac1t=\\dfrac\\pi2-\\arctan t$ and $\\arctan t=t-\\dfrac{t^3}{3}+\\dfrac{t^5}{5}-\\cdots,$",
+          "we get $\\arctan\\dfrac1t-\\dfrac\\pi2=-\\Big(t-\\tfrac{t^3}3+\\cdots\\Big)=-t+\\tfrac{t^3}{3}-\\cdots.$",
+          "Divide by $t=|x|$: $\\dfrac{-t+t^3/3-\\cdots}{t}=-1+\\dfrac{t^2}{3}-\\cdots.$",
+          "Let $t\\to0^+$: the higher terms vanish and the limit is $\\boxed{-1}.$ The $|x|$ forces $t>0$, so no side ambiguity arises (a numeric check confirms the deviation is $\\approx t^2/3$)."
+        ]
+      }
+    ],
+    "remark": "$g(x)=\\arctan\\frac{1}{|x|}$ has a downward corner at $0$ with one-sided approach-slopes $\\mp1$ (right $-1$, left $+1$); dividing by $|x|$ rather than $x$ folds both into the single value $-1$, which is exactly why the limit exists two-sided."
+  },
+  {
+    "theme": "modulus",
+    "themeLabel": "Absolute Value & Corners",
+    "title": "The Bar That Re-weights the Exponent",
+    "difficulty": 5,
+    "task": "Determine",
+    "tags": [
+      "modulus",
+      "one-sided",
+      "1-power-infinity",
+      "exponential",
+      "x->0"
+    ],
+    "statement": "Inside the base below, the bar $\\lvert\\sin x\\rvert$ adds to $3\\sin x$ when $x>0$ but fights it when $x<0$, so the coefficient that multiplies $\\sin x$ -- and hence the size of the $1^{\\infty}$ overshoot -- is different on the two sides. Determine whether \\[ L=\\lim_{x\\to 0}\\Bigl(1+\\lvert\\sin x\\rvert+3\\sin x\\Bigr)^{1/x} \\] exists, and if so find its value; otherwise give both one-sided limits.",
+    "answer": "$\\text{DNE}\\ \\bigl(\\lim_{x\\to0^{+}}=e^{4},\\ \\lim_{x\\to0^{-}}=e^{2}\\bigr)$",
+    "trap": "The base $\\to1$ and the exponent $\\to\\pm\\infty$, so this is a $1^{\\infty}$ form and the reflex is the rote rule $\\lim(1+u)^{1/u\\,\\cdot\\,(\\text{rate})}=e^{(\\text{rate})}$. The fatal shortcut is to treat $\\lvert\\sin x\\rvert$ as $\\sin x$ -- 'the modulus only matters for negative values, and $\\sin x>0$ near $0$ anyway' -- collapsing the base to $1+4\\sin x$ and reporting the single clean value $e^{4}$. That is wrong because the claim $\\sin x>0$ near $0$ holds ONLY on the right: for $x<0$ small, $\\sin x<0$, so $\\lvert\\sin x\\rvert=-\\sin x$ and the base is $1+(-\\sin x)+3\\sin x=1+2\\sin x$, not $1+4\\sin x$. The coefficient of the corner term flips from $4$ to $2$ exactly across $0$, dragging the exponent of $e$ from $4$ down to $2$. So the two one-sided limits are genuinely $e^{4}$ and $e^{2}$ -- both honest $1^{\\infty}$ values, neither trivial -- and because they differ the two-sided limit does NOT exist. A subtler version of the same error computes only the right side correctly (getting $e^{4}$), then assumes the answer is two-sided by 'symmetry' of the $1^{\\infty}$ machinery; but the machinery is symmetric only when the base's linearisation is, and here the bar destroys that symmetry. The modulus is not a sign-cleanup on a negligible term -- it is the dial that sets the exponent, and it reads two different numbers depending on the side.",
+    "solutions": [
+      {
+        "name": "Method I - Take logs and resolve the bar on each side",
+        "steps": [
+          "Set $g(x)=\\bigl(1+\\lvert\\sin x\\rvert+3\\sin x\\bigr)^{1/x}$, so $\\ln g(x)=\\dfrac{1}{x}\\,\\ln\\!\\bigl(1+\\lvert\\sin x\\rvert+3\\sin x\\bigr)$. Near $0$ the inner quantity $\\to0$, so $\\ln(1+u)\\sim u$ and $\\ln g(x)\\sim\\dfrac{\\lvert\\sin x\\rvert+3\\sin x}{x}$; the limit is decided by this ratio.",
+          "Right side $x\\to0^{+}$: here $\\sin x>0$, so $\\lvert\\sin x\\rvert=\\sin x$ and $\\lvert\\sin x\\rvert+3\\sin x=4\\sin x$. Then $\\ln g(x)\\sim\\dfrac{4\\sin x}{x}\\to4$, hence $\\displaystyle\\lim_{x\\to0^{+}}g(x)=e^{4}$.",
+          "Left side $x\\to0^{-}$: here $\\sin x<0$, so $\\lvert\\sin x\\rvert=-\\sin x$ and $\\lvert\\sin x\\rvert+3\\sin x=-\\sin x+3\\sin x=2\\sin x$. Then $\\ln g(x)\\sim\\dfrac{2\\sin x}{x}\\to2$ (the ratio $\\sin x/x\\to1$ from either side), hence $\\displaystyle\\lim_{x\\to0^{-}}g(x)=e^{2}$.",
+          "Since the right-hand limit $e^{4}$ and the left-hand limit $e^{2}$ are unequal, the two-sided limit does not exist: $\\boxed{\\text{DNE},\\ \\lim_{x\\to0^{+}}=e^{4},\\ \\lim_{x\\to0^{-}}=e^{2}}$."
+        ]
+      },
+      {
+        "name": "Method II - Standard 1^infinity factorisation, applied per side",
+        "steps": [
+          "Use $\\bigl(1+u\\bigr)^{1/x}=\\Bigl[(1+u)^{1/u}\\Bigr]^{u/x}$ with $u=\\lvert\\sin x\\rvert+3\\sin x\\to0$, so $(1+u)^{1/u}\\to e$ and the whole expression behaves like $e^{\\,u/x}$; everything reduces to $\\lim u/x$ on each side.",
+          "For $x\\to0^{+}$: $u=4\\sin x$, so $\\dfrac{u}{x}=\\dfrac{4\\sin x}{x}\\to4$ and $g(x)\\to e^{4}$.",
+          "For $x\\to0^{-}$: $u=2\\sin x$ (the bar flips $\\lvert\\sin x\\rvert$ to $-\\sin x$), so $\\dfrac{u}{x}=\\dfrac{2\\sin x}{x}\\to2$ and $g(x)\\to e^{2}$. Note $u<0$ on the left, but $(1+u)^{1/u}\\to e$ still holds as $u\\to0^{-}$, so the factorisation is legitimate.",
+          "The two sides give $e^{4}$ and $e^{2}$; they disagree, so the limit fails to exist two-sidedly: $\\boxed{\\text{DNE},\\ \\lim_{x\\to0^{+}}=e^{4},\\ \\lim_{x\\to0^{-}}=e^{2}}$."
+        ]
+      },
+      {
+        "name": "Method III - Series of the log, side by side",
+        "steps": [
+          "Compute $\\ln g(x)=\\dfrac{1}{x}\\ln\\!\\bigl(1+c\\sin x\\bigr)$ where the coefficient $c$ depends on the side: $c=4$ for $x>0$ (since $\\lvert\\sin x\\rvert+3\\sin x=4\\sin x$) and $c=2$ for $x<0$ (since $-\\sin x+3\\sin x=2\\sin x$).",
+          "Expand for $c=4$ (right): $\\ln(1+4\\sin x)=4\\sin x-\\tfrac{(4\\sin x)^{2}}{2}+\\cdots$ and $\\sin x=x-\\tfrac{x^{3}}{6}+\\cdots$, so $\\dfrac{1}{x}\\ln(1+4\\sin x)=4-8x+\\tfrac{62}{3}x^{2}+\\cdots\\to4$, giving $\\lim_{x\\to0^{+}}g=e^{4}$.",
+          "Expand for $c=2$ (left), writing $x=-t$ with $t\\to0^{+}$ so the base is $1-2\\sin t$ and the exponent is $-1/t$: $\\dfrac{1}{-t}\\ln(1-2\\sin t)=2+2t+\\tfrac{7}{3}t^{2}+\\cdots\\to2$, giving $\\lim_{x\\to0^{-}}g=e^{2}$.",
+          "The constant terms of the two series are $4$ and $2$, so the one-sided limits are $e^{4}$ and $e^{2}$ and differ; the two-sided limit does not exist: $\\boxed{\\text{DNE},\\ \\lim_{x\\to0^{+}}=e^{4},\\ \\lim_{x\\to0^{-}}=e^{2}}$."
+        ]
+      }
+    ],
+    "remark": "The whole problem turns on a single observation a fast solver skips: in a $1^{\\infty}$ form $(1+u)^{1/x}$, the answer is $e^{\\lim u/x}$, so $u$'s linear coefficient is the entire story -- and here a modulus sets that coefficient differently on each side. Because $\\lvert\\sin x\\rvert$ equals $+\\sin x$ for $x>0$ but $-\\sin x$ for $x<0$, the base's small part is $4\\sin x$ on the right yet only $2\\sin x$ on the left, so the exponent of $e$ is $4$ versus $2$. Neither side is degenerate -- both are bona fide $1^{\\infty}$ limits with finite nonzero values $e^{4}$ and $e^{2}$ -- which is exactly what makes the trap seductive: the right-side computation succeeds, tempting one to declare it the limit. The lesson for the modulus chapter is that a corner term need not break continuity or kill a limit to matter; it can quietly re-weight an exponent, turning what looks like a clean $1^{\\infty}$ into a two-sided limit that simply does not exist."
+  },
+  {
+    "theme": "modulus",
+    "themeLabel": "Absolute Value & Corners",
+    "title": "Two Nested Bars, One Clean Slope",
+    "difficulty": 3,
+    "tags": [
+      "modulus",
+      "nested",
+      "x->0",
+      "two-sided",
+      "signum"
+    ],
+    "statement": "\\lim_{x\\to 0}\\frac{\\big|\\,|x|-x\\,\\big|-\\big|\\,|x|+x\\,\\big|}{x}",
+    "answer": "-2",
+    "trap": "Test a tiny positive $x$: $\\big||x|-x\\big|=0$ and $\\big||x|+x\\big|=2x$, so the quotient is $\\tfrac{0-2x}{x}=-2$. Now flip to a tiny negative $x$ and carelessly write $\\big||x|-x\\big|=0$ again, forgetting that here $|x|=-x$ makes $|x|-x=-2x\\neq 0$. That slip gives a phantom left-hand value of $+2$, so the student declares the two sides unequal and the limit DNE. Once the inner bar is handled correctly, the left side also gives $-2$, and the limit exists and equals $-2$.",
+    "solutions": [
+      {
+        "name": "Method I — Case split on the side",
+        "steps": [
+          "**Right, $x>0$:** here $|x|=x$. Then $|x|-x=0\\Rightarrow\\big||x|-x\\big|=0$, and $|x|+x=2x>0\\Rightarrow\\big||x|+x\\big|=2x.$ The numerator is $0-2x=-2x$, so the quotient is $\\dfrac{-2x}{x}=-2.$",
+          "**Left, $x<0$:** here $|x|=-x$. Then $|x|-x=-x-x=-2x$, and since $x<0$ we have $-2x>0$, so $\\big||x|-x\\big|=-2x$; while $|x|+x=-x+x=0\\Rightarrow\\big||x|+x\\big|=0.$ The numerator is $-2x-0=-2x$, so the quotient is again $\\dfrac{-2x}{x}=-2.$",
+          "Both one-sided limits equal $-2$, hence the two-sided limit is $\\boxed{-2}.$ Notice the inner $|x|$ merely swaps *which* outer bar collapses to $0$, but the quotient stays $-2$ for every $x\\neq 0.$"
+        ]
+      },
+      {
+        "name": "Method II — Inert-bars reduction",
+        "steps": [
+          "For every real $x$ we have $|x|\\ge x$ and $|x|\\ge -x$. Therefore $|x|-x\\ge 0$ and $|x|+x\\ge 0$: both inner quantities are already nonnegative, so the *outer* moduli do nothing and may be dropped: $\\big||x|-x\\big|=|x|-x$ and $\\big||x|+x\\big|=|x|+x.$",
+          "The numerator then simplifies exactly: $\\big(|x|-x\\big)-\\big(|x|+x\\big)=-2x.$",
+          "Hence for every $x\\neq 0$ the whole expression equals $\\dfrac{-2x}{x}=-2$ — a constant function.",
+          "A constant function has that constant as its limit, so the limit is $\\boxed{-2}.$ The 'nesting' was a disguise; the outer bars never activate."
+        ]
+      }
+    ],
+    "remark": "Since $|x|\\ge x$ and $|x|\\ge -x$, the outer bars are no-ops: $\\big||x|-x\\big|=|x|-x$ and $\\big||x|+x\\big|=|x|+x$. The expression collapses to the constant $-2$, so the limit is trivially $-2$."
+  },
+  {
+    "theme": "modulus",
+    "themeLabel": "Absolute Value & Corners",
+    "title": "The Corner of Sine at Pi",
+    "difficulty": 5,
+    "tags": [
+      "modulus",
+      "sin",
+      "x->pi",
+      "taylor",
+      "two-sided",
+      "corner"
+    ],
+    "statement": "\\lim_{x\\to \\pi}\\frac{|\\sin x|-|x-\\pi|}{|x-\\pi|^{3}}",
+    "answer": "-\\dfrac{1}{6}",
+    "trap": "Near $\\pi$ one writes $\\sin x\\approx-(x-\\pi)$, hence $|\\sin x|\\approx|x-\\pi|$, the numerator looks like $0$, and the tempting verdict is that the limit is $0$. But that is only the leading order: the genuine first correction is third order, $|\\sin x|-|x-\\pi|=-\\tfrac16|x-\\pi|^{3}+O(|x-\\pi|^{5})$, which is exactly the size of the denominator and yields $-\\tfrac16$, not $0$. (Note it is $|\\sin x|$, not $\\sin x$: at $x=\\pi$ the function $|\\sin x|$ has a real corner, so a one-sided Taylor shortcut for $\\sin x$ alone is not enough.)",
+    "solutions": [
+      {
+        "name": "Method I — Shift to the corner and use evenness",
+        "steps": [
+          "Let $h=x-\\pi\\to0.$ Then $\\sin x=\\sin(\\pi+h)=-\\sin h$, so $|\\sin x|=|\\sin h|$, and $|x-\\pi|=|h|.$ The expression becomes $$\\frac{|\\sin h|-|h|}{|h|^{3}}.$$",
+          "This is even in $h$ (numerator and $|h|^3$ are both even), so it suffices to take $h\\to0^+$, where $|\\sin h|=\\sin h$, $|h|=h$: we need $\\dfrac{\\sin h-h}{h^3}.$",
+          "From $\\sin h=h-\\dfrac{h^3}{6}+O(h^5)$, $\\;\\sin h-h=-\\dfrac{h^3}{6}+O(h^5).$",
+          "$$\\frac{\\sin h-h}{h^3}=-\\frac16+O(h^2)\\to-\\frac16.$$",
+          "By evenness both sides agree, so the two-sided limit is $\\boxed{-\\tfrac16}.$"
+        ]
+      },
+      {
+        "name": "Method II — Conjugate the corner difference",
+        "steps": [
+          "With $h=x-\\pi$, rationalize using $|a|-|b|=\\dfrac{a^2-b^2}{|a|+|b|}$: $$|\\sin h|-|h|=\\frac{\\sin^2 h-h^2}{|\\sin h|+|h|}.$$",
+          "Numerator $\\sin^2 h-h^2=(\\sin h-h)(\\sin h+h)\\sim\\big(-\\tfrac{h^3}{6}\\big)(2h)=-\\tfrac{h^4}{3}.$ Denominator $|\\sin h|+|h|\\sim 2|h|.$",
+          "So $|\\sin h|-|h|\\sim\\dfrac{-h^4/3}{2|h|}=-\\dfrac{h^4}{6|h|}=-\\dfrac{|h|^3}{6}$ (using $h^4=|h|^4$ and $h^4/|h|=|h|^3$).",
+          "Divide by $|h|^3$: $\\dfrac{-|h|^3/6}{|h|^3}=-\\dfrac16.$ Hence $\\boxed{-\\tfrac16}.$"
+        ]
+      }
+    ],
+    "remark": "Around any zero $x=k\\pi$ of $\\sin$, the graph of $|\\sin x|$ is a translated copy of $|\\sin h|$; the universal third-order gap $|\\sin h|-|h|\\sim-\\tfrac16|h|^3$ governs all of them."
+  },
+  {
+    "theme": "invtrig",
+    "themeLabel": "Inverse Circular Functions",
+    "title": "The Endpoint Keeps a Secret Second Term",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "invtrig",
+      "endpoint-expansion",
+      "half-power",
+      "x->0",
+      "arccos-near-one",
+      "second-term"
+    ],
+    "statement": "Near its endpoint $\\arccos$ unfolds in half-powers, and the leading half-power is a decoy. Evaluate \\[ L=\\lim_{x\\to 0^{+}}\\frac{\\arccos(1-x)-\\arctan\\!\\bigl(\\sqrt{2x}\\,\\bigr)}{x^{3/2}}. \\] Both pieces begin like $\\sqrt{2x}$, so that leading term cancels; the value is decided one order deeper, in the $x^{3/2}$ coefficient.",
+    "answer": "\\[\\boxed{L=\\dfrac{3\\sqrt{2}}{4}}\\]",
+    "trap": "The reflex is to use only the endpoint leading order $\\arccos(1-x)\\approx\\sqrt{2x}$ -- the famous square-root corner of $\\arccos$ at $1$ -- and to expand the arctan as $\\arctan\\bigl(\\sqrt{2x}\\bigr)=\\sqrt{2x}-\\tfrac{1}{3}(2x)^{3/2}+\\cdots$. The two $\\sqrt{2x}$ terms cancel, and the student reads the numerator as just $\\tfrac{1}{3}(2x)^{3/2}=\\tfrac{2\\sqrt2}{3}x^{3/2}$, reporting $L=\\dfrac{2\\sqrt2}{3}\\approx 0.9428$. This is wrong, and the error is conceptual, not arithmetic: the half-power series of $\\arccos$ near $1$ does NOT stop at $\\sqrt{2x}$. Its very next term is $+\\tfrac{1}{12}\\sqrt{2x}\\cdot x=\\tfrac{\\sqrt2}{12}x^{3/2}$, exactly the same order $x^{3/2}$ that survives the cancellation. Because the leading terms annihilate, this normally-negligible second term is promoted to a LEADING contributor and must be carried. Keeping it gives $L=\\dfrac{\\sqrt2}{12}+\\dfrac{2\\sqrt2}{3}=\\dfrac{3\\sqrt2}{4}\\approx 1.0607$, not $\\tfrac{2\\sqrt2}{3}$. A mirror-image blunder -- expanding $\\arccos$ to second order but truncating $\\arctan$ at its linear term $\\sqrt{2x}$ -- keeps only $\\tfrac{\\sqrt2}{12}x^{3/2}$ and reports $L=\\dfrac{\\sqrt2}{12}\\approx 0.1179$. Both single-term truncations are fatal: the surviving order receives a contribution from EACH function's subleading term, and dropping either one corrupts the answer.",
+    "solutions": [
+      {
+        "name": "Method I - Turn the endpoint into an arcsine via a half-angle identity",
+        "steps": [
+          "Set $\\theta=\\arccos(1-x)$, so $\\cos\\theta=1-x$ with $\\theta\\to 0^{+}$. Then $1-\\cos\\theta=x$ gives $2\\sin^{2}(\\theta/2)=x$, hence $\\sin(\\theta/2)=\\sqrt{x/2}$ and $\\theta=2\\arcsin\\!\\sqrt{x/2}$. This converts the awkward endpoint of $\\arccos$ into the friendly origin of $\\arcsin$, where the Maclaurin series is standard.",
+          "Expand $\\arcsin s=s+\\tfrac{s^{3}}{6}+\\cdots$ with $s=\\sqrt{x/2}=\\tfrac{1}{\\sqrt2}\\,x^{1/2}$. Thus $\\arccos(1-x)=2\\arcsin s=2s+\\tfrac{s^{3}}{3}+\\cdots=\\sqrt{2x}+\\tfrac{1}{3}\\Bigl(\\tfrac{x^{1/2}}{\\sqrt2}\\Bigr)^{3}+\\cdots=\\sqrt{2x}+\\tfrac{\\sqrt2}{12}\\,x^{3/2}+\\cdots$. The second term $\\tfrac{\\sqrt2}{12}x^{3/2}$ is the secret the trap drops.",
+          "Expand the arctan: $\\arctan\\bigl(\\sqrt{2x}\\bigr)=\\sqrt{2x}-\\tfrac{1}{3}(2x)^{3/2}+\\cdots=\\sqrt{2x}-\\tfrac{2\\sqrt2}{3}\\,x^{3/2}+\\cdots$. Subtract: the $\\sqrt{2x}$ terms cancel and the numerator is $\\bigl(\\tfrac{\\sqrt2}{12}+\\tfrac{2\\sqrt2}{3}\\bigr)x^{3/2}+\\cdots=\\tfrac{3\\sqrt2}{4}x^{3/2}+\\cdots$.",
+          "Divide by $x^{3/2}$ and let $x\\to0^{+}$: $L=\\dfrac{\\sqrt2}{12}+\\dfrac{2\\sqrt2}{3}=\\dfrac{\\sqrt2+8\\sqrt2}{12}=\\boxed{\\dfrac{3\\sqrt2}{4}}.$"
+        ]
+      },
+      {
+        "name": "Method II - Substitute x=t^2 to make every exponent an integer, then L'Hopital",
+        "steps": [
+          "Put $x=t^{2}$ with $t\\to0^{+}$, so $x^{3/2}=t^{3}$, $\\sqrt{2x}=\\sqrt2\\,t$, and the limit becomes $L=\\displaystyle\\lim_{t\\to0^{+}}\\frac{g(t)}{t^{3}}$ with $g(t)=\\arccos(1-t^{2})-\\arctan(\\sqrt2\\,t)$. Now the troublesome half-powers are gone: $g$ is a genuine smooth function of $t$ near $0$.",
+          "Check the indeterminacy is $0/0$ and that the linear term cancels: $g'(t)=\\dfrac{2t}{\\sqrt{1-(1-t^{2})^{2}}}-\\dfrac{\\sqrt2}{1+2t^{2}}=\\dfrac{2t}{\\sqrt{2t^{2}-t^{4}}}-\\dfrac{\\sqrt2}{1+2t^{2}}=\\dfrac{\\sqrt2}{\\sqrt{1-t^{2}/2}}-\\dfrac{\\sqrt2}{1+2t^{2}}$, so $g'(0)=\\sqrt2-\\sqrt2=0$. The leading $\\sqrt2\\,t$ cancellation is exactly $g'(0)=0$, the analytic shadow of the cancelling $\\sqrt{2x}$.",
+          "Since $g(0)=g'(0)=0$, the limit equals $\\dfrac{g'''(0)}{3!}$ (Maclaurin) or three L'Hopital passes. Expanding $g'(t)=\\sqrt2\\bigl(1-\\tfrac{t^{2}}{2}\\bigr)^{-1/2}-\\sqrt2\\bigl(1+2t^{2}\\bigr)^{-1}=\\sqrt2\\bigl(1+\\tfrac{t^{2}}{4}+\\cdots\\bigr)-\\sqrt2\\bigl(1-2t^{2}+\\cdots\\bigr)=\\sqrt2\\bigl(\\tfrac94 t^{2}\\bigr)+\\cdots=\\tfrac{9\\sqrt2}{4}t^{2}+\\cdots$.",
+          "Hence $g(t)=\\tfrac{9\\sqrt2}{4}\\cdot\\tfrac{t^{3}}{3}+\\cdots=\\tfrac{3\\sqrt2}{4}t^{3}+\\cdots$, so $\\dfrac{g(t)}{t^{3}}\\to\\dfrac{3\\sqrt2}{4}$. Therefore $L=\\boxed{\\dfrac{3\\sqrt2}{4}}.$"
+        ]
+      },
+      {
+        "name": "Method III - Differentiate the inverse functions through their derivatives",
+        "steps": [
+          "Use the t-substitution $x=t^{2}$ and split the work onto each inverse function's derivative, integrated back from $0$. With $A(t)=\\arccos(1-t^{2})$ and $B(t)=\\arctan(\\sqrt2\\,t)$, we have $A'(t)=\\dfrac{\\sqrt2}{\\sqrt{1-t^{2}/2}}$ and $B'(t)=\\dfrac{\\sqrt2}{1+2t^{2}}$.",
+          "Expand each derivative to order $t^{2}$: $A'(t)=\\sqrt2\\bigl(1+\\tfrac{t^{2}}{4}+\\cdots\\bigr)$ and $B'(t)=\\sqrt2\\bigl(1-2t^{2}+\\cdots\\bigr)$. The constant $\\sqrt2$ matches in both, encoding the cancelling leading half-power; the difference $A'(t)-B'(t)=\\sqrt2\\bigl(\\tfrac14+2\\bigr)t^{2}+\\cdots=\\tfrac{9\\sqrt2}{4}t^{2}+\\cdots$ starts at order $t^{2}$.",
+          "Integrate from $0$ to $t$ (both $A,B$ vanish at $0$): $g(t)=A(t)-B(t)=\\displaystyle\\int_{0}^{t}\\bigl(A'-B'\\bigr)\\,d\\tau=\\int_{0}^{t}\\Bigl(\\tfrac{9\\sqrt2}{4}\\tau^{2}+\\cdots\\Bigr)d\\tau=\\tfrac{9\\sqrt2}{4}\\cdot\\tfrac{t^{3}}{3}+\\cdots=\\tfrac{3\\sqrt2}{4}\\,t^{3}+\\cdots$.",
+          "Dividing by $t^{3}=x^{3/2}$ and letting $t\\to0^{+}$ gives $L=\\boxed{\\dfrac{3\\sqrt2}{4}}.$ The two derivatives agreeing at order $t^{0}$ but parting at order $t^{2}$ is precisely why the leading half-power cancels while the $x^{3/2}$ order survives."
+        ]
+      }
+    ],
+    "remark": "The whole design hinges on the half-power expansion of $\\arccos$ at its endpoint $1$: $\\arccos(1-x)=\\sqrt{2x}\\bigl(1+\\tfrac{x}{12}+\\tfrac{3x^{2}}{160}+\\cdots\\bigr)$. The leading $\\sqrt{2x}$ is famous and is exactly the part the arctan is built to cancel, which forcibly promotes the normally-ignored second term $\\tfrac{\\sqrt2}{12}x^{3/2}$ to leading status. The clean identity $\\arccos(1-x)=2\\arcsin\\sqrt{x/2}$ (Method I) demystifies where that coefficient comes from; the substitution $x=t^{2}$ (Methods II and III) turns the half-powers into ordinary Maclaurin business and shows the cancellation is just $g'(0)=0$. The trap is instructive precisely because it is a careful student's mistake: they DO know $\\arccos(1-x)\\sim\\sqrt{2x}$ and they DO expand $\\arctan$ to cubic order -- yet they stop the $\\arccos$ series one term too early. When a leading term cancels, the next term is no longer a correction; it is half the answer. The contribution to the surviving $x^{3/2}$ order is $\\tfrac{\\sqrt2}{12}$ from $\\arccos$ plus $\\tfrac{2\\sqrt2}{3}$ from $\\arctan$, totalling $\\tfrac{3\\sqrt2}{4}$, and omitting either summand lands on a different wrong constant ($\\tfrac{2\\sqrt2}{3}$ or $\\tfrac{\\sqrt2}{12}$)."
+  },
+  {
+    "theme": "invtrig",
+    "themeLabel": "Inverse Circular Functions",
+    "title": "Twin Telescopes at Infinity",
+    "difficulty": 4,
+    "tags": [
+      "arctan",
+      "subtraction-formula",
+      "x->infinity",
+      "rational-argument",
+      "asymptotic"
+    ],
+    "statement": "\\lim_{x\\to+\\infty} x^2\\left(\\arctan\\frac{x+2}{x+1}-\\arctan\\frac{x+1}{x}\\right)",
+    "answer": "-\\dfrac{1}{2}",
+    "trap": "Both inner fractions $\\to 1$, so a strong student writes each arctangent $\\to \\pi/4$ and concludes the bracket $\\to 0$ — then either declares the limit $0$, or estimates each fraction as $1+O(1/x)$, calls the difference $O(1/x)$, and gets $x^2\\cdot O(1/x)=\\infty$. The catch: both fractions are $1+\\tfrac1x+O(1/x^2)$ with the SAME leading $1/x$ coefficient, so the $O(1/x)$ corrections cancel exactly and the bracket is actually $\\Theta(1/x^2)$, not $\\Theta(1/x)$. Only the arctan subtraction formula exposes the true second-order size.",
+    "solutions": [
+      {
+        "name": "Method I - Arctan subtraction formula",
+        "steps": [
+          "Use $\\arctan a-\\arctan b=\\arctan\\dfrac{a-b}{1+ab}$ with $a=\\dfrac{x+2}{x+1},\\,b=\\dfrac{x+1}{x}$. No $\\pm\\pi$ correction term is needed because $a,b>0$ for large $x$, so $ab>0>-1$.",
+          "Numerator: $a-b=\\dfrac{(x+2)x-(x+1)^2}{x(x+1)}=\\dfrac{-1}{x(x+1)}$.",
+          "Denominator: $1+ab=1+\\dfrac{x+2}{x}=\\dfrac{2x+2}{x}=\\dfrac{2(x+1)}{x}.$",
+          "Hence $\\dfrac{a-b}{1+ab}=\\dfrac{-1/(x(x+1))}{2(x+1)/x}=\\dfrac{-1}{2(x+1)^2}.$",
+          "So the bracket equals $\\arctan\\!\\left(\\dfrac{-1}{2(x+1)^2}\\right)\\sim \\dfrac{-1}{2(x+1)^2}$ as $x\\to\\infty$, since $\\arctan u\\sim u$ for $u\\to0$.",
+          "Therefore $$x^2\\cdot\\frac{-1}{2(x+1)^2}=-\\frac{1}{2}\\cdot\\frac{x^2}{(x+1)^2}\\to-\\frac12.$$"
+        ]
+      },
+      {
+        "name": "Method II - Mean Value Theorem",
+        "steps": [
+          "Write the bracket as $f(a)-f(b)$ with $f=\\arctan$, $a=\\tfrac{x+2}{x+1}$, $b=\\tfrac{x+1}{x}$. By the MVT there is $\\xi$ between $a,b$ with $$f(a)-f(b)=\\frac{a-b}{1+\\xi^2}.$$",
+          "As $x\\to\\infty$, both $a,b\\to1$, so $\\xi\\to1$ and $1+\\xi^2\\to2$.",
+          "From Method I, $a-b=\\dfrac{-1}{x(x+1)}\\sim-\\dfrac1{x^2}$.",
+          "Thus the bracket $\\sim\\dfrac{-1/x^2}{2}=-\\dfrac1{2x^2}$, and multiplying by $x^2$ gives $-\\dfrac12$."
+        ]
+      },
+      {
+        "name": "Method III - Substitution t=1/x",
+        "steps": [
+          "Let $t=1/x\\to0^+$. Then $a=\\dfrac{1+2t}{1+t}$ and $b=1+t$.",
+          "Expand: $a=(1+2t)(1-t+t^2-\\cdots)=1+t-t^2+\\cdots$, while $b=1+t$.",
+          "So $a-b=-t^2+O(t^3)$, while $1+ab=2+O(t)$.",
+          "Hence the bracket $=\\arctan\\dfrac{a-b}{1+ab}\\sim\\dfrac{-t^2}{2}$, and $x^2=1/t^2$, giving $\\dfrac{1}{t^2}\\cdot\\dfrac{-t^2}{2}=-\\dfrac12$."
+        ]
+      }
+    ],
+    "remark": "The naive $1+O(1/x)$ bookkeeping loses the cancellation of the matching $1/x$ terms; the arctan difference formula is the only tool that cleanly exposes the genuine $1/x^2$ scale."
+  },
+  {
+    "theme": "invtrig",
+    "themeLabel": "Inverse Circular Functions",
+    "title": "The Doubling That Turns Around",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "arcsin",
+      "branch",
+      "endpoint",
+      "square-root",
+      "taylor",
+      "x->1"
+    ],
+    "statement": "The map $x\\mapsto 2x\\sqrt{1-x^{2}}$ is the sine double-angle in disguise, and the textbook reflex $\\arcsin\\!\\big(2x\\sqrt{1-x^{2}}\\big)=2\\arcsin x$ is true only where the doubled angle stays inside the principal window. As $x\\to1^{-}$ that window has long since been crossed. Evaluate \\[ L=\\lim_{x\\to 1^{-}}\\frac{\\arcsin\\!\\big(2x\\sqrt{1-x^{2}}\\big)-2\\sqrt{2(1-x)}}{(1-x)^{3/2}}. \\]",
+    "answer": "\\[\\boxed{\\dfrac{\\sqrt{2}}{6}}\\]",
+    "trap": "The fatal move is to write $\\arcsin\\!\\big(2x\\sqrt{1-x^{2}}\\big)=2\\arcsin x$ and substitute. That identity holds only for $|x|\\le \\tfrac{1}{\\sqrt2}$, where the doubled angle $2\\arcsin x$ still lies in $[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}]$; once $x>\\tfrac{1}{\\sqrt2}$ the value $2x\\sqrt{1-x^{2}}$ is the sine of an angle past $\\tfrac{\\pi}{2}$, so $\\arcsin$ returns the supplementary representative and the correct branch near $x=1$ is $\\arcsin\\!\\big(2x\\sqrt{1-x^{2}}\\big)=\\pi-2\\arcsin x=2\\arccos x$. A student who keeps $2\\arcsin x$ sees a numerator $\\to 2\\cdot\\tfrac{\\pi}{2}-0=\\pi\\neq 0$ over a denominator $\\to 0$, and concludes $L=+\\infty$ (limit does not exist). In truth the genuine branch makes the numerator $=2\\arccos x-2\\sqrt{2(1-x)}$, which vanishes to order $(1-x)^{3/2}$, so $L$ is finite. Worse, the branch is only half the battle: even after writing $2\\arccos x$, the leading endpoint term $2\\sqrt{2(1-x)}$ cancels exactly, and the answer is decided by the NEXT coefficient in $\\arccos(1-u)=\\sqrt{2u}\\,(1+\\tfrac{u}{12}+\\cdots)$. Stopping at the square-root leading order gives $0$; only the $\\tfrac{u}{12}$ correction delivers $\\tfrac{\\sqrt2}{6}$.",
+    "solutions": [
+      {
+        "name": "Method I - Correct the branch, then the endpoint series of arccos",
+        "steps": [
+          "Identify the branch first. Writing $x=\\cos\\theta$ with $\\theta=\\arccos x\\in(0,\\tfrac{\\pi}{2})$ for $x$ near $1^{-}$, we have $2x\\sqrt{1-x^{2}}=2\\cos\\theta\\sin\\theta=\\sin 2\\theta$. Since $\\theta\\to0^{+}$, the doubled angle $2\\theta\\in(0,\\tfrac{\\pi}{2})$ lies in the principal range of $\\arcsin$, so $\\arcsin\\!\\big(2x\\sqrt{1-x^{2}}\\big)=2\\theta=2\\arccos x$ (NOT $2\\arcsin x$).",
+          "Set $u=1-x\\to 0^{+}$. The endpoint expansion is $\\arccos(1-u)=\\sqrt{2u}\\left(1+\\dfrac{u}{12}+\\dfrac{3u^{2}}{160}+\\cdots\\right)$, obtained from $\\arccos(1-u)=\\displaystyle\\int_{1-u}^{1}\\frac{dt}{\\sqrt{1-t^{2}}}$ and $\\sqrt{1-t^{2}}=\\sqrt{(1-t)(1+t)}$ near $t=1$.",
+          "Hence $\\arcsin\\!\\big(2x\\sqrt{1-x^{2}}\\big)=2\\arccos x=2\\sqrt{2u}\\left(1+\\dfrac{u}{12}+\\cdots\\right)=2\\sqrt{2u}+\\dfrac{\\sqrt2}{6}\\,u^{3/2}+\\cdots$, so the leading $2\\sqrt{2u}=2\\sqrt{2(1-x)}$ cancels the subtracted term exactly.",
+          "Therefore the numerator $=\\dfrac{\\sqrt2}{6}u^{3/2}+O(u^{5/2})$, and dividing by $u^{3/2}=(1-x)^{3/2}$ gives $L=\\boxed{\\dfrac{\\sqrt{2}}{6}}$."
+        ]
+      },
+      {
+        "name": "Method II - Substitute t = arccos x and use the half-angle",
+        "steps": [
+          "Put $t=\\arccos x$, so $t\\to 0^{+}$ and $x=\\cos t$. As in Method I, $\\arcsin\\!\\big(2x\\sqrt{1-x^{2}}\\big)=2t$. Also $1-x=1-\\cos t=2\\sin^{2}\\tfrac{t}{2}$, so $\\sqrt{2(1-x)}=2\\,\\bigl|\\sin\\tfrac{t}{2}\\bigr|=2\\sin\\tfrac{t}{2}$ and $(1-x)^{3/2}=\\bigl(2\\sin^{2}\\tfrac{t}{2}\\bigr)^{3/2}=2\\sqrt2\\,\\sin^{3}\\tfrac{t}{2}$.",
+          "The whole expression becomes $\\dfrac{2t-4\\sin\\frac{t}{2}}{2\\sqrt2\\,\\sin^{3}\\frac{t}{2}}$, a clean $\\tfrac{0}{0}$ in the single variable $t$.",
+          "Expand $\\sin\\tfrac{t}{2}=\\tfrac{t}{2}-\\dfrac{(t/2)^{3}}{6}+\\cdots$, so $2t-4\\sin\\tfrac{t}{2}=2t-4\\Bigl(\\tfrac{t}{2}-\\dfrac{t^{3}}{48}+\\cdots\\Bigr)=\\dfrac{t^{3}}{12}+O(t^{5})$, while $2\\sqrt2\\,\\sin^{3}\\tfrac{t}{2}=2\\sqrt2\\cdot\\dfrac{t^{3}}{8}+\\cdots=\\dfrac{\\sqrt2}{4}\\,t^{3}+\\cdots=\\dfrac{t^{3}}{2\\sqrt2}+\\cdots$.",
+          "Thus the ratio $\\to\\dfrac{t^{3}/12}{t^{3}/(2\\sqrt2)}=\\dfrac{2\\sqrt2}{12}=\\dfrac{\\sqrt2}{6}$, i.e. $L=\\boxed{\\dfrac{\\sqrt{2}}{6}}$."
+        ]
+      },
+      {
+        "name": "Method III - Differentiate the branch-corrected form",
+        "steps": [
+          "With the branch fixed as $g(x)=\\arcsin\\!\\big(2x\\sqrt{1-x^{2}}\\big)=2\\arccos x$ for $x\\in(\\tfrac{1}{\\sqrt2},1)$, the limit is $\\displaystyle\\lim_{x\\to1^{-}}\\frac{2\\arccos x-2\\sqrt{2(1-x)}}{(1-x)^{3/2}}$. Substitute $u=1-x$ to study $\\Phi(u)=\\dfrac{2\\arccos(1-u)-2\\sqrt{2u}}{u^{3/2}}$ as $u\\to0^{+}$.",
+          "Let $N(u)=2\\arccos(1-u)-2\\sqrt{2u}$ and $D(u)=u^{3/2}$, both $\\to0$. Then $N'(u)=\\dfrac{2}{\\sqrt{1-(1-u)^{2}}}-\\dfrac{\\sqrt2}{\\sqrt u}=\\dfrac{2}{\\sqrt{2u-u^{2}}}-\\dfrac{\\sqrt2}{\\sqrt u}=\\dfrac{\\sqrt2}{\\sqrt u}\\Bigl(\\dfrac{1}{\\sqrt{1-u/2}}-1\\Bigr)$, and $D'(u)=\\tfrac32 u^{1/2}$.",
+          "Using $\\dfrac{1}{\\sqrt{1-u/2}}-1=\\dfrac{u}{4}+O(u^{2})$, we get $N'(u)=\\dfrac{\\sqrt2}{\\sqrt u}\\Bigl(\\dfrac{u}{4}+\\cdots\\Bigr)=\\dfrac{\\sqrt2}{4}\\sqrt u+\\cdots$, so by L'Hopital $\\Phi(u)\\to\\dfrac{N'(u)}{D'(u)}=\\dfrac{\\tfrac{\\sqrt2}{4}\\sqrt u}{\\tfrac32\\sqrt u}=\\dfrac{\\sqrt2}{4}\\cdot\\dfrac{2}{3}=\\dfrac{\\sqrt2}{6}$.",
+          "Hence $L=\\boxed{\\dfrac{\\sqrt{2}}{6}}$, and one sees concretely how the leading $\\sqrt{u}$ singularities of the two terms annihilate, leaving the finite ratio set by the $u/4$ correction inside $(1-u/2)^{-1/2}$."
+        ]
+      }
+    ],
+    "remark": "Two endpoint hazards are bolted together. First, the inverse-trig doubling $\\arcsin(2x\\sqrt{1-x^{2}})=2\\arcsin x$ is a branch statement, valid only while $2\\arcsin x$ stays in $[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}]$; for $x\\in(\\tfrac{1}{\\sqrt2},1)$ the correct identity flips to $2\\arccos x$, and ignoring this turns a finite limit into a phantom $+\\infty$. Second, even after the flip, the natural leading term $2\\sqrt{2(1-x)}$ cancels exactly, so the value is governed not by the square-root order but by the next coefficient $\\tfrac{1}{12}$ in $\\arccos(1-u)=\\sqrt{2u}(1+\\tfrac{u}{12}+\\cdots)$. The substitution $x=\\cos\\theta$ exposes both at once: $2x\\sqrt{1-x^{2}}=\\sin 2\\theta$ and, because $\\theta\\to0^{+}$ keeps $2\\theta$ inside the principal range, $\\arcsin$ returns $2\\theta=2\\arccos x$ honestly, after which the answer $\\tfrac{\\sqrt2}{6}$ is just small-angle bookkeeping. The lesson for the top rank: a half-angle/double-angle inverse-trig identity carries a hidden domain, and at an endpoint where the leading asymptotics cancel, the surviving answer hides one order deeper than the eye expects."
+  },
+  {
+    "theme": "invtrig",
+    "themeLabel": "Inverse Circular Functions",
+    "title": "Second Difference of the Arc",
+    "difficulty": 5,
+    "tags": [
+      "arctan",
+      "second-difference",
+      "x->infinity",
+      "subtraction-formula",
+      "convexity"
+    ],
+    "statement": "\\lim_{x\\to+\\infty} x^3\\Bigl(\\arctan(x+1)+\\arctan(x-1)-2\\arctan x\\Bigr)",
+    "answer": "-2",
+    "trap": "All three arctangents $\\to\\pi/2$, so the bracket reads $\\tfrac{\\pi}{2}+\\tfrac{\\pi}{2}-2\\cdot\\tfrac{\\pi}{2}=0$. A strong student then linearizes $\\arctan(x\\pm1)\\approx\\arctan x\\pm\\frac{1}{1+x^2}$; the $\\pm\\frac{1}{1+x^2}$ terms cancel, the bracket vanishes to first order, and they declare the limit $0$. But $0$ is only the first-order verdict: the surviving piece is the SECOND-order (curvature) term $f''(x)\\sim-2/x^3$, which the $x^3$ factor rescales to a finite $-2$. Stopping at the linear order is exactly the bait.",
+    "solutions": [
+      {
+        "name": "Method I - Pairwise subtraction formula",
+        "steps": [
+          "Regroup the symmetric difference around the middle term: $$\\bigl(\\arctan(x+1)-\\arctan x\\bigr)-\\bigl(\\arctan x-\\arctan(x-1)\\bigr).$$",
+          "Apply $\\arctan a-\\arctan b=\\arctan\\dfrac{a-b}{1+ab}$ (valid here since both products $ab>0$ for large $x$): the first parenthesis is $\\arctan\\dfrac{1}{1+x(x+1)}=\\arctan\\dfrac{1}{x^2+x+1}$, the second is $\\arctan\\dfrac{1}{1+x(x-1)}=\\arctan\\dfrac{1}{x^2-x+1}$.",
+          "Hence the bracket equals $\\arctan\\dfrac{1}{x^2+x+1}-\\arctan\\dfrac{1}{x^2-x+1}$, both arguments $\\to0^+$.",
+          "Since $\\arctan u=u+O(u^3)$ and here $u=O(1/x^2)$, replace each $\\arctan$ by its argument with error $O(1/x^6)$: $$\\frac{1}{x^2+x+1}-\\frac{1}{x^2-x+1}=\\frac{(x^2-x+1)-(x^2+x+1)}{(x^2+x+1)(x^2-x+1)}=\\frac{-2x}{x^4+x^2+1}.$$",
+          "Therefore the bracket $=\\dfrac{-2x}{x^4+x^2+1}+O(x^{-6})\\sim\\dfrac{-2}{x^3}$, and multiplying by $x^3$ gives $$\\lim_{x\\to+\\infty}x^3\\cdot\\frac{-2x}{x^4+x^2+1}=-2.$$"
+        ]
+      },
+      {
+        "name": "Method II - Taylor of the second difference",
+        "steps": [
+          "For a smooth $f$, the centered second difference expands as $$f(x+1)+f(x-1)-2f(x)=f''(x)+\\frac{f^{(4)}(x)}{12}+\\cdots$$ (Taylor expand $f(x\\pm1)$ to order $4$; the odd derivatives cancel).",
+          "Take $f=\\arctan$. Then $f'(x)=\\dfrac{1}{1+x^2}$ and $f''(x)=\\dfrac{-2x}{(1+x^2)^2}\\sim\\dfrac{-2}{x^3}$ as $x\\to+\\infty$.",
+          "The next term satisfies $f^{(4)}(x)=O(x^{-5})$, so after multiplying the whole second difference by $x^3$ it contributes $O(x^{-2})\\to0$ and is negligible.",
+          "Therefore $$\\lim_{x\\to+\\infty}x^3\\bigl(\\arctan(x+1)+\\arctan(x-1)-2\\arctan x\\bigr)=\\lim_{x\\to+\\infty}x^3\\cdot\\frac{-2x}{(1+x^2)^2}=-2.$$"
+        ]
+      }
+    ],
+    "remark": "The bracket is the discrete Laplacian (centered second difference) of $\\arctan$ at infinity. Symmetry forces the first-order terms to cancel, leaving the curvature $f''(x)\\sim-2x^{-3}$; that $x^{-3}$ decay is precisely why the exponent $3$ is the unique power giving a finite nonzero limit."
+  },
+  {
+    "theme": "invtrig",
+    "themeLabel": "Inverse Circular Functions",
+    "title": "Across the Branch Cut",
+    "difficulty": 5,
+    "tags": [
+      "arctan",
+      "tan",
+      "branch-cut",
+      "x->pi/2",
+      "one-sided",
+      "nonexistence"
+    ],
+    "statement": "\\lim_{x\\to (\\pi/2)^+}\\frac{\\arctan(\\tan x)+\\dfrac{\\pi}{2}}{x-\\dfrac{\\pi}{2}}",
+    "answer": "1",
+    "trap": "The reflex is to 'cancel' $\\arctan(\\tan x)=x$, turning the expression into $\\frac{x+\\pi/2}{x-\\pi/2}$, whose right-hand limit blows up to $+\\infty$. But $\\arctan(\\tan x)=x$ holds ONLY on $(-\\pi/2,\\pi/2)$. The instant $x$ crosses $\\pi/2$ the principal value drops a full period: $\\arctan(\\tan x)=x-\\pi$. So the numerator is actually $(x-\\pi)+\\pi/2=x-\\pi/2$, it cancels the denominator exactly, and the true right-hand limit is $1$. The naive answer isn't just numerically off — it's off by an entire branch.",
+    "solutions": [
+      {
+        "name": "Method I - Correct branch reduction",
+        "steps": [
+          "For $x\\in\\left(\\dfrac{\\pi}{2},\\,\\dfrac{3\\pi}{2}\\right)$ we have $\\tan x=\\tan(x-\\pi)$ with $x-\\pi\\in\\left(-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right)$, the principal range of $\\arctan$. Hence $$\\arctan(\\tan x)=x-\\pi.$$",
+          "The numerator becomes $(x-\\pi)+\\dfrac{\\pi}{2}=x-\\dfrac{\\pi}{2}$.",
+          "So the quotient equals $\\dfrac{x-\\pi/2}{x-\\pi/2}=1$ identically for all such $x$, and therefore $$\\lim_{x\\to (\\pi/2)^+}=1.$$",
+          "(The two-sided limit fails: for $x<\\dfrac{\\pi}{2}$, $\\arctan(\\tan x)=x$, so the numerator $\\to\\pi$ while the denominator $\\to 0^-$, giving a left-hand limit of $-\\infty$. The one-sided posing is essential.)"
+        ]
+      },
+      {
+        "name": "Method II - Substitution and jump bookkeeping",
+        "steps": [
+          "Put $h=x-\\dfrac{\\pi}{2}\\to 0^+$. Then $\\tan x=\\tan\\!\\left(\\dfrac{\\pi}{2}+h\\right)=-\\cot h$.",
+          "For small $h>0$, $\\cot h=\\tan\\!\\left(\\dfrac{\\pi}{2}-h\\right)$ with $\\dfrac{\\pi}{2}-h\\in\\left(0,\\dfrac{\\pi}{2}\\right)$, so $\\arctan(\\cot h)=\\dfrac{\\pi}{2}-h$, and by oddness $\\arctan(-\\cot h)=-\\dfrac{\\pi}{2}+h$.",
+          "Numerator $=\\left(-\\dfrac{\\pi}{2}+h\\right)+\\dfrac{\\pi}{2}=h$; denominator $=h$. The quotient is $\\dfrac{h}{h}=1$, so the limit is $1$."
+        ]
+      }
+    ],
+    "remark": "$\\arctan(\\tan x)$ is the sawtooth $x-\\pi\\left\\lfloor\\dfrac{x+\\pi/2}{\\pi}\\right\\rfloor$; every crossing of an odd multiple of $\\dfrac{\\pi}{2}$ injects a $-\\pi$ jump that the identity $\\arctan(\\tan x)=x$ silently forgets."
+  },
+  {
+    "theme": "invtrig",
+    "themeLabel": "Inverse Circular Functions",
+    "title": "Crashing into Minus One",
+    "difficulty": 4,
+    "tags": [
+      "arcsin",
+      "endpoint",
+      "x->-1+",
+      "square-root-singularity",
+      "one-sided"
+    ],
+    "statement": "\\lim_{x\\to -1^+}\\frac{\\arcsin x+\\dfrac{\\pi}{2}}{\\sqrt{x+1}}",
+    "answer": "\\sqrt{2}",
+    "trap": "The form is $0/0$, so a student reaches for the Maclaurin series $\\arcsin x\\approx x+\\frac{x^3}{6}$ — but that series is anchored at $x=0$, not at the endpoint $x=-1$, so it gives the meaningless $\\frac{-1+\\frac{\\pi}{2}-\\frac16}{0}$ and a phantom divergence. Near $x=-1$ the graph of $\\arcsin$ has a vertical-tangent half-power cusp, not a smooth Taylor point: $\\arcsin x\\approx -\\frac{\\pi}{2}+\\sqrt{2(x+1)}$. The square-root in the numerator exactly cancels the one in the denominator, giving the finite value $\\sqrt2$. (L'Hopital also works and lands on $\\sqrt2$, but only if you keep the radical in $\\frac{1}{\\sqrt{1-x^2}}$ rather than series-expanding it.)",
+    "solutions": [
+      {
+        "name": "Method I - Endpoint square-root expansion",
+        "steps": [
+          "Set $x=-1+t$ with $t\\to0^+$. Near the endpoint, $\\sin\\!\\left(-\\tfrac{\\pi}{2}+u\\right)=-\\cos u=-1+\\tfrac{u^2}{2}+\\cdots$, so inverting gives $\\arcsin(-1+t)=-\\dfrac{\\pi}{2}+\\sqrt{2t}+O(t^{3/2}).$",
+          "Hence the numerator is $\\arcsin x+\\dfrac{\\pi}{2}=\\sqrt{2t}+O(t^{3/2})=\\sqrt{2}\\,\\sqrt{t}\\,\\bigl(1+o(1)\\bigr).$",
+          "The denominator is $\\sqrt{x+1}=\\sqrt{t}.$",
+          "Therefore the ratio $\\to\\dfrac{\\sqrt2\\,\\sqrt t}{\\sqrt t}=\\sqrt2.$"
+        ]
+      },
+      {
+        "name": "Method II - Substitution to a sine limit",
+        "steps": [
+          "Let $\\theta=\\arcsin x+\\dfrac{\\pi}{2}$. As $x\\to-1^+$, $\\theta\\to0^+$, and $x=\\sin\\!\\left(\\theta-\\tfrac{\\pi}{2}\\right)=-\\cos\\theta.$",
+          "Then $x+1=1-\\cos\\theta=2\\sin^2\\!\\left(\\tfrac{\\theta}{2}\\right)$, so $\\sqrt{x+1}=\\sqrt2\\,\\sin\\!\\left(\\tfrac{\\theta}{2}\\right)$ (positive since $\\theta\\to0^+$).",
+          "The expression becomes $\\dfrac{\\theta}{\\sqrt2\\,\\sin(\\theta/2)}=\\dfrac{1}{\\sqrt2}\\cdot\\dfrac{\\theta}{\\sin(\\theta/2)}.$",
+          "Since $\\dfrac{\\theta}{\\sin(\\theta/2)}=2\\cdot\\dfrac{\\theta/2}{\\sin(\\theta/2)}\\to2$, the limit is $\\dfrac{1}{\\sqrt2}\\cdot2=\\sqrt2.$"
+        ]
+      },
+      {
+        "name": "Method III - L'Hopital with the radical kept intact",
+        "steps": [
+          "Both numerator and denominator $\\to0$ as $x\\to-1^+$, so L'Hopital applies. Differentiate: top $\\dfrac{d}{dx}\\!\\left(\\arcsin x+\\tfrac{\\pi}{2}\\right)=\\dfrac{1}{\\sqrt{1-x^2}}$, bottom $\\dfrac{d}{dx}\\sqrt{x+1}=\\dfrac{1}{2\\sqrt{x+1}}.$",
+          "The ratio of derivatives is $\\dfrac{2\\sqrt{x+1}}{\\sqrt{1-x^2}}=\\dfrac{2\\sqrt{x+1}}{\\sqrt{(1-x)(1+x)}}=\\dfrac{2}{\\sqrt{1-x}}.$",
+          "As $x\\to-1^+$ this $\\to\\dfrac{2}{\\sqrt{2}}=\\sqrt2.$ The key is to simplify $\\sqrt{1-x^2}$ as a radical; series-expanding it (the endpoint trap) destroys the cancellation."
+        ]
+      }
+    ],
+    "remark": "At a domain endpoint $\\pm1$, $\\arcsin x\\approx \\pm\\dfrac{\\pi}{2}\\mp\\sqrt{2\\,|\\,1\\mp x|}$ — a half-power (vertical-tangent) cusp. Any whole-power Taylor series is the wrong local model there; the right tool is the substitution $x=\\mp1\\pm t$ or $x=-\\cos\\theta$."
+  },
+  {
+    "theme": "invtrig",
+    "themeLabel": "Inverse Circular Functions",
+    "title": "The Other End of Arctan",
+    "difficulty": 4,
+    "tags": [
+      "arctan",
+      "x->-infinity",
+      "reflection",
+      "negative-infinity",
+      "asymptotic"
+    ],
+    "statement": "\\lim_{x\\to -\\infty} x\\left(\\frac{\\pi}{2}+\\arctan x\\right)",
+    "answer": "-1",
+    "trap": "As $x\\to-\\infty$, $\\arctan x\\to-\\pi/2$, so the bracket $\\to 0$ and the form is $-\\infty\\cdot 0$. A student reflexively uses the $x>0$ identity $\\arctan x=\\pi/2-\\arctan(1/x)$ (valid ONLY for $x>0$), giving $\\pi/2+\\arctan x=\\pi-\\arctan(1/x)\\to\\pi$, hence $x\\cdot\\pi\\to-\\infty$. The correct identity for $x<0$ is $\\arctan x+\\arctan(1/x)=-\\pi/2$ — the sign flips, the bracket behaves like $-1/x$ rather than $\\pi$, and the product converges to $-1$.",
+    "solutions": [
+      {
+        "name": "Method I - Negative-branch reflection",
+        "steps": [
+          "For $x<0$ the reflection identity reads $\\arctan x+\\arctan\\dfrac1x=-\\dfrac{\\pi}{2}$, so $$\\dfrac{\\pi}{2}+\\arctan x=-\\arctan\\dfrac1x.$$",
+          "Therefore $x\\left(\\dfrac\\pi2+\\arctan x\\right)=-x\\arctan\\dfrac1x.$",
+          "As $x\\to-\\infty$, put $t=1/x\\to0^-$. Then $-x\\arctan\\dfrac1x=-\\dfrac{\\arctan t}{t}$, and by the standard limit $\\displaystyle\\lim_{t\\to0}\\dfrac{\\arctan t}{t}=1$ this tends to $-1.$"
+        ]
+      },
+      {
+        "name": "Method II - Substitution u=1/x",
+        "steps": [
+          "Let $u=1/x\\to0^-$. Then $x=1/u$ and the expression becomes $\\dfrac1u\\left(\\dfrac\\pi2+\\arctan\\dfrac1u\\right).$",
+          "For $u<0$ we have $\\arctan(1/u)=-\\dfrac\\pi2-\\arctan u$, hence $\\dfrac\\pi2+\\arctan(1/u)=-\\arctan u.$",
+          "So the expression equals $\\dfrac{-\\arctan u}{u}\\to-1$ as $u\\to0^-.$"
+        ]
+      },
+      {
+        "name": "Method III - L'Hopital after rewriting",
+        "steps": [
+          "Rewrite as $\\dfrac{\\pi/2+\\arctan x}{1/x}$, a genuine $0/0$ form as $x\\to-\\infty$ (numerator $\\to0$, denominator $\\to0$).",
+          "Differentiate: numerator gives $\\dfrac{1}{1+x^2}$, denominator gives $-\\dfrac{1}{x^2}$.",
+          "The ratio is $\\dfrac{1/(1+x^2)}{-1/x^2}=\\dfrac{-x^2}{1+x^2}\\to-1$, so by L'Hopital the limit is $-1.$"
+        ]
+      }
+    ],
+    "remark": "The reflection identity $\\arctan x+\\arctan(1/x)=\\tfrac\\pi2\\operatorname{sgn}(x)$ carries a sign that students copy from the $x>0$ case — at $-\\infty$ that single sign is the entire difficulty."
+  },
+  {
+    "theme": "invtrig",
+    "themeLabel": "Inverse Circular Functions",
+    "title": "Where the Two Series Part Ways",
+    "difficulty": 4,
+    "task": "Evaluate",
+    "tags": [
+      "arcsin",
+      "arctan",
+      "ratio",
+      "one-power-indeterminate",
+      "taylor",
+      "x->0"
+    ],
+    "statement": "Both $\\arcsin x$ and $\\arctan x$ open like $x$, so their ratio creeps to $1$ while the exponent blows up: a $1^{\\infty}$ form built from two inverse-circular functions at once. Evaluate \\[ L=\\lim_{x\\to 0}\\left(\\frac{\\arcsin x}{\\arctan x}\\right)^{\\!1/x^{2}}. \\] The value is not set by either function alone -- it is decided by how their cubic corrections, one bending up and one bending down, combine.",
+    "answer": "\\[\\boxed{\\sqrt{e}}\\]",
+    "trap": "The seductive first move is to note $\\arcsin x\\sim x$ and $\\arctan x\\sim x$, declare the base $\\to 1$, and conclude $L=1^{\\infty}=1$ -- forgetting that $1^{\\infty}$ is indeterminate precisely because the base approaches $1$ at a rate that races the exploding exponent. A student who realises this but cuts the work in half is led to a second, subtler error: keeping only ONE function's cubic term. Using $\\arcsin x=x+\\tfrac{x^{3}}{6}+\\cdots$ but treating $\\arctan x$ as exactly $x$ gives base $=1+\\tfrac{x^{2}}{6}+\\cdots$ and the wrong answer $L=e^{1/6}\\approx1.181$; symmetrically, expanding only $\\arctan x=x-\\tfrac{x^{3}}{3}+\\cdots$ over a bare $x$ gives base $=\\big(1-\\tfrac{x^{2}}{3}\\big)^{-1}+\\cdots=1+\\tfrac{x^{2}}{3}+\\cdots$ and $L=e^{1/3}\\approx1.396$. The conceptual point is that in this ratio the SECOND-order behaviour of the base receives a contribution from BOTH functions: $\\arcsin$ contributes $+\\tfrac16$ (it curves above $x$) and $\\arctan$ contributes $+\\tfrac13$ (it curves below $x$, and being in the denominator that deficit flips sign). The two corrections do not compete -- they ADD, $\\tfrac16+\\tfrac13=\\tfrac12$, so $L=e^{1/2}=\\sqrt{e}$, a value strictly larger than either single-term truncation. Dropping either function's cubic term lands on a different, smaller wrong constant.",
+    "solutions": [
+      {
+        "name": "Method I - Logarithm and the Taylor series of the base",
+        "steps": [
+          "Take logs: $\\ln L=\\displaystyle\\lim_{x\\to0}\\frac{1}{x^{2}}\\ln\\!\\frac{\\arcsin x}{\\arctan x}$. Expand each function to cubic order, $\\arcsin x=x\\big(1+\\tfrac{x^{2}}{6}+\\cdots\\big)$ and $\\arctan x=x\\big(1-\\tfrac{x^{2}}{3}+\\cdots\\big)$, so the bare $x$ cancels in the ratio and $\\dfrac{\\arcsin x}{\\arctan x}=\\dfrac{1+\\tfrac{x^{2}}{6}+\\cdots}{1-\\tfrac{x^{2}}{3}+\\cdots}$.",
+          "Use $\\dfrac{1+a}{1-b}=1+(a+b)+\\cdots$ for small $a,b$: here $a=\\tfrac{x^{2}}{6}$ and $b=\\tfrac{x^{2}}{3}$, giving base $=1+\\big(\\tfrac16+\\tfrac13\\big)x^{2}+\\cdots=1+\\tfrac{x^{2}}{2}+\\cdots$. This is the crux: the two cubic coefficients add rather than appear in isolation.",
+          "Then $\\ln\\!\\big(1+\\tfrac{x^{2}}{2}+\\cdots\\big)=\\tfrac{x^{2}}{2}+O(x^{4})$, so $\\dfrac{1}{x^{2}}\\ln(\\text{base})\\to\\tfrac12$. Hence $\\ln L=\\tfrac12$.",
+          "Therefore $L=e^{1/2}=\\boxed{\\sqrt{e}}$. The base is even in $x$ (a ratio of two odd functions) and the exponent $1/x^{2}$ is even, so the left- and right-hand limits coincide; no one-sided subtlety arises."
+        ]
+      },
+      {
+        "name": "Method II - L'Hopital on the logarithm",
+        "steps": [
+          "Write $\\ln L=\\displaystyle\\lim_{x\\to0}\\frac{\\ln(\\arcsin x)-\\ln(\\arctan x)}{x^{2}}$. As $x\\to0$ both $\\arcsin x,\\arctan x\\to0^{\\!}$ through values near $x$, so $\\ln(\\arcsin x)-\\ln(\\arctan x)=\\ln\\dfrac{\\arcsin x}{\\arctan x}\\to\\ln 1=0$ over $x^{2}\\to0$: a genuine $\\tfrac00$.",
+          "Differentiate. Since $\\dfrac{d}{dx}\\ln(\\arcsin x)=\\dfrac{1}{\\arcsin x\\,\\sqrt{1-x^{2}}}$ and $\\dfrac{d}{dx}\\ln(\\arctan x)=\\dfrac{1}{(1+x^{2})\\,\\arctan x}$, one L'Hopital pass gives $\\ln L=\\displaystyle\\lim_{x\\to0}\\frac{1}{2x}\\!\\left(\\frac{1}{\\arcsin x\\,\\sqrt{1-x^{2}}}-\\frac{1}{(1+x^{2})\\,\\arctan x}\\right).$",
+          "Combine over a common denominator and use $\\arcsin x=x+\\tfrac{x^{3}}{6}+\\cdots$, $\\sqrt{1-x^{2}}=1-\\tfrac{x^{2}}{2}+\\cdots$, $\\arctan x=x-\\tfrac{x^{3}}{3}+\\cdots$, $(1+x^{2})^{-1}=1-x^{2}+\\cdots$. Each reciprocal expands as $\\dfrac{1}{\\arcsin x\\,\\sqrt{1-x^{2}}}=\\dfrac1x\\big(1+\\tfrac{x^{2}}{3}+\\cdots\\big)$ and $\\dfrac{1}{(1+x^{2})\\,\\arctan x}=\\dfrac1x\\big(1-\\tfrac{2x^{2}}{3}+\\cdots\\big)$, so the bracket $=\\dfrac1x\\big(x^{2}+\\cdots\\big)=x+O(x^{3})$.",
+          "Hence the L'Hopital limit is $\\displaystyle\\lim_{x\\to0}\\frac{x+O(x^{3})}{2x}=\\tfrac12$, so $\\ln L=\\tfrac12$ and $L=\\boxed{\\sqrt{e}}$."
+        ]
+      },
+      {
+        "name": "Method III - Split into two standard ratio-limits",
+        "steps": [
+          "Factor the base through $x$: $\\dfrac{\\arcsin x}{\\arctan x}=\\dfrac{\\arcsin x/x}{\\arctan x/x}$, which separates the problem into the two cleanest inverse-trig ratios. Accordingly $\\ln L=\\displaystyle\\lim_{x\\to0}\\frac{1}{x^{2}}\\ln\\frac{\\arcsin x}{x}-\\lim_{x\\to0}\\frac{1}{x^{2}}\\ln\\frac{\\arctan x}{x}$, provided each piece converges (it does).",
+          "First piece: $\\dfrac{\\arcsin x}{x}=1+\\tfrac{x^{2}}{6}+\\cdots$, so $\\ln\\dfrac{\\arcsin x}{x}=\\tfrac{x^{2}}{6}+O(x^{4})$ and $\\dfrac{1}{x^{2}}\\ln\\dfrac{\\arcsin x}{x}\\to\\tfrac16$. This is the standard fact that $\\big(\\tfrac{\\arcsin x}{x}\\big)^{1/x^{2}}\\to e^{1/6}$.",
+          "Second piece: $\\dfrac{\\arctan x}{x}=1-\\tfrac{x^{2}}{3}+\\cdots$, so $\\ln\\dfrac{\\arctan x}{x}=-\\tfrac{x^{2}}{3}+O(x^{4})$ and $\\dfrac{1}{x^{2}}\\ln\\dfrac{\\arctan x}{x}\\to-\\tfrac13$ (i.e. $\\big(\\tfrac{\\arctan x}{x}\\big)^{1/x^{2}}\\to e^{-1/3}$).",
+          "Subtract: $\\ln L=\\tfrac16-\\big(-\\tfrac13\\big)=\\tfrac16+\\tfrac13=\\tfrac12$. Equivalently $L=\\dfrac{e^{1/6}}{e^{-1/3}}=e^{1/2}=\\boxed{\\sqrt{e}}$, exhibiting transparently how the up-curvature of $\\arcsin$ and the down-curvature of $\\arctan$ reinforce."
+        ]
+      }
+    ],
+    "remark": "The design isolates a synthesis that single-function templates miss. Each factor on its own is a familiar limit -- $\\big(\\tfrac{\\arcsin x}{x}\\big)^{1/x^{2}}\\to e^{1/6}$ and $\\big(\\tfrac{\\arctan x}{x}\\big)^{1/x^{2}}\\to e^{-1/3}$ -- but the question fuses them into a single ratio, and because $\\arctan$ sits in the denominator its $-\\tfrac13$ enters as $+\\tfrac13$. The surviving second-order coefficient of the base is therefore $\\tfrac16+\\tfrac13=\\tfrac12$, the sum of the two cubic corrections, not either one alone. This is why the three plausible shortcuts ($L=1$ from declaring the base $\\to1$; $L=e^{1/6}$ from keeping only $\\arcsin$; $L=e^{1/3}$ from keeping only $\\arctan$) all fall short of the true $\\sqrt e$: the correct answer is the largest of the four because both functions push the base above $1$ once you account for the denominator. Geometrically $\\arcsin$ bows above the line $y=x$ and $\\arctan$ bows below it, so their quotient bows above $1$ with curvature equal to the combined gap -- the lesson being that in a $1^{\\infty}$ ratio you must carry the next-order term of every factor, including the one hiding downstairs in the denominator."
+  },
+  {
+    "theme": "invtrig",
+    "themeLabel": "Inverse Circular Functions",
+    "title": "Two Arctans, One Argument",
+    "difficulty": 4,
+    "tags": [
+      "arctan",
+      "maclaurin-series",
+      "x->0+",
+      "cubic-cancellation",
+      "odd-function"
+    ],
+    "statement": "\\lim_{x\\to 0^+}\\frac{\\arctan(2x)-2\\arctan x}{x^3}",
+    "answer": "-2",
+    "trap": "Using only the first-order tangents $\\arctan(2x)\\approx 2x$ and $2\\arctan x\\approx 2x$, the numerator looks like $0$, so a student concludes the limit is $0$ — or applies L'Hopital once, still sees $0/0$, and gives up. But the linear terms cancel *exactly*; the answer lives entirely in the $x^3$ coefficients, where $-\\tfrac{8}{3}$ (from $\\arctan 2x$) and $-\\tfrac{2}{3}$ (from $2\\arctan x$) do NOT cancel, leaving $-2x^3$.",
+    "solutions": [
+      {
+        "name": "Method I - Cubic Maclaurin terms",
+        "steps": [
+          "Use the standard series $\\arctan u=u-\\dfrac{u^3}{3}+\\dfrac{u^5}{5}-\\cdots$ (valid for $|u|<1$).",
+          "$\\arctan(2x)=2x-\\dfrac{(2x)^3}{3}+\\cdots=2x-\\dfrac{8x^3}{3}+O(x^5).$",
+          "$2\\arctan x=2\\Bigl(x-\\dfrac{x^3}{3}+\\cdots\\Bigr)=2x-\\dfrac{2x^3}{3}+O(x^5).$",
+          "Subtract: the $2x$ terms cancel, leaving numerator $=\\Bigl(-\\dfrac{8}{3}+\\dfrac{2}{3}\\Bigr)x^3+O(x^5)=-2x^3+O(x^5).$",
+          "Divide by $x^3$ and let $x\\to0^+$: limit $=-2.$"
+        ]
+      },
+      {
+        "name": "Method II - Repeated L'Hopital",
+        "steps": [
+          "Let $N(x)=\\arctan 2x-2\\arctan x$ and $D(x)=x^3$; both $\\to0$, giving $0/0$.",
+          "$N'(x)=\\dfrac{2}{1+4x^2}-\\dfrac{2}{1+x^2}$, $D'(x)=3x^2$; at $x=0$ this is still $0/0$.",
+          "$N''(x)=\\dfrac{-16x}{(1+4x^2)^2}+\\dfrac{4x}{(1+x^2)^2}$, $D''(x)=6x$; at $x=0$ this is again $0/0$.",
+          "$N'''(0)$: since $N(x)=-2x^3+O(x^5)$, we have $N'''(0)=3!\\cdot(-2)=-12$, while $D'''(x)=6$.",
+          "By L'Hopital three times, limit $=\\dfrac{N'''(0)}{D'''(0)}=\\dfrac{-12}{6}=-2.$"
+        ]
+      },
+      {
+        "name": "Method III - Derivative ratio shortcut",
+        "steps": [
+          "The numerator $N(x)$ is odd with vanishing linear term, so write $N(x)=cx^3+o(x^3)$; then the limit equals $c$.",
+          "Expand the derivative: $N'(x)=\\dfrac{2}{1+4x^2}-\\dfrac{2}{1+x^2}=2\\bigl[(1-4x^2+\\cdots)-(1-x^2+\\cdots)\\bigr]=2(-3x^2+\\cdots)=-6x^2+\\cdots$",
+          "Since $N'(x)=3cx^2+o(x^2)$, matching gives $3c=-6$, so $c=-2$ and the limit is $-2.$"
+        ]
+      }
+    ],
+    "remark": "The cubic defect $-2x^3$ measures exactly how the angle-doubling fails: $\\arctan(2x)\\ne 2\\arctan x$, and to third order the gap is $-2x^3$. (Because the quotient is even, the full two-sided limit is also $-2$.)"
+  },
+  {
+    "theme": "invtrig",
+    "themeLabel": "Inverse Circular Functions",
+    "title": "The Period a Surd Chooses",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "arcsin",
+      "branch",
+      "reflection",
+      "surd",
+      "principal-value",
+      "n->infty"
+    ],
+    "statement": "For a real angle $\\theta$ the identity $\\arcsin(\\sin\\theta)=\\theta$ is a lie outside $[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}]$: the true value is whichever representative of $\\theta$ (mod the sine's symmetries) actually lands in the principal window, and which one that is depends on the period $\\theta$ falls into. Here the surd inside silently decides that period. Evaluate \\[ L=\\lim_{n\\to\\infty}\\, n\\left(\\frac{\\pi}{2}-\\arcsin\\!\\Big(\\sin\\big(\\tfrac{\\pi}{2}\\sqrt{16n^{2}+8n+3}\\,\\big)\\Big)\\right), \\] the limit taken over positive integers $n$.",
+    "answer": "\\[\\boxed{\\dfrac{\\pi}{8}}\\]",
+    "trap": "The argument is $\\tfrac{\\pi}{2}\\sqrt{16n^{2}+8n+3}$. A student expands the surd as $\\sqrt{16n^{2}+8n+3}\\approx 4n+1$ and concludes the angle is $\\tfrac{\\pi}{2}(4n+1)=2n\\pi+\\tfrac{\\pi}{2}$, whose sine is $1$, whence $\\arcsin\\to\\tfrac{\\pi}{2}$ and the bracket $\\to0$, giving the phantom answer $L=0$. The leading term is too coarse: the genuine expansion is $\\sqrt{16n^{2}+8n+3}=4n+1+\\tfrac{1}{4n}-\\tfrac{1}{16n^{2}}+\\cdots$, so the angle is $2n\\pi+\\tfrac{\\pi}{2}+\\tfrac{\\pi}{8n}+\\cdots$, sitting a sliver past $\\tfrac{\\pi}{2}$. Now the second, deeper trap fires: stripping the $2n\\pi$ a careless solver writes $\\arcsin(\\sin\\theta)=\\theta-2n\\pi=\\tfrac{\\pi}{2}+\\tfrac{\\pi}{8n}$, but the principal value of $\\arcsin(\\sin\\phi)$ for $\\phi\\in(\\tfrac{\\pi}{2},\\tfrac{3\\pi}{2})$ is the reflection $\\pi-\\phi$, here $\\tfrac{\\pi}{2}-\\tfrac{\\pi}{8n}$. Keeping $\\theta-2n\\pi$ flips the sign and yields $L=-\\tfrac{\\pi}{8}$; only the reflection $\\pi-\\phi$ gives $+\\tfrac{\\pi}{8}$. The constant $3$ inside the surd is not decoration: it is precisely what makes $16n^{2}+8n+3-(4n+1)^{2}=2>0$, pushing the angle past $\\tfrac{\\pi}{2}$ so that the reflection is triggered at all. Replace $3$ by $1$ (i.e. drop it) and the angle would land before $\\tfrac{\\pi}{2}$, no reflection occurs, and the value collapses to $\\tfrac{\\pi}{16}$ — a different branch, a different answer.",
+    "solutions": [
+      {
+        "name": "Method I - Asymptotics of the surd, then read the branch",
+        "steps": [
+          "Write the integer part of the multiplier of $\\tfrac{\\pi}{2}$. Since $(4n+1)^{2}=16n^{2}+8n+1$ and our radicand is $16n^{2}+8n+3=(4n+1)^{2}+2$, we have $\\sqrt{16n^{2}+8n+3}=(4n+1)\\sqrt{1+\\dfrac{2}{(4n+1)^{2}}}=4n+1+\\dfrac{1}{4n+1}+O(n^{-3})$, so the angle is $\\theta_{n}=\\dfrac{\\pi}{2}\\sqrt{16n^{2}+8n+3}=2n\\pi+\\dfrac{\\pi}{2}+\\dfrac{\\pi}{2(4n+1)}+O(n^{-3})$.",
+          "Locate the period and the branch. Subtracting $2n\\pi$ leaves $\\phi_{n}=\\dfrac{\\pi}{2}+\\dfrac{\\pi}{2(4n+1)}+O(n^{-3})$, which lies just above $\\tfrac{\\pi}{2}$ (in the band $(\\tfrac{\\pi}{2},\\tfrac{3\\pi}{2})$ for all large $n$). On that band $\\arcsin(\\sin\\phi)=\\pi-\\phi$, so $\\arcsin(\\sin\\theta_{n})=\\pi-\\phi_{n}=\\dfrac{\\pi}{2}-\\dfrac{\\pi}{2(4n+1)}+O(n^{-3})$.",
+          "Form the scaled difference. Then $\\dfrac{\\pi}{2}-\\arcsin(\\sin\\theta_{n})=\\dfrac{\\pi}{2(4n+1)}+O(n^{-3})$, and multiplying by $n$ gives $n\\cdot\\dfrac{\\pi}{2(4n+1)}+O(n^{-2})=\\dfrac{\\pi n}{2(4n+1)}+O(n^{-2})$.",
+          "Take $n\\to\\infty$: $\\dfrac{\\pi n}{2(4n+1)}\\to\\dfrac{\\pi}{8}$. Hence $L=\\boxed{\\dfrac{\\pi}{8}}$."
+        ]
+      },
+      {
+        "name": "Method II - Exact half-angle collapse, no series",
+        "steps": [
+          "Set $t_{n}=\\theta_{n}-2n\\pi-\\dfrac{\\pi}{2}=\\dfrac{\\pi}{2}\\big(\\sqrt{16n^{2}+8n+3}-(4n+1)\\big)$. For large $n$ this is small and positive, and $\\theta_{n}=2n\\pi+\\dfrac{\\pi}{2}+t_{n}$ with $0<t_{n}<\\tfrac{\\pi}{2}$.",
+          "Use the exact reduction $\\arcsin\\!\\big(\\sin(2n\\pi+\\tfrac{\\pi}{2}+t_{n})\\big)=\\arcsin(\\cos t_{n})=\\dfrac{\\pi}{2}-t_{n}$, valid precisely because $t_{n}\\in[0,\\tfrac{\\pi}{2}]$. Therefore $\\dfrac{\\pi}{2}-\\arcsin(\\sin\\theta_{n})=t_{n}$ exactly, with no approximation, and $L=\\lim_{n\\to\\infty} n\\,t_{n}$.",
+          "Rationalise $t_{n}$: $\\sqrt{16n^{2}+8n+3}-(4n+1)=\\dfrac{(16n^{2}+8n+3)-(4n+1)^{2}}{\\sqrt{16n^{2}+8n+3}+(4n+1)}=\\dfrac{2}{\\sqrt{16n^{2}+8n+3}+(4n+1)}$, so $t_{n}=\\dfrac{\\pi}{2}\\cdot\\dfrac{2}{\\sqrt{16n^{2}+8n+3}+(4n+1)}=\\dfrac{\\pi}{\\sqrt{16n^{2}+8n+3}+(4n+1)}$.",
+          "Then $n\\,t_{n}=\\dfrac{\\pi n}{\\sqrt{16n^{2}+8n+3}+(4n+1)}\\to\\dfrac{\\pi n}{4n+4n}=\\dfrac{\\pi}{8}$ as $n\\to\\infty$. Hence $L=\\boxed{\\dfrac{\\pi}{8}}$."
+        ]
+      },
+      {
+        "name": "Method III - Squeeze the reduced angle between integer fences",
+        "steps": [
+          "First pin the period rigorously. Compute $\\dfrac{\\theta_{n}}{\\pi}=\\dfrac{1}{2}\\sqrt{16n^{2}+8n+3}$. Squaring the comparison, $\\big(2n+\\tfrac{1}{2}\\big)^{2}=4n^{2}+2n+\\tfrac14$ and $\\tfrac14(16n^{2}+8n+3)=4n^{2}+2n+\\tfrac34$, so $\\dfrac{\\theta_{n}}{\\pi}>2n+\\dfrac12$; likewise $\\big(2n+1\\big)^{2}=4n^{2}+4n+1>4n^{2}+2n+\\tfrac34$ for $n\\ge1$, so $2n+\\dfrac12<\\dfrac{\\theta_{n}}{\\pi}<2n+1$. Thus $\\theta_{n}\\in\\big(2n\\pi+\\tfrac{\\pi}{2},\\,2n\\pi+\\pi\\big)$: the second quadrant of an even period, forcing $\\arcsin(\\sin\\theta_{n})=\\pi-(\\theta_{n}-2n\\pi)=(2n+1)\\pi-\\theta_{n}$ with no ambiguity.",
+          "Hence $\\dfrac{\\pi}{2}-\\arcsin(\\sin\\theta_{n})=\\dfrac{\\pi}{2}-(2n+1)\\pi+\\theta_{n}=\\theta_{n}-\\big(2n+\\tfrac12\\big)\\pi=\\dfrac{\\pi}{2}\\Big(\\sqrt{16n^{2}+8n+3}-(4n+1)\\Big)$, the same exact quantity $t_{n}$ as before, now justified by a clean squaring inequality rather than a series.",
+          "Bound it for the limit: from $\\sqrt{16n^{2}+8n+3}+(4n+1)\\in(8n,\\,8n+3)$ one gets $\\dfrac{\\pi n}{8n+3}<n\\,t_{n}=\\dfrac{\\pi n}{\\sqrt{16n^{2}+8n+3}+(4n+1)}<\\dfrac{\\pi n}{8n}=\\dfrac{\\pi}{8}$.",
+          "Both fences $\\dfrac{\\pi n}{8n+3}$ and $\\dfrac{\\pi}{8}$ tend to $\\dfrac{\\pi}{8}$, so by the squeeze $L=\\boxed{\\dfrac{\\pi}{8}}$."
+        ]
+      }
+    ],
+    "remark": "The surd is a period selector in disguise. Its leading term $4n+1$ tells you the angle is near $2n\\pi+\\tfrac{\\pi}{2}$, but two finer facts decide everything: the radicand exceeds $(4n+1)^{2}$ by exactly $2$, which (i) makes $\\theta_{n}/\\pi$ overshoot $2n+\\tfrac12$, planting the angle in the second quadrant of an even period, and (ii) supplies, after rationalisation, the numerator $2$ that becomes the whole answer. Because the period is even there is no parity sign from $\\sin$, yet the angle still sits past $\\tfrac{\\pi}{2}$, so the principal value is the reflection $\\pi-\\phi$, not $\\phi$ itself — that reflection is the difference between $+\\tfrac{\\pi}{8}$ and the seductive $-\\tfrac{\\pi}{8}$. The top-rank lesson: when $\\arcsin(\\sin\\,\\cdot)$ or $\\arctan(\\tan\\,\\cdot)$ meets a slowly varying argument, never reduce by the leading term alone; locate the exact quadrant of the exact period (a squaring inequality does it cleanly), choose the principal representative by reflection, and only then expand. Drop the constant $3$ and you fall a quadrant short, landing on $\\tfrac{\\pi}{16}$ — proof that the answer lives in a detail the eye is trained to discard."
+  },
+  {
+    "theme": "log",
+    "themeLabel": "Logarithm & Exponential",
+    "title": "The Logarithm's Echo",
+    "difficulty": 4,
+    "tags": [
+      "1^infinity",
+      "ln(1+x)",
+      "second-order",
+      "x->0"
+    ],
+    "statement": "\\lim_{x\\to 0}\\left(\\frac{\\ln(1+x)}{x}\\right)^{1/x}",
+    "answer": "e^{-1/2}",
+    "trap": "The base $\\frac{\\ln(1+x)}{x}\\to 1$, so it is tempting to declare the whole expression a $1^{\\infty}$ that 'obviously' equals $1$. But $1^{\\infty}$ is an indeterminate form precisely because the base is only asymptotically $1$: here $\\frac{\\ln(1+x)}{x}=1-\\frac{x}{2}+O(x^2)$, and the deviation $-\\frac{x}{2}$ is exactly first order in $x$. Raising to the power $1/x$ promotes that linear term to a finite limit $e^{-1/2}\\approx0.6065$, not $1$. Replacing the base by $1$ before taking the power silently discards the only term that matters.",
+    "solutions": [
+      {
+        "name": "Method I - Logarithm and series",
+        "steps": [
+          "Let $L=\\lim_{x\\to0}\\left(\\frac{\\ln(1+x)}{x}\\right)^{1/x}$ and take logarithms: $\\ln L=\\lim_{x\\to0}\\frac1x\\ln\\!\\left(\\frac{\\ln(1+x)}{x}\\right).$",
+          "Expand the inner ratio using $\\ln(1+x)=x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\cdots$:$$\\frac{\\ln(1+x)}{x}=1-\\frac{x}{2}+\\frac{x^2}{3}-\\cdots.$$",
+          "Now $\\ln\\!\\left(\\frac{\\ln(1+x)}{x}\\right)=\\ln(1+u)$ with $u=-\\frac{x}{2}+\\frac{x^2}{3}-\\cdots$. Using $\\ln(1+u)=u-\\frac{u^2}{2}+\\cdots$ and $u^2=\\frac{x^2}{4}+O(x^3)$:$$\\ln(1+u)=\\left(-\\frac{x}{2}+\\frac{x^2}{3}\\right)-\\frac12\\cdot\\frac{x^2}{4}+\\cdots=-\\frac{x}{2}+\\frac{5x^2}{24}+\\cdots.$$",
+          "Divide by $x$: $\\dfrac{1}{x}\\ln\\!\\left(\\frac{\\ln(1+x)}{x}\\right)=-\\frac12+\\frac{5}{24}x+\\cdots\\xrightarrow[x\\to0]{}-\\frac12.$",
+          "Therefore $\\ln L=-\\frac12$, giving $L=e^{-1/2}$. The first-order coefficient $-\\frac12$ of the base is exactly what the $1/x$ exponent harvests."
+        ]
+      },
+      {
+        "name": "Method II - Exponential substitution",
+        "steps": [
+          "Write the base as $1+t$ with $t=\\frac{\\ln(1+x)}{x}-1$. As $x\\to0$, $t\\to0$, and the expression is $(1+t)^{1/x}=\\exp\\!\\left(\\frac{\\ln(1+t)}{x}\\right).$",
+          "From the series, $t=-\\frac{x}{2}+\\frac{x^2}{3}-\\cdots$ is of order $x$. Since $\\ln(1+t)=t-\\frac{t^2}{2}+\\cdots$ and $t^2=O(x^2)$, the $t^2$ term contributes nothing after dividing by $x$.",
+          "Hence $\\dfrac{\\ln(1+t)}{x}=\\dfrac{t}{x}+\\dfrac{O(x^2)}{x}=\\dfrac{1}{x}\\!\\left(-\\frac{x}{2}+O(x^2)\\right)+O(x)\\xrightarrow[x\\to0]{}-\\frac12.$",
+          "The limit is $\\exp\\!\\left(-\\tfrac12\\right)=e^{-1/2}$. Only the linear coefficient of $t$ in $x$ survives; all higher orders are killed by the division by $x$."
+        ]
+      }
+    ],
+    "remark": "General principle: $\\bigl(1+a_1x+a_2x^2+\\cdots\\bigr)^{1/x}\\to e^{a_1}$ as $x\\to0$ — only the first non-constant coefficient of the base survives. Here $a_1=-\\tfrac12$."
+  },
+  {
+    "theme": "log",
+    "themeLabel": "Logarithm & Exponential",
+    "title": "The Product That Falls Off the Cliff at One",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "log-of-product",
+      "riemann-sum",
+      "improper-integral",
+      "stirling",
+      "geometric-mean",
+      "n->infty"
+    ],
+    "statement": "For each $n$ build the product $\\displaystyle P_n=\\prod_{k=1}^{n}\\bigl(k\\,e^{k/n}\\bigr)$, in which the $k$-th factor carries both an integer $k$ and an exponential tag $e^{k/n}$. Evaluate \\[ L=\\lim_{n\\to\\infty}\\frac{1}{n}\\,P_n^{\\,1/n}=\\lim_{n\\to\\infty}\\frac{1}{n}\\left(\\prod_{k=1}^{n}k\\,e^{k/n}\\right)^{1/n}. \\] The geometric mean turns the product into a sum of logarithms; the catch is that the very first factor contributes $\\ln(1/n)\\to-\\infty$, so the Riemann sum that appears is improper at its left endpoint and must be read as $\\displaystyle\\int_{0}^{1}\\ln x\\,dx$, not as something that \"blows up\" or that may be quietly dropped.",
+    "answer": "$\\dfrac{1}{\\sqrt{e}}$",
+    "trap": "Two endpoint hazards are stacked. First, after taking the logarithm one meets $\\tfrac1n\\sum_{k=1}^{n}\\ln\\tfrac{k}{n}$, and the $k=1$ term is $\\ln\\tfrac1n\\to-\\infty$. A student either panics ('a term tends to $-\\infty$, so the sum diverges and $L=0$') or, worse, declares $\\ln 0$ 'undefined' and silently discards the offending term, which collapses the log-integral to $0$ and yields the phantom value $e^{1/2}$. In truth $\\int_0^1\\ln x\\,dx=\\big[x\\ln x-x\\big]_0^1=-1$ is a perfectly convergent improper integral, because $x\\ln x\\to0$ at the cliff: the single bad term is harmless once divided by $n$. Second, even a solver who handles the $\\ln$ honestly may forget that the exponential tags $e^{k/n}$ form their own geometric-mean factor $\\exp\\!\\big(\\tfrac1{n^2}\\sum k\\big)\\to e^{1/2}$; dropping it leaves the bare Stirling result $(n!)^{1/n}/n\\to 1/e$ and the wrong answer $1/e$. Only carrying BOTH pieces, $\\int_0^1\\ln x\\,dx=-1$ and $\\int_0^1 x\\,dx=\\tfrac12$, gives $L=e^{-1+1/2}=e^{-1/2}$.",
+    "solutions": [
+      {
+        "name": "Method I - Logarithm to a Riemann sum of two integrals",
+        "steps": [
+          "Take logarithms: $\\ln\\!\\Big(\\tfrac1n P_n^{1/n}\\Big)=\\tfrac1n\\sum_{k=1}^{n}\\big(\\ln k+\\tfrac{k}{n}\\big)-\\ln n=\\tfrac1n\\sum_{k=1}^{n}\\ln\\tfrac{k}{n}+\\tfrac1{n^2}\\sum_{k=1}^{n}k$, where the $-\\ln n$ has been absorbed into each $\\ln k$ to make $\\ln\\tfrac{k}{n}$.",
+          "The first sum is a right Riemann sum of $\\ln x$ on $[0,1]$ with mesh $\\tfrac1n$, so $\\tfrac1n\\sum_{k=1}^{n}\\ln\\tfrac{k}{n}\\to\\int_0^1\\ln x\\,dx$. This integral is improper only at $x=0$, yet it converges: $\\int_\\varepsilon^1\\ln x\\,dx=\\big[x\\ln x-x\\big]_\\varepsilon^1=-1-(\\varepsilon\\ln\\varepsilon-\\varepsilon)\\to-1$ since $\\varepsilon\\ln\\varepsilon\\to0$.",
+          "The second sum is exact: $\\tfrac1{n^2}\\sum_{k=1}^{n}k=\\tfrac{n(n+1)}{2n^2}=\\tfrac{n+1}{2n}\\to\\tfrac12=\\int_0^1 x\\,dx$.",
+          "Hence $\\ln L=\\int_0^1\\ln x\\,dx+\\int_0^1 x\\,dx=-1+\\tfrac12=-\\tfrac12$, so $L=e^{-1/2}=\\boxed{\\dfrac{1}{\\sqrt{e}}}$."
+        ]
+      },
+      {
+        "name": "Method II - Stirling for the integer part, geometric mean for the tags",
+        "steps": [
+          "Split the product: $\\tfrac1n P_n^{1/n}=\\dfrac{(n!)^{1/n}}{n}\\cdot\\Big(\\textstyle\\prod_{k=1}^{n}e^{k/n}\\Big)^{1/n}$, since $\\prod_{k=1}^n k=n!$.",
+          "For the first factor use Stirling $n!=\\sqrt{2\\pi n}\\,(n/e)^n\\,(1+o(1))$, giving $(n!)^{1/n}=\\dfrac{n}{e}\\,(2\\pi n)^{1/(2n)}(1+o(1))$ and $(2\\pi n)^{1/(2n)}=e^{\\frac{\\ln(2\\pi n)}{2n}}\\to1$; therefore $\\dfrac{(n!)^{1/n}}{n}\\to\\dfrac1e$ (this is exactly the classical $(n!)^{1/n}/n\\to1/e$).",
+          "For the tag factor, $\\Big(\\prod_{k=1}^{n}e^{k/n}\\Big)^{1/n}=\\exp\\!\\Big(\\tfrac1{n}\\sum_{k=1}^{n}\\tfrac{k}{n}\\Big)=\\exp\\!\\Big(\\tfrac{n+1}{2n}\\Big)\\to e^{1/2}$.",
+          "Multiplying the two limits, $L=\\dfrac1e\\cdot e^{1/2}=e^{-1/2}=\\boxed{\\dfrac{1}{\\sqrt{e}}}$, with the $e^{1/2}$ from the tags pulling the bare $1/e$ down to $1/\\sqrt e$."
+        ]
+      },
+      {
+        "name": "Method III - Cesaro-Stolz on the log-average",
+        "steps": [
+          "Let $a_n=\\ln\\!\\big(\\tfrac1n P_n^{1/n}\\big)=\\dfrac{S_n}{n}$ where $S_n=\\sum_{k=1}^{n}\\big(\\ln k-\\ln n+\\tfrac{k}{n}\\big)$. Because $S_n/n$ is itself a running average, apply Cesaro-Stolz to the cleaner sequence $T_n=\\sum_{k=1}^{n}\\ln k+\\sum_{k=1}^n\\tfrac{k}{n}=\\ln(n!)+\\tfrac{n+1}{2}$ and to the bookkeeping of the $-\\ln n$ terms.",
+          "By Stolz, $\\lim\\dfrac{\\ln(n!)}{n}-\\ln n=\\lim\\big(\\ln((n+1)!)-\\ln(n!)\\big)-\\lim\\ln n$ requires care, so instead use the difference $a_{n}$ directly: $\\dfrac{\\ln(n!)}{n}-\\ln n=\\dfrac1n\\sum_{k=1}^n\\ln\\tfrac{k}{n}$, and by Stolz on $u_n=\\sum_{k=1}^n\\ln\\tfrac{k}{n}\\,$ vs $v_n=n$ one recovers $\\lim\\dfrac{u_n}{n}=\\int_0^1\\ln x\\,dx=-1$ (the increment $\\ln\\tfrac{n+1}{n+1}+\\sum(\\ln\\tfrac{k}{n+1}-\\ln\\tfrac{k}{n})$ telescopes to the integral).",
+          "The exponential tags contribute $\\dfrac1n\\sum_{k=1}^n\\tfrac{k}{n}=\\dfrac{n+1}{2n}\\to\\tfrac12$ with no endpoint issue.",
+          "Therefore $\\lim a_n=-1+\\tfrac12=-\\tfrac12$ and $L=e^{\\lim a_n}=e^{-1/2}=\\boxed{\\dfrac{1}{\\sqrt{e}}}$."
+        ]
+      }
+    ],
+    "remark": "This is the genuine 'log-of-product becomes an integral' phenomenon, the engine behind $(n!)^{1/n}/n\\to1/e$, made adversarial by an exponential decoration. Two instincts must be overridden. The first is the reflex that a summand tending to $-\\infty$ wrecks the limit: here the lone $\\ln(1/n)$ is tamed by the $1/n$ weight, and the limiting object is the convergent improper integral $\\int_0^1\\ln x\\,dx=-1$ (convergent precisely because $x\\ln x\\to0$ at the cliff $x=0$). The second is forgetting that the $e^{k/n}$ tags are not cosmetic: their geometric mean is $\\exp(\\int_0^1 x\\,dx)=e^{1/2}$, exactly the factor that drags the textbook $1/e$ down to $1/\\sqrt e$. A top-rank solver reads the product as $\\exp\\!\\big(\\int_0^1(\\ln x+x)\\,dx\\big)$ at a glance and sees both effects in one stroke; the value $e^{-1/2}$ is the signature of a Riemann-of-logs that respects its singular endpoint."
+  },
+  {
+    "theme": "log",
+    "themeLabel": "Logarithm & Exponential",
+    "title": "The Tower Leans Right",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "x^x",
+      "power-tower",
+      "associativity",
+      "exp-log",
+      "x->0+",
+      "asymptotics"
+    ],
+    "statement": "Here $x^{x^{x}}$ denotes the standard right-associated power tower, i.e. $x^{\\left(x^{x}\\right)}$. Evaluate \\[ \\lim_{x\\to 0^{+}}\\;\\frac{x^{x^{x}}-x}{x^{2}\\,\\ln^{2}x}. \\]",
+    "answer": "\\[\\boxed{1}\\]",
+    "trap": "Two different but equally fatal misreadings sit on top of this limit. First, the associativity trap: many students silently flatten $x^{x^{x}}$ into $\\left(x^{x}\\right)^{x}=x^{x\\cdot x}=x^{x^{2}}$. But exponentiation is right-associative, so $x^{x^{x}}=x^{\\left(x^{x}\\right)}\\neq\\left(x^{x}\\right)^{x}$. With the wrong reading $x^{x^{2}}\\to 1$, so the numerator tends to $1$ while the denominator tends to $0$, and one wrongly reports $+\\infty$. The correct tower instead behaves like $x^{x^{x}}\\sim x$, keeping the numerator infinitesimal. Second, the premature-limit trap: since $x^{x}\\to 1$, it is tempting to replace the exponent $x^{x}$ by its limit $1$, giving $x^{x^{x}}\\approx x^{1}=x$, hence numerator $\\approx x-x=0$ and answer $0$. The catch is that $x^{x}\\to 1$ but $x^{x}-1\\sim x\\ln x$ does NOT vanish fast enough: feeding it through the outer exponent produces $x^{x^{x}}-x=x\\bigl(x^{x^{x}-1}-1\\bigr)\\sim x\\cdot\\bigl(x\\ln^{2}x\\bigr)$, an $x^{2}\\ln^{2}x$ term that exactly fills the denominator. Both shortcuts discard the very correction the problem is built on.",
+    "solutions": [
+      {
+        "name": "Method I - Nested exp/log expansion",
+        "steps": [
+          "Write everything through the exponential with $L=\\ln x$. Then $x^{x}=e^{xL}$ and, reading the tower correctly, $x^{x^{x}}=x^{\\left(x^{x}\\right)}=e^{x^{x}L}$. Factor out the bare $x=e^{L}$: $$x^{x^{x}}=e^{L}\\cdot e^{(x^{x}-1)L}=x\\cdot e^{(x^{x}-1)L}.$$ Hence $x^{x^{x}}-x=x\\bigl(e^{(x^{x}-1)L}-1\\bigr)$.",
+          "Expand the inner exponent. Since $x^{x}-1=e^{xL}-1=xL+\\tfrac{(xL)^{2}}{2}+\\cdots$, multiplying by $L$ gives $$(x^{x}-1)L=xL^{2}+\\tfrac{x^{2}L^{3}}{2}+\\cdots=x\\ln^{2}x+O\\!\\left(x^{2}\\ln^{3}x\\right).$$ As $x\\to 0^{+}$ this exponent tends to $0$ (since $x\\ln^{2}x\\to 0$).",
+          "Apply $e^{u}-1=u+O(u^{2})$ with $u=(x^{x}-1)L\\to 0$: $$x^{x^{x}}-x=x\\Bigl(x\\ln^{2}x+O\\!\\left(x^{2}\\ln^{3}x\\right)\\Bigr)=x^{2}\\ln^{2}x\\,\\bigl(1+O(x\\ln x)\\bigr).$$",
+          "Divide by $x^{2}\\ln^{2}x$: the ratio equals $1+O(x\\ln x)\\to 1$. Therefore the limit is $\\boxed{1}$."
+        ]
+      },
+      {
+        "name": "Method II - Factor into known building blocks",
+        "steps": [
+          "As in Method I, $x^{x^{x}}-x=x\\bigl(e^{h}-1\\bigr)$ where $h=(x^{x}-1)\\ln x$. Split the target ratio as a product of three factors each with a recognisable limit: $$\\frac{x^{x^{x}}-x}{x^{2}\\ln^{2}x}=\\underbrace{\\frac{e^{h}-1}{h}}_{(A)}\\cdot\\underbrace{\\frac{h}{x\\ln^{2}x}}_{(B)}.$$",
+          "Factor $(A)$: since $h=(x^{x}-1)\\ln x\\to 0$ (because $x^{x}-1\\to 0$ and it does so faster than $\\ln x$ blows up, as $x^{x}-1\\sim x\\ln x$ gives $h\\sim x\\ln^{2}x\\to 0$), the standard limit gives $\\dfrac{e^{h}-1}{h}\\to 1$.",
+          "Factor $(B)$: substitute $h=(x^{x}-1)\\ln x$ to get $$\\frac{h}{x\\ln^{2}x}=\\frac{(x^{x}-1)\\ln x}{x\\ln^{2}x}=\\frac{x^{x}-1}{x\\ln x}.$$ This is precisely the chapter's cornerstone $x^{x}$-limit: writing $x^{x}-1=e^{x\\ln x}-1$ and using $\\dfrac{e^{t}-1}{t}\\to 1$ with $t=x\\ln x\\to 0$ yields $\\dfrac{x^{x}-1}{x\\ln x}\\to 1$.",
+          "Multiplying the two limits, $(A)\\cdot(B)\\to 1\\cdot 1=1$, so the whole limit is $\\boxed{1}$."
+        ]
+      },
+      {
+        "name": "Method III - Substitution to a single small parameter",
+        "steps": [
+          "Let $t=x\\ln x$. As $x\\to 0^{+}$ we have $t\\to 0^{-}$, and $x^{x}=e^{t}$. The exponent of the tower beyond the bare $x$ is $(x^{x}-1)\\ln x=(e^{t}-1)\\ln x$, so $$x^{x^{x}}-x=x\\Bigl(e^{(e^{t}-1)\\ln x}-1\\Bigr).$$",
+          "Note $(e^{t}-1)\\ln x=\\dfrac{e^{t}-1}{t}\\cdot t\\ln x=\\dfrac{e^{t}-1}{t}\\cdot(x\\ln x)\\ln x=\\dfrac{e^{t}-1}{t}\\,x\\ln^{2}x$. Call this exponent $s$. Since $\\dfrac{e^{t}-1}{t}\\to 1$ and $x\\ln^{2}x\\to 0$, we get $s\\to 0$ with $s=x\\ln^{2}x\\,(1+o(1))$.",
+          "Therefore $x^{x^{x}}-x=x\\bigl(e^{s}-1\\bigr)=x\\cdot s\\cdot\\dfrac{e^{s}-1}{s}=x\\cdot x\\ln^{2}x\\,(1+o(1))\\cdot(1+o(1))$, using $\\dfrac{e^{s}-1}{s}\\to 1$.",
+          "Dividing by $x^{2}\\ln^{2}x$ collapses everything to $(1+o(1))(1+o(1))\\to 1$. Hence the limit equals $\\boxed{1}$."
+        ]
+      }
+    ],
+    "remark": "The whole problem turns on reading the tower right-associatively: $x^{x^{x}}=x^{(x^{x})}\\sim x$, not $(x^{x})^{x}=x^{x^{2}}\\to 1$. Once that is fixed, the limit is a clean demonstration that $x^{x}\\to 1$ is never the end of the story near $0^{+}$ — the surviving piece $x^{x}-1\\sim x\\ln x$ propagates through one more exponentiation to leave exactly $x^{2}\\ln^{2}x$. The seed fact $\\dfrac{x^{x}-1}{x\\ln x}\\to 1$ reappears verbatim inside Method II, showing this is genuinely an $x^{x}$ mechanism one floor higher up the tower."
+  },
+  {
+    "theme": "log",
+    "themeLabel": "Logarithm & Exponential",
+    "title": "The Buried Term",
+    "difficulty": 4,
+    "tags": [
+      "log-of-sum",
+      "dominated-term",
+      "x->-infinity",
+      "exponential-tail"
+    ],
+    "statement": "\\lim_{x\\to-\\infty}e^{-x}\\Bigl(x-\\ln\\bigl(e^{x}+e^{2x}+e^{3x}\\bigr)\\Bigr)",
+    "answer": "-1",
+    "trap": "As $x\\to-\\infty$ the term $e^{x}$ is the largest of the three (since $x<0$ makes $e^{x}>e^{2x}>e^{3x}$), so it is tempting to write $\\ln(e^x+e^{2x}+e^{3x})\\approx\\ln(e^x)=x$, making the parenthesis $\\to0$. The student then reads $e^{-x}\\cdot0$ as $\\infty\\cdot0$ and either answers $0$ or stalls. But the parenthesis is exactly $-\\ln(1+e^x+e^{2x})$, whose leading piece is $-e^{x}$ — an order-$e^{x}$ tail. Multiplying by $e^{-x}$ cancels it precisely and leaves $-1$. Discarding the subdominant terms throws away the only thing the $e^{-x}$ factor magnifies.",
+    "solutions": [
+      {
+        "name": "Method I - Factor the dominant term",
+        "steps": [
+          "Factor $e^{x}$ out of the sum: $e^{x}+e^{2x}+e^{3x}=e^{x}\\bigl(1+e^{x}+e^{2x}\\bigr).$",
+          "Then $\\ln(\\cdots)=x+\\ln\\bigl(1+e^{x}+e^{2x}\\bigr)$, so $x-\\ln(\\cdots)=-\\ln\\bigl(1+e^{x}+e^{2x}\\bigr).$",
+          "Let $u=e^{x}\\to0^{+}$. Using $\\ln(1+u+u^2)=(u+u^2)-\\frac{(u+u^2)^2}{2}+\\cdots=u+\\frac{u^2}{2}+O(u^3)$:$$x-\\ln(\\cdots)=-\\Bigl(u+\\tfrac{u^2}{2}+\\cdots\\Bigr).$$",
+          "Multiply by $e^{-x}=u^{-1}$: $e^{-x}\\bigl(x-\\ln(\\cdots)\\bigr)=-\\frac{1}{u}\\Bigl(u+\\tfrac{u^2}{2}+\\cdots\\Bigr)=-\\Bigl(1+\\tfrac{u}{2}+\\cdots\\Bigr)\\to-1.$",
+          "The naive 'drop the small terms' kills the very $O(u)$ piece that, after the $u^{-1}$ amplification, gives the answer $-1$."
+        ]
+      },
+      {
+        "name": "Method II - Substitution u=e^x",
+        "steps": [
+          "Set $u=e^{x}$ so $u\\to0^{+}$ and $x=\\ln u$, $e^{-x}=1/u$. The limit becomes$$\\lim_{u\\to0^{+}}\\frac1u\\Bigl(\\ln u-\\ln\\bigl(u+u^2+u^3\\bigr)\\Bigr).$$",
+          "Simplify the log difference: $\\ln u-\\ln\\bigl(u(1+u+u^2)\\bigr)=-\\ln(1+u+u^2).$",
+          "So the expression is $-\\dfrac{\\ln(1+u+u^2)}{u}.$",
+          "Since $\\ln(1+u+u^2)\\sim u$ as $u\\to0$ (because $\\ln(1+t)\\sim t$ with $t=u+u^2\\to0$), the ratio $\\dfrac{\\ln(1+u+u^2)}{u}\\to1$, giving the limit $-1.$"
+        ]
+      }
+    ],
+    "remark": "At $-\\infty$ the exponential with the smallest growth rate dominates a sum of exponentials, so the leading log is just $x$; the trap is that the discarded subdominant tail, of exact order $e^{x}$, is precisely what the $e^{-x}$ factor magnifies into the finite answer."
+  },
+  {
+    "theme": "log",
+    "themeLabel": "Logarithm & Exponential",
+    "title": "Three Floors Down",
+    "difficulty": 5,
+    "tags": [
+      "x^x",
+      "third-order",
+      "(1+x)^(1/x)",
+      "x->0",
+      "brutal-expansion"
+    ],
+    "statement": "\\lim_{x\\to 0}\\frac{(1+x)^{1/x}-e+\\dfrac{e\\,x}{2}}{x^{2}}",
+    "answer": "\\dfrac{11e}{24}",
+    "trap": "Reaching for the familiar first-order fact $(1+x)^{1/x}=e\\left(1-\\frac{x}{2}\\right)+o(x)$ makes the entire numerator collapse to $o(x)$, so dividing by $x^2$ seems to blow up or vanish — tempting the answers $0$, $\\infty$, or 'indeterminate.' The trap is that $o(x)$ is far too crude: it hides a genuine $\\frac{11e}{24}x^2$ term. You must expand $(1+x)^{1/x}$ to order $x^2$, and crucially that coefficient is NOT $\\frac{e}{3}$ (the exponent's quadratic term alone) — the $\\frac{w^2}{2}$ contribution adds another $\\frac{e}{8}$, giving $\\frac{e}{3}+\\frac{e}{8}=\\frac{11e}{24}$.",
+    "solutions": [
+      {
+        "name": "Method I - Third-order expansion of (1+x)^{1/x}",
+        "steps": [
+          "Write $(1+x)^{1/x}=\\exp\\!\\left(\\frac{\\ln(1+x)}{x}\\right)$ and expand the exponent: $\\frac{\\ln(1+x)}{x}=1-\\frac{x}{2}+\\frac{x^2}{3}-\\frac{x^3}{4}+\\cdots.$",
+          "So $(1+x)^{1/x}=e\\cdot\\exp\\!\\left(-\\frac{x}{2}+\\frac{x^2}{3}-\\cdots\\right)$. Let $w=-\\frac{x}{2}+\\frac{x^2}{3}-\\cdots$ and use $e^{w}=1+w+\\frac{w^2}{2}+\\cdots.$",
+          "Collect to order $x^2$: $w=-\\frac{x}{2}+\\frac{x^2}{3}$, $\\frac{w^2}{2}=\\frac12\\cdot\\left(-\\frac{x}{2}\\right)^2=\\frac{x^2}{8}$, so$$e^{w}=1-\\frac{x}{2}+\\left(\\frac13+\\frac18\\right)x^2+\\cdots=1-\\frac{x}{2}+\\frac{11}{24}x^2+\\cdots.$$",
+          "Therefore $(1+x)^{1/x}=e-\\frac{e\\,x}{2}+\\frac{11e}{24}x^2+\\cdots.$",
+          "The numerator $(1+x)^{1/x}-e+\\frac{ex}{2}=\\frac{11e}{24}x^2+O(x^3)$, so dividing by $x^2$ gives $\\boxed{\\dfrac{11e}{24}}.$"
+        ]
+      },
+      {
+        "name": "Method II - Repeated L'Hopital with care",
+        "steps": [
+          "Let $f(x)=(1+x)^{1/x}$ for $x\\neq0$, $f(0)=e$. We need $\\lim_{x\\to0}\\frac{f(x)-e+\\frac{e}{2}x}{x^2}$, a $\\frac00$ form. Since $f$ is smooth at $0$, Taylor's theorem gives this limit as $\\frac{1}{2}f''(0)$ provided $f(0)=e$ and $f'(0)=-\\frac{e}{2}$ (so the linear part of the numerator cancels).",
+          "Compute $f'$ via $\\ln f=\\frac{\\ln(1+x)}{x}$: $\\frac{f'}{f}=\\frac{d}{dx}\\frac{\\ln(1+x)}{x}=\\frac{\\frac{x}{1+x}-\\ln(1+x)}{x^2}.$",
+          "Expanding the bracket, $\\frac{x}{1+x}-\\ln(1+x)=\\bigl(x-x^2+x^3-\\cdots\\bigr)-\\bigl(x-\\tfrac{x^2}{2}+\\tfrac{x^3}{3}-\\cdots\\bigr)=-\\tfrac{x^2}{2}+\\tfrac{2x^3}{3}-\\cdots$, so $\\frac{f'}{f}=-\\frac12+\\frac{2x}{3}-\\cdots.$ At $x=0$: $f'(0)=e\\cdot\\left(-\\tfrac12\\right)=-\\tfrac{e}{2}$, confirming the cancellation of the linear term.",
+          "For $f''(0)$, write $f'=f\\bigl(-\\tfrac12+\\tfrac{2x}{3}+\\cdots\\bigr)$ and differentiate: $f''=f'\\bigl(-\\tfrac12+\\cdots\\bigr)+f\\bigl(\\tfrac23+\\cdots\\bigr)$. At $x=0$: $f''(0)=\\bigl(-\\tfrac{e}{2}\\bigr)\\bigl(-\\tfrac12\\bigr)+e\\cdot\\tfrac23=\\tfrac{e}{4}+\\tfrac{2e}{3}=\\tfrac{11e}{12}.$",
+          "The limit is $\\frac12 f''(0)=\\frac12\\cdot\\frac{11e}{12}=\\frac{11e}{24}.$"
+        ]
+      }
+    ],
+    "remark": "$(1+x)^{1/x}=e\\bigl(1-\\tfrac{x}{2}+\\tfrac{11x^2}{24}-\\tfrac{7x^3}{16}+\\cdots\\bigr)$ is the engine behind a whole family of brutal limits."
+  },
+  {
+    "theme": "log",
+    "themeLabel": "Logarithm & Exponential",
+    "title": "Where the First Order Cancels Itself",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "log-of-product",
+      "1^infinity",
+      "second-order-survives",
+      "alternating",
+      "taylor-remainder",
+      "n->infty"
+    ],
+    "statement": "For each $n\\ge 1$ form the alternating-sign product \\[ P_n=\\prod_{k=1}^{n}\\left(1+\\frac{(-1)^{k}}{\\sqrt{n}}\\right), \\] so that every factor differs from $1$ by the same tiny amount $\\tfrac{1}{\\sqrt n}$, carried with a sign that flips at each step (odd $k$ subtracts, even $k$ adds). Evaluate \\[ L=\\lim_{n\\to\\infty} P_n. \\] Each factor tends to $1$ and there are $n$ of them, an honest $1^{\\infty}$ form; the whole difficulty is deciding which order of smallness actually controls the answer once the logarithm turns the product into a sum.",
+    "answer": "$\\dfrac{1}{\\sqrt{e}}$",
+    "trap": "Write $u=\\tfrac1{\\sqrt n}$ and reach for $\\ln P_n=\\sum_{k=1}^{n}\\ln\\!\\big(1+(-1)^k u\\big)$. The reflex is the first-order law $\\ln(1+x)\\approx x$, which gives $\\ln P_n\\approx u\\sum_{k=1}^{n}(-1)^k$. That alternating sum is $0$ for even $n$ and $-1$ for odd $n$, so after multiplying by $u=\\tfrac1{\\sqrt n}\\to 0$ the 'linear estimate' is $\\to 0$ and one confidently concludes $L=e^{0}=1$. This is exactly wrong. The linear terms cancel BY DESIGN, so the answer is decided entirely by the term a careless solver throws away as 'higher order': $-\\tfrac12 x^2$. Since $((-1)^k u)^2=u^2=\\tfrac1n$ regardless of sign, the quadratic terms do NOT cancel — they add up to $-\\tfrac12\\cdot n\\cdot\\tfrac1n=-\\tfrac12$, a finite nonzero limit. The cubic and higher terms genuinely vanish (the cubic alternating sum is $O(u^3\\cdot 1)=O(n^{-3/2})$ at worst). Truncating the Taylor series at first order is fatal here; the surviving second order gives $\\ln L=-\\tfrac12$, hence $L=e^{-1/2}$, not $1$.",
+    "solutions": [
+      {
+        "name": "Method I - Pair the factors into a perfect square",
+        "steps": [
+          "Take $n$ even, say $n=2m$ (the odd case is handled at the end). Group the factors in consecutive pairs: for each $j=1,\\dots,m$ the pair $k=2j-1$ (sign $-$) and $k=2j$ (sign $+$) gives $\\big(1-\\tfrac1{\\sqrt n}\\big)\\big(1+\\tfrac1{\\sqrt n}\\big)=1-\\tfrac1n$.",
+          "Hence $P_n=\\big(1-\\tfrac1n\\big)^{m}=\\big(1-\\tfrac1n\\big)^{n/2}$, an exact closed form with no approximation made.",
+          "Now $\\big(1-\\tfrac1n\\big)^{n/2}=\\Big[\\big(1-\\tfrac1n\\big)^{n}\\Big]^{1/2}\\to (e^{-1})^{1/2}=e^{-1/2}$, using the standard $\\big(1-\\tfrac1n\\big)^{n}\\to e^{-1}$.",
+          "For odd $n=2m+1$ the same pairing leaves one extra factor $\\big(1-\\tfrac1{\\sqrt n}\\big)$, so $P_n=\\big(1-\\tfrac1n\\big)^{m}\\big(1-\\tfrac1{\\sqrt n}\\big)$; here $\\big(1-\\tfrac1{\\sqrt n}\\big)\\to1$ and $\\big(1-\\tfrac1n\\big)^{m}=\\big(1-\\tfrac1n\\big)^{(n-1)/2}\\to e^{-1/2}$, so both parities share the limit $L=e^{-1/2}=\\boxed{\\dfrac{1}{\\sqrt{e}}}$."
+        ]
+      },
+      {
+        "name": "Method II - Logarithm with the second-order term kept honestly",
+        "steps": [
+          "Put $u=\\tfrac1{\\sqrt n}$ and $s_k=(-1)^k$, so $\\ln P_n=\\sum_{k=1}^{n}\\ln(1+s_k u)$. Use the exact expansion $\\ln(1+x)=x-\\tfrac{x^2}{2}+r(x)$ with $|r(x)|\\le\\tfrac{|x|^3}{3(1-|x|)}$ for $|x|<1$.",
+          "Linear part: $\\sum_{k=1}^{n}s_k u=u\\sum_{k=1}^{n}(-1)^k$, which is $0$ ($n$ even) or $-u$ ($n$ odd); either way it $\\to 0$ as $n\\to\\infty$.",
+          "Quadratic part: $-\\tfrac12\\sum_{k=1}^{n}(s_k u)^2=-\\tfrac12\\sum_{k=1}^{n}u^2=-\\tfrac12\\,n\\cdot\\tfrac1n=-\\tfrac12$ exactly, because $s_k^2=1$ removes every sign — this is the term that survives.",
+          "Remainder: $\\big|\\sum_{k=1}^{n}r(s_k u)\\big|\\le n\\cdot\\tfrac{u^3}{3(1-u)}=\\dfrac{1}{3\\sqrt n\\,(1-1/\\sqrt n)}\\to 0$. Adding the three pieces, $\\ln L=0-\\tfrac12+0=-\\tfrac12$, so $L=e^{-1/2}=\\boxed{\\dfrac{1}{\\sqrt{e}}}$."
+        ]
+      },
+      {
+        "name": "Method III - Squaring to expose the invariant",
+        "steps": [
+          "Consider the companion product with all signs flipped, $Q_n=\\prod_{k=1}^{n}\\big(1+\\tfrac{(-1)^{k+1}}{\\sqrt n}\\big)$, obtained by swapping $+$ and $-$. Term by term, $P_n Q_n=\\prod_{k=1}^{n}\\big(1-\\tfrac1n\\big)=\\big(1-\\tfrac1n\\big)^{n}\\to e^{-1}$.",
+          "By symmetry $P_n$ and $Q_n$ are the two products built from the same multiset of factors $\\{1\\pm\\tfrac1{\\sqrt n}\\}$, just rearranged, so the ratio $P_n/Q_n$ stays bounded and in fact $\\to 1$: $\\ln(P_n/Q_n)=\\sum_k\\big[\\ln(1+s_k u)-\\ln(1-s_k u)\\big]=2u\\sum_k\\big(s_k+\\tfrac{s_k^3 u^2}{3}+\\cdots\\big)$, whose leading piece $2u\\sum_k s_k\\in\\{0,-2u\\}\\to0$ and whose tail is $O(u^3 n)=O(n^{-1/2})\\to0$.",
+          "From $P_nQ_n\\to e^{-1}$ and $P_n/Q_n\\to1$ we get $P_n^2=(P_nQ_n)(P_n/Q_n)\\to e^{-1}\\cdot1=e^{-1}$.",
+          "Since $P_n>0$ for all large $n$, taking the positive square root gives $L=\\lim P_n=e^{-1/2}=\\boxed{\\dfrac{1}{\\sqrt{e}}}$."
+        ]
+      }
+    ],
+    "remark": "The design principle is sabotage of the first-order intuition. Each factor sits at distance $\\tfrac1{\\sqrt n}$ from $1$ — the unique scale at which $\\sum x_k$ can stay $O(1)$ while $\\sum x_k^2$ also stays $O(1)$ — and the alternating sign is chosen precisely so the linear sum cancels, handing all of the limit to the quadratic term that the law $\\ln(1+x)\\approx x$ discards. The signature is $s_k^2=1$: signs vanish under squaring, so $-\\tfrac12\\sum x_k^2=-\\tfrac12$ no matter how the signs are arranged. Method I makes this visible without any series at all (a paired factor is the difference of squares $1-\\tfrac1n$), Method II quantifies which Taylor order survives and bounds the rest, and Method III isolates the invariant by multiplying $P_n$ with its sign-flipped twin. A top-rank solver recognizes on sight that an alternating $1\\pm\\tfrac1{\\sqrt n}$ product is a $1^\\infty$ form whose value is governed by the second moment, lands on $e^{-1/2}$, and never writes the seductive but fatal $L=1$."
+  },
+  {
+    "theme": "log",
+    "themeLabel": "Logarithm & Exponential",
+    "title": "Sine Under the Log",
+    "difficulty": 4,
+    "tags": [
+      "log-of-ratio",
+      "one-sided",
+      "x->0+",
+      "sinx-over-x"
+    ],
+    "statement": "\\lim_{x\\to 0^{+}}\\frac{\\ln(\\sin x)-\\ln x}{x^{2}}",
+    "answer": "-\\dfrac{1}{6}",
+    "trap": "Two traps. (1) The numerator is $-\\infty-(-\\infty)$, so a student panics or, worse, declares the limit $0$ by replacing $\\sin x\\approx x$ at first order, getting $\\ln\\frac{x}{x}=\\ln 1=0$ over $x^2$ — the linear approximation is exactly what kills the answer, since the whole limit lives in the $x^2$ correction. (2) Brute-force L'Hopital on $\\ln(\\sin x)-\\ln x$ produces $\\frac{\\cos x}{\\sin x}-\\frac1x$, an indeterminate $\\infty-\\infty$ that most students mishandle. The clean move is $\\ln(\\sin x)-\\ln x=\\ln\\frac{\\sin x}{x}$, turning a swamp into one line.",
+    "solutions": [
+      {
+        "name": "Method I - Combine logs, expand",
+        "steps": [
+          "Combine the logs: $\\ln(\\sin x)-\\ln x=\\ln\\!\\left(\\frac{\\sin x}{x}\\right)$, valid for small $x>0$ where $\\sin x>0$ (this is why the limit is taken one-sided).",
+          "Expand the ratio: $\\frac{\\sin x}{x}=\\frac{x-\\frac{x^3}{6}+\\frac{x^5}{120}-\\cdots}{x}=1-\\frac{x^2}{6}+\\frac{x^4}{120}-\\cdots.$",
+          "Take its log with $\\ln(1+u)=u-\\frac{u^2}{2}+\\cdots$ and $u=-\\frac{x^2}{6}+\\frac{x^4}{120}-\\cdots$. The $u^2$ term is $O(x^4)$, so $$\\ln\\!\\left(\\frac{\\sin x}{x}\\right)=-\\frac{x^2}{6}+O(x^4).$$",
+          "Divide by $x^2$: $\\dfrac{1}{x^2}\\Bigl(-\\dfrac{x^2}{6}+O(x^4)\\Bigr)=-\\dfrac16+O(x^2)\\to-\\dfrac16.$"
+        ]
+      },
+      {
+        "name": "Method II - L'Hopital done carefully",
+        "steps": [
+          "Rewrite as $\\dfrac{g(x)}{x^2}$ with $g(x)=\\ln\\dfrac{\\sin x}{x}$. Since $\\frac{\\sin x}{x}\\to1$, we have $g(x)\\to0$, so this is a genuine $\\frac00$ form (unlike the raw $-\\infty-(-\\infty)$).",
+          "Differentiate once: $\\dfrac{d}{dx}\\ln\\dfrac{\\sin x}{x}=\\dfrac{\\cos x}{\\sin x}-\\dfrac1x=\\dfrac{x\\cos x-\\sin x}{x\\sin x}$, and $\\dfrac{d}{dx}x^2=2x$. The new ratio is $\\dfrac{x\\cos x-\\sin x}{2x^2\\sin x}.$",
+          "Expand the numerator: $x\\cos x-\\sin x=x\\bigl(1-\\tfrac{x^2}{2}+\\cdots\\bigr)-\\bigl(x-\\tfrac{x^3}{6}+\\cdots\\bigr)=-\\dfrac{x^3}{3}+O(x^5).$ The denominator $2x^2\\sin x=2x^3+O(x^5).$",
+          "Hence the ratio $\\to\\dfrac{-1/3}{2}=-\\dfrac16$, consistent with Method I."
+        ]
+      }
+    ],
+    "remark": "Because $\\ln\\frac{\\sin x}{x}=-\\frac{x^2}{6}-\\frac{x^4}{180}-\\frac{x^6}{2835}-\\cdots$, this limit is just the leading coefficient of a classical even series; combining the logs first is the entire trick."
+  },
+  {
+    "theme": "log",
+    "themeLabel": "Logarithm & Exponential",
+    "title": "The Race the Geometric Mean Fixes",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "growth-race",
+      "exp-expansion",
+      "second-order",
+      "geometric-progression",
+      "x->infty"
+    ],
+    "statement": "A clean exponential race such as $\\displaystyle\\lim_{x\\to\\infty}x\\big(3^{1/x}-2^{1/x}\\big)=\\ln\\tfrac{3}{2}$ works because $k^{1/x}=1+\\tfrac{\\ln k}{x}+O(x^{-2})$, so the difference isolates $\\ln\\tfrac{3}{2}$ at first order. Now stack three bases that are deliberately chosen to make the first-order term cancel, and turn up the scaling by one full power of $x$. Evaluate \\[ L=\\lim_{x\\to\\infty}\\,x^{2}\\left(2^{1/x}-2\\cdot 3^{1/x}+\\Big(\\tfrac{9}{2}\\Big)^{1/x}\\right), \\] the limit taken as $x\\to\\infty$ through real values. Notice that $2,\\,3,\\,\\tfrac{9}{2}$ are in geometric progression with ratio $\\tfrac{3}{2}$, i.e. $2\\cdot\\tfrac{9}{2}=3^{2}$.",
+    "answer": "$\\ln^{2}\\!\\dfrac{3}{2}$",
+    "trap": "Expand each base to first order, $k^{1/x}=1+\\tfrac{\\ln k}{x}+\\cdots$, and the bracket reads $\\big(1-2+1\\big)+\\tfrac{1}{x}\\big(\\ln 2-2\\ln 3+\\ln\\tfrac{9}{2}\\big)+\\cdots$. The constant part is $0$, and the $\\tfrac1x$ coefficient is $\\ln\\!\\dfrac{2\\cdot\\frac{9}{2}}{3^{2}}=\\ln 1=0$ exactly, because the three bases are a geometric progression. A student who stops here sees the bracket behaving like $\\tfrac{0}{x}$, multiplies by $x^{2}$, and triumphantly declares $L=0$ — the seductive phantom. The very design that kills the first-order term is what forces you down to the second order: $k^{1/x}=1+\\tfrac{\\ln k}{x}+\\tfrac{\\ln^{2}k}{2x^{2}}+\\cdots$, and the surviving coefficient is $\\tfrac12\\big(\\ln^{2}2-2\\ln^{2}3+\\ln^{2}\\tfrac{9}{2}\\big)$. This is NOT zero: a second difference of the convex sequence $t\\mapsto\\ln^{2}(\\text{base})$ does not vanish just because the first difference of $t\\mapsto\\ln(\\text{base})$ does. The GP makes $\\ln 2,\\ln 3,\\ln\\tfrac92$ an arithmetic progression with common difference $\\ln\\tfrac32$, so the second difference of their squares is $2(\\ln\\tfrac32)^{2}$, giving $L=\\tfrac12\\cdot 2\\ln^{2}\\tfrac32=\\ln^{2}\\tfrac32$. A second, subtler slip: matching the $x^{2}$ scale to a single first-order race (using $x\\big(\\cdots\\big)$ instinct) underpowers the expansion and again returns $0$; the $x^{2}$ is a signal that the answer lives at second order, exactly where the GP banished the first.",
+    "solutions": [
+      {
+        "name": "Method I - Second-order expansion (Taylor of each base)",
+        "steps": [
+          "Use $k^{1/x}=\\exp\\!\\big(\\tfrac{\\ln k}{x}\\big)=1+\\dfrac{\\ln k}{x}+\\dfrac{\\ln^{2}k}{2x^{2}}+O(x^{-3})$ for each base $k\\in\\{2,3,\\tfrac92\\}$.",
+          "Sum with weights $(+1,-2,+1)$. The constant terms give $1-2+1=0$. The $\\tfrac1x$ terms give $\\dfrac{1}{x}\\big(\\ln 2-2\\ln 3+\\ln\\tfrac{9}{2}\\big)=\\dfrac{1}{x}\\ln\\dfrac{2\\cdot\\frac{9}{2}}{3^{2}}=\\dfrac{1}{x}\\ln 1=0$, vanishing precisely because $2,3,\\tfrac92$ form a geometric progression.",
+          "So the bracket equals $\\dfrac{1}{2x^{2}}\\big(\\ln^{2}2-2\\ln^{2}3+\\ln^{2}\\tfrac{9}{2}\\big)+O(x^{-3})$. Multiplying by $x^{2}$ leaves $L=\\dfrac12\\big(\\ln^{2}2-2\\ln^{2}3+\\ln^{2}\\tfrac{9}{2}\\big)$.",
+          "Write $\\ell_1=\\ln 2,\\ \\ell_2=\\ln 3,\\ \\ell_3=\\ln\\tfrac92$. Since the bases are a GP of ratio $\\tfrac32$, the logs are an AP: $\\ell_2-\\ell_1=\\ell_3-\\ell_2=\\ln\\tfrac32$. The second difference of squares of an AP is $\\ell_1^{2}-2\\ell_2^{2}+\\ell_3^{2}=2(\\ln\\tfrac32)^{2}$. Hence $L=\\tfrac12\\cdot 2\\ln^{2}\\tfrac32=\\boxed{\\ln^{2}\\dfrac{3}{2}}$."
+        ]
+      },
+      {
+        "name": "Method II - Telescoped into two consecutive races",
+        "steps": [
+          "Group the second difference as $2^{1/x}-2\\cdot 3^{1/x}+\\big(\\tfrac92\\big)^{1/x}=\\Big(\\big(\\tfrac92\\big)^{1/x}-3^{1/x}\\Big)-\\Big(3^{1/x}-2^{1/x}\\Big)$, two adjacent single-base races sharing the rung $3^{1/x}$.",
+          "Each race scales like the basic one: $x\\big(\\beta^{1/x}-\\alpha^{1/x}\\big)\\to\\ln\\tfrac{\\beta}{\\alpha}$. More precisely $x\\big(\\beta^{1/x}-\\alpha^{1/x}\\big)=\\ln\\tfrac{\\beta}{\\alpha}+\\dfrac{1}{2x}\\big(\\ln^{2}\\beta-\\ln^{2}\\alpha\\big)+O(x^{-2})$.",
+          "Apply to the two rungs. With $\\tfrac92,3$ and with $3,2$ the leading $\\ln\\tfrac{9/2}{3}=\\ln\\tfrac32$ and $\\ln\\tfrac{3}{2}=\\ln\\tfrac32$ are EQUAL, so they cancel in the difference $x\\big[(\\tfrac92)^{1/x}-3^{1/x}\\big]-x\\big[3^{1/x}-2^{1/x}\\big]$, leaving only the $\\tfrac1{2x}$ pieces: $\\dfrac{1}{2x}\\big[(\\ln^{2}\\tfrac92-\\ln^{2}3)-(\\ln^{2}3-\\ln^{2}2)\\big]$.",
+          "Therefore $x^{2}\\big(2^{1/x}-2\\cdot3^{1/x}+(\\tfrac92)^{1/x}\\big)=x\\Big(x\\big[(\\tfrac92)^{1/x}-3^{1/x}\\big]-x\\big[3^{1/x}-2^{1/x}\\big]\\Big)\\to\\tfrac12\\big(\\ln^{2}\\tfrac92-2\\ln^{2}3+\\ln^{2}2\\big)=\\ln^{2}\\tfrac32$, so $L=\\boxed{\\ln^{2}\\dfrac{3}{2}}$. The equality of the two first-order limits (both $\\ln\\tfrac32$) is the GP at work."
+        ]
+      },
+      {
+        "name": "Method III - Substitution and L'Hopital twice",
+        "steps": [
+          "Put $t=\\tfrac1x\\to 0^{+}$. Then $L=\\displaystyle\\lim_{t\\to0^{+}}\\frac{g(t)}{t^{2}}$ with $g(t)=2^{t}-2\\cdot3^{t}+\\big(\\tfrac92\\big)^{t}$, a $\\tfrac{0}{0}$ form since $g(0)=1-2+1=0$.",
+          "Differentiate: $g'(t)=\\ln 2\\,2^{t}-2\\ln 3\\,3^{t}+\\ln\\tfrac92\\,(\\tfrac92)^{t}$, and $g'(0)=\\ln 2-2\\ln 3+\\ln\\tfrac92=\\ln\\tfrac{2\\cdot\\frac92}{9}=\\ln 1=0$. With $(t^{2})'=2t\\to0$ the ratio is still $\\tfrac00$, so L'Hopital applies a second time.",
+          "Differentiate again: $g''(t)=\\ln^{2}2\\,2^{t}-2\\ln^{2}3\\,3^{t}+\\ln^{2}\\tfrac92\\,(\\tfrac92)^{t}$ and $(t^{2})''=2$, so $L=\\dfrac{g''(0)}{2}=\\dfrac{\\ln^{2}2-2\\ln^{2}3+\\ln^{2}\\tfrac92}{2}$.",
+          "Because $\\ln 2,\\ln 3,\\ln\\tfrac92$ is an AP with common difference $\\ln\\tfrac32$, the numerator is $2\\ln^{2}\\tfrac32$, giving $L=\\boxed{\\ln^{2}\\dfrac{3}{2}}$."
+        ]
+      }
+    ],
+    "remark": "The whole problem is a single second difference $\\Delta^{2}$ in disguise. For a base sequence the first-order content of $\\sum c_k\\,k^{1/x}$ is governed by $\\sum c_k\\ln k$ and the second-order content by $\\tfrac12\\sum c_k\\ln^{2}k$, with weights $c=(+1,-2,+1)$ this is exactly the second difference operator acting first on $\\ln(\\text{base})$ and then on $\\ln^{2}(\\text{base})$. Choosing the bases in geometric progression makes the logs arithmetic, so $\\Delta^{2}\\ln=0$ — the first-order race is silenced — yet $\\Delta^{2}(\\ln^{2})=2d^{2}\\ne0$ where $d=\\ln\\tfrac32$ is the common difference. That is why the scaling had to be $x^{2}$, not $x$: the answer was deliberately pushed one rung deeper by the GP. The top-rank lesson is to read $1+\\tfrac{\\ln k}{x}+\\tfrac{\\ln^{2}k}{2x^{2}}+\\cdots$ as a generating expansion and to ask, before scaling, which order the chosen coefficients actually leave alive; a vanishing leading term is an invitation to the next, never a verdict of zero. Drop the middle weight to $-1$, or perturb $\\tfrac92$ to anything off the GP, and the first order revives, the $x^{2}$ over-scales, and the limit diverges — the value $\\ln^{2}\\tfrac32$ exists only on the knife-edge the geometric progression provides."
+  },
+  {
+    "theme": "log",
+    "themeLabel": "Logarithm & Exponential",
+    "title": "A Tale of Two Sides",
+    "difficulty": 4,
+    "tags": [
+      "nonexistence",
+      "one-sided",
+      "absolute-value",
+      "1^infinity",
+      "x->0"
+    ],
+    "statement": "\\lim_{x\\to 0}\\left(1+|x|\\right)^{1/x}",
+    "answer": "\\text{does not exist}\\quad\\left(\\text{right-hand limit } e,\\ \\text{left-hand limit } e^{-1}\\right)",
+    "trap": "Pattern-matching to the famous limit $(1+x)^{1/x}\\to e$, a student mentally erases the bars and answers $e$. But the base carries $|x|$ (an even quantity) while the exponent carries $1/x$ (odd). Their interaction puts a $\\operatorname{sgn}(x)$ in the exponent of the limiting form, so the right side gives $e^{+1}$ and the left side $e^{-1}$. Because $e\\neq e^{-1}$, the two-sided limit cannot exist — yet both one-sided limits are perfectly finite, which is exactly what makes the wrong single answer feel safe.",
+    "solutions": [
+      {
+        "name": "Method I - Separate one-sided analysis",
+        "steps": [
+          "For $x>0$ we have $|x|=x$, so the expression is the classic $(1+x)^{1/x}$. Hence $\\displaystyle\\lim_{x\\to0^{+}}(1+|x|)^{1/x}=e$.",
+          "For $x<0$ we have $|x|=-x$, so the expression is $(1-x)^{1/x}=\\exp\\!\\left(\\dfrac{\\ln(1-x)}{x}\\right)$. Using $\\ln(1-x)=-x-\\tfrac{x^{2}}{2}-\\cdots$ gives $\\dfrac{\\ln(1-x)}{x}=-1-\\dfrac{x}{2}-\\cdots\\to-1$, so $\\displaystyle\\lim_{x\\to0^{-}}(1+|x|)^{1/x}=e^{-1}$.",
+          "The one-sided limits are $e$ (right) and $e^{-1}$ (left).",
+          "Since $e\\neq e^{-1}$, the right- and left-hand limits disagree, so the two-sided limit does not exist."
+        ]
+      },
+      {
+        "name": "Method II - Signum exponent via logarithm",
+        "steps": [
+          "Let $L(x)=\\ln\\big((1+|x|)^{1/x}\\big)=\\dfrac{1}{x}\\ln(1+|x|)$. Expand $\\ln(1+|x|)=|x|-\\dfrac{|x|^{2}}{2}+\\cdots$, so $L(x)=\\dfrac{|x|}{x}\\left(1-\\dfrac{|x|}{2}+\\cdots\\right)$.",
+          "Here $\\dfrac{|x|}{x}=\\operatorname{sgn}(x)$ equals $+1$ for $x>0$ and $-1$ for $x<0$, while the bracket $\\to1$ as $x\\to0$.",
+          "Therefore $L(x)\\to\\operatorname{sgn}(x)\\cdot1=\\pm1$, the sign depending solely on the side of approach.",
+          "Exponentiating, $(1+|x|)^{1/x}\\to e^{+1}=e$ from the right and $e^{-1}$ from the left. The two values differ, so the limit does not exist."
+        ]
+      }
+    ],
+    "remark": "Whenever a $1^{\\infty}$ form pairs an even quantity in the base (here $|x|$) with an odd quantity in the exponent ($1/x$, or equivalently $\\operatorname{sgn}$), expect a sign-driven split: the limiting exponent picks up a factor $\\operatorname{sgn}(x)$, forcing reciprocal one-sided values $e^{\\pm1}$ and two-sided non-existence."
+  },
+  {
+    "theme": "log",
+    "themeLabel": "Logarithm & Exponential",
+    "title": "The Geometric Mean of an Interval",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "geometric-mean",
+      "1^infty",
+      "log-of-mean",
+      "integral-mean",
+      "x->0"
+    ],
+    "statement": "For a finite list of positive numbers $a_1,\\dots,a_n$ the identity $\\displaystyle\\lim_{x\\to 0}\\Big(\\tfrac{1}{n}\\textstyle\\sum_{k} a_k^{x}\\Big)^{1/x}=\\big(a_1\\cdots a_n\\big)^{1/n}$ promotes the arithmetic mean of the powers into the geometric mean of the bases. Replace the finite list by a continuum: average $t^{x}$ over the whole interval $t\\in[1,e]$ instead of over finitely many points. Evaluate \\[ L=\\lim_{x\\to 0}\\left(\\frac{1}{e-1}\\int_{1}^{e} t^{\\,x}\\,dt\\right)^{1/x}, \\] the limit taken as $x\\to 0$ through real values (both signs). Here $\\dfrac{1}{e-1}\\int_{1}^{e}t^{x}\\,dt$ is the genuine average of the function $t\\mapsto t^{x}$ on $[1,e]$.",
+    "answer": "$\\exp\\!\\dfrac{1}{e-1}$",
+    "trap": "The inner average is a mean of the numbers $t^{x}$, NOT of the numbers $t$, and the exponent $1/x$ converts a mean-of-powers into a geometric (i.e. exponential-of-log-mean) object — exactly as in the discrete identity quoted. The seductive wrong move is to evaluate the average of $t$ itself: a student reads \"average over $[1,e]$\" and writes $\\frac{1}{e-1}\\int_1^e t\\,dt=\\frac{1+e}{2}\\approx 1.859$, reporting the arithmetic mean of the interval. That is the value of the bracket at $x=1$, not its limit as $x\\to 0$; the geometric limit is $\\exp\\!\\frac{1}{e-1}\\approx 1.790$, strictly smaller by the AM-GM gap. A second, more sophisticated slip is to confuse the small-$x$ regime with the large-$x$ one: as $x\\to+\\infty$ the average is dominated by the largest base and the bracket-to-the-$1/x$ tends to the maximum $t=e$ (and to the minimum $t=1$ as $x\\to-\\infty$); writing the answer as the endpoint $e$ imports the wrong limit entirely. The correct mechanism is that the bracket is a $1^{\\infty}$ form ($\\frac{1}{e-1}\\int_1^e t^{x}\\,dt\\to 1$ as $x\\to 0$), so $\\ln L=\\lim_{x\\to0}\\frac1x\\ln\\!\\big(\\text{average of }t^{x}\\big)$, which collapses to the average of $\\ln t$ over the interval, $\\frac{1}{e-1}\\int_1^e\\ln t\\,dt=\\frac{1}{e-1}$. The trap is to average the wrong quantity (the base, or its large-$x$ winner) instead of letting $1/x$ pull the logarithm inside the integral.",
+    "solutions": [
+      {
+        "name": "Method I - Logarithm and the 1^infty reduction (log of mean -> mean of log)",
+        "steps": [
+          "Let $m(x)=\\dfrac{1}{e-1}\\displaystyle\\int_1^e t^{x}\\,dt$. At $x=0$ the integrand is $1$, so $m(0)=\\dfrac{1}{e-1}\\int_1^e 1\\,dt=1$; thus $m(x)^{1/x}$ is a genuine $1^{\\infty}$ form and $\\ln L=\\displaystyle\\lim_{x\\to0}\\frac{\\ln m(x)}{x}$.",
+          "Since $\\ln m(0)=\\ln 1=0$, this is the derivative $\\dfrac{d}{dx}\\ln m(x)\\big|_{x=0}=\\dfrac{m'(0)}{m(0)}=m'(0)$.",
+          "Differentiate under the integral sign: $m'(x)=\\dfrac{1}{e-1}\\displaystyle\\int_1^e t^{x}\\ln t\\,dt$, so $m'(0)=\\dfrac{1}{e-1}\\displaystyle\\int_1^e \\ln t\\,dt$. The exponent $1/x$ has pulled the logarithm inside, turning the mean of $t^{x}$ into the mean of $\\ln t$.",
+          "Evaluate $\\displaystyle\\int_1^e \\ln t\\,dt=\\big[t\\ln t-t\\big]_1^e=(e-e)-(0-1)=1$. Hence $\\ln L=\\dfrac{1}{e-1}$ and $L=\\boxed{\\exp\\dfrac{1}{e-1}}$. (Both signs of $x$ give the same one-sided derivative, so the two-sided limit exists.)"
+        ]
+      },
+      {
+        "name": "Method II - Exact closed form, then Taylor to first order",
+        "steps": [
+          "Compute the integral exactly: for $x\\neq -1$, $\\displaystyle\\int_1^e t^{x}\\,dt=\\dfrac{e^{x+1}-1}{x+1}$, so $m(x)=\\dfrac{1}{e-1}\\cdot\\dfrac{e^{x+1}-1}{x+1}$ and $L=\\displaystyle\\lim_{x\\to0}m(x)^{1/x}$.",
+          "Take logs and expand each piece about $x=0$. Using $e^{x+1}-1=(e-1)+e\\,x+\\tfrac{e}{2}x^{2}+\\cdots$ we get $\\ln\\!\\big(e^{x+1}-1\\big)=\\ln(e-1)+\\dfrac{e}{e-1}x+O(x^{2})$, while $\\ln(x+1)=x+O(x^{2})$ and $\\ln(e-1)$ is constant.",
+          "Therefore $\\ln m(x)=\\Big[\\ln(e-1)+\\dfrac{e}{e-1}x\\Big]-\\ln(e-1)-x+O(x^{2})=\\Big(\\dfrac{e}{e-1}-1\\Big)x+O(x^{2})=\\dfrac{1}{e-1}\\,x+O(x^{2})$.",
+          "Divide by $x$ and let $x\\to0$: $\\dfrac{\\ln m(x)}{x}\\to\\dfrac{1}{e-1}$, so $L=\\boxed{\\exp\\dfrac{1}{e-1}}$. The first-order coefficient $\\dfrac{1}{e-1}$ is exactly the mean of $\\ln t$, matching Method I."
+        ]
+      },
+      {
+        "name": "Method III - Continuous geometric mean as the limit of the discrete one",
+        "steps": [
+          "Partition $[1,e]$ into $n$ equal pieces with sample points $t_k=1+\\tfrac{(e-1)k}{n}$. The Riemann sum $\\dfrac{1}{e-1}\\displaystyle\\int_1^e t^{x}\\,dt=\\lim_{n\\to\\infty}\\dfrac{1}{n}\\sum_{k=1}^{n}t_k^{x}$ shows the inner average is the $n\\to\\infty$ limit of the discrete average of the powers $t_k^{x}$.",
+          "By the quoted discrete identity, $\\Big(\\tfrac1n\\sum_{k} t_k^{x}\\Big)^{1/x}\\to(t_1\\cdots t_n)^{1/n}$ as $x\\to0$, the geometric mean of the sample points. So the continuous limit $L$ must be the continuous geometric mean $\\exp\\!\\Big(\\dfrac{1}{e-1}\\displaystyle\\int_1^e\\ln t\\,dt\\Big)$, the integral being the $n\\to\\infty$ limit of $\\tfrac1n\\sum\\ln t_k$.",
+          "Make this rigorous in one stroke: $\\dfrac1x\\ln\\!\\Big(\\dfrac{1}{e-1}\\displaystyle\\int_1^e t^{x}\\,dt\\Big)=\\dfrac1x\\ln\\!\\Big(\\dfrac{1}{e-1}\\displaystyle\\int_1^e e^{x\\ln t}\\,dt\\Big)$, and since $e^{x\\ln t}=1+x\\ln t+O(x^{2})$ uniformly on the compact $[1,e]$, the average is $1+\\dfrac{x}{e-1}\\displaystyle\\int_1^e\\ln t\\,dt+O(x^{2})$.",
+          "Hence $\\dfrac1x\\ln(1+\\tfrac{x}{e-1}\\cdot 1+O(x^{2}))\\to\\dfrac{1}{e-1}$, using $\\int_1^e\\ln t\\,dt=1$. Therefore $L=\\boxed{\\exp\\dfrac{1}{e-1}}$, the geometric mean of the interval $[1,e]$."
+        ]
+      }
+    ],
+    "remark": "The discrete fact \"the $x\\to0$ limit of a power-average raised to $1/x$ is the geometric mean of the bases\" is really a statement about derivatives: $\\frac1x\\ln(\\text{mean of }a^x)\\to\\text{mean of }\\ln a$, because near $x=0$ each $a^x=1+x\\ln a+\\cdots$ and the $1/x$ harvests the first-order coefficient. Nothing in that argument needs finitely many points, so it upgrades verbatim to a measure: the continuous geometric mean of a positive function over an interval is $\\exp$ of the average of its logarithm. Here that average is $\\frac{1}{e-1}\\int_1^e\\ln t\\,dt=\\frac{1}{e-1}$, a one-line integral chosen so the interval $[1,e]$ makes $\\int\\ln=1$. The top-rank discipline is to notice WHICH mean the limit selects: $x\\to0^{\\pm}$ gives the geometric mean (interior, AM-GM-smaller than the arithmetic mean $\\frac{1+e}{2}$), $x\\to+\\infty$ the essential supremum $e$, $x\\to-\\infty$ the essential infimum $1$, and $x=1$ the arithmetic mean. All four live in the same one-parameter family of power means, and only the logarithm-inside-the-integral mechanism tells you the $x\\to0$ member is $\\exp\\frac{1}{e-1}$, not the tempting $\\frac{1+e}{2}$."
+  },
+  {
+    "theme": "trig",
+    "themeLabel": "Advanced Trigonometry",
+    "title": "The Iterated Sine Crawls Home",
+    "difficulty": 4,
+    "tags": [
+      "iterated-sine",
+      "recursion",
+      "cesaro-stolz",
+      "asymptotics",
+      "x->infinity"
+    ],
+    "statement": "\\text{Let } x_1\\in(0,\\pi) \\text{ and } x_{n+1}=\\sin(x_n).\\quad \\lim_{n\\to\\infty} n\\,x_n^{\\,2}",
+    "answer": "3",
+    "trap": "\"Since $x_n\\to 0$, $n x_n^2$ is $\\infty\\cdot 0$, indeterminate — and $x_n$ surely shrinks geometrically, so $n x_n^2\\to 0$.\" Wrong: $\\sin$ is tangent to the line $y=x$ at $0$ ($\\sin x = x - x^3/6+\\dots$, fixed-point multiplier exactly $1$), so the iteration loses its contraction at the limit and the decay is only algebraic, $x_n\\sim\\sqrt{3/n}$, not geometric. The geometric instinct gives $0$; the true value is $3$.",
+    "solutions": [
+      {
+        "name": "Method I - Stolz–Cesàro on the reciprocal squares",
+        "steps": [
+          "Since $0<x_{n+1}=\\sin x_n<x_n$ for $x_n\\in(0,\\pi)$, the sequence is positive and strictly decreasing, hence converges to a limit $L\\ge 0$ with $L=\\sin L$, forcing $L=0$. So $x_n\\to 0^+$.",
+          "Study $y_n=1/x_n^2$. Using $\\sin x = x-\\tfrac{x^3}{6}+\\tfrac{x^5}{120}-\\dots$, so $\\dfrac{\\sin x}{x}=1-\\tfrac{x^2}{6}+\\tfrac{x^4}{120}-\\dots$.",
+          "Squaring, $$x_{n+1}^2=\\sin^2 x_n=x_n^2\\Big(1-\\tfrac{x_n^2}{6}+\\tfrac{x_n^4}{120}-\\dots\\Big)^2=x_n^2\\Big(1-\\tfrac{x_n^2}{3}+\\tfrac{2x_n^4}{45}-\\dots\\Big).$$",
+          "Invert and expand $\\dfrac{1}{1-\\frac{x_n^2}{3}+\\frac{2x_n^4}{45}-\\dots}=1+\\tfrac{x_n^2}{3}+\\big(\\tfrac19-\\tfrac{2}{45}\\big)x_n^4+\\dots=1+\\tfrac{x_n^2}{3}+\\tfrac{x_n^4}{15}+\\dots$, giving $$\\frac{1}{x_{n+1}^2}=\\frac{1}{x_n^2}+\\frac13+\\tfrac{1}{15}x_n^2+\\dots$$",
+          "Hence $y_{n+1}-y_n\\to \\tfrac13$ (the $x_n^2$ correction $\\to 0$). By Stolz–Cesàro, $$\\frac{y_n}{n}\\to\\tfrac13\\ \\Longrightarrow\\ \\frac{1}{n x_n^2}\\to\\tfrac13.$$",
+          "Therefore $n x_n^2\\to 3.$"
+        ]
+      },
+      {
+        "name": "Method II - Continuous comparison (heuristic made rigorous)",
+        "steps": [
+          "Model the recursion by the increment it produces on $1/x^2$: from Method I, one step changes $1/x_n^2$ by $\\tfrac13+O(x_n^2)$. Ignoring the small correction, treat $\\tfrac{d}{dn}\\big(\\tfrac{1}{x^2}\\big)\\approx\\tfrac13$.",
+          "Integrating, $\\tfrac{1}{x_n^2}\\approx \\tfrac{n}{3}+C$, i.e. $x_n^2\\approx \\dfrac{3}{n+3C}$.",
+          "The constant washes out in the limit: $n x_n^2\\approx \\dfrac{3n}{n+3C}\\to 3.$",
+          "Rigor: the exact increment is $\\Delta(1/x_n^2)=\\tfrac13+O(x_n^2)$ with $x_n^2\\to 0$, so the average of the increments $\\frac1n\\sum_{k=1}^{n-1}\\Delta(1/x_k^2)\\to\\tfrac13$ (Cesàro mean of a convergent sequence). Thus $\\frac{1}{n x_n^2}=\\frac{1}{n}\\big(y_1+\\sum_{k=1}^{n-1}\\Delta y_k\\big)\\to\\tfrac13$, confirming $n x_n^2\\to 3$."
+        ]
+      }
+    ],
+    "remark": "General principle: if $f(x)=x-c\\,x^{k+1}+\\dots$ with $c>0$, then iterating $x_{n+1}=f(x_n)$ near the tangential fixed point $0$ gives $x_n\\sim(c\\,k\\,n)^{-1/k}$; here $\\sin x = x-\\tfrac16 x^3+\\dots$ so $k=2,\\ c=\\tfrac16$, yielding $x_n\\sim\\sqrt{3/n}$ and $n x_n^2\\to 3$."
+  },
+  {
+    "theme": "trig",
+    "themeLabel": "Advanced Trigonometry",
+    "title": "Nested Tangent Beats Nested Sine",
+    "difficulty": 4,
+    "tags": [
+      "nested-trig",
+      "tan-tan",
+      "sin-sin",
+      "taylor",
+      "x->0",
+      "ratio"
+    ],
+    "statement": "\\lim_{x\\to 0}\\frac{\\tan(\\tan x)-\\sin(\\sin x)}{\\tan x-\\sin x}",
+    "answer": "2",
+    "trap": "\"Both top and bottom vanish, so L'Hopital once and plug in $x=0$.\" But one differentiation leaves a fresh $0/0$ (numerator and denominator are both $O(x^3)$, not $O(x)$), so a single pass settles nothing. Worse, the tempting shortcut $\\tan(\\tan x)\\approx x\\approx\\sin(\\sin x)$ kills the numerator to first order and yields the bogus answer $1$ (or even $0$). The whole battle lives in the $x^3$ terms: keeping them gives numerator $\\sim x^3$, denominator $\\sim x^3/2$, hence $2$.",
+    "solutions": [
+      {
+        "name": "Method I - Cubic Taylor of both nested functions",
+        "steps": [
+          "Expand to order $x^3$. With $\\tan x = x+\\tfrac{x^3}{3}+\\dots$ and $\\tan u=u+\\tfrac{u^3}{3}+\\dots$,",
+          "$$\\tan(\\tan x)=\\big(x+\\tfrac{x^3}{3}\\big)+\\tfrac13\\big(x\\big)^3+\\dots=x+\\tfrac{2x^3}{3}+\\dots$$",
+          "With $\\sin x = x-\\tfrac{x^3}{6}+\\dots$ and $\\sin u=u-\\tfrac{u^3}{6}+\\dots$,",
+          "$$\\sin(\\sin x)=\\big(x-\\tfrac{x^3}{6}\\big)-\\tfrac16 x^3+\\dots=x-\\tfrac{x^3}{3}+\\dots$$",
+          "Numerator $=\\big(x+\\tfrac{2x^3}{3}\\big)-\\big(x-\\tfrac{x^3}{3}\\big)+\\dots=x^3+\\dots$",
+          "Denominator $=\\tan x-\\sin x=\\big(x+\\tfrac{x^3}{3}\\big)-\\big(x-\\tfrac{x^3}{6}\\big)+\\dots=\\tfrac{x^3}{2}+\\dots$",
+          "Ratio $\\to \\dfrac{x^3}{x^3/2}=2.$"
+        ]
+      },
+      {
+        "name": "Method II - Split and reuse one known limit",
+        "steps": [
+          "Write the numerator as $\\big[\\tan(\\tan x)-x\\big]-\\big[\\sin(\\sin x)-x\\big]$.",
+          "From the cubic expansions: $\\tan(\\tan x)-x\\sim \\tfrac{2}{3}x^3$ and $\\sin(\\sin x)-x\\sim -\\tfrac{1}{3}x^3$.",
+          "So numerator $\\sim \\tfrac23 x^3-(-\\tfrac13 x^3)=x^3.$",
+          "For the denominator use the standard $\\tan x-\\sin x=\\tan x(1-\\cos x)\\sim x\\cdot\\tfrac{x^2}{2}=\\tfrac{x^3}{2}.$",
+          "Therefore the limit is $\\dfrac{x^3}{x^3/2}=2.$"
+        ]
+      }
+    ],
+    "remark": "The cube coefficients are $+\\tfrac23,-\\tfrac13$ for $\\tan\\circ\\tan$, $\\sin\\circ\\sin$; the \"$2$\" is $\\dfrac{2/3-(-1/3)}{1/2}$ — a pure clash of curvatures."
+  },
+  {
+    "theme": "trig",
+    "themeLabel": "Advanced Trigonometry",
+    "title": "A Pisot Number Hugs the Integers",
+    "difficulty": 5,
+    "tags": [
+      "sin(pi*f)",
+      "near-integer",
+      "pisot",
+      "conjugate",
+      "x->infinity",
+      "sequence"
+    ],
+    "statement": "\\lim_{n\\to\\infty}\\big(2+\\sqrt3\\,\\big)^{n}\\,\\sin\\!\\big(\\pi\\,(2+\\sqrt3\\,)^{n}\\big)",
+    "answer": "-\\pi",
+    "trap": "\"$\\sin$ is bounded by $1$ while $(2+\\sqrt3)^n\\to\\infty$, so the product oscillates without limit (or blows up).\" Wrong: $(2+\\sqrt3)^n$ is super-close to an integer, so $\\sin(\\pi\\cdot\\text{that})\\to 0$ at exactly the rate $(2-\\sqrt3)^n=(2+\\sqrt3)^{-n}$, and the two effects cancel to a finite, nonzero value. A subtler trap is to forget the parity of that integer and report $+\\pi$ instead of $-\\pi$.",
+    "solutions": [
+      {
+        "name": "Method I - Conjugate integer trick",
+        "steps": [
+          "Let $a=2+\\sqrt3,\\ b=2-\\sqrt3$, so $a+b=4,\\ ab=1$, and $b\\in(0,1)$. The sequence $N_n=a^n+b^n$ satisfies $N_n=4N_{n-1}-N_{n-2}$ with $N_0=2,N_1=4$, so each $N_n\\in\\mathbb Z$. Since $N_0,N_1$ are even and even$=4\\cdot$even$-$even, the recurrence preserves parity: every $N_n$ is even.",
+          "Then $a^n=N_n-b^n$, so $$\\sin(\\pi a^n)=\\sin(\\pi N_n-\\pi b^n)=\\sin(\\pi N_n)\\cos(\\pi b^n)-\\cos(\\pi N_n)\\sin(\\pi b^n).$$",
+          "Since $N_n\\in\\mathbb Z$, $\\sin(\\pi N_n)=0$ and $\\cos(\\pi N_n)=(-1)^{N_n}=+1$ (as $N_n$ is even). Thus $$\\sin(\\pi a^n)=-\\sin(\\pi b^n).$$",
+          "Multiply by $a^n=b^{-n}$: $$a^n\\sin(\\pi a^n)=-\\,b^{-n}\\sin(\\pi b^n)=-\\,\\pi\\cdot\\frac{\\sin(\\pi b^n)}{\\pi b^n}.$$",
+          "As $n\\to\\infty$, $b^n\\to 0$ so $\\dfrac{\\sin(\\pi b^n)}{\\pi b^n}\\to 1$. Limit $=-\\pi.$"
+        ]
+      },
+      {
+        "name": "Method II - Distance-to-nearest-integer estimate",
+        "steps": [
+          "Write $a^n=N_n-b^n$ where $N_n\\in\\mathbb Z$ and $0<b^n<1$, so the fractional distance of $a^n$ below the integer $N_n$ is exactly $b^n$.",
+          "Hence $\\sin(\\pi a^n)=\\sin\\!\\big(-\\pi b^n+\\pi N_n\\big)$; the parity of $N_n$ (always even) makes this $-\\sin(\\pi b^n)$, with $\\sin(\\pi b^n)=\\pi b^n+O(b^{3n})$.",
+          "So $$a^n\\sin(\\pi a^n)=-a^n\\big(\\pi b^n+O(b^{3n})\\big)=-\\pi (ab)^n+O\\big((ab)^n b^{2n}\\big)=-\\pi+O(b^{2n}),$$ using $ab=1$.",
+          "The error $O(b^{2n})\\to 0$, so the limit is $-\\pi.$"
+        ]
+      }
+    ],
+    "remark": "$2+\\sqrt3$ is a Pisot number: its conjugate lies inside the unit disk, forcing $a^n$ toward integers at a geometric rate — the engine behind every $\\sin(\\pi\\,\\text{Pisot}^n)$ miracle. The sign of the limit is dictated entirely by the parity of $N_n$."
+  },
+  {
+    "theme": "trig",
+    "themeLabel": "Advanced Trigonometry",
+    "title": "The Seventh-Order Duel",
+    "difficulty": 5,
+    "tags": [
+      "sin-tan",
+      "tan-sin",
+      "high-order",
+      "taylor",
+      "x->0",
+      "cancellation"
+    ],
+    "statement": "\\lim_{x\\to 0}\\frac{\\sin(\\tan x)-\\tan(\\sin x)}{x^{7}}",
+    "answer": "-\\dfrac{1}{30}",
+    "trap": "\"To leading order $\\tan x\\approx\\sin x\\approx x$, so $\\sin(\\tan x)\\approx\\tan(\\sin x)$ and the numerator is negligible compared to $x^7$ — the limit is $0$.\" The two compositions agree through order $x^5$; the first surviving difference is at order $x^7$, exactly the denominator. Truncating any earlier gives the wrong $0$.",
+    "solutions": [
+      {
+        "name": "Method I - Brute Taylor to order seven",
+        "steps": [
+          "Use $\\tan x=x+\\tfrac{x^3}{3}+\\tfrac{2x^5}{15}+\\tfrac{17x^7}{315}+\\dots$ and $\\sin x=x-\\tfrac{x^3}{6}+\\tfrac{x^5}{120}-\\tfrac{x^7}{5040}+\\dots$",
+          "Composing carefully (keeping all terms up to $x^7$):",
+          "$$\\sin(\\tan x)=x+\\tfrac{x^3}{6}-\\tfrac{x^5}{40}-\\tfrac{55\\,x^7}{1008}+\\dots$$",
+          "$$\\tan(\\sin x)=x+\\tfrac{x^3}{6}-\\tfrac{x^5}{40}-\\tfrac{107\\,x^7}{5040}+\\dots$$",
+          "Through $x^5$ the two are identical (this is the whole trap). Subtract the $x^7$ terms: $$-\\tfrac{55}{1008}-\\Big(-\\tfrac{107}{5040}\\Big)=-\\tfrac{275}{5040}+\\tfrac{107}{5040}=-\\tfrac{168}{5040}=-\\tfrac{1}{30}.$$",
+          "Hence $\\dfrac{\\sin(\\tan x)-\\tan(\\sin x)}{x^7}\\to -\\dfrac{1}{30}.$"
+        ]
+      },
+      {
+        "name": "Method II - Odd symmetry + a single coefficient",
+        "steps": [
+          "Both $\\sin(\\tan x)$ and $\\tan(\\sin x)$ are odd, so their difference is odd: only odd powers appear, and the agreement through $x^5$ means the difference starts at $x^7$.",
+          "Write $\\sin(\\tan x)-\\tan(\\sin x)=c_7 x^7+O(x^9)$. The limit is exactly $c_7$.",
+          "To pin $c_7$, only the $x^7$-coefficients matter. Evaluating the composition coefficients (the $x^7$ slots) gives $c_7=-\\tfrac{55}{1008}+\\tfrac{107}{5040}=-\\tfrac{1}{30}.$",
+          "Therefore the limit equals $-\\dfrac{1}{30}.$ (A numeric check at $x=0.01$ gives $-0.0333372\\dots$, matching $-1/30=-0.0333333\\dots$ as $x\\to 0$.)"
+        ]
+      }
+    ],
+    "remark": "$\\sin\\circ\\tan$ and $\\tan\\circ\\sin$ are \"Taylor-twins\" to fifth order; the first place they part ways is the famous $x^7$ coefficient $\\mp 1/30$."
+  },
+  {
+    "theme": "trig",
+    "themeLabel": "Advanced Trigonometry",
+    "title": "Viète's Radical Telescope",
+    "difficulty": 4,
+    "tags": [
+      "half-angle",
+      "nested-radical",
+      "telescope",
+      "viete",
+      "x->infinity",
+      "sequence"
+    ],
+    "statement": "\\text{Let } a_n=\\underbrace{\\sqrt{2+\\sqrt{2+\\cdots+\\sqrt{2}}}}_{n\\ \\text{twos}}.\\quad \\lim_{n\\to\\infty} 2^{n}\\sqrt{\\,2-a_n\\,}",
+    "answer": "\\dfrac{\\pi}{2}",
+    "trap": "\"$a_n\\to 2$, so $2-a_n\\to 0$ and $\\sqrt{2-a_n}\\to 0$, while $2^n\\to\\infty$; an $\\infty\\cdot 0$ form that 'usually' collapses to $0$ (the root wins) or blows up to $\\infty$ (the power wins).\" Wrong on both counts: the gap obeys $2-a_n=4\\sin^2\\!\\big(\\tfrac{\\pi}{2^{n+2}}\\big)\\sim \\big(\\tfrac{\\pi}{4}\\big)^2 4^{-n}$, so $\\sqrt{2-a_n}\\sim\\tfrac{\\pi}{4}\\,2^{-n}$ decays at EXACTLY the rate $2^{-n}$ that cancels $2^n$. Neither factor wins; they balance to the finite half-angle constant $\\tfrac{\\pi}{2}$. (Guessing $0$ or $\\infty$ from the indeterminate form, or guessing $1$ by analogy with $\\tfrac{\\sin x}{x}$, all miss the surviving $\\tfrac{\\pi}{2}$.)",
+    "solutions": [
+      {
+        "name": "Method I - Closed form via half-angle",
+        "steps": [
+          "Claim $a_n=2\\cos\\!\\big(\\tfrac{\\pi}{2^{\\,n+1}}\\big)$. Base case: $a_1=\\sqrt2=2\\cos\\tfrac{\\pi}{4}$, correct since $\\tfrac{\\pi}{2^{1+1}}=\\tfrac{\\pi}{4}$.",
+          "Inductive step. Assume $a_n=2\\cos\\tfrac{\\pi}{2^{n+1}}$. Using $2+2\\cos\\theta=4\\cos^2\\tfrac{\\theta}{2}$ with $\\theta=\\tfrac{\\pi}{2^{n+1}}$ (so $\\tfrac{\\theta}{2}=\\tfrac{\\pi}{2^{n+2}}$ stays in $(0,\\tfrac{\\pi}{2})$, where cosine is positive):",
+          "$$a_{n+1}=\\sqrt{2+a_n}=\\sqrt{2+2\\cos\\tfrac{\\pi}{2^{n+1}}}=\\sqrt{4\\cos^2\\tfrac{\\pi}{2^{n+2}}}=2\\cos\\tfrac{\\pi}{2^{n+2}},$$ which is the claim at index $n+1$. The induction closes.",
+          "Now use $2-2\\cos\\phi=4\\sin^2\\tfrac{\\phi}{2}$ with $\\phi=\\tfrac{\\pi}{2^{n+1}}$: $$2-a_n=2-2\\cos\\tfrac{\\pi}{2^{n+1}}=4\\sin^2\\!\\tfrac{\\pi}{2^{n+2}}\\ \\Longrightarrow\\ \\sqrt{2-a_n}=2\\sin\\tfrac{\\pi}{2^{n+2}}.$$",
+          "Hence $$2^n\\sqrt{2-a_n}=2^{n}\\cdot 2\\sin\\tfrac{\\pi}{2^{n+2}}=2^{n+1}\\sin\\tfrac{\\pi}{2^{n+2}}.$$",
+          "Set $\\theta_n=\\tfrac{\\pi}{2^{n+2}}\\to0^+$. Then $$2^{n+1}\\sin\\theta_n=\\Big(2^{n+1}\\theta_n\\Big)\\frac{\\sin\\theta_n}{\\theta_n}=\\frac{\\pi}{2}\\cdot\\frac{\\sin\\theta_n}{\\theta_n}\\xrightarrow[n\\to\\infty]{}\\frac{\\pi}{2},$$ since $2^{n+1}\\theta_n=2^{n+1}\\cdot\\tfrac{\\pi}{2^{n+2}}=\\tfrac{\\pi}{2}$ for every $n$ and $\\tfrac{\\sin\\theta_n}{\\theta_n}\\to1$. Therefore the limit is $\\boxed{\\tfrac{\\pi}{2}}$."
+        ]
+      },
+      {
+        "name": "Method II - Gap recursion + monotone convergence (no closed form assumed)",
+        "steps": [
+          "Let $\\varepsilon_n=2-a_n>0$ (positivity holds since $a_n<2$, a standard induction on $a_n=\\sqrt{2+a_{n-1}}<\\sqrt{2+2}=2$). From $a_n^2=2+a_{n-1}$, substitute $a_k=2-\\varepsilon_k$: $$(2-\\varepsilon_n)^2=2+(2-\\varepsilon_{n-1}).$$",
+          "Expanding $4-4\\varepsilon_n+\\varepsilon_n^2=4-\\varepsilon_{n-1}$ gives the exact gap recursion $$\\varepsilon_{n-1}=4\\varepsilon_n-\\varepsilon_n^2=4\\varepsilon_n\\Big(1-\\tfrac{\\varepsilon_n}{4}\\Big).$$",
+          "Define $c_n=2^n\\sqrt{\\varepsilon_n}$ — this is precisely the quantity whose limit we want. Take the ratio of consecutive terms and use the recursion: $$\\frac{c_{n-1}}{c_n}=\\frac{2^{n-1}\\sqrt{\\varepsilon_{n-1}}}{2^{n}\\sqrt{\\varepsilon_n}}=\\frac12\\sqrt{\\frac{\\varepsilon_{n-1}}{\\varepsilon_n}}=\\frac12\\sqrt{4-\\varepsilon_n}=\\sqrt{1-\\tfrac{\\varepsilon_n}{4}}.$$",
+          "Since $0<\\varepsilon_n<2$, we have $0<\\sqrt{1-\\varepsilon_n/4}<1$, so $c_{n-1}<c_n$: the sequence $c_n$ is strictly increasing. This already kills the trap — an $\\infty\\cdot0$ form that is monotone increasing cannot tend to $0$.",
+          "Boundedness: from the recursion $\\varepsilon_n=2-a_n$ with $a_n=\\sqrt{2+a_{n-1}}\\to2$ one shows $\\varepsilon_n\\to0$, and writing $\\sqrt{\\varepsilon_n}=2\\sin\\theta_n$ with $\\theta_n=\\tfrac12\\arccos\\!\\big(1-\\tfrac{\\varepsilon_n}{2}\\big)$ gives $\\theta_n=\\tfrac{\\pi}{2^{n+2}}$ (the unique angle reproducing the half-angle ratio $c_{n-1}/c_n=\\cos\\theta_{n}$). Because $\\sin\\theta\\le\\theta$, $$c_n=2^{n+1}\\sin\\theta_n\\le 2^{n+1}\\theta_n=2^{n+1}\\cdot\\tfrac{\\pi}{2^{n+2}}=\\tfrac{\\pi}{2}.$$ So $c_n$ is increasing and bounded above by $\\tfrac{\\pi}{2}$, hence convergent to some $L\\le\\tfrac{\\pi}{2}$.",
+          "Identify $L$. From $c_n=2^{n+1}\\sin\\theta_n$ with $2^{n+1}\\theta_n=\\tfrac{\\pi}{2}$ fixed, $$L=\\lim_{n\\to\\infty}2^{n+1}\\sin\\theta_n=\\frac{\\pi}{2}\\lim_{n\\to\\infty}\\frac{\\sin\\theta_n}{\\theta_n}=\\frac{\\pi}{2}.$$ The monotone bound $L\\le\\tfrac{\\pi}{2}$ is attained, so $$\\lim_{n\\to\\infty}2^n\\sqrt{2-a_n}=\\frac{\\pi}{2}.$$"
+        ]
+      }
+    ],
+    "remark": "This is Viète's 1593 product in disguise: dividing the closed form telescopes into $\\dfrac{2}{\\pi}=\\prod_{k\\ge1}\\cos\\tfrac{\\pi}{2^{k+1}}$, and $a_n=2\\cos\\tfrac{\\pi}{2^{n+1}}$ is its partial cosine tower. Equivalently $4^n(2-a_n)\\to\\pi^2/4$."
+  },
+  {
+    "theme": "trig",
+    "themeLabel": "Advanced Trigonometry",
+    "title": "The Radical Hides the Exponent's True Speed",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "one-power-infinity",
+      "half-power-argument",
+      "infinitesimal-order",
+      "cosine-ratio",
+      "x->0+"
+    ],
+    "statement": "A clean $1^{\\infty}$ such as $\\displaystyle\\lim_{x\\to0}\\big(\\cos x\\big)^{1/x^{2}}=e^{-1/2}$ works because $1-\\cos x\\sim\\tfrac{x^{2}}{2}$, so the exponent $1/x^{2}$ exactly cancels the second-order vanishing of $1-\\cos x$. Now slip a square root into every angle, so the argument is $\\sqrt{x}$ rather than $x$, and put two such radical-cosines in a ratio to amplify the effect. Evaluate \\[ L=\\lim_{x\\to0^{+}}\\left(\\frac{\\cos\\sqrt{x}}{\\cos\\sqrt{2x}}\\right)^{2/x}, \\] the limit taken as $x\\to0^{+}$ through positive reals. The exponent is $2/x$, a single power of $x$ in the denominator, deliberately one order milder than the $1/x^{2}$ that a $\\cos$-power instinct expects: deciding whether $2/x$ is too weak, just right, or too strong for this base is the whole problem.",
+    "answer": "$\\boxed{\\,e\\,}$",
+    "trap": "The fatal reflex is to apply $1-\\cos\\theta\\sim\\tfrac{\\theta^{2}}{2}$ with the WHOLE displayed argument squared, as if the small angle were $x$ itself: writing $1-\\cos\\sqrt{x}\\sim\\tfrac{x^{2}}{2}$ and $1-\\cos\\sqrt{2x}\\sim\\tfrac{(2x)^{2}}{2}=2x^{2}$. Then $\\ln\\!\\frac{\\cos\\sqrt{x}}{\\cos\\sqrt{2x}}\\approx -\\tfrac{x^{2}}{2}+2x^{2}=\\tfrac{3}{2}x^{2}$, and multiplying by $2/x$ gives $3x\\to0$, so the seductive phantom answer is $e^{0}=1$. This is wrong because $\\theta=\\sqrt{x}$, so $\\theta^{2}=x$, NOT $x^{2}$: the radical demotes the order by half. The correct infinitesimal is $1-\\cos\\sqrt{x}\\sim\\tfrac{(\\sqrt{x})^{2}}{2}=\\tfrac{x}{2}$, a FIRST-order quantity in $x$, not second-order. With the true orders, $\\ln\\!\\frac{\\cos\\sqrt{x}}{\\cos\\sqrt{2x}}\\sim -\\tfrac{x}{2}+\\tfrac{2x}{2}=\\tfrac{x}{2}$, and $\\tfrac{2}{x}\\cdot\\tfrac{x}{2}=1$, giving $L=e$. A mirror-image slip pulls the opposite way: a student who DOES halve the order but then panics that $1-\\cos\\sqrt{x}\\sim\\tfrac{x}{2}$ is 'too big' may try the exponent $1/x^{2}$ by analogy with the textbook $\\cos$-power, over-scaling so the limit blows to $0$ or $\\infty$. Both errors share one root cause: failing to read the order of the infinitesimal directly off the radical argument before choosing how hard to scale. The exponent $2/x$ is the author's signal that the base vanishes at first order, exactly where the square root put it.",
+    "solutions": [
+      {
+        "name": "Method I - Logarithm with a half-power series",
+        "steps": [
+          "Set $L=\\lim_{x\\to0^{+}}\\big(\\tfrac{\\cos\\sqrt{x}}{\\cos\\sqrt{2x}}\\big)^{2/x}$; since the base $\\to1$ and the exponent $\\to+\\infty$ this is $1^{\\infty}$, so take logs: $\\ln L=\\lim_{x\\to0^{+}}\\dfrac{2}{x}\\Big(\\ln\\cos\\sqrt{x}-\\ln\\cos\\sqrt{2x}\\Big).$",
+          "Substitute the radical argument honestly. For small $\\theta$, $\\ln\\cos\\theta=-\\tfrac{\\theta^{2}}{2}-\\tfrac{\\theta^{4}}{12}+O(\\theta^{6})$. With $\\theta=\\sqrt{x}$ this is $\\ln\\cos\\sqrt{x}=-\\tfrac{x}{2}-\\tfrac{x^{2}}{12}+O(x^{3})$, because $\\theta^{2}=(\\sqrt{x})^{2}=x$ is FIRST order in $x$.",
+          "Likewise $\\ln\\cos\\sqrt{2x}=-\\tfrac{2x}{2}-\\tfrac{(2x)^{2}}{12}+O(x^{3})=-x-\\tfrac{x^{2}}{3}+O(x^{3})$. Subtracting, $\\ln\\cos\\sqrt{x}-\\ln\\cos\\sqrt{2x}=\\big(-\\tfrac{x}{2}+x\\big)+O(x^{2})=\\tfrac{x}{2}+O(x^{2}).$",
+          "Hence $\\ln L=\\lim_{x\\to0^{+}}\\dfrac{2}{x}\\big(\\tfrac{x}{2}+O(x^{2})\\big)=\\lim_{x\\to0^{+}}\\big(1+O(x)\\big)=1$, so $L=\\boxed{e}$. The exponent $2/x$ precisely matches the first-order vanishing the square root created."
+        ]
+      },
+      {
+        "name": "Method II - Factor into two known cosine powers",
+        "steps": [
+          "Split the ratio across the power: $\\big(\\tfrac{\\cos\\sqrt{x}}{\\cos\\sqrt{2x}}\\big)^{2/x}=\\big(\\cos\\sqrt{x}\\big)^{2/x}\\cdot\\big(\\cos\\sqrt{2x}\\big)^{-2/x}.$ Each factor is itself a $1^{\\infty}$ that we evaluate from the standard radical-cosine limit.",
+          "Establish the building block $\\lim_{x\\to0^{+}}\\big(\\cos\\sqrt{ax}\\big)^{1/x}=e^{-a/2}$ for constant $a>0$: its log is $\\tfrac{1}{x}\\ln\\cos\\sqrt{ax}=\\tfrac{1}{x}\\big(-\\tfrac{ax}{2}+O(x^{2})\\big)\\to-\\tfrac{a}{2}$, using $1-\\cos\\sqrt{ax}\\sim\\tfrac{(\\sqrt{ax})^{2}}{2}=\\tfrac{ax}{2}$ (the key first-order fact).",
+          "Apply it. With $a=1$, $\\big(\\cos\\sqrt{x}\\big)^{2/x}=\\Big(\\big(\\cos\\sqrt{x}\\big)^{1/x}\\Big)^{2}\\to(e^{-1/2})^{2}=e^{-1}$. With $a=2$, $\\big(\\cos\\sqrt{2x}\\big)^{1/x}\\to e^{-1}$, so $\\big(\\cos\\sqrt{2x}\\big)^{-2/x}\\to(e^{-1})^{-2}=e^{2}.$",
+          "Multiply the two limits: $L=e^{-1}\\cdot e^{2}=e^{\\,2-1}=\\boxed{e}.$ The naive phantom $1$ corresponds to wrongly getting $e^{0}\\cdot e^{0}$ from treating both bases as second-order vanishing."
+        ]
+      },
+      {
+        "name": "Method III - L'Hopital after a clean substitution",
+        "steps": [
+          "Let $t=\\sqrt{x}$, so $x=t^{2}$ and $t\\to0^{+}$. Then $\\ln L=\\lim_{t\\to0^{+}}\\dfrac{2}{t^{2}}\\big(\\ln\\cos t-\\ln\\cos(\\sqrt{2}\\,t)\\big)=\\lim_{t\\to0^{+}}\\dfrac{N(t)}{t^{2}}$ with $N(t)=2\\ln\\cos t-2\\ln\\cos(\\sqrt{2}\\,t)$, a $\\tfrac{0}{0}$ form since $N(0)=0$.",
+          "Differentiate: $N'(t)=-2\\tan t+2\\sqrt{2}\\,\\tan(\\sqrt{2}\\,t)$ and $(t^{2})'=2t$, and both $\\to0$, so it is still $\\tfrac{0}{0}$; one more L'Hopital is warranted (equivalently use $\\tan\\theta\\sim\\theta$ now: $N'(t)\\sim-2t+2\\sqrt{2}\\cdot\\sqrt{2}\\,t=2t$, giving $\\tfrac{N'(t)}{2t}\\to1$).",
+          "To be fully rigorous apply L'Hopital again: $N''(t)=-2\\sec^{2}t+2\\cdot2\\sec^{2}(\\sqrt{2}\\,t)=-2\\sec^{2}t+4\\sec^{2}(\\sqrt{2}\\,t)$ and $(t^{2})''=2$. Evaluate at $t=0$: $N''(0)=-2+4=2$.",
+          "Therefore $\\ln L=\\dfrac{N''(0)}{2}=\\dfrac{2}{2}=1$, so $L=\\boxed{e}.$ The substitution $t=\\sqrt{x}$ converts the half-power argument into an ordinary small angle, after which the second derivative reads off the true coefficient cleanly."
+        ]
+      }
+    ],
+    "remark": "The single idea is order-bookkeeping through a radical: a square root in the angle halves the order of every cosine infinitesimal, so $1-\\cos\\sqrt{ax}$ is first order ($\\sim\\tfrac{ax}{2}$) in $x$, not second order. The author then tuned the exponent to $2/x$ to interrogate exactly that: $2/x$ is finite-cancelling against a first-order base, divergent against a second-order one. The general law is $\\lim_{x\\to0^{+}}\\big(\\cos\\sqrt{ax}\\big)^{1/x}=e^{-a/2}$, and the ratio merely subtracts two such laws, $e^{2\\cdot a_2/2}\\!\\cdot e^{-2\\cdot a_1/2}$ with $a_1=1,a_2=2$, landing on $e^{2-1}=e$. Replace $\\sqrt{x}$ by $x$ everywhere and the base becomes genuinely second order, $2/x$ under-scales, and the limit collapses to $1$ - which is precisely the phantom the careless reader reports. The top-rank discipline is to read the order of an infinitesimal off its argument BEFORE choosing how hard to scale: never let the shape of a known result ($\\cos$-power wants $1/x^{2}$) dictate the exponent when the argument has secretly changed the order."
+  },
+  {
+    "theme": "trig",
+    "themeLabel": "Advanced Trigonometry",
+    "title": "The Tangent Ratio Hides a Linear Thief",
+    "difficulty": 5,
+    "task": "Determine",
+    "tags": [
+      "floor",
+      "one-sided",
+      "tan-x-over-x",
+      "curvature-trap",
+      "non-existence",
+      "x->0"
+    ],
+    "statement": "For $x\\neq 0$ near the origin set \\[ g(x)=\\frac{\\tan x}{x}-x, \\] and let $\\lfloor\\,\\cdot\\,\\rfloor$ denote the greatest-integer (floor) function. Determine whether \\[ L=\\lim_{x\\to 0}\\;\\Big\\lfloor\\,g(x)\\,\\Big\\rfloor \\] exists, and if so find its value; otherwise compute the two one-sided limits.",
+    "answer": "$\\text{DNE: } \\lim_{x\\to 0^{-}}\\lfloor g\\rfloor=1,\\ \\lim_{x\\to 0^{+}}\\lfloor g\\rfloor=0$",
+    "trap": "The canonical reflex is the curvature fact $\\dfrac{\\tan x}{x}=1+\\dfrac{x^{2}}{3}+\\cdots>1$, which is genuinely true on both sides of $0$. A strong student reasons: \"$\\tan x/x$ sits just above $1$, and subtracting the tiny $x$ only perturbs it slightly, so $g(x)$ hovers near $1$ from above and $\\lfloor g\\rfloor=1$ throughout — hence $L=1$.\" The fatal step is treating the even curvature bump $+x^{2}/3$ as the controlling deviation. In fact the deviation from $1$ is $g(x)-1=-x+\\dfrac{x^{2}}{3}+\\dfrac{2x^{4}}{15}+\\cdots$, whose LEADING term is the ODD linear thief $-x$, an order of magnitude larger than $x^{2}/3$ near $0$. So $g-1$ takes the sign of $-x$: it is NEGATIVE for $x>0$ (pushing $g$ below $1$, floor $0$) and POSITIVE for $x<0$ (pushing $g$ above $1$, floor $1$). The curvature points the value the OPPOSITE way from where the linear term actually sends it. The two one-sided floors therefore differ, the limit does not exist, and the seductive answer $1$ is merely the left-hand limit masquerading as the whole.",
+    "solutions": [
+      {
+        "name": "Method I - Taylor to first order isolates the odd thief",
+        "steps": [
+          "Use $\\tan x=x+\\dfrac{x^{3}}{3}+\\dfrac{2x^{5}}{15}+\\cdots$, so $\\dfrac{\\tan x}{x}=1+\\dfrac{x^{2}}{3}+\\dfrac{2x^{4}}{15}+\\cdots$. Subtracting $x$ gives $$g(x)=1-x+\\frac{x^{2}}{3}+\\frac{2x^{4}}{15}+\\cdots,\\qquad g(x)-1=-x+\\frac{x^{2}}{3}+O(x^{4}).$$",
+          "Read off the sign of the deviation for small $|x|$. The leading term is $-x$, which dominates $\\dfrac{x^{2}}{3}$ since $\\left|\\dfrac{x^{2}/3}{-x}\\right|=\\dfrac{|x|}{3}\\to 0$. Hence near $0$, $\\operatorname{sgn}\\bigl(g(x)-1\\bigr)=\\operatorname{sgn}(-x)$.",
+          "Right side $x\\to 0^{+}$: $g(x)-1<0$ and $|g(x)-1|<1$, so $0<g(x)<1$ and $\\lfloor g(x)\\rfloor=0$. Left side $x\\to 0^{-}$: $g(x)-1>0$ and $<1$, so $1<g(x)<2$ and $\\lfloor g(x)\\rfloor=1$.",
+          "The two one-sided floors are the constants $0$ and $1$, so $\\displaystyle\\lim_{x\\to0^{+}}\\lfloor g\\rfloor=0$ and $\\displaystyle\\lim_{x\\to0^{-}}\\lfloor g\\rfloor=1$. They disagree, therefore $L$ does not exist: $\\boxed{\\text{DNE},\\ \\text{LHL}=1,\\ \\text{RHL}=0}$."
+        ]
+      },
+      {
+        "name": "Method II - Clear the fraction and read one sign",
+        "steps": [
+          "Form the single deviation function and clear the denominator: $$g(x)-1=\\frac{\\tan x}{x}-x-1=\\frac{\\tan x-x-x^{2}}{x}=\\frac{h(x)}{x},\\qquad h(x):=\\tan x-x-x^{2}.$$",
+          "Determine the sign of $h$ near $0$. Since $\\tan x-x=\\dfrac{x^{3}}{3}+\\cdots$ is $O(x^{3})$, we get $h(x)=-x^{2}+\\dfrac{x^{3}}{3}+\\cdots$, whose leading term $-x^{2}$ is strictly negative. Thus $h(x)<0$ for all small $x\\neq 0$ on BOTH sides — $h$ is even-dominated and one-signed.",
+          "Now divide by $x$, which is odd: $g(x)-1=\\dfrac{h(x)}{x}$ has the sign of $\\dfrac{(\\text{negative})}{x}$. For $x>0$ this is negative ($g<1$); for $x<0$ this is positive ($g>1$). A one-signed numerator over an odd denominator is exactly what manufactures the side-dependent crossing of the integer $1$.",
+          "Combined with the bound $|g(x)-1|<1$ near $0$ (immediate from $g-1=-x+x^{2}/3+\\cdots\\to 0$), this gives $\\lfloor g\\rfloor=0$ on the right and $\\lfloor g\\rfloor=1$ on the left. Hence $\\boxed{L\\ \\text{does not exist};\\ \\lim_{0^{-}}=1,\\ \\lim_{0^{+}}=0}$."
+        ]
+      },
+      {
+        "name": "Method III - Strict squeeze on each side",
+        "steps": [
+          "Write $g(x)-1=-x+r(x)$ where $r(x)=\\dfrac{x^{2}}{3}+\\dfrac{2x^{4}}{15}+\\cdots=\\dfrac{\\tan x-x}{x}>0$ for $0<|x|<\\dfrac{\\pi}{2}$ (since $\\tan x>x$ on $(0,\\pi/2)$ and $\\tan x<x$ on $(-\\pi/2,0)$, the ratio $r$ is positive on both sides). Moreover $r(x)\\to 0$.",
+          "Right side: pick $x\\in(0,\\tfrac12)$. Then $-x\\in(-\\tfrac12,0)$ and $0<r(x)<\\tfrac12$ for such $x$, so $g(x)-1=-x+r(x)$ obeys $-\\tfrac12<g(x)-1<\\tfrac12$. In fact $g(x)-1<0$ because $r(x)=\\dfrac{\\tan x-x}{x}<x$ on this range (equivalently $\\tan x<x+x^{2}$, valid for small $x>0$), so $0<g(x)<1$ and $\\lfloor g\\rfloor=0$.",
+          "Left side: for $x\\in(-\\tfrac12,0)$ we have $-x>0$ and $r(x)>0$, so $g(x)-1=-x+r(x)>0$; also $g(x)-1<1$ since $-x<\\tfrac12$ and $r(x)<\\tfrac12$. Thus $1<g(x)<2$ and $\\lfloor g\\rfloor=1$.",
+          "Each side is squeezed onto a constant floor: $0$ for $x\\to0^{+}$, $1$ for $x\\to0^{-}$. The one-sided limits $0\\neq 1$ certify $\\boxed{\\text{the two-sided limit does not exist}}$."
+        ]
+      }
+    ],
+    "remark": "The engine here is the contest of parities. The headline curvature fact $\\tan x/x=1+x^{2}/3+\\cdots>1$ is even and one-signed, which is exactly why it is useless for deciding the floor: an even deviation can never make $\\lfloor\\cdot\\rfloor$ jump across the origin. The decisive deviation is the odd linear term $-x$ deliberately injected by the $-x$, and odd terms are precisely the ones that flip sign with the side of approach. Whenever a quantity limits to an integer $N$, the existence of $\\lim\\lfloor\\cdot\\rfloor$ is governed not by how big the deviation $g-N$ is but by whether its DOMINANT term is even (limit exists, equal to $N$ or $N-1$ depending on sign) or odd (the two-sided limit dies, the floor splitting into $N$ and $N-1$). Top-rank discipline: after pinning the integer, always expand the deviation to its first non-vanishing term and check its parity before trusting any curvature intuition — the larger linear thief silently overrules the smaller quadratic bump."
+  },
+  {
+    "theme": "trig",
+    "themeLabel": "Advanced Trigonometry",
+    "title": "Three Cosines in Lockstep",
+    "difficulty": 3,
+    "tags": [
+      "product",
+      "cosine",
+      "second-order",
+      "x->0",
+      "weighted-sum"
+    ],
+    "statement": "\\lim_{x\\to 0}\\frac{1-\\cos x\\,\\cos 2x\\,\\cos 3x}{x^{2}}",
+    "answer": "7",
+    "trap": "\"Each factor $\\cos(kx)$ contributes a $\\tfrac{x^2}{2}$ deficit, so just add three halves: $\\tfrac12+\\tfrac12+\\tfrac12=\\tfrac32$.\" This silently treats all three cosines as the same frequency. In fact $1-\\cos(kx)\\sim\\tfrac{(kx)^2}{2}$, so the deficits are $\\tfrac{1^2}{2},\\tfrac{2^2}{2},\\tfrac{3^2}{2}$ and the limit is $\\tfrac{1+4+9}{2}=7$, not $\\tfrac32$. The faster-oscillating factors dominate.",
+    "solutions": [
+      {
+        "name": "Method I - Logarithmic linearization of the product",
+        "steps": [
+          "Near $0$, $\\ln\\cos(kx)=-\\tfrac{(kx)^2}{2}+O(x^4)$, so $$\\ln\\big(\\cos x\\cos2x\\cos3x\\big)=-\\tfrac{x^2}{2}(1^2+2^2+3^2)+O(x^4)=-7x^2+O(x^4).$$",
+          "Exponentiate using $e^{u}=1+u+O(u^2)$ with $u=-7x^2+O(x^4)$: $$\\cos x\\cos2x\\cos3x=1-7x^2+O(x^4).$$",
+          "Therefore $$\\frac{1-\\cos x\\cos2x\\cos3x}{x^2}=\\frac{7x^2+O(x^4)}{x^2}\\to 7.$$"
+        ]
+      },
+      {
+        "name": "Method II - Telescoping the difference $1-P$",
+        "steps": [
+          "Use the exact identity $1-abc=(1-a)+a(1-b)+ab(1-c)$ with $a=\\cos x,\\,b=\\cos2x,\\,c=\\cos3x$.",
+          "As $x\\to0$ we have $a\\to1$ and $ab\\to1$, while $1-\\cos(kx)\\sim\\tfrac{(kx)^2}{2}$. Hence $$1-\\cos x\\cos2x\\cos3x\\sim \\tfrac{x^2}{2}+1\\cdot\\tfrac{(2x)^2}{2}+1\\cdot\\tfrac{(3x)^2}{2}.$$",
+          "That is $\\tfrac{x^2}{2}(1+4+9)=7x^2.$",
+          "Dividing by $x^2$ gives the limit $7.$ (Check: at $x=10^{-3}$ the quotient is $6.999983\\dots$.)"
+        ]
+      }
+    ],
+    "remark": "For $\\prod_{k=1}^{m}\\cos(kx)$ the second-order rate is $\\tfrac12\\sum_{k=1}^{m} k^2=\\tfrac{m(m+1)(2m+1)}{12}$; here $m=3$ gives $7$."
+  },
+  {
+    "theme": "trig",
+    "themeLabel": "Advanced Trigonometry",
+    "title": "The Radical and the Sine Split the Curvature",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "asymptotic-expansion",
+      "competing-orders",
+      "conjugate",
+      "small-angle",
+      "x->infinity"
+    ],
+    "statement": "A square root growing like $x$ is multiplied by a sine shrinking like $1/x$, so their product hovers just above $1$; the limit measures, at the magnified scale $x^{2}$, exactly how far above. Evaluate \\[ L=\\lim_{x\\to\\infty} x^{2}\\Big(\\sqrt{x^{2}+1}\\,\\sin\\tfrac1x-1\\Big). \\] Here $\\sqrt{x^{2}+1}\\to\\infty$ like $x$ while $\\sin\\tfrac1x\\to0$ like $\\tfrac1x$, so the bracket is an $\\infty\\cdot 0-1$ shape that tends to $0$; the factor $x^{2}$ then asks for the rate. Two independent curvatures — the bend of the radical and the bend of the sine — both feed the surviving term, and amputating either one corrupts the answer.",
+    "answer": "$\\dfrac{1}{3}$",
+    "trap": "The fatal reflex is to expand each factor only to leading order: $\\sqrt{x^{2}+1}\\approx x$ and $\\sin\\tfrac1x\\approx\\tfrac1x$, whose product is exactly $x\\cdot\\tfrac1x=1$, so the bracket looks like $1-1=0$ and the answer is reported as $L=0$. This is wrong because the very term being measured lives at order $1/x^{2}$, precisely the order both first-order truncations discard. A subtler half-error is to keep ONE curvature and drop the other. Keep the radical's bend but linearize the sine, $\\sqrt{x^{2}+1}\\,\\tfrac1x=\\sqrt{1+\\tfrac1{x^{2}}}=1+\\tfrac1{2x^{2}}+\\cdots$, and you get the plausible but wrong $L=\\tfrac12$. Keep the sine's bend but treat the radical as $x$, $x\\sin\\tfrac1x=1-\\tfrac1{6x^{2}}+\\cdots$, and you get the equally plausible wrong $L=-\\tfrac16$. The true value is the SUM of the two second-order contributions, $\\tfrac12-\\tfrac16=\\tfrac13$: the radical contributes $+\\tfrac12$ from $\\sqrt{1+1/x^{2}}$ and the sine contributes $-\\tfrac16$ from $\\sin\\tfrac1x$, and only carrying BOTH expansions to order $1/x^{2}$ simultaneously survives. Neither $0$ nor $\\tfrac12$ nor $-\\tfrac16$ is correct.",
+    "solutions": [
+      {
+        "name": "Method I - Carry both expansions to order 1/x^2 simultaneously",
+        "steps": [
+          "Factor the radical to expose its small parameter: $\\sqrt{x^{2}+1}=x\\sqrt{1+\\tfrac1{x^{2}}}=x\\Big(1+\\tfrac1{2x^{2}}-\\tfrac1{8x^{4}}+\\cdots\\Big)$, valid for large $x$ by the binomial series.",
+          "Expand the sine to the matching depth: $\\sin\\tfrac1x=\\tfrac1x-\\tfrac1{6x^{3}}+\\cdots$, so that $\\sqrt{x^{2}+1}\\,\\sin\\tfrac1x=x\\Big(1+\\tfrac1{2x^{2}}+\\cdots\\Big)\\Big(\\tfrac1x-\\tfrac1{6x^{3}}+\\cdots\\Big)$.",
+          "Multiply and collect powers of $1/x$: the leading $x\\cdot\\tfrac1x=1$ cancels against the $-1$, and the order-$1/x^{2}$ coefficient is $\\tfrac12-\\tfrac16=\\tfrac13$, so $\\sqrt{x^{2}+1}\\,\\sin\\tfrac1x-1=\\tfrac{1}{3x^{2}}+O\\!\\big(\\tfrac1{x^{4}}\\big)$.",
+          "Multiply by $x^{2}$ and let $x\\to\\infty$: $x^{2}\\Big(\\tfrac{1}{3x^{2}}+O(x^{-4})\\Big)\\to\\tfrac13$. Hence $L=\\boxed{\\dfrac{1}{3}}$, the two curvatures $+\\tfrac12$ and $-\\tfrac16$ adding rather than either acting alone."
+        ]
+      },
+      {
+        "name": "Method II - Conjugate (rationalize the radical times the sine)",
+        "steps": [
+          "Write $P=\\sqrt{x^{2}+1}\\,\\sin\\tfrac1x$ and use $P-1=\\dfrac{P^{2}-1}{P+1}$, where $P^{2}-1=(x^{2}+1)\\sin^{2}\\tfrac1x-1$; this clears the square root so only a single sine survives, now squared.",
+          "Apply the double-angle identity $\\sin^{2}\\tfrac1x=\\tfrac{1-\\cos\\tfrac2x}{2}$, giving the numerator $(x^{2}+1)\\cdot\\tfrac{1-\\cos\\tfrac2x}{2}-1=\\tfrac{(x^{2}+1)\\big(1-\\cos\\tfrac2x\\big)-2}{2}$.",
+          "As $x\\to\\infty$, $1-\\cos\\tfrac2x=\\tfrac{2}{x^{2}}-\\tfrac{2}{3x^{4}}+\\cdots$ from $\\cos u=1-\\tfrac{u^{2}}2+\\tfrac{u^{4}}{24}-\\cdots$ at $u=\\tfrac2x$; thus $(x^{2}+1)\\big(1-\\cos\\tfrac2x\\big)=2+\\tfrac{2}{x^{2}}-\\tfrac{2}{3x^{2}}+\\cdots=2+\\tfrac{4}{3x^{2}}+\\cdots$, so $x^{2}\\big(P^{2}-1\\big)=x^{2}\\cdot\\tfrac{(\\,\\cdots\\,)}{2}\\to\\tfrac{2}{3}$.",
+          "Since $P\\to1$, the denominator $P+1\\to2$, and $x^{2}(P-1)=\\dfrac{x^{2}(P^{2}-1)}{P+1}\\to\\dfrac{2/3}{2}=\\dfrac13$. Hence $L=\\boxed{\\dfrac{1}{3}}$."
+        ]
+      },
+      {
+        "name": "Method III - Substitute t=1/x and apply L'Hopital",
+        "steps": [
+          "Let $t=\\tfrac1x\\to0^{+}$. Then $\\sqrt{x^{2}+1}=\\tfrac1t\\sqrt{1+t^{2}}$ and the expression becomes $\\dfrac{1}{t^{2}}\\Big(\\tfrac1t\\sqrt{1+t^{2}}\\,\\sin t-1\\Big)=\\dfrac{\\sqrt{1+t^{2}}\\,\\sin t-t}{t^{3}}$, an honest $\\tfrac00$ form.",
+          "Set $N(t)=\\sqrt{1+t^{2}}\\,\\sin t-t$ and $D(t)=t^{3}$. Check the orders: $N(0)=0,\\ N'(0)=0,\\ N''(0)=0$ while $D(0)=D'(0)=D''(0)=0$, so three applications of L'Hopital are forced (the numerator vanishes to exactly third order).",
+          "Differentiate three times and evaluate at $0$: $D'''(t)=6$ for all $t$, and $N'''(0)=2$. (Equivalently, the Maclaurin expansion $N(t)=\\sqrt{1+t^{2}}\\,\\sin t-t=\\tfrac{t^{3}}{3}+O(t^{5})$ reads off $N'''(0)=3!\\cdot\\tfrac13=2$, the $\\tfrac13$ again being $\\tfrac12-\\tfrac16$.)",
+          "Therefore $\\displaystyle\\lim_{t\\to0^{+}}\\dfrac{N(t)}{D(t)}=\\dfrac{N'''(0)}{D'''(0)}=\\dfrac{2}{6}=\\dfrac13$, so $L=\\boxed{\\dfrac{1}{3}}$, matching Methods I and II."
+        ]
+      }
+    ],
+    "remark": "The problem is engineered so the leading orders annihilate ($x\\cdot\\tfrac1x=1$ against the $-1$) and the answer is carried entirely by the next term — which is fed by TWO sources at once: the convexity of $\\sqrt{1+u}$ (a $+\\tfrac12$) and the concavity of $\\sin$ (a $-\\tfrac16$). The signature of a top-rank solve is recognizing that competing factors must be expanded to the SAME order before multiplying; truncating asymmetrically yields the seductive partial answers $\\tfrac12$ (radical only) or $-\\tfrac16$ (sine only), and truncating symmetrically too early yields $0$. Method I balances the two expansions head-on, Method II hides the radical by squaring so a single $1-\\cos\\tfrac2x$ governs everything, and Method III relocates the difficulty to $t=0$ where the $\\tfrac00$ is plainly third order. All three converge on $\\tfrac13=\\tfrac12-\\tfrac16$, the arithmetic fingerprint of the two curvatures cooperating."
+  },
+  {
+    "theme": "trig",
+    "themeLabel": "Advanced Trigonometry",
+    "title": "Three Cosines Pythagoras Pulled Apart",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "multiple-angle",
+      "sum-to-product",
+      "pythagorean",
+      "order-cancellation",
+      "x->0",
+      "geometry-fusion"
+    ],
+    "statement": "Let $a,b,c$ be the side lengths of a right-angled triangle whose right angle is opposite the side $a$, so that $a^{2}=b^{2}+c^{2}$, and let $\\Delta$ denote its area. Evaluate \\[ L=\\lim_{x\\to 0}\\;\\frac{\\cos(ax)-\\cos(bx)-\\cos(cx)+1}{x^{4}} \\] and express the answer in terms of $\\Delta$.",
+    "answer": "\\[\\boxed{L=\\dfrac{\\Delta^{2}}{3}}\\]",
+    "trap": "The reflex is to reach for the $1-\\cos$ workhorse $\\dfrac{1-\\cos t}{t^{2}}\\to\\tfrac12$ and normalise by $x^{2}$ instead of $x^{4}$. Regrouping $N(x)=(1-\\cos bx)+(1-\\cos cx)-(1-\\cos ax)$ and dividing by $x^{2}$ gives $\\dfrac{N}{x^{2}}\\to \\dfrac{b^{2}}{2}+\\dfrac{c^{2}}{2}-\\dfrac{a^{2}}{2}=\\dfrac{b^{2}+c^{2}-a^{2}}{2}$, which the Pythagorean condition annihilates to $0$. The fatal misread is to then declare the ORIGINAL ($/x^{4}$) limit equal to $0$ as well, or to declare it divergent because \"$0/x^{2}$\". Both are wrong: the vanishing of the $x^{2}$ coefficient is precisely the engineered event $a^{2}=b^{2}+c^{2}$, and it merely PROMOTES the deciding term to order $x^{4}$. The quartic coefficient is governed by $a^{4}-b^{4}-c^{4}=(b^{2}+c^{2})^{2}-b^{4}-c^{4}=2b^{2}c^{2}\\neq 0$, so the limit is finite and nonzero. A student who stops at the second-order cancellation, or who forgets that $a^{2}=b^{2}+c^{2}$ is exactly what makes $x^{4}$ (not $x^{2}$) the right normaliser, lands on $0$ instead of $\\Delta^{2}/3$.",
+    "solutions": [
+      {
+        "name": "Method I - Even Taylor expansion to fourth order",
+        "steps": [
+          "Each cosine is even, so only even powers survive: $\\cos t=1-\\dfrac{t^{2}}{2}+\\dfrac{t^{4}}{24}-\\cdots$. Substituting $t=ax,bx,cx$, $$\\cos(ax)-\\cos(bx)-\\cos(cx)+1=-\\frac{a^{2}-b^{2}-c^{2}}{2}\\,x^{2}+\\frac{a^{4}-b^{4}-c^{4}}{24}\\,x^{4}+O(x^{6}).$$",
+          "The $x^{2}$ coefficient is $-\\dfrac{a^{2}-b^{2}-c^{2}}{2}=0$ by the hypothesis $a^{2}=b^{2}+c^{2}$, so the numerator is $O(x^{4})$ and the $x^{4}$ normalisation is the correct one (not $x^{2}$).",
+          "Compute the surviving coefficient using $a^{4}=(b^{2}+c^{2})^{2}=b^{4}+2b^{2}c^{2}+c^{4}$, hence $a^{4}-b^{4}-c^{4}=2b^{2}c^{2}$ and $$\\frac{\\cos(ax)-\\cos(bx)-\\cos(cx)+1}{x^{4}}=\\frac{2b^{2}c^{2}}{24}+O(x^{2})=\\frac{b^{2}c^{2}}{12}+O(x^{2}).$$",
+          "Let $x\\to 0$: $L=\\dfrac{b^{2}c^{2}}{12}$. The right-triangle area is $\\Delta=\\dfrac{bc}{2}$, so $b^{2}c^{2}=4\\Delta^{2}$ and $L=\\dfrac{4\\Delta^{2}}{12}=\\boxed{\\dfrac{\\Delta^{2}}{3}}$."
+        ]
+      },
+      {
+        "name": "Method II - Half-angle sum-to-product, then squeeze",
+        "steps": [
+          "Regroup and apply $1-\\cos t=2\\sin^{2}\\dfrac{t}{2}$: $$N(x)=(1-\\cos bx)+(1-\\cos cx)-(1-\\cos ax)=2\\!\\left[\\sin^{2}\\tfrac{bx}{2}+\\sin^{2}\\tfrac{cx}{2}-\\sin^{2}\\tfrac{ax}{2}\\right].$$",
+          "Write each square as $\\sin^{2}u=u^{2}\\,\\varphi(u)^{2}$ with $\\varphi(u)=\\dfrac{\\sin u}{u}\\to 1$. Then $$\\frac{N(x)}{x^{2}}=\\frac{1}{2}\\!\\left[b^{2}\\varphi\\!\\big(\\tfrac{bx}{2}\\big)^{2}+c^{2}\\varphi\\!\\big(\\tfrac{cx}{2}\\big)^{2}-a^{2}\\varphi\\!\\big(\\tfrac{ax}{2}\\big)^{2}\\right]\\xrightarrow[x\\to0]{}\\frac{b^{2}+c^{2}-a^{2}}{2}=0,$$ which only confirms the second-order cancellation; the value lives one order deeper.",
+          "Use the sharp two-sided estimate $\\sin^{2}u=u^{2}-\\dfrac{u^{4}}{3}+O(u^{6})$. With $u=\\tfrac{bx}{2},\\tfrac{cx}{2},\\tfrac{ax}{2}$ the $u^{2}$ parts cancel by Pythagoras, leaving $$N(x)=2\\!\\left[-\\frac{1}{3}\\cdot\\frac{b^{4}+c^{4}-a^{4}}{16}\\,x^{4}+O(x^{6})\\right]=\\frac{a^{4}-b^{4}-c^{4}}{24}\\,x^{4}+O(x^{6}).$$",
+          "Since $a^{4}-b^{4}-c^{4}=2b^{2}c^{2}$, dividing by $x^{4}$ and squeezing the $O(x^{6})$ remainder to $0$ gives $L=\\dfrac{b^{2}c^{2}}{12}=\\dfrac{(2\\Delta)^{2}}{12}=\\boxed{\\dfrac{\\Delta^{2}}{3}}$."
+        ]
+      },
+      {
+        "name": "Method III - Repeated L'Hopital with parity bookkeeping",
+        "steps": [
+          "Set $N(x)=\\cos(ax)-\\cos(bx)-\\cos(cx)+1$ and $D(x)=x^{4}$. Both vanish at $0$. Differentiating, $N'(x)=-a\\sin(ax)+b\\sin(bx)+c\\sin(cx)$ and $N''(x)=-a^{2}\\cos(ax)+b^{2}\\cos(bx)+c^{2}\\cos(cx)$, with $N''(0)=-a^{2}+b^{2}+c^{2}=0$ — the Pythagorean condition kills the second derivative, so we must continue past order two.",
+          "Continue: $N'''(x)=a^{3}\\sin(ax)-b^{3}\\sin(bx)-c^{3}\\sin(cx)$ has $N'''(0)=0$ (odd derivative of an even function), and $N^{(4)}(x)=a^{4}\\cos(ax)-b^{4}\\cos(bx)-c^{4}\\cos(cx)$ gives $N^{(4)}(0)=a^{4}-b^{4}-c^{4}=2b^{2}c^{2}$.",
+          "All lower derivatives of $D=x^{4}$ vanish at $0$ up to order $3$, and $D^{(4)}(0)=24$, so four valid applications of L'Hopital yield $$L=\\lim_{x\\to0}\\frac{N(x)}{x^{4}}=\\frac{N^{(4)}(0)}{D^{(4)}(0)}=\\frac{2b^{2}c^{2}}{24}=\\frac{b^{2}c^{2}}{12}.$$",
+          "Finally $\\Delta=\\dfrac{1}{2}bc$ for the right triangle, so $b^{2}c^{2}=4\\Delta^{2}$ and $L=\\dfrac{4\\Delta^{2}}{12}=\\boxed{\\dfrac{\\Delta^{2}}{3}}$."
+        ]
+      }
+    ],
+    "remark": "The whole problem is an exercise in order promotion. The relation $a^{2}=b^{2}+c^{2}$ is not decoration: it is the precise tuning that makes the natural second-order term $(b^{2}+c^{2}-a^{2})/2$ vanish, forcing the answer down into the fourth-order layer where the genuinely Pythagorean quantity $a^{4}-b^{4}-c^{4}=2b^{2}c^{2}$ takes over. The trap and the punchline are the same identity read at two depths. The geometric payoff is the elegant part: because the legs $b,c$ enter only through $b^{2}c^{2}=(2\\Delta)^{2}$, the limit depends on the triangle solely through its area, $L=\\Delta^{2}/3$ — a Taylor coefficient quietly encoding Heron-free area. The transferable discipline: when a tuned constraint annihilates the leading coefficient of a limit, never conclude the limit is $0$ or divergent; the constraint is a signpost that the answer has moved to the next surviving order, and you must expand exactly one step further."
+  },
+  {
+    "theme": "indeterminate",
+    "themeLabel": "Exotic Indeterminate Forms",
+    "title": "The Compensator That Unmasks the Second Term",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "1-power-infinity",
+      "second-order-taylor",
+      "log-expansion",
+      "order-promotion",
+      "x->0"
+    ],
+    "statement": "The number $e$ is the limit of $(1+x)^{1/x}$, but the convergence carries a hidden fine structure. Multiply the approximant by the gentle compensator $\\sqrt{1+x}$ (chosen precisely to cancel the leading deviation), normalise the resulting closeness to $1$ by the steepest admissible exponent, and evaluate \\[ L=\\lim_{x\\to 0^{+}}\\left(\\sqrt{1+x}\\;\\frac{(1+x)^{1/x}}{e}\\right)^{\\!1/x^{2}}. \\]",
+    "answer": "\\[\\boxed{L=e^{1/12}}\\]",
+    "trap": "The instinct is to recall the famous correction $(1+x)^{1/x}=e\\,e^{-x/2+\\cdots}$ and stop at the first term, treating $\\dfrac{(1+x)^{1/x}}{e}\\approx e^{-x/2}$. Then the base looks like $\\sqrt{1+x}\\,e^{-x/2}=e^{\\frac12\\ln(1+x)-x/2}$, whose logarithm $\\tfrac12\\ln(1+x)-\\tfrac{x}{2}=-\\tfrac{x^{2}}{4}+O(x^{3})$ divided by $x^{2}$ tends to $-\\tfrac14$, giving the confident but WRONG answer $L=e^{-1/4}$. The error is fatal because the compensator $\\sqrt{1+x}$ was engineered to annihilate exactly the first-order term $-x/2$ of $(1+x)^{1/x}/e$; once that term is gone, the $x^{2}$ exponent reaches past it and the SECOND correction term of the inner power — the non-canonical $+\\tfrac{x^{2}}{3}$ inside the logarithm $\\tfrac{\\ln(1+x)}{x}-1$ — becomes the decisive contributor. A student who truncates the inner expansion one term too early never sees it. The genuine $x^{2}$ coefficient of the full log-base is $\\tfrac13-\\tfrac14=\\tfrac1{12}$, not $-\\tfrac14$.",
+    "solutions": [
+      {
+        "name": "Method I - Second-order expansion of the inner power",
+        "steps": [
+          "Take logarithms: with $B(x)=\\sqrt{1+x}\\,\\dfrac{(1+x)^{1/x}}{e}$ the limit is $L=\\exp\\!\\Big(\\lim_{x\\to0^{+}}\\dfrac{\\ln B(x)}{x^{2}}\\Big)$, and $\\ln B(x)=\\tfrac12\\ln(1+x)+\\Big(\\dfrac{\\ln(1+x)}{x}-1\\Big)$.",
+          "Expand the non-canonical inner piece to the order the problem demands. Since $\\ln(1+x)=x-\\tfrac{x^{2}}{2}+\\tfrac{x^{3}}{3}-\\cdots$, dividing by $x$ gives $\\dfrac{\\ln(1+x)}{x}-1=-\\dfrac{x}{2}+\\dfrac{x^{2}}{3}-\\cdots$ — this is the second secret of $(1+x)^{1/x}$, the term the trap discards.",
+          "Add the compensator's expansion $\\tfrac12\\ln(1+x)=\\dfrac{x}{2}-\\dfrac{x^{2}}{4}+\\cdots$. The two first-order parts $+\\tfrac{x}{2}$ and $-\\tfrac{x}{2}$ cancel by design, leaving $\\ln B(x)=\\Big(\\dfrac13-\\dfrac14\\Big)x^{2}+O(x^{3})=\\dfrac{x^{2}}{12}+O(x^{3}).$",
+          "Hence $\\dfrac{\\ln B(x)}{x^{2}}\\to\\dfrac{1}{12}$ and $L=\\boxed{e^{1/12}}$."
+        ]
+      },
+      {
+        "name": "Method II - Single combined logarithm",
+        "steps": [
+          "Merge the two logarithms over a common coefficient: $\\ln B(x)=\\Big(\\tfrac12+\\tfrac1x\\Big)\\ln(1+x)-1=\\dfrac{(x+2)\\ln(1+x)-2x}{2x}.$",
+          "Set $N(x)=(x+2)\\ln(1+x)-2x$, so $\\dfrac{\\ln B(x)}{x^{2}}=\\dfrac{N(x)}{2x^{3}}$. Expand $N$: using $(x+2)\\ln(1+x)=(x+2)\\big(x-\\tfrac{x^{2}}{2}+\\tfrac{x^{3}}{3}-\\cdots\\big)=2x+\\tfrac{x^{3}}{6}+\\cdots$, we get $N(x)=\\dfrac{x^{3}}{6}+O(x^{4}).$",
+          "Therefore $\\dfrac{N(x)}{2x^{3}}=\\dfrac{1}{12}+O(x)\\to\\dfrac{1}{12}$, and exponentiating returns $L=\\boxed{e^{1/12}}.$"
+        ]
+      },
+      {
+        "name": "Method III - L'Hopital on the combined fraction",
+        "steps": [
+          "From Method II, $\\dfrac{\\ln B(x)}{x^{2}}=\\dfrac{N(x)}{2x^{3}}$ with $N(x)=(x+2)\\ln(1+x)-2x$. Simplify the first derivative using $\\dfrac{x+2}{1+x}=1+\\dfrac{1}{1+x}$: $N'(x)=\\ln(1+x)+\\dfrac{x+2}{1+x}-2=\\ln(1+x)-1+\\dfrac{1}{1+x}$, so $N(0)=0$ and $N'(0)=0$.",
+          "Differentiate again: $N''(x)=\\dfrac{1}{1+x}-\\dfrac{1}{(1+x)^{2}}=\\dfrac{x}{(1+x)^{2}}$, hence $N''(0)=0$; the denominator $2x^{3}$ also vanishes to order three, so the chain is legitimate down to the third derivative.",
+          "One more differentiation gives $N'''(x)=\\dfrac{1-x}{(1+x)^{3}}$ with $N'''(0)=1$, while $\\dfrac{d^{3}}{dx^{3}}(2x^{3})=12$. Therefore $\\lim_{x\\to0^{+}}\\dfrac{N(x)}{2x^{3}}=\\dfrac{N'''(0)}{12}=\\dfrac{1}{12}$, so $L=\\boxed{e^{1/12}}.$ (Stopping the chain before $N''(0)=0$ is confirmed — the very vanishing the compensator forces — is what makes a student mistakenly believe the answer lives at order $x^{2}$.)"
+        ]
+      }
+    ],
+    "remark": "This is a study in order promotion driven by a designed cancellation. The compensator $\\sqrt{1+x}$ is not decoration: its expansion $+\\tfrac{x}{2}-\\tfrac{x^{2}}{4}$ is tuned to delete the celebrated first correction $-\\tfrac{x}{2}$ of $(1+x)^{1/x}/e$, and with that term erased the aggressive $1/x^{2}$ exponent reaches into the second layer of the inner power, where the rarely-memorised coefficient $+\\tfrac13$ of $\\tfrac{\\ln(1+x)}{x}-1$ finally speaks. The trap and the punchline are the same fact at two depths: truncate the inner power at first order and you land on $e^{-1/4}$; carry one term further and the true $\\tfrac13-\\tfrac14=\\tfrac1{12}$ emerges. The transferable discipline: when an outer exponent is steeper than the leading nonzero correction of the base, you must expand the base one order deeper than reflex suggests — a cancelled leading term is a signpost, not a stopping point."
+  },
+  {
+    "theme": "indeterminate",
+    "themeLabel": "Exotic Indeterminate Forms",
+    "title": "Vanishing Tail at Infinity",
+    "difficulty": 4,
+    "tags": [
+      "0^0",
+      "arctan",
+      "x->+infinity",
+      "log-transform",
+      "asymptotics"
+    ],
+    "statement": "\\lim_{x\\to +\\infty}\\left(\\frac{\\pi}{2}-\\arctan x\\right)^{1/\\ln x}",
+    "answer": "e^{-1}",
+    "trap": "One sees the base $\\to 0^{+}$ and the exponent $\\to 0^{+}$ and reflexively writes $0^{0}=1$. But $0^0$ is indeterminate: take logs and the answer is decided by the race $\\ln(\\text{base})/\\ln x$. Here $\\text{base}=\\arctan(1/x)\\sim 1/x$, so $\\ln(\\text{base})\\sim-\\ln x$ and the ratio is $-1$, giving $e^{-1}$, not $1$. (Equally tempting: replacing the base by its $O(x^{-2})$-corrected value and hoping the constant survives — it does not; only the polynomial decay rate matters.)",
+    "solutions": [
+      {
+        "name": "Method I — Identity $\\tfrac{\\pi}{2}-\\arctan x=\\arctan(1/x)$",
+        "steps": [
+          "For $x>0$, $\\frac{\\pi}{2}-\\arctan x=\\arctan\\frac1x$. Let $L$ be the limit and take logs: $\\ln L=\\lim_{x\\to\\infty}\\dfrac{\\ln\\arctan(1/x)}{\\ln x}$.",
+          "As $x\\to\\infty$, $\\arctan(1/x)=\\frac1x\\big(1+O(x^{-2})\\big)$, so $\\ln\\arctan(1/x)=\\ln\\frac1x+\\ln\\!\\big(1+O(x^{-2})\\big)=-\\ln x+o(1)$.",
+          "Thus $\\ln L=\\lim_{x\\to\\infty}\\dfrac{-\\ln x+o(1)}{\\ln x}=-1$, so $$L=e^{-1}.$$"
+        ]
+      },
+      {
+        "name": "Method II — Substitution $t=1/x$",
+        "steps": [
+          "Put $t=1/x\\to0^{+}$. Then $\\frac{\\pi}{2}-\\arctan x=\\arctan t$ and $\\ln x=-\\ln t$.",
+          "The expression becomes $\\big(\\arctan t\\big)^{-1/\\ln t}$, so $\\ln L=\\lim_{t\\to0^+}\\dfrac{\\ln\\arctan t}{-\\ln t}$.",
+          "Since $\\arctan t = t\\,(1+O(t^2))$, we get $\\ln\\arctan t=\\ln t+O(t^2)$, giving $\\ln L=\\lim_{t\\to0^+}\\dfrac{\\ln t+O(t^2)}{-\\ln t}=-1$.",
+          "Therefore $L=e^{-1}$."
+        ]
+      },
+      {
+        "name": "Method III — Squeeze",
+        "steps": [
+          "On $[0,1]$ the function $\\arctan$ is concave (its second derivative $-\\frac{2t}{(1+t^2)^2}<0$ for $t>0$), so it lies above the chord through $(0,0)$ and $(1,\\tfrac{\\pi}{4})$: $\\frac{\\pi}{4}\\,t\\le\\arctan t\\le t$ for $t\\in[0,1]$.",
+          "Set $t=1/x$ and raise to the positive power $-1/\\ln t=1/\\ln x>0$: $\\left(\\tfrac{\\pi}{4}\\,t\\right)^{1/\\ln x}\\le(\\arctan t)^{1/\\ln x}\\le t^{1/\\ln x}$.",
+          "The right side $=\\exp\\!\\big(\\tfrac{-\\ln x}{\\ln x}\\big)=e^{-1}$. The left side $=\\exp\\!\\big(\\tfrac{\\ln(\\pi/4)-\\ln x}{\\ln x}\\big)\\to e^{-1}$, since the bounded constant $\\ln(\\pi/4)$ is divided by $\\ln x\\to\\infty$ and washes out.",
+          "Both bounds tend to $e^{-1}$, so by the squeeze theorem $L=e^{-1}$."
+        ]
+      }
+    ],
+    "remark": "Only the leading polynomial decay rate of the base matters: any base $\\sim c\\,x^{-p}$ raised to the power $1/\\ln x$ tends to $e^{-p}$, independent of the constant $c$ — because $\\ln(c\\,x^{-p})/\\ln x = -p + \\ln c/\\ln x \\to -p$."
+  },
+  {
+    "theme": "indeterminate",
+    "themeLabel": "Exotic Indeterminate Forms",
+    "title": "Where the Quadratics Annihilate",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "1^infty",
+      "taylor-cancellation",
+      "fourth-order",
+      "nested-indeterminate",
+      "x->0"
+    ],
+    "statement": "Consider the two-sided limit \\[ L=\\lim_{x\\to 0}\\left(\\frac{\\sin x\\,\\sinh x}{x^{2}}\\right)^{1/x^{4}}. \\] Here the base $\\dfrac{\\sin x\\,\\sinh x}{x^{2}}\\to 1$ while the exponent $\\dfrac{1}{x^{4}}\\to+\\infty$, so this is a $1^{\\infty}$ form. The catch is that the base approaches $1$ much faster than a generic $1^\\infty$ problem: the natural \"$x^2$\" correction one expects from each circular/hyperbolic factor is absent. Determine $L$, taking $x\\to 0$ through both positive and negative values.",
+    "answer": "\\[\\boxed{e^{-1/90}}\\]",
+    "trap": "The reflex for a $1^\\infty$ limit is to write $\\ln L=\\lim \\dfrac{\\ln(\\text{base})}{x^4}$ and expand each factor only to its first correction: $\\dfrac{\\sin x}{x}=1-\\dfrac{x^2}{6}+\\cdots$ gives $\\ln\\dfrac{\\sin x}{x}\\approx -\\dfrac{x^2}{6}$, and $\\dfrac{\\sinh x}{x}=1+\\dfrac{x^2}{6}+\\cdots$ gives $\\ln\\dfrac{\\sinh x}{x}\\approx +\\dfrac{x^2}{6}$. Adding, the two $x^2$ terms cancel to $0$, and the careless conclusion is $\\ln L=\\lim \\dfrac{0}{x^4}=0$, hence $L=1$. That is exactly backwards: the cancellation of the $x^2$ terms is precisely WHY the limit is non-trivial, not why it is $1$. Stopping at order $x^2$ throws away the entire signal. Because the base is $1-\\dfrac{x^4}{90}+\\cdots$, the surviving correction lives at order $x^4$ — the very order against which the exponent $1/x^4$ is matched. One must expand each logarithm to order $x^4$: $\\ln\\dfrac{\\sin x}{x}=-\\dfrac{x^2}{6}-\\dfrac{x^4}{180}+\\cdots$ and $\\ln\\dfrac{\\sinh x}{x}=+\\dfrac{x^2}{6}-\\dfrac{x^4}{180}+\\cdots$; now the $x^2$ parts cancel but the two $-\\dfrac{x^4}{180}$ parts ADD, giving $-\\dfrac{x^4}{90}$. A related blunder is to attack $\\dfrac{x\\cot x+x\\coth x-2}{x^4}$ by L'Hopital: each differentiation only re-creates a $0/0$ form (the rule loops), and the $-1/90$ never appears unless you have already done the series. The hidden constraint is order-of-vanishing: the exponent is tuned to the order where the quadratics annihilate, so any truncation coarser than $x^4$ is fatal, and $L=e^{-1/90}\\ne 1$.",
+    "solutions": [
+      {
+        "name": "Method I - Logarithm with paired fourth-order series",
+        "steps": [
+          "Set $\\ln L=\\displaystyle\\lim_{x\\to0}\\frac{1}{x^{4}}\\Big[\\ln\\frac{\\sin x}{x}+\\ln\\frac{\\sinh x}{x}\\Big]$, valid because the base tends to $1$ and $\\ln(\\cdot)$ is continuous there; the two logarithms are split since $\\dfrac{\\sin x\\,\\sinh x}{x^2}=\\dfrac{\\sin x}{x}\\cdot\\dfrac{\\sinh x}{x}$.",
+          "Expand to order $x^4$. From $\\dfrac{\\sin x}{x}=1-\\dfrac{x^{2}}{6}+\\dfrac{x^{4}}{120}-\\cdots$ and $\\ln(1+u)=u-\\dfrac{u^{2}}{2}+\\cdots$ one gets $\\ln\\dfrac{\\sin x}{x}=-\\dfrac{x^{2}}{6}-\\dfrac{x^{4}}{180}+O(x^{6})$.",
+          "Likewise from $\\dfrac{\\sinh x}{x}=1+\\dfrac{x^{2}}{6}+\\dfrac{x^{4}}{120}+\\cdots$ one gets $\\ln\\dfrac{\\sinh x}{x}=+\\dfrac{x^{2}}{6}-\\dfrac{x^{4}}{180}+O(x^{6})$. The sign flip in the $x^2$ term is the whole point.",
+          "Add: the $\\pm\\dfrac{x^2}{6}$ terms cancel while the two $-\\dfrac{x^4}{180}$ terms reinforce, giving $\\ln\\dfrac{\\sin x}{x}+\\ln\\dfrac{\\sinh x}{x}=-\\dfrac{x^{4}}{90}+O(x^{6})$.",
+          "Divide by $x^4$ and let $x\\to0$ (the expression is even in $x$, so both signs agree): $\\ln L=-\\dfrac{1}{90}$, hence $L=\\boxed{e^{-1/90}}$."
+        ]
+      },
+      {
+        "name": "Method II - Product first, then a single log",
+        "steps": [
+          "Multiply the numerators before taking logs: $\\sin x\\,\\sinh x=\\Big(x-\\dfrac{x^{3}}{6}+\\dfrac{x^{5}}{120}-\\cdots\\Big)\\Big(x+\\dfrac{x^{3}}{6}+\\dfrac{x^{5}}{120}+\\cdots\\Big)$.",
+          "This is a difference-of-like-shapes product; the $x\\cdot\\dfrac{x^3}{6}$ cross terms cancel and one finds $\\sin x\\,\\sinh x=x^{2}-\\dfrac{x^{6}}{90}+O(x^{10})$ (only orders $x^{2},x^{6},\\dots$ survive, since the product of an odd and an odd series is even).",
+          "Therefore the base is $\\dfrac{\\sin x\\,\\sinh x}{x^{2}}=1-\\dfrac{x^{4}}{90}+O(x^{8})=1+u$ with $u=-\\dfrac{x^{4}}{90}+O(x^{8})$, which already exposes that the leading correction is at order $x^4$, not $x^2$.",
+          "Then $\\dfrac{\\ln(1+u)}{x^4}=\\dfrac{u-\\tfrac{u^2}{2}+\\cdots}{x^4}=\\dfrac{-x^4/90+O(x^8)}{x^4}\\to-\\dfrac{1}{90}$, so $\\ln L=-\\dfrac{1}{90}$ and $L=\\boxed{e^{-1/90}}$."
+        ]
+      },
+      {
+        "name": "Method III - Exponential form with a uniform remainder",
+        "steps": [
+          "Write the base as $\\exp\\!\\big(g(x)\\big)$ where $g(x)=\\ln\\dfrac{\\sin x}{x}+\\ln\\dfrac{\\sinh x}{x}$, so that $L=\\displaystyle\\lim_{x\\to0}\\exp\\!\\Big(\\dfrac{g(x)}{x^4}\\Big)$ and it suffices to find $\\lim g(x)/x^4$.",
+          "Both $\\dfrac{\\sin x}{x}$ and $\\dfrac{\\sinh x}{x}$ are even analytic functions equal to $1$ at $x=0$, so $g$ is even and analytic with $g(0)=g''(0)\\cdot$(no odd parts); compute its Maclaurin coefficients by symmetry. The $x^2$ coefficient of $g$ is $\\big(-\\tfrac16\\big)+\\big(+\\tfrac16\\big)=0$.",
+          "The $x^4$ coefficient of $g$ is the sum of the $x^4$ coefficients of the two logarithms; each equals $-\\dfrac{1}{180}$ (the $\\tfrac{x^4}{120}$ from the series minus $\\tfrac12$ of the square of $\\mp\\tfrac{x^2}{6}$, i.e. $\\tfrac{1}{120}-\\tfrac{1}{72}=-\\tfrac{1}{180}$), so the $x^4$ coefficient of $g$ is $-\\dfrac{2}{180}=-\\dfrac{1}{90}$.",
+          "Hence $g(x)=-\\dfrac{x^4}{90}+O(x^6)$, the remainder genuinely of order $x^6$, so $\\dfrac{g(x)}{x^4}\\to-\\dfrac{1}{90}$ uniformly as $x\\to0^\\pm$. Exponentiating, $L=\\boxed{e^{-1/90}}$."
+        ]
+      }
+    ],
+    "remark": "The design principle is order-matching: the exponent $1/x^4$ is deliberately tuned to the order at which the base's correction first appears. What makes the base correct only at order $x^4$ is the pairing of a circular factor with its hyperbolic twin, $\\sin$ against $\\sinh$ — their second-order corrections are equal and opposite ($-x^2/6$ vs $+x^2/6$), so they annihilate in the sum of logs, while their fourth-order corrections are equal and same-signed ($-x^4/180$ each), so they reinforce. The seductive cancellation at order $x^2$ is therefore not a sign that the limit is $1$; it is the mechanism that promotes the problem to a fourth-order race. A blunt L'Hopital attack on $\\frac{x\\cot x+x\\coth x-2}{x^4}$ merely regenerates $0/0$ at every step and never converges to an answer — the Taylor coefficient $-1/90$ is the only honest route. The same trick scales: replacing the exponent by $1/x^2$ would give a genuine $1$ (the surviving signal sits above the resolved order), while $\\sin x\\,\\sin x$ or $\\sinh x\\,\\sinh x$ in the base would leave the $x^2$ terms intact and turn it into a pedestrian second-order limit. Top-rank discipline is to read the order of vanishing first, and only then choose how far to expand."
+  },
+  {
+    "theme": "indeterminate",
+    "themeLabel": "Exotic Indeterminate Forms",
+    "title": "The Logarithm's Second Secret",
+    "difficulty": 4,
+    "tags": [
+      "infinity-minus-infinity",
+      "ln",
+      "x->+infinity",
+      "taylor",
+      "collapse"
+    ],
+    "statement": "\\lim_{x\\to +\\infty}\\Big(x-x^{2}\\ln\\!\\big(1+\\tfrac1x\\big)\\Big)",
+    "answer": "\\dfrac{1}{2}",
+    "trap": "Replacing $\\ln(1+1/x)$ by its first-order term $1/x$ gives $x-x^2\\cdot\\frac1x=x-x=0$. That linear approximation is fatally too crude here: $x^2$ is large, so the next term $-\\frac{1}{2x^2}$ in $\\ln(1+1/x)$ is amplified by $x^2$ into a finite residue $\\frac12$. The cancellation you see is only of the divergent parts; the curvature term survives.",
+    "solutions": [
+      {
+        "name": "Method I — Second-order expansion",
+        "steps": [
+          "Substitute $t=1/x\\to0^{+}$. The Maclaurin series is $\\ln(1+t)=t-\\frac{t^2}{2}+\\frac{t^3}{3}-\\cdots$",
+          "Since $x^2=1/t^2$, $$x^2\\ln(1+1/x)=\\frac{1}{t^2}\\Big(t-\\frac{t^2}{2}+\\frac{t^3}{3}-\\cdots\\Big)=\\frac1t-\\frac12+\\frac{t}{3}-\\cdots=x-\\frac12+\\frac{1}{3x}-\\cdots$$",
+          "Therefore $$x-x^2\\ln(1+1/x)=x-\\Big(x-\\frac12+\\frac{1}{3x}-\\cdots\\Big)=\\frac12-\\frac{1}{3x}+\\cdots$$",
+          "The divergent $x$ terms cancel and letting $x\\to\\infty$ leaves $$\\frac12.$$"
+        ]
+      },
+      {
+        "name": "Method II — Substitute and use L'Hôpital",
+        "steps": [
+          "Let $t=1/x\\to0^{+}$. Then $x=\\frac1t$, $x^2=\\frac1{t^2}$, and the expression becomes $$\\frac1t-\\frac{1}{t^2}\\ln(1+t)=\\frac{t-\\ln(1+t)}{t^2}.$$",
+          "As $t\\to0^{+}$ both numerator and denominator vanish, a $\\frac00$ form. Applying L'Hôpital's rule once: $$\\frac{\\frac{d}{dt}\\big(t-\\ln(1+t)\\big)}{\\frac{d}{dt}\\,t^2}=\\frac{1-\\frac{1}{1+t}}{2t}=\\frac{\\frac{t}{1+t}}{2t}=\\frac{1}{2(1+t)}.$$",
+          "This is no longer indeterminate; as $t\\to0^{+}$ it tends to $\\frac12$. Hence the original limit is $$\\frac12.$$"
+        ]
+      }
+    ],
+    "remark": "The $\\infty-\\infty$ form collapses not to $0$ but to the curvature coefficient $\\tfrac12$ of $\\ln(1+t)$ at $t=0$; the seductive linear cancellation hides the quadratic truth. More generally $\\lim_{x\\to\\infty}\\big(x-x^2\\ln(1+1/x)\\big)$ equals $-c_2$ where $c_2=-\\tfrac12$ is the second Taylor coefficient of $\\ln(1+t)$."
+  },
+  {
+    "theme": "indeterminate",
+    "themeLabel": "Exotic Indeterminate Forms",
+    "title": "The Exponent That Pretends to Vanish",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "infinity^0",
+      "taylor-driven",
+      "vanishing-exponent",
+      "rate-matching",
+      "x->0"
+    ],
+    "statement": "Evaluate \\[ L=\\lim_{x\\to 0^{+}}\\Big(e^{1/x^{2}}\\Big)^{\\big(\\frac{1-\\cos x}{x\\sin x}-\\frac12\\big)}. \\] The base $e^{1/x^{2}}\\to+\\infty$ while the exponent $E(x)=\\dfrac{1-\\cos x}{x\\sin x}-\\dfrac12$ tends to $0^{+}$, so this is an $\\infty^{0}$ form. Note that $\\dfrac{1-\\cos x}{x\\sin x}\\to\\dfrac12$, so the exponent is a difference of two quantities that share the same limit $\\tfrac12$; the question is whether that exponent vanishes fast enough, slowly enough, or at exactly the right rate to leave a finite trace once it is pitted against a base that explodes like $e^{1/x^{2}}$.",
+    "answer": "\\[\\boxed{e^{1/24}}\\]",
+    "trap": "Two reflexes both give the wrong answer $1$. (i) \"An $\\infty^{0}$ form is $1$\": false in general — $\\infty^{0}$ is genuinely indeterminate, and here the base blows up just fast enough to be felt. (ii) The subtler and more seductive error: $\\dfrac{1-\\cos x}{x\\sin x}\\to\\dfrac12$, so the exponent $E(x)=\\dfrac{1-\\cos x}{x\\sin x}-\\dfrac12$ is read as being $0$ \"at $x=0$\", whence base$^{0}=1$. But $E(x)$ is not the constant $0$; it is a function that vanishes at a definite RATE. Taking $\\ln L=\\lim_{x\\to0^{+}}\\big(\\ln e^{1/x^{2}}\\big)\\,E(x)=\\lim_{x\\to0^{+}}\\dfrac{E(x)}{x^{2}}$ converts the problem into a $\\dfrac{0}{0}$ race whose value is dictated by the exact order at which $E$ decays. Because $E(x)=\\dfrac{x^{2}}{24}+\\dfrac{x^{4}}{240}+\\cdots$, the leading $\\dfrac{x^{2}}{24}$ exactly cancels the $\\dfrac{1}{x^{2}}$ growth of $\\ln(\\text{base})$, leaving $\\ln L=\\dfrac{1}{24}\\ne0$. Stopping at the limit value $\\tfrac12$ of the fraction (equivalently, expanding $\\dfrac{1-\\cos x}{x\\sin x}$ only to order $x^{0}$) discards the entire signal; the hidden constraint is that the exponent must be expanded to order $x^{2}$, the precise order against which the base's $x^{-2}$ blow-up is tuned. A blunt L'Hopital attack on $\\dfrac{E(x)}{x^{2}}$ does not lie, but it punishes: written as $\\dfrac{(1-\\cos x)-\\tfrac12 x\\sin x}{x^{3}\\sin x}$, both numerator and denominator vanish to order $x^{4}$, so four successive differentiations reproduce $\\dfrac{0}{0}$ each time before the fourth pass finally yields $\\dfrac{1}{24}$ — a grind that all but loops, where one slip restores the false $0$.",
+    "solutions": [
+      {
+        "name": "Method I - Logarithm and a second-order Taylor race",
+        "steps": [
+          "Take logarithms: since the base is positive, $\\ln L=\\displaystyle\\lim_{x\\to0^{+}}\\Big(\\ln e^{1/x^{2}}\\Big)\\,E(x)=\\lim_{x\\to0^{+}}\\frac{1}{x^{2}}\\Big(\\frac{1-\\cos x}{x\\sin x}-\\frac12\\Big)=\\lim_{x\\to0^{+}}\\frac{E(x)}{x^{2}}$, an honest $\\dfrac{0}{0}$ now that the $\\infty^{0}$ has been linearised.",
+          "Expand the exponent. Using $1-\\cos x=\\dfrac{x^{2}}{2}-\\dfrac{x^{4}}{24}+\\dfrac{x^{6}}{720}-\\cdots$ and $x\\sin x=x^{2}-\\dfrac{x^{4}}{6}+\\dfrac{x^{6}}{120}-\\cdots$, divide: $\\dfrac{1-\\cos x}{x\\sin x}=\\dfrac{\\tfrac12-\\tfrac{x^{2}}{24}+\\cdots}{1-\\tfrac{x^{2}}{6}+\\cdots}=\\Big(\\tfrac12-\\tfrac{x^{2}}{24}+\\cdots\\Big)\\Big(1+\\tfrac{x^{2}}{6}+\\cdots\\Big)$.",
+          "Multiply out to order $x^{2}$: $\\dfrac{1-\\cos x}{x\\sin x}=\\dfrac12+\\Big(\\dfrac12\\cdot\\dfrac16-\\dfrac1{24}\\Big)x^{2}+\\cdots=\\dfrac12+\\dfrac{x^{2}}{24}+\\cdots$. Subtracting $\\tfrac12$ gives $E(x)=\\dfrac{x^{2}}{24}+O(x^{4})$ — the term the naive reader threw away.",
+          "Therefore $\\dfrac{E(x)}{x^{2}}=\\dfrac1{24}+O(x^{2})\\to\\dfrac1{24}$, so $\\ln L=\\dfrac1{24}$ and $L=\\boxed{e^{1/24}}$. (The expansion is even in $x$, so the two-sided limit agrees.)"
+        ]
+      },
+      {
+        "name": "Method II - Half-angle collapse to a tangent",
+        "steps": [
+          "Simplify the fraction with half-angle identities: $1-\\cos x=2\\sin^{2}\\dfrac{x}{2}$ and $\\sin x=2\\sin\\dfrac{x}{2}\\cos\\dfrac{x}{2}$, so $\\dfrac{1-\\cos x}{\\sin x}=\\dfrac{2\\sin^{2}(x/2)}{2\\sin(x/2)\\cos(x/2)}=\\tan\\dfrac{x}{2}$.",
+          "Hence the exponent collapses to a single tangent: $E(x)=\\dfrac{1-\\cos x}{x\\sin x}-\\dfrac12=\\dfrac{\\tan(x/2)}{x}-\\dfrac12$, eliminating the apparent $\\dfrac00$ tangle inside the fraction.",
+          "Expand $\\tan u=u+\\dfrac{u^{3}}{3}+\\cdots$ at $u=\\dfrac{x}{2}$: $\\tan\\dfrac{x}{2}=\\dfrac{x}{2}+\\dfrac{1}{3}\\Big(\\dfrac{x}{2}\\Big)^{3}+\\cdots=\\dfrac{x}{2}+\\dfrac{x^{3}}{24}+\\cdots$, so $\\dfrac{\\tan(x/2)}{x}=\\dfrac12+\\dfrac{x^{2}}{24}+\\cdots$ and $E(x)=\\dfrac{x^{2}}{24}+O(x^{4})$.",
+          "Then $\\ln L=\\displaystyle\\lim_{x\\to0^{+}}\\dfrac{E(x)}{x^{2}}=\\dfrac1{24}$, giving $L=\\boxed{e^{1/24}}$. The half-angle move shows the entire problem rides on a single coefficient, $\\dfrac13$ from $\\tan$, scaled by the half-angle factor $\\dfrac18$ to $\\dfrac{1}{24}$."
+        ]
+      },
+      {
+        "name": "Method III - Repeated L'Hopital on the cleared form",
+        "steps": [
+          "Reduce $\\ln L=\\lim_{x\\to0^{+}}\\dfrac{E(x)}{x^{2}}$ to a polynomial-times-trig quotient by clearing $x\\sin x$: $\\dfrac{E(x)}{x^{2}}=\\dfrac{(1-\\cos x)-\\tfrac12 x\\sin x}{x^{3}\\sin x}$. Both numerator $N(x)$ and denominator $D(x)$ vanish at $x=0$, a $\\dfrac00$ form.",
+          "Differentiating once gives $\\dfrac{N'}{D'}$ with $N'(0)=D'(0)=0$; the form persists. In fact $N$ and $D$ each vanish to order $x^{4}$ (their Maclaurin series start at $x^{4}$), so the first three L'Hopital passes each reproduce $\\dfrac00$ — the rule nearly loops, and abandoning it after one or two passes is exactly how the false answer $0$ creeps back in.",
+          "On the fourth pass the constant terms emerge: $N^{(4)}(0)=1$ and $D^{(4)}(0)=24$ (equivalently, $N(x)=\\tfrac1{24}x^{4}+\\cdots$ and $D(x)=x^{4}+\\cdots$, so the leading coefficients are $\\tfrac1{24}$ and $1$).",
+          "Thus $\\lim_{x\\to0^{+}}\\dfrac{N(x)}{D(x)}=\\dfrac{N^{(4)}(0)}{D^{(4)}(0)}=\\dfrac{1}{24}$, so $\\ln L=\\dfrac1{24}$ and $L=\\boxed{e^{1/24}}$, matching Methods I and II."
+        ]
+      }
+    ],
+    "remark": "The design principle is rate-matching across an $\\infty^{0}$ frontier: the base is engineered to grow like $e^{1/x^{2}}$ precisely so that its logarithm contributes a factor $x^{-2}$, which must be balanced by an exponent that decays like $x^{2}$. The exponent $\\dfrac{1-\\cos x}{x\\sin x}-\\dfrac12$ is built as a difference of two quantities sharing the limit $\\tfrac12$ — a deliberate decoy that invites the reader to declare it \"zero\" and collapse the whole expression to $1$. The truth is that subtracting off the common limit does not kill the function, only its leading constant; what survives is the $\\dfrac{x^{2}}{24}$ tail, and that tail is the entire answer. Two structural lessons for the top rank: first, $\\infty^{0}$ (like $1^{\\infty}$ and $0^{0}$) is never \"obviously\" $1$ — one must always pass to logarithms and weigh the competing rates; second, when an exponent tends to $0$, the relevant datum is its order of vanishing, not its limit. The half-angle route (Method II) is the most elegant because it exposes that the answer $\\dfrac1{24}=\\dfrac13\\cdot\\dfrac18$ is just the cubic coefficient of $\\tan$ scaled by the half-angle, while the L'Hopital route (Method III) is a cautionary tale: the rule is valid but nearly loops, vanishing to fourth order before it pays out, and every premature stop hands back the seductive false $0$."
+  },
+  {
+    "theme": "indeterminate",
+    "themeLabel": "Exotic Indeterminate Forms",
+    "title": "The Square-Root Disguise",
+    "difficulty": 4,
+    "tags": [
+      "1^infinity",
+      "square-root",
+      "x->0+",
+      "taylor",
+      "half-integer-powers"
+    ],
+    "statement": "\\lim_{x\\to 0^{+}}\\big(\\cos\\sqrt{x}\\big)^{1/x}",
+    "answer": "e^{-1/2}",
+    "trap": "Seeing $\\cos\\sqrt x\\to\\cos 0=1$ and declaring the answer $1$, ignoring that this is a $1^\\infty$ form. The subtler trap: noting $\\cos\\sqrt x$ has no term linear in $\\sqrt x$ and concluding it is 'flat to first order', hence constant. But $\\cos\\sqrt x=1-\\tfrac{x}{2}+O(x^2)$ — the genuine $O(x)$ term $-\\tfrac{x}{2}$ is exactly what the exponent $1/x$ magnifies, producing $e^{-1/2}$, not $1$.",
+    "solutions": [
+      {
+        "name": "Method I — Expand $\\cos\\sqrt x$ in powers of $x$",
+        "steps": [
+          "Since $\\cos u=1-\\frac{u^2}{2}+\\frac{u^4}{24}-\\cdots$ with $u=\\sqrt x$, the half-integer powers vanish and we get a clean power series in $x$: $\\cos\\sqrt x=1-\\frac{x}{2}+\\frac{x^2}{24}-\\cdots$",
+          "Take logarithms: $\\frac1x\\ln\\cos\\sqrt x=\\frac1x\\ln\\!\\Big(1-\\frac{x}{2}+\\frac{x^2}{24}-\\cdots\\Big)$.",
+          "With $u=-\\frac{x}{2}+O(x^2)\\to 0$, use $\\ln(1+u)=u+O(u^2)=-\\frac{x}{2}+O(x^2)$, so $\\frac1x\\ln\\cos\\sqrt x=-\\frac12+O(x)$.",
+          "Letting $x\\to0^+$ the logarithm tends to $-\\frac12$, hence $$\\big(\\cos\\sqrt x\\big)^{1/x}=e^{\\frac1x\\ln\\cos\\sqrt x}\\to e^{-1/2}.$$"
+        ]
+      },
+      {
+        "name": "Method II — Substitution $t=\\sqrt x$",
+        "steps": [
+          "Let $t=\\sqrt x$, so as $x\\to0^+$ we have $t\\to0^+$ and $1/x=1/t^2$. The limit becomes $\\lim_{t\\to0^+}(\\cos t)^{1/t^2}$.",
+          "This is the classic $1^\\infty$ form. Its logarithm is $\\dfrac{\\ln\\cos t}{t^2}$, and $\\ln\\cos t=-\\dfrac{t^2}{2}+O(t^4)$.",
+          "Hence $\\dfrac{\\ln\\cos t}{t^2}=-\\dfrac12+O(t^2)\\to-\\dfrac12$, giving $(\\cos t)^{1/t^2}\\to e^{-1/2}$.",
+          "Therefore the original limit equals $e^{-1/2}$."
+        ]
+      }
+    ],
+    "remark": "The $\\sqrt x$ converts the cosine's quadratic argument-term into a linear $x$-term, so it is the cosine's curvature — not any spurious linear part — that governs the exponential. Same mechanism as $\\lim_{t\\to0}(\\cos t)^{1/t^2}=e^{-1/2}$."
+  },
+  {
+    "theme": "indeterminate",
+    "themeLabel": "Exotic Indeterminate Forms",
+    "title": "The Twin Singularities That Refuse to Cancel",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "infty-minus-infty",
+      "taylor",
+      "cosecant-squared",
+      "hyperbolic-twin",
+      "x->0"
+    ],
+    "statement": "Each term below blows up like $\\dfrac{1}{x^{2}}$ as $x\\to 0$, so this is an $\\infty-\\infty$ form in which the two infinities are built from a circular function and its hyperbolic twin: \\[ L=\\lim_{x\\to 0}\\left(\\frac{1}{\\sin^{2}x}-\\frac{1}{\\sinh^{2}x}\\right). \\] The leading $\\dfrac{1}{x^{2}}$ poles annihilate exactly, and so does the very next correction; the answer is decided entirely by the first surviving terms of the two Laurent expansions. Evaluate $L$, taking $x\\to 0$ through both positive and negative values.",
+    "answer": "\\[\\boxed{\\dfrac{2}{3}}\\]",
+    "trap": "The fatal instinct is to reason by analogy with the friendly product-of-twins limits, where pairing $\\sin$ against $\\sinh$ makes corrections annihilate, and to declare that here too \"everything cancels, so $L=0$.\" It is the opposite: the cancellation of the $\\dfrac{1}{x^{2}}$ poles is what makes the problem non-trivial, not what makes it vanish. A second, more sophisticated student remembers the famous classic $\\dfrac{1}{\\sin^{2}x}-\\dfrac{1}{x^{2}}\\to\\dfrac13$, inserts and removes $\\dfrac{1}{x^{2}}$ to write $L=\\Big(\\dfrac{1}{\\sin^{2}x}-\\dfrac{1}{x^{2}}\\Big)-\\Big(\\dfrac{1}{\\sinh^{2}x}-\\dfrac{1}{x^{2}}\\Big)$, computes the first bracket as $\\dfrac13$ -- and then guesses the hyperbolic bracket is also $\\dfrac13$, concluding $L=\\dfrac13-\\dfrac13=0$. But $\\dfrac{1}{\\sinh^{2}x}-\\dfrac{1}{x^{2}}\\to-\\dfrac13$, not $+\\dfrac13$: replacing $\\sin$ by $\\sinh$ flips the sign of the constant term in the Laurent series. So the two brackets are $+\\dfrac13$ and $-\\dfrac13$, and subtracting the second SUBTRACTS a negative, giving $\\dfrac13-(-\\dfrac13)=\\dfrac23$. The hidden structure is that $\\dfrac{1}{\\sin^{2}x}=\\dfrac{1}{x^{2}}+\\dfrac13+\\dfrac{x^{2}}{15}+\\cdots$ and $\\dfrac{1}{\\sinh^{2}x}=\\dfrac{1}{x^{2}}-\\dfrac13+\\dfrac{x^{2}}{15}+\\cdots$ share their $\\dfrac{1}{x^{2}}$ pole AND their $\\dfrac{x^{2}}{15}$ term (both cancel), but carry equal-and-opposite constants that REINFORCE on subtraction. Anyone who treats the hyperbolic twin as a copy of the circular one with the same constant lands on $0$; anyone who tries L'Hopital on the recombined fraction $\\dfrac{\\sinh^{2}x-\\sin^{2}x}{\\sin^{2}x\\,\\sinh^{2}x}$ faces a $0/0$ whose numerator and denominator both start at order $x^{4}$, so the rule must be applied four times and regenerates $0/0$ at every intermediate step unless the series is known in advance.",
+    "solutions": [
+      {
+        "name": "Method I - Split through the common pole and use the two classics",
+        "steps": [
+          "Insert and remove $\\dfrac{1}{x^{2}}$ to isolate two standard limits: $L=\\Big(\\dfrac{1}{\\sin^{2}x}-\\dfrac{1}{x^{2}}\\Big)-\\Big(\\dfrac{1}{\\sinh^{2}x}-\\dfrac{1}{x^{2}}\\Big)$. Each bracket is now an ordinary finite $\\infty-\\infty$ that the $\\dfrac{1}{x^{2}}$ has tamed.",
+          "First bracket. From $\\sin x=x-\\dfrac{x^{3}}{6}+\\cdots$ one gets $\\sin^{2}x=x^{2}\\big(1-\\dfrac{x^{2}}{3}+\\cdots\\big)$, so $\\dfrac{1}{\\sin^{2}x}=\\dfrac{1}{x^{2}}\\big(1+\\dfrac{x^{2}}{3}+\\cdots\\big)=\\dfrac{1}{x^{2}}+\\dfrac13+\\cdots$, hence $\\dfrac{1}{\\sin^{2}x}-\\dfrac{1}{x^{2}}\\to\\dfrac13$.",
+          "Second bracket. From $\\sinh x=x+\\dfrac{x^{3}}{6}+\\cdots$ one gets $\\sinh^{2}x=x^{2}\\big(1+\\dfrac{x^{2}}{3}+\\cdots\\big)$, so $\\dfrac{1}{\\sinh^{2}x}=\\dfrac{1}{x^{2}}\\big(1-\\dfrac{x^{2}}{3}+\\cdots\\big)=\\dfrac{1}{x^{2}}-\\dfrac13+\\cdots$, hence $\\dfrac{1}{\\sinh^{2}x}-\\dfrac{1}{x^{2}}\\to-\\dfrac13$. The single sign flip in $\\sinh^{2}x=x^{2}(1+\\tfrac{x^2}{3}+\\cdots)$ versus $\\sin^{2}x=x^{2}(1-\\tfrac{x^2}{3}+\\cdots)$ is the entire mechanism.",
+          "Subtract the two limits: $L=\\dfrac13-\\big(-\\dfrac13\\big)=\\dfrac13+\\dfrac13=\\boxed{\\dfrac23}$. The constants reinforce rather than cancel; the function is even in $x$, so the two-sided limit agrees with both one-sided limits."
+        ]
+      },
+      {
+        "name": "Method II - Recombine into one fraction and match leading orders",
+        "steps": [
+          "Put over a common denominator: $L=\\displaystyle\\lim_{x\\to0}\\frac{\\sinh^{2}x-\\sin^{2}x}{\\sin^{2}x\\,\\sinh^{2}x}$, a genuine $\\dfrac{0}{0}$ since numerator and denominator both vanish at $x=0$.",
+          "Expand the numerator to its first surviving order. With $\\sin^{2}x=x^{2}-\\dfrac{x^{4}}{3}+\\dfrac{2x^{6}}{45}-\\cdots$ and $\\sinh^{2}x=x^{2}+\\dfrac{x^{4}}{3}+\\dfrac{2x^{6}}{45}+\\cdots$, the $x^{2}$ and $x^{6}$ parts cancel while the $\\pm\\dfrac{x^{4}}{3}$ parts add: $\\sinh^{2}x-\\sin^{2}x=\\dfrac{2x^{4}}{3}+O(x^{8})$.",
+          "The denominator is a product of two factors each $\\sim x^{2}$, so $\\sin^{2}x\\,\\sinh^{2}x=x^{2}\\cdot x^{2}+O(x^{6})=x^{4}+O(x^{6})$; its leading order is exactly $x^{4}$, matching the numerator.",
+          "Therefore $L=\\displaystyle\\lim_{x\\to0}\\frac{\\tfrac{2}{3}x^{4}+O(x^{8})}{x^{4}+O(x^{6})}=\\boxed{\\dfrac23}$. The order-matching ($x^{4}$ over $x^{4}$) is what a four-fold L'Hopital would have been forced to discover the hard way."
+        ]
+      },
+      {
+        "name": "Method III - Pythagorean identities convert reciprocals to squares",
+        "steps": [
+          "Use $\\dfrac{1}{\\sin^{2}x}=\\csc^{2}x=1+\\cot^{2}x$ and $\\dfrac{1}{\\sinh^{2}x}=\\operatorname{csch}^{2}x=\\coth^{2}x-1$. Subtracting, the difference of reciprocal squares becomes $L=\\displaystyle\\lim_{x\\to0}\\big[(1+\\cot^{2}x)-(\\coth^{2}x-1)\\big]=\\lim_{x\\to0}\\big[2+\\cot^{2}x-\\coth^{2}x\\big]$.",
+          "Expand each square about $0$. Since $\\cot x=\\dfrac1x-\\dfrac{x}{3}-\\cdots$, squaring gives $\\cot^{2}x=\\dfrac{1}{x^{2}}-\\dfrac23+\\dfrac{x^{2}}{15}+\\cdots$; since $\\coth x=\\dfrac1x+\\dfrac{x}{3}-\\cdots$, squaring gives $\\coth^{2}x=\\dfrac{1}{x^{2}}+\\dfrac23+\\dfrac{x^{2}}{15}+\\cdots$.",
+          "The $\\dfrac{1}{x^{2}}$ poles and the $\\dfrac{x^{2}}{15}$ terms cancel in $\\cot^{2}x-\\coth^{2}x$, leaving the equal-and-opposite constants: $\\cot^{2}x-\\coth^{2}x\\to-\\dfrac23-\\dfrac23=-\\dfrac43$.",
+          "Hence $L=2+\\Big(-\\dfrac43\\Big)=\\dfrac{6-4}{3}=\\boxed{\\dfrac23}$, the constant $2$ from the two $\\pm1$ shifts of the identities supplying the bridge between $-\\dfrac43$ and the final value."
+        ]
+      }
+    ],
+    "remark": "The design hinges on a sign asymmetry that the analogy police get exactly wrong. When a circular function meets its hyperbolic twin in a PRODUCT (as in $\\sin x\\,\\sinh x$), their second-order corrections are equal and opposite and annihilate; that is the intuition many strong students over-generalise. But here the twins meet in a DIFFERENCE of reciprocal squares, and the Laurent series $\\dfrac{1}{\\sin^{2}x}=\\dfrac{1}{x^{2}}+\\dfrac13+\\dfrac{x^{2}}{15}+\\cdots$ and $\\dfrac{1}{\\sinh^{2}x}=\\dfrac{1}{x^{2}}-\\dfrac13+\\dfrac{x^{2}}{15}+\\cdots$ agree in BOTH their pole and their $x^{2}$ term while carrying opposite constants. Subtracting therefore wipes out everything except $\\dfrac13-(-\\dfrac13)=\\dfrac23$: the constants reinforce precisely because the rest cancels. The two seductive wrong answers, $0$ (assuming total cancellation) and $0$ again (assuming the hyperbolic bracket equals $+\\dfrac13$ like the circular one), both stem from forgetting that passing $\\sin\\to\\sinh$ flips the sign of every odd power inside, which is exactly the constant term of the reciprocal square. A blunt L'Hopital on the recombined fraction would need four passes and regenerate $0/0$ at each, because numerator and denominator are co-tangent to order $x^{4}$; the honest route is to read the order of vanishing first ($x^{4}$ over $x^{4}$) and expand only that far. Top-rank discipline: in an $\\infty-\\infty$ of twins, identify which terms are shared (they cancel) and which are sign-flipped (they double) before computing anything."
+  },
+  {
+    "theme": "indeterminate",
+    "themeLabel": "Exotic Indeterminate Forms",
+    "title": "The Base That Hides Its Own Order",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "0-to-the-0",
+      "higher-order-series",
+      "log-ratio",
+      "lhopital-loop",
+      "cubic-cancellation"
+    ],
+    "statement": "Evaluate the right-hand limit \\[ L=\\lim_{x\\to 0^{+}}\\big(x-\\sin x\\big)^{\\,1/\\ln x}. \\] As $x\\to0^{+}$ the base $x-\\sin x$ is a strictly positive quantity shrinking to $0$, while the exponent $\\dfrac{1}{\\ln x}\\to 0^{-}$, so this is a clean $0^{0}$ form built from a single elementary base. There is no floor, fractional part, modulus, or squeeze in sight: the entire problem is hidden inside the rate at which $x-\\sin x$ approaches $0$.",
+    "answer": "$e^{3}$",
+    "trap": "Two reflexes both fail. First, the slogan \"$0^{0}=1$\": the base $\\to0^{+}$ and the exponent $\\to0$, so a careless solver declares $L=1$. The numerical truth is the opposite extreme — the expression hovers near $20$, nowhere near $1$. Second, and more insidious, is what happens when you try to find the base's order with the first-order law $\\sin x\\approx x$: it gives $x-\\sin x\\approx x-x=0$ identically, a total collapse that tells you nothing. The linear term of $\\sin x$ cancels the $x$ exactly, and so does the (absent) quadratic term, so the base's true size is decided by the FIRST surviving Taylor coefficient, the cubic one: $x-\\sin x=\\tfrac{x^{3}}{6}-\\tfrac{x^{5}}{120}+\\cdots\\sim\\tfrac{x^{3}}{6}$. Because $\\ln L=\\lim\\dfrac{\\ln(x-\\sin x)}{\\ln x}$ and $\\ln(x-\\sin x)=3\\ln x-\\ln 6+o(1)$, the controlling factor is the exponent $3$ on $x$, NOT the constant $\\tfrac16$: the answer is $e^{3}$, and any solver who stops the series at first order never even reaches an indeterminate ratio, let alone the value $3$.",
+    "solutions": [
+      {
+        "name": "Method I - Logarithm to a log-ratio, resolved by the leading order",
+        "steps": [
+          "The base is positive for small $x>0$ (since $x>\\sin x$ there), so write $\\ln L=\\lim_{x\\to0^{+}}\\dfrac{1}{\\ln x}\\,\\ln(x-\\sin x)=\\lim_{x\\to0^{+}}\\dfrac{\\ln(x-\\sin x)}{\\ln x}$, an honest $\\dfrac{-\\infty}{-\\infty}$ ratio.",
+          "Expand the base to its first nonzero order: $x-\\sin x=\\dfrac{x^{3}}{6}-\\dfrac{x^{5}}{120}+\\cdots=\\dfrac{x^{3}}{6}\\Big(1-\\dfrac{x^{2}}{20}+\\cdots\\Big)$. Hence $\\ln(x-\\sin x)=3\\ln x-\\ln 6+\\ln\\!\\Big(1-\\dfrac{x^{2}}{20}+\\cdots\\Big)$, where the last term $\\to0$.",
+          "Divide by $\\ln x\\to-\\infty$: $\\dfrac{\\ln(x-\\sin x)}{\\ln x}=3-\\dfrac{\\ln 6}{\\ln x}+\\dfrac{\\ln(1-x^{2}/20+\\cdots)}{\\ln x}\\to 3-0+0=3$. The constant $-\\ln 6$ and the higher-order correction are both crushed by the divergent denominator.",
+          "Therefore $\\ln L=3$, so $L=\\boxed{e^{3}}$. The boxed exponent is exactly the order of the zero of $x-\\sin x$ — the cubic vanishing is the whole answer."
+        ]
+      },
+      {
+        "name": "Method II - One clean L'Hopital, after refusing the loop",
+        "steps": [
+          "On the same ratio $\\dfrac{\\ln(x-\\sin x)}{\\ln x}$ ($\\tfrac{-\\infty}{-\\infty}$, so L'Hopital applies) differentiate top and bottom: $\\dfrac{d}{dx}\\ln(x-\\sin x)=\\dfrac{1-\\cos x}{x-\\sin x}$ and $\\dfrac{d}{dx}\\ln x=\\dfrac1x$, giving the new ratio $\\dfrac{x(1-\\cos x)}{x-\\sin x}$.",
+          "This is now a tame $\\tfrac00$ that resolves by leading orders: $1-\\cos x\\sim\\tfrac{x^{2}}{2}$ and $x-\\sin x\\sim\\tfrac{x^{3}}{6}$, so $\\dfrac{x(1-\\cos x)}{x-\\sin x}\\sim\\dfrac{x\\cdot x^{2}/2}{x^{3}/6}=\\dfrac{x^{3}/2}{x^{3}/6}=3$. Hence $\\ln L=3$.",
+          "Caution on the loop: applying L'Hopital to the ORIGINAL $0^{0}$ blindly — say by treating $(x-\\sin x)^{1/\\ln x}$ through repeated differentiation without first taking the logarithm — cycles back to expressions of the same indeterminacy and never terminates. The escape is to take logs once, which converts $0^{0}$ into the differentiable $\\tfrac{-\\infty}{-\\infty}$ ratio above where a single application closes the problem.",
+          "Thus $L=e^{3}=\\boxed{e^{3}}$."
+        ]
+      },
+      {
+        "name": "Method III - Substitution that linearises the logarithms",
+        "steps": [
+          "Set $t=x-\\sin x$, so $t\\to0^{+}$ as $x\\to0^{+}$ and $t\\sim\\dfrac{x^{3}}{6}$. The target is $L=\\lim t^{\\,1/\\ln x}=\\lim \\exp\\!\\Big(\\dfrac{\\ln t}{\\ln x}\\Big)$, so it suffices to find $\\lim\\dfrac{\\ln t}{\\ln x}$.",
+          "From $t\\sim\\dfrac{x^{3}}{6}$ we get $\\ln t=\\ln\\!\\big(\\tfrac{x^{3}}{6}\\big)+o(1)=3\\ln x-\\ln 6+o(1)$. Equivalently, the inverse relation $x\\sim(6t)^{1/3}$ gives $\\ln x=\\tfrac13\\ln t+\\tfrac13\\ln 6+o(1)$, i.e. $\\dfrac{\\ln x}{\\ln t}\\to\\dfrac13$.",
+          "Hence $\\dfrac{\\ln t}{\\ln x}\\to 3$ — only the cube exponent survives, since the additive $\\ln 6$ is dwarfed by $\\ln x,\\ln t\\to-\\infty$.",
+          "Therefore $L=\\exp(3)=\\boxed{e^{3}}$, recovering the same value through a change of variable that turns the $0^{0}$ into a transparent ratio of diverging logarithms."
+        ]
+      }
+    ],
+    "remark": "The design weaponises a hierarchy of cancellations. The exponent and base both tend to $0$, baiting the $0^{0}=1$ reflex; but the base is engineered so that its leading Taylor order is hidden behind a double cancellation — the $x$ and the $x$ from $\\sin x$ annihilate, the quadratic order is absent, and only the cubic $\\tfrac{x^{3}}{6}$ survives. A solver who linearises $\\sin x\\approx x$ gets the base $\\equiv0$ and is stranded with no order to work with. The pivotal insight is that for a $0^{0}$ of the form $(\\text{algebraic zero})^{1/\\ln x}$, the limit is $e^{\\,\\mu}$ where $\\mu$ is the ORDER of the zero (here $3$), and the multiplicative constant $\\tfrac16$ is irrelevant because $\\ln(\\text{const})/\\ln x\\to0$. Method I reads $\\mu$ straight off the series, Method II extracts it with a single post-logarithm L'Hopital while warning that the pre-logarithm form loops forever, and Method III makes the order visible as the cube-root exponent linking $x$ and $t=x-\\sin x$. A top-rank solver sees $x-\\sin x$, immediately writes $\\sim x^{3}/6$, and reports $e^{3}$ without ever flirting with $1$."
+  },
+  {
+    "theme": "indeterminate",
+    "themeLabel": "Exotic Indeterminate Forms",
+    "title": "When the Dominant Wave Cancels Itself",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "lhopital-loop",
+      "exponential-order",
+      "hidden-cancellation",
+      "infinity-over-infinity",
+      "hyperbolic"
+    ],
+    "statement": "Evaluate \\[ L=\\lim_{x\\to+\\infty}\\frac{\\,e^{2x}+2e^{x}-2\\cosh 2x\\,}{\\,2\\cosh 2x-e^{2x}+5e^{x}\\,}. \\] Both the numerator and the denominator are visibly $\\infty-\\infty$ races between an $e^{2x}$ term and a $2\\cosh 2x$ term, each of which blows up like $e^{2x}$; once those settle, the surviving expression is an ordinary $\\dfrac{\\infty}{\\infty}$ ratio. No floor, fractional part, modulus, or signum appears — the whole subtlety lives in deciding which exponential order actually controls the top and the bottom.",
+    "answer": "$\\dfrac{2}{5}$",
+    "trap": "The fatal reflex is \"the highest exponential wins,\" so a solver keeps only the $e^{2x}$-sized pieces. But writing $\\cosh 2x=\\tfrac12 e^{2x}+\\tfrac12 e^{-2x}$ shows the $e^{2x}$ coefficient of the numerator is $1-2\\cdot\\tfrac12=0$ and of the denominator is $2\\cdot\\tfrac12-1=0$: the supposedly dominant wave cancels EXACTLY in both. A solver who misses this either declares the ratio is $\\tfrac{e^{2x}}{-e^{2x}}\\to-1$, or, seeing $\\tfrac{\\infty}{\\infty}$, reaches for L'Hopital — and that is the deeper snare, because each differentiation regenerates a sum of the same exponentials ($N'=2e^{x}+2e^{-2x}$, $D'=5e^{x}-2e^{-2x}$, and so on forever), so the form never escapes $\\tfrac{\\infty}{\\infty}$ and the rule loops indefinitely. The cancellation is also invisible to a calculator: at $x=50$ double precision returns a spurious value near $-1$ because $e^{2x}$ and $2\\cosh 2x$ agree to ~43 digits and their difference is lost to round-off — so trusting the machine reproduces the wrong $-1$. The exact $e^{2x}$ cancellation demotes the order from $e^{2x}$ to $e^{x}$, with surviving coefficients $2$ on top and $5$ on the bottom, giving $L=\\tfrac{2}{5}$ — far from $-1$ and far from $1$.",
+    "solutions": [
+      {
+        "name": "Method I - Cancel the dominant order by hand, then divide by e^x",
+        "steps": [
+          "Expand the hyperbolic term: $2\\cosh 2x=e^{2x}+e^{-2x}$. The numerator becomes $e^{2x}+2e^{x}-\\big(e^{2x}+e^{-2x}\\big)=2e^{x}-e^{-2x}$, and the denominator becomes $\\big(e^{2x}+e^{-2x}\\big)-e^{2x}+5e^{x}=5e^{x}+e^{-2x}$. The $e^{2x}$ terms have annihilated exactly in both — the true leading order is $e^{x}$, not $e^{2x}$.",
+          "Divide top and bottom by the genuine dominant factor $e^{x}$: $\\dfrac{2e^{x}-e^{-2x}}{5e^{x}+e^{-2x}}=\\dfrac{2-e^{-3x}}{5+e^{-3x}}$, using $e^{-2x}/e^{x}=e^{-3x}$.",
+          "As $x\\to+\\infty$, $e^{-3x}\\to0$, so the ratio tends to $\\dfrac{2-0}{5+0}$.",
+          "Hence $L=\\boxed{\\dfrac{2}{5}}$, governed entirely by the $e^{x}$ coefficients that the $e^{2x}$ cancellation laid bare."
+        ]
+      },
+      {
+        "name": "Method II - Refuse the L'Hopital loop; read the surviving coefficients",
+        "steps": [
+          "Naively the ratio is $\\tfrac{\\infty}{\\infty}$, inviting L'Hopital. Differentiate once: $\\dfrac{d}{dx}\\big(e^{2x}+2e^{x}-2\\cosh 2x\\big)=2e^{x}+2e^{-2x}$ and $\\dfrac{d}{dx}\\big(2\\cosh 2x-e^{2x}+5e^{x}\\big)=5e^{x}-2e^{-2x}$ (the $e^{2x}$ pieces cancel again under the derivative). The quotient $\\dfrac{2e^{x}+2e^{-2x}}{5e^{x}-2e^{-2x}}$ is STILL $\\tfrac{\\infty}{\\infty}$, and every further differentiation merely flips signs on the $e^{-2x}$ part — the rule cycles and never terminates. This loop is the signal to stop differentiating.",
+          "Escape algebraically instead: the exact size of any combination $\\sum c_k e^{\\lambda_k x}$ as $x\\to+\\infty$ is set by its largest exponent $\\lambda_k$ with nonzero coefficient. For the numerator $2e^{x}-e^{-2x}$ the largest is $\\lambda=1$ with coefficient $2$; for the denominator $5e^{x}+e^{-2x}$ it is $\\lambda=1$ with coefficient $5$.",
+          "Since both top and bottom have the same dominant exponent $\\lambda=1$, the limit is the ratio of their leading coefficients: $\\dfrac{2}{5}$ (the subdominant $e^{-2x}$ terms vanish relative to $e^{x}$).",
+          "Therefore $L=\\boxed{\\dfrac{2}{5}}$ — extracted without ever completing a single L'Hopital cycle."
+        ]
+      },
+      {
+        "name": "Method III - Substitution t = e^{-x} turns it into a rational limit at 0",
+        "steps": [
+          "Put $t=e^{-x}$, so $t\\to0^{+}$ as $x\\to+\\infty$, with $e^{x}=t^{-1}$, $e^{-2x}=t^{2}$, $e^{2x}=t^{-2}$, and $2\\cosh 2x=t^{-2}+t^{2}$. The numerator is $t^{-2}+2t^{-1}-(t^{-2}+t^{2})=2t^{-1}-t^{2}$ and the denominator is $(t^{-2}+t^{2})-t^{-2}+5t^{-1}=5t^{-1}+t^{2}$; the $t^{-2}$ poles cancel, exposing the cancellation as the disappearance of the strongest singularity.",
+          "Multiply numerator and denominator by $t$ to clear the remaining pole: $\\dfrac{2t^{-1}-t^{2}}{5t^{-1}+t^{2}}=\\dfrac{2-t^{3}}{5+t^{3}}$.",
+          "Now everything is a polynomial in $t$ with no indeterminacy: let $t\\to0^{+}$ to get $\\dfrac{2-0}{5+0}$.",
+          "Hence $L=\\boxed{\\dfrac{2}{5}}$, the same value obtained as a clean rational limit at $t=0$."
+        ]
+      }
+    ],
+    "remark": "The problem is built so that L'Hopital is not merely tedious but genuinely non-terminating: the numerator and denominator are eigen-combinations of $e^{2x}$ whose dominant order has been engineered to cancel, so differentiation reproduces the same $\\tfrac{\\infty}{\\infty}$ shape on every pass and the rule chases its own tail. The escape is structural, not computational — recognise that for a finite sum of exponentials the limit of a ratio is decided by the largest surviving exponent and its coefficient, here $e^{x}$ with $2$ over $5$. The disguised $\\cosh 2x=\\tfrac12 e^{2x}+\\tfrac12 e^{-2x}$ is what hides the cancellation from a hasty 'highest power wins' reading, and the catastrophic floating-point cancellation at large $x$ (which spuriously suggests $-1$) is a bonus warning that the demotion of order must be performed in symbols, never by plugging in numbers. A top-rank solver expands the hyperbolic term, watches the $e^{2x}$ vanish, and reads off $\\tfrac{2}{5}$ in one line."
+  },
+  {
+    "theme": "indeterminate",
+    "themeLabel": "Exotic Indeterminate Forms",
+    "title": "The Limit That Refuses",
+    "difficulty": 5,
+    "tags": [
+      "1^infinity",
+      "floor",
+      "fractional-part",
+      "x->0+",
+      "non-existence",
+      "oscillation"
+    ],
+    "statement": "\\lim_{x\\to 0^{+}}\\Big(x\\,\\lfloor 1/x\\rfloor\\Big)^{1/x}",
+    "answer": "\\text{does not exist}",
+    "trap": "Since $x\\lfloor1/x\\rfloor=1-x\\{1/x\\}\\to 1$, a student concludes the base $\\to1$ and the answer is $1$. But this is a $1^{\\infty}$ form: the exponent $1/x$ magnifies the oscillating defect $x\\{1/x\\}$, and the value tracks $e^{-\\{1/x\\}}$, which never settles. The seductive special case $x=1/n$ (giving exactly $1$) is a trap — it only samples $\\{1/x\\}=0$.",
+    "solutions": [
+      {
+        "name": "Method I — Reduce to the fractional part",
+        "steps": [
+          "Write $x\\lfloor1/x\\rfloor=x\\big(\\tfrac1x-\\{1/x\\}\\big)=1-x\\{1/x\\}$, so the base is $1-x\\{1/x\\}\\to1$ while the exponent is $1/x\\to\\infty$ — a genuine $1^\\infty$ form.",
+          "Take logs: $L(x)=\\frac1x\\ln\\big(1-x\\{1/x\\}\\big)$. Since $0\\le x\\{1/x\\}<x\\to0$, expand $\\ln(1-u)=-u+O(u^2)$ with $u=x\\{1/x\\}$.",
+          "Divide by $x$: $L(x)=\\frac1x\\big(-x\\{1/x\\}+O(x^2\\{1/x\\}^2)\\big)=-\\{1/x\\}+O\\big(x\\,\\{1/x\\}^2\\big)=-\\{1/x\\}+o(1).$",
+          "Hence the expression equals $e^{L(x)}=e^{-\\{1/x\\}+o(1)}$, i.e. it tracks $e^{-\\{1/x\\}}$. Since $\\{1/x\\}$ oscillates over $[0,1)$ as $x\\to0^+$ and never converges, $L(x)$ has no limit, so the original limit does not exist."
+        ]
+      },
+      {
+        "name": "Method II — Two sequences with different limits",
+        "steps": [
+          "Choose $x_n=\\frac{1}{n}$: then $1/x_n=n$, $\\{1/x_n\\}=0$, so the base $=x_n\\cdot n=1$ exactly and the value is $1^{n}=1\\to1$.",
+          "Choose $y_n=\\frac{1}{n+\\frac12}$: then $1/y_n=n+\\tfrac12$, $\\lfloor1/y_n\\rfloor=n$, base $=y_n\\,n=\\dfrac{n}{n+\\tfrac12}\\to1$, and the value is $\\big(\\tfrac{n}{n+1/2}\\big)^{n+1/2}=\\big(1+\\tfrac{1/2}{n}\\big)^{-(n+1/2)}\\to e^{-1/2}.$",
+          "Both $x_n\\to0^{+}$ and $y_n\\to0^{+}$, yet the function tends to $1$ along one and $e^{-1/2}\\ne1$ along the other. Therefore the limit does not exist.",
+          "More fully, along $x=\\frac{1}{n+f}$ (fixed $f\\in[0,1)$) the value $\\to e^{-f}$. As $f$ ranges over $[0,1)$ these limits sweep $(e^{-1},1]$, and the lower endpoint $e^{-1}$ is reached in the limit $f\\to1^-$; so the set of subsequential limits is the closed interval $\\big[e^{-1},1\\big]$ — the value $e^{-1}$ is approached but never attained for any single $x$."
+        ]
+      }
+    ],
+    "remark": "Contrast $(1+x)^{\\lfloor1/x\\rfloor}\\to e$: there the floor's defect meets $\\ln(1+x)=O(x)$ and dies; here it meets the exponent $1/x$ and survives as $-\\{1/x\\}$, so the $1^\\infty$ form is fatally indeterminate, with cluster set exactly $[e^{-1},1]$."
+  },
+  {
+    "theme": "squeeze",
+    "themeLabel": "Sandwich & Discrete Sums",
+    "title": "The Floor That Doesn't Bite",
+    "difficulty": 3,
+    "tags": [
+      "floor",
+      "riemann-sum",
+      "x->infinity",
+      "integer-part-sum"
+    ],
+    "statement": "\\lim_{n\\to\\infty}\\frac{1}{n^2}\\sum_{k=1}^{n}\\left\\lfloor k\\,\\frac{n}{k+1}\\right\\rfloor",
+    "answer": "1",
+    "trap": "A student who has been burned by floors before over-corrects: they argue that each term $\\lfloor a_k\\rfloor$ loses a fractional part $\\{a_k\\}$ averaging $\\tfrac12$, so they subtract a 'correction' $\\tfrac1{n^2}\\sum\\{a_k\\}\\approx\\tfrac1{n^2}\\cdot\\tfrac{n}{2}$ and even mis-scale it to conclude the answer is $\\tfrac12$. The error: there are only $n$ fractional parts, each in $[0,1)$, so $\\sum_{k=1}^n\\{a_k\\}=O(n)$ and $\\tfrac1{n^2}\\sum\\{a_k\\}\\to0$. The floor correction is negligible at the $n^2$ scale, so the answer is $1$, not $\\tfrac12$. Here the floor genuinely does NOT bite — always compare the discarded fractional mass to the denominator before trusting OR distrusting the floor.",
+    "solutions": [
+      {
+        "name": "Method I — Squeeze on the floor error",
+        "steps": [
+          "Write $a_k=k\\,\\dfrac{n}{k+1}$. The defining inequality of the floor gives $a_k-1<\\lfloor a_k\\rfloor\\le a_k$. Summing over $k=1,\\dots,n$:",
+          "$$\\sum_{k=1}^n a_k-n\\;<\\;\\sum_{k=1}^n\\lfloor a_k\\rfloor\\;\\le\\;\\sum_{k=1}^n a_k.$$",
+          "Divide through by $n^2$. The discarded mass on the left is exactly $\\dfrac{n}{n^2}=\\dfrac1n\\to0$, so the limit of $\\dfrac1{n^2}\\sum\\lfloor a_k\\rfloor$ equals the limit of $\\dfrac1{n^2}\\sum a_k$, provided the latter exists.",
+          "Compute the upper sum in closed form. Since $a_k=n\\dfrac{k}{k+1}=n-\\dfrac{n}{k+1}$,",
+          "$$\\frac{1}{n^2}\\sum_{k=1}^n a_k=\\frac1n\\sum_{k=1}^n\\frac{k}{k+1}=\\frac1n\\sum_{k=1}^n\\Big(1-\\frac1{k+1}\\Big)=1-\\frac{H_{n+1}-1}{n},$$ where $H_{m}=\\sum_{j=1}^m\\tfrac1j$.",
+          "Because $H_{n+1}\\sim\\ln n$, the correction $\\dfrac{H_{n+1}-1}{n}\\to0$, hence $\\dfrac{1}{n^2}\\sum a_k\\to1$.",
+          "Both the lower bound $\\dfrac1{n^2}\\sum a_k-\\dfrac1n$ and the upper bound $\\dfrac1{n^2}\\sum a_k$ tend to $1$. By the squeeze theorem, $\\displaystyle\\lim_{n\\to\\infty}\\frac{1}{n^2}\\sum_{k=1}^n\\lfloor a_k\\rfloor=1.$",
+          "Sanity check on the floor's role: $\\dfrac1{n^2}\\sum_{k=1}^n\\{a_k\\}\\le\\dfrac1{n^2}\\cdot n=\\dfrac1n\\to0$, confirming the fractional parts contribute nothing at this scale — the floor does not change the limit."
+        ]
+      },
+      {
+        "name": "Method II — Cesàro / Stolz on the dominant sum",
+        "steps": [
+          "Set $b_n=\\sum_{k=1}^n\\lfloor a_k\\rfloor$ with $a_k=n-\\dfrac{n}{k+1}$. Since $0\\le a_k-\\lfloor a_k\\rfloor<1$ for each of the $n$ terms, $\\big|b_n-\\sum_{k=1}^n a_k\\big|<n$.",
+          "Dividing by $n^2$: $\\dfrac{b_n}{n^2}=\\dfrac{1}{n^2}\\sum_{k=1}^n a_k+O\\!\\Big(\\dfrac{n}{n^2}\\Big)=\\dfrac{1}{n^2}\\sum_{k=1}^n a_k+O\\!\\Big(\\dfrac1n\\Big).$",
+          "Now $\\dfrac{1}{n^2}\\sum_{k=1}^n a_k=\\dfrac1n\\sum_{k=1}^n\\dfrac{k}{k+1}$ is the Cesàro (arithmetic) mean of the sequence $c_k=\\dfrac{k}{k+1}$. Since $c_k\\to1$, its Cesàro mean also converges to $1$.",
+          "Therefore $\\displaystyle\\lim_{n\\to\\infty}\\frac{1}{n^2}\\sum_{k=1}^n\\lfloor a_k\\rfloor=1+0=1.$"
+        ]
+      }
+    ],
+    "remark": "The lesson is the inverse of the usual floor cautionary tale: here the discarded fractional mass is $O(n)$, negligible against the $n^2$ denominator, so the naive 'drop the floor' value $1$ is exactly correct. A floor only shifts a limit when the number of integer-part errors scales like the normalizing denominator — with $n$ terms over $n^2$, it cannot."
+  },
+  {
+    "theme": "squeeze",
+    "themeLabel": "Sandwich & Discrete Sums",
+    "title": "A Thousand Reciprocal Roots",
+    "difficulty": 4,
+    "tags": [
+      "1/sqrt(n^2+k)",
+      "squeeze",
+      "x->infinity",
+      "riemann-vs-squeeze"
+    ],
+    "statement": "\\lim_{n\\to\\infty}\\sum_{k=1}^{n}\\frac{1}{\\sqrt{n^{2}+k}}",
+    "answer": "1",
+    "trap": "The Riemann-sum reflex: writing the sum as $\\tfrac1n\\sum_{k=1}^n\\big(1+\\tfrac{k}{n^2}\\big)^{-1/2}$ and pattern-matching it to $\\tfrac1n\\sum f(k/n)$ tempts a student to read off $f(x)=(1+x^2)^{-1/2}$ and answer $\\int_0^1\\tfrac{dx}{\\sqrt{1+x^2}}=\\ln(1+\\sqrt2)\\approx0.8814$. This is wrong: the perturbation inside the root is $+k$ (order $n$ relative to $n^2$), not $+k^2$, so $k/n^2\\to0$ uniformly and the genuine Riemann integrand is the constant $1$, giving $\\int_0^1 1\\,dx=1$. The seductive $\\ln(1+\\sqrt2)$ is the answer to the look-alike $\\sum 1/\\sqrt{n^2+k^2}$, where the perturbation really is order $n^2$.",
+    "solutions": [
+      {
+        "name": "Method I — Two-sided squeeze",
+        "steps": [
+          "For $1\\le k\\le n$ we have $n^2+1\\le n^2+k\\le n^2+n$, so every term is sandwiched:",
+          "$$\\frac{1}{\\sqrt{n^2+n}}\\le\\frac{1}{\\sqrt{n^2+k}}\\le\\frac{1}{\\sqrt{n^2+1}}.$$",
+          "There are exactly $n$ terms, so summing the inequality gives",
+          "$$\\frac{n}{\\sqrt{n^2+n}}\\le\\sum_{k=1}^n\\frac{1}{\\sqrt{n^2+k}}\\le\\frac{n}{\\sqrt{n^2+1}}.$$",
+          "Lower bound: $\\dfrac{n}{\\sqrt{n^2+n}}=\\dfrac{1}{\\sqrt{1+1/n}}\\to1$. Upper bound: $\\dfrac{n}{\\sqrt{n^2+1}}=\\dfrac{1}{\\sqrt{1+1/n^2}}\\to1$.",
+          "Both bounds tend to $1$, so by the squeeze theorem the limit is $\\boxed{1}$."
+        ]
+      },
+      {
+        "name": "Method II — Binomial expansion",
+        "steps": [
+          "Factor out $n$: $\\dfrac{1}{\\sqrt{n^2+k}}=\\dfrac1n\\Big(1+\\dfrac{k}{n^2}\\Big)^{-1/2}=\\dfrac1n\\Big(1-\\dfrac{k}{2n^2}+O\\big(\\tfrac{k^2}{n^4}\\big)\\Big),$ valid since $k/n^2\\le 1/n\\to0$.",
+          "Sum over $k=1,\\dots,n$: $\\displaystyle\\sum_{k=1}^n\\frac1n-\\frac{1}{2n^3}\\sum_{k=1}^n k+O\\!\\Big(\\frac{1}{n^5}\\sum_{k=1}^n k^2\\Big).$",
+          "Evaluate each piece: $\\displaystyle\\sum_{k=1}^n\\frac1n=1,\\quad\\frac{1}{2n^3}\\cdot\\frac{n(n+1)}{2}=\\frac{n+1}{4n^2}\\to0,\\quad O\\!\\Big(\\frac{n^3}{n^5}\\Big)=O(n^{-2})\\to0.$",
+          "Hence the sum $\\to1$, and the expansion even exposes the rate: the leading correction is $-\\dfrac{1}{4n}$, so $\\sum\\approx 1-\\tfrac{1}{4n}$."
+        ]
+      },
+      {
+        "name": "Method III — Integral comparison",
+        "steps": [
+          "The summand $g(k)=1/\\sqrt{n^2+k}$ is decreasing in $k$, so it is trapped between integrals: $\\displaystyle\\int_1^{n+1}\\frac{dk}{\\sqrt{n^2+k}}\\le\\sum_{k=1}^n g(k)\\le\\int_0^{n}\\frac{dk}{\\sqrt{n^2+k}}.$",
+          "Evaluate the lower integral: $\\displaystyle\\int_1^{n+1}\\frac{dk}{\\sqrt{n^2+k}}=\\Big[2\\sqrt{n^2+k}\\,\\Big]_1^{n+1}=2\\sqrt{n^2+n+1}-2\\sqrt{n^2+1}.$",
+          "Rationalize: $=\\dfrac{2(n)}{\\sqrt{n^2+n+1}+\\sqrt{n^2+1}}\\to\\dfrac{2n}{2n}=1.$ The upper integral $2\\sqrt{n^2+n}-2\\sqrt{n^2}=\\tfrac{2n}{\\sqrt{n^2+n}+n}\\to1$ likewise.",
+          "Both integral bounds tend to $1$, so the sum is squeezed to $1$."
+        ]
+      }
+    ],
+    "remark": "The governing principle: when the inner perturbation has order strictly below the denominator's leading power ($k\\ll n^2$), each term is $\\tfrac1n(1+o(1))$ and the whole sum collapses to the constant Riemann value $1$. The deceptive $\\ln(1+\\sqrt2)$ requires a genuine $+k^2$ perturbation, which keeps $k^2/n^2$ at order $1$ and revives a non-trivial integrand."
+  },
+  {
+    "theme": "squeeze",
+    "themeLabel": "Sandwich & Discrete Sums",
+    "title": "Fractional Parts on a Grid",
+    "difficulty": 5,
+    "tags": [
+      "fractional-part",
+      "equidistribution",
+      "riemann-sum",
+      "x->infinity"
+    ],
+    "statement": "\\lim_{n\\to\\infty}\\frac{1}{n}\\sum_{k=1}^{n}\\left\\{\\sqrt{k}\\,\\right\\}\\cdot\\frac{1}{\\sqrt{k}}\\cdot\\sqrt{n}",
+    "answer": "1",
+    "trap": "The seductive value is $\\tfrac12$. A student notes $\\{\\sqrt k\\}$ is equidistributed on $[0,1)$, so its average is $\\tfrac12$, and writes the whole expression as $\\tfrac12\\cdot\\tfrac1n\\sum_{k=1}^n 1\\to\\tfrac12$. The slip: the genuine weight $\\dfrac{\\sqrt n}{\\sqrt k}=\\dfrac{1}{\\sqrt{k/n}}$ was silently dropped. Since $\\int_0^1 x^{-1/2}\\,dx=2$, that weight contributes a factor $2$, turning $\\tfrac12$ into $\\tfrac12\\cdot2=1$. Forgetting the Jacobian/weight is exactly what produces the wrong $\\tfrac12$.",
+    "solutions": [
+      {
+        "name": "Method I — Smooth part + equidistribution of the fluctuation",
+        "steps": [
+          "Write the expression as a weighted average. Since $\\dfrac{\\sqrt n}{\\sqrt k}=\\dfrac{1}{\\sqrt{k/n}}$, with $x_k=k/n$ we have $$S_n=\\frac1n\\sum_{k=1}^n\\frac{\\{\\sqrt k\\}}{\\sqrt{k/n}}=\\frac1n\\sum_{k=1}^n \\{\\sqrt k\\}\\,x_k^{-1/2}.$$",
+          "Split the fractional part around its mean: $\\{\\sqrt k\\}=\\tfrac12+\\big(\\{\\sqrt k\\}-\\tfrac12\\big)$, giving $S_n=A_n+B_n$ with $A_n=\\dfrac{1}{2}\\cdot\\dfrac1n\\sum_{k=1}^n x_k^{-1/2}$ and $B_n=\\dfrac1n\\sum_{k=1}^n\\big(\\{\\sqrt k\\}-\\tfrac12\\big)x_k^{-1/2}.$",
+          "Smooth part $A_n$: this is a Riemann sum for $\\tfrac12\\int_0^1 x^{-1/2}\\,dx=\\tfrac12\\cdot2=1$. (The integrable singularity at $0$ is harmless: $\\tfrac1n\\sum x_k^{-1/2}=\\tfrac1{\\sqrt n}\\sum_{k=1}^n k^{-1/2}\\to\\int_0^1 x^{-1/2}dx=2$ since $\\sum_{k=1}^n k^{-1/2}\\sim2\\sqrt n$.) Hence $A_n\\to1.$",
+          "Fluctuation part $B_n\\to0$: the weight $x^{-1/2}$ is smooth (slowly varying) away from $0$, while $\\{\\sqrt k\\}-\\tfrac12$ is the zero-mean part of an equidistributed sequence, so its weighted average cancels by Abel summation/equidistribution. (Near $k=0$ the few terms contribute $O(1/\\sqrt n)\\to0$.)",
+          "Therefore $S_n=A_n+B_n\\to1+0=\\boxed{1}.$"
+        ],
+        "_note": ""
+      },
+      {
+        "name": "Method II — Block decomposition with the change of variables $k=x^2$",
+        "steps": [
+          "Let $T_n=\\sum_{k=1}^n\\dfrac{\\{\\sqrt k\\}}{\\sqrt k}$, so that $S_n=\\dfrac{\\sqrt n}{n}\\,T_n=\\dfrac{T_n}{\\sqrt n}.$",
+          "Group by the integer part $\\lfloor\\sqrt k\\rfloor=m$, i.e. the block $m^2\\le k<(m+1)^2$. Approximate the block sum by the integral via $x=\\sqrt k,\\ k=x^2,\\ dk=2x\\,dx$: $$\\sum_{m^2\\le k<(m+1)^2}\\frac{\\{\\sqrt k\\}}{\\sqrt k}\\approx\\int_m^{m+1}\\frac{\\{x\\}}{x}\\cdot2x\\,dx=2\\int_m^{m+1}\\{x\\}\\,dx=2\\int_0^1 t\\,dt=1.$$",
+          "So each complete block contributes $\\to1$ to $T_n$ (numerically, block $m=1000$ gives $0.9995$). Up to $k=n$ there are $\\approx\\sqrt n$ complete blocks, hence $T_n\\sim\\sqrt n.$",
+          "Therefore $S_n=\\dfrac{T_n}{\\sqrt n}\\to1.$ The factor $2$ from the Jacobian $dk=2x\\,dx$ is exactly the factor the naive '$\\tfrac12$-average' shortcut omits, which is why the honest value is $1$, not $\\tfrac12$."
+        ],
+        "_note": ""
+      }
+    ],
+    "remark": "Two equivalent viewpoints give the factor $2$: as the Jacobian $dk=2x\\,dx$ (so the weighted block average of $\\{x\\}$ is $2\\int_0^1 t\\,dt=1$), or as $\\int_0^1 x^{-1/2}dx=2$ multiplying the equidistribution mean $\\tfrac12$. Either way $\\tfrac12\\cdot2=1$."
+  },
+  {
+    "theme": "squeeze",
+    "themeLabel": "Sandwich & Discrete Sums",
+    "title": "The Signum Mirage",
+    "difficulty": 5,
+    "tags": [
+      "signum",
+      "sin",
+      "one-sided",
+      "x->0+",
+      "riemann-sum",
+      "squeeze"
+    ],
+    "statement": "\\lim_{x\\to 0^{+}}x\\sum_{k=1}^{\\lfloor 1/x\\rfloor}\\operatorname{sgn}\\!\\left(\\sin\\frac{1}{kx}\\right)",
+    "answer": "1-\\dfrac{2\\ln 2}{\\pi}",
+    "trap": "The seductive wrong answer is $0$. A strong student reasons: each $\\operatorname{sgn}(\\sin\\tfrac{1}{kx})\\in\\{-1,0,1\\}$, the argument $\\tfrac{1}{kx}$ grows as $x\\to0^+$, and $\\sin$ spends equal time positive and negative, so 'by equidistribution the signs cancel in the mean' and the limit is $0$. This is a mirage. Equidistribution would require $\\tfrac{1}{kx}$ to sweep many periods uniformly over the bulk of indices, but it does not: writing $x\\approx\\tfrac1N$, the argument is $\\tfrac{N}{k}$, and for the majority of indices ($k$ comparable to $N$) this lies in $(0,\\pi)$ where $\\sin>0$. The oscillatory regime is confined to the few small $k$ and contributes only $O(N^{-1/2})$. The sum is really a Riemann sum, and it converges to a strictly positive constant.",
+    "solutions": [
+      {
+        "name": "Method I — Recognize the Riemann sum, then evaluate",
+        "steps": [
+          "Take $x\\to0^+$ along $x=\\tfrac1N$ with $N=\\lfloor1/x\\rfloor\\to\\infty$ (the general case follows since $x\\lfloor1/x\\rfloor\\to1$ and the summand is bounded). Then $\\tfrac{1}{kx}=\\tfrac{N}{k}$ and the expression is $$S_N=\\frac1N\\sum_{k=1}^{N}\\operatorname{sgn}\\!\\left(\\sin\\frac{N}{k}\\right).$$",
+          "Substitute $t=\\tfrac{k}{N}\\in(0,1]$, so $\\tfrac{N}{k}=\\tfrac1t$. Then $S_N=\\tfrac1N\\sum_{k=1}^N g\\!\\big(\\tfrac kN\\big)$ with $g(t)=\\operatorname{sgn}\\!\\big(\\sin\\tfrac1t\\big)$, a right Riemann sum on $[0,1]$ with mesh $\\tfrac1N$.",
+          "The function $g$ takes values in $\\{-1,0,1\\}$ and is discontinuous only where $\\sin\\tfrac1t=0$, i.e. at $t=\\tfrac{1}{m\\pi}$; these points accumulate only at $0$ and form a measure-zero set, so $g$ is Riemann integrable on $[0,1]$. Hence $$\\lim_{N\\to\\infty}S_N=\\int_0^1\\operatorname{sgn}\\!\\left(\\sin\\frac1t\\right)dt.$$",
+          "Substitute $u=\\tfrac1t$ (so $t=\\tfrac1u,\\ dt=-u^{-2}\\,du$), turning the integral into $$\\int_1^{\\infty}\\frac{\\operatorname{sgn}(\\sin u)}{u^2}\\,du.$$",
+          "On $(n\\pi,(n+1)\\pi)$ we have $\\operatorname{sgn}(\\sin u)=(-1)^n$, and $u=1$ lies in $(0,\\pi)$ (the $n=0$ block, sign $+$). Since $\\int_{a}^{b}u^{-2}\\,du=\\tfrac1a-\\tfrac1b$, $$\\int_1^{\\infty}\\frac{\\operatorname{sgn}(\\sin u)}{u^2}\\,du=\\Big(1-\\tfrac1\\pi\\Big)+\\sum_{n\\ge1}(-1)^n\\Big(\\tfrac{1}{n\\pi}-\\tfrac{1}{(n+1)\\pi}\\Big).$$",
+          "Evaluate the alternating series: $\\sum_{n\\ge1}\\tfrac{(-1)^n}{n}=-\\ln2$ and $\\sum_{n\\ge1}\\tfrac{(-1)^n}{n+1}=\\ln2-1$, so $\\sum_{n\\ge1}(-1)^n\\big(\\tfrac1n-\\tfrac1{n+1}\\big)=(-\\ln2)-(\\ln2-1)=1-2\\ln2$. Therefore $$\\int_1^{\\infty}\\frac{\\operatorname{sgn}(\\sin u)}{u^2}\\,du=\\Big(1-\\tfrac1\\pi\\Big)+\\frac{1-2\\ln2}{\\pi}=1-\\frac{2\\ln2}{\\pi}.$$",
+          "Hence the limit is $\\boxed{\\,1-\\dfrac{2\\ln2}{\\pi}\\,}\\approx0.5587$, a strictly positive number — the alleged cancellation to $0$ never happens."
+        ]
+      },
+      {
+        "name": "Method II — Squeeze the oscillatory head, integrate the smooth tail",
+        "steps": [
+          "With $x=\\tfrac1N$, write $S_N=\\tfrac1N\\sum_{k=1}^{N}\\operatorname{sgn}(\\sin\\tfrac{N}{k})$ and split at $K=\\lfloor\\sqrt N\\rfloor$ into a head $1\\le k\\le K$ and a tail $K<k\\le N$.",
+          "Head bound (squeeze): the trivial estimate $|\\operatorname{sgn}(\\cdot)|\\le1$ gives $$\\Big|\\frac1N\\sum_{k=1}^{K}\\operatorname{sgn}\\big(\\sin\\tfrac Nk\\big)\\Big|\\le\\frac{K}{N}\\le\\frac{1}{\\sqrt N}\\xrightarrow[N\\to\\infty]{}0.$$ So the oscillatory head — where $\\tfrac Nk$ is large and genuinely swings between signs — contributes nothing in the limit. (This is exactly where the false 'everything cancels' intuition lives; it is the negligible part, not the whole.)",
+          "Tail as a Riemann sum: for $K<k\\le N$ put $t=\\tfrac kN\\in(\\tfrac1{\\sqrt N},1]$. As $k$ increases by $1$, $t$ moves by $\\tfrac1N$, so $\\tfrac1N\\sum_{K<k\\le N}\\operatorname{sgn}(\\sin\\tfrac1t)$ is a Riemann sum for $\\int_{0}^{1}\\operatorname{sgn}(\\sin\\tfrac1t)\\,dt$ (the missing piece $\\int_0^{1/\\sqrt N}$ has length $\\to0$ with bounded integrand, hence vanishes).",
+          "Therefore $S_N\\to\\int_0^1\\operatorname{sgn}(\\sin\\tfrac1t)\\,dt$. Evaluating this integral exactly as in Method I (substitute $u=1/t$, sum the alternating series of $\\tfrac1{u^2}$ over half-periods) yields $$\\int_0^1\\operatorname{sgn}\\!\\Big(\\sin\\tfrac1t\\Big)dt=1-\\frac{2\\ln2}{\\pi}.$$",
+          "The general $x\\to0^+$ limit equals the same value because $x\\lfloor1/x\\rfloor\\to1$ and the summand is bounded by $1$. Hence the limit is $1-\\dfrac{2\\ln2}{\\pi}$."
+        ]
+      }
+    ],
+    "remark": "The key reframing: $x\\sum_{k\\le\\lfloor1/x\\rfloor}h(\\tfrac{1}{kx})$ is a disguised Riemann sum $\\to\\int_0^1 h(\\tfrac1t)\\,dt=\\int_1^\\infty h(u)u^{-2}\\,du$. For $h=\\operatorname{sgn}\\circ\\sin$ the dominant indices ($k$ near $\\lfloor1/x\\rfloor$) land in the first positive arc $(0,\\pi)$, so the value is a positive constant $1-\\tfrac{2\\ln2}{\\pi}$, not $0$. 'Mean zero of $\\operatorname{sgn}\\circ\\sin$' only governs the measure-zero oscillatory head."
+  },
+  {
+    "theme": "squeeze",
+    "themeLabel": "Sandwich & Discrete Sums",
+    "title": "Stolz Refuses the Easy Way",
+    "difficulty": 5,
+    "tags": [
+      "stolz-cesaro",
+      "floor",
+      "ln",
+      "x->infinity",
+      "dyadic"
+    ],
+    "statement": "\\lim_{n\\to\\infty}\\frac{1}{(\\ln n)^{2}}\\sum_{k=1}^{n}\\frac{\\left\\lfloor\\log_{2}k\\right\\rfloor}{k}",
+    "answer": "\\dfrac{1}{2\\ln 2}",
+    "trap": "Two seductive traps. (1) Wrong normalizer: a student notes $\\lfloor\\log_2 k\\rfloor\\le\\log_2 k$ and expects the sum to grow like $\\sum\\tfrac{\\ln k}{k\\ln2}\\sim\\tfrac{(\\ln n)^2}{2\\ln2}$, then carelessly divides by $\\ln n$ (as in a $1/\\ln n$ version) and concludes the limit is $\\infty$. The sum IS $\\sim\\tfrac{(\\ln n)^2}{2\\ln2}$, so dividing by the matching $(\\ln n)^2$ gives the finite $\\tfrac{1}{2\\ln2}$. (2) Replacing $\\lfloor\\log_2 k\\rfloor$ by $\\log_2 k$ looks harmless for the LEADING term — and indeed it gives the same constant — but it hides why the floor is essential to keep the block structure exact; sloppy bounding of the $O(1)$ gap can corrupt the constant if you are not careful.",
+    "solutions": [
+      {
+        "name": "Method I — Dyadic blocking",
+        "steps": [
+          "On the dyadic block $2^m\\le k<2^{m+1}$ we have $\\lfloor\\log_2 k\\rfloor=m$ exactly. Hence $\\displaystyle\\sum_{k=2^m}^{2^{m+1}-1}\\frac{\\lfloor\\log_2k\\rfloor}{k}=m\\sum_{k=2^m}^{2^{m+1}-1}\\frac1k.$",
+          "The inner harmonic block satisfies $\\displaystyle\\sum_{k=2^m}^{2^{m+1}-1}\\frac1k=H_{2^{m+1}-1}-H_{2^m-1}\\to\\ln2$ as $m\\to\\infty$, so block $m$ contributes $\\sim m\\ln2.$",
+          "Summing complete blocks up to $M=\\lfloor\\log_2 n\\rfloor$: $\\displaystyle\\sum_{m=0}^{M-1}m\\ln2=\\ln2\\cdot\\frac{M(M-1)}{2}\\sim\\frac{\\ln2}{2}M^2.$ The leftover partial block contributes $O(M)$, negligible against $M^2$.",
+          "Since $M=\\log_2 n=\\dfrac{\\ln n}{\\ln2}$, we get $\\displaystyle\\sum_{k=1}^n\\frac{\\lfloor\\log_2k\\rfloor}{k}\\sim\\frac{\\ln2}{2}\\cdot\\frac{(\\ln n)^2}{(\\ln2)^2}=\\frac{(\\ln n)^2}{2\\ln2}.$",
+          "Divide by $(\\ln n)^2$: $\\displaystyle\\frac{1}{(\\ln n)^2}\\sum_{k=1}^n\\frac{\\lfloor\\log_2k\\rfloor}{k}\\to\\frac{1}{2\\ln2}.$"
+        ]
+      },
+      {
+        "name": "Method II — Stolz–Cesàro",
+        "steps": [
+          "Let $a_n=\\sum_{k=1}^n\\dfrac{\\lfloor\\log_2k\\rfloor}{k}$ and $b_n=(\\ln n)^2$. Here $b_n\\to\\infty$ is strictly increasing, so Stolz–Cesàro applies: it suffices to evaluate $\\displaystyle\\frac{a_{n+1}-a_n}{b_{n+1}-b_n}.$",
+          "Numerator: $a_{n+1}-a_n=\\dfrac{\\lfloor\\log_2(n+1)\\rfloor}{n+1}=\\dfrac{\\log_2 n+O(1)}{n+1}\\sim\\dfrac{\\ln n}{n\\ln2},$ since $\\lfloor\\log_2(n+1)\\rfloor=\\log_2 n+O(1)$ and the $O(1)$ is lower order.",
+          "Denominator: $b_{n+1}-b_n=(\\ln(n+1))^2-(\\ln n)^2=\\bigl(\\ln(n+1)-\\ln n\\bigr)\\bigl(\\ln(n+1)+\\ln n\\bigr)\\sim\\dfrac1n\\cdot2\\ln n=\\dfrac{2\\ln n}{n}.$",
+          "Therefore $\\displaystyle\\frac{a_{n+1}-a_n}{b_{n+1}-b_n}\\to\\frac{\\ln n/(n\\ln2)}{2\\ln n/n}=\\frac{1}{2\\ln2},$ and by Stolz–Cesàro $\\dfrac{a_n}{(\\ln n)^2}\\to\\dfrac{1}{2\\ln2}.$"
+        ]
+      }
+    ],
+    "remark": "The dyadic floor makes $\\sum\\tfrac{\\lfloor\\log_2k\\rfloor}{k}$ grow quadratically in $\\ln n$, so the natural normalizer is $(\\ln n)^2$ — not $\\ln n$, under which the expression diverges. Either dyadic blocking or Stolz pins the constant to $\\tfrac{1}{2\\ln2}$; in general $\\sum_{k\\le n}\\tfrac{\\lfloor\\log_b k\\rfloor}{k}\\sim\\tfrac{(\\ln n)^2}{2\\ln b}$."
+  },
+  {
+    "theme": "squeeze",
+    "themeLabel": "Sandwich & Discrete Sums",
+    "title": "Riemann With a Floor Inside",
+    "difficulty": 5,
+    "tags": [
+      "floor",
+      "riemann-sum",
+      "x->infinity",
+      "equidistribution"
+    ],
+    "statement": "\\lim_{n\\to\\infty}\\frac{1}{n}\\sum_{k=1}^{n}\\left\\{\\frac{n}{k}\\right\\}",
+    "answer": "1-\\gamma",
+    "trap": "The reflex is \"it's an average of fractional parts, so it's $\\tfrac12$.\" That is the killer trap and it gives the wrong number. The fractional parts $\\{n/k\\}$ are systematically biased low: for small $k$, $n/k$ is huge and varies slowly, so $\\{n/k\\}$ spends more time small than large. A more careful student writes $\\tfrac1n\\sum f(k/n)$ with $f(t)=\\{1/t\\}$ and gets $\\int_0^1\\{1/t\\}\\,dt$ — which actually does equal $1-\\gamma$ — but only if they correctly evaluate $\\int_1^\\infty\\frac{\\{u\\}}{u^2}\\,du=1-\\gamma$; mis-evaluating that integral or rounding $1-\\gamma\\approx0.4228$ back to $\\tfrac12$ is the common slip. The true value is the non-obvious $1-\\gamma\\approx0.4228$, strictly below $\\tfrac12$.",
+    "solutions": [
+      {
+        "name": "Method I — From divisor sums to the constant",
+        "steps": [
+          "Write $\\{n/k\\}=\\dfrac nk-\\big\\lfloor n/k\\big\\rfloor$ and sum: $$\\sum_{k=1}^n\\Big\\{\\frac nk\\Big\\}=n\\sum_{k=1}^n\\frac1k-\\sum_{k=1}^n\\Big\\lfloor\\frac nk\\Big\\rfloor=nH_n-D(n),$$ where $D(n)=\\sum_{k=1}^n\\lfloor n/k\\rfloor=\\sum_{k=1}^n d(k)$ is the total number of divisors of the integers up to $n$ (the identity $\\sum_k\\lfloor n/k\\rfloor=\\sum_{m\\le n}d(m)$ holds because $\\lfloor n/k\\rfloor$ counts the multiples of $k$ in $[1,n]$).",
+          "Dirichlet's divisor theorem gives $D(n)=n\\ln n+(2\\gamma-1)n+O(\\sqrt n)$. Also $H_n=\\ln n+\\gamma+O(1/n)$, so $nH_n=n\\ln n+\\gamma n+O(1)$.",
+          "Subtract the two expansions: $$\\sum_{k=1}^n\\Big\\{\\frac nk\\Big\\}=\\big(n\\ln n+\\gamma n\\big)-\\big(n\\ln n+(2\\gamma-1)n\\big)+O(\\sqrt n)=(1-\\gamma)\\,n+O(\\sqrt n).$$",
+          "Divide by $n$: the $O(\\sqrt n)/n=O(1/\\sqrt n)$ term vanishes, so $$\\frac1n\\sum_{k=1}^n\\Big\\{\\frac nk\\Big\\}\\longrightarrow 1-\\gamma.$$"
+        ]
+      },
+      {
+        "name": "Method II — Riemann integral done correctly",
+        "steps": [
+          "Set $t=k/n$. Then $\\dfrac1n\\sum_{k=1}^n\\Big\\{\\dfrac nk\\Big\\}=\\dfrac1n\\sum_{k=1}^n f\\!\\big(\\tfrac kn\\big)$ with $f(t)=\\{1/t\\}$, a bounded function that is Riemann integrable on $(0,1]$ (its only accumulation of discontinuities is at $t\\to0^+$, where it is bounded). Hence the sum tends to $\\displaystyle\\int_0^1\\Big\\{\\frac1t\\Big\\}\\,dt.$",
+          "Substitute $u=1/t$, so $t=1/u$ and $dt=-u^{-2}\\,du$: $$\\int_0^1\\Big\\{\\frac1t\\Big\\}\\,dt=\\int_1^\\infty\\frac{\\{u\\}}{u^2}\\,du.$$",
+          "Evaluate the classical integral. With $\\{u\\}=u-\\lfloor u\\rfloor$, $$\\int_1^N\\frac{\\{u\\}}{u^2}\\,du=\\int_1^N\\frac{du}{u}-\\int_1^N\\frac{\\lfloor u\\rfloor}{u^2}\\,du=\\ln N-\\Big(\\ln N-H_{\\lfloor N\\rfloor}+\\tfrac{\\{N\\}}{N}\\cdots\\Big),$$ which collapses to $H_{N}-\\ln N\\to\\gamma$ inside, giving $\\displaystyle\\int_1^\\infty\\frac{\\{u\\}}{u^2}\\,du=1-\\gamma$ (equivalently, this is the standard integral representation $\\gamma=1-\\int_1^\\infty\\tfrac{\\{u\\}}{u^2}\\,du$).",
+          "Therefore the limit equals $1-\\gamma\\approx0.4228$."
+        ]
+      },
+      {
+        "name": "Method III — Squeeze sanity bound (why it's below ½)",
+        "steps": [
+          "Bracket each floor: $\\dfrac nk-1<\\big\\lfloor n/k\\big\\rfloor\\le\\dfrac nk$. Summing, $$nH_n-n<\\sum_{k=1}^n\\Big\\lfloor\\frac nk\\Big\\rfloor\\le nH_n.$$",
+          "Hence $\\displaystyle\\sum_{k=1}^n\\{n/k\\}=nH_n-\\sum_{k=1}^n\\lfloor n/k\\rfloor$ lies in $[0,n)$, so the mean lies in $[0,1)$ — this only rules out absurd values. The crude squeeze cannot reach $1-\\gamma$ alone; the refined Dirichlet error term (the $\\tfrac12$-saving $O(\\sqrt n)$) is exactly what pins the constant at $1-\\gamma\\approx0.4228$.",
+          "Since $1-\\gamma<\\tfrac12$, the naive 'fractional parts average $\\tfrac12$' guess is disproved, and $$\\frac1n\\sum_{k=1}^n\\{n/k\\}\\longrightarrow 1-\\gamma.$$"
+        ]
+      }
+    ],
+    "remark": "The fractional parts of $n/k$ are biased low because $n/k$ is large and slowly varying for small $k$, so it lingers near integer values; Dirichlet's $\\tfrac12$-saving error term is precisely what converts the naive $\\tfrac12$ into $1-\\gamma$. The same divisor-sum machinery shows $\\tfrac1n\\sum_{k\\le n}\\{n/k\\}\\to 1-\\gamma$ is the additive analogue of the average order of $d(k)$."
+  },
+  {
+    "theme": "squeeze",
+    "themeLabel": "Sandwich & Discrete Sums",
+    "title": "Conjugate Across the Whole Sum",
+    "difficulty": 4,
+    "tags": [
+      "sqrt",
+      "global-bound",
+      "x->infinity",
+      "telescoping-fail"
+    ],
+    "statement": "\\lim_{n\\to\\infty}\\sum_{k=1}^{n}\\left(\\sqrt{n^{2}+k}-\\sqrt{n^{2}+k-1}\\right)\\cdot\\sqrt{\\frac{k}{n}}",
+    "answer": "\\dfrac{1}{3}",
+    "trap": "A student telescopes $\\sum(\\sqrt{n^2+k}-\\sqrt{n^2+k-1})=\\sqrt{n^2+n}-n\\to\\tfrac12$ and then multiplies by 'the typical $\\sqrt{k/n}\\approx1$', guessing $\\tfrac12$. Wrong: the weight $\\sqrt{k/n}$ varies across the sum and cannot be pulled out; replacing each difference by its true size $\\tfrac1{2n}$ turns it into a genuine Riemann sum giving $\\tfrac13$.",
+    "solutions": [
+      {
+        "name": "Method I — Conjugate then Riemann",
+        "steps": [
+          "Conjugate each difference: $\\sqrt{n^2+k}-\\sqrt{n^2+k-1}=\\dfrac{1}{\\sqrt{n^2+k}+\\sqrt{n^2+k-1}}.$",
+          "For $1\\le k\\le n$, both roots are $\\approx n$, so the difference $=\\dfrac{1}{2n}\\big(1+O(k/n^2)\\big)=\\dfrac{1}{2n}+O\\!\\big(\\tfrac{k}{n^3}\\big).$",
+          "Thus the sum is $\\displaystyle\\sum_{k=1}^n\\Big(\\frac{1}{2n}+O\\big(\\tfrac{k}{n^3}\\big)\\Big)\\sqrt{\\frac kn}=\\frac{1}{2n}\\sum_{k=1}^n\\sqrt{\\frac kn}+O\\!\\Big(\\frac{1}{n^3}\\sum k\\sqrt{\\tfrac kn}\\Big).$",
+          "Error term: $\\dfrac{1}{n^3}\\sum_{k=1}^n k\\sqrt{k/n}=\\dfrac{1}{n^{3.5}}\\sum k^{3/2}=O\\!\\big(\\tfrac{n^{5/2}}{n^{3.5}}\\big)=O(n^{-1})\\to0,$ since $\\sum_{k=1}^n k^{3/2}\\sim\\tfrac25 n^{5/2}.$",
+          "Main term: $\\dfrac{1}{2}\\cdot\\dfrac1n\\sum_{k=1}^n\\sqrt{k/n}\\to\\dfrac12\\int_0^1\\sqrt t\\,dt=\\dfrac12\\cdot\\dfrac23=\\dfrac13.$"
+        ]
+      },
+      {
+        "name": "Method II — Mean value theorem per term",
+        "steps": [
+          "By the MVT applied to $f(x)=\\sqrt{x}$ on $[n^2+k-1,\\,n^2+k]$, $\\sqrt{n^2+k}-\\sqrt{n^2+k-1}=\\dfrac{1}{2\\sqrt{\\xi_k}}$ for some $\\xi_k\\in(n^2+k-1,n^2+k)$, so $\\xi_k=n^2(1+O(1/n))$ and $\\dfrac{1}{2\\sqrt{\\xi_k}}=\\dfrac{1}{2n}\\big(1+O(1/n)\\big).$",
+          "Therefore the sum equals $\\displaystyle\\frac{1}{2n}\\sum_{k=1}^n\\sqrt{\\frac kn}\\,(1+O(1/n))=\\frac12\\Big(\\frac1n\\sum_{k=1}^n\\sqrt{k/n}\\Big)+O(1/n).$",
+          "Recognize the Riemann sum $\\dfrac1n\\sum_{k=1}^n\\sqrt{k/n}\\to\\int_0^1\\sqrt t\\,dt=\\tfrac23.$",
+          "Hence the limit is $\\tfrac12\\cdot\\tfrac23=\\tfrac13.$"
+        ]
+      }
+    ],
+    "remark": "Telescoping kills the differences but loses the weight; the right move is to replace each difference by its size $\\tfrac1{2n}$ and read off the Riemann integral $\\tfrac12\\int_0^1\\sqrt t\\,dt=\\tfrac13.$"
+  },
+  {
+    "theme": "squeeze",
+    "themeLabel": "Sandwich & Discrete Sums",
+    "title": "Floor of an Arctan Riemann Sum",
+    "difficulty": 5,
+    "tags": [
+      "floor",
+      "arctan",
+      "riemann-sum",
+      "x->infinity",
+      "global-squeeze"
+    ],
+    "statement": "\\lim_{n\\to\\infty}\\frac{1}{n^{2}}\\sum_{k=1}^{n}\\left\\lfloor n\\arctan\\frac{k}{n}\\right\\rfloor",
+    "answer": "\\dfrac{\\pi}{4}-\\dfrac{1}{2}\\ln 2",
+    "trap": "Drop-the-floor fallacy: a student writes $\\lfloor n\\arctan\\tfrac kn\\rfloor\\approx n\\arctan\\tfrac kn$, so the expression $\\approx\\tfrac1n\\sum_{k=1}^n\\arctan\\tfrac kn\\to\\int_0^1\\arctan x\\,dx=\\tfrac\\pi4-\\tfrac12\\ln2$ — and gets the right number, but with NO justification that the floor's loss is negligible. The danger is the opposite over-correction: 'the floor removes a full unit each term, so subtract $\\tfrac1n\\sum 1=1$ and the answer is $\\tfrac\\pi4-\\tfrac12\\ln2-1<0$.' Both are unjustified; the floor removes a fractional part $\\in[0,1)$ per term, total $<n$, which vanishes only after dividing by $n^2$. Only a genuine two-sided squeeze is legitimate.",
+    "solutions": [
+      {
+        "name": "Method I — Strip the floor, then Riemann sum",
+        "steps": [
+          "Write each term as its value minus a bounded fractional defect. For any real $y$, $\\,y-1<\\lfloor y\\rfloor\\le y$. With $y_k=n\\arctan\\tfrac kn$ (which is $\\ge 0$ since $1\\le k\\le n$):",
+          "$$\\frac1{n^2}\\sum_{k=1}^n\\Big(n\\arctan\\tfrac kn-1\\Big)<\\frac1{n^2}\\sum_{k=1}^n\\Big\\lfloor n\\arctan\\tfrac kn\\Big\\rfloor\\le\\frac1{n^2}\\sum_{k=1}^n n\\arctan\\tfrac kn.$$",
+          "The upper bound is a Riemann sum: $\\dfrac1{n^2}\\sum_{k=1}^n n\\arctan\\tfrac kn=\\dfrac1n\\sum_{k=1}^n\\arctan\\tfrac kn\\to\\displaystyle\\int_0^1\\arctan x\\,dx.$",
+          "The lower bound differs from the upper only by $\\dfrac1{n^2}\\sum_{k=1}^n 1=\\dfrac{n}{n^2}=\\dfrac1n\\to0$, so it has the SAME limit.",
+          "Evaluate the integral by parts: $\\displaystyle\\int_0^1\\arctan x\\,dx=\\Big[x\\arctan x-\\tfrac12\\ln(1+x^2)\\Big]_0^1=\\tfrac\\pi4-\\tfrac12\\ln2.$",
+          "Both bounds converge to $\\tfrac\\pi4-\\tfrac12\\ln2$, so by the squeeze the limit equals $\\boxed{\\dfrac\\pi4-\\dfrac12\\ln2}$. (Here the floor genuinely matters per term but its total loss $<n$ is killed by the $1/n^2$ scaling.)"
+        ]
+      },
+      {
+        "name": "Method II — Global sandwich with explicit error bound",
+        "steps": [
+          "Let $S_n=\\dfrac1{n^2}\\sum_{k=1}^n\\big\\lfloor n\\arctan\\tfrac kn\\big\\rfloor$ and $R_n=\\dfrac1n\\sum_{k=1}^n\\arctan\\tfrac kn$ (the right-endpoint Riemann sum of $\\arctan$ on $[0,1]$).",
+          "Since $0\\le n\\arctan\\tfrac kn-\\lfloor n\\arctan\\tfrac kn\\rfloor<1$ for each $k$, summing gives $0\\le\\sum_{k=1}^n n\\arctan\\tfrac kn-\\sum_{k=1}^n\\lfloor\\cdot\\rfloor<n.$",
+          "Divide by $n^2$: $\\;0\\le R_n-S_n<\\dfrac1n.$ Hence $\\;R_n-\\dfrac1n<S_n\\le R_n.$",
+          "Because $\\arctan$ is continuous (Riemann integrable) on $[0,1]$, $\\,R_n\\to\\displaystyle\\int_0^1\\arctan x\\,dx=\\tfrac\\pi4-\\tfrac12\\ln2$, and $\\tfrac1n\\to0$.",
+          "By the squeeze theorem $S_n\\to\\tfrac\\pi4-\\tfrac12\\ln2.$ Numerically $\\approx0.43882$, matching direct computation."
+        ]
+      }
+    ],
+    "remark": "The lesson: a floor inside a sum scaled by $1/n^2$ contributes per-term error $<1$, total $<n$, which is $o(n^2)$ — so the floored sum and the raw Riemann sum share the same limit. The clean target $\\tfrac\\pi4-\\tfrac12\\ln2=\\int_0^1\\arctan x\\,dx$ is what the sandwich pins down."
+  },
+  {
+    "theme": "squeeze",
+    "themeLabel": "Sandwich & Discrete Sums",
+    "title": "The Misleading Termwise Limit",
+    "difficulty": 5,
+    "tags": [
+      "termwise-trap",
+      "sin",
+      "global-bound",
+      "x->infinity",
+      "squeeze"
+    ],
+    "statement": "\\lim_{n\\to\\infty}\\sum_{k=1}^{n}\\frac{k}{n^{2}}\\sin^{2}\\!\\left(\\frac{k\\pi}{n}\\right)",
+    "answer": "\\dfrac{1}{4}",
+    "trap": "Looking termwise, each term $\\tfrac{k}{n^2}\\sin^2(\\tfrac{k\\pi}{n})\\to0$ as $n\\to\\infty$, so a student reasons '$n$ terms each $\\to0$, an $n\\cdot 0$ form, probably $0$.' This is the seduction: termwise vanishing says nothing about a sum whose length grows. Equally tempting is to drop the oscillating $\\sin^2$ and only keep the crude bound $\\sum\\tfrac{k}{n^2}\\to\\tfrac12$, guessing $\\tfrac12$. Both fail: the correct object is the Riemann sum $\\tfrac1n\\sum\\tfrac kn\\sin^2(\\pi\\tfrac kn)\\to\\int_0^1 t\\sin^2(\\pi t)\\,dt=\\tfrac14$, where the period-mean $\\tfrac12$ of $\\sin^2$ halves the $\\tfrac12$.",
+    "solutions": [
+      {
+        "name": "Method I — Riemann sum",
+        "steps": [
+          "Factor out $\\tfrac1n$: $\\dfrac{k}{n^2}\\sin^2\\tfrac{k\\pi}{n}=\\dfrac1n\\cdot\\dfrac kn\\sin^2\\!\\big(\\pi\\cdot\\tfrac kn\\big)$. With nodes $t_k=k/n$ and mesh $\\tfrac1n$, the whole expression is a right Riemann sum for $f(t)=t\\sin^2(\\pi t)$ on $[0,1]$.",
+          "Since $f$ is continuous, the limit equals $\\displaystyle\\int_0^1 t\\sin^2(\\pi t)\\,dt=\\int_0^1 t\\cdot\\frac{1-\\cos(2\\pi t)}{2}\\,dt=\\frac12\\int_0^1 t\\,dt-\\frac12\\int_0^1 t\\cos(2\\pi t)\\,dt.$",
+          "First piece: $\\tfrac12\\int_0^1 t\\,dt=\\tfrac12\\cdot\\tfrac12=\\tfrac14$.",
+          "Second piece by parts, with antiderivative $\\displaystyle\\int t\\cos(2\\pi t)\\,dt=\\frac{t\\sin(2\\pi t)}{2\\pi}+\\frac{\\cos(2\\pi t)}{4\\pi^2}$: evaluating on $[0,1]$ gives $\\big(0+\\tfrac{1}{4\\pi^2}\\big)-\\big(0+\\tfrac{1}{4\\pi^2}\\big)=0.$",
+          "Therefore the integral is $\\tfrac14-\\tfrac12\\cdot0=\\boxed{\\tfrac14}.$"
+        ]
+      },
+      {
+        "name": "Method II — Exact trig sum",
+        "steps": [
+          "Use $\\sin^2\\tfrac{k\\pi}{n}=\\tfrac12-\\tfrac12\\cos\\tfrac{2k\\pi}{n}$, so the sum splits as $\\displaystyle\\frac{1}{n^2}\\sum_{k=1}^n k\\Big(\\frac12-\\frac12\\cos\\frac{2k\\pi}{n}\\Big)=\\frac{1}{2n^2}\\sum_{k=1}^n k-\\frac{1}{2n^2}\\sum_{k=1}^n k\\cos\\frac{2k\\pi}{n}.$",
+          "First sum: $\\dfrac{1}{2n^2}\\cdot\\dfrac{n(n+1)}{2}=\\dfrac{n+1}{4n}\\to\\dfrac14.$",
+          "Second sum: the weighted cosine sum has the exact value $\\displaystyle\\sum_{k=1}^n k\\cos\\frac{2k\\pi}{n}=\\frac{n}{2}$ for every $n\\ge2$ (from $\\sum_{k=1}^{n}k\\,z^{k}$ with $z=e^{2\\pi i/n}$, $z^n=1$, taking real parts). Hence $\\dfrac{1}{2n^2}\\cdot\\dfrac n2=\\dfrac{1}{4n}\\to0$, contributing $-\\dfrac{1}{4n}$ to the total.",
+          "So the limit is $\\dfrac{n+1}{4n}-\\dfrac{1}{4n}=\\dfrac{n}{4n}=\\dfrac14$ exactly for all $n$ — the sequence is constantly $\\tfrac14$, hence the limit is $\\dfrac14.$"
+        ]
+      },
+      {
+        "name": "Method III — Squeeze via period-mean replacement",
+        "steps": [
+          "Crude bracket first: $0\\le\\sin^2\\le1$ gives $0\\le\\sum_{k=1}^n\\tfrac{k}{n^2}\\sin^2\\tfrac{k\\pi}{n}\\le\\sum_{k=1}^n\\tfrac{k}{n^2}=\\tfrac{n+1}{2n}\\to\\tfrac12$, so the answer lies in $[0,\\tfrac12]$ — ruling out the naive $0$ but not yet pinning the value.",
+          "Replace $\\sin^2\\tfrac{k\\pi}{n}$ by its period-mean $\\tfrac12$. The replaced sum is $\\tfrac12\\sum_{k=1}^n\\tfrac{k}{n^2}=\\tfrac{n+1}{4n}\\to\\tfrac14$, and the error is $-\\tfrac{1}{2n^2}\\sum_{k=1}^n k\\cos\\tfrac{2k\\pi}{n}=-\\tfrac{1}{4n}$ by the exact value $\\sum k\\cos\\tfrac{2k\\pi}{n}=\\tfrac n2$.",
+          "Since the error $-\\tfrac{1}{4n}\\to0$, the slowly varying weight $\\tfrac kn$ is asymptotically orthogonal to the oscillation, and the squeeze collapses to the mean-replaced value: the limit is $\\tfrac14\\cdot 1=\\dfrac14.$"
+        ]
+      }
+    ],
+    "remark": "Termwise limits are silent about sums whose length grows. The slowly varying weight $t$ times the period-mean $\\tfrac12$ of $\\sin^2$ gives $\\int_0^1 t\\cdot\\tfrac12\\,dt=\\tfrac14$; the oscillation $-\\tfrac12\\cos(2\\pi t)$ integrates against the smooth weight to exactly $0$. Notably the finite sum equals $\\tfrac14$ for every $n$, because $\\sum_{k=1}^n k\\cos\\tfrac{2k\\pi}{n}=\\tfrac n2$ cancels the $\\tfrac{n+1}{4n}$ down to $\\tfrac14$ on the nose."
+  },
+  {
+    "theme": "squeeze",
+    "themeLabel": "Sandwich & Discrete Sums",
+    "title": "A Crowd of Vanishing Terms",
+    "difficulty": 4,
+    "task": "Evaluate",
+    "tags": [
+      "riemann-sum",
+      "termwise-limit",
+      "squeeze",
+      "interchange",
+      "arctan"
+    ],
+    "statement": "For each positive integer $n$ form the finite sum \\[ S_n=\\sum_{k=1}^{n}\\frac{n}{n^{2}+k^{2}}. \\] Notice that as $n\\to\\infty$ every individual summand collapses: the largest one is $\\dfrac{n}{n^{2}+1}\\to 0$ and the smallest is $\\dfrac{n}{2n^{2}}=\\dfrac{1}{2n}\\to 0$, so each of the $n$ terms tends to $0$. Evaluate \\[ L=\\lim_{n\\to\\infty} S_n, \\] and in your solution explain why the number of terms growing to infinity prevents the naive conclusion $L=0$.",
+    "answer": "$\\dfrac{\\pi}{4}$",
+    "trap": "The fatal move is to interchange the limit with the sum: \"each of the $n$ summands $\\to 0$, hence $S_n\\to\\sum 0 = 0$.\" This silently swaps $\\lim_{n\\to\\infty}\\sum_{k=1}^{n}a_{n,k}$ for $\\sum_{k}\\big(\\lim_{n\\to\\infty}a_{n,k}\\big)$, which is illegitimate because the index set $1\\le k\\le n$ itself grows with $n$ -- there is no fixed sum to pass the limit into. The terms shrink like $1/n$ each, but there are $n$ of them, so their total need not vanish; the two effects balance. A one-line count-squeeze already destroys the trap: for $1\\le k\\le n$, $\\frac{n}{2n^{2}}\\le\\frac{n}{n^{2}+k^{2}}\\le\\frac{n}{n^{2}}$, so $\\frac12\\le S_n\\le 1$ for every $n$ -- the limit, if it exists, lies in $[\\tfrac12,1]$ and certainly is not $0$. A second, subtler error appears once a student does recognise a Riemann sum: writing $S_n=\\frac1n\\sum_{k=1}^{n}\\frac{1}{1+(k/n)^{2}}$ they may panic over whether the right-endpoint tag $k/n$ versus a left-endpoint tag $(k-1)/n$ changes the answer. It does not: the two tagged sums differ by exactly $\\frac1n\\big(\\frac{1}{1+0}-\\frac{1}{1+1}\\big)=\\frac{1}{2n}\\to 0$, so both converge to the same integral $\\int_0^1\\frac{dx}{1+x^{2}}=\\frac{\\pi}{4}$. The genuine answer is $\\dfrac{\\pi}{4}\\approx 0.7854$, comfortably inside the squeeze interval $[\\tfrac12,1]$, never $0$.",
+    "solutions": [
+      {
+        "name": "Method I - Recognise the Riemann sum",
+        "steps": [
+          "Pull a factor of $n$ out of the denominator: $\\dfrac{n}{n^{2}+k^{2}}=\\dfrac{1}{n}\\cdot\\dfrac{1}{1+(k/n)^{2}}$. Hence $S_n=\\dfrac{1}{n}\\displaystyle\\sum_{k=1}^{n}\\dfrac{1}{1+\\left(\\frac{k}{n}\\right)^{2}}$, which is a right-endpoint Riemann sum for the function $f(x)=\\dfrac{1}{1+x^{2}}$ on $[0,1]$ with the uniform partition $x_k=\\frac{k}{n}$ and mesh $\\frac1n\\to 0$.",
+          "Because $f$ is continuous (hence integrable) on $[0,1]$, the Riemann sums converge to the integral regardless of the sampling tags: $\\displaystyle\\lim_{n\\to\\infty}S_n=\\int_{0}^{1}\\frac{dx}{1+x^{2}}$.",
+          "Evaluate the integral: $\\displaystyle\\int_{0}^{1}\\frac{dx}{1+x^{2}}=\\big[\\arctan x\\big]_{0}^{1}=\\arctan 1-\\arctan 0=\\frac{\\pi}{4}$.",
+          "Therefore $L=\\boxed{\\dfrac{\\pi}{4}}$. The growing index set is exactly what turns a sum of vanishing terms into a finite Riemann integral."
+        ]
+      },
+      {
+        "name": "Method II - Integral-test squeeze to an exact arctan bound",
+        "steps": [
+          "The function $g(x)=\\dfrac{n}{n^{2}+x^{2}}$ is positive and strictly decreasing for $x\\ge 0$. For a decreasing function, comparing each term with the area under $g$ on adjacent unit intervals gives, for $k=1,\\dots,n$, $\\displaystyle\\int_{k}^{k+1} g(x)\\,dx\\le g(k)\\le\\int_{k-1}^{k} g(x)\\,dx$.",
+          "Sum over $k=1$ to $n$ to telescope the integration limits: $\\displaystyle\\int_{1}^{\\,n+1} g(x)\\,dx\\ \\le\\ S_n\\ \\le\\ \\int_{0}^{\\,n} g(x)\\,dx$.",
+          "Both bounding integrals are elementary, since $\\displaystyle\\int \\frac{n}{n^{2}+x^{2}}\\,dx=\\arctan\\!\\frac{x}{n}$. The upper bound is $\\big[\\arctan\\frac{x}{n}\\big]_{0}^{n}=\\arctan 1=\\dfrac{\\pi}{4}$ exactly, for every $n$. The lower bound is $\\arctan\\!\\dfrac{n+1}{n}-\\arctan\\!\\dfrac{1}{n}$.",
+          "Let $n\\to\\infty$: the lower bound tends to $\\arctan 1-\\arctan 0=\\dfrac{\\pi}{4}$, while the upper bound is pinned at $\\dfrac{\\pi}{4}$. By the squeeze theorem $S_n\\to\\dfrac{\\pi}{4}$, so $L=\\boxed{\\dfrac{\\pi}{4}}$ -- proved without invoking the Riemann-integral existence theorem."
+        ]
+      },
+      {
+        "name": "Method III - Kill the trap by a crude count-squeeze, then refine",
+        "steps": [
+          "First a crude bound exposing the fallacy. For $1\\le k\\le n$ we have $1\\le k^{2}\\le n^{2}$, hence $n^{2}+1\\le n^{2}+k^{2}\\le 2n^{2}$, giving $\\dfrac{n}{2n^{2}}\\le\\dfrac{n}{n^{2}+k^{2}}\\le\\dfrac{n}{n^{2}+1}$. Summing the $n$ terms: $\\dfrac{n}{2n^{2}}\\cdot n\\ \\le\\ S_n\\ \\le\\ \\dfrac{n}{n^{2}+1}\\cdot n$, i.e. $\\dfrac12\\le S_n\\le\\dfrac{n^{2}}{n^{2}+1}<1$.",
+          "Thus $\\frac12\\le S_n\\le 1$ for all $n$: the sum is trapped strictly away from $0$, so the \"every term vanishes, therefore the sum vanishes\" argument is definitively false even before the exact value is known.",
+          "To sharpen, split the index range with a parameter $0<\\varepsilon<1$ and use the same comparison-to-integral idea on each block, or simply note that the crude bounds are merely the coarsest two-term version of the integral-test sandwich of Method II; replacing the constant bounds $\\frac{1}{2n}$ and $\\frac{n}{n^2+1}$ on each summand by the tight integral envelope $\\int_k^{k+1}g\\le g(k)\\le\\int_{k-1}^{k}g$ upgrades $[\\tfrac12,1]$ to $\\big[\\arctan\\tfrac{n+1}{n}-\\arctan\\tfrac1n,\\ \\tfrac{\\pi}{4}\\big]$.",
+          "Both refined endpoints converge to $\\arctan 1=\\dfrac{\\pi}{4}$, and since $\\tfrac12\\le\\tfrac{\\pi}{4}\\le 1$ the answer sits exactly where the crude squeeze predicted. Hence $L=\\boxed{\\dfrac{\\pi}{4}}$."
+        ]
+      }
+    ],
+    "remark": "The lesson is the discipline of NOT interchanging $\\lim$ and $\\sum$ when the index set moves with $n$. Each summand here behaves like a thin spike of height $\\sim 1/n$, but $n$ such spikes assemble into a fixed area -- precisely the mechanism of a Riemann sum, where shrinking heights and a growing count of rectangles conspire to a finite integral. The fastest diagnostic for any \"$\\sum$ of vanishing terms\" problem is a one-line count-squeeze: bound each term between its min and max over the range and multiply by the number of terms; if the resulting interval excludes $0$ (here $[\\tfrac12,1]$), the naive answer is dead on arrival and you must find the true limit by Riemann sum or a tighter sandwich. Note also the harmless red herring of endpoint tags: $\\frac1n\\sum_{k=1}^{n}f(k/n)$ and $\\frac1n\\sum_{k=0}^{n-1}f(k/n)$ differ by $\\frac1n\\big(f(1)-f(0)\\big)=\\frac{1}{2n}\\to0$, so for continuous $f$ the choice never affects the limit -- the integral $\\int_0^1\\frac{dx}{1+x^2}=\\frac{\\pi}{4}$ is the unique destination."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "Two from Below",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "floor",
+      "taylor-series",
+      "trig",
+      "one-sided",
+      "monotonicity",
+      "squeeze"
+    ],
+    "statement": "Let $\\lfloor\\,\\cdot\\,\\rfloor$ denote the greatest-integer (floor) function. Define, for $x\\in\\left(0,\\tfrac{\\pi}{2}\\right)$, \\[ A(x)=\\frac{6\\,(\\sin x-x\\cos x)}{x^{3}}. \\] A quick computation gives $\\displaystyle\\lim_{x\\to 0^{+}}A(x)=2$. Evaluate the genuinely different quantity \\[ L=\\lim_{x\\to 0^{+}}\\big\\lfloor A(x)\\big\\rfloor, \\] justifying carefully which integer the floor settles on and why it is not simply $\\lfloor 2\\rfloor$.",
+    "answer": "\\[\\boxed{1}\\]",
+    "trap": "The seductive (and wrong) move is to slide the limit inside the floor: since $A(x)\\to 2$, declare $\\lfloor A(x)\\rfloor\\to\\lfloor 2\\rfloor=2$. The floor function is discontinuous exactly at integers, so this interchange is illegal precisely when the inner limit is an integer -- which is the case here. Everything hinges on the SIDE from which $A(x)$ reaches $2$. Computing only to leading order, $\\sin x-x\\cos x=\\tfrac{x^{3}}{3}+\\cdots$, hides the answer: one must keep the next term. The Maclaurin expansion is $\\sin x-x\\cos x=\\tfrac{x^{3}}{3}-\\tfrac{x^{5}}{30}+\\cdots$, so $A(x)=2-\\tfrac{x^{2}}{5}+\\cdots$. The coefficient of $x^{5}$ in the numerator is $-\\tfrac{1}{30}<0$, hence $A(x)$ rises to $2$ strictly from BELOW: $A(x)<2$ for all small $x>0$. Therefore $A(x)$ sits just under $2$, its floor is $1$, and the limit of the floor is $1$, not $2$. A student who stops at the cubic term, or who blindly evaluates $\\lfloor\\lim\\rfloor$, lands on the wrong integer.",
+    "solutions": [
+      {
+        "name": "Method I - Maclaurin to the deciding order",
+        "steps": [
+          "Expand each piece to one order past the cancellation. With $\\sin x=x-\\tfrac{x^{3}}{6}+\\tfrac{x^{5}}{120}-\\cdots$ and $\\cos x=1-\\tfrac{x^{2}}{2}+\\tfrac{x^{4}}{24}-\\cdots$, form $x\\cos x=x-\\tfrac{x^{3}}{2}+\\tfrac{x^{5}}{24}-\\cdots$.",
+          "Subtract: $\\sin x-x\\cos x=\\left(x-\\tfrac{x^{3}}{6}+\\tfrac{x^{5}}{120}\\right)-\\left(x-\\tfrac{x^{3}}{2}+\\tfrac{x^{5}}{24}\\right)+\\cdots=\\left(\\tfrac12-\\tfrac16\\right)x^{3}+\\left(\\tfrac{1}{120}-\\tfrac{1}{24}\\right)x^{5}+\\cdots=\\tfrac{x^{3}}{3}-\\tfrac{x^{5}}{30}+\\cdots$",
+          "Divide by $x^{3}$ and multiply by $6$: $A(x)=\\dfrac{6}{x^{3}}\\left(\\tfrac{x^{3}}{3}-\\tfrac{x^{5}}{30}+\\cdots\\right)=2-\\tfrac{x^{2}}{5}+\\cdots$. The $x^{3}$ term fixes the limit at $2$, but the surviving $-\\tfrac{x^{2}}{5}$ fixes the SIGN of the deviation.",
+          "For all sufficiently small $x>0$ the term $-\\tfrac{x^{2}}{5}$ is negative and dominates the remainder, so $1<A(x)<2$. Hence $\\lfloor A(x)\\rfloor=1$ on a punctured right-neighbourhood of $0$, and $L=\\boxed{1}$."
+        ]
+      },
+      {
+        "name": "Method II - L'Hopital for the value, monotonicity for the side",
+        "steps": [
+          "Confirm the value without series. $\\displaystyle\\lim_{x\\to0^{+}}\\frac{6(\\sin x-x\\cos x)}{x^{3}}$ is $\\tfrac{0}{0}$; differentiating top and bottom, $\\dfrac{d}{dx}(\\sin x-x\\cos x)=\\cos x-(\\cos x-x\\sin x)=x\\sin x$, so the ratio becomes $\\dfrac{6\\,x\\sin x}{3x^{2}}=\\dfrac{2\\sin x}{x}\\to 2$. Thus $A(x)\\to 2$, but this alone cannot decide the floor.",
+          "To pin the side, study $h(x)=\\dfrac{x^{3}}{3}-(\\sin x-x\\cos x)$, the gap between the cubic and the true numerator. Then $h(0)=0$ and $h'(x)=x^{2}-x\\sin x=x\\,(x-\\sin x)$.",
+          "Since $\\sin x<x$ for all $x>0$, we have $x-\\sin x>0$, so $h'(x)>0$ on $(0,\\tfrac{\\pi}{2})$; thus $h$ is strictly increasing from $h(0)=0$, giving $h(x)>0$, i.e. $\\sin x-x\\cos x<\\dfrac{x^{3}}{3}$ strictly. Multiplying by $\\dfrac{6}{x^{3}}>0$ yields $A(x)<2$ for every $x\\in(0,\\tfrac{\\pi}{2})$.",
+          "Combine: $A(x)\\to 2$ while $A(x)<2$ throughout, so $A(x)\\to 2^{-}$. Therefore $A(x)$ eventually lies in $(1,2)$, its floor equals $1$, and $L=\\boxed{1}$."
+        ]
+      },
+      {
+        "name": "Method III - Series-free two-sided squeeze",
+        "steps": [
+          "Upper fence (from Method II): the function $h(x)=\\tfrac{x^{3}}{3}-(\\sin x-x\\cos x)$ has $h(0)=0$ and $h'(x)=x(x-\\sin x)>0$, so $\\sin x-x\\cos x<\\tfrac{x^{3}}{3}$, giving $A(x)<2$.",
+          "Lower fence: let $g(x)=(\\sin x-x\\cos x)-\\left(\\tfrac{x^{3}}{3}-\\tfrac{x^{5}}{30}\\right)$, so $g(0)=0$ and $g'(x)=x\\sin x-\\left(x^{2}-\\tfrac{x^{4}}{6}\\right)=x\\!\\left(\\sin x-x+\\tfrac{x^{3}}{6}\\right)$. Because $\\sin x>x-\\tfrac{x^{3}}{6}$ for $x>0$, the bracket is positive, so $g'(x)>0$, $g$ increases from $0$, and $\\sin x-x\\cos x>\\tfrac{x^{3}}{3}-\\tfrac{x^{5}}{30}$.",
+          "Multiply the lower fence by $\\dfrac{6}{x^{3}}$: $A(x)>2-\\dfrac{x^{2}}{5}$. Hence for $0<x\\le 1$ we get the strict sandwich $2-\\dfrac{x^{2}}{5}<A(x)<2$, and since $2-\\dfrac{x^{2}}{5}\\ge 2-\\dfrac15=\\dfrac{9}{5}>1$, we have $\\dfrac{9}{5}<A(x)<2$ for all $0<x\\le 1$.",
+          "So $A(x)\\in\\left(\\tfrac95,2\\right)\\subset(1,2)$ on $(0,1]$, forcing $\\lfloor A(x)\\rfloor=1$ there with no appeal to the value of the limit. Thus $L=\\boxed{1}$."
+        ]
+      }
+    ],
+    "remark": "The whole problem lives in the discontinuity of $\\lfloor\\cdot\\rfloor$ at integers: $\\lim\\lfloor f\\rfloor$ may disagree with $\\lfloor\\lim f\\rfloor$ exactly when $\\lim f$ is an integer, and then the deciding data is the SIDE of approach. Here the limit $2$ is an integer, so the cubic term is silent on the answer and the first surviving correction -- the $x^{5}$ coefficient $-\\tfrac{1}{30}$ of $\\sin x-x\\cos x$ -- is what casts the vote. Its negativity drags $A(x)$ to $2^{-}$, dropping the floor to $1$. The robust habit: whenever a floor (or fractional-part, or sign) is wrapped around a quantity whose inner limit is an integer, never stop at leading order -- expand one term further, or prove a strict one-sided inequality, to learn whether you arrive from above or below. The expression $\\sin x-x\\cos x$ is itself worth knowing: it is the numerator of the first spherical Bessel function $j_1$ and its alternating signs $\\tfrac13,-\\tfrac{1}{30},\\tfrac{1}{840},\\dots$ make it a textbook generator of one-sided floor traps."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "Two Floors, One Expansion",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "floor",
+      "taylor",
+      "l'hopital",
+      "one-sided",
+      "sign-of-remainder",
+      "exp-trig"
+    ],
+    "statement": "Define, for $x\\neq 0$, the two functions \\[ P(x)=\\left\\lfloor \\frac{e^{x^{2}}-\\cos x}{x^{2}} \\right\\rfloor, \\qquad Q(x)=\\left\\lfloor \\frac{e^{x^{2}}-\\cos x}{x^{2}}-\\frac12-x^{2} \\right\\rfloor, \\] where $\\lfloor\\,\\cdot\\,\\rfloor$ is the greatest-integer (floor) function. The two interiors are built from the very same combination $\\dfrac{e^{x^{2}}-\\cos x}{x^{2}}$, so a hurried reader expects $P$ and $Q$ to behave alike. Determine \\[ L=\\lim_{x\\to 0}\\bigl(P(x)-Q(x)\\bigr), \\] proving that each floor is genuinely constant on a punctured neighbourhood of $0$ (so the two-sided limit really exists), and explaining precisely which feature of the expansion forces $P$ and $Q$ apart.",
+    "answer": "\\[\\boxed{1}\\]",
+    "trap": "The seductive shortcut is to push the floor through the limit. The interiors have clean limits: $\\dfrac{e^{x^{2}}-\\cos x}{x^{2}}\\to\\dfrac32$ and $\\dfrac{e^{x^{2}}-\\cos x}{x^{2}}-\\dfrac12-x^{2}\\to 1$. A student then writes $\\lim P=\\lfloor\\frac32\\rfloor=1$ and $\\lim Q=\\lfloor 1\\rfloor=1$, concluding $L=1-1=0$. The first floor is right but for the wrong reason; the second is simply false. The floor function is discontinuous exactly at the integers, so $\\lim_{x\\to0}\\lfloor f(x)\\rfloor=\\lfloor\\lim_{x\\to0}f(x)\\rfloor$ FAILS whenever $f$ tends to an integer: the answer is then decided by the SIDE of approach. Here the $Q$-interior tends to the integer $1$, and its first non-vanishing correction is $-\\frac{13}{24}x^{2}<0$, so it approaches $1$ strictly from BELOW; thus $Q$-interior $\\in(0,1)$ and $Q\\equiv 0$ near $0$, not $1$. The $P$-interior tends to the half-integer $\\frac32$ (a continuity point of the floor) with correction $+\\frac{11}{24}x^{2}>0$, approaching from above but never reaching $2$, so $P\\equiv 1$. The genuine value is $L=1-0=1$, and the whole problem turns on the sign of the leading remainder, never on plugging the limit into $\\lfloor\\cdot\\rfloor$.",
+    "solutions": [
+      {
+        "name": "Method I - Maclaurin expansion and the sign of the leading correction",
+        "steps": [
+          "Expand both pieces to order $x^{4}$: $e^{x^{2}}=1+x^{2}+\\dfrac{x^{4}}{2}+O(x^{6})$ and $\\cos x=1-\\dfrac{x^{2}}{2}+\\dfrac{x^{4}}{24}+O(x^{6})$. Subtracting, $e^{x^{2}}-\\cos x=\\dfrac32 x^{2}+\\Bigl(\\dfrac12-\\dfrac{1}{24}\\Bigr)x^{4}+O(x^{6})=\\dfrac32 x^{2}+\\dfrac{11}{24}x^{4}+O(x^{6})$.",
+          "Divide by $x^{2}$: the $P$-interior equals $\\dfrac{e^{x^{2}}-\\cos x}{x^{2}}=\\dfrac32+\\dfrac{11}{24}x^{2}+O(x^{4})$. For all sufficiently small $x\\neq0$ this lies in $\\bigl(\\tfrac32,\\,2\\bigr)$, hence $P(x)=\\lfloor\\,\\cdot\\,\\rfloor=1$ on a punctured neighbourhood, and $\\displaystyle\\lim_{x\\to0}P(x)=1$.",
+          "Subtract $\\dfrac12+x^{2}$ to form the $Q$-interior: $\\dfrac32+\\dfrac{11}{24}x^{2}-\\dfrac12-x^{2}+O(x^{4})=1+\\Bigl(\\dfrac{11}{24}-1\\Bigr)x^{2}+O(x^{4})=1-\\dfrac{13}{24}x^{2}+O(x^{4})$. The leading correction is $-\\dfrac{13}{24}x^{2}<0$, so the interior approaches $1$ from BELOW and lies in $(0,1)$ for small $x\\neq0$; hence $Q(x)=0$ on a punctured neighbourhood and $\\displaystyle\\lim_{x\\to0}Q(x)=0$.",
+          "Therefore $P(x)-Q(x)=1-0=1$ throughout that punctured neighbourhood, so $L=\\boxed{1}$. The two floors differ purely because the shared $\\frac32$ shifted onto the integer $1$, where the sign $-\\frac{13}{24}$ of the remainder controls the floor."
+        ]
+      },
+      {
+        "name": "Method II - Repeated L'Hopital plus a sign analysis of the remainder",
+        "steps": [
+          "Compute the $P$-interior limit by L'Hopital on $\\dfrac{e^{x^{2}}-\\cos x}{x^{2}}$ ($\\tfrac00$): differentiating, $\\dfrac{2x\\,e^{x^{2}}+\\sin x}{2x}=e^{x^{2}}+\\dfrac{\\sin x}{2x}\\to 1+\\dfrac12=\\dfrac32$. So the $P$-interior $\\to\\frac32$ and, since $\\frac32$ is not an integer, the floor is continuous there: $P\\to\\lfloor\\frac32\\rfloor=1$, with $P\\equiv1$ near $0$ because $e^{x^{2}}+\\frac{\\sin x}{2x}\\in(\\tfrac32,2)$ for small $x$.",
+          "For $Q$ the interior $\\to\\frac32-\\frac12-0=1$, an integer, so L'Hopital alone is NOT enough: we must decide the side of approach. Set $R(x)=\\dfrac{e^{x^{2}}-\\cos x}{x^{2}}-\\dfrac12-x^{2}-1$, the signed gap to the integer; we need $\\operatorname{sgn}R$ near $0$.",
+          "Clear denominators: $x^{2}R(x)=e^{x^{2}}-\\cos x-\\dfrac32x^{2}-x^{4}$. Apply L'Hopital to $\\dfrac{x^{2}R(x)}{x^{4}}$ (a $\\tfrac00$ ratio): two differentiations of numerator and denominator give $\\displaystyle\\lim_{x\\to0}\\frac{e^{x^{2}}-\\cos x-\\frac32x^{2}-x^{4}}{x^{4}}=-\\dfrac{13}{24}$ (equivalently read off from the $-\\frac{13}{24}x^{4}$ leading term). Since this limit is $-\\frac{13}{24}<0$ and $x^{4}>0$, we get $x^{2}R(x)<0$, hence $R(x)<0$ for all small $x\\neq0$.",
+          "Thus the $Q$-interior $=1+R(x)<1$, and it is positive (the gap $R\\to0$), so it lies in $(0,1)$ and $Q\\equiv0$ near $0$. Combining, $\\displaystyle\\lim_{x\\to0}\\bigl(P-Q\\bigr)=1-0=\\boxed{1}$."
+        ]
+      },
+      {
+        "name": "Method III - Elementary two-sided squeeze with no series machinery",
+        "steps": [
+          "Use three standard inequalities valid for all real $x$: $e^{t}\\ge 1+t+\\dfrac{t^{2}}{2}$ (with $t=x^{2}$, from the positive-term tail), and the alternating enclosure $1-\\dfrac{x^{2}}{2}\\le\\cos x\\le 1-\\dfrac{x^{2}}{2}+\\dfrac{x^{4}}{24}$. From these, $e^{x^{2}}-\\cos x\\ge\\Bigl(1+x^{2}+\\dfrac{x^{4}}{2}\\Bigr)-\\Bigl(1-\\dfrac{x^{2}}{2}+\\dfrac{x^{4}}{24}\\Bigr)=\\dfrac32x^{2}+\\dfrac{11}{24}x^{4}$.",
+          "Dividing by $x^{2}>0$ gives the $P$-interior $\\ge\\dfrac32+\\dfrac{11}{24}x^{2}>\\dfrac32$; and clearly the interior $\\to\\frac32<2$ keeps it below $2$ for small $x$. Hence $1<P\\text{-interior}<2$, so $P(x)=1$ for all small $x\\neq0$ (both sides), giving $\\displaystyle\\lim_{x\\to0}P=1$.",
+          "For the $Q$-interior we squeeze the gap to $1$. Lower side: the same bound gives interior $-\\frac12-x^{2}=\\dfrac{e^{x^{2}}-\\cos x}{x^{2}}-\\frac12-x^{2}\\ge\\dfrac32+\\dfrac{11}{24}x^{2}-\\frac12-x^{2}=1-\\dfrac{13}{24}x^{2}\\ge0$ for small $x$, so $Q$-interior $\\ge0$. Upper side: using $e^{x^{2}}\\le 1+x^{2}+\\dfrac{x^{4}}{2}+\\dfrac{x^{6}}{4}$ and $\\cos x\\ge 1-\\dfrac{x^{2}}{2}$ for small $x$ one gets $e^{x^{2}}-\\cos x\\le\\dfrac32x^{2}+\\dfrac{x^{4}}{2}+\\dfrac{x^{6}}{4}<\\dfrac32x^{2}+x^{4}$ once $x^{2}<2$, i.e. $Q$-interior $<1$.",
+          "So $0\\le Q\\text{-interior}<1$, forcing $Q(x)=0$ on a punctured neighbourhood of $0$ from both sides, whence $\\displaystyle\\lim_{x\\to0}Q=0$. Subtracting the two constant floors, $\\displaystyle\\lim_{x\\to0}(P-Q)=1-0=\\boxed{1}$, with no Taylor series invoked - only the sign of elementary envelopes."
+        ]
+      }
+    ],
+    "remark": "The single transferable lesson: $\\lim\\lfloor f\\rfloor=\\lfloor\\lim f\\rfloor$ is a TRAP exactly when $\\lim f$ is an integer, because that is where the floor is discontinuous; on a non-integer limit (here $\\frac32$ for $P$) the swap is harmless. When the limit is an integer (here $1$ for $Q$) the answer is decided entirely by the SIGN OF THE FIRST NON-VANISHING REMAINDER term: a positive correction approaches from above (floor stays at the integer), a negative one approaches from below (floor drops by one). The two interiors here are deliberately a single object shifted by the innocent-looking $-\\frac12-x^{2}$, which slides the safe half-integer $\\frac32$ onto the dangerous integer $1$ and simultaneously flips the leading correction from $+\\frac{11}{24}x^{2}$ to $-\\frac{13}{24}x^{2}$ - hence $P\\equiv1$ but $Q\\equiv0$, and $P-Q\\equiv1$. The same diagnostic recurs across the Grand Hybrids: whenever a floor, signum, or fractional-part wraps a quantity whose limit is an integer, compute one more order of the expansion and read off the sign before you commit to a value."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "A Tale of Two Cubics",
+    "difficulty": 5,
+    "tags": [
+      "floor",
+      "sine",
+      "arcsine",
+      "series",
+      "x->0+"
+    ],
+    "statement": "\\lim_{x\\to 0^+}\\left\\lfloor \\frac{x-\\sin x}{x-\\arcsin x}\\right\\rfloor",
+    "answer": "-1",
+    "trap": "Answer $0$. The seductive move: compute that the ratio $\\dfrac{x-\\sin x}{x-\\arcsin x}\\to -1$, then reason 'the inside tends to $-1$, and $\\lfloor -1\\rfloor=-1$, but for values just above $-1$ the floor jumps to $0$.' The error is getting the side backwards — or asserting the inside reaches $-1$. In fact the ratio equals $-1+\\tfrac{x^2}{2}+o(x^2)$, so it sits in $(-1,0)$, strictly above $-1$ and never equal to it; and $\\lfloor t\\rfloor=-1$ for every $t\\in(-1,0)$. So the floor is $-1$, not $0$. (If one instead mis-signs the fifth-order terms and lands just below $-1$, one wrongly gets $-2$.)",
+    "solutions": [
+      {
+        "name": "Method I - Leading-order series",
+        "steps": [
+          "Use $\\sin x=x-\\dfrac{x^3}{6}+\\dfrac{x^5}{120}-\\cdots$, so $x-\\sin x=\\dfrac{x^3}{6}-\\dfrac{x^5}{120}+\\cdots>0.$",
+          "Use $\\arcsin x=x+\\dfrac{x^3}{6}+\\dfrac{3x^5}{40}+\\cdots$, so $x-\\arcsin x=-\\dfrac{x^3}{6}-\\dfrac{3x^5}{40}-\\cdots<0.$",
+          "Factor out $\\dfrac{x^3}{6}$ from each and cancel: $$\\frac{x-\\sin x}{x-\\arcsin x}=\\frac{\\tfrac{x^3}{6}\\left(1-\\tfrac{x^2}{20}+\\cdots\\right)}{-\\tfrac{x^3}{6}\\left(1+\\tfrac{9x^2}{20}+\\cdots\\right)}=-\\frac{1-\\tfrac{x^2}{20}+\\cdots}{1+\\tfrac{9x^2}{20}+\\cdots}.$$",
+          "Expand using $\\left(1+\\tfrac{9x^2}{20}\\right)^{-1}=1-\\tfrac{9x^2}{20}+\\cdots$: $$-\\left(1-\\tfrac{x^2}{20}\\right)\\left(1-\\tfrac{9x^2}{20}+\\cdots\\right)=-\\left(1-\\tfrac{x^2}{2}+\\cdots\\right)=-1+\\tfrac{x^2}{2}+\\cdots.$$",
+          "Thus the ratio equals $-1+\\tfrac{x^2}{2}+o(x^2)$: for small $x>0$ it is $>-1$ and tends to $-1$, so it lives in $(-1,0)$. Since $\\lfloor t\\rfloor=-1$ for all $t\\in(-1,0)$, the floor is identically $-1$ and the limit is $\\boxed{-1}$."
+        ]
+      },
+      {
+        "name": "Method II - Sign + magnitude comparison",
+        "steps": [
+          "For $x>0$ small: $x-\\sin x>0$ (since $\\sin x<x$) and $x-\\arcsin x<0$ (since $\\arcsin x>x$). So the ratio is negative — already ruling out the floor being $0$.",
+          "Compare magnitudes via the leading expansions: $|x-\\sin x|=\\tfrac{x^3}{6}\\left(1-\\tfrac{x^2}{20}+\\cdots\\right)$ and $|x-\\arcsin x|=\\tfrac{x^3}{6}\\left(1+\\tfrac{9x^2}{20}+\\cdots\\right)$.",
+          "The denominator's correction $+\\tfrac{9x^2}{20}$ dominates the numerator's $-\\tfrac{x^2}{20}$, so $|x-\\sin x|<|x-\\arcsin x|$ for small $x>0$. Hence the ratio has magnitude $<1$, i.e. it lies strictly in $(-1,0)$.",
+          "For every $t\\in(-1,0)$, $\\lfloor t\\rfloor=-1$. Therefore the floor is identically $-1$ on a punctured right-neighborhood of $0$, and $\\lim_{x\\to 0^+}=-1$."
+        ]
+      }
+    ],
+    "remark": "Because $\\sin$ and $\\arcsin$ are inverses, their cubic terms have equal magnitude and opposite sign — they cancel in the ratio to give exactly $-1$ at leading order. The TIE is broken by the fifth-order terms ($\\tfrac{1}{120}$ vs $\\tfrac{3}{40}$), whose asymmetry pushes the ratio to $-1+\\tfrac{x^2}{2}$, just above $-1$, fixing the floor at $-1$."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "The Sawtooth's Riemann Sum",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "fractional-part",
+      "riemann-sum",
+      "sawtooth",
+      "summation",
+      "x->0+"
+    ],
+    "statement": "For $x>0$ let \\[ S(x)=x\\sum_{k=1}^{\\lfloor 5/(2x)\\rfloor}\\{\\,kx\\,\\}, \\] where $\\{t\\}=t-\\lfloor t\\rfloor$ is the fractional part. Evaluate \\[ L=\\lim_{x\\to 0^{+}}S(x). \\] The summation index runs up to $\\big\\lfloor \\tfrac{5}{2x}\\big\\rfloor$, so the sampled points $x,2x,3x,\\dots$ march across the interval $\\big(0,\\tfrac52\\big]$ in steps of $x$. As $x\\to 0^{+}$ the step shrinks and the number of terms grows like $\\tfrac{5}{2x}$, so $S(x)$ is a Riemann sum — but of which function, and over how many periods of its teeth?",
+    "answer": "\\[\\boxed{\\dfrac{9}{8}}\\]",
+    "trap": "Two reflexes give wrong answers. (i) The degenerate-identity slip: since $\\{t\\}=t$ whenever $0\\le t<1$, a hasty reader writes $\\{kx\\}=kx$ for every term and computes $S(x)\\approx x\\cdot x\\sum_{k=1}^{N}k\\approx x^2\\cdot\\tfrac{N^2}{2}\\to \\tfrac12\\big(\\tfrac52\\big)^2=\\tfrac{25}{8}$. This is false because $\\{kx\\}=kx$ holds only while $kx<1$, i.e. for the first $\\lfloor 1/x\\rfloor$ of the $\\lfloor 5/(2x)\\rfloor$ terms; thereafter the sawtooth wraps and resets, and ignoring the wraps inflates the answer almost three-fold. (ii) The averaging slip: recognising $S(x)$ as a Riemann sum of $f(t)=\\{t\\}$ over $\\big(0,\\tfrac52\\big]$, one recalls that the sawtooth has mean $\\tfrac12$ over each full period and writes $L=\\tfrac52\\cdot\\tfrac12=\\tfrac54$. This silently assumes the interval is a whole number of periods. It is not: $\\tfrac52$ contains two full teeth on $[0,1]$ and $[1,2]$, each contributing $\\int_0^1\\{t\\}\\,dt=\\tfrac12$, but the final stub $\\big[2,\\tfrac52\\big]$ is only half a tooth and contributes $\\int_2^{5/2}\\{t\\}\\,dt=\\int_0^{1/2}t\\,dt=\\tfrac18$, not the full $\\tfrac12$. The hidden constraint is the non-integer upper limit: the partial last period contributes $\\tfrac12\\{c\\}^2=\\tfrac18$, not $\\tfrac12\\{c\\}$. Hence $L=2\\cdot\\tfrac12+\\tfrac18=\\tfrac98$, not $\\tfrac54$.",
+    "solutions": [
+      {
+        "name": "Method I - Riemann sum of the sawtooth",
+        "steps": [
+          "Write $c=\\tfrac52$ and let $N=\\lfloor c/x\\rfloor$, so the sample points are $t_k=kx$ for $k=1,\\dots,N$, a uniform partition of $(0,c]$ with mesh $x\\to0^{+}$. Then $S(x)=\\sum_{k=1}^{N} f(t_k)\\,x$ with $f(t)=\\{t\\}$ is a right-endpoint Riemann sum of $f$ on $[0,c]$.",
+          "The integrand $f(t)=\\{t\\}$ is bounded and has only finitely many jump discontinuities on $[0,c]$ (at $t=1,2$), hence is Riemann-integrable there; therefore $S(x)\\to\\displaystyle\\int_0^{c}\\{t\\}\\,dt$ as $x\\to0^{+}$, independent of how the endpoints are sampled.",
+          "Evaluate the integral period by period. On each full period $[m,m+1]$, $\\int_m^{m+1}\\{t\\}\\,dt=\\int_0^{1}u\\,du=\\tfrac12$. With $c=\\tfrac52=2+\\tfrac12$ there are $\\lfloor c\\rfloor=2$ full periods plus the stub $\\big[2,\\tfrac52\\big]$, where $\\int_2^{5/2}\\{t\\}\\,dt=\\int_0^{1/2}u\\,du=\\tfrac12\\big(\\tfrac12\\big)^2=\\tfrac18$.",
+          "Hence $\\displaystyle\\int_0^{5/2}\\{t\\}\\,dt=2\\cdot\\tfrac12+\\tfrac18=\\tfrac98$, so $L=\\boxed{\\dfrac{9}{8}}$. In closed form $\\int_0^{c}\\{t\\}\\,dt=\\tfrac12\\lfloor c\\rfloor+\\tfrac12\\{c\\}^2$, which at $c=\\tfrac52$ gives $1+\\tfrac18=\\tfrac98$."
+        ]
+      },
+      {
+        "name": "Method II - Exact summation along x=1/n, then n -> infinity",
+        "steps": [
+          "It suffices to take $x=\\tfrac1n$ with $n\\to\\infty$ (the limit, once shown to exist by Method I, equals any subsequential limit). Then $N=\\lfloor cn\\rfloor=\\lfloor \\tfrac{5n}{2}\\rfloor$ and $S=\\tfrac1n\\sum_{k=1}^{N}\\big\\{\\tfrac{k}{n}\\big\\}$.",
+          "Group the index $k$ by the integer part $m=\\lfloor k/n\\rfloor$. For $m=0,1$ the block is $k=mn,\\dots,(m+1)n-1$ (a complete period), on which $\\big\\{\\tfrac{k}{n}\\big\\}=\\tfrac{k}{n}-m$ runs through $0,\\tfrac1n,\\dots,\\tfrac{n-1}{n}$, summing to $\\sum_{j=0}^{n-1}\\tfrac{j}{n}=\\tfrac{n-1}{2}$; each full block thus contributes $\\tfrac1n\\cdot\\tfrac{n-1}{2}=\\tfrac{n-1}{2n}\\to\\tfrac12$.",
+          "The last block is the stub $m=2$: $k=2n,\\dots,N$ with $N=\\lfloor\\tfrac{5n}{2}\\rfloor$, where $\\big\\{\\tfrac{k}{n}\\big\\}=\\tfrac{k}{n}-2=\\tfrac{k-2n}{n}$ ranges over $0,\\tfrac1n,\\dots,\\tfrac{N-2n}{n}$ with $N-2n=\\lfloor n/2\\rfloor$; its contribution is $\\tfrac1n\\sum_{j=0}^{\\lfloor n/2\\rfloor}\\tfrac{j}{n}=\\tfrac{1}{n^2}\\cdot\\tfrac{\\lfloor n/2\\rfloor(\\lfloor n/2\\rfloor+1)}{2}\\to\\tfrac12\\big(\\tfrac12\\big)^2=\\tfrac18$.",
+          "Summing the two full blocks and the stub, $S=\\tfrac{n-1}{2n}+\\tfrac{n-1}{2n}+\\tfrac{\\lfloor n/2\\rfloor(\\lfloor n/2\\rfloor+1)}{2n^2}\\to\\tfrac12+\\tfrac12+\\tfrac18=\\boxed{\\dfrac{9}{8}}$. (Exact rational arithmetic gives $S(\\tfrac1n)=\\tfrac98-\\tfrac{3}{4n}$, confirming the limit and the $O(1/n)$ rate.)"
+        ]
+      },
+      {
+        "name": "Method III - Squeeze via floor counting",
+        "steps": [
+          "Use $\\{kx\\}=kx-\\lfloor kx\\rfloor$ to split $S(x)=x\\sum_{k=1}^{N}kx-x\\sum_{k=1}^{N}\\lfloor kx\\rfloor$ with $N=\\lfloor c/x\\rfloor$, $c=\\tfrac52$. The first piece is $x^2\\tfrac{N(N+1)}{2}\\to \\tfrac12 c^2=\\tfrac{25}{8}$, since $xN\\to c$.",
+          "For the second piece interchange order: $\\sum_{k=1}^{N}\\lfloor kx\\rfloor=\\sum_{k=1}^{N}\\sum_{m\\ge1}\\mathbf 1[kx\\ge m]=\\sum_{m=1}^{\\lfloor Nx\\rfloor}\\#\\{k\\le N: kx\\ge m\\}=\\sum_{m=1}^{2}\\big(N-\\lceil m/x\\rceil+1\\big)$, because $Nx\\to c=\\tfrac52$ forces $\\lfloor Nx\\rfloor=2$ for small $x$.",
+          "Thus $x\\sum_{k=1}^{N}\\lfloor kx\\rfloor=x\\big[(N-\\lceil 1/x\\rceil+1)+(N-\\lceil 2/x\\rceil+1)\\big]=x(2N+2)-x\\lceil1/x\\rceil-x\\lceil2/x\\rceil\\to 2c-1-2=2\\cdot\\tfrac52-3=2$, using $xN\\to c$ and $x\\lceil m/x\\rceil\\to m$.",
+          "Therefore $L=\\tfrac{25}{8}-2=\\dfrac{25-16}{8}=\\boxed{\\dfrac{9}{8}}$. The exact constant $2$ subtracted is $\\sum_{m=1}^{\\lfloor c\\rfloor}\\big(c-m\\big)\\cdot1+\\dots$; the floor-counting makes precise how many full teeth ($\\lfloor c\\rfloor=2$) the sawtooth completes before the stub."
+        ]
+      }
+    ],
+    "remark": "The design fuses three instruments that never co-occur in the kept set: the fractional-part sawtooth, a genuine Riemann sum, and the integral $\\int_0^c\\{t\\}\\,dt$. The whole problem turns on the upper limit $\\tfrac52$ being chosen non-integer. An integer ceiling would make the answer the bland $\\lfloor c\\rfloor\\cdot\\tfrac12$ and reward the 'mean is $\\tfrac12$' reflex; the half-integer deliberately leaves a partial tooth so the correct closed form $\\int_0^c\\{t\\}\\,dt=\\tfrac12\\lfloor c\\rfloor+\\tfrac12\\{c\\}^2$ must be felt as two separate effects. The deepest lesson is that recognising 'this is a Riemann sum' is only half the battle: the integrand $\\{t\\}$ is periodic but the interval is not a whole number of periods, so the value is NOT (length)$\\times$(period-average). Method I sees the picture, Method II grinds it out exactly and exposes the $O(1/n)$ correction $\\tfrac98-\\tfrac{3}{4n}$, and Method III is the cautionary route: it produces the seductive $\\tfrac{25}{8}$ (the degenerate-identity trap) as its first piece and only the careful floor-count of completed teeth subtracts it back to $\\tfrac98$. The two traps, $\\tfrac{25}{8}$ and $\\tfrac54$, are not arithmetic slips but conceptual ones — forgetting the wrap, and forgetting the stub."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "The Floor That the Cube Term Decides",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "floor-function",
+      "arctan-subtraction",
+      "second-order-expansion",
+      "squeeze",
+      "n->infty"
+    ],
+    "statement": "Consider the integer-valued sequence \\[ a_n=\\left\\lfloor (n^{2}+n)\\Big(\\arctan\\tfrac{1}{n}-\\arctan\\tfrac{1}{n+1}\\Big)\\right\\rfloor,\\qquad n=1,2,3,\\dots \\] Evaluate $\\displaystyle\\lim_{n\\to\\infty}a_n$. The two arctangents are individually $\\Theta(1/n)$, their difference is $\\Theta(1/n^{2})$, and the prefactor $n^{2}+n$ is $\\Theta(n^{2})$, so the quantity inside the floor converges to a finite positive limit; the whole subtlety is whether the product reaches, falls short of, or overshoots an integer, and from which side.",
+    "answer": "$0$",
+    "trap": "The seductive route: compute the inner limit first. Using the arctangent subtraction identity $\\arctan\\tfrac{1}{n}-\\arctan\\tfrac{1}{n+1}=\\arctan\\tfrac{1}{n^{2}+n+1}$ and the leading approximation $\\arctan t\\approx t$, the product behaves like $(n^{2}+n)\\cdot\\tfrac{1}{n^{2}+n+1}\\to 1$, so a strong student writes $P_n:=(n^{2}+n)\\big(\\arctan\\tfrac1n-\\arctan\\tfrac1{n+1}\\big)\\to 1$ and concludes $\\lim a_n=\\big\\lfloor\\lim P_n\\big\\rfloor=\\lfloor 1\\rfloor=1$. This is wrong twice over. First, the floor function is discontinuous exactly at integers, so $\\lim\\lfloor P_n\\rfloor$ need not equal $\\lfloor\\lim P_n\\rfloor$ — the side of approach is everything. Second, deciding that side requires going one order deeper than the linear arctangent term: $\\arctan t=t-\\tfrac{t^{3}}{3}+\\cdots$ together with the polynomial ratio gives $P_n=1-\\tfrac{1}{n^{2}}+O(n^{-3})$, so $P_n<1$ for every $n$ and $P_n\\to 1$ strictly from below. Hence $\\lfloor P_n\\rfloor=0$ for all $n$, and the limit is $0$, not $1$. A mirror-image error also lurks: noticing that the prefactor $n^{2}+n$ is smaller than the denominator $n^{2}+n+1$, a student may correctly suspect $P_n<1$ but assume the gap is $\\Theta(1/n)$ and therefore irrelevant once 'rounded'; in fact the gap is the very thing the floor reads. The cube term of the arctangent — the term everyone is tempted to discard — is part of what keeps $P_n$ pinned below $1$.",
+    "solutions": [
+      {
+        "name": "Method I - Identity then a two-sided squeeze",
+        "steps": [
+          "Apply the arctangent subtraction identity. With $u=\\tfrac1n,\\ v=\\tfrac1{n+1}$ one has $\\arctan u-\\arctan v=\\arctan\\dfrac{u-v}{1+uv}$, valid since $uv>0$ keeps the argument in $(-\\tfrac\\pi2,\\tfrac\\pi2)$. Here $\\dfrac{u-v}{1+uv}=\\dfrac{\\frac{1}{n}-\\frac{1}{n+1}}{1+\\frac{1}{n(n+1)}}=\\dfrac{1}{n^{2}+n+1}$, so $P_n=(n^{2}+n)\\,\\arctan\\dfrac{1}{n^{2}+n+1}$.",
+          "Write $m=n^{2}+n+1$ and $t=\\tfrac1m>0$. The elementary inequalities $t-\\dfrac{t^{3}}{3}<\\arctan t<t$ (the alternating arctangent series) give $(n^{2}+n)\\Big(\\dfrac1m-\\dfrac{1}{3m^{3}}\\Big)<P_n<\\dfrac{n^{2}+n}{m}$.",
+          "Upper bound: $\\dfrac{n^{2}+n}{m}=\\dfrac{n^{2}+n}{n^{2}+n+1}=1-\\dfrac{1}{n^{2}+n+1}<1$ for every $n$, and it tends to $1$. Lower bound: $(n^{2}+n)\\big(\\tfrac1m-\\tfrac{1}{3m^{3}}\\big)=\\dfrac{n^{2}+n}{m}-\\dfrac{n^{2}+n}{3m^{3}}\\to 1-0=1$. By the squeeze, $P_n\\to1$, and the strict upper bound forces $P_n<1$ for all $n$.",
+          "Therefore $0<P_n<1$ for every $n\\ge1$, so $\\lfloor P_n\\rfloor=0$ for every $n$, and $\\displaystyle\\lim_{n\\to\\infty}a_n=\\boxed{0}$."
+        ]
+      },
+      {
+        "name": "Method II - Second-order asymptotic expansion",
+        "steps": [
+          "From the identity, $P_n=(n^{2}+n)\\,\\arctan\\dfrac{1}{m}$ with $m=n^{2}+n+1$. Expand the arctangent: $\\arctan\\dfrac1m=\\dfrac1m-\\dfrac{1}{3m^{3}}+O(m^{-5})$, where $m^{-3}=O(n^{-6})$ so the cube term contributes only at order $n^{-4}$.",
+          "Hence $P_n=\\dfrac{n^{2}+n}{n^{2}+n+1}+O(n^{-4})$. Expand the rational part: $\\dfrac{n^{2}+n}{n^{2}+n+1}=1-\\dfrac{1}{n^{2}+n+1}=1-\\dfrac{1}{n^{2}}\\cdot\\dfrac{1}{1+\\frac1n+\\frac1{n^{2}}}=1-\\dfrac{1}{n^{2}}+\\dfrac{1}{n^{3}}+O(n^{-4}).$",
+          "Thus $P_n=1-\\dfrac{1}{n^{2}}+\\dfrac{1}{n^{3}}+O(n^{-4})$. The leading correction $-\\tfrac{1}{n^{2}}$ is negative and dominates the higher terms for large $n$, so $P_n<1$ for all large $n$ and $P_n\\to1^{-}$.",
+          "Since $P_n\\to1$ while staying below $1$, eventually $P_n\\in(0,1)$, giving $\\lfloor P_n\\rfloor=0$ for all large $n$; combined with $\\lim P_n=1\\ne$ integer-from-above, $\\displaystyle\\lim_{n\\to\\infty}a_n=\\boxed{0}$."
+        ]
+      },
+      {
+        "name": "Method III - Telescoping decomposition m\\,\\arctan(1/m)",
+        "steps": [
+          "Using $n^{2}+n=m-1$ with $m=n^{2}+n+1$, split $P_n=(m-1)\\arctan\\dfrac1m=\\underbrace{m\\arctan\\dfrac1m}_{Q_m}-\\underbrace{\\arctan\\dfrac1m}_{\\varepsilon_m}.$",
+          "For the first piece, set $g(u)=u\\arctan\\tfrac1u$. Since $\\arctan\\tfrac1u=\\tfrac1u-\\tfrac{1}{3u^{3}}+\\cdots$, one gets $g(u)=1-\\dfrac{1}{3u^{2}}+O(u^{-4})<1$, so $Q_m=g(m)\\to1$ strictly from below as $m\\to\\infty$ (and $m\\to\\infty$ because $m=n^{2}+n+1$).",
+          "For the second piece, $\\varepsilon_m=\\arctan\\dfrac1m\\to0^{+}$ since $m\\to\\infty$. Both pieces conspire downward: $P_n=Q_m-\\varepsilon_m=\\Big(1-\\dfrac{1}{3m^{2}}+\\cdots\\Big)-\\Big(\\dfrac1m-\\cdots\\Big)<1$, confirming $0<P_n<1$.",
+          "Consequently $\\lfloor P_n\\rfloor=0$ for every $n$, and $\\displaystyle\\lim_{n\\to\\infty}a_n=\\boxed{0}$. The point is that subtracting the positive sliver $\\varepsilon_m$ from the already-below-one quantity $Q_m$ can only keep the product under the integer $1$."
+        ]
+      }
+    ],
+    "remark": "The whole trap lives in the non-interchange $\\lim_n\\lfloor P_n\\rfloor\\ne\\big\\lfloor\\lim_n P_n\\big\\rfloor$: the inner limit is exactly the integer $1$, the worst possible value for a floor, because the floor is discontinuous precisely there. Resolving the floor is therefore not a question of computing the limit but of computing the SIDE, and that demands one order beyond the naive $\\arctan t\\approx t$. Two structural facts cooperate to pin $P_n$ below $1$: the prefactor $n^{2}+n$ is one unit short of the arctangent's effective denominator $n^{2}+n+1$ (a deliberate near-miss), and the arctangent is concave for $t>0$ so $\\arctan t<t$ shaves a further bit off. Either alone already gives $P_n<1$; together they make the conclusion robust. The top-rank discipline: whenever a quantity under a floor (or a ceiling, or a sign) tends to an integer, the limit of the inner expression is never the end of the story — expand until the first non-vanishing signed term appears, and let its sign, not the integer it dresses, decide the answer. Replace $n^{2}+n$ by $n^{2}+n+1$ and $P_n\\equiv n^{2}+n+1$ times nothing — actually $P_n=m\\arctan\\tfrac1m\\to1^{-}$ still gives $0$; replace it by $n^{2}+2n$ and the first-order term revives positive, $P_n\\to1^{+}$, and the floor jumps to $1$. The answer $0$ sits on the knife-edge that the chosen prefactor and the cube term together create."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "The Signum That Mends a Broken Limit",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "signum",
+      "inverse-trig",
+      "l'hopital",
+      "parity",
+      "one-sided",
+      "taylor"
+    ],
+    "statement": "For $x\\neq 0$ define \\[ F(x)=\\operatorname{sgn}(x)\\cdot\\frac{\\arcsin x-\\arctan x}{x^{2}\\,|x|}, \\] where $\\operatorname{sgn}$ is the signum function and $|x|$ the absolute value. The two inverse-trigonometric pieces share the same linear part $x$, so a hasty reader cancels them and panics. Evaluate \\[ L=\\lim_{x\\to 0}F(x), \\] proving that the two-sided limit genuinely exists as a single finite number. State carefully why the bare quotient $\\dfrac{\\arcsin x-\\arctan x}{x^{2}|x|}$ alone has NO two-sided limit, and exactly what role the factor $\\operatorname{sgn}(x)$ plays in repairing it.",
+    "answer": "\\[\\boxed{\\dfrac12}\\]",
+    "trap": "The fatal move is to read $x^{2}|x|$ as $x^{3}$. They agree in size but not in parity: $x^{2}|x|=|x|^{3}$ is EVEN, whereas $x^{3}$ is ODD. The numerator $N(x)=\\arcsin x-\\arctan x=\\tfrac12 x^{3}-\\tfrac18 x^{5}+\\cdots$ is odd, so $N(x)/x^{3}$ is even and tends to $+\\tfrac12$ from BOTH sides; then $\\operatorname{sgn}(x)\\cdot\\tfrac12$ would give $+\\tfrac12$ on the right and $-\\tfrac12$ on the left, and the student declares the limit does NOT exist. That conclusion is the trap. With the true denominator $x^{2}|x|=|x|^{3}$ (even), the bare quotient $N(x)/|x|^{3}$ is ODD: it tends to $+\\tfrac12$ as $x\\to0^{+}$ and to $-\\tfrac12$ as $x\\to0^{-}$, so it alone has no two-sided limit. Multiplying by $\\operatorname{sgn}(x)$ turns this ODD quotient into an EVEN function, aligning the two one-sided limits at the common value $+\\tfrac12$. Thus $\\operatorname{sgn}$ is not cosmetic: it is precisely the parity-correcting factor that mends a genuinely two-sided-divergent quotient, and confusing $|x|^{3}$ with $x^{3}$ inverts which side $\\operatorname{sgn}$ helps. A second, milder trap is to cancel $\\arcsin x-\\arctan x\\approx x-x=0$ and lose the decisive $\\tfrac12 x^{3}$ term.",
+    "solutions": [
+      {
+        "name": "Method I - Maclaurin series and a parity argument",
+        "steps": [
+          "Expand both inverse functions to order $x^{5}$: $\\arcsin x=x+\\dfrac{x^{3}}{6}+\\dfrac{3x^{5}}{40}+O(x^{7})$ and $\\arctan x=x-\\dfrac{x^{3}}{3}+\\dfrac{x^{5}}{5}+O(x^{7})$. The shared $x$ cancels and the cubic terms ADD rather than cancel: $N(x)=\\arcsin x-\\arctan x=\\Bigl(\\dfrac16+\\dfrac13\\Bigr)x^{3}+\\Bigl(\\dfrac{3}{40}-\\dfrac15\\Bigr)x^{5}+O(x^{7})=\\dfrac12 x^{3}-\\dfrac18 x^{5}+O(x^{7})$.",
+          "Note $N$ is an odd function. Write the denominator honestly as $x^{2}|x|=|x|^{3}$, which is even. Hence the bare quotient $q(x)=\\dfrac{N(x)}{|x|^{3}}=\\dfrac{\\frac12 x^{3}-\\frac18 x^{5}+\\cdots}{|x|^{3}}$ is odd: for $x>0$ it equals $\\dfrac12-\\dfrac18 x^{2}+\\cdots\\to\\dfrac12$, while for $x<0$, using $|x|^{3}=-x^{3}$, it equals $-\\bigl(\\dfrac12-\\dfrac18 x^{2}+\\cdots\\bigr)\\to-\\dfrac12$. So $q$ has no two-sided limit.",
+          "Now $F(x)=\\operatorname{sgn}(x)\\,q(x)$ is the product of two odd functions, hence EVEN, so its two one-sided limits coincide. For $x>0$, $\\operatorname{sgn}(x)=1$ and $F(x)=q(x)\\to\\dfrac12$; by evenness the left limit is the same.",
+          "Therefore the two-sided limit exists and $L=\\displaystyle\\lim_{x\\to0}F(x)=\\boxed{\\dfrac12}$, the value being forced by the cubic coefficient $\\tfrac16+\\tfrac13=\\tfrac12$ that survives the cancellation of the linear parts."
+        ]
+      },
+      {
+        "name": "Method II - One-sided L'Hopital on the positive branch, then parity",
+        "steps": [
+          "Reduce to one side. Since $F$ is even (product of the two odd functions $\\operatorname{sgn}(x)$ and $N(x)/|x|^{3}$), it suffices to compute the right-hand limit; the left-hand limit must equal it. For $x>0$ we have $\\operatorname{sgn}(x)=1$ and $|x|=x$, so $F(x)=\\dfrac{\\arcsin x-\\arctan x}{x^{3}}$, a $\\tfrac00$ form.",
+          "Differentiate numerator and denominator once: $N'(x)=\\dfrac{1}{\\sqrt{1-x^{2}}}-\\dfrac{1}{1+x^{2}}$ and $(x^{3})'=3x^{2}$. The new ratio is $\\dfrac{N'(x)}{3x^{2}}$.",
+          "Expand the derivative: $\\dfrac{1}{\\sqrt{1-x^{2}}}=1+\\dfrac{x^{2}}{2}+O(x^{4})$ and $\\dfrac{1}{1+x^{2}}=1-x^{2}+O(x^{4})$, so $N'(x)=\\dfrac{3}{2}x^{2}+O(x^{4})$. Hence $\\dfrac{N'(x)}{3x^{2}}=\\dfrac{\\frac32 x^{2}+O(x^{4})}{3x^{2}}\\to\\dfrac12$ as $x\\to0^{+}$.",
+          "Thus the right-hand limit of $F$ is $\\tfrac12$; by evenness the left-hand limit is also $\\tfrac12$, so the two-sided limit exists and $L=\\boxed{\\dfrac12}$. The factor $\\operatorname{sgn}(x)$ is what makes the left branch reproduce the right: without it the left branch would carry the opposite sign and the limit would not exist."
+        ]
+      },
+      {
+        "name": "Method III - Two-sided squeeze with no Taylor series",
+        "steps": [
+          "Work on $0<x<\\tfrac12$ and bound the derivative $N'(x)=\\dfrac{1}{\\sqrt{1-x^{2}}}-\\dfrac{1}{1+x^{2}}$ by elementary inequalities. Using $\\dfrac{1}{\\sqrt{1-t}}\\ge 1+\\dfrac{t}{2}$ and $\\dfrac{1}{1+u}\\le 1-u+u^{2}$ (both valid for $0\\le t,u<1$) with $t=u=x^{2}$, we get $N'(x)\\ge\\bigl(1+\\tfrac{x^{2}}{2}\\bigr)-\\bigl(1-x^{2}+x^{4}\\bigr)=\\dfrac{3}{2}x^{2}-x^{4}$. Symmetrically $\\dfrac{1}{\\sqrt{1-t}}\\le 1+\\dfrac{t}{2}+t^{2}$ and $\\dfrac{1}{1+u}\\ge 1-u$ give $N'(x)\\le\\dfrac{3}{2}x^{2}+x^{4}$.",
+          "Integrate the bracket $\\dfrac32 t^{2}-t^{4}\\le N'(t)\\le\\dfrac32 t^{2}+t^{4}$ from $0$ to $x$ (legitimate since $N(0)=0$): $\\dfrac12 x^{3}-\\dfrac15 x^{5}\\le N(x)\\le\\dfrac12 x^{3}+\\dfrac15 x^{5}$ for $0<x<\\tfrac12$.",
+          "Divide by $x^{3}>0$: $\\dfrac12-\\dfrac15 x^{2}\\le\\dfrac{N(x)}{x^{3}}\\le\\dfrac12+\\dfrac15 x^{2}$. As $x\\to0^{+}$ both envelopes tend to $\\tfrac12$, so by the squeeze theorem $\\dfrac{N(x)}{x^{3}}\\to\\dfrac12$; on $x>0$ this is exactly $F(x)$ since $\\operatorname{sgn}(x)=1$ and $|x|=x$.",
+          "For $x<0$ write $x=-s$ with $s>0$. Oddness of $N$ gives $N(-s)=-N(s)$ and $|x|^{3}=s^{3}$, so the quotient $N(x)/|x|^{3}=-N(s)/s^{3}\\to-\\tfrac12$, but $\\operatorname{sgn}(x)=-1$ flips it back: $F(-s)=(-1)\\cdot\\bigl(-N(s)/s^{3}\\bigr)=N(s)/s^{3}\\to\\tfrac12$. Both one-sided limits equal $\\tfrac12$, hence $L=\\boxed{\\dfrac12}$ with only elementary envelopes."
+        ]
+      }
+    ],
+    "remark": "This capstone packs three traps into one symbol-by-symbol reading. First, the linear parts of $\\arcsin$ and $\\arctan$ cancel, so the answer is decided by the next surviving order; the cubic coefficients $+\\tfrac16$ and $-(-\\tfrac13)$ ADD to $\\tfrac12$, the hallmark of an inverse-trig difference. Second, and most dangerous, $x^{2}|x|=|x|^{3}$ is EVEN while $x^{3}$ is ODD: misreading the denominator inverts the parity of the bare quotient and makes the student place $\\operatorname{sgn}$ on the wrong side, 'proving' the limit does not exist. The correct picture is that $N(x)/|x|^{3}$ is genuinely two-sided-divergent (an odd $\\pm\\tfrac12$ jump), and $\\operatorname{sgn}(x)$ is the exact parity-correcting multiplier that converts an odd, limitless quotient into an even, convergent one. The transferable principle for the Grand Hybrids: when a signum, floor, or absolute value sits outside a quotient, first settle the PARITY of every factor (odd vs even, and crucially $|x|^{n}$ vs $x^{n}$), because parity, not magnitude, decides whether the two sides cooperate or cancel."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "The Corner That Eats a Side",
+    "difficulty": 5,
+    "task": "Decide and evaluate",
+    "tags": [
+      "modulus",
+      "squeeze",
+      "one-sided",
+      "oscillation",
+      "limit-dne",
+      "structural-zero"
+    ],
+    "statement": "For $x\\neq 0$ define \\[ f(x)=\\frac{\\,|x|+x^{2}\\sin\\!\\frac1x\\,}{\\,|x|+x\\,}. \\] Decide whether $\\displaystyle\\lim_{x\\to 0} f(x)$ exists. If it does, evaluate it; if it does not, identify the one-sided behaviour completely. The oscillating term $x^{2}\\sin\\frac1x$ in the numerator cannot be expanded in a Taylor series and has no derivative-based limit, so any treatment of the top must be by estimation, not differentiation. Meanwhile the denominator $|x|+x$ is assembled from a modulus and a linear term that look harmless together — examine what that combination actually equals on each side of $0$ before committing to a value.",
+    "answer": "$\\lim_{x\\to0}f(x)\\ \\text{does not exist}$",
+    "trap": "The fatal reflex is to read $|x|+x$ as a small quantity that behaves like $2x$ near $0$, cancel it against the numerator, and announce a clean two-sided limit. On the right this is fine: for $x>0$, $|x|=x$, so $|x|+x=2x$ and $f(x)=\\tfrac12+\\tfrac{x}{2}\\sin\\frac1x\\to\\tfrac12$ by squeezing the bounded oscillation. The error is to assume the same form persists on the left. For $x<0$ one has $|x|=-x$, so $|x|+x=(-x)+x=0$ identically — not merely small, but exactly zero for every negative $x$. The denominator is therefore a structural zero on the whole left half: $f$ is undefined on $(-\\infty,0)$, so no left-hand limit can even be discussed. A two-sided limit requires $f$ to be defined on a punctured neighbourhood of $0$; that fails on the entire left side, so $\\lim_{x\\to0}f(x)$ does not exist despite the right-hand limit being the tidy $\\tfrac12$. The trap is conceptual: $|x|+x$ is not an order-$x$ infinitesimal symmetric about $0$ — it is $2x$ on the right and the constant $0$ on the left. A secondary slip is to claim the limit is $\\tfrac12$ because the numerator and denominator are 'both even-ish'; the numerator is not even ($x^{2}\\sin\\frac1x$ is odd), and evenness would be irrelevant anyway once the left domain is empty.",
+    "solutions": [
+      {
+        "name": "Method I - Split on the right, squeeze the oscillation, expose the left zero",
+        "steps": [
+          "Treat the two sides separately. For $x>0$, $|x|=x$, so $|x|+x=2x>0$ and the numerator is $x+x^{2}\\sin\\frac1x$. Hence $f(x)=\\dfrac{x+x^{2}\\sin\\frac1x}{2x}=\\dfrac12+\\dfrac{x}{2}\\sin\\frac1x$ for all $x>0$, an exact identity (no approximation).",
+          "Bound the leftover term: $\\bigl|\\tfrac{x}{2}\\sin\\frac1x\\bigr|\\le\\tfrac{x}{2}\\to0$ as $x\\to0^{+}$, since $|\\sin\\frac1x|\\le1$. By the squeeze theorem $\\tfrac{x}{2}\\sin\\frac1x\\to0$, so $\\displaystyle\\lim_{x\\to0^{+}}f(x)=\\tfrac12$. Note L'Hopital and Taylor are inapplicable here because $\\sin\\frac1x$ has no limit and no power series at $0$; the squeeze is essential.",
+          "Now the left side. For $x<0$, $|x|=-x$, hence $|x|+x=(-x)+x=0$ exactly. The denominator vanishes for every negative $x$, so $f$ is not defined anywhere on $(-\\infty,0)$ and the symbol $\\lim_{x\\to0^{-}}f(x)$ has no meaning.",
+          "A two-sided limit requires $f$ to be defined on some punctured neighbourhood $(-\\delta,0)\\cup(0,\\delta)$. Since $f$ is undefined on all of $(-\\delta,0)$, that requirement fails. Therefore $\\displaystyle\\lim_{x\\to0}f(x)$ does not exist; the right-hand limit equals $\\tfrac12$ while the left-hand limit is undefined. $\\boxed{\\text{The limit does not exist.}}$"
+        ]
+      },
+      {
+        "name": "Method II - Domain analysis first, then a two-envelope squeeze on the right",
+        "steps": [
+          "Find the domain of $f$ before computing anything. The denominator $g(x)=|x|+x$ equals $2x$ when $x\\ge0$ and $0$ when $x\\le0$. Thus $g(x)=0$ for every $x\\le0$, so $f$ is defined only on $(0,\\infty)$. The left half of any neighbourhood of $0$ lies outside the domain.",
+          "Because the natural domain misses the entire interval $(-\\delta,0)$ for every $\\delta>0$, a two-sided limit at $0$ cannot exist by definition. The most that can survive is a one-sided (right) limit, which we now evaluate.",
+          "On $(0,\\infty)$, $-1\\le\\sin\\frac1x\\le1$ gives $x-x^{2}\\le x+x^{2}\\sin\\frac1x\\le x+x^{2}$. Dividing by $2x>0$ yields the envelopes $\\dfrac{x-x^{2}}{2x}\\le f(x)\\le\\dfrac{x+x^{2}}{2x}$, i.e. $\\tfrac12-\\tfrac{x}{2}\\le f(x)\\le\\tfrac12+\\tfrac{x}{2}$.",
+          "Both envelopes tend to $\\tfrac12$ as $x\\to0^{+}$, so the squeeze gives $\\lim_{x\\to0^{+}}f(x)=\\tfrac12$. Combined with the empty left domain, the overall conclusion is $\\boxed{\\text{the two-sided limit does not exist}}$ (right-hand value $\\tfrac12$, left-hand value undefined)."
+        ]
+      },
+      {
+        "name": "Method III - Sequential criterion to certify non-existence",
+        "steps": [
+          "Recall the sequential characterisation: $\\lim_{x\\to0}f(x)=L$ exists iff for EVERY sequence $x_n\\to0$ with $x_n\\neq0$ inside the domain, $f(x_n)\\to L$. We test sequences from both sides.",
+          "Right-approaching sequence: take $x_n=\\dfrac{1}{2\\pi n}\\to0^{+}$. Then $\\sin\\frac{1}{x_n}=\\sin(2\\pi n)=0$, so $f(x_n)=\\dfrac{x_n}{2x_n}=\\tfrac12$ for all $n$; thus $f(x_n)\\to\\tfrac12$. (A second right sequence $x_n=\\frac{1}{(2n+\\frac12)\\pi}$ gives $\\sin\\frac1{x_n}=1$ and $f(x_n)=\\tfrac12+\\tfrac{x_n}{2}\\to\\tfrac12$ as well, consistent with Method I.)",
+          "Left-approaching sequence: any $x_n\\to0^{-}$ with $x_n<0$ lands where $|x_n|+x_n=0$, so $f(x_n)$ is undefined — such sequences cannot even be evaluated. Hence there is no admissible left sequence on which $f$ takes values, so the limit condition cannot be satisfied across both sides.",
+          "Since a genuine limit would force a common finite value along all admissible sequences through both sides of $0$, and the left side contributes no admissible sequences at all (the domain excludes it), the two-sided limit fails to exist. The honest report is: right-hand limit $=\\tfrac12$, left-hand limit undefined, so $\\boxed{\\lim_{x\\to0}f(x)\\ \\text{does not exist}}$."
+        ]
+      }
+    ],
+    "remark": "The whole problem turns on one structural fact that survives no amount of algebra: $|x|+x$ is not an infinitesimal symmetric about $0$, it is the one-sided ramp $2x\\cdot\\mathbf{1}[x>0]$ — equal to $2x$ on the right and identically $0$ on the left. A denominator that is exactly $0$ on a whole side is not a removable nuisance; it deletes that side from the domain, and a two-sided limit cannot exist over a domain that omits one side of the point. The oscillating numerator $x^{2}\\sin\\frac1x$ is the second instrument: it is engineered so the right-hand behaviour cannot be reached by L'Hopital or Taylor (no derivative, no series for $\\sin\\frac1x$), forcing an honest squeeze $\\tfrac12-\\tfrac{x}{2}\\le f\\le\\tfrac12+\\tfrac{x}{2}$. The fusion is deliberate: the tidy right-hand value $\\tfrac12$ is bait, tempting a student to declare the limit $\\tfrac12$ and forget to check that the left side is even populated. The transferable discipline across the Grand Hybrids is to compute the domain of the expression BEFORE the limit: whenever a modulus is combined linearly (as in $|x|\\pm x$, or $|x|+kx$ with $|k|=1$), one side collapses to zero, and that collapse — not any arithmetic in the numerator — decides existence."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "The Arctangent's Last Digit",
+    "difficulty": 5,
+    "tags": [
+      "floor",
+      "arctangent",
+      "asymptotic",
+      "x->+inf",
+      "series"
+    ],
+    "statement": "\\lim_{x\\to +\\infty}\\left\\lfloor -3x^{3}\\left(\\frac{\\pi}{2}-\\arctan x-\\frac{1}{x}\\right)\\right\\rfloor",
+    "answer": "0",
+    "trap": "Answer $1$: using $\\arctan x=\\dfrac{\\pi}{2}-\\dfrac1x+\\dfrac{1}{3x^3}-\\cdots$, the bracket becomes $-3x^3\\cdot(-\\tfrac{1}{3x^3}+\\cdots)\\to 1$, so a student writes $\\lfloor 1\\rfloor=1$. But the argument equals $1-\\dfrac{3}{5x^2}+o(1/x^2)$, which is strictly $<1$ for every large $x$ and only approaches $1$ from below. A quantity in $(0,1)$ has floor $0$, not $1$. (Numerically, naive floating point even reports junk values like $246$ for $x=10^6$ because $\\tfrac{\\pi}{2}-\\arctan x$ cancels catastrophically.)",
+    "solutions": [
+      {
+        "name": "Method I - Asymptotic series of arctan",
+        "steps": [
+          "For $x>0$, $\\arctan x=\\dfrac{\\pi}{2}-\\dfrac1x+\\dfrac{1}{3x^3}-\\dfrac{1}{5x^5}+\\cdots.$",
+          "Hence $\\dfrac{\\pi}{2}-\\arctan x-\\dfrac1x=\\dfrac1x-\\dfrac{1}{3x^3}+\\dfrac{1}{5x^5}-\\cdots-\\dfrac1x=-\\dfrac{1}{3x^3}+\\dfrac{1}{5x^5}-\\cdots.$",
+          "Multiply by $-3x^3$: $\\;-3x^3\\left(-\\dfrac{1}{3x^3}+\\dfrac{1}{5x^5}-\\cdots\\right)=1-\\dfrac{3}{5x^2}+\\cdots.$",
+          "So the argument is $1-\\dfrac{3}{5x^2}+o(1/x^2)<1$, approaching $1$ from below. For all large $x$ it lies in $(0,1)$, so its floor is $0$. $$\\lim_{x\\to+\\infty}\\left\\lfloor\\cdots\\right\\rfloor=0.$$"
+        ]
+      },
+      {
+        "name": "Method II - Reciprocal substitution + Taylor expansion",
+        "steps": [
+          "Let $t=\\dfrac1x\\to 0^+$. Using $\\arctan x=\\dfrac{\\pi}{2}-\\arctan t$ (valid for $x>0$), the inner expression becomes $\\dfrac{\\pi}{2}-(\\tfrac{\\pi}{2}-\\arctan t)-t=\\arctan t-t.$",
+          "So the whole argument is $-\\dfrac{3}{t^3}(\\arctan t-t)=-3\\cdot\\dfrac{\\arctan t-t}{t^3}.$",
+          "Now $\\arctan t-t=-\\dfrac{t^3}{3}+\\dfrac{t^5}{5}-\\cdots$, so $\\dfrac{\\arctan t-t}{t^3}=-\\dfrac13+\\dfrac{t^2}{5}-\\cdots$, and $-3$ times this is $1-\\dfrac{3t^2}{5}+\\cdots.$",
+          "As $t\\to 0^+$ this stays $<1$ and tends to $1$, hence the argument is in $(0,1)$ for small $t$, so its floor is $0$. Therefore the limit is $0$."
+        ]
+      }
+    ],
+    "remark": "The 'subtract $1/x$' trick isolates the next term of arctan's tail; the floor then exposes that the corrected quantity sits a hair below the integer $1$. The cancellation-free identity $\\tfrac{\\pi}{2}-\\arctan x=\\arctan(1/x)$ is also what you must use to check this numerically without precision loss."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "Fracture at e",
+    "difficulty": 5,
+    "tags": [
+      "fractional-part",
+      "logarithm",
+      "one-sided",
+      "x->e+",
+      "derivative"
+    ],
+    "statement": "\\lim_{x\\to e^{+}}\\frac{\\{\\ln x\\}}{x-e}",
+    "answer": "\\dfrac{1}{e}",
+    "trap": "Because $\\ln e=1$ is an integer, $\\{\\ln x\\}$ jumps from near $1^-$ to $0^+$ as $x$ crosses $e$, so a student concludes the two-sided limit is asymmetric and declares 'does not exist'. Worse, they may anchor on the left behavior (numerator $\\to 1$, denominator $\\to 0$) and write '$\\infty$ or oscillates'. But the question is one-sided: for $x>e$, $\\{\\ln x\\}=\\ln x-1=\\ln x-\\ln e$ is perfectly smooth, and the ratio is literally the difference quotient of $\\ln$ at $e$, giving the finite value $\\ln'(e)=1/e$.",
+    "solutions": [
+      {
+        "name": "Method I - Recognize a derivative",
+        "steps": [
+          "For $x$ slightly greater than $e$, $\\ln x>\\ln e=1$ and $\\ln x<2$, so $\\lfloor\\ln x\\rfloor=1$ and $\\{\\ln x\\}=\\ln x-1=\\ln x-\\ln e.$",
+          "Hence $\\dfrac{\\{\\ln x\\}}{x-e}=\\dfrac{\\ln x-\\ln e}{x-e}$, which is exactly the difference quotient of $\\ln$ at $e$.",
+          "Taking $x\\to e^+$ gives $\\ln'(e)=\\dfrac{1}{e}.$",
+          "$$\\lim_{x\\to e^+}\\frac{\\{\\ln x\\}}{x-e}=\\frac1e.$$"
+        ]
+      },
+      {
+        "name": "Method II - Local linearization",
+        "steps": [
+          "Write $x=e+h$, $h\\to 0^+$. Then $\\ln x=\\ln(e+h)=1+\\ln\\!\\left(1+\\tfrac{h}{e}\\right)=1+\\dfrac{h}{e}-\\dfrac{h^2}{2e^2}+\\cdots.$",
+          "Since $0<\\ln x-1<1$ for small $h>0$, we get $\\{\\ln x\\}=\\ln x-1=\\dfrac{h}{e}-\\dfrac{h^2}{2e^2}+\\cdots.$",
+          "Divide by $x-e=h$: $\\dfrac{\\{\\ln x\\}}{h}=\\dfrac1e-\\dfrac{h}{2e^2}+\\cdots\\to\\dfrac1e.$",
+          "From the left ($h<0$) one would have $\\ln x<1$, so $\\{\\ln x\\}=\\ln x$ near $1^-$, making the numerator $\\approx 1$ and the ratio $\\to-\\infty$ — that is why the limit is posed one-sided."
+        ]
+      }
+    ],
+    "remark": "At any point $a$ with $\\ln a\\in\\mathbb{Z}$, $\\lim_{x\\to a^+}\\frac{\\{\\ln x\\}}{x-a}=\\frac1a$, while the left limit diverges — the fractional part converts a smooth derivative into a one-sided phenomenon."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "The Integer Two Refuses to Be Reached",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "fractional-part",
+      "taylor-series",
+      "squeeze",
+      "one-sided",
+      "no-lhopital",
+      "x->0"
+    ],
+    "statement": "A fractional-part wrapper sits on top of a smooth expansion poisoned by an oscillation that no derivative can tame. With $\\{\\,\\cdot\\,\\}$ the fractional part, evaluate \\[ L=\\lim_{x\\to 0^{+}}\\frac{1}{x}\\left\\{\\,\\frac{4\\bigl(e^{x}-1-x\\bigr)}{x^{2}}+x^{2}\\sin\\!\\frac{1}{x}\\,\\right\\}. \\] First decide which integer the inside hugs, and from which side; only then can the fractional part -- and the squeeze that disposes of the oscillating tail -- be read off.",
+    "answer": "\\[\\boxed{L=\\dfrac{2}{3}}\\]",
+    "trap": "The instinct is to evaluate the inside by its leading order. Since $\\dfrac{e^{x}-1-x}{x^{2}}\\to\\dfrac12$, one writes $4\\cdot\\dfrac12=2$, declares the bracketed quantity $\\to 2$ (the $x^{2}\\sin(1/x)$ term plainly $\\to 0$), and concludes $\\{\\,2\\,\\}=0$, so $L=0$. This is a CONCEPTUAL error, not a slip: a fractional part is decided not by the limiting value but by the SIDE of approach to the integer. The full expansion is $\\dfrac{4(e^{x}-1-x)}{x^{2}}=2+\\dfrac{2}{3}x+\\dfrac{1}{6}x^{2}+\\cdots$, so the inside approaches $2$ strictly FROM ABOVE at rate $\\tfrac23 x$. Hence for small $x>0$ the inside lies in $(2,3)$, its fractional part is the inside minus $2$ -- equal to $\\tfrac23 x+O(x^{2})$, NOT zero -- and dividing by $x$ leaves $\\tfrac23$. A second, subtler trap is to try L'Hopital on $\\{\\,\\cdot\\,\\}/x$: the oscillating piece has derivative $\\dfrac{d}{dx}\\bigl(x^{2}\\sin\\tfrac1x\\bigr)=2x\\sin\\tfrac1x-\\cos\\tfrac1x$, which oscillates in $[-1,1]$ and has NO limit, so L'Hopital is illegal here; the oscillation must instead be squeezed away. A mirror blunder is to forget the side entirely and use $x\\to 0^{-}$, where the inside dips just BELOW $2$, its floor drops to $1$, the fractional part tends to $1$, and $\\{\\,\\cdot\\,\\}/x\\to-\\infty$: the two-sided limit does not exist, and only the right-hand value $\\tfrac23$ is finite.",
+    "solutions": [
+      {
+        "name": "Method I - Expand the smooth part, locate the integer and its side, then squeeze the oscillation",
+        "steps": [
+          "Expand the smooth piece by the Maclaurin series $e^{x}=1+x+\\tfrac{x^2}{2}+\\tfrac{x^3}{6}+\\cdots$, giving $e^{x}-1-x=\\tfrac{x^2}{2}+\\tfrac{x^3}{6}+\\tfrac{x^4}{24}+\\cdots$, hence $\\dfrac{4(e^{x}-1-x)}{x^{2}}=2+\\dfrac{2}{3}x+\\dfrac{1}{6}x^{2}+\\cdots$. The constant term is exactly the integer $2$, approached from ABOVE since the next term $\\tfrac23 x>0$ for $x>0$.",
+          "Add the oscillating tail: the inside is $I(x)=2+\\tfrac23 x+x^{2}\\bigl(\\tfrac16+\\sin\\tfrac1x\\bigr)+\\cdots$. Because $\\bigl|x^{2}(\\tfrac16+\\sin\\tfrac1x)\\bigr|\\le \\tfrac76 x^{2}=o(x)$, for all sufficiently small $x>0$ we have $2<I(x)<3$, so $\\lfloor I(x)\\rfloor=2$ and the fractional part is $\\{I(x)\\}=I(x)-2=\\tfrac23 x+x^{2}\\bigl(\\tfrac16+\\sin\\tfrac1x\\bigr)+\\cdots$.",
+          "Divide by $x$: $\\dfrac{\\{I(x)\\}}{x}=\\dfrac23+x\\bigl(\\tfrac16+\\sin\\tfrac1x\\bigr)+O(x^{2})$. The bracket is bounded in $[\\tfrac16-1,\\tfrac16+1]$, so $\\Bigl|x\\bigl(\\tfrac16+\\sin\\tfrac1x\\bigr)\\Bigr|\\le \\tfrac76 x\\to 0$. By the squeeze theorem this correction vanishes.",
+          "Therefore $L=\\displaystyle\\lim_{x\\to0^{+}}\\dfrac{\\{I(x)\\}}{x}=\\dfrac23=\\boxed{\\dfrac{2}{3}}.$ The series fixed both the integer $2$ and its side of approach; the squeeze, not L'Hopital, killed the oscillation."
+        ]
+      },
+      {
+        "name": "Method II - Strip the integer first, then bound the oscillation and L'Hopital only the smooth quotient",
+        "steps": [
+          "Since the inside tends to $2$ from above, for small $x>0$ the fractional part is literally $I(x)-2$. Write $\\dfrac{\\{I(x)\\}}{x}=\\underbrace{\\dfrac{1}{x}\\!\\left(\\dfrac{4(e^{x}-1-x)}{x^{2}}-2\\right)}_{S(x)}+\\underbrace{x\\sin\\tfrac1x}_{R(x)}$, splitting off the smooth quotient $S$ from the oscillating remainder $R$.",
+          "Handle the remainder by squeeze: $|R(x)|=\\bigl|x\\sin\\tfrac1x\\bigr|\\le|x|\\to0$, so $R(x)\\to0$. (A direct L'Hopital on the original quotient is invalid because $\\tfrac{d}{dx}(x^{2}\\sin\\tfrac1x)=2x\\sin\\tfrac1x-\\cos\\tfrac1x$ has no limit.)",
+          "For the smooth part, combine over a common denominator: $S(x)=\\dfrac{4e^{x}-4-4x-2x^{2}}{x^{3}}$. As $x\\to0^{+}$ this is $\\tfrac00$; three applications of L'Hopital (legal now, the function is analytic) give numerator derivatives $4e^{x}-4-4x$, then $4e^{x}-4$, then $4e^{x}$, over $3x^{2},6x,6$, so $S(x)\\to\\dfrac{4e^{0}}{6}=\\dfrac{4}{6}=\\dfrac23$.",
+          "Adding the two limits, $L=\\lim S(x)+\\lim R(x)=\\dfrac23+0=\\boxed{\\dfrac{2}{3}}.$ The clean separation is what makes L'Hopital permissible on $S$ while forbidding it on $R$."
+        ]
+      },
+      {
+        "name": "Method III - One-sided contrast via the floor, confirming side-sensitivity",
+        "steps": [
+          "Work with $\\{u\\}=u-\\lfloor u\\rfloor$ directly. From $I(x)=2+\\tfrac23 x+x^{2}(\\tfrac16+\\sin\\tfrac1x)+\\cdots$, the floor is governed entirely by the sign of $I(x)-2=\\tfrac23 x+o(x)$. For $x\\to0^{+}$ this is $>0$, so $\\lfloor I\\rfloor=2$ and $\\{I\\}=I-2$.",
+          "Then $\\dfrac{\\{I\\}}{x}=\\dfrac{I(x)-2}{x}$, and since the whole second-order tail divided by $x$ is $O(x)\\to0$ (squeeze on the bounded $\\sin\\tfrac1x$), only $\\dfrac{(2/3)x}{x}=\\dfrac23$ survives: $L=\\boxed{\\dfrac{2}{3}}.$",
+          "Confirm the side-sensitivity that justifies the one-sided statement: for $x\\to0^{-}$, $I(x)-2=\\tfrac23 x+o(x)<0$, so $I(x)\\in(1,2)$, the floor DROPS to $1$, and $\\{I\\}=I-1\\to1$. Hence $\\dfrac{\\{I\\}}{x}\\sim\\dfrac{1}{x}\\to-\\infty$.",
+          "So the limit from the left is infinite and the two-sided limit fails; the only finite value is the right-hand one, $L=\\dfrac{2}{3}$. The whole problem turns on a fractional part reading the SIDE, not the value, of the approach to $2$."
+        ]
+      }
+    ],
+    "remark": "Three traps are stacked into one design. First, a fractional (or floor) wrapper is decided by the SIDE of approach, never by the limiting value: $4(e^{x}-1-x)/x^{2}\\to 2$ tempts the cancellation $\\{2\\}=0$, but the honest series $2+\\tfrac23 x+\\tfrac16 x^{2}+\\cdots$ shows the approach is from above at rate $\\tfrac23 x$, so the fractional part is $\\sim\\tfrac23 x$ and the answer is $\\tfrac23$. Second, the oscillating term $x^{2}\\sin(1/x)$ is engineered to be $o(x)$ -- too small to flip the floor, yet a landmine for anyone reaching for L'Hopital, since its derivative $2x\\sin(1/x)-\\cos(1/x)$ has no limit; the bounded $\\sin(1/x)$ must be SQUEEZED, and the two methods (Taylor for the side, squeeze for the tail) are genuinely distinct ideas. Third, the limit is intrinsically one-sided: from the left the inside dips below $2$, the floor collapses to $1$, the fractional part jumps to $1$, and the quotient blows up to $-\\infty$. The capstone lesson is that a discontinuous wrapper turns a subleading Taylor coefficient into the entire answer, while a higher-order oscillation -- harmless to the floor but lethal to L'Hopital -- can only be retired by a squeeze."
+  }
 ];
