@@ -95,7 +95,7 @@
 
   // ---- math rendering ----
   function texInline(latex){ try { return katex.renderToString(latex, {throwOnError:false, displayMode:false}); } catch(e){ return esc(latex); } }
-  function renderDisplay(el, latex){ try { katex.render(latex, el, {throwOnError:false, displayMode:true}); } catch(e){ el.textContent = latex; } }
+  function renderDisplay(el, latex){ var s=(latex==null?'':String(latex)); if(/\$|\\\[|\\\(|\\par/.test(s)){ renderRich(el,s); return; } try { katex.render(s, el, {throwOnError:false, displayMode:true}); } catch(e){ el.textContent = s; } }
   function renderRich(el, str){
     if (str == null) { el.innerHTML=''; return; }
     var s = String(str).replace(/\\par\b\s*/g, '\u0001');
