@@ -41,11 +41,12 @@ function prose(t){
   let h = esc(t);
   h = h.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
   h = h.replace(/(^|[^`])`([^`]+)`/g,'$1<code>$2</code>');
+  h = h.replace(/\u0001/g,'<span style="display:block;height:6pt"></span>');
   return h;
 }
 function rich(str){
   if(str==null) return '';
-  const s=String(str).replace(/\*\*/g, ''); const re=/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\$([^$]+?)\$|\\\(([\s\S]+?)\\\)/g;
+  const s=String(str).replace(/\*\*/g, '').replace(/\\par\b\s*/g, '\u0001'); const re=/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\$([^$]+?)\$|\\\(([\s\S]+?)\\\)/g;
   let out='', last=0, m;
   while((m=re.exec(s))){
     out += prose(s.slice(last,m.index));

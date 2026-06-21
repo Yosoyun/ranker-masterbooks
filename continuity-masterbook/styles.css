@@ -284,3 +284,6 @@ a{color:inherit}
   body{background:#fff}
   .q{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
 }
+
+/* paragraph break inside prose+math statements (from \par) */
+.parbreak{display:block;height:.6em}

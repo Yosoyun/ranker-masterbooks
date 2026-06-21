@@ -100,20 +100,20 @@
   function renderStmt(el, s){ if (s && /\$|\\\[|\\\(/.test(String(s))) renderRich(el, s); else renderDisplay(el, s); }
   function renderRich(el, str){
     if (str == null) { el.innerHTML=''; return; }
-    let html = esc(String(str));
-    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    html = html.replace(/(^|[^`])`([^`]+)`/g, '$1<code>$2</code>');
-    el.innerHTML = html;
-    if (window.renderMathInElement) {
-      renderMathInElement(el, {
-        delimiters:[
-          {left:'$$',right:'$$',display:true},
-          {left:'\\[',right:'\\]',display:true},
-          {left:'$',right:'$',display:false},
-          {left:'\\(',right:'\\)',display:false},
-        ], throwOnError:false,
-      });
+    var s = String(str).replace(/\\par\b\s*/g, '\u0001');
+    var re = /\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\$([^$]+?)\$|\\\(([\s\S]+?)\\\)/g;
+    function prose(t){ return esc(t).replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/(^|[^`])`([^`]+)`/g,'$1<code>$2</code>').replace(/\u0001/g,'<span class="parbreak"></span>'); }
+    var out='', last=0, m;
+    while((m=re.exec(s))){
+      out += prose(s.slice(last,m.index));
+      var tex = m[1]!=null?m[1]:(m[2]!=null?m[2]:(m[3]!=null?m[3]:m[4]));
+      var disp = (m[1]!=null||m[2]!=null);
+      try { out += katex.renderToString(tex, {throwOnError:false, displayMode:disp}); }
+      catch(e){ out += '<code>'+esc(tex)+'</code>'; }
+      last = re.lastIndex;
     }
+    out += prose(s.slice(last));
+    el.innerHTML = out;
   }
   function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
