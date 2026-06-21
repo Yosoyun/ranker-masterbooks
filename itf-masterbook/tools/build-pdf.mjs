@@ -41,6 +41,7 @@ function prose(t){
   let h = esc(t);
   h = h.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
   h = h.replace(/(^|[^`])`([^`]+)`/g,'$1<code>$2</code>');
+  h = h.replace(/\u0001/g,'<span style="display:block;height:6pt"></span>');
   return h;
 }
 function rich(str){
