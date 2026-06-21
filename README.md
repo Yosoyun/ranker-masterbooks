@@ -1,13 +1,14 @@
 # The Ranker's Masterbooks
 
-Eleven static problem books for the very top of **JEE Advanced** and the **Mathematical Olympiad**.
-1106 original problems, organised by the *instrument* that powers each one, and every problem solved
+Twelve static problem books for the very top of **JEE Advanced** and the **Mathematical Olympiad**.
+1206 original problems, organised by the *instrument* that powers each one, and every problem solved
 **more than one way**. No build step, no dependencies — just open `index.html`.
 
 🌐 **Live:** https://yosoyun.github.io/ranker-masterbooks/
 
 | Book | What | Problems |
 |------|------|----------|
+| **[(1+x)ⁿ · The Binomial Theorem](binomial-masterbook/)** | The general term, middle & greatest term, coefficient extraction, binomial sums via calculus, the roots-of-unity filter, the multinomial theorem, divisibility & remainders, approximations & inequalities, the binomial series for any index, grand hybrids | 100 |
 | **[ℙ · Chance & Uncertainty](probability-masterbook/)** | Classical & geometric probability, conditioning & independence, total probability & Bayes, Bernoulli trials & the binomial, expectation & the indicator trick, recursive & Markov chance, inclusion–exclusion, named distributions, paradoxes, grand hybrids | 100 |
 | **[n! · The Art of Counting](pnc-masterbook/)** | The two principles, permutations, combinations, circular & necklace arrangements, stars & bars, inclusion–exclusion & derangements, combinatorial identities, recurrences & Catalan, lattice paths, grand hybrids | 100 |
 | **[∫ · The Definite Integral](definite-masterbook/)** | Symmetry & parity, the king rule, the limit of a sum, reduction & Wallis, differentiation under the integral, estimation & the MVT, floor & periodic integrands, famous integrals, improper integrals, grand hybrids | 100 |
