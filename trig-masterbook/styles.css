@@ -286,3 +286,18 @@ a{color:inherit}
 
 /* paragraph break inside prose+math statements (from \par) */
 .parbreak{display:block;height:.6em}
+
+
+/* ===== Premium polish (additive · accent-aware) — 2026-06-22 ===== */
+.katex{font-size:1.075em}
+.katex-display>.katex{font-size:1.14em}
+.katex-display{margin:.5em 0 !important}
+.stmt-math{line-height:1.66}
+#view{animation:rmbIn .36s cubic-bezier(.2,.7,.25,1) both}
+@keyframes rmbIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.btn,.open,.qicon-btn,.fchip,.chcard,.tag,.q.card{transition:transform .16s ease,box-shadow .18s ease,background .15s ease,border-color .18s ease,color .15s ease}
+.btn:hover,.open:hover{transform:translateY(-1.5px);box-shadow:0 8px 20px rgba(0,0,0,.16)}
+.chcard:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.17)}
+.q.card:hover{box-shadow:0 8px 26px rgba(0,0,0,.09)}
+.tag:hover{border-color:var(--gold);color:var(--gold2)}
+@media(prefers-reduced-motion:reduce){#view{animation:none}*{transition:none !important}}
