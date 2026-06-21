@@ -78,7 +78,10 @@
     + '.ws-cb{width:17px;height:17px;accent-color:#a4642a;cursor:pointer;flex:0 0 auto;margin-top:1px}'
     + '.ws-btn{cursor:pointer;border:0;border-radius:10px;padding:11px 18px;font:700 14px system-ui;color:#fff;background:#a4642a}'
     + '.ws-btn.ghost{background:rgba(128,128,128,.18);color:inherit}'
-    + '.ws-count{flex:1;font-size:13px;opacity:.75}';
+    + '.ws-count{flex:1;font-size:13px;opacity:.75}'
+    + '.ws-chdl{margin-top:14px;cursor:pointer;border:1.5px solid #a4642a;background:transparent;color:#a4642a;'
+    +   'font:700 12.5px/1 system-ui,Inter,sans-serif;padding:9px 15px;border-radius:10px;transition:.15s;display:inline-flex;gap:7px;align-items:center}'
+    + '.ws-chdl:hover{background:#a4642a;color:#fff}';
   function injectCss(){ if(document.getElementById('ws-css')) return; var st=document.createElement('style'); st.id='ws-css'; st.textContent=css.replace(/#a4642a/g, accent()||'#a4642a'); document.head.appendChild(st); }
 
   // ---- state ----
@@ -205,6 +208,22 @@
   }
 
   // ---- mount ----
+  // per-chapter "Download this chapter" button (injected into the chapter hero)
+  function injectChapterBtn(){
+    var m = (location.hash||'').match(/#\/ch\/([a-zA-Z0-9]+)/);
+    if(!m) return;
+    var key = m[1];
+    var hero = document.querySelector('.chap-hero');
+    if(!hero || hero.querySelector('.ws-chdl')) return;
+    var has = (window.PROBLEMS||[]).some(function(p){ return p.theme===key; });
+    if(!has) return;
+    var b = document.createElement('button');
+    b.className='ws-chdl'; b.innerHTML='&#8595; Download this chapter (PDF)';
+    b.title='This chapter as a premium, signed worksheet';
+    b.onclick=function(){ if(window.RMB_worksheet) window.RMB_worksheet(key); };
+    hero.appendChild(b);
+  }
+
   ready(function(){
     injectCss();
     var fab = document.createElement('button');
@@ -212,6 +231,10 @@
     fab.title='Mix chapters / problems → premium PDF';
     fab.onclick=open;
     document.body.appendChild(fab);
+    var view = document.getElementById('view') || document.body;
+    new MutationObserver(function(){ injectChapterBtn(); }).observe(view, {childList:true, subtree:true});
+    window.addEventListener('hashchange', function(){ setTimeout(injectChapterBtn, 60); });
+    injectChapterBtn();
   });
 
   // expose for a per-chapter download button (app can call window.RMB_worksheet(chapterKey))
