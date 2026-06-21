@@ -16,6 +16,7 @@
   // ---- per-segment KaTeX (same robustness as the app) ----
   function tex(s){
     if (s == null) return '';
+    if(!/\$|\\\[|\\\(/.test(String(s))){ var _t=String(s).replace(/\\par\b\s*/g,' '); try{ return window.katex?katex.renderToString(_t,{throwOnError:false,displayMode:true}):esc(_t); }catch(e){ return '<code>'+esc(_t)+'</code>'; } }
     var str = String(s).replace(/\\par\b\s*/g, '');
     var re = /\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\$([^$]+?)\$|\\\(([\s\S]+?)\\\)/g;
     function prose(t){ return esc(t).replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(//g,'<span class="pb"></span>'); }
