@@ -310,3 +310,43 @@ a{color:inherit}
 #topbar .searchwrap{flex-shrink:0}
 #topbar .crumb:hover{color:var(--ink)}
 @media(max-width:660px){#homeBtn .ht{display:none}#homeBtn.homebtn{padding:7px 11px}}
+
+
+/* ============ Premium refinement v2 — calm · eye-soothing · smooth motion (2026-06-22) ============ */
+/* softer, warmer, comfortable contrast (less glare) */
+:root{ --ink:#2b261d; --ink2:#635d4e; --paper:#f7f2e8; --card:#fffdf8; --line:#e7decb; }
+[data-theme=dark]{ --ink:#ece5d4; --ink2:#b3ab97; --paper:#13110b; --card:#1b1710; --line:#2c271c; }
+body{ font-size:15.5px; line-height:1.64; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  background:radial-gradient(1300px 820px at 92% -14%, color-mix(in srgb,var(--gold-soft) 42%,transparent), transparent 64%), var(--paper) !important; }
+.katex{ font-size:1.072em; }
+.katex-display{ margin:.55em 0 !important; }
+.stmt-math{ line-height:1.72; }
+
+/* ---- MOTION: smooth view enter ---- */
+#view{ animation:rmbEnter .46s cubic-bezier(.21,.7,.28,1) both; }
+@keyframes rmbEnter{ from{opacity:0; transform:translateY(11px)} to{opacity:1; transform:none} }
+/* gentle staggered rise for the chapter grid only (premium, not busy) */
+.chgrid .chcard{ animation:rmbRise .58s cubic-bezier(.21,.7,.28,1) both; }
+.chgrid .chcard:nth-child(2){animation-delay:.05s}.chgrid .chcard:nth-child(3){animation-delay:.10s}.chgrid .chcard:nth-child(4){animation-delay:.15s}.chgrid .chcard:nth-child(5){animation-delay:.20s}.chgrid .chcard:nth-child(6){animation-delay:.25s}.chgrid .chcard:nth-child(n+7){animation-delay:.30s}
+@keyframes rmbRise{ from{opacity:0; transform:translateY(16px)} to{opacity:1; transform:none} }
+
+/* ---- CALM hover: gentle, soothing (overrides v1) ---- */
+.q.card{ transition:transform .38s cubic-bezier(.2,.7,.3,1), box-shadow .38s ease, border-color .3s ease !important; }
+.q.card:hover{ transform:translateY(-2px) !important; box-shadow:0 12px 34px rgba(45,33,12,.07) !important; }
+.chcard{ transition:transform .34s cubic-bezier(.2,.7,.3,1), box-shadow .38s ease, border-color .3s ease !important; }
+.chcard:hover{ transform:translateY(-3px) !important; box-shadow:0 16px 40px rgba(45,33,12,.10) !important; }
+.btn,.open,.qicon-btn,.fchip,.tag{ transition:transform .26s cubic-bezier(.2,.7,.3,1), box-shadow .3s ease, background .26s ease, border-color .26s ease, color .2s ease !important; }
+.btn:hover,.open:hover{ transform:translateY(-1px) !important; box-shadow:0 8px 22px rgba(45,33,12,.12) !important; }
+
+/* ---- SMOOTH reveal (answer / full solution): fade + gentle slide ---- */
+.reveal.open{ animation:rmbReveal .44s cubic-bezier(.2,.7,.28,1) both !important; }
+@keyframes rmbReveal{ from{opacity:0; transform:translateY(-7px)} to{opacity:1; transform:none} }
+
+/* soothing nav + input transitions */
+.nav button{ transition:background .26s ease, color .2s ease !important; }
+#search{ transition:border-color .26s ease, box-shadow .32s ease, background .26s ease, width .25s ease !important; }
+#themeBtn{ transition:transform .4s cubic-bezier(.2,.7,.3,1), background .2s, color .2s !important; }
+#themeBtn:hover{ transform:rotate(18deg) }
+
+/* respect reduced motion */
+@media(prefers-reduced-motion:reduce){ #view,.chgrid .chcard,.reveal.open{ animation:none !important } *{ transition-duration:.01ms !important } }
