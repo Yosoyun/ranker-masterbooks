@@ -165,6 +165,21 @@
     search.addEventListener('input', ()=>{ searchQuery=search.value.trim(); render(); });
     window.addEventListener('hashchange', ()=>{ parseHash(); render(); document.getElementById('app').classList.remove('nav-open'); window.scrollTo(0,0); });
     document.addEventListener('keydown', onKey);
+    setupTopbarUX();
+  }
+  function setupTopbarUX(){
+    var tb=document.getElementById('topbar'); if(!tb) return;
+    var crumb=document.getElementById('crumb'), sw=tb.querySelector('.searchwrap');
+    if(!document.getElementById('homeBtn')){
+      var hb=document.createElement('button');
+      hb.id='homeBtn'; hb.className='homebtn'; hb.type='button';
+      hb.setAttribute('aria-label','Home'); hb.title='Back to the cover';
+      hb.innerHTML='<span class="hi">\u2302</span><span class="ht">Home</span>';
+      hb.addEventListener('click', function(){ location.hash='#/'; });
+      tb.insertBefore(hb, crumb || sw || tb.firstChild);
+    }
+    if(sw){ var hb2=document.getElementById('homeBtn'); tb.insertBefore(sw, (hb2 && hb2.nextSibling) ? hb2.nextSibling : crumb); }
+    if(crumb){ crumb.style.cursor='pointer'; crumb.title='Back to the cover'; crumb.addEventListener('click', function(){ location.hash='#/'; }); }
   }
   function onKey(e){
     if(e.target && /input|textarea/i.test(e.target.tagName)){ if(e.key==='Escape'){e.target.blur(); document.getElementById('search').value=''; searchQuery=''; render();} return; }

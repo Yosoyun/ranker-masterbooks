@@ -302,3 +302,12 @@ a{color:inherit}
 .q.card:hover{box-shadow:0 8px 26px rgba(0,0,0,.09)}
 .tag:hover{border-color:var(--gold);color:var(--gold2)}
 @media(prefers-reduced-motion:reduce){#view{animation:none}*{transition:none !important}}
+
+
+/* ===== topbar UX: home button + search-at-start ===== */
+#homeBtn.homebtn{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line2);border-radius:999px;padding:7px 14px 7px 11px;font:inherit;font-size:12.5px;font-weight:600;color:var(--ink2);cursor:pointer;transition:transform .14s,border-color .15s,color .15s;flex-shrink:0;margin-right:4px}
+#homeBtn.homebtn:hover{color:var(--ink);border-color:var(--gold);transform:translateY(-1px)}
+#homeBtn .hi{font-size:15px;line-height:1;color:var(--gold2)}
+#topbar .searchwrap{flex-shrink:0}
+#topbar .crumb:hover{color:var(--ink)}
+@media(max-width:660px){#homeBtn .ht{display:none}#homeBtn.homebtn{padding:7px 11px}}
