@@ -1,13 +1,14 @@
 # The Ranker's Masterbooks
 
-Thirteen static problem books for the very top of **JEE Advanced** and the **Mathematical Olympiad**.
-1306 original problems, organised by the *instrument* that powers each one, and every problem solved
+Fourteen static problem books for the very top of **JEE Advanced** and the **Mathematical Olympiad**.
+1406 original problems, organised by the *instrument* that powers each one, and every problem solved
 **more than one way**. No build step, no dependencies — just open `index.html`.
 
 🌐 **Live:** https://yosoyun.github.io/ranker-masterbooks/
 
 | Book | What | Problems |
 |------|------|----------|
+| **[v⃗ · Vectors & the Geometry of Space](vectors-masterbook/)** | The dot product & projections, the cross product & areas, scalar & vector triple products, linear dependence & reciprocal bases, position vectors & the section formula, lines in space, planes & pencils, distances & skew lines, vector equations of loci & spheres, grand hybrids | 100 |
 | **[Σ · Patterns, Sums & Limits](sequences-masterbook/)** | AP/GP/HP & means, the AGP & special sums, telescoping & the Vₙ method, sums of powers & figurate numbers, recurrences & characteristic equations, generating functions, convergence & infinite series, sequence inequalities, greatest term & integer part, grand hybrids | 100 |
 | **[(1+x)ⁿ · The Binomial Theorem](binomial-masterbook/)** | The general term, middle & greatest term, coefficient extraction, binomial sums via calculus, the roots-of-unity filter, the multinomial theorem, divisibility & remainders, approximations & inequalities, the binomial series for any index, grand hybrids | 100 |
 | **[ℙ · Chance & Uncertainty](probability-masterbook/)** | Classical & geometric probability, conditioning & independence, total probability & Bayes, Bernoulli trials & the binomial, expectation & the indicator trick, recursive & Markov chance, inclusion–exclusion, named distributions, paradoxes, grand hybrids | 100 |

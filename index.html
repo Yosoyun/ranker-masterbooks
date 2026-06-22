@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Ranker's Masterbooks — Sequences, Complex Numbers, Quadratics, Calculus, Matrices, Trigonometry &amp; more</title>
-<meta name="description" content="Thirteen masterbooks for the very top of JEE Advanced and the Mathematical Olympiad: Σ (Sequences &amp; Series), (1+x)ⁿ (Binomial Theorem), ℙ (Probability), n! (Permutations & Combinations), ∫ (Definite Integration), ℂ (Complex Numbers), x² (Quadratics), f′ (Differentiability), C⁰ (Continuity), MATRIX (Determinants), TRIG (The Circular Arsenal), ARC (Inverse Trig) and LIMITS (The Edge of Calculus). 1306 original problems, each solved more than one way.">
+<title>The Ranker's Masterbooks — Vectors &amp; 3D, Sequences, Complex Numbers, Quadratics, Calculus, Matrices &amp; more</title>
+<meta name="description" content="Fourteen masterbooks for the very top of JEE Advanced and the Mathematical Olympiad: v⃗ (Vectors &amp; 3D), Σ (Sequences &amp; Series), (1+x)ⁿ (Binomial Theorem), ℙ (Probability), n! (Permutations & Combinations), ∫ (Definite Integration), ℂ (Complex Numbers), x² (Quadratics), f′ (Differentiability), C⁰ (Continuity), MATRIX (Determinants), TRIG (The Circular Arsenal), ARC (Inverse Trig) and LIMITS (The Edge of Calculus). 1406 original problems, each solved more than one way.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz@0,6..72;1,6..72&display=swap" rel="stylesheet">
 <style>
   :root{ --paper:#f4efe4; --ink:#1c1a16; --ink2:#5b5446; --ink3:#8b8474; --line:#e2d8c2;
-         --gold:#a36a12; --gold2:#caa24a; --teal:#0c7b6e; --teal2:#13a892; --cobalt:#1e50c8; --cobalt2:#3b76f0; --violet:#6d28d9; --violet2:#8b5cf6; --crimson:#be123c; --crimson2:#e11d48; --amber:#b45309; --amber2:#ea580c; --emerald:#047857; --emerald2:#059669; --fuchsia:#a21caf; --fuchsia2:#c026d3; --cyan:#0e7490; --cyan2:#0891b2; --indigo:#4338ca; --indigo2:#6366f1; --rose:#be185d; --rose2:#db2777; --orange:#c2410c; --orange2:#f97316; --slate:#475569; --slate2:#64748b;
+         --gold:#a36a12; --gold2:#caa24a; --teal:#0c7b6e; --teal2:#13a892; --cobalt:#1e50c8; --cobalt2:#3b76f0; --violet:#6d28d9; --violet2:#8b5cf6; --crimson:#be123c; --crimson2:#e11d48; --amber:#b45309; --amber2:#ea580c; --emerald:#047857; --emerald2:#059669; --fuchsia:#a21caf; --fuchsia2:#c026d3; --cyan:#0e7490; --cyan2:#0891b2; --indigo:#4338ca; --indigo2:#6366f1; --rose:#be185d; --rose2:#db2777; --orange:#c2410c; --orange2:#f97316; --slate:#475569; --slate2:#64748b; --sky:#0284c7; --sky2:#0ea5e9;
          --serif:'Fraunces',Georgia,serif; --read:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,sans-serif; }
   *{box-sizing:border-box} html,body{margin:0;padding:0}
   body{ background:radial-gradient(1100px 700px at 85% -10%, #f6ecd6, transparent 60%), var(--paper);
@@ -67,9 +67,11 @@
   .binom .stats b{ color:var(--orange); }
   .seq .bk{ color:var(--slate); } .seq .glyph{ color:var(--slate); } .seq .open{ background:var(--slate); }
   .seq .stats b{ color:var(--slate); }
+  .vec .bk{ color:var(--sky); } .vec .glyph{ color:var(--sky); } .vec .open{ background:var(--sky); }
+  .vec .stats b{ color:var(--sky); }
   footer{ color:var(--ink3); font-size:12.5px; text-align:center; padding:22px; border-top:1px solid var(--line); }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#100f0c; --ink:#efe8d8; --ink2:#bcb4a1; --ink3:#857e6c; --line:#2b271e; --gold2:#e6b860; --teal2:#3fd6bf; --cobalt2:#6f9bff; --violet2:#a78bfa; --crimson2:#fb7185; --amber2:#fbbf24; --emerald2:#34d399; --fuchsia2:#e879f9; --cyan2:#22d3ee; --indigo2:#818cf8; --rose2:#f472b6; --orange2:#fb923c; --slate2:#94a3b8; }
+    :root{ --paper:#100f0c; --ink:#efe8d8; --ink2:#bcb4a1; --ink3:#857e6c; --line:#2b271e; --gold2:#e6b860; --teal2:#3fd6bf; --cobalt2:#6f9bff; --violet2:#a78bfa; --crimson2:#fb7185; --amber2:#fbbf24; --emerald2:#34d399; --fuchsia2:#e879f9; --cyan2:#22d3ee; --indigo2:#818cf8; --rose2:#f472b6; --orange2:#fb923c; --slate2:#94a3b8; --sky2:#38bdf8; }
     body{ background:radial-gradient(1100px 700px at 85% -10%, #1a160d, transparent 60%), var(--paper); }
     .book{ background:#1a1813; }
   }
@@ -78,11 +80,21 @@
 <body>
   <div class="wrap">
     <div class="kick">The Ranker's Masterbooks</div>
-    <h1>Thirteen books for the top<span class="dot">.</span></h1>
+    <h1>Fourteen books for the top<span class="dot">.</span></h1>
     <p class="lede">Original problems for the very top of JEE Advanced and the Mathematical Olympiad — where the obvious move is the wrong move, and every problem is solved more than one way.</p>
-    <div class="meta">1306 problems · 130 chapters · multi-method · adversarially verified in Python.</div>
+    <div class="meta">1406 problems · 140 chapters · multi-method · adversarially verified in Python.</div>
 
     <div class="grid">
+      <div class="book vec">
+        <div class="glyph">v&#8407;</div>
+        <div class="bk">Vectors &amp; the Geometry of Space</div>
+        <h2>v&#8407;<span style="color:var(--sky2)">.</span></h2>
+        <div class="sub">Let the vectors do the geometry</div>
+        <p>Olympiad/JEE vectors &amp; 3D — the dot &amp; cross products, the scalar &amp; vector triple products, linear dependence &amp; bases, position vectors &amp; the section formula, lines &amp; planes in space, distances &amp; skew lines, and vector equations of loci &amp; spheres.</p>
+        <div class="stats"><div><b>100</b><span>Problems</span></div><div><b>10</b><span>Chapters</span></div><div><b>3–5</b><span>Difficulty</span></div></div>
+        <a class="open" href="vectors-masterbook/index.html">Open the book →</a>
+        <div class="pdfs"><a href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/VEC-Problems.pdf">↓ Problems PDF</a><a href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/VEC-Solutions.pdf">↓ Solutions PDF</a></div>
+      </div>
       <div class="book seq">
         <div class="glyph">Σ</div>
         <div class="bk">Patterns, Sums &amp; Limits</div>
