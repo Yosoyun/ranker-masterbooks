@@ -37,6 +37,7 @@ const chapters = THEME_ORDER.map((k,ci)=>({ key:k, ci, rom:ROMAN[ci],
 // ---- math helpers ----
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const TX = (latex, display) => { try { return katex.renderToString(latex, {displayMode:display, throwOnError:false}); } catch(e){ return esc(latex); } };
+const stmtHTML = s => (s && /\$|\\\[|\\\(/.test(String(s))) ? rich(s) : TX(s,true);
 function prose(t){
   let h = esc(t);
   h = h.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
@@ -46,11 +47,11 @@ function prose(t){
 }
 function rich(str){
   if(str==null) return '';
-  const s=String(str).replace(/\*\*/g, ''); const re=/\$\$([\s\S]+?)\$\$|\$([^$]+)\$/g;
+  const s=String(str).replace(/\*\*/g, '').replace(/\\par\b\s*/g, ''); const re=/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\$([^$]+?)\$|\\\(([\s\S]+?)\\\)/g;
   let out='', last=0, m;
   while((m=re.exec(s))){
     out += prose(s.slice(last,m.index));
-    out += (m[1]!=null) ? TX(m[1],true) : TX(m[2],false);
+    out += (m[1]!=null) ? TX(m[1],true) : (m[2]!=null) ? TX(m[2],true) : (m[3]!=null) ? TX(m[3],false) : TX(m[4],false);
     last=re.lastIndex;
   }
   out += prose(s.slice(last));
@@ -171,10 +172,10 @@ function problemHTML(p, withSolutions){
   let h=`<div class="p${withSolutions?' sol':''}">`;
   h+=`<div class="p-head"><span class="p-num">№${p._id}</span><span class="p-title">${esc(p.title||'')}</span>${diffPips(p.difficulty||3)}</div>`;
   h+=`<div class="task">${esc(p.task||'Evaluate')}</div>`;
-  h+=`<div class="stmt">${TX(p.statement,true)}</div>`;
+  h+=`<div class="stmt">${stmtHTML(p.statement)}</div>`;
   if(p.tags?.length) h+=`<div class="tags">${p.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>`;
   if(withSolutions){
-    h+=`<div class="ans"><span class="lab">${esc(p.answerLabel||'Answer')}</span>${TX(p.answer,true)}</div>`;
+    h+=`<div class="ans"><span class="lab">${esc(p.answerLabel||'Answer')}</span>${stmtHTML(p.answer)}</div>`;
     if(p.trap) h+=`<div class="trap"><span class="lab">The Trap</span>${rich(p.trap)}</div>`;
     (p.solutions||[]).forEach(s=>{
       h+=`<div class="method"><div class="mname">${esc(s.name||'Method')}</div><ol class="steps">${(s.steps||[]).map(st=>`<li>${rich(st)}</li>`).join('')}</ol></div>`;
