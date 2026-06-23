@@ -1,13 +1,14 @@
 # The Ranker's Masterbooks
 
-Seventeen static problem books for the very top of **JEE Advanced** and the **Mathematical Olympiad**.
-1706 original problems, organised by the *instrument* that powers each one, and every problem solved
+Eighteen static problem books for the very top of **JEE Advanced** and the **Mathematical Olympiad**.
+1806 original problems, organised by the *instrument* that powers each one, and every problem solved
 **more than one way**. No build step, no dependencies — just open `index.html`.
 
 🌐 **Live:** https://yosoyun.github.io/ranker-masterbooks/
 
 | Book | What | Problems |
 |------|------|----------|
+| **[∫dx · The Antiderivative & Its Constant](indefinite-masterbook/)** | Standard forms, substitution, integration by parts, rational functions & partial fractions, trigonometric integrals & the Weierstrass substitution, irrational integrands, the special denominators, reduction formulae, exact derivatives, grand hybrids | 100 |
 | **[f(x) · Maps, Relations & Their Inverses](functions-masterbook/)** | Relations equivalence & order, domain & range, injective surjective & bijective (& counting maps), composition, inverse functions & involutions, functional equations, even odd & periodic symmetry, greatest-integer fractional-part signum & \|·\|, graphs & transformations, grand hybrids | 100 |
 | **[S=0 · The Sections of a Cone](conics-masterbook/)** | The circle, the parabola, the ellipse & the hyperbola, tangents normals & chords of contact (T=0), pole & polar & conjugate points, the general second-degree equation & its classification, focus-directrix & eccentricity, loci & parametric & optimisation, grand hybrids | 100 |
 | **[dy/dx · Solving the Equations of Change](diffeq-masterbook/)** | Formation, order & degree, variables separable & substitutions, homogeneous & isobaric, linear & Bernoulli, exact equations & integrating factors, Clairaut & singular solutions, geometric ODEs, orthogonal trajectories, growth/decay/cooling/mixing, grand hybrids | 100 |
