@@ -62,3 +62,25 @@
 .enh-x{ position:absolute; top:14px; right:14px; width:30px; height:30px; border-radius:999px; border:0;
   background:rgba(127,127,127,.14); color:inherit; font-size:18px; line-height:1; cursor:pointer; }
 .enh-x:hover{ background:rgba(127,127,127,.26); }
+
+/* ---- Phase 4: per-problem footer (similar / share / qr / report) ---- */
+.enh-foot{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 22px 18px; padding-top:12px; border-top:1px dashed var(--line2,#d8cdb4); }
+.enh-act{ font:600 12px/1 var(--sans,'Inter',system-ui,sans-serif); cursor:pointer; color:var(--ink2,#5b5446);
+  background:transparent; border:1px solid var(--line2,#d8cdb4); border-radius:999px; padding:6px 12px; transition:.15s; }
+.enh-act:hover{ color:var(--gold,#a4642a); border-color:var(--gold,#a4642a); }
+.enh-act.enh-rep{ margin-left:auto; color:var(--ink3,#8b8474); }
+.enh-act.enh-rep:hover{ color:#b3402e; border-color:#b3402e; }
+/* toast */
+.enh-toast{ position:fixed; left:50%; bottom:26px; transform:translate(-50%,16px); z-index:9800; opacity:0;
+  background:var(--ink,#1c1a16); color:var(--paper,#fff); font:600 13px var(--sans,'Inter',system-ui,sans-serif);
+  padding:11px 18px; border-radius:999px; box-shadow:0 10px 30px rgba(0,0,0,.3); transition:opacity .28s, transform .28s; pointer-events:none; }
+.enh-toast.go{ opacity:1; transform:translate(-50%,0); }
+/* QR popover */
+.enh-qrcard{ width:min(360px,calc(100% - 28px)); text-align:center; }
+.enh-qrcard h3{ padding-bottom:10px; }
+.enh-qrimg{ padding:6px 0 12px; }
+.enh-qrimg img{ width:230px; height:230px; image-rendering:pixelated; border:1px solid var(--line,#e2d8c2); border-radius:10px; background:#fff; padding:8px; }
+/* sidebar feedback link */
+.enh-fblink{ display:inline-block; margin-top:12px; font:600 11.5px/1.5 var(--sans,'Inter',system-ui,sans-serif);
+  color:var(--spine-dim,#8b8474); text-decoration:none; border-bottom:1px dashed currentColor; }
+.enh-fblink:hover{ color:var(--gold2,#caa24a); }
