@@ -224,7 +224,7 @@ window.PROBLEMS = [
         "name": "Per-element three-way choice (the bijection)",
         "steps": [
           "Decide the fate of each trophy independently. For one trophy there are exactly three mutually exclusive options: in $B$ and in $A$ (Gold), in $B$ but not $A$ (Bronze), or in neither (Storage).",
-          "The forbidden combination \\enquote{in $A$ but not in $B$} is excluded precisely by $A\\subseteq B$, so every trophy genuinely has $3$ admissible states and no others.",
+          "The forbidden combination “in $A$ but not in $B$” is excluded precisely by $A\\subseteq B$, so every trophy genuinely has $3$ admissible states and no others.",
           "This is a bijection between admissible pairs $(A,B)$ and strings of length $5$ over the $3$-symbol alphabet $\\{\\text{Gold},\\text{Bronze},\\text{Storage}\\}$.",
           "By the rule of product over $5$ independent trophies: $3^5 = \\boxed{243}$."
         ]
@@ -239,7 +239,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "A subset-containment constraint $A\\subseteq B$ is secretly a per-element ternary choice. Recognising the bijection \\enquote{pair of nested sets $\\leftrightarrow$ string over three symbols} turns a binomial sum into a one-line power. More generally, the number of chains $A_1\\subseteq A_2\\subseteq\\cdots\\subseteq A_{m}$ inside an $n$-set is $(m+1)^n$, since each element independently picks the first link it enters."
+    "remark": "A subset-containment constraint $A\\subseteq B$ is secretly a per-element ternary choice. Recognising the bijection “pair of nested sets $\\leftrightarrow$ string over three symbols” turns a binomial sum into a one-line power. More generally, the number of chains $A_1\\subseteq A_2\\subseteq\\cdots\\subseteq A_{m}$ inside an $n$-set is $(m+1)^n$, since each element independently picks the first link it enters."
   },
   {
     "theme": "fundamental",
@@ -430,7 +430,7 @@ window.PROBLEMS = [
       "identical-objects",
       "words"
     ],
-    "statement": "All seven letters of the word $BALLOON$ are rearranged into distinct strings (the two $\\mathrm{L}$'s are indistinguishable, and so are the two $\\mathrm{O}$'s). \\[\\text{Find the number of these distinct strings in which the letter } \\mathrm{A} \\text{ stands to the left of } both  \\mathrm{O}\\text{'s.}\\]",
+    "statement": "All seven letters of the word $BALLOON$ are rearranged into distinct strings (the two $\\mathrm{L}$'s are indistinguishable, and so are the two $\\mathrm{O}$'s). \\[\\text{Find the number of these distinct strings in which the letter } \\mathrm{A} \\text{ stands to the left of } both \\mathrm{O}\\text{'s.}\\]",
     "answer": "$420$",
     "trap": "Computing the total $\\dfrac{7!}{2!\\,2!}=1260$ and then dividing by $2$ \"because $\\mathrm{A}$ is before each $\\mathrm{O}$.\" Halving treats the two $\\mathrm{O}$'s as a single ordering event; in reality the three vowels $\\{\\mathrm{A},\\mathrm{O},\\mathrm{O}\\}$ occupy three slots and $\\mathrm{A}$ is equally likely to be first, second, or third among them, so the correct factor is $\\tfrac13$, not $\\tfrac12$.",
     "solutions": [
@@ -600,7 +600,7 @@ window.PROBLEMS = [
       "non-adjacent",
       "counting"
     ],
-    "statement": "Consider strings of length $6$ over the alphabet $\\{\\mathrm{A},\\mathrm{B},\\mathrm{C},\\mathrm{D}\\}$, where each position may be any of the four letters (repetition allowed). \\[\\text{Determine how many such strings contain } at least one  \\mathrm{A} \\text{ but } never two  \\mathrm{A}\\text{'s in adjacent positions.}\\]",
+    "statement": "Consider strings of length $6$ over the alphabet $\\{\\mathrm{A},\\mathrm{B},\\mathrm{C},\\mathrm{D}\\}$, where each position may be any of the four letters (repetition allowed). \\[\\text{Determine how many such strings contain } at least one \\mathrm{A} \\text{ but } never two \\mathrm{A}\\text{'s in adjacent positions.}\\]",
     "answer": "$2376$",
     "trap": "Counting strings with no two adjacent $\\mathrm{A}$'s but forgetting the \"at least one $\\mathrm{A}$\" clause. That count is $3105$, and it secretly includes the $3^6=729$ strings that use no $\\mathrm{A}$ at all, which must be excluded; $3105-729=2376$. A second slip is treating the $\\mathrm{A}$-positions as the whole answer (e.g. $\\binom{6}{1}+\\binom{5}{2}+\\binom{4}{3}=20$ patterns), forgetting that each of the remaining slots still has $3$ non-$\\mathrm{A}$ choices.",
     "solutions": [
@@ -2844,7 +2844,7 @@ window.PROBLEMS = [
       "free action",
       "double counting"
     ],
-    "statement": "A counter starts on the number line at height $0$ and makes a sequence of $13$ unit steps, each either $U$ (height $+1$) or $D$ (height $-1$). Exactly $6$ steps are $U$ and $7$ are $D$, so the counter ends at height $-1$. Call such a step-word submerged if after every one of its $13$ steps the running height is strictly negative (i.e. the counter dives below $0$ on the first step and never resurfaces to $0$ or above). The intended solution is a double count by cyclic rotation: list all $\\binom{13}{6}$ step-words around a circle of $13$ positions, group them into rotation orbits, and show each orbit contributes the same fixed number of submerged words. Carry this out and find the number of submerged step-words. \\[Caution.  \\text{The cyclic argument is what makes this clean, but it works only because of the lone extra }D.\\]",
+    "statement": "A counter starts on the number line at height $0$ and makes a sequence of $13$ unit steps, each either $U$ (height $+1$) or $D$ (height $-1$). Exactly $6$ steps are $U$ and $7$ are $D$, so the counter ends at height $-1$. Call such a step-word submerged if after every one of its $13$ steps the running height is strictly negative (i.e. the counter dives below $0$ on the first step and never resurfaces to $0$ or above). The intended solution is a double count by cyclic rotation: list all $\\binom{13}{6}$ step-words around a circle of $13$ positions, group them into rotation orbits, and show each orbit contributes the same fixed number of submerged words. Carry this out and find the number of submerged step-words. \\[Caution. \\text{The cyclic argument is what makes this clean, but it works only because of the lone extra }D.\\]",
     "answer": "$132$",
     "trap": "The conceptual trap is not arithmetic \\,---\\, it is running the cyclic (cycle-lemma) double count on the wrong, ``balanced'' sequence, where the cyclic group does NOT act freely. The seductive shortcut: ``forget the awkward $13$th step; really I want a balanced word of $6$ ups and $6$ downs that stays weakly on one side, and by symmetry exactly one of its rotations is good, so the answer is $\\binom{12}{6}/12$.'' That reasoning is fatally flawed, because for an equal number of $U$ and $D$ the running sum returns to $0$, so a word like $UDUDUDUDUDUD$ has period $2$: its rotation orbit has size $2$, not $12$, and dividing $\\binom{12}{6}=924$ by $12$ does not even give an integer ($924/12=77$ here is an accident of these numbers, but $\\binom{6}{3}/6=20/6$ and $\\binom{10}{5}/10=252/10$ are not integers, exposing the lie). Periodicity is exactly what the cycle lemma forbids, and it is forbidden precisely when the total displacement is $\\pm1$ (or coprime to the length) \\,---\\, that is the entire reason the problem ships with $7$ downs against $6$ ups on $13$ positions: the displacement $-1$ is coprime to $13$, every orbit has full size $13$, and dividing by $13$ is exact. A student who strips the extra $D$ to ``simplify'' destroys the free action, mis-applies $\\tfrac{1}{2n}\\binom{2n}{n}$, and gets a non-integer or a number with no meaning. The missed structural condition \\,---\\, nonzero, length-coprime displacement so the rotation orbits are all of full size \\,---\\, is the whole engine of the count.",
     "solutions": [
@@ -4007,7 +4007,7 @@ window.PROBLEMS = [
           "For a chosen set of $j$ feuding pairs forced adjacent, glue each such pair into a block (each block has $2$ internal orders): we arrange $8-j$ objects around the circle in $(8-j-1)!$ ways, times $2^{j}$, times $\\binom{4}{j}$ ways to choose the pairs.",
           "By inclusion–exclusion the count of seatings with no feuding pair adjacent is $\\sum_{j=0}^{4}(-1)^j\\binom{4}{j}\\,(8-j-1)!\\,2^{j}.$",
           "Evaluate: $5040-4\\cdot6!\\cdot2+6\\cdot5!\\cdot4-4\\cdot4!\\cdot8+1\\cdot3!\\cdot16 = 5040-5760+2880-768+96.$",
-          "This gives $1488.$ \\boxed{1488}"
+          "This gives $1488.$ $\\boxed{1488}$"
         ]
       },
       {
@@ -4015,7 +4015,7 @@ window.PROBLEMS = [
         "steps": [
           "Seat $K_1$ in a fixed seat to kill rotations; the remaining $7$ knights fill the other seats in $7!$ linear-around-the-fixed-point ways, but adjacency to $K_1$'s two neighbours is still circular.",
           "Apply inclusion–exclusion over the four forbidden adjacencies as in Method 1 (the glued-block counting is identical once a reference seat is fixed), yielding the same alternating sum.",
-          "The sum collapses to $1488.$ \\boxed{1488}"
+          "The sum collapses to $1488.$ $\\boxed{1488}$"
         ]
       },
       {
@@ -4023,7 +4023,7 @@ window.PROBLEMS = [
         "steps": [
           "Fix $K_1$ at seat $0$ and permute the other $7$ knights over seats $1,\\dots,7$; reject any seating in which a feuding pair occupies seats differing by $1$ or $7$ (the circular neighbours).",
           "Enumeration of the $7!=5040$ permutations leaves exactly $1488$ valid seatings.",
-          "\\boxed{1488}"
+          "$\\boxed{1488}$"
         ]
       }
     ],
@@ -4147,7 +4147,7 @@ window.PROBLEMS = [
           "A palindrome of length $12$ is determined by its first $6$ bits $s_1\\dots s_6$, with $s_7=s_6,\\ s_8=s_5,\\dots$.",
           "The fold forces $s_6=s_7$ (the two central bits), so if $s_6=1$ then $s_7=1$ and they are adjacent $1$'s — forbidden. Hence $s_6=0$, and the first half must itself be sparse.",
           "Thus the count equals the number of sparse strings of length $6$ ending in $0$. Sparse strings of length $5$ (any ending) number $F_{7}=13$, each extended by a final $0$, all sparse.",
-          "Therefore the answer is $13.$ \\boxed{13}"
+          "Therefore the answer is $13.$ $\\boxed{13}$"
         ]
       },
       {
@@ -4155,7 +4155,7 @@ window.PROBLEMS = [
         "steps": [
           "Let $g_n$ count sparse strings of length $n$ ending in $0$. A sparse string of length $6$ ending in $0$ is any sparse string of length $5$ followed by $0$, so $g_6=f_5$ where $f_5=F_{7}=13$ is the total number of sparse length-$5$ strings.",
           "By the sparse-string recurrence $f_n=f_{n-1}+f_{n-2}$ with $f_1=2,f_2=3$: $f_3=5,f_4=8,f_5=13$.",
-          "Hence $13$ palindromic sparse strings of length $12$. \\boxed{13}"
+          "Hence $13$ palindromic sparse strings of length $12$. $\\boxed{13}$"
         ]
       },
       {
@@ -4163,7 +4163,7 @@ window.PROBLEMS = [
         "steps": [
           "Enumerate all $2^{12}$ strings; keep those equal to their reverse and containing no ``$11$''.",
           "Exactly $13$ survive, matching the half-string Fibonacci count.",
-          "\\boxed{13}"
+          "$\\boxed{13}$"
         ]
       }
     ],
@@ -4237,7 +4237,7 @@ window.PROBLEMS = [
         "steps": [
           "An involution decomposes into $1$-cycles (fixed points) and $2$-cycles. Forbidding fixed points forces $\\sigma$ to be a product of disjoint transpositions covering all $8$ elements — a perfect matching of an $8$-element set.",
           "The number of perfect matchings of $2m$ elements is the double factorial $(2m-1)!!$.",
-          "For $2m=8$: $7!!=7\\cdot5\\cdot3\\cdot1=105.$ \\boxed{105}"
+          "For $2m=8$: $7!!=7\\cdot5\\cdot3\\cdot1=105.$ $\\boxed{105}$"
         ]
       },
       {
@@ -4245,7 +4245,7 @@ window.PROBLEMS = [
         "steps": [
           "Let $M(2m)$ be the number of perfect matchings. Element $1$ must pair with one of the other $2m-1$ elements; whichever it picks, the remaining $2m-2$ elements form a matching independently.",
           "Hence $M(2m)=(2m-1)\\,M(2m-2)$ with $M(0)=1$, giving $M(8)=7\\cdot5\\cdot3\\cdot1=105$ — the same number arrives by double-counting (matching, distinguished edge) pairs.",
-          "\\boxed{105}"
+          "$\\boxed{105}$"
         ]
       },
       {
@@ -4253,7 +4253,7 @@ window.PROBLEMS = [
         "steps": [
           "Generate all $8!$ permutations; keep those with $\\sigma(\\sigma(i))=i$ and $\\sigma(i)\\neq i$ for all $i$.",
           "Exactly $105$ survive, confirming $7!!$.",
-          "\\boxed{105}"
+          "$\\boxed{105}$"
         ]
       }
     ],
@@ -4281,7 +4281,7 @@ window.PROBLEMS = [
           "Total bijections: $8!=40320$. The four forbidden placements $(A_i\\to E_i)$ correspond to $4$ cells, one in each of distinct rows and columns, so any $k$ of them can be occupied simultaneously in $\\binom{4}{k}$ ways (the rook polynomial coefficient $r_k=\\binom{4}{k}$).",
           "By inclusion–exclusion, placing $k$ of the forbidden cells and filling the rest arbitrarily gives $(8-k)!$ completions; with sign: $\\sum_{k=0}^{4}(-1)^k\\binom{4}{k}(8-k)!$.",
           "Evaluate: $40320-4\\cdot5040+6\\cdot720-4\\cdot120+1\\cdot24=40320-20160+4320-480+24.$",
-          "This equals $24024.$ \\boxed{24024}"
+          "This equals $24024.$ $\\boxed{24024}$"
         ]
       },
       {
@@ -4289,7 +4289,7 @@ window.PROBLEMS = [
         "steps": [
           "The number of permutations of $n$ with $m$ specified non-attacking forbidden positions is $\\sum_{k=0}^{m}(-1)^k\\binom{m}{k}(n-k)!$. Here $n=8,\\ m=4$.",
           "Compute the sum termwise as above to obtain $24024$; equivalently this is the ``partial derangement'' $D_{8,4}$ where only $4$ of the $8$ positions are constrained.",
-          "\\boxed{24024}"
+          "$\\boxed{24024}$"
         ]
       },
       {
@@ -4297,7 +4297,7 @@ window.PROBLEMS = [
         "steps": [
           "Enumerate all $8!$ bijections and reject any with $\\sigma(i)=i$ for some $i\\in\\{1,2,3,4\\}$.",
           "Exactly $24024$ assignments remain, matching the inclusion–exclusion total.",
-          "\\boxed{24024}"
+          "$\\boxed{24024}$"
         ]
       }
     ],
@@ -4325,7 +4325,7 @@ window.PROBLEMS = [
           "Each token has exactly $2$ allowed boxes (its two non-matching colours). Without the onto requirement there are $2^6 = 64$ colour-avoiding placements.",
           "Run inclusion-exclusion over which boxes are left empty. For a set $T$ of forbidden-empty boxes, the number of colour-avoiding placements using only boxes outside $T$ is $\\prod_i \\bigl|\\{\\text{allowed boxes for token } i\\} \\setminus T\\bigr|$.",
           "$|T| = 0$: $2^6 = 64$. $|T| = 1$ (say remove $R$): each red token still has $2$ allowed boxes (it never used $R$), while each non-red token drops to $1$ allowed box, giving $2^2 \\cdot 1^4 = 4$; with three choices of $T$ this contributes $3 \\cdot 4 = 12$. $|T| = 2$ (keep only one box, say $R$): the two red tokens cannot enter $R$, so the product is $0$; all three choices give $0$.",
-          "Inclusion-exclusion: $64 - 12 + 0 = 52$. \\boxed{52}"
+          "Inclusion-exclusion: $64 - 12 + 0 = 52$. $\\boxed{52}$"
         ]
       },
       {
@@ -4333,14 +4333,14 @@ window.PROBLEMS = [
         "steps": [
           "Equivalently, sum over surjections and remove own-colour placements by inclusion-exclusion. Both inclusion-exclusions (onto over empty boxes, colour-ban over each token) commute, so collecting terms yields $\\sum_{T \\subseteq \\{R,G,B\\}} (-1)^{|T|} \\prod_i a_i(T)$, where $a_i(T)$ counts each token's surviving boxes after deleting $T$ and its own colour.",
           "Computing the product for each $T$ gives the same $64 - 12 + 0 = 52$, confirming the order of the two axes is irrelevant.",
-          "\\boxed{52}"
+          "$\\boxed{52}$"
         ]
       },
       {
         "name": "Brute-force enumeration",
         "steps": [
           "Iterate over all $3^6 = 729$ placements; keep those whose image is all of $\\{R, G, B\\}$ and in which no token sits in its own colour's box.",
-          "Exactly $52$ placements survive. \\boxed{52}"
+          "Exactly $52$ placements survive. $\\boxed{52}$"
         ]
       }
     ],

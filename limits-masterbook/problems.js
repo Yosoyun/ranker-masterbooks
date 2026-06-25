@@ -4086,7 +4086,7 @@ window.PROBLEMS = [
         ]
       },
       {
-        "name": "Method III - Telescoping decomposition m\\,\\arctan(1/m)",
+        "name": "Method III - Telescoping decomposition $m\\,\\arctan(1/m)$",
         "steps": [
           "Using $n^{2}+n=m-1$ with $m=n^{2}+n+1$, split $P_n=(m-1)\\arctan\\dfrac1m=\\underbrace{m\\arctan\\dfrac1m}_{Q_m}-\\underbrace{\\arctan\\dfrac1m}_{\\varepsilon_m}.$",
           "For the first piece, set $g(u)=u\\arctan\\tfrac1u$. Since $\\arctan\\tfrac1u=\\tfrac1u-\\tfrac{1}{3u^{3}}+\\cdots$, one gets $g(u)=1-\\dfrac{1}{3u^{2}}+O(u^{-4})<1$, so $Q_m=g(m)\\to1$ strictly from below as $m\\to\\infty$ (and $m\\to\\infty$ because $m=n^{2}+n+1$).",

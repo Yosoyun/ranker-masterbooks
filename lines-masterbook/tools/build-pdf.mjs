@@ -44,19 +44,27 @@ function prose(t){
   h = h.replace(/\u0001/g,'<span style="display:block;height:6pt"></span>');
   return h;
 }
+function stripcmd(s){
+  for(let i=0;i<4;i++) s=s.replace(/\\(emph|textbf|textit|textsf|texttt|textrm|textsc|textnormal|text)\{((?:[^{}]|\{[^{}]*\})*)\}/g,'$2');
+  return s.replace(/\\dots\b|\\ldots\b/g,'…').replace(/\\textemdash\b/g,'—').replace(/\\textendash\b/g,'–').replace(/\\textquotedblleft\b/g,'“').replace(/\\textquotedblright\b/g,'”').replace(/\\textquoteleft\b/g,'‘').replace(/\\textquoteright\b/g,'’').replace(/\\(newline|medskip|bigskip|smallskip|noindent)\b/g,' ');
+}
 function rich(str){
   if(str==null) return '';
-  const s=String(str).replace(/\*\*/g, '').replace(/\\par\b\s*/g, '\u0001'); const re=/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\$([^$]+?)\$|\\\(([\s\S]+?)\\\)/g;
-  let out='', last=0, m;
-  while((m=re.exec(s))){
-    out += prose(s.slice(last,m.index));
-    out += (m[1]!=null) ? TX(m[1],true) : (m[2]!=null) ? TX(m[2],true) : (m[3]!=null) ? TX(m[3],false) : TX(m[4],false);
-    last=re.lastIndex;
+  let s=String(str); const math=[];
+  s=s.replace(/\$\$[\s\S]+?\$\$|\\\[[\s\S]+?\\\]|\$[^$]+?\$|\\\([\s\S]+?\\\)/g, function(mm){ math.push(mm); return '\u0002'+(math.length-1)+'\u0002'; });
+  s=stripcmd(s).replace(/\\par\b\s*/g, '\u0001');
+  let out='', parts=s.split(/\u0002(\d+)\u0002/);
+  for(let i=0;i<parts.length;i++){
+    if(i%2===0){ out+=prose(parts[i]); }
+    else { const mm=math[+parts[i]];
+      if(mm.slice(0,2)==='$$') out+=TX(mm.slice(2,-2),true);
+      else if(mm.slice(0,2)==='\\[') out+=TX(mm.slice(2,-2),true);
+      else if(mm.slice(0,2)==='\\(') out+=TX(mm.slice(2,-2),false);
+      else out+=TX(mm.slice(1,-1),false);
+    }
   }
-  out += prose(s.slice(last));
   return out;
 }
-// statement/answer auto-detect: prose+math (rich) vs pure display LaTeX
 const stmtHTML = s => (s && /\$|\\\[|\\\(/.test(String(s))) ? rich(s) : TX(s,true);
 function diffPips(d){
   let s='<span class="diff">';
@@ -124,6 +132,7 @@ strong{font-weight:700}
 .task{font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#2563a8;font-weight:800;margin:2pt 0 1pt}
 .stmt{background:#f2f7fd;border-left:2.5pt solid #3b82c4;border-radius:0 6pt 6pt 0;padding:9pt 12pt;margin:3pt 0;text-align:center;break-inside:avoid}
 .stmt .katex-display{margin:0!important}
+.task .katex,.p-title .katex{text-transform:none}
 .tags{margin-top:4pt}
 .tags .tag{font-size:7.5pt;color:#8b8474;background:#f3ecdc;border:1px solid #ece1c9;border-radius:20pt;padding:1pt 7pt;margin-right:3pt;white-space:nowrap}
 
@@ -171,8 +180,8 @@ function chapDivider(c){
 }
 function problemHTML(p, withSolutions){
   let h=`<div class="p${withSolutions?' sol':''}">`;
-  h+=`<div class="p-head"><span class="p-num">№${p._id}</span><span class="p-title">${esc(p.title||'')}</span>${diffPips(p.difficulty||3)}</div>`;
-  h+=`<div class="task">${esc(p.task||'Evaluate')}</div>`;
+  h+=`<div class="p-head"><span class="p-num">№${p._id}</span><span class="p-title">${rich(p.title||'')}</span>${diffPips(p.difficulty||3)}</div>`;
+  h+=`<div class="task">${rich(p.task||'Evaluate')}</div>`;
   h+=`<div class="stmt">${stmtHTML(p.statement)}</div>`;
   if(p.tags?.length) h+=`<div class="tags">${p.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>`;
   if(withSolutions){

@@ -45,16 +45,25 @@ function prose(t){
   h = h.replace(/\u0001/g,'<span style="display:block;height:6pt"></span>');
   return h;
 }
+function stripcmd(s){
+  for(let i=0;i<4;i++) s=s.replace(/\\(emph|textbf|textit|textsf|texttt|textrm|textsc|textnormal|text)\{((?:[^{}]|\{[^{}]*\})*)\}/g,'$2');
+  return s.replace(/\\dots\b|\\ldots\b/g,'…').replace(/\\textemdash\b/g,'—').replace(/\\textendash\b/g,'–').replace(/\\textquotedblleft\b/g,'“').replace(/\\textquotedblright\b/g,'”').replace(/\\textquoteleft\b/g,'‘').replace(/\\textquoteright\b/g,'’').replace(/\\(newline|medskip|bigskip|smallskip|noindent)\b/g,' ');
+}
 function rich(str){
   if(str==null) return '';
-  const s=String(str).replace(/\\par\b\s*/g, '\u0001'); const re=/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\$([^$]+?)\$|\\\(([\s\S]+?)\\\)/g;
-  let out='', last=0, m;
-  while((m=re.exec(s))){
-    out += prose(s.slice(last,m.index));
-    out += (m[1]!=null) ? TX(m[1],true) : (m[2]!=null) ? TX(m[2],true) : (m[3]!=null) ? TX(m[3],false) : TX(m[4],false);
-    last=re.lastIndex;
+  let s=String(str); const math=[];
+  s=s.replace(/\$\$[\s\S]+?\$\$|\\\[[\s\S]+?\\\]|\$[^$]+?\$|\\\([\s\S]+?\\\)/g, function(mm){ math.push(mm); return '\u0002'+(math.length-1)+'\u0002'; });
+  s=stripcmd(s).replace(/\\par\b\s*/g, '\u0001');
+  let out='', parts=s.split(/\u0002(\d+)\u0002/);
+  for(let i=0;i<parts.length;i++){
+    if(i%2===0){ out+=prose(parts[i]); }
+    else { const mm=math[+parts[i]];
+      if(mm.slice(0,2)==='$$') out+=TX(mm.slice(2,-2),true);
+      else if(mm.slice(0,2)==='\\[') out+=TX(mm.slice(2,-2),true);
+      else if(mm.slice(0,2)==='\\(') out+=TX(mm.slice(2,-2),false);
+      else out+=TX(mm.slice(1,-1),false);
+    }
   }
-  out += prose(s.slice(last));
   return out;
 }
 function diffPips(d){
@@ -122,6 +131,7 @@ strong{font-weight:700}
 .diff .dl{font-size:7.5pt;letter-spacing:.08em;color:#8b8474;font-weight:700;margin-left:3pt}
 .stmt{background:#faf5ea;border-left:2.5pt solid #caa24a;border-radius:0 6pt 6pt 0;padding:9pt 12pt;margin:3pt 0;text-align:center;break-inside:avoid}
 .stmt .katex-display{margin:0!important}
+.task .katex,.p-title .katex{text-transform:none}
 .tags{margin-top:4pt}
 .tags .tag{font-size:7.5pt;color:#8b8474;background:#f3ecdc;border:1px solid #ece1c9;border-radius:20pt;padding:1pt 7pt;margin-right:3pt;white-space:nowrap}
 
@@ -169,14 +179,15 @@ function chapDivider(c){
 }
 function problemHTML(p, withSolutions){
   let h=`<div class="p${withSolutions?' sol':''}">`;
-  h+=`<div class="p-head"><span class="p-num">№${p._id}</span><span class="p-title">${esc(p.title||'')}</span>${diffPips(p.difficulty||3)}</div>`;
+  h+=`<div class="p-head"><span class="p-num">№${p._id}</span><span class="p-title">${rich(p.title||'')}</span>${diffPips(p.difficulty||3)}</div>`;
   h+=`<div class="stmt">${stmtHTML(p.statement)}</div>`;
   if(p.tags?.length) h+=`<div class="tags">${p.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>`;
   if(withSolutions){
     h+=`<div class="ans"><span class="lab">Limit</span>${stmtHTML(p.answer)}</div>`;
     if(p.trap) h+=`<div class="trap"><span class="lab">The Trap</span>${rich(p.trap)}</div>`;
     (p.solutions||[]).forEach(s=>{
-      h+=`<div class="method"><div class="mname">${esc(s.name||'Method')}</div><ol class="steps">${(s.steps||[]).map(st=>`<li>${rich(st)}</li>`).join('')}</ol></div>`;
+      const mname = (s.name && /\$|\\\[|\\\(/.test(s.name)) ? rich(s.name) : esc(s.name||'Method');
+      h+=`<div class="method"><div class="mname">${mname}</div><ol class="steps">${(s.steps||[]).map(st=>`<li>${rich(st)}</li>`).join('')}</ol></div>`;
     });
     if(p.remark) h+=`<div class="remark"><span class="lab">Insight</span>${rich(p.remark)}</div>`;
   }

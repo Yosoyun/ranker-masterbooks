@@ -1774,7 +1774,7 @@ window.PROBLEMS = [
       "binomial"
     ],
     "statement": "Evaluate the weighted even-index sum \\[ V=\\sum_{j\\ge0}(-3)^{j}\\binom{n}{2j}=\\binom{n}{0}-3\\binom{n}{2}+9\\binom{n}{4}-\\cdots \\] in closed form for every integer $n\\ge0$, and determine the sign of $V$ as a function of $n$ (in particular, decide whether $V$ can ever be zero).",
-    "answer": "$V=2^{n}\\cos\\dfrac{n\\pi}{3}$. Since $\\cos\\dfrac{n\\pi}{3}\\in\\{1,\\tfrac12,-\\tfrac12,-1\\}$ for integer $n$, $V$ is \\emph{never} zero: $V>0\\iff n\\equiv0,1,5\\pmod6$ and $V<0\\iff n\\equiv2,3,4\\pmod6$.",
+    "answer": "$V=2^{n}\\cos\\dfrac{n\\pi}{3}$. Since $\\cos\\dfrac{n\\pi}{3}\\in\\{1,\\tfrac12,-\\tfrac12,-1\\}$ for integer $n$, $V$ is never zero: $V>0\\iff n\\equiv0,1,5\\pmod6$ and $V<0\\iff n\\equiv2,3,4\\pmod6$.",
     "trap": "Writing $1+i\\sqrt3$ but reading its modulus off the wrong coordinates: using $\\sqrt{1^2+3^2}=\\sqrt{10}$ (treating the $\\sqrt3$ as a $3$) gives the bogus $10^{n/2}\\cos\\frac{n\\pi}{3}$ instead of the correct $2^{n}$. A second, deadlier slip is declaring $V=0$ whenever $n\\equiv3\\pmod6$: there $\\cos\\frac{n\\pi}{3}=\\cos\\pi=-1$, so $V=-2^{n}$ is as far from zero as possible. Because $\\cos\\frac{n\\pi}{3}$ skips the value $0$ entirely over the integers, $V$ has no zeros at all.",
     "solutions": [
       {
@@ -1796,7 +1796,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: $1+i\\sqrt3$ lands precisely on modulus $2$ and argument $60^\\circ$ — the cube-root geometry — so the $(-3)^j$ weight is the $120^\\circ$ filter in a Cartesian costume. The punchline is what does \\emph{not} happen: a cosine sampled at multiples of $60^\\circ$ steps over $0$, so this oscillating, sign-flipping sum is never zero, even though it looks like it should vanish somewhere."
+    "remark": "Insight: $1+i\\sqrt3$ lands precisely on modulus $2$ and argument $60^\\circ$ — the cube-root geometry — so the $(-3)^j$ weight is the $120^\\circ$ filter in a Cartesian costume. The punchline is what does not happen: a cosine sampled at multiples of $60^\\circ$ steps over $0$, so this oscillating, sign-flipping sum is never zero, even though it looks like it should vanish somewhere."
   },
   {
     "theme": "rootsofunity",
@@ -2430,7 +2430,7 @@ window.PROBLEMS = [
       "surds",
       "parity"
     ],
-    "statement": "Let $n$ be a positive \\emph{odd} integer, and let $I,f$ be the integer and fractional parts of $(\\sqrt5+2)^{n}$. Evaluate $f\\,(I+f)$.",
+    "statement": "Let $n$ be a positive odd integer, and let $I,f$ be the integer and fractional parts of $(\\sqrt5+2)^{n}$. Evaluate $f\\,(I+f)$.",
     "answer": "\\[\\boxed{1}\\]",
     "trap": "Reflexively forming $(\\sqrt5+2)^n+(\\sqrt5-2)^n$ as in the standard recipe. For odd $n$ this SUM is irrational (it equals $2q\\sqrt5$), so it is useless! The correct conjugate manoeuvre is to SUBTRACT: $(\\sqrt5+2)^n-(\\sqrt5-2)^n$ is the integer. Choosing add-vs-subtract by the parity of $n$ is the entire trap; adding gives an irrational number and the whole approach collapses.",
     "solutions": [

@@ -96,23 +96,31 @@
   // ---- math rendering ----
   function texInline(latex){ try { return katex.renderToString(latex, {throwOnError:false, displayMode:false}); } catch(e){ return esc(latex); } }
   function renderDisplay(el, latex){ var s=(latex==null?'':String(latex)); if(/\$|\\\[|\\\(|\\par/.test(s)){ renderRich(el,s); return; } try { katex.render(s, el, {throwOnError:false, displayMode:true}); } catch(e){ el.textContent = s; } }
-  function renderRich(el, str){
-    if (str == null) { el.innerHTML=''; return; }
-    var s = String(str).replace(/\\par\b\s*/g, '\u0001');
-    var re = /\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\$([^$]+?)\$|\\\(([\s\S]+?)\\\)/g;
-    function prose(t){ return esc(t).replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/(^|[^`])`([^`]+)`/g,'$1<code>$2</code>').replace(/\u0001/g,'<span class="parbreak"></span>'); }
-    var out='', last=0, m;
-    while((m=re.exec(s))){
-      out += prose(s.slice(last,m.index));
-      var tex = m[1]!=null?m[1]:(m[2]!=null?m[2]:(m[3]!=null?m[3]:m[4]));
-      var disp = (m[1]!=null||m[2]!=null);
-      try { out += katex.renderToString(tex, {throwOnError:false, displayMode:disp}); }
-      catch(e){ out += '<code>'+esc(tex)+'</code>'; }
-      last = re.lastIndex;
-    }
-    out += prose(s.slice(last));
-    el.innerHTML = out;
+  function stripcmd(s){
+    for(var i=0;i<4;i++) s=s.replace(/\\(emph|textbf|textit|textsf|texttt|textrm|textsc|textnormal|text)\{((?:[^{}]|\{[^{}]*\})*)\}/g,'$2');
+    return s.replace(/\\dots\b|\\ldots\b/g,'…').replace(/\\textemdash\b/g,'—').replace(/\\textendash\b/g,'–').replace(/\\textquotedblleft\b/g,'“').replace(/\\textquotedblright\b/g,'”').replace(/\\textquoteleft\b/g,'‘').replace(/\\textquoteright\b/g,'’').replace(/\\(newline|medskip|bigskip|smallskip|noindent)\b/g,' ');
   }
+  function richStr(str){
+    if (str == null) return '';
+    var s = String(str); var math=[];
+    s = s.replace(/\$\$[\s\S]+?\$\$|\\\[[\s\S]+?\\\]|\$[^$]+?\$|\\\([\s\S]+?\\\)/g, function(mm){ math.push(mm); return '\u0002'+(math.length-1)+'\u0002'; });
+    s = stripcmd(s).replace(/\\par\b\s*/g, '\u0001');
+    function prose(t){ return esc(t).replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/(^|[^`])`([^`]+)`/g,'$1<code>$2</code>').replace(/\u0001/g,'<span class="parbreak"></span>'); }
+    var out='', parts=s.split(/\u0002(\d+)\u0002/);
+    for(var i=0;i<parts.length;i++){
+      if(i%2===0){ out+=prose(parts[i]); }
+      else { var mm=math[+parts[i]], tex, disp;
+        if(mm.slice(0,2)==='$$'){ tex=mm.slice(2,-2); disp=true; }
+        else if(mm.slice(0,2)==='\\['){ tex=mm.slice(2,-2); disp=true; }
+        else if(mm.slice(0,2)==='\\('){ tex=mm.slice(2,-2); disp=false; }
+        else { tex=mm.slice(1,-1); disp=false; }
+        try { out += katex.renderToString(tex, {throwOnError:false, displayMode:disp}); }
+        catch(e){ out += '<code>'+esc(tex)+'</code>'; }
+      }
+    }
+    return out;
+  }
+  function renderRich(el, str){ el.innerHTML = richStr(str); }
   function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
   // ---- chrome / nav ----
@@ -361,7 +369,7 @@
     // head
     const head=document.createElement('div'); head.className='q-head';
     head.innerHTML='<span class="qnum">№'+p._id+'</span>'
-      + '<span class="qtitle">'+esc(p.title||'Untitled')+'</span>'
+      + '<span class="qtitle">'+richStr(p.title||'Untitled')+'</span>'
       + '<span class="diff d'+(p.difficulty||3)+'" title="Difficulty '+(p.difficulty||3)+'/5">'
         + '<span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span>'
         + '<span class="difflabel">L'+(p.difficulty||3)+'</span></span>'
@@ -428,7 +436,7 @@
     sols.forEach((s,i)=>{
       const tab=document.createElement('button'); tab.className='mtab'+(i===0?' active':''); tab.textContent=tabName(s,i); tabs.appendChild(tab);
       const body=document.createElement('div'); body.className='method-body'+(i===0?' active':'');
-      const name=document.createElement('div'); name.className='mname'; name.textContent=s.name||('Method '+(i+1)); body.appendChild(name);
+      const name=document.createElement('div'); name.className='mname'; if(/\$|\\\[|\\\(/.test(s.name||'')) renderRich(name, s.name); else name.textContent=s.name||('Method '+(i+1)); body.appendChild(name);
       const ol=document.createElement('ol'); ol.className='steps';
       (s.steps||[]).forEach(stp=>{ const li=document.createElement('li'); renderRich(li, stp); ol.appendChild(li); });
       body.appendChild(ol); bodies.push(body);

@@ -3237,7 +3237,7 @@ window.PROBLEMS = [
     ],
     "statement": "Evaluate \\[ \\int\\left(\\frac{1}{x\\,(1+x^{2})}-\\frac{\\arctan x}{x^{2}}\\right)dx,\\qquad x>0. \\]",
     "answer": "\\[\\boxed{\\,\\dfrac{\\arctan x}{x}+C\\,}\\]",
-    "trap": "Partial-fractioning $\\frac{1}{x(1+x^2)}=\\frac1x-\\frac{x}{1+x^2}$ and integrating to logs, while separately doing $\\int\\frac{\\arctan x}{x^2}dx$ by parts \\u2014 a long, log-and-arctan-littered computation. The two terms are engineered as exactly $\\frac{d}{dx}\\frac{\\arctan x}{x}$; the $\\ln$ terms that appear when you split must cancel, but only the quotient view makes that obvious.",
+    "trap": "Partial-fractioning $\\frac{1}{x(1+x^2)}=\\frac1x-\\frac{x}{1+x^2}$ and integrating to logs, while separately doing $\\int\\frac{\\arctan x}{x^2}dx$ by parts — a long, log-and-arctan-littered computation. The two terms are engineered as exactly $\\frac{d}{dx}\\frac{\\arctan x}{x}$; the $\\ln$ terms that appear when you split must cancel, but only the quotient view makes that obvious.",
     "solutions": [
       {
         "name": "Reverse quotient rule",
@@ -3677,7 +3677,7 @@ window.PROBLEMS = [
     ],
     "statement": "For $x>0$, evaluate \\[\\int \\frac{dx}{\\sqrt{x}+\\sqrt[3]{x}}.\\]",
     "answer": "\\[\\boxed{2\\sqrt{x}-3\\sqrt[3]{x}+6\\sqrt[6]{x}-6\\ln\\!\\big(\\sqrt[6]{x}+1\\big)+C}\\]",
-    "trap": "Substituting $x=t^2$ (to kill only the square root) leaves a stray cube root $t^{2/3}$; substituting $x=t^3$ leaves a square root $t^{3/2}$. Neither rationalises the integrand. You MUST take the LCM exponent $x=t^6$ to clear BOTH radicals at once. The resulting $\\dfrac{6t^3}{t+1}$ is improper, so polynomial long division must precede the logarithm \\textemdash three chained ideas.",
+    "trap": "Substituting $x=t^2$ (to kill only the square root) leaves a stray cube root $t^{2/3}$; substituting $x=t^3$ leaves a square root $t^{3/2}$. Neither rationalises the integrand. You MUST take the LCM exponent $x=t^6$ to clear BOTH radicals at once. The resulting $\\dfrac{6t^3}{t+1}$ is improper, so polynomial long division must precede the logarithm —three chained ideas.",
     "solutions": [
       {
         "name": "LCM substitution, long division, then log",
@@ -3692,12 +3692,12 @@ window.PROBLEMS = [
         "name": "Factor out $\\sqrt[3]{x}$ first",
         "steps": [
           "Factor the denominator: $\\sqrt{x}+\\sqrt[3]{x}=\\sqrt[3]{x}\\big(x^{1/6}+1\\big)$, so the integrand is $\\dfrac{1}{x^{1/3}\\,(x^{1/6}+1)}$.",
-          "Substitute $t=x^{1/6}$, i.e. $x=t^6$, $dx=6t^5\\,dt$, $x^{1/3}=t^2$. The integral becomes $\\int\\dfrac{6t^5}{t^2(t+1)}\\,dt=\\int\\dfrac{6t^3}{t+1}\\,dt$ \\textemdash the same reduced form.",
+          "Substitute $t=x^{1/6}$, i.e. $x=t^6$, $dx=6t^5\\,dt$, $x^{1/3}=t^2$. The integral becomes $\\int\\dfrac{6t^5}{t^2(t+1)}\\,dt=\\int\\dfrac{6t^3}{t+1}\\,dt$ —the same reduced form.",
           "Long-divide and integrate exactly as before: $2t^3-3t^2+6t-6\\ln(t+1)+C$.",
           "With $t=x^{1/6}$ this is $\\boxed{2\\sqrt{x}-3\\sqrt[3]{x}+6\\sqrt[6]{x}-6\\ln\\!\\big(\\sqrt[6]{x}+1\\big)+C}$."
         ]
       }
     ],
-    "remark": "Insight \\textemdash the grand fusion: pick the LCM power of the radical orders to rationalise simultaneously, reduce the improper rational by long division, then finish with a single logarithm. Choosing $t^2$ or $t^3$ alone is the trap; only $t^6$ clears both radicals. A quick sanity check: differentiating the answer returns $1/(\\sqrt{x}+\\sqrt[3]{x})$ exactly."
+    "remark": "Insight —the grand fusion: pick the LCM power of the radical orders to rationalise simultaneously, reduce the improper rational by long division, then finish with a single logarithm. Choosing $t^2$ or $t^3$ alone is the trap; only $t^6$ clears both radicals. A quick sanity check: differentiating the answer returns $1/(\\sqrt{x}+\\sqrt[3]{x})$ exactly."
   }
 ];

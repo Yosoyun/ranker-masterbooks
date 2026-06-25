@@ -535,9 +535,9 @@ window.PROBLEMS = [
       "medical testing",
       "base rate"
     ],
-    "statement": "A disease afflicts $1\\%$ of a population. A diagnostic test has sensitivity $P(+\\mid\\text{disease})=\\tfrac{9}{10}$ and false-positive rate $P(+\\mid\\text{healthy})=\\tfrac{1}{10}$. A patient is tested \\emph{twice} by two separate, identical machines; conditional on the patient's true status the two results are independent. Both tests come back positive. Evaluate $P(\\text{disease}\\mid +,+)$.",
+    "statement": "A disease afflicts $1\\%$ of a population. A diagnostic test has sensitivity $P(+\\mid\\text{disease})=\\tfrac{9}{10}$ and false-positive rate $P(+\\mid\\text{healthy})=\\tfrac{1}{10}$. A patient is tested twice by two separate, identical machines; conditional on the patient's true status the two results are independent. Both tests come back positive. Evaluate $P(\\text{disease}\\mid +,+)$.",
     "answer": "\\[\\boxed{\\dfrac{9}{20}}\\]",
-    "trap": "Assuming the two test results are \\emph{unconditionally} independent and writing $P(+,+)=P(+)^2$. With $P(+)=\\tfrac1{100}\\cdot\\tfrac9{10}+\\tfrac{99}{100}\\cdot\\tfrac1{10}=\\tfrac{27}{250}$ this gives the wrong denominator $\\left(\\tfrac{27}{250}\\right)^2$ and the bogus posterior $\\tfrac{25}{36}\\approx0.69$. Independence holds only \\emph{given the true status}; the unconditional results are positively correlated (both are driven by the same hidden disease state), so $P(+,+)\\ne P(+)^2$.",
+    "trap": "Assuming the two test results are unconditionally independent and writing $P(+,+)=P(+)^2$. With $P(+)=\\tfrac1{100}\\cdot\\tfrac9{10}+\\tfrac{99}{100}\\cdot\\tfrac1{10}=\\tfrac{27}{250}$ this gives the wrong denominator $\\left(\\tfrac{27}{250}\\right)^2$ and the bogus posterior $\\tfrac{25}{36}\\approx0.69$. Independence holds only given the true status; the unconditional results are positively correlated (both are driven by the same hidden disease state), so $P(+,+)\\ne P(+)^2$.",
     "solutions": [
       {
         "name": "Bayes with conditional independence",
@@ -573,7 +573,7 @@ window.PROBLEMS = [
     ],
     "statement": "Two fair dice are rolled. Let $A=\\{\\text{the sum is }7\\}$, $B=\\{\\text{the first die shows }4\\}$, $C=\\{\\text{the second die shows }3\\}$. Prove that $A,B,C$ are pairwise independent, yet $P(A\\mid B\\cap C)=1$. Reconcile this with the (false) intuition that pairwise independence should make $A$ roughly $\\tfrac16$-likely regardless of what you condition on.",
     "answer": "\\[\\boxed{P(A\\mid B\\cap C)=1\\quad\\text{while}\\quad P(A)=\\tfrac16}\\]",
-    "trap": "Concluding from the three pairwise-independence equations that $A$ is independent of the combined information $B\\cap C$. Pairwise independence says nothing about conditioning on an \\emph{intersection}; here $B\\cap C$ forces the dice to be $(4,3)$, whose sum is exactly $7$, so $A$ becomes certain.",
+    "trap": "Concluding from the three pairwise-independence equations that $A$ is independent of the combined information $B\\cap C$. Pairwise independence says nothing about conditioning on an intersection; here $B\\cap C$ forces the dice to be $(4,3)$, whose sum is exactly $7$, so $A$ becomes certain.",
     "solutions": [
       {
         "name": "Counting on the 36 outcomes",
@@ -607,7 +607,7 @@ window.PROBLEMS = [
       "reverse conditioning",
       "reinforcement"
     ],
-    "statement": "An urn holds one red and one black ball. A ball is drawn at random; it is returned together with one extra ball of the \\emph{same} colour. Then a second ball is drawn from the now three-ball urn. Find $P(\\text{first draw was red}\\mid\\text{second draw is red})$.",
+    "statement": "An urn holds one red and one black ball. A ball is drawn at random; it is returned together with one extra ball of the same colour. Then a second ball is drawn from the now three-ball urn. Find $P(\\text{first draw was red}\\mid\\text{second draw is red})$.",
     "answer": "\\[\\boxed{\\dfrac{2}{3}}\\]",
     "trap": "Reasoning that the second draw is 'in the future', so it cannot give information about the first, hence answering $P(R_1)=\\tfrac12$. Conditioning runs in both directions: a red second draw makes a red first draw (which loaded the urn with reds) more likely. Also tempting is to confuse $P(R_1\\mid R_2)$ with $P(R_2\\mid R_1)=\\tfrac23$ — here they coincide by symmetry, but for the wrong reason.",
     "solutions": [
@@ -643,7 +643,7 @@ window.PROBLEMS = [
       "selection effect",
       "counterintuitive"
     ],
-    "statement": "A family has two children, each independently a boy or girl with probability $\\tfrac12$, and each child's day of birth is uniform over the seven days of the week, independent of everything else. You learn only that \\emph{at least one of the two children is a boy born on a weekend} (Saturday or Sunday). Evaluate the probability that \\emph{both} children are boys.",
+    "statement": "A family has two children, each independently a boy or girl with probability $\\tfrac12$, and each child's day of birth is uniform over the seven days of the week, independent of everything else. You learn only that at least one of the two children is a boy born on a weekend (Saturday or Sunday). Evaluate the probability that both children are boys.",
     "answer": "\\[\\boxed{\\dfrac{6}{13}}\\]",
     "trap": "Answering $\\tfrac13$ (the bare 'at least one boy' answer) by discarding the weekend information as irrelevant flavour, or answering $\\tfrac12$ by treating the two children as independent given the clue. The weekend restriction shrinks the conditioning event asymmetrically — it is rarer to satisfy via a single boy than via two — nudging the answer above $\\tfrac13$ toward but not reaching $\\tfrac12$.",
     "solutions": [
@@ -666,7 +666,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: a seemingly irrelevant tag ('weekend') changes the answer because it changes \\emph{how} the conditioning event can be satisfied. As the tag grows rarer, the single-boy route becomes vanishingly likely relative to the two-boy route, and the answer slides from $\\tfrac13$ up toward $\\tfrac12$ — a quantitative anatomy of the 'Tuesday boy' paradox."
+    "remark": "Insight: a seemingly irrelevant tag ('weekend') changes the answer because it changes how the conditioning event can be satisfied. As the tag grows rarer, the single-boy route becomes vanishingly likely relative to the two-boy route, and the answer slides from $\\tfrac13$ up toward $\\tfrac12$ — a quantitative anatomy of the 'Tuesday boy' paradox."
   },
   {
     "theme": "conditional",
@@ -682,7 +682,7 @@ window.PROBLEMS = [
     ],
     "statement": "A fair coin is tossed four times. Let $H$ be the event 'the first toss is heads' and let $E$ be the event 'the total number of heads is even'. A gambler argues: 'after I see the first toss, the parity of the remaining run is partly decided, so $E$ must depend on $H$.' Prove that in fact $H$ and $E$ are independent, and find $P(E\\mid H)$.",
     "answer": "\\[\\boxed{P(E\\mid H)=\\tfrac12=P(E),\\ \\text{so }H\\perp E}\\]",
-    "trap": "Believing that because the first toss contributes to the head-count, fixing it must shift the parity probability (a gambler's-fallacy-flavoured intuition). In truth, conditioning on the first toss leaves the parity of the \\emph{other three} fair tosses uniform, and a uniform parity is unaffected by adding a fixed bit.",
+    "trap": "Believing that because the first toss contributes to the head-count, fixing it must shift the parity probability (a gambler's-fallacy-flavoured intuition). In truth, conditioning on the first toss leaves the parity of the other three fair tosses uniform, and a uniform parity is unaffected by adding a fixed bit.",
     "solutions": [
       {
         "name": "Conditioning on the remaining tosses",
@@ -752,9 +752,9 @@ window.PROBLEMS = [
       "conditional independence",
       "posterior prediction"
     ],
-    "statement": "A bag contains two dice: a fair one, and a trick die that shows $6$ on every face. You pick a die uniformly at random and, without looking at it, roll \\emph{that same die} repeatedly. The first two rolls are both $6$. Find (a) the probability the chosen die is the trick die, and (b) the probability the third roll is also a $6$.",
+    "statement": "A bag contains two dice: a fair one, and a trick die that shows $6$ on every face. You pick a die uniformly at random and, without looking at it, roll that same die repeatedly. The first two rolls are both $6$. Find (a) the probability the chosen die is the trick die, and (b) the probability the third roll is also a $6$.",
     "answer": "\\[\\boxed{P(\\text{trick}\\mid 6,6)=\\tfrac{36}{37},\\qquad P(\\text{third}=6\\mid 6,6)=\\tfrac{217}{222}}\\]",
-    "trap": "Treating the rolls as independent so that 'two sixes' carries no information, and predicting the third roll as $\\tfrac12\\cdot1+\\tfrac12\\cdot\\tfrac16$. Given the same unknown die, the rolls are only \\emph{conditionally} independent; the observed sixes sharply update which die you hold, and the prediction must average $P(6)$ over the \\emph{posterior}, not the prior.",
+    "trap": "Treating the rolls as independent so that 'two sixes' carries no information, and predicting the third roll as $\\tfrac12\\cdot1+\\tfrac12\\cdot\\tfrac16$. Given the same unknown die, the rolls are only conditionally independent; the observed sixes sharply update which die you hold, and the prediction must average $P(6)$ over the posterior, not the prior.",
     "solutions": [
       {
         "name": "Posterior then predictive",
@@ -791,7 +791,7 @@ window.PROBLEMS = [
     ],
     "statement": "Two events $A,B$ in a probability space satisfy $P(A)=\\tfrac12$ and $P(A\\cup B)=\\tfrac34$. (a) Find $P(B)$ under the hypothesis that $A$ and $B$ are independent. (b) Find $P(B)$ under the hypothesis that $A$ and $B$ are mutually exclusive. (c) Prove that for these data, $A$ and $B$ cannot be both independent and mutually exclusive at once.",
     "answer": "\\[\\boxed{\\text{(a) }P(B)=\\tfrac12,\\quad\\text{(b) }P(B)=\\tfrac14,\\quad\\text{(c) impossible}}\\]",
-    "trap": "Conflating 'independent' with 'mutually exclusive' is the single most common probability confusion. Mutually exclusive events with positive probability are in fact maximally \\emph{dependent} (one occurring forbids the other), so the two hypotheses give genuinely different values of $P(B)$ and cannot coexist when both events have positive probability.",
+    "trap": "Conflating 'independent' with 'mutually exclusive' is the single most common probability confusion. Mutually exclusive events with positive probability are in fact maximally dependent (one occurring forbids the other), so the two hypotheses give genuinely different values of $P(B)$ and cannot coexist when both events have positive probability.",
     "solutions": [
       {
         "name": "Two inclusion-exclusion formulas",
@@ -825,7 +825,7 @@ window.PROBLEMS = [
       "first success",
       "infinite series"
     ],
-    "statement": "Players Anya, Bharat, and Chetan take turns — in that fixed cyclic order, Anya first — flipping a single fair coin; the \\emph{first} player to flip heads wins, and the game then stops. Let $T$ be the total number of flips made when the game ends. You are told only that $T$ is \\emph{even}. Find the conditional probability that each of the three players won, i.e. $P(\\text{Anya}\\mid T\\text{ even})$, $P(\\text{Bharat}\\mid T\\text{ even})$, $P(\\text{Chetan}\\mid T\\text{ even})$.",
+    "statement": "Players Anya, Bharat, and Chetan take turns — in that fixed cyclic order, Anya first — flipping a single fair coin; the first player to flip heads wins, and the game then stops. Let $T$ be the total number of flips made when the game ends. You are told only that $T$ is even. Find the conditional probability that each of the three players won, i.e. $P(\\text{Anya}\\mid T\\text{ even})$, $P(\\text{Bharat}\\mid T\\text{ even})$, $P(\\text{Chetan}\\mid T\\text{ even})$.",
     "answer": "\\[\\boxed{P(A)=\\tfrac{4}{21},\\quad P(B)=\\tfrac{16}{21},\\quad P(C)=\\tfrac{1}{21}}\\]",
     "trap": "Assuming the parity of $T$ is independent of who wins (since 'each flip is a fair independent coin'), and answering with the unconditional turn-order odds $\\tfrac47,\\tfrac27,\\tfrac17$. Who wins is exactly determined by $T\\bmod 3$, and constraining $T$ to be even interacts with that residue through the Chinese-Remainder pattern of $T\\bmod 6$, reshuffling the probabilities completely.",
     "solutions": [
@@ -936,7 +936,7 @@ window.PROBLEMS = [
       "counting",
       "information"
     ],
-    "statement": "A family has two children, each independently a boy or girl with probability $\\tfrac12$, and each child's day of birth is uniform over the seven weekdays, independent of everything else. You learn the single fact: \\emph{at least one of the two children is a boy who was born on a Tuesday}. Compute the probability that both children are boys, as a reduced fraction $\\tfrac{m}{n}$, and report $m+n$.",
+    "statement": "A family has two children, each independently a boy or girl with probability $\\tfrac12$, and each child's day of birth is uniform over the seven weekdays, independent of everything else. You learn the single fact: at least one of the two children is a boy who was born on a Tuesday. Compute the probability that both children are boys, as a reduced fraction $\\tfrac{m}{n}$, and report $m+n$.",
     "answer": "\\[\\boxed{40}\\]",
     "trap": "Arguing that the weekday is irrelevant and the answer must be the plain 'at least one boy' value $\\tfrac13$. The extra coordinate (Tuesday) shrinks the conditioning event asymmetrically: a two-boy family has two chances to supply a 'boy-Tuesday', so it is over-represented among qualifying families, pushing the answer up to $\\tfrac{13}{27}$.",
     "solutions": [
@@ -1010,7 +1010,7 @@ window.PROBLEMS = [
       "posterior",
       "hypergeometric"
     ],
-    "statement": "Urn I contains $3$ red and $2$ white balls; urn II contains $1$ red and $4$ white. Two balls are transferred at random (without replacement) from urn I into urn II, the contents of urn II are mixed, and one ball is then drawn from urn II — it is red. Find the probability that \\emph{both} transferred balls were red.",
+    "statement": "Urn I contains $3$ red and $2$ white balls; urn II contains $1$ red and $4$ white. Two balls are transferred at random (without replacement) from urn I into urn II, the contents of urn II are mixed, and one ball is then drawn from urn II — it is red. Find the probability that both transferred balls were red.",
     "answer": "\\[\\boxed{\\dfrac{9}{22}}\\]",
     "trap": "Forgetting to condition on the red draw and reporting the prior $P(\\text{both red})=\\dfrac{\\binom32}{\\binom52}=\\dfrac{3}{10}$. Observing a red ball drawn from urn II is itself evidence that more reds were transferred, so the posterior must rise above the prior.",
     "solutions": [
@@ -1048,7 +1048,7 @@ window.PROBLEMS = [
     ],
     "statement": "A single bit (equally likely $0$ or $1$) is sent through two independent noisy gates in series. Each gate, independently, flips the bit with probability $\\tfrac14$ and leaves it unchanged otherwise. The receiver, who sees only the output of the second gate, reads a $1$. Find the probability that the original bit was a $1$.",
     "answer": "\\[\\boxed{\\dfrac{5}{8}}\\]",
-    "trap": "Using the single-gate flip probability $\\tfrac14$ as the end-to-end error, giving $P(\\text{sent }1\\mid\\text{recv }1)=\\tfrac{3/4}{3/4+1/4}=\\tfrac34$. Two gates in series flip the bit overall only when an \\emph{odd} number of flips occurs; the correct end-to-end flip probability is $2\\cdot\\tfrac14\\cdot\\tfrac34=\\tfrac38$, not $\\tfrac14$.",
+    "trap": "Using the single-gate flip probability $\\tfrac14$ as the end-to-end error, giving $P(\\text{sent }1\\mid\\text{recv }1)=\\tfrac{3/4}{3/4+1/4}=\\tfrac34$. Two gates in series flip the bit overall only when an odd number of flips occurs; the correct end-to-end flip probability is $2\\cdot\\tfrac14\\cdot\\tfrac34=\\tfrac38$, not $\\tfrac14$.",
     "solutions": [
       {
         "name": "Collapse the channel, then Bayes",
@@ -1084,7 +1084,7 @@ window.PROBLEMS = [
     ],
     "statement": "A drawer holds two visually identical dice: a fair one, and a loaded one for which $P(6)=\\tfrac12$ while each of $1,2,3,4,5$ has probability $\\tfrac1{10}$. One die is chosen at random and rolled twice, showing a $6$ both times. Find the probability that the loaded die was chosen.",
     "answer": "\\[\\boxed{\\dfrac{9}{10}}\\]",
-    "trap": "Updating on only one $6$ (getting $\\tfrac34$) and stopping, or multiplying the single-roll posterior by itself to get $\\tfrac{9}{16}$. The two rolls are conditionally independent \\emph{given the die}, so likelihoods multiply, not posteriors; the likelihood ratio compounds as $3\\times3=9$, not $3$.",
+    "trap": "Updating on only one $6$ (getting $\\tfrac34$) and stopping, or multiplying the single-roll posterior by itself to get $\\tfrac{9}{16}$. The two rolls are conditionally independent given the die, so likelihoods multiply, not posteriors; the likelihood ratio compounds as $3\\times3=9$, not $3$.",
     "solutions": [
       {
         "name": "Likelihood-ratio (odds) update",
@@ -1118,9 +1118,9 @@ window.PROBLEMS = [
       "two-tests",
       "posterior"
     ],
-    "statement": "A condition has prevalence $1$ in $100$. Two screening tests are applied that are conditionally independent given a person's true status; each has sensitivity $90\\%$ and false-positive rate $10\\%$. A person tests positive on \\emph{both} tests. Find the exact probability that the person has the condition.",
+    "statement": "A condition has prevalence $1$ in $100$. Two screening tests are applied that are conditionally independent given a person's true status; each has sensitivity $90\\%$ and false-positive rate $10\\%$. A person tests positive on both tests. Find the exact probability that the person has the condition.",
     "answer": "\\[\\boxed{\\dfrac{9}{20}}\\]",
-    "trap": "Multiplying the two single-test posteriors ($\\tfrac1{12}\\cdot\\tfrac1{12}$) or assuming the two positive results are unconditionally independent. Independence holds only \\emph{given} the true status; the correct route multiplies the per-test likelihood ratios on the prior odds, not the posteriors.",
+    "trap": "Multiplying the two single-test posteriors ($\\tfrac1{12}\\cdot\\tfrac1{12}$) or assuming the two positive results are unconditionally independent. Independence holds only given the true status; the correct route multiplies the per-test likelihood ratios on the prior odds, not the posteriors.",
     "solutions": [
       {
         "name": "Compounded likelihood ratio",
@@ -1192,7 +1192,7 @@ window.PROBLEMS = [
       "machine-mode",
       "waiting-time"
     ],
-    "statement": "A machine runs in one of two modes. In the \\emph{good} mode (prior probability $\\tfrac34$) each item is defective independently with probability $\\tfrac1{10}$; in the \\emph{bad} mode (prior $\\tfrac14$) the defect probability is $\\tfrac12$. Items are inspected one at a time until the first defective appears, and it turns out that the first two items are good and the third is defective. Find the probability that the machine is in the bad mode.",
+    "statement": "A machine runs in one of two modes. In the good mode (prior probability $\\tfrac34$) each item is defective independently with probability $\\tfrac1{10}$; in the bad mode (prior $\\tfrac14$) the defect probability is $\\tfrac12$. Items are inspected one at a time until the first defective appears, and it turns out that the first two items are good and the third is defective. Find the probability that the machine is in the bad mode.",
     "answer": "\\[\\boxed{\\dfrac{125}{368}}\\]",
     "trap": "Conditioning only on 'the third item is defective' and ignoring that the first two were observed good — or using the per-item defect probabilities as if they were the likelihoods. The evidence is the whole waiting-time pattern $G,G,D$, whose likelihood under each mode is $(1-p)^2 p$; two good items are themselves evidence favoring the good mode. (Conditioning on a single defective item instead would give $\\tfrac58$, badly inflated.)",
     "solutions": [
@@ -1349,9 +1349,9 @@ window.PROBLEMS = [
       "waiting-time",
       "dice"
     ],
-    "statement": "A fair die is rolled repeatedly; a \\emph{six} counts as a success. \\[\\text{Find the probability that the third six appears on exactly the seventh roll.}\\]",
+    "statement": "A fair die is rolled repeatedly; a six counts as a success. \\[\\text{Find the probability that the third six appears on exactly the seventh roll.}\\]",
     "answer": "\\[\\boxed{\\dfrac{3125}{93312}}\\]",
-    "trap": "Writing $\\binom73$ for the count of arrangements treats it as \"exactly $3$ sixes in $7$ rolls.\" But the $7$th roll is \\emph{forced} to be the third six, so only the first $6$ rolls are free and must contain exactly $2$ sixes: the coefficient is $\\binom62$, not $\\binom73$. Locking the last trial is the whole point of the negative binomial.",
+    "trap": "Writing $\\binom73$ for the count of arrangements treats it as \"exactly $3$ sixes in $7$ rolls.\" But the $7$th roll is forced to be the third six, so only the first $6$ rolls are free and must contain exactly $2$ sixes: the coefficient is $\\binom62$, not $\\binom73$. Locking the last trial is the whole point of the negative binomial.",
     "solutions": [
       {
         "name": "Negative binomial formula",
@@ -1372,7 +1372,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: a waiting-time event silently pins the final trial. The binomial coefficient counts placements of the \\emph{earlier} successes only — here $\\binom62$, decisively not $\\binom73$."
+    "remark": "Insight: a waiting-time event silently pins the final trial. The binomial coefficient counts placements of the earlier successes only — here $\\binom62$, decisively not $\\binom73$."
   },
   {
     "theme": "binomial",
@@ -1502,7 +1502,7 @@ window.PROBLEMS = [
     ],
     "statement": "A coin shows heads with probability $p=\\tfrac13$ on each independent toss. Let $T$ be the toss on which two heads first appear in a row ($HH$). \\[\\text{Evaluate }\\;\\mathbb E[T].\\]",
     "answer": "\\[\\boxed{12}\\]",
-    "trap": "Modeling $T$ as a single geometric/negative-binomial waiting time — e.g. \"wait for two heads\" $\\Rightarrow \\tfrac{2}{p}=6$ — ignores that the two heads must be \\emph{consecutive}: a tail after a lone head resets all progress. The pattern $HH$ has overlap structure, so the correct object is a Markov chain (or the pattern-correlation/Conway formula), not a plain negative binomial.",
+    "trap": "Modeling $T$ as a single geometric/negative-binomial waiting time — e.g. \"wait for two heads\" $\\Rightarrow \\tfrac{2}{p}=6$ — ignores that the two heads must be consecutive: a tail after a lone head resets all progress. The pattern $HH$ has overlap structure, so the correct object is a Markov chain (or the pattern-correlation/Conway formula), not a plain negative binomial.",
     "solutions": [
       {
         "name": "First-step Markov states",
@@ -1523,7 +1523,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: waiting for a \\emph{run} is not negative-binomial — the self-overlap of $HH$ injects the extra $\\tfrac1p$ via Conway's leading-numbers / Markov reset. Two independent methods (states and the overlap formula) converge on $12$."
+    "remark": "Insight: waiting for a run is not negative-binomial — the self-overlap of $HH$ injects the extra $\\tfrac1p$ via Conway's leading-numbers / Markov reset. Two independent methods (states and the overlap formula) converge on $12$."
   },
   {
     "theme": "binomial",
@@ -1538,9 +1538,9 @@ window.PROBLEMS = [
       "binomial-trap",
       "conditioning"
     ],
-    "statement": "An urn contains $4$ red and $6$ white balls. Three balls are drawn \\emph{without replacement}. \\[\\text{Evaluate the probability that exactly two are red.}\\]",
+    "statement": "An urn contains $4$ red and $6$ white balls. Three balls are drawn without replacement. \\[\\text{Evaluate the probability that exactly two are red.}\\]",
     "answer": "\\[\\boxed{\\dfrac{3}{10}}\\]",
-    "trap": "Treating the three draws as Bernoulli trials with a fixed $p=\\tfrac{4}{10}$ and writing $\\binom32 p^2(1-p)=\\tfrac{36}{125}=0.288$ is the headline trap: without replacement the draws are \\emph{dependent}, the success probability shifts each draw, so the count is hypergeometric, not binomial. The binomial value $0.288$ is simply wrong; the truth is $0.3$.",
+    "trap": "Treating the three draws as Bernoulli trials with a fixed $p=\\tfrac{4}{10}$ and writing $\\binom32 p^2(1-p)=\\tfrac{36}{125}=0.288$ is the headline trap: without replacement the draws are dependent, the success probability shifts each draw, so the count is hypergeometric, not binomial. The binomial value $0.288$ is simply wrong; the truth is $0.3$.",
     "solutions": [
       {
         "name": "Hypergeometric count",
@@ -1577,7 +1577,7 @@ window.PROBLEMS = [
       "integer-boundary",
       "uniqueness"
     ],
-    "statement": "A coin has $P(\\text{head})=\\tfrac14$. For a positive integer $n$, let $X\\sim\\mathrm{Bin}(n,\\tfrac14)$. \\[\\text{Find the number of integers }n\\text{ for which }k=3\\text{ is the }\\emph{unique}\\text{ most probable number of heads.}\\]",
+    "statement": "A coin has $P(\\text{head})=\\tfrac14$. For a positive integer $n$, let $X\\sim\\mathrm{Bin}(n,\\tfrac14)$. \\[\\text{Find the number of integers }n\\text{ for which }k=3\\text{ is the }unique\\text{ most probable number of heads.}\\]",
     "answer": "\\[\\boxed{3}\\]",
     "trap": "Solving $\\lfloor (n+1)/4\\rfloor=3$ gives $12\\le n+1\\le 15$, i.e. $n\\in\\{11,12,13,14\\}$ — and stopping there wrongly counts $n=11$. But at $n=11$, $(n+1)p=3$ is an integer, so the mode is the *tie* $\\{2,3\\}$ — not unique. Demanding *uniqueness* excludes that boundary; similarly $n=15$ gives the tie $\\{3,4\\}$ and is excluded. Only $n=12,13,14$ survive.",
     "solutions": [
@@ -2335,7 +2335,7 @@ window.PROBLEMS = [
     ],
     "statement": "A fair coin is tossed repeatedly. Let $T$ be the number of tosses until the overlapping pattern $\\mathrm{HTHT}$ first appears. Evaluate $\\mathbb E[T]$, and explain why it exceeds $\\mathbb E$ for both $\\mathrm{HTHH}$ and the naive $2^4$.",
     "answer": "\\[\\boxed{\\mathbb E[T_{\\mathrm{HTHT}}]=20}\\]",
-    "trap": "Assuming all length-$4$ patterns wait $2^4=16$ tosses, or that the extra overlap only adds a small constant. $\\mathrm{HTHT}$ has \\emph{two} self-overlaps — the full length $4$ and the length-$2$ prefix/suffix $\\mathrm{HT}$ — so a near-miss leaves you two symbols deep, forcing $\\mathbb E=16+4=20$. Treating overlaps as if only the full match counted (or none) gives the wrong $16$ or $18$.",
+    "trap": "Assuming all length-$4$ patterns wait $2^4=16$ tosses, or that the extra overlap only adds a small constant. $\\mathrm{HTHT}$ has two self-overlaps — the full length $4$ and the length-$2$ prefix/suffix $\\mathrm{HT}$ — so a near-miss leaves you two symbols deep, forcing $\\mathbb E=16+4=20$. Treating overlaps as if only the full match counted (or none) gives the wrong $16$ or $18$.",
     "solutions": [
       {
         "name": "Conway correlation sum",
@@ -2408,7 +2408,7 @@ window.PROBLEMS = [
       "inclusion-exclusion",
       "probability"
     ],
-    "statement": "A clerk addresses $6$ letters to $6$ distinct people and, in a hurry, stuffs the $6$ letters into the $6$ pre-addressed envelopes in a uniformly random one-to-one fashion. Find the probability that \\emph{not a single} letter lands in its correct envelope.",
+    "statement": "A clerk addresses $6$ letters to $6$ distinct people and, in a hurry, stuffs the $6$ letters into the $6$ pre-addressed envelopes in a uniformly random one-to-one fashion. Find the probability that not a single letter lands in its correct envelope.",
     "answer": "\\[\\boxed{\\dfrac{53}{144}}\\]",
     "trap": "Reasoning \"each letter has a $5/6$ chance of being wrong, and there are $6$ letters, so the answer is $(5/6)^6$.\" This treats the six placements as independent; once five letters are placed the sixth is forced, so the events are strongly dependent and the product is wrong.",
     "solutions": [
@@ -2529,7 +2529,7 @@ window.PROBLEMS = [
       "conditional",
       "matching"
     ],
-    "statement": "Five friends play Secret Santa: a uniformly random permutation assigns each person the name of the person they must gift, subject to the single rule that nobody draws their own name (a derangement of $\\{1,2,3,4,5\\}$). Given that the draw is a valid derangement, find the probability that person $1$ does \\emph{not} gift person $2$.",
+    "statement": "Five friends play Secret Santa: a uniformly random permutation assigns each person the name of the person they must gift, subject to the single rule that nobody draws their own name (a derangement of $\\{1,2,3,4,5\\}$). Given that the draw is a valid derangement, find the probability that person $1$ does not gift person $2$.",
     "answer": "\\[\\boxed{\\dfrac{3}{4}}\\]",
     "trap": "Computing $P(\\sigma(1)=2)=1/5$ from the full symmetric group and answering $4/5$. The conditioning is on the set of derangements, not all permutations, so the relevant denominator is $D_5=44$, not $120$.",
     "solutions": [
@@ -2564,9 +2564,9 @@ window.PROBLEMS = [
       "derangement",
       "inclusion-exclusion"
     ],
-    "statement": "Four guests check four identical-looking coats; at the end of the evening the four coats are returned in a uniformly random one-to-one assignment. Find the probability that \\emph{exactly} two guests get their own coat back.",
+    "statement": "Four guests check four identical-looking coats; at the end of the evening the four coats are returned in a uniformly random one-to-one assignment. Find the probability that exactly two guests get their own coat back.",
     "answer": "\\[\\boxed{\\dfrac{1}{4}}\\]",
-    "trap": "Stopping at $\\binom{4}{2}\\cdot\\frac{1}{4}\\cdot\\frac{1}{3}=\\frac12$, i.e. \"pick the two lucky guests and place their coats.\" That counts arrangements where the \\emph{other} two also happen to match, overcounting; the remaining two must be deranged.",
+    "trap": "Stopping at $\\binom{4}{2}\\cdot\\frac{1}{4}\\cdot\\frac{1}{3}=\\frac12$, i.e. \"pick the two lucky guests and place their coats.\" That counts arrangements where the other two also happen to match, overcounting; the remaining two must be deranged.",
     "solutions": [
       {
         "name": "Choose-then-derange",
@@ -2635,7 +2635,7 @@ window.PROBLEMS = [
       "seating",
       "blocks"
     ],
-    "statement": "Three married couples — six people in all — are seated in a row of six chairs in a uniformly random order. Find the probability that \\emph{no} couple ends up sitting in two adjacent chairs.",
+    "statement": "Three married couples — six people in all — are seated in a row of six chairs in a uniformly random order. Find the probability that no couple ends up sitting in two adjacent chairs.",
     "answer": "\\[\\boxed{\\dfrac{1}{3}}\\]",
     "trap": "Computing $P(\\text{couple }i\\text{ adjacent})=2\\cdot5!/6!=1/3$ and subtracting $3\\times\\tfrac13=1$ to conclude the answer is $0$. The three adjacency events overlap; their intersections (two or three couples glued at once) must be added back.",
     "solutions": [
@@ -2672,7 +2672,7 @@ window.PROBLEMS = [
     ],
     "statement": "A fair six-sided die is rolled six times. Find the probability that exactly five of the six faces appear (i.e. precisely one face value never shows up).",
     "answer": "\\[\\boxed{\\dfrac{25}{108}}\\]",
-    "trap": "Choosing the missing face ($6$ ways) and then assigning each of the $6$ rolls freely to the remaining $5$ faces ($5^6$ ways), giving $6\\cdot 5^6=93750$. This is not a surjection: it lets a second face also stay empty, so it overcounts wildly—so badly that $93750/46656>1$. The image must be \\emph{exactly} the chosen five faces, which forces a genuine surjection of the $6$ rolls onto the $5$-set, not a free map into it.",
+    "trap": "Choosing the missing face ($6$ ways) and then assigning each of the $6$ rolls freely to the remaining $5$ faces ($5^6$ ways), giving $6\\cdot 5^6=93750$. This is not a surjection: it lets a second face also stay empty, so it overcounts wildly—so badly that $93750/46656>1$. The image must be exactly the chosen five faces, which forces a genuine surjection of the $6$ rolls onto the $5$-set, not a free map into it.",
     "solutions": [
       {
         "name": "Choose the missing face, then count surjections",
@@ -2694,8 +2694,8 @@ window.PROBLEMS = [
       {
         "name": "Pure inclusion–exclusion on the number of empty faces",
         "steps": [
-          "Let $A_i$ be the event that face $i$ never appears. The number of outcomes missing a \\emph{specified} set of $k$ faces is $(6-k)^6$, and there are $\\binom{6}{k}$ such sets.",
-          "Outcomes hitting \\emph{at least} five distinct faces means at most one face is missing; we want exactly one missing. Outcomes with at least one specified empty face summed signed-ly give, for exactly one empty face, $\\binom{6}{1}\\big[(6-1)^6-\\binom{5}{1}(6-2)^6+\\cdots\\big]$, which is precisely $\\binom{6}{1}\\cdot(\\text{surjections }6\\to5)=6\\cdot1800=10800$.",
+          "Let $A_i$ be the event that face $i$ never appears. The number of outcomes missing a specified set of $k$ faces is $(6-k)^6$, and there are $\\binom{6}{k}$ such sets.",
+          "Outcomes hitting at least five distinct faces means at most one face is missing; we want exactly one missing. Outcomes with at least one specified empty face summed signed-ly give, for exactly one empty face, $\\binom{6}{1}\\big[(6-1)^6-\\binom{5}{1}(6-2)^6+\\cdots\\big]$, which is precisely $\\binom{6}{1}\\cdot(\\text{surjections }6\\to5)=6\\cdot1800=10800$.",
           "Hence probability $=\\dfrac{10800}{6^6}=\\dfrac{10800}{46656}=\\boxed{\\dfrac{25}{108}}$."
         ]
       }
@@ -2715,7 +2715,7 @@ window.PROBLEMS = [
       "matching",
       "one-over-e"
     ],
-    "statement": "For each $n$, let $p_n$ be the probability that a uniformly random permutation of $\\{1,2,\\dots,n\\}$ has \\emph{exactly two} fixed points. Evaluate $\\displaystyle\\lim_{n\\to\\infty}p_n$.",
+    "statement": "For each $n$, let $p_n$ be the probability that a uniformly random permutation of $\\{1,2,\\dots,n\\}$ has exactly two fixed points. Evaluate $\\displaystyle\\lim_{n\\to\\infty}p_n$.",
     "answer": "\\[\\boxed{\\dfrac{1}{2e}}\\]",
     "trap": "Believing the chance of \"exactly two correct\" shrinks to $0$ as $n\\to\\infty$ because \"matching gets harder.\" In fact the number of fixed points converges in law to Poisson$(1)$, so $p_n$ tends to a positive constant $e^{-1}/2!$, not $0$.",
     "solutions": [
@@ -2750,9 +2750,9 @@ window.PROBLEMS = [
       "independence-trap",
       "fixed-points"
     ],
-    "statement": "At a party of four guests, the cloakroom returns the four hats in a uniformly random one-to-one assignment, and \\emph{independently} returns the four coats in another uniformly random one-to-one assignment. Find the probability that no guest gets back both his own hat \\emph{and} his own coat.",
+    "statement": "At a party of four guests, the cloakroom returns the four hats in a uniformly random one-to-one assignment, and independently returns the four coats in another uniformly random one-to-one assignment. Find the probability that no guest gets back both his own hat and his own coat.",
     "answer": "\\[\\boxed{\\dfrac{151}{192}}\\]",
-    "trap": "Treating it as $\\big(P(\\text{hats deranged})\\big)\\cdot\\big(P(\\text{coats deranged})\\big)=(D_4/4!)^2$. The condition is far weaker — a guest may keep his hat or his coat, just not both — so the relevant events $B_i=\\{\\text{guest }i\\text{ keeps both}\\}$ must be handled by inclusion–exclusion, and crucially the $B_i$ are \\emph{not} independent.",
+    "trap": "Treating it as $\\big(P(\\text{hats deranged})\\big)\\cdot\\big(P(\\text{coats deranged})\\big)=(D_4/4!)^2$. The condition is far weaker — a guest may keep his hat or his coat, just not both — so the relevant events $B_i=\\{\\text{guest }i\\text{ keeps both}\\}$ must be handled by inclusion–exclusion, and crucially the $B_i$ are not independent.",
     "solutions": [
       {
         "name": "Inclusion–exclusion on the \"both own\" events",
@@ -2772,7 +2772,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: the intersection term $\\left((4-k)!/4!\\right)^2$ is where independence \\emph{does} legitimately enter — the two shuffles being independent lets the per-event probabilities multiply, but the events $B_i$ across guests still demand inclusion–exclusion, not a single product."
+    "remark": "Insight: the intersection term $\\left((4-k)!/4!\\right)^2$ is where independence does legitimately enter — the two shuffles being independent lets the per-event probabilities multiply, but the events $B_i$ across guests still demand inclusion–exclusion, not a single product."
   },
   {
     "theme": "distributions",
@@ -3516,7 +3516,7 @@ window.PROBLEMS = [
       "permutations",
       "linearity"
     ],
-    "statement": "A permutation $(a_1,a_2,\\dots,a_6)$ of $\\{1,2,\\dots,6\\}$ is chosen uniformly at random. Call position $i$ a \\emph{record} if $a_i>a_j$ for all $j<i$ (position $1$ is always a record). Let $X$ be the total number of records. Given the event that the largest value $6$ occupies position $3$, find $E[X]$.",
+    "statement": "A permutation $(a_1,a_2,\\dots,a_6)$ of $\\{1,2,\\dots,6\\}$ is chosen uniformly at random. Call position $i$ a record if $a_i>a_j$ for all $j<i$ (position $1$ is always a record). Let $X$ be the total number of records. Given the event that the largest value $6$ occupies position $3$, find $E[X]$.",
     "answer": "\\[\\boxed{\\dfrac{5}{2}}\\]",
     "trap": "Reusing the unconditional fact $E[X]=H_6=\\tfrac{49}{20}$, or assuming $P(\\text{position }i\\text{ is a record})=\\tfrac1i$ still holds for every $i$ after conditioning. Conditioning on $a_3=6$ destroys the record chance of every position $i>3$ (the global max has already appeared) and makes position $3$ a guaranteed record.",
     "solutions": [
@@ -3555,7 +3555,7 @@ window.PROBLEMS = [
       "complement",
       "conditioning"
     ],
-    "statement": "A population splits into two groups: a fraction $\\tfrac25$ belong to group $A$ where the disease prevalence is $\\tfrac1{10}$, and the rest to group $B$ where the prevalence is $\\tfrac12$. A randomly chosen person (group unknown) is given two independent screening tests, each with sensitivity $\\tfrac{9}{10}$ (probability of testing positive when diseased) and specificity $\\tfrac45$ (probability of testing negative when healthy). Given that \\emph{at least one} of the two tests comes back positive, find the probability that the person is diseased.",
+    "statement": "A population splits into two groups: a fraction $\\tfrac25$ belong to group $A$ where the disease prevalence is $\\tfrac1{10}$, and the rest to group $B$ where the prevalence is $\\tfrac12$. A randomly chosen person (group unknown) is given two independent screening tests, each with sensitivity $\\tfrac{9}{10}$ (probability of testing positive when diseased) and specificity $\\tfrac45$ (probability of testing negative when healthy). Given that at least one of the two tests comes back positive, find the probability that the person is diseased.",
     "answer": "\\[\\boxed{\\dfrac{17}{29}}\\]",
     "trap": "Computing the prior as $\\tfrac12(\\tfrac1{10})+\\tfrac12(\\tfrac12)$ instead of weighting by the true group fractions $\\tfrac25,\\tfrac35$; or computing $P(\\text{at least one positive})$ as $2\\times(\\text{single-test rate})$ instead of via the complement $1-(\\text{both negative})$, which double counts the overlap.",
     "solutions": [
@@ -3593,9 +3593,9 @@ window.PROBLEMS = [
       "gambler's ruin",
       "hitting probability"
     ],
-    "statement": "A frog sits at vertex $0$ of a regular hexagon with vertices labelled $0,1,2,3,4,5$ in order around the cycle. At each step it hops to one of its two neighbours, each with probability $\\tfrac12$. Find the probability that the frog visits the opposite vertex $3$ \\emph{before} it returns to its starting vertex $0$.",
+    "statement": "A frog sits at vertex $0$ of a regular hexagon with vertices labelled $0,1,2,3,4,5$ in order around the cycle. At each step it hops to one of its two neighbours, each with probability $\\tfrac12$. Find the probability that the frog visits the opposite vertex $3$ before it returns to its starting vertex $0$.",
     "answer": "\\[\\boxed{\\dfrac{1}{3}}\\]",
-    "trap": "Declaring the race symmetric: vertex $3$ is distance $3$ from $0$ along either arc, so it \\emph{looks} like a fair contest and one writes $\\tfrac12$. But the question is about returning to $0$, and after the obligatory first hop the frog is only $1$ step from home yet still $2$ steps from $3$. That asymmetry, not the arc lengths, governs the race. A second snare is to treat the two arcs as independent competitors and add their probabilities; once the frog commits to an arc, both $0$ and $3$ are absorbing on a single $3$-step path and there is nothing to add.",
+    "trap": "Declaring the race symmetric: vertex $3$ is distance $3$ from $0$ along either arc, so it looks like a fair contest and one writes $\\tfrac12$. But the question is about returning to $0$, and after the obligatory first hop the frog is only $1$ step from home yet still $2$ steps from $3$. That asymmetry, not the arc lengths, governs the race. A second snare is to treat the two arcs as independent competitors and add their probabilities; once the frog commits to an arc, both $0$ and $3$ are absorbing on a single $3$-step path and there is nothing to add.",
     "solutions": [
       {
         "name": "Symmetry fold + gambler's ruin",
@@ -3630,7 +3630,7 @@ window.PROBLEMS = [
       "ascents",
       "relative order"
     ],
-    "statement": "A permutation $(a_1,\\dots,a_{10})$ of $\\{1,2,\\dots,10\\}$ is chosen uniformly at random. An \\emph{ascent} occurs at position $i$ ($1\\le i\\le 9$) whenever $a_i<a_{i+1}$. Given that the permutation begins with a strictly increasing run of length $3$, i.e. $a_1<a_2<a_3$, find the expected total number of ascents.",
+    "statement": "A permutation $(a_1,\\dots,a_{10})$ of $\\{1,2,\\dots,10\\}$ is chosen uniformly at random. An ascent occurs at position $i$ ($1\\le i\\le 9$) whenever $a_i<a_{i+1}$. Given that the permutation begins with a strictly increasing run of length $3$, i.e. $a_1<a_2<a_3$, find the expected total number of ascents.",
     "answer": "\\[\\boxed{\\dfrac{21}{4}}\\]",
     "trap": "Assuming that conditioning on $a_1<a_2<a_3$ leaves every remaining adjacent comparison at probability $\\tfrac12$. The comparison at position $3$ (between $a_3$ and $a_4$) is suppressed to probability $\\tfrac14$, because $a_3$ is forced to be the largest of the first three entries and hence tends to exceed $a_4$.",
     "solutions": [
@@ -3669,7 +3669,7 @@ window.PROBLEMS = [
       "broken stick",
       "expectation"
     ],
-    "statement": "A unit stick is broken at two points chosen independently and uniformly along its length, producing three pieces. Given that the three pieces can form a (non-degenerate) triangle, find the expected length of the \\emph{longest} piece.",
+    "statement": "A unit stick is broken at two points chosen independently and uniformly along its length, producing three pieces. Given that the three pieces can form a (non-degenerate) triangle, find the expected length of the longest piece.",
     "answer": "\\[\\boxed{\\dfrac{4}{9}}\\]",
     "trap": "Conflating the unconditional $E[\\text{longest piece}]=\\tfrac{11}{18}$ with the conditional value, or assuming the triangle event is symmetric enough to leave $E[\\text{longest}]$ unchanged. Conditioning on every piece being below $\\tfrac12$ shrinks the longest piece, dropping the answer from $\\tfrac{11}{18}\\approx0.611$ to $\\tfrac49\\approx0.444$. A second trap is to misread the order-statistic tail: on the simplex $P(M>t)=3(1-t)^2-3(1-2t)^2$ on $[\\tfrac13,\\tfrac12]$, and using the bare $3(1-2t)^2$ wrongly forces $P(\\text{triangle})=1$.",
     "solutions": [
@@ -3709,9 +3709,9 @@ window.PROBLEMS = [
       "conditioning",
       "left-to-right maxima"
     ],
-    "statement": "The cards $1,2,\\dots,6$ are shuffled into a uniformly random order and dealt one at a time. A \\emph{record} occurs whenever a card exceeds all previously dealt cards. Given that exactly $3$ records occur over the whole deal, find the probability that the last card dealt is itself a record.",
+    "statement": "The cards $1,2,\\dots,6$ are shuffled into a uniformly random order and dealt one at a time. A record occurs whenever a card exceeds all previously dealt cards. Given that exactly $3$ records occur over the whole deal, find the probability that the last card dealt is itself a record.",
     "answer": "\\[\\boxed{\\dfrac{2}{9}}\\]",
-    "trap": "Assuming records behave like cycles of a permutation \\emph{per outcome} (they only share the same distribution; outcome-by-outcome the two counts disagree for $484$ of the $720$ permutations), or forgetting that the last card is a record precisely when it is the global maximum $6$. One must count permutations with a fixed record number using the unsigned Stirling numbers of the first kind.",
+    "trap": "Assuming records behave like cycles of a permutation per outcome (they only share the same distribution; outcome-by-outcome the two counts disagree for $484$ of the $720$ permutations), or forgetting that the last card is a record precisely when it is the global maximum $6$. One must count permutations with a fixed record number using the unsigned Stirling numbers of the first kind.",
     "solutions": [
       {
         "name": "Stirling-first-kind counting",
@@ -3824,14 +3824,14 @@ window.PROBLEMS = [
       "size bias",
       "circle"
     ],
-    "statement": "Three points are dropped independently and uniformly on a circle of circumference $1$, splitting it into three arcs. A fixed marker $Q$ is painted on the circle beforehand. Find the probability that the particular arc which happens to contain $Q$ is the \\emph{longest} of the three arcs.",
+    "statement": "Three points are dropped independently and uniformly on a circle of circumference $1$, splitting it into three arcs. A fixed marker $Q$ is painted on the circle beforehand. Find the probability that the particular arc which happens to contain $Q$ is the longest of the three arcs.",
     "answer": "\\[\\boxed{\\dfrac{11}{18}}\\]",
-    "trap": "Answering $\\tfrac13$ by symmetry, 'each arc is equally likely to be longest.' That symmetry holds for an arc chosen by its label, but the arc containing a fixed point $Q$ is \\emph{size-biased} — longer arcs are more likely to swallow $Q$ — so its chance of being longest is strictly above $\\tfrac13$. Numerically the $Q$-arc has mean length $\\tfrac12$, not $\\tfrac13$, betraying the bias.",
+    "trap": "Answering $\\tfrac13$ by symmetry, 'each arc is equally likely to be longest.' That symmetry holds for an arc chosen by its label, but the arc containing a fixed point $Q$ is size-biased — longer arcs are more likely to swallow $Q$ — so its chance of being longest is strictly above $\\tfrac13$. Numerically the $Q$-arc has mean length $\\tfrac12$, not $\\tfrac13$, betraying the bias.",
     "solutions": [
       {
         "name": "Size-bias to the longest-arc distribution",
         "steps": [
-          "Condition on the three arc lengths $\\ell_1,\\ell_2,\\ell_3$ (with $\\ell_1+\\ell_2+\\ell_3=1$). Given them, the fixed marker $Q$ is uniform, so $P(Q\\in\\text{arc }i\\mid\\ell)=\\ell_i$: the arc containing $Q$ is a \\emph{length-biased} pick of the three arcs.",
+          "Condition on the three arc lengths $\\ell_1,\\ell_2,\\ell_3$ (with $\\ell_1+\\ell_2+\\ell_3=1$). Given them, the fixed marker $Q$ is uniform, so $P(Q\\in\\text{arc }i\\mid\\ell)=\\ell_i$: the arc containing $Q$ is a length-biased pick of the three arcs.",
           "Therefore $P(Q\\text{'s arc is the longest})=\\sum_{i=1}^3 E\\!\\left[\\ell_i\\,\\mathbf1\\{\\ell_i=\\max\\}\\right]=E\\!\\left[\\max_i \\ell_i\\right]$, because in each realisation exactly the maximal arc carries the indicator and contributes its own length to the sum.",
           "So the answer is precisely the expected longest arc. For $n$ uniform points the spacings are exchangeable Dirichlet$(1,\\dots,1)$, and the classical spacings result gives $E[\\text{longest arc}]=\\dfrac{H_n}{n}=\\dfrac1n\\sum_{k=1}^n\\dfrac1k$.",
           "With $n=3$: $E[\\max]=\\dfrac{H_3}{3}=\\dfrac13\\Big(1+\\dfrac12+\\dfrac13\\Big)=\\dfrac13\\cdot\\dfrac{11}{6}=\\boxed{\\dfrac{11}{18}}.$"

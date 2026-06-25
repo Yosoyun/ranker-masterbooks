@@ -2482,7 +2482,7 @@ window.PROBLEMS = [
     ],
     "statement": "At each point of a first-quadrant curve, the tangent line cuts off, together with the coordinate axes, a triangle whose area is always the same constant $8$. Find the curve through $(1,4)$ and identify it. (You may assume the tangent meets both positive axes, so $y>0$ and $y'<0$ throughout.)",
     "answer": "\\[\\boxed{xy=4\\quad(\\text{a rectangular hyperbola})}\\]",
-    "trap": "Reading 'cuts off a fixed triangle' as a constant intercept-\\emph{sum} $x_A+y_B=\\text{const}$ instead of a constant \\emph{area} $\\tfrac12 x_A y_B=\\text{const}$. The sum condition is a Clairaut equation $y=xy'+k/(\\,\\ldots)$ whose primitive is a one-parameter family of straight lines with an astroid-type envelope, never a single hyperbola. For $xy=4$ the intercept sum is $2x+8/x$, which is genuinely non-constant (it varies from $8$ upward), so the sum reading would reject the very curve the problem describes. It is the product of the intercepts, i.e. the area, that is held fixed.",
+    "trap": "Reading 'cuts off a fixed triangle' as a constant intercept-sum $x_A+y_B=\\text{const}$ instead of a constant area $\\tfrac12 x_A y_B=\\text{const}$. The sum condition is a Clairaut equation $y=xy'+k/(\\,\\ldots)$ whose primitive is a one-parameter family of straight lines with an astroid-type envelope, never a single hyperbola. For $xy=4$ the intercept sum is $2x+8/x$, which is genuinely non-constant (it varies from $8$ upward), so the sum reading would reject the very curve the problem describes. It is the product of the intercepts, i.e. the area, that is held fixed.",
     "solutions": [
       {
         "name": "Area in terms of the intercepts",
@@ -2498,12 +2498,12 @@ window.PROBLEMS = [
         "steps": [
           "Impose area $=8$: $\\dfrac12\\Bigl(x-\\dfrac{y}{y'}\\Bigr)(y-xy')=8$. Multiplying out and then by $y'$ gives $2xy\\,y'-x^2(y')^2-y^2=16\\,y'$, i.e. $(xy'-y)^2=-16\\,y'$.",
           "Solving for $y$ yields the Clairaut form $y=xy'+4\\sqrt{-y'}$ (taking $y'<0$). Its general primitive replaces $y'$ by a constant $m<0$, giving the straight-line family $y=mx+4\\sqrt{-m}$ — these are the individual tangent lines, not the curve we seek.",
-          "The required curve is the \\emph{singular} (envelope) solution. Differentiating $y=xy'+4\\sqrt{-y'}$ and eliminating $y'$ via $x=\\dfrac{2}{\\sqrt{-y'}}$ gives $x\\sqrt{-y'}=2$ and $y=2\\sqrt{-y'}$, whence $xy=4$ for every point on the envelope — exactly the locus of fixed area $8$.",
+          "The required curve is the singular (envelope) solution. Differentiating $y=xy'+4\\sqrt{-y'}$ and eliminating $y'$ via $x=\\dfrac{2}{\\sqrt{-y'}}$ gives $x\\sqrt{-y'}=2$ and $y=2\\sqrt{-y'}$, whence $xy=4$ for every point on the envelope — exactly the locus of fixed area $8$.",
           "Through $(1,4)$ this envelope gives $1\\cdot4=4$, confirming $\\boxed{xy=4}$."
         ]
       }
     ],
-    "remark": "Insight: 'cut a fixed triangle from the axes' is two different problems hiding behind the same sentence. Constant intercept-\\emph{sum} is a Clairaut equation whose primitive is a one-parameter family of straight lines (their envelope being an astroid), while constant \\emph{area}, i.e. constant half-product of intercepts, forces the single rectangular hyperbola $xy=\\text{const}$. The hyperbola here is not a member of a Clairaut family but its envelope: that is precisely why the area is pinned to one value rather than carrying a free constant. Each point of $xy=4$ bisects the tangent segment it caps, the geometric signature of the rectangular hyperbola."
+    "remark": "Insight: 'cut a fixed triangle from the axes' is two different problems hiding behind the same sentence. Constant intercept-sum is a Clairaut equation whose primitive is a one-parameter family of straight lines (their envelope being an astroid), while constant area, i.e. constant half-product of intercepts, forces the single rectangular hyperbola $xy=\\text{const}$. The hyperbola here is not a member of a Clairaut family but its envelope: that is precisely why the area is pinned to one value rather than carrying a free constant. Each point of $xy=4$ bisects the tangent segment it caps, the geometric signature of the rectangular hyperbola."
   },
   {
     "theme": "geometry",
@@ -2663,7 +2663,7 @@ window.PROBLEMS = [
     ],
     "statement": "Consider the one-parameter family of cubics through the origin\n\\[ y = c\\,x^{3}, \\qquad c\\in\\mathbb{R}. \\]\nFind the family of curves that cuts every member of this pencil at right angles, and name the resulting curves.",
     "answer": "\\[\\boxed{\\,x^{2}+3y^{2}=k\\,}\\]",
-    "trap": "The fatal move is to replace $y'$ by $-1/y'$ in the relation $y'=3cx^{2}$ \\emph{while $c$ is still present}, then plug in $c=y/x^{3}$. Because $c$ here is linear and isolatable from the bare equation, that shortcut happens to give the right slope — which is exactly why students wrongly believe the order never matters. The conceptual point: $c$ must be eliminated to obtain a $c$-free ODE $y'=f(x,y)$ BEFORE any slope swap, since in general the swapped relation no longer admits the correct elimination.",
+    "trap": "The fatal move is to replace $y'$ by $-1/y'$ in the relation $y'=3cx^{2}$ while $c$ is still present, then plug in $c=y/x^{3}$. Because $c$ here is linear and isolatable from the bare equation, that shortcut happens to give the right slope — which is exactly why students wrongly believe the order never matters. The conceptual point: $c$ must be eliminated to obtain a $c$-free ODE $y'=f(x,y)$ BEFORE any slope swap, since in general the swapped relation no longer admits the correct elimination.",
     "solutions": [
       {
         "name": "Eliminate, then swap",
@@ -3421,7 +3421,7 @@ window.PROBLEMS = [
       "orthogonal trajectories",
       "separable"
     ],
-    "statement": "A curve $\\mathcal{C}$ in the first quadrant has the property that at every point its $\\textit{subnormal}$ (the projection $y\\,y'$ of the normal onto the $x$-axis) equals the abscissa $x$, and it passes through $(1,\\sqrt{3})$. Through the same point $(1,\\sqrt{3})$ passes exactly one member of the family of $\\textbf{orthogonal trajectories}$ of $\\mathcal{C}$'s family. Find both curves.",
+    "statement": "A curve $\\mathcal{C}$ in the first quadrant has the property that at every point its $subnormal$ (the projection $y\\,y'$ of the normal onto the $x$-axis) equals the abscissa $x$, and it passes through $(1,\\sqrt{3})$. Through the same point $(1,\\sqrt{3})$ passes exactly one member of the family of $orthogonal trajectories$ of $\\mathcal{C}$'s family. Find both curves.",
     "answer": "\\[\\boxed{y^2=x^2+2 \\quad\\text{and}\\quad y=\\dfrac{\\sqrt3}{x}}\\]",
     "trap": "When forming the orthogonal family, replacing $y'$ by $+1/y'$ instead of $-1/y'$ (forgetting the sign of the perpendicular slope); this turns the family into the lines $y=Ax$, whose slope at $(1,\\sqrt3)$ is $+\\sqrt3$. The product with the original slope $1/\\sqrt3$ is $+1$, not $-1$, so the perpendicularity test fails.",
     "solutions": [
@@ -3498,7 +3498,7 @@ window.PROBLEMS = [
       "envelope",
       "parameter elimination"
     ],
-    "statement": "Consider the first-order equation, with $p=\\dfrac{dy}{dx}$,\\[ y=x\\,p+p^{2}. \\] Find $\\textbf{all}$ solutions: the one-parameter general family $\\textit{and}$ any solution not contained in it, and identify the geometric relationship between them.",
+    "statement": "Consider the first-order equation, with $p=\\dfrac{dy}{dx}$,\\[ y=x\\,p+p^{2}. \\] Find $all$ solutions: the one-parameter general family $and$ any solution not contained in it, and identify the geometric relationship between them.",
     "answer": "\\[\\boxed{y=Cx+C^{2}\\ \\ (C\\in\\mathbb{R}),\\qquad y=-\\tfrac{x^{2}}{4}}\\]",
     "trap": "Differentiating to get $p'(x+2p)=0$ and keeping only the branch $p'=0$ (which yields the straight-line family $y=Cx+C^2$), then declaring the solution complete. The other branch $x+2p=0$ gives the singular envelope $y=-x^2/4$, a genuine solution that no value of $C$ produces.",
     "solutions": [
@@ -3536,7 +3536,7 @@ window.PROBLEMS = [
       "variable volume",
       "integrating factor"
     ],
-    "statement": "A tank holds $100$ L of pure water. Brine of concentration $1$ g/L is pumped in at $6$ L/min, and the well-stirred mixture is drawn off at only $4$ L/min, so the volume rises. Let $A(t)$ be the grams of salt at time $t$. Find $A(50)$ and the salt $\\textbf{concentration}$ in the tank at $t=50$ min.",
+    "statement": "A tank holds $100$ L of pure water. Brine of concentration $1$ g/L is pumped in at $6$ L/min, and the well-stirred mixture is drawn off at only $4$ L/min, so the volume rises. Let $A(t)$ be the grams of salt at time $t$. Find $A(50)$ and the salt $concentration$ in the tank at $t=50$ min.",
     "answer": "\\[\\boxed{A(50)=175\\text{ g},\\qquad c(50)=\\tfrac{7}{8}\\text{ g/L}}\\]",
     "trap": "Using a fixed volume $100$ in the outflow term, $dA/dt=6-4A/100$. Because inflow exceeds outflow the volume grows as $V=100+2t$, so the outflow concentration is $A/(100+2t)$; the constant-volume slip gives the wrong equation and a wrong limiting behaviour.",
     "solutions": [
@@ -3575,7 +3575,7 @@ window.PROBLEMS = [
       "substitution",
       "domain"
     ],
-    "statement": "Find $\\textbf{all}$ solutions of $\\dfrac{dy}{dx}+\\dfrac{y}{x}=x\\,y^{2}$ on $x>0$, and write the particular solution with $y(1)=\\tfrac12$, stating its maximal interval of validity.",
+    "statement": "Find $all$ solutions of $\\dfrac{dy}{dx}+\\dfrac{y}{x}=x\\,y^{2}$ on $x>0$, and write the particular solution with $y(1)=\\tfrac12$, stating its maximal interval of validity.",
     "answer": "\\[\\boxed{y=\\dfrac{1}{Cx-x^{2}},\\quad y\\equiv0;\\quad y(1)=\\tfrac12:\\ y=\\dfrac{1}{3x-x^{2}},\\ 0<x<3}\\]",
     "trap": "Dividing through by $y^2$ to set up the Bernoulli substitution $v=1/y$ without noting that this division silently discards the equilibrium solution $y\\equiv0$ (which satisfies the equation). The 'all solutions' demand makes that omission fatal.",
     "solutions": [
@@ -3651,7 +3651,7 @@ window.PROBLEMS = [
       "coaxial circles",
       "parameter elimination"
     ],
-    "statement": "Consider the family of circles through the origin with centres on the $x$-axis: $x^{2}+y^{2}=2Cx$. Find their $\\textbf{orthogonal trajectories}$ as a family, and give the explicit member of that orthogonal family passing through $(1,1)$.",
+    "statement": "Consider the family of circles through the origin with centres on the $x$-axis: $x^{2}+y^{2}=2Cx$. Find their $orthogonal trajectories$ as a family, and give the explicit member of that orthogonal family passing through $(1,1)$.",
     "answer": "\\[\\boxed{x^{2}+y^{2}=2Ky;\\quad\\text{through }(1,1):\\ x^{2}+(y-1)^{2}=1}\\]",
     "trap": "Eliminating the parameter by writing $C=\\frac{x^2+y^2}{2x}$ and differentiating that quotient (error-prone), or forgetting to substitute $C$ back before swapping slopes — leaving $C$ in the slope field so the orthogonal swap is meaningless.",
     "solutions": [
@@ -3689,7 +3689,7 @@ window.PROBLEMS = [
       "hidden constraint",
       "exponential"
     ],
-    "statement": "Find $\\textbf{all}$ twice-differentiable $f:\\mathbb{R}\\to\\mathbb{R}$ satisfying simultaneously $f''(x)=f(x)$ for all $x$, the functional identity $f(x)\\,f(-x)=1$ for all $x$, and $f(0)=1$.",
+    "statement": "Find $all$ twice-differentiable $f:\\mathbb{R}\\to\\mathbb{R}$ satisfying simultaneously $f''(x)=f(x)$ for all $x$, the functional identity $f(x)\\,f(-x)=1$ for all $x$, and $f(0)=1$.",
     "answer": "\\[\\boxed{f(x)=e^{x}\\quad\\text{or}\\quad f(x)=e^{-x}}\\]",
     "trap": "Solving $f''=f$ to get $f=Ae^x+Be^{-x}$ and stopping, or imposing only $f(0)=1$ to get $A+B=1$ — a whole line of choices (e.g. $\\cosh x$ at $A=B=\\tfrac12$). The functional identity $f(x)f(-x)=1$ is the real filter: it forces $AB=0$, collapsing that line to exactly two functions.",
     "solutions": [
@@ -3698,7 +3698,7 @@ window.PROBLEMS = [
         "steps": [
           "General solution of the linear equation $f''=f$ is $f(x)=Ae^x+Be^{-x}$ with constants $A,B$; every twice-differentiable solution has this form, so no candidate lies outside the family.",
           "Compute $f(x)f(-x)=(Ae^x+Be^{-x})(Ae^{-x}+Be^{x})=A^2+B^2+AB\\,(e^{2x}+e^{-2x})$.",
-          "For this to equal the constant $1$ for $\\textit{all}$ $x$, the nonconstant term $e^{2x}+e^{-2x}$ must drop out, forcing $AB=0$; the remaining constant gives $A^2+B^2=1$.",
+          "For this to equal the constant $1$ for $all$ $x$, the nonconstant term $e^{2x}+e^{-2x}$ must drop out, forcing $AB=0$; the remaining constant gives $A^2+B^2=1$.",
           "Thus either $A=0,\\,B=\\pm1$ or $B=0,\\,A=\\pm1$ — exactly four candidates.",
           "Apply $f(0)=A+B=1$: this discards the two $-1$ cases, leaving $(A,B)=(1,0)$ or $(A,B)=(0,1)$.",
           "Hence $f(x)=e^x$ or $f(x)=e^{-x}$, and a direct check confirms both satisfy all three conditions. $\\boxed{f=e^{x}\\text{ or }e^{-x}}$"
@@ -3729,7 +3729,7 @@ window.PROBLEMS = [
       "separable",
       "exponential decay"
     ],
-    "statement": "A curve has constant $\\textbf{subnormal}$ $y\\,y'=2$ and passes through $(0,2)$. Find this curve, then find the $\\textbf{orthogonal trajectories}$ of its family and the orthogonal member through $(0,2)$.",
+    "statement": "A curve has constant $subnormal$ $y\\,y'=2$ and passes through $(0,2)$. Find this curve, then find the $orthogonal trajectories$ of its family and the orthogonal member through $(0,2)$.",
     "answer": "\\[\\boxed{y^{2}=4x+4\\quad\\text{and}\\quad y=2e^{-x/2}}\\]",
     "trap": "After getting $y\\,y'=2$ for the parabolas, forming the orthogonal family by setting $y\\cdot(+1/y')=2$ instead of $y\\cdot(-1/y')=2$. The sign error yields growing exponentials $y=Ae^{x/2}$ whose slopes are not perpendicular to the parabolas at intersection.",
     "solutions": [
@@ -3768,9 +3768,9 @@ window.PROBLEMS = [
       "linear reduction",
       "asymptotics"
     ],
-    "statement": "Solve the Riccati equation $\\dfrac{dy}{dx}+y^{2}=\\dfrac{2}{x^{2}}$ on $x>0$. Exhibit $\\textbf{both}$ of its rational particular solutions of the form $a/x$, then give the full general solution and the member with $y(1)=\\tfrac52$, and state $\\displaystyle\\lim_{x\\to\\infty}y(x)$ for that member.",
+    "statement": "Solve the Riccati equation $\\dfrac{dy}{dx}+y^{2}=\\dfrac{2}{x^{2}}$ on $x>0$. Exhibit $both$ of its rational particular solutions of the form $a/x$, then give the full general solution and the member with $y(1)=\\tfrac52$, and state $\\displaystyle\\lim_{x\\to\\infty}y(x)$ for that member.",
     "answer": "\\[\\boxed{y=\\dfrac{2}{x}+\\dfrac{1}{\\tfrac73x^{4}-\\tfrac{x}{3}}=\\dfrac{14x^{3}+1}{7x^{4}-x},\\quad \\lim_{x\\to\\infty}y=0}\\]",
-    "trap": "Spotting one particular solution $y_1=2/x$, reducing via $y=2/x+1/v$ correctly, but overlooking the second rational solution $y=-1/x$ (the other root of $a^{2}-a=2$) — and then, when asked for the limit, the slick cross-ratio shortcut traps you on a sign: the integrating exponent is $\\int R\\,(y_1-y_2)\\,dx$ with $R=-1$ (the coefficient of $y^{2}$), giving $x^{-3}$, $\\textbf{not}$ $x^{+3}$. Use the wrong sign and you land on a different branch with $\\lim y=-1$ instead of the correct $0$.",
+    "trap": "Spotting one particular solution $y_1=2/x$, reducing via $y=2/x+1/v$ correctly, but overlooking the second rational solution $y=-1/x$ (the other root of $a^{2}-a=2$) — and then, when asked for the limit, the slick cross-ratio shortcut traps you on a sign: the integrating exponent is $\\int R\\,(y_1-y_2)\\,dx$ with $R=-1$ (the coefficient of $y^{2}$), giving $x^{-3}$, $not$ $x^{+3}$. Use the wrong sign and you land on a different branch with $\\lim y=-1$ instead of the correct $0$.",
     "solutions": [
       {
         "name": "Find a particular solution, then linearize",

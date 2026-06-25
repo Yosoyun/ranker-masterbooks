@@ -170,7 +170,7 @@ window.PROBLEMS = [
       "pairing"
     ],
     "statement": "Between two distinct positive numbers $a$ and $b$, insert $n$ arithmetic means $A_1,A_2,\\dots,A_n$ and, between the same $a$ and $b$, insert $n$ harmonic means $H_1,H_2,\\dots,H_n$ (both indexed from the end nearest $a$). Prove that $A_k\\,H_{\\,n+1-k}=ab$ for every $k=1,\\dots,n$, and hence evaluate $A_2\\,H_{4}$ when $a=2,\\ b=18,\\ n=5$.",
-    "answer": "$\\[\\boxed{A_kH_{\\,n+1-k}=ab,\\qquad A_2H_4=36}\\]",
+    "answer": "\\[\\boxed{A_kH_{\\,n+1-k}=ab,\\qquad A_2H_4=36}\\]",
     "trap": "Assuming $A_k$ and $H_k$ pair up at the SAME index (so $A_kH_k=ab$) is false; only the MIRRORED index $n+1-k$ works. The reflection arises because the AM-progression climbs from $a$ to $b$ while the reciprocal-of-HM progression climbs from $1/a$ to $1/b$ — opposite orientations. Pairing same-index gives $A_kH_k\\ne ab$ in general (it holds only by accident at the self-mirror midpoint $k=\\tfrac{n+1}{2}$).",
     "solutions": [
       {
@@ -1075,7 +1075,7 @@ window.PROBLEMS = [
     ],
     "statement": "Evaluate the infinite product $\\displaystyle \\prod_{k=2}^{\\infty}\\frac{k^3-1}{k^3+1}$. Also give the finite partial product $\\displaystyle\\prod_{k=2}^{n}\\frac{k^3-1}{k^3+1}$ in closed form.",
     "answer": "\\[\\boxed{\\ \\frac{2}{3}\\ ;\\qquad \\prod_{k=2}^{n}=\\frac{2\\,(n^2+n+1)}{3\\,n(n+1)}\\ }\\]",
-    "trap": "Factoring only the linear parts $k^3\\pm1=(k\\pm1)(k^2\\mp k+1)$ and telescoping the \\emph{linear} chain while assuming the quadratic chain $\\prod\\frac{k^2-k+1}{k^2+k+1}$ does nothing. In fact the quadratics telescope too — because $k^2+k+1=(k+1)^2-(k+1)+1$ shifts by one index. Missing that second telescope collapses the answer to $\\lim_{n\\to\\infty}\\frac{2}{n(n+1)}=0$, or leaves a stray $\\frac{1}{3}$ or $2$ at the boundary — all wrong.",
+    "trap": "Factoring only the linear parts $k^3\\pm1=(k\\pm1)(k^2\\mp k+1)$ and telescoping the linear chain while assuming the quadratic chain $\\prod\\frac{k^2-k+1}{k^2+k+1}$ does nothing. In fact the quadratics telescope too — because $k^2+k+1=(k+1)^2-(k+1)+1$ shifts by one index. Missing that second telescope collapses the answer to $\\lim_{n\\to\\infty}\\frac{2}{n(n+1)}=0$, or leaves a stray $\\frac{1}{3}$ or $2$ at the boundary — all wrong.",
     "solutions": [
       {
         "name": "Two interlocking telescopes",
@@ -1096,7 +1096,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: $a^3\\pm b^3$ factorisation hides a \\emph{second} telescope in the quadratic factor via $k^2+k+1=(k+1)^2-(k+1)+1$. Two shift-by-one ladders run simultaneously; tracking both boundaries is the whole game, and the surviving $g(2)=3$ in the denominator is what produces the elegant $\\tfrac23$."
+    "remark": "Insight: $a^3\\pm b^3$ factorisation hides a second telescope in the quadratic factor via $k^2+k+1=(k+1)^2-(k+1)+1$. Two shift-by-one ladders run simultaneously; tracking both boundaries is the whole game, and the surviving $g(2)=3$ in the denominator is what produces the elegant $\\tfrac23$."
   },
   {
     "theme": "telescoping",
@@ -1991,7 +1991,7 @@ window.PROBLEMS = [
     ],
     "statement": "Using the generating-function identity $\\sum_{k\\ge 0}x^k=\\dfrac{1}{1-x}$ and its derivatives, evaluate the finite sum \\[ S_n=\\sum_{k=0}^{n}k\\,2^{k}. \\] Give a closed form in $n$.",
     "answer": "\\[\\boxed{S_n=(n-1)\\,2^{n+1}+2}\\]",
-    "trap": "Differentiating the infinite identity to get $\\sum_{k\\ge 0}kx^k=\\dfrac{x}{(1-x)^2}$ and then \\emph{plugging in} $x=2$ to read off $\\dfrac{2}{(1-2)^2}=2$. That series has radius of convergence $1$, so it diverges at $x=2$; the result $2$ is a constant, independent of $n$, while $S_n$ clearly grows. One must differentiate the \\emph{finite} geometric sum $\\frac{1-x^{n+1}}{1-x}$ (whose $x^{n+1}$ tail also gets differentiated) and only then set $x=2$.",
+    "trap": "Differentiating the infinite identity to get $\\sum_{k\\ge 0}kx^k=\\dfrac{x}{(1-x)^2}$ and then plugging in $x=2$ to read off $\\dfrac{2}{(1-2)^2}=2$. That series has radius of convergence $1$, so it diverges at $x=2$; the result $2$ is a constant, independent of $n$, while $S_n$ clearly grows. One must differentiate the finite geometric sum $\\frac{1-x^{n+1}}{1-x}$ (whose $x^{n+1}$ tail also gets differentiated) and only then set $x=2$.",
     "solutions": [
       {
         "name": "Differentiate the finite geometric sum",
@@ -2014,7 +2014,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: the derivative trick lives on the \\emph{finite} identity. The infinite series $\\sum_{k\\ge 0}kx^k=\\frac{x}{(1-x)^2}$ has radius of convergence $1$, so substituting $x=2$ is illegal and yields a meaningless constant. Generating-function manipulations transfer to actual numbers only inside the disc of convergence, or by first passing through the polynomial/finite version where no convergence is needed."
+    "remark": "Insight: the derivative trick lives on the finite identity. The infinite series $\\sum_{k\\ge 0}kx^k=\\frac{x}{(1-x)^2}$ has radius of convergence $1$, so substituting $x=2$ is illegal and yields a meaningless constant. Generating-function manipulations transfer to actual numbers only inside the disc of convergence, or by first passing through the polynomial/finite version where no convergence is needed."
   },
   {
     "theme": "genfunc",
@@ -2030,7 +2030,7 @@ window.PROBLEMS = [
     ],
     "statement": "A sequence satisfies $a_0=2,\\ a_1=3$ and $a_n=5a_{n-1}-6a_{n-2}$ for $n\\ge 2$. Its generating function has the form $A(x)=\\dfrac{p+qx}{1-5x+6x^2}$ and the closed form is $a_n=\\alpha\\,2^{n}+\\beta\\,3^{n}$. Find the integers $p,q$ and the constants $\\alpha,\\beta$.",
     "answer": "\\[\\boxed{p=2,\\ q=-7,\\quad \\alpha=3,\\ \\beta=-1}\\]",
-    "trap": "Reading the closed form straight off the roots as $\\alpha 2^n+\\beta 3^n$ but assigning $\\alpha,\\beta$ by matching only $a_0$ (giving $\\alpha+\\beta=2$) and \\emph{guessing} the split, instead of also using $a_1=3$. The numerator of $A(x)$ is $a_0+(a_1-5a_0)x=2-7x$, not $2+3x$; using the raw seeds $2,3$ as the numerator is the seductive error.",
+    "trap": "Reading the closed form straight off the roots as $\\alpha 2^n+\\beta 3^n$ but assigning $\\alpha,\\beta$ by matching only $a_0$ (giving $\\alpha+\\beta=2$) and guessing the split, instead of also using $a_1=3$. The numerator of $A(x)$ is $a_0+(a_1-5a_0)x=2-7x$, not $2+3x$; using the raw seeds $2,3$ as the numerator is the seductive error.",
     "solutions": [
       {
         "name": "Generating function",
@@ -2111,7 +2111,7 @@ window.PROBLEMS = [
     ],
     "statement": "Four ordinary dice (faces $1,2,3,4,5,6$) are rolled. Using the generating function for a single die and extracting a coefficient, determine the number of ordered outcomes whose face-sum equals $14$.",
     "answer": "\\[\\boxed{146}\\]",
-    "trap": "Modelling a die as $\\frac{1}{1-x}$ (faces $1,2,3,\\dots$ unbounded) and getting $\\binom{13}{3}=286$ unrestricted compositions, forgetting the upper face limit of $6$. The correct single-die generating function is the \\emph{finite} $x+x^2+\\cdots+x^6=x\\frac{1-x^6}{1-x}$, and the $1-x^6$ factors enforce the cap via inclusion-exclusion.",
+    "trap": "Modelling a die as $\\frac{1}{1-x}$ (faces $1,2,3,\\dots$ unbounded) and getting $\\binom{13}{3}=286$ unrestricted compositions, forgetting the upper face limit of $6$. The correct single-die generating function is the finite $x+x^2+\\cdots+x^6=x\\frac{1-x^6}{1-x}$, and the $1-x^6$ factors enforce the cap via inclusion-exclusion.",
     "solutions": [
       {
         "name": "Coefficient via inclusion-exclusion",
@@ -2382,7 +2382,7 @@ window.PROBLEMS = [
     ],
     "statement": "Classify the series\n\\[\\sum_{n=1}^{\\infty}\\frac{n}{n^2+1}\\]\nas convergent or divergent, naming the decisive test and verifying its hypotheses. If it diverges, state the precise rate at which the partial sums $S_N=\\sum_{n=1}^{N}\\frac{n}{n^2+1}$ grow.",
     "answer": "\\[\\boxed{\\text{Divergent; }S_N\\sim\\ln N}\\]",
-    "trap": "Two traps live here. First, concluding \\emph{convergence} because $a_n=\\frac{n}{n^2+1}\\to0$: the $n$-th term test can only prove divergence (when the limit is nonzero), so a term tending to $0$ is necessary but never sufficient. Second, mis-stating the rate as $\\tfrac12\\ln N$: since $a_n\\sim\\frac1n$, the partial sums track the harmonic numbers, so $S_N\\sim\\ln N$ with leading constant $1$, not $\\tfrac12$.",
+    "trap": "Two traps live here. First, concluding convergence because $a_n=\\frac{n}{n^2+1}\\to0$: the $n$-th term test can only prove divergence (when the limit is nonzero), so a term tending to $0$ is necessary but never sufficient. Second, mis-stating the rate as $\\tfrac12\\ln N$: since $a_n\\sim\\frac1n$, the partial sums track the harmonic numbers, so $S_N\\sim\\ln N$ with leading constant $1$, not $\\tfrac12$.",
     "solutions": [
       {
         "name": "Limit comparison with the harmonic series",
@@ -2748,7 +2748,7 @@ window.PROBLEMS = [
     ],
     "statement": "For a permutation $\\sigma$ of $\\{1,2,\\dots,n\\}$ consider $S(\\sigma)=\\sum_{k=1}^{n} k\\,\\sigma(k)$. Over all permutations $\\sigma$, find the minimum value of $S(\\sigma)$ in closed form.",
     "answer": "\\[\\boxed{\\dfrac{n(n+1)(2n+1)}{6}-\\dfrac{(n-1)n(n+1)}{6}=\\dfrac{n(n+1)(n+2)}{6}}\\]",
-    "trap": "Many guess the minimum is the identity $\\sigma(k)=k$, which actually \\emph{maximizes} the sum (giving $\\sum k^2=\\tfrac{n(n+1)(2n+1)}{6}$). The rearrangement inequality says a sum of products is \\emph{minimized} when the two sequences are oppositely ordered, so one must reverse, not align.",
+    "trap": "Many guess the minimum is the identity $\\sigma(k)=k$, which actually maximizes the sum (giving $\\sum k^2=\\tfrac{n(n+1)(2n+1)}{6}$). The rearrangement inequality says a sum of products is minimized when the two sequences are oppositely ordered, so one must reverse, not align.",
     "solutions": [
       {
         "name": "Rearrangement inequality",
@@ -2824,7 +2824,7 @@ window.PROBLEMS = [
     ],
     "statement": "Let $a_1,a_2,\\dots,a_n$ be positive reals. Prove that \\[ n\\sum_{k=1}^{n} a_k^{3}\\;\\ge\\;\\Big(\\sum_{k=1}^{n} a_k\\Big)\\Big(\\sum_{k=1}^{n} a_k^{2}\\Big), \\] and determine all equality cases.",
     "answer": "\\[\\boxed{\\text{Equality iff } a_1=a_2=\\cdots=a_n}\\]",
-    "trap": "Trying to apply Chebyshev's sum inequality directly to $\\{a_k\\}$ and $\\{a_k^2\\}$ requires both sequences sorted the \\emph{same} way; if you reindex one set without the other you get the reverse (wrong-direction) inequality. The fix is to note $a_k\\mapsto a_k$ and $a_k\\mapsto a_k^2$ are similarly ordered for positive reals, so no reindexing is allowed.",
+    "trap": "Trying to apply Chebyshev's sum inequality directly to $\\{a_k\\}$ and $\\{a_k^2\\}$ requires both sequences sorted the same way; if you reindex one set without the other you get the reverse (wrong-direction) inequality. The fix is to note $a_k\\mapsto a_k$ and $a_k\\mapsto a_k^2$ are similarly ordered for positive reals, so no reindexing is allowed.",
     "solutions": [
       {
         "name": "Chebyshev's sum inequality",
@@ -2900,7 +2900,7 @@ window.PROBLEMS = [
     ],
     "statement": "Let $a_1,\\dots,a_n>0$. Prove the chain \\[ \\Big(\\sum_{k=1}^n a_k^{2}\\Big)^{2}\\;\\le\\;\\Big(\\sum_{k=1}^n a_k\\Big)\\Big(\\sum_{k=1}^n a_k^{3}\\Big)\\;\\le\\;n\\sum_{k=1}^n a_k^{4}, \\] and determine when both inequalities are simultaneously equalities.",
     "answer": "\\[\\boxed{\\text{Both inequalities are equalities if and only if } a_1=a_2=\\cdots=a_n.}\\]",
-    "trap": "It is tempting to apply Cauchy--Schwarz to the pair $1\\cdot a_k^{2}$, getting the single jump $\\big(\\sum a_k^{2}\\big)^{2}\\le n\\sum a_k^{4}$, and to declare the chain proved. But that one step bypasses the middle quantity $\\big(\\sum a_k\\big)\\big(\\sum a_k^{3}\\big)$ entirely, so it establishes only the outer bound, not the stated two-link chain. Worse, the two links need \\emph{different} engines: the left link is Cauchy--Schwarz with the split $a_k=a_k^{1/2}\\cdot a_k^{3/2}$, while the right link is Chebyshev's sum inequality on the similarly ordered sequences $\\{a_k\\}$ and $\\{a_k^{3}\\}$. Reusing the lazy $1\\cdot a_k^{2}$ split for the right link gives a bound that is simply not the one asked for.",
+    "trap": "It is tempting to apply Cauchy--Schwarz to the pair $1\\cdot a_k^{2}$, getting the single jump $\\big(\\sum a_k^{2}\\big)^{2}\\le n\\sum a_k^{4}$, and to declare the chain proved. But that one step bypasses the middle quantity $\\big(\\sum a_k\\big)\\big(\\sum a_k^{3}\\big)$ entirely, so it establishes only the outer bound, not the stated two-link chain. Worse, the two links need different engines: the left link is Cauchy--Schwarz with the split $a_k=a_k^{1/2}\\cdot a_k^{3/2}$, while the right link is Chebyshev's sum inequality on the similarly ordered sequences $\\{a_k\\}$ and $\\{a_k^{3}\\}$. Reusing the lazy $1\\cdot a_k^{2}$ split for the right link gives a bound that is simply not the one asked for.",
     "solutions": [
       {
         "name": "Cauchy--Schwarz for the left link, Chebyshev for the right",
@@ -2938,7 +2938,7 @@ window.PROBLEMS = [
     ],
     "statement": "Let $a,b,c>0$ with $a+b+c=3$. Find the minimum value of the product \\[ P=a^{a}\\,b^{b}\\,c^{c}. \\]",
     "answer": "\\[\\boxed{1}\\]",
-    "trap": "Treating $P$ as $\\le \\big(\\frac{a\\cdot a+b\\cdot b+c\\cdot c}{a+b+c}\\big)^{a+b+c}$ via 'weighted AM--GM' gives an \\emph{upper} bound (the wrong direction for a minimum) and misuses AM--GM where the weights themselves vary. The correct device is convexity of $x\\ln x$, whose Jensen inequality runs the right way.",
+    "trap": "Treating $P$ as $\\le \\big(\\frac{a\\cdot a+b\\cdot b+c\\cdot c}{a+b+c}\\big)^{a+b+c}$ via 'weighted AM--GM' gives an upper bound (the wrong direction for a minimum) and misuses AM--GM where the weights themselves vary. The correct device is convexity of $x\\ln x$, whose Jensen inequality runs the right way.",
     "solutions": [
       {
         "name": "Convexity of x ln x (Jensen)",
@@ -3053,7 +3053,7 @@ window.PROBLEMS = [
     ],
     "statement": "Let $a,b,c>0$ with $a+b+c=3$. Prove that \\[ \\frac{a}{b^{2}+1}+\\frac{b}{c^{2}+1}+\\frac{c}{a^{2}+1}\\;\\ge\\;\\frac{3}{2}, \\] and identify the equality case.",
     "answer": "\\[\\boxed{\\text{Minimum }\\tfrac32,\\text{ at } a=b=c=1}\\]",
-    "trap": "Bounding each denominator crudely, or applying Cauchy--Schwarz/Engel (Titu) form directly to a \\emph{cyclic} (non-symmetric) sum, leaves you with an extra $\\sum ab^2$ term you cannot control. Indeed the naive Engel bound $\\sum\\frac{a}{b^2+1}\\ge\\frac{(\\sqrt a+\\sqrt b+\\sqrt c)^2}{a^2+b^2+c^2+3}$ can fall below $\\tfrac32$ (numerically as low as $\\approx0.26$ near a corner), so it points in the wrong direction and proves nothing. The clean route subtracts a tangent-style term using $b^2+1\\ge2b$.",
+    "trap": "Bounding each denominator crudely, or applying Cauchy--Schwarz/Engel (Titu) form directly to a cyclic (non-symmetric) sum, leaves you with an extra $\\sum ab^2$ term you cannot control. Indeed the naive Engel bound $\\sum\\frac{a}{b^2+1}\\ge\\frac{(\\sqrt a+\\sqrt b+\\sqrt c)^2}{a^2+b^2+c^2+3}$ can fall below $\\tfrac32$ (numerically as low as $\\approx0.26$ near a corner), so it points in the wrong direction and proves nothing. The clean route subtracts a tangent-style term using $b^2+1\\ge2b$.",
     "solutions": [
       {
         "name": "Tangent / AM-GM denominator trick",
@@ -3126,7 +3126,7 @@ window.PROBLEMS = [
     ],
     "statement": "Let $\\displaystyle S=\\sum_{k=1}^{10000}\\frac{1}{\\sqrt{k}}$. Evaluate $\\lfloor S\\rfloor$.",
     "answer": "\\[\\boxed{198}\\]",
-    "trap": "Replacing the sum by the single integral $\\int_1^{10000}\\frac{dx}{\\sqrt{x}}=2\\sqrt{10000}-2=198$ and declaring $\\lfloor S\\rfloor=198$. This is a one-sided estimate of the wrong sign: since $f(x)=x^{-1/2}$ is decreasing, that integral $\\textbf{undercounts}$ the sum, so it only certifies $S>198$, never an upper bound. By itself it cannot rule out $S\\ge199$, which would make the floor $199$. The number $198$ is right, but the argument is not a proof until a $\\textbf{second}$ bound traps $S$ strictly below $199$.",
+    "trap": "Replacing the sum by the single integral $\\int_1^{10000}\\frac{dx}{\\sqrt{x}}=2\\sqrt{10000}-2=198$ and declaring $\\lfloor S\\rfloor=198$. This is a one-sided estimate of the wrong sign: since $f(x)=x^{-1/2}$ is decreasing, that integral $undercounts$ the sum, so it only certifies $S>198$, never an upper bound. By itself it cannot rule out $S\\ge199$, which would make the floor $199$. The number $198$ is right, but the argument is not a proof until a $second$ bound traps $S$ strictly below $199$.",
     "solutions": [
       {
         "name": "Telescoping surd inequality",
@@ -3756,7 +3756,7 @@ window.PROBLEMS = [
     ],
     "statement": "A sequence is defined by $a_0=0$ and $a_n=3a_{n-1}+1$ for $n\\ge1$. After finding a closed form for $a_n$, evaluate \\[\\sum_{n=1}^{\\infty}\\frac{3^{\\,n}}{(3^{\\,n}-1)(3^{\\,n+1}-1)}.\\]",
     "answer": "\\[\\boxed{\\tfrac14}\\]",
-    "trap": "Approximating each factor in the denominator by its leading power, $\\frac{3^n}{(3^n-1)(3^{n+1}-1)}\\approx\\frac{3^n}{3^n\\cdot 3^{n+1}}=3^{-n-1}$, and summing the geometric series $\\sum_{n\\ge1}3^{-n-1}=\\tfrac16$ as if it were the value. This is wrong twice over: enlarging each denominator factor makes the fraction smaller, so $3^{-n-1}$ is a strict \\emph{lower} bound (the summand exceeds it for every $n$), and a one-sided comparison can never deliver an exact sum anyway. The true value requires recognizing $a_n=\\tfrac{3^n-1}{2}$ and the exact telescoping identity, giving $\\tfrac14$, not $\\tfrac16$.",
+    "trap": "Approximating each factor in the denominator by its leading power, $\\frac{3^n}{(3^n-1)(3^{n+1}-1)}\\approx\\frac{3^n}{3^n\\cdot 3^{n+1}}=3^{-n-1}$, and summing the geometric series $\\sum_{n\\ge1}3^{-n-1}=\\tfrac16$ as if it were the value. This is wrong twice over: enlarging each denominator factor makes the fraction smaller, so $3^{-n-1}$ is a strict lower bound (the summand exceeds it for every $n$), and a one-sided comparison can never deliver an exact sum anyway. The true value requires recognizing $a_n=\\tfrac{3^n-1}{2}$ and the exact telescoping identity, giving $\\tfrac14$, not $\\tfrac16$.",
     "solutions": [
       {
         "name": "Solve recurrence, then telescope",
@@ -3777,7 +3777,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: solving the affine recurrence to $a_n=(3^n-1)/2$ is step one; recognizing that the messy summand is precisely $\\tfrac14\\big(1/a_n-1/a_{n+1}\\big)$ is step two. The geometric look of $3^{-n-1}$ tempts a comparison shortcut, but a one-sided bound only certifies convergence \\textemdash{} the cascade telescopes exactly to $\\tfrac14$."
+    "remark": "Insight: solving the affine recurrence to $a_n=(3^n-1)/2$ is step one; recognizing that the messy summand is precisely $\\tfrac14\\big(1/a_n-1/a_{n+1}\\big)$ is step two. The geometric look of $3^{-n-1}$ tempts a comparison shortcut, but a one-sided bound only certifies convergence —{} the cascade telescopes exactly to $\\tfrac14$."
   },
   {
     "theme": "hybrid",

@@ -119,9 +119,9 @@ window.PROBLEMS = [
       "parabola",
       "length conditions"
     ],
-    "statement": "A curve passes through $(1,2)$ and has the property that its subnormal has the constant value $2$ at every point (the subnormal at a point is $y\\,y'$). Identify the curve, and then find the length of the \\emph{normal} intercepted between the curve and the $x$-axis at the point $(1,2)$.",
+    "statement": "A curve passes through $(1,2)$ and has the property that its subnormal has the constant value $2$ at every point (the subnormal at a point is $y\\,y'$). Identify the curve, and then find the length of the normal intercepted between the curve and the $x$-axis at the point $(1,2)$.",
     "answer": "\\[\\boxed{y^{2}=4x,\\qquad \\text{normal length }=2\\sqrt{2}}\\]",
-    "trap": "Confusing the subnormal $y\\,y'$ with the subtangent $y/y'$. If one wrongly sets $y/y'=2$ (the subtangent) constant, the differential equation becomes $y'=y/2$, giving an exponential $y=2e^{(x-1)/2}$ instead of a parabola — a completely different curve. The defining fact that a \\emph{constant subnormal forces a parabola} is lost.",
+    "trap": "Confusing the subnormal $y\\,y'$ with the subtangent $y/y'$. If one wrongly sets $y/y'=2$ (the subtangent) constant, the differential equation becomes $y'=y/2$, giving an exponential $y=2e^{(x-1)/2}$ instead of a parabola — a completely different curve. The defining fact that a constant subnormal forces a parabola is lost.",
     "solutions": [
       {
         "name": "Solve the defining ODE",
@@ -165,7 +165,7 @@ window.PROBLEMS = [
     ],
     "statement": "Consider the family of parabolas $y^{2}=c_{1}x$ (one for each $c_{1}>0$) and the family of ellipses $2x^{2}+y^{2}=c_{2}$ (one for each $c_{2}>0$). Prove that wherever a curve of the first family crosses a curve of the second family, they intersect at right angles — i.e. the two families are orthogonal trajectories of one another.",
     "answer": "\\[\\boxed{m_1 m_2=-1\\ \\text{at every intersection}\\Rightarrow \\text{the families are orthogonal (proved)}}\\]",
-    "trap": "Verifying orthogonality at a single convenient intersection point (say, by substituting one chosen pair of constants and computing the slopes there) and declaring the result general. The claim is about \\emph{every} intersection of \\emph{every} pair of members, so one must eliminate the family constants $c_1,c_2$ and show the slope product equals $-1$ identically in $(x,y)$, not merely at one lucky point. Plugging in numbers checks an instance, never the theorem; the constants must vanish from the slope expressions before any conclusion is drawn.",
+    "trap": "Verifying orthogonality at a single convenient intersection point (say, by substituting one chosen pair of constants and computing the slopes there) and declaring the result general. The claim is about every intersection of every pair of members, so one must eliminate the family constants $c_1,c_2$ and show the slope product equals $-1$ identically in $(x,y)$, not merely at one lucky point. Plugging in numbers checks an instance, never the theorem; the constants must vanish from the slope expressions before any conclusion is drawn.",
     "solutions": [
       {
         "name": "Eliminate constants, multiply slopes",
@@ -194,7 +194,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: orthogonal trajectories are detected by a slope product that equals $-1$ as an identity \\emph{after the family constants have been eliminated}, not at a single sampled point. The vanishing of $1+m_1m_2$ is the cleanest signature of a perpendicular crossing in the angle formula, and the ODE method confirms it structurally — solving $y'=-2x/y$, the orthogonal-trajectory equation of the parabolas, reproduces the ellipse family exactly."
+    "remark": "Insight: orthogonal trajectories are detected by a slope product that equals $-1$ as an identity after the family constants have been eliminated, not at a single sampled point. The vanishing of $1+m_1m_2$ is the cleanest signature of a perpendicular crossing in the angle formula, and the ODE method confirms it structurally — solving $y'=-2x/y$, the orthogonal-trajectory equation of the parabolas, reproduces the ellipse family exactly."
   },
   {
     "theme": "tangentnormal",
@@ -210,7 +210,7 @@ window.PROBLEMS = [
     ],
     "statement": "Find every line that is simultaneously tangent to the parabola $y^{2}=4x$ and to the parabola $x^{2}=4y$. State how many such common tangents exist and give their equations.",
     "answer": "\\[\\boxed{\\text{Exactly one common tangent: } x+y+1=0}\\]",
-    "trap": "Assuming two curves of comparable 'size' must share two or more common tangents, the way two separated circles share four. Matching the slope-form intercepts here gives $\\tfrac1m=-m^{2}$, i.e. $m^{3}=-1$, a cubic in the slope with only \\emph{one} real root; the other two roots are complex, so there is a single common tangent. Expecting symmetry to deliver several tangents overcounts.",
+    "trap": "Assuming two curves of comparable 'size' must share two or more common tangents, the way two separated circles share four. Matching the slope-form intercepts here gives $\\tfrac1m=-m^{2}$, i.e. $m^{3}=-1$, a cubic in the slope with only one real root; the other two roots are complex, so there is a single common tangent. Expecting symmetry to deliver several tangents overcounts.",
     "solutions": [
       {
         "name": "Match the slope-form tangents",
@@ -234,7 +234,7 @@ window.PROBLEMS = [
         "name": "Point-of-contact parametrisation",
         "steps": [
           "Every tangent to $y^{2}=4x$ touches at $(t^{2},2t)$ and has equation $x-ty+t^{2}=0$; every tangent to $x^{2}=4y$ touches at $(2s,s^{2})$ and has equation $sx-y-s^{2}=0$.",
-          "For these to be the \\emph{same} line, coefficients must be proportional: comparing $x-ty+t^{2}=0$ with $sx-y-s^{2}=0$ gives $s=\\dfrac1t$ and $-s^{2}=t^{2}\\,s$.",
+          "For these to be the same line, coefficients must be proportional: comparing $x-ty+t^{2}=0$ with $sx-y-s^{2}=0$ gives $s=\\dfrac1t$ and $-s^{2}=t^{2}\\,s$.",
           "Substituting $s=1/t$ into $-s^{2}=t^{2}s$ yields $-\\dfrac1{t^{2}}=t$, i.e. $t^{3}=-1$, whose only real root is $t=-1$ (then $s=-1$).",
           "This single real solution gives $x-(-1)y+(-1)^2=0$, i.e. $\\boxed{x+y+1=0}$ — confirming exactly one common tangent, touching $y^2=4x$ at $(1,-2)$ and $x^2=4y$ at $(-2,1)$."
         ]
@@ -257,7 +257,7 @@ window.PROBLEMS = [
     ],
     "statement": "From the point $P=(3,2)$ two tangents are drawn to the ellipse $\\dfrac{x^{2}}{9}+\\dfrac{y^{2}}{4}=1$. How many tangents are there, what is the angle between them, and what is the equation of the chord of contact?",
     "answer": "\\[\\boxed{2\\text{ tangents},\\ \\ 90^{\\circ},\\ \\ 2x+3y=6}\\]",
-    "trap": "Writing the tangent as $y-2=m(x-3)$ and imposing $(2-3m)^2=9m^2+4$ collapses to the \\emph{linear} equation $-12m=0$, giving only $m=0$ — and a hasty solver concludes there is just one tangent. The missing tangent is the \\emph{vertical} line $x=3$, whose infinite slope the $y=mx+c$ form cannot capture. Forgetting the vertical tangent loses one of the two lines and hides the $90^{\\circ}$ result.",
+    "trap": "Writing the tangent as $y-2=m(x-3)$ and imposing $(2-3m)^2=9m^2+4$ collapses to the linear equation $-12m=0$, giving only $m=0$ — and a hasty solver concludes there is just one tangent. The missing tangent is the vertical line $x=3$, whose infinite slope the $y=mx+c$ form cannot capture. Forgetting the vertical tangent loses one of the two lines and hides the $90^{\\circ}$ result.",
     "solutions": [
       {
         "name": "Slope form plus the vertical line",
@@ -339,7 +339,7 @@ window.PROBLEMS = [
       "slope equation",
       "count"
     ],
-    "statement": "Find every line tangent to \\emph{both} the parabola $y^{2}=4x$ and the hyperbola $\\dfrac{x^{2}}{4}-\\dfrac{y^{2}}{3}=1$. How many such common tangents exist, and what are their equations?",
+    "statement": "Find every line tangent to both the parabola $y^{2}=4x$ and the hyperbola $\\dfrac{x^{2}}{4}-\\dfrac{y^{2}}{3}=1$. How many such common tangents exist, and what are their equations?",
     "answer": "\\[\\boxed{\\text{Exactly two: } y=x+1\\ \\text{and}\\ y=-x-1}\\]",
     "trap": "Setting up $a m^{4}-b m^{2}-1=0$ in the slope $m$ and reading it as a quartic with 'up to four' tangents. Substituting $u=m^{2}$ gives $4u^{2}-3u-1=0$ with roots $u=1$ and $u=-\\tfrac14$; the negative root yields no real slope. Treating $u=-\\tfrac14$ as admissible (or forgetting $u=m^2\\ge0$) manufactures phantom tangents.",
     "solutions": [
@@ -376,7 +376,7 @@ window.PROBLEMS = [
       "inverse parabolas",
       "vertical tangent at origin"
     ],
-    "statement": "The curves $y=x^{2}$ and $x=y^{2}$ intersect in the first quadrant. At \\emph{each} of their intersection points, find the acute angle between the two curves. Report all distinct angles.",
+    "statement": "The curves $y=x^{2}$ and $x=y^{2}$ intersect in the first quadrant. At each of their intersection points, find the acute angle between the two curves. Report all distinct angles.",
     "answer": "\\[\\boxed{\\theta=90^{\\circ}\\ \\text{at }(0,0);\\qquad \\tan\\theta=\\tfrac{3}{4}\\ \\text{at }(1,1)}\\]",
     "trap": "Computing the angle only at the conspicuous point $(1,1)$, getting $\\tan\\theta=\\tfrac34$, and reporting that single value. The curves also meet at the origin, where $y=x^{2}$ is tangent to the $x$-axis while $x=y^{2}$ is tangent to the $y$-axis, so they cross at $90^{\\circ}$ there. Treating ``the angle of intersection'' as one global number — rather than one value per crossing — silently discards the right angle at the origin.",
     "solutions": [
@@ -2004,7 +2004,7 @@ window.PROBLEMS = [
       "percentage-error",
       "differentials"
     ],
-    "statement": "A seconds-pendulum clock keeps perfect time when its rod has length $\\ell$. The period is $T=2\\pi\\sqrt{\\ell/g}$. On a hot day the rod expands so that its length increases by exactly $0.2\\%$, with $g$ unchanged.\\[\\textbf{(a)}\\ \\text{Find the resulting percentage change in the period } T.\\]\\[\\textbf{(b)}\\ \\text{Hence find, to the nearest tenth of a second, how much time the clock gains or loses over one full day } (86400\\text{ s}).\\]",
+    "statement": "A seconds-pendulum clock keeps perfect time when its rod has length $\\ell$. The period is $T=2\\pi\\sqrt{\\ell/g}$. On a hot day the rod expands so that its length increases by exactly $0.2\\%$, with $g$ unchanged.\\[(a)\\ \\text{Find the resulting percentage change in the period } T.\\]\\[(b)\\ \\text{Hence find, to the nearest tenth of a second, how much time the clock gains or loses over one full day } (86400\\text{ s}).\\]",
     "answer": "\\[\\boxed{\\dfrac{\\Delta T}{T}=+0.1\\%\\ \\text{(period lengthens, so the clock runs slow);}\\quad \\text{loses } 86.4\\text{ s per day}}\\]",
     "trap": "Writing $\\Delta T/T=\\Delta\\ell/\\ell=0.2\\%$ — forgetting the $\\tfrac12$ from the square root, i.e. treating $T\\propto\\ell$ instead of $T\\propto\\ell^{1/2}$. The half-power is the whole point.",
     "solutions": [
@@ -2040,7 +2040,7 @@ window.PROBLEMS = [
       "relative-error",
       "propagation"
     ],
-    "statement": "A spherical ball-bearing's radius is measured with a maximum relative error of $1.5\\%$. Using differentials, find the maximum percentage error in each of the following derived quantities:\\[\\textbf{(a)}\\ \\text{its volume } V=\\tfrac43\\pi r^{3};\\qquad \\textbf{(b)}\\ \\text{its surface area } S=4\\pi r^{2};\\]\\[\\textbf{(c)}\\ \\text{the }\\textit{compactness ratio}\\ \\rho=\\frac{V}{S}.\\]",
+    "statement": "A spherical ball-bearing's radius is measured with a maximum relative error of $1.5\\%$. Using differentials, find the maximum percentage error in each of the following derived quantities:\\[(a)\\ \\text{its volume } V=\\tfrac43\\pi r^{3};\\qquad (b)\\ \\text{its surface area } S=4\\pi r^{2};\\]\\[(c)\\ \\text{the }compactness ratio\\ \\rho=\\frac{V}{S}.\\]",
     "answer": "\\[\\boxed{\\dfrac{\\Delta V}{V}=4.5\\%,\\quad \\dfrac{\\Delta S}{S}=3\\%,\\quad \\dfrac{\\Delta \\rho}{\\rho}=1.5\\%}\\]",
     "trap": "Treating $\\rho=V/S$ as a quotient of two independently-measured quantities and slapping on the propagation rule $\\left|\\Delta\\rho/\\rho\\right|\\le\\left|\\Delta V/V\\right|+\\left|\\Delta S/S\\right|=4.5\\%+3\\%=7.5\\%$. That rule adds magnitudes only when the inputs are independent; here $V$ and $S$ are both driven by the same single measurement $r$, so they are perfectly correlated and the bound is wildly inflated. Simplifying first, $\\rho=r/3\\propto r^{1}$, shows the true answer is just $1.5\\%$ — five times smaller than the naive quotient bound.",
     "solutions": [
@@ -2083,7 +2083,7 @@ window.PROBLEMS = [
       "base-point",
       "error-bound"
     ],
-    "statement": "A student must estimate $\\sqrt[3]{124}$ by linear approximation of $f(x)=x^{1/3}$.\\[\\textbf{(a)}\\ \\text{Estimate using the base point } a=125,\\ \\text{giving an exact fraction.}\\]\\[\\textbf{(b)}\\ \\text{A classmate uses } a=64\\ \\text{(a perfect cube he remembered first). Compute his estimate.}\\]\\[\\textbf{(c)}\\ \\text{The true value is } 4.98663\\ldots\\ \\text{State which estimate is acceptable and explain, in one line, why the other fails.}\\]",
+    "statement": "A student must estimate $\\sqrt[3]{124}$ by linear approximation of $f(x)=x^{1/3}$.\\[(a)\\ \\text{Estimate using the base point } a=125,\\ \\text{giving an exact fraction.}\\]\\[(b)\\ \\text{A classmate uses } a=64\\ \\text{(a perfect cube he remembered first). Compute his estimate.}\\]\\[(c)\\ \\text{The true value is } 4.98663\\ldots\\ \\text{State which estimate is acceptable and explain, in one line, why the other fails.}\\]",
     "answer": "\\[\\boxed{a=125:\\ \\sqrt[3]{124}\\approx 5-\\tfrac{1}{75}=\\tfrac{374}{75}=4.98\\overline{6};\\quad a=64:\\ \\approx 5.25\\ \\text{(useless)}}\\]",
     "trap": "Believing any nearby perfect cube works equally well. The base $a=64$ is the closest perfect cube one recalls, but $|124-64|=60$ is enormous relative to $124$, so the tangent line has drifted far from the curve: the linearisation is only good when $h/a$ is small.",
     "solutions": [
@@ -2239,8 +2239,8 @@ window.PROBLEMS = [
       "compound",
       "relative-error"
     ],
-    "statement": "The kinetic energy of a particle is $E=\\tfrac12 m v^{2}$. Repeated measurements give a mass that is $1\\%$ \\emph{below} the true value and a speed that is $3\\%$ \\emph{above} it.\\[\\textbf{(a)}\\ \\text{Find the percentage error in the computed energy } E.\\]\\[\\textbf{(b)}\\ \\text{If instead only the speed could be in error, what speed-error would alone produce a }4\\%\\text{ energy error?}\\]",
-    "answer": "\\[\\boxed{\\textbf{(a)}\\ \\dfrac{\\Delta E}{E}=+5\\%;\\qquad \\textbf{(b)}\\ \\dfrac{\\Delta v}{v}=2\\%}\\]",
+    "statement": "The kinetic energy of a particle is $E=\\tfrac12 m v^{2}$. Repeated measurements give a mass that is $1\\%$ below the true value and a speed that is $3\\%$ above it.\\[(a)\\ \\text{Find the percentage error in the computed energy } E.\\]\\[(b)\\ \\text{If instead only the speed could be in error, what speed-error would alone produce a }4\\%\\text{ energy error?}\\]",
+    "answer": "\\[\\boxed{(a)\\ \\dfrac{\\Delta E}{E}=+5\\%;\\qquad (b)\\ \\dfrac{\\Delta v}{v}=2\\%}\\]",
     "trap": "Reading \"$1\\%$ below\" as a magnitude and computing $\\Delta E/E=1\\%+2(3\\%)=7\\%$, or dropping the factor $2$ on the speed term. The mass error is negative ($-1\\%$) and the speed enters squared (coefficient $2$): $\\Delta E/E=\\Delta m/m+2\\,\\Delta v/v=-1\\%+6\\%=5\\%$.",
     "solutions": [
       {
@@ -2274,7 +2274,7 @@ window.PROBLEMS = [
       "concavity",
       "taylor-remainder"
     ],
-    "statement": "Let $L$ be the linear-approximation estimate of $\\sqrt{4.1}$ obtained from $f(x)=\\sqrt{x}$ at the base point $a=4$.\\[\\textbf{(a)}\\ \\text{Compute } L \\text{ and prove, without a calculator, that } L \\textit{ overestimates } \\sqrt{4.1}.\\]\\[\\textbf{(b)}\\ \\text{Using the Lagrange remainder, prove the rigorous bound } 0<L-\\sqrt{4.1}<\\tfrac{1}{6400}.\\]",
+    "statement": "Let $L$ be the linear-approximation estimate of $\\sqrt{4.1}$ obtained from $f(x)=\\sqrt{x}$ at the base point $a=4$.\\[(a)\\ \\text{Compute } L \\text{ and prove, without a calculator, that } L overestimates \\sqrt{4.1}.\\]\\[(b)\\ \\text{Using the Lagrange remainder, prove the rigorous bound } 0<L-\\sqrt{4.1}<\\tfrac{1}{6400}.\\]",
     "answer": "\\[\\boxed{L=2.025,\\quad 0<L-\\sqrt{4.1}<\\dfrac{1}{6400}=0.00015625}\\]",
     "trap": "Treating the linear estimate as exact, or guessing the error's sign at random. Because $f(x)=\\sqrt{x}$ is concave ($f''<0$), the tangent line lies above the curve, so $L$ must overestimate — and the Taylor remainder $\\tfrac12 f''(\\xi)h^2$ is strictly negative, fixing both the sign and the bound.",
     "solutions": [
@@ -2317,7 +2317,7 @@ window.PROBLEMS = [
       "differentials",
       "conceptual-trap"
     ],
-    "statement": "A circular metal disc has measured radius $r=10.00$ cm with a possible error of $\\pm 0.5$ mm in the radius. Let $A=\\pi r^{2}$.\\[\\textbf{(a)}\\ \\text{Find the }\\textit{absolute}\\text{ error } a \\text{ (in cm}^2\\text{) in the computed area, in the form } a=k\\pi.\\]\\[\\textbf{(b)}\\ \\text{Find the }\\textit{relative}\\text{ (percentage) error } b \\text{ in the area.}\\]\\[\\text{An inspector reports: the area is known to within } 1\\%,\\ \\text{i.e. to within } 1\\text{ cm}^2.\\ \\text{Identify his conceptual error.}\\]",
+    "statement": "A circular metal disc has measured radius $r=10.00$ cm with a possible error of $\\pm 0.5$ mm in the radius. Let $A=\\pi r^{2}$.\\[(a)\\ \\text{Find the }absolute\\text{ error } a \\text{ (in cm}^2\\text{) in the computed area, in the form } a=k\\pi.\\]\\[(b)\\ \\text{Find the }relative\\text{ (percentage) error } b \\text{ in the area.}\\]\\[\\text{An inspector reports: the area is known to within } 1\\%,\\ \\text{i.e. to within } 1\\text{ cm}^2.\\ \\text{Identify his conceptual error.}\\]",
     "answer": "\\[\\boxed{a=\\pi\\ \\text{cm}^2\\ (\\approx 3.14\\ \\text{cm}^2),\\qquad b=1\\%}\\]",
     "trap": "Conflating absolute and relative error: the inspector equates the $1\\%$ relative error with $1$ cm$^2$ of absolute error. The relative error is indeed $1\\%$, but the absolute error is $\\pi\\approx3.14$ cm$^2$, not $1$ cm$^2$. A percentage is dimensionless and only becomes an area after multiplying by $A=100\\pi\\approx314$ cm$^2$, giving $0.01\\times314=\\pi$ cm$^2$. He effectively assumed $A\\approx100$ cm$^2$ (so that $1\\%$ would read $1$ cm$^2$), but the true area is about $314$ cm$^2$.",
     "solutions": [
@@ -2355,8 +2355,8 @@ window.PROBLEMS = [
       "propagation",
       "grand-hybrid"
     ],
-    "statement": "By Kepler's third law the orbital period of a satellite is $T=2\\pi\\sqrt{\\dfrac{a^{3}}{GM}}$, where $a$ is the semi-major axis and $M$ the central mass. An astronomer's catalogue lists $a$ that is $1\\%$ \\emph{too large} and $M$ that is $2\\%$ \\emph{too small}; $G$ is exact.\\[\\textbf{(a)}\\ \\text{Find the resulting first-order percentage error in the computed period } T.\\]\\[\\textbf{(b)}\\ \\text{A colleague claims that if instead } a \\text{ were } 2\\% \\text{ too large and } M\\ 6\\% \\text{ too large, the period would come out exact to first order. Verify or refute his claim.}\\]",
-    "answer": "\\[\\boxed{\\textbf{(a)}\\ \\dfrac{\\Delta T}{T}=+2.5\\%;\\qquad \\textbf{(b)}\\ \\text{the claim is VERIFIED: the first-order error is } 0\\%.}\\]",
+    "statement": "By Kepler's third law the orbital period of a satellite is $T=2\\pi\\sqrt{\\dfrac{a^{3}}{GM}}$, where $a$ is the semi-major axis and $M$ the central mass. An astronomer's catalogue lists $a$ that is $1\\%$ too large and $M$ that is $2\\%$ too small; $G$ is exact.\\[(a)\\ \\text{Find the resulting first-order percentage error in the computed period } T.\\]\\[(b)\\ \\text{A colleague claims that if instead } a \\text{ were } 2\\% \\text{ too large and } M\\ 6\\% \\text{ too large, the period would come out exact to first order. Verify or refute his claim.}\\]",
+    "answer": "\\[\\boxed{(a)\\ \\dfrac{\\Delta T}{T}=+2.5\\%;\\qquad (b)\\ \\text{the claim is VERIFIED: the first-order error is } 0\\%.}\\]",
     "trap": "Two pitfalls fuse here. First, dropping the exponents and writing $\\Delta a/a-\\Delta M/M$ instead of $\\tfrac32\\,\\Delta a/a-\\tfrac12\\,\\Delta M/M$. Second, botching the sign of ``too small.'' In (a) the mass term must enter as $-\\tfrac12(-2\\%)=+1\\%$, which ADDS to the $a$ contribution rather than cancelling it, giving $+2.5\\%$ (not the $+0.5\\%$ a sign slip yields, nor the $+3\\%$ the dropped-exponent error yields). In (b) a student who drops the exponents computes $2\\%-6\\%=-4\\%$ and wrongly REFUTES the colleague; the correct coefficients $\\tfrac32(2\\%)-\\tfrac12(6\\%)=0$ show the colleague is right.",
     "solutions": [
       {
@@ -2790,7 +2790,7 @@ window.PROBLEMS = [
       "monotonicity"
     ],
     "statement": "Let $f(x)=2x^{3}+3x^{2}-12x$. For a real parameter $k$, determine the number of distinct real solutions of $f(x)=k$ in terms of $k$.",
-    "answer": "\\[\\boxed{\\#=\\begin{cases}1,&k<-7\\ \\text{or}\\ k>20\\\\[2pt]2,&k=-7\\ \\text{or}\\ k=20\\\\[2pt]3,&-7<k<20\\end{cases}}\\]",
+    "answer": "\\[\\boxed{\\#=\\begin{cases}1,&k<-7\\ \\text{or}\\ k>20\\\\\\ 2,&k=-7\\ \\text{or}\\ k=20\\\\\\ 3,&-7<k<20\\end{cases}}\\]",
     "trap": "Sketching $y=2x^3+3x^2-12x$ and blandly declaring that a cubic always has $1$ or $3$ real roots, but forgetting the boundary $k=-7,20$ where the horizontal line is TANGENT (a double root), giving exactly $2$ distinct solutions; equivalently mislabelling which critical point is the max and which is the min, which flips the inequalities.",
     "solutions": [
       {
@@ -2831,7 +2831,7 @@ window.PROBLEMS = [
       "parameter"
     ],
     "statement": "Sketch $g(x)=\\lvert x^{2}-1\\rvert$ and, for a real parameter $k$, determine the number of distinct real solutions of $\\lvert x^{2}-1\\rvert=k$.",
-    "answer": "\\[\\boxed{\\#=\\begin{cases}0,&k<0\\\\[2pt]2,&k=0\\\\[2pt]4,&0<k<1\\\\[2pt]3,&k=1\\\\[2pt]2,&k>1\\end{cases}}\\]",
+    "answer": "\\[\\boxed{\\#=\\begin{cases}0,&k<0\\\\\\ 2,&k=0\\\\\\ 4,&0<k<1\\\\\\ 3,&k=1\\\\\\ 2,&k>1\\end{cases}}\\]",
     "trap": "Squaring to get $(x^{2}-1)^{2}=k^{2}$ and declaring a quartic to have \"four roots\" for every $k$. This silently keeps the branch $x^{2}-1=-k$, i.e. $x^{2}=1-k$, even when $k>1$, where $1-k<0$ forces those two roots to be complex, not real. The squared equation also erases the apex value $k=1$, where $x^{2}=1-k$ collapses to the single root $x=0$ and the count drops to $3$. The corner points at $x=\\pm1$ and the local maximum $g(0)=1$ must be read off the folded graph, not invented from the quartic.",
     "solutions": [
       {
@@ -2871,7 +2871,7 @@ window.PROBLEMS = [
       "parameter"
     ],
     "statement": "Let $f(x)=\\dfrac{x^{2}}{x-1}$. After identifying its vertical and oblique asymptotes and its local extrema, determine the number of distinct real solutions of $f(x)=k$ as the real parameter $k$ varies.",
-    "answer": "\\[\\boxed{\\#=\\begin{cases}2,&k<0\\ \\text{or}\\ k>4\\\\[2pt]1,&k=0\\ \\text{or}\\ k=4\\\\[2pt]0,&0<k<4\\end{cases}}\\]",
+    "answer": "\\[\\boxed{\\#=\\begin{cases}2,&k<0\\ \\text{or}\\ k>4\\\\\\ 1,&k=0\\ \\text{or}\\ k=4\\\\\\ 0,&0<k<4\\end{cases}}\\]",
     "trap": "Assuming, as for an ordinary cubic-like shape, that between the local max and local min the line cuts the curve most often, so the middle band gives the MOST roots. Here the local MAXIMUM value $f(0)=0$ lies BELOW the local MINIMUM value $f(2)=4$ (a hallmark of a function with a vertical asymptote between its extrema), so the band $0<k<4$ is exactly where there are NO real roots. Missing the oblique asymptote $y=x+1$ also leads to a wrong end-behaviour sketch.",
     "solutions": [
       {
@@ -2910,7 +2910,7 @@ window.PROBLEMS = [
       "parameter"
     ],
     "statement": "For a real parameter $a$, find the number of real solutions of $e^{x}=a\\,x$, treating all signs of $a$.",
-    "answer": "\\[\\boxed{\\#=\\begin{cases}1,&a<0\\\\[2pt]0,&0\\le a<e\\\\[2pt]1,&a=e\\\\[2pt]2,&a>e\\end{cases}}\\]",
+    "answer": "\\[\\boxed{\\#=\\begin{cases}1,&a<0\\\\\\ 0,&0\\le a<e\\\\\\ 1,&a=e\\\\\\ 2,&a>e\\end{cases}}\\]",
     "trap": "Rewriting as $a=\\dfrac{e^{x}}{x}$ and only studying $x>0$ (where the minimum value $e$ at $x=1$ lives), thereby declaring two-or-fewer solutions but completely missing that for $a<0$ the line $y=ax$ falls into the fourth quadrant for $x>0$ and the second quadrant for $x<0$, meeting $e^x$ exactly once at some $x<0$. Also tempting: claiming $a=0$ gives a root (it forces $e^x=0$, impossible).",
     "solutions": [
       {
@@ -2951,7 +2951,7 @@ window.PROBLEMS = [
       "parameter"
     ],
     "statement": "For a real parameter $a$, find the number of real solutions of $x\\,e^{-x}=a$.",
-    "answer": "\\[\\boxed{\\#=\\begin{cases}1,&a\\le 0\\\\[2pt]2,&0<a<\\tfrac1e\\\\[2pt]1,&a=\\tfrac1e\\\\[2pt]0,&a>\\tfrac1e\\end{cases}}\\]",
+    "answer": "\\[\\boxed{\\#=\\begin{cases}1,&a\\le 0\\\\\\ 2,&0<a<\\tfrac1e\\\\\\ 1,&a=\\tfrac1e\\\\\\ 0,&a>\\tfrac1e\\end{cases}}\\]",
     "trap": "Only locating the single local maximum $\\tfrac1e$ at $x=1$ and concluding the count is purely $0/1/2$ for $a>0$, while overlooking the LEFT tail: as $x\\to-\\infty$, $g(x)=xe^{-x}\\to-\\infty$, and $g$ rises through $0$ (at $x=0$) up to the hump, so for every $a\\le0$ there is exactly one solution on $(-\\infty,1)$. Forgetting the horizontal asymptote $y=0$ as $x\\to+\\infty$ also corrupts the right-tail behaviour.",
     "solutions": [
       {
@@ -3002,7 +3002,7 @@ window.PROBLEMS = [
       "parameter"
     ],
     "statement": "Let $f(x)=3x^{4}-4x^{3}-12x^{2}$. Using its critical points and the values there, determine, with full justification, the number of distinct real solutions of $f(x)=k$ for every real $k$.",
-    "answer": "\\[\\boxed{\\#=\\begin{cases}0,&k<-32\\\\[2pt]1,&k=-32\\\\[2pt]2,&-32<k<-5\\\\[2pt]3,&k=-5\\\\[2pt]4,&-5<k<0\\\\[2pt]3,&k=0\\\\[2pt]2,&k>0\\end{cases}}\\]",
+    "answer": "\\[\\boxed{\\#=\\begin{cases}0,&k<-32\\\\\\ 1,&k=-32\\\\\\ 2,&-32<k<-5\\\\\\ 3,&k=-5\\\\\\ 4,&-5<k<0\\\\\\ 3,&k=0\\\\\\ 2,&k>0\\end{cases}}\\]",
     "trap": "Treating the two local minima as if they were at the SAME height (the symmetric 'W' that students memorise), which would give a clean $0/2/4$ pattern. Here the minima are UNEQUAL — $f(-1)=-5$ but $f(2)=-32$ — so the line $y=k$ enters the two wells at different times, producing the staircase $0\\to1\\to2\\to3\\to4\\to3\\to2$ with FIVE transition values, not three.",
     "solutions": [
       {
@@ -3042,7 +3042,7 @@ window.PROBLEMS = [
       "parameter"
     ],
     "statement": "Consider $f(x)=x+\\dfrac1x$. Identify its asymptotes, symmetry, and extrema, and hence determine the number of distinct real solutions of $f(x)=k$ for each real $k$.",
-    "answer": "\\[\\boxed{\\#=\\begin{cases}2,&|k|>2\\\\[2pt]1,&|k|=2\\\\[2pt]0,&|k|<2\\end{cases}}\\]",
+    "answer": "\\[\\boxed{\\#=\\begin{cases}2,&|k|>2\\\\\\ 1,&|k|=2\\\\\\ 0,&|k|<2\\end{cases}}\\]",
     "trap": "Reasoning 'it has a local min $2$ and a local max $-2$, and between a max and a min a cubic-style curve has THREE solutions' — importing the cubic picture. But here the local MAX value $-2$ is below the local MIN value $2$ (the gap $(-2,2)$ is unattained because of the vertical asymptote at $x=0$), so $|k|<2$ gives ZERO solutions, not three. Forgetting the oblique asymptote $y=x$ misreads the tails.",
     "solutions": [
       {
@@ -3083,7 +3083,7 @@ window.PROBLEMS = [
       "parameter"
     ],
     "statement": "For a real parameter $c$, find the number of real solutions of $x\\ln x=c$ (where $x>0$).",
-    "answer": "\\[\\boxed{\\#=\\begin{cases}0,&c<-\\tfrac1e\\\\[2pt]1,&c=-\\tfrac1e\\\\[2pt]2,&-\\tfrac1e<c<0\\\\[2pt]1,&c\\ge 0\\end{cases}}\\]",
+    "answer": "\\[\\boxed{\\#=\\begin{cases}0,&c<-\\tfrac1e\\\\\\ 1,&c=-\\tfrac1e\\\\\\ 2,&-\\tfrac1e<c<0\\\\\\ 1,&c\\ge 0\\end{cases}}\\]",
     "trap": "Claiming the curve $y=x\\ln x$ runs over all of $\\mathbb{R}$ so every $c$ has at least one solution, forgetting the GLOBAL MINIMUM $-\\tfrac1e$ at $x=\\tfrac1e$ (so $c<-\\tfrac1e$ has none); and treating the left-endpoint limit as attained, claiming $c=0$ gives two solutions because the left branch reaches $0$. In fact $x\\ln x\\to0^{-}$ as $x\\to0^{+}$ is a limit only never realised, so on $(0,1)$ the value stays strictly below $0$ and $x\\ln x=0$ holds solely at $x=1$: thus $c=0$ gives a single solution. Dropping the domain $x>0$ also invents phantom roots.",
     "solutions": [
       {
@@ -3123,7 +3123,7 @@ window.PROBLEMS = [
       "parameter"
     ],
     "statement": "For a real parameter $a$, find the number of real solutions of $\\ln x = a\\,x^{2}$ (with $x>0$), considering all real $a$.",
-    "answer": "\\[\\boxed{\\#=\\begin{cases}1,&a\\le 0\\\\[2pt]2,&0<a<\\tfrac1{2e}\\\\[2pt]1,&a=\\tfrac1{2e}\\\\[2pt]0,&a>\\tfrac1{2e}\\end{cases}}\\]",
+    "answer": "\\[\\boxed{\\#=\\begin{cases}1,&a\\le 0\\\\\\ 2,&0<a<\\tfrac1{2e}\\\\\\ 1,&a=\\tfrac1{2e}\\\\\\ 0,&a>\\tfrac1{2e}\\end{cases}}\\]",
     "trap": "Differentiating $\\ln x - ax^2$ to find one critical point and concluding '0, 1, or 2 roots depending on its sign' but FORGETTING the case $a\\le0$ entirely: for $a\\le0$ the parabola $y=ax^2$ is non-positive while $\\ln x$ rises through $0$ and on to $+\\infty$, giving exactly ONE crossing — independent of how negative $a$ is. The tangency threshold $\\tfrac1{2e}$ only governs the positive-$a$ regime.",
     "solutions": [
       {
@@ -3204,7 +3204,7 @@ window.PROBLEMS = [
     ],
     "statement": "A right circular cone is inscribed in a solid sphere of radius $R$ so that its apex lies on the sphere and the circular rim of its base also lies on the sphere. \\[\\text{Express the cone's volume in one variable, find the maximum volume, and prove it is a maximum.}\\]",
     "answer": "\\[\\boxed{V_{\\max}=\\dfrac{32\\pi R^{3}}{81}}\\]",
-    "trap": "Setting the cone's height equal to $R$ (placing the base through the centre) feels symmetric and 'balanced', but it is NOT optimal: with the apex at the far pole the base must sit $R-h$ \\emph{below} the centre. Writing the base radius as $\\rho^2=2Rh-h^2$ (not $R^2-h^2$) is the crux; mis-locating the base plane gives the wrong constraint and a wrong maximum.",
+    "trap": "Setting the cone's height equal to $R$ (placing the base through the centre) feels symmetric and 'balanced', but it is NOT optimal: with the apex at the far pole the base must sit $R-h$ below the centre. Writing the base radius as $\\rho^2=2Rh-h^2$ (not $R^2-h^2$) is the crux; mis-locating the base plane gives the wrong constraint and a wrong maximum.",
     "solutions": [
       {
         "name": "One-variable calculus",
@@ -3242,7 +3242,7 @@ window.PROBLEMS = [
     ],
     "statement": "Two hallways, of widths $8$ and $27$ (same units), meet at a right angle. A thin straight rod is carried horizontally around the inside corner, sliding along both outer walls while pressing against the inner corner. Determine the length of the longest rod that can negotiate the turn.",
     "answer": "$\\boxed{13\\sqrt{13}}$",
-    "trap": "Reading 'longest rod' literally, students try to \\emph{maximise} the segment length and find that it is unbounded ($L\\to\\infty$), concluding no answer exists. The geometry is the reverse: as the rod swings through the corner it spans from one outer wall to the other while touching the inner corner, and at each angle $\\theta$ that bridging segment has length $L(\\theta)=\\tfrac{8}{\\sin\\theta}+\\tfrac{27}{\\cos\\theta}$. A rod fits at every angle only if it is no longer than the tightest such span, so the longest rod that passes equals the \\emph{minimum} of $L(\\theta)$, not its maximum.",
+    "trap": "Reading 'longest rod' literally, students try to maximise the segment length and find that it is unbounded ($L\\to\\infty$), concluding no answer exists. The geometry is the reverse: as the rod swings through the corner it spans from one outer wall to the other while touching the inner corner, and at each angle $\\theta$ that bridging segment has length $L(\\theta)=\\tfrac{8}{\\sin\\theta}+\\tfrac{27}{\\cos\\theta}$. A rod fits at every angle only if it is no longer than the tightest such span, so the longest rod that passes equals the minimum of $L(\\theta)$, not its maximum.",
     "solutions": [
       {
         "name": "Angle parametrisation and calculus",
@@ -3430,7 +3430,7 @@ window.PROBLEMS = [
     ],
     "statement": "A closed cylindrical can must hold a fixed volume $108\\pi$. The curved side is stamped from sheet costing $1$ per unit area, but the two circular ends are cut from a tougher sheet costing $2$ per unit area. \\[\\text{Find the radius and height minimising total material cost, and that cost.}\\]",
     "answer": "\\[\\boxed{C_{\\min}=108\\pi\\ \\text{at}\\ r=3,\\ h=12}\\]",
-    "trap": "Reflexively quoting the famous result $h=2r$ (the equal-cost optimum) is wrong here. Because the ends cost more, the optimal can is taller and thinner: the cost-weighted optimum obeys $h=2k\\,r$ where $k$ is the end-to-side price ratio. Optimising surface area instead of cost gives $h=2r$ at $r=3\\sqrt[3]{2}$, a can whose true cost is $72\\sqrt[3]{4}\\,\\pi\\approx359.06>108\\pi$ \\u2014 strictly more expensive than the genuine optimum.",
+    "trap": "Reflexively quoting the famous result $h=2r$ (the equal-cost optimum) is wrong here. Because the ends cost more, the optimal can is taller and thinner: the cost-weighted optimum obeys $h=2k\\,r$ where $k$ is the end-to-side price ratio. Optimising surface area instead of cost gives $h=2r$ at $r=3\\sqrt[3]{2}$, a can whose true cost is $72\\sqrt[3]{4}\\,\\pi\\approx359.06>108\\pi$ — strictly more expensive than the genuine optimum.",
     "solutions": [
       {
         "name": "Weighted cost minimisation",
@@ -3477,7 +3477,7 @@ window.PROBLEMS = [
     ],
     "statement": "A rectangular beam of width $b$ and depth $d$ is to be cut from a cylindrical log of circular cross-section with diameter $2R$ (so the rectangle is inscribed in the circle). The beam's strength is proportional to $b\\,d^{2}$. \\[\\text{Find the depth-to-width ratio } d/b \\text{ of the strongest beam.}\\]",
     "answer": "\\[\\boxed{\\dfrac{d}{b}=\\sqrt{2}}\\]",
-    "trap": "A seductive wrong move is to maximise \\emph{stiffness} $b\\,d^3$ (or to maximise the cross-sectional \\emph{area} $bd$) instead of the stated strength $b\\,d^2$. Each objective gives a different optimal shape: area gives a square ($d/b=1$), stiffness gives $d/b=\\sqrt3$, and strength gives $d/b=\\sqrt2$. Extremising the wrong quantity is the entire trap — the three answers are deceptively close.",
+    "trap": "A seductive wrong move is to maximise stiffness $b\\,d^3$ (or to maximise the cross-sectional area $bd$) instead of the stated strength $b\\,d^2$. Each objective gives a different optimal shape: area gives a square ($d/b=1$), stiffness gives $d/b=\\sqrt3$, and strength gives $d/b=\\sqrt2$. Extremising the wrong quantity is the entire trap — the three answers are deceptively close.",
     "solutions": [
       {
         "name": "Eliminate using the circle",
@@ -3756,7 +3756,7 @@ window.PROBLEMS = [
       "logarithm"
     ],
     "statement": "For $a>0$ consider the equation $a\\ln x=x$ on $(0,\\infty)$. Determine the unique value of $a$ for which the line $y=x$ is tangent to the curve $y=a\\ln x$, and then, taking that critical value as the threshold, state how the number of positive solutions of $a\\ln x=x$ varies with $a$.",
-    "answer": "\\[\\boxed{a=e;\\quad \\#\\{x>0:\\,a\\ln x=x\\}=\\begin{cases}0,&0<a<e\\\\[2pt]1,&a=e\\\\[2pt]2,&a>e\\end{cases}}\\]",
+    "answer": "\\[\\boxed{a=e;\\quad \\#\\{x>0:\\,a\\ln x=x\\}=\\begin{cases}0,&0<a<e\\\\\\ 1,&a=e\\\\\\ 2,&a>e\\end{cases}}\\]",
     "trap": "Imposing only the contact condition $a\\ln x=x$ leaves a one-parameter family and pins down no unique $a$; genuine tangency REQUIRES the second condition $a/x=1$ (equal slopes). Solving with just one equation, or differentiating $y=x$ as if its slope were variable, loses the problem. A further slip is to declare 'two roots for all $a$' without noticing that the maximum of $a\\ln x-x$ can be negative.",
     "solutions": [
       {

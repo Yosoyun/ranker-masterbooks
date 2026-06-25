@@ -48,7 +48,7 @@ window.PROBLEMS = [
       "diagonal",
       "counting"
     ],
-    "statement": "Call a relation $R$ on $A=\\{1,2,3,4,5\\}$ \\emph{ambidextrous} if it is simultaneously symmetric and antisymmetric. Determine the number of ambidextrous relations on $A$, and describe what every such relation looks like.",
+    "statement": "Call a relation $R$ on $A=\\{1,2,3,4,5\\}$ ambidextrous if it is simultaneously symmetric and antisymmetric. Determine the number of ambidextrous relations on $A$, and describe what every such relation looks like.",
     "answer": "\\[\\boxed{32}\\]",
     "trap": "Concluding the count is $0$ because 'symmetric and antisymmetric are opposites.' They are NOT opposites: a relation can be both. Antisymmetry only forbids having both $(a,b)$ and $(b,a)$ with $a\\ne b$; symmetry then forbids any single off-diagonal pair. The two together permit exactly the subsets of the diagonal.",
     "solutions": [
@@ -85,7 +85,7 @@ window.PROBLEMS = [
       "reflexivity",
       "bell numbers"
     ],
-    "statement": "A student 'proves' that symmetry and transitivity force reflexivity: \"if $a\\,R\\,b$ then $b\\,R\\,a$ by symmetry, and then $a\\,R\\,a$ by transitivity.\" On $A=\\{1,2,3\\}$, find the number of relations $R$ that are symmetric and transitive but \\emph{not} reflexive — i.e. the relations that disprove the student's claim.",
+    "statement": "A student 'proves' that symmetry and transitivity force reflexivity: \"if $a\\,R\\,b$ then $b\\,R\\,a$ by symmetry, and then $a\\,R\\,a$ by transitivity.\" On $A=\\{1,2,3\\}$, find the number of relations $R$ that are symmetric and transitive but not reflexive — i.e. the relations that disprove the student's claim.",
     "answer": "\\[\\boxed{10}\\]",
     "trap": "Believing the gap-free proof and answering $0$. The argument silently assumes every element $a$ appears in some pair; an element related to nothing escapes both steps and never acquires $(a,a)$. For instance $R=\\{(1,1),(2,2),(1,2),(2,1)\\}$ (with $3$ isolated) and the empty relation are both symmetric and transitive yet not reflexive. Counting requires summing over which elements are 'active'.",
     "solutions": [
@@ -121,7 +121,7 @@ window.PROBLEMS = [
       "trichotomy",
       "diagonal"
     ],
-    "statement": "For $A=\\{1,2,3\\}$ let $N$ be the number of antisymmetric relations on $A$ and let $M$ be the number of relations on $A$ that are \\emph{neither} symmetric nor antisymmetric. Find the ordered pair $(N,M)$.",
+    "statement": "For $A=\\{1,2,3\\}$ let $N$ be the number of antisymmetric relations on $A$ and let $M$ be the number of relations on $A$ that are neither symmetric nor antisymmetric. Find the ordered pair $(N,M)$.",
     "answer": "\\[\\boxed{(216,\\ 240)}\\]",
     "trap": "Treating antisymmetric as \"asymmetric\" (forbidding diagonal pairs too) and writing $3^{\\binom 32}$ for $N$, dropping the factor $2^3$ for the free diagonal. Antisymmetry says nothing about $(a,a)$. For $M$, forgetting that $8$ relations are BOTH symmetric and antisymmetric and double-subtracting.",
     "solutions": [
@@ -194,7 +194,7 @@ window.PROBLEMS = [
       "stirling numbers",
       "classes"
     ],
-    "statement": "Find the number of equivalence relations on $A=\\{1,2,3,4\\}$ whose partition into equivalence classes has \\emph{exactly two} classes. Then state how this number relates to the total number $B_4$ of equivalence relations on $A$.",
+    "statement": "Find the number of equivalence relations on $A=\\{1,2,3,4\\}$ whose partition into equivalence classes has exactly two classes. Then state how this number relates to the total number $B_4$ of equivalence relations on $A$.",
     "answer": "\\[\\boxed{7}\\]",
     "trap": "Computing $\\binom{2^4-2}{?}$ or using $2^4/2$ as if splitting $A$ into two labeled boxes; that overcounts by ordering the classes (classes are unlabeled) and includes empty boxes. The right object is the Stirling number $S(4,2)$, where neither class may be empty and the two classes are interchangeable.",
     "solutions": [
@@ -231,7 +231,7 @@ window.PROBLEMS = [
       "equivalence",
       "counting"
     ],
-    "statement": "On $A=\\{1,2,3,4\\}$, find the number of relations on $A$ that are reflexive and symmetric but \\emph{not} transitive. (Such 'tolerance' relations are reflexive and symmetric yet fail to be equivalence relations.)",
+    "statement": "On $A=\\{1,2,3,4\\}$, find the number of relations on $A$ that are reflexive and symmetric but not transitive. (Such 'tolerance' relations are reflexive and symmetric yet fail to be equivalence relations.)",
     "answer": "\\[\\boxed{49}\\]",
     "trap": "Assuming reflexive $+$ symmetric already forces transitive (so answering $0$), or counting reflexive-symmetric relations as $2^{12}$ instead of $2^{\\binom 42}=2^6$. A reflexive-symmetric relation is pinned down by its $\\binom n2=6$ unordered off-diagonal pairs, giving $2^6=64$ relations, and most of these are non-transitive.",
     "solutions": [
@@ -240,7 +240,7 @@ window.PROBLEMS = [
         "steps": [
           "A reflexive relation must contain the $4$ diagonal pairs; symmetry pairs up the off-diagonal entries, so the relation is fixed by choosing, for each of the $\\binom 42=6$ unordered off-diagonal pairs, whether it is in. That gives $2^{6}=64$ reflexive-symmetric relations.",
           "Among these, the transitive ones are exactly the equivalence relations on $A$ (reflexive $+$ symmetric $+$ transitive). The number of equivalence relations on a $4$-element set is the Bell number $B_4=15$.",
-          "Therefore reflexive $\\wedge$ symmetric $\\wedge$ \\emph{not} transitive $=64-15=\\boxed{49}$."
+          "Therefore reflexive $\\wedge$ symmetric $\\wedge$ not transitive $=64-15=\\boxed{49}$."
         ]
       },
       {
@@ -304,7 +304,7 @@ window.PROBLEMS = [
       "total order",
       "divisibility"
     ],
-    "statement": "On $D=\\{1,2,3,4,6,12\\}$ define $a\\preceq b\\iff a\\mid b$. This is a partial order. Determine (i) the number of \\emph{unordered} pairs $\\{a,b\\}$ with $a\\ne b$ that are incomparable (neither divides the other), and (ii) the number of total orders (linear extensions) on $D$ compatible with $\\preceq$, i.e. ways to list all six elements so that $a$ appears before $b$ whenever $a\\mid b$.",
+    "statement": "On $D=\\{1,2,3,4,6,12\\}$ define $a\\preceq b\\iff a\\mid b$. This is a partial order. Determine (i) the number of unordered pairs $\\{a,b\\}$ with $a\\ne b$ that are incomparable (neither divides the other), and (ii) the number of total orders (linear extensions) on $D$ compatible with $\\preceq$, i.e. ways to list all six elements so that $a$ appears before $b$ whenever $a\\mid b$.",
     "answer": "\\[\\boxed{(\\text{incomparable pairs})=3,\\quad (\\text{linear extensions})=5}\\]",
     "trap": "The seductive shortcut is to reason that the only freedom in the listing comes from the incomparable elements, count those, and read off the extension count from them. Both halves bite. For (i) it is easy to spot $\\{3,4\\}$ and $\\{4,6\\}$ and stop, forgetting that $\\{2,3\\}$ is also incomparable ($2\\nmid 3$ and $3\\nmid 2$): there are $3$ incomparable pairs, not $2$. For (ii) the freedom is not 'one swap per incomparable pair': $3$ incomparable pairs would suggest $2^3=8$ orderings, while pretending only $3$ and $4$ may swap suggests $2$. The true count is $5$, governed by the whole shape of the poset, not by the raw number of incomparable pairs.",
     "solutions": [
@@ -540,7 +540,7 @@ window.PROBLEMS = [
     ],
     "statement": "Find the exact range of \\[ f(x)=\\frac{x^{2}+2}{\\sqrt{x^{2}+1}},\\qquad x\\in\\mathbb{R}. \\]",
     "answer": "\\[\\boxed{\\;[\\,2,\\infty)\\;}\\]",
-    "trap": "Reading off the asymptotic growth and guessing $(0,\\infty)$ or $(\\text{something},\\infty)$ from limits alone, or applying AM-GM to $x^2$ and $2$ without the correct substitution \\textemdash{} and thereby missing that the minimum $2$ is genuinely attained (at $x=0$), so the endpoint is included, not approached.",
+    "trap": "Reading off the asymptotic growth and guessing $(0,\\infty)$ or $(\\text{something},\\infty)$ from limits alone, or applying AM-GM to $x^2$ and $2$ without the correct substitution —{} and thereby missing that the minimum $2$ is genuinely attained (at $x=0$), so the endpoint is included, not approached.",
     "solutions": [
       {
         "name": "Substitute the radical",
@@ -592,7 +592,7 @@ window.PROBLEMS = [
         ]
       },
       {
-        "name": "Substitute x=\\tan\\theta",
+        "name": "Substitute $x=\\tan\\theta$",
         "steps": [
           "Put $x=\\tan\\theta$, $\\theta\\in\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)$; then $\\dfrac{2x}{1+x^2}=\\sin 2\\theta$, which lies in $[-1,1]$ for every $\\theta$ — confirming domain $\\mathbb{R}$.",
           "As $\\theta$ runs over $\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)$, $2\\theta$ runs over $(-\\pi,\\pi)$ and $\\sin 2\\theta$ covers all of $[-1,1]$.",
@@ -777,7 +777,7 @@ window.PROBLEMS = [
       "counting",
       "finite-sets"
     ],
-    "statement": "Let $A=\\{1,2,3,4\\}$ and $B=\\{1,2,3\\}$. Determine the number of functions $f\\colon A\\to B$ that are $\\textbf{surjective}$ (every element of $B$ is hit). Then state how many of the $3^{4}$ total functions are $\\textbf{not}$ surjective, and explain in one line why a falling-factorial count (the rule that works for injections) is the wrong tool here.",
+    "statement": "Let $A=\\{1,2,3,4\\}$ and $B=\\{1,2,3\\}$. Determine the number of functions $f\\colon A\\to B$ that are $surjective$ (every element of $B$ is hit). Then state how many of the $3^{4}$ total functions are $not$ surjective, and explain in one line why a falling-factorial count (the rule that works for injections) is the wrong tool here.",
     "answer": "\\[\\boxed{36}\\]",
     "trap": "Treating a surjection like an injection, or stopping the inclusion-exclusion early. The count $3^4-\\binom31 2^4 = 81-48 = 33$ drops the third term: pairs of forbidden values are double-subtracted, so $+\\binom32 1^4 = +3$ must be added back. Hence $33$ is wrong and $36$ is right.",
     "solutions": [
@@ -823,7 +823,7 @@ window.PROBLEMS = [
       "counting",
       "finite-sets"
     ],
-    "statement": "Three distinguishable heralds $a,b,c$ must each be posted to one of five distinct towers $T_1,\\dots,T_5$, with $\\textbf{no two heralds in the same tower}$. Determine the number of such postings (i.e. the number of injective functions from a $3$-element set to a $5$-element set). Then say how the answer would change, conceptually, if the heralds were $\\textbf{indistinguishable}$.",
+    "statement": "Three distinguishable heralds $a,b,c$ must each be posted to one of five distinct towers $T_1,\\dots,T_5$, with $no two heralds in the same tower$. Determine the number of such postings (i.e. the number of injective functions from a $3$-element set to a $5$-element set). Then say how the answer would change, conceptually, if the heralds were $indistinguishable$.",
     "answer": "\\[\\boxed{60}\\]",
     "trap": "Writing $5^3=125$ (treating it as arbitrary functions) or $\\binom53=10$ (treating heralds as indistinguishable). Injectivity of a map from a labelled domain demands the falling factorial $5\\cdot4\\cdot3$, not a power and not a plain binomial coefficient.",
     "solutions": [
@@ -860,7 +860,7 @@ window.PROBLEMS = [
       "integers",
       "parity"
     ],
-    "statement": "Define $f\\colon\\mathbb{Z}\\to\\mathbb{Z}$ by $f(n)=n+(-1)^{n}$, so even $n\\mapsto n+1$ and odd $n\\mapsto n-1$. $\\textbf{Prove}$ that $f$ is a bijection of $\\mathbb{Z}$ onto $\\mathbb{Z}$, and identify $f^{-1}$. (Beware: $f$ is $\\textit{not}$ monotone — checking a few sample values is not a proof of injectivity.)",
+    "statement": "Define $f\\colon\\mathbb{Z}\\to\\mathbb{Z}$ by $f(n)=n+(-1)^{n}$, so even $n\\mapsto n+1$ and odd $n\\mapsto n-1$. $Prove$ that $f$ is a bijection of $\\mathbb{Z}$ onto $\\mathbb{Z}$, and identify $f^{-1}$. (Beware: $f$ is $not$ monotone — checking a few sample values is not a proof of injectivity.)",
     "answer": "\\[\\boxed{f\\text{ is a bijection with } f^{-1}=f}\\]",
     "trap": "Declaring $f$ injective because the first several outputs $\\dots,1,0,3,2,5,4,\\dots$ happen to be distinct — a finite sample never proves injectivity on $\\mathbb{Z}$. Worse, since $f$ is non-monotone, the usual 'strictly increasing $\\Rightarrow$ injective' shortcut does not apply; one must produce a genuine two-sided inverse.",
     "solutions": [
@@ -906,7 +906,7 @@ window.PROBLEMS = [
       "countability",
       "diagonal-enumeration"
     ],
-    "statement": "Let $\\mathbb{N}_0=\\{0,1,2,\\dots\\}$ and define the pairing map\\[\\pi\\colon \\mathbb{N}_0\\times\\mathbb{N}_0\\to\\mathbb{N}_0,\\qquad \\pi(m,n)=\\frac{(m+n)(m+n+1)}{2}+n.\\]$\\textbf{Prove}$ that $\\pi$ is a bijection (it is one-to-one and onto $\\mathbb{N}_0$). In particular show the diagonal $m+n=d$ maps onto the block of integers $\\{T_d,\\dots,T_{d+1}-1\\}$ where $T_d=\\binom{d+1}{2}$.",
+    "statement": "Let $\\mathbb{N}_0=\\{0,1,2,\\dots\\}$ and define the pairing map\\[\\pi\\colon \\mathbb{N}_0\\times\\mathbb{N}_0\\to\\mathbb{N}_0,\\qquad \\pi(m,n)=\\frac{(m+n)(m+n+1)}{2}+n.\\]$Prove$ that $\\pi$ is a bijection (it is one-to-one and onto $\\mathbb{N}_0$). In particular show the diagonal $m+n=d$ maps onto the block of integers $\\{T_d,\\dots,T_{d+1}-1\\}$ where $T_d=\\binom{d+1}{2}$.",
     "answer": "\\[\\boxed{\\pi\\text{ is a bijection }\\mathbb{N}_0^2\\to\\mathbb{N}_0}\\]",
     "trap": "Checking only injectivity within a single anti-diagonal and concluding bijectivity. The real content is that the consecutive triangular blocks $[T_d,T_{d+1})$ tile $\\mathbb{N}_0$ with no gaps and no overlaps; skipping the inter-diagonal accounting leaves surjectivity (onto $\\mathbb{N}_0$, the stated codomain) unproved.",
     "solutions": [
@@ -952,7 +952,7 @@ window.PROBLEMS = [
       "stirling",
       "counting"
     ],
-    "statement": "Five distinct gifts $\\{1,2,3,4,5\\}$ are to be coloured with one of three colours $\\{A,B,C\\}$ so that $\\textbf{every colour is used at least once}$. Determine the number of valid colourings (the number of surjections $\\{1,\\dots,5\\}\\twoheadrightarrow\\{A,B,C\\}$). Then verify your answer equals $3!\\,S(5,3)$.",
+    "statement": "Five distinct gifts $\\{1,2,3,4,5\\}$ are to be coloured with one of three colours $\\{A,B,C\\}$ so that $every colour is used at least once$. Determine the number of valid colourings (the number of surjections $\\{1,\\dots,5\\}\\twoheadrightarrow\\{A,B,C\\}$). Then verify your answer equals $3!\\,S(5,3)$.",
     "answer": "\\[\\boxed{150}\\]",
     "trap": "Computing $3^5-3\\cdot 2^5=243-96=147$ and stopping — this over-subtracts the colourings that miss two colours, which must be added back ($+\\binom32 1^5=+3$). A second classic error is $3^5-\\binom31 2^5$ with the wrong sign pattern, or forgetting that the codomain (all three colours) is what 'onto' is measured against.",
     "solutions": [
@@ -998,7 +998,7 @@ window.PROBLEMS = [
       "self-maps",
       "counting"
     ],
-    "statement": "A self-map $f\\colon S\\to S$ on $S=\\{1,2,3,4\\}$ is called $\\textbf{idempotent}$ if $f(f(x))=f(x)$ for every $x\\in S$ (equivalently, $f$ fixes every point of its image). Determine the total number of idempotent self-maps of $S$. Classify which of them are injective, and which are surjective.",
+    "statement": "A self-map $f\\colon S\\to S$ on $S=\\{1,2,3,4\\}$ is called $idempotent$ if $f(f(x))=f(x)$ for every $x\\in S$ (equivalently, $f$ fixes every point of its image). Determine the total number of idempotent self-maps of $S$. Classify which of them are injective, and which are surjective.",
     "answer": "\\[\\boxed{41}\\]",
     "trap": "Assuming an idempotent map must be the identity (it need not be), or counting all $4^4$ self-maps. The structural fact 'idempotent $\\Leftrightarrow$ a retraction onto its image, fixing that image pointwise' is the gateway; ignoring it makes the count intractable. Also: among idempotents, injective and surjective both force the identity — a subtle finite-set trichotomy collapse.",
     "solutions": [
@@ -1044,7 +1044,7 @@ window.PROBLEMS = [
       "complement-counting",
       "pigeonhole"
     ],
-    "statement": "Let $S=\\{1,2,3,4,5\\}$. Determine the number of functions $f\\colon S\\to S$ that are $\\textbf{neither}$ injective $\\textbf{nor}$ surjective. Justify why, on a finite set with equal domain and codomain, 'not injective' and 'not surjective' describe the $\\textit{same}$ functions.",
+    "statement": "Let $S=\\{1,2,3,4,5\\}$. Determine the number of functions $f\\colon S\\to S$ that are $neither$ injective $nor$ surjective. Justify why, on a finite set with equal domain and codomain, 'not injective' and 'not surjective' describe the $same$ functions.",
     "answer": "\\[\\boxed{3005}\\]",
     "trap": "Counting 'not injective' and 'not surjective' separately and combining them via inclusion–exclusion as if they were distinct, merely overlapping events. On a finite set of equal size, injective $\\Leftrightarrow$ surjective $\\Leftrightarrow$ bijective, so the two 'bad' classes are the identical set of maps; the answer is simply $5^5$ minus the bijections, and any inclusion–exclusion is both unnecessary and a sign you have misread the structure.",
     "solutions": [
@@ -1081,7 +1081,7 @@ window.PROBLEMS = [
       "stirling",
       "counting"
     ],
-    "statement": "Five distinct letters are dropped into four distinct mailboxes $\\{1,2,3,4\\}$ so that $\\textbf{no mailbox is empty}$. Determine the number of ways (the number of surjections $\\{1,\\dots,5\\}\\twoheadrightarrow\\{1,2,3,4\\}$). Confirm it equals $4!\\,S(5,4)$ and identify the unique block-size pattern.",
+    "statement": "Five distinct letters are dropped into four distinct mailboxes $\\{1,2,3,4\\}$ so that $no mailbox is empty$. Determine the number of ways (the number of surjections $\\{1,\\dots,5\\}\\twoheadrightarrow\\{1,2,3,4\\}$). Confirm it equals $4!\\,S(5,4)$ and identify the unique block-size pattern.",
     "answer": "\\[\\boxed{240}\\]",
     "trap": "Reasoning 'choose which mailbox gets two letters, then it's a bijection of the rest' but mishandling the double-count, e.g. $4\\cdot\\binom52\\cdot4!=4\\cdot10\\cdot24=960$ overcounts wildly. The clean route is inclusion–exclusion or $4!\\,S(5,4)$; here the unique pattern is one box with $2$ letters and three boxes with $1$.",
     "solutions": [
@@ -1127,7 +1127,7 @@ window.PROBLEMS = [
       "derangement",
       "permutation-structure"
     ],
-    "statement": "Among all bijections $\\sigma\\colon\\{1,2,3,4,5,6\\}\\to\\{1,2,3,4,5,6\\}$, determine how many are $\\textbf{involutions with no fixed point}$, i.e. $\\sigma\\circ\\sigma=\\mathrm{id}$ and $\\sigma(i)\\neq i$ for all $i$. Describe their cycle structure.",
+    "statement": "Among all bijections $\\sigma\\colon\\{1,2,3,4,5,6\\}\\to\\{1,2,3,4,5,6\\}$, determine how many are $involutions with no fixed point$, i.e. $\\sigma\\circ\\sigma=\\mathrm{id}$ and $\\sigma(i)\\neq i$ for all $i$. Describe their cycle structure.",
     "answer": "\\[\\boxed{15}\\]",
     "trap": "Confusing 'fixed-point-free involution' with either 'derangement' (which permits longer cycles, $D_6=265$) or 'all involutions' (which permits fixed points, $76$ on $6$ elements). The defining constraint forces a permutation that is a product of disjoint transpositions only — a perfect matching of the $6$ elements, of cycle type $(2,2,2)$.",
     "solutions": [
@@ -1172,9 +1172,9 @@ window.PROBLEMS = [
       "compositions",
       "counting"
     ],
-    "statement": "Determine the number of $\\textbf{non-decreasing surjections}$ $f\\colon\\{1,2,3,4,5,6\\}\\to\\{1,2,3\\}$ — that is, $f(1)\\le f(2)\\le\\cdots\\le f(6)$ and $f$ hits all three values. Contrast this with the total number of (unrestricted) surjections $\\{1,\\dots,6\\}\\twoheadrightarrow\\{1,2,3\\}$, and explain why the monotone count is so much smaller.",
+    "statement": "Determine the number of $non-decreasing surjections$ $f\\colon\\{1,2,3,4,5,6\\}\\to\\{1,2,3\\}$ — that is, $f(1)\\le f(2)\\le\\cdots\\le f(6)$ and $f$ hits all three values. Contrast this with the total number of (unrestricted) surjections $\\{1,\\dots,6\\}\\twoheadrightarrow\\{1,2,3\\}$, and explain why the monotone count is so much smaller.",
     "answer": "\\[\\boxed{10}\\]",
-    "trap": "Applying the surjection formula $\\sum(-1)^k\\binom3k(3-k)^6=540$ and calling that the answer. Monotonicity destroys the labelling freedom: a non-decreasing onto map is determined only by the two \\'jump\\' positions, so the count is $\\binom{5}{2}=10$, not $540$. Mistaking a constrained count for the free one is the conceptual error.",
+    "trap": "Applying the surjection formula $\\sum(-1)^k\\binom3k(3-k)^6=540$ and calling that the answer. Monotonicity destroys the labelling freedom: a non-decreasing onto map is determined only by the two ’jump’ positions, so the count is $\\binom{5}{2}=10$, not $540$. Mistaking a constrained count for the free one is the conceptual error.",
     "solutions": [
       {
         "name": "Compositions of 6",
@@ -1188,8 +1188,8 @@ window.PROBLEMS = [
       {
         "name": "Stars and bars on jumps",
         "steps": [
-          "A non-decreasing map $\\{1,\\dots,6\\}\\to\\{1,2,3\\}$ corresponds to placing two \\'jump\\' boundaries among the $5$ internal gaps between consecutive inputs.",
-          "To be onto all three values each value\\'s block is nonempty, so the two boundaries occupy distinct gaps: choose $2$ of the $5$ gaps.",
+          "A non-decreasing map $\\{1,\\dots,6\\}\\to\\{1,2,3\\}$ corresponds to placing two ’jump’ boundaries among the $5$ internal gaps between consecutive inputs.",
+          "To be onto all three values each value’s block is nonempty, so the two boundaries occupy distinct gaps: choose $2$ of the $5$ gaps.",
           "$\\binom52=10$.",
           "\\[\\boxed{10}\\]"
         ]
@@ -1614,7 +1614,7 @@ window.PROBLEMS = [
       "restricted domain",
       "fixed point"
     ],
-    "statement": "Let $f(x)=\\sqrt{4-x^{2}}$ on the domain $[0,2]$. A student is asked to solve the equation $f(x)=f^{-1}(x)$ and confidently answers \"the only solution is $x=\\sqrt2$, where the curve crosses $y=x$.\" \\[\\] (a) Determine $f^{-1}$ together with its domain, and decide whether the student's reasoning is correct. (b) Determine the complete solution set of $f(x)=f^{-1}(x)$ on $[0,2]$.",
+    "statement": "Let $f(x)=\\sqrt{4-x^{2}}$ on the domain $[0,2]$. A student is asked to solve the equation $f(x)=f^{-1}(x)$ and confidently answers \"the only solution is $x=\\sqrt2$, where the curve crosses $y=x$.\" (a) Determine $f^{-1}$ together with its domain, and decide whether the student's reasoning is correct. (b) Determine the complete solution set of $f(x)=f^{-1}(x)$ on $[0,2]$.",
     "answer": "\\[\\boxed{f^{-1}=f,\\quad \\{x: f(x)=f^{-1}(x)\\}=[0,2]}\\]",
     "trap": "Assuming $f(x)=f^{-1}(x)$ collapses to $f(x)=x$ (giving the lone point $x=\\sqrt2$). That collapse is only valid when $f$ is INCREASING; here $f$ is decreasing AND it is its own inverse, so $f^{-1}(x)=f(x)$ identically and the equation holds on the whole domain.",
     "solutions": [
@@ -2805,9 +2805,9 @@ window.PROBLEMS = [
       "partition",
       "counting"
     ],
-    "statement": "Let $\\varphi=\\dfrac{1+\\sqrt5}{2}$. Call an integer $m\\ge 1$ \\emph{golden} if $m=\\lfloor n\\varphi\\rfloor$ for some positive integer $n$. Determine how many integers in $\\{1,2,\\dots,200\\}$ are golden.",
+    "statement": "Let $\\varphi=\\dfrac{1+\\sqrt5}{2}$. Call an integer $m\\ge 1$ golden if $m=\\lfloor n\\varphi\\rfloor$ for some positive integer $n$. Determine how many integers in $\\{1,2,\\dots,200\\}$ are golden.",
     "answer": "$\\boxed{124}$",
-    "trap": "Estimating the count as $\\lfloor 200/\\varphi\\rfloor=123$ (the largest $n$ with $n\\varphi\\le 200$), which under-counts by one. The correct count is $\\lfloor 201/\\varphi\\rfloor=124$: the boundary case $n=124$, where $\\lfloor124\\varphi\\rfloor=200\\le200$, is exactly the value the $\\lfloor 200/\\varphi\\rfloor$ estimate drops. A second, subtler trap is the \\emph{Beatty} short-cut $200-\\lfloor 200/\\varphi^2\\rfloor$: the upper-Wythoff tail must be counted as $\\lfloor (N+1)/\\varphi^2\\rfloor$, not $\\lfloor N/\\varphi^2\\rfloor$ — the two happen to agree at $N=200$ (both $76$) but disagree at, e.g., $N=2$, so the naive version is not a valid identity.",
+    "trap": "Estimating the count as $\\lfloor 200/\\varphi\\rfloor=123$ (the largest $n$ with $n\\varphi\\le 200$), which under-counts by one. The correct count is $\\lfloor 201/\\varphi\\rfloor=124$: the boundary case $n=124$, where $\\lfloor124\\varphi\\rfloor=200\\le200$, is exactly the value the $\\lfloor 200/\\varphi\\rfloor$ estimate drops. A second, subtler trap is the Beatty short-cut $200-\\lfloor 200/\\varphi^2\\rfloor$: the upper-Wythoff tail must be counted as $\\lfloor (N+1)/\\varphi^2\\rfloor$, not $\\lfloor N/\\varphi^2\\rfloor$ — the two happen to agree at $N=200$ (both $76$) but disagree at, e.g., $N=2$, so the naive version is not a valid identity.",
     "solutions": [
       {
         "name": "Beatty complementary sequences (counted correctly)",
@@ -3295,7 +3295,7 @@ window.PROBLEMS = [
       "domain"
     ],
     "statement": "Starting from $y=\\log_{2}x$, form $h(x)=\\bigl|\\log_{2}|x|\\bigr|$ by first replacing $x$ with $|x|$ (mirror the curve onto $x<0$) and then taking the outer absolute value (fold the negative part up). For a real constant $c$, let $N(c)$ be the number of real solutions of $h(x)=c$. Determine $N(c)$ for $c<0$, $c=0$, and $c>0$, and state the value of $c$ at which $N(c)$ attains its least value among those $c$ for which a solution exists.",
-    "answer": "\\[\\boxed{\\ N(c)=\\begin{cases}0,&c<0\\\\[2pt]2,&c=0\\\\[2pt]4,&c>0\\end{cases}\\qquad\\text{least (with a solution) at }c=0\\ }\\]",
+    "answer": "\\[\\boxed{\\ N(c)=\\begin{cases}0,&c<0\\\\\\ 2,&c=0\\\\\\ 4,&c>0\\end{cases}\\qquad\\text{least (with a solution) at }c=0\\ }\\]",
     "trap": "Forgetting that the inner $|x|$ already doubles every branch, so writing $\\log_2|x|=\\pm c$ and reporting only $2$ solutions. Each equation $|x|=2^{\\pm c}$ yields two $x$-values ($\\pm2^{\\pm c}$), so for $c>0$ there are four; the count bottoms out at $c=0$ where $2^{c}=2^{-c}=1$ merge into $x=\\pm1$.",
     "solutions": [
       {
@@ -3468,7 +3468,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: in a doubly-folded even graph the count drops by $2$ at off-axis tangencies (parity preserved) but becomes odd \\emph{only} at the on-axis cusp height $H(0)$. Separating 'turning-point heights' from 'the axis height' is the whole game."
+    "remark": "Insight: in a doubly-folded even graph the count drops by $2$ at off-axis tangencies (parity preserved) but becomes odd only at the on-axis cusp height $H(0)$. Separating 'turning-point heights' from 'the axis height' is the whole game."
   },
   {
     "theme": "hybrid",
@@ -3483,7 +3483,7 @@ window.PROBLEMS = [
       "iteration",
       "rational-function"
     ],
-    "statement": "Let $f(x)=\\dfrac{2x-9}{x-2}$, defined for all real $x\\neq 2$. \\[\\textbf{(a)}\\ \\text{Show that } f \\text{ is an involution, i.e. } f(f(x))=x \\text{ wherever defined.}\\] \\[\\textbf{(b)}\\ \\text{Find the number of real fixed points of } f \\text{ (real } x \\text{ with } f(x)=x).\\] \\[\\textbf{(c)}\\ \\text{Give a closed form for the }2025\\text{-fold composite } f^{[2025]}(x)=\\underbrace{f\\circ\\cdots\\circ f}_{2025}(x).\\]",
+    "statement": "Let $f(x)=\\dfrac{2x-9}{x-2}$, defined for all real $x\\neq 2$. \\[(a)\\ \\text{Show that } f \\text{ is an involution, i.e. } f(f(x))=x \\text{ wherever defined.}\\] \\[(b)\\ \\text{Find the number of real fixed points of } f \\text{ (real } x \\text{ with } f(x)=x).\\] \\[(c)\\ \\text{Give a closed form for the }2025\\text{-fold composite } f^{[2025]}(x)=\\underbrace{f\\circ\\cdots\\circ f}_{2025}(x).\\]",
     "answer": "\\[\\boxed{\\text{(b) } 0 \\text{ real fixed points};\\quad \\text{(c) } f^{[2025]}(x)=\\dfrac{2x-9}{x-2}}\\]",
     "trap": "Assuming an involution must have a real fixed point because 'every Mobius map of the line has one,' or solving $f(x)=x$ and reading off the complex roots $2\\pm i\\sqrt5$ as if they counted. The fixed-point equation $x^2-4x+9=0$ has discriminant $-20<0$, so there are zero real anchors; an involution can permute the punctured line with no real fixed point. The other classic slip is computing $f^{[2025]}$ as identity by miscounting parity: $f^{[\\text{even}]}=\\mathrm{id}$ but $2025$ is odd, so $f^{[2025]}=f$, not $\\mathrm{id}$.",
     "solutions": [
@@ -3597,7 +3597,7 @@ window.PROBLEMS = [
       "swap-trick",
       "rational-function"
     ],
-    "statement": "A function $f:\\mathbb R\\setminus\\{0\\}\\to\\mathbb R$ satisfies \\[f(x)+2\\,f\\!\\left(\\tfrac1x\\right)=3x\\qquad\\text{for all }x\\neq0.\\] \\[\\textbf{(a)}\\ \\text{Find } f \\text{ explicitly.}\\] \\[\\textbf{(b)}\\ \\text{Determine whether } f \\text{ is injective, surjective (onto } \\mathbb R\\text{), or bijective, with justification.}\\] \\[\\textbf{(c)}\\ \\text{Find all real } x \\text{ with } f(x)=1.\\]",
+    "statement": "A function $f:\\mathbb R\\setminus\\{0\\}\\to\\mathbb R$ satisfies \\[f(x)+2\\,f\\!\\left(\\tfrac1x\\right)=3x\\qquad\\text{for all }x\\neq0.\\] \\[(a)\\ \\text{Find } f \\text{ explicitly.}\\] \\[(b)\\ \\text{Determine whether } f \\text{ is injective, surjective (onto } \\mathbb R\\text{), or bijective, with justification.}\\] \\[(c)\\ \\text{Find all real } x \\text{ with } f(x)=1.\\]",
     "answer": "\\[\\boxed{f(x)=\\dfrac{2}{x}-x;\\ \\text{surjective onto }\\mathbb R \\text{ but not injective};\\ f(x)=1\\iff x\\in\\{1,-2\\}}\\]",
     "trap": "After solving the system to get $f(x)=2/x-x$ and checking $f'(x)=-2/x^2-1<0$, concluding 'strictly decreasing, hence injective, hence bijective.' The monotonicity holds only on EACH of the two intervals $(-\\infty,0)$ and $(0,\\infty)$ separately; across the puncture at $0$ the function is NOT globally injective. Indeed each branch already maps onto all of $\\mathbb R$, so every value is attained twice — once on each branch. It is surjective (codomain $\\mathbb R$ is exactly the range) but emphatically not injective, hence not bijective.",
     "solutions": [
@@ -3635,7 +3635,7 @@ window.PROBLEMS = [
       "equivalence-classes",
       "counting"
     ],
-    "statement": "On the set $A=\\{1,2,\\dots,12\\}$ define $a\\sim b$ if and only if $12\\mid(a^2-b^2)$. \\[\\textbf{(a)}\\ \\text{Prove that } \\sim \\text{ is an equivalence relation on } A.\\] \\[\\textbf{(b)}\\ \\text{Find the number of equivalence classes and list them.}\\]",
+    "statement": "On the set $A=\\{1,2,\\dots,12\\}$ define $a\\sim b$ if and only if $12\\mid(a^2-b^2)$. \\[(a)\\ \\text{Prove that } \\sim \\text{ is an equivalence relation on } A.\\] \\[(b)\\ \\text{Find the number of equivalence classes and list them.}\\]",
     "answer": "\\[\\boxed{4 \\text{ classes}:\\ \\{1,5,7,11\\},\\ \\{2,4,8,10\\},\\ \\{3,9\\},\\ \\{6,12\\}}\\]",
     "trap": "Believing $\\sim$ is just congruence and that $a\\sim b\\iff a\\equiv b\\pmod{12}$ (which would give $12$ singleton classes), or 'simplifying' $12\\mid(a-b)(a+b)$ to $a\\equiv\\pm b\\pmod{12}$. That factoring is WRONG because $12$ is not prime: $(a-b)(a+b)$ can be divisible by $12$ without either factor being divisible by $12$ (e.g. $a=2,b=4$: $(-2)(6)=-12$). The classes are governed by $a^2\\bmod12$, whose possible values are exactly $\\{0,1,4,9\\}$ — four residues, hence four classes, not twelve and not six.",
     "solutions": [
@@ -3673,7 +3673,7 @@ window.PROBLEMS = [
       "modular-arithmetic",
       "bijection"
     ],
-    "statement": "On the set $\\mathbb Z_7=\\{0,1,2,3,4,5,6\\}$ define $f(x)=(3x+2)\\bmod 7$. \\[\\textbf{(a)}\\ \\text{Show that } f \\text{ is a bijection of } \\mathbb Z_7.\\] \\[\\textbf{(b)}\\ \\text{Determine the least positive integer } n \\text{ for which the } n\\text{-fold composite } f^{[n]} \\text{ equals the identity map on } \\mathbb Z_7.\\]",
+    "statement": "On the set $\\mathbb Z_7=\\{0,1,2,3,4,5,6\\}$ define $f(x)=(3x+2)\\bmod 7$. \\[(a)\\ \\text{Show that } f \\text{ is a bijection of } \\mathbb Z_7.\\] \\[(b)\\ \\text{Determine the least positive integer } n \\text{ for which the } n\\text{-fold composite } f^{[n]} \\text{ equals the identity map on } \\mathbb Z_7.\\]",
     "answer": "\\[\\boxed{n=6}\\]",
     "trap": "Computing $f^{[n]}(x)=3^n x + c_n$ and concluding the order is the multiplicative order of $3$ modulo $7$, which is $6$ — getting the right number for the wrong reason and stopping early at any $n$ where the slope returns to $1$. The composite is $f^{[n]}(x)=3^n x+2\\,\\frac{3^n-1}{3-1}$; for $f^{[n]}=\\mathrm{id}$ you need BOTH the slope $3^n\\equiv1$ AND the additive constant $\\equiv0\\pmod7$. A student who only checks the slope, or who tries $n=3$ (where the constant happens to be nonzero), gets an off-by-iterate error. Both conditions first coincide at $n=6$.",
     "solutions": [
@@ -3787,7 +3787,7 @@ window.PROBLEMS = [
       "orbit-sum",
       "rational-identity"
     ],
-    "statement": "Let $g(x)=\\dfrac{1}{1-x}$, defined for $x\\neq1$. \\[\\textbf{(a)}\\ \\text{Prove that } g \\text{ has period }3, \\text{ i.e. } g^{[3]}(x)=x \\text{ while } g \\text{ is not the identity.}\\] \\[\\textbf{(b)}\\ \\text{Find the number of real fixed points of } g.\\] \\[\\textbf{(c)}\\ \\text{For } x\\notin\\{0,1\\}, \\text{ find a closed form for the orbit sum } x+g(x)+g^{[2]}(x).\\]",
+    "statement": "Let $g(x)=\\dfrac{1}{1-x}$, defined for $x\\neq1$. \\[(a)\\ \\text{Prove that } g \\text{ has period }3, \\text{ i.e. } g^{[3]}(x)=x \\text{ while } g \\text{ is not the identity.}\\] \\[(b)\\ \\text{Find the number of real fixed points of } g.\\] \\[(c)\\ \\text{For } x\\notin\\{0,1\\}, \\text{ find a closed form for the orbit sum } x+g(x)+g^{[2]}(x).\\]",
     "answer": "\\[\\boxed{g^{[3]}=\\mathrm{id};\\ \\ 0 \\text{ real fixed points};\\ \\ x+g(x)+g^{[2]}(x)=\\dfrac{x^3-3x+1}{x^2-x}}\\]",
     "trap": "Claiming the period-$3$ map must have a real fixed point (it does not — fixed points solve $x^2-x+1=0$, discriminant $-3<0$), or assuming the orbit sum is a constant. Because $g$ permutes its $3$-cycles, one may expect $x+g(x)+g^{[2]}(x)$ to be the 'symmetric' constant $\\tfrac32$ (as it is for the SUM of a genuine $3$-cycle of NUMBERS), but here it is a non-constant rational FUNCTION of $x$: the three orbit points are not the three roots of a fixed cubic, so their sum varies with $x$. Treating the orbit as a Vieta triple is the conceptual error.",
     "solutions": [

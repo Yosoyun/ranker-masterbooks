@@ -929,7 +929,7 @@ window.PROBLEMS = [
       "associativity"
     ],
     "statement": "Prove that for ALL vectors $\\mathbf{a},\\mathbf{b},\\mathbf{c}\\in\\mathbb{R}^3$,\\[\\mathbf{a}\\times(\\mathbf{b}\\times\\mathbf{c})+\\mathbf{b}\\times(\\mathbf{c}\\times\\mathbf{a})+\\mathbf{c}\\times(\\mathbf{a}\\times\\mathbf{b})=\\mathbf{0},\\]and explain why this shows the cross product is NOT associative in general.",
-    "answer": "$\\[\\boxed{\\mathbf{0}}\\]$",
+    "answer": "\\[\\boxed{\\mathbf{0}}\\]",
     "trap": "The fatal move is to assume associativity, writing $\\mathbf{a}\\times(\\mathbf{b}\\times\\mathbf{c})=(\\mathbf{a}\\times\\mathbf{b})\\times\\mathbf{c}$ and then 'cancelling' terms. This is false: $\\mathbf{a}\\times(\\mathbf{b}\\times\\mathbf{c})$ lies in $\\mathrm{span}\\{\\mathbf{b},\\mathbf{c}\\}$ while $(\\mathbf{a}\\times\\mathbf{b})\\times\\mathbf{c}$ lies in $\\mathrm{span}\\{\\mathbf{a},\\mathbf{b}\\}$ — different planes. Only the genuine BAC$-$CAB expansion produces the cancellation.",
     "solutions": [
       {
@@ -966,7 +966,7 @@ window.PROBLEMS = [
       "determinant"
     ],
     "statement": "Let $\\mathbf{a},\\mathbf{b},\\mathbf{c}$ be vectors in $\\mathbb{R}^3$. Prove the identity\\[[\\,\\mathbf{a}\\times\\mathbf{b},\\;\\mathbf{b}\\times\\mathbf{c},\\;\\mathbf{c}\\times\\mathbf{a}\\,]=[\\,\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}\\,]^2,\\]and hence determine $[\\,\\mathbf{a}\\times\\mathbf{b},\\;\\mathbf{b}\\times\\mathbf{c},\\;\\mathbf{c}\\times\\mathbf{a}\\,]$ when $\\mathbf{a},\\mathbf{b},\\mathbf{c}$ are coplanar.",
-    "answer": "$\\[\\boxed{[\\mathbf{a}\\times\\mathbf{b},\\,\\mathbf{b}\\times\\mathbf{c},\\,\\mathbf{c}\\times\\mathbf{a}]=[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]^2;\\ =0\\text{ if coplanar}}\\]$",
+    "answer": "\\[\\boxed{[\\mathbf{a}\\times\\mathbf{b},\\,\\mathbf{b}\\times\\mathbf{c},\\,\\mathbf{c}\\times\\mathbf{a}]=[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]^2;\\ =0\\text{ if coplanar}}\\]",
     "trap": "A tempting error is to multiply three triple products as if $[\\,\\mathbf{a}\\times\\mathbf{b},\\dots]=[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]^3$ (one factor per cross), or to expand $\\mathbf{a}\\times\\mathbf{b}$ etc. component-wise into a $9$-term mess. The clean route uses $\\mathbf{u}\\cdot(\\mathbf{v}\\times\\mathbf{w})$ with one BAC$-$CAB step — and the answer is the square, not the cube.",
     "solutions": [
       {
@@ -974,7 +974,7 @@ window.PROBLEMS = [
         "steps": [
           "Let $\\mathbf{u}=\\mathbf{a}\\times\\mathbf{b}$. First simplify $(\\mathbf{b}\\times\\mathbf{c})\\times(\\mathbf{c}\\times\\mathbf{a})$ using $(\\mathbf{p}\\times\\mathbf{q})\\times\\mathbf{r}$ form: treat as $\\mathbf{p}\\times(\\,\\cdot\\,)$ with $\\mathbf{p}=\\mathbf{b}\\times\\mathbf{c}$.",
           "$(\\mathbf{b}\\times\\mathbf{c})\\times(\\mathbf{c}\\times\\mathbf{a})=[\\mathbf{b}\\,\\mathbf{c}\\,\\mathbf{a}]\\,\\mathbf{c}-[\\mathbf{b}\\,\\mathbf{c}\\,\\mathbf{c}]\\,\\mathbf{a}=[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]\\,\\mathbf{c}$ (the second box has a repeat and vanishes).",
-          "Then $[\\mathbf{a}\\times\\mathbf{b},\\mathbf{b}\\times\\mathbf{c},\\mathbf{c}\\times\\mathbf{a}]=(\\mathbf{a}\\times\\mathbf{b})\\cdot\\bigl([\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]\\mathbf{c}\\bigr)=[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]\\,\\bigl((\\mathbf{a}\\times\\mathbf{b})\\cdot\\mathbf{c}\\bigr).",
+          "Then $[\\mathbf{a}\\times\\mathbf{b},\\mathbf{b}\\times\\mathbf{c},\\mathbf{c}\\times\\mathbf{a}]=(\\mathbf{a}\\times\\mathbf{b})\\cdot\\bigl([\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]\\mathbf{c}\\bigr)=[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]\\,\\bigl((\\mathbf{a}\\times\\mathbf{b})\\cdot\\mathbf{c}\\bigr)$.",
           "Since $(\\mathbf{a}\\times\\mathbf{b})\\cdot\\mathbf{c}=[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]$, the product is $[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]^2$. If the three vectors are coplanar then $[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]=0$, so the value is $\\boxed{0}$."
         ]
       },
@@ -983,7 +983,7 @@ window.PROBLEMS = [
         "steps": [
           "The map sending $(\\mathbf{a},\\mathbf{b},\\mathbf{c})$ to the new triple $(\\mathbf{a}\\times\\mathbf{b},\\mathbf{b}\\times\\mathbf{c},\\mathbf{c}\\times\\mathbf{a})$ is the reciprocal-system construction scaled by $[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]$.",
           "Indeed $\\mathbf{a}\\times\\mathbf{b}=[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]\\,\\mathbf{c}'$ where $\\mathbf{c}'$ is the reciprocal of $\\mathbf{c}$, and similarly for the others.",
-          "Hence $[\\mathbf{a}\\times\\mathbf{b},\\mathbf{b}\\times\\mathbf{c},\\mathbf{c}\\times\\mathbf{a}]=[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]^3\\,[\\mathbf{c}'\\,\\mathbf{a}'\\,\\mathbf{b}']=[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]^3\\cdot\\dfrac{1}{[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]}.",
+          "Hence $[\\mathbf{a}\\times\\mathbf{b},\\mathbf{b}\\times\\mathbf{c},\\mathbf{c}\\times\\mathbf{a}]=[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]^3\\,[\\mathbf{c}'\\,\\mathbf{a}'\\,\\mathbf{b}']=[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]^3\\cdot\\dfrac{1}{[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]}$.",
           "This collapses to $[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]^2$ (using the reciprocal-system law $[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}][\\mathbf{a}'\\,\\mathbf{b}'\\,\\mathbf{c}']=1$ and cyclic invariance of the box), giving $\\boxed{[\\mathbf{a}\\,\\mathbf{b}\\,\\mathbf{c}]^2}$, which is $0$ in the coplanar case."
         ]
       }
@@ -1967,7 +1967,7 @@ window.PROBLEMS = [
       "median",
       "section formula"
     ],
-    "statement": "A triangle has vertices with position vectors $\\vec A=2\\hat i+\\hat j+3\\hat k$, $\\vec B=4\\hat i+5\\hat j+\\hat k$ and $\\vec C=3\\hat i+2\\hat j+2\\hat k$, taken from an origin $O$. Let $M$ be the midpoint of $AB$ and let $G$ be the centroid of the triangle, so that $G$ lies on the median $CM$. A point $P$ on the line $CM$ is the \\emph{harmonic conjugate} of $G$ with respect to $C$ and $M$; that is, $P$ is the point on line $CM$ for which the cross ratio $(C,M;G,P)=-1$, equivalently $P$ and $G$ divide the segment $CM$ in numerically equal ratios but oppositely (one internal, one external). Find the position vector of $P$, and state the ratio $CP:PM$ together with whether $P$ divides $CM$ internally or externally.",
+    "statement": "A triangle has vertices with position vectors $\\vec A=2\\hat i+\\hat j+3\\hat k$, $\\vec B=4\\hat i+5\\hat j+\\hat k$ and $\\vec C=3\\hat i+2\\hat j+2\\hat k$, taken from an origin $O$. Let $M$ be the midpoint of $AB$ and let $G$ be the centroid of the triangle, so that $G$ lies on the median $CM$. A point $P$ on the line $CM$ is the harmonic conjugate of $G$ with respect to $C$ and $M$; that is, $P$ is the point on line $CM$ for which the cross ratio $(C,M;G,P)=-1$, equivalently $P$ and $G$ divide the segment $CM$ in numerically equal ratios but oppositely (one internal, one external). Find the position vector of $P$, and state the ratio $CP:PM$ together with whether $P$ divides $CM$ internally or externally.",
     "answer": "\\[\\boxed{\\,\\vec P=3\\hat i+4\\hat j+2\\hat k,\\qquad CP:PM=2:1\\ \\text{(external)}\\,}\\]",
     "trap": "Reading 'numerically equal ratios' as 'same kind of division' and placing $P$ at $CP:PM=2:1$ internally, i.e. at the centroid $G$ itself (or its mirror image inside the segment). Since $G$ already divides $CM$ internally in $2:1$, the harmonic conjugate must take the SAME magnitude $2:1$ but as an EXTERNAL division (sign flip): $P=2\\vec M-\\vec C$, which lies beyond $M$. Treating the second ratio as internal collapses $P$ onto $G$ and contradicts $(C,M;G,P)=-1$.",
     "solutions": [

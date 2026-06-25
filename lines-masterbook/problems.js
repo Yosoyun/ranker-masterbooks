@@ -793,9 +793,9 @@ window.PROBLEMS = [
       "concurrency",
       "absolute value"
     ],
-    "statement": "The three lines $L_1:\\;x-2y+1=0$, $L_2:\\;3x+y-4=0$ and $L_3:\\;5x-3y-2=0$ are concurrent. Find the \\emph{acute} angle $\\theta$ between $L_1$ and $L_2$ (give $\\theta$ as an inverse-tangent).",
+    "statement": "The three lines $L_1:\\;x-2y+1=0$, $L_2:\\;3x+y-4=0$ and $L_3:\\;5x-3y-2=0$ are concurrent. Find the acute angle $\\theta$ between $L_1$ and $L_2$ (give $\\theta$ as an inverse-tangent).",
     "answer": "\\[\\boxed{\\theta=\\tan^{-1}7}\\]",
-    "trap": "Writing $\\tan\\theta=\\dfrac{m_1-m_2}{1+m_1m_2}=\\dfrac{\\tfrac12-(-3)}{1+\\tfrac12(-3)}=-7$ and reporting $\\theta=\\tan^{-1}(-7)$ (an obtuse angle, $\\approx98.13^\\circ$). The acute angle requires the \\emph{absolute value}: $\\tan\\theta=|{-7}|=7$. Dropping $|\\cdot|$ silently selects the obtuse supplement.",
+    "trap": "Writing $\\tan\\theta=\\dfrac{m_1-m_2}{1+m_1m_2}=\\dfrac{\\tfrac12-(-3)}{1+\\tfrac12(-3)}=-7$ and reporting $\\theta=\\tan^{-1}(-7)$ (an obtuse angle, $\\approx98.13^\\circ$). The acute angle requires the absolute value: $\\tan\\theta=|{-7}|=7$. Dropping $|\\cdot|$ silently selects the obtuse supplement.",
     "solutions": [
       {
         "name": "Slope formula with modulus",
@@ -814,7 +814,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: $\\dfrac{m_1-m_2}{1+m_1m_2}$ carries the sign of the \\emph{directed} angle; the absolute value is exactly what collapses the directed pair $\\{\\theta,180^\\circ-\\theta\\}$ to the acute representative. The concurrency is a red-herring backdrop that tempts the solver to over-think."
+    "remark": "Insight: $\\dfrac{m_1-m_2}{1+m_1m_2}$ carries the sign of the directed angle; the absolute value is exactly what collapses the directed pair $\\{\\theta,180^\\circ-\\theta\\}$ to the acute representative. The concurrency is a red-herring backdrop that tempts the solver to over-think."
   },
   {
     "theme": "anglefamily",
@@ -830,7 +830,7 @@ window.PROBLEMS = [
     ],
     "statement": "As the real parameter $t$ varies, consider the line \\[\\ell_t:\\;(1+2t)\\,x+(1+3t)\\,y-(3+5t)=0.\\] Prove that all these lines pass through one fixed point, and find it.",
     "answer": "\\[\\boxed{(4,-1)}\\]",
-    "trap": "Picking two convenient values of $t$ (say $t=0$ and $t=1$), solving the resulting pair, and stopping — without proving that \\emph{every} $\\ell_t$ passes through the result. Two points determine a candidate, but the claim 'fixed point of the whole family' must be verified for general $t$ (by the pencil decomposition or an identity check), or one risks reporting a coincidence rather than a theorem.",
+    "trap": "Picking two convenient values of $t$ (say $t=0$ and $t=1$), solving the resulting pair, and stopping — without proving that every $\\ell_t$ passes through the result. Two points determine a candidate, but the claim 'fixed point of the whole family' must be verified for general $t$ (by the pencil decomposition or an identity check), or one risks reporting a coincidence rather than a theorem.",
     "solutions": [
       {
         "name": "Regroup as a pencil",
@@ -846,11 +846,11 @@ window.PROBLEMS = [
         "steps": [
           "At $t=0$: $x+y-3=0$. At $t=-\\tfrac13$ the $y$-coefficient $1+3t$ vanishes, leaving $\\tfrac13 x-\\tfrac43=0\\Rightarrow x=4.$",
           "Their intersection: $x=4,\\ y=-1$, giving the candidate $(4,-1)$.",
-          "Promote the guess to a proof for general $t$: substituting $(4,-1)$ gives $4+8t-1-3t-3-5t=0$ identically, so $(4,-1)$ lies on \\emph{all} $\\ell_t$. Hence $\\boxed{(4,-1)}$."
+          "Promote the guess to a proof for general $t$: substituting $(4,-1)$ gives $4+8t-1-3t-3-5t=0$ identically, so $(4,-1)$ lies on all $\\ell_t$. Hence $\\boxed{(4,-1)}$."
         ]
       }
     ],
-    "remark": "Insight: a one-parameter family that is \\emph{linear} in the parameter is always a pencil $L_1+tL_2=0$, and its base point is just $L_1\\cap L_2$ — provided $L_1,L_2$ are not parallel, so they meet in exactly one point. Recognizing the linear-in-$t$ structure converts a 'mystery fixed point' into a routine $2\\times2$ solve, and the identity check is what upgrades a guess into a proof."
+    "remark": "Insight: a one-parameter family that is linear in the parameter is always a pencil $L_1+tL_2=0$, and its base point is just $L_1\\cap L_2$ — provided $L_1,L_2$ are not parallel, so they meet in exactly one point. Recognizing the linear-in-$t$ structure converts a 'mystery fixed point' into a routine $2\\times2$ solve, and the identity check is what upgrades a guess into a proof."
   },
   {
     "theme": "anglefamily",
@@ -864,7 +864,7 @@ window.PROBLEMS = [
       "pencil",
       "slope condition"
     ],
-    "statement": "Let $L_1:\\;x+2y-3=0$ and $L_2:\\;2x-y+1=0$. Find the equation of the line through $L_1\\cap L_2$ that is perpendicular to $3x-4y=7$, \\emph{without} computing $L_1\\cap L_2$.",
+    "statement": "Let $L_1:\\;x+2y-3=0$ and $L_2:\\;2x-y+1=0$. Find the equation of the line through $L_1\\cap L_2$ that is perpendicular to $3x-4y=7$, without computing $L_1\\cap L_2$.",
     "answer": "\\[\\boxed{4x+3y-5=0}\\]",
     "trap": "Computing $L_1\\cap L_2=\\left(\\tfrac15,\\tfrac{7}{5}\\right)$ and using point-slope — defeating the purpose. Worse: taking the perpendicular slope as $\\tfrac34$ (the slope of $3x-4y=7$ itself) instead of its negative reciprocal $-\\tfrac43$, i.e. confusing 'perpendicular to' with 'parallel to' the given line. That blunder yields $-3x+4y-5=0$, whose slope $\\tfrac34$ gives the product $\\tfrac34\\cdot\\tfrac34=\\tfrac{9}{16}\\neq-1$ — it is parallel to the given line, not perpendicular.",
     "solutions": [
@@ -903,7 +903,7 @@ window.PROBLEMS = [
     ],
     "statement": "Find all real $a$ for which the three lines \\[L_1:\\;ax-2y-2=0,\\quad L_2:\\;x+ay-2=0,\\quad L_3:\\;2x+y-3=0\\] are concurrent.",
     "answer": "\\[\\boxed{a\\in\\{0,\\,2\\}}\\]",
-    "trap": "Forgetting to set up the $3\\times3$ coefficient determinant and instead solving $L_2\\cap L_3$ then substituting into $L_1$ — algebraically fine, but a sign slip in the messy substitution is easy. The deeper trap is assuming a quadratic in $a$ must have an extraneous (degenerate) root to discard; here \\emph{both} roots give three genuinely distinct, pairwise non-parallel concurrent lines, so neither may be thrown away.",
+    "trap": "Forgetting to set up the $3\\times3$ coefficient determinant and instead solving $L_2\\cap L_3$ then substituting into $L_1$ — algebraically fine, but a sign slip in the messy substitution is easy. The deeper trap is assuming a quadratic in $a$ must have an extraneous (degenerate) root to discard; here both roots give three genuinely distinct, pairwise non-parallel concurrent lines, so neither may be thrown away.",
     "solutions": [
       {
         "name": "Coefficient determinant",
@@ -924,7 +924,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: concurrency is a single determinant condition; here it is a clean quadratic with two honest solutions. The lesson is to actually \\emph{test} each root for degeneracy rather than reflexively keeping or discarding — sometimes a quadratic genuinely means 'two answers.'"
+    "remark": "Insight: concurrency is a single determinant condition; here it is a clean quadratic with two honest solutions. The lesson is to actually test each root for degeneracy rather than reflexively keeping or discarding — sometimes a quadratic genuinely means 'two answers.'"
   },
   {
     "theme": "anglefamily",
@@ -938,9 +938,9 @@ window.PROBLEMS = [
       "vertical line",
       "missing case"
     ],
-    "statement": "Let $L_1:\\;x-y-1=0$ and $L_2:\\;2x+y-8=0$. Find \\emph{all} lines passing through $L_1\\cap L_2$ that lie at distance $3$ from the point $(0,1)$.",
+    "statement": "Let $L_1:\\;x-y-1=0$ and $L_2:\\;2x+y-8=0$. Find all lines passing through $L_1\\cap L_2$ that lie at distance $3$ from the point $(0,1)$.",
     "answer": "\\[\\boxed{4x+3y-18=0\\ \\text{ and }\\ x=3}\\]",
-    "trap": "Parametrizing the pencil by slope as $y-2=m(x-3)$ (after finding $L_1\\cap L_2=(3,2)$), imposing the distance, and solving for $m$ — this yields only $4x+3y-18=0$ and silently \\emph{loses the vertical line} $x=3$, which has no finite slope yet is at distance $3$ from $(0,1)$. The slope parametrization cannot represent vertical members of a pencil.",
+    "trap": "Parametrizing the pencil by slope as $y-2=m(x-3)$ (after finding $L_1\\cap L_2=(3,2)$), imposing the distance, and solving for $m$ — this yields only $4x+3y-18=0$ and silently loses the vertical line $x=3$, which has no finite slope yet is at distance $3$ from $(0,1)$. The slope parametrization cannot represent vertical members of a pencil.",
     "solutions": [
       {
         "name": "Pencil parametrized by $\\lambda$ (captures the vertical line)",
@@ -977,7 +977,7 @@ window.PROBLEMS = [
     ],
     "statement": "Let $L_1:\\;2x+3y-5=0$ and $L_2:\\;x-y-5=0$. Find every line through $L_1\\cap L_2$ that makes equal intercepts on the coordinate axes.",
     "answer": "\\[\\boxed{x+y-3=0\\ \\text{ and }\\ x+4y=0}\\]",
-    "trap": "Writing the equal-intercept line as $\\tfrac{x}{c}+\\tfrac{y}{c}=1$ (i.e. $x+y=c$) and finding only the $a=b\\neq0$ member $x+y-3=0$ — \\emph{missing the line through the origin}. A line through $(0,0)$ has both intercepts equal to $0$, which also satisfies 'equal intercepts'; the standard intercept form $\\tfrac{x}{a}+\\tfrac{y}{b}=1$ cannot represent it (it requires nonzero intercepts).",
+    "trap": "Writing the equal-intercept line as $\\tfrac{x}{c}+\\tfrac{y}{c}=1$ (i.e. $x+y=c$) and finding only the $a=b\\neq0$ member $x+y-3=0$ — missing the line through the origin. A line through $(0,0)$ has both intercepts equal to $0$, which also satisfies 'equal intercepts'; the standard intercept form $\\tfrac{x}{a}+\\tfrac{y}{b}=1$ cannot represent it (it requires nonzero intercepts).",
     "solutions": [
       {
         "name": "Pencil with both cases",
@@ -1013,7 +1013,7 @@ window.PROBLEMS = [
     ],
     "statement": "Let $L_1:\\;x+2y-4=0$ and $L_2:\\;2x-y-3=0$. Find both lines through $L_1\\cap L_2$ that make a $45^\\circ$ angle with the line $x-2y=0$.",
     "answer": "\\[\\boxed{x+3y-5=0\\ \\text{ and }\\ 3x-y-5=0}\\]",
-    "trap": "Setting $\\dfrac{m-\\tfrac12}{1+\\tfrac12 m}=\\tan45^\\circ=1$ with only the $+$ sign and producing a single line. The condition $\\tan45^\\circ=\\left|\\dfrac{m-m_0}{1+mm_0}\\right|=1$ has \\emph{two} sign choices, $\\pm1$, yielding two members of the pencil — exactly the perpendicular pair making $\\pm45^\\circ$. Keeping one sign loses half the answer.",
+    "trap": "Setting $\\dfrac{m-\\tfrac12}{1+\\tfrac12 m}=\\tan45^\\circ=1$ with only the $+$ sign and producing a single line. The condition $\\tan45^\\circ=\\left|\\dfrac{m-m_0}{1+mm_0}\\right|=1$ has two sign choices, $\\pm1$, yielding two members of the pencil — exactly the perpendicular pair making $\\pm45^\\circ$. Keeping one sign loses half the answer.",
     "solutions": [
       {
         "name": "Pencil + both signs",
@@ -1095,7 +1095,7 @@ window.PROBLEMS = [
     ],
     "statement": "Find all real $c$ for which the three lines \\[L_1:\\;x+cy-1=0,\\quad L_2:\\;cx+y-1=0,\\quad L_3:\\;x+y-2=0\\] are concurrent at a single point through which all three genuinely distinct lines pass.",
     "answer": "\\[\\boxed{c=0}\\]",
-    "trap": "Setting the coefficient determinant to zero gives $c=0$ or $c=1$, and reporting both. But at $c=1$, $L_1$ and $L_2$ both become $x+y-1=0$ — they \\emph{coincide}, and this common line is \\emph{parallel} to $L_3:\\,x+y-2=0$, so there is no point lying on three distinct lines. The determinant vanishing detects 'rank deficiency,' not genuine triple-concurrency; $c=1$ is a phantom root to be rejected.",
+    "trap": "Setting the coefficient determinant to zero gives $c=0$ or $c=1$, and reporting both. But at $c=1$, $L_1$ and $L_2$ both become $x+y-1=0$ — they coincide, and this common line is parallel to $L_3:\\,x+y-2=0$, so there is no point lying on three distinct lines. The determinant vanishing detects 'rank deficiency,' not genuine triple-concurrency; $c=1$ is a phantom root to be rejected.",
     "solutions": [
       {
         "name": "Determinant, then screen the roots",
@@ -1115,7 +1115,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: $\\det=0$ is \\emph{necessary} but not \\emph{sufficient} for three distinct lines to be concurrent — it also fires when two lines coincide or the system is otherwise degenerate. A top-rank solver always validates each root against the 'three distinct, non-parallel lines through one point' definition. The symmetry $L_1\\leftrightarrow L_2$ under $x\\leftrightarrow y$ is the tell that $c=1$ would collapse them."
+    "remark": "Insight: $\\det=0$ is necessary but not sufficient for three distinct lines to be concurrent — it also fires when two lines coincide or the system is otherwise degenerate. A top-rank solver always validates each root against the 'three distinct, non-parallel lines through one point' definition. The symmetry $L_1\\leftrightarrow L_2$ under $x\\leftrightarrow y$ is the tell that $c=1$ would collapse them."
   },
   {
     "theme": "footimage",
@@ -1853,7 +1853,7 @@ window.PROBLEMS = [
       "perpendicular bisectors",
       "sign normalisation"
     ],
-    "statement": "Two straight rails run along $L_1:3x-4y+1=0$ and $L_2:5x+12y-17=0$. An inspection robot must move so that it is always equidistant from both rails.\n\n(a) Show that the complete set of admissible positions is the union of two lines, find their equations, and prove these two lines are perpendicular.\n\n(b) Of the two bisectors, identify the one that bisects the \\emph{acute} angle between the rails, and the one that bisects the angular region (wedge) \\emph{containing the origin}. State clearly whether these are the same line or different lines.",
+    "statement": "Two straight rails run along $L_1:3x-4y+1=0$ and $L_2:5x+12y-17=0$. An inspection robot must move so that it is always equidistant from both rails.\n\n(a) Show that the complete set of admissible positions is the union of two lines, find their equations, and prove these two lines are perpendicular.\n\n(b) Of the two bisectors, identify the one that bisects the acute angle between the rails, and the one that bisects the angular region (wedge) containing the origin. State clearly whether these are the same line or different lines.",
     "answer": "\\[\\boxed{\\;\\text{Locus: }8x+y-9=0\\ \\text{and}\\ x-8y+7=0;\\quad \\text{acute bisector: }x-8y+7=0,\\quad \\text{origin-wedge (obtuse) bisector: }8x+y-9=0\\;}\\]",
     "trap": "First trap: assuming \"equidistant from two lines\" describes a SINGLE line (the bisector) when it is the union of BOTH bisectors. Second trap: thinking the bisector of the origin's wedge is automatically the acute (\"internal\") one. After normalising both constants positive, $a_1a_2+b_1b_2=3(-5)+(-4)(-12)=33>0$, so the origin lies in the OBTUSE wedge; the origin-wedge bisector $8x+y-9=0$ is the OBTUSE one, NOT the acute $x-8y+7=0$. Third trap: misreading the question as \"the bisector passing through the origin\" — in fact NEITHER bisector passes through the origin, since $8(0)+0-9=-9\\neq0$ and $0-8(0)+7=7\\neq0$; the relevant property is which angular wedge the origin sits in, not incidence.",
     "solutions": [
@@ -1953,7 +1953,7 @@ window.PROBLEMS = [
       "origin test",
       "necessary vs sufficient"
     ],
-    "statement": "A fixed beam travels along $L_1:5x+12y-29=0$. A second beam travels along $L_2:15x-8y+k=0$, where the constant $k$ is unknown. An engineer claims that the line $M:14x+5y-24=0$ is an angle bisector of the two beams.\\n\\n(a) First explain why $M$ has the correct \\emph{direction} to be a bisector for \\emph{every} value of $k$, yet is genuinely a bisector for only one $k$. Find that value of $k$.\\n\\n(b) For the value found, decide whether $M$ bisects the acute or the obtuse angle between the beams, whether it is the bisector containing the origin, and give the equation of the \\emph{other} bisector.",
+    "statement": "A fixed beam travels along $L_1:5x+12y-29=0$. A second beam travels along $L_2:15x-8y+k=0$, where the constant $k$ is unknown. An engineer claims that the line $M:14x+5y-24=0$ is an angle bisector of the two beams.\\par (a) First explain why $M$ has the correct direction to be a bisector for every value of $k$, yet is genuinely a bisector for only one $k$. Find that value of $k$.\\par (b) For the value found, decide whether $M$ bisects the acute or the obtuse angle between the beams, whether it is the bisector containing the origin, and give the equation of the other bisector.",
     "answer": "\\[\\boxed{\\;k=1;\\quad M:14x+5y-24=0\\ \\text{is the OBTUSE, origin-containing bisector};\\quad \\text{other bisector: }5x-14y+23=0\\;}\\]",
     "trap": "Concluding $M$ is a bisector just because its normal $(14,5)$ is a bisector DIRECTION of the two normals — that is necessary but NOT sufficient. Since varying $k$ only translates $L_2$ parallel to itself, the two normals $(5,12)$ and $(15,-8)$ are unchanged, so the bisector directions $(14,5)$ and $(5,-14)$ are fixed for every $k$; the direction test therefore pins nothing. $M$ is an actual bisector only when it ALSO passes through the moving vertex $L_1\\cap L_2$, and that single requirement forces $k=1$. A second trap is to assume the origin-containing bisector must be the acute one — the sign test $a_1a_2+b_1b_2=21>0$ after positive-constant normalisation shows it is the OBTUSE one.",
     "solutions": [
@@ -3042,7 +3042,7 @@ window.PROBLEMS = [
     ],
     "statement": "A variable line has $x$-intercept $a$ and $y$-intercept $b$ subject to the linear constraint $a+b=c$ (a fixed nonzero constant). From the origin $O$ a perpendicular is dropped to each such line; let $N$ be its foot. Find the locus of $N$ as $a$ varies.",
     "answer": "\\[\\boxed{(x+y)(x^{2}+y^{2})=c\\,xy}\\]",
-    "trap": "Confusing this family with the classic one: the feet of perpendiculars from $O$ to all lines through a \\emph{fixed point} $(a,b)$ trace the circle $x^{2}+y^{2}=ax+by$. Here, however, the line does NOT pass through a fixed point; instead its intercepts obey $a+b=c$, so $b=c-a$ is forced and only the single parameter $a$ is free. Eliminating that one parameter yields a genuine cubic, not the degree-2 circle. (Numerically the feet fail every conic fit, so the locus truly has degree $3$.)",
+    "trap": "Confusing this family with the classic one: the feet of perpendiculars from $O$ to all lines through a fixed point $(a,b)$ trace the circle $x^{2}+y^{2}=ax+by$. Here, however, the line does NOT pass through a fixed point; instead its intercepts obey $a+b=c$, so $b=c-a$ is forced and only the single parameter $a$ is free. Eliminating that one parameter yields a genuine cubic, not the degree-2 circle. (Numerically the feet fail every conic fit, so the locus truly has degree $3$.)",
     "solutions": [
       {
         "name": "Foot-of-perpendicular formula, then eliminate the parameter",
@@ -3067,7 +3067,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: a constant intercept-\\emph{sum} is a single linear constraint on the two-parameter family of lines, so it leaves one free parameter; eliminating it pushes the degree up to $3$. Contrast the look-alike trap, where lines through a fixed point give the degree-$2$ circle $x^{2}+y^{2}=ax+by$. The polar route makes the elimination almost automatic because $X+Y$, $XY$, and $X^{2}+Y^{2}=r^{2}$ appear directly from the constraint."
+    "remark": "Insight: a constant intercept-sum is a single linear constraint on the two-parameter family of lines, so it leaves one free parameter; eliminating it pushes the degree up to $3$. Contrast the look-alike trap, where lines through a fixed point give the degree-$2$ circle $x^{2}+y^{2}=ax+by$. The polar route makes the elimination almost automatic because $X+Y$, $XY$, and $X^{2}+Y^{2}=r^{2}$ appear directly from the constraint."
   },
   {
     "theme": "locus",
@@ -3144,7 +3144,7 @@ window.PROBLEMS = [
         "name": "Slope parametrization and direct elimination",
         "steps": [
           "Let the line through $(3,2)$ have slope $m<0$ (negative, so both intercepts are positive): $y-2=m(x-3)$.",
-          "$x$-intercept ($y=0$): $a=3-\\dfrac{2}{m}$;  $y$-intercept ($x=0$): $b=2-3m$.",
+          "$x$-intercept ($y=0$): $a=3-\\dfrac{2}{m}$; $y$-intercept ($x=0$): $b=2-3m$.",
           "Midpoint coordinates: $x=\\dfrac a2=\\dfrac32-\\dfrac1m$ and $y=\\dfrac b2=1-\\dfrac{3m}{2}$.",
           "From the first, $\\dfrac1m=\\dfrac32-x$, so $m=\\dfrac{1}{\\frac32-x}=\\dfrac{2}{3-2x}$.",
           "Substitute into $y=1-\\dfrac{3m}{2}=1-\\dfrac{3}{2}\\cdot\\dfrac{2}{3-2x}=1-\\dfrac{3}{3-2x}=\\dfrac{-2x}{3-2x}=\\dfrac{2x}{2x-3}$.",

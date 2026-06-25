@@ -14,7 +14,7 @@ window.PROBLEMS = [
       "length of tangent",
       "power of a point"
     ],
-    "trap": "Trying to locate $P$ by solving the pairwise systems $S_i\\cap S_j$ for common intersection points. Here the three circles are mutually disjoint, so every pair $S_i\\cap S_j$ has \\emph{no} real solution at all, yet the equal-tangent point still exists. Equal tangent length means equal power, and the locus of equal power to two circles is their radical axis $S_i-S_j=0$ (a line), which exists whether or not the circles intersect.",
+    "trap": "Trying to locate $P$ by solving the pairwise systems $S_i\\cap S_j$ for common intersection points. Here the three circles are mutually disjoint, so every pair $S_i\\cap S_j$ has no real solution at all, yet the equal-tangent point still exists. Equal tangent length means equal power, and the locus of equal power to two circles is their radical axis $S_i-S_j=0$ (a line), which exists whether or not the circles intersect.",
     "solutions": [
       {
         "name": "Radical axes (subtraction kills the quadratic part)",
@@ -520,7 +520,7 @@ window.PROBLEMS = [
     ],
     "statement": "On $y^2=8x$, among all chords that are normal to the curve at one of their endpoints, \\[\\text{determine the length of the shortest such chord.}\\]",
     "answer": "\\[\\boxed{12\\sqrt3}\\]",
-    "trap": "Minimising over the focal-chord family (whose minimum is the latus rectum $4a$) gives $8$, which is wrong because a normal chord is NOT a focal chord. Using $t_2=-1/t_1$ instead of the true normal-foot relation $t_2=-t_1-2/t_1$ corrupts the entire optimisation \\textemdash{} treacherously, that wrong relation also yields $8$, reinforcing the false answer.",
+    "trap": "Minimising over the focal-chord family (whose minimum is the latus rectum $4a$) gives $8$, which is wrong because a normal chord is NOT a focal chord. Using $t_2=-1/t_1$ instead of the true normal-foot relation $t_2=-t_1-2/t_1$ corrupts the entire optimisation —{} treacherously, that wrong relation also yields $8$, reinforcing the false answer.",
     "remark": "Insight: writing $PQ^2=16a^2\\dfrac{(t_1^2+1)^3}{t_1^4}$ and minimising gives the clean critical point $t_1^2=2$, the same $t_1=\\sqrt2$ that recurs throughout normal-chord problems. The minimum length is $6\\sqrt3\\,a$.",
     "solutions": [
       {
@@ -1248,7 +1248,7 @@ window.PROBLEMS = [
   {
     "theme": "hyperbola",
     "themeLabel": "The Hyperbola",
-    "title": "S, S+\\lambda, S+2\\lambda: The Family of Three",
+    "title": "$S,\\ S+\\lambda,\\ S+2\\lambda$: The Family of Three",
     "difficulty": 4,
     "task": "Find a,b",
     "tags": [
@@ -2000,7 +2000,7 @@ window.PROBLEMS = [
     ],
     "statement": "Consider the circle $x^2+y^2=48$ and the triangle with vertices $A=(6,0)$, $B=(8,4)$, $C=(8,-4)$. \\[\\text{Prove that } \\triangle ABC \\text{ is self-polar (each vertex is the pole of the opposite side), and find its area.}\\]",
     "answer": "\\[\\boxed{\\text{Self-polar; area } = 8}\\]",
-    "trap": "Two false shortcuts. (1) Checking only that one vertex lies on the polar of another and stopping there: a single incidence $T(P,Q)=0$ is symmetric, so it never distinguishes which vertex is the pole of which side. You must verify the pole of each \\emph{full} side equals the opposite vertex (or equivalently that all three pairwise conjugacies hold \\emph{and} the three points are non-collinear). (2) Assuming a real self-polar triangle must have all vertices outside the conic. In fact $S(A)=36-48=-12<0$, so $A$ lies \\emph{inside} the circle while $B,C$ lie outside: a self-polar triangle with respect to a real circle ALWAYS has exactly one vertex inside it. So 'pole' does not mean 'outside'.",
+    "trap": "Two false shortcuts. (1) Checking only that one vertex lies on the polar of another and stopping there: a single incidence $T(P,Q)=0$ is symmetric, so it never distinguishes which vertex is the pole of which side. You must verify the pole of each full side equals the opposite vertex (or equivalently that all three pairwise conjugacies hold and the three points are non-collinear). (2) Assuming a real self-polar triangle must have all vertices outside the conic. In fact $S(A)=36-48=-12<0$, so $A$ lies inside the circle while $B,C$ lie outside: a self-polar triangle with respect to a real circle ALWAYS has exactly one vertex inside it. So 'pole' does not mean 'outside'.",
     "solutions": [
       {
         "name": "Pole of each side",
@@ -2684,7 +2684,7 @@ window.PROBLEMS = [
       "ellipse",
       "locus"
     ],
-    "statement": "A conic is the locus of a point $P$ whose distance to the fixed focus $S=(1,2)$ equals $\\tfrac12$ times its distance to the line $x+y=1$. \\[\\] Find the equation of the conic (cleared of fractions, integer coefficients), and decide its type from the equation alone.",
+    "statement": "A conic is the locus of a point $P$ whose distance to the fixed focus $S=(1,2)$ equals $\\tfrac12$ times its distance to the line $x+y=1$.   Find the equation of the conic (cleared of fractions, integer coefficients), and decide its type from the equation alone.",
     "answer": "\\[\\boxed{7x^{2}-2xy+7y^{2}-14x-30y+39=0\\ \\text{(a rotated ellipse, since }B^{2}-4AC=-192<0)}\\]",
     "trap": "Believing that because $e=\\tfrac12<1$ and the focus/directrix look 'aligned' the result is an axis-parallel ellipse with no $xy$ term. The slanted directrix forces a cross term $-2xy$, i.e. the ellipse is rotated; dropping it (or writing $x^2/a^2+y^2/b^2=1$) is wrong.",
     "solutions": [
@@ -2722,7 +2722,7 @@ window.PROBLEMS = [
       "eccentricity from condition",
       "semi-axes"
     ],
-    "statement": "In an ellipse the length of the latus rectum equals one half of the length of the major axis. \\[\\] Find the eccentricity $e$.",
+    "statement": "In an ellipse the length of the latus rectum equals one half of the length of the major axis.   Find the eccentricity $e$.",
     "answer": "\\[\\boxed{e=\\dfrac{1}{\\sqrt2}}\\]",
     "trap": "Reading 'latus rectum $=\\tfrac12$ major axis' as $\\dfrac{2b^2}{a}=\\tfrac12\\,a$ but then using the hyperbola relation $e^2=1+\\tfrac{b^2}{a^2}$. For an ellipse $e^2=1-\\tfrac{b^2}{a^2}$; the sign of the $b^2/a^2$ term is the whole point.",
     "solutions": [
@@ -2759,7 +2759,7 @@ window.PROBLEMS = [
       "foci distance",
       "latus rectum"
     ],
-    "statement": "A hyperbola centred at the origin with transverse axis along the $x$-axis has the distance between its two foci equal to $16$ and the distance between its two directrices equal to $4$. \\[\\] Find its eccentricity, its equation, and the length of its latus rectum.",
+    "statement": "A hyperbola centred at the origin with transverse axis along the $x$-axis has the distance between its two foci equal to $16$ and the distance between its two directrices equal to $4$.   Find its eccentricity, its equation, and the length of its latus rectum.",
     "answer": "\\[\\boxed{e=2,\\quad \\dfrac{x^{2}}{16}-\\dfrac{y^{2}}{48}=1,\\quad \\text{LR}=24}\\]",
     "trap": "Swapping which spacing is which: directrices sit at $x=\\pm a/e$ (distance $2a/e$) and foci at $x=\\pm ae$ (distance $2ae$). Mixing them gives $1/e^2$ inverted and $e=\\tfrac12<1$, an impossible 'hyperbola'.",
     "solutions": [
@@ -2796,7 +2796,7 @@ window.PROBLEMS = [
       "SP=a-ex",
       "ratio condition"
     ],
-    "statement": "$P$ is a point on the ellipse $\\dfrac{x^{2}}{25}+\\dfrac{y^{2}}{16}=1$ such that its focal distances to the two foci are in the ratio $1:3$. \\[\\] Find the two focal distances $SP$ and $S'P$.",
+    "statement": "$P$ is a point on the ellipse $\\dfrac{x^{2}}{25}+\\dfrac{y^{2}}{16}=1$ such that its focal distances to the two foci are in the ratio $1:3$.   Find the two focal distances $SP$ and $S'P$.",
     "answer": "\\[\\boxed{SP=\\dfrac{5}{2},\\qquad S'P=\\dfrac{15}{2}}\\]",
     "trap": "Using $SP=a-ex$ with the wrong focus, or forgetting $SP+S'P=2a$. Students often solve $a-ex=\\tfrac13(a+ex)$ but then attach the larger value to the nearer focus, inverting the ratio.",
     "solutions": [
@@ -2834,7 +2834,7 @@ window.PROBLEMS = [
       "golden ratio",
       "eccentricity from condition"
     ],
-    "statement": "In an ellipse $\\dfrac{x^{2}}{a^{2}}+\\dfrac{y^{2}}{b^{2}}=1$ ($a>b$) the latus rectum through a focus subtends a right angle at the centre. \\[\\] Find the eccentricity $e$.",
+    "statement": "In an ellipse $\\dfrac{x^{2}}{a^{2}}+\\dfrac{y^{2}}{b^{2}}=1$ ($a>b$) the latus rectum through a focus subtends a right angle at the centre.   Find the eccentricity $e$.",
     "answer": "\\[\\boxed{e=\\dfrac{\\sqrt5-1}{2}}\\]",
     "trap": "Confusing 'subtends a right angle at the centre' with 'at the other focus'. At the centre the two endpoints are symmetric about the $x$-axis, so each radius makes $45^\\circ$ with the axis, giving $\\dfrac{b^2/a}{ae}=1$ and $e=\\tfrac{\\sqrt5-1}{2}$. Using the opposite focus instead leads to $e^4-6e^2+1=0$, i.e. $e=\\sqrt2-1$ — a different, wrong value.",
     "solutions": [
@@ -2872,7 +2872,7 @@ window.PROBLEMS = [
       "e=1",
       "rotated conic"
     ],
-    "statement": "Consider the curve \\[ x^{2}+4xy+4y^{2}-24x-28y+64=0. \\] It was generated from a focus $S$ and a directrix $\\ell$ with some eccentricity $e$. \\[\\] Recover $e$ and the type of conic, and identify $S$ and $\\ell$.",
+    "statement": "Consider the curve \\[ x^{2}+4xy+4y^{2}-24x-28y+64=0. \\] It was generated from a focus $S$ and a directrix $\\ell$ with some eccentricity $e$.   Recover $e$ and the type of conic, and identify $S$ and $\\ell$.",
     "answer": "\\[\\boxed{e=1\\ \\text{(a parabola)};\\quad S=(2,3),\\ \\ \\ell:\\,2x-y+1=0}\\]",
     "trap": "Seeing two squared terms $x^2+4xy+4y^2=(x+2y)^2$ and the $+4y^2$ and guessing 'ellipse'. The presence of a perfect-square quadratic part means $B^2-4AC=0$, so $e=1$: it is a parabola, not an ellipse.",
     "solutions": [
@@ -2910,7 +2910,7 @@ window.PROBLEMS = [
       "foci",
       "latus rectum"
     ],
-    "statement": "A hyperbola centred at the origin with foci on the $x$-axis has one focus at $(5,0)$ and the corresponding directrix is the line $x=\\dfrac{9}{5}$. \\[\\] Find its eccentricity, the coordinates of both foci, and the length of its latus rectum.",
+    "statement": "A hyperbola centred at the origin with foci on the $x$-axis has one focus at $(5,0)$ and the corresponding directrix is the line $x=\\dfrac{9}{5}$.   Find its eccentricity, the coordinates of both foci, and the length of its latus rectum.",
     "answer": "\\[\\boxed{e=\\dfrac{5}{3},\\quad \\text{foci }(\\pm5,0),\\quad \\text{LR}=\\dfrac{32}{3}}\\]",
     "trap": "Setting $ae=5$ and $a/e=9/5$ but then computing $b^2=a^2(1-e^2)$ (the ellipse sign), which is negative and signals nothing was wrong — yet gives an imaginary $b$. For a hyperbola use $b^2=a^2(e^2-1)$.",
     "solutions": [
@@ -2948,7 +2948,7 @@ window.PROBLEMS = [
       "completing the square",
       "focus recovery"
     ],
-    "statement": "All conics with focus $O=(0,0)$ and directrix $x=4$ form a family parametrised by eccentricity $e$. The member of this family that passes through the point $\\left(1,\\sqrt3\\right)$ is selected. \\[\\] Find $e$, classify the conic, and locate \\emph{both} of its foci.",
+    "statement": "All conics with focus $O=(0,0)$ and directrix $x=4$ form a family parametrised by eccentricity $e$. The member of this family that passes through the point $\\left(1,\\sqrt3\\right)$ is selected.   Find $e$, classify the conic, and locate both of its foci.",
     "answer": "\\[\\boxed{e=\\dfrac23\\ \\text{(ellipse)};\\quad \\text{foci }(0,0)\\ \\text{and}\\ \\left(-\\tfrac{32}{5},0\\right)}\\]",
     "trap": "After finding $e=\\tfrac23$ and the equation, reporting only the given focus $O$ — or assuming the centre is at $O$. The conic has two foci; $O$ is one of them, and completing the square reveals the centre is shifted to $(-\\tfrac{16}{5},0)$, with the second focus at $(-\\tfrac{32}{5},0)$.",
     "solutions": [
@@ -2986,7 +2986,7 @@ window.PROBLEMS = [
       "|a-ex|",
       "2a difference"
     ],
-    "statement": "On the hyperbola $\\dfrac{x^{2}}{9}-\\dfrac{y^{2}}{16}=1$, a point $P$ on the right branch has its distance to the nearer focus equal to $4$. \\[\\] Find the distance from $P$ to the farther focus and the abscissa of $P$.",
+    "statement": "On the hyperbola $\\dfrac{x^{2}}{9}-\\dfrac{y^{2}}{16}=1$, a point $P$ on the right branch has its distance to the nearer focus equal to $4$.   Find the distance from $P$ to the farther focus and the abscissa of $P$.",
     "answer": "\\[\\boxed{\\text{far distance}=10,\\qquad x_P=\\dfrac{21}{5}}\\]",
     "trap": "Writing the focal radius as $a-ex$ (the ellipse form). For a hyperbola the radii are $|ex-a|$ and $ex+a$; on the right branch the nearer focus gives $ex-a$ (not $a-ex$, which would be negative for $x>a$).",
     "solutions": [
@@ -3024,7 +3024,7 @@ window.PROBLEMS = [
       "rotated conic",
       "grand hybrid"
     ],
-    "statement": "A conic has focus $O=(0,0)$ and directrix the line $x+y=2$. Among all eccentricities $e$, exactly one makes the conic a \\emph{rectangular} hyperbola. \\[\\] Find that $e$ and the resulting equation of the conic in $x,y$, and name the curve it traces.",
+    "statement": "A conic has focus $O=(0,0)$ and directrix the line $x+y=2$. Among all eccentricities $e$, exactly one makes the conic a rectangular hyperbola.   Find that $e$ and the resulting equation of the conic in $x,y$, and name the curve it traces.",
     "answer": "\\[\\boxed{e=\\sqrt2;\\quad xy-2x-2y+2=0,\\ \\text{i.e. }(x-2)(y-2)=2\\ \\text{(a rectangular hyperbola)}}\\]",
     "trap": "Believing 'rectangular' is a special slope or position condition rather than the single value $e=\\sqrt2$. A rectangular hyperbola has $b=a$, so $e^2=1+b^2/a^2=2$; forgetting that the slanted directrix already rotates the curve, one might also expect a clean $x^2,y^2$ form, but it actually appears as a pure $xy$-equation.",
     "solutions": [
