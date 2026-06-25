@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Ranker's Masterbooks — Straight Lines, Application of Derivatives, Indefinite Integration, Functions, Conics &amp; more</title>
-<meta name="description" content="Twenty masterbooks for the very top of JEE Advanced and the Mathematical Olympiad: y=mx+c (Straight Lines), f′=0 (Application of Derivatives), ∫dx (Indefinite Integration), f(x) (Functions &amp; Relations), S=0 (Conic Sections), dy/dx (Differential Equations), v⃗ (Vectors &amp; 3D), Σ (Sequences &amp; Series), (1+x)ⁿ (Binomial Theorem), ℙ (Probability), n! (Permutations & Combinations), ∫ (Definite Integration), ℂ (Complex Numbers), x² (Quadratics), f′ (Differentiability), C⁰ (Continuity), MATRIX (Determinants), TRIG (The Circular Arsenal), ARC (Inverse Trig) and LIMITS (The Edge of Calculus). 2006 original problems, each solved more than one way.">
+<title>The Ranker's Masterbooks — Area under Curves, Straight Lines, Application of Derivatives, Indefinite Integration &amp; more</title>
+<meta name="description" content="Twenty-one masterbooks for the very top of JEE Advanced and the Mathematical Olympiad: ∫f dx (Area under Curves), y=mx+c (Straight Lines), f′=0 (Application of Derivatives), ∫dx (Indefinite Integration), f(x) (Functions &amp; Relations), S=0 (Conic Sections), dy/dx (Differential Equations), v⃗ (Vectors &amp; 3D), Σ (Sequences &amp; Series), (1+x)ⁿ (Binomial Theorem), ℙ (Probability), n! (Permutations & Combinations), ∫ (Definite Integration), ℂ (Complex Numbers), x² (Quadratics), f′ (Differentiability), C⁰ (Continuity), MATRIX (Determinants), TRIG (The Circular Arsenal), ARC (Inverse Trig) and LIMITS (The Edge of Calculus). 2106 original problems, each solved more than one way.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz@0,6..72;1,6..72&display=swap" rel="stylesheet">
 <style>
   :root{ --paper:#f4efe4; --ink:#1c1a16; --ink2:#5b5446; --ink3:#8b8474; --line:#e2d8c2;
-         --gold:#a36a12; --gold2:#caa24a; --teal:#0c7b6e; --teal2:#13a892; --cobalt:#1e50c8; --cobalt2:#3b76f0; --violet:#6d28d9; --violet2:#8b5cf6; --crimson:#be123c; --crimson2:#e11d48; --amber:#b45309; --amber2:#ea580c; --emerald:#047857; --emerald2:#059669; --fuchsia:#a21caf; --fuchsia2:#c026d3; --cyan:#0e7490; --cyan2:#0891b2; --indigo:#4338ca; --indigo2:#6366f1; --rose:#be185d; --rose2:#db2777; --orange:#c2410c; --orange2:#f97316; --slate:#475569; --slate2:#64748b; --sky:#0284c7; --sky2:#0ea5e9; --lime:#65a30d; --lime2:#84cc16; --plum:#86198f; --plum2:#b21db5; --green:#15803d; --green2:#16a34a; --brown:#7c4a21; --brown2:#a06a3a; --magenta:#a8155f; --magenta2:#cf2079; --steel:#2563a8; --steel2:#3b82c4;
+         --gold:#a36a12; --gold2:#caa24a; --teal:#0c7b6e; --teal2:#13a892; --cobalt:#1e50c8; --cobalt2:#3b76f0; --violet:#6d28d9; --violet2:#8b5cf6; --crimson:#be123c; --crimson2:#e11d48; --amber:#b45309; --amber2:#ea580c; --emerald:#047857; --emerald2:#059669; --fuchsia:#a21caf; --fuchsia2:#c026d3; --cyan:#0e7490; --cyan2:#0891b2; --indigo:#4338ca; --indigo2:#6366f1; --rose:#be185d; --rose2:#db2777; --orange:#c2410c; --orange2:#f97316; --slate:#475569; --slate2:#64748b; --sky:#0284c7; --sky2:#0ea5e9; --lime:#65a30d; --lime2:#84cc16; --plum:#86198f; --plum2:#b21db5; --green:#15803d; --green2:#16a34a; --brown:#7c4a21; --brown2:#a06a3a; --magenta:#a8155f; --magenta2:#cf2079; --steel:#2563a8; --steel2:#3b82c4; --pine:#0f766e; --pine2:#14b8a6;
          --serif:'Fraunces',Georgia,serif; --read:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,sans-serif; }
   *{box-sizing:border-box} html,body{margin:0;padding:0}
   body{ background:radial-gradient(1100px 700px at 85% -10%, #f6ecd6, transparent 60%), var(--paper);
@@ -81,9 +81,11 @@
   .aod .stats b{ color:var(--magenta); }
   .lines .bk{ color:var(--steel); } .lines .glyph{ color:var(--steel); } .lines .open{ background:var(--steel); }
   .lines .stats b{ color:var(--steel); }
+  .area .bk{ color:var(--pine); } .area .glyph{ color:var(--pine); } .area .open{ background:var(--pine); }
+  .area .stats b{ color:var(--pine); }
   footer{ color:var(--ink3); font-size:12.5px; text-align:center; padding:22px; border-top:1px solid var(--line); }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#100f0c; --ink:#efe8d8; --ink2:#bcb4a1; --ink3:#857e6c; --line:#2b271e; --gold2:#e6b860; --teal2:#3fd6bf; --cobalt2:#6f9bff; --violet2:#a78bfa; --crimson2:#fb7185; --amber2:#fbbf24; --emerald2:#34d399; --fuchsia2:#e879f9; --cyan2:#22d3ee; --indigo2:#818cf8; --rose2:#f472b6; --orange2:#fb923c; --slate2:#94a3b8; --sky2:#38bdf8; --lime2:#a3e635; --plum2:#eaa0f5; --green2:#4ade80; --brown2:#cba36f; --magenta2:#f5a3d0; --steel2:#8ec5f0; }
+    :root{ --paper:#100f0c; --ink:#efe8d8; --ink2:#bcb4a1; --ink3:#857e6c; --line:#2b271e; --gold2:#e6b860; --teal2:#3fd6bf; --cobalt2:#6f9bff; --violet2:#a78bfa; --crimson2:#fb7185; --amber2:#fbbf24; --emerald2:#34d399; --fuchsia2:#e879f9; --cyan2:#22d3ee; --indigo2:#818cf8; --rose2:#f472b6; --orange2:#fb923c; --slate2:#94a3b8; --sky2:#38bdf8; --lime2:#a3e635; --plum2:#eaa0f5; --green2:#4ade80; --brown2:#cba36f; --magenta2:#f5a3d0; --steel2:#8ec5f0; --pine2:#5eead4; }
     body{ background:radial-gradient(1100px 700px at 85% -10%, #1a160d, transparent 60%), var(--paper); }
     .book{ background:#1a1813; }
   }
@@ -92,11 +94,21 @@
 <body>
   <div class="wrap">
     <div class="kick">The Ranker's Masterbooks</div>
-    <h1>Twenty books for the top<span class="dot">.</span></h1>
+    <h1>Twenty-one books for the top<span class="dot">.</span></h1>
     <p class="lede">Original problems for the very top of JEE Advanced and the Mathematical Olympiad — where the obvious move is the wrong move, and every problem is solved more than one way.</p>
-    <div class="meta">2006 problems · 200 chapters · multi-method · adversarially verified in Python.</div>
+    <div class="meta">2106 problems · 210 chapters · multi-method · adversarially verified in Python.</div>
 
     <div class="grid">
+      <div class="book area">
+        <div class="glyph">∫f dx</div>
+        <div class="bk">The Signed Area Between Curves</div>
+        <h2>∫f dx<span style="color:var(--pine2)">.</span></h2>
+        <div class="sub">Read the region the integral measures</div>
+        <p>Olympiad/JEE area under and between curves — area against the x- and y-axes, the area between two curves, finding the limits from points of intersection, symmetry shortcuts, parametric &amp; polar areas, modulus/greatest-integer/piecewise integrands, variable boundaries, and optimising an area.</p>
+        <div class="stats"><div><b>100</b><span>Problems</span></div><div><b>10</b><span>Chapters</span></div><div><b>3–5</b><span>Difficulty</span></div></div>
+        <a class="open" href="area-masterbook/index.html">Open the book →</a>
+        <div class="pdfs"><a href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/AREA-Problems.pdf">↓ Problems PDF</a><a href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/AREA-Solutions.pdf">↓ Solutions PDF</a></div>
+      </div>
       <div class="book lines">
         <div class="glyph">y=mx+c</div>
         <div class="bk">Slopes, Distances &amp; the Pencil of Lines</div>
