@@ -58,3 +58,9 @@ body{ background:
 /* gentle entrance for cards */
 .q.card{ transition:transform .4s cubic-bezier(.2,.7,.3,1), box-shadow .4s ease !important; }
 .q.card:hover{ transform:translateY(-2px) !important; box-shadow:var(--shadow-lg) !important; }
+
+/* fix: legend "Instruments" glyph boxes must contain multi-char glyphs (∫f dx, ½∫r²dθ, |f|⌊x⌋…) */
+.legend .lg{ align-items:center; }
+.legend .lg .glyph{ width:auto !important; min-width:46px; max-width:104px; height:46px; padding:0 11px;
+  font-size:15px !important; line-height:1; white-space:nowrap; overflow:hidden; }
+.chcard .ch-glyph, .chap-hero .ch-glyph-lg{ white-space:nowrap; }
