@@ -11,20 +11,20 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['multilinear','charpoly','rank','special','block','trace','inequalities','combinatorial','equations','hybrid'];
+const THEME_ORDER = ['matalgebra','specialmat','transpose','detprops','detspecial','adjinv','elemtrans','linsys','parammat','hybrid'];
 const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { multilinear:'det', charpoly:'λI', rank:'rk', special:'Δ', block:'⊞', trace:'tr', inequalities:'≤', combinatorial:'0|1', equations:'A²', hybrid:'⊕' };
+const GLYPH = { matalgebra:'AB', specialmat:'A²=A', transpose:'Aᵀ', detprops:'|A|', detspecial:'△', adjinv:'A⁻¹', elemtrans:'R↔', linsys:'AX=B', parammat:'λ', hybrid:'⊕' };
 const BLURB = {
-  multilinear:'The unique alternating form — row operations and the factor theorem.',
-  charpoly:'Cayley–Hamilton turns the hundredth power into a line of algebra.',
-  rank:'The true size of a matrix — Sylvester, Frobenius, and the system’s fate.',
-  special:'Vandermonde, circulant, tridiagonal — determinants that become a product.',
-  block:'The Schur complement gives the determinant the long way refuses.',
-  trace:'tr(AB)=tr(BA) — commutators, nilpotents and powers all bow to it.',
-  inequalities:'Hadamard, Gram and AM–GM on eigenvalues bound a volume.',
-  combinatorial:'A matrix counts walks, permutations and spanning trees.',
-  equations:'Solve for the matrix itself: A²=I, Aⁿ=0, a polynomial in A.',
-  hybrid:'Eigenvalues, blocks, counting and inequalities, fused.',
+  matalgebra:'Add, scale, multiply; powers and polynomials in a matrix; AB vs BA.',
+  specialmat:'Symmetric, skew, diagonal, idempotent, nilpotent, involutory, orthogonal.',
+  transpose:'Transpose rules and the symmetric + skew-symmetric decomposition.',
+  detprops:'3×3 determinants by row/column operations; properties; the factor theorem.',
+  detspecial:'Factorising determinants; area of a triangle, collinearity, concurrency.',
+  adjinv:'Adjoint and inverse of order ≤3; |adj A|, adj(adj A), product rules.',
+  elemtrans:'Elementary operations and the inverse by Gauss–Jordan.',
+  linsys:'2–3 variable systems by Cramer’s rule; consistency; homogeneous systems.',
+  parammat:'Parameter values for singular/consistent; matrix equations AX=B.',
+  hybrid:'Several in-syllabus ideas fused into one multi-step problem.',
 };
 
 // order + index
@@ -156,7 +156,7 @@ function coverHTML(kind){
     <div class="watermark">det</div>
     <div class="kick">The Ranker’s Masterbook</div>
     <h1>MATRIX<span class="d">.</span></h1>
-    <div class="vol">The Determinant &amp; Its Eigenworld</div>
+    <div class="vol">Determinants, Inverses &amp; Linear Systems</div>
     <div class="edition">${isSol ? 'Complete Solutions' : 'The Problem Set'}</div>
     <div class="stats">
       <div><b>${PROBLEMS.length}</b><span>Problems</span></div>
@@ -164,7 +164,7 @@ function coverHTML(kind){
       <div><b>3–5</b><span>Difficulty</span></div>
       ${isSol ? `<div><b>${totalMethods}</b><span>Worked Solutions</span></div>` : ''}
     </div>
-    <div class="foot">${PROBLEMS.length} original matrices &amp; determinants problems where the array hides a deeper structure — for the very top of JEE Advanced, the JEE Advanced and the Putnam. ${isSol ? 'Every problem solved more than one way.' : 'Solutions in the companion volume.'}</div>
+    <div class="foot">${PROBLEMS.length} original matrices &amp; determinants problems across the full JEE-Advanced matrices &amp; determinants syllabus — for the very top of JEE Advanced. ${isSol ? 'Every problem solved more than one way.' : 'Solutions in the companion volume.'}</div>
   </section>`;
 }
 function tocHTML(){

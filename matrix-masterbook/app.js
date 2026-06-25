@@ -1,22 +1,22 @@
 /* ============================================================
-   MATRIX — The Determinant & Its Eigenworld  ·  application logic
+   MATRIX — Determinants, Inverses & Linear Systems  ·  application logic
    ============================================================ */
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['multilinear','charpoly','rank','special','block','trace','inequalities','combinatorial','equations','hybrid'];
+  const THEME_ORDER = ['matalgebra','specialmat','transpose','detprops','detspecial','adjinv','elemtrans','linsys','parammat','hybrid'];
   const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
   const THEME_META = {
-    multilinear:   { glyph:'det',  blurb:'A determinant is the unique alternating multilinear form — every row operation is a lever, the factor theorem a scalpel.' },
-    charpoly:      { glyph:'λI',   blurb:'Every matrix obeys its own characteristic equation. Cayley–Hamilton turns the hundredth power into a line of algebra.' },
-    rank:          { glyph:'rk',   blurb:'Rank is the true size of a matrix. Sylvester and Frobenius bound it; the fate of every linear system is sealed by it.' },
-    special:       { glyph:'Δ',    blurb:'Vandermonde, circulant, tridiagonal, Cauchy — named determinants that collapse to a product once you know their secret.' },
-    block:         { glyph:'⊞',    blurb:'Cut the matrix into blocks and the Schur complement hands you the determinant the long way refuses to give.' },
-    trace:         { glyph:'tr',   blurb:'tr(AB)=tr(BA) is the humblest identity and the deadliest weapon — commutators, nilpotents and powers all bow to it.' },
-    inequalities:  { glyph:'≤',    blurb:'Hadamard caps a determinant by its columns; eigenvalues meet AM–GM. To bound a determinant is to bound a volume.' },
-    combinatorial: { glyph:'0|1',  blurb:'A matrix counts: walks in a graph, signed permutations, spanning trees. The determinant is combinatorics in disguise.' },
-    equations:     { glyph:'A²',   blurb:'Solve for the matrix itself — A²=I, Aⁿ=0, a polynomial in A — where the unknown is an entire operator.' },
-    hybrid:        { glyph:'⊕',    blurb:'The capstones: eigenvalues, blocks, counting and inequalities fused into one matrix that resists every single tool.' },
+    matalgebra:  { glyph:'AB',    blurb:'Addition, scalar multiples and the matrix product; powers and polynomials in a matrix; when AB equals BA — and the many ways it does not.' },
+    specialmat:  { glyph:'A²=A',  blurb:'Symmetric, skew-symmetric, diagonal, idempotent, nilpotent, involutory and orthogonal matrices, and what each forces on the determinant and inverse.' },
+    transpose:   { glyph:'Aᵀ',    blurb:'The transpose and its rules, and the unique splitting of any square matrix into a symmetric and a skew-symmetric part.' },
+    detprops:    { glyph:'|A|',   blurb:'Evaluating a 3×3 determinant by smart row and column operations, the core properties, and the factor theorem.' },
+    detspecial:  { glyph:'△',     blurb:'Factorising determinants into linear pieces, the area of a triangle and collinearity, and the concurrency of three lines.' },
+    adjinv:      { glyph:'A⁻¹',   blurb:'The adjoint and the inverse of a matrix of order up to three, with |adj A|, adj(adj A) and the product rules.' },
+    elemtrans:   { glyph:'R↔',    blurb:'Elementary row and column operations, the inverse by Gauss–Jordan, and operations as multiplication by elementary matrices.' },
+    linsys:      { glyph:'AX=B',  blurb:'Two- and three-variable systems by Cramer’s rule and a full consistency analysis, including homogeneous systems.' },
+    parammat:    { glyph:'λ',     blurb:'Finding the parameter values that make a matrix singular or a system consistent, and solving matrix equations.' },
+    hybrid:      { glyph:'⊕',     blurb:'Capstones that fuse several in-syllabus ideas — structure, determinant, adjoint and a linear system — into one multi-step problem.' },
   };
 
   // ---- state ----
@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>MATRIX<em>.</em></h2>'
-      + '<div class="tagline">Original matrices &amp; determinants problems where the array hides a deeper structure — eigenvalues, rank, blocks, traces and counting. Drawn from the rarest corners of Putnam linear algebra, each solved several ways.</div>'
+      + '<div class="tagline">Original matrices &amp; determinants problems across the full JEE-Advanced syllabus — the algebra of matrices, the special matrices, determinants and their properties, the adjoint and inverse, elementary transformations and systems of linear equations. Each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')
@@ -245,13 +245,13 @@
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/MATRIX-Problems.pdf" download>&#8595; Problems PDF</a>'
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/MATRIX-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
-      + '<p class="cover-manifesto">The alternating form, the characteristic polynomial, rank, the special determinants, block decompositions, the trace, determinant inequalities, combinatorial matrices and matrix equations — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t memorise a cofactor expansion; they learn the structure behind the array.</p>'
+      + '<p class="cover-manifesto">The algebra of matrices, the special matrices, determinants and their properties, factorisation and the area of a triangle, the adjoint and inverse, elementary transformations, and systems of linear equations — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t memorise a cofactor expansion; they learn the structure behind the array.</p>'
       + '</div>';
 
     // legend of instruments
     html+='<div class="sec-head"><span class="sh-rom">i</span><h3>The Instruments</h3><span class="sh-line"></span></div>';
     html+='<div class="legend">';
-    const fam=[['multilinear','Alternating form','det'],['charpoly','Cayley–Hamilton','λI'],['rank','Rank & nullity','rk'],['special','Special determinants','Δ'],['block','Block & Schur','⊞'],['trace','Trace magic','tr'],['inequalities','Determinant bounds','≤'],['combinatorial','Counting matrices','0|1'],['equations','Matrix equations','A²'],['hybrid','Hybrids','⊕']];
+    const fam=[['matalgebra','Algebra of matrices','AB'],['specialmat','Special matrices','A²=A'],['transpose','Transpose & decomposition','Aᵀ'],['detprops','Determinant properties','|A|'],['detspecial','Factorisation & area','△'],['adjinv','Adjoint & inverse','A⁻¹'],['elemtrans','Elementary transforms','R↔'],['linsys','Linear systems','AX=B'],['parammat','Parameters & equations','λ'],['hybrid','Hybrids','⊕']];
     fam.forEach(f=>{ const c=byChapter[f[0]]; const cnt=c?c.problems.length:0;
       html+='<div class="lg card"><div class="glyph">'+f[2]+'</div><div><div class="lgname">'+f[1]+'</div><div class="lgcount">'+cnt+' problems</div></div></div>'; });
     html+='</div>';
@@ -298,7 +298,7 @@
 
   // ---- LIST view (all / search subset) ----
   function renderList(view, list, title, glyph){
-    let html='<div class="chap-hero card"><div class="ch-glyph-lg">det</div>'
+    let html='<div class="chap-hero card"><div class="ch-glyph-lg">|A|</div>'
       + '<div class="ch-rom">THE COMPLETE SET</div><h2>'+esc(title)+'</h2>'
       + '<div class="ch-desc">Every trigonometry problem in the book, in chapter order. Filter by difficulty, or search from the bar above.</div>'
       + '<div class="ch-meta"><span>'+list.length+' problems</span><span>&middot;</span><span>'+solvedCount()+' solved</span></div></div>';
