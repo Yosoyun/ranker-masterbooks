@@ -65,6 +65,15 @@
     return out;
   }
 
+  // statements/answers may be PURE LaTeX with no $ delimiters (e.g. Limits' \lim_{...}); render the whole thing as display math, else fall back to segment rendering.
+  function texStmt(s) {
+    if (s == null) return '';
+    var str = String(s);
+    if (/\$|\\\[|\\\(/.test(str)) return tex(str);
+    try { return window.katex ? katex.renderToString(stripcmd(str).replace(/\\par\b\s*/g, ' '), { throwOnError: false, displayMode: true }) : esc(str); }
+    catch (e) { return '<code>' + esc(str) + '</code>'; }
+  }
+
   /* ---- data: lazy-load any book's problems (cross-book) ---- */
   var cache = {};            // slug -> [problems(+__book,__key)]
   function inBook() { return /-masterbook\//.test(location.pathname); }
@@ -114,10 +123,10 @@
     + '.ws-ch{border:1px solid #e7dcc6;border-radius:11px;margin:6px 0;overflow:hidden;background:#ffffff}'
     + '.ws-ch>.h{display:flex;align-items:center;gap:10px;padding:10px 13px;cursor:pointer}'
     + '.ws-ch>.h:hover{background:color-mix(in srgb,var(--gold,#0f766e) 6%,transparent)}'
-    + '.ws-ch .nm{font-weight:700;font-size:14px;flex:1}.ws-ch .ct{font-size:12px;opacity:.55}'
+    + '.ws-ch .nm{font-weight:700;font-size:14px;flex:1;color:#241f17}.ws-ch .ct{font-size:12px;opacity:.55}'
     + '.ws-ch .exp{font-size:12px;opacity:.6;padding:3px 8px;border-radius:7px;border:1px solid var(--line2,#d8cdb4)}'
     + '.ws-plist{display:none;padding:2px 14px 10px 40px}.ws-plist.open{display:block}'
-    + '.ws-plist label,.ws-flat label{display:flex;gap:9px;align-items:flex-start;padding:5px 0;font-size:13px;cursor:pointer}'
+    + '.ws-plist label,.ws-flat label{display:flex;gap:9px;align-items:flex-start;padding:5px 0;font-size:13px;cursor:pointer;color:#241f17}'
     + '.ws-cb{width:17px;height:17px;accent-color:var(--gold,#0f766e);cursor:pointer;flex:0 0 auto;margin-top:1px}'
     + '.ws-cb.lg{width:18px;height:18px}'
     + '.ws-hint{font-size:12.5px;opacity:.6;padding:14px 4px;text-align:center}'
@@ -334,15 +343,15 @@
       var sol = '';
       if (withSol) {
         var methods = (p.solutions || []).map(function (s) { return '<div class="m"><div class="mn">' + tex(s.name || 'Method') + '</div><ol>' + (s.steps || []).map(function (st) { return '<li>' + tex(st) + '</li>'; }).join('') + '</ol></div>'; }).join('');
-        sol = '<div class="sol"><div class="ans"><b>Answer.</b> ' + tex(p.answer) + '</div>' + (p.trap ? '<div class="trap"><b>The Trap.</b> ' + tex(p.trap) + '</div>' : '') + methods + (p.remark ? '<div class="rem"><b>Insight.</b> ' + tex(p.remark) + '</div>' : '') + '</div>';
+        sol = '<div class="sol"><div class="ans"><b>Answer.</b> ' + texStmt(p.answer) + '</div>' + (p.trap ? '<div class="trap"><b>The Trap.</b> ' + tex(p.trap) + '</div>' : '') + methods + (p.remark ? '<div class="rem"><b>Insight.</b> ' + tex(p.remark) + '</div>' : '') + '</div>';
       }
       return '<div class="q"><div class="qh"><span class="qn">' + (i + 1) + '.</span><span class="qt">' + esc(p.title || '') + '</span>'
         + (isPaper ? '<span class="qmk">[' + markOf(p) + ']</span>' : '<span class="ql">L' + (p.difficulty || '') + '</span>')
         + (multi ? '<span class="qbk">' + esc((NAME[p.__book] || '').split(' ')[0]) + '</span>' : '')
-        + '</div><div class="qtask">' + esc(p.task || 'Solve') + '</div><div class="qbody">' + tex(p.statement) + '</div>' + sol + '</div>';
+        + '</div><div class="qtask">' + esc(p.task || 'Solve') + '</div><div class="qbody">' + texStmt(p.statement) + '</div>' + sol + '</div>';
     }).join('');
 
-    var keyHtml = withKey ? '<div class="akey"><b>Answer Key</b>' + sel.map(function (p, i) { return '<div class="ak">' + (i + 1) + '. ' + tex(p.answer) + '</div>'; }).join('') + '</div>' : '';
+    var keyHtml = withKey ? '<div class="akey"><b>Answer Key</b>' + sel.map(function (p, i) { return '<div class="ak">' + (i + 1) + '. ' + texStmt(p.answer) + '</div>'; }).join('') + '</div>' : '';
     var metaBits = sel.length + ' question' + (sel.length === 1 ? '' : 's');
     if (isPaper) metaBits += ' · ' + totalMarks + ' marks · ' + Math.max(totalMin, Math.round(totalMarks * 3)) + ' min';
     else metaBits += ' · ~' + totalMin + ' min · ' + (withSol ? 'with full solutions' : (withKey ? 'with answer key' : 'problems only'));
