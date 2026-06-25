@@ -11,7 +11,7 @@
 (function () {
   'use strict';
   var SIG_KEY = 'rmb_sig', RATED_KEY = 'rmb_rated', SKIN_KEY = 'rmb_skin', LKEY = 'rmb_events';
-  var FEEDBACK_EMAIL = 'vandanay2012@gmail.com';
+  var FEEDBACK_EMAIL = 'yadavindrajeet877@gmail.com';
 
   function ready(fn) { if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn); else fn(); }
   function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }

@@ -88,7 +88,7 @@
   });
 
   /* ===================== Phase 4: discovery / share / feedback ===================== */
-  var FEEDBACK_EMAIL = 'vandanay2012@gmail.com';
+  var FEEDBACK_EMAIL = 'yadavindrajeet877@gmail.com';
   function bookSlug() { return (location.pathname.match(/([a-z0-9]+-masterbook)/) || [])[1] || 'masterbook'; }
   function pById() { var m = {}; (window.PROBLEMS || []).forEach(function (p) { m[p._id] = p; }); return m; }
   function toast(msg) { var t = el('div', 'enh-toast', esc(msg)); document.body.appendChild(t); requestAnimationFrame(function () { t.classList.add('go'); }); setTimeout(function () { t.classList.remove('go'); setTimeout(function () { t.remove(); }, 300); }, 2000); }
