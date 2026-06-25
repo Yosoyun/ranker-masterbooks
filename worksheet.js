@@ -166,7 +166,8 @@
       + '<label class="ws-lab">Type</label><div class="ws-seg" id="ws-mode"><button data-m="dpp" class="on">DPP</button><button data-m="assignment">Assignment</button><button data-m="paper">Question Paper</button></div>'
       + '<label class="ws-lab">Books — tap to include</label><div class="ws-chips" id="ws-books"></div>'
       + '<label class="ws-lab">Quick sets</label><div class="ws-presets" id="ws-pre">'
-      + '<button class="ws-pre" data-p="bal">✨ Balanced 12</button><button class="ws-pre" data-p="hard">🔥 Hardest 10</button>'
+      + '<button class="ws-pre" data-p="bal">✨ Balanced 12</button><button class="ws-pre" data-p="easy">🌱 Easiest 10</button>'
+      + '<button class="ws-pre" data-p="mixed">🎲 Mixed 12</button><button class="ws-pre" data-p="hard">🔥 Hardest 10</button>'
       + '<button class="ws-pre" data-p="all">All selected</button><button class="ws-pre" data-p="clear">Clear</button></div>'
       + '<label class="ws-lab">Or search & pick</label><input class="ws-search" id="ws-search" placeholder="Search chapters, problems or tags…" autocomplete="off">'
       + '<div id="ws-pick"><div class="ws-hint">Tap a book above to load its chapters.</div></div>'
@@ -244,19 +245,32 @@
     searchEl.addEventListener('input', function () { renderPick(); });
 
     // presets
-    ov.querySelector('#ws-pre').addEventListener('click', function (e) {
-      var b = e.target.closest('.ws-pre'); if (!b) return; var p = b.getAttribute('data-p');
+    function applyPreset(p) {
       indexLoaded();
       var pool = []; loadedSelBooks().forEach(function (s) { pool = pool.concat(cache[s] || []); });
-      if (!pool.length && p !== 'clear') { alert('Tap a book first.'); return; }
-      if (p === 'clear') { picked = {}; }
-      else if (p === 'all') { pool.forEach(function (x) { picked[x.__key] = true; }); }
+      if (p === 'clear') { picked = {}; renderPick(); return; }
+      if (!pool.length) return;
+      if (p === 'all') { pool.forEach(function (x) { picked[x.__key] = true; }); }
       else if (p === 'hard') { picked = {}; pool.slice().sort(function (a, b2) { return (b2.difficulty || 0) - (a.difficulty || 0); }).slice(0, 10).forEach(function (x) { picked[x.__key] = true; }); }
+      else if (p === 'easy') { picked = {}; pool.slice().sort(function (a, b2) { return (a.difficulty || 9) - (b2.difficulty || 9); }).slice(0, 10).forEach(function (x) { picked[x.__key] = true; }); }
+      else if (p === 'mixed') { picked = {}; [3, 4, 5].forEach(function (d) { pool.filter(function (x) { return (x.difficulty || 3) === d; }).slice(0, 4).forEach(function (x) { picked[x.__key] = true; }); }); }
       else if (p === 'bal') { picked = {}; // ~12 spread across chapters & difficulties
         var chs = []; loadedSelBooks().forEach(function (s) { chaptersOf(cache[s] || []).forEach(function (c) { chs.push(c); }); });
         var i = 0; while (Object.keys(picked).length < 12 && chs.length) { var c = chs[i % chs.length]; var cand = c.problems[Math.floor(i / chs.length)]; if (cand) picked[cand.__key] = true; i++; if (i > 400) break; }
       }
       renderPick();
+    }
+    ov.querySelector('#ws-pre').addEventListener('click', function (e) {
+      var b = e.target.closest('.ws-pre'); if (!b) return; var p = b.getAttribute('data-p');
+      // if no book is chosen yet, auto-pick a sensible default so presets always do something
+      if (p !== 'clear' && !loadedSelBooks().length) {
+        var def = (inBook() && curSlug()) ? curSlug() : BOOKS[0][0];
+        selBooks[def] = true;
+        var chip = bc.querySelector('.wbk[data-slug="' + def + '"]'); if (chip) chip.classList.add('on');
+        loadBook(def).then(function () { renderPick(); applyPreset(p); });
+        return;
+      }
+      applyPreset(p);
     });
 
     ov.querySelectorAll('#ws-mode button').forEach(function (b) { b.onclick = function () { ov.querySelectorAll('#ws-mode button').forEach(function (x) { x.classList.remove('on'); }); b.classList.add('on'); mode = b.getAttribute('data-m'); ov.querySelector('#ws-bp').style.display = mode === 'paper' ? 'block' : 'none'; if (mode === 'paper') ov.querySelector('.ws-more').open = true; }; });
