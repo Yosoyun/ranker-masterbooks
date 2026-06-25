@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pick a design — The Ranker's Masterbooks</title>
+<meta name="description" content="Three premium design directions for the Ranker's Masterbooks. Open each live preview and pick your favourite.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=Newsreader:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#f4efe4; --ink:#1c1a16; --ink2:#5b5446; --ink3:#8b8474; --line:#e2d8c2; --gold:#0f766e; --gold2:#14b8a6;
+         --serif:'Fraunces',Georgia,serif; --read:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,sans-serif; }
+  @media(prefers-color-scheme:dark){ :root{ --paper:#100f0c; --ink:#efe8d8; --ink2:#bcb4a1; --ink3:#857e6c; --line:#2b271e; } }
+  *{box-sizing:border-box} html,body{margin:0;padding:0}
+  body{ background:radial-gradient(1100px 700px at 85% -10%,#f6ecd6,transparent 60%),var(--paper); color:var(--ink); font-family:var(--sans); line-height:1.6; min-height:100vh; -webkit-font-smoothing:antialiased; }
+  @media(prefers-color-scheme:dark){ body{ background:radial-gradient(1100px 700px at 85% -10%,#1a160f,transparent 60%),var(--paper); } }
+  .wrap{ max-width:1080px; margin:0 auto; padding:60px 26px 56px; }
+  .kick{ font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); font-weight:700; }
+  h1{ font-family:var(--serif); font-weight:900; font-size:46px; line-height:1.02; margin:12px 0 8px; }
+  h1 .dot{ color:var(--gold2); }
+  .lede{ font-family:var(--read); font-style:italic; font-size:20px; color:var(--ink2); max-width:680px; margin:0 0 6px; }
+  .note{ color:var(--ink3); font-size:14px; margin:8px 0 38px; }
+  .note b{ color:var(--ink); }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; }
+  .card{ border:1px solid var(--line); border-radius:20px; background:rgba(255,255,255,.5); overflow:hidden; display:flex; flex-direction:column;
+         box-shadow:0 1px 2px rgba(40,32,14,.05),0 14px 40px rgba(40,32,14,.09); transition:transform .18s, box-shadow .18s; }
+  @media(prefers-color-scheme:dark){ .card{ background:rgba(255,255,255,.03); } }
+  .card:hover{ transform:translateY(-3px); box-shadow:0 3px 9px rgba(40,32,14,.09),0 26px 60px rgba(40,32,14,.16); }
+  .shot{ display:block; width:100%; height:230px; object-fit:cover; object-position:top center; border-bottom:1px solid var(--line); background:#222; }
+  .body{ padding:20px 22px 22px; display:flex; flex-direction:column; flex:1; }
+  .tag{ font-size:10px; letter-spacing:.22em; text-transform:uppercase; font-weight:700; color:var(--gold); }
+  .card h2{ font-family:var(--serif); font-weight:900; font-size:25px; margin:6px 0 2px; }
+  .card .sub{ font-family:var(--read); font-style:italic; color:var(--ink2); font-size:15px; }
+  .card p{ color:var(--ink2); font-size:14px; margin:12px 0 18px; flex:1; }
+  .open{ display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:14px; text-decoration:none; padding:11px 18px; border-radius:11px; color:#fff; background:var(--gold); width:fit-content; }
+  .open:hover{ filter:brightness(1.07); }
+  .pick{ margin-top:10px; font-size:12.5px; color:var(--ink3); }
+  .foot{ margin-top:40px; padding-top:20px; border-top:1px solid var(--line); color:var(--ink3); font-size:14px; }
+  .foot a{ color:var(--gold); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="kick">The Ranker's Masterbooks</div>
+    <h1>Pick your design<span class="dot">.</span></h1>
+    <p class="lede">Three premium directions, same content and features. Open each live preview, then tell me which you want.</p>
+    <p class="note">Every preview is the real <b>Area under Curves</b> book — try the cover, open a chapter, reveal a solution, toggle dark mode (☾), tap a tag, and hit <b>✚ Create</b>. When you've decided, just say <b>“go with A / B / C”</b> and I'll roll it across all 21 books.</p>
+
+    <div class="grid">
+      <div class="card">
+        <a href="../preview-a/"><img class="shot" src="shot-a.png" alt="Editorial Luxe preview"></a>
+        <div class="body">
+          <div class="tag">Option A</div>
+          <h2>Editorial Luxe</h2>
+          <div class="sub">Calm, expensive, magazine-grade</div>
+          <p>Warm ivory paper, an espresso cover, oversized refined serif, and gold hairlines. Quiet confidence — feels like a beautifully printed book.</p>
+          <a class="open" href="../preview-a/">Open live preview →</a>
+          <div class="pick">Best if you want timeless and elegant.</div>
+        </div>
+      </div>
+      <div class="card">
+        <a href="../preview-b/"><img class="shot" src="shot-b.png" alt="Aurora preview"></a>
+        <div class="body">
+          <div class="tag">Option B</div>
+          <h2>Aurora</h2>
+          <div class="sub">Modern, vibrant, energetic</div>
+          <p>Gradient cover and wordmark, rounded glass cards, a frosted top bar, and lively hover glow. Bright and contemporary — built to delight.</p>
+          <a class="open" href="../preview-b/">Open live preview →</a>
+          <div class="pick">Best if you want bold and exciting.</div>
+        </div>
+      </div>
+      <div class="card">
+        <a href="../preview-c/"><img class="shot" src="shot-c.png" alt="Slate Pro preview"></a>
+        <div class="body">
+          <div class="tag">Option C</div>
+          <h2>Slate Pro</h2>
+          <div class="sub">Crisp, serious, exam-grade</div>
+          <p>Cool slate neutrals, sharp boxed cards with strong rules, tabular numerals, tight rhythm. The feel of a premium coaching-institute test booklet.</p>
+          <a class="open" href="../preview-c/">Open live preview →</a>
+          <div class="pick">Best if you want focused and no-nonsense.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">← Back to <a href="../">all 21 books</a> &nbsp;·&nbsp; The current live design stays untouched until you pick.</div>
+  </div>
+</body>
+</html>

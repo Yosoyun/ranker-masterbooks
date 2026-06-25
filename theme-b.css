@@ -1,0 +1,54 @@
+/* ============================================================
+   THEME B — "Aurora" (Modern Vibrant)
+   Energetic and contemporary: gradient cover & wordmark, rounded
+   glassy cards, lively hover glow, a frosted top bar. Keeps each
+   book's accent and pairs it with a second hue for gradients.
+   ============================================================ */
+:root{
+  --b2:#7c3aed;            /* secondary gradient hue (violet) */
+  --r:20px; --r-lg:26px;
+  --paper:#f5f3fb; --paper2:#eee9f8; --card:#ffffff; --card2:#f7f4fe; --card3:#efeafc;
+  --line:#e7e1f5; --line2:#dcd3f0; --line3:#ccbff0;
+  --shadow:0 2px 4px rgba(60,40,120,.06),0 10px 30px rgba(80,50,160,.08);
+  --shadow-lg:0 6px 16px rgba(80,50,160,.12),0 30px 70px rgba(80,50,160,.18);
+}
+[data-theme="dark"]{ --paper:#0e0b1a; --paper2:#141029; --card:#171231; --card2:#1d1838; --card3:#241d44; --line:#2a2350; --line2:#352c63; --line3:#473a82; }
+
+body{ background:
+  radial-gradient(1100px 700px at 88% -10%, color-mix(in srgb,var(--gold) 24%,transparent), transparent 55%),
+  radial-gradient(900px 650px at -8% 18%, color-mix(in srgb,var(--b2) 18%,transparent), transparent 55%),
+  radial-gradient(800px 700px at 60% 120%, color-mix(in srgb,var(--gold2) 16%,transparent), transparent 55%),
+  var(--paper); }
+
+/* frosted top bar */
+#topbar{ background:color-mix(in srgb,var(--paper) 72%,transparent); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+
+/* animated gradient brand + cover wordmark */
+.brand h1, .cover h2 em, .cover h2{ background:linear-gradient(110deg,var(--gold),var(--b2),var(--gold2));
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; background-size:220% auto; animation:auroraFlow 7s linear infinite; }
+@keyframes auroraFlow{ to{ background-position:220% center; } }
+
+/* cover: vivid gradient slab */
+.cover{ background:linear-gradient(135deg,#241b3f 0%,#1a1530 55%,#2a1d44 100%); border:1px solid #3a2d63; box-shadow:var(--shadow-lg); }
+.cover .tagline{ color:#cfc6ee; }
+.cover-manifesto{ color:#b9b0dd; }
+
+/* rounded glassy cards with a colored glow on hover */
+.card{ border-radius:var(--r); }
+.chcard{ border-radius:20px; border-left:0; border-top:3px solid transparent; background:
+  linear-gradient(var(--card),var(--card)) padding-box,
+  linear-gradient(120deg,var(--gold),var(--b2)) border-box; border:1px solid transparent; }
+.chcard:hover{ transform:translateY(-3px); box-shadow:0 18px 44px color-mix(in srgb,var(--gold) 22%,transparent) !important; }
+.q.card{ border-radius:22px; }
+.q.card:hover{ transform:translateY(-3px) !important; box-shadow:0 18px 48px color-mix(in srgb,var(--b2) 16%,transparent) !important; }
+.q-statement{ border-radius:18px; background:linear-gradient(180deg,var(--card2),var(--card3)); }
+.q-statement::before{ background:linear-gradient(180deg,var(--gold),var(--b2)); width:4px; }
+
+/* vibrant gradient buttons + active states */
+.btn.gold, #topbar .rmb-create, .fchip.gold.active, .mtab.active{ background:linear-gradient(135deg,var(--gold),var(--b2)) !important; color:#fff !important; border-color:transparent !important; box-shadow:0 6px 18px color-mix(in srgb,var(--b2) 30%,transparent); }
+.btn.gold:hover, #topbar .rmb-create:hover{ filter:brightness(1.06) saturate(1.1); }
+.qnum, .crumb .crumb-rom, .chcard .ch-rom, .chap-hero .ch-rom, .sec-head .sh-rom{ color:var(--b2); }
+.method-body .mname::before, .q-statement::before{ background:linear-gradient(180deg,var(--gold),var(--b2)); }
+
+/* springy reveal */
+.q.card{ transition:transform .42s cubic-bezier(.2,.8,.2,1.1), box-shadow .42s ease !important; }

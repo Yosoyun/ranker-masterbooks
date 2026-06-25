@@ -1,0 +1,58 @@
+/* ============================================================
+   THEME C — "Slate Pro" (Exam-grade / coaching-institute)
+   Crisp, high-contrast, serious. Cool slate neutrals, white cards
+   with sharp borders and a strong left rule, tabular numerals,
+   tight rhythm — the feel of a premium printed test booklet.
+   ============================================================ */
+:root{
+  --paper:#eef1f5; --paper2:#e6eaf0; --card:#ffffff; --card2:#f5f7fa; --card3:#eceff4;
+  --ink:#141a22; --ink2:#3f4854; --ink3:#6b7480; --ink4:#9aa2ad;
+  --line:#dde3ea; --line2:#cdd5df; --line3:#b6c0cd;
+  --r:8px; --r-lg:12px;
+  --shadow:0 1px 2px rgba(20,30,45,.06),0 4px 14px rgba(20,30,45,.05);
+  --shadow-lg:0 2px 6px rgba(20,30,45,.08),0 16px 40px rgba(20,30,45,.10);
+  --spine:#12161c; --spine2:#1a1f27; --spine-ink:#eef2f7; --spine-dim:#8b94a1; --spine-line:rgba(255,255,255,.08);
+  --serif:'Fraunces',Georgia,serif;
+}
+[data-theme="dark"]{ --paper:#0c0f14; --paper2:#11151b; --card:#141921; --card2:#1a2029; --card3:#212934; --ink:#e9eef4; --ink2:#aeb8c4; --ink3:#7c8794; --line:#232b35; --line2:#2e3741; --line3:#3b4651; }
+
+body{ background:linear-gradient(180deg,var(--paper),var(--paper2)) fixed; }
+
+/* topbar: solid, sharp underline */
+#topbar{ border-bottom:2px solid var(--line2); }
+
+/* cover: charcoal slab, strong hierarchy, no soft glow */
+.cover{ background:linear-gradient(135deg,#161b22,#10141a); border:1px solid #28303a; border-radius:12px; box-shadow:var(--shadow-lg); }
+.cover .kicker{ letter-spacing:.26em; }
+.cover h2{ letter-spacing:-.02em; }
+.cover-stats .cs b{ font-variant-numeric:tabular-nums; }
+
+/* chapter cards: boxed, thick left rule, crisp */
+.chcard{ border-radius:8px; border:1px solid var(--line2); border-left:4px solid var(--gold); box-shadow:var(--shadow); }
+.chcard:hover{ border-color:var(--gold); box-shadow:var(--shadow-lg); }
+.chcard .ch-rom{ font-variant-numeric:tabular-nums; }
+
+/* problem cards: exam-sheet — square corners, ruled header, numbered */
+.q.card{ border-radius:8px; border:1px solid var(--line2); }
+.q-head{ border-bottom:1px solid var(--line); padding:14px 22px 11px; }
+.qnum{ font-variant-numeric:tabular-nums; font-size:15px; }
+.qtitle{ font-size:16.5px; }
+.q-statement{ border-radius:6px; border:1px solid var(--line2); background:var(--card2); }
+.q-statement::before{ width:4px; border-radius:0; }
+.q-statement .stmt-label{ letter-spacing:.16em; }
+
+/* method tabs as a segmented control */
+.method-tabs{ gap:0; border:1px solid var(--line2); border-radius:8px; overflow:hidden; width:fit-content; }
+.mtab{ border-radius:0; border:0; border-right:1px solid var(--line2); }
+.mtab:last-child{ border-right:0; }
+.mtab.active{ background:var(--gold); color:#fff; border-color:var(--gold); }
+
+/* buttons: solid, confident, square-ish */
+.btn{ border-radius:8px; }
+.btn.gold, #topbar .rmb-create{ background:var(--gold); color:#fff; }
+.btn.gold:hover, #topbar .rmb-create:hover{ filter:brightness(1.05); }
+#topbar .rmb-home{ border-radius:8px; }
+
+/* tighten motion to feel snappy/serious */
+.q.card{ transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease !important; }
+.q.card:hover{ transform:none !important; border-color:var(--gold) !important; box-shadow:var(--shadow-lg) !important; }

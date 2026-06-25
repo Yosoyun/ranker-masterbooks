@@ -1,0 +1,60 @@
+/* ============================================================
+   THEME A — "Editorial Luxe"
+   A calm, expensive, magazine-grade reading experience: warm paper,
+   serif-forward typography, gold hairlines, generous whitespace.
+   Loaded AFTER styles.css as a non-destructive overlay.
+   ============================================================ */
+:root{
+  --paper:#f6efdf; --paper2:#f1e9d6; --card:#fffdf7; --card2:#faf3e4; --card3:#f2ead8;
+  --line:#e8dcc4; --line2:#dccfb2; --line3:#cdc09d;
+  --r:13px; --r-lg:20px;
+  --shadow:0 1px 2px rgba(60,46,18,.05),0 8px 26px rgba(60,46,18,.06);
+  --shadow-lg:0 4px 12px rgba(60,46,18,.08),0 26px 60px rgba(60,46,18,.12);
+}
+body{ background:
+  radial-gradient(1300px 820px at 94% -14%, color-mix(in srgb,var(--gold-soft) 55%,transparent), transparent 60%),
+  radial-gradient(900px 600px at -10% 110%, color-mix(in srgb,var(--gold-soft) 30%,transparent), transparent 60%),
+  var(--paper); }
+
+/* sidebar: ivory spine with a hairline edge */
+#sidebar{ background:linear-gradient(180deg,#241f17,#1b1710); }
+.brand h1{ font-size:40px; letter-spacing:.015em; }
+
+/* cover: deep espresso, oversized serif, fine gold rule */
+.cover{ background:linear-gradient(155deg,#2a241b 0%,#1d1912 60%,#241d12 100%); border:1px solid #3b3326; box-shadow:var(--shadow-lg); }
+.cover .kicker{ letter-spacing:.34em; }
+.cover h2{ font-size:clamp(46px,6.4vw,78px); letter-spacing:-.012em; line-height:.94; }
+.cover .tagline{ font-size:19.5px; line-height:1.5; color:#ddd3ba; }
+.cover-stats .cs b{ font-size:33px; }
+.cover-manifesto{ font-size:15px; line-height:1.78; }
+
+/* section heads get a thin gold underline */
+.sec-head{ border-bottom:1px solid var(--line2); padding-bottom:8px; }
+.sec-head .sh-rom{ font-size:16px; }
+
+/* chapter cards: flatter, hairline, more air */
+.chcard{ border-radius:13px; border-left:2px solid var(--gold); box-shadow:var(--shadow); padding:22px 22px 18px; }
+.chcard:hover{ box-shadow:var(--shadow-lg); }
+
+/* problem cards: editorial — hairline frame, serif numerals, roomy */
+.q.card{ border-radius:13px; }
+.q-head{ padding:18px 24px 12px; }
+.qnum{ font-size:16px; }
+.qtitle{ font-size:18.5px; letter-spacing:-.005em; }
+.q-statement{ margin:2px 24px 6px; padding:24px 22px; background:var(--card); border:1px solid var(--line2); border-radius:12px; }
+.q-statement .stmt-math{ font-size:1.22em; }
+.q-actions{ padding:12px 24px 20px; }
+.reveal{ margin:0 24px 22px; }
+
+/* method tabs as refined pills */
+.method-body .mname{ font-size:16.5px; }
+
+/* buttons: warm, restrained */
+.btn{ border-radius:10px; }
+.btn.gold{ background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#fff; }
+#topbar .rmb-create{ background:linear-gradient(135deg,var(--gold),var(--gold2)); }
+#topbar .rmb-home{ font-weight:600; }
+
+/* gentle entrance for cards */
+.q.card{ transition:transform .4s cubic-bezier(.2,.7,.3,1), box-shadow .4s ease !important; }
+.q.card:hover{ transform:translateY(-2px) !important; box-shadow:var(--shadow-lg) !important; }
