@@ -1,13 +1,14 @@
 # The Ranker's Masterbooks
 
-Nineteen static problem books for the very top of **JEE Advanced** and the **Mathematical Olympiad**.
-1906 original problems, organised by the *instrument* that powers each one, and every problem solved
+Twenty static problem books for the very top of **JEE Advanced** and the **Mathematical Olympiad**.
+2006 original problems, organised by the *instrument* that powers each one, and every problem solved
 **more than one way**. No build step, no dependencies — just open `index.html`.
 
 🌐 **Live:** https://yosoyun.github.io/ranker-masterbooks/
 
 | Book | What | Problems |
 |------|------|----------|
+| **[y=mx+c · Slopes, Distances & the Pencil of Lines](lines-masterbook/)** | The forms of a line, distance & the section formula, the angle between lines & the family L₁+λL₂, the foot & image of a point, angle bisectors, the pair of straight lines, triangle centres & areas, loci, the shift of origin & rotation of axes, grand hybrids | 100 |
 | **[f′=0 · Tangents, Extrema & the Shape of a Curve](aod-masterbook/)** | Tangents & normals, rates of change & related rates, monotonicity & inequalities, maxima & minima, Rolle's & the Mean Value Theorem, approximations differentials & errors, concavity inflection & convexity, curve sketching & number of roots, applied optimisation, grand hybrids | 100 |
 | **[∫dx · The Antiderivative & Its Constant](indefinite-masterbook/)** | Standard forms, substitution, integration by parts, rational functions & partial fractions, trigonometric integrals & the Weierstrass substitution, irrational integrands, the special denominators, reduction formulae, exact derivatives, grand hybrids | 100 |
 | **[f(x) · Maps, Relations & Their Inverses](functions-masterbook/)** | Relations equivalence & order, domain & range, injective surjective & bijective (& counting maps), composition, inverse functions & involutions, functional equations, even odd & periodic symmetry, greatest-integer fractional-part signum & \|·\|, graphs & transformations, grand hybrids | 100 |
