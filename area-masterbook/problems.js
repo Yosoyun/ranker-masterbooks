@@ -1515,8 +1515,8 @@ window.PROBLEMS = [
           "Solve for $x$ along each boundary: line $y=x\\Rightarrow x=y$; parabola $y=x^2\\Rightarrow x=\\sqrt y$ (right branch); line $x+y=6\\Rightarrow x=6-y$.",
           "For $1\\le y\\le 3$ the strip runs from the parabola $x=\\sqrt y$ on the left to the line $x=y$ on the right; for $3\\le y\\le 4$ the right edge becomes $x=6-y$. Splitting at $y=3$:",
           "$\\displaystyle A=\\int_1^3\\big(y-\\sqrt y\\big)\\,dy+\\int_3^4\\big((6-y)-\\sqrt y\\big)\\,dy.$",
-          "$\\int_1^3(y-\\sqrt y)\\,dy=\\big[\\tfrac{y^2}{2}-\\tfrac{2}{3}y^{3/2}\\big]_1^3=\\tfrac{25}{6}-2\\sqrt3,\\qquad \\int_3^4(6-y-\\sqrt y)\\,dy=\\big[6y-\\tfrac{y^2}{2}-\\tfrac23y^{3/2}\\big]_3^4=2\\sqrt3-\\tfrac{7}{3}.$",
-          "$A=\\big(\\tfrac{25}{6}-2\\sqrt3\\big)+\\big(2\\sqrt3-\\tfrac73\\big)=\\tfrac{25}{6}-\\tfrac{14}{6}=\\boxed{\\tfrac{11}{6}}.$"
+          "$\\int_1^3(y-\\sqrt y)\\,dy=\\big[\\tfrac{y^2}{2}-\\tfrac{2}{3}y^{3/2}\\big]_1^3=\\tfrac{14}{3}-2\\sqrt3,\\qquad \\int_3^4(6-y-\\sqrt y)\\,dy=\\big[6y-\\tfrac{y^2}{2}-\\tfrac23y^{3/2}\\big]_3^4=2\\sqrt3-\\tfrac{17}{6}.$",
+          "$A=\\big(\\tfrac{14}{3}-2\\sqrt3\\big)+\\big(2\\sqrt3-\\tfrac{17}{6}\\big)=\\tfrac{28}{6}-\\tfrac{17}{6}=\\boxed{\\tfrac{11}{6}}.$"
         ]
       }
     ],
@@ -3154,7 +3154,7 @@ window.PROBLEMS = [
         "name": "Archimedes' parabolic-segment formula",
         "steps": [
           "Archimedes: the area of a parabolic segment equals $\\tfrac43$ the area of the inscribed triangle whose base is the chord and whose apex is the point of the arc where the tangent is parallel to the chord.",
-          "For the chord $x=my+1$ the base has length $4\\sqrt{m^2+1}$ and the perpendicular offset of the apex gives triangle area $2(m^2+1)$; hence the segment area is $\\tfrac43\\cdot 2(m^2+1)\\cdot\\sqrt{m^2+1}=\\dfrac{8}{3}(1+m^2)^{3/2}$, identical to the strip integral.",
+          "For the chord $x=my+1$ the endpoints differ by $y_2-y_1=4\\sqrt{m^2+1}$, so the geometric chord length is $4\\sqrt{m^2+1}\\cdot\\sqrt{1+m^2}=4(1+m^2)$; the apex (where the tangent is parallel to the chord) lies a perpendicular distance $\\sqrt{1+m^2}$ from the chord, so the inscribed triangle has area $\\tfrac12\\cdot 4(1+m^2)\\cdot\\sqrt{1+m^2}=2(1+m^2)^{3/2}$; hence the segment area is $\\tfrac43\\cdot 2(1+m^2)^{3/2}=\\dfrac{8}{3}(1+m^2)^{3/2}$, identical to the strip integral.",
           "As $(1+m^2)^{3/2}$ is least at $m=0$, the minimum area is $\\dfrac{8}{3}\\cdot 1=\\boxed{\\dfrac{8}{3}}$."
         ]
       }

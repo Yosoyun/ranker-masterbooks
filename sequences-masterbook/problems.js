@@ -388,7 +388,7 @@ window.PROBLEMS = [
           "Put $L=\\ln N$ and write $\\log_a N=\\dfrac{L}{\\ln a}$, $\\log_b N=\\dfrac{L}{\\ln b}$, $\\log_c N=\\dfrac{L}{\\ln c}$. Then $\\dfrac{L}{\\ln b}=\\dfrac{2\\cdot\\frac{L}{\\ln a}\\cdot\\frac{L}{\\ln c}}{\\frac{L}{\\ln a}+\\frac{L}{\\ln c}}=\\dfrac{2L}{\\ln a+\\ln c}$.",
           "Cancel $L=\\ln N\\ne0$ (since $N\\ne1$): $\\dfrac{1}{\\ln b}=\\dfrac{2}{\\ln a+\\ln c}\\Rightarrow 2\\ln b=\\ln a+\\ln c$.",
           "Hence $\\ln(b^2)=\\ln(ac)\\Rightarrow b^2=ac$, so $a,b,c$ are in GP. $\\blacksquare$",
-          "Counter for 'arithmetic': take $a=10,\\ b=100,\\ c=10000$. For any $N\\ne1$ the values $\\log_a N,\\log_b N,\\log_c N$ are proportional to $1,\\tfrac12,\\tfrac14$ (a GP, not an AP, so they are not in AP); yet one may instead choose bases that DO make the logs an AP and still fail $b^2=ac$. Concretely $\\log_a N,\\log_b N,\\log_c N$ in AP gives $2/\\ln b=1/\\ln a+1/\\ln c$ scaled by $L$, i.e. the AP condition is $2\\ln a\\,\\ln c=\\ln b(\\ln a+\\ln c)$, which is not $2\\ln b=\\ln a+\\ln c$; e.g. $a=2,\\ b=4,\\ c=16$ make the logs $1,\\tfrac12,\\tfrac14$ scaled (an AP only when forced), and there $b^2=16\\ne ac=32$. So AP of the logs does NOT give $b^2=ac$. $\\blacksquare$"
+          "Counter for 'arithmetic': replacing 'HP' by 'AP' breaks the conclusion. Since $\\log_x N=\\dfrac{\\ln N}{\\ln x}$, the logs being in AP means $\\dfrac{2}{\\ln b}=\\dfrac{1}{\\ln a}+\\dfrac{1}{\\ln c}$ (an HP condition on the $\\ln$'s), which is NOT the GP condition $2\\ln b=\\ln a+\\ln c$. Concretely take $a=e,\\ b=e^{3/2},\\ c=e^{3}$ and $N=e$: then $\\log_a N,\\log_b N,\\log_c N=1,\\tfrac23,\\tfrac13$, a genuine AP, yet $b^2=e^{3}\\ne ac=e^{4}$. So AP of the logs does NOT force $b^2=ac$. $\\blacksquare$"
         ]
       }
     ],
@@ -2424,7 +2424,7 @@ window.PROBLEMS = [
         "steps": [
           "Let $H_m=\\sum_{k=1}^m\\frac1k=\\ln m+\\gamma+o(1)$. After $3k$ rearranged terms we have used the first $2k$ odd reciprocals and the first $k$ even reciprocals.",
           "Sum of first $2k$ odd reciprocals $=H_{4k}-\\tfrac12 H_{2k}$; sum of first $k$ even reciprocals $=\\tfrac12 H_k$. The partial sum is $\\big(H_{4k}-\\tfrac12H_{2k}\\big)-\\tfrac12H_k$.",
-          "Substitute $H_m=\\ln m+\\gamma+o(1)$: the $\\gamma$'s cancel and the expression $\\to\\ln 4-\\tfrac12\\ln2-\\tfrac12\\ln1=2\\ln2-\\tfrac12\\ln2=\\boxed{\\tfrac32\\ln2}$."
+          "Substitute $H_m=\\ln m+\\gamma+o(1)$: the partial sum becomes $\\big(\\ln(4k)-\\tfrac12\\ln(2k)\\big)-\\tfrac12\\ln k+\\big(\\gamma-\\tfrac12\\gamma-\\tfrac12\\gamma\\big)+o(1)$. The $\\gamma$'s cancel, and the $k$-dependent logs cancel too ($\\ln k-\\tfrac12\\ln k-\\tfrac12\\ln k=0$), leaving $\\to\\ln 4-\\tfrac12\\ln2=2\\ln2-\\tfrac12\\ln2=\\boxed{\\tfrac32\\ln2}$."
         ]
       },
       {
