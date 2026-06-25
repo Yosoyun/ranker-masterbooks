@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>f(x)<em>.</em></h2>'
-      + '<div class="tagline">Original functions-and-relations problems where the structure of the map is the whole game — relations and equivalence, domain and range, injective/surjective/bijective and the counting of maps, composition and inverses, functional equations, even/odd/periodic symmetry, the greatest-integer and fractional-part family, and graphs and transformations. Drawn from the rarest corners of olympiad and JEE-Advanced algebra, each solved several ways.</div>'
+      + '<div class="tagline">Original functions-and-relations problems where the structure of the map is the whole game — relations and equivalence, domain and range, injective/surjective/bijective and the counting of maps, composition and inverses, functional equations, even/odd/periodic symmetry, the greatest-integer and fractional-part family, and graphs and transformations. Drawn from the rarest corners of advanced and JEE-Advanced algebra, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

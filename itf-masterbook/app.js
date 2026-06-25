@@ -4,7 +4,7 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['branch','corrections','telescope','identity','equations','triginv','domain','calculus','olympiad','hybrid'];
+  const THEME_ORDER = ['branch','corrections','telescope','identity','equations','triginv','domain','calculus','advanced','hybrid'];
   const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
   const THEME_META = {
     branch:      { glyph:'sin⁻¹', blurb:'Outside the principal range, arcsin∘sin is a sawtooth — the value you forget is the mark you lose.' },
@@ -15,7 +15,7 @@
     triginv:     { glyph:'△',     blurb:'The sine, cosine and tangent of a sum of inverse functions — drawn on a triangle, not guessed.' },
     domain:      { glyph:'f∘g',   blurb:'Where is the composite even defined, and how often does its graph cross? Geometry answers both.' },
     calculus:    { glyph:'d/dx',  blurb:'Differentiate arctan(2x/(1−x²)) and the chain rule lies by a sign. The branch decides the derivative.' },
-    olympiad:    { glyph:'π',     blurb:"Machin's π, Gaussian-integer arctangents, three angles that sum to π — the competition canon." },
+    advanced:    { glyph:'π',     blurb:"Machin's π, Gaussian-integer arctangents, three angles that sum to π — the competition canon." },
     hybrid:      { glyph:'⊕',     blurb:'The capstones: branch correction, telescoping, equations and calculus fused into one pitiless problem.' },
   };
 
@@ -232,7 +232,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>ARC<em>.</em></h2>'
-      + '<div class="tagline">One hundred original problems on the inverse circular functions — where the branch you forget is the mark you lose. Built for the very top of JEE Advanced and the Olympiad shortlist.</div>'
+      + '<div class="tagline">One hundred original problems on the inverse circular functions — where the branch you forget is the mark you lose. Built for the very top of the JEE Advanced shortlist.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')
@@ -249,7 +249,7 @@
     // legend of instruments
     html+='<div class="sec-head"><span class="sh-rom">i</span><h3>The Instruments</h3><span class="sh-line"></span></div>';
     html+='<div class="legend">';
-    const fam=[['branch','Principal branch','sin⁻¹'],['corrections','±π correction','±π'],['telescope','Telescoping','Σ'],['identity','Identities','≡'],['triginv','Right-triangle','△'],['calculus','Derivatives','d/dx'],['olympiad','Machin / π','π']];
+    const fam=[['branch','Principal branch','sin⁻¹'],['corrections','±π correction','±π'],['telescope','Telescoping','Σ'],['identity','Identities','≡'],['triginv','Right-triangle','△'],['calculus','Derivatives','d/dx'],['advanced','Machin / π','π']];
     fam.forEach(f=>{ const c=byChapter[f[0]]; const cnt=c?c.problems.length:0;
       html+='<div class="lg card"><div class="glyph">'+f[2]+'</div><div><div class="lgname">'+f[1]+'</div><div class="lgcount">'+cnt+' problems</div></div></div>'; });
     html+='</div>';

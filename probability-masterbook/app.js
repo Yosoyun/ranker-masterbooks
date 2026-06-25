@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>&#8473;<em>.</em></h2>'
-      + '<div class="tagline">Original probability problems where the obvious answer is the wrong one — classical and geometric chance, conditioning, Bayes, Bernoulli trials, expectation, recurrences, inclusion–exclusion and the great paradoxes. Drawn from the rarest corners of olympiad and Putnam probability, each solved several ways.</div>'
+      + '<div class="tagline">Original probability problems where the obvious answer is the wrong one — classical and geometric chance, conditioning, Bayes, Bernoulli trials, expectation, recurrences, inclusion–exclusion and the great paradoxes. Drawn from the rarest corners of Putnam probability, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>x<sup style="font-size:.5em;top:-.7em;position:relative">2</sup><em>.</em></h2>'
-      + '<div class="tagline">Original problems on the quadratic — Vieta and the symmetric functions, the discriminant, the location of roots, common roots, the range of a rational expression, extrema, equations in disguise, parameters and inequalities. The humblest equation, pushed to the olympiad edge. Each solved several ways.</div>'
+      + '<div class="tagline">Original problems on the quadratic — Vieta and the symmetric functions, the discriminant, the location of roots, common roots, the range of a rational expression, extrema, equations in disguise, parameters and inequalities. The humblest equation, pushed to the advanced edge. Each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

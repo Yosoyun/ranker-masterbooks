@@ -1,4 +1,4 @@
-/* problems.js — 100 original olympiad/JEE-Advanced straight-line problems for y=mx+c · Slopes, Distances & the Pencil of Lines. sympy-verified. */
+/* problems.js — 100 original JEE Advanced straight-line problems for y=mx+c · Slopes, Distances & the Pencil of Lines. sympy-verified. */
 window.PROBLEMS = [
   {
     "theme": "forms",

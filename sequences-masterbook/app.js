@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>&Sigma;<em>.</em></h2>'
-      + '<div class="tagline">Original sequences &amp; series problems where a pattern hides a closed form — progressions and means, the AGP, telescoping, sums of powers, recurrences, generating functions, convergence and sequence inequalities. Drawn from the rarest corners of olympiad and JEE-Advanced algebra, each solved several ways.</div>'
+      + '<div class="tagline">Original sequences &amp; series problems where a pattern hides a closed form — progressions and means, the AGP, telescoping, sums of powers, recurrences, generating functions, convergence and sequence inequalities. Drawn from the rarest corners of advanced and JEE-Advanced algebra, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

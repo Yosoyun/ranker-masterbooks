@@ -1,4 +1,4 @@
-/* problems.js — 100 original olympiad/JEE-Advanced area-under-curves problems for ∫f dx · The Signed Area Between Curves. sympy-verified. */
+/* problems.js — 100 original JEE Advanced area-under-curves problems for ∫f dx · The Signed Area Between Curves. sympy-verified. */
 window.PROBLEMS = [
   {
     "theme": "areaxaxis",
@@ -909,7 +909,7 @@ window.PROBLEMS = [
       "double angle",
       "interior crossing",
       "split interval",
-      "olympiad"
+      "advanced"
     ],
     "statement": "Find the total area of the region enclosed between $y = \\sin x$ and $y = \\sin 2x$ for $0 \\le x \\le \\pi$.",
     "answer": "\\[\\boxed{\\dfrac{5}{2}}\\]",

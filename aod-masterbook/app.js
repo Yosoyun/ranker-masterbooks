@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>f&prime;=0<em>.</em></h2>'
-      + '<div class="tagline">Original application-of-derivatives problems where the derivative reveals the shape of a curve — tangents and normals, rates of change, monotonicity and inequalities, maxima and minima, Rolle’s and the Mean Value Theorem, approximations and errors, concavity and inflection, curve sketching and the number of roots, and applied optimisation. Drawn from the rarest corners of olympiad and JEE-Advanced calculus, each solved several ways.</div>'
+      + '<div class="tagline">Original application-of-derivatives problems where the derivative reveals the shape of a curve — tangents and normals, rates of change, monotonicity and inequalities, maxima and minima, Rolle’s and the Mean Value Theorem, approximations and errors, concavity and inflection, curve sketching and the number of roots, and applied optimisation. Drawn from the rarest corners of advanced and JEE-Advanced calculus, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

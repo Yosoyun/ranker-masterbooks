@@ -1,4 +1,4 @@
-/* problems.js — DATA. 100 original olympiad/JEE-Advanced continuity problems for C⁰ · The Continuous & the Broken. Adversarially verified in Python. statement/answer raw LaTeX (app auto-detects prose+math); steps use $...$ and $$...$$. */
+/* problems.js — DATA. 100 original JEE Advanced continuity problems for C⁰ · The Continuous & the Broken. Adversarially verified in Python. statement/answer raw LaTeX (app auto-detects prose+math); steps use $...$ and $$...$$. */
 window.PROBLEMS = [
   {
     "theme": "epsilondelta",

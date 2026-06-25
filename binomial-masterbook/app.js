@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>(1+x)<sup>n</sup><em>.</em></h2>'
-      + '<div class="tagline">Original binomial-theorem problems where the right index, the right filter or the right modulus collapses the whole expansion — general terms, coefficient extraction, calculus sums, roots-of-unity filters, the multinomial, divisibility and the binomial series. Drawn from the rarest corners of olympiad and JEE-Advanced algebra, each solved several ways.</div>'
+      + '<div class="tagline">Original binomial-theorem problems where the right index, the right filter or the right modulus collapses the whole expansion — general terms, coefficient extraction, calculus sums, roots-of-unity filters, the multinomial, divisibility and the binomial series. Drawn from the rarest corners of advanced and JEE-Advanced algebra, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>&int;dx<em>.</em></h2>'
-      + '<div class="tagline">Original indefinite-integration problems where the right move makes an antiderivative appear — standard forms, substitution, integration by parts and its loop, partial fractions, the trigonometric integrals and the Weierstrass substitution, irrational integrands, the special denominators, reduction formulae, and recognising an exact derivative. Drawn from the rarest corners of olympiad and JEE-Advanced calculus, each solved several ways.</div>'
+      + '<div class="tagline">Original indefinite-integration problems where the right move makes an antiderivative appear — standard forms, substitution, integration by parts and its loop, partial fractions, the trigonometric integrals and the Weierstrass substitution, irrational integrands, the special denominators, reduction formulae, and recognising an exact derivative. Drawn from the rarest corners of advanced and JEE-Advanced calculus, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

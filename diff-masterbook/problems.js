@@ -1,4 +1,4 @@
-/* problems.js — DATA. 100 original olympiad/JEE-Advanced differentiability problems for f′ · The Derivative & Where It Fails. Adversarially verified in Python (sympy/numpy/mpmath). statement/answer raw LaTeX (app auto-detects prose+math); steps use $...$ and $$...$$. */
+/* problems.js — DATA. 100 original JEE Advanced differentiability problems for f′ · The Derivative & Where It Fails. Adversarially verified in Python (sympy/numpy/mpmath). statement/answer raw LaTeX (app auto-detects prose+math); steps use $...$ and $$...$$. */
 window.PROBLEMS = [
   {
     "theme": "firstprinciples",
@@ -3851,7 +3851,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: the very first L'Hopital obligation is to confirm the form is $0/0$ or $\\infty/\\infty$. Skipping that check is the most common olympiad-grader's red flag — a $1/0$ quotient can yield any answer when you illegitimately differentiate."
+    "remark": "Insight: the very first L'Hopital obligation is to confirm the form is $0/0$ or $\\infty/\\infty$. Skipping that check is the most common examiner's red flag — a $1/0$ quotient can yield any answer when you illegitimately differentiate."
   },
   {
     "theme": "derivlimits",
@@ -3934,7 +3934,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "The hybrid lesson is that a contraction is certified by the Mean Value Theorem on a concrete invariant interval, never by the slope at the (unknown) fixed point. Here $1+x\\ge1$ on the invariant half-line $[0,\\infty)$ collapses $g'(x)=\\tfrac{1}{1+(1+x)^2}$ below $\\tfrac12$ uniformly, and that single honest constant powers both the geometric error bound $|x_n-L|\\le(\\tfrac12)^nL$ and the Cauchy estimate — fusing MVT, the Banach contraction idea, and monotone convergence into one machine. The location of $L$ is then settled with zero arithmetic on $L$ itself: since $h(x)=g(x)-x$ is strictly decreasing, evaluating it at the clean points $1$ and $\\tfrac65$ (where $\\tan1<2$ and $\\tan\\tfrac65>\\tfrac{11}{5}$ are all you need) traps the root in $(1,\\tfrac65)$. A fixed point you can bound but never name is a recurring olympiad and Putnam motif; the discipline is to extract structure (monotonicity, a uniform slope bound) instead of chasing a decimal."
+    "remark": "The hybrid lesson is that a contraction is certified by the Mean Value Theorem on a concrete invariant interval, never by the slope at the (unknown) fixed point. Here $1+x\\ge1$ on the invariant half-line $[0,\\infty)$ collapses $g'(x)=\\tfrac{1}{1+(1+x)^2}$ below $\\tfrac12$ uniformly, and that single honest constant powers both the geometric error bound $|x_n-L|\\le(\\tfrac12)^nL$ and the Cauchy estimate — fusing MVT, the Banach contraction idea, and monotone convergence into one machine. The location of $L$ is then settled with zero arithmetic on $L$ itself: since $h(x)=g(x)-x$ is strictly decreasing, evaluating it at the clean points $1$ and $\\tfrac65$ (where $\\tan1<2$ and $\\tan\\tfrac65>\\tfrac{11}{5}$ are all you need) traps the root in $(1,\\tfrac65)$. A fixed point you can bound but never name is a recurring Putnam motif; the discipline is to extract structure (monotonicity, a uniform slope bound) instead of chasing a decimal."
   },
   {
     "theme": "hybrid",

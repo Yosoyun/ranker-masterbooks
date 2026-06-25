@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>n!<em>.</em></h2>'
-      + '<div class="tagline">Original counting problems where the obvious tally is an over-count — permutations, selections, circular symmetry, distributions, inclusion–exclusion, combinatorial identities, recurrences and lattice paths. Drawn from the rarest corners of olympiad and Putnam combinatorics, each solved several ways.</div>'
+      + '<div class="tagline">Original counting problems where the obvious tally is an over-count — permutations, selections, circular symmetry, distributions, inclusion–exclusion, combinatorial identities, recurrences and lattice paths. Drawn from the rarest corners of Putnam combinatorics, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

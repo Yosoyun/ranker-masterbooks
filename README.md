@@ -1,6 +1,6 @@
 # The Ranker's Masterbooks
 
-Twenty-one static problem books for the very top of **JEE Advanced** and the **Mathematical Olympiad**.
+Twenty-one static problem books for the very top of **JEE Advanced**.
 2106 original problems, organised by the *instrument* that powers each one, and every problem solved
 **more than one way**. No build step, no dependencies — just open `index.html`.
 
@@ -27,7 +27,7 @@ Twenty-one static problem books for the very top of **JEE Advanced** and the **M
 | **[C⁰ · The Continuous & the Broken](continuity-masterbook/)** | ε–δ proofs, types of discontinuity, continuous functional equations, the IVT, pathological functions, sequential continuity, parametric gluing, the EVT, monotone functions, grand hybrids | 100 |
 | **[MATRIX · The Determinant & Its Eigenworld](matrix-masterbook/)** | The alternating form, Cayley–Hamilton, rank, special determinants, block & Schur, the trace, determinant bounds, combinatorial matrices, matrix equations, grand hybrids | 100 |
 | **[TRIG · The Circular Arsenal](trig-masterbook/)** | Conditional identities, transformations, equations, extrema, sums & products, polynomial connections, inverse functions, geometry, inequalities, grand hybrids | 106 |
-| **[ARC · The Inverse Circular Functions](itf-masterbook/)** | Principal branches & the range trap, ±π corrections, telescoping arctangents, identities, equations, trig-of-inverse-trig, domain/range, calculus, Machin & Olympiad identities, grand hybrids | 100 |
+| **[ARC · The Inverse Circular Functions](itf-masterbook/)** | Principal branches & the range trap, ±π corrections, telescoping arctangents, identities, equations, trig-of-inverse-trig, domain/range, calculus, Machin & advanced identities, grand hybrids | 100 |
 | **[LIMITS · The Edge of Calculus](limits-masterbook/)** | Floor, fractional part, signum, modulus, inverse-trig, log/exp, advanced trig, exotic indeterminate forms, squeeze & discrete sums, grand hybrids | 100 |
 
 Each problem ships with a clean LaTeX statement & answer, **"The Trap"** (the seductive wrong answer and

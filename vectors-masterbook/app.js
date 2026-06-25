@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>v&#8407;<em>.</em></h2>'
-      + '<div class="tagline">Original vectors &amp; 3D-geometry problems where an arrow hides a theorem — the dot and cross products, the scalar triple product, lines and planes in space, distances and skew lines, and the loci a moving vector traces. Drawn from the rarest corners of olympiad and JEE-Advanced geometry, each solved several ways.</div>'
+      + '<div class="tagline">Original vectors &amp; 3D-geometry problems where an arrow hides a theorem — the dot and cross products, the scalar triple product, lines and planes in space, distances and skew lines, and the loci a moving vector traces. Drawn from the rarest corners of advanced and JEE-Advanced geometry, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

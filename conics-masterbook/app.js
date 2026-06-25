@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>S=0<em>.</em></h2>'
-      + '<div class="tagline">Original conic-sections problems where the right property unlocks the curve — the circle, parabola, ellipse and hyperbola, the unified tangent/chord machinery T=0, pole and polar, the general second-degree equation and its classification, focus-directrix and eccentricity, and the loci a moving point traces. Drawn from the rarest corners of olympiad and JEE-Advanced geometry, each solved several ways.</div>'
+      + '<div class="tagline">Original conic-sections problems where the right property unlocks the curve — the circle, parabola, ellipse and hyperbola, the unified tangent/chord machinery T=0, pole and polar, the general second-degree equation and its classification, focus-directrix and eccentricity, and the loci a moving point traces. Drawn from the rarest corners of advanced and JEE-Advanced geometry, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

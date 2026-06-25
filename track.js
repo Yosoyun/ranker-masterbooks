@@ -181,8 +181,9 @@
   }, true);
 
   // ---------- session satisfaction / confidence check-in ----------
+  function ensureAnon(){ if (!getStudent()) setStudent({ device_id: rid(), name: '', class_code: '' }); }
   function checkIn(){
-    if (!getStudent()) { signIn(); return; }
+    ensureAnon();
     var sat = 0, conf = 0;
     var m = modal(
       '<h3>Quick check-in</h3><p class="sub">A few seconds — this helps your teacher support you and lets you see your own growth.</p>' +
@@ -206,7 +207,7 @@
 
   // ---------- student growth panel ----------
   function growth(){
-    if (!getStudent()) { signIn(); return; }
+    ensureAnon();
     var evs = localEvents().filter(function (e){ return e.book === BOOK; });
     var solved = {}, gotIt = {}, conf = [], byTheme = {};
     evs.forEach(function (e){
@@ -278,8 +279,8 @@
   // ---------- observe problem cards ----------
   function scan(){ document.querySelectorAll('.q.card').forEach(injectFeedback); }
   function start(){
+    ensureAnon();
     renderChip();
-    if (!getStudent()) signIn();
     var view = document.getElementById('view') || document.body;
     new MutationObserver(function (){ scan(); }).observe(view, { childList: true, subtree: true });
     scan();

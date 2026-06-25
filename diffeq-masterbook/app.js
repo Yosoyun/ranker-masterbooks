@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>dy/dx<em>.</em></h2>'
-      + '<div class="tagline">Original differential-equations problems where a hidden structure cracks the equation open — formation and order, variables separable, homogeneous and linear equations, exact forms and integrating factors, Clairaut and singular solutions, orthogonal trajectories, and the geometry of curves. Drawn from the rarest corners of olympiad and JEE-Advanced calculus, each solved several ways.</div>'
+      + '<div class="tagline">Original differential-equations problems where a hidden structure cracks the equation open — formation and order, variables separable, homogeneous and linear equations, exact forms and integrating factors, Clairaut and singular solutions, orthogonal trajectories, and the geometry of curves. Drawn from the rarest corners of advanced and JEE-Advanced calculus, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

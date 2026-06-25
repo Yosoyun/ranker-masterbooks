@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['branch','corrections','telescope','identity','equations','triginv','domain','calculus','olympiad','hybrid'];
+const THEME_ORDER = ['branch','corrections','telescope','identity','equations','triginv','domain','calculus','advanced','hybrid'];
 const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { branch:'sin⁻¹', corrections:'±π', telescope:'Σ', identity:'≡', equations:'=', triginv:'△', domain:'f∘g', calculus:'d/dx', olympiad:'π', hybrid:'⊕' };
+const GLYPH = { branch:'sin⁻¹', corrections:'±π', telescope:'Σ', identity:'≡', equations:'=', triginv:'△', domain:'f∘g', calculus:'d/dx', advanced:'π', hybrid:'⊕' };
 const BLURB = {
   branch:'Outside the principal range, arcsin∘sin is a sawtooth.',
   corrections:'Add two arctangents and the formula quietly leaks a π.',
@@ -23,7 +23,7 @@ const BLURB = {
   triginv:'The trig of a sum of inverse functions — drawn on a triangle.',
   domain:'Where is the composite defined, and how often does its graph cross?',
   calculus:'Differentiate across a branch point and the chain rule lies by a sign.',
-  olympiad:'Machin’s π, Gaussian-integer arctangents, the competition canon.',
+  advanced:'Machin’s π, Gaussian-integer arctangents, the competition canon.',
   hybrid:'Branch correction, telescoping, equations and calculus, fused.',
 };
 
@@ -164,7 +164,7 @@ function coverHTML(kind){
       <div><b>3–5</b><span>Difficulty</span></div>
       ${isSol ? `<div><b>${totalMethods}</b><span>Worked Solutions</span></div>` : ''}
     </div>
-    <div class="foot">One hundred original problems on the inverse circular functions — where the branch you forget is the mark you lose. For the very top of JEE Advanced and the Mathematical Olympiad. ${isSol ? 'Every problem solved more than one way.' : 'Solutions in the companion volume.'}</div>
+    <div class="foot">One hundred original problems on the inverse circular functions — where the branch you forget is the mark you lose. For the very top of JEE Advanced. ${isSol ? 'Every problem solved more than one way.' : 'Solutions in the companion volume.'}</div>
   </section>`;
 }
 function tocHTML(){

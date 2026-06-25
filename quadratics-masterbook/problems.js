@@ -1,4 +1,4 @@
-/* problems.js — DATA. 100 original olympiad/JEE-Advanced quadratic-equation problems for x² · Roots, Discriminant & Vieta. Adversarially verified in Python (sympy/numpy/mpmath). statement/answer raw LaTeX (app auto-detects prose+math); steps use $...$ and $$...$$. */
+/* problems.js — DATA. 100 original JEE Advanced quadratic-equation problems for x² · Roots, Discriminant & Vieta. Adversarially verified in Python (sympy/numpy/mpmath). statement/answer raw LaTeX (app auto-detects prose+math); steps use $...$ and $$...$$. */
 window.PROBLEMS = [
   {
     "theme": "vieta",

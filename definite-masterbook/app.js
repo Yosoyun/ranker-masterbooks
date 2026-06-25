@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>&#8747;<em>.</em></h2>'
-      + '<div class="tagline">Original definite-integral problems where the antiderivative is a trap, not a tool — symmetry, the king rule, reduction, Leibniz, the limit of sums and the famous closed forms. Drawn from the rarest corners of olympiad and Putnam calculus, each solved several ways.</div>'
+      + '<div class="tagline">Original definite-integral problems where the antiderivative is a trap, not a tool — symmetry, the king rule, reduction, Leibniz, the limit of sums and the famous closed forms. Drawn from the rarest corners of Putnam calculus, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

@@ -164,7 +164,7 @@ function coverHTML(kind){
       <div><b>3–5</b><span>Difficulty</span></div>
       ${isSol ? `<div><b>${totalMethods}</b><span>Worked Solutions</span></div>` : ''}
     </div>
-    <div class="foot">${PROBLEMS.length} original sequences &amp; series problems where a pattern hides a closed form — for the very top of JEE Advanced, the Olympiad and the Putnam. ${isSol ? 'Every problem solved more than one way.' : 'Solutions in the companion volume.'}</div>
+    <div class="foot">${PROBLEMS.length} original sequences &amp; series problems where a pattern hides a closed form — for the very top of JEE Advanced, the JEE Advanced and the Putnam. ${isSol ? 'Every problem solved more than one way.' : 'Solutions in the companion volume.'}</div>
   </section>`;
 }
 function tocHTML(){

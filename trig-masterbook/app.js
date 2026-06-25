@@ -232,7 +232,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>TRIG<em>.</em></h2>'
-      + '<div class="tagline">One hundred original trigonometry problems where the identity is only half the battle — built for the very top of JEE Advanced and the Olympiad shortlist.</div>'
+      + '<div class="tagline">One hundred original trigonometry problems where the identity is only half the battle — built for the very top of the JEE Advanced shortlist.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

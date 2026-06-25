@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>y=mx+c<em>.</em></h2>'
-      + '<div class="tagline">Original straight-line problems where one clean condition pins the whole configuration — the forms of a line, distance and the section formula, the angle between lines and the family L₁+λL₂, the foot and image of a point, angle bisectors, the pair of straight lines ax²+2hxy+by²=0, the four triangle centres, loci, and the shift and rotation of axes. Drawn from the rarest corners of olympiad and JEE-Advanced coordinate geometry, each solved several ways.</div>'
+      + '<div class="tagline">Original straight-line problems where one clean condition pins the whole configuration — the forms of a line, distance and the section formula, the angle between lines and the family L₁+λL₂, the foot and image of a point, angle bisectors, the pair of straight lines ax²+2hxy+by²=0, the four triangle centres, loci, and the shift and rotation of axes. Drawn from the rarest corners of advanced and JEE-Advanced coordinate geometry, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

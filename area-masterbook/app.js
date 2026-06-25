@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>∫f dx<em>.</em></h2>'
-      + '<div class="tagline">Original problems on the signed area under and between curves — the area against the x- and y-axes, the area enclosed between two curves, reading the limits of integration from the points of intersection, symmetry and even/odd shortcuts, parametric and polar areas, modulus, greatest-integer and piecewise integrands, variable boundaries and parameters, and optimising an area. Drawn from the rarest corners of olympiad and JEE-Advanced integral calculus, each solved several ways.</div>'
+      + '<div class="tagline">Original problems on the signed area under and between curves — the area against the x- and y-axes, the area enclosed between two curves, reading the limits of integration from the points of intersection, symmetry and even/odd shortcuts, parametric and polar areas, modulus, greatest-integer and piecewise integrands, variable boundaries and parameters, and optimising an area. Drawn from the rarest corners of advanced and JEE-Advanced integral calculus, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

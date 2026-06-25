@@ -3366,8 +3366,8 @@ window.PROBLEMS = [
     "remark": "The whole problem lives on the vertical tangent of $y=\\sec^{-1}x$ at $x=1$: there $\\dfrac{d}{dx}\\sec^{-1}x=\\dfrac{1}{x\\sqrt{x^2-1}}\\to+\\infty$, which forces the Puiseux (half-integer power) expansion $\\sec^{-1}(1+u^2)=\\sqrt2\\,u-\\tfrac{5\\sqrt2}{12}u^3+\\cdots$ rather than an ordinary Taylor series. Because the function is born of $\\sqrt{x-1}$, it has no left neighbourhood, so a 'two-sided limit' is a category error even though $L$ is a perfectly finite number. The matched arcsine $\\sin^{-1}\\!\\sqrt{2(x-1)}$ is a precision instrument: its leading $\\sqrt2\\,u$ kills the blow-up, leaving the genuine next coefficient $-\\tfrac{3\\sqrt2}{4}$ exposed in the $(x-1)^{3/2}$ slot. Lesson for the rankers: when an inverse-trig function has a vertical tangent, expand in $\\sqrt{x-1}$, count powers honestly, and never promote a one-sided blow-up to a two-sided limit."
   },
   {
-    "theme": "olympiad",
-    "themeLabel": "Machin & Olympiad Identities",
+    "theme": "advanced",
+    "themeLabel": "Machin & Advanced Identities",
     "title": "Where Machin's 239 Is Born",
     "difficulty": 5,
     "task": "Compute the Gaussian power, extract the residual factor, and prove the residual argument is exactly the second Machin term",
@@ -3412,8 +3412,8 @@ window.PROBLEMS = [
     "remark": "The number $239$ is not magic; it is the real part of the Gaussian residual $239+i=\\dfrac{(5+i)^4}{2(1+i)}$, equivalently the exact factorization $(5+i)^4=2(1+i)(239+i)$. Reading Machin's formula as a statement about arguments of Gaussian integers turns a memorized identity into a one-line discovery: square twice, divide by $1+i$, and the leftover $239+i$ literally hands you $\\tan^{-1}\\tfrac1{239}$. The discipline that separates a top-rank solver here is refusing to treat $\\arg(z^n)=n\\arg z$ as free: it is true only modulo $2\\pi$, and one must audit that the cumulative angle stays within a single half-turn (it does, $4\\tan^{-1}\\tfrac15\\approx0.79<\\pi$) before claiming equality. The cautionary twin is $4\\tan^{-1}\\tfrac12$, where $(2+i)^4=-7-24i$ has slid into the third quadrant and the naive rule fails outright — proving that the no-wrap check is the whole content of the argument step, not a formality. The same vigilance disposes of the ‘$\\tfrac{120}{119}>1$ so the arc beats $\\tfrac\\pi2$’ illusion: $\\tan^{-1}$ is bounded by $\\tfrac\\pi2$ no matter how large its input. This Gaussian viewpoint generalizes instantly — every two-term Machin-like formula is a relation $z_1^{a}z_2^{b}=(\\text{positive real})\\,(1+i)$ in $\\mathbb{Z}[i]$, and Stormer's classification of such formulas is exactly the search for these factorizations."
   },
   {
-    "theme": "olympiad",
-    "themeLabel": "Machin & Olympiad Identities",
+    "theme": "advanced",
+    "themeLabel": "Machin & Advanced Identities",
     "title": "The Sum That Refuses to Vanish",
     "difficulty": 4,
     "task": "Prove that",
@@ -3454,8 +3454,8 @@ window.PROBLEMS = [
     "remark": "This is the cleanest illustration of the $+\\pi$ branch correction: $\\tan^{-1}a+\\tan^{-1}b=\\tan^{-1}\\tfrac{a+b}{1-ab}+\\pi$ when $a,b>0$ and $ab>1$. The integer triple $(1,2,3)$ works because $1+2+3=1\\cdot2\\cdot3$, the algebraic signature of three positive arctangents summing to $\\pi$ (a triangle's angles)."
   },
   {
-    "theme": "olympiad",
-    "themeLabel": "Machin & Olympiad Identities",
+    "theme": "advanced",
+    "themeLabel": "Machin & Advanced Identities",
     "title": "The Boundary Where the Engine Stalls",
     "difficulty": 5,
     "task": "Prove the identity, then estimate and compare",
@@ -3499,8 +3499,8 @@ window.PROBLEMS = [
     "remark": "The lesson hides in a single boundary point. The integral remainder $R_N(x)=(-1)^N\\!\\int_0^x\\frac{t^{2N}}{1+t^2}dt$ is one formula valid for all $x\\in[0,1]$, yet its character flips at the endpoint: for $x<1$ the geometric factor $x^{2N+1}$ delivers a fixed number of new correct digits per term (about $2\\log_{10}(1/x)$ digits each), so accuracy is LINEAR in term count; precisely at $x=1$ that factor saturates to $1$ and only the algebraic $\\frac{1}{2N+1}$ remains, so each additional digit costs a tenfold increase in work. This is why every fast $\\pi$ formula — Machin's $\\tfrac{\\pi}{4}=4\\tan^{-1}\\tfrac15-\\tan^{-1}\\tfrac1{239}$ and all its relatives — trades the elegant single $\\tan^{-1}1$ for several small-argument arctangents living safely inside the unit interval. The final subtlety: the cost of a multi-term machine is the $\\max$ over its arguments (the slowest term sets the depth), never the $\\min$, so the right metric is the largest argument used, which is exactly why Machin's $\\tfrac15$ beats this exercise's $\\tfrac12$."
   },
   {
-    "theme": "olympiad",
-    "themeLabel": "Machin & Olympiad Identities",
+    "theme": "advanced",
+    "themeLabel": "Machin & Advanced Identities",
     "title": "Euler's Self-Splitting Ladder",
     "difficulty": 5,
     "task": "Prove Euler's recursive splitting identity, then drive it down from a quarter turn to pin the exact closed form of the finite chain and its limit",
@@ -3547,8 +3547,8 @@ window.PROBLEMS = [
     "remark": "One identity, three faces: Euler's accelerator splits a big arctangent into a smaller leader plus a frozen crumb, the telescope reads the very same equation as a difference on the integer grid, and the Gaussian integers $k+i$ turn the whole sum into a single ratio $\\frac{1+i}{(N+1)+i}$. The top-rank discipline is to track the residual $\\tan^{-1}\\frac1{N+1}$: it is what makes the chain converge FAST (each split squares the denominator, $n\\mapsto n^2+n+1$), and it is also the term you must not silently throw away at finite $N$. Convergence acceleration is exactly the art of making a residual small on purpose — never of pretending it is already zero."
   },
   {
-    "theme": "olympiad",
-    "themeLabel": "Machin & Olympiad Identities",
+    "theme": "advanced",
+    "themeLabel": "Machin & Advanced Identities",
     "title": "The Triangle That Steals a Half-Turn",
     "difficulty": 5,
     "task": "Prove the lemma, then evaluate the specialization",
@@ -3592,8 +3592,8 @@ window.PROBLEMS = [
     "remark": "The condition $a+b+c=abc$ is the hallmark of three angles summing to a multiple of $\\pi$, so the arctan sum is pinned to $\\{-\\pi,0,\\pi\\}$ — but the constraint alone never reveals which one. The decider is the sign pattern: all-positive lands on $+\\pi$, all-negative on $-\\pi$, and any mixture on $0$. Reading a triangle through this lens, an acute triangle (three positive tangents) honestly returns $\\pi=A+B+C$, while an obtuse triangle smuggles in one negative tangent whose principal arctan is $A-\\pi$, silently subtracting a half-turn and sending the sum to $0$. The lesson: $\\tan^{-1}(\\tan\\theta)=\\theta$ is a branch-restricted statement, and conditional identities of multiple-of-$\\pi$ type must always be finished by a magnitude/sign argument, never by the algebraic constraint alone."
   },
   {
-    "theme": "olympiad",
-    "themeLabel": "Machin & Olympiad Identities",
+    "theme": "advanced",
+    "themeLabel": "Machin & Advanced Identities",
     "title": "Four Overflows and the Vanished Two Pi",
     "difficulty": 5,
     "task": "Evaluate the four-term arctangent sum exactly, justifying the precise number of $+\\pi$ corrections the iterated addition formula silently swallows",
@@ -3637,8 +3637,8 @@ window.PROBLEMS = [
     "remark": "The identity $\\arctan 3+\\arctan 5+\\arctan 7+\\arctan 8=\\tfrac{7\\pi}{4}$ is a four-overflow cousin of the Dase/Gauss three-term Machin sums, and the Gaussian product $(1+3i)(1+5i)(1+7i)(1+8i)=650(1-i)$ exposes the whole thing at a glance. The lesson lives entirely in the bookkeeping. An iterated tangent-addition formula has no memory: it reports only the final tangent, $-1$ here, and surrenders the angle modulo $\\pi$ — so a student who applies $\\arctan$ to it lands on $-\\tfrac{\\pi}{4}$, fully $2\\pi$ short. The repair is the total-argument bound. Four summands each in $(\\tfrac{\\pi}{4},\\tfrac{\\pi}{2})$ cage the answer in $(\\pi,2\\pi)$, and inside a window of width $\\pi$ the tangent value names a unique angle. The discipline a top-rank solver internalises: before collapsing any multi-term arctangent sum, count how many times the running total vaults a quadrant wall — each crossing is a $+\\pi$ the formula will otherwise quietly eat."
   },
   {
-    "theme": "olympiad",
-    "themeLabel": "Machin & Olympiad Identities",
+    "theme": "advanced",
+    "themeLabel": "Machin & Advanced Identities",
     "title": "Two Overflows on a Rising Staircase",
     "difficulty": 5,
     "task": "Prove the overflow law, then fold the four-term sum to its exact value",
@@ -3683,8 +3683,8 @@ window.PROBLEMS = [
     "remark": "The two-term overflow law is the whole arithmetic of arctangent sums: the algebraic identity $\\tan^{-1}a+\\tan^{-1}b=\\tan^{-1}\\frac{a+b}{1-ab}$ is only ever correct up to a multiple of $\\pi$, and the term $\\pi\\,\\operatorname{sgn}(a)[ab>1]$ records each time the running angle vaults over $\\tfrac{\\pi}{2}$. Folding $3,5,7,8$ is a deliberately rigged staircase: the running tangent passes through $-\\tfrac47,\\ \\tfrac97,\\ -1$, crossing the $ab>1$ wall exactly twice, so a solver who trusts the bare formula loses $2\\pi$ and reports $-\\tfrac{\\pi}{4}$ for a sum that visibly exceeds $\\pi$. The cure is to carry an honest running total (or a coarse magnitude bound) instead of a single final arctangent. The shared final tangent $-1$ is a feature of $\\tan$'s period $\\pi$, not a certificate that the angles agree."
   },
   {
-    "theme": "olympiad",
-    "themeLabel": "Machin & Olympiad Identities",
+    "theme": "advanced",
+    "themeLabel": "Machin & Advanced Identities",
     "title": "A Right Angle in Three Pieces",
     "difficulty": 4,
     "task": "Prove that",
@@ -3724,8 +3724,8 @@ window.PROBLEMS = [
     "remark": "A purely imaginary Gaussian product is the signature of an arctangent sum equal to $\\tfrac{\\pi}{2}$ (mod $\\pi$). Equivalently, $\\cot$ of the sum is $0$; with $\\cot^{-1}$ in $(0,\\pi)$, this is also $\\cot^{-1}1+\\cot^{-1}2+\\cot^{-1}3$ rearranged — the same identity wearing a cotangent mask."
   },
   {
-    "theme": "olympiad",
-    "themeLabel": "Machin & Olympiad Identities",
+    "theme": "advanced",
+    "themeLabel": "Machin & Advanced Identities",
     "title": "Stormer's Hat-Trick",
     "difficulty": 5,
     "task": "Prove that",
@@ -3758,8 +3758,8 @@ window.PROBLEMS = [
     "remark": "This is Stormer's $1896$ three-term Machin-like formula. Such formulas are catalogued by factoring the Gaussian primes dividing $5,13,1597,\\dots$; the coefficient vector $(6,2,1)$ is a solution of an integer linear system that forces $\\prod(n_k+i)^{c_k}$ to be a real multiple of $1+i$. High multiplicities (the exponent $6$) are why $\\tfrac1{239}$ appears only once."
   },
   {
-    "theme": "olympiad",
-    "themeLabel": "Machin & Olympiad Identities",
+    "theme": "advanced",
+    "themeLabel": "Machin & Advanced Identities",
     "title": "Euler's Even Ladder Climbs to a Quarter Turn",
     "difficulty": 5,
     "task": "Sum the series in closed form, then reforge it as a terminating Machin-like unit-fraction decomposition of the same value",

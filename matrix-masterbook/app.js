@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>MATRIX<em>.</em></h2>'
-      + '<div class="tagline">Original matrices &amp; determinants problems where the array hides a deeper structure — eigenvalues, rank, blocks, traces and counting. Drawn from the rarest corners of olympiad and Putnam linear algebra, each solved several ways.</div>'
+      + '<div class="tagline">Original matrices &amp; determinants problems where the array hides a deeper structure — eigenvalues, rank, blocks, traces and counting. Drawn from the rarest corners of Putnam linear algebra, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')

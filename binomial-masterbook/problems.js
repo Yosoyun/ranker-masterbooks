@@ -2966,7 +2966,7 @@ window.PROBLEMS = [
       "deficit-bound",
       "sharp-estimate"
     ],
-    "remark": "Insight: the gap between $(1+1/n)^n$ and $e$ is not just 'small'—it is precisely $\\sim e/(2n)$, governed by the $-1/(2n)$ term of $\\ln(1+1/n)$. Quantifying convergence rate, not just asserting it, is the olympiad-level demand."
+    "remark": "Insight: the gap between $(1+1/n)^n$ and $e$ is not just 'small'—it is precisely $\\sim e/(2n)$, governed by the $-1/(2n)$ term of $\\ln(1+1/n)$. Quantifying convergence rate, not just asserting it, is the JEE-Advanced-level demand."
   },
   {
     "theme": "approximation",

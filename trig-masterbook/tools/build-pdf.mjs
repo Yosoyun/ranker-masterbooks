@@ -164,7 +164,7 @@ function coverHTML(kind){
       <div><b>3–5</b><span>Difficulty</span></div>
       ${isSol ? `<div><b>${totalMethods}</b><span>Worked Solutions</span></div>` : ''}
     </div>
-    <div class="foot">${PROBLEMS.length} original trigonometry problems where the identity is only half the battle — for the very top of JEE Advanced and the Mathematical Olympiad. ${isSol ? 'Every problem solved more than one way.' : 'Solutions in the companion volume.'}</div>
+    <div class="foot">${PROBLEMS.length} original trigonometry problems where the identity is only half the battle — for the very top of JEE Advanced. ${isSol ? 'Every problem solved more than one way.' : 'Solutions in the companion volume.'}</div>
   </section>`;
 }
 function tocHTML(){
