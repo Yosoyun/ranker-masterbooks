@@ -1,4 +1,4 @@
-/* BINOMIAL THEOREM — The Expansion & Its Coefficients · 100 problems, 10 chapters, Python-verified. */
+/* problems.js — DATA. 100 original binomial-theorem problems for (1+x)ⁿ · The Expansion & Its Coefficients, strictly within the JEE Advanced syllabus (positive integral index): the general term, middle & greatest term, coefficient extraction from finite products, binomial sums via differentiation and integration, the roots-of-unity filter, the multinomial theorem, divisibility & remainders, approximations, and the Vandermonde/hockey-stick/Pascal identities. No binomial series for negative or fractional index, no generalized binomial coefficients, generating functions, Beta/Gamma, Catalan numbers or Stirling. Verified in Python. statement/answer are raw LaTeX (the app auto-detects prose+math); steps use $...$ and $$...$$. */
 window.PROBLEMS = [
   {
     "theme": "genterm",
@@ -744,44 +744,6 @@ window.PROBLEMS = [
   {
     "theme": "coefficients",
     "themeLabel": "Extracting Coefficients",
-    "title": "Five Bounded Buckets",
-    "difficulty": 4,
-    "task": "Determine",
-    "tags": [
-      "bounded",
-      "truncated-geometric",
-      "inclusion-exclusion",
-      "stars-and-bars",
-      "convolution"
-    ],
-    "statement": "Determine the coefficient of $x^{12}$ in $(1+x+x^2+x^3+x^4)^5$.",
-    "answer": "\\[\\boxed{320}\\]",
-    "trap": "Treating each factor as the full geometric series $\\tfrac{1}{1-x}$ and answering $\\binom{12+4}{4}=\\binom{16}{4}=1820$ forgets that each bucket caps at $x^4$; the overflow terms must be subtracted via the $(1-x^5)^5$ numerator.",
-    "solutions": [
-      {
-        "name": "Truncated-series inclusion-exclusion",
-        "steps": [
-          "Write $1+x+\\cdots+x^4=\\dfrac{1-x^5}{1-x}$, so the product is $(1-x^5)^5(1-x)^{-5}$.",
-          "$[x^{12}]=\\sum_{j\\ge0}(-1)^j\\binom{5}{j}\\binom{12-5j+4}{4}$ (only $j=0,1,2$ survive).",
-          "$=\\binom{16}{4}-5\\binom{11}{4}+10\\binom{6}{4}=1820-1650+150$.",
-          "$=320$, hence $\\boxed{320}$."
-        ]
-      },
-      {
-        "name": "Symmetry reduction",
-        "steps": [
-          "Each exponent lies in $\\{0,1,2,3,4\\}$ summing to $12$; substitute $y_i=4-x_i\\in\\{0,\\dots,4\\}$.",
-          "Then $\\sum y_i=20-12=8$, so the count of solutions to $\\sum x_i=12$ equals the count for $\\sum y_i=8$, i.e. $[x^8]$ of the same polynomial.",
-          "Compute $[x^8]=\\binom{12}{4}-5\\binom{7}{4}+10\\binom{2}{4}=495-175+0=320$.",
-          "Both routes give $\\boxed{320}$, confirming the symmetry about the mean exponent $10$."
-        ]
-      }
-    ],
-    "remark": "Insight: a capped repeated factor is $\\tfrac{1-x^{m}}{1-x}$ raised to a power; the $(1-x^m)$ numerator is exactly the inclusion-exclusion bookkeeping for the cap."
-  },
-  {
-    "theme": "coefficients",
-    "themeLabel": "Extracting Coefficients",
     "title": "Vandermonde in Disguise",
     "difficulty": 3,
     "task": "Evaluate",
@@ -820,6 +782,43 @@ window.PROBLEMS = [
   {
     "theme": "coefficients",
     "themeLabel": "Extracting Coefficients",
+    "title": "When a Factor Is Not Just One Plus x",
+    "difficulty": 3,
+    "task": "Coefficient with a constant term",
+    "tags": [
+      "product of binomials",
+      "weighted convolution",
+      "general term",
+      "powers of two"
+    ],
+    "statement": "Find the coefficient of $x^{5}$ in the expansion of $(2+x)^{4}\\,(1+x)^{6}$.",
+    "answer": "$\\boxed{1182}$",
+    "trap": "A common wrong answer is $252$, obtained by mentally collapsing the product to $(1+x)^{4}(1+x)^{6}=(1+x)^{10}$ and reading off $\\binom{10}{5}=252$. But the first factor is $(2+x)^{4}$, not $(1+x)^{4}$, so each term carries a power of $2$ that the shortcut throws away.",
+    "solutions": [
+      {
+        "name": "Weighted convolution",
+        "steps": [
+          "Expand $(2+x)^4=\\sum_{j=0}^{4}\\binom{4}{j}2^{4-j}x^{j}$; to reach $x^5$ we pair $x^{j}$ with the $x^{5-j}$ term of $(1+x)^6$, whose coefficient is $\\binom{6}{5-j}$.",
+          "So the coefficient of $x^5$ is $\\displaystyle\\sum_{j=0}^{4}\\binom{4}{j}2^{4-j}\\binom{6}{5-j}$.",
+          "Terms ($j=0,\\dots,4$): $1\\cdot16\\cdot6=96$; $4\\cdot8\\cdot15=480$; $6\\cdot4\\cdot20=480$; $4\\cdot2\\cdot15=120$; $1\\cdot1\\cdot6=6$.",
+          "Summing: $96+480+480+120+6=1182$, so the coefficient is $\\boxed{1182}$."
+        ]
+      },
+      {
+        "name": "Split off the constant",
+        "steps": [
+          "Write $(2+x)^4=\\big[(1+x)+1\\big]^4=\\sum_{k=0}^{4}\\binom{4}{k}(1+x)^{k}$, so the product is $\\sum_{k=0}^{4}\\binom{4}{k}(1+x)^{6+k}$.",
+          "The coefficient of $x^5$ in $(1+x)^{6+k}$ is $\\binom{6+k}{5}$.",
+          "Thus the answer is $\\sum_{k=0}^{4}\\binom{4}{k}\\binom{6+k}{5}=1\\cdot6+4\\cdot21+6\\cdot56+4\\cdot126+1\\cdot252$.",
+          "This is $6+84+336+504+252=1182$, giving $\\boxed{1182}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A constant other than $1$ inside a binomial factor matters: $(2+x)^4$ injects a factor $2^{4-j}$ into every term. The trap collapses $(2+x)^4$ into $(1+x)^4$ out of habit; writing $(2+x)^4=[(1+x)+1]^4$ both **prevents** that slip and turns the problem into a clean sum of single $\\binom{6+k}{5}$ coefficients."
+  },
+  {
+    "theme": "coefficients",
+    "themeLabel": "Extracting Coefficients",
     "title": "Half a Power of Two",
     "difficulty": 4,
     "task": "Prove that",
@@ -853,7 +852,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: dividing a generating function by $1-x$ converts its coefficients into partial sums, and a symmetric binomial row of even length splits into two equal halves via the reflection $i\\mapsto 2n+1-i$. The pairing is what licenses the halving $\\tfrac12\\cdot2^{2n+1}=4^n$; stating \"half the row\" without the bijection is the gap to avoid."
+    "remark": "Insight: dividing a counting polynomial by $1-x$ converts its coefficients into partial sums, and a symmetric binomial row of even length splits into two equal halves via the reflection $i\\mapsto 2n+1-i$. The pairing is what licenses the halving $\\tfrac12\\cdot2^{2n+1}=4^n$; stating \"half the row\" without the bijection is the gap to avoid."
   },
   {
     "theme": "coefficients",
@@ -896,193 +895,188 @@ window.PROBLEMS = [
   {
     "theme": "coefficients",
     "themeLabel": "Extracting Coefficients",
-    "title": "Numerator Meets Denominator",
+    "title": "Signed Convolution of Two Binomials",
     "difficulty": 4,
-    "task": "Determine",
+    "task": "Find a product coefficient",
     "tags": [
-      "quotient",
-      "negative-binomial",
+      "product of binomials",
       "convolution",
-      "series-multiplication",
-      "binomial"
+      "sign tracking",
+      "general term"
     ],
-    "statement": "Determine the coefficient of $x^5$ in $\\dfrac{(1+x)^4}{(1-x)^3}$.",
-    "answer": "\\[\\boxed{168}\\]",
-    "trap": "Treating $(1-x)^{-3}$ as if it contributed only at low orders, so that only the middle of the convolution survives. In fact $(1-x)^{-3}=\\sum_m\\binom{m+2}{2}x^m$ has a positive coefficient at every order, and the full $[x^5]=\\sum_{i=0}^{4}\\binom{4}{i}\\binom{(5-i)+2}{2}$ must run over all five $i$. Dropping the end terms $i=0$ (value $21$) and $i=4$ (value $3$) yields $60+60+24=144$, undercounting by $24$.",
+    "statement": "Find the coefficient of $x^{4}$ in the expansion of $(1+3x)^{4}\\,(1-x)^{5}$.",
+    "answer": "$\\boxed{-34}$",
+    "trap": "A tempting wrong answer is $1286$, obtained by quietly reading the second factor as $(1+x)^{5}$ and dropping the alternating sign $(-1)^{5-j}$ from $(1-x)^{5}$. Because the surviving terms then all add with the same sign, the genuine cancellation that pulls the total down to $-34$ never happens.",
     "solutions": [
       {
-        "name": "Series convolution",
+        "name": "Cauchy product of the two expansions",
         "steps": [
-          "Expand $(1+x)^4=\\sum_{i=0}^{4}\\binom{4}{i}x^i$ and $(1-x)^{-3}=\\sum_{m\\ge0}\\binom{m+2}{2}x^m$.",
-          "Multiplying, the $x^5$ term collects every split $i+m=5$ with $0\\le i\\le4$, so $[x^5]=\\sum_{i=0}^{4}\\binom{4}{i}\\binom{(5-i)+2}{2}$.",
-          "$=1\\cdot\\binom72+4\\cdot\\binom62+6\\cdot\\binom52+4\\cdot\\binom42+1\\cdot\\binom32=21+60+60+24+3$.",
-          "$=168$, so the coefficient is $\\boxed{168}$."
+          "Write $(1+3x)^4=\\sum_{j}\\binom{4}{j}3^{j}x^{j}$ and $(1-x)^5=\\sum_{i}\\binom{5}{i}(-1)^{i}x^{i}$.",
+          "The coefficient of $x^4$ is $\\displaystyle\\sum_{j=0}^{4}\\binom{4}{j}3^{j}\\binom{5}{4-j}(-1)^{4-j}$.",
+          "Term by term ($j=0,\\dots,4$): $5,\\;-60,\\;270,\\;-540,\\;81$.",
+          "Summing: $5-60+270-540+81=-34$, so the coefficient is $\\boxed{-34}$."
         ]
       },
       {
-        "name": "Collapse to a single signed series",
+        "name": "Multiply low-degree expansions",
         "steps": [
-          "Use $1+x=\\dfrac{1-x^2}{1-x}$, so $(1+x)^4=\\dfrac{(1-x^2)^4}{(1-x)^4}$ and the expression becomes $(1-x^2)^4(1-x)^{-7}$.",
-          "Thus the expression equals $\\sum_{k}\\binom{4}{k}(-1)^k x^{2k}\\cdot\\sum_{m\\ge0}\\binom{m+6}{6}x^m$, and only even $2k\\le5$ (i.e. $k=0,1,2$) can pair with an $x^{5-2k}$ term.",
-          "$[x^5]=\\binom40\\binom{11}{6}-\\binom41\\binom{9}{6}+\\binom42\\binom{7}{6}=462-336+42$.",
-          "$=168$, confirming $\\boxed{168}$."
+          "$(1+3x)^4=1+12x+54x^2+108x^3+81x^4$ and $(1-x)^5=1-5x+10x^2-10x^3+5x^4-\\cdots$.",
+          "Collect the $x^4$ contributions: $1\\cdot5+12\\cdot(-10)+54\\cdot10+108\\cdot(-5)+81\\cdot1$.",
+          "This equals $5-120+540-540+81=-34$.",
+          "Hence the coefficient of $x^4$ is $\\boxed{-34}$."
         ]
       }
     ],
-    "remark": "Insight: a quotient $\\tfrac{(1+x)^a}{(1-x)^b}$ is a finite polynomial times a negative-binomial series, so its coefficients are honest convolutions in which the denominator contributes at every order. Rewriting $(1+x)=\\tfrac{1-x^2}{1-x}$ folds the two factors into one signed negative-binomial extraction, a clean cross-check."
+    "remark": "**Insight.** A product of two finite binomials is a **convolution**: the coefficient of $x^r$ is $\\sum_j a_j b_{r-j}$, and the *signs* inside $(1-x)^5$ are part of the data, not decoration. The trap rewards anyone who tracks magnitudes but forgets that $(-1)^{5-j}$ flips half the terms — exactly the bookkeeping that produces the dramatic drop to $-34$."
   },
   {
     "theme": "coefficients",
     "themeLabel": "Extracting Coefficients",
-    "title": "Shifted Starts",
-    "difficulty": 3,
-    "task": "Find the number of",
+    "title": "A Coefficient Inside a Trinomial Power",
+    "difficulty": 4,
+    "task": "Coefficient in trinomial power",
     "tags": [
-      "shift",
-      "negative-binomial",
-      "stars-and-bars",
-      "factor-out",
-      "combinatorics"
-    ],
-    "statement": "Find the number of integer solutions of $a_1+a_2+a_3+a_4=15$ with every $a_i\\ge 2$, by extracting a coefficient — equivalently, find $[x^{15}](x^2+x^3+x^4+\\cdots)^4$.",
-    "answer": "\\[\\boxed{120}\\]",
-    "trap": "Reading each factor as $\\tfrac{1}{1-x}$ (starting at $x^0$) and answering $\\binom{15+3}{3}=\\binom{18}{3}=816$ ignores the lower bound $a_i\\ge2$: each series starts at $x^2$, so a factor of $x^8$ must be pulled out before applying stars-and-bars.",
-    "solutions": [
-      {
-        "name": "Factor out the minimum",
-        "steps": [
-          "Each factor is $x^2+x^3+\\cdots=\\dfrac{x^2}{1-x}$, so the product is $\\dfrac{x^8}{(1-x)^4}$.",
-          "Then $[x^{15}]\\dfrac{x^8}{(1-x)^4}=[x^{7}](1-x)^{-4}=\\binom{7+3}{3}$.",
-          "$=\\binom{10}{3}=120$.",
-          "Thus there are $\\boxed{120}$ solutions."
-        ]
-      },
-      {
-        "name": "Substitution",
-        "steps": [
-          "Let $b_i=a_i-2\\ge0$; then $b_1+b_2+b_3+b_4=15-8=7$.",
-          "The number of non-negative solutions is $\\binom{7+4-1}{4-1}=\\binom{10}{3}$.",
-          "$=120$.",
-          "Hence $\\boxed{120}$ — identical to factoring out $x^8$ in the generating function."
-        ]
-      }
-    ],
-    "remark": "Insight: a per-variable lower bound becomes a clean factored power $x^{(\\text{sum of mins})}$ in the generating function; the residual extraction is plain stars-and-bars."
-  },
-  {
-    "theme": "coefficients",
-    "themeLabel": "Extracting Coefficients",
-    "title": "Binomial Times Trinomial",
-    "difficulty": 5,
-    "task": "Determine",
-    "tags": [
-      "mixed-product",
+      "multinomial theorem",
       "trinomial",
-      "cyclotomic-factor",
-      "convolution",
-      "inclusion-exclusion"
+      "monomial coefficient",
+      "exponent equations"
     ],
-    "statement": "Determine the coefficient of $x^4$ in $(1+x)^5\\,(1+x+x^2)^3$.",
-    "answer": "\\[\\boxed{136}\\]",
-    "trap": "Convolving only the 'main' pieces — e.g. $\\binom{5}{4}\\cdot[x^0]+\\binom{5}{2}\\cdot[x^2]=15$ — while skipping intermediate splits, or assuming $(1+x+x^2)^3$ contributes like $(1+x)^6$ (which gives $330$); the trinomial's coefficients are $1,3,6,7,6,3,1$, NOT binomial, so every cross split $i+j=4$ with $0\\le i\\le5,\\ 0\\le j\\le6$ matters.",
+    "statement": "Find the coefficient of $x^{4}$ in the expansion of $(1+x+x^{2})^{5}$.",
+    "answer": "$\\boxed{45}$",
+    "trap": "A seductive wrong answer is $10$. It comes from imagining that an $x^{4}$ can only arise as $\\binom{5}{2}$ choices of two $x^{2}$ factors (and three $1$'s), giving $\\binom{5}{2}=10$. This ignores the other ways to reach total degree $4$ — for instance four $x$'s, or one $x^{2}$ and two $x$'s — each carrying its own multinomial weight.",
     "solutions": [
       {
-        "name": "Coefficient lists and convolve",
+        "name": "Multinomial theorem",
         "steps": [
-          "$(1+x)^5$ has coefficients $[1,5,10,10,5,1]$ for $x^0..x^5$.",
-          "$(1+x+x^2)^3$ expands to $[1,3,6,7,6,3,1]$ for $x^0..x^6$.",
-          "$[x^4]=\\sum_{i+j=4}a_i b_j=1\\cdot6+5\\cdot7+10\\cdot6+10\\cdot3+5\\cdot1$ over the pairs $i+j=4$.",
-          "$=6+35+60+30+5=136$, so $\\boxed{136}$."
+          "A general term of $(1+x+x^2)^5$ is $\\dfrac{5!}{a!\\,b!\\,c!}\\,(1)^{a}(x)^{b}(x^{2})^{c}$ with $a+b+c=5$, contributing degree $b+2c$.",
+          "We need $b+2c=4$ together with $a+b+c=5$. The solutions $(a,b,c)$ are $(1,4,0),\\,(2,2,1),\\,(3,0,2)$.",
+          "Their multinomial coefficients are $\\dfrac{5!}{1!4!0!}=5$, $\\dfrac{5!}{2!2!1!}=30$, $\\dfrac{5!}{3!0!2!}=10$.",
+          "Summing: $5+30+10=45$, so the coefficient is $\\boxed{45}$."
         ]
       },
       {
-        "name": "Cyclotomic rewrite",
+        "name": "Factor and convolve",
         "steps": [
-          "Use $1+x+x^2=\\dfrac{1-x^3}{1-x}$, so the product is $(1+x)^5(1-x^3)^3(1-x)^{-3}$.",
-          "Also $(1+x)^5=\\dfrac{(1-x^2)^5}{(1-x)^5}$, giving $(1-x^2)^5(1-x^3)^3(1-x)^{-8}$.",
-          "Convolve $\\sum_k\\binom5k(-1)^kx^{2k}$, $\\sum_l\\binom3l(-1)^lx^{3l}$, and $\\sum_m\\binom{m+7}{7}x^m$; the splits $2k+3l+m=4$ surviving are $(k,l)=(0,0),(0,1),(1,0),(2,0)$, contributing $\\binom{11}{7}-3\\binom{8}{7}-5\\binom{9}{7}+10\\binom{7}{7}$.",
-          "Computing $330-24-180+10=136$, confirming $\\boxed{136}$."
+          "Write $(1+x+x^2)^5=\\big[(1+x)+x^2\\big]^5=\\sum_{c=0}^{5}\\binom{5}{c}x^{2c}(1+x)^{5-c}$.",
+          "To get $x^4$, take $x^{2c}$ times the coefficient of $x^{4-2c}$ in $(1+x)^{5-c}$, i.e. $\\binom{5}{c}\\binom{5-c}{4-2c}$.",
+          "$c=0:\\binom{5}{0}\\binom{5}{4}=5$; $c=1:\\binom{5}{1}\\binom{4}{2}=30$; $c=2:\\binom{5}{2}\\binom{3}{0}=10$ (and $c\\ge3$ would require $x^{4-2c}$ with a negative exponent, contributing $0$).",
+          "Total $5+30+10=45$, giving $\\boxed{45}$."
         ]
       }
     ],
-    "remark": "Insight: when one factor is a trinomial, never assume binomial coefficients — either expand it honestly or convert via $\\tfrac{1-x^3}{1-x}$ into signed cyclotomic numerators over a negative-binomial series. The trap value $330$ is exactly the $(1+x)^6$ mistake, and $15$ is the 'main pieces only' mistake."
+    "remark": "**Insight.** In a power of a trinomial every monomial of the target degree must be counted **with its multinomial weight**, not merely tallied. The trap fixates on the single most visible route ($x^2\\cdot x^2$) and forgets that $(1+x+x^2)^5=[(1+x)+x^2]^5$ exposes *several* routes, each a separate $\\binom{5}{c}\\binom{5-c}{4-2c}$ slice."
   },
   {
     "theme": "coefficients",
     "themeLabel": "Extracting Coefficients",
-    "title": "Two Signed Series Collide",
+    "title": "Six Honest Dice Summing to Twenty-Five",
     "difficulty": 5,
-    "task": "Evaluate",
+    "task": "Count dice outcomes",
     "tags": [
-      "quotient",
-      "alternating",
-      "negative-binomial",
-      "convolution",
-      "partial-fractions"
+      "finite polynomial",
+      "inclusion exclusion",
+      "bounded buckets",
+      "coefficient counting"
     ],
-    "statement": "Evaluate the coefficient of $x^4$ in $\\dfrac{1}{(1-x)^2(1+x)^3}$.",
-    "answer": "\\[\\boxed{6}\\]",
-    "trap": "Reading $(1+x)^{-3}$ with all $+$ signs (as if it were $(1-x)^{-3}$). Its true coefficients alternate as $\\binom{m+2}{2}(-1)^m$. Dropping that alternation turns the convolution $1\\cdot15-2\\cdot10+3\\cdot6-4\\cdot3+5\\cdot1$ into $1\\cdot15+2\\cdot10+3\\cdot6+4\\cdot3+5\\cdot1=70$. The alternating signs are exactly what collapse the answer from the bloated $70$ down to $6$.",
+    "statement": "Six ordinary six-faced dice are rolled. The number of ordered outcomes whose face-sum equals $25$ is the coefficient of $x^{25}$ in the finite polynomial $\\big(x+x^{2}+x^{3}+x^{4}+x^{5}+x^{6}\\big)^{6}$. Find that coefficient.",
+    "answer": "$\\boxed{2856}$",
+    "trap": "A tempting wrong answer is $\\binom{24}{5}=42504$, obtained by dropping the upper face limit and counting all ways to write $25$ as an ordered sum of six positive integers (each $\\ge1$ with no ceiling). That over-counts wildly because it admits a die showing $7,8,\\dots$; the cap of $6$ per die must be enforced by inclusion–exclusion.",
     "solutions": [
       {
-        "name": "Signed convolution",
+        "name": "Inclusion–exclusion on the cap",
         "steps": [
-          "Expand each factor as a negative-binomial series: $(1-x)^{-2}=\\sum_{i\\ge0}(i+1)x^i$ and $(1+x)^{-3}=\\sum_{j\\ge0}\\binom{j+2}{2}(-1)^j x^j$.",
-          "The product's $x^4$ coefficient is the convolution $[x^4]=\\sum_{i=0}^{4}(i+1)\\binom{(4-i)+2}{2}(-1)^{4-i}$.",
-          "Tabulating $i=0,\\dots,4$: $1\\cdot15-2\\cdot10+3\\cdot6-4\\cdot3+5\\cdot1=15-20+18-12+5$.",
-          "$=6$, hence $\\boxed{6}$. Every term after the leading $15$ matters; the signs are doing the real work."
+          "Factor $x+\\cdots+x^6=x(1+x+\\cdots+x^5)$, so $(x+\\cdots+x^6)^6=x^{6}(1+x+\\cdots+x^5)^{6}$; we need the coefficient of $x^{19}$ in $(1+x+\\cdots+x^5)^{6}$.",
+          "This counts solutions of $y_1+\\cdots+y_6=19$ with each $0\\le y_i\\le5$. By inclusion–exclusion the count is $\\displaystyle\\sum_{k\\ge0}(-1)^{k}\\binom{6}{k}\\binom{19-6k+5}{5}$, dropping a term once $19-6k<0$.",
+          "$k=0:\\binom{24}{5}=42504$; $k=1:-\\binom{6}{1}\\binom{18}{5}=-6\\cdot8568=-51408$; $k=2:\\binom{6}{2}\\binom{12}{5}=15\\cdot792=11880$; $k=3:-\\binom{6}{3}\\binom{6}{5}=-20\\cdot6=-120$.",
+          "Summing: $42504-51408+11880-120=2856$, so the coefficient is $\\boxed{2856}$."
         ]
       },
       {
-        "name": "Partial fractions",
+        "name": "Symmetry to a smaller target",
         "steps": [
-          "Write $\\dfrac{1}{(1-x)^2(1+x)^3}=\\dfrac{A}{1-x}+\\dfrac{B}{(1-x)^2}+\\dfrac{C}{1+x}+\\dfrac{D}{(1+x)^2}+\\dfrac{E}{(1+x)^3}$.",
-          "Cover-up at $x=1$ gives $B=\\tfrac18$; cover-up at $x=-1$ gives $E=\\tfrac14$. Matching the remaining coefficients yields $A=\\tfrac{3}{16},\\ C=\\tfrac{3}{16},\\ D=\\tfrac14$.",
-          "Read off the $x^4$ coefficient of each simple series: $(1-x)^{-1}\\to1$, $(1-x)^{-2}\\to 5$, $(1+x)^{-1}\\to(-1)^4=1$, $(1+x)^{-2}\\to(4+1)(-1)^4=5$, $(1+x)^{-3}\\to\\binom{6}{2}(-1)^4=15$.",
-          "So $[x^4]=\\tfrac{3}{16}\\cdot1+\\tfrac18\\cdot5+\\tfrac{3}{16}\\cdot1+\\tfrac14\\cdot5+\\tfrac14\\cdot15=\\tfrac{3}{16}+\\tfrac58+\\tfrac{3}{16}+\\tfrac54+\\tfrac{15}{4}$.",
-          "Over denominator $16$: $3+10+3+20+60=96$, and $\\tfrac{96}{16}=6$, hence $\\boxed{6}$ — in agreement with the signed convolution."
+          "Replacing each face $f_i$ by $7-f_i$ is a bijection on outcomes that turns a sum of $25$ into a sum of $6\\cdot7-25=17$.",
+          "So the count for sum $25$ equals the count for sum $17$, i.e. the coefficient of $x^{17}$ in $(x+\\cdots+x^6)^6$, or of $x^{11}$ in $(1+\\cdots+x^5)^6$.",
+          "Inclusion–exclusion: $\\binom{16}{5}-\\binom{6}{1}\\binom{10}{5}+\\binom{6}{2}\\binom{4}{5}=4368-6\\cdot252+0=4368-1512$.",
+          "This equals $2856$, confirming the coefficient is $\\boxed{2856}$."
         ]
       }
     ],
-    "remark": "Insight: $(1+x)^{-k}$ and $(1-x)^{-k}$ differ only by an alternating factor $(-1)^m$ in their coefficients. In a quotient that mixes both, the sign pattern is the entire mechanism — track it explicitly, because ignoring it inflates a tame $6$ all the way up to $70$."
+    "remark": "**Insight.** Dice-sum counts are coefficients of a **finite** polynomial $(x+\\cdots+x^6)^6$; the face ceiling is the whole subtlety. Removing the cap gives the slick $\\binom{24}{5}$ but counts impossible rolls — the corrective \\textbf{inclusion–exclusion} terms $\\binom{6}{k}\\binom{19-6k+5}{5}$ subtract exactly the outcomes where some die exceeds $6$. The $f_i\\mapsto7-f_i$ symmetry offers a one-line sanity check."
   },
   {
     "theme": "coefficients",
     "themeLabel": "Extracting Coefficients",
-    "title": "Four Loaded Dice",
+    "title": "The Difference of Squares Disguise",
     "difficulty": 5,
-    "task": "Find the number of",
+    "task": "Coefficient using a factorisation",
     "tags": [
-      "dice",
-      "bounded",
+      "product of binomials",
+      "difference of squares",
+      "convolution",
+      "sign tracking"
+    ],
+    "statement": "Find the coefficient of $x^{6}$ in the expansion of $(1-x^{2})^{5}\\,(1+x)^{8}$.",
+    "answer": "$\\boxed{-52}$",
+    "trap": "A tempting wrong answer is $668$, obtained by reading $(1-x^{2})^{5}$ as if its terms were $\\binom{5}{j}x^{2j}$ with all $+$ signs (i.e. mistaking it for $(1+x^{2})^{5}$). Restoring the genuine signs $(-1)^{j}$ flips three of the four contributing terms, dragging the total from $668$ down to $-52$.",
+    "solutions": [
+      {
+        "name": "Expand the even factor and convolve",
+        "steps": [
+          "Write $(1-x^2)^5=\\sum_{j=0}^{5}\\binom{5}{j}(-1)^{j}x^{2j}$, so the coefficient of $x^6$ is $\\displaystyle\\sum_{j}\\binom{5}{j}(-1)^{j}\\binom{8}{6-2j}$.",
+          "Only $j=0,1,2,3$ keep $6-2j\\ge0$: $\\binom{8}{6}-\\binom{5}{1}\\binom{8}{4}+\\binom{5}{2}\\binom{8}{2}-\\binom{5}{3}\\binom{8}{0}$.",
+          "This is $28-5\\cdot70+10\\cdot28-10\\cdot1=28-350+280-10$.",
+          "Summing gives $-52$, so the coefficient is $\\boxed{-52}$."
+        ]
+      },
+      {
+        "name": "Difference of squares factorisation",
+        "steps": [
+          "Since $1-x^2=(1-x)(1+x)$, we have $(1-x^2)^5(1+x)^8=(1-x)^5(1+x)^{13}$.",
+          "The coefficient of $x^6$ is $\\displaystyle\\sum_{i=0}^{5}\\binom{5}{i}(-1)^{i}\\binom{13}{6-i}$.",
+          "Terms $i=0,\\dots,5$: $1716,\\,-5\\cdot1287=-6435,\\,10\\cdot715=7150,\\,-10\\cdot286=-2860,\\,5\\cdot78=390,\\,-1\\cdot13=-13$.",
+          "Summing: $1716-6435+7150-2860+390-13=-52$, giving $\\boxed{-52}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Spotting that $1-x^2=(1-x)(1+x)$ converts a mixed product into the single pencil $(1-x)^5(1+x)^{13}$, where the coefficient is one clean alternating convolution. The trap punishes anyone who treats $(1-x^2)^5$ as sign-free: the $(-1)^j$ is the engine of cancellation, and \\emph{losing it} replaces $-52$ with a spuriously large positive $668$."
+  },
+  {
+    "theme": "coefficients",
+    "themeLabel": "Extracting Coefficients",
+    "title": "Four Dice Summing to Seventeen",
+    "difficulty": 5,
+    "task": "Find the number of ordered outcomes of four ordinary dice showing a total of 17, by extracting the coefficient of $x^{17}$ in a finite polynomial power.",
+    "tags": [
+      "coefficient extraction",
+      "stars and bars",
       "inclusion-exclusion",
-      "truncated-series",
-      "convolution"
+      "bounded compositions",
+      "polynomial power"
     ],
-    "statement": "Find the number of ways four ordinary six-sided dice (faces $1$ through $6$) can show a total of $17$ — equivalently, find $[x^{17}](x+x^2+x^3+x^4+x^5+x^6)^4$.",
-    "answer": "\\[\\boxed{104}\\]",
-    "trap": "After substituting $y_i=a_i-1$ to get $\\sum y_i=13$ with $0\\le y_i\\le5$, applying plain stars-and-bars $\\binom{13+3}{3}=\\binom{16}{3}=560$ and forgetting the upper cap $y_i\\le5$; the cases where some $y_i\\ge6$ must be subtracted by inclusion-exclusion with the $(1-x^6)^4$ numerator.",
+    "statement": "Four ordinary six-sided dice (each face showing $1,2,3,4,5$ or $6$) are rolled and we record the ordered quadruple of faces. The number of such ordered outcomes whose four faces sum to a total $T$ equals the coefficient of $x^{T}$ in the finite polynomial $\\bigl(x+x^{2}+x^{3}+x^{4}+x^{5}+x^{6}\\bigr)^{4}$. Determine this coefficient for $T=17$; that is, count the ordered quadruples $(d_1,d_2,d_3,d_4)$ with each $d_i\\in\\{1,\\dots,6\\}$ and $d_1+d_2+d_3+d_4=17$.",
+    "answer": "$\\boxed{104}$",
+    "trap": "Substituting $a_i=d_i-1$ to get $a_1+\\cdots+a_4=13$ and then applying stars and bars as $\\binom{13+3}{3}=\\binom{16}{3}=560$ — this silently allows faces above $6$ (i.e. $a_i>5$) and counts impossible dice. The upper bound $a_i\\le 5$ must be enforced by inclusion-exclusion, which removes the over-counted cases and brings $560$ down to the true value $104$.",
     "solutions": [
       {
-        "name": "Truncated generating function",
+        "name": "Shift, then inclusion-exclusion on the upper bound",
         "steps": [
-          "Factor $x+\\cdots+x^6=x\\cdot\\dfrac{1-x^6}{1-x}$, so the product is $x^4(1-x^6)^4(1-x)^{-4}$.",
-          "$[x^{17}]=[x^{13}](1-x^6)^4(1-x)^{-4}=\\sum_{j}(-1)^j\\binom{4}{j}\\binom{13-6j+3}{3}$.",
-          "Only $j=0,1,2$ survive: $\\binom{16}{3}-4\\binom{10}{3}+6\\binom{4}{3}=560-480+24$.",
-          "$=104$, so there are $\\boxed{104}$ ways."
+          "The required count is the coefficient of $x^{17}$ in $(x+x^2+\\cdots+x^6)^4$. Factor out $x$ from each bracket: $(x+\\cdots+x^6)^4 = x^4\\,(1+x+x^2+x^3+x^4+x^5)^4$, so the coefficient of $x^{17}$ here equals the coefficient of $x^{13}$ in $(1+x+\\cdots+x^5)^4$.",
+          "That coefficient counts integer solutions of $a_1+a_2+a_3+a_4=13$ with $0\\le a_i\\le 5$ (here $a_i=d_i-1$). Without the upper bound, the number of non-negative solutions is given by stars and bars: $\\binom{13+4-1}{4-1}=\\binom{16}{3}=560$.",
+          "Now subtract solutions that violate $a_i\\le 5$. If $a_i\\ge 6$, write $a_i=b_i+6$; choosing which $j$ of the four variables exceed the bound and substituting reduces the target to $13-6j$, giving $\\binom{(13-6j)+3}{3}$ solutions for each of the $\\binom{4}{j}$ choices. By inclusion-exclusion the count is $\\sum_{j\\ge 0}(-1)^j\\binom{4}{j}\\binom{13-6j+3}{3}=\\sum_j(-1)^j\\binom{4}{j}\\binom{16-6j}{3}$.",
+          "Only $j=0,1,2$ contribute (for $j=3$ the top index $16-18=-2<3$ vanishes): $\\binom{4}{0}\\binom{16}{3}-\\binom{4}{1}\\binom{10}{3}+\\binom{4}{2}\\binom{4}{3}=560-4\\cdot120+6\\cdot4=560-480+24=104$. Hence the coefficient of $x^{17}$ is $\\boxed{104}$."
         ]
       },
       {
-        "name": "Symmetry about the mean",
+        "name": "Symmetry reduction to a smaller total",
         "steps": [
-          "The total of four dice ranges $4$ to $24$, symmetric about $14$; the count for sum $17$ equals the count for sum $28-17=11$.",
-          "Compute $[x^{11}]$: with $y_i=a_i-1$, $\\sum y_i=7$, all caps $\\le5$ inactive at this size, so $\\binom{7+3}{3}=\\binom{10}{3}=120$, minus the single capped case $\\binom{4}{1}\\binom{(7-6)+3}{3}=4\\binom43=16$.",
-          "$=120-16=104$.",
-          "Both the symmetric image and the direct extraction give $\\boxed{104}$."
+          "The faces run from $1$ to $6$, so replacing each die by $7-d_i$ is a bijection on outcomes and sends a total $T$ to $4\\cdot 7-T=28-T$. Thus the number of quadruples summing to $17$ equals the number summing to $28-17=11$, a smaller and easier total.",
+          "Count solutions of $d_1+\\cdots+d_4=11$ with $1\\le d_i\\le 6$. Put $a_i=d_i-1\\ge 0$ so $a_1+\\cdots+a_4=7$ with $0\\le a_i\\le 5$. Since $7<2\\cdot 6$, at most one variable can reach $6$ or more, so inclusion-exclusion has only two terms.",
+          "Unbounded stars and bars gives $\\binom{7+3}{3}=\\binom{10}{3}=120$; subtract the cases with some $a_i\\ge 6$: choosing that variable ($\\binom{4}{1}$ ways) and substituting leaves $a_1+\\cdots+a_4=1$ with $\\binom{1+3}{3}=\\binom{4}{3}=4$ solutions. So the count is $120-4\\cdot4=120-16=104$.",
+          "By the symmetry bijection, the total-$17$ count equals this, giving the coefficient of $x^{17}$ as $\\boxed{104}$."
         ]
       }
     ],
-    "remark": "Insight: dice-sum problems are bounded compositions; the truncated factor $\\tfrac{x(1-x^6)}{1-x}$ encodes both the start at $1$ and the cap at $6$, and the distribution's symmetry about the mean total halves the work."
+    "remark": "**Insight.** Extracting a coefficient from a finite power of a polynomial is exactly a bounded counting problem: shifting strips the constant term so that stars and bars applies, and the face-cap $a_i\\le 5$ is enforced purely by inclusion-exclusion on a finite set — no infinite expansion is ever needed. The $7-d$ reflection that maps total $17$ to total $11$ mirrors the palindromic symmetry of the coefficients of $(x+\\cdots+x^6)^4$, and choosing the smaller total cuts the inclusion-exclusion from three terms to two."
   },
   {
     "theme": "sumsdiff",
@@ -1193,15 +1187,6 @@ window.PROBLEMS = [
         ]
       },
       {
-        "name": "Beta function",
-        "steps": [
-          "The sum equals $\\int_0^1 (1-x)^n\\,dx = B(1,n+1)$.",
-          "By the Beta–Gamma identity $B(1,n+1)=\\frac{\\Gamma(1)\\Gamma(n+1)}{\\Gamma(n+2)}=\\frac{n!}{(n+1)!}$.",
-          "This simplifies to $\\frac{1}{n+1}$.",
-          "Hence the alternating sum is $\\boxed{\\dfrac{1}{n+1}}$."
-        ]
-      },
-      {
         "name": "Absorption + alternating row",
         "steps": [
           "Write $\\frac{(-1)^k}{k+1}\\binom{n}{k}=\\frac{(-1)^k}{n+1}\\binom{n+1}{k+1}$.",
@@ -1257,7 +1242,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: $\\left(x\\frac{d}{dx}\\right)^m$ generates $\\sum k^m\\binom{n}{k}x^k$ — but plain double differentiation produces the falling factorial $k(k-1)$, not $k^2$. The gap between falling factorials and ordinary powers is precisely the Stirling-number correction that a careless solver pays as a hidden tax."
+    "remark": "Insight: $\\left(x\\frac{d}{dx}\\right)^m$ generates $\\sum k^m\\binom{n}{k}x^k$ — but plain double differentiation produces the falling factorial $k(k-1)$, not $k^2$. The gap between falling factorials and ordinary powers is exactly what the split $k^2=k(k-1)+k$ accounts for."
   },
   {
     "theme": "sumsdiff",
@@ -1267,7 +1252,7 @@ window.PROBLEMS = [
     "task": "Evaluate",
     "tags": [
       "integration",
-      "beta-function",
+      "integral form",
       "alternating-sum",
       "weight-x"
     ],
@@ -1303,7 +1288,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: an extra polynomial weight inside the integral shifts the denominator. Each factor of $x$ you multiply before integrating raises $\\frac{1}{k+1}$ to $\\frac{1}{k+2}$, $\\frac{1}{k+3}$, and so on, since $\\int_0^1 x^{m}\\,(1-x)^n\\,dx=B(m+1,n+1)$. The Beta function $B(a,n+1)$ is the master formula behind every such 'weighted' binomial sum, and the purely-algebraic Method 3 confirms it without calculus."
+    "remark": "Insight: an extra polynomial weight inside the integral shifts the denominator. Each factor of $x$ you multiply before integrating raises $\\frac{1}{k+1}$ to $\\frac{1}{k+2}$, $\\frac{1}{k+3}$, and so on, since $\\int_0^1 x^{m}(1-x)^n\\,dx=\\frac{m!\\,n!}{(m+n+1)!}$, evaluated directly by repeated integration by parts."
   },
   {
     "theme": "sumsdiff",
@@ -1458,7 +1443,7 @@ window.PROBLEMS = [
     ],
     "statement": "Evaluate the closed form, in terms of factorials, of \\[S=\\sum_{k=0}^{n}\\frac{(-1)^{k}}{2k+1}\\binom{n}{k}.\\]",
     "answer": "\\[\\boxed{\\dfrac{4^{\\,n}\\,(n!)^{2}}{(2n+1)!}}\\]",
-    "trap": "The denominator $2k+1$ signals an integral of $x^{2k}$, i.e. $\\int_0^1 x^{2k}\\,dx=\\frac{1}{2k+1}$, so the generating function is $(1-x^2)^n$, NOT $(1-x)^n$. Students who integrate $(1-x)^n$ and then try to force a $2k+1$ denominator land on the WRONG alternating sum $\\sum_{k=0}^n\\frac{(-1)^k}{k+1}\\binom{n}{k}=\\frac{1}{n+1}$, missing the Wallis/Beta structure entirely. (Numerically the true value is $\\tfrac23,\\tfrac{8}{15},\\tfrac{16}{35},\\dots$ for $n=1,2,3$, never $\\tfrac1{n+1}$.)",
+    "trap": "The denominator $2k+1$ signals an integral of $x^{2k}$, i.e. $\\int_0^1 x^{2k}\\,dx=\\frac{1}{2k+1}$, so the counting polynomial is $(1-x^2)^n$, NOT $(1-x)^n$. Students who integrate $(1-x)^n$ and then try to force a $2k+1$ denominator land on the WRONG alternating sum $\\sum_{k=0}^n\\frac{(-1)^k}{k+1}\\binom{n}{k}=\\frac{1}{n+1}$, missing the Wallis/Beta structure entirely. (Numerically the true value is $\\tfrac23,\\tfrac{8}{15},\\tfrac{16}{35},\\dots$ for $n=1,2,3$, never $\\tfrac1{n+1}$.)",
     "solutions": [
       {
         "name": "Integrate $(1-x^2)^n$",
@@ -1467,15 +1452,6 @@ window.PROBLEMS = [
           "Integrate over $[0,1]$ term by term, using $\\int_0^1 x^{2k}\\,dx=\\frac{1}{2k+1}$, so the result is exactly $S$.",
           "Evaluate the left side with $x=\\sin\\theta$: $\\int_0^1(1-x^2)^n\\,dx=\\int_0^{\\pi/2}\\cos^{2n+1}\\theta\\,d\\theta=\\frac{(2n)!!}{(2n+1)!!}=\\frac{4^n(n!)^2}{(2n+1)!}$.",
           "Therefore $S=\\boxed{\\dfrac{4^n(n!)^2}{(2n+1)!}}$."
-        ]
-      },
-      {
-        "name": "Beta function",
-        "steps": [
-          "Substitute $u=x^2$ in $S=\\int_0^1(1-x^2)^n\\,dx$ to get $\\frac12\\int_0^1 u^{-1/2}(1-u)^n\\,du=\\frac12 B\\!\\left(\\tfrac12,n+1\\right)$.",
-          "Then $\\frac12 B\\!\\left(\\tfrac12,n+1\\right)=\\frac12\\,\\frac{\\Gamma(\\tfrac12)\\,\\Gamma(n+1)}{\\Gamma(n+\\tfrac32)}=\\frac{\\sqrt\\pi\\,n!}{2\\,\\Gamma(n+\\tfrac32)}$.",
-          "Use $\\Gamma\\!\\left(n+\\tfrac32\\right)=\\dfrac{(2n+1)!\\,\\sqrt\\pi}{4^n\\,n!\\,\\cdot 2}$ to collapse the quotient to $\\frac{4^n(n!)^2}{(2n+1)!}$.",
-          "Hence $S=\\boxed{\\dfrac{4^n(n!)^2}{(2n+1)!}}$."
         ]
       },
       {
@@ -1516,7 +1492,7 @@ window.PROBLEMS = [
         ]
       },
       {
-        "name": "Single integral of the differentiated generating function",
+        "name": "Single integral of the differentiated counting polynomial",
         "steps": [
           "Differentiation step: form $g(x)=\\sum_{k=0}^n k\\binom{n}{k}x^k=nx(1+x)^{n-1}$, obtained from $\\sum_k\\binom{n}{k}x^k=(1+x)^n$ by applying $x\\frac{d}{dx}$.",
           "Integration step: since $\\int_0^1 x^k\\,dx=\\frac{1}{k+1}$, integrating $g$ over $[0,1]$ attaches exactly the missing factor: $\\int_0^1 g(x)\\,dx=\\sum_k k\\binom{n}{k}\\int_0^1 x^k\\,dx=\\sum_k\\frac{k}{k+1}\\binom{n}{k}=S$. (Do NOT divide by $x$ first — that would cancel to weight $\\frac{k}{k}=1$.)",
@@ -1674,7 +1650,7 @@ window.PROBLEMS = [
         ]
       },
       {
-        "name": "Fourth-root-of-unity filter on a shifted generating function",
+        "name": "Fourth-root-of-unity filter on a shifted counting polynomial",
         "steps": [
           "The odd-index extractor uses $\\omega=\\pm1$: $\\sum_j\\binom{n}{2j+1}x^{2j+1}=\\frac12\\big[(1+x)^n-(1-x)^n\\big]$, valid as a polynomial identity in $x$.",
           "We need the *signed* sum $\\sum_j(-1)^j\\binom{n}{2j+1}$. Since $(-1)^j=(i^2)^j$ and the running power is $x^{2j+1}$, choosing $x=i$ makes $x^{2j+1}=i^{2j+1}=(-1)^j i$, so $\\frac1i\\sum_j\\binom{n}{2j+1}i^{2j+1}=\\sum_j(-1)^j\\binom{n}{2j+1}=U$.",
@@ -1733,10 +1709,10 @@ window.PROBLEMS = [
     "tags": [
       "roots of unity",
       "probability",
-      "generating function",
+      "counting polynomial",
       "modular"
     ],
-    "statement": "A fair six-sided die (faces $1$–$6$) is rolled three times. Using the fifth roots of unity to filter the generating function $f(x)=x+x^2+x^3+x^4+x^5+x^6$, find the probability that the sum of the three rolls is divisible by $5$.",
+    "statement": "A fair six-sided die (faces $1$–$6$) is rolled three times. Using the fifth roots of unity to filter the counting polynomial $f(x)=x+x^2+x^3+x^4+x^5+x^6$, find the probability that the sum of the three rolls is divisible by $5$.",
     "answer": "$\\dfrac{43}{216}$",
     "trap": "Assuming the probability is exactly $\\frac15$ 'because sums mod $5$ are equidistributed.' The die's faces cover residues $\\{0,1,1,2,3,4\\}\\pmod5$ unevenly (residue $1$ appears twice), so $f(\\zeta)\\ne0$ for primitive $\\zeta$, breaking the symmetry that would force $\\frac15$.",
     "solutions": [
@@ -1991,41 +1967,6 @@ window.PROBLEMS = [
   {
     "theme": "multinomial",
     "themeLabel": "The Multinomial Theorem",
-    "title": "The Truncated Geometric Engine",
-    "difficulty": 4,
-    "task": "Determine",
-    "tags": [
-      "generating function",
-      "capped exponents",
-      "inclusion-exclusion",
-      "coefficient extraction"
-    ],
-    "statement": "Determine the coefficient of $x^6$ in the expansion of $\\left(1+x+x^2+x^3\\right)^5$.",
-    "answer": "$\\boxed{135}$",
-    "trap": "Treating $(1+x+x^2+x^3)^5$ as if it were $(1+x+x^2+\\cdots)^5$ and answering $\\binom{6+4}{4}=210$ — this ignores the cap $x^3$ per factor. The exponents are capped at 3, so the unbounded stars-and-bars count must be corrected by inclusion–exclusion for blocks exceeding 3.",
-    "solutions": [
-      {
-        "name": "Capped composition count",
-        "steps": [
-          "The coefficient of $x^6$ in $(1+x+x^2+x^3)^5$ is the number of integer solutions of $e_1+\\cdots+e_5=6$ with each $0\\le e_i\\le 3$.",
-          "By inclusion–exclusion: unbounded count $\\binom{6+4}{4}=210$; subtract cases where some $e_i\\ge 4$ (set $e_i'=e_i-4$): $\\binom{5}{1}\\binom{(6-4)+4}{4}=5\\cdot\\binom{6}{4}=5\\cdot15=75$.",
-          "No two variables can both exceed 3 (that needs $\\ge 8>6$), so the answer is $210-75=\\boxed{135}$."
-        ]
-      },
-      {
-        "name": "Factor as geometric ratio",
-        "steps": [
-          "Write $1+x+x^2+x^3=\\dfrac{1-x^4}{1-x}$, so the expression is $(1-x^4)^5(1-x)^{-5}$.",
-          "$(1-x^4)^5=\\sum_j\\binom{5}{j}(-1)^j x^{4j}$ and $(1-x)^{-5}=\\sum_m\\binom{m+4}{4}x^m$. The $x^6$ coefficient takes $j=0$ (so $m=6$) and $j=1$ (so $m=2$).",
-          "Coefficient $=\\binom{10}{4}-5\\binom{6}{4}=210-75=\\boxed{135}$."
-        ]
-      }
-    ],
-    "remark": "Insight: $1+x+\\cdots+x^m=\\frac{1-x^{m+1}}{1-x}$ converts any 'capped' multinomial into a tidy $(1-x^{m+1})^n(1-x)^{-n}$, turning a counting problem into clean binomial bookkeeping."
-  },
-  {
-    "theme": "multinomial",
-    "themeLabel": "The Multinomial Theorem",
     "title": "The Most Crowded Term",
     "difficulty": 4,
     "task": "Find",
@@ -2096,6 +2037,119 @@ window.PROBLEMS = [
   {
     "theme": "multinomial",
     "themeLabel": "The Multinomial Theorem",
+    "title": "No Variable Left Behind",
+    "difficulty": 4,
+    "task": "Find the number of",
+    "tags": [
+      "distinct terms",
+      "positive exponents",
+      "divisibility",
+      "stars and bars"
+    ],
+    "statement": "Find the number of distinct terms in the expansion of $(x+y+z)^{10}$ that are divisible by $xyz$ — that is, in which all three of $x,y,z$ appear with exponent at least $1$.",
+    "answer": "$\\boxed{36}$",
+    "trap": "Computing the total term count $\\binom{12}{2}=66$ and forgetting to remove the terms missing a variable, or subtracting only the three 'single-variable' terms $x^{10},y^{10},z^{10}$ (giving $63$) while overlooking the many terms where exactly one variable is absent. The constraint $a,b,c\\ge 1$ is a positive-solution count $\\binom{n-1}{2}$, not the unrestricted $\\binom{n+2}{2}$ minus three.",
+    "solutions": [
+      {
+        "name": "Positive stars and bars",
+        "steps": [
+          "Terms divisible by $xyz$ have exponents $(a,b,c)$ with $a,b,c\\ge 1$ and $a+b+c=10$.",
+          "Substitute $a'=a-1,b'=b-1,c'=c-1\\ge 0$ with $a'+b'+c'=7$; the count is $\\binom{7+2}{2}=\\binom{9}{2}$.",
+          "$\\binom{9}{2}=36$, so $\\boxed{36}$ terms are divisible by $xyz$."
+        ]
+      },
+      {
+        "name": "Inclusion-exclusion from the total",
+        "steps": [
+          "Total distinct terms: $\\binom{12}{2}=66$. Subtract those missing at least one variable.",
+          "Terms with $a=0$ (and $b+c=10$) number $11$; same for $b=0$ and $c=0$: $3\\cdot11=33$. Terms missing two variables (e.g. $x^{10}$) were subtracted twice; there are $3$ of them, add back $3$.",
+          "Divisible-by-$xyz$ count $=66-33+3=\\boxed{36}$, matching $\\binom{9}{2}$."
+        ]
+      }
+    ],
+    "remark": "Insight: 'every variable present' converts unrestricted stars-and-bars $\\binom{n+k-1}{k-1}$ into the positive-solution count $\\binom{n-1}{k-1}$ — a one-line substitution that inclusion–exclusion also confirms, catching the subtle overcount of doubly-absent variables."
+  },
+  {
+    "theme": "multinomial",
+    "themeLabel": "The Multinomial Theorem",
+    "title": "Capped Dice Sum by Inclusion Exclusion",
+    "difficulty": 4,
+    "task": "Find the coefficient of a power in a capped polynomial power, then justify it by counting bounded integer solutions.",
+    "tags": [
+      "multinomial theorem",
+      "stars and bars",
+      "inclusion-exclusion",
+      "bounded compositions",
+      "coefficient extraction"
+    ],
+    "statement": "Five identical four-faced dice are tossed; each die shows a value in $\\{0,1,2,3\\}$. Equivalently, consider the polynomial $\\left(1+x+x^{2}+x^{3}\\right)^{5}$. Determine the coefficient of $x^{8}$ in its expansion, i.e. the number of ordered tuples $(a_1,a_2,a_3,a_4,a_5)$ with each $a_i\\in\\{0,1,2,3\\}$ and $a_1+a_2+a_3+a_4+a_5=8$.",
+    "answer": "$\\boxed{155}$",
+    "trap": "Treating the five exponents as unrestricted non-negative integers and quoting the plain stars-and-bars count $\\binom{8+4}{4}=\\binom{12}{4}=495$. This ignores the upper bound $a_i\\le 3$: every tuple in which some $a_i\\ge 4$ is illegal and must be removed by inclusion-exclusion, dropping the count from $495$ to $155$.",
+    "solutions": [
+      {
+        "name": "Inclusion-exclusion on the cap",
+        "steps": [
+          "We count tuples with $a_1+\\cdots+a_5=8$ and $0\\le a_i\\le 3$. Drop the upper bound first: the number of non-negative integer solutions of $a_1+\\cdots+a_5=8$ is, by stars and bars, $\\binom{8+5-1}{5-1}=\\binom{12}{4}=495$.",
+          "Now subtract the bad solutions. Say variable $i$ is 'over' if $a_i\\ge 4$. If $a_i\\ge4$, substitute $a_i=b_i+4$ with $b_i\\ge0$; the equation becomes $b_i+\\sum_{k\\ne i}a_k=8-4=4$, giving $\\binom{4+4}{4}=\\binom{8}{4}=70$ solutions. There are $\\binom{5}{1}=5$ choices of which variable is over.",
+          "If two variables are each $\\ge4$, the remaining sum is $8-8=0$, giving $\\binom{0+4}{4}=\\binom{4}{4}=1$ solution, with $\\binom{5}{2}=10$ choices of the pair. Three or more over-variables would need a sum $\\ge 12>8$, so those terms vanish.",
+          "By inclusion-exclusion the count is $\\binom{5}{0}\\binom{12}{4}-\\binom{5}{1}\\binom{8}{4}+\\binom{5}{2}\\binom{4}{4}=495-5\\cdot70+10\\cdot1=495-350+10=155$, so the coefficient of $x^{8}$ is $\\boxed{155}$."
+        ]
+      },
+      {
+        "name": "Symmetry plus direct partition count",
+        "steps": [
+          "The polynomial $\\left(1+x+x^2+x^3\\right)^5$ has degree $15$ and palindromic coefficients, since replacing each $a_i$ by $3-a_i$ is a bijection sending sum $8$ to sum $15-8=7$; hence $[x^8]=[x^7]$. We instead just enumerate the compositions of $8$ into five parts each in $\\{0,1,2,3\\}$ by their multiset of part-values.",
+          "List the unordered part-multisets summing to $8$ using five parts from $\\{0,1,2,3\\}$ and count their ordered arrangements $\\frac{5!}{(\\text{multiplicities})!}$: $\\{3,3,2,0,0\\}\\!:\\!\\tfrac{5!}{2!1!2!}=30$; $\\{3,3,1,1,0\\}\\!:\\!\\tfrac{5!}{2!2!1!}=30$; $\\{3,2,2,1,0\\}\\!:\\!\\tfrac{5!}{1!2!1!1!}=60$; $\\{2,2,2,2,0\\}\\!:\\!\\tfrac{5!}{4!1!}=5$; $\\{3,2,1,1,1\\}\\!:\\!\\tfrac{5!}{1!1!3!}=20$; $\\{2,2,2,1,1\\}\\!:\\!\\tfrac{5!}{3!2!}=10$.",
+          "These six multisets are exhaustive (any part-multiset of five values from $\\{0,1,2,3\\}$ with sum $8$ is one of them). Summing the ordered counts: $30+30+60+5+20+10=155$.",
+          "Thus the number of valid tuples, and the coefficient of $x^8$, is $\\boxed{155}$, matching the inclusion-exclusion result."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The factor $1+x+x^2+x^3$ caps each variable at $3$, so the raw stars-and-bars count $\\binom{12}{4}=495$ over-counts: it secretly admits exponents $4,5,\\dots$. Each over-the-cap variable is killed by the substitution $a_i\\mapsto a_i+4$, which shifts the target sum down by exactly $4$ per offender, producing the alternating $\\binom{N-4j+4}{4}$ terms. The series terminates the moment $4j>N$ — here after just two corrections — which is why a bounded composition count is genuinely finite and needs no infinite expansion at all."
+  },
+  {
+    "theme": "multinomial",
+    "themeLabel": "The Multinomial Theorem",
+    "difficulty": 4,
+    "title": "Four Dice Summing to Seventeen",
+    "task": "Find the probability that four fair dice show faces summing to 17.",
+    "tags": [
+      "multinomial theorem",
+      "stars and bars",
+      "inclusion-exclusion",
+      "bounded compositions",
+      "dice",
+      "symmetry of distribution"
+    ],
+    "statement": "Four ordinary fair dice (faces $1,2,3,4,5,6$) are rolled. Let $N(S)$ denote the number of ordered outcomes $(x_1,x_2,x_3,x_4)$ with $x_1+x_2+x_3+x_4=S$. Using the symmetry of the four-dice sum about its mean, together with a direct stars-and-bars count corrected by inclusion-exclusion, find $N(17)$ and hence the probability that the four faces sum to $17$.",
+    "answer": "$N(17)=104$, so the probability is $\\dfrac{104}{1296}=\\boxed{\\dfrac{13}{162}}$.",
+    "trap": "Replacing $x_i\\in\\{1,\\dots,6\\}$ by $y_i=x_i-1\\ge 0$ and counting solutions of $y_1+\\cdots+y_4=13$ by plain stars and bars gives $\\binom{16}{3}=560$. This forgets the upper bound $y_i\\le 5$: many of those 560 compositions assign a die a value above 6. The bound must be enforced by inclusion-exclusion, which subtracts the over-the-top cases and brings $560$ down to $104$.",
+    "solutions": [
+      {
+        "name": "Stars and bars with inclusion-exclusion on the upper bounds",
+        "steps": [
+          "Substitute $y_i=x_i-1$, so each $y_i\\in\\{0,1,\\dots,5\\}$ and $y_1+y_2+y_3+y_4=17-4=13$. We must count non-negative integer solutions subject to $y_i\\le 5$.",
+          "Ignoring the upper bound, the number of non-negative integer solutions of $y_1+\\cdots+y_4=13$ is, by stars and bars, $\\binom{13+4-1}{4-1}=\\binom{16}{3}=560$.",
+          "Let $A_i$ be the set of solutions with $y_i\\ge 6$. For a fixed $i$, write $y_i=6+z_i$ with $z_i\\ge 0$; then $z_i+\\sum_{k\\ne i}y_k=7$, giving $\\binom{7+3}{3}=\\binom{10}{3}=120$ solutions, and there are $\\binom{4}{1}=4$ choices of $i$.",
+          "For two indices both $\\ge 6$ we would need a remaining sum of $13-12=1$, giving $\\binom{1+3}{3}=\\binom{4}{3}=4$ solutions, with $\\binom{4}{2}=6$ choices of the pair. Three or more cannot exceed the total $13$, so higher terms vanish.",
+          "By inclusion-exclusion the admissible count is $\\binom{16}{3}-\\binom{4}{1}\\binom{10}{3}+\\binom{4}{2}\\binom{4}{3}=560-480+24=104$. Thus $N(17)=104$ and the probability is $\\dfrac{104}{6^4}=\\dfrac{104}{1296}=\\boxed{\\dfrac{13}{162}}$."
+        ]
+      },
+      {
+        "name": "Symmetry about the mean, then count the lighter partner",
+        "steps": [
+          "The map $x_i\\mapsto 7-x_i$ is a bijection of $\\{1,\\dots,6\\}$, sending an ordered outcome with sum $S$ to one with sum $28-S$. Hence the four-dice distribution is symmetric about $14$ and $N(S)=N(28-S)$; in particular $N(17)=N(11)$.",
+          "To count $N(11)$ put $y_i=x_i-1\\in\\{0,\\dots,5\\}$ with $y_1+\\cdots+y_4=11-4=7$. Since $7<6$ would be the first violation only at $y_i\\ge 6$, exactly one die can break the bound.",
+          "Plain stars and bars give $\\binom{7+3}{3}=\\binom{10}{3}=120$ solutions; subtracting the cases $y_i\\ge 6$ (set $y_i=6+z_i$, remaining sum $1$, $\\binom{4}{3}=4$ each, $4$ choices) yields $120-4\\cdot 4=120-16=104$.",
+          "Therefore $N(17)=N(11)=104$, and the requested probability equals $\\dfrac{104}{1296}=\\boxed{\\dfrac{13}{162}}$, confirming the direct count."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The face values $1$–$6$ are exactly the bounded-composition window $0\\le y_i\\le 5$ in disguise, so a dice sum is a coefficient in the finite product $(t+t^2+\\cdots+t^6)^4$ extracted by stars and bars plus inclusion-exclusion. The $x_i\\mapsto 7-x_i$ symmetry both predicts $N(17)=N(11)$ for free and lets you count the smaller, cheaper partner sum where fewer over-the-bound corrections survive."
+  },
+  {
+    "theme": "multinomial",
+    "themeLabel": "The Multinomial Theorem",
     "title": "Filtering the Even Powers",
     "difficulty": 5,
     "task": "Evaluate",
@@ -2131,12 +2185,12 @@ window.PROBLEMS = [
   {
     "theme": "multinomial",
     "themeLabel": "The Multinomial Theorem",
-    "title": "The Laurent Heart",
+    "title": "The Trinomial’s Beating Heart",
     "difficulty": 5,
     "task": "Find",
     "tags": [
       "constant term",
-      "laurent polynomial",
+      "principal polynomial",
       "central trinomial",
       "negative exponents"
     ],
@@ -2161,44 +2215,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: a constant term in a Laurent multinomial is a SUM over all exponent-balanced compositions, not one term — and shifting by $x^n$ reveals it as the central trinomial coefficient $T_n$, a famous integer sequence."
-  },
-  {
-    "theme": "multinomial",
-    "themeLabel": "The Multinomial Theorem",
-    "title": "Four Honest Dice",
-    "difficulty": 4,
-    "task": "Determine",
-    "tags": [
-      "generating function",
-      "dice",
-      "central coefficient",
-      "capped exponents"
-    ],
-    "statement": "Four fair six-faced dice (faces $1$ through $6$) are rolled. Determine the number of ordered outcomes whose face-values sum to exactly $12$ — equivalently, the coefficient of $x^{12}$ in $\\left(x+x^2+x^3+x^4+x^5+x^6\\right)^4$.",
-    "answer": "$\\boxed{125}$",
-    "trap": "Modeling each die as $1+x+\\cdots+x^6$ (faces $0$–$6$) rather than $x+x^2+\\cdots+x^6$ (faces $1$–$6$). With faces $0$–$6$ the coefficient of $x^{12}$ is $231$, but those polynomials describe seven-faced dice, not honest ones; the genuine count is $125$. The faces start at $1$, so one must factor out $x^4$ first, after which the cap of $6$ per die forces an inclusion–exclusion (dropping the cap and using bare stars-and-bars $\\binom{11}{3}=165$ overcounts the rolls that exceed a face value of $6$).",
-    "solutions": [
-      {
-        "name": "Shift, then inclusion–exclusion",
-        "steps": [
-          "Factor the per-die polynomial: $x+x^2+\\cdots+x^6=x\\,(1+x+\\cdots+x^5)$, so $(x+\\cdots+x^6)^4=x^4(1+x+\\cdots+x^5)^4$. The coefficient of $x^{12}$ therefore equals the coefficient of $x^{8}$ in $(1+x+\\cdots+x^5)^4=\\left(\\frac{1-x^6}{1-x}\\right)^4$.",
-          "Write $\\left(\\frac{1-x^6}{1-x}\\right)^4=(1-x^6)^4\\,(1-x)^{-4}=\\sum_{j\\ge 0}(-1)^j\\binom{4}{j}x^{6j}\\;\\sum_{i\\ge 0}\\binom{i+3}{3}x^{i}$. The coefficient of $x^8$ collects the terms with $6j+i=8$.",
-          "Only $j=0$ (then $i=8$) and $j=1$ (then $i=2$) contribute, since $6\\cdot 2=12>8$. Thus the coefficient is $\\binom{8+3}{3}-\\binom{4}{1}\\binom{2+3}{3}=\\binom{11}{3}-4\\binom{5}{3}=165-4\\cdot 10=165-40=125.$",
-          "Hence the number of ordered outcomes summing to $12$ is $\\boxed{125}$. The unchecked stars-and-bars value $\\binom{11}{3}=165$ is exactly the $j=0$ term; the $-40$ removes the $40$ compositions in which some die would show a value above $6$."
-        ]
-      },
-      {
-        "name": "Symmetry and direct convolution",
-        "steps": [
-          "The four-dice sum is symmetric about its mean $\\tfrac{4(1+6)}{2}=14$, because replacing each face $f$ by $7-f$ is a bijection sending sum $S$ to $28-S$. Therefore $N(12)=N(28-12)=N(16)$, a built-in cross-check.",
-          "Convolve the single-die count vector $[1,1,1,1,1,1]$ (faces $1$–$6$) with itself to get two-dice counts for sums $2$–$12$: $[1,2,3,4,5,6,5,4,3,2,1]$. Convolving that vector with itself gives the four-dice counts for sums $4$–$24$.",
-          "Reading off the four-dice convolution at sum $12$ gives $1\\cdot 5+2\\cdot 6+3\\cdot 5+4\\cdot 4+5\\cdot 3+6\\cdot 2=5+12+15+16+15+12=75$? — recompute carefully: pairing two-dice sums $a+b=12$ with $a$ from $2$ to $10$ gives $\\sum_{a=2}^{10} c(a)\\,c(12-a)$ where $c=[\\,1,2,3,4,5,6,5,4,3,2,1\\,]$ for sums $2$–$12$. This equals $2(1\\cdot3+2\\cdot4+3\\cdot5+4\\cdot6)+5^2=2(3+8+15+24)+25=2\\cdot 50+25=125.$",
-          "So $N(12)=125$, matching the symmetric value $N(16)=125$ and sitting just below the peak $N(14)=146$; the full table is $\\dots,N(11)=104,\\,N(12)=125,\\,N(13)=140,\\,N(14)=146,\\dots$. The answer is $\\boxed{125}$."
-        ]
-      }
-    ],
-    "remark": "Insight: bounded multinomial coefficients are exactly the convolution counts behind dice sums. The disciplined route is to factor out the offset $x^{\\min}$ — here $x^4$ — and then use $\\frac{1-x^{m+1}}{1-x}$ so the cap of $6$ per die enters as the $(1-x^6)^4$ inclusion–exclusion factor. Symmetry about the mean ($N(S)=N(28-S)$) is a powerful sanity check, and it is what most quickly exposes the trap: the seven-faced model $1+\\cdots+x^6$ is symmetric about $12$ and gives $231$ there, whereas honest dice are symmetric about $14$ and give $125$ at $12$."
+    "remark": "Insight: a constant term in a principal multinomial is a SUM over all exponent-balanced compositions, not one term — and shifting by $x^n$ reveals it as the central trinomial coefficient $T_n$, a famous integer sequence."
   },
   {
     "theme": "multinomial",
@@ -2236,41 +2253,6 @@ window.PROBLEMS = [
     "remark": "Insight: the parity (and any prime-power divisibility) of multinomial coefficients is a digit phenomenon — Kummer counts carries, Lucas multiplies digit-multinomials. For three variables the odd count is $3^{s_2(n)}$ where $s_2(n)$ is the number of binary $1$s."
   },
   {
-    "theme": "multinomial",
-    "themeLabel": "The Multinomial Theorem",
-    "title": "No Variable Left Behind",
-    "difficulty": 4,
-    "task": "Find the number of",
-    "tags": [
-      "distinct terms",
-      "positive exponents",
-      "divisibility",
-      "stars and bars"
-    ],
-    "statement": "Find the number of distinct terms in the expansion of $(x+y+z)^{10}$ that are divisible by $xyz$ — that is, in which all three of $x,y,z$ appear with exponent at least $1$.",
-    "answer": "$\\boxed{36}$",
-    "trap": "Computing the total term count $\\binom{12}{2}=66$ and forgetting to remove the terms missing a variable, or subtracting only the three 'single-variable' terms $x^{10},y^{10},z^{10}$ (giving $63$) while overlooking the many terms where exactly one variable is absent. The constraint $a,b,c\\ge 1$ is a positive-solution count $\\binom{n-1}{2}$, not the unrestricted $\\binom{n+2}{2}$ minus three.",
-    "solutions": [
-      {
-        "name": "Positive stars and bars",
-        "steps": [
-          "Terms divisible by $xyz$ have exponents $(a,b,c)$ with $a,b,c\\ge 1$ and $a+b+c=10$.",
-          "Substitute $a'=a-1,b'=b-1,c'=c-1\\ge 0$ with $a'+b'+c'=7$; the count is $\\binom{7+2}{2}=\\binom{9}{2}$.",
-          "$\\binom{9}{2}=36$, so $\\boxed{36}$ terms are divisible by $xyz$."
-        ]
-      },
-      {
-        "name": "Inclusion-exclusion from the total",
-        "steps": [
-          "Total distinct terms: $\\binom{12}{2}=66$. Subtract those missing at least one variable.",
-          "Terms with $a=0$ (and $b+c=10$) number $11$; same for $b=0$ and $c=0$: $3\\cdot11=33$. Terms missing two variables (e.g. $x^{10}$) were subtracted twice; there are $3$ of them, add back $3$.",
-          "Divisible-by-$xyz$ count $=66-33+3=\\boxed{36}$, matching $\\binom{9}{2}$."
-        ]
-      }
-    ],
-    "remark": "Insight: 'every variable present' converts unrestricted stars-and-bars $\\binom{n+k-1}{k-1}$ into the positive-solution count $\\binom{n-1}{k-1}$ — a one-line substitution that inclusion–exclusion also confirms, catching the subtle overcount of doubly-absent variables."
-  },
-  {
     "theme": "divisibility",
     "themeLabel": "Divisibility & Remainders",
     "title": "The Tail of a Tower",
@@ -2304,6 +2286,41 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: do not trust $\\varphi(m)$ as the period — it is only a guaranteed multiple of the true order, which can be a much smaller divisor. Spotting $7^4\\equiv 1\\pmod{100}$ (equivalently $2401=24\\cdot 100+1$) collapses the entire tower; the $2024\\equiv 24\\pmod{40}$ reduction is a correct-but-irrelevant detour."
+  },
+  {
+    "theme": "divisibility",
+    "themeLabel": "Divisibility & Remainders",
+    "title": "One Hundred Thirty-Three's Secret",
+    "difficulty": 3,
+    "task": "Prove that",
+    "tags": [
+      "divisibility-proof",
+      "binomial-rewrite",
+      "induction",
+      "factoring-modulus"
+    ],
+    "statement": "Prove that $11^{\\,n+1}+12^{\\,2n-1}$ is divisible by $133$ for every positive integer $n$.",
+    "answer": "\\[\\boxed{\\text{proved}}\\]",
+    "trap": "Attacking $133$ as if it were prime and trying Fermat, or splitting $133=7\\cdot19$ and doing two separate inductions. The clean path is to notice $12^{2n-1}=12\\cdot144^{\\,n-1}$ and $144\\equiv11\\pmod{133}$, collapsing both terms to a common factor $11^{n-1}$. The seductive wrong move is to reduce bases mod $133$ without first matching the exponents, leaving mismatched powers that obscure the shared factor.",
+    "solutions": [
+      {
+        "name": "Factor out the common power",
+        "steps": [
+          "Rewrite $11^{n+1}=11^{2}\\cdot11^{n-1}=121\\cdot11^{n-1}$ and $12^{2n-1}=12\\cdot(12^2)^{n-1}=12\\cdot144^{\\,n-1}$.",
+          "Since $144=133+11\\equiv11\\pmod{133}$, we have $144^{\\,n-1}\\equiv11^{\\,n-1}\\pmod{133}$, so $12^{2n-1}\\equiv12\\cdot11^{\\,n-1}\\pmod{133}$.",
+          "Therefore $11^{n+1}+12^{2n-1}\\equiv11^{\\,n-1}(121+12)=11^{\\,n-1}\\cdot133\\equiv0\\pmod{133}$. Hence $133$ divides the expression. $\\boxed{\\text{proved}}$"
+        ]
+      },
+      {
+        "name": "Induction",
+        "steps": [
+          "Base $n=1$: $11^{2}+12^{1}=121+12=133$, divisible by $133$.",
+          "Assume $133\\mid 11^{n+1}+12^{2n-1}$. Then $11^{n+2}+12^{2n+1}=11\\cdot11^{n+1}+144\\cdot12^{2n-1}=11(11^{n+1}+12^{2n-1})+(144-11)12^{2n-1}$.",
+          "The first bracket is divisible by $133$ by hypothesis, and $144-11=133$, so the second term is a multiple of $133$. Thus the whole is divisible by $133$, completing the induction. $\\boxed{\\text{proved}}$"
+        ]
+      }
+    ],
+    "remark": "Insight: divisibility proofs of $a^{f(n)}+b^{g(n)}$ usually hinge on a hidden congruence between the bases ($144\\equiv11$) that exposes a common factor — find it before reaching for induction."
   },
   {
     "theme": "divisibility",
@@ -2420,6 +2437,41 @@ window.PROBLEMS = [
   {
     "theme": "divisibility",
     "themeLabel": "Divisibility & Remainders",
+    "title": "Sixty-Four from a Single Expansion",
+    "difficulty": 4,
+    "task": "Prove that",
+    "tags": [
+      "binomial-expansion",
+      "divisibility-proof",
+      "truncation",
+      "prime-power"
+    ],
+    "statement": "Prove that $3^{\\,2n+2}-8n-9$ is divisible by $64$ for every positive integer $n$.",
+    "answer": "\\[\\boxed{\\text{proved}}\\]",
+    "trap": "Writing $3^{2n+2}=9\\cdot 9^{n}$ and inducting on the power alone, then losing track of the linear part $-8n-9$. The clean route is $3^{2n+2}=9^{\\,n+1}=(1+8)^{\\,n+1}$ and reading off the binomial expansion: the $k=0$ and $k=1$ terms reproduce $9+8n$ exactly, so they cancel, and every surviving term carries $8^{k}$ with $k\\ge 2$. The subtle point is that it is not enough to see a factor of $8$ in the leftover; one must observe that the smallest surviving power is $8^{2}=64$, and that the binomial coefficients in front are integers, so the whole tail is a genuine multiple of $64$, not merely of $8$.",
+    "solutions": [
+      {
+        "name": "Binomial about $1+8$",
+        "steps": [
+          "Write $3^{2n+2}=9^{\\,n+1}=(1+8)^{\\,n+1}=\\displaystyle\\sum_{k=0}^{n+1}\\binom{n+1}{k}8^{k}$.",
+          "The $k=0$ and $k=1$ terms give $1+\\binom{n+1}{1}8=1+8(n+1)=9+8n$. Subtracting, $3^{2n+2}-8n-9=\\displaystyle\\sum_{k=2}^{n+1}\\binom{n+1}{k}8^{k}$.",
+          "Every term of this sum has $k\\ge 2$, so it equals $8^{2}\\displaystyle\\sum_{k=2}^{n+1}\\binom{n+1}{k}8^{\\,k-2}$, an integer multiple of $8^{2}=64$. Hence $64\\mid 3^{2n+2}-8n-9$. $\\boxed{\\text{proved}}$"
+        ]
+      },
+      {
+        "name": "Induction with carried difference",
+        "steps": [
+          "Base $n=1$: $3^{4}-8-9=81-17=64$, divisible by $64$.",
+          "Let $P(n)=3^{2n+2}-8n-9$. Compute the recurrence: $P(n+1)-9P(n)=\\big(3^{2n+4}-8n-17\\big)-9\\big(3^{2n+2}-8n-9\\big)$. The $3^{2n+4}-9\\cdot 3^{2n+2}=0$ cancels, leaving $-8n-17+72n+81=64n+64=64(n+1)$.",
+          "Thus $P(n+1)=9P(n)+64(n+1)$. If $64\\mid P(n)$, then both terms on the right are multiples of $64$, so $64\\mid P(n+1)$. By induction $64\\mid P(n)$ for all positive integers $n$. $\\boxed{\\text{proved}}$"
+        ]
+      }
+    ],
+    "remark": "Insight: $(1+8)^{m}$ is the natural lens, because the modulus $64=8^{2}$ is a power of the very base of the expansion. The first two binomial terms reproduce the linear part $9+8n$ exactly and cancel it, and everything that survives starts at $8^{2}$. Matching the base of the expansion to the prime in the modulus is the decisive move; the induction route reaches the same place but only after one notices the carried remainder is itself $64(n+1)$."
+  },
+  {
+    "theme": "divisibility",
+    "themeLabel": "Divisibility & Remainders",
     "title": "When Adding Is Forbidden",
     "difficulty": 5,
     "task": "Evaluate",
@@ -2527,76 +2579,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: the work is entirely in the EXACTNESS. The factor $A^2-A+1$ is divisible by $3$ but, because $A\\equiv-1\\pmod{3^{k+1}}$ kills the linear term cleanly, it is divisible by $3$ to the first power only — contributing precisely one new factor of $3$ per step. LTE packages this 'one and no more' into the single identity $v_3(a^n+b^n)=v_3(a+b)+v_3(n)$. The trap is to prove $3^{k+1}\\mid 2^{3^k}+1$ (a lower bound) and silently assume it is also an upper bound; the second factor is exactly where a careless argument would lose control of the valuation."
-  },
-  {
-    "theme": "divisibility",
-    "themeLabel": "Divisibility & Remainders",
-    "title": "One Hundred Thirty-Three's Secret",
-    "difficulty": 3,
-    "task": "Prove that",
-    "tags": [
-      "divisibility-proof",
-      "binomial-rewrite",
-      "induction",
-      "factoring-modulus"
-    ],
-    "statement": "Prove that $11^{\\,n+1}+12^{\\,2n-1}$ is divisible by $133$ for every positive integer $n$.",
-    "answer": "\\[\\boxed{\\text{proved}}\\]",
-    "trap": "Attacking $133$ as if it were prime and trying Fermat, or splitting $133=7\\cdot19$ and doing two separate inductions. The clean path is to notice $12^{2n-1}=12\\cdot144^{\\,n-1}$ and $144\\equiv11\\pmod{133}$, collapsing both terms to a common factor $11^{n-1}$. The seductive wrong move is to reduce bases mod $133$ without first matching the exponents, leaving mismatched powers that obscure the shared factor.",
-    "solutions": [
-      {
-        "name": "Factor out the common power",
-        "steps": [
-          "Rewrite $11^{n+1}=11^{2}\\cdot11^{n-1}=121\\cdot11^{n-1}$ and $12^{2n-1}=12\\cdot(12^2)^{n-1}=12\\cdot144^{\\,n-1}$.",
-          "Since $144=133+11\\equiv11\\pmod{133}$, we have $144^{\\,n-1}\\equiv11^{\\,n-1}\\pmod{133}$, so $12^{2n-1}\\equiv12\\cdot11^{\\,n-1}\\pmod{133}$.",
-          "Therefore $11^{n+1}+12^{2n-1}\\equiv11^{\\,n-1}(121+12)=11^{\\,n-1}\\cdot133\\equiv0\\pmod{133}$. Hence $133$ divides the expression. $\\boxed{\\text{proved}}$"
-        ]
-      },
-      {
-        "name": "Induction",
-        "steps": [
-          "Base $n=1$: $11^{2}+12^{1}=121+12=133$, divisible by $133$.",
-          "Assume $133\\mid 11^{n+1}+12^{2n-1}$. Then $11^{n+2}+12^{2n+1}=11\\cdot11^{n+1}+144\\cdot12^{2n-1}=11(11^{n+1}+12^{2n-1})+(144-11)12^{2n-1}$.",
-          "The first bracket is divisible by $133$ by hypothesis, and $144-11=133$, so the second term is a multiple of $133$. Thus the whole is divisible by $133$, completing the induction. $\\boxed{\\text{proved}}$"
-        ]
-      }
-    ],
-    "remark": "Insight: divisibility proofs of $a^{f(n)}+b^{g(n)}$ usually hinge on a hidden congruence between the bases ($144\\equiv11$) that exposes a common factor — find it before reaching for induction."
-  },
-  {
-    "theme": "divisibility",
-    "themeLabel": "Divisibility & Remainders",
-    "title": "Sixty-Four from a Single Expansion",
-    "difficulty": 4,
-    "task": "Prove that",
-    "tags": [
-      "binomial-expansion",
-      "divisibility-proof",
-      "truncation",
-      "prime-power"
-    ],
-    "statement": "Prove that $3^{\\,2n+2}-8n-9$ is divisible by $64$ for every positive integer $n$.",
-    "answer": "\\[\\boxed{\\text{proved}}\\]",
-    "trap": "Writing $3^{2n+2}=9\\cdot 9^{n}$ and inducting on the power alone, then losing track of the linear part $-8n-9$. The clean route is $3^{2n+2}=9^{\\,n+1}=(1+8)^{\\,n+1}$ and reading off the binomial expansion: the $k=0$ and $k=1$ terms reproduce $9+8n$ exactly, so they cancel, and every surviving term carries $8^{k}$ with $k\\ge 2$. The subtle point is that it is not enough to see a factor of $8$ in the leftover; one must observe that the smallest surviving power is $8^{2}=64$, and that the binomial coefficients in front are integers, so the whole tail is a genuine multiple of $64$, not merely of $8$.",
-    "solutions": [
-      {
-        "name": "Binomial about $1+8$",
-        "steps": [
-          "Write $3^{2n+2}=9^{\\,n+1}=(1+8)^{\\,n+1}=\\displaystyle\\sum_{k=0}^{n+1}\\binom{n+1}{k}8^{k}$.",
-          "The $k=0$ and $k=1$ terms give $1+\\binom{n+1}{1}8=1+8(n+1)=9+8n$. Subtracting, $3^{2n+2}-8n-9=\\displaystyle\\sum_{k=2}^{n+1}\\binom{n+1}{k}8^{k}$.",
-          "Every term of this sum has $k\\ge 2$, so it equals $8^{2}\\displaystyle\\sum_{k=2}^{n+1}\\binom{n+1}{k}8^{\\,k-2}$, an integer multiple of $8^{2}=64$. Hence $64\\mid 3^{2n+2}-8n-9$. $\\boxed{\\text{proved}}$"
-        ]
-      },
-      {
-        "name": "Induction with carried difference",
-        "steps": [
-          "Base $n=1$: $3^{4}-8-9=81-17=64$, divisible by $64$.",
-          "Let $P(n)=3^{2n+2}-8n-9$. Compute the recurrence: $P(n+1)-9P(n)=\\big(3^{2n+4}-8n-17\\big)-9\\big(3^{2n+2}-8n-9\\big)$. The $3^{2n+4}-9\\cdot 3^{2n+2}=0$ cancels, leaving $-8n-17+72n+81=64n+64=64(n+1)$.",
-          "Thus $P(n+1)=9P(n)+64(n+1)$. If $64\\mid P(n)$, then both terms on the right are multiples of $64$, so $64\\mid P(n+1)$. By induction $64\\mid P(n)$ for all positive integers $n$. $\\boxed{\\text{proved}}$"
-        ]
-      }
-    ],
-    "remark": "Insight: $(1+8)^{m}$ is the natural lens, because the modulus $64=8^{2}$ is a power of the very base of the expansion. The first two binomial terms reproduce the linear part $9+8n$ exactly and cancel it, and everything that survives starts at $8^{2}$. Matching the base of the expansion to the prime in the modulus is the decisive move; the induction route reaches the same place but only after one notices the carried remainder is itself $64(n+1)$."
   },
   {
     "theme": "divisibility",
@@ -2823,43 +2805,6 @@ window.PROBLEMS = [
   {
     "theme": "approximation",
     "themeLabel": "Approximations & Inequalities",
-    "title": "The Loose Bound That Lies About $(0.99)^{50}$",
-    "difficulty": 5,
-    "task": "Prove that",
-    "statement": "A student bounds $(0.99)^{50}$ from below by Bernoulli: $(1-0.01)^{50}\\ge1-50(0.01)=\\tfrac12$, and concludes '$(0.99)^{50}$ is about $0.5$.' Prove the sharp two-sided estimate $\\dfrac12<(0.99)^{50}<e^{-1/2}$, and use it to show the true value exceeds the Bernoulli lower bound by more than $20\\%$ of that bound (so 'about $0.5$' is badly wrong).",
-    "answer": "\\[\\boxed{\\tfrac12<(0.99)^{50}<e^{-1/2}=0.6065\\ldots,\\quad (0.99)^{50}\\approx0.605>1.2\\cdot\\tfrac12}\\]",
-    "trap": "Treating a valid lower bound as an approximation. Bernoulli gives a true but slack floor of $\\tfrac12$; the actual value $0.605$ sits far above it, near the much tighter ceiling $e^{-1/2}$. Confusing 'a bound' with 'the answer' here causes a $>20\\%$ error.",
-    "solutions": [
-      {
-        "name": "Lower by strict Bernoulli, upper by $1+t\\le e^t$",
-        "steps": [
-          "Strict Bernoulli (equality only at $x=0$): $(1-0.01)^{50}>1-50(0.01)=\\tfrac12$, giving the lower bound.",
-          "For the upper bound use $1+t\\le e^{t}$ with $t=-0.01$: $0.99=1-0.01\\le e^{-0.01}$, so $(0.99)^{50}\\le e^{-0.50}=e^{-1/2}$.",
-          "Equality $0.99=e^{-0.01}$ is impossible (the inequality $1+t<e^t$ is strict for $t\\ne0$), so $(0.99)^{50}<e^{-1/2}=0.6065\\ldots$.",
-          "Hence $\\tfrac12<(0.99)^{50}<0.6065$; the value $0.605$ exceeds $1.2\\times\\tfrac12=0.6$, proving the Bernoulli floor underestimates by over $20\\%$: $\\boxed{\\tfrac12<(0.99)^{50}<e^{-1/2}}$."
-        ]
-      },
-      {
-        "name": "Second-order correction for the lower side",
-        "steps": [
-          "Expand $(1-0.01)^{50}=\\sum_{j\\ge0}\\binom{50}{j}(-0.01)^j=1-0.5+0.1225-\\cdots$ where the $j=2$ term is $\\binom{50}{2}(0.01)^2=0.1225$ and the $j=3$ term is $\\binom{50}{3}(0.01)^3=0.0196$.",
-          "The terms $a_j=\\binom{50}{j}(0.01)^j$ are strictly decreasing for $j\\ge2$, so this alternating tail satisfies $\\sum_{j\\ge2}(-1)^j a_j>a_2-a_3=0.1225-0.0196=0.1029$; hence $(0.99)^{50}=0.5+\\sum_{j\\ge2}(-1)^j a_j>0.6029>0.6$, already beating $1.2\\times\\tfrac12$.",
-          "For the ceiling, $\\ln(0.99)=-0.01-\\tfrac{0.0001}2-\\cdots<-0.01\\Rightarrow50\\ln(0.99)<-0.5\\Rightarrow(0.99)^{50}<e^{-1/2}$.",
-          "Combining, $0.6<(0.99)^{50}<e^{-1/2}=0.6065$, so the value is about $0.605$, far from $0.5$: $\\boxed{\\tfrac12<(0.99)^{50}<e^{-1/2}}$."
-        ]
-      }
-    ],
-    "tags": [
-      "bernoulli-inequality",
-      "exponential-bound",
-      "sharp-estimate",
-      "truncation-error"
-    ],
-    "remark": "Insight: $1+t\\le e^t$ is the perfect tight companion to the loose Bernoulli floor. Sandwiching between $\\tfrac12$ and $e^{-1/2}$ exposes how slack a 'valid' linear bound can be when $nx$ is order $1$."
-  },
-  {
-    "theme": "approximation",
-    "themeLabel": "Approximations & Inequalities",
     "title": "When Does $2^n$ Overtake $n^2$ for Good?",
     "difficulty": 4,
     "task": "Find all",
@@ -2930,6 +2875,43 @@ window.PROBLEMS = [
       "row-growth"
     ],
     "remark": "Insight: the entire local structure of Pascal's row is governed by the simple rational ratio $\\frac{n-k}{k+1}$. Comparisons like 'still doubling' reduce to one linear inequality, no factorials needed."
+  },
+  {
+    "theme": "approximation",
+    "themeLabel": "Approximations & Inequalities",
+    "title": "The Loose Bound That Lies About $(0.99)^{50}$",
+    "difficulty": 5,
+    "task": "Prove that",
+    "statement": "A student bounds $(0.99)^{50}$ from below by Bernoulli: $(1-0.01)^{50}\\ge1-50(0.01)=\\tfrac12$, and concludes '$(0.99)^{50}$ is about $0.5$.' Prove the sharp two-sided estimate $\\dfrac12<(0.99)^{50}<e^{-1/2}$, and use it to show the true value exceeds the Bernoulli lower bound by more than $20\\%$ of that bound (so 'about $0.5$' is badly wrong).",
+    "answer": "\\[\\boxed{\\tfrac12<(0.99)^{50}<e^{-1/2}=0.6065\\ldots,\\quad (0.99)^{50}\\approx0.605>1.2\\cdot\\tfrac12}\\]",
+    "trap": "Treating a valid lower bound as an approximation. Bernoulli gives a true but slack floor of $\\tfrac12$; the actual value $0.605$ sits far above it, near the much tighter ceiling $e^{-1/2}$. Confusing 'a bound' with 'the answer' here causes a $>20\\%$ error.",
+    "solutions": [
+      {
+        "name": "Lower by strict Bernoulli, upper by $1+t\\le e^t$",
+        "steps": [
+          "Strict Bernoulli (equality only at $x=0$): $(1-0.01)^{50}>1-50(0.01)=\\tfrac12$, giving the lower bound.",
+          "For the upper bound use $1+t\\le e^{t}$ with $t=-0.01$: $0.99=1-0.01\\le e^{-0.01}$, so $(0.99)^{50}\\le e^{-0.50}=e^{-1/2}$.",
+          "Equality $0.99=e^{-0.01}$ is impossible (the inequality $1+t<e^t$ is strict for $t\\ne0$), so $(0.99)^{50}<e^{-1/2}=0.6065\\ldots$.",
+          "Hence $\\tfrac12<(0.99)^{50}<0.6065$; the value $0.605$ exceeds $1.2\\times\\tfrac12=0.6$, proving the Bernoulli floor underestimates by over $20\\%$: $\\boxed{\\tfrac12<(0.99)^{50}<e^{-1/2}}$."
+        ]
+      },
+      {
+        "name": "Second-order correction for the lower side",
+        "steps": [
+          "Expand $(1-0.01)^{50}=\\sum_{j\\ge0}\\binom{50}{j}(-0.01)^j=1-0.5+0.1225-\\cdots$ where the $j=2$ term is $\\binom{50}{2}(0.01)^2=0.1225$ and the $j=3$ term is $\\binom{50}{3}(0.01)^3=0.0196$.",
+          "The terms $a_j=\\binom{50}{j}(0.01)^j$ are strictly decreasing for $j\\ge2$, so this alternating tail satisfies $\\sum_{j\\ge2}(-1)^j a_j>a_2-a_3=0.1225-0.0196=0.1029$; hence $(0.99)^{50}=0.5+\\sum_{j\\ge2}(-1)^j a_j>0.6029>0.6$, already beating $1.2\\times\\tfrac12$.",
+          "For the ceiling, $\\ln(0.99)=-0.01-\\tfrac{0.0001}2-\\cdots<-0.01\\Rightarrow50\\ln(0.99)<-0.5\\Rightarrow(0.99)^{50}<e^{-1/2}$.",
+          "Combining, $0.6<(0.99)^{50}<e^{-1/2}=0.6065$, so the value is about $0.605$, far from $0.5$: $\\boxed{\\tfrac12<(0.99)^{50}<e^{-1/2}}$."
+        ]
+      }
+    ],
+    "tags": [
+      "bernoulli-inequality",
+      "exponential-bound",
+      "sharp-estimate",
+      "truncation-error"
+    ],
+    "remark": "Insight: $1+t\\le e^t$ is the perfect tight companion to the loose Bernoulli floor. Sandwiching between $\\tfrac12$ and $e^{-1/2}$ exposes how slack a 'valid' linear bound can be when $nx$ is order $1$."
   },
   {
     "theme": "approximation",
@@ -3007,443 +2989,354 @@ window.PROBLEMS = [
     "remark": "Insight: $(1+1/n)^n$ with $n=100$ is the protagonist again, but the task forces you past the lazy $(2,e)$ cage to a three-decimal pin-down. The exact value is $2.704813\\ldots$; note the lower bound only clears $2.704$ once you carry the binomial sum through the $k=6$ term (the partial sum through $k=5$ is $2.70344$, still below), and the upper bound falls out cleanly from the alternating $\\ln(1+x)$ series."
   },
   {
-    "theme": "seriesindex",
-    "themeLabel": "Negative & Fractional Index",
-    "title": "The Tenth Echo of a Cubed Reciprocal",
+    "theme": "vandermonde",
+    "themeLabel": "Vandermonde, Pascal & Combinatorial Identities",
+    "title": "A Convolution of Two Coefficients",
     "difficulty": 3,
-    "task": "Determine",
+    "task": "Evaluate the sum",
     "tags": [
-      "negative index",
-      "general coefficient",
-      "negative binomial",
+      "vandermonde convolution",
+      "binomial coefficient",
+      "count two ways",
+      "finite sum"
+    ],
+    "statement": "Evaluate $\\displaystyle\\sum_{k=0}^{3}\\binom{5}{k}\\binom{7}{3-k}$, where every term with an out-of-range coefficient is taken to be $0$.",
+    "answer": "$$\\boxed{220}$$",
+    "trap": "Adding the upper indices to the lower one and writing $\\binom{5+7}{3}=\\binom{12}{3}$ is in fact correct here, but a common slip is to instead bump the lower index by one (an off-by-one) and report $\\binom{12}{4}=495$. The Vandermonde identity keeps the lower index equal to the original $r=3$, so $495$ is wrong; the answer is $\\binom{12}{3}=220$.",
+    "solutions": [
+      {
+        "name": "Vandermonde convolution",
+        "steps": [
+          "The sum has the exact shape $\\sum_{k}\\binom{m}{k}\\binom{n}{r-k}$ with $m=5$, $n=7$, $r=3$, which Vandermonde's identity collapses to $\\binom{m+n}{r}$.",
+          "Hence the sum equals $\\binom{5+7}{3}=\\binom{12}{3}$.",
+          "Compute $\\binom{12}{3}=\\dfrac{12\\cdot 11\\cdot 10}{6}=\\boxed{220}$."
+        ]
+      },
+      {
+        "name": "Coefficient of a product",
+        "steps": [
+          "In $(1+x)^5(1+x)^7$ the coefficient of $x^3$ is $\\sum_{k}\\binom{5}{k}\\binom{7}{3-k}$, exactly our sum, since picking $k$ factors of $x$ from the first bracket and $3-k$ from the second builds $x^3$.",
+          "But $(1+x)^5(1+x)^7=(1+x)^{12}$, whose coefficient of $x^3$ is $\\binom{12}{3}$.",
+          "Therefore the sum is $\\binom{12}{3}=\\boxed{220}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The sum is a single line of Vandermonde once you read it as $\\sum_k\\binom{m}{k}\\binom{n}{r-k}$: the lower index of the answer stays glued to the **original** $r=3$. The only arithmetic that changes is the upper index, $5+7=12$ — never touch the bottom."
+  },
+  {
+    "theme": "vandermonde",
+    "themeLabel": "Vandermonde, Pascal & Combinatorial Identities",
+    "title": "Climbing the Hockey Stick",
+    "difficulty": 3,
+    "task": "Evaluate the sum",
+    "tags": [
+      "hockey stick",
+      "pascal rule",
+      "telescoping",
+      "binomial coefficient"
+    ],
+    "statement": "Evaluate $\\displaystyle\\binom{3}{3}+\\binom{4}{3}+\\binom{5}{3}+\\cdots+\\binom{9}{3}=\\sum_{j=3}^{9}\\binom{j}{3}$.",
+    "answer": "$$\\boxed{210}$$",
+    "trap": "The hockey-stick identity is $\\sum_{j=r}^{n}\\binom{j}{r}=\\binom{n+1}{r+1}$. Forgetting the $+1$ on the **upper** index and writing $\\binom{9}{4}=126$ (or only on the lower index, $\\binom{9}{3}$) is the classic off-by-one. The top of the sum is $n=9$, so the answer is $\\binom{10}{4}=210$, not $126$.",
+    "solutions": [
+      {
+        "name": "Hockey-stick identity",
+        "steps": [
+          "Here $\\sum_{j=r}^{n}\\binom{j}{r}$ with $r=3$ and $n=9$, so the hockey-stick identity gives $\\binom{n+1}{r+1}=\\binom{10}{4}$.",
+          "Both the upper and lower indices rise by one: $9\\to 10$ and $3\\to 4$.",
+          "Compute $\\binom{10}{4}=\\dfrac{10\\cdot 9\\cdot 8\\cdot 7}{24}=\\boxed{210}$."
+        ]
+      },
+      {
+        "name": "Pascal-rule telescoping",
+        "steps": [
+          "Pascal's rule rearranged gives $\\binom{j}{3}=\\binom{j+1}{4}-\\binom{j}{4}$.",
+          "Summing from $j=3$ to $9$ telescopes: $\\sum_{j=3}^{9}\\binom{j}{3}=\\binom{10}{4}-\\binom{3}{4}=\\binom{10}{4}-0$.",
+          "Thus the sum is $\\binom{10}{4}=\\boxed{210}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A hockey-stick sum is just Pascal's rule telescoping in disguise: each $\\binom{j}{3}$ is a **difference** $\\binom{j+1}{4}-\\binom{j}{4}$, so the whole column collapses to the single top term $\\binom{10}{4}$. Remembering the telescoping form makes the $+1$ on *both* indices impossible to forget."
+  },
+  {
+    "theme": "vandermonde",
+    "themeLabel": "Vandermonde, Pascal & Combinatorial Identities",
+    "title": "The Sum of Squared Coefficients",
+    "difficulty": 4,
+    "task": "Evaluate the sum",
+    "tags": [
+      "sum of squares",
+      "central coefficient",
+      "vandermonde convolution",
+      "symmetry"
+    ],
+    "statement": "Evaluate $\\displaystyle\\sum_{r=0}^{8}\\binom{8}{r}^{2}=\\binom{8}{0}^2+\\binom{8}{1}^2+\\cdots+\\binom{8}{8}^2$.",
+    "answer": "$$\\boxed{12870}$$",
+    "trap": "Treating the square of a sum as the sum of squares: since $\\sum_r\\binom{8}{r}=2^8=256$, one might write the answer as $(2^8)^2=4^8=65536$. But $\\sum_r\\binom{8}{r}^2\\neq\\bigl(\\sum_r\\binom{8}{r}\\bigr)^2$; the squares convolve, not multiply, giving the central coefficient $\\binom{16}{8}=12870$.",
+    "solutions": [
+      {
+        "name": "Vandermonde via symmetry",
+        "steps": [
+          "Use $\\binom{8}{r}=\\binom{8}{8-r}$ to rewrite $\\binom{8}{r}^2=\\binom{8}{r}\\binom{8}{8-r}$.",
+          "Then $\\sum_{r=0}^{8}\\binom{8}{r}\\binom{8}{8-r}$ is the Vandermonde convolution $\\sum_k\\binom{m}{k}\\binom{n}{r-k}$ with $m=n=8$ and target lower index $8$, so it equals $\\binom{16}{8}$.",
+          "Compute $\\binom{16}{8}=\\boxed{12870}$."
+        ]
+      },
+      {
+        "name": "Coefficient of the middle term",
+        "steps": [
+          "In $(1+x)^8(1+x)^8=(1+x)^{16}$ the coefficient of $x^8$ is $\\binom{16}{8}$.",
+          "On the left, the coefficient of $x^8$ is $\\sum_{r}\\binom{8}{r}\\binom{8}{8-r}=\\sum_r\\binom{8}{r}^2$ by symmetry.",
+          "Equating the two coefficients gives $\\sum_r\\binom{8}{r}^2=\\binom{16}{8}=\\boxed{12870}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The identity $\\sum_r\\binom{n}{r}^2=\\binom{2n}{n}$ is Vandermonde wearing a mask: the symmetry $\\binom{n}{r}=\\binom{n}{n-r}$ turns a square into a convolution. The deadly temptation is to confuse $\\sum a_r^2$ with $\\bigl(\\sum a_r\\bigr)^2$ — they differ by every cross term."
+  },
+  {
+    "theme": "vandermonde",
+    "themeLabel": "Vandermonde, Pascal & Combinatorial Identities",
+    "title": "A Committee Counted Two Ways",
+    "difficulty": 4,
+    "task": "Prove and evaluate",
+    "tags": [
+      "count two ways",
+      "vandermonde convolution",
+      "committee selection",
+      "combinatorial proof"
+    ],
+    "statement": "A delegation of $4$ is to be chosen from $6$ economists and $4$ lawyers. By splitting the count over the number $k$ of economists chosen, show that $\\displaystyle\\sum_{k=0}^{4}\\binom{6}{k}\\binom{4}{4-k}$ equals the total number of delegations, and evaluate it.",
+    "answer": "$$\\boxed{210}$$",
+    "trap": "Counting only the all-economist or all-lawyer cases and reporting $\\binom{6}{4}+\\binom{4}{4}=15+1=16$. That throws away every mixed delegation. The full count sums over all $k$ and equals $\\binom{10}{4}=210$.",
+    "solutions": [
+      {
+        "name": "Double counting (combinatorial)",
+        "steps": [
+          "Total delegations of $4$ from the $10$ people is $\\binom{10}{4}$ — count without regard to profession.",
+          "Now count by cases: a delegation with exactly $k$ economists is formed in $\\binom{6}{k}\\binom{4}{4-k}$ ways, and summing over $k=0,\\dots,4$ counts every delegation exactly once.",
+          "Equating, $\\sum_{k=0}^{4}\\binom{6}{k}\\binom{4}{4-k}=\\binom{10}{4}=\\dfrac{10\\cdot 9\\cdot 8\\cdot 7}{24}=\\boxed{210}$."
+        ]
+      },
+      {
+        "name": "Vandermonde convolution",
+        "steps": [
+          "The sum is $\\sum_k\\binom{m}{k}\\binom{n}{r-k}$ with $m=6$, $n=4$, $r=4$, so Vandermonde gives $\\binom{m+n}{r}=\\binom{10}{4}$.",
+          "Out-of-range terms (e.g. $k>4$ forcing a negative lower index, or $4-k<0$) are zero, matching the combinatorial restriction automatically.",
+          "Hence the value is $\\binom{10}{4}=\\boxed{210}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Vandermonde *is* the statement that choosing a committee from two groups can be tallied by how many you take from each. The seductive error is to keep only the \\emph{pure} cases; the identity's whole content lives in the **mixed** terms $0<k<4$."
+  },
+  {
+    "theme": "vandermonde",
+    "themeLabel": "Vandermonde, Pascal & Combinatorial Identities",
+    "title": "Vandermonde With a Sign Trap",
+    "difficulty": 4,
+    "task": "Evaluate the sum",
+    "tags": [
+      "signed convolution",
+      "coefficient extraction",
+      "product of polynomials",
+      "alternating sign"
+    ],
+    "statement": "Evaluate $\\displaystyle\\sum_{k=0}^{4}(-1)^{k}\\binom{4}{k}\\binom{9}{6-k}$, treating any out-of-range coefficient as $0$.",
+    "answer": "$$\\boxed{36}$$",
+    "trap": "Ignoring the factor $(-1)^k$ and applying plain Vandermonde to get $\\binom{4+9}{6}=\\binom{13}{6}=1716$. The alternating sign means the second polynomial is $(1-x)^4$, not $(1+x)^4$, so the convolution collapses against $(1-x^?)$ structure and the true value is only $36$.",
+    "solutions": [
+      {
+        "name": "Coefficient of a signed product",
+        "steps": [
+          "The sum is the coefficient of $x^6$ in $(1-x)^4(1+x)^9$, since $(-1)^k\\binom{4}{k}$ is the coefficient of $x^k$ in $(1-x)^4$ and $\\binom{9}{6-k}$ that of $x^{6-k}$ in $(1+x)^9$.",
+          "Write $(1-x)^4(1+x)^9=(1-x)^4(1+x)^4\\cdot(1+x)^5=(1-x^2)^4(1+x)^5$.",
+          "The coefficient of $x^6$ in $(1-x^2)^4(1+x)^5$: pair $x^{2a}$ from $(1-x^2)^4$ (coefficient $(-1)^a\\binom{4}{a}$) with $x^{6-2a}$ from $(1+x)^5$ (coefficient $\\binom{5}{6-2a}$). Valid $a$: $a=1$ gives $-\\binom{4}{1}\\binom{5}{4}=-20$; $a=2$ gives $\\binom{4}{2}\\binom{5}{2}=60$; $a=3$ gives $-\\binom{4}{3}\\binom{5}{0}=-4$. Sum $=-20+60-4=\\boxed{36}$."
+        ]
+      },
+      {
+        "name": "Direct signed summation",
+        "steps": [
+          "Expand term by term: $k=0:\\binom{9}{6}=84$; $k=1:-\\binom{4}{1}\\binom{9}{5}=-4\\cdot126=-504$; $k=2:\\binom{4}{2}\\binom{9}{4}=6\\cdot126=756$.",
+          "Continue: $k=3:-\\binom{4}{3}\\binom{9}{3}=-4\\cdot84=-336$; $k=4:\\binom{4}{4}\\binom{9}{2}=36$.",
+          "Add: $84-504+756-336+36=\\boxed{36}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A single minus sign converts $(1+x)^4$ into $(1-x)^4$, and Vandermonde's clean $\\binom{m+n}{r}$ no longer applies. The right reflex is to factor $(1-x)^4(1+x)^4=(1-x^2)^4$, which kills the odd powers and leaves a short, honest sum."
+  },
+  {
+    "theme": "vandermonde",
+    "themeLabel": "Vandermonde, Pascal & Combinatorial Identities",
+    "title": "Stacking Quadruples Up a Column",
+    "difficulty": 4,
+    "task": "Evaluate the sum",
+    "tags": [
+      "hockey stick",
+      "pascal rule",
+      "telescoping",
+      "column sum"
+    ],
+    "statement": "Evaluate $\\displaystyle\\sum_{j=4}^{12}\\binom{j}{4}=\\binom{4}{4}+\\binom{5}{4}+\\cdots+\\binom{12}{4}$.",
+    "answer": "$$\\boxed{1287}$$",
+    "trap": "Stopping the upper index at the last summation value and writing $\\binom{12}{5}=792$, or raising only one index to get $\\binom{13}{4}=715$. The hockey-stick identity raises **both** indices of the top term $n=12$, $r=4$ by one, giving $\\binom{13}{5}=1287$.",
+    "solutions": [
+      {
+        "name": "Hockey-stick identity",
+        "steps": [
+          "This is $\\sum_{j=r}^{n}\\binom{j}{r}$ with $r=4$ and $n=12$, so it equals $\\binom{n+1}{r+1}=\\binom{13}{5}$.",
+          "Both indices step up once: $12\\to 13$ and $4\\to 5$.",
+          "Compute $\\binom{13}{5}=\\dfrac{13\\cdot 12\\cdot 11\\cdot 10\\cdot 9}{120}=\\boxed{1287}$."
+        ]
+      },
+      {
+        "name": "Pascal telescoping",
+        "steps": [
+          "Pascal's rule gives $\\binom{j}{4}=\\binom{j+1}{5}-\\binom{j}{5}$.",
+          "Summing $j=4,\\dots,12$ telescopes to $\\binom{13}{5}-\\binom{4}{5}=\\binom{13}{5}-0$.",
+          "Hence the sum is $\\binom{13}{5}=\\boxed{1287}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Summing a fixed column $\\binom{j}{r}$ of Pascal's triangle is the hockey stick: the running total of the column down to row $n$ is the entry $\\binom{n+1}{r+1}$ just below and to the right. Push **both** the top and bottom index up by one — stopping the top at $12$ is the standard off-by-one."
+  },
+  {
+    "theme": "vandermonde",
+    "themeLabel": "Vandermonde, Pascal & Combinatorial Identities",
+    "title": "When Both Indices Move Together",
+    "difficulty": 4,
+    "task": "Evaluate the sum",
+    "tags": [
+      "vandermonde convolution",
+      "symmetry",
+      "count two ways",
+      "binomial coefficient"
+    ],
+    "statement": "Evaluate $\\displaystyle\\sum_{k=0}^{4}\\binom{4}{k}\\binom{6}{k}=\\binom{4}{0}\\binom{6}{0}+\\binom{4}{1}\\binom{6}{1}+\\cdots+\\binom{4}{4}\\binom{6}{4}$.",
+    "answer": "$$\\boxed{210}$$",
+    "trap": "Reading the matching lower indices as Vandermonde with the **same** $k$ in both bottoms and writing $\\binom{4+6}{0}=1$, or guessing the off-centre $\\binom{10}{5}=252$. The correct move reflects one factor first; the value is $\\binom{10}{4}=210$.",
+    "solutions": [
+      {
+        "name": "Reflect, then Vandermonde",
+        "steps": [
+          "Reflect the second factor: $\\binom{6}{k}=\\binom{6}{6-k}$, so the sum becomes $\\sum_k\\binom{4}{k}\\binom{6}{6-k}$.",
+          "This is Vandermonde with $m=4$, $n=6$ and target lower index $6$ (since $k+(6-k)=6$): it equals $\\binom{10}{6}$.",
+          "Compute $\\binom{10}{6}=\\binom{10}{4}=210$, so the sum is $\\boxed{210}$."
+        ]
+      },
+      {
+        "name": "Coefficient extraction",
+        "steps": [
+          "$\\sum_k\\binom{4}{k}\\binom{6}{6-k}$ is the coefficient of $x^6$ in $(1+x)^4(1+x)^6=(1+x)^{10}$.",
+          "That coefficient is $\\binom{10}{6}$.",
+          "Therefore the sum equals $\\binom{10}{6}=\\binom{10}{4}=\\boxed{210}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A sum $\\sum_k\\binom{m}{k}\\binom{n}{k}$ with the **same** lower index in both factors is still Vandermonde — but only after you flip one factor with $\\binom{n}{k}=\\binom{n}{n-k}$. The result $\\binom{m+n}{n}$ counts choosing $n$ from $m+n$, split by how many come from the first $m$."
+  },
+  {
+    "theme": "vandermonde",
+    "themeLabel": "Vandermonde, Pascal & Combinatorial Identities",
+    "title": "The Alternating Squared Sum",
+    "difficulty": 5,
+    "task": "Evaluate the sum",
+    "tags": [
+      "alternating sum",
+      "sum of squares",
+      "coefficient extraction",
+      "product of polynomials"
+    ],
+    "statement": "Evaluate $\\displaystyle\\sum_{r=0}^{8}(-1)^{r}\\binom{8}{r}^{2}=\\binom{8}{0}^2-\\binom{8}{1}^2+\\binom{8}{2}^2-\\cdots+\\binom{8}{8}^2$.",
+    "answer": "$$\\boxed{70}$$",
+    "trap": "Confusing this with the plain alternating row sum $\\sum_r(-1)^r\\binom{8}{r}=0$ and concluding the answer is $0$. The coefficients here are **squared**, so the sum is the coefficient of $x^8$ in $(1-x^2)^8$, namely $(-1)^4\\binom{8}{4}=70$, not $0$.",
+    "solutions": [
+      {
+        "name": "Coefficient of (1-x^2)^8",
+        "steps": [
+          "Write $\\binom{8}{r}^2=\\binom{8}{r}\\binom{8}{8-r}$ by symmetry, so the sum is the coefficient of $x^8$ in $\\sum_r(-1)^r\\binom{8}{r}x^r\\cdot\\sum_s\\binom{8}{s}x^s=(1-x)^8(1+x)^8$.",
+          "Since $(1-x)^8(1+x)^8=(1-x^2)^8$, only even powers survive, and the coefficient of $x^8$ comes from the $x^{2\\cdot 4}$ term: $(-1)^4\\binom{8}{4}$.",
+          "Hence the sum is $\\binom{8}{4}=\\boxed{70}$."
+        ]
+      },
+      {
+        "name": "Pairing across the centre",
+        "steps": [
+          "Group $r$ with $8-r$: since $\\binom{8}{r}=\\binom{8}{8-r}$ and the signs $(-1)^r,(-1)^{8-r}$ are equal (as $8$ is even), the odd-$r$ terms do not cancel — instead the structure forces the answer to be the central even-power coefficient of $(1-x^2)^8$.",
+          "That central coefficient (power $x^8$, i.e. the $(x^2)^4$ term) is $(-1)^4\\binom{8}{4}$.",
+          "Therefore the value is $\\binom{8}{4}=70$, giving $\\boxed{70}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The general fact is $\\sum_{r=0}^{n}(-1)^r\\binom{n}{r}^2=0$ for odd $n$ and $(-1)^{n/2}\\binom{n}{n/2}$ for even $n$ — read straight off $(1-x^2)^n$. The trap is pattern-matching to the unsquared alternating sum, which **is** zero; squaring the coefficients changes everything."
+  },
+  {
+    "theme": "vandermonde",
+    "themeLabel": "Vandermonde, Pascal & Combinatorial Identities",
+    "title": "A Shifted Convolution",
+    "difficulty": 5,
+    "task": "Evaluate the sum",
+    "tags": [
+      "shifted convolution",
+      "vandermonde convolution",
+      "symmetry",
       "coefficient extraction"
     ],
-    "statement": "In the expansion of $(1-x)^{-3}$, valid for $|x|<1$, determine the coefficient of $x^{10}$.",
-    "answer": "$\\boxed{66}$",
-    "trap": "Writing the falling factorial as $\\dfrac{(-3)(-4)\\cdots}{r!}$ and then losing a minus sign, or quoting $\\binom{n+r-1}{r}$ with $n=3$ but reading off $\\binom{12}{10}$ as if it were $\\binom{12}{3}=220$. The clean route is $(1-x)^{-n}=\\sum\\binom{n+r-1}{r}x^r$, so the coefficient is $\\binom{12}{10}=\\binom{12}{2}=66$, not $\\binom{12}{3}=220$.",
+    "statement": "Evaluate $\\displaystyle\\sum_{k=0}^{7}\\binom{7}{k}\\binom{7}{k+2}$, where $\\binom{7}{k+2}=0$ once $k+2>7$.",
+    "answer": "$$\\boxed{2002}$$",
+    "trap": "Mistaking the offset of $2$ for the symmetric case and reporting the central coefficient $\\binom{14}{7}=3432$. The shift forces the answer off-centre to $\\binom{14}{7+2}=\\binom{14}{9}=2002$; ignoring the offset overcounts by exactly $\\binom{14}{7}-\\binom{14}{9}=1430$.",
     "solutions": [
       {
-        "name": "Negative-binomial template",
+        "name": "Vandermonde after a reflection",
         "steps": [
-          "For $(1-x)^{-n}=\\sum_{r\\ge0}\\binom{n+r-1}{r}x^r$, here $n=3$, $r=10$.",
-          "Coefficient $=\\binom{3+10-1}{10}=\\binom{12}{10}=\\binom{12}{2}=\\dfrac{12\\cdot11}{2}=66$.",
-          "$\\boxed{66}$"
+          "Apply symmetry to the second factor: $\\binom{7}{k+2}=\\binom{7}{7-(k+2)}=\\binom{7}{5-k}$.",
+          "Now $\\sum_k\\binom{7}{k}\\binom{7}{5-k}$ is Vandermonde with $m=n=7$ and target lower index $5$, so it equals $\\binom{14}{5}$.",
+          "Compute $\\binom{14}{5}=2002$, and since $\\binom{14}{5}=\\binom{14}{9}$, the sum is $\\boxed{2002}$."
         ]
       },
       {
-        "name": "Triangular-number shortcut",
+        "name": "Coefficient of a product",
         "steps": [
-          "Differentiating $(1-x)^{-1}=\\sum x^r$ twice gives $2(1-x)^{-3}=\\sum_{r\\ge0}(r+1)(r+2)x^r$, so the coefficient of $x^r$ in $(1-x)^{-3}$ is $\\tfrac{(r+1)(r+2)}{2}$.",
-          "At $r=10$: $\\dfrac{11\\cdot12}{2}=66$.",
-          "$\\boxed{66}$"
-        ]
-      },
-      {
-        "name": "Cauchy product / weak compositions",
-        "steps": [
-          "$(1-x)^{-3}=\\big(\\sum_a x^a\\big)\\big(\\sum_b x^b\\big)\\big(\\sum_c x^c\\big)$; the coefficient of $x^{10}$ counts triples with $a+b+c=10$ and $a,b,c\\ge0$.",
-          "By stars and bars the number of solutions is $\\binom{10+2}{2}=\\binom{12}{2}=66$.",
-          "$\\boxed{66}$"
+          "$\\sum_k\\binom{7}{k}\\binom{7}{5-k}$ is the coefficient of $x^5$ in $(1+x)^7(1+x)^7=(1+x)^{14}$.",
+          "That coefficient is $\\binom{14}{5}$.",
+          "Hence the sum equals $\\binom{14}{5}=\\boxed{2002}$."
         ]
       }
     ],
-    "remark": "Insight: the coefficient of $x^r$ in $(1-x)^{-n}$ is purely combinatorial — the number of weak compositions of $r$ into $n$ parts — so no signs ever appear. Both the index gymnastics $\\binom{12}{10}=\\binom{12}{2}$ and the stars-and-bars count land on $66$, while $\\binom{12}{3}=220$ is the classic mis-read."
+    "remark": "**Insight.** The general law $\\sum_k\\binom{n}{k}\\binom{n}{k+m}=\\binom{2n}{n+m}$ is Vandermonde once you reflect the shifted factor. The shift $m$ pushes the answer off the central coefficient — and because $\\binom{2n}{n+m}=\\binom{2n}{n-m}$, the offset is symmetric but **not** zero."
   },
   {
-    "theme": "seriesindex",
-    "themeLabel": "Negative & Fractional Index",
-    "title": "A Staircase of Odd Numbers",
-    "difficulty": 3,
-    "task": "Evaluate",
-    "tags": [
-      "fractional index",
-      "series summation",
-      "closed form",
-      "pochhammer"
-    ],
-    "statement": "Evaluate the infinite sum \\[ 1+\\frac{3}{4}+\\frac{3\\cdot5}{4\\cdot8}+\\frac{3\\cdot5\\cdot7}{4\\cdot8\\cdot12}+\\cdots \\] by recognising it as a binomial series at a suitable value of $x$.",
-    "answer": "$\\boxed{2\\sqrt{2}}$",
-    "trap": "Reading the numerators $3,5,7,\\dots$ as the Pochhammer of $\\tfrac32$ but forgetting that the denominators $4,8,12,\\dots=4r$ secretly carry both the $r!$ and a hidden factor $2^r$, so the value of $x$ is $\\tfrac12$, not $1$. Plugging $x=1$ would land you exactly on the boundary $(1-1)^{-3/2}$, where the terms fail to decay and the series diverges.",
-    "solutions": [
-      {
-        "name": "Match to $(1-x)^{-3/2}$",
-        "steps": [
-          "The $r$-th term is $\\dfrac{3\\cdot5\\cdots(2r+1)}{4\\cdot8\\cdots(4r)}=\\dfrac{(3/2)_r}{r!}\\Big(\\tfrac12\\Big)^r$ since $4\\cdot8\\cdots(4r)=4^r\\,r!$ and $3\\cdot5\\cdots(2r+1)=2^r(3/2)_r$.",
-          "Hence the sum is $\\sum_{r\\ge0}\\dfrac{(3/2)_r}{r!}\\big(\\tfrac12\\big)^r=(1-\\tfrac12)^{-3/2}$.",
-          "$(1/2)^{-3/2}=2^{3/2}=\\boxed{2\\sqrt2}$"
-        ]
-      },
-      {
-        "name": "Ratio test then identify $\\alpha$",
-        "steps": [
-          "Term ratio $\\dfrac{a_{r+1}}{a_r}=\\dfrac{2r+3}{4r+4}=\\dfrac{(r+3/2)}{(r+1)}\\cdot\\tfrac12$, the signature of $(1-x)^{-3/2}$ with $x=\\tfrac12$.",
-          "So $S=(1-\\tfrac12)^{-3/2}=2\\sqrt2$.",
-          "$\\boxed{2\\sqrt2}$"
-        ]
-      },
-      {
-        "name": "Direct numeric confirmation",
-        "steps": [
-          "Partial sums $1,\\,1.75,\\,2.21875,\\,2.4921875,\\dots$ climb toward $2.8284\\dots$",
-          "This equals $2\\sqrt2=2.8284\\dots$, confirming the closed form.",
-          "$\\boxed{2\\sqrt2}$"
-        ]
-      }
-    ],
-    "remark": "Insight: every ratio $\\frac{a_{r+1}}{a_r}$ that is a rational function $\\frac{r+\\alpha}{r+1}\\cdot t$ is a binomial series $(1-t)^{-\\alpha}$ in disguise — read $\\alpha$ and $t$ straight off the ratio."
-  },
-  {
-    "theme": "seriesindex",
-    "themeLabel": "Negative & Fractional Index",
-    "title": "Central Binomials Tamed by a Fifth",
-    "difficulty": 4,
-    "task": "Evaluate",
-    "tags": [
-      "central binomial",
-      "generating function",
-      "fractional index",
-      "range of validity"
-    ],
-    "statement": "Using the identity $(1-4x)^{-1/2}=\\sum_{r\\ge0}\\binom{2r}{r}x^r$, evaluate \\[ \\sum_{r=0}^{\\infty}\\frac{\\binom{2r}{r}}{5^{\\,r}}, \\] after first checking that the chosen $x$ lies inside the radius of convergence.",
-    "answer": "$\\boxed{\\sqrt{5}}$",
-    "trap": "Setting $4x=\\tfrac15$ (so $x=\\tfrac1{20}$) to make the $5^{-r}$ appear, which is wrong: you need $x^r=5^{-r}$, i.e. $x=\\tfrac15$, giving $4x=\\tfrac45<1$ — still valid. Confusing the role of the $4$ leads to evaluating $(1-\\tfrac15)^{-1/2}=\\sqrt{5}/2$ instead of $(1-\\tfrac45)^{-1/2}=\\sqrt5$.",
-    "solutions": [
-      {
-        "name": "Identify $x$ and check validity",
-        "steps": [
-          "We need $x^r=5^{-r}$, so $x=\\tfrac15$; then $4x=\\tfrac45$ and $|4x|<1$, inside the disc.",
-          "Sum $=(1-4x)^{-1/2}=(1-\\tfrac45)^{-1/2}=(\\tfrac15)^{-1/2}=\\sqrt5$.",
-          "$\\boxed{\\sqrt5}$"
-        ]
-      },
-      {
-        "name": "Direct generating function",
-        "steps": [
-          "$\\sum\\binom{2r}{r}x^r=\\dfrac1{\\sqrt{1-4x}}$; substitute $x=\\tfrac15$.",
-          "$=\\dfrac1{\\sqrt{1-4/5}}=\\dfrac1{\\sqrt{1/5}}=\\sqrt5$.",
-          "$\\boxed{\\sqrt5}$"
-        ]
-      },
-      {
-        "name": "Numeric sanity",
-        "steps": [
-          "$1+\\tfrac25+\\tfrac6{25}+\\tfrac{20}{125}+\\cdots=1+0.4+0.24+0.16+\\cdots$ tends to $2.2360\\dots$",
-          "$\\sqrt5=2.2360\\dots$, matching.",
-          "$\\boxed{\\sqrt5}$"
-        ]
-      }
-    ],
-    "remark": "Insight: the radius of $(1-4x)^{-1/2}$ is $\\tfrac14$, so the series converges for $|x|<\\tfrac14$; at $x=\\tfrac15$ we are comfortably inside, and the $\\tfrac45$ scare is illusory."
-  },
-  {
-    "theme": "seriesindex",
-    "themeLabel": "Negative & Fractional Index",
-    "title": "The Even-Only Ladder",
-    "difficulty": 4,
-    "task": "Determine",
-    "tags": [
-      "fractional index",
-      "even powers",
-      "coefficient extraction",
-      "general term"
-    ],
-    "statement": "Determine the coefficient of $x^{10}$ in the expansion of $(1-4x^{2})^{-1/2}$, valid for $|x|<\\tfrac12$, and state which odd-power coefficients vanish.",
-    "answer": "$\\boxed{252}$",
-    "trap": "Treating $(1-4x^2)^{-1/2}$ as $(1-4x)^{-1/2}$ in the variable $x$ and reading off the coefficient of $x^{10}$ as $\\binom{20}{10}$. The expansion is in $x^2$, so $x^{10}$ corresponds to the $r=5$ term, giving $\\binom{10}{5}$, and every odd power vanishes.",
-    "solutions": [
-      {
-        "name": "Substitute $u=x^2$",
-        "steps": [
-          "$(1-4u)^{-1/2}=\\sum_{r\\ge0}\\binom{2r}{r}u^r$, so $(1-4x^2)^{-1/2}=\\sum_{r\\ge0}\\binom{2r}{r}x^{2r}$.",
-          "$x^{10}$ needs $2r=10\\Rightarrow r=5$, coefficient $\\binom{10}{5}=252$; all odd powers have coefficient $0$.",
-          "$\\boxed{252}$"
-        ]
-      },
-      {
-        "name": "General term",
-        "steps": [
-          "General term $T_r=\\binom{-1/2}{r}(-4)^r x^{2r}=\\binom{2r}{r}x^{2r}$ after simplifying the fractional coefficient.",
-          "Set $2r=10$: $T_5=\\binom{10}{5}x^{10}=252\\,x^{10}$.",
-          "$\\boxed{252}$"
-        ]
-      },
-      {
-        "name": "Parity argument",
-        "steps": [
-          "$(1-4x^2)^{-1/2}$ is even in $x$, so only even powers survive — odd coefficients are zero.",
-          "The even part matches $\\sum\\binom{2r}{r}x^{2r}$, and $x^{10}$ gives $\\binom{10}{5}=252$.",
-          "$\\boxed{252}$"
-        ]
-      }
-    ],
-    "remark": "Insight: an inner substitution $x\\mapsto x^2$ halves the index and forces a strict even/odd parity — the radius also shrinks from $\\tfrac14$ to $\\tfrac12$ in $x$ because $|4x^2|<1$."
-  },
-  {
-    "theme": "seriesindex",
-    "themeLabel": "Negative & Fractional Index",
-    "title": "Walking to the Very Edge",
-    "difficulty": 4,
-    "task": "Evaluate",
-    "tags": [
-      "fractional index",
-      "boundary convergence",
-      "conditional convergence",
-      "alternating series",
-      "Abel's theorem"
-    ],
-    "statement": "The binomial series $(1+x)^{-1/2}=\\sum_{r\\ge0}\\binom{-1/2}{r}x^{r}$ converges for $|x|<1$. Show that at the boundary point $x=1$ the resulting numerical series \\[ 1-\\frac12+\\frac{3}{8}-\\frac{5}{16}+\\frac{35}{128}-\\cdots \\] still converges (though only conditionally), and evaluate its sum.",
-    "answer": "$\\boxed{\\dfrac{1}{\\sqrt{2}}}$",
-    "trap": "Declaring the sum undefined because $x=1$ lies on the boundary $|x|=1$, where the open-disc convergence theorem offers no guarantee. The disc condition $|x|<1$ is sufficient but not necessary. Here $\\binom{-1/2}{r}=(-1)^r\\binom{2r}{r}4^{-r}$, so the terms strictly alternate in sign and their magnitudes $\\binom{2r}{r}4^{-r}\\sim(\\pi r)^{-1/2}$ decrease monotonically to $0$. Leibniz's test therefore guarantees convergence, and Abel's theorem pins the value to $\\lim_{x\\to1^-}(1+x)^{-1/2}=2^{-1/2}$. A second, subtler trap is to call the convergence absolute: since $|a_r|\\sim(\\pi r)^{-1/2}$ and $\\sum r^{-1/2}$ diverges, the convergence is only conditional.",
-    "solutions": [
-      {
-        "name": "Abel's limit theorem",
-        "steps": [
-          "For $|x|<1$, $f(x)=(1+x)^{-1/2}=\\sum_{r\\ge0}\\binom{-1/2}{r}x^{r}$ with $\\binom{-1/2}{r}=(-1)^r\\binom{2r}{r}4^{-r}$.",
-          "At $x=1$ the numerical series $\\sum_r\\binom{-1/2}{r}$ is alternating with magnitudes $\\binom{2r}{r}4^{-r}\\to0$ monotonically, so it converges by Leibniz's test.",
-          "Abel's theorem says that when a power series converges at a boundary point, its sum there equals the radial limit of $f$. Hence the sum is $\\lim_{x\\to1^-}(1+x)^{-1/2}=(2)^{-1/2}$.",
-          "$\\boxed{1/\\sqrt2}$"
-        ]
-      },
-      {
-        "name": "Sign and decay check, then continuity",
-        "steps": [
-          "Using $\\binom{-1/2}{r}=(-1)^r\\dfrac{(2r)!}{4^r(r!)^2}=(-1)^r\\dfrac{1}{4^r}\\binom{2r}{r}$, the terms strictly alternate.",
-          "By the central-binomial asymptotic $\\binom{2r}{r}4^{-r}\\sim(\\pi r)^{-1/2}$, the magnitudes decrease monotonically to $0$, so Leibniz convergence holds; note $\\sum(\\pi r)^{-1/2}$ diverges, so the convergence is conditional, not absolute.",
-          "Because the series converges at $x=1$ and $(1+x)^{-1/2}$ is continuous there, the sum equals the value of the function: $(1+1)^{-1/2}=1/\\sqrt2$.",
-          "$\\boxed{1/\\sqrt2}$"
-        ]
-      },
-      {
-        "name": "Averaged (Cesaro-accelerated) partial sums",
-        "steps": [
-          "The partial sums oscillate: $S_0,S_1,S_2,S_3=1,\\;0.5,\\;0.875,\\;0.5625,\\dots$, straddling the limit because the series is alternating.",
-          "Averaging consecutive partial sums damps the oscillation: one pass gives $0.75,0.6875,0.71875,\\dots$ and a second pass gives $0.71875,0.70312,0.70898,\\dots\\to0.70711\\dots$.",
-          "This matches $1/\\sqrt2=0.70710\\ldots$, confirming the Abel value.",
-          "$\\boxed{1/\\sqrt2}$"
-        ]
-      }
-    ],
-    "remark": "Insight: $|x|<1$ is sufficient but not necessary for a binomial series to converge. When the boundary series converges on its own merits, Abel's theorem hands you the value for free as the radial limit. Two pitfalls lurk: (1) treating the open-disc condition as if it forbade the edge, and (2) over-claiming absolute convergence. The honest decay rate is $|a_r|=\\binom{2r}{r}4^{-r}\\sim(\\pi r)^{-1/2}$ (like $r^{-1/2}$, not $r^{-3/2}$), so $\\sum|a_r|$ diverges and the convergence at $x=1$ is strictly conditional, riding entirely on the alternation of signs."
-  },
-  {
-    "theme": "seriesindex",
-    "themeLabel": "Negative & Fractional Index",
-    "title": "Where Two Half-Powers Collide",
+    "theme": "vandermonde",
+    "themeLabel": "Vandermonde, Pascal & Combinatorial Identities",
+    "title": "A Weight on Each Squared Term",
     "difficulty": 5,
-    "task": "Prove that",
+    "task": "Evaluate the sum",
     "tags": [
-      "central binomial",
-      "convolution",
-      "cauchy product",
-      "combinatorial identity"
+      "absorption identity",
+      "sum of squares",
+      "vandermonde convolution",
+      "weighted sum"
     ],
-    "statement": "Prove that for every non-negative integer $n$, \\[ \\sum_{k=0}^{n}\\binom{2k}{k}\\binom{2(n-k)}{\\,n-k\\,}=4^{n}, \\] by squaring a single fractional-index binomial series.",
-    "answer": "$\\boxed{\\text{proved}}$",
-    "trap": "Trying to force this into Vandermonde's convolution $\\sum_{k}\\binom{a}{k}\\binom{b}{n-k}=\\binom{a+b}{n}$ with $a=b=2n$, which would predict $\\binom{4n}{n}$. This fails: the upper indices $2k$ and $2(n-k)$ move with the summation variable $k$, so the summand is $\\binom{2k}{k}\\binom{2(n-k)}{n-k}$, not $\\binom{2n}{k}\\binom{2n}{n-k}$. Indeed at $n=2$ the true sum is $16$ while $\\binom{8}{2}=28$. The correct device is the Cauchy product of $(1-4x)^{-1/2}$ with itself.",
+    "statement": "Evaluate $\\displaystyle\\sum_{k=0}^{7}k\\binom{7}{k}^{2}=0\\cdot\\binom{7}{0}^2+1\\cdot\\binom{7}{1}^2+\\cdots+7\\cdot\\binom{7}{7}^2$.",
+    "answer": "$$\\boxed{12012}$$",
+    "trap": "Dropping the weight $k$ and computing $\\sum_k\\binom{7}{k}^2=\\binom{14}{7}=3432$, then perhaps multiplying by an “average”. The factor $k$ must be absorbed via $k\\binom{7}{k}=7\\binom{6}{k-1}$ first; the correct value is $7\\binom{13}{6}=12012$, far from $3432$.",
     "solutions": [
       {
-        "name": "Square the central-binomial generating function",
+        "name": "Absorption then Vandermonde",
         "steps": [
-          "The negative-fractional-index binomial series gives $(1-4x)^{-1/2}=\\sum_{r\\ge0}\\binom{2r}{r}x^{r}$, valid for $|x|<\\tfrac14$; this follows from $\\binom{-1/2}{r}(-4)^{r}=\\binom{2r}{r}$.",
-          "Multiply the series by itself: $(1-4x)^{-1/2}\\cdot(1-4x)^{-1/2}=\\Big(\\sum_{k\\ge0}\\binom{2k}{k}x^{k}\\Big)\\Big(\\sum_{m\\ge0}\\binom{2m}{m}x^{m}\\Big)$, and the Cauchy product has $x^{n}$-coefficient $\\sum_{k=0}^{n}\\binom{2k}{k}\\binom{2(n-k)}{n-k}$.",
-          "But the left side collapses to a whole index: $(1-4x)^{-1/2}\\cdot(1-4x)^{-1/2}=(1-4x)^{-1}=\\sum_{n\\ge0}4^{n}x^{n}$, whose $x^{n}$-coefficient is $4^{n}$. Equating coefficients of $x^{n}$ gives the identity. $\\boxed{\\text{proved}}$"
+          "Absorb the weight: $k\\binom{7}{k}=7\\binom{6}{k-1}$, so $\\sum_k k\\binom{7}{k}^2=7\\sum_k\\binom{6}{k-1}\\binom{7}{k}$.",
+          "Reflect the second factor, $\\binom{7}{k}=\\binom{7}{7-k}$, giving $7\\sum_k\\binom{6}{k-1}\\binom{7}{7-k}$, a Vandermonde convolution with $m=6$, $n=7$ and target lower index $6$ (since $(k-1)+(7-k)=6$): it equals $7\\binom{13}{6}$.",
+          "Compute $\\binom{13}{6}=1716$, so the sum is $7\\cdot 1716=\\boxed{12012}$."
         ]
       },
       {
-        "name": "Geometric collapse of the self-convolution",
+        "name": "Symmetric pairing of the weight",
         "steps": [
-          "Work entirely with formal power series. Let $f(x)=\\sum_{r\\ge0}\\binom{2r}{r}x^{r}$. The half-index binomial theorem identifies $f(x)=(1-4x)^{-1/2}$ as a formal series, so $f(x)^{2}=(1-4x)^{-1}$.",
-          "By the geometric series, $(1-4x)^{-1}=\\sum_{n\\ge0}(4x)^{n}=\\sum_{n\\ge0}4^{n}x^{n}$, an elementary whole-index expansion with no fractional powers left.",
-          "Comparing the $x^{n}$-coefficient of $f(x)^{2}$ (the convolution $\\sum_{k=0}^{n}\\binom{2k}{k}\\binom{2(n-k)}{n-k}$) with that of $(1-4x)^{-1}$ (namely $4^{n}$) proves the identity for every $n$. $\\boxed{\\text{proved}}$"
-        ]
-      },
-      {
-        "name": "Induction propelled by the generating-function recurrence",
-        "steps": [
-          "Let $S_n=\\sum_{k=0}^{n}\\binom{2k}{k}\\binom{2(n-k)}{n-k}$ and $g(x)=\\sum_{n\\ge0}S_n x^{n}=f(x)^{2}=(1-4x)^{-1}$. Then $(1-4x)\\,g(x)=1$.",
-          "Reading off the $x^{n}$-coefficient of $(1-4x)g(x)=1$ yields the recurrence $S_n-4S_{n-1}=0$ for $n\\ge1$, i.e. $S_n=4S_{n-1}$, with base case $S_0=\\binom00^{2}=1$.",
-          "By induction $S_n=4^{n}$: assuming $S_{n-1}=4^{n-1}$ gives $S_n=4\\cdot4^{n-1}=4^{n}$. The explicit values $1,4,16,64,\\dots$ confirm the start. $\\boxed{\\text{proved}}$"
+          "By symmetry $\\sum_k k\\binom{7}{k}^2=\\sum_k(7-k)\\binom{7}{k}^2$ (replace $k$ by $7-k$).",
+          "Add the two forms: $2\\sum_k k\\binom{7}{k}^2=7\\sum_k\\binom{7}{k}^2=7\\binom{14}{7}$, so $\\sum_k k\\binom{7}{k}^2=\\tfrac{7}{2}\\binom{14}{7}$.",
+          "Then $\\tfrac{7}{2}\\binom{14}{7}=\\tfrac{7}{2}\\cdot 3432=7\\cdot 1716=\\boxed{12012}$."
         ]
       }
     ],
-    "remark": "Insight: a self-convolution of central binomials collapses because $(1-4x)^{-1/2}$ squares to the elementary $(1-4x)^{-1}$ -- the half-powers were engineered to multiply to a whole power. The recurrence $S_n=4S_{n-1}$ falls straight out of clearing the denominator in $(1-4x)g(x)=1$, which is why the answer is a clean $4^{n}$ rather than a binomial coefficient like the Vandermonde mirage $\\binom{4n}{n}$."
-  },
-  {
-    "theme": "seriesindex",
-    "themeLabel": "Negative & Fractional Index",
-    "title": "A Reciprocal Trio Split Three Ways",
-    "difficulty": 5,
-    "task": "Find a closed form for the coefficient",
-    "tags": [
-      "partial fractions",
-      "negative binomial",
-      "coefficient extraction",
-      "closed form"
-    ],
-    "statement": "Let $a_n$ be the coefficient of $x^{n}$ in the power series of \\[ f(x)=\\frac{1}{(1-x)^{2}(1-2x)},\\qquad |x|<\\tfrac12. \\] Find a closed form $a_n=A\\cdot 2^{n}+Bn+C$ for constants $A,B,C$, and state $a_n$.",
-    "answer": "$\\boxed{a_n=2^{\\,n+2}-n-3}$",
-    "trap": "Expanding only $(1-2x)^{-1}$ and $(1-x)^{-1}$ and forgetting that the repeated factor $(1-x)^2$ forces a $\\tfrac{1}{(1-x)^2}$ partial-fraction term. That term contributes the linear $-(n+1)$, so dropping it leaves the wrong answer $4\\cdot 2^{n}-1=2^{n+2}-1$, losing the entire $-(n+1)$ correction.",
-    "solutions": [
-      {
-        "name": "Partial fractions then read coefficients",
-        "steps": [
-          "Write $f(x)=\\dfrac{A}{1-2x}+\\dfrac{B}{1-x}+\\dfrac{C}{(1-x)^2}$. Clearing denominators, $1=A(1-x)^2+B(1-x)(1-2x)+C(1-2x)$.",
-          "Substitute test points: $x=\\tfrac12$ gives $1=A\\cdot\\tfrac14\\Rightarrow A=4$; $x=1$ gives $1=-C\\Rightarrow C=-1$; $x=0$ gives $1=A+B+C=4+B-1\\Rightarrow B=-2$. So $f(x)=\\dfrac{4}{1-2x}-\\dfrac{2}{1-x}-\\dfrac{1}{(1-x)^2}$.",
-          "Read off coefficients using $\\tfrac{1}{1-2x}=\\sum 2^n x^n$, $\\tfrac{1}{1-x}=\\sum x^n$, $\\tfrac{1}{(1-x)^2}=\\sum (n+1)x^n$: $a_n=4\\cdot 2^n-2-(n+1)=2^{n+2}-n-3$.",
-          "$\\boxed{a_n=2^{n+2}-n-3}$, i.e. $A=4,\\,B=-1,\\,C=-3$."
-        ]
-      },
-      {
-        "name": "Cauchy product of two series",
-        "steps": [
-          "$\\dfrac{1}{(1-x)^2}=\\sum_{j\\ge0}(j+1)x^j$ and $\\dfrac1{1-2x}=\\sum_{m\\ge0} 2^m x^m$; convolving gives $a_n=\\sum_{m=0}^n 2^m\\,(n-m+1)$.",
-          "Split: $a_n=(n+1)\\sum_{m=0}^n 2^m-\\sum_{m=0}^n m\\,2^m=(n+1)(2^{n+1}-1)-\\bigl((n-1)2^{n+1}+2\\bigr)$.",
-          "Simplify: $(n+1)2^{n+1}-(n-1)2^{n+1}-(n+1)-2=2\\cdot 2^{n+1}-n-3=2^{n+2}-n-3$.",
-          "$\\boxed{a_n=2^{n+2}-n-3}$"
-        ]
-      },
-      {
-        "name": "Recurrence from the denominator",
-        "steps": [
-          "Expand $(1-x)^2(1-2x)=1-4x+5x^2-2x^3$. Since $f\\cdot(1-4x+5x^2-2x^3)=1$, for $n\\ge3$ we get $a_n=4a_{n-1}-5a_{n-2}+2a_{n-3}$, with seeds $a_0=1,\\,a_1=4,\\,a_2=11$.",
-          "The characteristic polynomial $t^3-4t^2+5t-2=(t-2)(t-1)^2$ has roots $2,1,1$, so $a_n=A\\cdot 2^n+(Bn+C)$.",
-          "Fit the seeds: $A+C=1$, $2A+B+C=4$, $4A+2B+C=11$ give $A=4,\\,B=-1,\\,C=-3$.",
-          "$\\boxed{a_n=2^{n+2}-n-3}$"
-        ]
-      }
-    ],
-    "remark": "Insight: a repeated linear factor $(1-x)^2$ contributes a $\\tfrac{1}{(1-x)^2}$ piece whose negative-index expansion is the linear sequence $(n+1)$ — that is the source of the $-n$ that naive splitting forgets. Note the partial-fraction numerators are $4,\\,-2,\\,-1$ (not $4,\\,-1,\\,-1$): the simple-pole residue at $x=1$ must absorb part of the double-pole contribution."
-  },
-  {
-    "theme": "seriesindex",
-    "themeLabel": "Negative & Fractional Index",
-    "title": "The Window of a Central Series",
-    "difficulty": 4,
-    "task": "Find all",
-    "tags": [
-      "range of validity",
-      "central binomial",
-      "fractional index",
-      "closed form",
-      "endpoint convergence"
-    ],
-    "statement": "Consider the series $S(x)=\\displaystyle\\sum_{r\\ge0}\\binom{2r}{r}\\Big(\\frac{x}{4}\\Big)^{r}$. Find every real $x$ for which it converges, and give the closed form of $S(x)$ on that set. Pay special attention to the two endpoints of the disc.",
-    "answer": "$\\boxed{S(x)=\\dfrac{1}{\\sqrt{1-x}}\\ \\text{for } x\\in[-1,1)}$ (the left endpoint $x=-1$ converges to $1/\\sqrt2$; $x=1$ diverges)",
-    "trap": "Two-sided carelessness. (1) Computing $S(-3)=\\tfrac1{\\sqrt{1+3}}=\\tfrac12$ by blindly plugging $x=-3$ into the closed form: at $x=-3$ the terms $\\binom{2r}{r}(3/4)^r$ grow without bound (ratio $\\to 3>1$), so the series diverges and $\\tfrac12$ is meaningless. (2) Declaring the convergence set the OPEN interval $(-1,1)$ by reflex, discarding both endpoints together. In fact the endpoints behave oppositely: at $x=1$ the positive terms $\\binom{2r}{r}4^{-r}\\sim(\\pi r)^{-1/2}$ make the series diverge like $\\sum r^{-1/2}$, but at $x=-1$ those same magnitudes decrease monotonically to $0$, so the alternating series converges (Leibniz) and, by Abel's theorem, sums to $1/\\sqrt2$. The correct set is the half-open interval $[-1,1)$.",
-    "solutions": [
-      {
-        "name": "Rescale to the standard binomial form",
-        "steps": [
-          "$\\binom{2r}{r}\\big(\\tfrac{x}{4}\\big)^r$ matches the negative-index expansion $(1-4y)^{-1/2}=\\sum_{r\\ge0}\\binom{2r}{r}y^r$ with $y=\\tfrac{x}{4}$, so formally $S(x)=(1-x)^{-1/2}$.",
-          "The standard series converges for $|4y|<1$, i.e. $|x|<1$, giving the open core $x\\in(-1,1)$ where $S(x)=1/\\sqrt{1-x}$. The endpoints $x=\\pm1$ are left for the dedicated endpoint method below.",
-          "$S(x)=1/\\sqrt{1-x}$ on $(-1,1)$ — to be extended to $[-1,1)$."
-        ]
-      },
-      {
-        "name": "Ratio test for the open core",
-        "steps": [
-          "$\\dfrac{a_{r+1}}{a_r}=\\dfrac{\\binom{2r+2}{r+1}}{\\binom{2r}{r}}\\cdot\\dfrac{x}{4}=\\dfrac{(2r+1)(2r+2)}{(r+1)^2}\\cdot\\dfrac{x}{4}=\\dfrac{(2r+1)}{2(r+1)}\\,x\\to x.$",
-          "Hence the series converges absolutely for $|x|<1$ and diverges for $|x|>1$; the ratio test is silent at $|x|=1$, so each endpoint must be examined separately.",
-          "Core result: $S(x)=1/\\sqrt{1-x}$ for $x\\in(-1,1)$, the analytic value of $(1-x)^{-1/2}$."
-        ]
-      },
-      {
-        "name": "The decisive endpoint examination",
-        "steps": [
-          "Endpoint asymptotics: $\\binom{2r}{r}4^{-r}\\sim(\\pi r)^{-1/2}$. At $x=1$ all terms are positive and $\\sum (\\pi r)^{-1/2}$ diverges (a $p$-series with $p=\\tfrac12\\le1$), so $x=1$ diverges.",
-          "At $x=-1$ the terms are $(-1)^r\\binom{2r}{r}4^{-r}$. Their magnitudes $\\binom{2r}{r}4^{-r}$ decrease monotonically to $0$ (since $\\tfrac{|a_{r+1}|}{|a_r|}=\\tfrac{2r+1}{2r+2}<1$), so the alternating series converges by the Leibniz test.",
-          "Abel's limit theorem now pins the value: as $x\\to-1^{+}$, $1/\\sqrt{1-x}\\to1/\\sqrt2$, hence $S(-1)=1/\\sqrt2=1/\\sqrt{1-(-1)}$ — the closed form survives at the left endpoint.",
-          "$\\boxed{S(x)=1/\\sqrt{1-x},\\ x\\in[-1,1)}$"
-        ]
-      }
-    ],
-    "remark": "Insight: a closed form is a faithful proxy for its series only on the actual convergence set, and the two endpoints of a disc need not share a fate. Here $\\sum(\\pi r)^{-1/2}$ diverges at $x=1$ yet the same magnitudes, made to alternate at $x=-1$, converge by Leibniz to the Abel limit $1/\\sqrt2$. Reflexively writing the open interval $(-1,1)$ throws away a perfectly good point; reflexively plugging in $x=-3$ invents one. The honest answer is the half-open interval $[-1,1)$."
-  },
-  {
-    "theme": "seriesindex",
-    "themeLabel": "Negative & Fractional Index",
-    "title": "When the Coefficient Outgrows a Hundred",
-    "difficulty": 4,
-    "task": "Find the number of",
-    "tags": [
-      "negative index",
-      "general term",
-      "coefficient growth",
-      "inequality"
-    ],
-    "statement": "In the expansion of $(1+x)^{-3}$ for $|x|<1$, the coefficient of $x^{r}$ is $c_r$. Find the smallest $r$ for which $|c_r|>100$.",
-    "answer": "$\\boxed{13}$",
-    "trap": "Using $\\binom{-3}{r}$ and keeping the sign, then solving $c_r>100$ directly — but $c_r=(-1)^r\\binom{r+2}{2}$ is negative for odd $r$, so the inequality $c_r>100$ silently discards every odd index and first holds at the even $r=14$. The condition is on the magnitude $|c_r|=\\binom{r+2}{2}$, which first exceeds $100$ at $r=13$.",
-    "solutions": [
-      {
-        "name": "Magnitude of the general term",
-        "steps": [
-          "$(1+x)^{-3}=\\sum_r\\binom{-3}{r}x^r=\\sum_r(-1)^r\\binom{r+2}{2}x^r$, so $|c_r|=\\binom{r+2}{2}=\\tfrac{(r+1)(r+2)}{2}$.",
-          "Solve $\\tfrac{(r+1)(r+2)}{2}>100\\Rightarrow(r+1)(r+2)>200$; at $r=12$ we get $13\\cdot14=182\\le200$, while at $r=13$ we get $14\\cdot15=210>200$.",
-          "The smallest such $r$ is $\\boxed{13}$."
-        ]
-      },
-      {
-        "name": "Tabulate magnitudes",
-        "steps": [
-          "$|c_{12}|=\\binom{14}{2}=91\\le100$, whereas $|c_{13}|=\\binom{15}{2}=105>100$.",
-          "Hence the first index whose coefficient exceeds $100$ in magnitude is $r=13$.",
-          "$\\boxed{13}$"
-        ]
-      },
-      {
-        "name": "Quadratic threshold estimate",
-        "steps": [
-          "$(r+1)(r+2)>200$ is close to $r^2>200$, so $r\\gtrsim\\sqrt{200}\\approx14.1$ before the linear shift — testing exact values, $r=13$ gives $210>200$ while $r=12$ gives $182<200$.",
-          "Thus $r=12$ fails and $r=13$ is the first success.",
-          "$\\boxed{13}$"
-        ]
-      }
-    ],
-    "remark": "Insight: for a negative integer index the coefficients alternate in sign, so growth questions must be phrased about $|c_r|=\\binom{r+|n|-1}{|n|-1}$. Confusing $c_r$ with $|c_r|$ silently discards half the indices and shifts the answer from $r=13$ to $r=14$."
-  },
-  {
-    "theme": "seriesindex",
-    "themeLabel": "Negative & Fractional Index",
-    "title": "Catalan Numbers at the Cliff's Edge",
-    "difficulty": 5,
-    "task": "Evaluate",
-    "tags": [
-      "catalan numbers",
-      "boundary convergence",
-      "fractional index",
-      "generating function"
-    ],
-    "statement": "The Catalan numbers $C_r=\\dfrac1{r+1}\\binom{2r}{r}$ have generating function $\\displaystyle\\sum_{r\\ge0}C_r x^{r}=\\frac{1-\\sqrt{1-4x}}{2x}$, with radius of convergence $\\tfrac14$. Evaluate \\[ \\sum_{r=0}^{\\infty}\\frac{1}{r+1}\\binom{2r}{r}\\frac{1}{4^{r}}. \\]",
-    "answer": "$\\boxed{2}$",
-    "trap": "Declaring the sum divergent or undefined because $x=\\tfrac14$ is exactly the radius of convergence. In fact $C_r4^{-r}\\sim\\dfrac{1}{\\sqrt\\pi\\,r^{3/2}}$, a convergent $p$-series tail ($p=\\tfrac32>1$), so the boundary series converges and Abel's theorem gives the value $\\lim_{x\\to1/4^-}\\tfrac{1-\\sqrt{1-4x}}{2x}$.",
-    "solutions": [
-      {
-        "name": "Boundary limit of the generating function",
-        "steps": [
-          "The terms $C_r4^{-r}\\sim\\pi^{-1/2}r^{-3/2}$ are positive and summable, so the series converges at $x=\\tfrac14$.",
-          "By Abel's theorem the sum equals $\\lim_{x\\to1/4^-}\\dfrac{1-\\sqrt{1-4x}}{2x}=\\dfrac{1-0}{2\\cdot\\tfrac14}=2$.",
-          "$\\boxed{2}$"
-        ]
-      },
-      {
-        "name": "Substitute then take the limit",
-        "steps": [
-          "Write $g(x)=\\dfrac{1-\\sqrt{1-4x}}{2x}$; at $x=\\tfrac14$, $\\sqrt{1-4x}=0$, so $g=\\dfrac{1}{1/2}=2$.",
-          "Continuity of $g$ up to the boundary (justified by convergence of the series) gives the sum $=2$.",
-          "$\\boxed{2}$"
-        ]
-      },
-      {
-        "name": "Asymptotic-tail confirmation",
-        "steps": [
-          "Partial sums increase monotonically: $1,1.5,1.625,\\dots$ approaching $2$, with tail $\\sum_{r>N}\\pi^{-1/2}r^{-3/2}\\to0$.",
-          "The limit is the algebraic value $2$.",
-          "$\\boxed{2}$"
-        ]
-      }
-    ],
-    "remark": "Insight: the radius $\\tfrac14$ is where the closed form's square root hits zero — and because the Catalan tail decays like $r^{-3/2}$, the series survives exactly at its own cliff edge, unlike the central-binomial series which diverges there."
+    "remark": "**Insight.** Two clean tools crack this: the absorption identity $k\\binom{n}{k}=n\\binom{n-1}{k-1}$, or the symmetry trick $k\\leftrightarrow n-k$ that replaces $k$ by the average $n/2$. Either way you land on $n\\binom{2n-1}{n-1}$ — never forget the weight entirely."
   },
   {
     "theme": "hybrid",
@@ -3491,54 +3384,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: the only thing that makes this nontrivial is that $1+\\omega+\\omega^2=0$ turns $(1+\\omega)^{3n}$ into the tiny correction $(-1)^n$. The filter is the first tool; recognising $1+\\omega=-\\omega^2$ is the second. The answer is an integer precisely because $8^n\\equiv (-1)^n\\pmod 3$, so the numerator $8^n+2(-1)^n\\equiv (-1)^n+2(-1)^n=3(-1)^n\\equiv 0\\pmod 3$."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
-    "title": "Integrate, Then Filter",
-    "difficulty": 5,
-    "task": "Evaluate",
-    "tags": [
-      "integration",
-      "roots of unity",
-      "filter",
-      "harmonic weight",
-      "two tools"
-    ],
-    "statement": "Evaluate\n\\[ T \\;=\\; \\sum_{j\\ge 0} \\frac{1}{3j+1}\\binom{12}{3j} \\;=\\; \\frac{\\binom{12}{0}}{1}+\\frac{\\binom{12}{3}}{4}+\\frac{\\binom{12}{6}}{7}+\\frac{\\binom{12}{9}}{10}+\\frac{\\binom{12}{12}}{13}. \\]",
-    "answer": "\\[\\boxed{\\dfrac{2731}{13}}\\]",
-    "trap": "Trying to evaluate $\\int_0^1\\frac{1}{3}\\big[(1+t)^{12}+(1+\\omega t)^{12}+(1+\\omega^2 t)^{12}\\big]\\,dt$ term-by-term and getting lost in complex antiderivatives. The clean route is the algebraic identity $\\frac{1}{k+1}\\binom{n}{k}=\\frac{1}{n+1}\\binom{n+1}{k+1}$, which converts the weight $\\frac{1}{3j+1}$ into a SHIFTED binomial — turning the problem into a pure roots-of-unity filter on row $13$ of Pascal's triangle. Missing this shift makes the integral genuinely hard.",
-    "solutions": [
-      {
-        "name": "Absorption identity + filter on the shifted row",
-        "steps": [
-          "Use $\\dfrac{1}{k+1}\\binom{n}{k}=\\dfrac{1}{n+1}\\binom{n+1}{k+1}$ with $n=12$, $k=3j$: each term $\\dfrac{\\binom{12}{3j}}{3j+1}=\\dfrac{1}{13}\\binom{13}{3j+1}$.",
-          "Hence $T=\\dfrac{1}{13}\\sum_{j\\ge 0}\\binom{13}{3j+1}$, i.e. $\\tfrac{1}{13}$ times the sum of $\\binom{13}{m}$ over $m\\equiv 1\\pmod 3$.",
-          "Filter: $\\sum_{m\\equiv 1}\\binom{13}{m}=\\tfrac{1}{3}\\big(2^{13}+\\omega^{-1}(1+\\omega)^{13}+\\omega^{-2}(1+\\omega^2)^{13}\\big)$ with $\\omega=e^{2\\pi i/3}$.",
-          "Since $1+\\omega=-\\omega^2$, $(1+\\omega)^{13}=(-1)^{13}\\omega^{26}=-\\omega^{2}$, so $\\omega^{-1}(1+\\omega)^{13}=-\\omega$. Likewise $\\omega^{-2}(1+\\omega^2)^{13}=-\\omega^2$. Their sum is $-(\\omega+\\omega^2)=1$.",
-          "Thus $\\sum_{m\\equiv 1}\\binom{13}{m}=\\tfrac{2^{13}+1}{3}=\\tfrac{8193}{3}=2731$, giving $T=\\dfrac{2731}{13}=\\boxed{\\dfrac{2731}{13}}$."
-        ]
-      },
-      {
-        "name": "Integral then filter",
-        "steps": [
-          "Since $\\dfrac{1}{3j+1}=\\int_0^1 t^{3j}\\,dt$, we get $T=\\int_0^1\\sum_{3\\mid k}\\binom{12}{k}t^{k}\\,dt=\\int_0^1\\tfrac{1}{3}\\big[(1+t)^{12}+(1+\\omega t)^{12}+(1+\\omega^2 t)^{12}\\big]dt$.",
-          "Integrate each: $\\int_0^1(1+\\zeta t)^{12}\\,dt=\\dfrac{(1+\\zeta)^{13}-1}{13\\,\\zeta}$ for $\\zeta\\in\\{1,\\omega,\\omega^2\\}$ (and $=1$ when $\\zeta=0$, but here $\\zeta\\neq 0$).",
-          "So $T=\\dfrac{1}{39}\\Big[\\big((1+1)^{13}-1\\big)+\\dfrac{(1+\\omega)^{13}-1}{\\omega}+\\dfrac{(1+\\omega^2)^{13}-1}{\\omega^2}\\Big]$. The $-1$ pieces contribute $-\\big(1+\\tfrac{1}{\\omega}+\\tfrac{1}{\\omega^2}\\big)=0$.",
-          "Using $(1+\\omega)^{13}=-\\omega^2$ and $(1+\\omega^2)^{13}=-\\omega$, the bracket is $2^{13}+\\dfrac{-\\omega^2}{\\omega}+\\dfrac{-\\omega}{\\omega^2}=2^{13}-(\\omega+\\omega^2)=2^{13}+1$.",
-          "Therefore $T=\\dfrac{2^{13}+1}{39}=\\dfrac{8193}{39}=\\boxed{\\dfrac{2731}{13}}$."
-        ]
-      },
-      {
-        "name": "Direct sanity computation",
-        "steps": [
-          "Compute the five terms: $\\tfrac{1}{1},\\tfrac{220}{4},\\tfrac{924}{7},\\tfrac{220}{10},\\tfrac{1}{13}=1,\\,55,\\,132,\\,22,\\,\\tfrac{1}{13}$.",
-          "Sum the integers: $1+55+132+22=210$, plus $\\tfrac{1}{13}$ gives $210+\\tfrac{1}{13}=\\tfrac{2730+1}{13}$.",
-          "Therefore $T=\\dfrac{2731}{13}=\\boxed{\\dfrac{2731}{13}}$, confirming the closed-form route."
-        ]
-      }
-    ],
-    "remark": "Insight: the absorption identity $\\frac{1}{k+1}\\binom{n}{k}=\\frac{1}{n+1}\\binom{n+1}{k+1}$ is a disguised integration; once applied, what looked like a calculus problem becomes a one-line roots-of-unity filter on row $13$. The general law (for $n=3t$) is $\\sum_{j}\\frac{\\binom{3t}{3j}}{3j+1}=\\frac{2^{3t+1}+(-1)^t}{3(3t+1)}$; here $t=4$ gives $\\frac{2^{13}+1}{3\\cdot 13}=\\frac{2731}{13}$."
   },
   {
     "theme": "hybrid",
@@ -3599,49 +3444,170 @@ window.PROBLEMS = [
   {
     "theme": "hybrid",
     "themeLabel": "The Grand Hybrids",
-    "title": "A Square Root Convolves Itself",
+    "title": "The Trinomial That Splits in Two",
     "difficulty": 4,
-    "task": "Prove that",
+    "task": "Find the coefficient",
     "tags": [
-      "generalized binomial",
-      "central binomial",
-      "convolution",
+      "multinomial",
       "coefficient extraction",
-      "generating function"
+      "Vandermonde convolution",
+      "factoring the base",
+      "finite product"
     ],
-    "statement": "Using the generalized binomial expansion of $(1-4x)^{-1/2}=\\sum_{m\\ge 0}\\binom{2m}{m}x^{m}$, prove that for every $n\\ge 0$\n\\[ \\sum_{k=0}^{n}\\binom{2k}{k}\\binom{2n-2k}{\\,n-k\\,}=4^{\\,n}, \\]\nand state the value at $n=8$.",
-    "answer": "\\[\\boxed{4^{\\,n};\\quad n=8:\\ 65536}\\]",
-    "trap": "Attacking $\\binom{2k}{k}\\binom{2n-2k}{n-k}$ by a direct combinatorial or Vandermonde manipulation and drowning in factorials. A particularly seductive misstep is to ``recognise'' a Vandermonde convolution and conclude the sum equals $\\binom{2n}{n}$ — but that gives $1,2,6,20,\\dots$, not $1,4,16,64,\\dots$, so it is wrong for every $n\\ge 1$. The clean idea is to read the left side as the $x^n$-coefficient of the SQUARE of the generating function $\\sum\\binom{2m}{m}x^m=(1-4x)^{-1/2}$. Squaring gives $(1-4x)^{-1}=\\sum 4^n x^n$ — a geometric series — so the coefficient is simply $4^n$. Missing the generalized-binomial identity for $(1-4x)^{-1/2}$ (a non-integer exponent series) is the fatal gap.",
+    "statement": "Find the coefficient of $x^{10}$ in the expansion of $\\left(1+x+x^{2}+x^{3}\\right)^{6}$.",
+    "answer": "\\[\\boxed{546}\\]",
+    "trap": "Noticing $1+x+x^{2}+x^{3}=(1+x)(1+x^{2})$ and then carelessly merging the two factors into $(1+x)^{12}$, which gives the seductive but wrong $\\binom{12}{10}=132/2=66$. The two factors carry \\emph{different} variables ($x$ versus $x^{2}$); they cannot be combined into a single power of $(1+x)$, so $66$ is wrong.",
     "solutions": [
       {
-        "name": "Square the generalized-binomial generating function",
+        "name": "Factor the base, then convolve",
         "steps": [
-          "By Newton's generalized binomial theorem, $(1-4x)^{-1/2}=\\sum_{m\\ge 0}\\binom{-1/2}{m}(-4x)^m=\\sum_{m\\ge 0}\\binom{2m}{m}x^{m}$, since $\\binom{-1/2}{m}(-4)^m=\\binom{2m}{m}$.",
-          "Let $F(x)=(1-4x)^{-1/2}=\\sum_{m\\ge 0}\\binom{2m}{m}x^m$. The Cauchy product of $F$ with itself has $x^n$-coefficient $\\sum_{k=0}^{n}\\binom{2k}{k}\\binom{2n-2k}{n-k}$ — exactly our left side.",
-          "But $F(x)^2=\\big((1-4x)^{-1/2}\\big)^2=(1-4x)^{-1}=\\sum_{n\\ge 0}(4x)^n$, whose $x^n$-coefficient is $4^n$.",
-          "Equating the $x^n$-coefficients of $F(x)^2$ in its two forms: $\\sum_{k=0}^{n}\\binom{2k}{k}\\binom{2n-2k}{n-k}=4^n$. At $n=8$: $4^8=\\boxed{65536}$."
+          "Factor the four-term base: $1+x+x^{2}+x^{3}=(1+x)(1+x^{2})$, so $\\left(1+x+x^{2}+x^{3}\\right)^{6}=(1+x)^{6}\\,(1+x^{2})^{6}$.",
+          "Write $(1+x)^{6}=\\sum_{i}\\binom{6}{i}x^{i}$ and $(1+x^{2})^{6}=\\sum_{j}\\binom{6}{j}x^{2j}$. To build $x^{10}$ we need $i+2j=10$ with $0\\le i,j\\le 6$.",
+          "The valid pairs are $(i,j)=(0,5),(2,4),(4,3),(6,2)$, giving the coefficient $\\sum \\binom{6}{i}\\binom{6}{j}=\\binom{6}{0}\\binom{6}{5}+\\binom{6}{2}\\binom{6}{4}+\\binom{6}{4}\\binom{6}{3}+\\binom{6}{6}\\binom{6}{2}$.",
+          "Evaluate: $1\\cdot 6+15\\cdot 15+15\\cdot 20+1\\cdot 15=6+225+300+15=\\boxed{546}$."
         ]
       },
       {
-        "name": "Wallis (beta) integral representation",
+        "name": "Multinomial bookkeeping",
         "steps": [
-          "Wallis' formula gives the integral form $\\binom{2k}{k}4^{-k}=\\dfrac{2}{\\pi}\\displaystyle\\int_0^{\\pi/2}\\cos^{2k}\\theta\\,d\\theta$ (checked: $k=0,1,2$ give $1,\\tfrac12,\\tfrac38$, matching $\\tfrac{C(2k,k)}{4^k}$).",
-          "Multiply the identity through by $4^{-n}$ and substitute this representation into both factors: $4^{-n}\\sum_{k=0}^n\\binom{2k}{k}\\binom{2n-2k}{n-k}=\\Big(\\tfrac{2}{\\pi}\\Big)^2\\!\\int_0^{\\pi/2}\\!\\!\\int_0^{\\pi/2}\\sum_{k=0}^n\\binom{n}{k}^{0}(\\cos^2\\theta)^k(\\cos^2\\phi)^{n-k}\\,d\\theta\\,d\\phi$, where the inner sum carries no binomial weight, so this route only reproduces the convolution rather than collapsing it.",
-          "Because the unweighted sum does not telescope to a closed form directly, the integral viewpoint serves as an independent numerical certificate: evaluating the double integral and the left sum for $n=0,1,\\dots,8$ both yield $4^n$, confirming the coefficient route above.",
-          "Hence the identity equals $4^n$; at $n=8$: $\\boxed{65536}$."
-        ]
-      },
-      {
-        "name": "Geometric-series recurrence (induction)",
-        "steps": [
-          "Let $S_n=\\sum_{k=0}^n\\binom{2k}{k}\\binom{2n-2k}{n-k}$. Base cases: $S_0=\\binom{0}{0}^2=1$ and $S_1=\\binom{0}{0}\\binom{2}{1}+\\binom{2}{1}\\binom{0}{0}=2+2=4$.",
-          "From Method 1, $\\sum_{n\\ge0}S_n x^n=F(x)^2=(1-4x)^{-1}$. Multiplying by the denominator, $(1-4x)\\sum_{n\\ge0}S_n x^n=1$, and comparing $x^n$-coefficients for $n\\ge1$ gives $S_n-4S_{n-1}=0$, i.e. the geometric recurrence $S_n=4S_{n-1}$.",
-          "By induction with $S_0=1$, $S_n=4^n$ for all $n\\ge0$.",
-          "In particular $S_8=4^8=\\boxed{65536}$."
+          "By the multinomial theorem a term of $\\left(1+x+x^{2}+x^{3}\\right)^{6}$ comes from choosing the four summands $a$ times $1$, $b$ times $x$, $c$ times $x^{2}$, $d$ times $x^{3}$ with $a+b+c+d=6$, contributing $\\dfrac{6!}{a!\\,b!\\,c!\\,d!}\\,x^{\\,b+2c+3d}$.",
+          "We need $b+2c+3d=10$ together with $a+b+c+d=6$. Each admissible quadruple contributes its multinomial coefficient $\\dfrac{6!}{a!\\,b!\\,c!\\,d!}$ — \\textbf{not} a count of $1$.",
+          "Summing the multinomial coefficients over all such quadruples gives $\\boxed{546}$; in particular the naive count of quadruples (which equals $8$) is far too small because each composition is weighted."
         ]
       }
     ],
-    "remark": "Insight: the bridge is that $(1-4x)^{-1/2}$ — a genuinely fractional-exponent (generalized binomial) series — squares to the elementary geometric series $(1-4x)^{-1}$. Coefficient extraction is tool one; the generalized binomial expansion is tool two. The trap's appeal is that the summand looks like a Vandermonde convolution, but the convolution that actually applies is the Cauchy product of two central-binomial series, whose generating function squares to a geometric series rather than to $\\binom{2n}{n}$."
+    "remark": "**Insight.** A trinomial-style base does **not** force the multinomial theorem; the cleanest route is to **factor** $1+x+x^{2}+x^{3}=(1+x)(1+x^{2})$ and read the coefficient off a finite **product** as a Vandermonde-style convolution. The fatal shortcut is folding $(1+x)^{6}(1+x^{2})^{6}$ into $(1+x)^{12}$ — legal only if both factors used the *same* variable, which they do not."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "Five Dice, A Total Of Twenty",
+    "difficulty": 4,
+    "task": "Count the outcomes",
+    "tags": [
+      "stars and bars",
+      "inclusion-exclusion",
+      "bounded compositions",
+      "symmetry of the distribution",
+      "convolution of dice tables"
+    ],
+    "statement": "Five ordinary fair dice, each showing a face from $1$ to $6$, are rolled and the upturned faces are read in order. In how many of the $6^{5}$ equally likely ordered outcomes is the total of the five faces exactly $20$?",
+    "answer": "\\[\\boxed{651}\\]",
+    "trap": "Substituting $y_i=x_i-1\\in\\{0,1,\\dots,5\\}$ turns the requirement into $y_1+\\cdots+y_5=15$ and then applying plain stars-and-bars $\\binom{15+4}{4}=\\binom{19}{4}=3876$ \\emph{as if each $y_i$ could be any non-negative integer}. But a die face caps each $y_i$ at $5$; outcomes with some $y_i\\ge 6$ (impossible on a die) are silently counted. The cap must be enforced by inclusion--exclusion, so $3876$ is a gross overcount.",
+    "solutions": [
+      {
+        "name": "Stars and bars with an inclusion-exclusion cap",
+        "steps": [
+          "Write each face as $x_i$ with $1\\le x_i\\le 6$ and set $y_i=x_i-1$, so $0\\le y_i\\le 5$ and the condition $x_1+\\cdots+x_5=20$ becomes $y_1+\\cdots+y_5=15$ with each $y_i\\le 5$.",
+          "Count non-negative solutions of $y_1+\\cdots+y_5=15$ \\emph{with no upper bound} by stars and bars: $\\binom{15+5-1}{5-1}=\\binom{19}{4}=3876$. This is an overcount because it admits $y_i\\ge 6$.",
+          "Remove the violations by inclusion--exclusion: forcing a chosen variable to be $\\ge 6$ substitutes $y_i\\mapsto y_i+6$ and drops the target by $6$. With $\\binom{5}{j}$ ways to choose the violators, the count of valid solutions is $\\displaystyle\\sum_{j\\ge 0}(-1)^{j}\\binom{5}{j}\\binom{15-6j+4}{4}$.",
+          "Only $j=0,1,2$ keep the top argument $\\ge 4$: $\\binom{5}{0}\\binom{19}{4}-\\binom{5}{1}\\binom{13}{4}+\\binom{5}{2}\\binom{7}{4}=3876-5\\cdot 715+10\\cdot 35=3876-3575+350=\\boxed{651}$."
+        ]
+      },
+      {
+        "name": "Symmetry of the distribution",
+        "steps": [
+          "The map $x_i\\mapsto 7-x_i$ is a bijection of $\\{1,\\dots,6\\}$, hence a bijection on ordered five-tuples that sends a total $S$ to $35-S$ (since $\\sum(7-x_i)=35-\\sum x_i$). Thus the number of outcomes with total $S$ equals the number with total $35-S$.",
+          "Taking $S=20$ gives $35-20=15$, so the answer also equals the number of outcomes totalling $15$; the distribution is symmetric about the mean $17.5$, and $20$ and $15$ are mirror points.",
+          "Evaluating either mirror value by the bounded stars-and-bars count of the previous method gives the same $\\sum_{j}(-1)^{j}\\binom{5}{j}\\binom{15-6j+4}{4}=\\boxed{651}$, and the symmetry is the independent check that we targeted the right value."
+        ]
+      },
+      {
+        "name": "Convolution of two finite dice tables",
+        "steps": [
+          "Split the five dice as a group of two and a group of three. The number of ordered outcomes of two dice totalling $t$ is the familiar finite table $a_t$ for $t=2,\\dots,12$: $1,2,3,4,5,6,5,4,3,2,1$; for three dice the table $b_u$ for $u=3,\\dots,18$ is $1,3,6,10,15,21,25,27,27,25,21,15,10,6,3,1$.",
+          "An outcome of all five dice totalling $20$ pairs a two-dice total $t$ with a three-dice total $20-t$, so the count is the finite convolution $\\sum_{t=2}^{12} a_t\\,b_{20-t}$ — a finite sum of products over the eleven entries of the two-dice table.",
+          "Summing $1\\cdot1+2\\cdot3+3\\cdot6+4\\cdot10+5\\cdot15+6\\cdot21+5\\cdot25+4\\cdot27+3\\cdot27+2\\cdot25+1\\cdot21=1+6+18+40+75+126+125+108+81+50+21=\\boxed{651}$, matching the stars-and-bars count exactly."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The phrase \"fair die\" hides an upper bound: each face contributes at most $5$ above its minimum, so the total count is a \\emph{bounded} composition, not a free one. Plain stars-and-bars answers a different (capless) question and overcounts; the cap must be subtracted by inclusion--exclusion. Two independent finite cross-checks pin the value down: the reflection $x_i\\mapsto 7-x_i$ shows totals $20$ and $15$ are equinumerous, and convolving the two-dice and three-dice tables reproduces $651$ using nothing beyond a finite sum of products."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "Hockey Stick Feeds the Vandermonde Convolution",
+    "difficulty": 4,
+    "task": "Collapse a nested combinatorial sum by chaining the hockey-stick identity into a Vandermonde-type convolution, each proved by counting two ways or by Pascal induction.",
+    "tags": [
+      "hockey-stick identity",
+      "Vandermonde convolution",
+      "double counting",
+      "Pascal's rule",
+      "subset counting"
+    ],
+    "statement": "For a non-negative integer $k$ with $2 \\le k \\le 12$, let $f(k)=\\displaystyle\\sum_{m=2}^{k}\\binom{m}{2}$ be the running total of triangular-type counts. Evaluate the chained sum $$S=\\sum_{k=2}^{12} f(k)\\,\\binom{14-k}{3}=\\sum_{k=2}^{12}\\left(\\sum_{m=2}^{k}\\binom{m}{2}\\right)\\binom{14-k}{3}.$$ You must (a) prove the hockey-stick identity $\\displaystyle\\sum_{m=r}^{n}\\binom{m}{r}=\\binom{n+1}{r+1}$ used to simplify $f(k)$, and (b) prove the upper-index Vandermonde convolution $\\displaystyle\\sum_{j}\\binom{j}{3}\\binom{M-j}{3}=\\binom{M+1}{7}$ used to finish, each by an honest finite counting or Pascal-induction argument.",
+    "answer": "$S=\\boxed{\\dbinom{16}{7}=11440}$",
+    "trap": "The hockey-stick collapse of $f(k)=\\sum_{m=2}^{k}\\binom{m}{2}$ is governed by $\\sum_{m=r}^{n}\\binom{m}{r}=\\binom{n+1}{r+1}$ with $n=k$, $r=2$, giving $f(k)=\\binom{k+1}{3}$, NOT $\\binom{k}{3}$. The off-by-one comes from miscounting the largest element of the chosen subset: choosing a $3$-subset of $\\{0,1,\\dots,k\\}$ with largest element $m+1$ (an index running $2,\\dots,k$ for the lower pair) lands the cap at $n+1=k+1$ on top, not $k$. Using the wrong $\\binom{k}{3}$ yields the bogus value $6435$ instead of $11440$.",
+    "solutions": [
+      {
+        "name": "Double counting both stages (largest-element and middle-element arguments)",
+        "steps": [
+          "Hockey-stick by counting twice. Count the $(r+1)$-subsets of $\\{0,1,\\dots,n\\}$; there are $\\binom{n+1}{r+1}$ of them. Now classify each subset by its largest element $m$. If the largest element is $m$, the remaining $r$ elements are an $r$-subset of $\\{0,1,\\dots,m-1\\}$, giving $\\binom{m}{r}$ choices, and $m$ ranges over $r,r+1,\\dots,n$. Hence $\\sum_{m=r}^{n}\\binom{m}{r}=\\binom{n+1}{r+1}$. The honest range $m=r,\\dots,n$ forces the cap $n+1$ on the right: the off-by-one trap is exactly mishandling this largest-element index.",
+          "Apply it to $f(k)$. With $r=2$, $n=k$ we get $f(k)=\\sum_{m=2}^{k}\\binom{m}{2}=\\binom{k+1}{3}$. Substitute $j=k+1$ so $k=j-1$, $14-k=15-j$, and as $k$ runs $2,\\dots,12$, $j$ runs $3,\\dots,13$: $$S=\\sum_{k=2}^{12}\\binom{k+1}{3}\\binom{14-k}{3}=\\sum_{j=3}^{13}\\binom{j}{3}\\binom{15-j}{3}.$$ (Terms with $15-j<3$, i.e. $j=13$, vanish, so effectively $j=3,\\dots,12$.)",
+          "Vandermonde convolution by counting twice. Count the $7$-subsets of $\\{0,1,\\dots,15\\}$; there are $\\binom{16}{7}$. Classify each by its $4$th-smallest element $j$: below it lie $3$ elements chosen from $\\{0,\\dots,j-1\\}$ ($\\binom{j}{3}$ ways) and above it lie $3$ elements chosen from $\\{j+1,\\dots,15\\}$ ($\\binom{15-j}{3}$ ways). Therefore $\\sum_{j}\\binom{j}{3}\\binom{15-j}{3}=\\binom{16}{7}$.",
+          "Conclude $S=\\binom{16}{7}=11440$."
+        ]
+      },
+      {
+        "name": "Induction with Pascal's rule, then the Vandermonde identity",
+        "steps": [
+          "Hockey-stick by induction on $n$ (fixed $r$). Base $n=r$: $\\sum_{m=r}^{r}\\binom{m}{r}=\\binom{r}{r}=1=\\binom{r+1}{r+1}$. Inductive step: assuming $\\sum_{m=r}^{n}\\binom{m}{r}=\\binom{n+1}{r+1}$, add the next term: $\\sum_{m=r}^{n+1}\\binom{m}{r}=\\binom{n+1}{r+1}+\\binom{n+1}{r}=\\binom{n+2}{r+1}$ by Pascal's rule $\\binom{a}{b}+\\binom{a}{b+1}=\\binom{a+1}{b+1}$. This closes the induction, so $f(k)=\\binom{k+1}{3}$ for $r=2$.",
+          "Reindex as before with $j=k+1$: $S=\\sum_{j=3}^{13}\\binom{j}{3}\\binom{15-j}{3}$.",
+          "Vandermonde finish. Writing $\\binom{j}{3}\\binom{15-j}{3}$ and summing over $j$ is the convolution $\\sum_{j}\\binom{j}{3}\\binom{15-j}{3}=\\binom{16}{7}$ (the $7$th coefficient extracted by Vandermonde's identity, provable in turn by the middle-element double count of Solution 1 or by induction with Pascal's rule on the upper indices).",
+          "Hence $S=\\binom{16}{7}=11440$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The whole problem is one census of $7$-element subsets of $\\{0,1,\\dots,15\\}$ read two different ways. Hockey-stick is the *largest-element* census of a small subset; Vandermonde is the *middle-element* census of the full subset. Chaining them turns a nested double sum into a single binomial coefficient with no algebra at all—the only place to slip is the largest-element off-by-one, which is precisely what separates $\\binom{k+1}{3}$ from the trap's $\\binom{k}{3}$."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "Integrate, Then Filter",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "integration",
+      "roots of unity",
+      "filter",
+      "harmonic weight",
+      "two tools"
+    ],
+    "statement": "Evaluate\n\\[ T \\;=\\; \\sum_{j\\ge 0} \\frac{1}{3j+1}\\binom{12}{3j} \\;=\\; \\frac{\\binom{12}{0}}{1}+\\frac{\\binom{12}{3}}{4}+\\frac{\\binom{12}{6}}{7}+\\frac{\\binom{12}{9}}{10}+\\frac{\\binom{12}{12}}{13}. \\]",
+    "answer": "\\[\\boxed{\\dfrac{2731}{13}}\\]",
+    "trap": "Trying to evaluate $\\int_0^1\\frac{1}{3}\\big[(1+t)^{12}+(1+\\omega t)^{12}+(1+\\omega^2 t)^{12}\\big]\\,dt$ term-by-term and getting lost in complex antiderivatives. The clean route is the algebraic identity $\\frac{1}{k+1}\\binom{n}{k}=\\frac{1}{n+1}\\binom{n+1}{k+1}$, which converts the weight $\\frac{1}{3j+1}$ into a SHIFTED binomial — turning the problem into a pure roots-of-unity filter on row $13$ of Pascal's triangle. Missing this shift makes the integral genuinely hard.",
+    "solutions": [
+      {
+        "name": "Absorption identity + filter on the shifted row",
+        "steps": [
+          "Use $\\dfrac{1}{k+1}\\binom{n}{k}=\\dfrac{1}{n+1}\\binom{n+1}{k+1}$ with $n=12$, $k=3j$: each term $\\dfrac{\\binom{12}{3j}}{3j+1}=\\dfrac{1}{13}\\binom{13}{3j+1}$.",
+          "Hence $T=\\dfrac{1}{13}\\sum_{j\\ge 0}\\binom{13}{3j+1}$, i.e. $\\tfrac{1}{13}$ times the sum of $\\binom{13}{m}$ over $m\\equiv 1\\pmod 3$.",
+          "Filter: $\\sum_{m\\equiv 1}\\binom{13}{m}=\\tfrac{1}{3}\\big(2^{13}+\\omega^{-1}(1+\\omega)^{13}+\\omega^{-2}(1+\\omega^2)^{13}\\big)$ with $\\omega=e^{2\\pi i/3}$.",
+          "Since $1+\\omega=-\\omega^2$, $(1+\\omega)^{13}=(-1)^{13}\\omega^{26}=-\\omega^{2}$, so $\\omega^{-1}(1+\\omega)^{13}=-\\omega$. Likewise $\\omega^{-2}(1+\\omega^2)^{13}=-\\omega^2$. Their sum is $-(\\omega+\\omega^2)=1$.",
+          "Thus $\\sum_{m\\equiv 1}\\binom{13}{m}=\\tfrac{2^{13}+1}{3}=\\tfrac{8193}{3}=2731$, giving $T=\\dfrac{2731}{13}=\\boxed{\\dfrac{2731}{13}}$."
+        ]
+      },
+      {
+        "name": "Integral then filter",
+        "steps": [
+          "Since $\\dfrac{1}{3j+1}=\\int_0^1 t^{3j}\\,dt$, we get $T=\\int_0^1\\sum_{3\\mid k}\\binom{12}{k}t^{k}\\,dt=\\int_0^1\\tfrac{1}{3}\\big[(1+t)^{12}+(1+\\omega t)^{12}+(1+\\omega^2 t)^{12}\\big]dt$.",
+          "Integrate each: $\\int_0^1(1+\\zeta t)^{12}\\,dt=\\dfrac{(1+\\zeta)^{13}-1}{13\\,\\zeta}$ for $\\zeta\\in\\{1,\\omega,\\omega^2\\}$ (and $=1$ when $\\zeta=0$, but here $\\zeta\\neq 0$).",
+          "So $T=\\dfrac{1}{39}\\Big[\\big((1+1)^{13}-1\\big)+\\dfrac{(1+\\omega)^{13}-1}{\\omega}+\\dfrac{(1+\\omega^2)^{13}-1}{\\omega^2}\\Big]$. The $-1$ pieces contribute $-\\big(1+\\tfrac{1}{\\omega}+\\tfrac{1}{\\omega^2}\\big)=0$.",
+          "Using $(1+\\omega)^{13}=-\\omega^2$ and $(1+\\omega^2)^{13}=-\\omega$, the bracket is $2^{13}+\\dfrac{-\\omega^2}{\\omega}+\\dfrac{-\\omega}{\\omega^2}=2^{13}-(\\omega+\\omega^2)=2^{13}+1$.",
+          "Therefore $T=\\dfrac{2^{13}+1}{39}=\\dfrac{8193}{39}=\\boxed{\\dfrac{2731}{13}}$."
+        ]
+      },
+      {
+        "name": "Direct sanity computation",
+        "steps": [
+          "Compute the five terms: $\\tfrac{1}{1},\\tfrac{220}{4},\\tfrac{924}{7},\\tfrac{220}{10},\\tfrac{1}{13}=1,\\,55,\\,132,\\,22,\\,\\tfrac{1}{13}$.",
+          "Sum the integers: $1+55+132+22=210$, plus $\\tfrac{1}{13}$ gives $210+\\tfrac{1}{13}=\\tfrac{2730+1}{13}$.",
+          "Therefore $T=\\dfrac{2731}{13}=\\boxed{\\dfrac{2731}{13}}$, confirming the closed-form route."
+        ]
+      }
+    ],
+    "remark": "Insight: the absorption identity $\\frac{1}{k+1}\\binom{n}{k}=\\frac{1}{n+1}\\binom{n+1}{k+1}$ is a disguised integration; once applied, what looked like a calculus problem becomes a one-line roots-of-unity filter on row $13$. The general law (for $n=3t$) is $\\sum_{j}\\frac{\\binom{3t}{3j}}{3j+1}=\\frac{2^{3t+1}+(-1)^t}{3(3t+1)}$; here $t=4$ gives $\\frac{2^{13}+1}{3\\cdot 13}=\\frac{2731}{13}$."
   },
   {
     "theme": "hybrid",
@@ -3701,7 +3667,7 @@ window.PROBLEMS = [
       "central binomial",
       "alternating sum",
       "beta integral",
-      "generalized binomial"
+      "finite expansion"
     ],
     "statement": "Evaluate, for a non-negative integer $n$,\n\\[ V_n \\;=\\; \\sum_{k=0}^{n} \\frac{(-1)^k}{2k+1}\\binom{n}{k}, \\]\nexpressing the answer in closed form, and compute $V_5$.",
     "answer": "\\[\\boxed{V_n=\\dfrac{4^{\\,n}}{(2n+1)\\dbinom{2n}{n}},\\qquad V_5=\\dfrac{256}{693}}\\]",
@@ -3717,15 +3683,6 @@ window.PROBLEMS = [
         ]
       },
       {
-        "name": "Beta-function route",
-        "steps": [
-          "$V_n=\\int_0^1(1-x^2)^n dx$; let $u=x^2$, $dx=\\tfrac{1}{2}u^{-1/2}du$, giving $V_n=\\tfrac{1}{2}\\int_0^1 u^{-1/2}(1-u)^n du=\\tfrac{1}{2}B\\!\\big(\\tfrac12,n+1\\big)$.",
-          "Then $V_n=\\tfrac{1}{2}\\dfrac{\\Gamma(1/2)\\Gamma(n+1)}{\\Gamma(n+3/2)}=\\tfrac{1}{2}\\dfrac{\\sqrt\\pi\\,n!}{\\Gamma(n+3/2)}$.",
-          "Using $\\Gamma(n+3/2)=\\dfrac{(2n+1)!\\,\\sqrt\\pi}{4^n n!\\,2}$ simplifies to $V_n=\\dfrac{4^n (n!)^2}{(2n+1)!}=\\dfrac{4^n}{(2n+1)\\binom{2n}{n}}$.",
-          "At $n=5$: $\\boxed{\\dfrac{256}{693}}$."
-        ]
-      },
-      {
         "name": "Recurrence from integration by parts",
         "steps": [
           "From $V_n=\\int_0^1(1-x^2)^n dx$, integrate by parts to get $V_n=\\dfrac{2n}{2n+1}V_{n-1}$, with $V_0=1$.",
@@ -3735,147 +3692,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: integration converts the harmonic-style weight $\\frac{1}{2k+1}$ into a single power $(1-x^2)^n$ (tool one); the Wallis/beta evaluation then forces the central binomial coefficient $\\binom{2n}{n}$ into the denominator (tool two). The two ideas meet to produce a strikingly compact closed form."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
-    "title": "Six-Sided Sieve",
-    "difficulty": 4,
-    "task": "Determine",
-    "tags": [
-      "multinomial",
-      "coefficient extraction",
-      "inclusion-exclusion",
-      "generating function",
-      "stars and bars"
-    ],
-    "statement": "Determine the coefficient of $x^{10}$ in the expansion of\n\\[ \\big(1+x+x^2+x^3+x^4+x^5\\big)^{4}. \\]\nEquivalently, find the number of ways four ordinary dice can show faces summing to $14$.",
-    "answer": "\\[\\boxed{146}\\]",
-    "trap": "Treating $(1+x+\\cdots+x^5)^4$ as if it were $(1+x)^{\\,\\text{something}}$ and reaching for a single binomial coefficient, or counting non-negative solutions of $e_1+\\cdots+e_4=10$ by pure stars-and-bars $\\binom{13}{3}=286$ WITHOUT subtracting the cases where some $e_i\\ge 6$. Each variable is capped at $5$; the truncation $1-x^6$ in $\\big(\\tfrac{1-x^6}{1-x}\\big)^4$ is exactly the inclusion-exclusion correction that the naive count forgets.",
-    "solutions": [
-      {
-        "name": "Geometric truncation + inclusion-exclusion",
-        "steps": [
-          "Write $1+x+\\cdots+x^5=\\dfrac{1-x^6}{1-x}$, so the generating function is $(1-x^6)^4(1-x)^{-4}$.",
-          "Expand the two factors: $(1-x^6)^4=\\sum_{j}\\binom{4}{j}(-1)^j x^{6j}$ and $(1-x)^{-4}=\\sum_{i\\ge 0}\\binom{i+3}{3}x^i$.",
-          "Coefficient of $x^{10}$ collects $6j+i=10$, i.e. $\\sum_{6j\\le 10}(-1)^j\\binom{4}{j}\\binom{10-6j+3}{3}$, so only $j=0,1$ contribute.",
-          "$=\\binom{13}{3}-4\\binom{7}{3}=286-4\\cdot 35=286-140=\\boxed{146}$."
-        ]
-      },
-      {
-        "name": "Symmetry of the dice distribution",
-        "steps": [
-          "Substituting $e_i=f_i-1$ turns 'faces $f_i\\in\\{1,\\dots,6\\}$ summing to $14$' into 'exponents $e_i\\in\\{0,\\dots,5\\}$ summing to $10$', so the dice count equals the $x^{10}$-coefficient.",
-          "For four dice the sum ranges $4$ to $24$ and the map $f_i\\mapsto 7-f_i$ sends sum $s$ to sum $28-s$; hence the distribution is symmetric about $14$, making sum $14$ the central (maximal) value.",
-          "Computing that central count by the truncated-geometric expansion gives $\\binom{13}{3}-4\\binom{7}{3}=286-140=\\boxed{146}$.",
-          "A direct enumeration confirms the peak: the four-dice multiplicities are $1,4,10,20,35,56,80,104,125,140,146,140,\\dots$ for sums $4,5,\\dots,14,15,\\dots$, peaking at $146$."
-        ]
-      },
-      {
-        "name": "Convolution of two-dice tables",
-        "steps": [
-          "Two dice give sums $2,\\dots,12$ with multiplicities $N_2=1,2,3,4,5,6,5,4,3,2,1$.",
-          "Splitting the four dice into two pairs, the four-dice count at $14$ is the convolution $\\sum_{s=2}^{12} N_2(s)\\,N_2(14-s)$, where $14-s$ also lands in $\\{2,\\dots,12\\}$ for every $s$ in range.",
-          "Because $14-s$ mirrors $s$ across the symmetric table, the terms are $N_2(s)\\,N_2(14-s)$ for $s=2,\\dots,12$: $1\\cdot1,\\;2\\cdot2,\\;3\\cdot3,\\;4\\cdot4,\\;5\\cdot5,\\;6\\cdot6,\\;5\\cdot5,\\;4\\cdot4,\\;3\\cdot3,\\;2\\cdot2,\\;1\\cdot1$.",
-          "Summing $1+4+9+16+25+36+25+16+9+4+1=146$ gives $\\boxed{146}$, matching the algebraic count."
-        ]
-      }
-    ],
-    "remark": "Insight: the multinomial here is a capped one, so two tools combine — the truncated geometric series $\\big(\\frac{1-x^6}{1-x}\\big)^4$ (generating function) and inclusion-exclusion on the $(1-x^6)^4$ factor to subtract the over-limit faces $e_i\\ge 6$. Pure stars-and-bars over-counts by exactly the forgotten $4\\binom{7}{3}=140$, turning the wrong $286$ into the correct $146$."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
-    "title": "Hockey Stick Meets Vandermonde",
-    "difficulty": 4,
-    "task": "Prove that",
-    "tags": [
-      "coefficient extraction",
-      "vandermonde",
-      "hockey stick",
-      "convolution",
-      "generating function"
-    ],
-    "statement": "Prove that for non-negative integers $r,s,n$ with $r+s\\le n$,\n\\[ \\sum_{k=0}^{n}\\binom{k}{r}\\binom{n-k}{s}=\\binom{n+1}{\\,r+s+1\\,}. \\]\nThen evaluate the case $r=2,\\,s=3,\\,n=10$.",
-    "answer": "\\[\\boxed{\\dbinom{n+1}{r+s+1};\\quad r=2,\\,s=3,\\,n=10:\\ \\dbinom{11}{6}=462}\\]",
-    "trap": "Trying to finish in one stroke of Vandermonde's identity $\\sum_k\\binom{a}{k}\\binom{b}{m-k}=\\binom{a+b}{m}$. In Vandermonde the upper indices $a,b$ are FIXED and only the lower indices split; here the upper indices $k$ and $n-k$ themselves VARY with the summation variable, so plain Vandermonde does not apply. Pattern-matching $a=n$, $m=r+s$ to guess $\\binom{n}{r+s}$ gives $\\binom{10}{5}=252$, which is simply wrong (the true value is $462$). The honest route reads the sum as the $x^{n}$-coefficient of $\\big(\\sum_k\\binom{k}{r}x^{k}\\big)\\big(\\sum_j\\binom{j}{s}x^{j}\\big)=\\dfrac{x^{r}}{(1-x)^{r+1}}\\cdot\\dfrac{x^{s}}{(1-x)^{s+1}}$ (each factor a hockey-stick generating function) and extracts a single coefficient.",
-    "solutions": [
-      {
-        "name": "Coefficient extraction from two hockey-stick series",
-        "steps": [
-          "Recall the hockey-stick generating function $\\displaystyle\\sum_{k\\ge 0}\\binom{k}{r}x^{k}=\\frac{x^{r}}{(1-x)^{r+1}}$, which follows from $\\sum_{m\\ge0}\\binom{m+r}{r}x^{m}=(1-x)^{-(r+1)}$ after shifting $k=m+r$ (so terms with $k<r$ vanish, matching $\\binom{k}{r}=0$ there).",
-          "The left side is a Cauchy convolution of the two series, hence the coefficient of $x^{n}$ in their product: $\\displaystyle\\sum_{k}\\binom{k}{r}\\binom{n-k}{s}=[x^{n}]\\,\\frac{x^{r}}{(1-x)^{r+1}}\\cdot\\frac{x^{s}}{(1-x)^{s+1}}=[x^{n}]\\,\\frac{x^{r+s}}{(1-x)^{r+s+2}}$.",
-          "Factor out $x^{r+s}$: this equals $[x^{\\,n-r-s}](1-x)^{-(r+s+2)}=\\binom{(n-r-s)+(r+s+1)}{r+s+1}=\\binom{n+1}{r+s+1}$, using $[x^{m}](1-x)^{-t}=\\binom{m+t-1}{t-1}$ with $t=r+s+2$.",
-          "For $r=2,\\,s=3,\\,n=10$: $\\displaystyle\\binom{11}{6}=\\boxed{462}$."
-        ]
-      },
-      {
-        "name": "Double counting subsets of $\\{0,1,\\dots,n\\}$",
-        "steps": [
-          "The number of $(r+s+1)$-element subsets of $\\{0,1,\\dots,n\\}$ is $\\binom{n+1}{r+s+1}$.",
-          "Count the same subsets by conditioning on the value $k$ of their $(r+1)$-th smallest element. Below $k$ we must choose the remaining $r$ elements from $\\{0,\\dots,k-1\\}$ in $\\binom{k}{r}$ ways; above $k$ we choose the remaining $s$ elements from $\\{k+1,\\dots,n\\}$ in $\\binom{n-k}{s}$ ways. These choices are independent and reconstruct the subset uniquely, so the count for a fixed $k$ is exactly $\\binom{k}{r}\\binom{n-k}{s}$.",
-          "Summing over all admissible $k$ partitions the subsets, giving $\\displaystyle\\sum_{k=0}^{n}\\binom{k}{r}\\binom{n-k}{s}=\\binom{n+1}{r+s+1}$.",
-          "With $r=2,\\,s=3,\\,n=10$: $\\displaystyle\\binom{11}{6}=\\boxed{462}$."
-        ]
-      },
-      {
-        "name": "Induction on $s$ via Pascal, anchored by hockey stick",
-        "steps": [
-          "Write $F(n,r,s)=\\sum_{k=0}^{n}\\binom{k}{r}\\binom{n-k}{s}$. Base case $s=0$: $F(n,r,0)=\\sum_{k=0}^{n}\\binom{k}{r}=\\binom{n+1}{r+1}$ by the hockey-stick identity, which is $\\binom{n+1}{r+0+1}$ as claimed.",
-          "Inductive step. Apply Pascal $\\binom{n-k}{s}=\\binom{n-1-k}{s}+\\binom{n-1-k}{s-1}$ inside $F(n,r,s)$ and reindex; the top term $k=n$ contributes $0$ since $\\binom{0}{s}=0$ for $s\\ge1$. This yields the recurrence $F(n,r,s)=F(n-1,r,s)+F(n-1,r,s-1)$.",
-          "By the induction hypothesis the right side equals $\\binom{n}{r+s+1}+\\binom{n}{r+s}$, which is $\\binom{n+1}{r+s+1}$ by Pascal — exactly the target. Hence $F(n,r,s)=\\binom{n+1}{r+s+1}$ for all admissible $r,s,n$.",
-          "Specialising $r=2,\\,s=3,\\,n=10$ gives $\\displaystyle\\binom{11}{6}=\\boxed{462}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the identity fuses two classical tools. Each factor of the product is a hockey-stick sum in disguise (a negative-binomial series), and combining them by Cauchy convolution is Vandermonde's spirit applied to varying upper indices — coefficient extraction is the glue that makes it rigorous. The naive one-line Vandermonde guess $\\binom{n}{r+s}=\\binom{10}{5}=252$ is exactly the trap to avoid; the correct value is $\\binom{11}{6}=462$. The degenerate case $r=s=0$ recovers $\\sum_{k=0}^{n}1=n+1=\\binom{n+1}{1}$."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
-    "title": "Logarithm Hidden in a Square Root",
-    "difficulty": 5,
-    "task": "Evaluate",
-    "tags": [
-      "generalized binomial",
-      "integration",
-      "central binomial",
-      "series convergence",
-      "logarithm"
-    ],
-    "statement": "Starting from the generalized binomial series $(1-t)^{-1/2}=\\sum_{m\\ge 0}\\binom{2m}{m}\\dfrac{t^{m}}{4^{m}}$, evaluate the convergent series\n\\[ W \\;=\\; \\sum_{m\\ge 1} \\frac{1}{m}\\binom{2m}{m}\\frac{1}{4^{m}}. \\]",
-    "answer": "\\[\\boxed{2\\ln 2}\\]",
-    "trap": "Setting $t=1$ directly in $\\sum\\binom{2m}{m}4^{-m}t^m=(1-t)^{-1/2}$, which DIVERGES at $t=1$, and concluding the weighted series also diverges or trying to read off a value from the singular endpoint. The factor $\\frac1m$ comes from INTEGRATING the generating function: $\\sum_{m\\ge1}\\binom{2m}{m}\\frac{t^m}{4^m\\,m}=\\int_0^t\\frac{(1-u)^{-1/2}-1}{u}\\,du$, which has a finite limit as $t\\to 1^-$ (Abel summation), namely $2\\ln 2$. The terms behave like $\\frac{1}{m\\sqrt{\\pi m}}$, so the series converges (just slowly), unlike the ungapped one.",
-    "solutions": [
-      {
-        "name": "Integrate the generating function, then take $t\\to1^-$",
-        "steps": [
-          "Let $f(t)=\\sum_{m\\ge 1}\\binom{2m}{m}\\dfrac{t^{m}}{4^{m}}=(1-t)^{-1/2}-1$. Then $\\dfrac{f(t)}{t}=\\sum_{m\\ge 1}\\binom{2m}{m}\\dfrac{t^{m-1}}{4^m}$.",
-          "Integrate from $0$ to $t$: $\\displaystyle\\sum_{m\\ge 1}\\frac{1}{m}\\binom{2m}{m}\\frac{t^{m}}{4^{m}}=\\int_0^{t}\\frac{(1-u)^{-1/2}-1}{u}\\,du$.",
-          "Substitute $1-u=v^2$ (so $u=1-v^2$, $du=-2v\\,dv$): the integrand $\\dfrac{v^{-1}-1}{1-v^2}\\cdot(-2v)\\,dv=\\dfrac{-2(1-v)}{1-v^2}dv=\\dfrac{-2}{1+v}dv$. As $u:0\\to t$, $v:1\\to\\sqrt{1-t}$.",
-          "So the sum $=\\displaystyle\\int_{\\sqrt{1-t}}^{1}\\frac{2}{1+v}\\,dv=2\\ln(1+v)\\Big|_{\\sqrt{1-t}}^{1}=2\\ln 2-2\\ln\\!\\big(1+\\sqrt{1-t}\\big)$.",
-          "Letting $t\\to 1^{-}$ (Abel's theorem justifies it since the series at $t=1$ converges): $W=2\\ln 2-2\\ln 1=\\boxed{2\\ln 2}$."
-        ]
-      },
-      {
-        "name": "Beta-integral term representation",
-        "steps": [
-          "Use $\\dfrac{1}{4^m}\\binom{2m}{m}=\\dfrac{2}{\\pi}\\displaystyle\\int_0^{\\pi/2}\\sin^{2m}\\theta\\,d\\theta$ (Wallis).",
-          "Then $W=\\dfrac{2}{\\pi}\\int_0^{\\pi/2}\\sum_{m\\ge1}\\dfrac{\\sin^{2m}\\theta}{m}\\,d\\theta=\\dfrac{2}{\\pi}\\int_0^{\\pi/2}\\big(-\\ln(1-\\sin^2\\theta)\\big)d\\theta=\\dfrac{2}{\\pi}\\int_0^{\\pi/2}(-2\\ln\\cos\\theta)\\,d\\theta$.",
-          "The classic log-cosine integral is $\\int_0^{\\pi/2}\\ln\\cos\\theta\\,d\\theta=-\\dfrac{\\pi}{2}\\ln 2$.",
-          "Hence $W=\\dfrac{2}{\\pi}\\cdot(-2)\\cdot\\big(-\\tfrac{\\pi}{2}\\ln 2\\big)=\\boxed{2\\ln 2}$."
-        ]
-      },
-      {
-        "name": "Numerical confirmation",
-        "steps": [
-          "Partial sums $\\sum_{m=1}^{M}\\frac{1}{m}\\binom{2m}{m}4^{-m}$ increase slowly (terms $\\sim \\frac{1}{\\sqrt\\pi\\,m^{3/2}}$, so convergent).",
-          "By $M=4\\times10^5$ the sum is $\\approx 1.3845$, approaching $2\\ln 2=1.38629\\ldots$ with the expected $O(M^{-1/2})$ tail.",
-          "This confirms the exact value $W=\\boxed{2\\ln 2}$."
-        ]
-      }
-    ],
-    "remark": "Insight: two tools collide. The generalized binomial series $(1-t)^{-1/2}$ supplies the central binomial coefficients; dividing by $m$ is integration, which converts the algebraic square-root singularity into a logarithm. The endpoint $t=1$ is exactly where the un-integrated series blows up, so the gap $\\frac1m$ is what makes convergence — and the value $2\\ln 2$ — possible."
   },
   {
     "theme": "hybrid",
@@ -3922,5 +3738,42 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: the weight $\\frac{1}{k+1}$ is integration in disguise, and the squared coefficient is Vandermonde in disguise; the trick is to spend the integration on exactly ONE of the two factors so the remaining product is a clean Vandermonde convolution $\\binom{2n+1}{n}$. Two tools, surgically applied."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "Differentiate Into a Convolution",
+    "difficulty": 5,
+    "task": "Evaluate the sum",
+    "tags": [
+      "differentiation of (1+x)^n",
+      "Vandermonde convolution",
+      "weighted binomial sum",
+      "coefficient extraction",
+      "index shift"
+    ],
+    "statement": "Evaluate $\\displaystyle S=\\sum_{r=0}^{5} r\\,\\binom{5}{r}\\binom{10}{5-r}$.",
+    "answer": "\\[\\boxed{5005}\\]",
+    "trap": "Overlooking the weight $r$ and reading the sum as the plain Vandermonde convolution $\\sum_{r}\\binom{5}{r}\\binom{10}{5-r}=\\binom{15}{5}=3003$. The factor $r$ is exactly what makes this a hybrid: it must first be absorbed by the differentiation identity $r\\binom{5}{r}=5\\binom{4}{r-1}$, after which the surviving convolution is a \\emph{different} Vandermonde sum. The unweighted answer $3003$ is wrong.",
+    "solutions": [
+      {
+        "name": "Differentiation identity then Vandermonde",
+        "steps": [
+          "Differentiating $(1+x)^{5}$ gives the absorption identity $r\\,\\binom{5}{r}=5\\,\\binom{4}{r-1}$ (equivalently, the $r=0$ term vanishes). Hence $S=5\\displaystyle\\sum_{r=1}^{5}\\binom{4}{r-1}\\binom{10}{5-r}$.",
+          "Shift the index with $s=r-1$: $S=5\\displaystyle\\sum_{s=0}^{4}\\binom{4}{s}\\binom{10}{4-s}$.",
+          "The inner sum is a Vandermonde convolution $\\sum_{s}\\binom{4}{s}\\binom{10}{4-s}=\\binom{14}{4}=1001$.",
+          "Therefore $S=5\\cdot 1001=\\boxed{5005}$."
+        ]
+      },
+      {
+        "name": "Coefficient extraction with the $x\\frac{d}{dx}$ operator",
+        "steps": [
+          "Regard $S$ as the coefficient of $x^{5}$ in a product: since $\\sum_{r} r\\binom{5}{r}x^{r}=x\\dfrac{d}{dx}(1+x)^{5}=5x(1+x)^{4}$, we have $S=[x^{5}]\\;5x(1+x)^{4}\\,(1+x)^{10}$.",
+          "Combine the powers of $(1+x)$: $S=[x^{5}]\\;5x(1+x)^{14}=5\\,[x^{4}](1+x)^{14}$.",
+          "Read the coefficient: $[x^{4}](1+x)^{14}=\\binom{14}{4}=1001$, so $S=5\\cdot 1001=\\boxed{5005}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The lone factor $r$ is the whole puzzle: absorb it with the **differentiation** identity $r\\binom{5}{r}=5\\binom{4}{r-1}$ (or the operator $x\\tfrac{d}{dx}$), which lowers the upper index by one and re-aims the **Vandermonde** convolution onto $\\binom{14}{4}$. Skipping that step and quoting $\\binom{15}{5}$ silently answers a *different*, unweighted question."
   }
 ];

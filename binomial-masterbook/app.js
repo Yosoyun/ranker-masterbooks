@@ -4,7 +4,7 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['genterm','middlegreatest','coefficients','sumsdiff','rootsofunity','multinomial','divisibility','approximation','seriesindex','hybrid'];
+  const THEME_ORDER = ['genterm','middlegreatest','coefficients','sumsdiff','rootsofunity','multinomial','divisibility','approximation','vandermonde','hybrid'];
   const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
   const THEME_META = {
     genterm:        { glyph:'Tᵣ₊₁', blurb:'Every expansion is one formula read at the right index — the general term, and the art of choosing r to land on the power you want.' },
@@ -15,7 +15,7 @@
     multinomial:    { glyph:'(Σ)ⁿ',  blurb:'Three terms or more — the multinomial theorem, its coefficients, and the count of terms after collecting like powers.' },
     divisibility:   { glyph:'mod',   blurb:'(a+b)ⁿ modulo m, last digits, and the integer-and-fractional-part split of (√a+√b)ⁿ — number theory hiding in the expansion.' },
     approximation:  { glyph:'≈',     blurb:'When x is small, (1+x)ⁿ is almost linear; Bernoulli and the binomial inequalities turn the expansion into sharp bounds.' },
-    seriesindex:    { glyph:'(1+x)ᵅ',blurb:'Drop the requirement that the index be a positive integer: the binomial series, valid for |x|<1, and the coefficient of xʳ.' },
+    vandermonde:    { glyph:'ΣCₖ',  blurb:'Vandermonde’s convolution, the hockey-stick, Pascal’s rule and the square sum ΣCₖ² — combinatorial identities proved by counting two ways.' },
     hybrid:         { glyph:'⊕',     blurb:'The capstones: the general term, roots-of-unity filters, calculus sums and number theory fused into one expansion.' },
   };
 
@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>(1+x)<sup>n</sup><em>.</em></h2>'
-      + '<div class="tagline">Original binomial-theorem problems where the right index, the right filter or the right modulus collapses the whole expansion — general terms, coefficient extraction, calculus sums, roots-of-unity filters, the multinomial, divisibility and the binomial series. Drawn from the rarest corners of advanced and JEE-Advanced algebra, each solved several ways.</div>'
+      + '<div class="tagline">Original binomial-theorem problems where the right index, the right filter or the right modulus collapses the whole expansion — general terms, coefficient extraction, calculus sums, roots-of-unity filters, the multinomial, divisibility and the Vandermonde and Pascal identities. Strictly within the JEE Advanced syllabus, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')
@@ -245,13 +245,13 @@
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/BINOM-Problems.pdf" download>&#8595; Problems PDF</a>'
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/BINOM-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
-      + '<p class="cover-manifesto">The general term, the middle and greatest terms, coefficient extraction, binomial sums via differentiation and integration, the roots-of-unity filter, the multinomial theorem, divisibility and remainders, approximations and inequalities, and the binomial series for any index — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t expand term by term; they read the coefficient straight off.</p>'
+      + '<p class="cover-manifesto">The general term, the middle and greatest terms, coefficient extraction, binomial sums via differentiation and integration, the roots-of-unity filter, the multinomial theorem, divisibility and remainders, approximations and inequalities, and the Vandermonde, hockey-stick and Pascal identities — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t expand term by term; they read the coefficient straight off.</p>'
       + '</div>';
 
     // legend of instruments
     html+='<div class="sec-head"><span class="sh-rom">i</span><h3>The Instruments</h3><span class="sh-line"></span></div>';
     html+='<div class="legend">';
-    const fam=[['genterm','The general term','Tᵣ₊₁'],['middlegreatest','Middle & greatest','Tₘₐₓ'],['coefficients','Coefficients','[xᵏ]'],['sumsdiff','Sums via calculus','ΣkⁿCₖ'],['rootsofunity','Roots-of-unity filter','ω'],['multinomial','Multinomial','(Σ)ⁿ'],['divisibility','Divisibility','mod'],['approximation','Approximations','≈'],['seriesindex','Any index','(1+x)ᵅ'],['hybrid','Hybrids','⊕']];
+    const fam=[['genterm','The general term','Tᵣ₊₁'],['middlegreatest','Middle & greatest','Tₘₐₓ'],['coefficients','Coefficients','[xᵏ]'],['sumsdiff','Sums via calculus','ΣkⁿCₖ'],['rootsofunity','Roots-of-unity filter','ω'],['multinomial','Multinomial','(Σ)ⁿ'],['divisibility','Divisibility','mod'],['approximation','Approximations','≈'],['vandermonde','Vandermonde & Pascal','ΣCₖ'],['hybrid','Hybrids','⊕']];
     fam.forEach(f=>{ const c=byChapter[f[0]]; const cnt=c?c.problems.length:0;
       html+='<div class="lg card"><div class="glyph">'+f[2]+'</div><div><div class="lgname">'+f[1]+'</div><div class="lgcount">'+cnt+' problems</div></div></div>'; });
     html+='</div>';

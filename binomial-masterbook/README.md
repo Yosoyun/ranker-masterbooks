@@ -1,6 +1,6 @@
 # (1+x)ⁿ · The Expansion & Its Coefficients
 
-**The Ranker's Masterbook — original, olympiad/JEE-Advanced problems on the binomial theorem.** The
+**The Ranker's Masterbook — original, JEE-Advanced problems on the binomial theorem.** The
 twelfth volume in the series, same engine, **orange** theme. Don't expand term by term — read the
 coefficient straight off. Each problem worked **several ways**.
 
@@ -11,7 +11,7 @@ The ten chapters are organised by the instrument that powers the problem:
 | I | The General Term | | VI | The Multinomial Theorem |
 | II | Middle & Greatest Term | | VII | Divisibility & Remainders |
 | III | Extracting Coefficients | | VIII | Approximations & Inequalities |
-| IV | Binomial Sums via Calculus | | IX | Negative & Fractional Index |
+| IV | Binomial Sums via Calculus | | IX | Vandermonde & Pascal Identities |
 | V | The Roots-of-Unity Filter | | X | The Grand Hybrids |
 
 Each problem ships with a clean LaTeX statement & answer, **The Trap**, **2–3 distinct solution

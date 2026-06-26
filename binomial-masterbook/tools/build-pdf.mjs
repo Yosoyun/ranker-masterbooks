@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['genterm','middlegreatest','coefficients','sumsdiff','rootsofunity','multinomial','divisibility','approximation','seriesindex','hybrid'];
+const THEME_ORDER = ['genterm','middlegreatest','coefficients','sumsdiff','rootsofunity','multinomial','divisibility','approximation','vandermonde','hybrid'];
 const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { genterm:'Tᵣ₊₁', middlegreatest:'Tₘₐₓ', coefficients:'[xᵏ]', sumsdiff:'ΣkⁿCₖ', rootsofunity:'ω', multinomial:'(Σ)ⁿ', divisibility:'mod', approximation:'≈', seriesindex:'(1+x)ᵅ', hybrid:'⊕' };
+const GLYPH = { genterm:'Tᵣ₊₁', middlegreatest:'Tₘₐₓ', coefficients:'[xᵏ]', sumsdiff:'ΣkⁿCₖ', rootsofunity:'ω', multinomial:'(Σ)ⁿ', divisibility:'mod', approximation:'≈', vandermonde:'ΣCₖ', hybrid:'⊕' };
 const BLURB = {
   genterm:'One formula read at the right index — choose r to land on the power you want.',
   middlegreatest:'The middle term, and where the binomial’s coefficient or value peaks.',
@@ -23,7 +23,7 @@ const BLURB = {
   multinomial:'Three terms or more — multinomial coefficients and the count of terms.',
   divisibility:'(a+b)ⁿ mod m, last digits, and the integer/fractional split of (√a+√b)ⁿ.',
   approximation:'Small-x linearisation, Bernoulli, and the binomial inequalities as bounds.',
-  seriesindex:'The binomial series for any index, valid for |x|<1 — the coefficient of xʳ.',
+  vandermonde:'Vandermonde, hockey-stick and Pascal identities — counting two ways.',
   hybrid:'General term, roots-of-unity filters, calculus sums and number theory, fused.',
 };
 
