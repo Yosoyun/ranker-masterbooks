@@ -1,18 +1,18 @@
 # ℙ · Chance & Uncertainty
 
-**The Ranker's Masterbook — original, olympiad/JEE-Advanced problems on probability.** The eleventh
-volume in the series, same engine, **rose** theme. The obvious fraction is the wrong one — each problem
-worked **several ways**.
+**The Ranker's Masterbook — original problems on probability, strictly within the JEE Advanced
+syllabus.** Same engine, **rose** theme. The obvious fraction is the wrong one — each problem worked
+**several ways**.
 
 The ten chapters are organised by the instrument that powers the problem:
 
 | # | Chapter | | # | Chapter |
 |---|---------|---|---|---------|
-| I | Classical & Geometric Probability | | VI | Recursive & Markov Probability |
-| II | Conditional Probability & Independence | | VII | Inclusion–Exclusion & Matching |
-| III | Total Probability & Bayes | | VIII | Named Distributions & Limits |
-| IV | Bernoulli Trials & the Binomial | | IX | Bounds, Symmetry & Paradoxes |
-| V | Random Variables & Expectation | | X | The Grand Hybrids |
+| I | Classical Probability | | VI | Binomial: Mean, Variance & Mode |
+| II | Conditional Probability & Independence | | VII | Random Variables & Expectation |
+| III | Total Probability & Bayes | | VIII | Inclusion–Exclusion & Matching |
+| IV | Probability by Counting | | IX | Symmetry, Conditioning & Surprises |
+| V | Bernoulli Trials & the Binomial | | X | The Grand Hybrids |
 
 Each problem ships with a clean LaTeX statement & answer, **The Trap**, **2–3 distinct solution
 methods**, and an **Insight** note. Adversarially verified in Python (`sympy`/`numpy`/`itertools`, with

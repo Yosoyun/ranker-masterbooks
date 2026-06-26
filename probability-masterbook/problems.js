@@ -1,491 +1,476 @@
-/* PROBABILITY — Chance & Uncertainty · 100 original problems, 10 chapters, adversarially Python-verified. */
+/* problems.js — DATA. 100 original probability problems for ℙ · Chance & Uncertainty, strictly within the JEE Advanced syllabus: classical (equally-likely) & counting probability, the addition & multiplication theorems, conditional probability & independence, total probability & Bayes, random variables with their mean & variance, Bernoulli trials & the binomial distribution (mean np, variance npq, mode), inclusion–exclusion, and finite conditioning surprises. No geometric/continuous probability, Markov chains/random walks, or named distributions beyond the binomial (no Poisson/normal/exponential). Verified with exact fractions in Python. statement/answer are raw LaTeX (the app auto-detects prose+math); steps use $...$ and $$...$$. */
 window.PROBLEMS = [
   {
     "theme": "classical",
-    "themeLabel": "Classical & Geometric Probability",
-    "title": "Does the Center Survive the Polygon?",
-    "difficulty": 4,
-    "task": "Determine",
-    "tags": [
-      "geometric probability",
-      "circle",
-      "convex hull",
-      "symmetry",
-      "semicircle"
-    ],
-    "statement": "Five points are chosen independently and uniformly at random on the circumference of a circle. They are the vertices of a (convex) pentagon. \\[\\text{Find the probability that the center of the circle lies strictly inside this pentagon.}\\]",
-    "answer": "\\[\\boxed{\\dfrac{11}{16}}\\]",
-    "trap": "Trying to compute the favorable area of pentagon-configurations directly, or assuming the center is 'usually' inside. The seductive error is to forget the clean equivalence: the center fails to be inside EXACTLY when all five points lie in some common open semicircle. People also miscount by fixing one point as the 'start' of the bad arc and then double-counting, or by using $\\binom{5}{?}$ guesses. The correct count uses that, almost surely, exactly one point can serve as the clockwise-most point of a covering semicircle.",
-    "solutions": [
-      {
-        "name": "Semicircle complement",
-        "steps": [
-          "The center lies inside the convex hull of the points iff the points are NOT all contained in some open half-plane through the center, i.e. iff they do not all lie in a common semicircle.",
-          "Compute $P(\\text{all }n\\text{ in some semicircle})$. For each point $i$, let $A_i$ be the event that the semicircle starting at point $i$ and sweeping clockwise $180^\\circ$ contains all the others. Almost surely the events $A_i$ are disjoint (at most one point is the clockwise-most of a covering arc).",
-          "Each $A_i$ requires the other $n-1$ points to fall in a fixed semicircle: probability $(1/2)^{n-1}$. So $P(\\text{semicircle})=n\\,(1/2)^{n-1}$.",
-          "For $n=5$: $P(\\text{semicircle})=5/16$, hence $P(\\text{center inside})=1-5/16=\\boxed{11/16}$."
-        ]
-      },
-      {
-        "name": "Gap (spacing) argument",
-        "steps": [
-          "Sort the five angles; they split the circle into $5$ arcs (gaps) summing to $2\\pi$. The points all lie in a semicircle iff some gap is $\\ge\\pi$ (the complementary arc is the semicircle that holds all points).",
-          "At most one gap can exceed $\\pi$. By symmetry of the $5$ gaps, $P(\\text{gap}_1\\ge\\pi)$ is the same for each, so $P(\\exists\\,\\text{gap}\\ge\\pi)=5\\,P(\\text{gap}_1\\ge\\pi)$.",
-          "For uniform spacings, $P(\\text{a particular gap}\\ge\\pi)=(1-\\tfrac{\\pi}{2\\pi})^{n-1}=(1/2)^{4}=1/16$. Thus the bad probability is $5/16$.",
-          "Therefore the center is inside with probability $1-5/16=\\boxed{11/16}$."
-        ]
-      },
-      {
-        "name": "Monte Carlo confirmation",
-        "steps": [
-          "Sample $8\\times10^6$ quintuples of uniform angles; sort and form the five gaps including the wrap-around gap.",
-          "Flag a trial as 'all in a semicircle' iff the maximum gap is $\\ge\\pi$; this matches the bad event.",
-          "Empirical bad probability $\\approx 0.3123\\approx 5/16$, so center-inside $\\approx 0.6877$.",
-          "This agrees with $\\boxed{11/16}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the messy-sounding 'center inside a random polygon' collapses to the one-line semicircle criterion. The formula $1-n/2^{n-1}$ unifies the $n=3$ triangle ($1/4$), $n=4$ quadrilateral ($1/2$), and $n=5$ pentagon ($11/16$) cases — a beautiful instance of replacing area-integration with a counting symmetry."
-  },
-  {
-    "theme": "classical",
-    "themeLabel": "Classical & Geometric Probability",
-    "title": "The Impatient and the Patient",
+    "themeLabel": "Classical Probability",
+    "title": "When the Two Dice Add to a Prime",
     "difficulty": 3,
-    "task": "Evaluate",
+    "task": "Find the probability",
     "tags": [
-      "geometric probability",
-      "meeting problem",
-      "area ratio",
-      "asymmetry"
+      "dice",
+      "sample space",
+      "counting",
+      "prime sums"
     ],
-    "statement": "Anaya and Bhuvan each agree to come to a cafe at some moment chosen independently and uniformly at random during the hour from $3{:}00$ to $4{:}00$. Anaya, impatient, will wait only $10$ minutes for the other before leaving; Bhuvan, patient, will wait $15$ minutes. \\[\\text{Find the probability that the two of them actually meet.}\\]",
-    "answer": "\\[\\boxed{\\dfrac{107}{288}}\\]",
-    "trap": "Using the symmetric meeting formula with a single waiting time, e.g. averaging $10$ and $15$ to $12.5$ and writing $2\\cdot\\frac{w}{60}-\\frac{w^2}{60^2}$ with one $w$. That gives $\\frac{215}{576}\\approx 0.3733$, which is wrong. The waiting times are asymmetric, so the meeting band $-10\\le a-b\\le 15$ is NOT symmetric about the diagonal; the two cut-off triangles have DIFFERENT legs ($45$ and $50$), not equal ones, and no single $w$ reproduces them.",
+    "statement": "A pair of fair, distinguishable six-sided dice is rolled once. \\[\\text{Find the probability that the sum of the two numbers shown is a prime number.}\\]",
+    "answer": "\\[\\boxed{\\dfrac{5}{12}}\\]",
+    "trap": "Listing the prime values a sum can take, namely $\\{2,3,5,7,11\\}$, counting these as $5$ favourable cases out of the $11$ possible sums $2,3,\\dots,12$, and writing $\\dfrac{5}{11}$. This treats the eleven sums as equally likely, which they are not: the correct sample space is the $36$ equally likely ordered pairs $(a,b)$, not the lopsided list of sums.",
     "solutions": [
       {
-        "name": "Strip area",
+        "name": "Direct count over ordered pairs",
         "steps": [
-          "Let $a,b\\in[0,60]$ be the arrival minutes. Anaya is present on $[a,a+10]$, Bhuvan on $[b,b+15]$. They meet iff these intervals overlap: $a\\le b+15$ and $b\\le a+10$, i.e. $-10\\le a-b\\le 15$.",
-          "Total sample area $=60^2=3600$. The non-meeting region splits into two right triangles: $a-b>15$ (legs $60-15=45$) and $b-a>10$ (legs $60-10=50$).",
-          "Non-meeting area $=\\tfrac12(45^2)+\\tfrac12(50^2)=1012.5+1250=2262.5$.",
-          "Meeting area $=3600-2262.5=1337.5$, so probability $=\\dfrac{1337.5}{3600}=\\dfrac{2675}{7200}=\\boxed{\\dfrac{107}{288}}$."
+          "The sample space is all ordered pairs $(a,b)$ with $a,b\\in\\{1,\\dots,6\\}$, giving $36$ equally likely outcomes.",
+          "A prime sum is one of $2,3,5,7,11$. Count pairs: sum $2$: $1$ way; sum $3$: $2$; sum $5$: $4$; sum $7$: $6$; sum $11$: $2$.",
+          "Total favourable $=1+2+4+6+2=15$.",
+          "Probability $=\\dfrac{15}{36}=\\boxed{\\dfrac{5}{12}}$."
         ]
       },
       {
-        "name": "Direct integration",
+        "name": "Complement by parity",
         "steps": [
-          "Probability $=\\dfrac{1}{3600}\\displaystyle\\int_0^{60}\\big(\\text{length of }b\\text{ with }a-15\\le b\\le a+10\\big)\\,da$, since $a\\le b+15$ and $b\\le a+10$ force $b\\in[a-15,\\,a+10]$.",
-          "For $a\\in[15,50]$ the full window $[a-15,a+10]$ of length $25$ lies inside $[0,60]$; near the two edges the window is clipped by $0$ and $60$.",
-          "Summing the clipped trapezoids, $\\int_0^{60}\\min(60,a+10)-\\max(0,a-15)\\,da=1337.5$.",
-          "Hence probability $=1337.5/3600=\\boxed{107/288}$."
-        ]
-      },
-      {
-        "name": "Monte Carlo",
-        "steps": [
-          "Draw $2\\times10^7$ pairs $(a,b)$ uniform on $[0,60]^2$ and test $-10\\le a-b\\le 15$.",
-          "Empirical frequency $\\approx 0.3715$.",
-          "Compare to $107/288\\approx 0.37153$.",
-          "Match confirms $\\boxed{107/288}$."
+          "A sum that is prime and $>2$ must be odd, which needs one even and one odd die. Odd-sum pairs number $18$ (half of $36$); among these the odd composite sum $9$ occurs in $4$ ways, so odd prime sums give $18-4=14$ pairs (sums $3,5,7,11$).",
+          "The only even prime sum is $2$, occurring in $1$ way.",
+          "Favourable $=14+1=15$ out of $36$.",
+          "Probability $=\\dfrac{15}{36}=\\boxed{\\dfrac{5}{12}}$."
         ]
       }
     ],
-    "remark": "Insight: the only structural change from the textbook two-friends meeting problem is that the tolerance band is two-sided with unequal half-widths. Watch the orientation carefully: because Bhuvan ($15$ min) is the patient one, the band reaches farther on the side where Anaya arrives first, giving $a-b\\le 15$ and $b-a\\le 10$. Geometry handles the asymmetry effortlessly by subtracting two unequal corner triangles, where a memorized symmetric formula silently assumes one waiting time and fails."
+    "remark": "**Insight.** The danger is silently switching sample spaces. The eleven possible **sums** are *not* equally likely, so probabilities must be counted on the $36$ equally likely **ordered pairs**. Whenever outcomes are reported by a derived quantity, return to the underlying equally likely atoms before you divide."
   },
   {
     "theme": "classical",
-    "themeLabel": "Classical & Geometric Probability",
-    "title": "Break the Longer Half",
-    "difficulty": 5,
-    "task": "Evaluate",
+    "themeLabel": "Classical Probability",
+    "title": "One of Each Colour",
+    "difficulty": 3,
+    "task": "Find the probability",
     "tags": [
-      "geometric probability",
-      "broken stick",
-      "triangle inequality",
-      "conditional density",
-      "logarithm"
+      "balls in urn",
+      "without replacement",
+      "combinations",
+      "counting"
     ],
-    "statement": "A stick of length $1$ is broken at a point chosen uniformly at random, giving two pieces. The longer of the two pieces is then broken again at a point chosen uniformly at random along its length. \\[\\text{Find the probability that the three resulting pieces can form a (nondegenerate) triangle.}\\]",
-    "answer": "\\[\\boxed{2\\ln 2-1}\\]",
-    "trap": "Assuming the answer is the classic $1/4$ (which is the probability for breaking the stick at TWO independent uniform points). Here the second cut is restricted to the LONGER piece, which changes the geometry entirely: the never-broken short piece is automatically $\\le 1/2$, so the binding constraints fall only on the two new pieces, and the conditional length of the longer piece is not uniform on $[1/2,1]$.",
+    "statement": "A bag contains $4$ red, $3$ blue and $2$ green balls, all otherwise identical. Three balls are drawn together (without replacement). \\[\\text{Find the probability that the three drawn balls are of three different colours.}\\]",
+    "answer": "\\[\\boxed{\\dfrac{2}{7}}\\]",
+    "trap": "Treating the draws as ordered with replacement and writing $\\dfrac{4}{9}\\cdot\\dfrac{3}{9}\\cdot\\dfrac{2}{9}\\cdot 3!=\\dfrac{16}{81}$. This wrongly keeps the bag full after each pick. The draw is without replacement, so the clean unordered model $\\binom{9}{3}$ in the denominator is the correct sample space.",
     "solutions": [
       {
-        "name": "Condition on the longer piece",
+        "name": "Unordered combinations",
         "steps": [
-          "First cut at $x\\sim U(0,1)$; let $L=\\max(x,1-x)\\in[\\tfrac12,1]$ be the longer piece and $1-L\\le\\tfrac12$ the short piece, which never gets cut.",
-          "Cut $L$ at $y\\sim U(0,L)$, giving pieces $y$ and $L-y$. Since the three lengths sum to $1$, a triangle forms iff every piece is $<\\tfrac12$. The short piece satisfies $1-L\\le\\tfrac12$ automatically, so we only need $y<\\tfrac12$ and $L-y<\\tfrac12$, i.e. $L-\\tfrac12<y<\\tfrac12$.",
-          "Given $L$, this $y$-interval has length $\\tfrac12-(L-\\tfrac12)=1-L$ and lies inside $[0,L]$, so $P(\\text{triangle}\\mid L)=\\dfrac{1-L}{L}$.",
-          "The density of $L$ on $[\\tfrac12,1]$ is $2$ (the two symmetric branches $x$ and $1-x$ both map onto $L$). Hence $P=\\displaystyle\\int_{1/2}^{1}\\frac{1-L}{L}\\,2\\,dL=2\\big[\\ln L-L\\big]_{1/2}^{1}=2\\big[(0-1)-(\\ln\\tfrac12-\\tfrac12)\\big]=2\\ln 2-1.$",
-          "Thus $P=\\boxed{2\\ln 2-1}\\approx 0.3863.$"
+          "Choosing $3$ balls from $9$ gives $\\binom{9}{3}=84$ equally likely unordered outcomes.",
+          "To get one of each colour, pick one red, one blue, one green: $4\\cdot 3\\cdot 2=24$ ways.",
+          "Probability $=\\dfrac{24}{84}=\\boxed{\\dfrac{2}{7}}$."
         ]
       },
       {
-        "name": "Direct double integral",
+        "name": "Ordered without replacement",
         "steps": [
-          "By symmetry, the longer piece $L$ has density $2$ on $[\\tfrac12,1]$, and the second cut $y$ is uniform on $[0,L]$ with density $1/L$.",
-          "$P=\\displaystyle\\int_{1/2}^{1}\\!\\!\\int_{0}^{L}\\frac{2}{L}\\,\\mathbf 1\\{L-\\tfrac12<y<\\tfrac12\\}\\,dy\\,dL$.",
-          "The inner integral equals $\\dfrac{2}{L}\\cdot(1-L)$, since the admissible $y$-range has length $1-L$.",
-          "$\\displaystyle\\int_{1/2}^{1}\\frac{2(1-L)}{L}\\,dL=2\\big[\\ln L-L\\big]_{1/2}^{1}=2\\ln 2-1=\\boxed{2\\ln 2-1}\\approx 0.3863.$"
-        ]
-      },
-      {
-        "name": "Monte Carlo",
-        "steps": [
-          "Sample many first cuts $x\\sim U(0,1)$, identify the longer piece $L=\\max(x,1-x)$, then sample $y\\sim U(0,L)$.",
-          "Form the three pieces $\\{1-L,\\;y,\\;L-y\\}$ and test that all three are $<\\tfrac12$.",
-          "Over $2\\times10^{7}$ trials the empirical probability is $\\approx 0.38635$.",
-          "This matches $2\\ln 2-1\\approx 0.38629$ to within $5\\times10^{-5}$, confirming the closed form (and ruling out the classic value $0.25$)."
+          "Draw the three balls in order; total ordered outcomes $=9\\cdot 8\\cdot 7=504$.",
+          "A rainbow triple can appear in $3!=6$ colour orders; for a fixed order such as red, blue, green the count is $4\\cdot 3\\cdot 2=24$.",
+          "Favourable ordered outcomes $=6\\cdot 24=144$, so probability $=\\dfrac{144}{504}=\\boxed{\\dfrac{2}{7}}$."
         ]
       }
     ],
-    "remark": "Insight: the instruction 'break the longer piece' silently guarantees one triangle inequality for free (the untouched short piece is already $\\le\\tfrac12$) and biases the cut location, turning the flat classic answer $1/4$ into a logarithmic answer. The lesson is that conditioning on 'longer' is a hidden re-weighting of where the cut lands, not a harmless relabeling."
+    "remark": "**Insight.** Ordered-vs-unordered and with-vs-without replacement must match top and bottom of the fraction. Both correct models above agree because the $3!$ orderings cancel; the trap fails precisely because it pairs a with-replacement numerator against the wrong denominator."
   },
   {
     "theme": "classical",
-    "themeLabel": "Classical & Geometric Probability",
-    "title": "Bertrand's Midpoint Coin",
+    "themeLabel": "Classical Probability",
+    "title": "Nobody in Their Own Chair",
     "difficulty": 4,
-    "task": "Find",
+    "task": "Find the probability",
     "tags": [
-      "geometric probability",
-      "random chord",
-      "bertrand paradox",
-      "disk",
-      "area ratio"
+      "arrangements",
+      "derangement",
+      "inclusion-exclusion",
+      "counting"
     ],
-    "statement": "A point $P$ is chosen uniformly at random inside a disk of radius $R$ (uniform with respect to area). Draw the chord of the disk having $P$ as its midpoint. \\[\\text{Find the probability that this chord is longer than the radius } R.\\]",
+    "statement": "Four guests, who had been assigned numbered chairs $1,2,3,4$, return after a break and sit down in a uniformly random order. \\[\\text{Find the probability that no guest sits in the chair originally assigned to them.}\\]",
+    "answer": "\\[\\boxed{\\dfrac{3}{8}}\\]",
+    "trap": "Reasoning that each guest avoids one chair with probability $\\tfrac34$ and multiplying $\\left(\\tfrac34\\right)^4$, or stopping inclusion-exclusion after the first term to get $1-4\\cdot\\tfrac{3!}{4!}=0$. The seating events are not independent, and inclusion-exclusion must be carried to all four terms.",
+    "solutions": [
+      {
+        "name": "Inclusion-exclusion",
+        "steps": [
+          "Let $A_i$ be the event that guest $i$ sits in their own chair. By inclusion-exclusion the number of seatings with at least one fixed point is $\\sum(-1)^{k+1}\\binom{4}{k}(4-k)!$.",
+          "The number of derangements is $D_4=4!\\left(1-\\tfrac{1}{1!}+\\tfrac{1}{2!}-\\tfrac{1}{3!}+\\tfrac{1}{4!}\\right)=24\\cdot\\tfrac{9}{24}=9$.",
+          "All seatings number $4!=24$.",
+          "Probability $=\\dfrac{9}{24}=\\boxed{\\dfrac{3}{8}}$."
+        ]
+      },
+      {
+        "name": "Direct enumeration by cycle type",
+        "steps": [
+          "A derangement of $4$ elements has no fixed points, so its cycle structure is either one $4$-cycle or two $2$-cycles.",
+          "Number of $4$-cycles $=3!=6$; number of products of two disjoint $2$-cycles $=\\dfrac{1}{2}\\binom{4}{2}=3$.",
+          "Total derangements $=6+3=9$ out of $24$ seatings.",
+          "Probability $=\\dfrac{9}{24}=\\boxed{\\dfrac{3}{8}}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Fixed-point-avoidance events overlap, so the naive product or a truncated correction collapses. Counting derangements by cycle type ($4$-cycles plus double transpositions) gives the same $9$ and exposes why $D_4=9$ rather than the tempting $0$."
+  },
+  {
+    "theme": "classical",
+    "themeLabel": "Classical Probability",
+    "title": "Four Heads, Knowing There Are at Least Three",
+    "difficulty": 4,
+    "task": "Find the probability",
+    "tags": [
+      "coins",
+      "conditional probability",
+      "binomial counting",
+      "combinations"
+    ],
+    "statement": "A fair coin is tossed $6$ times. You are told (truthfully) that at least $3$ heads appeared. \\[\\text{Given this information, find the probability that exactly }4\\text{ heads appeared.}\\]",
+    "answer": "\\[\\boxed{\\dfrac{5}{14}}\\]",
+    "trap": "Ignoring the conditioning and reporting the unconditional probability $\\dfrac{\\binom{6}{4}}{2^{6}}=\\dfrac{15}{64}$. The phrase 'at least $3$ heads' shrinks the sample space, so the denominator must be the count of those outcomes, not all $64$.",
+    "solutions": [
+      {
+        "name": "Restricted sample space",
+        "steps": [
+          "All $2^6=64$ sequences are equally likely. The conditioning event 'at least $3$ heads' has $\\binom{6}{3}+\\binom{6}{4}+\\binom{6}{5}+\\binom{6}{6}=20+15+6+1=42$ outcomes.",
+          "Among these, 'exactly $4$ heads' has $\\binom{6}{4}=15$ outcomes.",
+          "Conditional probability $=\\dfrac{15}{42}=\\boxed{\\dfrac{5}{14}}$."
+        ]
+      },
+      {
+        "name": "Definition of conditional probability",
+        "steps": [
+          "Let $X$ be the number of heads. $P(X=4)=\\dfrac{15}{64}$ and $P(X\\ge 3)=\\dfrac{42}{64}$.",
+          "Since $\\{X=4\\}\\subseteq\\{X\\ge 3\\}$, $P(X=4\\mid X\\ge3)=\\dfrac{P(X=4)}{P(X\\ge3)}=\\dfrac{15/64}{42/64}$.",
+          "The common factor $64$ cancels, leaving $\\dfrac{15}{42}=\\boxed{\\dfrac{5}{14}}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Conditioning rescales probability onto the event you were told occurred. Here it merely replaces the denominator $64$ by $42$; recognising $\\{X=4\\}\\subseteq\\{X\\ge3\\}$ saves you from any extra intersection work."
+  },
+  {
+    "theme": "classical",
+    "themeLabel": "Classical Probability",
+    "title": "Which Urn Gave the White Ball?",
+    "difficulty": 4,
+    "task": "Find the probability",
+    "tags": [
+      "Bayes theorem",
+      "urns",
+      "total probability",
+      "conditioning"
+    ],
+    "statement": "Urn $A$ holds $3$ white and $2$ black balls; urn $B$ holds $1$ white and $4$ black balls. An urn is chosen by a fair coin and one ball is drawn from it; the ball turns out to be white. \\[\\text{Find the probability that the ball came from urn }A.\\]",
     "answer": "\\[\\boxed{\\dfrac{3}{4}}\\]",
-    "trap": "Invoking a reflex that the answer to a random-chord question is $1/3$ or $1/2$ from the Bertrand paradox without checking which randomization is specified. Here the chord is pinned by its midpoint being a uniform-area point, the third Bertrand method; the random-endpoint or random-radius convention would give a different, wrong number. A second trap is to confuse the threshold with the famous chord-exceeds-the-inscribed-triangle-side question (which forces $d<R/2$ and gives $1/4$); here the threshold is the radius $R$, not the side $R\\sqrt3$, so the condition is $d<\\tfrac{\\sqrt3}{2}R$ and the answer is $3/4$. A third trap is forgetting that the chord length depends only on the distance $d=|OP|$, via $2\\sqrt{R^2-d^2}$.",
+    "trap": "Answering $\\dfrac{3}{5}$, the chance of drawing white from urn $A$. That is $P(\\text{white}\\mid A)$, the forward probability, whereas the question asks the reverse, $P(A\\mid\\text{white})$, which requires Bayes' theorem and the overall whiteness rate.",
     "solutions": [
       {
-        "name": "Reduce to a distance condition",
+        "name": "Bayes' theorem",
         "steps": [
-          "If the midpoint $P$ is at distance $d$ from the center $O$, the chord it bisects is perpendicular to $OP$, so its half-length is $\\sqrt{R^2-d^2}$ and the chord has length $2\\sqrt{R^2-d^2}$.",
-          "Require $2\\sqrt{R^2-d^2}>R \\iff R^2-d^2>R^2/4 \\iff d^2<\\tfrac34 R^2 \\iff d<\\tfrac{\\sqrt3}{2}R$.",
-          "Since $P$ is uniform by area, $P(d<r)=\\pi r^2/(\\pi R^2)=(r/R)^2$.",
-          "With $r=\\tfrac{\\sqrt3}{2}R$: probability $=\\big(\\tfrac{\\sqrt3}{2}\\big)^2=\\boxed{\\dfrac34}.$"
+          "$P(A)=P(B)=\\tfrac12$, $P(W\\mid A)=\\tfrac35$, $P(W\\mid B)=\\tfrac15$.",
+          "Total probability of white: $P(W)=\\tfrac12\\cdot\\tfrac35+\\tfrac12\\cdot\\tfrac15=\\tfrac{3}{10}+\\tfrac{1}{10}=\\tfrac{2}{5}$.",
+          "$P(A\\mid W)=\\dfrac{P(A)P(W\\mid A)}{P(W)}=\\dfrac{\\tfrac12\\cdot\\tfrac35}{\\tfrac25}=\\dfrac{3/10}{4/10}=\\boxed{\\dfrac{3}{4}}$."
         ]
       },
       {
-        "name": "Annulus picture",
+        "name": "Counting equally likely white draws",
         "steps": [
-          "The favorable midpoints form the inner disk $d<\\tfrac{\\sqrt3}{2}R$; the unfavorable midpoints form the outer annulus $\\tfrac{\\sqrt3}{2}R\\le d\\le R$.",
-          "Area of the favorable disk $=\\pi\\big(\\tfrac{\\sqrt3}{2}R\\big)^2=\\tfrac34\\pi R^2$; total area $=\\pi R^2$.",
-          "Uniform-by-area probability is the area ratio $\\tfrac34$.",
-          "Hence the chord exceeds $R$ with probability $\\boxed{\\dfrac34}.$"
-        ]
-      },
-      {
-        "name": "Radial density (integration)",
-        "steps": [
-          "For a uniform-area point the radial density is $f(d)=\\dfrac{2d}{R^2}$ on $[0,R]$ (since $P(d<r)=r^2/R^2$, differentiate).",
-          "The favorable event is $d<\\tfrac{\\sqrt3}{2}R$, so the probability is $\\displaystyle\\int_0^{\\frac{\\sqrt3}{2}R}\\frac{2d}{R^2}\\,dd=\\Big[\\frac{d^2}{R^2}\\Big]_0^{\\frac{\\sqrt3}{2}R}.$",
-          "This evaluates to $\\dfrac{(\\sqrt3/2)^2R^2}{R^2}=\\dfrac34.$",
-          "So $P(\\text{chord}>R)=\\boxed{\\dfrac34}.$"
+          "Model the experiment with $10$ equally likely (urn, ball) outcomes: $5$ for each urn.",
+          "White draws number $3$ from urn $A$ and $1$ from urn $B$, so $4$ white outcomes in all, equally likely.",
+          "Of these white outcomes, $3$ come from urn $A$, giving probability $\\dfrac{3}{4}=\\boxed{\\dfrac{3}{4}}$."
         ]
       }
     ],
-    "remark": "Insight: a 'random chord' problem is meaningless until the randomization is fixed; once 'uniform-area midpoint' is named, the whole problem collapses to a one-line area ratio. Note the threshold matters too: chord $>R$ gives $3/4$, while the celebrated Bertrand question chord $>$ side of the inscribed equilateral triangle ($R\\sqrt3$) gives $1/4$ from the same setup. This is the sharp, honest face of the Bertrand paradox."
+    "remark": "**Insight.** Forward and reverse conditionals are different animals: $P(W\\mid A)=\\tfrac35$ but $P(A\\mid W)=\\tfrac34$. The white ball is *evidence*, and Bayes reweights the two urns by how readily each produces that evidence."
   },
   {
     "theme": "classical",
-    "themeLabel": "Classical & Geometric Probability",
-    "title": "All Three at Once",
+    "themeLabel": "Classical Probability",
+    "title": "Spacing Out the A's in BANANA",
     "difficulty": 4,
-    "task": "Determine",
+    "task": "Find the probability",
     "tags": [
-      "geometric probability",
-      "range of uniforms",
-      "simultaneous overlap",
-      "meeting problem",
-      "order statistics"
+      "arrangements",
+      "identical letters",
+      "gaps method",
+      "counting"
     ],
-    "statement": "Three friends arrive at a coffee shop at three moments chosen independently and uniformly at random during a one-hour window. Each stays for exactly $15$ minutes after arriving (a quarter of the hour) and then leaves. \\[\\text{Find the probability that at some single instant all three are present in the shop together.}\\]",
-    "answer": "\\[\\boxed{\\dfrac{5}{32}}\\]",
-    "trap": "Computing the probability that the friends meet PAIRWISE and combining them, or reasoning 'each pair overlaps with prob $p$ so all three with $p^3$'. Pairwise overlaps are NOT independent, and three intervals can pairwise overlap yet share no common instant. The clean criterion is that ALL three equal-length intervals share a point iff the range (max minus min) of the three arrival times is $\\le 15$ minutes.",
+    "statement": "The six letters of the word $\\textsf{BANANA}$ are arranged in a uniformly random order (arrangements that look identical are regarded as the same outcome). \\[\\text{Find the probability that no two of the three letters }A\\text{ are adjacent.}\\]",
+    "answer": "\\[\\boxed{\\dfrac{1}{5}}\\]",
+    "trap": "Computing only the number of ways to place the three A's into gaps, $\\binom{4}{3}=4$, and dividing by the total $60$ to get $\\dfrac{1}{15}$. This forgets that the three non-$A$ letters $B,N,N$ themselves arrange in $\\dfrac{3!}{2!}=3$ distinct ways, so the favourable count is $3\\cdot\\binom{4}{3}=12$.",
     "solutions": [
       {
-        "name": "Common-overlap criterion",
+        "name": "Gaps method",
         "steps": [
-          "Scale the hour to $[0,1]$ and the stay to $w=\\tfrac14$. Friend $i$ occupies $[x_i,x_i+w]$. The three intervals have a common point iff $\\max_i x_i\\le \\min_i x_i+w$, i.e. $\\text{range}(x_1,x_2,x_3)\\le w$ (all intervals have equal length).",
-          "For $n$ i.i.d. uniforms on $[0,1]$, $P(\\text{range}\\le r)=n\\,r^{\\,n-1}-(n-1)\\,r^{\\,n}$.",
-          "With $n=3,\\ r=\\tfrac14$: $P=3\\cdot\\tfrac1{16}-2\\cdot\\tfrac1{64}=\\tfrac{3}{16}-\\tfrac{1}{32}=\\tfrac{6-1}{32}=\\boxed{\\dfrac{5}{32}}.$"
+          "Total distinct arrangements of $\\textsf{BANANA}$ (letters $B,A,A,A,N,N$) $=\\dfrac{6!}{3!\\,2!}=60$.",
+          "First arrange the non-$A$ letters $B,N,N$: $\\dfrac{3!}{2!}=3$ distinct words, each creating $4$ gaps $\\_X\\_X\\_X\\_$.",
+          "Place the three identical A's into $3$ of these $4$ gaps: $\\binom{4}{3}=4$ choices, no two A's adjacent.",
+          "Favourable $=3\\cdot 4=12$, so probability $=\\dfrac{12}{60}=\\boxed{\\dfrac{1}{5}}$."
         ]
       },
       {
-        "name": "Volume integral",
+        "name": "Complement via blocks",
         "steps": [
-          "By symmetry, condition on the minimum arrival $m=\\min x_i$ and require the other two to land within $[m,m+w]$.",
-          "$P=\\displaystyle\\int_0^{1}3\\big(\\min(m+w,1)-m\\big)^2\\,dm$; the bulk $m\\in[0,1-w]$ gives $\\int_0^{1-w}3w^2\\,dm=3w^2(1-w)$ and the boundary strip $m\\in[1-w,1]$ adds $\\int_{1-w}^{1}3(1-m)^2\\,dm=w^3$.",
-          "Summing, $P=3w^2(1-w)+w^3=3w^2-2w^3=3(\\tfrac14)^2-2(\\tfrac14)^3=\\tfrac{3}{16}-\\tfrac{1}{32}=\\tfrac{5}{32}$.",
-          "Thus $\\boxed{5/32}$."
-        ]
-      },
-      {
-        "name": "Monte Carlo",
-        "steps": [
-          "Sample $8\\times10^6$ triples of uniform arrivals on $[0,1]$ and test the physical criterion $\\max x_i\\le\\min x_i+0.25$.",
-          "Flag every trial whose three $15$-minute intervals share a common instant.",
-          "Empirical probability $\\approx 0.1564$.",
-          "Matches $5/32=0.15625$, confirming the answer."
+          "Count arrangements where at least two A's are adjacent. Treat $AA$ as a block: arranging block, $A$, $B$, $N$, $N$ gives $\\dfrac{5!}{2!}=60$, but this overcounts; using inclusion-exclusion on the patterns yields $48$ bad arrangements (those containing $AA$ or $AAA$).",
+          "Equivalently, all-A-adjacency complement: total $60$ minus the $12$ fully separated ones leaves $48$ with some adjacency, confirming the split.",
+          "Hence favourable (no two A's adjacent) $=60-48=12$.",
+          "Probability $=\\dfrac{12}{60}=\\boxed{\\dfrac{1}{5}}$."
         ]
       }
     ],
-    "remark": "Insight: 'all three present at once' is a statement about the RANGE of the arrivals, not about pairwise gaps — equal-length intervals have a common point precisely when their starts cluster within one stay-length. On the line ($1$-D), Helly's theorem says pairwise overlap of intervals already forces a common point, but the count is cleanest when bookkept directly through the range $\\max-\\min$."
+    "remark": "**Insight.** The gaps method cleanly separates the two jobs: *arrange the others* (here $3$ ways) and *slot the repeated letter into gaps* ($\\binom{4}{3}$). Skipping the first job is the classic undercount that yields the wrong $\\tfrac{1}{15}$."
   },
   {
     "theme": "classical",
-    "themeLabel": "Classical & Geometric Probability",
-    "title": "A Quadratic with Two Bad Roots",
+    "themeLabel": "Classical Probability",
+    "title": "At Least One Ace in Three Cards",
+    "difficulty": 4,
+    "task": "Find the probability",
+    "tags": [
+      "cards",
+      "complement",
+      "combinations",
+      "without replacement"
+    ],
+    "statement": "Three cards are drawn together from a well-shuffled standard pack of $52$ cards. \\[\\text{Find the probability that the hand contains at least one ace.}\\]",
+    "answer": "\\[\\boxed{\\dfrac{1201}{5525}}\\]",
+    "trap": "Adding the single-card chances as $3\\cdot\\dfrac{4}{52}=\\dfrac{3}{13}$, as if 'at least one ace' meant summing one-ace probabilities over the three positions. This double-counts hands with two or three aces and ignores that the draws are without replacement; the clean route is the complement.",
+    "solutions": [
+      {
+        "name": "Complement (no ace)",
+        "steps": [
+          "Total $3$-card hands: $\\binom{52}{3}=22100$.",
+          "Hands with no ace use only the $48$ non-aces: $\\binom{48}{3}=17296$.",
+          "$P(\\text{no ace})=\\dfrac{17296}{22100}=\\dfrac{4324}{5525}$.",
+          "$P(\\text{at least one ace})=1-\\dfrac{4324}{5525}=\\boxed{\\dfrac{1201}{5525}}$."
+        ]
+      },
+      {
+        "name": "Inclusion-exclusion by ace count",
+        "steps": [
+          "Count hands by number of aces: exactly one $=\\binom{4}{1}\\binom{48}{2}=4\\cdot1128=4512$; exactly two $=\\binom{4}{2}\\binom{48}{1}=6\\cdot48=288$; exactly three $=\\binom{4}{3}=4$.",
+          "Favourable hands $=4512+288+4=4804$.",
+          "Out of $\\binom{52}{3}=22100$ hands, $P=\\dfrac{4804}{22100}$.",
+          "Reducing by $4$: $\\dfrac{1201}{5525}=\\boxed{\\dfrac{1201}{5525}}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** 'At least one' almost always wants the complement, because the alternative double-counts multi-success hands. The naive $3\\cdot\\tfrac{4}{52}=\\tfrac{3}{13}\\approx 0.231$ overshoots the true $\\tfrac{1201}{5525}\\approx 0.217$, exactly the size of the overcounted two- and three-ace hands."
+  },
+  {
+    "theme": "classical",
+    "themeLabel": "Classical Probability",
+    "title": "Counting the Reds You Drew",
+    "difficulty": 5,
+    "task": "Find the variance",
+    "tags": [
+      "random variable",
+      "expectation",
+      "variance",
+      "without replacement"
+    ],
+    "statement": "An urn contains $4$ red and $6$ blue balls. Three balls are drawn together (without replacement) and $X$ denotes the number of red balls obtained. \\[\\text{Find }\\operatorname{Var}(X).\\]",
+    "answer": "\\[\\boxed{\\dfrac{14}{25}}\\]",
+    "trap": "Modelling $X$ as a binomial with $n=3$, $p=\\tfrac{4}{10}$ and using $npq=3\\cdot\\tfrac25\\cdot\\tfrac35=\\dfrac{18}{25}$. That formula assumes draws with replacement (independent trials); here the draws are without replacement, so the variance is smaller by the finite correction factor $\\dfrac{N-n}{N-1}=\\dfrac{7}{9}$.",
+    "solutions": [
+      {
+        "name": "From the exact distribution",
+        "steps": [
+          "With $\\binom{10}{3}=120$ equally likely hands, $P(X=k)=\\dfrac{\\binom{4}{k}\\binom{6}{3-k}}{120}$ gives $P(0)=\\tfrac{20}{120},\\,P(1)=\\tfrac{60}{120},\\,P(2)=\\tfrac{36}{120},\\,P(3)=\\tfrac{4}{120}$.",
+          "$E(X)=\\dfrac{0\\cdot20+1\\cdot60+2\\cdot36+3\\cdot4}{120}=\\dfrac{144}{120}=\\dfrac{6}{5}$.",
+          "$E(X^2)=\\dfrac{0+60+4\\cdot36+9\\cdot4}{120}=\\dfrac{240}{120}=2$.",
+          "$\\operatorname{Var}(X)=E(X^2)-\\big(E(X)\\big)^2=2-\\dfrac{36}{25}=\\boxed{\\dfrac{14}{25}}$."
+        ]
+      },
+      {
+        "name": "Indicators with covariance",
+        "steps": [
+          "Let $I_j=1$ if the $j$-th drawn ball is red. Each $P(I_j=1)=\\tfrac{4}{10}=\\tfrac25$, so $\\operatorname{Var}(I_j)=\\tfrac25\\cdot\\tfrac35=\\tfrac{6}{25}$.",
+          "For $j\\ne k$, $P(I_j=1,I_k=1)=\\dfrac{4\\cdot3}{10\\cdot9}=\\dfrac{2}{15}$, so $\\operatorname{Cov}(I_j,I_k)=\\dfrac{2}{15}-\\dfrac{4}{25}=-\\dfrac{2}{75}$.",
+          "$\\operatorname{Var}(X)=3\\cdot\\tfrac{6}{25}+2\\binom{3}{2}\\left(-\\tfrac{2}{75}\\right)=\\tfrac{18}{25}-\\tfrac{12}{75}=\\tfrac{18}{25}-\\tfrac{4}{25}$.",
+          "$\\operatorname{Var}(X)=\\dfrac{14}{25}=\\boxed{\\dfrac{14}{25}}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Without-replacement draws make successive picks negatively dependent, so the variance falls below the independent-trial value $\\tfrac{18}{25}$ by the factor $\\tfrac{N-n}{N-1}=\\tfrac79$. The covariance bookkeeping makes that shrinkage explicit through the term $-\\tfrac{2}{75}$ per pair."
+  },
+  {
+    "theme": "classical",
+    "themeLabel": "Classical Probability",
+    "title": "The Most Probable Number of Heads",
+    "difficulty": 5,
+    "task": "Find the mode",
+    "tags": [
+      "binomial distribution",
+      "most probable number",
+      "mode",
+      "ratio test"
+    ],
+    "statement": "A biased coin shows heads with probability $\\tfrac13$ on each toss. It is tossed $8$ independent times and $X$ is the number of heads. \\[\\text{Find the most probable value(s) of }X\\text{ (the mode of the distribution).}\\]",
+    "answer": "\\[\\boxed{X=2\\ \\text{and}\\ X=3\\ \\text{(both equally most probable)}}\\]",
+    "trap": "Rounding the mean $np=8\\cdot\\tfrac13=\\tfrac83\\approx 2.67$ up to $3$ and declaring $X=3$ the unique mode. Because $(n+1)p=9\\cdot\\tfrac13=3$ is an integer, the binomial has TWO adjacent modes, $k=2$ and $k=3$, with exactly equal probability.",
+    "solutions": [
+      {
+        "name": "Consecutive-ratio test",
+        "steps": [
+          "For $X\\sim\\text{Bin}(8,\\tfrac13)$, $\\dfrac{P(X=k)}{P(X=k-1)}=\\dfrac{(n-k+1)p}{k(1-p)}=\\dfrac{(9-k)\\cdot\\tfrac13}{k\\cdot\\tfrac23}=\\dfrac{9-k}{2k}$.",
+          "This ratio exceeds $1$ (probability still rising) when $9-k>2k$, i.e. $k<3$; it equals $1$ exactly at $k=3$ since $9-3=6=2\\cdot 3$.",
+          "So $P(X=2)<P(X=3)$ fails to be strict: in fact $P(X=3)=P(X=2)$, and for $k\\ge 4$ the ratio drops below $1$.",
+          "Therefore the probabilities peak and tie at $k=2$ and $k=3$: $\\boxed{X=2\\text{ and }X=3}$."
+        ]
+      },
+      {
+        "name": "Integer-boundary rule",
+        "steps": [
+          "The mode of $\\text{Bin}(n,p)$ is $\\lfloor (n+1)p\\rfloor$, and when $(n+1)p$ is a positive integer $m$, both $m-1$ and $m$ are modes.",
+          "Here $(n+1)p=9\\cdot\\tfrac13=3$, an integer, so the two modes are $m-1=2$ and $m=3$.",
+          "Checking: $P(X=2)=\\binom{8}{2}\\left(\\tfrac13\\right)^2\\left(\\tfrac23\\right)^6=\\dfrac{1792}{6561}$ and $P(X=3)=\\binom{8}{3}\\left(\\tfrac13\\right)^3\\left(\\tfrac23\\right)^5=\\dfrac{1792}{6561}$ are equal.",
+          "Hence the most probable values are $\\boxed{X=2\\text{ and }X=3}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The peak of a binomial is governed by $(n+1)p$, not by the mean $np$. When $(n+1)p$ lands exactly on an integer the distribution has a flat top with two equally likely modes, a subtlety the $np$-rounding shortcut hides."
+  },
+  {
+    "theme": "classical",
+    "themeLabel": "Classical Probability",
+    "title": "The Suspicious Pair of Heads",
+    "difficulty": 5,
+    "task": "Find the probability",
+    "tags": [
+      "Bayes theorem",
+      "two-headed coin",
+      "conditioning",
+      "total probability"
+    ],
+    "statement": "A drawer contains $4$ visually identical coins: $3$ are ordinary fair coins and $1$ has heads on both faces. A coin is picked at random and tossed twice, landing heads both times. \\[\\text{Find the probability that the chosen coin is the two-headed one.}\\]",
+    "answer": "\\[\\boxed{\\dfrac{4}{7}}\\]",
+    "trap": "Quoting the prior $\\dfrac{1}{4}$, the chance of grabbing the two-headed coin before any toss. The two heads are data that must update this prior; ignoring them confuses the prior with the posterior $P(\\text{two-headed}\\mid HH)$.",
+    "solutions": [
+      {
+        "name": "Bayes' theorem",
+        "steps": [
+          "Let $T$ be 'two-headed coin', $F$ 'fair coin'. $P(T)=\\tfrac14$, $P(F)=\\tfrac34$.",
+          "$P(HH\\mid T)=1$ and $P(HH\\mid F)=\\left(\\tfrac12\\right)^2=\\tfrac14$.",
+          "$P(HH)=\\tfrac14\\cdot1+\\tfrac34\\cdot\\tfrac14=\\tfrac14+\\tfrac{3}{16}=\\tfrac{7}{16}$.",
+          "$P(T\\mid HH)=\\dfrac{\\tfrac14\\cdot1}{\\tfrac{7}{16}}=\\dfrac{4/16}{7/16}=\\boxed{\\dfrac{4}{7}}$."
+        ]
+      },
+      {
+        "name": "Equally likely faces (counting)",
+        "steps": [
+          "Represent the $4$ coins by $8$ faces, of which the two-headed coin contributes $2$ heads-faces and each fair coin $1$ heads-face among its two.",
+          "Think of each coin as equally likely; weight each by its chance of giving $HH$: the two-headed coin weight $1$, each fair coin weight $\\tfrac14$.",
+          "Total weight $=1+3\\cdot\\tfrac14=\\tfrac74$; the two-headed coin's share is $\\dfrac{1}{7/4}=\\dfrac{4}{7}$.",
+          "Hence $P(\\text{two-headed}\\mid HH)=\\boxed{\\dfrac{4}{7}}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Evidence reweights hypotheses in proportion to how easily each explains it. The two-headed coin produces $HH$ four times as readily as a fair coin, lifting its probability from the prior $\\tfrac14$ to the posterior $\\tfrac47$."
+  },
+  {
+    "theme": "conditional",
+    "themeLabel": "Conditional Probability & Independence",
+    "title": "Pólya's Backward Glance",
     "difficulty": 3,
-    "task": "Evaluate",
-    "tags": [
-      "geometric probability",
-      "unit square",
-      "quadratic roots",
-      "discriminant",
-      "area under curve"
-    ],
-    "statement": "A point $(p,q)$ is chosen uniformly at random in the unit square $[0,1]\\times[0,1]$. Consider the quadratic equation \\[t^{2}+p\\,t+q=0.\\] \\[\\text{Find the probability that this equation has two real roots, both of which are negative.}\\]",
-    "answer": "\\[\\boxed{\\dfrac{1}{12}}\\]",
-    "trap": "Stopping at the discriminant condition $p^2\\ge 4q$ and reporting that area, forgetting the 'both roots negative' requirement; or conversely doing wasted casework on sign conditions that are automatically satisfied. Since $p,q\\in[0,1]$, the sum of roots $-p\\le 0$ and the product $q\\ge 0$ are essentially free (almost surely strict), so the ONLY binding constraint is $q\\le p^2/4$ — but one must verify that, not assume extra sign work is needed.",
-    "solutions": [
-      {
-        "name": "Translate root conditions",
-        "steps": [
-          "Roots are real iff the discriminant satisfies $p^2-4q\\ge 0$, i.e. $q\\le p^2/4$.",
-          "By Vieta, the sum of the roots is $-p$ and the product is $q$. Both roots are negative iff the sum is negative and the product is positive, i.e. $-p<0$ and $q>0$; on $[0,1]^2$ these hold for almost every point (they fail only on the measure-zero edges $p=0$ or $q=0$). So they remove no area.",
-          "The favorable set is $\\{(p,q):0\\le q\\le p^2/4,\\ 0\\le p\\le 1\\}$ (note $p^2/4\\le 1/4<1$, so the curve stays inside the square).",
-          "Area $=\\displaystyle\\int_0^1 \\frac{p^2}{4}\\,dp=\\frac{1}{4}\\cdot\\frac{1}{3}=\\frac{1}{12}=\\boxed{\\dfrac1{12}}.$"
-        ]
-      },
-      {
-        "name": "Direct root sign check (no Vieta)",
-        "steps": [
-          "When real, the roots are $t=\\dfrac{-p\\pm\\sqrt{p^2-4q}}{2}$; the larger is $t_{+}=\\dfrac{-p+\\sqrt{p^2-4q}}{2}$.",
-          "For $q>0$ we have $\\sqrt{p^2-4q}<\\sqrt{p^2}=p$, so $t_{+}<0$; hence whenever the roots are real and $q>0$, the larger — and therefore both — root is automatically negative.",
-          "Thus the event reduces exactly to the real-roots region $q\\le p^2/4$ inside the square, with no further restriction.",
-          "Probability $=\\displaystyle\\int_0^1 \\frac{p^2}{4}\\,dp=\\boxed{\\dfrac1{12}}.$"
-        ]
-      },
-      {
-        "name": "Geometry of the region",
-        "steps": [
-          "The boundary $q=p^2/4$ is a parabola from $(0,0)$ to $(1,\\tfrac14)$, lying entirely inside the unit square.",
-          "The favorable region is the thin sliver between the $p$-axis and this parabola.",
-          "Its area accumulates as $\\tfrac14\\int_0^1 p^2\\,dp=\\tfrac14\\cdot\\tfrac13=\\tfrac1{12}$.",
-          "Probability $=\\boxed{\\dfrac1{12}}.$"
-        ]
-      },
-      {
-        "name": "Monte Carlo",
-        "steps": [
-          "Sample $3\\times 10^{7}$ points $(p,q)$ in the unit square; form the actual roots and test that both are real and negative.",
-          "Empirical frequency $\\approx 0.08332$.",
-          "Compare to $1/12\\approx 0.08333$.",
-          "Confirms $\\boxed{\\dfrac1{12}}.$"
-        ]
-      }
-    ],
-    "remark": "Insight: the discriminant is necessary, but the conceptual gift is that the coefficient signs in $[0,1]$ pre-guarantee Vieta's sign conditions, so 'two negative roots' collapses to a single inequality $q\\le p^2/4$. Recognizing which constraints are vacuous — here the sum-negative and product-positive conditions — is the whole problem; the area is then a one-line integral."
-  },
-  {
-    "theme": "classical",
-    "themeLabel": "Classical & Geometric Probability",
-    "title": "The Half-Spacing Needle",
-    "difficulty": 4,
     "task": "Find",
     "tags": [
-      "geometric probability",
-      "buffon needle",
-      "integration over angle",
-      "expected crossings"
+      "polya urn",
+      "exchangeability",
+      "reverse conditioning",
+      "reinforcement"
     ],
-    "statement": "A thin needle of length $\\ell$ equal to the spacing $d$ between the parallel rulings of a wide floor is dropped at random (position and orientation uniform and independent). \\[\\text{Find the probability that the needle crosses one of the lines.}\\]",
-    "answer": "\\[\\boxed{\\dfrac{2}{\\pi}}\\]",
-    "trap": "Treating $\\ell=d$ as a degenerate case where the needle 'always' or 'never' crosses, or plugging the long-needle formula $P=\\frac{2}{\\pi}\\!\\left(\\frac{\\ell}{d}-\\sqrt{(\\ell/d)^2-1}+\\operatorname{arcsec}\\frac{\\ell}{d}\\right)$ while mishandling its $\\operatorname{arccos}$ term. At $\\ell=d$ exactly we sit on the borderline between the short- and long-needle regimes; the short-needle formula $\\frac{2\\ell}{\\pi d}$ stays valid because the event of crossing two lines has measure zero, and the long-needle expression continuously limits to the same value (its $\\sqrt{\\;}$ and $\\operatorname{arccos}$ pieces both vanish as $\\ell/d\\to 1^{+}$). The danger is naive formula-matching at the seam.",
+    "statement": "An urn holds one red and one black ball. A ball is drawn at random; it is returned together with one extra ball of the same colour. Then a second ball is drawn from the now three-ball urn. Find $P(\\text{first draw was red}\\mid\\text{second draw is red})$.",
+    "answer": "\\[\\boxed{\\dfrac{2}{3}}\\]",
+    "trap": "Reasoning that the second draw is 'in the future', so it cannot give information about the first, hence answering $P(R_1)=\\tfrac12$. Conditioning runs in both directions: a red second draw makes a red first draw (which loaded the urn with reds) more likely. Also tempting is to confuse $P(R_1\\mid R_2)$ with $P(R_2\\mid R_1)=\\tfrac23$ — here they coincide by symmetry, but for the wrong reason.",
     "solutions": [
       {
-        "name": "Average projection",
+        "name": "Bayes from the tree",
         "steps": [
-          "Let $y\\in[0,d/2]$ be the distance from the needle's center to the nearest line (uniform), and $\\theta\\in[0,\\pi/2]$ the acute angle to the lines (uniform and independent).",
-          "The needle crosses iff $y\\le \\tfrac{\\ell}{2}\\sin\\theta$. For $\\ell=d$ we have $\\tfrac{\\ell}{2}\\sin\\theta\\le d/2$ for all $\\theta$, so the favorable region never spills past $y=d/2$ — the short-needle geometry holds exactly and no double-crossing occurs.",
-          "$P=\\dfrac{1}{(d/2)(\\pi/2)}\\displaystyle\\int_0^{\\pi/2}\\frac{\\ell}{2}\\sin\\theta\\,d\\theta=\\frac{4}{\\pi d}\\cdot\\frac{\\ell}{2}\\cdot 1=\\frac{2\\ell}{\\pi d}.$",
-          "With $\\ell=d$: $P=\\dfrac{2}{\\pi}=\\boxed{\\dfrac{2}{\\pi}}.$"
+          "$P(R_1)=\\tfrac12$. After a red first draw the urn is $\\{$2 red, 1 black$\\}$, so $P(R_2\\mid R_1)=\\tfrac23$.",
+          "After a black first draw the urn is $\\{$1 red, 2 black$\\}$, so $P(R_2\\mid B_1)=\\tfrac13$.",
+          "$P(R_1\\cap R_2)=\\tfrac12\\cdot\\tfrac23=\\tfrac13$ and $P(R_2)=\\tfrac12\\cdot\\tfrac23+\\tfrac12\\cdot\\tfrac13=\\tfrac12$.",
+          "$P(R_1\\mid R_2)=\\dfrac{1/3}{1/2}=\\boxed{\\tfrac23}$."
         ]
       },
       {
-        "name": "Expected number of crossings",
+        "name": "Exchangeability shortcut",
         "steps": [
-          "The expected number of line-crossings of a needle of length $\\ell$ is $E[N]=\\dfrac{2\\ell}{\\pi d}$ — by additivity of expectation over infinitesimal segments it is linear in length and independent of the needle's shape.",
-          "For $\\ell=d$ this gives $E[N]=\\dfrac{2}{\\pi}<1$, and a needle of length $\\ell=d$ can cross at most one line except on a null set, so $N\\in\\{0,1\\}$ almost surely and $E[N]=P(N\\ge 1)$.",
-          "Hence $P(\\text{cross})=E[N]=\\dfrac{2}{\\pi}$.",
-          "$\\boxed{2/\\pi}$."
-        ]
-      },
-      {
-        "name": "Continuity from the long-needle formula",
-        "steps": [
-          "For $\\ell\\ge d$ the long-needle probability is $P(t)=\\dfrac{2}{\\pi}\\!\\left(t-\\sqrt{t^2-1}+\\operatorname{arccos}\\tfrac{1}{t}\\right)$ with $t=\\ell/d$.",
-          "Take the one-sided limit $t\\to 1^{+}$: $\\sqrt{t^2-1}\\to 0$ and $\\operatorname{arccos}(1/t)\\to\\operatorname{arccos}(1)=0$, so $P(t)\\to\\dfrac{2}{\\pi}\\,(1-0+0)=\\dfrac{2}{\\pi}.$",
-          "This matches the short-needle value, confirming the true probability is continuous across $\\ell=d$ and equals the borderline value with no jump.",
-          "$\\boxed{2/\\pi}.$"
-        ]
-      },
-      {
-        "name": "Monte Carlo",
-        "steps": [
-          "Sample $2\\times10^{7}$ drops with $\\ell=d$: center $y_c\\sim U(0,d)$ within a strip, full orientation $\\phi\\sim U(0,2\\pi)$, endpoints $y_c\\pm\\tfrac{\\ell}{2}\\sin\\phi$.",
-          "Count a crossing whenever the two endpoints straddle an integer multiple of $d$ (exact geometry, not a proxy).",
-          "Empirical probability $\\approx 0.63665$, with maximum crossings observed equal to $1$ and zero double-crossings.",
-          "Matches $2/\\pi\\approx 0.63662$, confirming $\\boxed{2/\\pi}$."
+          "In a Pólya urn the draw sequence is exchangeable, so $(R_1,R_2)$ and $(R_2,R_1)$ have equal joint probabilities; in particular $P(R_2)=P(R_1)=\\tfrac12$.",
+          "Hence $P(R_1\\mid R_2)=\\dfrac{P(R_1\\cap R_2)}{P(R_2)}=\\dfrac{P(R_1)\\,P(R_2\\mid R_1)}{1/2}=\\dfrac{(1/2)(2/3)}{1/2}=\\boxed{\\tfrac23}$.",
+          "The future draw is informative precisely because the urn's composition carries the memory of the past."
         ]
       }
     ],
-    "remark": "Insight: the expected-crossings viewpoint sidesteps the entire short/long-needle case split — it is additive and shape-free, and at $\\ell=d$ the bound $E[N]<1$ lets expectation equal probability. The borderline length $\\ell=d$ is exactly where naive formula-matching is most dangerous, yet all three analytic routes (average projection, expected crossings, and the continuous limit of the long-needle formula) converge on $2/\\pi$, and a full-geometry simulation confirms it to four digits."
+    "remark": "Insight: a 'later' observation is perfectly legitimate evidence about an 'earlier' one — time-order is irrelevant to Bayes. Pólya urns make the dependence vivid: reinforcement means a red second draw whispers that the first was probably red."
   },
   {
-    "theme": "classical",
-    "themeLabel": "Classical & Geometric Probability",
-    "title": "When Is the Floor of a Ratio Even?",
-    "difficulty": 5,
-    "task": "Evaluate",
+    "theme": "conditional",
+    "themeLabel": "Conditional Probability & Independence",
+    "title": "The Parity Gambit",
+    "difficulty": 3,
+    "task": "Prove that",
     "tags": [
-      "geometric probability",
-      "unit square",
-      "floor function",
-      "infinite series",
-      "logarithm"
+      "independence",
+      "parity",
+      "bettors fallacy",
+      "coin tosses"
     ],
-    "statement": "Two numbers $x$ and $y$ are chosen independently and uniformly at random from $[0,1]$. \\[\\text{Find the probability that }\\big\\lfloor x/y\\big\\rfloor\\text{ is an even number (with }0\\text{ counted as even).}\\]",
-    "answer": "\\[\\boxed{1-\\dfrac{\\ln 2}{2}}\\]",
-    "trap": "Assuming the answer is $1/2$ 'by symmetry' between even and odd, or ignoring the dominant region $x<y$ (where the floor is $0$, which is even). The wedges $\\{2k\\le x/y<2k+1\\}$ for $k\\ge1$ shrink but do not vanish, and forgetting that the $x<y$ wedge alone already contributes $1/2$ leads to a badly low estimate.",
+    "statement": "A fair coin is tossed four times. Let $H$ be the event 'the first toss is heads' and let $E$ be the event 'the total number of heads is even'. A bettor argues: 'after I see the first toss, the parity of the remaining run is partly decided, so $E$ must depend on $H$.' Prove that in fact $H$ and $E$ are independent, and find $P(E\\mid H)$.",
+    "answer": "\\[\\boxed{P(E\\mid H)=\\tfrac12=P(E),\\ \\text{so }H\\perp E}\\]",
+    "trap": "Believing that because the first toss contributes to the head-count, fixing it must shift the parity probability (a base-rate-fallacy-flavoured intuition). In truth, conditioning on the first toss leaves the parity of the other three fair tosses uniform, and a uniform parity is unaffected by adding a fixed bit.",
     "solutions": [
       {
-        "name": "Sum the even wedges",
+        "name": "Conditioning on the remaining tosses",
         "steps": [
-          "$\\lfloor x/y\\rfloor$ is even iff $x/y\\in[0,1)\\cup[2,3)\\cup[4,5)\\cup\\cdots$, i.e. $x<y$ (the $k=0$ wedge) or $2k\\,y\\le x<(2k+1)\\,y$ for some $k\\ge1$.",
-          "The $k=0$ wedge $\\{x<y\\}$ has area $\\tfrac12$. For $k\\ge1$, integrating the $x$-length $\\min((2k+1)y,1)-2k\\,y$ over $y$ gives wedge area $\\dfrac{1}{4k(2k+1)}$.",
-          "Total $=\\dfrac12+\\displaystyle\\sum_{k=1}^{\\infty}\\frac{1}{4k(2k+1)}=\\dfrac12+\\frac14\\sum_{k=1}^{\\infty}\\Big(\\frac1k-\\frac{2}{2k+1}\\Big).$",
-          "The series $\\sum_{k\\ge1}\\big(\\tfrac1k-\\tfrac{2}{2k+1}\\big)=2-2\\ln 2$, so total $=\\tfrac12+\\tfrac14(2-2\\ln2)=1-\\tfrac{\\ln 2}{2}=\\boxed{1-\\dfrac{\\ln 2}{2}}.$"
+          "Write the head-count as $X_1+R$ where $X_1\\in\\{0,1\\}$ is the first toss and $R$ is the number of heads in tosses $2,3,4$.",
+          "For any fixed value of $X_1$, $E$ holds iff $R\\equiv X_1\\pmod 2$. The parity of $R$ (a sum of three independent fair bits) is itself a fair bit: $P(R\\text{ even})=P(R\\text{ odd})=\\tfrac12$.",
+          "Hence $P(E\\mid X_1=1)=P(R\\text{ odd})=\\tfrac12$ and $P(E\\mid X_1=0)=P(R\\text{ even})=\\tfrac12$.",
+          "Therefore $P(E\\mid H)=\\tfrac12=P(E)$, so $H$ and $E$ are independent. $\\boxed{P(E\\mid H)=\\tfrac12}$ $\\blacksquare$"
         ]
       },
       {
-        "name": "Slope-line bookkeeping",
+        "name": "Enumeration",
         "steps": [
-          "In the unit square, $\\lfloor x/y\\rfloor=m$ is the wedge between lines $x=my$ and $x=(m+1)y$ (through the origin).",
-          "The even-$m$ wedges are $m=0,2,4,\\dots$; their areas form the series above, with the $m=0$ wedge dominating at area $\\tfrac12$.",
-          "Summing the geometric-like (actually telescoping-with-log) series gives $1-\\tfrac{\\ln 2}{2}$.",
-          "Probability $=\\boxed{1-\\tfrac{\\ln2}{2}}\\approx 0.6534.$"
-        ]
-      },
-      {
-        "name": "Monte Carlo",
-        "steps": [
-          "Sample $2\\times10^7$ pairs $(x,y)$, compute $\\lfloor x/y\\rfloor\\bmod 2$.",
-          "Empirical frequency of 'even' $\\approx 0.6534$.",
-          "Compare to $1-\\tfrac{\\ln 2}{2}\\approx 0.65343$.",
-          "Confirms $\\boxed{1-\\tfrac{\\ln2}{2}}$."
+          "Of the $16$ equally likely outcomes, exactly $8$ have an even number of heads ($0,2,$ or $4$ heads: $\\binom40+\\binom42+\\binom44=1+6+1=8$), so $P(E)=\\tfrac12$.",
+          "Among the $8$ outcomes with first toss heads, the remaining three tosses give an even total iff they contain an odd number of heads — which happens in $4$ of $8$ sub-cases.",
+          "Thus $P(H\\cap E)=\\tfrac{4}{16}=\\tfrac14=P(H)P(E)$, confirming independence and $P(E\\mid H)=\\tfrac14/\\tfrac12=\\boxed{\\tfrac12}$. $\\blacksquare$"
         ]
       }
     ],
-    "remark": "Insight: the unit square is sliced by origin-lines into wedges of slope $1/m$, and 'even floor' selects alternate wedges whose areas sum to a logarithm. The huge $m=0$ wedge breaks the naive even/odd symmetry — geometry plus a telescoping series, no symmetry shortcut."
+    "remark": "Insight: parity of a sum of independent fair bits is the great 'eraser' — it is independent of any proper subset of the bits. The bettor's intuition that 'partial information must shift the odds' is exactly the fallacy this problem dismantles."
   },
   {
-    "theme": "classical",
-    "themeLabel": "Classical & Geometric Probability",
-    "title": "A Triangle from a Cube",
-    "difficulty": 4,
-    "task": "Determine",
+    "theme": "conditional",
+    "themeLabel": "Conditional Probability & Independence",
+    "title": "Independent or Disjoint?",
+    "difficulty": 3,
+    "task": "Find a,b",
     "tags": [
-      "geometric probability",
-      "unit cube",
-      "triangle inequality",
-      "volume",
-      "symmetry"
+      "independence",
+      "mutual exclusivity",
+      "union",
+      "classic confusion"
     ],
-    "statement": "A point $(a,b,c)$ is chosen uniformly at random inside the unit cube $[0,1]^3$. \\[\\text{Find the probability that }a,\\ b,\\ c\\text{ are the side lengths of a (nondegenerate) triangle.}\\]",
-    "answer": "\\[\\boxed{\\dfrac{1}{2}}\\]",
-    "trap": "Trying to enforce all three triangle inequalities at once and getting tangled in overlapping regions, or assuming the three failure events $\\{a\\ge b+c\\}$, $\\{b\\ge a+c\\}$, $\\{c\\ge a+b\\}$ overlap and inclusion–exclusion is needed. In fact at most one of these can hold (only the largest side can violate), so the failures are essentially disjoint and simply add — overcounting via inclusion–exclusion is the classic error.",
+    "statement": "Two events $A,B$ in a probability space satisfy $P(A)=\\tfrac12$ and $P(A\\cup B)=\\tfrac34$. (a) Find $P(B)$ under the hypothesis that $A$ and $B$ are independent. (b) Find $P(B)$ under the hypothesis that $A$ and $B$ are mutually exclusive. (c) Prove that for these data, $A$ and $B$ cannot be both independent and mutually exclusive at once.",
+    "answer": "\\[\\boxed{\\text{(a) }P(B)=\\tfrac12,\\quad\\text{(b) }P(B)=\\tfrac14,\\quad\\text{(c) impossible}}\\]",
+    "trap": "Conflating 'independent' with 'mutually exclusive' is the single most common probability confusion. Mutually exclusive events with positive probability are in fact maximally dependent (one occurring forbids the other), so the two hypotheses give genuinely different values of $P(B)$ and cannot coexist when both events have positive probability.",
     "solutions": [
       {
-        "name": "Disjoint failure volumes",
+        "name": "Two inclusion-exclusion formulas",
         "steps": [
-          "The triple fails to be a triangle iff one side is $\\ge$ the sum of the other two. Only the largest side can do this, so the three failure events are disjoint (their pairwise intersections have measure zero).",
-          "By symmetry each has the same volume; compute $V=\\text{vol}\\{c\\ge a+b\\}=\\displaystyle\\int_0^1\\!\\Big(\\text{area }\\{a+b\\le c\\}\\Big)dc=\\int_0^1 \\frac{c^2}{2}\\,dc=\\frac16.$",
-          "Total failure volume $=3\\cdot\\tfrac16=\\tfrac12$.",
-          "Probability of a triangle $=1-\\tfrac12=\\boxed{\\dfrac12}.$"
+          "Independent case: $P(A\\cap B)=P(A)P(B)$, so $P(A\\cup B)=P(A)+P(B)-P(A)P(B)=\\tfrac12+P(B)\\bigl(1-\\tfrac12\\bigr)$.",
+          "Set equal to $\\tfrac34$: $\\tfrac12+\\tfrac12P(B)=\\tfrac34\\Rightarrow P(B)=\\tfrac12$.",
+          "Disjoint case: $P(A\\cap B)=0$, so $P(A\\cup B)=P(A)+P(B)=\\tfrac34\\Rightarrow P(B)=\\tfrac14$.",
+          "Both lie in $[0,1]$ and reproduce $P(A\\cup B)=\\tfrac34$, and they differ, giving $\\boxed{\\tfrac12}$ and $\\boxed{\\tfrac14}$."
         ]
       },
       {
-        "name": "Direct favorable volume",
+        "name": "Impossibility of coexistence",
         "steps": [
-          "Favorable region $=\\{a<b+c,\\ b<a+c,\\ c<a+b\\}$. Its volume is $1$ minus the three corner solids where one side dominates.",
-          "Each corner solid $\\{c\\ge a+b\\}\\cap[0,1]^3$ is a cone-like region of volume $1/6$.",
-          "$\\text{vol}=1-3(1/6)=1/2$ (no inclusion–exclusion correction since the solids are disjoint).",
-          "Probability $=\\boxed{1/2}$."
-        ]
-      },
-      {
-        "name": "Monte Carlo",
-        "steps": [
-          "Sample $10^7$ points in the cube and test the three triangle inequalities.",
-          "Empirical probability $\\approx 0.4995$.",
-          "Compare to $1/2$.",
-          "Confirms $\\boxed{1/2}$."
+          "If $A,B$ are simultaneously independent and disjoint, then $P(A\\cap B)=P(A)P(B)$ and $P(A\\cap B)=0$, forcing $P(A)P(B)=0$.",
+          "Since $P(A)=\\tfrac12\\ne0$, this requires $P(B)=0$.",
+          "But then $P(A\\cup B)=P(A)+P(B)-0=P(A)=\\tfrac12\\ne\\tfrac34$, contradicting the data. Hence the two properties cannot hold together here. $\\boxed{\\text{impossible}}$"
         ]
       }
     ],
-    "remark": "Insight: the key observation 'only the largest side can break the inequality' makes the three failure events disjoint, turning a potential inclusion–exclusion mess into a single multiplication by $3$. The same disjointness idea recurs across triangle-formation problems."
-  },
-  {
-    "theme": "classical",
-    "themeLabel": "Classical & Geometric Probability",
-    "title": "Viviani's Hidden Stick",
-    "difficulty": 5,
-    "task": "Evaluate",
-    "tags": [
-      "geometric probability",
-      "equilateral triangle",
-      "viviani",
-      "barycentric",
-      "broken stick",
-      "simplex"
-    ],
-    "statement": "A point $P$ is chosen uniformly at random inside an equilateral triangle. Let $d_1,d_2,d_3$ be the perpendicular distances from $P$ to the three sides. Find the probability that $d_1,\\ d_2,\\ d_3$ can themselves be the side lengths of a (non-degenerate) triangle.",
-    "answer": "\\[\\boxed{\\dfrac{1}{4}}\\]",
-    "trap": "Trying to integrate over the triangle in Cartesian coordinates and untangle the three distance functions, or assuming $d_1,d_2,d_3$ are independent. They are NOT independent: by Viviani's theorem $d_1+d_2+d_3$ equals the constant altitude $h$, so the triple lives on a $2$-simplex. Missing this constraint makes the problem look like a hard $3$-D integral and an i.i.d. argument would wrongly give $1/2$ instead of the correct $1/4$.",
-    "solutions": [
-      {
-        "name": "Viviani to the broken stick",
-        "steps": [
-          "By Viviani's theorem, $d_1+d_2+d_3=h$ (the altitude) is constant for every interior point. Writing $P$ in barycentric coordinates $(\\alpha_1,\\alpha_2,\\alpha_3)$ with $\\alpha_1+\\alpha_2+\\alpha_3=1$, one has $d_i=\\alpha_i\\,h$.",
-          "A point chosen uniformly by area has its barycentric coordinates uniform on the simplex $\\{\\alpha_1+\\alpha_2+\\alpha_3=1,\\ \\alpha_i\\ge0\\}$ — exactly the joint law of the three pieces produced by two independent uniform cuts of a unit stick.",
-          "Scaling out $h$, the distances form a triangle iff each $d_i<\\tfrac{h}{2}$ (no side may reach half the perimeter, since they sum to $h$), i.e. each barycentric coordinate is $<\\tfrac12$.",
-          "This is precisely the classical broken-stick condition, whose probability is $\\dfrac14$. Hence $P=\\boxed{\\dfrac14}.$"
-        ]
-      },
-      {
-        "name": "Direct simplex area",
-        "steps": [
-          "On the simplex $\\alpha_1+\\alpha_2+\\alpha_3=1$ the failure event 'no triangle' is $\\{\\alpha_1\\ge\\tfrac12\\}\\cup\\{\\alpha_2\\ge\\tfrac12\\}\\cup\\{\\alpha_3\\ge\\tfrac12\\}$; since two coordinates cannot each reach $\\tfrac12$, these three corner regions are disjoint.",
-          "Each corner region is a sub-triangle similar to the whole simplex with linear ratio $\\tfrac12$, hence area $\\left(\\tfrac12\\right)^2=\\tfrac14$ of it; the three together cover $\\tfrac34$.",
-          "The central triangle where all coordinates are $<\\tfrac12$ therefore has area $1-\\tfrac34=\\tfrac14$ of the simplex.",
-          "Probability $=\\boxed{\\dfrac14}.$"
-        ]
-      },
-      {
-        "name": "Monte Carlo confirmation",
-        "steps": [
-          "Sample a genuinely uniform-by-area interior point (e.g. $P=A+r_1(B-A)+r_2(C-A)$, reflecting across the diagonal when $r_1+r_2>1$), then compute the three perpendicular distances $d_i$ directly.",
-          "Check the triangle inequalities $d_i<d_j+d_k$, equivalently each $d_i<h/2$; over $10^7$ trials the empirical relative frequency is $\\approx 0.2500$.",
-          "As a sanity check, the simulated $d_1+d_2+d_3$ is constant to machine precision (Viviani), and the marginal of each barycentric coordinate matches the density $2(1-x)$.",
-          "All evidence confirms $\\boxed{\\dfrac14}.$"
-        ]
-      }
-    ],
-    "remark": "Insight: Viviani's constant-sum theorem secretly maps 'uniform point in an equilateral triangle' onto 'break a stick at two uniform points', so a geometry question about foot-of-perpendicular distances IS the broken-stick problem in disguise. Spotting the simplex is the entire battle; the $1/4$ then falls out for free. Note the seductive wrong path: pretending $d_1,d_2,d_3$ are independent uniforms gives $1/2$, double the truth."
+    "remark": "Insight: independence and mutual exclusivity are nearly opposite ideas. Disjoint positive-probability events are as dependent as events can be; the only way to be both independent and disjoint is for one event to be null. Numerically the gap is stark here, $P(B)=\\tfrac12$ versus $P(B)=\\tfrac14$."
   },
   {
     "theme": "conditional",
@@ -598,38 +583,39 @@ window.PROBLEMS = [
   {
     "theme": "conditional",
     "themeLabel": "Conditional Probability & Independence",
-    "title": "Pólya's Backward Glance",
-    "difficulty": 3,
+    "title": "The Bag of Two Dice",
+    "difficulty": 4,
     "task": "Find",
     "tags": [
-      "polya urn",
-      "exchangeability",
-      "reverse conditioning",
-      "reinforcement"
+      "sequential bayes",
+      "loaded die",
+      "conditional independence",
+      "posterior prediction"
     ],
-    "statement": "An urn holds one red and one black ball. A ball is drawn at random; it is returned together with one extra ball of the same colour. Then a second ball is drawn from the now three-ball urn. Find $P(\\text{first draw was red}\\mid\\text{second draw is red})$.",
-    "answer": "\\[\\boxed{\\dfrac{2}{3}}\\]",
-    "trap": "Reasoning that the second draw is 'in the future', so it cannot give information about the first, hence answering $P(R_1)=\\tfrac12$. Conditioning runs in both directions: a red second draw makes a red first draw (which loaded the urn with reds) more likely. Also tempting is to confuse $P(R_1\\mid R_2)$ with $P(R_2\\mid R_1)=\\tfrac23$ — here they coincide by symmetry, but for the wrong reason.",
+    "statement": "A bag contains two dice: a fair one, and a trick die that shows $6$ on every face. You pick a die uniformly at random and, without looking at it, roll that same die repeatedly. The first two rolls are both $6$. Find (a) the probability the chosen die is the trick die, and (b) the probability the third roll is also a $6$.",
+    "answer": "\\[\\boxed{P(\\text{trick}\\mid 6,6)=\\tfrac{36}{37},\\qquad P(\\text{third}=6\\mid 6,6)=\\tfrac{217}{222}}\\]",
+    "trap": "Treating the rolls as independent so that 'two sixes' carries no information, and predicting the third roll as $\\tfrac12\\cdot1+\\tfrac12\\cdot\\tfrac16$. Given the same unknown die, the rolls are only conditionally independent; the observed sixes sharply update which die you hold, and the prediction must average $P(6)$ over the posterior, not the prior.",
     "solutions": [
       {
-        "name": "Bayes from the tree",
+        "name": "Posterior then predictive",
         "steps": [
-          "$P(R_1)=\\tfrac12$. After a red first draw the urn is $\\{$2 red, 1 black$\\}$, so $P(R_2\\mid R_1)=\\tfrac23$.",
-          "After a black first draw the urn is $\\{$1 red, 2 black$\\}$, so $P(R_2\\mid B_1)=\\tfrac13$.",
-          "$P(R_1\\cap R_2)=\\tfrac12\\cdot\\tfrac23=\\tfrac13$ and $P(R_2)=\\tfrac12\\cdot\\tfrac23+\\tfrac12\\cdot\\tfrac13=\\tfrac12$.",
-          "$P(R_1\\mid R_2)=\\dfrac{1/3}{1/2}=\\boxed{\\tfrac23}$."
+          "Prior $\\tfrac12$ each. Likelihood of two sixes: trick die $1$, fair die $\\left(\\tfrac16\\right)^2=\\tfrac1{36}$.",
+          "$P(\\text{trick}\\mid 6,6)=\\dfrac{\\tfrac12\\cdot1}{\\tfrac12\\cdot1+\\tfrac12\\cdot\\tfrac1{36}}=\\dfrac{1}{1+\\tfrac1{36}}=\\boxed{\\tfrac{36}{37}}$.",
+          "Predict the third roll by conditioning on which die you hold: $P(6\\mid\\text{trick})=1$, $P(6\\mid\\text{fair})=\\tfrac16$.",
+          "$P(\\text{third}=6\\mid 6,6)=\\tfrac{36}{37}\\cdot1+\\tfrac1{37}\\cdot\\tfrac16=\\tfrac{36}{37}+\\tfrac{1}{222}=\\dfrac{216+1}{222}=\\boxed{\\tfrac{217}{222}}$."
         ]
       },
       {
-        "name": "Exchangeability shortcut",
+        "name": "Direct three-roll ratio",
         "steps": [
-          "In a Pólya urn the draw sequence is exchangeable, so $(R_1,R_2)$ and $(R_2,R_1)$ have equal joint probabilities; in particular $P(R_2)=P(R_1)=\\tfrac12$.",
-          "Hence $P(R_1\\mid R_2)=\\dfrac{P(R_1\\cap R_2)}{P(R_2)}=\\dfrac{P(R_1)\\,P(R_2\\mid R_1)}{1/2}=\\dfrac{(1/2)(2/3)}{1/2}=\\boxed{\\tfrac23}$.",
-          "The future draw is informative precisely because the urn's composition carries the memory of the past."
+          "$P(\\text{third}=6\\mid 6,6)=\\dfrac{P(6,6,6)}{P(6,6)}$.",
+          "$P(6,6,6)=\\tfrac12\\cdot1+\\tfrac12\\cdot\\left(\\tfrac16\\right)^3=\\tfrac12+\\tfrac1{432}=\\tfrac{217}{432}$.",
+          "$P(6,6)=\\tfrac12+\\tfrac12\\cdot\\tfrac1{36}=\\tfrac{37}{72}=\\tfrac{222}{432}$.",
+          "Ratio $=\\dfrac{217/432}{222/432}=\\boxed{\\tfrac{217}{222}}$, and the posterior for the trick die is $\\dfrac{1/2}{37/72}=\\tfrac{36}{37}$."
         ]
       }
     ],
-    "remark": "Insight: a 'later' observation is perfectly legitimate evidence about an 'earlier' one — time-order is irrelevant to Bayes. Pólya urns make the dependence vivid: reinforcement means a red second draw whispers that the first was probably red."
+    "remark": "Insight: rolls of an unknown die are exchangeable but not independent — each $6$ is evidence about the hidden die, and prediction must integrate over the updated belief. The third-roll probability $\\tfrac{217}{222}\\approx0.977$ sits far above the na\\\"ive $\\tfrac{7}{12}$ you'd get by ignoring the evidence."
   },
   {
     "theme": "conditional",
@@ -671,42 +657,6 @@ window.PROBLEMS = [
   {
     "theme": "conditional",
     "themeLabel": "Conditional Probability & Independence",
-    "title": "The Gambler's Parity",
-    "difficulty": 3,
-    "task": "Prove that",
-    "tags": [
-      "independence",
-      "parity",
-      "gamblers fallacy",
-      "coin tosses"
-    ],
-    "statement": "A fair coin is tossed four times. Let $H$ be the event 'the first toss is heads' and let $E$ be the event 'the total number of heads is even'. A gambler argues: 'after I see the first toss, the parity of the remaining run is partly decided, so $E$ must depend on $H$.' Prove that in fact $H$ and $E$ are independent, and find $P(E\\mid H)$.",
-    "answer": "\\[\\boxed{P(E\\mid H)=\\tfrac12=P(E),\\ \\text{so }H\\perp E}\\]",
-    "trap": "Believing that because the first toss contributes to the head-count, fixing it must shift the parity probability (a gambler's-fallacy-flavoured intuition). In truth, conditioning on the first toss leaves the parity of the other three fair tosses uniform, and a uniform parity is unaffected by adding a fixed bit.",
-    "solutions": [
-      {
-        "name": "Conditioning on the remaining tosses",
-        "steps": [
-          "Write the head-count as $X_1+R$ where $X_1\\in\\{0,1\\}$ is the first toss and $R$ is the number of heads in tosses $2,3,4$.",
-          "For any fixed value of $X_1$, $E$ holds iff $R\\equiv X_1\\pmod 2$. The parity of $R$ (a sum of three independent fair bits) is itself a fair bit: $P(R\\text{ even})=P(R\\text{ odd})=\\tfrac12$.",
-          "Hence $P(E\\mid X_1=1)=P(R\\text{ odd})=\\tfrac12$ and $P(E\\mid X_1=0)=P(R\\text{ even})=\\tfrac12$.",
-          "Therefore $P(E\\mid H)=\\tfrac12=P(E)$, so $H$ and $E$ are independent. $\\boxed{P(E\\mid H)=\\tfrac12}$ $\\blacksquare$"
-        ]
-      },
-      {
-        "name": "Enumeration",
-        "steps": [
-          "Of the $16$ equally likely outcomes, exactly $8$ have an even number of heads ($0,2,$ or $4$ heads: $\\binom40+\\binom42+\\binom44=1+6+1=8$), so $P(E)=\\tfrac12$.",
-          "Among the $8$ outcomes with first toss heads, the remaining three tosses give an even total iff they contain an odd number of heads — which happens in $4$ of $8$ sub-cases.",
-          "Thus $P(H\\cap E)=\\tfrac{4}{16}=\\tfrac14=P(H)P(E)$, confirming independence and $P(E\\mid H)=\\tfrac14/\\tfrac12=\\boxed{\\tfrac12}$. $\\blacksquare$"
-        ]
-      }
-    ],
-    "remark": "Insight: parity of a sum of independent fair bits is the great 'eraser' — it is independent of any proper subset of the bits. The gambler's intuition that 'partial information must shift the odds' is exactly the fallacy this problem dismantles."
-  },
-  {
-    "theme": "conditional",
-    "themeLabel": "Conditional Probability & Independence",
     "title": "The Island of One Match",
     "difficulty": 5,
     "task": "Find",
@@ -743,84 +693,11 @@ window.PROBLEMS = [
   {
     "theme": "conditional",
     "themeLabel": "Conditional Probability & Independence",
-    "title": "The Bag of Two Dice",
-    "difficulty": 4,
-    "task": "Find",
-    "tags": [
-      "sequential bayes",
-      "loaded die",
-      "conditional independence",
-      "posterior prediction"
-    ],
-    "statement": "A bag contains two dice: a fair one, and a trick die that shows $6$ on every face. You pick a die uniformly at random and, without looking at it, roll that same die repeatedly. The first two rolls are both $6$. Find (a) the probability the chosen die is the trick die, and (b) the probability the third roll is also a $6$.",
-    "answer": "\\[\\boxed{P(\\text{trick}\\mid 6,6)=\\tfrac{36}{37},\\qquad P(\\text{third}=6\\mid 6,6)=\\tfrac{217}{222}}\\]",
-    "trap": "Treating the rolls as independent so that 'two sixes' carries no information, and predicting the third roll as $\\tfrac12\\cdot1+\\tfrac12\\cdot\\tfrac16$. Given the same unknown die, the rolls are only conditionally independent; the observed sixes sharply update which die you hold, and the prediction must average $P(6)$ over the posterior, not the prior.",
-    "solutions": [
-      {
-        "name": "Posterior then predictive",
-        "steps": [
-          "Prior $\\tfrac12$ each. Likelihood of two sixes: trick die $1$, fair die $\\left(\\tfrac16\\right)^2=\\tfrac1{36}$.",
-          "$P(\\text{trick}\\mid 6,6)=\\dfrac{\\tfrac12\\cdot1}{\\tfrac12\\cdot1+\\tfrac12\\cdot\\tfrac1{36}}=\\dfrac{1}{1+\\tfrac1{36}}=\\boxed{\\tfrac{36}{37}}$.",
-          "Predict the third roll by conditioning on which die you hold: $P(6\\mid\\text{trick})=1$, $P(6\\mid\\text{fair})=\\tfrac16$.",
-          "$P(\\text{third}=6\\mid 6,6)=\\tfrac{36}{37}\\cdot1+\\tfrac1{37}\\cdot\\tfrac16=\\tfrac{36}{37}+\\tfrac{1}{222}=\\dfrac{216+1}{222}=\\boxed{\\tfrac{217}{222}}$."
-        ]
-      },
-      {
-        "name": "Direct three-roll ratio",
-        "steps": [
-          "$P(\\text{third}=6\\mid 6,6)=\\dfrac{P(6,6,6)}{P(6,6)}$.",
-          "$P(6,6,6)=\\tfrac12\\cdot1+\\tfrac12\\cdot\\left(\\tfrac16\\right)^3=\\tfrac12+\\tfrac1{432}=\\tfrac{217}{432}$.",
-          "$P(6,6)=\\tfrac12+\\tfrac12\\cdot\\tfrac1{36}=\\tfrac{37}{72}=\\tfrac{222}{432}$.",
-          "Ratio $=\\dfrac{217/432}{222/432}=\\boxed{\\tfrac{217}{222}}$, and the posterior for the trick die is $\\dfrac{1/2}{37/72}=\\tfrac{36}{37}$."
-        ]
-      }
-    ],
-    "remark": "Insight: rolls of an unknown die are exchangeable but not independent — each $6$ is evidence about the hidden die, and prediction must integrate over the updated belief. The third-roll probability $\\tfrac{217}{222}\\approx0.977$ sits far above the na\\\"ive $\\tfrac{7}{12}$ you'd get by ignoring the evidence."
-  },
-  {
-    "theme": "conditional",
-    "themeLabel": "Conditional Probability & Independence",
-    "title": "Independent or Disjoint?",
-    "difficulty": 3,
-    "task": "Find a,b",
-    "tags": [
-      "independence",
-      "mutual exclusivity",
-      "union",
-      "classic confusion"
-    ],
-    "statement": "Two events $A,B$ in a probability space satisfy $P(A)=\\tfrac12$ and $P(A\\cup B)=\\tfrac34$. (a) Find $P(B)$ under the hypothesis that $A$ and $B$ are independent. (b) Find $P(B)$ under the hypothesis that $A$ and $B$ are mutually exclusive. (c) Prove that for these data, $A$ and $B$ cannot be both independent and mutually exclusive at once.",
-    "answer": "\\[\\boxed{\\text{(a) }P(B)=\\tfrac12,\\quad\\text{(b) }P(B)=\\tfrac14,\\quad\\text{(c) impossible}}\\]",
-    "trap": "Conflating 'independent' with 'mutually exclusive' is the single most common probability confusion. Mutually exclusive events with positive probability are in fact maximally dependent (one occurring forbids the other), so the two hypotheses give genuinely different values of $P(B)$ and cannot coexist when both events have positive probability.",
-    "solutions": [
-      {
-        "name": "Two inclusion-exclusion formulas",
-        "steps": [
-          "Independent case: $P(A\\cap B)=P(A)P(B)$, so $P(A\\cup B)=P(A)+P(B)-P(A)P(B)=\\tfrac12+P(B)\\bigl(1-\\tfrac12\\bigr)$.",
-          "Set equal to $\\tfrac34$: $\\tfrac12+\\tfrac12P(B)=\\tfrac34\\Rightarrow P(B)=\\tfrac12$.",
-          "Disjoint case: $P(A\\cap B)=0$, so $P(A\\cup B)=P(A)+P(B)=\\tfrac34\\Rightarrow P(B)=\\tfrac14$.",
-          "Both lie in $[0,1]$ and reproduce $P(A\\cup B)=\\tfrac34$, and they differ, giving $\\boxed{\\tfrac12}$ and $\\boxed{\\tfrac14}$."
-        ]
-      },
-      {
-        "name": "Impossibility of coexistence",
-        "steps": [
-          "If $A,B$ are simultaneously independent and disjoint, then $P(A\\cap B)=P(A)P(B)$ and $P(A\\cap B)=0$, forcing $P(A)P(B)=0$.",
-          "Since $P(A)=\\tfrac12\\ne0$, this requires $P(B)=0$.",
-          "But then $P(A\\cup B)=P(A)+P(B)-0=P(A)=\\tfrac12\\ne\\tfrac34$, contradicting the data. Hence the two properties cannot hold together here. $\\boxed{\\text{impossible}}$"
-        ]
-      }
-    ],
-    "remark": "Insight: independence and mutual exclusivity are nearly opposite ideas. Disjoint positive-probability events are as dependent as events can be; the only way to be both independent and disjoint is for one event to be null. Numerically the gap is stark here, $P(B)=\\tfrac12$ versus $P(B)=\\tfrac14$."
-  },
-  {
-    "theme": "conditional",
-    "themeLabel": "Conditional Probability & Independence",
     "title": "The Even-Length Duel",
     "difficulty": 5,
     "task": "Find",
     "tags": [
-      "geometric distribution",
+      "geometric series",
       "conditioning on parity",
       "first success",
       "infinite series"
@@ -926,44 +803,6 @@ window.PROBLEMS = [
   {
     "theme": "bayes",
     "themeLabel": "Total Probability & Bayes",
-    "title": "The Boy Born on a Tuesday",
-    "difficulty": 5,
-    "task": "Find the number of",
-    "tags": [
-      "two-children",
-      "conditioning",
-      "partition",
-      "counting",
-      "information"
-    ],
-    "statement": "A family has two children, each independently a boy or girl with probability $\\tfrac12$, and each child's day of birth is uniform over the seven weekdays, independent of everything else. You learn the single fact: at least one of the two children is a boy who was born on a Tuesday. Compute the probability that both children are boys, as a reduced fraction $\\tfrac{m}{n}$, and report $m+n$.",
-    "answer": "\\[\\boxed{40}\\]",
-    "trap": "Arguing that the weekday is irrelevant and the answer must be the plain 'at least one boy' value $\\tfrac13$. The extra coordinate (Tuesday) shrinks the conditioning event asymmetrically: a two-boy family has two chances to supply a 'boy-Tuesday', so it is over-represented among qualifying families, pushing the answer up to $\\tfrac{13}{27}$.",
-    "solutions": [
-      {
-        "name": "Direct enumeration",
-        "steps": [
-          "Each child is one of $2\\times 7=14$ equally likely types; an ordered pair of children is one of $196$ equally likely outcomes.",
-          "Outcomes with at least one boy-born-Tuesday: by inclusion–exclusion $2\\cdot 14-1=27$ (each child can be the boy-Tuesday in $14$ ways, minus the doubly-counted both-boy-Tuesday case).",
-          "Among these, both-boys outcomes: a boy-Tuesday paired with any of the $7$ boy-types on the other side, both orders, minus the double count: $2\\cdot 7-1=13$.",
-          "$P(\\text{both boys}\\mid \\text{event})=\\tfrac{13}{27}$, so $m+n=13+27=\\boxed{40}$."
-        ]
-      },
-      {
-        "name": "Complementary counting",
-        "steps": [
-          "Let $T$ be the event 'a given child is a boy-Tuesday', $P(T)=\\tfrac{1}{14}$ per child.",
-          "$P(\\text{no boy-Tuesday})=\\left(\\tfrac{13}{14}\\right)^2=\\tfrac{169}{196}$, so $P(\\text{at least one})=\\tfrac{27}{196}$.",
-          "$P(\\text{both boys and at least one boy-Tuesday})=P(\\text{both boys})\\cdot\\big[1-(\\tfrac{6}{7})^2\\big]=\\tfrac14\\cdot\\tfrac{13}{49}=\\tfrac{13}{196}$.",
-          "Ratio $=\\dfrac{13/196}{27/196}=\\tfrac{13}{27}\\Rightarrow m+n=\\boxed{40}$."
-        ]
-      }
-    ],
-    "remark": "Insight: adding an independent label to the witnessed child is not innocent — it changes how many ways each family configuration can satisfy the clue. As the label set grows (more days, hours, …) the answer drifts toward $\\tfrac12$."
-  },
-  {
-    "theme": "bayes",
-    "themeLabel": "Total Probability & Bayes",
     "title": "Three Heads and the Hidden Coin",
     "difficulty": 4,
     "task": "Find a,b",
@@ -1008,7 +847,7 @@ window.PROBLEMS = [
       "urn-swap",
       "transfer",
       "posterior",
-      "hypergeometric"
+      "without replacement"
     ],
     "statement": "Urn I contains $3$ red and $2$ white balls; urn II contains $1$ red and $4$ white. Two balls are transferred at random (without replacement) from urn I into urn II, the contents of urn II are mixed, and one ball is then drawn from urn II — it is red. Find the probability that both transferred balls were red.",
     "answer": "\\[\\boxed{\\dfrac{9}{22}}\\]",
@@ -1017,7 +856,7 @@ window.PROBLEMS = [
       {
         "name": "Total probability over the transfer count",
         "steps": [
-          "Let $k$ be the number of reds among the $2$ transferred balls. Drawing $2$ from urn I (with $3$ red, $2$ white) is hypergeometric: $P(k{=}0)=\\dfrac{\\binom20\\binom32}{\\binom52}=\\dfrac1{10},\\ P(k{=}1)=\\dfrac{\\binom31\\binom21}{\\binom52}=\\dfrac35,\\ P(k{=}2)=\\dfrac{\\binom32}{\\binom52}=\\dfrac3{10}$ (these sum to $1$).",
+          "Let $k$ be the number of reds among the $2$ transferred balls. Drawing $2$ from urn I (with $3$ red, $2$ white) is a without-replacement count: $P(k{=}0)=\\dfrac{\\binom20\\binom32}{\\binom52}=\\dfrac1{10},\\ P(k{=}1)=\\dfrac{\\binom31\\binom21}{\\binom52}=\\dfrac35,\\ P(k{=}2)=\\dfrac{\\binom32}{\\binom52}=\\dfrac3{10}$ (these sum to $1$).",
           "After the transfer urn II holds $7$ balls of which $1+k$ are red, so $P(\\text{red draw}\\mid k)=\\dfrac{1+k}{7}$.",
           "By total probability $P(\\text{red})=\\dfrac1{10}\\cdot\\dfrac17+\\dfrac35\\cdot\\dfrac27+\\dfrac3{10}\\cdot\\dfrac37=\\dfrac{1+12+9}{70}=\\dfrac{22}{70}=\\dfrac{11}{35}$.",
           "Bayes gives $P(k{=}2\\mid\\text{red})=\\dfrac{P(k{=}2)\\,P(\\text{red}\\mid k{=}2)}{P(\\text{red})}=\\dfrac{\\frac3{10}\\cdot\\frac37}{\\frac{11}{35}}=\\dfrac{9/70}{22/70}=\\boxed{\\dfrac{9}{22}}$."
@@ -1109,6 +948,80 @@ window.PROBLEMS = [
   {
     "theme": "bayes",
     "themeLabel": "Total Probability & Bayes",
+    "title": "Knew It or Guessed It",
+    "difficulty": 4,
+    "task": "Determine",
+    "tags": [
+      "posterior",
+      "exam-guessing",
+      "partition",
+      "elimination"
+    ],
+    "statement": "On a $4$-option multiple-choice question, a student knows the answer with probability $\\tfrac23$ (and then answers correctly for sure). If she does not know it, she guesses: with probability $\\tfrac12$ she can eliminate one wrong option and then picks uniformly among the remaining three, and with probability $\\tfrac12$ she guesses uniformly among all four. Given that her answer is correct, find the probability that she actually knew it.",
+    "answer": "\\[\\boxed{\\dfrac{48}{55}}\\]",
+    "trap": "Using the textbook guess-probability $\\tfrac14$ for the whole 'didn't know' branch and getting $\\tfrac{2/3}{2/3+\\,1/3\\cdot1/4}=\\tfrac{8}{9}$. The guessing branch is itself a mixture ($\\tfrac13$ or $\\tfrac14$ correct), so its correct-probability is $\\tfrac{7}{24}$, not $\\tfrac14$.",
+    "solutions": [
+      {
+        "name": "Nested total probability",
+        "steps": [
+          "Correct-given-guess: $P(C\\mid G)=\\tfrac12\\cdot\\tfrac13+\\tfrac12\\cdot\\tfrac14=\\tfrac16+\\tfrac18=\\tfrac{7}{24}$.",
+          "Correct overall: $P(C)=\\tfrac23\\cdot1+\\tfrac13\\cdot\\tfrac{7}{24}=\\tfrac23+\\tfrac{7}{72}=\\tfrac{48+7}{72}=\\tfrac{55}{72}$.",
+          "$P(\\text{knew}\\mid C)=\\dfrac{2/3}{55/72}=\\dfrac{48/72}{55/72}=\\boxed{\\tfrac{48}{55}}$."
+        ]
+      },
+      {
+        "name": "Common-denominator counting",
+        "steps": [
+          "Scale all masses to denominator $72$: knew-and-correct $=\\tfrac23=\\tfrac{48}{72}$.",
+          "Guess-and-correct $=\\tfrac13\\cdot\\tfrac{7}{24}=\\tfrac{7}{72}$.",
+          "Total correct mass $=\\tfrac{48+7}{72}=\\tfrac{55}{72}$.",
+          "Posterior $=\\dfrac{48}{55}=\\boxed{\\tfrac{48}{55}}$."
+        ]
+      }
+    ],
+    "remark": "Insight: the 'guess' branch hides a sub-partition. Collapsing it to a single $\\tfrac14$ is the seductive shortcut; honoring the elimination case changes the answer from $\\tfrac89$ to $\\tfrac{48}{55}$."
+  },
+  {
+    "theme": "bayes",
+    "themeLabel": "Total Probability & Bayes",
+    "title": "The Boy Born on a Tuesday",
+    "difficulty": 5,
+    "task": "Find the number of",
+    "tags": [
+      "two-children",
+      "conditioning",
+      "partition",
+      "counting",
+      "information"
+    ],
+    "statement": "A family has two children, each independently a boy or girl with probability $\\tfrac12$, and each child's day of birth is uniform over the seven weekdays, independent of everything else. You learn the single fact: at least one of the two children is a boy who was born on a Tuesday. Compute the probability that both children are boys, as a reduced fraction $\\tfrac{m}{n}$, and report $m+n$.",
+    "answer": "\\[\\boxed{40}\\]",
+    "trap": "Arguing that the weekday is irrelevant and the answer must be the plain 'at least one boy' value $\\tfrac13$. The extra coordinate (Tuesday) shrinks the conditioning event asymmetrically: a two-boy family has two chances to supply a 'boy-Tuesday', so it is over-represented among qualifying families, pushing the answer up to $\\tfrac{13}{27}$.",
+    "solutions": [
+      {
+        "name": "Direct enumeration",
+        "steps": [
+          "Each child is one of $2\\times 7=14$ equally likely types; an ordered pair of children is one of $196$ equally likely outcomes.",
+          "Outcomes with at least one boy-born-Tuesday: by inclusion–exclusion $2\\cdot 14-1=27$ (each child can be the boy-Tuesday in $14$ ways, minus the doubly-counted both-boy-Tuesday case).",
+          "Among these, both-boys outcomes: a boy-Tuesday paired with any of the $7$ boy-types on the other side, both orders, minus the double count: $2\\cdot 7-1=13$.",
+          "$P(\\text{both boys}\\mid \\text{event})=\\tfrac{13}{27}$, so $m+n=13+27=\\boxed{40}$."
+        ]
+      },
+      {
+        "name": "Complementary counting",
+        "steps": [
+          "Let $T$ be the event 'a given child is a boy-Tuesday', $P(T)=\\tfrac{1}{14}$ per child.",
+          "$P(\\text{no boy-Tuesday})=\\left(\\tfrac{13}{14}\\right)^2=\\tfrac{169}{196}$, so $P(\\text{at least one})=\\tfrac{27}{196}$.",
+          "$P(\\text{both boys and at least one boy-Tuesday})=P(\\text{both boys})\\cdot\\big[1-(\\tfrac{6}{7})^2\\big]=\\tfrac14\\cdot\\tfrac{13}{49}=\\tfrac{13}{196}$.",
+          "Ratio $=\\dfrac{13/196}{27/196}=\\tfrac{13}{27}\\Rightarrow m+n=\\boxed{40}$."
+        ]
+      }
+    ],
+    "remark": "Insight: adding an independent label to the witnessed child is not innocent — it changes how many ways each family configuration can satisfy the clue. As the label set grows (more days, hours, …) the answer drifts toward $\\tfrac12$."
+  },
+  {
+    "theme": "bayes",
+    "themeLabel": "Total Probability & Bayes",
     "title": "Two Screens Agree",
     "difficulty": 5,
     "task": "Evaluate",
@@ -1146,42 +1059,6 @@ window.PROBLEMS = [
   {
     "theme": "bayes",
     "themeLabel": "Total Probability & Bayes",
-    "title": "Knew It or Guessed It",
-    "difficulty": 4,
-    "task": "Determine",
-    "tags": [
-      "posterior",
-      "exam-guessing",
-      "partition",
-      "elimination"
-    ],
-    "statement": "On a $4$-option multiple-choice question, a student knows the answer with probability $\\tfrac23$ (and then answers correctly for sure). If she does not know it, she guesses: with probability $\\tfrac12$ she can eliminate one wrong option and then picks uniformly among the remaining three, and with probability $\\tfrac12$ she guesses uniformly among all four. Given that her answer is correct, find the probability that she actually knew it.",
-    "answer": "\\[\\boxed{\\dfrac{48}{55}}\\]",
-    "trap": "Using the textbook guess-probability $\\tfrac14$ for the whole 'didn't know' branch and getting $\\tfrac{2/3}{2/3+\\,1/3\\cdot1/4}=\\tfrac{8}{9}$. The guessing branch is itself a mixture ($\\tfrac13$ or $\\tfrac14$ correct), so its correct-probability is $\\tfrac{7}{24}$, not $\\tfrac14$.",
-    "solutions": [
-      {
-        "name": "Nested total probability",
-        "steps": [
-          "Correct-given-guess: $P(C\\mid G)=\\tfrac12\\cdot\\tfrac13+\\tfrac12\\cdot\\tfrac14=\\tfrac16+\\tfrac18=\\tfrac{7}{24}$.",
-          "Correct overall: $P(C)=\\tfrac23\\cdot1+\\tfrac13\\cdot\\tfrac{7}{24}=\\tfrac23+\\tfrac{7}{72}=\\tfrac{48+7}{72}=\\tfrac{55}{72}$.",
-          "$P(\\text{knew}\\mid C)=\\dfrac{2/3}{55/72}=\\dfrac{48/72}{55/72}=\\boxed{\\tfrac{48}{55}}$."
-        ]
-      },
-      {
-        "name": "Common-denominator counting",
-        "steps": [
-          "Scale all masses to denominator $72$: knew-and-correct $=\\tfrac23=\\tfrac{48}{72}$.",
-          "Guess-and-correct $=\\tfrac13\\cdot\\tfrac{7}{24}=\\tfrac{7}{72}$.",
-          "Total correct mass $=\\tfrac{48+7}{72}=\\tfrac{55}{72}$.",
-          "Posterior $=\\dfrac{48}{55}=\\boxed{\\tfrac{48}{55}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the 'guess' branch hides a sub-partition. Collapsing it to a single $\\tfrac14$ is the seductive shortcut; honoring the elimination case changes the answer from $\\tfrac89$ to $\\tfrac{48}{55}$."
-  },
-  {
-    "theme": "bayes",
-    "themeLabel": "Total Probability & Bayes",
     "title": "The Third Item Is the First Defective",
     "difficulty": 5,
     "task": "Determine",
@@ -1215,7 +1092,363 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: the observation is a geometric waiting time, so the likelihood is $(1-p)^2p$, fusing the conditioning of total probability with a discrete distribution. The two good items quietly pull the posterior toward the good mode, capping it near $\\tfrac13$."
+    "remark": "Insight: the observation (first defective on the third draw) has likelihood $(1-p)^2p$, fusing the conditioning of total probability with a discrete distribution. The two good items quietly pull the posterior toward the good mode, capping it near $\\tfrac13$."
+  },
+  {
+    "theme": "counting",
+    "themeLabel": "Probability by Counting",
+    "title": "Five Letters, Wrong Envelopes",
+    "difficulty": 3,
+    "task": "Find the probability",
+    "tags": [
+      "derangement",
+      "matching",
+      "complement",
+      "permutations"
+    ],
+    "statement": "A secretary writes $5$ distinct letters and addresses $5$ distinct envelopes, one for each letter. In a hurry, she inserts the $5$ letters into the $5$ envelopes completely at random, one letter per envelope. Find the probability that no letter ends up in its correct envelope.",
+    "answer": "There are $5!=120$ equally likely insertions. The favourable count is the number of derangements $D_5=120\\left(1-\\tfrac1{1!}+\\tfrac1{2!}-\\tfrac1{3!}+\\tfrac1{4!}-\\tfrac1{5!}\\right)=44$. Hence the probability is $\\boxed{\\dfrac{11}{30}}$.",
+    "trap": "A tempting wrong answer is $\\left(\\tfrac{4}{5}\\right)^5$, obtained by saying each letter independently has a $\\tfrac45$ chance of avoiding its own envelope. The placements are not independent (each envelope holds exactly one letter), so multiplying single-letter probabilities overcounts and gives a value $\\approx 0.328\\neq\\tfrac{11}{30}$.",
+    "solutions": [
+      {
+        "name": "Inclusion–exclusion on fixed points",
+        "steps": [
+          "Let $A_i$ be the event that letter $i$ sits in its own envelope. Then $|A_{i_1}\\cap\\cdots\\cap A_{i_k}|=(5-k)!$ since the remaining $5-k$ letters are free.",
+          "By inclusion–exclusion the number of arrangements with at least one fixed point is $\\sum_{k=1}^{5}(-1)^{k+1}\\binom{5}{k}(5-k)!$.",
+          "So the number with no fixed point is $D_5=\\sum_{k=0}^{5}(-1)^{k}\\binom{5}{k}(5-k)!=120-120+60-20+5-1=44$.",
+          "The probability is $\\dfrac{44}{120}=\\dfrac{11}{30}$."
+        ]
+      },
+      {
+        "name": "Recursion for derangements",
+        "steps": [
+          "Use $D_n=(n-1)\\left(D_{n-1}+D_{n-2}\\right)$ with $D_1=0,\\ D_2=1$.",
+          "Then $D_3=2(1+0)=2$, $D_4=3(2+1)=9$, $D_5=4(9+2)=44$.",
+          "Divide by $5!=120$ to get $\\dfrac{44}{120}=\\dfrac{11}{30}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The phrase 'no letter correct' is the classic **derangement** signal. Treating the five placements as independent feels natural but is the central error: filling one envelope removes a choice from the others. Inclusion–exclusion is the honest bookkeeping, and the answer hovers near $1/e$ — a hallmark of derangement problems."
+  },
+  {
+    "theme": "counting",
+    "themeLabel": "Probability by Counting",
+    "title": "Even Three-Digit Numbers",
+    "difficulty": 3,
+    "task": "Find the probability",
+    "tags": [
+      "digits",
+      "permutations",
+      "no repetition",
+      "parity"
+    ],
+    "statement": "A three-digit number is formed by choosing $3$ distinct digits from $\\{1,2,3,4,5,6,7,8,9\\}$ and arranging them, all such numbers being equally likely. Find the probability that the number formed is even.",
+    "answer": "The sample space has $9\\cdot 8\\cdot 7={}^9P_3=504$ equally likely numbers. A number is even iff its units digit is one of $\\{2,4,6,8\\}$: $4$ choices for the units digit and ${}^8P_2=56$ for the other two places, giving $4\\cdot 56=224$. The probability is $\\dfrac{224}{504}=\\boxed{\\dfrac{4}{9}}$.",
+    "trap": "Because the digits $1$–$9$ contain $4$ even and $5$ odd values, one is tempted to answer $\\tfrac12$ 'by symmetry of parity'. But the digit pool is not balanced: there are $5$ odd digits and only $4$ even, so the units digit is even with probability $\\tfrac49$, not $\\tfrac12$.",
+    "solutions": [
+      {
+        "name": "Count by the units digit",
+        "steps": [
+          "Total numbers: choose an ordered triple of distinct digits, ${}^9P_3=504$.",
+          "Even numbers: the units digit must be in $\\{2,4,6,8\\}$ ($4$ ways); fill the hundreds and tens from the remaining $8$ digits in ${}^8P_2=56$ ways, total $4\\cdot 56=224$.",
+          "Probability $=\\dfrac{224}{504}=\\dfrac{4}{9}$."
+        ]
+      },
+      {
+        "name": "Probability of the last place directly",
+        "steps": [
+          "By symmetry, every one of the $9$ digits is equally likely to occupy the units place, so $P(\\text{units digit even})=\\dfrac{\\#\\text{even digits}}{9}=\\dfrac{4}{9}$.",
+          "The number is even exactly when its units digit is even, so the answer is $\\dfrac{4}{9}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Parity of the whole number is decided solely by the **units digit**. The clean second method bypasses all the $504$ counting: each position is equally likely to hold any given digit, so the units digit is even with probability $4/9$ straight away. The '$1/2$' trap forgets the pool itself is parity-imbalanced."
+  },
+  {
+    "theme": "counting",
+    "themeLabel": "Probability by Counting",
+    "title": "Two Friends Around a Table",
+    "difficulty": 4,
+    "task": "Find the probability",
+    "tags": [
+      "circular arrangement",
+      "adjacency",
+      "permutations",
+      "block method"
+    ],
+    "statement": "Eight distinct people, among them Asha and Bina, are seated at random around a circular table with $8$ identical seats (seatings that differ only by a rotation are regarded as the same). Find the probability that Asha and Bina sit next to each other.",
+    "answer": "The number of distinct circular seatings of $8$ people is $(8-1)!=7!=5040$. Glue Asha and Bina into one block: $(7-1)!=6!=720$ circular arrangements of the $7$ units, times $2!=2$ internal orders, giving $1440$ favourable seatings. The probability is $\\dfrac{1440}{5040}=\\boxed{\\dfrac{2}{7}}$.",
+    "trap": "A common slip is to use $8!$ for the total and $2\\cdot 7!$ for the block count, giving $\\tfrac{2\\cdot 7!}{8!}=\\tfrac14$. That treats the seating as a line. Around a circle one must fix rotations, so the correct total is $7!$ and the answer is $\\tfrac27$, not $\\tfrac14$.",
+    "solutions": [
+      {
+        "name": "Block (glue) method on a circle",
+        "steps": [
+          "Total distinct circular seatings of $8$ distinct people $=(8-1)!=5040$.",
+          "Treat the Asha–Bina pair as a single block, leaving $7$ units to seat around the circle in $(7-1)!=720$ ways.",
+          "The block has $2!=2$ internal orders, so favourable $=720\\cdot 2=1440$.",
+          "Probability $=\\dfrac{1440}{5040}=\\dfrac{2}{7}$."
+        ]
+      },
+      {
+        "name": "Neighbour-counting argument",
+        "steps": [
+          "Seat Asha anywhere; this fixes the rotation. The remaining $7$ people fill the other $7$ seats, all equally likely.",
+          "Exactly $2$ of those $7$ seats are adjacent to Asha, and Bina is equally likely to occupy any of the $7$.",
+          "Hence $P(\\text{Bina adjacent to Asha})=\\dfrac{2}{7}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The neighbour argument is the elegant route: fixing one person kills the rotational symmetry, after which the desired person simply lands in one of $2$ favourable seats out of $7$. The seductive $1/4$ comes from forgetting that circular seatings are counted by $(n-1)!$, not $n!$."
+  },
+  {
+    "theme": "counting",
+    "themeLabel": "Probability by Counting",
+    "title": "At Least One Woman on the Panel",
+    "difficulty": 4,
+    "task": "Find the probability",
+    "tags": [
+      "combinations",
+      "selection",
+      "complement",
+      "at least one"
+    ],
+    "statement": "A committee of $4$ members is chosen at random from a group of $6$ men and $4$ women, all $\\binom{10}{4}$ selections being equally likely. Find the probability that the committee contains at least one woman.",
+    "answer": "Total selections $=\\binom{10}{4}=210$. The complementary (all-men) selections number $\\binom{6}{4}=15$, so committees with at least one woman $=210-15=195$. The probability is $\\dfrac{195}{210}=\\boxed{\\dfrac{13}{14}}$.",
+    "trap": "It is tempting to compute 'at least one woman' as $\\binom{4}{1}\\binom{9}{3}/\\binom{10}{4}=\\tfrac{4\\cdot 84}{210}=\\tfrac{336}{210}>1$. Picking one woman first and then any $3$ of the remaining $9$ double-counts committees that contain several women, producing an impossible probability exceeding $1$. The complement method avoids this.",
+    "solutions": [
+      {
+        "name": "Complement (subtract all-men)",
+        "steps": [
+          "Total committees $=\\binom{10}{4}=210$.",
+          "Committees with no woman use only the $6$ men: $\\binom{6}{4}=15$.",
+          "At least one woman $=210-15=195$, so the probability is $\\dfrac{195}{210}=\\dfrac{13}{14}$."
+        ]
+      },
+      {
+        "name": "Direct sum over number of women",
+        "steps": [
+          "Count committees with exactly $w$ women, $w=1,2,3,4$: $\\binom{4}{w}\\binom{6}{4-w}$.",
+          "These are $\\binom41\\binom63+\\binom42\\binom62+\\binom43\\binom61+\\binom44\\binom60=4\\cdot20+6\\cdot15+4\\cdot6+1\\cdot1=80+90+24+1=195$.",
+          "Probability $=\\dfrac{195}{210}=\\dfrac{13}{14}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** 'At least one' almost always begs for the **complement**: one subtraction versus four case-sums. The 'pick a woman first' shortcut is the classic overcount trap — choosing a distinguished woman and then free seats counts each multi-woman committee multiple times, here even pushing the 'probability' past $1$."
+  },
+  {
+    "theme": "counting",
+    "themeLabel": "Probability by Counting",
+    "title": "No Two A's Together in BANANA",
+    "difficulty": 4,
+    "task": "Find the probability",
+    "tags": [
+      "arrangements",
+      "repeated letters",
+      "gap method",
+      "non-adjacency"
+    ],
+    "statement": "The six letters of the word $\\textsf{BANANA}$ (namely three $\\textsf{A}$'s, two $\\textsf{N}$'s and one $\\textsf{B}$) are arranged in a row, every distinguishable arrangement being equally likely. Find the probability that no two $\\textsf{A}$'s are adjacent.",
+    "answer": "The number of distinguishable arrangements is $\\dfrac{6!}{3!\\,2!\\,1!}=60$. Arrange the non-$\\textsf{A}$ letters $\\textsf{B},\\textsf{N},\\textsf{N}$ first in $\\dfrac{3!}{2!}=3$ ways; they create $4$ gaps, and the three $\\textsf{A}$'s occupy $3$ of these gaps in $\\binom{4}{3}=4$ ways. Favourable $=3\\cdot 4=12$, so the probability is $\\dfrac{12}{60}=\\boxed{\\dfrac{1}{5}}$.",
+    "trap": "A frequent error is to forget that the two $\\textsf{N}$'s are identical and use $3!=6$ ways for $\\textsf{B},\\textsf{N},\\textsf{N}$, giving favourable $6\\cdot 4=24$ and 'probability' $\\tfrac{24}{60}=\\tfrac{2}{5}$. Treating identical letters as distinguishable doubles the count; the correct favourable total is $12$ and the answer is $\\tfrac15$.",
+    "solutions": [
+      {
+        "name": "Gap method with repetition",
+        "steps": [
+          "Total distinguishable words: $\\dfrac{6!}{3!\\,2!}=60$.",
+          "Place the non-$\\textsf{A}$ letters $\\textsf{B},\\textsf{N},\\textsf{N}$: $\\dfrac{3!}{2!}=3$ distinguishable orders, forming $4$ inter-letter gaps $\\_\\,X\\_\\,X\\_\\,X\\_$.",
+          "Choose $3$ of the $4$ gaps for the (identical) $\\textsf{A}$'s: $\\binom{4}{3}=4$ ways.",
+          "Favourable $=3\\cdot 4=12$, probability $=\\dfrac{12}{60}=\\dfrac15$."
+        ]
+      },
+      {
+        "name": "Complement via the AAA / AA blocks",
+        "steps": [
+          "Words with all three $\\textsf{A}$'s together (block $\\textsf{AAA}$): arrange $\\textsf{AAA},\\textsf{B},\\textsf{N},\\textsf{N}$ as $4$ units, $\\dfrac{4!}{2!}=12$.",
+          "Words with at least one $\\textsf{AA}$ adjacency: count strings having some two $\\textsf{A}$'s together $=60-12=48$ have no... instead compute directly. Words with no two $\\textsf{A}$ adjacent we already get $12$ by the gap method, so adjacency-containing words $=60-12=48$.",
+          "Thus $P(\\text{no two }\\textsf{A}\\text{ adjacent})=\\dfrac{60-48}{60}=\\dfrac{12}{60}=\\dfrac15$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The **gap method** is the standard tool for non-adjacency: lay down the other letters, then slot the forbidden-to-touch letters into the gaps. The lurking trap is the repeated $\\textsf{N}$'s — counting $\\textsf{B},\\textsf{N},\\textsf{N}$ as $3!$ instead of $3!/2!$ silently doubles every count and corrupts both numerator and the intuition."
+  },
+  {
+    "theme": "counting",
+    "themeLabel": "Probability by Counting",
+    "title": "Exactly One Pair in Five Cards",
+    "difficulty": 4,
+    "task": "Find the probability",
+    "tags": [
+      "cards",
+      "combinations",
+      "poker counting",
+      "exactly one pair"
+    ],
+    "statement": "Five cards are drawn at random (without replacement) from a standard $52$-card deck, all $\\binom{52}{5}$ hands being equally likely. Find the probability that the hand is exactly 'one pair': two cards of one rank and three cards of three other distinct ranks (no second pair, no triple).",
+    "answer": "Total hands $=\\binom{52}{5}=2{,}598{,}960$. Choose the paired rank ($13$), its two suits $\\binom{4}{2}=6$, the three other distinct ranks $\\binom{12}{3}=220$, and one suit for each of those three cards $4^3=64$: favourable $=13\\cdot 6\\cdot 220\\cdot 64=1{,}098{,}240$. The probability is $\\dfrac{1098240}{2598960}=\\boxed{\\dfrac{352}{833}}$.",
+    "trap": "A tempting wrong count picks the paired rank, its two suits, then $\\binom{50}{3}$ for the other three cards: $13\\cdot 6\\cdot\\binom{50}{3}$. This wrongly allows the three 'kickers' to form a second pair or a triple or match the paired rank, overcounting badly and inflating the probability above the true $\\tfrac{352}{833}$.",
+    "solutions": [
+      {
+        "name": "Build the hand rank-by-rank",
+        "steps": [
+          "Total $\\binom{52}{5}=2{,}598{,}960$.",
+          "Paired rank: $13$ choices; its two suits: $\\binom42=6$.",
+          "Three remaining ranks all distinct and different from the pair: $\\binom{12}{3}=220$; each contributes one card via $4$ suit choices, $4^3=64$.",
+          "Favourable $=13\\cdot6\\cdot220\\cdot64=1{,}098{,}240$, so probability $=\\dfrac{1{,}098{,}240}{2{,}598{,}960}=\\dfrac{352}{833}$."
+        ]
+      },
+      {
+        "name": "Rank-pattern then suits",
+        "steps": [
+          "Choose the multiset of ranks with pattern $(2,1,1,1)$: pick the doubled rank $\\binom{13}{1}=13$ and the three single ranks $\\binom{12}{3}=220$.",
+          "Assign suits: the doubled rank needs $2$ of $4$ suits, $\\binom42=6$; each single rank needs $1$ of $4$ suits, $4^3=64$.",
+          "Multiply: $13\\cdot220\\cdot6\\cdot64=1{,}098{,}240$; divide by $\\binom{52}{5}$ to get $\\dfrac{352}{833}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Honest hand-counting fixes the **rank pattern first**, then distributes suits. The classic blunder is choosing the pair and then taking $\\binom{50}{3}$ for the rest: those three cards are not free — forbidding a second pair, a triple, or a match to the pair is exactly what makes 'one pair' a distinct hand type."
+  },
+  {
+    "theme": "counting",
+    "themeLabel": "Probability by Counting",
+    "title": "Every Mailbox Gets a Letter",
+    "difficulty": 5,
+    "task": "Find the probability",
+    "tags": [
+      "onto functions",
+      "inclusion-exclusion",
+      "distributions",
+      "surjection"
+    ],
+    "statement": "Five distinct letters are dropped at random, independently, into $3$ distinct mailboxes, each letter equally likely to go into any of the $3$ boxes (so all $3^5$ outcomes are equally likely). Find the probability that no mailbox is left empty.",
+    "answer": "Total outcomes $=3^5=243$. The number of ways to fill all three boxes (onto maps) is $\\sum_{k=0}^{3}(-1)^k\\binom{3}{k}(3-k)^5=243-3\\cdot32+3\\cdot1-0=150$. The probability is $\\dfrac{150}{243}=\\boxed{\\dfrac{50}{81}}$.",
+    "trap": "A tempting wrong count reserves one letter for each box first — $\\binom{5}{1}\\binom{4}{1}\\binom{3}{1}=60$ ways to seed the three boxes — then drops the remaining $2$ letters freely in $3^2=9$ ways, giving $540$ 'onto' outcomes, i.e. probability $\\tfrac{540}{243}>1$. The seeding overcounts each outcome many times; the correct surjection count is $150$, so the answer is $\\tfrac{50}{81}$.",
+    "solutions": [
+      {
+        "name": "Inclusion–exclusion on empty boxes",
+        "steps": [
+          "Let $B_i$ be the event that box $i$ is empty. $|B_{i_1}\\cap\\cdots\\cap B_{i_k}|=(3-k)^5$ (letters confined to the other $3-k$ boxes).",
+          "Onto count $=\\sum_{k=0}^{3}(-1)^k\\binom3k(3-k)^5=3^5-\\binom31 2^5+\\binom32 1^5-\\binom33 0^5=243-96+3-0=150$.",
+          "Probability $=\\dfrac{150}{243}=\\dfrac{50}{81}$."
+        ]
+      },
+      {
+        "name": "Direct occupancy split by box sizes",
+        "steps": [
+          "Since all $3$ boxes are nonempty, the five letters split among boxes by sizes either $(3,1,1)$ or $(2,2,1)$.",
+          "Pattern $(3,1,1)$: choose the box of size $3$ ($3$ ways) and which $3$ letters $\\binom53=10$, then split the last $2$ letters into the other two boxes one each $2!=2$: $3\\cdot10\\cdot2=60$.",
+          "Pattern $(2,2,1)$: choose the singleton box ($3$ ways) and its letter ($5$ ways), then split the remaining $4$ letters into two boxes of size $2$ each $\\binom42=6$: $3\\cdot5\\cdot6=90$.",
+          "Total $=60+90=150$, so probability $=\\dfrac{150}{243}=\\dfrac{50}{81}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** 'No box empty' is a **surjection** count, cleanly handled by inclusion–exclusion on the empty boxes. The fatal shortcut seeds one letter per box and then drops the rest freely — but the seeds are interchangeable with the free letters, so each filled outcome is counted several times, even pushing the 'probability' past $1$."
+  },
+  {
+    "theme": "counting",
+    "themeLabel": "Probability by Counting",
+    "title": "Exactly Two Correct Envelopes",
+    "difficulty": 5,
+    "task": "Find the probability",
+    "tags": [
+      "derangement",
+      "exactly k fixed",
+      "matching",
+      "inclusion-exclusion"
+    ],
+    "statement": "Six distinct letters are placed at random, one each, into six correspondingly addressed envelopes, all $6!$ assignments being equally likely. Find the probability that exactly two of the letters land in their correct envelopes.",
+    "answer": "Choose which $2$ letters are correct: $\\binom{6}{2}=15$. The remaining $4$ letters must all be wrong, i.e. deranged: $D_4=9$. Favourable $=15\\cdot 9=135$ out of $6!=720$, so the probability is $\\dfrac{135}{720}=\\boxed{\\dfrac{3}{16}}$.",
+    "trap": "A natural mistake is $\\binom62\\cdot 4!$ — choosing the two correct letters and arranging the other four 'in any way'. That permits some of those four to also be correct, so it counts hands with more than two matches. The deranged factor must be $D_4=9$, not $4!=24$, giving $\\tfrac{3}{16}$ rather than $\\tfrac{15\\cdot24}{720}=\\tfrac12$.",
+    "solutions": [
+      {
+        "name": "Choose the fixed pair, derange the rest",
+        "steps": [
+          "Pick the exactly-two letters that go to their own envelopes: $\\binom{6}{2}=15$ ways.",
+          "The other $4$ letters must each be in a wrong envelope, so they form a derangement of $4$ objects: $D_4=4!\\left(1-1+\\tfrac12-\\tfrac16+\\tfrac1{24}\\right)=9$.",
+          "Favourable $=15\\cdot9=135$; total $=6!=720$.",
+          "Probability $=\\dfrac{135}{720}=\\dfrac{3}{16}$."
+        ]
+      },
+      {
+        "name": "Count by number of fixed points formula",
+        "steps": [
+          "The number of permutations of $n$ with exactly $k$ fixed points is $\\binom{n}{k}D_{n-k}$.",
+          "Here $n=6,\\ k=2$: $\\binom{6}{2}D_4=15\\cdot9=135$.",
+          "Divide by $6!=720$: probability $=\\dfrac{135}{720}=\\dfrac{3}{16}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** 'Exactly $k$ correct' splits cleanly: **choose** the $k$ that match, then **derange** the rest so none of the others accidentally match. Replacing $D_{n-k}$ by $(n-k)!$ is the cardinal sin — it lets extra matches sneak in and inflates the answer to $1/2$."
+  },
+  {
+    "theme": "counting",
+    "themeLabel": "Probability by Counting",
+    "title": "No Couple Sits Together",
+    "difficulty": 5,
+    "task": "Find the probability",
+    "tags": [
+      "inclusion-exclusion",
+      "arrangements",
+      "couples",
+      "non-adjacency"
+    ],
+    "statement": "Four married couples (eight people) are seated in a row of $8$ distinct seats, all $8!$ orders equally likely. Find the probability that no couple sits in two adjacent seats (i.e. no husband is next to his own wife).",
+    "answer": "Let $A_i$ be the event that couple $i$ sits together. Gluing $k$ specified couples gives $2^k(8-k)!$ orders. By inclusion–exclusion the favourable count is $\\sum_{k=0}^{4}(-1)^k\\binom{4}{k}2^k(8-k)!=40320-4\\cdot2\\cdot5040+6\\cdot4\\cdot720-4\\cdot8\\cdot120+1\\cdot16\\cdot24=13824$. The probability is $\\dfrac{13824}{40320}=\\boxed{\\dfrac{12}{35}}$.",
+    "trap": "A seductive shortcut multiplies single-couple non-adjacency 'probabilities' $\\left(1-\\tfrac{2\\cdot 7!}{8!}\\right)^4=\\left(\\tfrac34\\right)^4=\\tfrac{81}{256}$, treating the four couples as independent. They share the same seats, so the events are dependent; the true value is $\\tfrac{12}{35}\\approx0.343\\neq0.316$.",
+    "solutions": [
+      {
+        "name": "Inclusion–exclusion on couple-blocks",
+        "steps": [
+          "For a chosen set of $k$ couples forced together, glue each into a block: $8-k$ units arranged in $(8-k)!$ ways, with $2^k$ internal orders, so $|A_{i_1}\\cap\\cdots\\cap A_{i_k}|=2^k(8-k)!$.",
+          "Number with no couple together $=\\sum_{k=0}^{4}(-1)^k\\binom4k2^k(8-k)!$.",
+          "Term values: $40320-80640+17280-3840+384=13824$.",
+          "Probability $=\\dfrac{13824}{40320}=\\dfrac{12}{35}$."
+        ]
+      },
+      {
+        "name": "Complement of 'at least one couple together'",
+        "steps": [
+          "$P(\\text{at least one couple together})=\\sum_{k=1}^{4}(-1)^{k+1}\\binom4k\\dfrac{2^k(8-k)!}{8!}=\\dfrac{80640-17280+3840-384}{40320}=\\dfrac{66816}{40320}$ before simplification of signs, i.e. $1-\\dfrac{13824}{40320}=\\dfrac{23}{35}$.",
+          "Hence $P(\\text{no couple together})=1-\\dfrac{23}{35}=\\dfrac{12}{35}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Overlapping 'together' events are the textbook home of **inclusion–exclusion**: glue $k$ couples, alternate signs. The independence shortcut $\\left(3/4\\right)^4$ is wrong because the eight seats are shared — fixing one couple's adjacency reshapes the room for the others."
+  },
+  {
+    "theme": "counting",
+    "themeLabel": "Probability by Counting",
+    "title": "Three Numbers in Arithmetic Progression",
+    "difficulty": 5,
+    "task": "Find the probability",
+    "tags": [
+      "combinations",
+      "arithmetic progression",
+      "selection",
+      "counting"
+    ],
+    "statement": "Three distinct numbers are chosen at random from $\\{1,2,3,\\dots,20\\}$, all $\\binom{20}{3}$ unordered triples being equally likely. Find the probability that the three chosen numbers can be arranged to form an arithmetic progression (i.e. some ordering $a,a+d,a+2d$ with $d\\ge 1$).",
+    "answer": "Total triples $=\\binom{20}{3}=1140$. An AP triple is determined by its middle term and common difference $d\\ge1$; for each $d$ there are $20-2d$ valid first terms, so the count is $\\sum_{d=1}^{9}(20-2d)=18+16+\\cdots+2=90$. The probability is $\\dfrac{90}{1140}=\\boxed{\\dfrac{3}{38}}$.",
+    "trap": "A tempting wrong move counts ordered AP's or double-counts by allowing $d$ to be negative as well as positive, giving $180$ and the answer $\\tfrac{180}{1140}=\\tfrac{3}{19}$. Since the triple is unordered, $a,a+d,a+2d$ and its reverse are the same unordered selection, so each AP must be counted once: $90$, giving $\\tfrac{3}{38}$.",
+    "solutions": [
+      {
+        "name": "Count by common difference",
+        "steps": [
+          "An unordered AP triple corresponds to a unique pair (smallest term $a$, common difference $d\\ge1$) with $a+2d\\le 20$, i.e. $a\\le 20-2d$.",
+          "For each $d$ from $1$ to $9$ there are $20-2d$ choices of $a$ (and $d\\ge10$ gives none).",
+          "Total APs $=\\sum_{d=1}^{9}(20-2d)=18+16+14+12+10+8+6+4+2=90$.",
+          "Probability $=\\dfrac{90}{\\binom{20}{3}}=\\dfrac{90}{1140}=\\dfrac{3}{38}$."
+        ]
+      },
+      {
+        "name": "Middle-term / parity method",
+        "steps": [
+          "An AP triple $\\{x-d,x,x+d\\}$ is fixed by its middle term $x$ and $d\\ge1$ with $1\\le x-d$ and $x+d\\le20$, so $d\\le\\min(x-1,20-x)$.",
+          "Equivalently, the two outer terms must have the same parity; number of unordered same-parity pairs from $\\{1,\\dots,20\\}$ is $\\binom{10}{2}+\\binom{10}{2}=45+45=90$, and each determines a unique integer middle term.",
+          "So there are $90$ AP triples, giving probability $\\dfrac{90}{1140}=\\dfrac{3}{38}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The slick count notices that a $3$-term AP is exactly a pair of outer terms of **equal parity**, their average supplying the middle — turning the problem into $\\binom{10}{2}+\\binom{10}{2}=90$. The trap is order: the selection is unordered, so counting both increasing and decreasing progressions doubles the truth."
   },
   {
     "theme": "binomial",
@@ -1351,10 +1584,10 @@ window.PROBLEMS = [
     ],
     "statement": "A fair die is rolled repeatedly; a six counts as a success. \\[\\text{Find the probability that the third six appears on exactly the seventh roll.}\\]",
     "answer": "\\[\\boxed{\\dfrac{3125}{93312}}\\]",
-    "trap": "Writing $\\binom73$ for the count of arrangements treats it as \"exactly $3$ sixes in $7$ rolls.\" But the $7$th roll is forced to be the third six, so only the first $6$ rolls are free and must contain exactly $2$ sixes: the coefficient is $\\binom62$, not $\\binom73$. Locking the last trial is the whole point of the negative binomial.",
+    "trap": "Writing $\\binom73$ for the count of arrangements treats it as \"exactly $3$ sixes in $7$ rolls.\" But the $7$th roll is forced to be the third six, so only the first $6$ rolls are free and must contain exactly $2$ sixes: the coefficient is $\\binom62$, not $\\binom73$. Locking the last trial is the whole point of fixing the last trial.",
     "solutions": [
       {
-        "name": "Negative binomial formula",
+        "name": "Two sixes, then the third",
         "steps": [
           "For the $r$-th success on trial $n$: $P=\\binom{n-1}{r-1}p^{r}q^{\\,n-r}$ with $p=\\tfrac16,\\ q=\\tfrac56,\\ n=7,\\ r=3$.",
           "$P=\\binom{6}{2}\\left(\\tfrac16\\right)^{3}\\left(\\tfrac56\\right)^{4}=15\\cdot\\tfrac1{216}\\cdot\\tfrac{625}{1296}.$",
@@ -1490,49 +1723,11 @@ window.PROBLEMS = [
   {
     "theme": "binomial",
     "themeLabel": "Bernoulli Trials & the Binomial",
-    "title": "Waiting for a Double",
-    "difficulty": 5,
-    "task": "Evaluate",
-    "tags": [
-      "runs",
-      "markov-states",
-      "expected-waiting-time",
-      "recursion",
-      "bernoulli"
-    ],
-    "statement": "A coin shows heads with probability $p=\\tfrac13$ on each independent toss. Let $T$ be the toss on which two heads first appear in a row ($HH$). \\[\\text{Evaluate }\\;\\mathbb E[T].\\]",
-    "answer": "\\[\\boxed{12}\\]",
-    "trap": "Modeling $T$ as a single geometric/negative-binomial waiting time — e.g. \"wait for two heads\" $\\Rightarrow \\tfrac{2}{p}=6$ — ignores that the two heads must be consecutive: a tail after a lone head resets all progress. The pattern $HH$ has overlap structure, so the correct object is a Markov chain (or the pattern-correlation/Conway formula), not a plain negative binomial.",
-    "solutions": [
-      {
-        "name": "First-step Markov states",
-        "steps": [
-          "States: $S_0$ (no progress), $S_1$ (last toss was a lone $H$), absorb on $HH$. Let $E_0,E_1$ be expected further tosses.",
-          "$E_1=1+p\\cdot0+q\\,E_0$ (from one $H$: another $H$ absorbs, a $T$ returns to $S_0$). $E_0=1+p\\,E_1+q\\,E_0$.",
-          "With $p=\\tfrac13,q=\\tfrac23$: $E_1=1+\\tfrac23E_0$, and $E_0=1+\\tfrac13E_1+\\tfrac23E_0\\Rightarrow \\tfrac13E_0=1+\\tfrac13E_1\\Rightarrow E_0=3+E_1.$",
-          "Substitute: $E_0=3+1+\\tfrac23E_0\\Rightarrow \\tfrac13E_0=4\\Rightarrow E_0=12.$",
-          "\\[\\boxed{12}\\]"
-        ]
-      },
-      {
-        "name": "Closed form via self-overlap",
-        "steps": [
-          "For the first occurrence of a run of two heads, $\\mathbb E[T]=\\dfrac1p+\\dfrac1{p^2}=\\dfrac{1+p}{p^2}$ (the pattern $HH$ overlaps itself at shift $1$, contributing the $\\tfrac1p$ term).",
-          "With $p=\\tfrac13$: $\\mathbb E[T]=\\dfrac{1+\\frac13}{(1/3)^2}=\\dfrac{4/3}{1/9}=\\dfrac43\\cdot9=12.$",
-          "\\[\\boxed{12}\\]"
-        ]
-      }
-    ],
-    "remark": "Insight: waiting for a run is not negative-binomial — the self-overlap of $HH$ injects the extra $\\tfrac1p$ via Conway's leading-numbers / Markov reset. Two independent methods (states and the overlap formula) converge on $12$."
-  },
-  {
-    "theme": "binomial",
-    "themeLabel": "Bernoulli Trials & the Binomial",
     "title": "The Urn That Isn't Binomial",
     "difficulty": 5,
     "task": "Evaluate",
     "tags": [
-      "hypergeometric",
+      "without replacement",
       "without-replacement",
       "dependence",
       "binomial-trap",
@@ -1540,10 +1735,10 @@ window.PROBLEMS = [
     ],
     "statement": "An urn contains $4$ red and $6$ white balls. Three balls are drawn without replacement. \\[\\text{Evaluate the probability that exactly two are red.}\\]",
     "answer": "\\[\\boxed{\\dfrac{3}{10}}\\]",
-    "trap": "Treating the three draws as Bernoulli trials with a fixed $p=\\tfrac{4}{10}$ and writing $\\binom32 p^2(1-p)=\\tfrac{36}{125}=0.288$ is the headline trap: without replacement the draws are dependent, the success probability shifts each draw, so the count is hypergeometric, not binomial. The binomial value $0.288$ is simply wrong; the truth is $0.3$.",
+    "trap": "Treating the three draws as Bernoulli trials with a fixed $p=\\tfrac{4}{10}$ and writing $\\binom32 p^2(1-p)=\\tfrac{36}{125}=0.288$ is the headline trap: without replacement the draws are dependent, the success probability shifts each draw, so the count is a without-replacement one, not binomial. The binomial value $0.288$ is simply wrong; the truth is $0.3$.",
     "solutions": [
       {
-        "name": "Hypergeometric count",
+        "name": "Without-replacement count",
         "steps": [
           "Choose which balls are drawn: total equally-likely $3$-subsets number $\\binom{10}{3}=120.$",
           "Favorable $=$ (choose $2$ of the $4$ red)$\\times$(choose $1$ of the $6$ white) $=\\binom42\\binom61=6\\cdot 6=36.$",
@@ -1561,7 +1756,7 @@ window.PROBLEMS = [
         ]
       }
     ],
-    "remark": "Insight: \"independent identical trials\" is the load-bearing hypothesis of the binomial law. Sampling without replacement breaks it; the hypergeometric distribution is the correct dependent analogue, and here it differs from the naive binomial guess ($0.300$ versus $0.288$).",
+    "remark": "Insight: \"independent identical trials\" is the load-bearing hypothesis of the binomial law. Sampling without replacement breaks it; the without-replacement count is the correct dependent analogue, and here it differs from the naive binomial guess ($0.300$ versus $0.288$).",
     "verification": "Python-verified: $\\binom42\\binom61/\\binom{10}{3}=36/120=3/10$; the ordered product $3\\cdot\\tfrac4{10}\\tfrac39\\tfrac68=3/10$; exhaustive enumeration over all $120$ labeled $3$-subsets gives $36$ favorable $=3/10$. The binomial trap $\\binom32(0.4)^2(0.6)=36/125=0.288\\neq3/10$."
   },
   {
@@ -1612,6 +1807,452 @@ window.PROBLEMS = [
     "remark": "Insight: 'unique mode $=3$' is an open-interval condition $3<(n+1)p<4$; the closed-interval version silently swallows the two boundary ties. The word 'unique' is doing all the work — it removes exactly the two endpoints."
   },
   {
+    "theme": "binomial",
+    "themeLabel": "Bernoulli Trials & the Binomial",
+    "title": "The Mode Behind an Even Curtain",
+    "difficulty": 5,
+    "task": "Find the probability",
+    "tags": [
+      "binomial",
+      "conditioning",
+      "mode",
+      "parity"
+    ],
+    "statement": "A biased coin shows heads with probability $\\tfrac{2}{3}$ on each toss, independently. It is tossed $6$ times; let $X$ be the number of heads. Let $m$ denote the most probable value of $X$ (the mode of this binomial distribution). A bystander, who did not watch the tosses, is told only that the number of heads turned out to be \\emph{even}. Given this information, find the probability that $X$ actually equals $m$.",
+    "answer": "The mode is $m=\\left\\lfloor (n+1)p\\right\\rfloor=\\left\\lfloor 7\\cdot\\tfrac{2}{3}\\right\\rfloor=4$, which is even. With $P(X=k)=\\binom{6}{k}\\left(\\tfrac{2}{3}\\right)^{k}\\left(\\tfrac{1}{3}\\right)^{6-k}=\\dfrac{\\binom{6}{k}2^{k}}{3^{6}}$, the even outcomes carry weights $\\binom{6}{0}2^{0}=1,\\ \\binom{6}{2}2^{2}=60,\\ \\binom{6}{4}2^{4}=240,\\ \\binom{6}{6}2^{6}=64$, summing to $365$. Hence $P(X=4\\mid X\\text{ even})=\\dfrac{240}{365}=\\boxed{\\dfrac{48}{73}}$.",
+    "trap": "The seductive wrong answer is $\\dfrac{80}{243}$ (the unconditional $P(X=4)=\\binom{6}{4}(\\tfrac{2}{3})^{4}(\\tfrac{1}{3})^{2}$). It forgets to rescale: once you are told the count is even, the sample space shrinks to $\\{0,2,4,6\\}$ and every probability must be divided by $P(X\\text{ even})=\\tfrac{365}{729}$, not used raw. Another tempting slip is recomputing a \\emph{new} mode inside the even set and second-guessing whether $4$ still wins; it does, but the question pins $m$ to the original distribution.",
+    "solutions": [
+      {
+        "name": "Locate the mode, then condition",
+        "steps": [
+          "For a binomial with $n=6$ trials and success probability $p=\\tfrac{2}{3}$, the most probable value is $m=\\lfloor (n+1)p\\rfloor=\\lfloor 7\\cdot\\tfrac{2}{3}\\rfloor=\\lfloor 4.67\\rfloor=4$. Since $4$ is even, $\\{X=m\\}$ lies inside the conditioning event $\\{X\\text{ even}\\}$.",
+          "Write $P(X=k)=\\dfrac{\\binom{6}{k}2^{k}}{3^{6}}$. The even values give $\\dfrac{1}{729}+\\dfrac{60}{729}+\\dfrac{240}{729}+\\dfrac{64}{729}=\\dfrac{365}{729}$, so $P(X\\text{ even})=\\tfrac{365}{729}$.",
+          "Then $P(X=4\\mid X\\text{ even})=\\dfrac{P(X=4)}{P(X\\text{ even})}=\\dfrac{240/729}{365/729}=\\dfrac{240}{365}=\\dfrac{48}{73}.$"
+        ]
+      },
+      {
+        "name": "Weight ratios on the even set",
+        "steps": [
+          "All four even probabilities share the denominator $3^{6}=729$, so the conditional probabilities depend only on the integer numerators $\\binom{6}{k}2^{k}$ for $k=0,2,4,6$.",
+          "These are $1,\\ 60,\\ 240,\\ 64$, with total $365$. The mode $m=4$ contributes the weight $240$.",
+          "Therefore $P(X=4\\mid X\\text{ even})=\\dfrac{240}{1+60+240+64}=\\dfrac{240}{365}=\\dfrac{48}{73}.$"
+        ]
+      }
+    ],
+    "remark": "**Insight.** Two independent facts must click together. **First**, the mode of a binomial is read off from $\\lfloor(n+1)p\\rfloor$, giving $m=4$ — and crucially $4$ is **even**, so it survives the conditioning at all. **Second**, conditioning on \"even\" does not change which value is likeliest; it only **rescales** the four surviving probabilities by their common total. Because every even term carries the same $3^{6}$ denominator, the whole problem collapses to comparing the integers $\\binom{6}{k}2^{k}$ — a reminder that a clean conditional probability is often just a ratio of weights, not a fresh distribution to rebuild."
+  },
+  {
+    "theme": "binomdist",
+    "themeLabel": "Binomial: Mean, Variance & Mode",
+    "title": "Ten Fair Coins, At Least One Head",
+    "difficulty": 3,
+    "task": "Find the probability",
+    "tags": [
+      "binomial",
+      "at least one",
+      "complement",
+      "fair coin"
+    ],
+    "statement": "A fair coin is tossed $10$ times. Let $X$ be the number of heads, so $X\\sim B\\!\\left(10,\\tfrac12\\right)$. Find $P(X\\ge 1)$, the probability of getting at least one head.",
+    "answer": "$$P(X\\ge 1)=1-P(X=0)=1-\\left(\\tfrac12\\right)^{10}=\\boxed{\\dfrac{1023}{1024}}.$$",
+    "trap": "A tempting wrong answer is $10\\cdot\\tfrac12\\cdot\\left(\\tfrac12\\right)^{9}=\\tfrac{10}{1024}=\\tfrac{5}{512}$, which is $P(X=1)$ (exactly one head), not $P(X\\ge 1)$. \"At least one\" means $X\\ge 1$, whose clean route is the complement $1-P(X=0)$, far larger than $P(X=1)$.",
+    "solutions": [
+      {
+        "name": "Complement of zero successes",
+        "steps": [
+          "For $X\\sim B(10,\\tfrac12)$, $P(X=0)=\\binom{10}{0}\\left(\\tfrac12\\right)^{0}\\left(\\tfrac12\\right)^{10}=\\dfrac{1}{1024}$.",
+          "Hence $P(X\\ge 1)=1-P(X=0)=1-\\dfrac{1}{1024}=\\dfrac{1023}{1024}$."
+        ]
+      },
+      {
+        "name": "Direct binomial sum",
+        "steps": [
+          "$P(X\\ge1)=\\displaystyle\\sum_{k=1}^{10}\\binom{10}{k}\\left(\\tfrac12\\right)^{10}=\\dfrac{1}{1024}\\sum_{k=1}^{10}\\binom{10}{k}$.",
+          "Since $\\sum_{k=0}^{10}\\binom{10}{k}=2^{10}=1024$, the sum from $k=1$ is $1024-1=1023$, giving $\\dfrac{1023}{1024}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The phrase **at least one** is the universal flag for the **complement**: $P(X\\ge1)=1-P(X=0)=1-q^{n}$. Computing the single term $q^{n}$ is trivial, whereas summing all $10$ positive cases is wasteful. Confusing **at least one** with **exactly one** is the classic slip."
+  },
+  {
+    "theme": "binomdist",
+    "themeLabel": "Binomial: Mean, Variance & Mode",
+    "title": "Six Dice, Expected Number of Sixes",
+    "difficulty": 3,
+    "task": "Find the mean",
+    "tags": [
+      "binomial",
+      "mean np",
+      "dice",
+      "expectation"
+    ],
+    "statement": "Six fair dice are rolled together. Let $X$ be the number of dice that show a six. Find the mean (expected value) of $X$.",
+    "answer": "$$X\\sim B\\!\\left(6,\\tfrac16\\right)\\quad\\Rightarrow\\quad E[X]=np=6\\cdot\\tfrac16=\\boxed{1}.$$",
+    "trap": "A seductive wrong answer is the variance $npq=6\\cdot\\tfrac16\\cdot\\tfrac56=\\tfrac56$, mistaken for the mean. The mean is $np=1$; $npq=\\tfrac56$ measures spread, not the average count of sixes.",
+    "solutions": [
+      {
+        "name": "Binomial mean formula",
+        "steps": [
+          "Each die independently shows a six with probability $p=\\tfrac16$, so $X\\sim B(6,\\tfrac16)$.",
+          "The mean of a binomial is $np=6\\cdot\\tfrac16=1$."
+        ]
+      },
+      {
+        "name": "Linearity of expectation",
+        "steps": [
+          "Let $X_i=1$ if die $i$ shows a six, else $0$; then $E[X_i]=\\tfrac16$ and $X=\\sum_{i=1}^{6}X_i$.",
+          "By linearity, $E[X]=\\sum_{i=1}^{6}E[X_i]=6\\cdot\\tfrac16=1$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The binomial **mean is always $np$** — no factorials needed. The indicator-sum proof shows why: it is just the count of independent trials times the per-trial chance. The trap of writing $npq$ for the mean confuses the centre of the distribution with its **variance**."
+  },
+  {
+    "theme": "binomdist",
+    "themeLabel": "Binomial: Mean, Variance & Mode",
+    "title": "From Mean and Variance to the Mode",
+    "difficulty": 4,
+    "task": "Find the mode",
+    "tags": [
+      "binomial",
+      "mode",
+      "recover parameters",
+      "variance"
+    ],
+    "statement": "A binomial variable $X\\sim B(n,p)$ has mean $2$ and variance $1.6$. First find $n$ and $p$, then determine the most probable value (mode) of $X$.",
+    "answer": "$$q=\\tfrac{1.6}{2}=\\tfrac45,\\ p=\\tfrac15,\\ n=\\tfrac{2}{1/5}=10.\\ \\text{Mode}=\\lfloor(n+1)p\\rfloor=\\big\\lfloor 11\\cdot\\tfrac15\\big\\rfloor=\\lfloor2.2\\rfloor=\\boxed{2}.$$",
+    "trap": "A seductive wrong answer is to take the mode as $np=2$ \"by definition,\" which here coincidentally gives $2$ — but the correct rule is $\\lfloor(n+1)p\\rfloor$. The deeper trap is mis-recovering parameters: reading $\\tfrac{1.6}{2}=0.8$ as $p$ would give $n=2.5$ (non-integer, impossible). Here $q=0.8$, so $p=\\tfrac15$, $n=10$.",
+    "solutions": [
+      {
+        "name": "Recover parameters then apply mode rule",
+        "steps": [
+          "$\\dfrac{\\text{variance}}{\\text{mean}}=q=\\dfrac{1.6}{2}=\\dfrac45$, so $p=\\dfrac15$ and $n=\\dfrac{2}{1/5}=10$, giving $X\\sim B(10,\\tfrac15)$.",
+          "The mode is $\\lfloor(n+1)p\\rfloor=\\lfloor11\\cdot\\tfrac15\\rfloor=\\lfloor2.2\\rfloor=2$; since $(n+1)p=2.2$ is not an integer, the mode is unique."
+        ]
+      },
+      {
+        "name": "Consecutive-ratio confirmation",
+        "steps": [
+          "With $n=10,\\,p=\\tfrac15$: $\\dfrac{P(X=k)}{P(X=k-1)}=\\dfrac{11-k}{k}\\cdot\\dfrac{1/5}{4/5}=\\dfrac{11-k}{4k}$.",
+          "This ratio exceeds $1$ for $k\\le2$ (e.g. $k=2:\\tfrac{9}{8}>1$) and falls below $1$ for $k\\ge3$ ($k=3:\\tfrac{8}{12}<1$), so $P(X=k)$ peaks at $k=2$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Two ideas chain here: variance$/$mean $=q$ recovers $(n,p)$, then the mode is $\\lfloor(n+1)p\\rfloor$ — **not** $np$. They agree here only by coincidence ($2.2$ floors to $2$); the ratio test confirms the genuine peak. Mis-reading $q$ as $p$ would have produced a fractional $n$, an immediate red flag."
+  },
+  {
+    "theme": "binomdist",
+    "themeLabel": "Binomial: Mean, Variance & Mode",
+    "title": "Recover n and p from Mean and Variance",
+    "difficulty": 4,
+    "task": "Find n and p",
+    "tags": [
+      "binomial",
+      "recover parameters",
+      "mean",
+      "variance"
+    ],
+    "statement": "A binomial variable $X\\sim B(n,p)$ has mean $4$ and variance $2.4$. Determine $n$ and $p$, and hence state the number of trials.",
+    "answer": "$$np=4,\\quad npq=2.4\\ \\Rightarrow\\ q=\\tfrac{npq}{np}=\\tfrac{2.4}{4}=\\tfrac35,\\ p=\\tfrac25,\\ n=\\tfrac{4}{2/5}=\\boxed{n=10,\\ p=\\tfrac25}.$$",
+    "trap": "A common wrong answer is $q=\\tfrac{2.4}{4}=0.6$ taken as $p$ (reading variance$/$mean as the success probability). But $\\tfrac{npq}{np}=q$, the FAILURE probability; the success probability is $p=1-q=\\tfrac25$, giving $n=10$, not the $n=\\tfrac{4}{0.6}$ a wrong $p$ would yield.",
+    "solutions": [
+      {
+        "name": "Ratio of variance to mean",
+        "steps": [
+          "Divide: $\\dfrac{\\text{variance}}{\\text{mean}}=\\dfrac{npq}{np}=q=\\dfrac{2.4}{4}=\\dfrac35$.",
+          "So $p=1-q=\\dfrac25$, and from $np=4$, $n=\\dfrac{4}{2/5}=10$."
+        ]
+      },
+      {
+        "name": "Solve the system directly",
+        "steps": [
+          "From $np=4$ write $p=\\tfrac4n$; substitute into $np(1-p)=2.4$: $4\\left(1-\\tfrac4n\\right)=2.4$.",
+          "Then $1-\\tfrac4n=0.6\\Rightarrow\\tfrac4n=0.4\\Rightarrow n=10$, hence $p=\\tfrac{4}{10}=\\tfrac25$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The single most useful identity for parameter recovery is $\\dfrac{\\text{variance}}{\\text{mean}}=q$. Because variance $npq$ is always smaller than mean $np$, their ratio is the **failure** probability — never confuse it with $p$. One division hands you $q$, and the rest follows."
+  },
+  {
+    "theme": "binomdist",
+    "themeLabel": "Binomial: Mean, Variance & Mode",
+    "title": "Eight Trials, the Two-Peaked Mode",
+    "difficulty": 4,
+    "task": "Find the mode",
+    "tags": [
+      "binomial",
+      "mode",
+      "two modes",
+      "most probable"
+    ],
+    "statement": "A biased coin shows heads with probability $\\tfrac13$ and is tossed $8$ times. Let $X$ be the number of heads, $X\\sim B\\!\\left(8,\\tfrac13\\right)$. Find the most probable number of heads (the mode of $X$).",
+    "answer": "$$(n+1)p=9\\cdot\\tfrac13=3\\ \\text{(an integer)}\\Rightarrow X\\ \\text{has two modes}\\ \\boxed{X=2\\ \\text{and}\\ X=3}.$$",
+    "trap": "The seductive wrong answer is to round the mean $np=8\\cdot\\tfrac13=\\tfrac83\\approx2.67$ up to a single mode $X=3$. But when $(n+1)p$ is an integer, the distribution is FLAT at the top: $P(X=2)=P(X=3)$, so there are TWO equally most-probable values, not one.",
+    "solutions": [
+      {
+        "name": "Consecutive-ratio test",
+        "steps": [
+          "Compute $\\dfrac{P(X=k)}{P(X=k-1)}=\\dfrac{n-k+1}{k}\\cdot\\dfrac{p}{q}=\\dfrac{9-k}{k}\\cdot\\dfrac{1/3}{2/3}=\\dfrac{9-k}{2k}$.",
+          "This ratio equals $1$ when $9-k=2k$, i.e. $k=3$; so $P(X=3)=P(X=2)$ and the ratio exceeds $1$ for $k<3$, is below $1$ for $k>3$. Both $X=2$ and $X=3$ are modes."
+        ]
+      },
+      {
+        "name": "The $(n+1)p$ rule",
+        "steps": [
+          "The mode of $B(n,p)$ is $\\lfloor(n+1)p\\rfloor$, but when $(n+1)p$ is an integer $m$, both $m-1$ and $m$ are modes.",
+          "Here $(n+1)p=9\\cdot\\tfrac13=3$ is an integer, so the modes are $m-1=2$ and $m=3$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The mode lives at $\\lfloor(n+1)p\\rfloor$, NOT at $np$. The decisive case is when $(n+1)p$ is a whole number: the top of the distribution is a **plateau** of two equal heights. Verifying $P(X{=}2)=P(X{=}3)$ exactly confirms the twin mode."
+  },
+  {
+    "theme": "binomdist",
+    "themeLabel": "Binomial: Mean, Variance & Mode",
+    "title": "Ratio of Two Consecutive Probabilities",
+    "difficulty": 4,
+    "task": "Find the ratio",
+    "tags": [
+      "binomial",
+      "consecutive ratio",
+      "fair coin",
+      "combinatorics"
+    ],
+    "statement": "A fair coin is tossed $5$ times and $X\\sim B\\!\\left(5,\\tfrac12\\right)$ counts the heads. Find the ratio $\\dfrac{P(X=2)}{P(X=1)}$.",
+    "answer": "$$\\dfrac{P(X=2)}{P(X=1)}=\\dfrac{\\binom{5}{2}}{\\binom{5}{1}}=\\dfrac{10}{5}=\\boxed{2}.$$",
+    "trap": "A tempting wrong answer is $\\tfrac12$, obtained by writing $\\dfrac{P(X=1)}{P(X=2)}$ upside down, or by only comparing the powers $\\left(\\tfrac12\\right)^{5}$ (which are equal for a fair coin) and forgetting the binomial coefficients. The factor that actually matters is $\\binom{5}{2}/\\binom{5}{1}=2$.",
+    "solutions": [
+      {
+        "name": "Cancel the equal powers",
+        "steps": [
+          "For a fair coin $P(X=k)=\\binom{5}{k}\\left(\\tfrac12\\right)^{5}$, so the $\\left(\\tfrac12\\right)^{5}$ factors cancel in the ratio.",
+          "Thus $\\dfrac{P(X=2)}{P(X=1)}=\\dfrac{\\binom{5}{2}}{\\binom{5}{1}}=\\dfrac{10}{5}=2$."
+        ]
+      },
+      {
+        "name": "General consecutive-ratio identity",
+        "steps": [
+          "$\\dfrac{P(X=k)}{P(X=k-1)}=\\dfrac{n-k+1}{k}\\cdot\\dfrac{p}{q}$; with $n=5,\\,k=2,\\,p=q=\\tfrac12$ the factor $\\tfrac pq=1$.",
+          "So the ratio is $\\dfrac{5-2+1}{2}\\cdot1=\\dfrac{4}{2}=2$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The bridge between adjacent binomial probabilities is $\\dfrac{P(k)}{P(k-1)}=\\dfrac{n-k+1}{k}\\cdot\\dfrac{p}{q}$. For a fair coin $p/q=1$, so the ratio is purely the **combinatorial** $\\binom nk/\\binom n{k-1}$. Inverting the fraction is the easiest mistake here."
+  },
+  {
+    "theme": "binomdist",
+    "themeLabel": "Binomial: Mean, Variance & Mode",
+    "title": "Variance of a Hundred Fair Tosses",
+    "difficulty": 5,
+    "task": "Find the variance",
+    "tags": [
+      "binomial",
+      "variance npq",
+      "standard deviation",
+      "fair coin"
+    ],
+    "statement": "A fair coin is tossed $100$ times; let $X$ be the number of heads. Compute the variance of $X$, and state its standard deviation.",
+    "answer": "$$X\\sim B\\!\\left(100,\\tfrac12\\right):\\ \\operatorname{Var}(X)=npq=100\\cdot\\tfrac12\\cdot\\tfrac12=\\boxed{25},\\quad \\text{s.d.}=\\sqrt{25}=5.$$",
+    "trap": "A seductive wrong answer is $50$, the value of the mean $np=100\\cdot\\tfrac12$, mistaken for the variance. Another slip is $\\sqrt{50}$. The variance is $npq=25$ and the standard deviation is its square root, $5$ — not the mean and not $\\sqrt{np}$.",
+    "solutions": [
+      {
+        "name": "Variance formula npq",
+        "steps": [
+          "With $n=100$, $p=\\tfrac12$, $q=\\tfrac12$, the binomial variance is $npq=100\\cdot\\tfrac12\\cdot\\tfrac12=25$.",
+          "The standard deviation is $\\sqrt{\\operatorname{Var}(X)}=\\sqrt{25}=5$."
+        ]
+      },
+      {
+        "name": "Sum of independent indicators",
+        "steps": [
+          "Write $X=\\sum_{i=1}^{100}X_i$ with independent indicators, each $\\operatorname{Var}(X_i)=p(1-p)=\\tfrac14$.",
+          "By independence variances add: $\\operatorname{Var}(X)=100\\cdot\\tfrac14=25$, so the s.d. is $5$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Mean and variance of a binomial are different quantities: $np$ centres the distribution, $npq$ spreads it. The indicator decomposition shows variance **adds** across independent trials — each contributing $pq=\\tfrac14$ for a fair coin. Reaching for $np$ when asked for spread is the trap."
+  },
+  {
+    "theme": "binomdist",
+    "themeLabel": "Binomial: Mean, Variance & Mode",
+    "title": "How Many Throws to Almost Surely Hit",
+    "difficulty": 5,
+    "task": "Find the smallest n",
+    "tags": [
+      "binomial",
+      "at least one",
+      "complement",
+      "inequality"
+    ],
+    "statement": "An archer hits the bull's-eye on each independent shot with probability $\\tfrac14$. He fires $n$ shots and $X\\sim B\\!\\left(n,\\tfrac14\\right)$ counts his hits. Find the smallest number of shots $n$ for which the probability of at least one bull's-eye is at least $0.9$.",
+    "answer": "$$P(X\\ge1)=1-\\left(\\tfrac34\\right)^{n}\\ge0.9\\iff\\left(\\tfrac34\\right)^{n}\\le0.1.\\ \\left(\\tfrac34\\right)^{8}=0.1001>0.1,\\ \\left(\\tfrac34\\right)^{9}=0.075\\le0.1\\Rightarrow\\boxed{n=9}.$$",
+    "trap": "A seductive wrong answer is $n=8$. Because $\\left(\\tfrac34\\right)^{8}=0.10011\\ldots$ is just ABOVE $0.1$, eight shots give $P(X\\ge1)=0.8999<0.9$. Treating $\\left(\\tfrac34\\right)^{8}\\approx0.1$ as \"close enough\" is an off-by-one error; the inequality is strict so $n=9$ is required.",
+    "solutions": [
+      {
+        "name": "Complement inequality",
+        "steps": [
+          "$P(X\\ge1)=1-P(X=0)=1-\\left(\\tfrac34\\right)^{n}$; require $1-\\left(\\tfrac34\\right)^{n}\\ge0.9$, i.e. $\\left(\\tfrac34\\right)^{n}\\le0.1$.",
+          "Check successive $n$: $\\left(\\tfrac34\\right)^{8}=\\tfrac{6561}{65536}\\approx0.1001>0.1$ fails, while $\\left(\\tfrac34\\right)^{9}\\approx0.0751\\le0.1$ holds. Smallest $n=9$."
+        ]
+      },
+      {
+        "name": "Logarithmic bound",
+        "steps": [
+          "Take logs: $n\\ln\\tfrac34\\le\\ln0.1$, and since $\\ln\\tfrac34<0$ this gives $n\\ge\\dfrac{\\ln0.1}{\\ln0.75}=\\dfrac{-2.3026}{-0.2877}\\approx8.004$.",
+          "The least integer $n\\ge8.004$ is $n=9$ (the bound exceeds $8$, so $8$ is insufficient)."
+        ]
+      }
+    ],
+    "remark": "**Insight.** \"At least one\" again routes through the **complement** $q^{n}$, turning the requirement into $q^{n}\\le1-0.9$. The whole problem hinges on a single boundary check: $\\left(\\tfrac34\\right)^{8}$ sits a hair above $0.1$, so the honest answer is $9$, not the $8$ a careless approximation suggests."
+  },
+  {
+    "theme": "binomdist",
+    "themeLabel": "Binomial: Mean, Variance & Mode",
+    "title": "Second Moment of Ten Fair Tosses",
+    "difficulty": 5,
+    "task": "Find E[X^2]",
+    "tags": [
+      "binomial",
+      "second moment",
+      "variance",
+      "expectation"
+    ],
+    "statement": "A fair coin is tossed $10$ times and $X\\sim B\\!\\left(10,\\tfrac12\\right)$ counts heads. Find $E\\!\\left[X^{2}\\right]$.",
+    "answer": "$$E[X^2]=\\operatorname{Var}(X)+\\big(E[X]\\big)^2=npq+(np)^2=\\tfrac{10}{4}+25=\\boxed{\\dfrac{55}{2}}.$$",
+    "trap": "A seductive wrong answer is $25=(np)^2$, from assuming $E[X^2]=\\big(E[X]\\big)^2$. That equality holds only for a constant random variable; in general $E[X^2]=\\operatorname{Var}(X)+(E[X])^2$, so the variance term $npq=\\tfrac{10}{4}$ must be ADDED, giving $\\tfrac{55}{2}$.",
+    "solutions": [
+      {
+        "name": "Variance identity",
+        "steps": [
+          "Use $\\operatorname{Var}(X)=E[X^2]-(E[X])^2$, so $E[X^2]=\\operatorname{Var}(X)+(E[X])^2$.",
+          "Here $E[X]=np=5$ and $\\operatorname{Var}(X)=npq=10\\cdot\\tfrac12\\cdot\\tfrac12=\\tfrac52$, giving $E[X^2]=\\tfrac52+25=\\tfrac{55}{2}$."
+        ]
+      },
+      {
+        "name": "Falling-factorial expectation",
+        "steps": [
+          "$E[X(X-1)]=n(n-1)p^2=10\\cdot9\\cdot\\tfrac14=\\tfrac{90}{4}=\\tfrac{45}{2}$ and $E[X]=np=5$.",
+          "Then $E[X^2]=E[X(X-1)]+E[X]=\\tfrac{45}{2}+5=\\tfrac{45}{2}+\\tfrac{10}{2}=\\tfrac{55}{2}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The second moment is never just $(E[X])^2$ — the gap between them IS the variance. Two routes agree: add $npq$ to $(np)^2$, or use $E[X(X-1)]=n(n-1)p^2$. Both deliver $\\tfrac{55}{2}$, exposing the $E[X^2]=(E[X])^2$ shortcut as false."
+  },
+  {
+    "theme": "binomdist",
+    "themeLabel": "Binomial: Mean, Variance & Mode",
+    "title": "Smallest n Giving a Twin Mode",
+    "difficulty": 5,
+    "task": "Find the smallest n",
+    "tags": [
+      "binomial",
+      "mode",
+      "two modes",
+      "integer condition"
+    ],
+    "statement": "A spinner lands on a winning sector with probability $\\tfrac14$ on each independent spin. It is spun $n$ times and $X\\sim B\\!\\left(n,\\tfrac14\\right)$ counts the wins. Find the smallest $n\\ge1$ for which $X$ has two (equal) most-probable values, and name those two modes.",
+    "answer": "$$\\text{Two modes}\\iff(n+1)p=\\tfrac{n+1}{4}\\in\\mathbb{Z}\\iff 4\\mid(n+1).\\ \\text{Smallest }n=3?\\ (n{+}1)p=1\\Rightarrow\\text{modes }0,1;\\ \\text{but }n\\ge1\\text{ and }n=3\\text{ gives modes }\\boxed{n=3,\\ \\text{modes }0\\text{ and }1}.$$",
+    "trap": "A seductive wrong answer is $n=7$ (modes $1$ and $2$), got by demanding the smaller mode be a positive win count and overlooking $n=3$. But $(n+1)p$ integer first occurs at $n=3$, where $(n+1)p=1$ makes $P(X=0)=P(X=1)$ — a perfectly valid twin mode at $0$ and $1$.",
+    "solutions": [
+      {
+        "name": "Integer condition on (n+1)p",
+        "steps": [
+          "$B(n,p)$ has two modes exactly when $(n+1)p$ is an integer; here $(n+1)p=\\tfrac{n+1}{4}$, integer iff $4\\mid(n+1)$.",
+          "The smallest such $n\\ge1$ is $n=3$, where $(n+1)p=1$, so the modes are $1-1=0$ and $1$."
+        ]
+      },
+      {
+        "name": "Direct check at n=3",
+        "steps": [
+          "For $n=3,\\,p=\\tfrac14$: $P(X=0)=\\left(\\tfrac34\\right)^3=\\tfrac{27}{64}$ and $P(X=1)=\\binom31\\tfrac14\\left(\\tfrac34\\right)^2=\\tfrac{27}{64}$.",
+          "These are equal and exceed $P(X=2)=\\tfrac{9}{64}$, so $X$ is bimodal with modes $0$ and $1$; no smaller $n$ works since $n=1,2$ give $(n+1)p=\\tfrac12,\\tfrac34\\notin\\mathbb Z$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A binomial is bimodal precisely when $(n+1)p\\in\\mathbb Z$, and the lower mode can be $0$. The trap is insisting both modes be \"real wins\" and skipping to $n=7$; the honest smallest case is $n=3$, where $P(X{=}0)=P(X{=}1)$ exactly."
+  },
+  {
+    "theme": "expectation",
+    "themeLabel": "Random Variables & Expectation",
+    "title": "Record-Breaking Heights",
+    "difficulty": 3,
+    "task": "Evaluate",
+    "tags": [
+      "linearity",
+      "indicator",
+      "records",
+      "permutations",
+      "harmonic"
+    ],
+    "statement": "Ten people of distinct heights walk past a window one at a time in a uniformly random order. An observer shouts \"new record!\" each time the person currently passing is taller than everyone seen so far (the very first person always triggers a shout). Let $R$ be the total number of shouts. Evaluate $E[R]$.",
+    "answer": "\\[\\boxed{\\dfrac{7381}{2520}}\\]",
+    "trap": "Trying to count permutations by the value of $R$ (the brute permutation count) and summing $k\\,P(R=k)$. It works but is needless agony; worse, many students guess the records are 'rare' and underestimate, or assume the record-events at different positions are independent (they are not) and fumble the count. Linearity needs no such count.",
+    "solutions": [
+      {
+        "name": "Indicator per position",
+        "steps": [
+          "Let $I_k=\\mathbf 1[\\text{the } k\\text{-th person is a new record}]$, so $R=\\sum_{k=1}^{10} I_k$.",
+          "The $k$-th person is a record iff, among the first $k$ people, the tallest happens to be in position $k$. By symmetry each of those $k$ is equally likely to be the tallest, so $P(I_k=1)=\\frac1k$.",
+          "By linearity $E[R]=\\sum_{k=1}^{10}\\frac1k=H_{10}$.",
+          "$H_{10}=1+\\tfrac12+\\cdots+\\tfrac1{10}=\\boxed{\\dfrac{7381}{2520}}\\approx2.929$."
+        ]
+      },
+      {
+        "name": "Insertion recursion",
+        "steps": [
+          "Let $a_n=E[R]$ for $n$ people. Insert the shortest person into a uniformly random one of $n$ slots of a random arrangement of the other $n-1$: it is a record only if placed first (prob $\\frac1n$), contributing $\\frac1n$ on top of the records among the taller $n-1$.",
+          "So $a_n=a_{n-1}+\\frac1n$ with $a_1=1$, giving $a_n=H_n$ and $a_{10}=\\boxed{\\dfrac{7381}{2520}}$."
+        ]
+      }
+    ],
+    "remark": "Insight: the expected number of records grows like $\\ln n+\\gamma$ — agonizingly slowly. The clean $P(I_k)=\\frac1k$ comes purely from a symmetry over the first $k$ entries; the global ordering of the rest is irrelevant, which is exactly why linearity sidesteps the brute permutation count."
+  },
+  {
+    "theme": "expectation",
+    "themeLabel": "Random Variables & Expectation",
+    "title": "How Many Flavours in the Bag",
+    "difficulty": 3,
+    "task": "Find the number of",
+    "tags": [
+      "linearity",
+      "indicator",
+      "coupon-collector",
+      "complementary",
+      "distinct-count"
+    ],
+    "statement": "A vending machine dispenses one of $6$ equally likely sticker flavours each time, independently. A child presses the button $4$ times. Let $D$ be the number of distinct flavours among the $4$ stickers obtained. Find $E[D]$.",
+    "answer": "\\[\\boxed{\\dfrac{671}{216}}\\]",
+    "trap": "Summing $\\sum_d d\\,P(D=d)$ via the surjection count of how many of the $6^4$ sequences hit exactly $d$ flavours. It is correct but heavy, and students routinely botch the inclusion-exclusion. The indicator on each FLAVOUR (not on each press) collapses it instantly.",
+    "solutions": [
+      {
+        "name": "Indicator per flavour (complementary)",
+        "steps": [
+          "For flavour $f\\in\\{1,\\dots,6\\}$ let $J_f=\\mathbf 1[\\text{flavour } f \\text{ appears at least once}]$, so $D=\\sum_{f=1}^{6} J_f$.",
+          "$P(J_f=1)=1-P(f \\text{ never appears})=1-\\left(\\tfrac56\\right)^4$.",
+          "By linearity $E[D]=6\\left(1-\\left(\\tfrac56\\right)^4\\right)=6\\cdot\\dfrac{1296-625}{1296}=6\\cdot\\dfrac{671}{1296}$.",
+          "$E[D]=\\boxed{\\dfrac{671}{216}}\\approx3.106$."
+        ]
+      },
+      {
+        "name": "Newcomer per press",
+        "steps": [
+          "Let $N_k=\\mathbf 1[\\text{press } k \\text{ shows a flavour not seen in presses } 1..k-1]$; then $D=\\sum_{k=1}^4 N_k$, and $N_1=1$.",
+          "Press $k$ is a newcomer iff none of the previous $k-1$ presses matched its flavour; this has probability $\\left(\\tfrac56\\right)^{k-1}$, so $E[N_k]=\\left(\\tfrac56\\right)^{k-1}$.",
+          "$E[D]=\\sum_{k=1}^4\\left(\\tfrac56\\right)^{k-1}=\\dfrac{1-(5/6)^4}{1-5/6}=6\\left(1-\\left(\\tfrac56\\right)^4\\right)=\\boxed{\\dfrac{671}{216}}$."
+        ]
+      },
+      {
+        "name": "Surjection count by inclusion–exclusion",
+        "steps": [
+          "Count sequences of $4$ presses using exactly $d$ distinct flavours: choose the $d$ flavours in $\\binom6d$ ways, then map $4$ presses onto all $d$ of them surjectively in $S(d)=\\sum_{j=0}^{d}(-1)^j\\binom{d}{j}(d-j)^4$ ways.",
+          "So $P(D=d)=\\dfrac{\\binom6d\\,S(d)}{6^4}$, giving counts $S(1)=1,\\ S(2)=14,\\ S(3)=36,\\ S(4)=24$ and frequencies $6,210,720,360$ out of $1296$.",
+          "$E[D]=\\dfrac{1\\cdot6+2\\cdot210+3\\cdot720+4\\cdot360}{1296}=\\dfrac{6+420+2160+1440}{1296}=\\dfrac{4026}{1296}=\\boxed{\\dfrac{671}{216}}$ — same answer, far more labour."
+        ]
+      }
+    ],
+    "remark": "Insight: choosing the right object to index is everything — indicators on the $6$ flavours give a one-line answer, indicators on the $4$ presses give a (correct) geometric sum, and the brute surjection count gives a surjection-count slog. Same number $671/216$, vastly different labour. The distribution of $D$ over the $1296$ sequences is $(6,210,720,360)$ for $d=1,2,3,4$."
+  },
+  {
     "theme": "expectation",
     "themeLabel": "Random Variables & Expectation",
     "title": "The Honest Variance of Returned Hats",
@@ -1647,93 +2288,12 @@ window.PROBLEMS = [
       {
         "name": "Exact distribution (derangement count)",
         "steps": [
-          "$P(X=k)=\\frac1{k!}\\sum_{j=0}^{8-k}\\frac{(-1)^j}{j!}$; for large $8$ this is essentially a Poisson$(1)$ law, whose variance is $1$.",
+          "$P(X=k)=\\frac1{k!}\\sum_{j=0}^{8-k}\\frac{(-1)^j}{j!}$; for $n=8$ the exact variance works out to $1$.",
           "Direct enumeration over all $8!=40320$ permutations gives $E[X]=1$ and $E[X^2]=2$, so $\\operatorname{Var}(X)=\\boxed{1}$, confirming the indicator computation."
         ]
       }
     ],
     "remark": "Insight: a random permutation's fixed-point count has mean AND variance both equal to $1$ for every $n\\ge2$ — the size of the party is irrelevant. The whole problem is a trap for the reflex 'variance of a sum is the sum of variances', which silently assumes independence."
-  },
-  {
-    "theme": "expectation",
-    "themeLabel": "Random Variables & Expectation",
-    "title": "Record-Breaking Heights",
-    "difficulty": 3,
-    "task": "Evaluate",
-    "tags": [
-      "linearity",
-      "indicator",
-      "records",
-      "permutations",
-      "harmonic"
-    ],
-    "statement": "Ten people of distinct heights walk past a window one at a time in a uniformly random order. An observer shouts \"new record!\" each time the person currently passing is taller than everyone seen so far (the very first person always triggers a shout). Let $R$ be the total number of shouts. Evaluate $E[R]$.",
-    "answer": "\\[\\boxed{\\dfrac{7381}{2520}}\\]",
-    "trap": "Trying to count permutations by the value of $R$ (Stirling numbers of the first kind) and summing $k\\,P(R=k)$. It works but is needless agony; worse, many students guess the records are 'rare' and underestimate, or assume the record-events at different positions are independent (they are not) and fumble the count. Linearity needs no such count.",
-    "solutions": [
-      {
-        "name": "Indicator per position",
-        "steps": [
-          "Let $I_k=\\mathbf 1[\\text{the } k\\text{-th person is a new record}]$, so $R=\\sum_{k=1}^{10} I_k$.",
-          "The $k$-th person is a record iff, among the first $k$ people, the tallest happens to be in position $k$. By symmetry each of those $k$ is equally likely to be the tallest, so $P(I_k=1)=\\frac1k$.",
-          "By linearity $E[R]=\\sum_{k=1}^{10}\\frac1k=H_{10}$.",
-          "$H_{10}=1+\\tfrac12+\\cdots+\\tfrac1{10}=\\boxed{\\dfrac{7381}{2520}}\\approx2.929$."
-        ]
-      },
-      {
-        "name": "Insertion recursion",
-        "steps": [
-          "Let $a_n=E[R]$ for $n$ people. Insert the shortest person into a uniformly random one of $n$ slots of a random arrangement of the other $n-1$: it is a record only if placed first (prob $\\frac1n$), contributing $\\frac1n$ on top of the records among the taller $n-1$.",
-          "So $a_n=a_{n-1}+\\frac1n$ with $a_1=1$, giving $a_n=H_n$ and $a_{10}=\\boxed{\\dfrac{7381}{2520}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the expected number of records grows like $\\ln n+\\gamma$ — agonizingly slowly. The clean $P(I_k)=\\frac1k$ comes purely from a symmetry over the first $k$ entries; the global ordering of the rest is irrelevant, which is exactly why linearity sidesteps the Stirling-number count."
-  },
-  {
-    "theme": "expectation",
-    "themeLabel": "Random Variables & Expectation",
-    "title": "How Many Flavours in the Bag",
-    "difficulty": 3,
-    "task": "Find the number of",
-    "tags": [
-      "linearity",
-      "indicator",
-      "coupon-collector",
-      "complementary",
-      "distinct-count"
-    ],
-    "statement": "A vending machine dispenses one of $6$ equally likely sticker flavours each time, independently. A child presses the button $4$ times. Let $D$ be the number of distinct flavours among the $4$ stickers obtained. Find $E[D]$.",
-    "answer": "\\[\\boxed{\\dfrac{671}{216}}\\]",
-    "trap": "Summing $\\sum_d d\\,P(D=d)$ via the surjection / Stirling-number count of how many of the $6^4$ sequences hit exactly $d$ flavours. It is correct but heavy, and students routinely botch the inclusion-exclusion. The indicator on each FLAVOUR (not on each press) collapses it instantly.",
-    "solutions": [
-      {
-        "name": "Indicator per flavour (complementary)",
-        "steps": [
-          "For flavour $f\\in\\{1,\\dots,6\\}$ let $J_f=\\mathbf 1[\\text{flavour } f \\text{ appears at least once}]$, so $D=\\sum_{f=1}^{6} J_f$.",
-          "$P(J_f=1)=1-P(f \\text{ never appears})=1-\\left(\\tfrac56\\right)^4$.",
-          "By linearity $E[D]=6\\left(1-\\left(\\tfrac56\\right)^4\\right)=6\\cdot\\dfrac{1296-625}{1296}=6\\cdot\\dfrac{671}{1296}$.",
-          "$E[D]=\\boxed{\\dfrac{671}{216}}\\approx3.106$."
-        ]
-      },
-      {
-        "name": "Newcomer per press",
-        "steps": [
-          "Let $N_k=\\mathbf 1[\\text{press } k \\text{ shows a flavour not seen in presses } 1..k-1]$; then $D=\\sum_{k=1}^4 N_k$, and $N_1=1$.",
-          "Press $k$ is a newcomer iff none of the previous $k-1$ presses matched its flavour; this has probability $\\left(\\tfrac56\\right)^{k-1}$, so $E[N_k]=\\left(\\tfrac56\\right)^{k-1}$.",
-          "$E[D]=\\sum_{k=1}^4\\left(\\tfrac56\\right)^{k-1}=\\dfrac{1-(5/6)^4}{1-5/6}=6\\left(1-\\left(\\tfrac56\\right)^4\\right)=\\boxed{\\dfrac{671}{216}}$."
-        ]
-      },
-      {
-        "name": "Surjection / Stirling count (the trap, done right)",
-        "steps": [
-          "Count sequences of $4$ presses using exactly $d$ distinct flavours: choose the $d$ flavours in $\\binom6d$ ways, then map $4$ presses onto all $d$ of them surjectively in $S(d)=\\sum_{j=0}^{d}(-1)^j\\binom{d}{j}(d-j)^4$ ways.",
-          "So $P(D=d)=\\dfrac{\\binom6d\\,S(d)}{6^4}$, giving counts $S(1)=1,\\ S(2)=14,\\ S(3)=36,\\ S(4)=24$ and frequencies $6,210,720,360$ out of $1296$.",
-          "$E[D]=\\dfrac{1\\cdot6+2\\cdot210+3\\cdot720+4\\cdot360}{1296}=\\dfrac{6+420+2160+1440}{1296}=\\dfrac{4026}{1296}=\\boxed{\\dfrac{671}{216}}$ — same answer, far more labour."
-        ]
-      }
-    ],
-    "remark": "Insight: choosing the right object to index is everything — indicators on the $6$ flavours give a one-line answer, indicators on the $4$ presses give a (correct) geometric sum, and the brute surjection count gives a Stirling-number slog. Same number $671/216$, vastly different labour. The distribution of $D$ over the $1296$ sequences is $(6,210,720,360)$ for $d=1,2,3,4$."
   },
   {
     "theme": "expectation",
@@ -1821,6 +2381,79 @@ window.PROBLEMS = [
   {
     "theme": "expectation",
     "themeLabel": "Random Variables & Expectation",
+    "title": "Couples at the Round Table",
+    "difficulty": 4,
+    "task": "Evaluate",
+    "tags": [
+      "linearity",
+      "indicator",
+      "circular",
+      "adjacency",
+      "seating"
+    ],
+    "statement": "Five married couples (ten people) are seated uniformly at random around a circular table with ten distinct seats. Let $C$ be the number of couples seated in adjacent seats. Evaluate $E[C]$.",
+    "answer": "\\[\\boxed{\\dfrac{10}{9}}\\]",
+    "trap": "Using $P(\\text{a given couple adjacent})=\\frac1{10}$ as on a LINE (treating one seat as fixed and the partner needing the 'next' seat). On a CYCLE of $n$ seats a fixed person has TWO neighbours, so the adjacency probability is $\\frac{2}{n-1}=\\frac29$, not $\\frac1{10}$. Mishandling the circular geometry (and the rotational symmetry) underestimates the count.",
+    "solutions": [
+      {
+        "name": "Indicator per couple",
+        "steps": [
+          "Let $A_c=\\mathbf 1[\\text{couple } c \\text{ sits in adjacent seats}]$, so $C=\\sum_{c=1}^5 A_c$.",
+          "Fix one partner of couple $c$ anywhere; the other partner occupies one of the remaining $9$ seats uniformly, and exactly $2$ of them (the two cyclic neighbours) are adjacent. So $P(A_c=1)=\\frac29$.",
+          "By linearity $E[C]=5\\cdot\\frac29=\\boxed{\\dfrac{10}{9}}\\approx1.111$."
+        ]
+      },
+      {
+        "name": "Counting adjacent edges",
+        "steps": [
+          "The cycle has $10$ unordered adjacent seat-pairs (edges). A uniformly random seating makes each specific pair of PEOPLE equally likely to occupy any given edge.",
+          "For one edge, $P(\\text{its two occupants form a couple})=\\frac{5 \\text{ couples}}{\\binom{10}{2}}=\\frac5{45}=\\frac19$.",
+          "By linearity over the $10$ edges, $E[C]=10\\cdot\\frac19=\\boxed{\\dfrac{10}{9}}$, matching the per-couple computation."
+        ]
+      }
+    ],
+    "remark": "Insight: the same expectation is reachable by indexing couples (each adjacent with prob $\\frac29$) or by indexing edges (each a couple with prob $\\frac19$) — $5\\cdot\\frac29=10\\cdot\\frac19$. The decisive subtlety is the factor $2$ from a cycle's two neighbours, the classic line-vs-circle adjacency trap."
+  },
+  {
+    "theme": "expectation",
+    "themeLabel": "Random Variables & Expectation",
+    "title": "The Largest of a Lottery Draw",
+    "difficulty": 4,
+    "task": "Evaluate",
+    "tags": [
+      "linearity",
+      "indicator",
+      "maximum",
+      "without replacement",
+      "tail-sum"
+    ],
+    "statement": "A $5$-element subset is chosen uniformly at random from $\\{1,2,\\dots,20\\}$ (sampling without replacement). Let $M$ be the largest element of the chosen subset. Evaluate $E[M]$.",
+    "answer": "\\[\\boxed{\\dfrac{35}{2}}\\]",
+    "trap": "Re-using the WITH-replacement / i.i.d. maximum machinery, e.g. claiming $P(M\\le m)=\\left(\\frac m{20}\\right)^5$. That is only valid for independent draws; for a uniform SUBSET (without replacement) the correct CDF is the without-replacement one $P(M\\le m)=\\binom m5/\\binom{20}5$. Treating the five picks as independent overcounts and gives the wrong mean $\\approx 17.146\\ne 17.5$.",
+    "solutions": [
+      {
+        "name": "Tail-sum with the without-replacement CDF",
+        "steps": [
+          "For a subset, $P(M\\le m)=\\dfrac{\\binom m5}{\\binom{20}5}$ (all $5$ chosen from $\\{1,\\dots,m\\}$), valid for $m\\ge5$.",
+          "$E[M]=\\sum_{m=1}^{20}P(M\\ge m)=\\sum_{m=1}^{20}\\Big(1-\\frac{\\binom{m-1}5}{\\binom{20}5}\\Big)=20-\\frac1{\\binom{20}5}\\sum_{m=1}^{20}\\binom{m-1}5$.",
+          "Hockey-stick: $\\sum_{m=1}^{20}\\binom{m-1}5=\\sum_{r=0}^{19}\\binom r5=\\binom{20}6$, and $\\frac{\\binom{20}6}{\\binom{20}5}=\\frac{20-5}{6}=\\frac{15}6=\\frac52$.",
+          "$E[M]=20-\\frac52=\\boxed{\\dfrac{35}{2}}=17.5$."
+        ]
+      },
+      {
+        "name": "Symmetry / gap argument",
+        "steps": [
+          "Place the $5$ chosen and $15$ unchosen items in a row $1..20$; by symmetry the $5$ chosen split the $15$ unchosen into $6$ gaps with equal expected size $\\frac{15}{6}=\\frac52$, where the last gap is the number of unchosen elements ABOVE $M$.",
+          "Thus $E[20-M]=\\frac52$ (expected count strictly above the maximum), giving $E[M]=20-\\frac52=\\boxed{\\dfrac{35}{2}}$.",
+          "Equivalently the general formula $E[M]=\\frac{k(N+1)}{k+1}=\\frac{5\\cdot21}{6}=\\frac{35}2$ confirms it."
+        ]
+      }
+    ],
+    "remark": "Insight: for a uniform $k$-subset of $\\{1,\\dots,N\\}$ the chosen elements partition the rest into $k+1$ equal-expectation gaps, so $E[\\max]=\\frac{k(N+1)}{k+1}$. The trap is importing the with-replacement maximum law; the without-replacement structure is what makes the elegant gap symmetry — and the hockey-stick collapse — possible."
+  },
+  {
+    "theme": "expectation",
+    "themeLabel": "Random Variables & Expectation",
     "title": "Two Shuffled Decks, Card for Card",
     "difficulty": 5,
     "task": "Find a,b",
@@ -1855,42 +2488,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: 'two independent shuffles' is a smokescreen — only the relative permutation matters, and matching two random orders is identical to counting fixed points of one uniform permutation. The variance trap ($12/13$ via false independence) is the whole point: the matches are positively correlated, and the extra $\\frac1{13}$ of total covariance restores the honest answer $\\operatorname{Var}(X)=1$. Note the answer is independent of the deck size $n\\ge2$."
-  },
-  {
-    "theme": "expectation",
-    "themeLabel": "Random Variables & Expectation",
-    "title": "Couples at the Round Table",
-    "difficulty": 4,
-    "task": "Evaluate",
-    "tags": [
-      "linearity",
-      "indicator",
-      "circular",
-      "adjacency",
-      "seating"
-    ],
-    "statement": "Five married couples (ten people) are seated uniformly at random around a circular table with ten distinct seats. Let $C$ be the number of couples seated in adjacent seats. Evaluate $E[C]$.",
-    "answer": "\\[\\boxed{\\dfrac{10}{9}}\\]",
-    "trap": "Using $P(\\text{a given couple adjacent})=\\frac1{10}$ as on a LINE (treating one seat as fixed and the partner needing the 'next' seat). On a CYCLE of $n$ seats a fixed person has TWO neighbours, so the adjacency probability is $\\frac{2}{n-1}=\\frac29$, not $\\frac1{10}$. Mishandling the circular geometry (and the rotational symmetry) underestimates the count.",
-    "solutions": [
-      {
-        "name": "Indicator per couple",
-        "steps": [
-          "Let $A_c=\\mathbf 1[\\text{couple } c \\text{ sits in adjacent seats}]$, so $C=\\sum_{c=1}^5 A_c$.",
-          "Fix one partner of couple $c$ anywhere; the other partner occupies one of the remaining $9$ seats uniformly, and exactly $2$ of them (the two cyclic neighbours) are adjacent. So $P(A_c=1)=\\frac29$.",
-          "By linearity $E[C]=5\\cdot\\frac29=\\boxed{\\dfrac{10}{9}}\\approx1.111$."
-        ]
-      },
-      {
-        "name": "Counting adjacent edges",
-        "steps": [
-          "The cycle has $10$ unordered adjacent seat-pairs (edges). A uniformly random seating makes each specific pair of PEOPLE equally likely to occupy any given edge.",
-          "For one edge, $P(\\text{its two occupants form a couple})=\\frac{5 \\text{ couples}}{\\binom{10}{2}}=\\frac5{45}=\\frac19$.",
-          "By linearity over the $10$ edges, $E[C]=10\\cdot\\frac19=\\boxed{\\dfrac{10}{9}}$, matching the per-couple computation."
-        ]
-      }
-    ],
-    "remark": "Insight: the same expectation is reachable by indexing couples (each adjacent with prob $\\frac29$) or by indexing edges (each a couple with prob $\\frac19$) — $5\\cdot\\frac29=10\\cdot\\frac19$. The decisive subtlety is the factor $2$ from a cycle's two neighbours, the classic line-vs-circle adjacency trap."
   },
   {
     "theme": "expectation",
@@ -1967,7 +2564,7 @@ window.PROBLEMS = [
         ]
       },
       {
-        "name": "Tail-sum over the maximum waiting time",
+        "name": "Tail-sum over the number of draws",
         "steps": [
           "By inclusion–exclusion, $P(T>t)=\\sum_{j=1}^{6}(-1)^{j+1}\\binom6j\\left(\\frac{6-j}6\\right)^t$ (probability some card is still missing after $t$ boxes).",
           "Then $E[T]=\\sum_{t\\ge0}P(T>t)=\\sum_{j=1}^6(-1)^{j+1}\\binom6j\\frac1{1-(6-j)/6}=\\sum_{j=1}^6(-1)^{j+1}\\binom6j\\frac6j$.",
@@ -1976,425 +2573,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: the coupon-collector wait $6H_6$ is dominated by the LAST card — the final phase alone has mean $6$. Linearity of expectation applies cleanly because the number of phases is a fixed $6$; the randomness lives entirely inside the geometric phase lengths."
-  },
-  {
-    "theme": "expectation",
-    "themeLabel": "Random Variables & Expectation",
-    "title": "The Largest of a Lottery Draw",
-    "difficulty": 4,
-    "task": "Evaluate",
-    "tags": [
-      "linearity",
-      "indicator",
-      "maximum",
-      "hypergeometric",
-      "tail-sum"
-    ],
-    "statement": "A $5$-element subset is chosen uniformly at random from $\\{1,2,\\dots,20\\}$ (sampling without replacement). Let $M$ be the largest element of the chosen subset. Evaluate $E[M]$.",
-    "answer": "\\[\\boxed{\\dfrac{35}{2}}\\]",
-    "trap": "Re-using the WITH-replacement / i.i.d. maximum machinery, e.g. claiming $P(M\\le m)=\\left(\\frac m{20}\\right)^5$. That is only valid for independent draws; for a uniform SUBSET (without replacement) the correct CDF is the hypergeometric $P(M\\le m)=\\binom m5/\\binom{20}5$. Treating the five picks as independent overcounts and gives the wrong mean $\\approx 17.146\\ne 17.5$.",
-    "solutions": [
-      {
-        "name": "Tail-sum with the correct hypergeometric CDF",
-        "steps": [
-          "For a subset, $P(M\\le m)=\\dfrac{\\binom m5}{\\binom{20}5}$ (all $5$ chosen from $\\{1,\\dots,m\\}$), valid for $m\\ge5$.",
-          "$E[M]=\\sum_{m=1}^{20}P(M\\ge m)=\\sum_{m=1}^{20}\\Big(1-\\frac{\\binom{m-1}5}{\\binom{20}5}\\Big)=20-\\frac1{\\binom{20}5}\\sum_{m=1}^{20}\\binom{m-1}5$.",
-          "Hockey-stick: $\\sum_{m=1}^{20}\\binom{m-1}5=\\sum_{r=0}^{19}\\binom r5=\\binom{20}6$, and $\\frac{\\binom{20}6}{\\binom{20}5}=\\frac{20-5}{6}=\\frac{15}6=\\frac52$.",
-          "$E[M]=20-\\frac52=\\boxed{\\dfrac{35}{2}}=17.5$."
-        ]
-      },
-      {
-        "name": "Symmetry / gap argument",
-        "steps": [
-          "Place the $5$ chosen and $15$ unchosen items in a row $1..20$; by symmetry the $5$ chosen split the $15$ unchosen into $6$ gaps with equal expected size $\\frac{15}{6}=\\frac52$, where the last gap is the number of unchosen elements ABOVE $M$.",
-          "Thus $E[20-M]=\\frac52$ (expected count strictly above the maximum), giving $E[M]=20-\\frac52=\\boxed{\\dfrac{35}{2}}$.",
-          "Equivalently the general formula $E[M]=\\frac{k(N+1)}{k+1}=\\frac{5\\cdot21}{6}=\\frac{35}2$ confirms it."
-        ]
-      }
-    ],
-    "remark": "Insight: for a uniform $k$-subset of $\\{1,\\dots,N\\}$ the chosen elements partition the rest into $k+1$ equal-expectation gaps, so $E[\\max]=\\frac{k(N+1)}{k+1}$. The trap is importing the with-replacement maximum law; the without-replacement structure is what makes the elegant gap symmetry — and the hockey-stick collapse — possible."
-  },
-  {
-    "theme": "recurrence",
-    "themeLabel": "Recursive & Markov Probability",
-    "title": "The Lopsided Ladder",
-    "difficulty": 3,
-    "task": "Determine",
-    "tags": [
-      "gambler's ruin",
-      "first-step analysis",
-      "recurrence",
-      "biased walk"
-    ],
-    "statement": "A counter sits on rung $3$ of a ladder whose rungs are labelled $0,1,\\dots,7$. At each tick it climbs one rung with probability $\\tfrac{2}{3}$ and slips down one rung with probability $\\tfrac{1}{3}$, independently. The counter stops the instant it reaches rung $0$ (it shatters) or rung $7$ (it escapes). Determine the probability that the counter escapes.",
-    "answer": "\\[\\boxed{\\dfrac{112}{127}}\\]",
-    "trap": "Writing $h(k)=\\tfrac{2}{3}h(k+1)+\\tfrac{1}{3}h(k-1)$ but then 'simplifying' it to the symmetric answer $k/N=3/7$ — that linear interpolation is only correct for a fair walk. With a bias the homogeneous recurrence has characteristic roots $1$ and $r=q/p=\\tfrac12$, so the solution is geometric, $h(k)=\\frac{1-r^k}{1-r^N}$, not linear.",
-    "solutions": [
-      {
-        "name": "Characteristic-root recurrence",
-        "steps": [
-          "Let $h(k)$ be the escape probability from rung $k$, with boundary $h(0)=0,\\ h(7)=1$.",
-          "First-step analysis gives $h(k)=\\tfrac{2}{3}h(k+1)+\\tfrac{1}{3}h(k-1)$ for $1\\le k\\le 6$.",
-          "The characteristic equation $\\tfrac23 x^2 - x + \\tfrac13=0$ has roots $x=1$ and $x=r=\\tfrac13/\\tfrac23=\\tfrac12$, so $h(k)=A+B\\left(\\tfrac12\\right)^k$.",
-          "Boundary conditions: $A+B=0$ and $A+B\\,r^{7}=1$, giving $A=\\frac{1}{1-r^{7}}$, $B=-A$.",
-          "Hence $h(k)=\\dfrac{1-r^{k}}{1-r^{7}}$, and $h(3)=\\dfrac{1-(1/2)^3}{1-(1/2)^7}=\\dfrac{7/8}{127/128}=\\boxed{\\dfrac{112}{127}}$."
-        ]
-      },
-      {
-        "name": "Martingale (optional stopping)",
-        "steps": [
-          "Since each step multiplies the 'odds quantity' $r^{S}$ with $r=\\tfrac12$, $M_n=r^{S_n}$ is a martingale: $\\mathbb E[r^{S+1}\\cdot\\tfrac23 + r^{S-1}\\cdot\\tfrac13]=r^{S}(\\tfrac23 r+\\tfrac13 r^{-1})=r^{S}$.",
-          "By optional stopping at the absorbing time $T$, $\\mathbb E[r^{S_T}]=r^{S_0}=r^{3}$.",
-          "With $P=\\Pr(\\text{escape})$: $P\\,r^{7}+(1-P)\\,r^{0}=r^{3}$.",
-          "Solve: $P=\\dfrac{1-r^{3}}{1-r^{7}}=\\dfrac{1-1/8}{1-1/128}=\\boxed{\\dfrac{112}{127}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the bias turns the linear ladder of a fair walk into a geometric one. The 'natural coordinate' is $r^{S}$, not $S$, because that combination is conserved in expectation."
-  },
-  {
-    "theme": "recurrence",
-    "themeLabel": "Recursive & Markov Probability",
-    "title": "Waiting for HTH",
-    "difficulty": 3,
-    "task": "Evaluate",
-    "tags": [
-      "pattern waiting time",
-      "absorbing chain",
-      "first-step analysis",
-      "overlap"
-    ],
-    "statement": "A fair coin is tossed repeatedly. Let $T$ be the number of tosses until the pattern $\\mathrm{HTH}$ first appears as three consecutive outcomes. Evaluate $\\mathbb E[T]$, and state how it compares with the expected wait for $\\mathrm{HTT}$.",
-    "answer": "\\[\\boxed{\\mathbb E[T_{\\mathrm{HTH}}]=10,\\qquad \\mathbb E[T_{\\mathrm{HTT}}]=8}\\]",
-    "trap": "Assuming every length-$3$ pattern is waited for equally — i.e. $\\mathbb E[T]=2^3=8$ for all of them. This treats the search as a disjoint block lottery. In fact $\\mathrm{HTH}$ self-overlaps (its prefix $\\mathrm{H}$ equals its suffix $\\mathrm{H}$), so a failed completion leaves you partway along again, inflating the wait to $10$, whereas the non-overlapping $\\mathrm{HTT}$ takes exactly $8$.",
-    "solutions": [
-      {
-        "name": "Suffix-state recurrence",
-        "steps": [
-          "Track progress by the longest suffix of the toss-string that is a prefix of $\\mathrm{HTH}$: states $\\varnothing,\\ \\mathrm{H},\\ \\mathrm{HT}$, plus the absorbing 'done'. Let $E_\\bullet$ be the expected further tosses.",
-          "From $\\varnothing$: $E_\\varnothing=1+\\tfrac12 E_{\\mathrm H}+\\tfrac12 E_\\varnothing$ (a T keeps you empty).",
-          "From $\\mathrm H$: $E_{\\mathrm H}=1+\\tfrac12 E_{\\mathrm H}+\\tfrac12 E_{\\mathrm{HT}}$ (another H keeps suffix $\\mathrm H$).",
-          "From $\\mathrm{HT}$: $E_{\\mathrm{HT}}=1+\\tfrac12\\cdot 0+\\tfrac12 E_\\varnothing$ (an H finishes; a T gives $\\mathrm{HTT}$, whose longest useful suffix is empty).",
-          "Solving bottom-up: $E_{\\mathrm{HT}}=6,\\ E_{\\mathrm H}=8,\\ E_\\varnothing=\\boxed{10}$. The same method on $\\mathrm{HTT}$ (no self-overlap) gives $8$."
-        ]
-      },
-      {
-        "name": "Conway's correlation formula",
-        "steps": [
-          "For a fair coin and target $A$ of length $L$, $\\mathbb E[T_A]=\\sum_{i=1}^{L}\\,2^{\\,i}\\,[\\,A_{1\\ldots i}=A_{L-i+1\\ldots L}\\,]$, summing over self-overlap lengths.",
-          "For $A=\\mathrm{HTH}$: the full overlap $i=3$ contributes $2^3=8$; the overlap $i=1$ ($\\mathrm H=\\mathrm H$) contributes $2^1=2$; $i=2$ ($\\mathrm{HT}\\ne\\mathrm{TH}$) contributes $0$.",
-          "Thus $\\mathbb E[T_{\\mathrm{HTH}}]=8+2=\\boxed{10}$.",
-          "For $A=\\mathrm{HTT}$ only $i=3$ overlaps, so $\\mathbb E[T_{\\mathrm{HTT}}]=8$."
-        ]
-      }
-    ],
-    "remark": "Insight: self-overlap is the whole story. The extra $+2$ for $\\mathrm{HTH}$ is exactly $2^1$, paying for the leftover $\\mathrm H$ that a botched finish leaves behind."
-  },
-  {
-    "theme": "recurrence",
-    "themeLabel": "Recursive & Markov Probability",
-    "title": "A Rigged Race of Patterns",
-    "difficulty": 4,
-    "task": "Find",
-    "tags": [
-      "penney's game",
-      "pattern race",
-      "absorbing chain",
-      "nontransitivity"
-    ],
-    "statement": "A fair coin is tossed until either $\\mathrm{HTH}$ or $\\mathrm{HHT}$ first appears as three consecutive outcomes; the pattern that appears first wins. Find the probability that $\\mathrm{HTH}$ wins.",
-    "answer": "\\[\\boxed{\\dfrac{1}{3}}\\]",
-    "trap": "Declaring the contest 'symmetric' because the two patterns look interchangeable, or noting that $\\mathrm{HTH}$ has solo expected wait $\\mathbb E=10$ while $\\mathrm{HHT}$ has $\\mathbb E=8$ and concluding each wins with probability $\\tfrac12$. Marginal waiting times do not govern a head-to-head race: what matters is how one pattern's tail can seed the other's head. Here $\\mathrm{HHT}$ ambushes $\\mathrm{HTH}$ and wins twice as often, so $\\mathrm{HTH}$ wins with probability only $\\tfrac13$, not $\\tfrac12$.",
-    "solutions": [
-      {
-        "name": "Shared-progress absorbing Markov chain",
-        "steps": [
-          "Let $f(s)=\\Pr(\\mathrm{HTH}\\text{ wins}\\mid\\text{current relevant suffix }s)$ where $s$ ranges over the states $\\varnothing,\\ \\mathrm H,\\ \\mathrm{HH},\\ \\mathrm{HT}$ (the only proper prefixes of a target). The chain is absorbed the instant either target is completed.",
-          "Transitions from the start-like states: $\\varnothing\\xrightarrow{\\mathrm H}\\mathrm H$ and $\\varnothing\\xrightarrow{\\mathrm T}\\varnothing$; $\\ \\mathrm H\\xrightarrow{\\mathrm H}\\mathrm{HH}$ and $\\mathrm H\\xrightarrow{\\mathrm T}\\mathrm{HT}$. The $\\mathrm T$-loop at $\\varnothing$ shows $f(\\varnothing)=f(\\mathrm H)$.",
-          "From $\\mathrm{HH}$: a $\\mathrm T$ completes $\\mathrm{HHT}$ (so $\\mathrm{HTH}$ loses, value $0$); an $\\mathrm H$ keeps the suffix $\\mathrm{HH}$. Hence $f(\\mathrm{HH})=\\tfrac12 f(\\mathrm{HH})+\\tfrac12\\cdot 0$, giving $f(\\mathrm{HH})=0$.",
-          "From $\\mathrm{HT}$: an $\\mathrm H$ completes $\\mathrm{HTH}$ (value $1$); a $\\mathrm T$ gives $\\mathrm{HTT}$, whose longest useful suffix is empty, so we restart at $\\varnothing$. Hence $f(\\mathrm{HT})=\\tfrac12\\cdot 1+\\tfrac12 f(\\varnothing)$.",
-          "Combine $f(\\mathrm H)=\\tfrac12 f(\\mathrm{HH})+\\tfrac12 f(\\mathrm{HT})=\\tfrac12 f(\\mathrm{HT})$ with $f(\\varnothing)=f(\\mathrm H)$ and the $\\mathrm{HT}$ equation: writing $p=f(\\varnothing)$, we get $p=\\tfrac12\\!\\left(\\tfrac12+\\tfrac12 p\\right)$, i.e. $4p=1+p$, so $p=\\boxed{\\tfrac13}$."
-        ]
-      },
-      {
-        "name": "Conway's leading-number ratio",
-        "steps": [
-          "For patterns $A,B$ define the correlation $A\\!*\\!B=\\sum_{k=1}^{L}2^{k}\\,[\\,A_{L-k+1\\ldots L}=B_{1\\ldots k}\\,]$: add $2^{k}$ whenever the length-$k$ suffix of $A$ equals the length-$k$ prefix of $B$.",
-          "Take $A=\\mathrm{HTH}$ and $B=\\mathrm{HHT}$. Self-correlations: $A\\!*\\!A=2^{3}+2^{1}=10$ (full word, plus suffix $\\mathrm H$ = prefix $\\mathrm H$) and $B\\!*\\!B=2^{3}=8$ (full word only).",
-          "Cross-correlations: $A\\!*\\!B=2^{1}=2$ (suffix $\\mathrm H$ of $\\mathrm{HTH}$ equals prefix $\\mathrm H$ of $\\mathrm{HHT}$; the length-$2$ suffix $\\mathrm{TH}$ is not a prefix of $\\mathrm{HHT}$). And $B\\!*\\!A=2^{2}=4$ (suffix $\\mathrm{HT}$ of $\\mathrm{HHT}$ equals prefix $\\mathrm{HT}$ of $\\mathrm{HTH}$; the length-$1$ suffix $\\mathrm T$ is not a prefix of $\\mathrm{HTH}$).",
-          "Conway's odds formula gives $\\dfrac{\\Pr(B\\text{ wins})}{\\Pr(A\\text{ wins})}=\\dfrac{A\\!*\\!A-A\\!*\\!B}{B\\!*\\!B-B\\!*\\!A}=\\dfrac{10-2}{8-4}=\\dfrac{8}{4}=\\dfrac{2}{1}$, so $\\mathrm{HHT}$ is twice as likely to win.",
-          "Therefore $\\Pr(\\mathrm{HTH}\\text{ wins})=\\dfrac{1}{1+2}=\\boxed{\\tfrac13}$, in agreement with the Markov chain (and with a Monte-Carlo estimate of $\\approx 0.3332$)."
-        ]
-      }
-    ],
-    "remark": "Insight: this is a Penney-style nontransitive trap. Equal-looking patterns and their solo waiting times tell you nothing about a head-to-head race — what decides it is how one pattern's tail seeds the other's head. The asymmetric cross-correlations ($A\\!*\\!B=2$ versus $B\\!*\\!A=4$) are exactly what tips the contest $2{:}1$ toward $\\mathrm{HHT}$."
-  },
-  {
-    "theme": "recurrence",
-    "themeLabel": "Recursive & Markov Probability",
-    "title": "How Long the Drunk Wanders",
-    "difficulty": 4,
-    "task": "Find",
-    "tags": [
-      "expected duration",
-      "biased walk",
-      "gambler's ruin",
-      "recurrence"
-    ],
-    "statement": "A token starts at position $2$ on the integers $0,1,2,3,4,5$. Each second it moves to $k+1$ with probability $\\tfrac{2}{3}$ and to $k-1$ with probability $\\tfrac{1}{3}$; positions $0$ and $5$ are absorbing. Find the expected number of seconds until the token is absorbed.",
-    "answer": "\\[\\boxed{\\dfrac{174}{31}}\\]",
-    "trap": "Using the fair-walk duration $\\mathbb E=k(N-k)=2\\cdot 3=6$. That product formula is valid only when $p=q$. For a biased walk the duration solves the inhomogeneous recurrence $D(k)=1+pD(k+1)+qD(k-1)$, whose particular solution is linear $k/(q-p)$ — and here $q-p<0$, so the geometric correction term is essential.",
-    "solutions": [
-      {
-        "name": "Inhomogeneous recurrence",
-        "steps": [
-          "Let $D(k)$ be the expected absorption time, $D(0)=D(5)=0$, and $D(k)=1+\\tfrac23 D(k+1)+\\tfrac13 D(k-1)$.",
-          "Particular solution: try $D_p(k)=ck$; then $ck=1+\\tfrac23 c(k+1)+\\tfrac13 c(k-1)\\Rightarrow 0=1+\\tfrac13 c$, so $c=-3$, $D_p(k)=-3k=k/(q-p)$ with $q-p=-\\tfrac13$.",
-          "Homogeneous solution $A+B r^{k}$ with $r=q/p=\\tfrac12$. General: $D(k)=-3k+A+B(\\tfrac12)^k$.",
-          "Boundaries: $A+B=0$ and $-15+A+B(\\tfrac1{32})=0$. Subtract: $B(\\tfrac1{32}-1)=15\\Rightarrow B=-\\tfrac{480}{31}$, $A=\\tfrac{480}{31}$.",
-          "Then $D(2)=-6+\\tfrac{480}{31}-\\tfrac{480}{31}\\cdot\\tfrac14=-6+\\tfrac{480}{31}\\cdot\\tfrac34=-6+\\tfrac{360}{31}=\\boxed{\\dfrac{174}{31}}$."
-        ]
-      },
-      {
-        "name": "Duration via escape probabilities",
-        "steps": [
-          "First find $h(k)=\\Pr(\\text{absorbed at }5)=\\frac{1-r^k}{1-r^5}$, $r=\\tfrac12$, so $h(2)=\\frac{3/4}{31/32}=\\frac{24}{31}$.",
-          "Use the standard closed form for biased duration: $D(k)=\\dfrac{k}{q-p}-\\dfrac{N}{q-p}\\cdot\\dfrac{1-r^{k}}{1-r^{N}}$ with $N=5$.",
-          "Here $\\dfrac{1}{q-p}=-3$, so $D(2)=-3\\cdot2-(-3)\\cdot5\\cdot h(2)=-6+15\\cdot\\tfrac{24}{31}$.",
-          "Compute $15\\cdot\\tfrac{24}{31}=\\tfrac{360}{31}$, giving $D(2)=-6+\\tfrac{360}{31}=\\boxed{\\dfrac{174}{31}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: duration splits into a deterministic drift part $k/(q-p)$ and a curvature correction tied to the escape probability. The fair-walk parabola $k(N-k)$ is the degenerate $p\\to q$ limit, not a shortcut."
-  },
-  {
-    "theme": "recurrence",
-    "themeLabel": "Recursive & Markov Probability",
-    "title": "Deuce, Deuce, Deuce",
-    "difficulty": 4,
-    "task": "Find",
-    "tags": [
-      "absorbing chain",
-      "expected duration",
-      "tennis deuce",
-      "two-in-a-row"
-    ],
-    "statement": "From deuce, a server wins each point independently with probability $\\tfrac{2}{3}$. The game is won by whoever first leads by two points. Find (i) the probability that the server wins the game and (ii) the expected number of points played until the game ends.",
-    "answer": "\\[\\boxed{\\Pr(\\text{server wins})=\\dfrac{4}{5},\\qquad \\mathbb E[\\text{points}]=\\dfrac{18}{5}}\\]",
-    "trap": "Modelling deuce as 'win two points in a row from scratch', giving $\\mathbb E=1/p+1/p^2$ for a two-run, or computing $\\Pr=p^2$ for an immediate two-point burst. The real chain has a third state, namely 'advantage receiver', and from advantage a lost point returns to deuce rather than restarting a clean run; ignoring that wrong boundary collapses the recurrence.",
-    "solutions": [
-      {
-        "name": "Three-state absorbing chain",
-        "steps": [
-          "States: $D$ (deuce), $A$ (server ahead by one), $B$ (server behind by one); server wins from $A$ on a point, loses from $B$ on a lost point. Let $p=\\tfrac23,q=\\tfrac13$.",
-          "Win probabilities: $W_D=pW_A+qW_B$, $W_A=p\\cdot1+qW_D$, $W_B=pW_D+q\\cdot0$.",
-          "Substitute: $W_D=p(p+qW_D)+q\\,pW_D=p^2+2pq\\,W_D\\Rightarrow W_D=\\dfrac{p^2}{1-2pq}=\\dfrac{p^2}{p^2+q^2}=\\dfrac{4/9}{5/9}=\\boxed{\\tfrac45}$.",
-          "Durations: $E_D=1+pE_A+qE_B$, $E_A=1+qE_D$, $E_B=1+pE_D$, so $E_D=1+p(1+qE_D)+q(1+pE_D)=2+2pq\\,E_D$.",
-          "Thus $E_D=\\dfrac{2}{1-2pq}=\\dfrac{2}{p^2+q^2}=\\dfrac{2}{5/9}=\\boxed{\\dfrac{18}{5}}$."
-        ]
-      },
-      {
-        "name": "Two-point block reduction",
-        "steps": [
-          "Group play into consecutive *pairs* of points starting from deuce. A pair ends the game (server wins w.p. $p^2$, loses w.p. $q^2$) or returns to deuce (w.p. $2pq$).",
-          "Decisive-pair probability is $p^2+q^2=\\tfrac59$; conditional on decision, server wins w.p. $\\dfrac{p^2}{p^2+q^2}=\\boxed{\\tfrac45}$.",
-          "Number of pairs is geometric with success $\\tfrac59$, mean $\\tfrac{9}{5}$ pairs.",
-          "Each pair is exactly $2$ points, so $\\mathbb E[\\text{points}]=2\\cdot\\tfrac95=\\boxed{\\dfrac{18}{5}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the deuce recurrence telescopes because every non-decisive exchange returns you to the *same* state. That memorylessness lets a three-state chain collapse to a single geometric trial in disguised pairs."
-  },
-  {
-    "theme": "recurrence",
-    "themeLabel": "Recursive & Markov Probability",
-    "title": "Three Heads, Heavy Coin",
-    "difficulty": 4,
-    "task": "Evaluate",
-    "tags": [
-      "run waiting time",
-      "biased coin",
-      "recurrence",
-      "absorbing chain"
-    ],
-    "statement": "A biased coin shows heads with probability $\\tfrac{1}{3}$. Let $T$ be the number of tosses until heads appears three times in a row for the first time. Evaluate $\\mathbb E[T]$.",
-    "answer": "\\[\\boxed{39}\\]",
-    "trap": "Reaching for the fair-coin value $2^3+2^2+2^1=14$ and merely rescaling, or guessing $1/p^3=27$. The correct run-length recurrence telescopes to $\\sum_{i=1}^{3}p^{-i}$, not $p^{-3}$ alone: each level of the run must be *rebuilt from scratch* after a tail, and the cost of partial progress accumulates geometrically.",
-    "solutions": [
-      {
-        "name": "Level recurrence",
-        "steps": [
-          "Let $E_j$ be the expected additional tosses to finish, given a current run of exactly $j$ heads ($j=0,1,2$); $E_3=0$.",
-          "From level $j$: with prob $p=\\tfrac13$ advance to $j+1$, with prob $q=\\tfrac23$ a tail resets to level $0$. So $E_j=1+pE_{j+1}+qE_0$.",
-          "Write $E_0$ in terms of itself: $E_2=1+qE_0$ (since $pE_3=0$). Then $E_1=1+pE_2+qE_0$ and $E_0=1+pE_1+qE_0$.",
-          "Back-substitute: $E_0=\\dfrac{1+p+p^2}{p^3}$ after simplification (a clean telescoping of the resets).",
-          "With $p=\\tfrac13$: $E_0=\\dfrac{1+\\tfrac13+\\tfrac19}{1/27}=27\\cdot\\tfrac{13}{9}=\\boxed{39}$."
-        ]
-      },
-      {
-        "name": "Sum-of-stages formula",
-        "steps": [
-          "A standard identity for the wait for $n$ consecutive successes with success prob $p$ is $\\mathbb E[T]=\\sum_{i=1}^{n}p^{-i}=\\dfrac{p^{-n}-1}{1-p}$ adjusted, here $\\mathbb E[T]=\\dfrac1p+\\dfrac1{p^2}+\\dfrac1{p^3}$.",
-          "This is the geometric-series form of the telescoped recurrence, each term being the expected cost of securing one more level of the run.",
-          "With $p=\\tfrac13$: $\\dfrac1p=3,\\ \\dfrac1{p^2}=9,\\ \\dfrac1{p^3}=27$.",
-          "Sum: $3+9+27=\\boxed{39}$."
-        ]
-      }
-    ],
-    "remark": "Insight: a run-of-$n$ wait is a geometric *cascade* — securing level $k$ costs $p^{-k}$, and these add. The fair-coin $2+4+8=14$ and this $3+9+27=39$ are the same formula at $p=\\tfrac12$ and $\\tfrac13$."
-  },
-  {
-    "theme": "recurrence",
-    "themeLabel": "Recursive & Markov Probability",
-    "title": "Emptying the Ehrenfest Urn",
-    "difficulty": 5,
-    "task": "Find",
-    "tags": [
-      "ehrenfest",
-      "absorbing chain",
-      "first-passage",
-      "state-dependent rates",
-      "recurrence"
-    ],
-    "statement": "Three labelled balls are distributed between urns $A$ and $B$; initially all three are in $A$. At each step one of the three balls is chosen uniformly at random and moved to the other urn. Find the expected number of steps until urn $A$ becomes empty for the first time.",
-    "answer": "\\[\\boxed{10}\\]",
-    "trap": "Treating the count in $A$ as an unbiased symmetric walk on $\\{0,1,2,3\\}$ and applying a $k(N-k)$ or constant-rate formula. The transition rates are state-dependent: from $k$ balls in $A$ the chain moves down with probability $k/3$ and up with $(3-k)/3$, an inward drift toward the centre. A symmetric walk (down probability $\\tfrac12$ everywhere) reflecting at $3$ gives $9$, not $10$; ignoring the state-dependence and the non-absorbing nature of state $3$ destroys the recurrence and the answer.",
-    "solutions": [
-      {
-        "name": "First-passage recurrence",
-        "steps": [
-          "Let $E_k$ be the expected number of steps to reach $0$ starting from $k$ balls in $A$, with target $E_0=0$. From state $k$ the count moves to $k-1$ with probability $\\tfrac k3$ and to $k+1$ with probability $\\tfrac{3-k}{3}$.",
-          "State $3$: the only available move sends a ball out, so $E_3=1+E_2$.",
-          "State $2$: $E_2=1+\\tfrac23 E_1+\\tfrac13 E_3$.",
-          "State $1$: $E_1=1+\\tfrac13\\cdot E_0+\\tfrac23 E_2=1+\\tfrac23 E_2$.",
-          "Substitute $E_3=1+E_2$ into the $E_2$ equation: $E_2=1+\\tfrac23 E_1+\\tfrac13(1+E_2)$, i.e. $\\tfrac23 E_2=\\tfrac43+\\tfrac23 E_1$. Combined with $E_1=1+\\tfrac23 E_2$ this yields $E_1=7,\\ E_2=9,$ and $E_3=1+E_2=\\boxed{10}$."
-        ]
-      },
-      {
-        "name": "Edge-by-edge expected crossings",
-        "steps": [
-          "For a birth–death chain the first-passage time from $3$ to $0$ decomposes over the directed down-edges; let $t_k$ be the expected number of steps to go from $k$ to $k-1$ for the first time.",
-          "Conditioning on the first move from $k$: with probability $\\tfrac k3$ we descend in one step, otherwise we ascend to $k+1$ and must first return to $k$. This gives $t_k=\\dfrac{1}{k/3}\\Big(1+\\tfrac{3-k}{3}\\,t_{k+1}\\Big)$, with $t_4=0$ (state $4$ does not exist).",
-          "Compute upward from the top: $t_3=\\dfrac{1}{1}(1+0)=1$, then $t_2=\\dfrac{3}{2}\\big(1+\\tfrac13 t_3\\big)=\\dfrac32\\cdot\\tfrac43=2$, and $t_1=\\dfrac{3}{1}\\big(1+\\tfrac23 t_2\\big)=3\\cdot\\tfrac73=7$.",
-          "Total from $3$ to $0$: $t_3+t_2+t_1=1+2+7=\\boxed{10}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the Ehrenfest urn has a restoring drift toward equilibrium ($k=1$ or $2$), so emptying it completely is an 'uphill' first passage. The escalating per-edge costs $1,2,7$ show how stubbornly the last ball resists expulsion — the signature of the birth–death recurrence. A symmetric-walk shortcut returns $9$ and silently misses this asymmetry."
-  },
-  {
-    "theme": "recurrence",
-    "themeLabel": "Recursive & Markov Probability",
-    "title": "How Often Home Is Revisited",
-    "difficulty": 5,
-    "task": "Find",
-    "tags": [
-      "green's function",
-      "fundamental matrix",
-      "expected visits",
-      "symmetric walk",
-      "recurrence"
-    ],
-    "statement": "A symmetric random walk on $\\{0,1,\\dots,6\\}$ starts at position $2$ and is absorbed at $0$ or $6$. Counting the initial occupancy as one visit, find (i) the expected number of times the walk is at its starting position $2$ before absorption, and (ii) the expected total number of steps until absorption.",
-    "answer": "\\[\\boxed{\\text{(i) }\\dfrac{8}{3},\\qquad \\text{(ii) }8}\\]",
-    "trap": "Computing only the absorption time via $k(N-k)=2\\cdot4=8$ and then assuming the number of visits to the start is 'about' that, or that it equals the time divided by the number of states (giving $\\tfrac{8}{7}$). The expected-visits count is a Green's-function quantity, the diagonal entry $N_{ii}=\\dfrac{2\\,i\\,(N-i)}{N}$ of the fundamental matrix $(I-Q)^{-1}$, governed by a different recurrence than the absorption-time parabola; here $N_{22}=\\tfrac{8}{3}$, not $8$ and not $\\tfrac{8}{7}$.",
-    "solutions": [
-      {
-        "name": "Green's function / fundamental matrix",
-        "steps": [
-          "Restrict the chain to the transient states $\\{1,2,3,4,5\\}$ and let $Q$ be the substochastic transition matrix among them. The fundamental matrix $N=(I-Q)^{-1}$ has entry $N_{ij}=$ expected number of visits to $j$ starting from $i$ (the initial occupancy counts as a visit).",
-          "For the symmetric walk on $\\{0,1,\\dots,M\\}$ absorbed at $0,M$, the visit counts are the Green's function $N_{ij}=\\dfrac{2\\,a\\,(M-b)}{M}$, where $a=\\min(i,j)$ and $b=\\max(i,j)$. With $M=6$ and $i=j=2$ this gives $N_{22}=\\dfrac{2\\cdot 2\\cdot(6-2)}{6}=\\dfrac{16}{6}=\\boxed{\\dfrac{8}{3}}$.",
-          "The expected absorption time from $i$ is the row sum $\\displaystyle\\sum_{j=1}^{5}N_{ij}$. Summing the Green's function over $j$ telescopes to $i(M-i)$, so from $i=2$ it equals $2\\cdot 4=8$.",
-          "Cross-check by first passage: the absorption time satisfies $D(k)=1+\\tfrac12 D(k+1)+\\tfrac12 D(k-1)$ with $D(0)=D(6)=0$, whose solution is the parabola $D(k)=k(6-k)$, giving $D(2)=8$. Hence (i) $\\tfrac{8}{3}$ and (ii) $8$."
-        ]
-      },
-      {
-        "name": "Direct first-step systems",
-        "steps": [
-          "Visits to the start: from $2$ each visit is followed by a return to $2$ before absorption with some probability $\\rho$, so the visit count is geometric, $v=\\dfrac{1}{1-\\rho}$. One step from $2$ lands at $1$ or $3$, each with probability $\\tfrac12$.",
-          "Gambler's ruin gives the chance of returning to $2$ before being absorbed: from $1$ the walk reaches $2$ before $0$ with probability $\\tfrac12$; from $3$ it reaches $2$ before $6$ with probability $\\dfrac{6-3}{6-2}=\\tfrac34$. Hence $\\rho=\\tfrac12\\cdot\\tfrac12+\\tfrac12\\cdot\\tfrac34=\\tfrac58$.",
-          "Therefore $v=\\dfrac{1}{1-\\rho}=\\dfrac{1}{1-5/8}=\\dfrac{1}{3/8}=\\boxed{\\dfrac{8}{3}}$.",
-          "Expected steps: solve $D(k)=1+\\tfrac12 D(k+1)+\\tfrac12 D(k-1)$ with $D(0)=D(6)=0$. The solution is $D(k)=k(6-k)$, so $D(2)=2\\cdot 4=\\boxed{8}$."
-        ]
-      }
-    ],
-    "remark": "Two different recurrences live on the same walk: the inhomogeneous one for time, whose solution is the parabola $D(k)=k(6-k)$, and the resolvent one for visit counts, the Green's function $N_{ij}$. They agree only after the visit counts are summed over all transient states; mistaking one quantity for the other, or dividing the time by the number of states, is the deep trap."
-  },
-  {
-    "theme": "recurrence",
-    "themeLabel": "Recursive & Markov Probability",
-    "title": "The Self-Echoing Pattern",
-    "difficulty": 5,
-    "task": "Evaluate",
-    "tags": [
-      "pattern waiting time",
-      "overlap",
-      "conway",
-      "absorbing chain",
-      "recurrence"
-    ],
-    "statement": "A fair coin is tossed repeatedly. Let $T$ be the number of tosses until the overlapping pattern $\\mathrm{HTHT}$ first appears. Evaluate $\\mathbb E[T]$, and explain why it exceeds $\\mathbb E$ for both $\\mathrm{HTHH}$ and the naive $2^4$.",
-    "answer": "\\[\\boxed{\\mathbb E[T_{\\mathrm{HTHT}}]=20}\\]",
-    "trap": "Assuming all length-$4$ patterns wait $2^4=16$ tosses, or that the extra overlap only adds a small constant. $\\mathrm{HTHT}$ has two self-overlaps — the full length $4$ and the length-$2$ prefix/suffix $\\mathrm{HT}$ — so a near-miss leaves you two symbols deep, forcing $\\mathbb E=16+4=20$. Treating overlaps as if only the full match counted (or none) gives the wrong $16$ or $18$.",
-    "solutions": [
-      {
-        "name": "Conway correlation sum",
-        "steps": [
-          "For a fair coin, $\\mathbb E[T_A]=\\sum_{i=1}^{4}2^{\\,i}\\,[\\,A_{1\\ldots i}=A_{4-i+1\\ldots4}\\,]$.",
-          "For $A=\\mathrm{HTHT}$: $i=4$ matches (full) $\\Rightarrow 2^4=16$; $i=2$ matches ($\\mathrm{HT}=\\mathrm{HT}$) $\\Rightarrow 2^2=4$; $i=1$ ($\\mathrm H\\ne\\mathrm T$) and $i=3$ ($\\mathrm{HTH}\\ne\\mathrm{THT}$) contribute $0$.",
-          "Sum: $16+4=\\boxed{20}$.",
-          "By contrast $\\mathrm{HTHH}$ overlaps only at $i=4$ and $i=1$ ($\\mathrm H=\\mathrm H$) giving $16+2=18$, and a non-self-overlapping pattern gives exactly $16$ — so the double echo of $\\mathrm{HTHT}$ is what pushes it to $20$."
-        ]
-      },
-      {
-        "name": "Suffix-state Markov chain",
-        "steps": [
-          "States are the longest suffix that is a prefix of $\\mathrm{HTHT}$: $\\varnothing,\\mathrm H,\\mathrm{HT},\\mathrm{HTH}$, then absorb at $\\mathrm{HTHT}$.",
-          "Transitions: $\\varnothing\\!:H\\to\\mathrm H,T\\to\\varnothing$; $\\mathrm H\\!:H\\to\\mathrm H,T\\to\\mathrm{HT}$; $\\mathrm{HT}\\!:H\\to\\mathrm{HTH},T\\to\\varnothing$; $\\mathrm{HTH}\\!:H\\to\\mathrm H,T\\to\\text{done}$ (the $H$ collapses to suffix $\\mathrm H$ because the longest useful suffix of $\\mathrm{HTHH}$ is $\\mathrm H$).",
-          "Equations: $E_\\varnothing=1+\\tfrac12E_{\\mathrm H}+\\tfrac12E_\\varnothing$, $E_{\\mathrm H}=1+\\tfrac12E_{\\mathrm H}+\\tfrac12E_{\\mathrm{HT}}$, $E_{\\mathrm{HT}}=1+\\tfrac12E_{\\mathrm{HTH}}+\\tfrac12E_\\varnothing$, $E_{\\mathrm{HTH}}=1+\\tfrac12E_{\\mathrm H}+\\tfrac12\\cdot0$.",
-          "Solving the linear system gives $E_{\\mathrm{HTH}}=10,\\ E_{\\mathrm{HT}}=16,\\ E_{\\mathrm H}=18,\\ E_\\varnothing=\\boxed{20}$, confirming Conway."
-        ]
-      }
-    ],
-    "remark": "Insight: every self-overlap of length $i$ adds $2^{i}$ to the expected wait, because a failed completion drops you exactly $i$ symbols deep. $\\mathrm{HTHT}$ echoes itself twice, so it is the slowest of its length class to appear."
-  },
-  {
-    "theme": "recurrence",
-    "themeLabel": "Recursive & Markov Probability",
-    "title": "Will the Lineage Die Out?",
-    "difficulty": 5,
-    "task": "Find",
-    "tags": [
-      "galton-watson",
-      "generating function",
-      "extinction",
-      "fixed point",
-      "branching"
-    ],
-    "statement": "A colony starts from a single organism. Each organism, independently, produces a number of offspring distributed as $\\Pr(0)=\\tfrac14,\\ \\Pr(1)=\\tfrac14,\\ \\Pr(2)=\\tfrac12$ before dying; offspring then reproduce by the same law, generation after generation. Find the probability that the colony eventually becomes extinct.",
-    "answer": "\\[\\boxed{\\dfrac{1}{2}}\\]",
-    "trap": "Since the mean offspring number $\\mu=\\tfrac54>1$ the lineage is supercritical, and one is tempted to say extinction is impossible (probability $0$) — or to take the fixed point $q=1$ of $q=f(q)$. The extinction probability is the smallest root in $[0,1]$ of $q=f(q)$, and for a supercritical process that root is strictly between $0$ and $1$; the root $q=1$ is the wrong (unstable) one.",
-    "solutions": [
-      {
-        "name": "Generating-function fixed point",
-        "steps": [
-          "Let $q$ be the extinction probability and $f(s)=\\tfrac14+\\tfrac14 s+\\tfrac12 s^{2}$ the offspring generating function. Conditioning on the first generation (each of the offspring lineages must die out independently) gives the recurrence $q=f(q)$.",
-          "Solve $\\tfrac12 q^{2}+\\tfrac14 q+\\tfrac14=q\\ \\Rightarrow\\ \\tfrac12 q^{2}-\\tfrac34 q+\\tfrac14=0\\ \\Rightarrow\\ 2q^{2}-3q+1=0$.",
-          "Factor: $(2q-1)(q-1)=0$, roots $q=\\tfrac12$ and $q=1$.",
-          "Because $\\mu=f'(1)=\\tfrac54>1$ (supercritical), the extinction probability is the smaller root: $q=\\boxed{\\tfrac12}$."
-        ]
-      },
-      {
-        "name": "Monotone iteration",
-        "steps": [
-          "Define $q_0=0$ and $q_{n+1}=f(q_n)$, where $q_n=\\Pr(\\text{extinct by generation }n)$ is increasing and converges to $q$.",
-          "Iterate: $q_1=f(0)=\\tfrac14$, $q_2=f(\\tfrac14)=\\tfrac14+\\tfrac1{16}+\\tfrac1{32}=\\tfrac{13}{32}$, $q_3=f(\\tfrac{13}{32})\\approx 0.461$, climbing toward $\\tfrac12$.",
-          "The limit is the smallest fixed point of $f$ in $[0,1]$; since $f$ is convex with $f(0)>0$ and $f'(1)>1$, that fixed point is unique below $1$.",
-          "It equals the root $q=\\boxed{\\tfrac12}$ found algebraically, and the iteration never approaches the unstable fixed point $1$."
-        ]
-      }
-    ],
-    "remark": "Insight: extinction is a fixed-point problem, and supercriticality ($\\mu>1$) guarantees a genuine root below $1$ — survival is possible but not certain. Picking the wrong fixed point $q=1$ is the canonical branching-process error. A Monte-Carlo run of the process matches $q=\\tfrac12$ to two decimals."
   },
   {
     "theme": "inclusionexcl",
@@ -2441,42 +2619,6 @@ window.PROBLEMS = [
   {
     "theme": "inclusionexcl",
     "themeLabel": "Inclusion–Exclusion & Matching",
-    "title": "No Empty Inbox",
-    "difficulty": 4,
-    "task": "Evaluate",
-    "tags": [
-      "surjection",
-      "occupancy",
-      "inclusion-exclusion",
-      "no-empty-box"
-    ],
-    "statement": "Seven distinguishable e-mails are each routed, independently and uniformly at random, to one of four mailboxes. Find the probability that every one of the four mailboxes receives at least one e-mail.",
-    "answer": "\\[\\boxed{\\dfrac{525}{1024}}\\]",
-    "trap": "Subtracting only $4\\cdot(3/4)^7$ for \"some box is empty\" and stopping, which gives $1-4(3/4)^7=\\tfrac{1909}{4096}$. That single correction over-counts: routings missing two boxes are subtracted twice, so the alternating inclusion–exclusion tail $+\\binom{4}{2}(2/4)^7-\\cdots$ is mandatory. Equally tempting are bare $\\binom{4}{1}$-style heuristics with no exclusion at all.",
-    "solutions": [
-      {
-        "name": "Inclusion–exclusion on empty boxes",
-        "steps": [
-          "Let $E_j$ be the event that mailbox $j$ is empty. We want $P\\!\\left(\\bigcap_{j}\\overline{E_j}\\right)$ among the $4^7$ equally likely routings.",
-          "For a fixed set of $j$ boxes, the probability they are all empty is $\\big((4-j)/4\\big)^7$, and there are $\\binom{4}{j}$ such sets, so the surjection count is $\\sum_{j=0}^{4}(-1)^j\\binom{4}{j}(4-j)^7$.",
-          "Evaluate: $4^7-4\\cdot3^7+6\\cdot2^7-4\\cdot1^7=16384-8748+768-4=8400$.",
-          "Probability $=\\dfrac{8400}{4^7}=\\dfrac{8400}{16384}=\\boxed{\\dfrac{525}{1024}}$."
-        ]
-      },
-      {
-        "name": "Stirling numbers of the second kind",
-        "steps": [
-          "A routing hitting all four boxes is exactly a surjection from the $7$-element set of e-mails onto the $4$-element set of mailboxes.",
-          "Such surjections number $4!\\,S(7,4)$, where $S(7,4)=350$ counts the ways to partition the seven e-mails into four nonempty unlabelled groups.",
-          "Thus there are $24\\cdot350=8400$ favourable routings out of $4^7=16384$, giving $\\dfrac{8400}{16384}=\\boxed{\\dfrac{525}{1024}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: \"no empty box\" is the occupancy mirror of \"no fixed point\" — both are inclusion–exclusion over a family of forbidden coincidences. Here the forbidden events $E_j$ live on the cells (mailboxes), not the items, and the surjection count $\\sum_j(-1)^j\\binom{4}{j}(4-j)^7=4!\\,S(7,4)$ ties the two methods together exactly."
-  },
-  {
-    "theme": "inclusionexcl",
-    "themeLabel": "Inclusion–Exclusion & Matching",
     "title": "A Shared Day Off",
     "difficulty": 3,
     "task": "Determine",
@@ -2486,7 +2628,7 @@ window.PROBLEMS = [
       "at-least-one",
       "birthday"
     ],
-    "statement": "Five interns each pick, independently and uniformly at random, one weekday (Monday through Friday) for their day off. Determine the probability that at least two interns end up choosing the same day.",
+    "statement": "$5$ interns each pick, independently and uniformly at random, one weekday (Monday through Friday) for their day off. Determine the probability that at least $2$ interns end up choosing the same day.",
     "answer": "\\[\\boxed{\\dfrac{601}{625}}\\]",
     "trap": "Trying to add $\\binom{5}{2}\\cdot\\frac15$ as \"the probability some pair coincides.\" Those pairwise coincidence events overlap heavily, and the naive sum $\\binom{5}{2}\\cdot\\frac15=2$ even exceeds $1$; the clean route is the complement of \"all distinct.\"",
     "solutions": [
@@ -2516,6 +2658,77 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: with exactly as many people as days, \"all distinct\" forces a perfect matching, so the probability is just $n!/n^n$ — a tiny $24/625$, making a collision almost certain ($96.16\\%$). The naive pairwise sum $\\binom{5}{2}\\cdot\\frac15=2$ overshoots precisely because it double-counts the heavy overlaps among the ten pair-coincidence events."
+  },
+  {
+    "theme": "inclusionexcl",
+    "themeLabel": "Inclusion–Exclusion & Matching",
+    "title": "Exactly Two Right",
+    "difficulty": 3,
+    "task": "Evaluate",
+    "tags": [
+      "fixed-points",
+      "partial-matching",
+      "derangement",
+      "inclusion-exclusion"
+    ],
+    "statement": "$4$ guests check $4$ identical-looking coats; at the end of the evening the four coats are returned in a uniformly random one-to-one assignment. Find the probability that exactly $2$ guests get their own coat back.",
+    "answer": "\\[\\boxed{\\dfrac{1}{4}}\\]",
+    "trap": "Stopping at $\\binom{4}{2}\\cdot\\frac{1}{4}\\cdot\\frac{1}{3}=\\frac12$, i.e. \"pick the two lucky guests and place their coats.\" That counts arrangements where the other two also happen to match, overcounting; the remaining two must be deranged.",
+    "solutions": [
+      {
+        "name": "Choose-then-derange",
+        "steps": [
+          "Choose which $2$ of the $4$ guests are matched: $\\binom{4}{2}=6$ ways.",
+          "The remaining $2$ coats must go to the wrong owners, i.e. a derangement of $2$ elements: $D_2=1$ way.",
+          "Favourable permutations $=6\\cdot1=6$; total $=4!=24$.",
+          "Probability $=6/24=\\boxed{\\dfrac{1}{4}}$."
+        ]
+      },
+      {
+        "name": "Fixed-point distribution",
+        "steps": [
+          "The number of permutations of $4$ with exactly $k$ fixed points is $\\binom{4}{k}D_{4-k}$: for $k=0,1,2,3,4$ this is $9,8,6,0,1$ (sum $24$).",
+          "For $k=2$ the count is $6$, so the probability is $6/24=\\boxed{\\dfrac{1}{4}}$."
+        ]
+      }
+    ],
+    "remark": "Insight: \"exactly $k$ correct\" always splits as choose-the-$k$ times derange-the-rest, $\\binom{n}{k}D_{n-k}$. The impossibility of \"exactly $3$ of $4$\" ($D_1=0$) is the giveaway that fixed points cannot be sprinkled freely."
+  },
+  {
+    "theme": "inclusionexcl",
+    "themeLabel": "Inclusion–Exclusion & Matching",
+    "title": "No Empty Inbox",
+    "difficulty": 4,
+    "task": "Evaluate",
+    "tags": [
+      "surjection",
+      "occupancy",
+      "inclusion-exclusion",
+      "no-empty-box"
+    ],
+    "statement": "$7$ distinguishable e-mails are each routed, independently and uniformly at random, to one of $4$ mailboxes. Find the probability that every one of the $4$ mailboxes receives at least one e-mail.",
+    "answer": "\\[\\boxed{\\dfrac{525}{1024}}\\]",
+    "trap": "Subtracting only $4\\cdot(3/4)^7$ for \"some box is empty\" and stopping, which gives $1-4(3/4)^7=\\tfrac{1909}{4096}$. That single correction over-counts: routings missing two boxes are subtracted twice, so the alternating inclusion–exclusion tail $+\\binom{4}{2}(2/4)^7-\\cdots$ is mandatory. Equally tempting are bare $\\binom{4}{1}$-style heuristics with no exclusion at all.",
+    "solutions": [
+      {
+        "name": "Inclusion–exclusion on empty boxes",
+        "steps": [
+          "Let $E_j$ be the event that mailbox $j$ is empty. We want $P\\!\\left(\\bigcap_{j}\\overline{E_j}\\right)$ among the $4^7$ equally likely routings.",
+          "For a fixed set of $j$ boxes, the probability they are all empty is $\\big((4-j)/4\\big)^7$, and there are $\\binom{4}{j}$ such sets, so the surjection count is $\\sum_{j=0}^{4}(-1)^j\\binom{4}{j}(4-j)^7$.",
+          "Evaluate: $4^7-4\\cdot3^7+6\\cdot2^7-4\\cdot1^7=16384-8748+768-4=8400$.",
+          "Probability $=\\dfrac{8400}{4^7}=\\dfrac{8400}{16384}=\\boxed{\\dfrac{525}{1024}}$."
+        ]
+      },
+      {
+        "name": "Surjections by inclusion–exclusion",
+        "steps": [
+          "A routing hitting all four boxes is exactly a surjection from the $7$-element set of e-mails onto the $4$-element set of mailboxes.",
+          "Such surjections number $4!\\,S(7,4)$, where $S(7,4)=350$ counts the ways to partition the seven e-mails into four nonempty unlabelled groups.",
+          "Thus there are $24\\cdot350=8400$ favourable routings out of $4^7=16384$, giving $\\dfrac{8400}{16384}=\\boxed{\\dfrac{525}{1024}}$."
+        ]
+      }
+    ],
+    "remark": "Insight: \"no empty box\" is the occupancy mirror of \"no fixed point\" — both are inclusion–exclusion over a family of forbidden coincidences. Here the forbidden events $E_j$ live on the cells (mailboxes), not the items, and the surjection count $\\sum_j(-1)^j\\binom{4}{j}(4-j)^7=4!\\,S(7,4)$ ties the two methods together exactly."
   },
   {
     "theme": "inclusionexcl",
@@ -2555,41 +2768,6 @@ window.PROBLEMS = [
   {
     "theme": "inclusionexcl",
     "themeLabel": "Inclusion–Exclusion & Matching",
-    "title": "Exactly Two Right",
-    "difficulty": 3,
-    "task": "Evaluate",
-    "tags": [
-      "fixed-points",
-      "partial-matching",
-      "derangement",
-      "inclusion-exclusion"
-    ],
-    "statement": "Four guests check four identical-looking coats; at the end of the evening the four coats are returned in a uniformly random one-to-one assignment. Find the probability that exactly two guests get their own coat back.",
-    "answer": "\\[\\boxed{\\dfrac{1}{4}}\\]",
-    "trap": "Stopping at $\\binom{4}{2}\\cdot\\frac{1}{4}\\cdot\\frac{1}{3}=\\frac12$, i.e. \"pick the two lucky guests and place their coats.\" That counts arrangements where the other two also happen to match, overcounting; the remaining two must be deranged.",
-    "solutions": [
-      {
-        "name": "Choose-then-derange",
-        "steps": [
-          "Choose which $2$ of the $4$ guests are matched: $\\binom{4}{2}=6$ ways.",
-          "The remaining $2$ coats must go to the wrong owners, i.e. a derangement of $2$ elements: $D_2=1$ way.",
-          "Favourable permutations $=6\\cdot1=6$; total $=4!=24$.",
-          "Probability $=6/24=\\boxed{\\dfrac{1}{4}}$."
-        ]
-      },
-      {
-        "name": "Fixed-point distribution",
-        "steps": [
-          "The number of permutations of $4$ with exactly $k$ fixed points is $\\binom{4}{k}D_{4-k}$: for $k=0,1,2,3,4$ this is $9,8,6,0,1$ (sum $24$).",
-          "For $k=2$ the count is $6$, so the probability is $6/24=\\boxed{\\dfrac{1}{4}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: \"exactly $k$ correct\" always splits as choose-the-$k$ times derange-the-rest, $\\binom{n}{k}D_{n-k}$. The impossibility of \"exactly $3$ of $4$\" ($D_1=0$) is the giveaway that fixed points cannot be sprinkled freely."
-  },
-  {
-    "theme": "inclusionexcl",
-    "themeLabel": "Inclusion–Exclusion & Matching",
     "title": "Divisible by Design",
     "difficulty": 4,
     "task": "Determine",
@@ -2625,6 +2803,43 @@ window.PROBLEMS = [
   {
     "theme": "inclusionexcl",
     "themeLabel": "Inclusion–Exclusion & Matching",
+    "title": "Hat and Coat, Both Wrong",
+    "difficulty": 4,
+    "task": "Find",
+    "tags": [
+      "inclusion-exclusion",
+      "two-permutations",
+      "matching",
+      "independence-trap",
+      "fixed-points"
+    ],
+    "statement": "At a party of $4$ guests, the cloakroom returns the $4$ hats in a uniformly random one-to-one assignment, and independently returns the $4$ coats in another uniformly random one-to-one assignment. Find the probability that no guest gets back both his own hat and his own coat.",
+    "answer": "\\[\\boxed{\\dfrac{151}{192}}\\]",
+    "trap": "Treating it as $\\big(P(\\text{hats deranged})\\big)\\cdot\\big(P(\\text{coats deranged})\\big)=(D_4/4!)^2$. The condition is far weaker — a guest may keep his hat or his coat, just not both — so the relevant events $B_i=\\{\\text{guest }i\\text{ keeps both}\\}$ must be handled by inclusion–exclusion, and crucially the $B_i$ are not independent.",
+    "solutions": [
+      {
+        "name": "Inclusion–exclusion on the \"both own\" events",
+        "steps": [
+          "Let $B_i$ be the event that guest $i$ gets his own hat and own coat. We want $P\\!\\left(\\bigcap\\overline{B_i}\\right)$.",
+          "For $k$ specified guests, $P(B_{i_1}\\cap\\cdots\\cap B_{i_k})=\\dfrac{(4-k)!}{4!}\\cdot\\dfrac{(4-k)!}{4!}=\\left(\\dfrac{(4-k)!}{4!}\\right)^2$ (the hat-permutation and coat-permutation each independently fix those $k$).",
+          "$P(\\bigcup B_i)=\\sum_{k=1}^{4}(-1)^{k+1}\\binom{4}{k}\\left(\\tfrac{(4-k)!}{4!}\\right)^2=4\\cdot\\tfrac{36}{576}-6\\cdot\\tfrac{4}{576}+4\\cdot\\tfrac{1}{576}-1\\cdot\\tfrac{1}{576}$.",
+          "This equals $\\tfrac{144-24+4-1}{576}=\\tfrac{123}{576}$, so the answer is $1-\\tfrac{123}{576}=\\tfrac{453}{576}=\\boxed{\\dfrac{151}{192}}$."
+        ]
+      },
+      {
+        "name": "Direct enumeration",
+        "steps": [
+          "Over all $4!\\times4!=576$ equally likely (hat-perm, coat-perm) pairs, count those for which some guest has both items correct.",
+          "Pairs with at least one common fixed point number $123$ by the count above; the complement is $576-123=453$.",
+          "Probability $=453/576=\\boxed{\\dfrac{151}{192}}$."
+        ]
+      }
+    ],
+    "remark": "Insight: the intersection term $\\left((4-k)!/4!\\right)^2$ is where independence does legitimately enter — the two shuffles being independent lets the per-event probabilities multiply, but the events $B_i$ across guests still demand inclusion–exclusion, not a single product."
+  },
+  {
+    "theme": "inclusionexcl",
+    "themeLabel": "Inclusion–Exclusion & Matching",
     "title": "Keep the Couples Apart",
     "difficulty": 5,
     "task": "Evaluate",
@@ -2635,7 +2850,7 @@ window.PROBLEMS = [
       "seating",
       "blocks"
     ],
-    "statement": "Three married couples — six people in all — are seated in a row of six chairs in a uniformly random order. Find the probability that no couple ends up sitting in two adjacent chairs.",
+    "statement": "$3$ married couples ($6$ people in all) are seated in a row of $6$ chairs in a uniformly random order. Find the probability that no couple ends up sitting in two adjacent chairs.",
     "answer": "\\[\\boxed{\\dfrac{1}{3}}\\]",
     "trap": "Computing $P(\\text{couple }i\\text{ adjacent})=2\\cdot5!/6!=1/3$ and subtracting $3\\times\\tfrac13=1$ to conclude the answer is $0$. The three adjacency events overlap; their intersections (two or three couples glued at once) must be added back.",
     "solutions": [
@@ -2670,7 +2885,7 @@ window.PROBLEMS = [
       "dice",
       "exact-count"
     ],
-    "statement": "A fair six-sided die is rolled six times. Find the probability that exactly five of the six faces appear (i.e. precisely one face value never shows up).",
+    "statement": "A fair six-sided die is rolled $6$ times. Find the probability that exactly $5$ of the $6$ faces appear (i.e. precisely one face value never shows up).",
     "answer": "\\[\\boxed{\\dfrac{25}{108}}\\]",
     "trap": "Choosing the missing face ($6$ ways) and then assigning each of the $6$ rolls freely to the remaining $5$ faces ($5^6$ ways), giving $6\\cdot 5^6=93750$. This is not a surjection: it lets a second face also stay empty, so it overcounts wildly—so badly that $93750/46656>1$. The image must be exactly the chosen five faces, which forces a genuine surjection of the $6$ rolls onto the $5$-set, not a free map into it.",
     "solutions": [
@@ -2705,443 +2920,113 @@ window.PROBLEMS = [
   {
     "theme": "inclusionexcl",
     "themeLabel": "Inclusion–Exclusion & Matching",
-    "title": "The Limit of Almost Right",
+    "title": "Exactly One Gift Comes Home",
     "difficulty": 5,
-    "task": "Evaluate",
+    "task": "Find the probability",
     "tags": [
       "derangement",
-      "limit",
-      "poisson",
+      "fixed points",
       "matching",
-      "one-over-e"
-    ],
-    "statement": "For each $n$, let $p_n$ be the probability that a uniformly random permutation of $\\{1,2,\\dots,n\\}$ has exactly two fixed points. Evaluate $\\displaystyle\\lim_{n\\to\\infty}p_n$.",
-    "answer": "\\[\\boxed{\\dfrac{1}{2e}}\\]",
-    "trap": "Believing the chance of \"exactly two correct\" shrinks to $0$ as $n\\to\\infty$ because \"matching gets harder.\" In fact the number of fixed points converges in law to Poisson$(1)$, so $p_n$ tends to a positive constant $e^{-1}/2!$, not $0$.",
-    "solutions": [
-      {
-        "name": "Exact formula then limit",
-        "steps": [
-          "$p_n=\\dfrac{\\binom{n}{2}D_{n-2}}{n!}=\\dfrac{1}{2!}\\cdot\\dfrac{D_{n-2}}{(n-2)!}$, since $\\binom{n}{2}/n!=1/(2!\\,(n-2)!)$.",
-          "As $n\\to\\infty$, $\\dfrac{D_{n-2}}{(n-2)!}=\\sum_{k=0}^{n-2}\\dfrac{(-1)^k}{k!}\\to e^{-1}$.",
-          "Hence $\\lim_{n\\to\\infty}p_n=\\dfrac{1}{2!}\\,e^{-1}=\\boxed{\\dfrac{1}{2e}}$."
-        ]
-      },
-      {
-        "name": "Poisson limit of fixed points",
-        "steps": [
-          "Let $X_n$ count fixed points of a random permutation. By inclusion–exclusion the factorial moments satisfy $E\\big[\\binom{X_n}{k}\\big]=1/k!$ for $k\\le n$, matching Poisson$(1)$.",
-          "Therefore $X_n\\xrightarrow{d}\\text{Poisson}(1)$, so $P(X_n=2)\\to \\dfrac{e^{-1}1^2}{2!}=\\boxed{\\dfrac{1}{2e}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the entire fixed-point distribution of a random permutation converges to Poisson$(1)$ — \"no match\" gives $1/e$, \"exactly one\" gives $1/e$, \"exactly two\" gives $1/(2e)$ — a beautiful bridge from inclusion–exclusion to a limiting law."
-  },
-  {
-    "theme": "inclusionexcl",
-    "themeLabel": "Inclusion–Exclusion & Matching",
-    "title": "Hat and Coat, Both Wrong",
-    "difficulty": 4,
-    "task": "Find",
-    "tags": [
       "inclusion-exclusion",
-      "two-permutations",
-      "matching",
-      "independence-trap",
-      "fixed-points"
+      "subfactorial"
     ],
-    "statement": "At a party of four guests, the cloakroom returns the four hats in a uniformly random one-to-one assignment, and independently returns the four coats in another uniformly random one-to-one assignment. Find the probability that no guest gets back both his own hat and his own coat.",
-    "answer": "\\[\\boxed{\\dfrac{151}{192}}\\]",
-    "trap": "Treating it as $\\big(P(\\text{hats deranged})\\big)\\cdot\\big(P(\\text{coats deranged})\\big)=(D_4/4!)^2$. The condition is far weaker — a guest may keep his hat or his coat, just not both — so the relevant events $B_i=\\{\\text{guest }i\\text{ keeps both}\\}$ must be handled by inclusion–exclusion, and crucially the $B_i$ are not independent.",
+    "statement": "At a party $7$ friends each bring one distinct wrapped gift and drop it into a common box. The host then redistributes the $7$ gifts back to the $7$ friends uniformly at random, one gift per person, all $7!$ assignments equally likely. A \"self-gift\" occurs when a friend receives the very gift they brought. Find the probability that the redistribution produces $\\textbf{exactly one}$ self-gift. (Equivalently: a random permutation of $\\{1,2,\\dots,7\\}$ has exactly one fixed point.) As a check, identify what this probability tends to if the number of friends were allowed to grow without bound.",
+    "answer": "Choose the single matched friend in $\\binom{7}{1}=7$ ways; the remaining $6$ gifts must form a derangement, giving $D_6$ arrangements. With $D_6=6!\\sum_{k=0}^{6}\\dfrac{(-1)^k}{k!}=720-720+360-120+30-6+1=265$, the favourable count is $7\\cdot 265=1855$ out of $7!=5040$. Hence $$P=\\frac{7\\,D_6}{7!}=\\frac{1855}{5040}=\\boxed{\\dfrac{53}{144}}\\approx 0.3681.$$ Since $P_n(\\text{exactly one})=\\dfrac{n\\,D_{n-1}}{n!}=\\dfrac{D_{n-1}}{(n-1)!}=\\sum_{k=0}^{n-1}\\dfrac{(-1)^k}{k!}\\to e^{-1}$, the limiting value as the party grows is $\\dfrac1e$.",
+    "trap": "The seductive wrong answer is $\\binom{7}{1}\\left(\\tfrac17\\right)\\left(\\tfrac67\\right)^{6}=\\dfrac{46656}{117649}\\approx 0.3966$, gotten by pretending each friend independently matches with chance $\\tfrac17$ and treating the count like a binomial. The matches are $\\textbf{not}$ independent—fixing one person's gift removes a choice from everyone else—so this overcounts. A second trap is dropping the alternating signs and writing $D_6=720(1+\\tfrac1{1!}+\\cdots)$; the signs are the whole point of inclusion–exclusion, and omitting them destroys the derangement count.",
     "solutions": [
       {
-        "name": "Inclusion–exclusion on the \"both own\" events",
+        "name": "Direct inclusion–exclusion on the deranged remainder",
         "steps": [
-          "Let $B_i$ be the event that guest $i$ gets his own hat and own coat. We want $P\\!\\left(\\bigcap\\overline{B_i}\\right)$.",
-          "For $k$ specified guests, $P(B_{i_1}\\cap\\cdots\\cap B_{i_k})=\\dfrac{(4-k)!}{4!}\\cdot\\dfrac{(4-k)!}{4!}=\\left(\\dfrac{(4-k)!}{4!}\\right)^2$ (the hat-permutation and coat-permutation each independently fix those $k$).",
-          "$P(\\bigcup B_i)=\\sum_{k=1}^{4}(-1)^{k+1}\\binom{4}{k}\\left(\\tfrac{(4-k)!}{4!}\\right)^2=4\\cdot\\tfrac{36}{576}-6\\cdot\\tfrac{4}{576}+4\\cdot\\tfrac{1}{576}-1\\cdot\\tfrac{1}{576}$.",
-          "This equals $\\tfrac{144-24+4-1}{576}=\\tfrac{123}{576}$, so the answer is $1-\\tfrac{123}{576}=\\tfrac{453}{576}=\\boxed{\\dfrac{151}{192}}$."
+          "An outcome with exactly one self-gift is built by first selecting which single friend is matched—$\\binom{7}{1}=7$ choices—and then redistributing the other $6$ gifts so that $\\textbf{none}$ of those $6$ friends gets their own, i.e. a derangement of $6$ objects.",
+          "Count derangements of $6$ by inclusion–exclusion: let $A_i$ be the event that friend $i$ (among the six) keeps their own gift. Then $|A_{i_1}\\cap\\cdots\\cap A_{i_k}|=(6-k)!$, so the number with no fixed point is $D_6=\\sum_{k=0}^{6}(-1)^k\\binom{6}{k}(6-k)!=\\sum_{k=0}^{6}(-1)^k\\dfrac{6!}{k!}=720-720+360-120+30-6+1=265.$",
+          "Favourable outcomes $=7\\cdot D_6=7\\cdot 265=1855$, and the sample space is $7!=5040$, so $$P=\\dfrac{1855}{5040}=\\dfrac{53}{144}.$$",
+          "For the growth check, the same construction gives $P_n=\\dfrac{n\\,D_{n-1}}{n!}=\\sum_{k=0}^{n-1}\\dfrac{(-1)^k}{k!}$, which is exactly the partial sum of $e^{-1}=\\sum_{k\\ge0}\\dfrac{(-1)^k}{k!}$. Hence $P\\to\\dfrac1e$, while the finite answer is $\\boxed{\\dfrac{53}{144}}.$"
         ]
       },
       {
-        "name": "Direct enumeration",
+        "name": "Derangement recurrence (sign-free bookkeeping)",
         "steps": [
-          "Over all $4!\\times4!=576$ equally likely (hat-perm, coat-perm) pairs, count those for which some guest has both items correct.",
-          "Pairs with at least one common fixed point number $123$ by the count above; the complement is $576-123=453$.",
-          "Probability $=453/576=\\boxed{\\dfrac{151}{192}}$."
+          "Use the recurrence $D_m=(m-1)\\left(D_{m-1}+D_{m-2}\\right)$ with seeds $D_0=1,\\ D_1=0$: $D_2=1\\cdot(0+1)=1,\\ D_3=2(1+0)=2,\\ D_4=3(2+1)=9,\\ D_5=4(9+2)=44,\\ D_6=5(44+9)=265.$",
+          "The number of permutations of $7$ with exactly one fixed point is $\\binom{7}{1}D_6=7\\cdot 265=1855$, since the lone matched person is chosen $7$ ways and the rest are deranged.",
+          "Dividing by the $7!=5040$ equally likely redistributions, $$P=\\dfrac{1855}{5040}=\\dfrac{53}{144},$$ and because $\\dfrac{D_{n-1}}{(n-1)!}\\to e^{-1}$, the large-party limit is $\\dfrac1e$, with the required probability $\\boxed{\\dfrac{53}{144}}.$"
         ]
       }
     ],
-    "remark": "Insight: the intersection term $\\left((4-k)!/4!\\right)^2$ is where independence does legitimately enter — the two shuffles being independent lets the per-event probabilities multiply, but the events $B_i$ across guests still demand inclusion–exclusion, not a single product."
-  },
-  {
-    "theme": "distributions",
-    "themeLabel": "Named Distributions & Limits",
-    "title": "The Factory's Rare Defect",
-    "difficulty": 3,
-    "task": "Evaluate",
-    "tags": [
-      "poisson",
-      "law-of-rare-events",
-      "binomial-limit",
-      "at-least"
-    ],
-    "statement": "A factory ships boxes of $n$ light bulbs. Each bulb independently fails on its first day with probability $p_n=\\dfrac{2}{n}$, and bulbs fail independently of one another. Let $X_n$ be the number of bulbs that fail on the first day. Evaluate \\[\\lim_{n\\to\\infty}\\mathbb{P}\\big(X_n\\ge 2\\big).\\]",
-    "answer": "\\[\\boxed{1-3e^{-2}}\\]",
-    "trap": "Computing $\\mathbb{P}(X_n\\ge 2)=1-\\mathbb{P}(X_n=0)=1-e^{-2}$ by forgetting the $k=1$ term. The complement of $\\{X\\ge 2\\}$ is $\\{X=0\\}\\cup\\{X=1\\}$, so you must subtract BOTH $e^{-2}$ and $2e^{-2}$.",
-    "solutions": [
-      {
-        "name": "Poisson limit of the binomial",
-        "steps": [
-          "$X_n\\sim\\mathrm{Bin}(n,2/n)$ with $np_n=2$ fixed, so by the law of rare events $X_n\\xrightarrow{d}\\mathrm{Poisson}(2)$.",
-          "$\\mathbb{P}(X=0)=e^{-2}$ and $\\mathbb{P}(X=1)=2e^{-2}$.",
-          "$\\mathbb{P}(X\\ge 2)=1-e^{-2}-2e^{-2}=\\boxed{1-3e^{-2}}$."
-        ]
-      },
-      {
-        "name": "Direct binomial limits",
-        "steps": [
-          "$\\mathbb{P}(X_n=0)=(1-2/n)^n\\to e^{-2}$.",
-          "$\\mathbb{P}(X_n=1)=n\\cdot\\tfrac{2}{n}(1-2/n)^{n-1}=2(1-2/n)^{n-1}\\to 2e^{-2}$.",
-          "Hence $\\lim \\mathbb{P}(X_n\\ge2)=1-(e^{-2}+2e^{-2})=\\boxed{1-3e^{-2}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the Poisson approximation is a tail statement; the first two probability masses dominate the error you'd make by stopping at $X=0$. Monte Carlo with $n=2\\times10^5$ gives $0.593\\approx 1-3e^{-2}=0.5940$."
-  },
-  {
-    "theme": "distributions",
-    "themeLabel": "Named Distributions & Limits",
-    "title": "Five Drops on the Unit Interval",
-    "difficulty": 3,
-    "task": "Evaluate",
-    "tags": [
-      "order-statistics",
-      "uniform",
-      "expectation",
-      "range"
-    ],
-    "statement": "Five points $X_1,\\dots,X_5$ are dropped independently and uniformly on $[0,1]$. Let $M=\\max_i X_i$, $L=\\min_i X_i$, and let $X_{(3)}$ be the median (third smallest). Evaluate the vector \\[\\big(\\,\\mathbb{E}[M]-\\mathbb{E}[L],\\ \\mathbb{E}[X_{(3)}],\\ \\mathbb{E}[M-L]\\,\\big).\\]",
-    "answer": "\\[\\boxed{\\left(\\tfrac{2}{3},\\ \\tfrac{1}{2},\\ \\tfrac{2}{3}\\right)}\\]",
-    "trap": "Guessing $\\mathbb{E}[M]=\\tfrac12+$ something or using $\\mathbb{E}[M]=1-\\tfrac1n=\\tfrac45$. The correct uniform order-statistic mean is $\\mathbb{E}[X_{(k)}]=\\dfrac{k}{n+1}$, NOT $\\dfrac{k}{n}$ (which would force the absurd $\\mathbb{E}[M]=\\tfrac55=1$); the $n+1$ comes from the $n+1$ exchangeable spacings.",
-    "solutions": [
-      {
-        "name": "Spacings symmetry",
-        "steps": [
-          "The $n$ points cut $[0,1]$ into $n+1$ spacings which are exchangeable, each with mean $\\tfrac{1}{n+1}$.",
-          "$\\mathbb{E}[X_{(k)}]=$ (sum of first $k$ spacings) $=\\tfrac{k}{n+1}$. With $n=5$: $\\mathbb{E}[L]=\\tfrac16,\\ \\mathbb{E}[X_{(3)}]=\\tfrac36=\\tfrac12,\\ \\mathbb{E}[M]=\\tfrac56$.",
-          "$\\mathbb{E}[M]-\\mathbb{E}[L]=\\tfrac46=\\tfrac23$; $\\mathbb{E}[X_{(3)}]=\\tfrac12$; $\\mathbb{E}[M-L]=\\tfrac{n-1}{n+1}=\\tfrac46=\\tfrac23$, giving $\\boxed{(\\tfrac23,\\tfrac12,\\tfrac23)}$."
-        ]
-      },
-      {
-        "name": "CDF integration for the extremes",
-        "steps": [
-          "$\\mathbb{P}(M\\le m)=m^5$ so $\\mathbb{E}[M]=\\int_0^1(1-m^5)\\,dm=1-\\tfrac16=\\tfrac56$.",
-          "$\\mathbb{P}(L>l)=(1-l)^5$ so $\\mathbb{E}[L]=\\int_0^1(1-l)^5\\,dl=\\tfrac16$.",
-          "Median by symmetry of the uniform is $\\tfrac12$; range mean $=\\tfrac56-\\tfrac16=\\tfrac23$, so $\\boxed{(\\tfrac23,\\tfrac12,\\tfrac23)}$."
-        ]
-      },
-      {
-        "name": "Beta-density direct integration",
-        "steps": [
-          "The $k$-th order statistic of $n$ uniforms is $\\mathrm{Beta}(k,\\,n-k+1)$ with density $\\dfrac{n!}{(k-1)!(n-k)!}\\,x^{k-1}(1-x)^{n-k}$.",
-          "Its mean is $\\dfrac{k}{k+(n-k+1)}=\\dfrac{k}{n+1}$; integrating $x\\cdot f_{(k)}(x)$ for $k=1,3,5$ at $n=5$ gives $\\tfrac16,\\tfrac12,\\tfrac56$.",
-          "Hence $\\mathbb{E}[M]-\\mathbb{E}[L]=\\tfrac23$, $\\mathbb{E}[X_{(3)}]=\\tfrac12$, and $\\mathbb{E}[M-L]=\\mathbb{E}[M]-\\mathbb{E}[L]=\\tfrac23$, confirming $\\boxed{(\\tfrac23,\\tfrac12,\\tfrac23)}$."
-        ]
-      }
-    ],
-    "remark": "Insight: linearity of expectation through exchangeable spacings sidesteps every density. Note the cute coincidence $\\mathbb{E}[M-L]=\\mathbb{E}[M]-\\mathbb{E}[L]$ here equals $\\tfrac23$ both ways — the first equality is just linearity, always true, while the spacings picture makes the value $\\tfrac{n-1}{n+1}$ transparent."
-  },
-  {
-    "theme": "distributions",
-    "themeLabel": "Named Distributions & Limits",
-    "title": "The Widest Empty Stretch",
-    "difficulty": 4,
-    "task": "Evaluate",
-    "tags": [
-      "uniform",
-      "spacings",
-      "order-statistics",
-      "maximum-gap",
-      "harmonic"
-    ],
-    "statement": "Three points are dropped independently and uniformly on $[0,1]$, splitting the interval into four consecutive pieces. Let $G$ be the length of the LONGEST of these four pieces. Evaluate $\\mathbb{E}[G]$.",
-    "answer": "\\[\\boxed{\\dfrac{25}{48}}\\]",
-    "trap": "Answering $\\tfrac14$ because each spacing has mean $\\tfrac14$. The expected value of the MAXIMUM spacing is far larger than the common mean of one spacing; the spacings are exchangeable but strongly dependent, and the max is not the mean.",
-    "solutions": [
-      {
-        "name": "Inclusion–exclusion on uniform spacings",
-        "steps": [
-          "For $m$ uniform points the $m+1$ spacings $(S_1,\\dots,S_{m+1})$ are uniform on the simplex; $\\mathbb{P}(\\text{all }S_i>t)=(1-(m+1)t)_+^{m}$.",
-          "By the union bound made exact, $\\mathbb{P}(\\max_i S_i>t)=\\sum_{j\\ge1}(-1)^{j+1}\\binom{m+1}{j}(1-jt)_+^{m}$, and integrating gives the classical result $\\mathbb{E}[\\max_i S_i]=\\dfrac{1}{m+1}\\sum_{j=1}^{m+1}\\dfrac1j$.",
-          "Here $m=3$, $m+1=4$: $\\mathbb{E}[G]=\\tfrac14\\big(1+\\tfrac12+\\tfrac13+\\tfrac14\\big)=\\tfrac14\\cdot\\tfrac{25}{12}=\\boxed{\\tfrac{25}{48}}$."
-        ]
-      },
-      {
-        "name": "Tail integral directly",
-        "steps": [
-          "$\\mathbb{E}[G]=\\int_0^1\\mathbb{P}(G>t)\\,dt$ with $\\mathbb{P}(G>t)=4(1-t)^3-6(1-2t)_+^3+4(1-3t)_+^3-(1-4t)_+^3$.",
-          "Integrate each piece over its support: $\\int_0^1 4(1-t)^3=1$, $\\int_0^{1/2}6(1-2t)^3=\\tfrac34$, $\\int_0^{1/3}4(1-3t)^3=\\tfrac13$, $\\int_0^{1/4}(1-4t)^3=\\tfrac1{16}$.",
-          "$\\mathbb{E}[G]=1-\\tfrac34+\\tfrac13-\\tfrac1{16}=\\tfrac{48-36+16-3}{48}=\\boxed{\\tfrac{25}{48}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the harmonic-number formula $\\tfrac{1}{m+1}H_{m+1}$ for the largest gap is a gem—the longest empty stretch grows like $\\tfrac{\\ln m}{m}$, not $\\tfrac1m$. Monte Carlo gives $0.5208\\approx 25/48=0.52083$."
-  },
-  {
-    "theme": "distributions",
-    "themeLabel": "Named Distributions & Limits",
-    "title": "The Patient Gambler's Memory",
-    "difficulty": 4,
-    "task": "Determine",
-    "tags": [
-      "geometric",
-      "memorylessness",
-      "conditional-expectation",
-      "waiting-time"
-    ],
-    "statement": "A fair six-sided die is rolled repeatedly until the first $6$ appears; let $N$ be the roll on which it appears. A gambler has already rolled four times with no $6$. Determine the expected number of ADDITIONAL rolls he still needs, $\\mathbb{E}[\\,N-4\\mid N>4\\,]$, and also determine $\\mathbb{E}[N\\mid N>4]$.",
-    "answer": "\\[\\boxed{\\mathbb{E}[N-4\\mid N>4]=6,\\quad \\mathbb{E}[N\\mid N>4]=10}\\]",
-    "trap": "Thinking 'four failures have used up some of the wait, so fewer than $6$ remain.' The geometric distribution is memoryless: conditioning on $N>4$ resets the clock, so the additional wait again has mean $6$. The trap is treating elapsed time as 'progress.'",
-    "solutions": [
-      {
-        "name": "Memorylessness",
-        "steps": [
-          "For geometric $N$ with success probability $p$, $\\mathbb{P}(N>4+j\\mid N>4)=\\dfrac{(1-p)^{4+j}}{(1-p)^4}=(1-p)^{j}=\\mathbb{P}(N>j)$.",
-          "Thus $N-4\\mid N>4$ has the same distribution as $N$ itself, so $\\mathbb{E}[N-4\\mid N>4]=\\mathbb{E}[N]=\\tfrac1p=6$.",
-          "Therefore $\\mathbb{E}[N\\mid N>4]=4+6=\\boxed{10}$."
-        ]
-      },
-      {
-        "name": "Direct conditional sum",
-        "steps": [
-          "$\\mathbb{E}[N-4\\mid N>4]=\\sum_{m\\ge1} m\\,\\mathbb{P}(N=4+m\\mid N>4)$ and $\\mathbb{P}(N=4+m\\mid N>4)=(1-p)^{m-1}p$.",
-          "This is exactly the mean of a fresh geometric$(p)$ variable, $=\\tfrac1p=6$.",
-          "Adding back the elapsed $4$ gives $\\mathbb{E}[N\\mid N>4]=10$, so $\\boxed{6\\text{ and }10}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the 'gambler's fallacy' is precisely the denial of memorylessness. Among discrete laws on $\\{1,2,\\dots\\}$, only the geometric has this property. MC over $2\\times10^6$ runs gives $6.01$."
-  },
-  {
-    "theme": "distributions",
-    "themeLabel": "Named Distributions & Limits",
-    "title": "Which Component Dies First",
-    "difficulty": 4,
-    "task": "Find a,b",
-    "tags": [
-      "exponential",
-      "memorylessness",
-      "minimum",
-      "competing-risks"
-    ],
-    "statement": "Two independent components have exponential lifetimes: component $A$ with mean $3$ hours and component $B$ with mean $6$ hours. A system fails the instant EITHER component fails. Find the pair $(a,b)$ where $a=\\mathbb{P}(A\\text{ fails strictly before }B)$ and $b=\\mathbb{E}[\\text{system lifetime}]$.",
-    "answer": "\\[\\boxed{\\left(\\dfrac{2}{3},\\ 2\\right)}\\]",
-    "trap": "Reasoning 'B lasts twice as long on average, so the system mostly lives near B's behavior' or guessing $a=\\tfrac12$. You must work with RATES, not means: $A$ has rate $\\tfrac13$, $B$ rate $\\tfrac16$, and $a=\\dfrac{\\lambda_A}{\\lambda_A+\\lambda_B}$, the faster rate winning more often.",
-    "solutions": [
-      {
-        "name": "Rates and the racing exponentials",
-        "steps": [
-          "Rates $\\lambda_A=\\tfrac13,\\ \\lambda_B=\\tfrac16$. The probability the $A$-clock rings first is $\\mathbb{P}(A<B)=\\dfrac{\\lambda_A}{\\lambda_A+\\lambda_B}=\\dfrac{1/3}{1/2}=\\tfrac23$.",
-          "The minimum of independent exponentials is exponential with rate $\\lambda_A+\\lambda_B=\\tfrac12$, so the system lifetime has mean $\\dfrac{1}{\\lambda_A+\\lambda_B}=2$.",
-          "Hence $(a,b)=\\boxed{(\\tfrac23,\\,2)}$."
-        ]
-      },
-      {
-        "name": "Direct double integral",
-        "steps": [
-          "$\\mathbb{P}(A<B)=\\int_0^\\infty \\lambda_A e^{-\\lambda_A t}\\,e^{-\\lambda_B t}\\,dt=\\dfrac{\\lambda_A}{\\lambda_A+\\lambda_B}=\\tfrac23$.",
-          "$\\mathbb{P}(\\min>t)=e^{-\\lambda_A t}e^{-\\lambda_B t}=e^{-t/2}$, an exponential of rate $\\tfrac12$, mean $2$.",
-          "So $(a,b)=\\boxed{(\\tfrac23,\\,2)}$."
-        ]
-      }
-    ],
-    "remark": "Insight: independent exponentials hold a 'competition' decided by relative rates, while the survival time forgets who is competing—its rate is just the sum. MC confirms $\\mathbb{P}(A<B)=0.667$ and $\\mathbb{E}[\\min]=2.00$."
-  },
-  {
-    "theme": "distributions",
-    "themeLabel": "Named Distributions & Limits",
-    "title": "The Ratio of Neighbours",
-    "difficulty": 5,
-    "task": "Evaluate",
-    "tags": [
-      "order-statistics",
-      "uniform",
-      "ratio",
-      "renyi-representation",
-      "beta"
-    ],
-    "statement": "Six points are dropped independently and uniformly on $[0,1]$. Let $X_{(5)}$ and $X_{(6)}$ be the second-largest and the largest. Evaluate \\[\\mathbb{E}\\!\\left[\\dfrac{X_{(5)}}{X_{(6)}}\\right].\\]",
-    "answer": "\\[\\boxed{\\dfrac{5}{6}}\\]",
-    "trap": "Computing $\\dfrac{\\mathbb{E}[X_{(5)}]}{\\mathbb{E}[X_{(6)}]}=\\dfrac{5/7}{6/7}=\\dfrac56$ 'by luck'—the right answer here, but for the WRONG reason. $\\mathbb{E}[Y/Z]\\ne \\mathbb{E}[Y]/\\mathbb{E}[Z]$ in general; you must show the ratio's true law, otherwise the coincidence misleads you on other order-statistic ratios.",
-    "solutions": [
-      {
-        "name": "Rényi / scaling representation",
-        "steps": [
-          "Conditional on $X_{(6)}=m$, the other five points are iid Uniform$(0,m)$, so $X_{(5)}/m$ is the maximum of five iid Uniform$(0,1)$ variables, independent of $m$.",
-          "More cleanly, for uniform order statistics the ratio $X_{(k)}/X_{(k+1)}$ has the law of $U^{1/k}$ with $U\\sim\\mathrm{Uniform}(0,1)$ (Rényi representation), independent of $n$.",
-          "With $k=5$: $\\mathbb{E}[U^{1/5}]=\\dfrac{1}{1+\\tfrac15}=\\dfrac{5}{6}$, so the answer is $\\boxed{\\tfrac56}$."
-        ]
-      },
-      {
-        "name": "Joint density integration",
-        "steps": [
-          "The joint density of $(X_{(5)},X_{(6)})=(u,v)$ for $n=6$ is $f(u,v)=\\dfrac{6!}{4!}\\,u^{4}\\,\\mathbf 1_{0<u<v<1}=30\\,u^4$ on $0<u<v<1$.",
-          "$\\mathbb{E}\\!\\left[\\tfrac{u}{v}\\right]=\\int_0^1\\!\\!\\int_0^v \\tfrac{u}{v}\\,30u^4\\,du\\,dv=\\int_0^1 \\tfrac{30}{v}\\cdot\\tfrac{v^6}{6}\\,dv=\\int_0^1 5v^5\\,dv=\\dfrac56$.",
-          "Hence $\\mathbb{E}\\!\\left[X_{(5)}/X_{(6)}\\right]=\\boxed{\\tfrac56}$."
-        ]
-      }
-    ],
-    "remark": "Insight: $X_{(k)}/X_{(k+1)}\\stackrel{d}{=}U^{1/k}$ makes the ratios of consecutive uniform order statistics independent with $\\mathbb{E}=k/(k+1)$—a structural fact, not a numerical fluke. MC gives $0.8334\\approx5/6$."
-  },
-  {
-    "theme": "distributions",
-    "themeLabel": "Named Distributions & Limits",
-    "title": "Spam Among the Six",
-    "difficulty": 5,
-    "task": "Evaluate",
-    "tags": [
-      "poisson",
-      "thinning",
-      "conditioning",
-      "binomial",
-      "superposition"
-    ],
-    "statement": "Phone calls to a help-desk arrive as a Poisson process with mean $6$ per hour. Each call is independently 'spam' with probability $\\tfrac13$. In a particular hour exactly $6$ calls arrived. Given this information, evaluate the probability that NONE of them was spam.",
-    "answer": "\\[\\boxed{\\dfrac{64}{729}}\\]",
-    "trap": "Applying Poisson thinning to get spam $\\sim\\mathrm{Poisson}(2)$ and answering $e^{-2}\\approx0.135$. That ignores the conditioning on the TOTAL being $6$. Given the total, the spam count is Binomial$(6,\\tfrac13)$, not Poisson—conditioning on the sum destroys the Poisson form.",
-    "solutions": [
-      {
-        "name": "Conditioning on the total",
-        "steps": [
-          "Given $N=6$ total calls, each is independently spam with probability $\\tfrac13$, so the number of spam calls is $\\mathrm{Binomial}(6,\\tfrac13)$.",
-          "$\\mathbb{P}(0\\text{ spam}\\mid N=6)=\\big(1-\\tfrac13\\big)^6=\\big(\\tfrac23\\big)^6=\\dfrac{64}{729}$.",
-          "So the probability is $\\boxed{\\tfrac{64}{729}}$."
-        ]
-      },
-      {
-        "name": "Bayes from the unconditional split",
-        "steps": [
-          "Unconditionally spam$\\sim\\mathrm{Poisson}(2)$ and ham$\\sim\\mathrm{Poisson}(4)$ independently. $\\mathbb{P}(\\text{spam}=0,\\,\\text{total}=6)=\\mathbb{P}(\\text{spam}=0)\\,\\mathbb{P}(\\text{ham}=6)=e^{-2}\\cdot e^{-4}\\tfrac{4^6}{6!}$.",
-          "$\\mathbb{P}(\\text{total}=6)=e^{-6}\\tfrac{6^6}{6!}$; dividing gives $\\dfrac{4^6}{6^6}=\\big(\\tfrac23\\big)^6$.",
-          "Thus the conditional probability is $\\dfrac{64}{729}=\\boxed{\\tfrac{64}{729}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: thinning and conditioning pull in opposite directions—Poisson thinning answers an UNconditional question, while 'given the total' is a Binomial allocation. The two answers ($0.0878$ vs $0.135$) differ markedly. MC gives $0.0876$."
-  },
-  {
-    "theme": "distributions",
-    "themeLabel": "Named Distributions & Limits",
-    "title": "The Minimum's Exponential Heartbeat",
-    "difficulty": 5,
-    "task": "Evaluate",
-    "tags": [
-      "order-statistics",
-      "exponential-limit",
-      "laplace-transform",
-      "uniform-minimum",
-      "scaling"
-    ],
-    "statement": "For each $n$, let $X_{(1)}^{(n)}=\\min(U_1,\\dots,U_n)$ be the minimum of $n$ independent Uniform$[0,1]$ variables. Evaluate \\[\\lim_{n\\to\\infty}\\mathbb{E}\\!\\left[e^{-\\,n\\,X_{(1)}^{(n)}}\\right].\\]",
-    "answer": "\\[\\boxed{\\dfrac{1}{2}}\\]",
-    "trap": "Substituting $\\mathbb{E}[X_{(1)}^{(n)}]=\\tfrac1{n+1}$ into $e^{-nx}$ to get $e^{-n/(n+1)}\\to e^{-1}$. This is Jensen-flawed: $\\mathbb{E}[e^{-nX}]\\ne e^{-n\\mathbb{E}[X]}$. The correct route recognizes $nX_{(1)}^{(n)}\\xrightarrow{d}\\mathrm{Exp}(1)$ and uses its Laplace transform.",
-    "solutions": [
-      {
-        "name": "Scaling limit to Exp(1)",
-        "steps": [
-          "$\\mathbb{P}(nX_{(1)}^{(n)}>t)=\\mathbb{P}\\big(X_{(1)}^{(n)}>\\tfrac{t}{n}\\big)=\\big(1-\\tfrac{t}{n}\\big)^n\\to e^{-t}$, so $nX_{(1)}^{(n)}\\xrightarrow{d}Y\\sim\\mathrm{Exp}(1)$.",
-          "The integrand $e^{-nX}\\in[0,1]$ is bounded, so by the bounded convergence/continuous-mapping theorem $\\mathbb{E}[e^{-nX_{(1)}^{(n)}}]\\to\\mathbb{E}[e^{-Y}]$.",
-          "$\\mathbb{E}[e^{-Y}]=\\dfrac{1}{1+1}=\\dfrac12$, giving $\\boxed{\\tfrac12}$."
-        ]
-      },
-      {
-        "name": "Exact integral then limit",
-        "steps": [
-          "The density of $X_{(1)}^{(n)}$ is $n(1-x)^{n-1}$, so $\\mathbb{E}[e^{-nX}]=\\int_0^1 e^{-nx}\\,n(1-x)^{n-1}\\,dx$.",
-          "Substituting $x=u/n$, $\\;n\\!\\int_0^n e^{-u}(1-\\tfrac un)^{n-1}\\tfrac{du}{n}=\\int_0^n e^{-u}(1-\\tfrac un)^{n-1}\\,du\\to\\int_0^\\infty e^{-u}e^{-u}\\,du=\\tfrac12$.",
-          "Hence the limit equals $\\boxed{\\tfrac12}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the universal scaling $n\\cdot\\min\\to\\mathrm{Exp}(1)$ converts an order-statistic limit into a one-line Laplace-transform evaluation; Jensen warns you why $e^{-1}$ is wrong. Exact value at $n=2000$ is $0.50006$, MC at $n=5000$ gives $0.5002$."
-  },
-  {
-    "theme": "distributions",
-    "themeLabel": "Named Distributions & Limits",
-    "title": "Ramanujan's Half",
-    "difficulty": 5,
-    "task": "Prove that",
-    "tags": [
-      "poisson",
-      "central-limit",
-      "median",
-      "clt",
-      "incomplete-gamma"
-    ],
-    "statement": "Prove that \\[\\lim_{n\\to\\infty}\\; e^{-n}\\sum_{k=0}^{n}\\frac{n^{k}}{k!}=\\frac{1}{2}.\\]",
-    "answer": "\\[\\boxed{\\dfrac{1}{2}}\\]",
-    "trap": "Believing the limit is $1$ because the full series $\\sum_{k\\ge 0}n^{k}/k!=e^{n}$ makes the prefactor cancel. Cutting the sum at exactly $k=n$ keeps only HALF (asymptotically) of a distribution that is centering at $n$: the omitted upper tail $\\sum_{k>n}$ is not negligible, it carries the other half. Equivalently $e^{-n}\\sum_{k\\le n}+e^{-n}\\sum_{k>n}=1$, and by symmetry of the limiting normal each piece tends to $\\tfrac12$, not $1$ and $0$.",
-    "solutions": [
-      {
-        "name": "Poisson CLT at the mean",
-        "steps": [
-          "Let $S_n\\sim\\mathrm{Poisson}(n)$. Since $S_n$ takes value $k$ with probability $e^{-n}n^{k}/k!$, the partial sum is a CDF value: $e^{-n}\\sum_{k=0}^{n}\\dfrac{n^{k}}{k!}=\\mathbb{P}(S_n\\le n)=\\mathbb{P}\\!\\left(\\dfrac{S_n-n}{\\sqrt n}\\le 0\\right)$.",
-          "A $\\mathrm{Poisson}(n)$ variable is the sum of $n$ i.i.d. $\\mathrm{Poisson}(1)$ variables, each with mean $1$ and variance $1$. By the Central Limit Theorem, $\\dfrac{S_n-n}{\\sqrt n}\\xrightarrow{d}\\mathcal N(0,1)$.",
-          "The point $0$ is a continuity point of the limiting normal CDF, so $\\mathbb{P}\\!\\left(\\dfrac{S_n-n}{\\sqrt n}\\le 0\\right)\\to\\Phi(0)=\\dfrac12$. Hence the limit is $\\boxed{\\tfrac12}$. (The mean $n$ is asymptotically the median, which is the whole point.)"
-        ]
-      },
-      {
-        "name": "Incomplete-gamma integral with dominated convergence",
-        "steps": [
-          "Integration by parts (or the incomplete-gamma identity) gives the exact equality $e^{-n}\\sum_{k=0}^{n}\\dfrac{n^{k}}{k!}=\\dfrac{1}{n!}\\int_{n}^{\\infty} t^{n}e^{-t}\\,dt$. Substitute $t=n+\\sqrt n\\,s$, so $dt=\\sqrt n\\,ds$ and $s$ ranges over $(0,\\infty)$, turning the right side into $\\dfrac{\\sqrt n\\,n^{n}e^{-n}}{n!}\\int_{0}^{\\infty}\\Big(1+\\tfrac{s}{\\sqrt n}\\Big)^{n}e^{-\\sqrt n\\,s}\\,ds.$",
-          "By Stirling, $\\dfrac{\\sqrt n\\,n^{n}e^{-n}}{n!}\\to\\dfrac{1}{\\sqrt{2\\pi}}$. For the integrand, $n\\ln\\!\\big(1+\\tfrac{s}{\\sqrt n}\\big)-\\sqrt n\\,s\\to-\\dfrac{s^{2}}{2}$ pointwise on $s>0$, so $\\big(1+\\tfrac{s}{\\sqrt n}\\big)^{n}e^{-\\sqrt n\\,s}\\to e^{-s^{2}/2}$.",
-          "The elementary bound $\\ln(1+x)\\le x-\\dfrac{x^{2}}{2(1+x)}$ for $x\\ge 0$ (with $x=s/\\sqrt n\\le s$) gives the domination $\\big(1+\\tfrac{s}{\\sqrt n}\\big)^{n}e^{-\\sqrt n\\,s}\\le e^{-s^{2}/(2(1+s))}$, which is integrable on $(0,\\infty)$. By Dominated Convergence the integral tends to $\\int_{0}^{\\infty}e^{-s^{2}/2}\\,ds=\\sqrt{\\pi/2}$.",
-          "Therefore the whole expression $\\to\\dfrac{1}{\\sqrt{2\\pi}}\\cdot\\sqrt{\\dfrac{\\pi}{2}}=\\dfrac{1}{\\sqrt{2\\pi}}\\int_{0}^{\\infty}e^{-s^{2}/2}\\,ds=\\dfrac12$, so the limit is $\\boxed{\\tfrac12}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the Poisson$(n)$ ladder turns the truncated exponential series into the probability of landing at or below the mean, and the mean is asymptotically the median, so the answer is $\\tfrac12$, not $1$. The convergence is slow and one-sided from above because the Poisson$(n)$ law has positive skewness $1/\\sqrt n$: numerically the sequence reads $0.583,\\,0.527,\\,0.508,\\,0.504$ for $n=10,10^{2},10^{3},5\\times10^{3}$, descending to $\\tfrac12$ like $\\tfrac{1}{3}\\sqrt{2/(\\pi n)}$ (an Edgeworth correction). This is the classic Ramanujan problem on the median of the Poisson distribution."
-  },
-  {
-    "theme": "distributions",
-    "themeLabel": "Named Distributions & Limits",
-    "title": "How Wide Will They Spread",
-    "difficulty": 4,
-    "task": "Evaluate",
-    "tags": [
-      "order-statistics",
-      "range",
-      "uniform",
-      "cdf",
-      "gamma-limit"
-    ],
-    "statement": "Four points are dropped independently and uniformly on $[0,1]$; let $R=X_{(4)}-X_{(1)}$ be their range. (a) Evaluate $\\mathbb{P}\\big(R\\le \\tfrac12\\big)$. (b) Evaluate $\\displaystyle\\lim_{n\\to\\infty}\\mathbb{E}\\big[n\\,(1-R_n)\\big]$, where $R_n$ is the range of $n$ uniform points.",
-    "answer": "\\[\\boxed{\\mathbb{P}(R\\le\\tfrac12)=\\tfrac{5}{16},\\qquad \\lim_{n\\to\\infty}\\mathbb{E}[n(1-R_n)]=2}\\]",
-    "trap": "For (a), treating the range like the maximum: $\\mathbb{P}(R\\le r)=r^{n}$ gives $(\\tfrac12)^4=\\tfrac1{16}$, which is far too small. The range CDF has TWO terms, $\\mathbb{P}(R\\le r)=n\\,r^{\\,n-1}-(n-1)r^{\\,n}$. For (b), writing $1-R_n\\approx 1-X_{(n)}$ and forgetting the gap $X_{(1)}$ at the left end yields only one $\\mathrm{Exp}(1)$, so $\\mathbb{E}\\to1$ — exactly HALF the true answer.",
-    "solutions": [
-      {
-        "name": "Range CDF and a tail decomposition",
-        "steps": [
-          "Fix the smallest point at $X_{(1)}=x$ and require all the rest to land in $[x,x+r]$. Integrating the joint density of the minimum and the conditional placement gives $\\mathbb{P}(R\\le r)=n\\!\\int_0^{1-r}\\!\\big[(x+r)-x\\big]^{n-1}dx=n\\!\\int_0^{1-r}\\!r^{\\,n-1}dx$ for the interior, plus the boundary case $X_{(1)}>1-r$; combining yields the standard $\\mathbb{P}(R\\le r)=n\\,r^{\\,n-1}-(n-1)r^{\\,n}$ for $0\\le r\\le1$. At $n=4,\\ r=\\tfrac12$: $4(\\tfrac12)^3-3(\\tfrac12)^4=\\tfrac12-\\tfrac{3}{16}=\\tfrac{5}{16}$.",
-          "Write $1-R_n=(1-X_{(n)})+X_{(1)}$. Then $n(1-X_{(n)})\\xrightarrow{d}\\mathrm{Exp}(1)$ and $nX_{(1)}\\xrightarrow{d}\\mathrm{Exp}(1)$, and the two end-gaps become asymptotically independent.",
-          "Each limit has mean $1$, so $\\mathbb{E}[n(1-R_n)]\\to 1+1=2$. Final: $\\boxed{\\tfrac5{16}\\text{ and }2}$."
-        ]
-      },
-      {
-        "name": "Direct density / moments",
-        "steps": [
-          "The range density for $n$ uniforms is $f_R(r)=n(n-1)r^{\\,n-2}(1-r)$ on $[0,1]$; at $n=4$ this is $12\\,r^{2}(1-r)$, so $\\mathbb{P}(R\\le\\tfrac12)=\\int_0^{1/2}12\\,r^2(1-r)\\,dr=12\\big(\\tfrac1{24}-\\tfrac1{64}\\big)=\\tfrac5{16}$.",
-          "For general $n$, $\\mathbb{E}[R_n]=\\int_0^1 r\\,f_R(r)\\,dr=\\dfrac{n-1}{n+1}$, hence $\\mathbb{E}[n(1-R_n)]=n\\Big(1-\\dfrac{n-1}{n+1}\\Big)=\\dfrac{2n}{n+1}\\to 2$.",
-          "Hence $\\boxed{\\tfrac5{16}\\text{ and }2}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the exact identity $\\mathbb{E}[n(1-R_n)]=\\tfrac{2n}{n+1}$ pins the limit $2$ instantly, while the decomposition reveals WHY — two independent $\\mathrm{Exp}(1)$ gaps, one at each end, so $n(1-R_n)\\xrightarrow{d}\\mathrm{Gamma}(2,1)$ (mean $2$, variance $2$). Monte Carlo confirms: $\\mathbb{P}(R\\le\\tfrac12)\\approx0.3125$ and $\\mathbb{E}[n(1-R_n)]\\to1.995$ at large $n$."
+    "remark": "**Insight.** \"Exactly one match\" splits cleanly into **choose the one fixed point** times **derange the rest**, so the hard work is just a derangement of size $n-1$. The slick payoff is the algebraic accident $\\dfrac{n\\,D_{n-1}}{n!}=\\dfrac{D_{n-1}}{(n-1)!}$: the probability of *exactly one* match equals the probability of *no* match on one fewer object, and **both** drift to the same value $1/e$ as the party grows. The trap of multiplying per-person chances feels like a binomial but ignores that the gifts are a single shuffled pile—one person's fixed gift constrains all the others, which is precisely what the alternating inclusion–exclusion signs encode."
   },
   {
     "theme": "paradox",
-    "themeLabel": "Bounds, Symmetry & Paradoxes",
+    "themeLabel": "Symmetry, Conditioning & Surprises",
+    "title": "The Two-Faced Cards",
+    "difficulty": 3,
+    "task": "Evaluate",
+    "tags": [
+      "three cards-box",
+      "bayes",
+      "sample-space",
+      "cards"
+    ],
+    "statement": "A box holds $3$ cards. One has both faces white, one has both faces red, and one has a white face and a red face. You draw a card uniformly at random, then place it on the table showing a face chosen uniformly at random among its two sides; the face you see is white. Evaluate the probability that the hidden face of that card is also white.",
+    "answer": "\\[\\boxed{\\dfrac{2}{3}}\\]",
+    "trap": "Saying 'the card is either white-white or white-red, and those were equally likely, so the answer is $1/2$' — this conditions on cards instead of on the observed white FACE; the white-white card offers two ways to show a white face while the mixed card offers only one, breaking the symmetry.",
+    "solutions": [
+      {
+        "name": "Count equally-likely faces",
+        "steps": [
+          "List the six faces, two from each card; exactly three are white: both faces of the white-white card and the white face of the mixed card.",
+          "Given the seen face is white, each of these three white faces is equally likely to be the one on display.",
+          "On two of those three, the hidden face is also white (the white-white card's two faces); hence the probability is $\\boxed{2/3}$."
+        ]
+      },
+      {
+        "name": "Bayes' theorem",
+        "steps": [
+          "$P(\\text{see white}\\mid WW)=1,\\ P(\\text{see white}\\mid WR)=1/2,\\ P(\\text{see white}\\mid RR)=0$, with priors $1/3$ each.",
+          "$P(WW\\mid\\text{white})=\\dfrac{\\frac13\\cdot1}{\\frac13\\cdot1+\\frac13\\cdot\\frac12+0}=\\dfrac{1/3}{1/2}=\\dfrac23$.",
+          "The hidden face is white exactly when the card is $WW$, so the answer is $\\boxed{2/3}$."
+        ]
+      }
+    ],
+    "remark": "Insight: the seductive $1/2$ comes from forgetting that the evidence (a white face) is twice as likely to be produced by the all-white card. Always update on what you actually observed (a face), not on the latent object (a card)."
+  },
+  {
+    "theme": "paradox",
+    "themeLabel": "Symmetry, Conditioning & Surprises",
+    "title": "Five Lockers, Ten Digits",
+    "difficulty": 3,
+    "task": "Find the probability",
+    "tags": [
+      "complementary counting",
+      "coincidence",
+      "equally likely outcomes",
+      "counting"
+    ],
+    "statement": "Five students arrive at a gym and each, independently and uniformly at random, dials a single secret digit from $1$ to $10$ as the last digit of a locker code. With ten possible digits and only five students, it feels unlikely that any two would clash. \\par Find the probability that at least two of the five students choose the same digit.",
+    "answer": "$P(\\text{at least one clash}) = 1 - \\dfrac{10\\cdot 9\\cdot 8\\cdot 7\\cdot 6}{10^{5}} = 1-\\dfrac{30240}{100000}=1-\\dfrac{189}{625}=\\boxed{\\dfrac{436}{625}}$",
+    "trap": "The intuitive wrong answer is $\\dfrac{1}{2}$ (or \"about half\"), reasoning loosely that five students fill half of the ten slots so a clash is roughly even. The opposite trap is to call a clash *rare* because $5<10$. Both ignore that a clash needs only **one** coinciding pair among the $\\binom{5}{2}=10$ pairs of students. Counting the complement (all five distinct) shows the true probability is $\\tfrac{436}{625}\\approx 0.70$ — a clash is the *likely* outcome.",
+    "solutions": [
+      {
+        "name": "Complementary counting",
+        "steps": [
+          "Each student has $10$ equally likely choices, so the sample space has $10^{5}=100000$ equally likely outcome strings.",
+          "Count the complement \"all five digits distinct\": the first student has $10$ choices, the next $9$, then $8,7,6$, giving $10\\cdot 9\\cdot 8\\cdot 7\\cdot 6 = 30240$ favourable strings.",
+          "So $P(\\text{all distinct})=\\dfrac{30240}{100000}=\\dfrac{189}{625}$, hence $P(\\text{at least one clash})=1-\\dfrac{189}{625}=\\dfrac{436}{625}.$"
+        ]
+      },
+      {
+        "name": "Sequential product for distinctness",
+        "steps": [
+          "Process students one at a time and demand each new digit avoid all earlier ones. Student $1$ is free: probability $1=\\tfrac{10}{10}$.",
+          "Student $2$ must dodge $1$ used digit: $\\tfrac{9}{10}$; student $3$: $\\tfrac{8}{10}$; student $4$: $\\tfrac{7}{10}$; student $5$: $\\tfrac{6}{10}$.",
+          "Multiply: $P(\\text{all distinct})=\\tfrac{10}{10}\\cdot\\tfrac{9}{10}\\cdot\\tfrac{8}{10}\\cdot\\tfrac{7}{10}\\cdot\\tfrac{6}{10}=\\dfrac{189}{625}$, so the clash probability is $1-\\dfrac{189}{625}=\\dfrac{436}{625}.$"
+        ]
+      }
+    ],
+    "remark": "**Insight.** Coincidences feel rarer than they are because we instinctively picture *one specific* pair matching, but a clash succeeds if **any** of the $\\binom{5}{2}=10$ pairs coincides. The clean move is to flip to the complement: \"all distinct\" is a single shrinking product $\\tfrac{10\\cdot9\\cdot8\\cdot7\\cdot6}{10^5}$, far easier than summing the messy ways a clash can happen. With ten digits, just five people already tip the scale past $70\\%$ — **count the complement** whenever \"at least one match\" appears."
+  },
+  {
+    "theme": "paradox",
+    "themeLabel": "Symmetry, Conditioning & Surprises",
     "title": "The Two-Car Game Show",
     "difficulty": 4,
     "task": "Determine",
@@ -3177,78 +3062,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "paradox",
-    "themeLabel": "Bounds, Symmetry & Paradoxes",
-    "title": "Bertrand's Two-Faced Cards",
-    "difficulty": 3,
-    "task": "Evaluate",
-    "tags": [
-      "bertrand-box",
-      "bayes",
-      "sample-space",
-      "cards"
-    ],
-    "statement": "A box holds three cards. One has both faces white, one has both faces red, and one has a white face and a red face. You draw a card uniformly at random, then place it on the table showing a face chosen uniformly at random among its two sides; the face you see is white. Evaluate the probability that the hidden face of that card is also white.",
-    "answer": "\\[\\boxed{\\dfrac{2}{3}}\\]",
-    "trap": "Saying 'the card is either white-white or white-red, and those were equally likely, so the answer is $1/2$' — this conditions on cards instead of on the observed white FACE; the white-white card offers two ways to show a white face while the mixed card offers only one, breaking the symmetry.",
-    "solutions": [
-      {
-        "name": "Count equally-likely faces",
-        "steps": [
-          "List the six faces, two from each card; exactly three are white: both faces of the white-white card and the white face of the mixed card.",
-          "Given the seen face is white, each of these three white faces is equally likely to be the one on display.",
-          "On two of those three, the hidden face is also white (the white-white card's two faces); hence the probability is $\\boxed{2/3}$."
-        ]
-      },
-      {
-        "name": "Bayes' theorem",
-        "steps": [
-          "$P(\\text{see white}\\mid WW)=1,\\ P(\\text{see white}\\mid WR)=1/2,\\ P(\\text{see white}\\mid RR)=0$, with priors $1/3$ each.",
-          "$P(WW\\mid\\text{white})=\\dfrac{\\frac13\\cdot1}{\\frac13\\cdot1+\\frac13\\cdot\\frac12+0}=\\dfrac{1/3}{1/2}=\\dfrac23$.",
-          "The hidden face is white exactly when the card is $WW$, so the answer is $\\boxed{2/3}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the seductive $1/2$ comes from forgetting that the evidence (a white face) is twice as likely to be produced by the all-white card. Always update on what you actually observed (a face), not on the latent object (a card)."
-  },
-  {
-    "theme": "paradox",
-    "themeLabel": "Bounds, Symmetry & Paradoxes",
-    "title": "The Chord With Three Answers",
-    "difficulty": 5,
-    "task": "Find all",
-    "tags": [
-      "bertrand-chord",
-      "geometric-probability",
-      "ill-posed",
-      "measure"
-    ],
-    "statement": "An equilateral triangle is inscribed in a circle of radius $1$ (its side length is $\\sqrt{3}$). Three different but equally natural procedures generate a 'random chord': (A) pick two independent uniform points on the circle and join them; (B) pick a uniform direction, then a point uniform along the corresponding radius, and draw the chord perpendicular to that radius through the point; (C) pick a point uniform over the interior disk and take it as the chord's midpoint. For each procedure, find the probability that the random chord is longer than $\\sqrt{3}$, and explain why 'the probability' is not well defined.",
-    "answer": "\\[\\boxed{P_A=\\tfrac13,\\quad P_B=\\tfrac12,\\quad P_C=\\tfrac14}\\]",
-    "trap": "Believing the phrase 'a chord chosen at random' names a single number — it does not. Each procedure induces a different distribution on chords (uniform over a different parameter), so each yields a different, internally-correct probability; demanding one answer is the paradox.",
-    "solutions": [
-      {
-        "name": "Distance-to-centre criterion",
-        "steps": [
-          "A chord of a unit circle at distance $r$ from the centre has length $2\\sqrt{1-r^2}$; this exceeds the triangle's side $\\sqrt3$ exactly when $r<\\tfrac12$, the apothem $R\\cos 60^\\circ=\\tfrac12$ of the inscribed equilateral triangle. So in every model the event is $\\{r<\\tfrac12\\}$.",
-          "(A) Fix one endpoint and let the other be uniform on the circle. The chord beats $\\sqrt3$ iff the central angle $\\theta$ between the points lies in $(120^\\circ,240^\\circ)$ (since $2\\sin(\\theta/2)>\\sqrt3$), a $120^\\circ$ window, giving $P_A=120/360=\\tfrac13$.",
-          "(B) Here the midpoint distance $r$ is uniform on $[0,1]$, so $P_B=P(r<\\tfrac12)=\\tfrac12$.",
-          "(C) The midpoint is uniform over the disk, so the event $\\{r<\\tfrac12\\}$ is the disk of radius $\\tfrac12$: $P_C=\\dfrac{\\pi(1/2)^2}{\\pi(1)^2}=\\tfrac14$; hence $\\boxed{P_A=\\tfrac13,\\;P_B=\\tfrac12,\\;P_C=\\tfrac14}$."
-        ]
-      },
-      {
-        "name": "Why ill-posed (Jaynes' lens)",
-        "steps": [
-          "A 'random chord' must be uniform over SOME parametrisation, but chords can be coordinatised by endpoint angles, by signed distance along a radius, or by midpoint position — and a density that is uniform in one of these is non-uniform in another (the Jacobians between them are non-constant).",
-          "Procedures A, B, C are uniform in three different coordinates, so they are genuinely different probability spaces — not three opinions about one space. Pushing each forward to the midpoint-distance $r$ gives densities proportional to $r/\\sqrt{1-r^2}$, to $1$, and to $2r$ respectively on $[0,1]$, which integrate over $[0,\\tfrac12]$ to $\\tfrac13,\\tfrac12,\\tfrac14$.",
-          "Without a stated invariance principle the question has no unique answer; computing all three gives $\\boxed{P_A=\\tfrac13,\\;P_B=\\tfrac12,\\;P_C=\\tfrac14}$, the canonical resolution. (Jaynes argued translation/scale/rotation invariance singles out model B, but that is an extra postulate, not a consequence of 'at random'.)"
-        ]
-      }
-    ],
-    "remark": "Insight: 'at random' is meaningless until you name the measure. Bertrand's chord is the cleanest demonstration that geometric probability lives or dies by an explicitly specified sampling mechanism — all three values were confirmed by simulation ($0.333,0.500,0.250$ over $4\\times10^6$ trials) and by exact symbolic computation of the criterion $r<\\tfrac12$."
-  },
-  {
-    "theme": "paradox",
-    "themeLabel": "Bounds, Symmetry & Paradoxes",
+    "themeLabel": "Symmetry, Conditioning & Surprises",
     "title": "Birthdays on Planet Quincenta",
     "difficulty": 4,
     "task": "Find the number of",
@@ -3284,7 +3098,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "paradox",
-    "themeLabel": "Bounds, Symmetry & Paradoxes",
+    "themeLabel": "Symmetry, Conditioning & Surprises",
     "title": "The Other Birthday Question",
     "difficulty": 4,
     "task": "Find the number of",
@@ -3320,121 +3134,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "paradox",
-    "themeLabel": "Bounds, Symmetry & Paradoxes",
-    "title": "The Treatment That Wins Both Wards but Loses the Hospital",
-    "difficulty": 5,
-    "task": "Determine",
-    "tags": [
-      "simpsons-paradox",
-      "aggregation",
-      "confounding",
-      "rates"
-    ],
-    "statement": "A hospital compares two kidney-stone treatments. Treatment $A$ succeeds in $81$ of $87$ patients with small stones and $192$ of $263$ with large stones. Treatment $B$ succeeds in $234$ of $270$ with small stones and $55$ of $80$ with large stones. Determine which treatment has the higher success rate within each stone-size group, and which has the higher OVERALL success rate, and reconcile the two findings.",
-    "answer": "\\[\\boxed{A\\ \\text{wins both subgroups }(0.931>0.867,\\ 0.730>0.688);\\ B\\ \\text{wins overall }(0.826>0.780)}\\]",
-    "trap": "Pooling the two wards and trusting the aggregate ('$B$ has the higher overall rate, so $B$ is better'). The aggregate is confounded: large stones are far harder AND treatment $A$ was given disproportionately to them, so the marginal rate compares treatments on incomparable case-mixes.",
-    "solutions": [
-      {
-        "name": "Compute every rate",
-        "steps": [
-          "Small stones: $A=81/87=0.931$, $B=234/270=0.867$, so $A$ wins; Large stones: $A=192/263=0.730$, $B=55/80=0.688$, so $A$ wins again.",
-          "Aggregate: $A=(81+192)/(87+263)=273/350=0.780$; $B=(234+55)/(270+80)=289/350=0.826$, so $B$ wins overall.",
-          "Thus $A$ dominates in each subgroup yet $B$ leads on the pooled data: $\\boxed{A\\text{ per stratum},\\ B\\text{ overall}}$."
-        ]
-      },
-      {
-        "name": "Weighted-average reconciliation",
-        "steps": [
-          "Each overall rate is a weighted mean of its subgroup rates with weights equal to that treatment's case distribution.",
-          "$A$ treated $263/350=75\\%$ large (hard) cases while $B$ treated only $80/350=23\\%$ large cases, so $A$'s average is dragged toward its low large-stone rate.",
-          "Because the weights — not the rates — flip the ranking, the per-stratum verdict ($A$) is the causally valid one; this confounding-driven reversal is Simpson's paradox, giving $\\boxed{A\\text{ better per stratum},\\ B\\text{ better in aggregate}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: a rate is a weighted average, and reversing the weights can reverse the conclusion. When a lurking variable (stone size) drives both outcome and treatment assignment, only the stratified comparison is trustworthy — aggregation here actively misleads."
-  },
-  {
-    "theme": "paradox",
-    "themeLabel": "Bounds, Symmetry & Paradoxes",
-    "title": "Two Envelopes, Finally Settled",
-    "difficulty": 5,
-    "task": "Find all",
-    "tags": [
-      "two-envelope",
-      "expected-value",
-      "prior",
-      "conditional-decision"
-    ],
-    "statement": "A host picks $k$ uniformly from $\\{0,1,2,3\\}$ and fills two envelopes with $2^{k}$ and $2^{k+1}$ rupees (so the pairs $(1,2),(2,4),(4,8),(8,16)$ each occur with probability $\\tfrac14$). You receive one envelope, chosen uniformly between the two, open it, and see its value $v$. You may keep $v$ or switch unseen to the other envelope. Find all observed values $v$ for which switching strictly increases your expected payoff, and determine the expected gain of the blanket policy 'always switch'.",
-    "answer": "\\[\\boxed{\\text{Switch iff }v\\in\\{1,2,4,8\\};\\ \\text{stay iff }v=16;\\ \\ \\mathbb{E}[\\text{gain of always-switch}]=0}\\]",
-    "trap": "The classic fallacy: 'the other envelope holds $2v$ or $v/2$ each with probability $\\tfrac12$, so its expectation is $1.25v>v$ — always switch.' With a genuine (proper) prior the two outcomes are NOT equally likely at every $v$; in particular at the top value $v=16$ the other envelope is certainly smaller (it is $8$, not the claimed $20$), so the universal-switch argument breaks.",
-    "solutions": [
-      {
-        "name": "Condition on the observed value",
-        "steps": [
-          "For an interior value $v=2^m$ with $1\\le m\\le 3$, the value could come from the lower slot of pair $m$ (other $=2v$) or the higher slot of pair $m-1$ (other $=v/2$). Each $(\\text{pair},\\text{slot})$ has equal prior weight $\\tfrac18$, so the two are equally likely given $v$ and $\\mathbb E[\\text{other}\\mid v]=\\tfrac12(2v)+\\tfrac12(v/2)=\\tfrac54 v>v$: switch.",
-          "The boundary values are forced: $v=1$ arises only as the smaller of $(1,2)$, so the other is surely $2>1$ — switch; $v=16$ arises only as the larger of $(8,16)$, so the other is surely $8<16$ — stay.",
-          "Hence switching strictly helps exactly when $v\\in\\{1,2,4,8\\}$ and you stay only at $v=16$."
-        ]
-      },
-      {
-        "name": "Unconditional indifference",
-        "steps": [
-          "The expected money in YOUR envelope is $\\sum_{k=0}^{3}\\tfrac14\\cdot\\tfrac12(2^{k}+2^{k+1})=\\tfrac{45}{8}$, since each pair is equally likely and within a pair you hold each slot with probability $\\tfrac12$.",
-          "Switching merely swaps the two slots of whatever pair was drawn, so by symmetry the other envelope has the identical expectation $\\tfrac{45}{8}$.",
-          "Therefore the always-switch policy's expected gain is $\\tfrac{45}{8}-\\tfrac{45}{8}=0$: the positive seen-value gains for $v\\le 8$ are exactly cancelled by the loss whenever $v=16$, so $\\mathbb E[\\text{gain}]=0$."
-        ]
-      }
-    ],
-    "remark": "Insight: the paradox dies the instant a proper prior is named. The naive $\\tfrac54 v$ rule is locally correct for interior values but silently assumes an impossible prior with no top value; the boundary $v=16$, where 'double' cannot occur, restores consistency and zeroes the net advantage of blanket switching."
-  },
-  {
-    "theme": "paradox",
-    "themeLabel": "Bounds, Symmetry & Paradoxes",
-    "title": "Points Under One Sun",
-    "difficulty": 3,
-    "task": "Prove that",
-    "tags": [
-      "symmetry",
-      "geometric-probability",
-      "semicircle",
-      "circle"
-    ],
-    "statement": "$n$ points are dropped independently and uniformly at random on a circle. Prove that the probability that all $n$ points lie within some common semicircle (i.e. some diameter has all of them on one side) equals $\\dfrac{n}{2^{\\,n-1}}$, by a symmetry argument rather than integration.",
-    "answer": "\\[\\boxed{\\dfrac{n}{2^{\\,n-1}}}\\]",
-    "trap": "Trying to integrate over all $n$ angular positions and fighting the overlapping cases where several different semicircles cover the points at once. Worse, after fixing one point as a reference and noting the other $n-1$ each land in its forward half-circle with probability $\\tfrac12$, one is tempted to call the answer $\\left(\\tfrac12\\right)^{n-1}$ and forget that any of the $n$ points could play the reference role; dropping the factor $n$ gives e.g. $\\tfrac14$ instead of $\\tfrac34$ for $n=3$.",
-    "solutions": [
-      {
-        "name": "Anchor on the leading point",
-        "steps": [
-          "For point $i$, let $E_i$ be the event that all of the other $n-1$ points lie in the half-circle that starts at point $i$ and sweeps clockwise through $180^\\circ$. Each of the other points lands in that fixed half-circle independently with probability $\\tfrac12$, so $P(E_i)=\\left(\\tfrac12\\right)^{n-1}$.",
-          "If all $n$ points fit inside some semicircle, there is a unique point that is the clockwise-most one of a covering semicircle (the leader): every other point lies in the half-circle swept clockwise from it, and no other point can play this role. Hence exactly one of the events $E_i$ occurs, so the $E_i$ are mutually exclusive.",
-          "Almost surely no two of the $n$ random points coincide, so the leader is well defined and these $n$ events partition the coverable outcomes. Therefore $P(\\text{all in a semicircle})=\\sum_{i=1}^{n}P(E_i)=n\\cdot 2^{-(n-1)}=\\boxed{\\dfrac{n}{2^{\\,n-1}}}.$"
-        ]
-      },
-      {
-        "name": "Largest gap on the circle",
-        "steps": [
-          "The $n$ points cut the circle into $n$ arcs (gaps). The points fail to fit in any semicircle exactly when every gap is shorter than a half-circle; they DO fit in a semicircle exactly when some gap is at least a half-circle, since the diametrically opposite edge of that gap bounds a covering semicircle.",
-          "Let $A_i$ be the event that the gap immediately clockwise of point $i$ has length $\\ge\\pi$ (taking circumference $2\\pi$). At most one gap can be this long, so the $A_i$ are disjoint, and 'all in a semicircle' is their union. By symmetry $P(A_i)$ is the same for all $i$.",
-          "Fixing point $i$, the gap after it has length $\\ge\\pi$ iff all $n-1$ other points avoid the half-circle clockwise from $i$, which has probability $\\left(\\tfrac12\\right)^{n-1}$. Summing the $n$ disjoint events gives $n\\cdot 2^{-(n-1)}$, the same $\\boxed{\\dfrac{n}{2^{\\,n-1}}}$, confirming the leader argument from the gap side.",
-          "Sanity check $n=2$: the formula gives $2/2=1$, and indeed two points always share a semicircle. For $n=3$ it gives $3/4$, so the complement is $1/4$ — exactly the classical chance that three random points have the centre inside their triangle."
-        ]
-      },
-      {
-        "name": "Monte Carlo",
-        "steps": [
-          "Draw $5\\times 10^{6}$ samples of $n$ uniform angles, sort each sample, and test whether the largest cyclic gap is at least a half-circle (equivalently whether all points fit in a semicircle).",
-          "Empirical frequencies match the formula across $n=2,\\dots,8$: e.g. $n=3\\to 0.7497$, $n=4\\to 0.5004$, $n=5\\to 0.3126$, $n=8\\to 0.0626$.",
-          "These agree with $n/2^{\\,n-1}=0.75,\\,0.5,\\,0.3125,\\,0.0625$ to within Monte-Carlo error, while the trap value $\\left(\\tfrac12\\right)^{n-1}$ (e.g. $0.25$ at $n=3$) is decisively rejected, confirming $\\boxed{\\dfrac{n}{2^{\\,n-1}}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the right symmetry turns a tangled overlap problem into a disjoint sum. Whether you name each point's role as a unique leader or track the unique gap that exceeds a half-circle, the covering events become mutually exclusive and identically distributed, and the answer $n/2^{\\,n-1}$ falls out with no integral. The factor $n$ is exactly the count of points that could serve as leader; forgetting it is the whole trap."
-  },
-  {
-    "theme": "paradox",
-    "themeLabel": "Bounds, Symmetry & Paradoxes",
+    "themeLabel": "Symmetry, Conditioning & Surprises",
     "title": "The Host Who Didn't Know",
     "difficulty": 4,
     "task": "Determine",
@@ -3470,7 +3170,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "paradox",
-    "themeLabel": "Bounds, Symmetry & Paradoxes",
+    "themeLabel": "Symmetry, Conditioning & Surprises",
     "title": "When You Should Expect a Coincidence",
     "difficulty": 4,
     "task": "Find the number of",
@@ -3502,6 +3202,111 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: 'more likely than not' and 'expect at least one' are different bars, and the gap between $23$ and $28$ makes that vivid. Linearity of expectation needs no independence and sidesteps the inclusion-exclusion entirely, which is its quiet power."
+  },
+  {
+    "theme": "paradox",
+    "themeLabel": "Symmetry, Conditioning & Surprises",
+    "title": "The Treatment That Wins Both Wards but Loses the Hospital",
+    "difficulty": 5,
+    "task": "Determine",
+    "tags": [
+      "simpsons-paradox",
+      "aggregation",
+      "confounding",
+      "rates"
+    ],
+    "statement": "A hospital compares two kidney-stone treatments. Treatment $A$ succeeds in $81$ of $87$ patients with small stones and $192$ of $263$ with large stones. Treatment $B$ succeeds in $234$ of $270$ with small stones and $55$ of $80$ with large stones. Determine which treatment has the higher success rate within each stone-size group, and which has the higher OVERALL success rate, and reconcile the two findings.",
+    "answer": "\\[\\boxed{A\\ \\text{wins both subgroups }(0.931>0.867,\\ 0.730>0.688);\\ B\\ \\text{wins overall }(0.826>0.780)}\\]",
+    "trap": "Pooling the two wards and trusting the aggregate ('$B$ has the higher overall rate, so $B$ is better'). The aggregate is confounded: large stones are far harder AND treatment $A$ was given disproportionately to them, so the marginal rate compares treatments on incomparable case-mixes.",
+    "solutions": [
+      {
+        "name": "Compute every rate",
+        "steps": [
+          "Small stones: $A=81/87=0.931$, $B=234/270=0.867$, so $A$ wins; Large stones: $A=192/263=0.730$, $B=55/80=0.688$, so $A$ wins again.",
+          "Aggregate: $A=(81+192)/(87+263)=273/350=0.780$; $B=(234+55)/(270+80)=289/350=0.826$, so $B$ wins overall.",
+          "Thus $A$ dominates in each subgroup yet $B$ leads on the pooled data: $\\boxed{A\\text{ per stratum},\\ B\\text{ overall}}$."
+        ]
+      },
+      {
+        "name": "Weighted-average reconciliation",
+        "steps": [
+          "Each overall rate is a weighted mean of its subgroup rates with weights equal to that treatment's case distribution.",
+          "$A$ treated $263/350=75\\%$ large (hard) cases while $B$ treated only $80/350=23\\%$ large cases, so $A$'s average is dragged toward its low large-stone rate.",
+          "Because the weights — not the rates — flip the ranking, the per-stratum verdict ($A$) is the causally valid one; this confounding-driven reversal is Simpson's paradox, giving $\\boxed{A\\text{ better per stratum},\\ B\\text{ better in aggregate}}$."
+        ]
+      }
+    ],
+    "remark": "Insight: a rate is a weighted average, and reversing the weights can reverse the conclusion. When a lurking variable (stone size) drives both outcome and treatment assignment, only the stratified comparison is trustworthy — aggregation here actively misleads."
+  },
+  {
+    "theme": "paradox",
+    "themeLabel": "Symmetry, Conditioning & Surprises",
+    "title": "Two Envelopes, Finally Settled",
+    "difficulty": 5,
+    "task": "Find all",
+    "tags": [
+      "two-envelope",
+      "expected-value",
+      "prior",
+      "conditional-decision"
+    ],
+    "statement": "A host picks $k$ uniformly from $\\{0,1,2,3\\}$ and fills two envelopes with $2^{k}$ and $2^{k+1}$ rupees (so the pairs $(1,2),(2,4),(4,8),(8,16)$ each occur with probability $\\tfrac14$). You receive one envelope, chosen uniformly between the two, open it, and see its value $v$. You may keep $v$ or switch unseen to the other envelope. Find all observed values $v$ for which switching strictly increases your expected payoff, and determine the expected gain of the blanket policy 'always switch'.",
+    "answer": "\\[\\boxed{\\text{Switch iff }v\\in\\{1,2,4,8\\};\\ \\text{stay iff }v=16;\\ \\ \\mathbb{E}[\\text{gain of always-switch}]=0}\\]",
+    "trap": "The classic fallacy: 'the other envelope holds $2v$ or $v/2$ each with probability $\\tfrac12$, so its expectation is $1.25v>v$ — always switch.' With a genuine (proper) prior the two outcomes are NOT equally likely at every $v$; in particular at the top value $v=16$ the other envelope is certainly smaller (it is $8$, not the claimed $20$), so the universal-switch argument breaks.",
+    "solutions": [
+      {
+        "name": "Condition on the observed value",
+        "steps": [
+          "For an interior value $v=2^m$ with $1\\le m\\le 3$, the value could come from the lower slot of pair $m$ (other $=2v$) or the higher slot of pair $m-1$ (other $=v/2$). Each $(\\text{pair},\\text{slot})$ has equal prior weight $\\tfrac18$, so the two are equally likely given $v$ and $\\mathbb E[\\text{other}\\mid v]=\\tfrac12(2v)+\\tfrac12(v/2)=\\tfrac54 v>v$: switch.",
+          "The boundary values are forced: $v=1$ arises only as the smaller of $(1,2)$, so the other is surely $2>1$ — switch; $v=16$ arises only as the larger of $(8,16)$, so the other is surely $8<16$ — stay.",
+          "Hence switching strictly helps exactly when $v\\in\\{1,2,4,8\\}$ and you stay only at $v=16$."
+        ]
+      },
+      {
+        "name": "Unconditional indifference",
+        "steps": [
+          "The expected money in YOUR envelope is $\\sum_{k=0}^{3}\\tfrac14\\cdot\\tfrac12(2^{k}+2^{k+1})=\\tfrac{45}{8}$, since each pair is equally likely and within a pair you hold each slot with probability $\\tfrac12$.",
+          "Switching merely swaps the two slots of whatever pair was drawn, so by symmetry the other envelope has the identical expectation $\\tfrac{45}{8}$.",
+          "Therefore the always-switch policy's expected gain is $\\tfrac{45}{8}-\\tfrac{45}{8}=0$: the positive seen-value gains for $v\\le 8$ are exactly cancelled by the loss whenever $v=16$, so $\\mathbb E[\\text{gain}]=0$."
+        ]
+      }
+    ],
+    "remark": "Insight: the paradox dies the instant a proper prior is named. The naive $\\tfrac54 v$ rule is locally correct for interior values but silently assumes an impossible prior with no top value; the boundary $v=16$, where 'double' cannot occur, restores consistency and zeroes the net advantage of blanket switching."
+  },
+  {
+    "theme": "paradox",
+    "themeLabel": "Symmetry, Conditioning & Surprises",
+    "title": "The Dirty Line Confession",
+    "difficulty": 5,
+    "task": "Find the probability",
+    "tags": [
+      "Bayes' theorem",
+      "base rate",
+      "conditional probability",
+      "total probability"
+    ],
+    "statement": "A microchip plant runs two assembly lines. Line $A$ produces $80\\%$ of all chips and Line $B$ produces the remaining $20\\%$. Line $A$ is the clean line: only $5\\%$ of its chips are defective. Line $B$ is notorious — a full $25\\%$ of its chips are defective. A single chip is drawn at random from the day's combined output and given a flawless inspection (a defective chip always fails, a good chip always passes). The chip fails the inspection. \\par Given only this, what is the probability that the failed chip actually came from the notorious Line $B$?",
+    "answer": "$P(B \\mid \\text{defective}) = \\dfrac{(0.20)(0.25)}{(0.80)(0.05)+(0.20)(0.25)} = \\dfrac{0.05}{0.09} = \\boxed{\\dfrac{5}{9}}$",
+    "trap": "The seductive wrong answer is $\\dfrac{1}{4}$, gotten by reading off Line $B$'s defect rate $P(\\text{defective}\\mid B)=0.25$ and reporting it as $P(B\\mid\\text{defective})$. That inverts the conditioning. A second tempting wrong answer is to say \"$B$ is five times dirtier, so almost surely $B$,\" near $1$ — but Line $A$'s enormous $80\\%$ base rate keeps $A$ very much in contention. The correct value $\\tfrac{5}{9}\\approx 0.556$ is only a hair above an even split.",
+    "solutions": [
+      {
+        "name": "Bayes' theorem directly",
+        "steps": [
+          "Let $A,B$ be the events the chip came from each line, with priors $P(A)=\\tfrac{4}{5}$, $P(B)=\\tfrac{1}{5}$, and defect rates $P(D\\mid A)=\\tfrac{1}{20}$, $P(D\\mid B)=\\tfrac{1}{4}$, where $D$ is \"defective\".",
+          "Total probability of a defect: $P(D)=P(A)P(D\\mid A)+P(B)P(D\\mid B)=\\tfrac{4}{5}\\cdot\\tfrac{1}{20}+\\tfrac{1}{5}\\cdot\\tfrac{1}{4}=\\tfrac{4}{100}+\\tfrac{5}{100}=\\tfrac{9}{100}.$",
+          "Apply Bayes: $P(B\\mid D)=\\dfrac{P(B)P(D\\mid B)}{P(D)}=\\dfrac{5/100}{9/100}=\\dfrac{5}{9}.$"
+        ]
+      },
+      {
+        "name": "Natural-frequency count",
+        "steps": [
+          "Imagine $10000$ chips. Line $A$ makes $8000$ of them, Line $B$ makes $2000$.",
+          "Defective from $A$: $5\\%$ of $8000 = 400$ chips. Defective from $B$: $25\\%$ of $2000 = 500$ chips. Total defective $=900$.",
+          "Of those $900$ failed chips, $500$ are from $B$, so $P(B\\mid\\text{failed})=\\dfrac{500}{900}=\\dfrac{5}{9}.$"
+        ]
+      }
+    ],
+    "remark": "**Insight.** The defect *rate* of a line, $P(\\text{defective}\\mid\\text{line})$, and the *source posterior*, $P(\\text{line}\\mid\\text{defective})$, point in opposite directions of the conditioning bar — they are **not** interchangeable. Even though Line $B$ is five times dirtier per chip, Line $A$'s sheer volume means it still contributes $400$ of every $900$ defects. The dirty line confesses to only **a hair more than half** of the failures, not nearly all of them. Whenever a rare-cause/common-cause split meets a lopsided base rate, **always recompute with Bayes** rather than trusting the louder rate."
   },
   {
     "theme": "hybrid",
@@ -3583,43 +3388,6 @@ window.PROBLEMS = [
   {
     "theme": "hybrid",
     "themeLabel": "The Grand Hybrids",
-    "title": "The Frog and the Far Vertex",
-    "difficulty": 5,
-    "task": "Find the probability",
-    "tags": [
-      "markov chain",
-      "first-step analysis",
-      "symmetry",
-      "gambler's ruin",
-      "hitting probability"
-    ],
-    "statement": "A frog sits at vertex $0$ of a regular hexagon with vertices labelled $0,1,2,3,4,5$ in order around the cycle. At each step it hops to one of its two neighbours, each with probability $\\tfrac12$. Find the probability that the frog visits the opposite vertex $3$ before it returns to its starting vertex $0$.",
-    "answer": "\\[\\boxed{\\dfrac{1}{3}}\\]",
-    "trap": "Declaring the race symmetric: vertex $3$ is distance $3$ from $0$ along either arc, so it looks like a fair contest and one writes $\\tfrac12$. But the question is about returning to $0$, and after the obligatory first hop the frog is only $1$ step from home yet still $2$ steps from $3$. That asymmetry, not the arc lengths, governs the race. A second snare is to treat the two arcs as independent competitors and add their probabilities; once the frog commits to an arc, both $0$ and $3$ are absorbing on a single $3$-step path and there is nothing to add.",
-    "solutions": [
-      {
-        "name": "Symmetry fold + gambler's ruin",
-        "steps": [
-          "The frog must leave $0$ on the first hop, so condition on it. By the left-right symmetry of the hexagon assume it goes to vertex $1$; the hop to vertex $5$ is the mirror image and gives the identical probability.",
-          "From vertex $1$ onward, both $0$ and $3$ act as absorbing barriers, and the relevant sites are exactly the path $0\\,\\text{-}\\,1\\,\\text{-}\\,2\\,\\text{-}\\,3$ (a symmetric walk cannot reach $4$ or $5$ without first passing through $3$).",
-          "This is gambler's ruin on $\\{0,1,2,3\\}$ started at position $1$: the probability of reaching $3$ before $0$ is $\\tfrac{1}{3}$, because hitting probabilities are linear in position, $P=\\tfrac{1-0}{3-0}=\\tfrac13$.",
-          "By symmetry the first hop to $5$ yields the same $\\tfrac13$, so the overall probability is $\\boxed{\\tfrac13}$."
-        ]
-      },
-      {
-        "name": "Harmonic function on the cycle",
-        "steps": [
-          "Let $h(v)=P(\\text{hit }3\\text{ before }0\\mid\\text{currently at }v)$ with boundary values $h(0)=0$ and $h(3)=1$, and the harmonic relation $h(v)=\\tfrac12\\big(h(v_-)+h(v_+)\\big)$ at every interior vertex of the cycle.",
-          "Symmetry gives $h(1)=h(5)$ and $h(2)=h(4)$. Solving the linear system yields $h(1)=h(5)=\\tfrac13$ and $h(2)=h(4)=\\tfrac23$.",
-          "The required probability is the value just after the first hop from $0$: $\\tfrac12 h(1)+\\tfrac12 h(5)=\\tfrac12\\cdot\\tfrac13+\\tfrac12\\cdot\\tfrac13=\\boxed{\\tfrac13}$."
-        ]
-      }
-    ],
-    "remark": "Insight: a six-state Markov problem collapses to a three-step gambler's ruin once symmetry identifies the two arcs and the first hop fixes which barrier you are racing toward. The apparent $3$-versus-$3$ symmetry is a decoy; what matters is that the obligatory first step leaves you distance $1$ from home but distance $2$ from the goal, so the home barrier is twice as easy to reach and the answer is $\\tfrac13$, not $\\tfrac12$."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
     "title": "Ascents After a Climbing Start",
     "difficulty": 4,
     "task": "Determine",
@@ -3659,119 +3427,70 @@ window.PROBLEMS = [
   {
     "theme": "hybrid",
     "themeLabel": "The Grand Hybrids",
-    "title": "The Longest Shard of a Triangle",
-    "difficulty": 5,
-    "task": "Find the value",
+    "title": "Greens Before the First Red",
+    "difficulty": 4,
+    "task": "Find E[X]",
     "tags": [
-      "geometric probability",
-      "order statistics",
-      "conditioning",
-      "broken stick",
-      "expectation"
+      "expectation",
+      "without replacement",
+      "discrete random variable",
+      "counting"
     ],
-    "statement": "A unit stick is broken at two points chosen independently and uniformly along its length, producing three pieces. Given that the three pieces can form a (non-degenerate) triangle, find the expected length of the longest piece.",
-    "answer": "\\[\\boxed{\\dfrac{4}{9}}\\]",
-    "trap": "Conflating the unconditional $E[\\text{longest piece}]=\\tfrac{11}{18}$ with the conditional value, or assuming the triangle event is symmetric enough to leave $E[\\text{longest}]$ unchanged. Conditioning on every piece being below $\\tfrac12$ shrinks the longest piece, dropping the answer from $\\tfrac{11}{18}\\approx0.611$ to $\\tfrac49\\approx0.444$. A second trap is to misread the order-statistic tail: on the simplex $P(M>t)=3(1-t)^2-3(1-2t)^2$ on $[\\tfrac13,\\tfrac12]$, and using the bare $3(1-2t)^2$ wrongly forces $P(\\text{triangle})=1$.",
+    "statement": "A box holds $4$ red and $3$ green balls. Balls are drawn one at a time, at random and without replacement, and we stop as soon as the first red ball appears. Let $X$ be the number of green balls drawn before that first red ball. Find $E[X]$.",
+    "answer": "$$P(X{=}k)=\\frac{3}{7}\\cdot\\frac{2}{6}\\cdots\\ (k\\text{ greens})\\cdot\\frac{4}{7-k},\\quad E[X]=0\\cdot\\tfrac47+1\\cdot\\tfrac27+2\\cdot\\tfrac4{35}+3\\cdot\\tfrac1{35}=\\boxed{\\dfrac{3}{5}}.$$",
+    "trap": "A tempting wrong answer is $\\dfrac34$, from treating each draw as independent with a fixed green-chance $\\tfrac37$ and red-chance $\\tfrac47$, giving the with-replacement value $\\dfrac{3/7}{4/7}=\\dfrac34$. But the draws are without replacement, so the per-draw probabilities change; the correct finite distribution yields $\\tfrac35$.",
     "solutions": [
       {
-        "name": "Uniform spacings on the medial triangle",
+        "name": "Build the finite distribution",
         "steps": [
-          "The two break points split $[0,1]$ into three pieces $(a,b,c)$ whose lengths are uniformly distributed on the simplex $\\{a+b+c=1,\\ a,b,c\\ge0\\}$. Charting by $(a,b)$ with $c=1-a-b$, the density on the triangle $\\{a>0,\\,b>0,\\,a+b<1\\}$ is the constant $2$ (its area is $\\tfrac12$).",
-          "A triangle forms iff no piece reaches $\\tfrac12$, i.e. $a<\\tfrac12$, $b<\\tfrac12$, $c<\\tfrac12$. The last condition is $a+b>\\tfrac12$, so the triangle region $R$ is the central medial triangle. Its area in the chart is $\\tfrac18$, giving $P(\\text{triangle})=2\\cdot\\tfrac18=\\tfrac14$, the classical value.",
-          "By the threefold symmetry of $R$ under permuting $(a,b,c)$, $\\displaystyle\\int_R \\max(a,b,c)\\,dA = 3\\int_{S_c} c\\,dA$, where $S_c=R\\cap\\{c\\ge a,\\ c\\ge b\\}$ is the sub-region in which $c$ is the largest piece.",
-          "Splitting $S_c$ at $a=\\tfrac13$ gives $\\displaystyle\\int_{S_c} c\\,dA=\\int_0^{1/3}\\!\\!\\int_{1/2-a}^{(1-a)/2} c\\,db\\,da+\\int_{1/3}^{1/2}\\!\\!\\int_{1/2-a}^{1-2a} c\\,db\\,da=\\tfrac1{54}$, so $\\displaystyle\\int_R\\max\\,dA=3\\cdot\\tfrac1{54}=\\tfrac1{18}$.",
-          "Multiplying by the density $2$, $E[\\max\\cdot\\mathbf1_R]=2\\cdot\\tfrac1{18}=\\tfrac19$. Dividing by $P(\\text{triangle})=\\tfrac14$ yields $E[\\max\\mid\\text{triangle}]=\\dfrac{1/9}{1/4}=\\boxed{\\tfrac49}$."
+          "$P(X=0)=\\tfrac47$. $P(X=1)=\\tfrac37\\cdot\\tfrac46=\\tfrac27$. $P(X=2)=\\tfrac37\\cdot\\tfrac26\\cdot\\tfrac45=\\tfrac{4}{35}$. $P(X=3)=\\tfrac37\\cdot\\tfrac26\\cdot\\tfrac15\\cdot\\tfrac44=\\tfrac{1}{35}$ (the last red is forced).",
+          "These sum to $\\tfrac{20}{35}+\\tfrac{10}{35}+\\tfrac{4}{35}+\\tfrac{1}{35}=1$, a valid distribution.",
+          "$E[X]=0\\cdot\\tfrac{20}{35}+1\\cdot\\tfrac{10}{35}+2\\cdot\\tfrac{4}{35}+3\\cdot\\tfrac{1}{35}=\\tfrac{10+8+3}{35}=\\tfrac{21}{35}=\\tfrac35$."
         ]
       },
       {
-        "name": "Order-statistic tail of the maximum",
+        "name": "Symmetry / indicator argument",
         "steps": [
-          "Let $M=\\max(a,b,c)$ on the simplex. By inclusion–exclusion, for $t\\in[\\tfrac13,\\tfrac12]$ exactly two of the three corner caps $\\{a>t\\}$, $\\{b>t\\}$, $\\{c>t\\}$ can overlap, giving the tail $P(M>t)=3(1-t)^2-3(1-2t)^2$; for $t\\in[\\tfrac12,1]$ the caps are disjoint and $P(M>t)=3(1-t)^2$.",
-          "Check: $P(M>\\tfrac12)=3(1-\\tfrac12)^2=\\tfrac34$, so $P(\\text{triangle})=P(M<\\tfrac12)=\\tfrac14$, and the unconditional mean $E[M]=\\int_0^1 P(M>t)\\,dt=\\tfrac{11}{18}$ — the trap value.",
-          "For the conditional mean use $E[M\\cdot\\mathbf1\\{M<\\tfrac12\\}]=\\int_0^{1/2}P(t<M<\\tfrac12)\\,dt$, where $P(t<M<\\tfrac12)=P(M>t)-\\tfrac34$. This is $\\tfrac14$ for $t\\in[0,\\tfrac13]$ and $3(1-t)^2-3(1-2t)^2-\\tfrac34$ for $t\\in[\\tfrac13,\\tfrac12]$.",
-          "Integrating, $E[M\\cdot\\mathbf1\\{M<\\tfrac12\\}]=\\tfrac14\\cdot\\tfrac13+\\int_{1/3}^{1/2}\\!\\big(3(1-t)^2-3(1-2t)^2-\\tfrac34\\big)dt=\\tfrac19$, matching Method 1.",
-          "Hence $E[M\\mid M<\\tfrac12]=\\dfrac{1/9}{1/4}=\\boxed{\\tfrac49}$."
+          "Imagine the $4$ reds laid in a row; the $3$ greens fall at random into the $5$ gaps (before, between, after the reds), each green independently equally likely to land in any of the $5$ gaps by symmetry of a random permutation.",
+          "$X$ counts greens landing in the single gap before the first red, so $E[X]=3\\cdot\\dfrac{1}{5}=\\dfrac35$ (each green is before the first red with probability $\\tfrac{1}{\\text{reds}+1}=\\tfrac15$)."
         ]
       }
     ],
-    "remark": "Insight: the broken-stick spacings are uniform on a simplex, so the triangle condition is a geometric (medial-triangle) event while the longest piece is an order statistic — the answer needs both pictures fused on the same simplex. Conditioning is essential: the longest shard averages $\\tfrac{11}{18}$ in general but only $\\tfrac49$ once you know a triangle is possible."
+    "remark": "**Insight.** The elegant route is the **indicator** view: each green is equally likely to occupy any of the $5$ positions relative to the $4$ reds, so it precedes the first red with probability $\\tfrac15$, giving $E[X]=3\\cdot\\tfrac15$. The trap mistakes a **without-replacement** draw for an independent one; the changing per-draw odds are exactly what the finite distribution captures."
   },
   {
     "theme": "hybrid",
     "themeLabel": "The Grand Hybrids",
-    "title": "When Three Kings Have Been Crowned",
-    "difficulty": 5,
+    "title": "A Die Decides How Many Coins",
+    "difficulty": 4,
     "task": "Find the probability",
     "tags": [
-      "records",
-      "stirling numbers",
-      "counting",
+      "total probability",
+      "binomial",
       "conditioning",
-      "left-to-right maxima"
+      "fair die"
     ],
-    "statement": "The cards $1,2,\\dots,6$ are shuffled into a uniformly random order and dealt one at a time. A record occurs whenever a card exceeds all previously dealt cards. Given that exactly $3$ records occur over the whole deal, find the probability that the last card dealt is itself a record.",
-    "answer": "\\[\\boxed{\\dfrac{2}{9}}\\]",
-    "trap": "Assuming records behave like cycles of a permutation per outcome (they only share the same distribution; outcome-by-outcome the two counts disagree for $484$ of the $720$ permutations), or forgetting that the last card is a record precisely when it is the global maximum $6$. One must count permutations with a fixed record number using the unsigned Stirling numbers of the first kind.",
+    "statement": "A fair die is rolled once; let $N$ be the number it shows. A fair coin is then tossed exactly $N$ times. Find the probability of obtaining exactly $2$ heads in total.",
+    "answer": "$$P(2\\text{ heads})=\\sum_{n=1}^{6}\\frac16\\binom{n}{2}\\left(\\frac12\\right)^{n}=\\frac16\\!\\left[\\frac{1}{4}+\\frac{3}{8}+\\frac{6}{16}+\\frac{10}{32}+\\frac{15}{64}\\right]=\\boxed{\\dfrac{33}{128}}.$$",
+    "trap": "A tempting wrong answer is $\\dfrac{15}{64}$, from assuming the coin is tossed $N=6$ times (the maximum) and computing $\\binom{6}{2}\\left(\\tfrac12\\right)^6$. But $N$ is random; one must average the conditional binomial probabilities over all six equally likely values of $N$ via the total probability theorem.",
     "solutions": [
       {
-        "name": "Stirling-first-kind counting",
+        "name": "Total probability over the die value",
         "steps": [
-          "The number of permutations of $\\{1,\\dots,n\\}$ with exactly $k$ records equals the unsigned Stirling number $c(n,k)$ (the fundamental bijection sends records to cycle-leaders, so the distributions coincide even though individual outcomes need not match).",
-          "Here $c(6,3)=225$ is the size of the conditioning event.",
-          "The last card is a record iff $a_6=6$; placing $6$ last makes it the global maximum (a record), and the first five entries must be a permutation of $\\{1,\\dots,5\\}$ with exactly $2$ records, counted by $c(5,2)=50$.",
-          "Therefore $P=\\dfrac{c(5,2)}{c(6,3)}=\\dfrac{50}{225}=\\boxed{\\tfrac29}$."
+          "Given $N=n$, the number of heads is $B(n,\\tfrac12)$, so $P(2\\mid N=n)=\\binom{n}{2}\\left(\\tfrac12\\right)^n$, which is $0$ for $n=1$.",
+          "$P(2\\mid N=n)$ for $n=2,\\dots,6$ equals $\\tfrac14,\\ \\tfrac38,\\ \\tfrac{6}{16},\\ \\tfrac{10}{32},\\ \\tfrac{15}{64}$. Put over $64$: $16,24,24,20,15$, summing to $99$.",
+          "$P(2)=\\dfrac16\\cdot\\dfrac{99}{64}=\\dfrac{99}{384}=\\dfrac{33}{128}$."
         ]
       },
       {
-        "name": "Recursive split on the maximum's slot",
+        "name": "Weighted-count bookkeeping",
         "steps": [
-          "Condition on the position of the global maximum $6$. The last card is a record exactly when $6$ sits in slot $6$.",
-          "Among permutations with $3$ records, those ending in $6$ correspond bijectively to permutations of $\\{1,\\dots,5\\}$ with $2$ records: append $6$, which always adds exactly one record without disturbing the earlier ones.",
-          "Count: $c(5,2)=50$ favourable out of $c(6,3)=225$ total.",
-          "Ratio $\\boxed{\\tfrac29}$, confirmed by direct enumeration over all $720$ permutations."
+          "Each die face has weight $\\tfrac16$; tabulate $64\\,P(2\\mid N=n)$ as $0,16,24,24,20,15$ for $n=1,\\dots,6$.",
+          "Total $=99$, so $P(2)=\\dfrac{1}{6}\\cdot\\dfrac{99}{64}=\\dfrac{33}{128}$ after cancelling the common factor $3$."
         ]
       }
     ],
-    "remark": "Insight: the 'number of records' is a counting statistic governed by the Stirling numbers of the first kind, and the geometric event 'last card is a record' is the clean condition $a_6=6$. Combining the two converts a probability into a ratio of Stirling numbers. Beware the seductive but false move of equating records with cycles outcome-by-outcome: only their distributions agree."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
-    "title": "Touring the Complete Quartet",
-    "difficulty": 4,
-    "task": "Find the value",
-    "tags": [
-      "markov chain",
-      "cover time",
-      "coupon collector",
-      "indicator method",
-      "expectation"
-    ],
-    "statement": "A token performs a random walk on the complete graph $K_4$ (four vertices, every pair joined by an edge). From its current vertex it jumps to one of the other three vertices, each with probability $\\tfrac13$ (it never stays put). Find the expected number of steps until all four vertices have been visited at least once.",
-    "answer": "\\[\\boxed{\\dfrac{11}{2}}\\]",
-    "trap": "Treating it as ordinary coupon collecting with success probability $\\tfrac{4-m}{4}$ per step. Because the walk cannot remain in place, when $m$ vertices are known the chance the next jump hits a new one is $\\tfrac{4-m}{3}$ (denominator $3$, not $4$). Using $\\tfrac{4-m}{4}$ gives $\\tfrac41+\\tfrac42+\\tfrac43=\\tfrac{22}{3}$, an overcount that ignores the no-self-loop rule.",
-    "solutions": [
-      {
-        "name": "Coupon collecting on the no-self-loop chain",
-        "steps": [
-          "Decompose the cover time into the waiting times to discover the $2$nd, $3$rd, and $4$th vertices (the start gives the $1$st free).",
-          "When $m$ distinct vertices have been seen, the current vertex is one of them. The three equally likely jump targets are the three vertices different from the current one; among these, exactly $4-m$ are unvisited, so the per-step success probability is $\\tfrac{4-m}{3}$ (crucially, the current vertex can never be re-chosen).",
-          "Each discovery is therefore geometric with mean $\\tfrac{3}{4-m}$ steps, for $m=1,2,3$.",
-          "Sum the means: $\\tfrac31+\\tfrac32+\\tfrac33=3+\\tfrac32+1=\\boxed{\\tfrac{11}{2}}$."
-        ]
-      },
-      {
-        "name": "State-based first-step expectation",
-        "steps": [
-          "Let $E_m$ be the expected remaining steps when $m$ vertices have been visited and the token sits on one of them; $E_4=0$.",
-          "Of the three jump targets (all $\\neq$ current vertex), $4-m$ are new and the remaining $(m-1)$ are old, since the current vertex is excluded as a target. First-step relation: $E_m=1+\\tfrac{m-1}{3}E_m+\\tfrac{4-m}{3}E_{m+1}$.",
-          "$m=3$: $E_3=1+\\tfrac23 E_3+0$, so $\\tfrac13 E_3=1\\Rightarrow E_3=3$.",
-          "$m=2$: $E_2=1+\\tfrac13 E_2+\\tfrac23 E_3$, so $\\tfrac23 E_2=1+\\tfrac23\\cdot3=3\\Rightarrow E_2=\\tfrac{9}{2}$.",
-          "$m=1$: $E_1=1+0\\cdot E_1+1\\cdot E_2=1+\\tfrac92=\\boxed{\\tfrac{11}{2}}$, matching the coupon-collector sum."
-        ]
-      }
-    ],
-    "remark": "Insight: the cover time is a coupon-collector sum, but the Markov 'no staying put' rule changes the bookkeeping. Naively the chance of a new vertex looks like $\\tfrac{4-m}{4}$; in truth the current vertex is forbidden as a target, so among the three live targets $4-m$ are new and the success rate is $\\tfrac{4-m}{3}$. The same exclusion makes the already-seen probability $\\tfrac{m-1}{3}$, not $\\tfrac{m}{3}$ — which is exactly what keeps the $m=3$ recurrence non-degenerate. The fusion of the indicator decomposition with the transition structure is where the subtlety lives."
+    "remark": "**Insight.** The number of trials is itself random, so this is a textbook fusion of the **total probability theorem** with the **binomial**: condition on $N$, evaluate $\\binom{n}{2}2^{-n}$, then average with weights $\\tfrac16$. The trap of freezing $N$ at its largest value $6$ ignores that small $N$ contributes too — including $N=1$, which contributes nothing."
   },
   {
     "theme": "hybrid",
@@ -3814,77 +3533,138 @@ window.PROBLEMS = [
   {
     "theme": "hybrid",
     "themeLabel": "The Grand Hybrids",
-    "title": "The Arc That Owns the North Star",
-    "difficulty": 4,
+    "title": "Which Machine Made the Batch",
+    "difficulty": 5,
     "task": "Find the probability",
     "tags": [
-      "geometric probability",
-      "order statistics",
-      "spacings",
-      "size bias",
-      "circle"
+      "Bayes theorem",
+      "binomial",
+      "conditional probability",
+      "total probability"
     ],
-    "statement": "Three points are dropped independently and uniformly on a circle of circumference $1$, splitting it into three arcs. A fixed marker $Q$ is painted on the circle beforehand. Find the probability that the particular arc which happens to contain $Q$ is the longest of the three arcs.",
-    "answer": "\\[\\boxed{\\dfrac{11}{18}}\\]",
-    "trap": "Answering $\\tfrac13$ by symmetry, 'each arc is equally likely to be longest.' That symmetry holds for an arc chosen by its label, but the arc containing a fixed point $Q$ is size-biased — longer arcs are more likely to swallow $Q$ — so its chance of being longest is strictly above $\\tfrac13$. Numerically the $Q$-arc has mean length $\\tfrac12$, not $\\tfrac13$, betraying the bias.",
+    "statement": "A workshop owns two machines. On any given day the foreman starts Machine $A$ with probability $\\tfrac35$ and Machine $B$ with probability $\\tfrac25$; exactly one machine runs that day. Machine $A$ produces a defective item with probability $\\tfrac25$, Machine $B$ with probability $\\tfrac15$, independently from item to item. An inspector draws $4$ items produced that day and finds that exactly $3$ of them are defective. Find the probability that the running machine was $A$.",
+    "answer": "$$P(A\\mid 3\\text{ def})=\\frac{P(A)\\,P(3\\mid A)}{P(A)P(3\\mid A)+P(B)P(3\\mid B)}=\\frac{\\tfrac35\\cdot\\tfrac{96}{625}}{\\tfrac35\\cdot\\tfrac{96}{625}+\\tfrac25\\cdot\\tfrac{16}{625}}=\\boxed{\\dfrac{9}{10}}.$$",
+    "trap": "A seductive wrong answer is $\\dfrac{6}{7}$, obtained by comparing only the likelihoods $P(3\\mid A):P(3\\mid B)=96:16=6:1$ and writing $\\tfrac{6}{6+1}$. That silently throws away the unequal priors $\\tfrac35$ and $\\tfrac25$; the correct posterior must weight each likelihood by its prior before dividing by the total.",
     "solutions": [
       {
-        "name": "Size-bias to the longest-arc distribution",
+        "name": "Bayes with binomial likelihoods",
         "steps": [
-          "Condition on the three arc lengths $\\ell_1,\\ell_2,\\ell_3$ (with $\\ell_1+\\ell_2+\\ell_3=1$). Given them, the fixed marker $Q$ is uniform, so $P(Q\\in\\text{arc }i\\mid\\ell)=\\ell_i$: the arc containing $Q$ is a length-biased pick of the three arcs.",
-          "Therefore $P(Q\\text{'s arc is the longest})=\\sum_{i=1}^3 E\\!\\left[\\ell_i\\,\\mathbf1\\{\\ell_i=\\max\\}\\right]=E\\!\\left[\\max_i \\ell_i\\right]$, because in each realisation exactly the maximal arc carries the indicator and contributes its own length to the sum.",
-          "So the answer is precisely the expected longest arc. For $n$ uniform points the spacings are exchangeable Dirichlet$(1,\\dots,1)$, and the classical spacings result gives $E[\\text{longest arc}]=\\dfrac{H_n}{n}=\\dfrac1n\\sum_{k=1}^n\\dfrac1k$.",
-          "With $n=3$: $E[\\max]=\\dfrac{H_3}{3}=\\dfrac13\\Big(1+\\dfrac12+\\dfrac13\\Big)=\\dfrac13\\cdot\\dfrac{11}{6}=\\boxed{\\dfrac{11}{18}}.$"
+          "The number of defectives in $4$ items follows $B(4,p)$ with $p=\\tfrac25$ under $A$ and $p=\\tfrac15$ under $B$. Thus $P(3\\mid A)=\\binom43\\left(\\tfrac25\\right)^3\\tfrac35=\\dfrac{96}{625}$ and $P(3\\mid B)=\\binom43\\left(\\tfrac15\\right)^3\\tfrac45=\\dfrac{16}{625}$.",
+          "Multiply by priors: numerator $=\\tfrac35\\cdot\\tfrac{96}{625}=\\tfrac{288}{3125}$, and the $B$-term $=\\tfrac25\\cdot\\tfrac{16}{625}=\\tfrac{32}{3125}$.",
+          "Hence $P(A\\mid 3)=\\dfrac{288}{288+32}=\\dfrac{288}{320}=\\dfrac{9}{10}$."
         ]
       },
       {
-        "name": "Direct simplex integration",
+        "name": "Odds form of Bayes",
         "steps": [
-          "The arc lengths $(x,y,z)$ are uniform on the simplex $\\{x,y,z\\ge0,\\;x+y+z=1\\}$; parametrised by $(x,y)$ with $z=1-x-y$, the density is the constant $2$ over the triangle.",
-          "By the size-bias step, the required probability equals $E[\\max]=\\displaystyle\\iint 2\\,\\max(x,y,z)\\,dx\\,dy$ over that triangle. Splitting on which coordinate is largest (three congruent regions by symmetry) gives $E[\\max]=3\\!\\iint_{x=\\max} 2x\\,dx\\,dy.$",
-          "Carrying out the integral $\\displaystyle 3\\int_0^1\\!\\!\\int_0^{1-x} 2x\\,\\mathbf1\\{x\\ge y,\\;x\\ge 1-x-y\\}\\,dy\\,dx$ evaluates exactly to $\\dfrac{11}{18}$ (equivalently $E[\\max]=H_3/3$).",
-          "Hence $P(Q\\text{'s arc is the longest})=\\boxed{\\dfrac{11}{18}}$, in agreement with the first method."
+          "Prior odds $A:B=\\tfrac35:\\tfrac25=3:2$. Likelihood ratio $\\dfrac{P(3\\mid A)}{P(3\\mid B)}=\\dfrac{(2/5)^3(3/5)}{(1/5)^3(4/5)}=\\dfrac{8\\cdot3}{1\\cdot4}=6$.",
+          "Posterior odds $=3:2\\times6:1=18:2=9:1$, so $P(A\\mid 3)=\\dfrac{9}{9+1}=\\dfrac{9}{10}$."
         ]
       }
     ],
-    "remark": "Insight: a geometric spacing problem meets order statistics through size-biasing. The arc containing a fixed point is the length-weighted pick of the three arcs, and the probability that a length-weighted pick is the maximum is exactly the expected maximum, $E[\\max]=H_3/3=\\tfrac{11}{18}$ — not the naive $\\tfrac13$. The same argument gives $H_n/n$ for $n$ points (e.g. $\\tfrac34$ for two points), a clean signature of the bias."
+    "remark": "**Insight.** This fuses **Bayes' theorem** with the **binomial** likelihood of the evidence. The trap is to score the machines by likelihood alone; the **prior** $3:2$ must multiply in. Working in **odds** form ($3:2$ times $6:1$) collapses the whole computation to a one-line product and makes the role of each ingredient transparent."
   },
   {
     "theme": "hybrid",
     "themeLabel": "The Grand Hybrids",
-    "title": "How Long the Winning Walk",
+    "title": "Couples Seated in a Row",
     "difficulty": 5,
-    "task": "Find the value",
+    "task": "Find the mean",
     "tags": [
-      "gambler's ruin",
-      "first-step analysis",
-      "conditional expectation",
-      "biased random walk",
-      "markov chain"
+      "expectation",
+      "indicator variables",
+      "counting",
+      "linearity"
     ],
-    "statement": "A token starts at position $2$ on the integers and performs a biased walk: each step it moves $+1$ with probability $\\tfrac23$ and $-1$ with probability $\\tfrac13$. The walk stops when it first reaches $0$ (a loss) or $6$ (a win). Given that the walk ends in a win, find the expected number of steps it takes.",
-    "answer": "\\[\\boxed{\\dfrac{60}{7}}\\]",
-    "trap": "Assuming the conditional expected duration equals the unconditional one. This is true only for the symmetric walk (or, by accident, when the start sits at the exact midpoint), but here the start is off-center, so the false shortcut gives $\\tfrac{54}{7}$ instead of $\\tfrac{60}{7}$. The conditioned (winning) walk is governed by a Doob $h$-transformed chain, so one must compute $E[T\\cdot\\mathbf1\\{\\text{win}\\}]$ and divide by $P(\\text{win})$.",
+    "statement": "Four married couples (eight people in all) are seated at random in a row of $8$ chairs, all $8!$ arrangements equally likely. Let $X$ be the number of couples that end up seated in adjacent chairs (the two partners next to each other). Find the mean $E[X]$.",
+    "answer": "$$E[X]=\\sum_{i=1}^{4}P(\\text{couple }i\\text{ adjacent})=4\\cdot\\frac{2\\cdot 7!}{8!}=4\\cdot\\frac14=\\boxed{1}.$$",
+    "trap": "A tempting wrong answer is $\\dfrac{4\\cdot 2\\cdot 7!}{8!}\\cdot\\text{(adjacent-pair count }7)=\\dfrac74$ or, worse, the belief that one must subtract overlaps between couples being adjacent. Linearity of expectation needs no independence and no inclusion–exclusion: $E[X]$ is simply the sum of the four single-couple adjacency probabilities, each $\\tfrac14$.",
     "solutions": [
       {
-        "name": "Win probability plus weighted duration",
+        "name": "Indicator variables and linearity",
         "steps": [
-          "First-step ruin formula with ratio $r=\\tfrac{q}{p}=\\tfrac12$ on $\\{0,\\dots,6\\}$: $w_i=P(\\text{win from }i)=\\dfrac{1-r^{\\,i}}{1-r^{6}}$, so $w_2=\\dfrac{1-1/4}{1-1/64}=\\dfrac{16}{21}$.",
-          "Let $m_i=E[T\\cdot\\mathbf1\\{\\text{win}\\}\\mid\\text{at }i]$. Splitting on the first step, the surviving time gains $1$ only on paths that win, giving $m_i=p\\,(w_{i+1}+m_{i+1})+q\\,(w_{i-1}+m_{i-1})$ with $m_0=m_6=0$.",
-          "Solving this linear system on $i=1,\\dots,5$ together with the known $w_i$ yields $m_2=\\dfrac{320}{49}$.",
-          "Conditional expectation $E[T\\mid\\text{win}]=\\dfrac{m_2}{w_2}=\\dfrac{320/49}{16/21}=\\dfrac{320}{49}\\cdot\\dfrac{21}{16}=\\boxed{\\dfrac{60}{7}}$."
+          "Write $X=\\sum_{i=1}^{4} I_i$, where $I_i=1$ if couple $i$ sits in adjacent chairs. Then $E[X]=\\sum_i E[I_i]=\\sum_i P(I_i=1)$.",
+          "For a fixed couple, glue them as one block (with $2$ internal orders) among the others: favourable arrangements $=2\\cdot 7!$, total $=8!$, so $P(I_i=1)=\\dfrac{2\\cdot 7!}{8!}=\\dfrac28=\\dfrac14$.",
+          "By symmetry all four are equal, so $E[X]=4\\cdot\\tfrac14=1$."
         ]
       },
       {
-        "name": "Doob h-transform",
+        "name": "Adjacency-slot counting",
         "steps": [
-          "Condition on winning: the transformed walk has state-dependent step probabilities $\\tilde p_i=p\\,\\dfrac{w_{i+1}}{w_i}$ and $\\tilde q_i=q\\,\\dfrac{w_{i-1}}{w_i}$, where $w_i=\\dfrac{1-2^{-i}}{1-2^{-6}}$ is the win probability used as the harmonic $h$-function.",
-          "Let $\\tau_i$ be the expected absorption time of this $h$-transformed chain from $i$, solving $\\tau_i=1+\\tilde p_i\\,\\tau_{i+1}+\\tilde q_i\\,\\tau_{i-1}$ with $\\tau_0=\\tau_6=0$.",
-          "Substituting the $w_i$ and solving the $5\\times5$ tridiagonal system gives $\\tau_2=\\dfrac{60}{7}$.",
-          "Hence the expected length of a winning walk started at $2$ is $\\boxed{\\dfrac{60}{7}}$, matching the first method."
+          "There are $7$ adjacent chair-pairs in a row. A fixed couple occupies a given pair with probability $\\dfrac{2}{8\\cdot7}=\\dfrac{1}{28}$ (choose ordered seats for the pair).",
+          "Summing over the $7$ pairs, $P(\\text{couple adjacent})=7\\cdot\\dfrac{1}{28}=\\dfrac14$; hence over $4$ couples $E[X]=4\\cdot\\tfrac14=1$."
         ]
       }
     ],
-    "remark": "Insight: a single biased random walk forces two distinct first-step computations — one for the ruin probability and one for the conditioned duration. The trap is the seductive but false belief that conditioning on success leaves the expected time unchanged; starting off the midpoint exposes it, since the honest value $\\tfrac{60}{7}$ exceeds the unconditional $\\tfrac{54}{7}$ — winning runs of a forward-biased walk are, on average, longer than typical runs."
+    "remark": "**Insight.** A combinatorial count of a complicated event becomes a **one-line expectation** once you decompose $X$ into **indicators**. The power move is that **linearity of expectation** ignores the heavy dependence between couples (whether one couple is together affects another), so no inclusion–exclusion is needed — only the easy single-couple probability $\\tfrac14$."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "Two Urns and a Matching Pair",
+    "difficulty": 5,
+    "task": "Find the probability",
+    "tags": [
+      "Bayes theorem",
+      "counting",
+      "conditional probability",
+      "without replacement"
+    ],
+    "statement": "Urn $\\mathrm{I}$ contains $3$ red and $3$ white balls; Urn $\\mathrm{II}$ contains $1$ red and $3$ white balls. A fair coin is tossed: on heads we use Urn $\\mathrm{I}$, on tails Urn $\\mathrm{II}$. From the chosen urn two balls are drawn together (without replacement). Given that the two drawn balls are of the same colour, find the probability that Urn $\\mathrm{I}$ was used.",
+    "answer": "$$P(\\mathrm{I}\\mid\\text{same})=\\frac{\\tfrac12\\cdot\\tfrac25}{\\tfrac12\\cdot\\tfrac25+\\tfrac12\\cdot\\tfrac12}=\\boxed{\\dfrac{4}{9}},$$ where $P(\\text{same}\\mid\\mathrm{I})=\\dfrac{\\binom32+\\binom32}{\\binom62}=\\dfrac{6}{15}=\\dfrac25$ and $P(\\text{same}\\mid\\mathrm{II})=\\dfrac{\\binom12+\\binom32}{\\binom42}=\\dfrac{3}{6}=\\dfrac12.$",
+    "trap": "A seductive wrong answer is $\\dfrac23$, gotten by pooling the raw same-colour pair counts $6$ (from Urn $\\mathrm{I}$) and $3$ (from Urn $\\mathrm{II}$) and writing $\\tfrac{6}{6+3}$. That ignores the different total pair counts $\\binom62=15$ and $\\binom42=6$: each urn's same-colour probability must be computed within its own urn (dividing by that urn's pair total) before combining.",
+    "solutions": [
+      {
+        "name": "Bayes after counting within each urn",
+        "steps": [
+          "Same-colour by counting: in Urn $\\mathrm{I}$, $P(\\text{same})=\\dfrac{\\binom32+\\binom32}{\\binom62}=\\dfrac{3+3}{15}=\\dfrac25$; in Urn $\\mathrm{II}$, $P(\\text{same})=\\dfrac{\\binom12+\\binom32}{\\binom42}=\\dfrac{0+3}{6}=\\dfrac12$.",
+          "Total probability: $P(\\text{same})=\\tfrac12\\cdot\\tfrac25+\\tfrac12\\cdot\\tfrac12=\\tfrac15+\\tfrac14=\\dfrac{9}{20}$.",
+          "Bayes: $P(\\mathrm{I}\\mid\\text{same})=\\dfrac{\\tfrac12\\cdot\\tfrac25}{9/20}=\\dfrac{1/5}{9/20}=\\dfrac{4}{9}$."
+        ]
+      },
+      {
+        "name": "Common-denominator weighting",
+        "steps": [
+          "Scale each urn's same-colour probability to a common footing: contribution of Urn $\\mathrm{I}=\\tfrac12\\cdot\\tfrac25=\\tfrac{4}{20}$ and of Urn $\\mathrm{II}=\\tfrac12\\cdot\\tfrac12=\\tfrac{5}{20}$.",
+          "The posterior is the share of Urn $\\mathrm{I}$: $\\dfrac{4/20}{4/20+5/20}=\\dfrac{4}{9}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Two in-syllabus tools meet: **counting** the same-colour event inside each urn, then **Bayes' theorem** to invert the conditioning. The trap of pooling raw favourable counts is the classic error of forgetting that each urn has its own sample-space size — probabilities, not counts, are what the prior weights combine."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "Updating a Coin, Then One More Toss",
+    "difficulty": 5,
+    "task": "Find the probability",
+    "tags": [
+      "Bayes theorem",
+      "binomial",
+      "total probability",
+      "prediction"
+    ],
+    "statement": "A bag holds two biased coins that look identical: coin $A$ shows heads with probability $\\tfrac34$, coin $B$ with probability $\\tfrac14$. One coin is picked at random (each equally likely) and tossed $3$ times, giving exactly $2$ heads. The same coin is then tossed once more. Find the probability that this fourth toss is heads.",
+    "answer": "$$P(A\\mid 2)=\\frac{\\tfrac12\\binom32(\\tfrac34)^2\\tfrac14}{\\tfrac12\\binom32(\\tfrac34)^2\\tfrac14+\\tfrac12\\binom32(\\tfrac14)^2\\tfrac34}=\\tfrac34,\\quad P(\\text{4th H})=\\tfrac34\\cdot\\tfrac34+\\tfrac14\\cdot\\tfrac14=\\boxed{\\dfrac{5}{8}}.$$",
+    "trap": "A seductive wrong answer is $\\dfrac23$, the observed head frequency $\\tfrac{2}{3}$ from the first three tosses, as if the next toss simply copied the empirical rate. Another trap is $\\tfrac12$ by ignoring the evidence entirely. The correct route updates the coin's identity by Bayes, then averages $\\tfrac34$ and $\\tfrac14$ against that posterior.",
+    "solutions": [
+      {
+        "name": "Bayes update then predictive average",
+        "steps": [
+          "Likelihoods of $2$ heads in $3$ tosses: $P(2\\mid A)=\\binom32(\\tfrac34)^2\\tfrac14=\\tfrac{27}{64}$, $P(2\\mid B)=\\binom32(\\tfrac14)^2\\tfrac34=\\tfrac{9}{64}$.",
+          "Posterior on $A$: $P(A\\mid 2)=\\dfrac{27}{27+9}=\\dfrac34$, so $P(B\\mid 2)=\\dfrac14$.",
+          "Predictive: $P(\\text{4th heads})=P(A\\mid 2)\\cdot\\tfrac34+P(B\\mid 2)\\cdot\\tfrac14=\\tfrac34\\cdot\\tfrac34+\\tfrac14\\cdot\\tfrac14=\\tfrac{9}{16}+\\tfrac{1}{16}=\\tfrac{10}{16}=\\tfrac58$."
+        ]
+      },
+      {
+        "name": "Joint enumeration of (coin, 4th toss)",
+        "steps": [
+          "Weight each coin by prior$\\times$likelihood of the data: $A\\!:\\tfrac12\\cdot\\tfrac{27}{64}=\\tfrac{27}{128}$, $B\\!:\\tfrac12\\cdot\\tfrac{9}{64}=\\tfrac{9}{128}$; total evidence $\\tfrac{36}{128}$.",
+          "Heads on the 4th toss has joint weight $\\tfrac{27}{128}\\cdot\\tfrac34+\\tfrac{9}{128}\\cdot\\tfrac14=\\tfrac{81}{512}+\\tfrac{9}{512}=\\tfrac{90}{512}$.",
+          "Divide by the evidence: $\\dfrac{90/512}{36/128}=\\dfrac{90/512}{144/512}=\\dfrac{90}{144}=\\dfrac58$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** This is the full hybrid pipeline: a **binomial** likelihood feeds **Bayes' theorem** to fix the coin's identity, and the **total probability theorem** then predicts the next toss. The deepest trap is to read the data as a frequency $\\tfrac23$ — but the data only tells you *which coin* you likely hold, after which each coin keeps its own fixed bias $\\tfrac34$ or $\\tfrac14$."
   }
 ];

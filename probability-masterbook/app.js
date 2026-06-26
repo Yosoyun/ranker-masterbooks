@@ -4,19 +4,19 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['classical','conditional','bayes','binomial','expectation','recurrence','inclusionexcl','distributions','paradox','hybrid'];
+  const THEME_ORDER = ['classical','conditional','bayes','counting','binomial','binomdist','expectation','inclusionexcl','paradox','hybrid'];
   const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
   const THEME_META = {
-    classical:     { glyph:'Ω',     blurb:'Count the sample space, count the favourable, divide — and when the space is a continuum, probability becomes a ratio of lengths and areas.' },
+    classical:     { glyph:'Ω',     blurb:'Count the sample space, count the favourable, divide — the classical law of equally likely outcomes, sharpened by permutations and combinations.' },
     conditional:   { glyph:'A|B',   blurb:'New information reshapes the space. The multiplication rule and independence — the most over-claimed property in all of probability.' },
     bayes:         { glyph:'Bayes', blurb:'Partition, total probability, invert. Bayes turns a likelihood into a posterior, and quietly punishes everyone who forgets the base rate.' },
+    counting:      { glyph:'ⁿCᵣ',   blurb:'Probability as a pure counting problem: arrange and select with care, then divide favourable by total — the combinatorics behind most JEE chance problems.' },
     binomial:      { glyph:'ⁿCₖpᵏ', blurb:'Independent Bernoulli trials stacked n high — the binomial law, the most-probable count, and at-least/at-most thresholds.' },
+    binomdist:     { glyph:'np',    blurb:'The binomial random variable in full — its mean np, variance npq, the most-probable number of successes and the mode.' },
     expectation:   { glyph:'E[X]',  blurb:'The long-run average, made rigorous. Linearity of expectation and the indicator trick crack sums no enumeration could.' },
-    recurrence:    { glyph:'pₙ',    blurb:'When the next step depends only on the present, set up a recurrence — gambler’s ruin, first passage, the expected number of steps.' },
     inclusionexcl: { glyph:'∪∩',    blurb:'The probability of “at least one”, derangements and matchings — inclusion–exclusion translated into the language of chance.' },
-    distributions: { glyph:'λ',     blurb:'Poisson from the law of rare events, the uniform on an interval, expectations of maxima and minima — named laws and their limits.' },
-    paradox:       { glyph:'?!',    blurb:'Monty Hall, Bertrand, the birthday collision — the problems where intuition and a symmetry argument violently disagree.' },
-    hybrid:        { glyph:'⊕',     blurb:'The capstones: counting, conditioning, expectation and recurrence fused into one problem that resists every single tool.' },
+    paradox:       { glyph:'?!',    blurb:'Monty Hall, Simpson’s reversal, the birthday collision — the problems where intuition and a clean conditioning argument violently disagree.' },
+    hybrid:        { glyph:'⊕',     blurb:'The capstones: counting, conditioning, total probability and the binomial law fused into one problem that resists every single tool.' },
   };
 
   // ---- state ----
@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>&#8473;<em>.</em></h2>'
-      + '<div class="tagline">Original probability problems where the obvious answer is the wrong one — classical and geometric chance, conditioning, Bayes, Bernoulli trials, expectation, recurrences, inclusion–exclusion and the great paradoxes. Drawn from the rarest corners of Putnam probability, each solved several ways.</div>'
+      + '<div class="tagline">Original probability problems where the obvious answer is the wrong one — classical and counting chance, conditioning, Bayes, Bernoulli trials and the binomial law, expectation, inclusion–exclusion and the surprises where intuition fails. Strictly within the JEE Advanced syllabus, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')
@@ -245,13 +245,13 @@
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/PROB-Problems.pdf" download>&#8595; Problems PDF</a>'
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/PROB-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
-      + '<p class="cover-manifesto">Classical and geometric probability, conditioning and independence, total probability and Bayes, Bernoulli trials and the binomial law, expectation and the indicator trick, recursive and Markov chance, inclusion–exclusion, named distributions, and the paradoxes — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t guess the fraction; they build the sample space.</p>'
+      + '<p class="cover-manifesto">Classical probability and counting, conditioning and independence, total probability and Bayes, Bernoulli trials and the binomial law, the binomial random variable’s mean and variance, expectation and the indicator trick, inclusion–exclusion, and the surprises where intuition fails — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t guess the fraction; they build the sample space.</p>'
       + '</div>';
 
     // legend of instruments
     html+='<div class="sec-head"><span class="sh-rom">i</span><h3>The Instruments</h3><span class="sh-line"></span></div>';
     html+='<div class="legend">';
-    const fam=[['classical','Classical & geometric','Ω'],['conditional','Conditioning','A|B'],['bayes','Bayes','Bayes'],['binomial','Bernoulli & binomial','ⁿCₖpᵏ'],['expectation','Expectation','E[X]'],['recurrence','Recursive & Markov','pₙ'],['inclusionexcl','Inclusion–exclusion','∪∩'],['distributions','Distributions','λ'],['paradox','Paradoxes','?!'],['hybrid','Hybrids','⊕']];
+    const fam=[['classical','Classical probability','Ω'],['conditional','Conditioning','A|B'],['bayes','Bayes','Bayes'],['counting','Probability by counting','ⁿCᵣ'],['binomial','Bernoulli & binomial','ⁿCₖpᵏ'],['binomdist','Binomial mean & variance','np'],['expectation','Expectation','E[X]'],['inclusionexcl','Inclusion–exclusion','∪∩'],['paradox','Surprises','?!'],['hybrid','Hybrids','⊕']];
     fam.forEach(f=>{ const c=byChapter[f[0]]; const cnt=c?c.problems.length:0;
       html+='<div class="lg card"><div class="glyph">'+f[2]+'</div><div><div class="lgname">'+f[1]+'</div><div class="lgcount">'+cnt+' problems</div></div></div>'; });
     html+='</div>';

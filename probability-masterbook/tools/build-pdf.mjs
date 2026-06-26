@@ -11,21 +11,21 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['classical','conditional','bayes','binomial','expectation','recurrence','inclusionexcl','distributions','paradox','hybrid'];
+const THEME_ORDER = ['classical','conditional','bayes','counting','binomial','binomdist','expectation','inclusionexcl','paradox','hybrid'];
 const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { classical:'Ω', conditional:'A|B', bayes:'Bayes', binomial:'ⁿCₖpᵏ', expectation:'E[X]', recurrence:'pₙ', inclusionexcl:'∪∩', distributions:'λ', paradox:'?!', hybrid:'⊕' };
+const GLYPH = { classical:'Ω', conditional:'A|B', bayes:'Bayes', counting:'ⁿCᵣ', binomial:'ⁿCₖpᵏ', binomdist:'np', expectation:'E[X]', inclusionexcl:'∪∩', paradox:'?!', hybrid:'⊕' };
 const BLURB = {
-  classical:'Favourable over total — and on a continuum, a ratio of lengths and areas.',
+  classical:'Favourable over total — the classical law, sharpened by permutations and combinations.',
   conditional:'New information reshapes the space; independence is over-claimed.',
   bayes:'Partition, total probability, invert — and never forget the base rate.',
+  counting:'Probability as a counting problem: arrange, select, divide favourable by total.',
   binomial:'Bernoulli trials stacked n high — the binomial law and the likeliest count.',
+  binomdist:'The binomial random variable: mean np, variance npq, the mode.',
   expectation:'Linearity of expectation and the indicator trick crack stubborn sums.',
-  recurrence:'Gambler’s ruin, first passage, the expected number of steps.',
   inclusionexcl:'“At least one”, derangements and matchings, in the language of chance.',
-  distributions:'Poisson from rare events, the uniform, expectations of max and min.',
-  paradox:'Monty Hall, Bertrand, the birthday collision — intuition vs symmetry.',
-  hybrid:'Counting, conditioning, expectation and recurrence, fused.',
-};
+  paradox:'Monty Hall, Simpson’s reversal, the birthday collision — intuition vs conditioning.',
+  hybrid:'Counting, conditioning, total probability and the binomial law, fused.',
+}
 
 // order + index
 PROBLEMS.sort((a,b)=>THEME_ORDER.indexOf(a.theme)-THEME_ORDER.indexOf(b.theme));
@@ -164,7 +164,7 @@ function coverHTML(kind){
       <div><b>3–5</b><span>Difficulty</span></div>
       ${isSol ? `<div><b>${totalMethods}</b><span>Worked Solutions</span></div>` : ''}
     </div>
-    <div class="foot">${PROBLEMS.length} original probability problems where the obvious fraction is the wrong one — for the very top of JEE Advanced, the JEE Advanced and the Putnam. ${isSol ? 'Every problem solved more than one way.' : 'Solutions in the companion volume.'}</div>
+    <div class="foot">${PROBLEMS.length} original probability problems where the obvious fraction is the wrong one — for the very top of JEE Advanced. ${isSol ? 'Every problem solved more than one way.' : 'Solutions in the companion volume.'}</div>
   </section>`;
 }
 function tocHTML(){
