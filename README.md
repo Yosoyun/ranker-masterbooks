@@ -1,7 +1,7 @@
 # The Ranker's Masterbooks
 
 Twenty-one static problem books for the very top of **JEE Advanced**.
-2106 original problems, organised by the *instrument* that powers each one, and every problem solved
+2116 original problems, organised by the *instrument* that powers each one, and every problem solved
 **more than one way**. No build step, no dependencies — just open `index.html`.
 
 🌐 **Live:** https://yosoyun.github.io/ranker-masterbooks/
@@ -25,7 +25,7 @@ Twenty-one static problem books for the very top of **JEE Advanced**.
 | **[x² · Roots, Discriminant & Vieta](quadratics-masterbook/)** | Vieta, the discriminant, root location, common roots, ranges of fractions, max–min, disguised quadratics, parameters, inequalities, grand hybrids | 100 |
 | **[f′ · The Derivative & Where It Fails](diff-masterbook/)** | First principles, non-differentiability, the MVT & Rolle, implicit/parametric/inverse differentiation, differentiable functional equations, smoothness, tangents, monotonicity, derivative limits, grand hybrids | 100 |
 | **[C⁰ · The Continuous & the Broken](continuity-masterbook/)** | Continuity at a point & piecewise gluing, types of discontinuity, continuous functional equations, the IVT, step/fractional/modulus functions, composite continuity, parametric gluing, the EVT, monotone & inverse functions, grand hybrids | 100 |
-| **[MATRIX · Determinants, Inverses & Linear Systems](matrix-masterbook/)** | The algebra of matrices, special matrices, the transpose & symmetric–skew split, determinant properties, factorisation & area, the adjoint & inverse, elementary transformations, systems by Cramer's rule, parameters & matrix equations, grand hybrids | 100 |
+| **[MATRIX · Determinants, Inverses & Linear Systems](matrix-masterbook/)** | The algebra of matrices, special matrices, the transpose & symmetric–skew split, determinant properties, factorisation & area, the adjoint & inverse, elementary transformations, systems by Cramer's rule, parameters & matrix equations, the characteristic equation & Cayley–Hamilton, grand hybrids | 110 |
 | **[TRIG · The Circular Arsenal](trig-masterbook/)** | Conditional angle identities, product-to-sum telescopes, multiple & sub-multiple angles, sum-to-product transformations, trigonometric substitution, heights & distances, phase, range & extrema, equations & root-counting, triangle geometry, grand hybrids | 106 |
 | **[ARC · The Inverse Circular Functions](itf-masterbook/)** | Principal branches & the range trap, ±π corrections, telescoping arctangents, identities, equations, trig-of-inverse-trig, domain/range, calculus, Machin & advanced identities, grand hybrids | 100 |
 | **[LIMITS · The Edge of Calculus](limits-masterbook/)** | Floor, fractional part, signum, modulus, inverse-trig, log/exp, advanced trig, exotic indeterminate forms, squeeze & discrete sums, grand hybrids | 100 |

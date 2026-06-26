@@ -1,4 +1,4 @@
-/* problems.js — DATA. 100 original JEE-Advanced matrices & determinants problems for MATRIX · Determinants, Inverses & Linear Systems. Every problem lies strictly inside the JEE Advanced syllabus (matrix algebra; special matrices; transpose & the symmetric/skew decomposition; determinants of order up to three and their properties; factorisation, area of a triangle, concurrency; adjoint & inverse of order up to three; elementary transformations; systems of linear equations; parameters & matrix equations). No eigenvalues, characteristic polynomials, rank, trace identities, Cayley-Hamilton, block decompositions or determinant inequalities. Adversarially verified in sympy/numpy. statement/answer are raw LaTeX (the app auto-detects prose+math); steps use $...$ and $$...$$. */
+/* problems.js — DATA. 110 original JEE-Advanced matrices & determinants problems for MATRIX · Determinants, Inverses & Linear Systems. Every problem lies strictly inside the JEE Advanced syllabus (matrix algebra; special matrices; transpose & the symmetric/skew decomposition; determinants of order up to three and their properties; factorisation, area of a triangle, concurrency; adjoint & inverse of order up to three; elementary transformations; systems of linear equations; parameters & matrix equations; and the characteristic equation det(A−λI)=0 with trace/determinant as root-sum and product, power sums tr(Aⁿ), and the order-2 identity A²=(tr A)A−(det A)I — all derived from order-≤3 determinants, as several real JEE Advanced PYQs require, e.g. 2020 Paper 2, 2019 Paper 1, 2016). No eigenvectors, diagonalization, spectral theorem, Schur decomposition, rank theory, or matrices of order above three. Adversarially verified in sympy/numpy. statement/answer are raw LaTeX (the app auto-detects prose+math); steps use $...$ and $$...$$. */
 window.PROBLEMS = [
   {
     "theme": "matalgebra",
@@ -179,6 +179,77 @@ window.PROBLEMS = [
   {
     "theme": "matalgebra",
     "themeLabel": "Algebra of Matrices",
+    "title": "Inverting Through Nilpotence",
+    "difficulty": 4,
+    "task": "Find the inverse",
+    "tags": [
+      "nilpotent matrix",
+      "matrix inverse",
+      "geometric series",
+      "3x3",
+      "polynomial in a matrix"
+    ],
+    "statement": "Let $A=\\begin{pmatrix}0&1&2\\\\0&0&3\\\\0&0&0\\end{pmatrix}$, which satisfies $A^{3}=O$. Without row-reducing, find $(I-A)^{-1}$ as a polynomial in $A$, and write the inverse explicitly.",
+    "answer": "$(I-A)^{-1}=I+A+A^{2}=\\boxed{\\begin{pmatrix}1&1&5\\\\0&1&3\\\\0&0&1\\end{pmatrix}}$.",
+    "trap": "Writing the geometric series $(I-A)^{-1}=I+A+A^{2}+A^{3}+\\cdots$ as an infinite sum and worrying about convergence, or — worse — treating $(I-A)^{-1}$ as the entrywise reciprocal of $I-A$. Neither is needed: $A^{3}=O$ truncates the series to exactly three terms, and the identity $(I-A)(I+A+A^{2})=I-A^{3}=I$ is exact. Inverses are never computed entrywise.",
+    "solutions": [
+      {
+        "name": "Telescoping product",
+        "steps": [
+          "For any $A$, $(I-A)(I+A+A^{2})=I+A+A^{2}-A-A^{2}-A^{3}=I-A^{3}$ (telescoping; $I$ commutes with $A$).",
+          "Since $A^{3}=O$ here, this equals $I$. Hence $I+A+A^{2}$ is a right (and by symmetry left) inverse of $I-A$, so $(I-A)^{-1}=I+A+A^{2}$.",
+          "Compute $A^{2}=\\begin{pmatrix}0&0&3\\\\0&0&0\\\\0&0&0\\end{pmatrix}$, so $I+A+A^{2}=\\begin{pmatrix}1&1&2+3\\\\0&1&3\\\\0&0&1\\end{pmatrix}=\\boxed{\\begin{pmatrix}1&1&5\\\\0&1&3\\\\0&0&1\\end{pmatrix}}.$"
+        ]
+      },
+      {
+        "name": "Finite geometric series",
+        "steps": [
+          "Because $A$ is nilpotent with $A^{3}=O$, the formal geometric series for $(I-A)^{-1}$ terminates: $(I-A)^{-1}=\\sum_{k\\ge0}A^{k}=I+A+A^{2}$ (all later terms vanish).",
+          "With $A^{2}=\\begin{pmatrix}0&0&3\\\\0&0&0\\\\0&0&0\\end{pmatrix}$, add: the $(1,3)$ entry is $0+2+3=5$ and the rest follow.",
+          "Therefore $(I-A)^{-1}=\\boxed{\\begin{pmatrix}1&1&5\\\\0&1&3\\\\0&0&1\\end{pmatrix}}.$ (Check: multiply by $I-A$ to recover $I$.)"
+        ]
+      }
+    ],
+    "remark": "**Insight.** For a nilpotent $A$ (here index $3$), $I-A$ is always invertible and its inverse is the *finite* polynomial $I+A+\\cdots+A^{k-1}$. The matrix geometric series isn't an approximation — nilpotence makes it exact and short. This is the cleanest possible way to invert a strictly-triangular perturbation of $I$."
+  },
+  {
+    "theme": "matalgebra",
+    "themeLabel": "Algebra of Matrices",
+    "title": "The Spiral That Scales",
+    "difficulty": 4,
+    "task": "Find a closed form",
+    "tags": [
+      "powers of a matrix",
+      "rotation-scaling",
+      "pattern spotting",
+      "matrix equation"
+    ],
+    "statement": "Let $A=\\begin{pmatrix}1&-1\\\\1&1\\end{pmatrix}$. Show that $A^{2}=2R$ where $R=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$, and use this to evaluate $A^{8}$ and $A^{8}+A^{4}$.",
+    "answer": "$A^{4}=(A^{2})^{2}=(2R)^{2}=4R^{2}=-4I$ and $A^{8}=(A^{4})^{2}=16I$. Hence $A^{8}+A^{4}=16I-4I=12I=\\boxed{\\begin{pmatrix}12&0\\\\0&12\\end{pmatrix}}$.",
+    "trap": "Recognising the columns of $A$ as a rotation and declaring \"$A$ is a rotation by $45^{\\circ}$, so $A^{8}$ is a rotation by $360^{\\circ}$, i.e. $A^{8}=I$.\" That ignores the length: $A=\\sqrt2\\,(\\text{rotation by }45^{\\circ})$, so each power also multiplies the scale by $\\sqrt2$. After $8$ steps the scale factor is $(\\sqrt2)^{8}=16$, giving $A^{8}=16I$, not $I$.",
+    "solutions": [
+      {
+        "name": "Square, then square again",
+        "steps": [
+          "$A^{2}=\\begin{pmatrix}1&-1\\\\1&1\\end{pmatrix}^{2}=\\begin{pmatrix}1-1&-1-1\\\\1+1&-1+1\\end{pmatrix}=\\begin{pmatrix}0&-2\\\\2&0\\end{pmatrix}=2R$, where $R=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ satisfies $R^{2}=-I$.",
+          "Then $A^{4}=(A^{2})^{2}=(2R)^{2}=4R^{2}=4(-I)=-4I$, and $A^{8}=(A^{4})^{2}=(-4I)^{2}=16I$.",
+          "Therefore $A^{8}+A^{4}=16I+(-4I)=12I=\\boxed{\\begin{pmatrix}12&0\\\\0&12\\end{pmatrix}}.$"
+        ]
+      },
+      {
+        "name": "Rotation-scaling decomposition",
+        "steps": [
+          "Factor $A=\\sqrt2\\begin{pmatrix}\\tfrac1{\\sqrt2}&-\\tfrac1{\\sqrt2}\\\\[2pt]\\tfrac1{\\sqrt2}&\\tfrac1{\\sqrt2}\\end{pmatrix}=\\sqrt2\\,Q$, where $Q$ is rotation by $45^{\\circ}$. The scalar $\\sqrt2$ commutes with $Q$.",
+          "Then $A^{n}=(\\sqrt2)^{n}Q^{n}$, and $Q^{n}$ is rotation by $45^{\\circ}\\cdot n$. For $n=8$: $(\\sqrt2)^{8}=16$ and $Q^{8}=$ rotation by $360^{\\circ}=I$, so $A^{8}=16I$. For $n=4$: $(\\sqrt2)^{4}=4$ and $Q^{4}=$ rotation by $180^{\\circ}=-I$, so $A^{4}=-4I$.",
+          "Adding, $A^{8}+A^{4}=16I-4I=12I=\\boxed{\\begin{pmatrix}12&0\\\\0&12\\end{pmatrix}}.$"
+        ]
+      }
+    ],
+    "remark": "**Insight.** A matrix $\\begin{pmatrix}a&-b\\\\b&a\\end{pmatrix}$ acts as \"scale by $\\sqrt{a^{2}+b^{2}}$ and rotate by $\\arg(a+bi)$\" — a spiral. Its powers multiply the scale and add the angle, exactly like the complex number $a+bi$. The trap forgets the scale; the truth tracks both, and here the scale $(\\sqrt2)^{8}=16$ is the whole answer."
+  },
+  {
+    "theme": "matalgebra",
+    "themeLabel": "Algebra of Matrices",
     "title": "The Missing Commutator",
     "difficulty": 5,
     "task": "Compute the discrepancy",
@@ -247,77 +318,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "**Insight.** A relation $f(A)=O$ lets you fold every higher power down to a fixed linear combination $\\alpha A+\\beta I$ — the matrix \"satisfies its own degree-2 equation,\" so the powers live in a 2-dimensional space. The slick route recognises $(A-2I)^{2}=O$ as nilpotence, making the binomial expansion of $(2I+N)^{5}$ collapse after two terms. The fatal misread is treating $(A-2I)^{2}=O$ as $A=2I$."
-  },
-  {
-    "theme": "matalgebra",
-    "themeLabel": "Algebra of Matrices",
-    "title": "Inverting Through Nilpotence",
-    "difficulty": 4,
-    "task": "Find the inverse",
-    "tags": [
-      "nilpotent matrix",
-      "matrix inverse",
-      "geometric series",
-      "3x3",
-      "polynomial in a matrix"
-    ],
-    "statement": "Let $A=\\begin{pmatrix}0&1&2\\\\0&0&3\\\\0&0&0\\end{pmatrix}$, which satisfies $A^{3}=O$. Without row-reducing, find $(I-A)^{-1}$ as a polynomial in $A$, and write the inverse explicitly.",
-    "answer": "$(I-A)^{-1}=I+A+A^{2}=\\boxed{\\begin{pmatrix}1&1&5\\\\0&1&3\\\\0&0&1\\end{pmatrix}}$.",
-    "trap": "Writing the geometric series $(I-A)^{-1}=I+A+A^{2}+A^{3}+\\cdots$ as an infinite sum and worrying about convergence, or — worse — treating $(I-A)^{-1}$ as the entrywise reciprocal of $I-A$. Neither is needed: $A^{3}=O$ truncates the series to exactly three terms, and the identity $(I-A)(I+A+A^{2})=I-A^{3}=I$ is exact. Inverses are never computed entrywise.",
-    "solutions": [
-      {
-        "name": "Telescoping product",
-        "steps": [
-          "For any $A$, $(I-A)(I+A+A^{2})=I+A+A^{2}-A-A^{2}-A^{3}=I-A^{3}$ (telescoping; $I$ commutes with $A$).",
-          "Since $A^{3}=O$ here, this equals $I$. Hence $I+A+A^{2}$ is a right (and by symmetry left) inverse of $I-A$, so $(I-A)^{-1}=I+A+A^{2}$.",
-          "Compute $A^{2}=\\begin{pmatrix}0&0&3\\\\0&0&0\\\\0&0&0\\end{pmatrix}$, so $I+A+A^{2}=\\begin{pmatrix}1&1&2+3\\\\0&1&3\\\\0&0&1\\end{pmatrix}=\\boxed{\\begin{pmatrix}1&1&5\\\\0&1&3\\\\0&0&1\\end{pmatrix}}.$"
-        ]
-      },
-      {
-        "name": "Finite geometric series",
-        "steps": [
-          "Because $A$ is nilpotent with $A^{3}=O$, the formal geometric series for $(I-A)^{-1}$ terminates: $(I-A)^{-1}=\\sum_{k\\ge0}A^{k}=I+A+A^{2}$ (all later terms vanish).",
-          "With $A^{2}=\\begin{pmatrix}0&0&3\\\\0&0&0\\\\0&0&0\\end{pmatrix}$, add: the $(1,3)$ entry is $0+2+3=5$ and the rest follow.",
-          "Therefore $(I-A)^{-1}=\\boxed{\\begin{pmatrix}1&1&5\\\\0&1&3\\\\0&0&1\\end{pmatrix}}.$ (Check: multiply by $I-A$ to recover $I$.)"
-        ]
-      }
-    ],
-    "remark": "**Insight.** For a nilpotent $A$ (here index $3$), $I-A$ is always invertible and its inverse is the *finite* polynomial $I+A+\\cdots+A^{k-1}$. The matrix geometric series isn't an approximation — nilpotence makes it exact and short. This is the cleanest possible way to invert a strictly-triangular perturbation of $I$."
-  },
-  {
-    "theme": "matalgebra",
-    "themeLabel": "Algebra of Matrices",
-    "title": "The Spiral That Scales",
-    "difficulty": 4,
-    "task": "Find a closed form",
-    "tags": [
-      "powers of a matrix",
-      "rotation-scaling",
-      "pattern spotting",
-      "matrix equation"
-    ],
-    "statement": "Let $A=\\begin{pmatrix}1&-1\\\\1&1\\end{pmatrix}$. Show that $A^{2}=2R$ where $R=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$, and use this to evaluate $A^{8}$ and $A^{8}+A^{4}$.",
-    "answer": "$A^{4}=(A^{2})^{2}=(2R)^{2}=4R^{2}=-4I$ and $A^{8}=(A^{4})^{2}=16I$. Hence $A^{8}+A^{4}=16I-4I=12I=\\boxed{\\begin{pmatrix}12&0\\\\0&12\\end{pmatrix}}$.",
-    "trap": "Recognising the columns of $A$ as a rotation and declaring \"$A$ is a rotation by $45^{\\circ}$, so $A^{8}$ is a rotation by $360^{\\circ}$, i.e. $A^{8}=I$.\" That ignores the length: $A=\\sqrt2\\,(\\text{rotation by }45^{\\circ})$, so each power also multiplies the scale by $\\sqrt2$. After $8$ steps the scale factor is $(\\sqrt2)^{8}=16$, giving $A^{8}=16I$, not $I$.",
-    "solutions": [
-      {
-        "name": "Square, then square again",
-        "steps": [
-          "$A^{2}=\\begin{pmatrix}1&-1\\\\1&1\\end{pmatrix}^{2}=\\begin{pmatrix}1-1&-1-1\\\\1+1&-1+1\\end{pmatrix}=\\begin{pmatrix}0&-2\\\\2&0\\end{pmatrix}=2R$, where $R=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ satisfies $R^{2}=-I$.",
-          "Then $A^{4}=(A^{2})^{2}=(2R)^{2}=4R^{2}=4(-I)=-4I$, and $A^{8}=(A^{4})^{2}=(-4I)^{2}=16I$.",
-          "Therefore $A^{8}+A^{4}=16I+(-4I)=12I=\\boxed{\\begin{pmatrix}12&0\\\\0&12\\end{pmatrix}}.$"
-        ]
-      },
-      {
-        "name": "Rotation-scaling decomposition",
-        "steps": [
-          "Factor $A=\\sqrt2\\begin{pmatrix}\\tfrac1{\\sqrt2}&-\\tfrac1{\\sqrt2}\\\\[2pt]\\tfrac1{\\sqrt2}&\\tfrac1{\\sqrt2}\\end{pmatrix}=\\sqrt2\\,Q$, where $Q$ is rotation by $45^{\\circ}$. The scalar $\\sqrt2$ commutes with $Q$.",
-          "Then $A^{n}=(\\sqrt2)^{n}Q^{n}$, and $Q^{n}$ is rotation by $45^{\\circ}\\cdot n$. For $n=8$: $(\\sqrt2)^{8}=16$ and $Q^{8}=$ rotation by $360^{\\circ}=I$, so $A^{8}=16I$. For $n=4$: $(\\sqrt2)^{4}=4$ and $Q^{4}=$ rotation by $180^{\\circ}=-I$, so $A^{4}=-4I$.",
-          "Adding, $A^{8}+A^{4}=16I-4I=12I=\\boxed{\\begin{pmatrix}12&0\\\\0&12\\end{pmatrix}}.$"
-        ]
-      }
-    ],
-    "remark": "**Insight.** A matrix $\\begin{pmatrix}a&-b\\\\b&a\\end{pmatrix}$ acts as \"scale by $\\sqrt{a^{2}+b^{2}}$ and rotate by $\\arg(a+bi)$\" — a spiral. Its powers multiply the scale and add the angle, exactly like the complex number $a+bi$. The trap forgets the scale; the truth tracks both, and here the scale $(\\sqrt2)^{8}=16$ is the whole answer."
   },
   {
     "theme": "matalgebra",
@@ -537,6 +537,80 @@ window.PROBLEMS = [
   {
     "theme": "specialmat",
     "themeLabel": "Special Matrices",
+    "title": "Idempotents Forced to be Diagonal",
+    "difficulty": 4,
+    "task": "Count the matrices",
+    "tags": [
+      "diagonal",
+      "commuting",
+      "idempotent",
+      "counting",
+      "scalar matrix"
+    ],
+    "statement": "Let $D=\\mathrm{diag}(1,2,3)$. How many $3\\times3$ matrices $A$ satisfy both $AD=DA$ and $A^{2}=A$?",
+    "answer": "$\\boxed{8}$",
+    "trap": "One may forget the commuting condition pins down the *shape* of $A$ and try to count all idempotent $3\\times3$ matrices (there are infinitely many such idempotents). The condition $AD=DA$ with $D$ having three **distinct** diagonal entries forces $A$ to be diagonal; only then does idempotency reduce to a finite, easy count.",
+    "solutions": [
+      {
+        "name": "Commuting with distinct diagonal forces diagonal form",
+        "steps": [
+          "Write $A=(a_{ij})$. The $(i,j)$ entry of $AD-DA$ is $a_{ij}(d_{j}-d_{i})$ where $d=(1,2,3)$. Setting $AD=DA$ gives $a_{ij}(d_{j}-d_{i})=0$ for all $i,j$.",
+          "Since $d_{1},d_{2},d_{3}$ are distinct, $d_{j}-d_{i}\\neq0$ whenever $i\\neq j$, forcing every off-diagonal $a_{ij}=0$. So $A$ must be diagonal, $A=\\mathrm{diag}(t_{1},t_{2},t_{3})$.",
+          "Now $A^{2}=A$ becomes $t_{k}^{2}=t_{k}$ for each $k$, so each $t_{k}\\in\\{0,1\\}$ independently.",
+          "There are $2^{3}=\\boxed{8}$ choices."
+        ]
+      },
+      {
+        "name": "Listing the diagonal projections",
+        "steps": [
+          "After the commuting argument, $A=\\mathrm{diag}(t_{1},t_{2},t_{3})$ with each $t_{k}$ solving $t_{k}^{2}=t_{k}$, i.e. $t_{k}=0$ or $1$.",
+          "The eight matrices are the diagonal $0$/$1$ patterns: $O$, the three single-$1$ projections, the three double-$1$ projections, and $I$.",
+          "All eight are genuinely idempotent and commute with $D$, and no two coincide, so the count is $\\boxed{8}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A matrix commuting with a diagonal matrix of *distinct* entries must itself be diagonal — the distinctness is the whole hinge. Drop it (e.g. $D=I$) and the idempotents become a continuum; keep it and the answer is a crisp $2^{3}$."
+  },
+  {
+    "theme": "specialmat",
+    "themeLabel": "Special Matrices",
+    "title": "Scalar Plus Nilpotent, Inverted",
+    "difficulty": 4,
+    "task": "Find the determinants",
+    "tags": [
+      "triangular",
+      "nilpotent",
+      "scalar matrix",
+      "adjoint",
+      "inverse"
+    ],
+    "statement": "Let $A=\\begin{pmatrix}2 & 3 & 1\\\\ 0 & 2 & 4\\\\ 0 & 0 & 2\\end{pmatrix}$. Writing $A=2I+N$ with $N$ strictly upper-triangular, find $\\det A$, $\\det(\\operatorname{adj}A)$, and verify $A^{-1}=\\tfrac12\\!\\left(I-\\tfrac{N}{2}+\\tfrac{N^{2}}{4}\\right)$.",
+    "answer": "$\\det A = 8$, $\\boxed{\\det(\\operatorname{adj}A)=64}$, and $A^{-1}=\\tfrac12\\big(I-\\tfrac{N}{2}+\\tfrac{N^{2}}{4}\\big)$.",
+    "trap": "Because $A$ has nonzero entries above the diagonal, a hasty solver expands the full $3\\times3$ determinant or fears the off-diagonal terms feed into $\\det A$. For a *triangular* matrix the determinant is just the product of diagonal entries, $2^{3}=8$. A second trap is using $\\det(\\operatorname{adj}A)=\\det A$; the correct law in order $3$ is $\\det(\\operatorname{adj}A)=(\\det A)^{n-1}=(\\det A)^{2}$.",
+    "solutions": [
+      {
+        "name": "Triangular determinant and adjoint law",
+        "steps": [
+          "$A$ is upper triangular, so $\\det A$ is the product of the diagonal: $\\det A=2\\cdot2\\cdot2=8$.",
+          "For an $n\\times n$ matrix, $\\det(\\operatorname{adj}A)=(\\det A)^{\\,n-1}$. With $n=3$, $\\det(\\operatorname{adj}A)=(\\det A)^{2}=8^{2}=\\boxed{64}$.",
+          "Split $A=2I+N$ with $N=\\begin{pmatrix}0&3&1\\\\0&0&4\\\\0&0&0\\end{pmatrix}$, $N^{3}=O$. Then $A^{-1}=(2I+N)^{-1}=\\tfrac12\\big(I+\\tfrac{N}{2}\\big)^{-1}=\\tfrac12\\big(I-\\tfrac{N}{2}+\\tfrac{N^{2}}{4}\\big)$ since the series truncates at $N^{2}$.",
+          "Direct check: $(2I+N)\\cdot\\tfrac12\\big(I-\\tfrac N2+\\tfrac{N^{2}}4\\big)=I-\\tfrac{N^{3}}{8}=I$, confirming the inverse and $\\boxed{\\det(\\operatorname{adj}A)=64}$."
+        ]
+      },
+      {
+        "name": "Cofactor cross-check",
+        "steps": [
+          "Computing the adjugate of $A$ directly gives $\\operatorname{adj}A=\\begin{pmatrix}4 & -6 & 10\\\\ 0 & 4 & -8\\\\ 0 & 0 & 4\\end{pmatrix}$, again upper triangular with diagonal $4,4,4$.",
+          "Hence $\\det(\\operatorname{adj}A)=4\\cdot4\\cdot4=64$, matching $(\\det A)^{2}=64$.",
+          "And $A^{-1}=\\tfrac{1}{\\det A}\\operatorname{adj}A=\\tfrac18\\operatorname{adj}A=\\begin{pmatrix}\\tfrac12 & -\\tfrac34 & \\tfrac{5}{4}\\\\ 0 & \\tfrac12 & -1\\\\ 0 & 0 & \\tfrac12\\end{pmatrix}$, which equals $\\tfrac12\\big(I-\\tfrac N2+\\tfrac{N^{2}}4\\big)$, so $\\boxed{\\det(\\operatorname{adj}A)=64}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A scalar-plus-nilpotent decomposition $A=cI+N$ makes inversion a *finite* binomial series and shows the inverse of a triangular matrix stays triangular. The adjoint determinant law $(\\det A)^{n-1}$ is the part most often misremembered."
+  },
+  {
+    "theme": "specialmat",
+    "themeLabel": "Special Matrices",
     "title": "Why a Rotation Always Fixes a Line",
     "difficulty": 5,
     "task": "Evaluate the determinant",
@@ -615,80 +689,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "**Insight.** Shifting a skew-symmetric matrix by $xI$ produces $x^{3}+(a^{2}+b^{2}+c^{2})x$; the missing even-degree terms (no $x^{2}$, no constant) are the algebraic fingerprint of skew-symmetry in odd order, and they pin the only real singular shift at $x=0$."
-  },
-  {
-    "theme": "specialmat",
-    "themeLabel": "Special Matrices",
-    "title": "Idempotents Forced to be Diagonal",
-    "difficulty": 4,
-    "task": "Count the matrices",
-    "tags": [
-      "diagonal",
-      "commuting",
-      "idempotent",
-      "counting",
-      "scalar matrix"
-    ],
-    "statement": "Let $D=\\mathrm{diag}(1,2,3)$. How many $3\\times3$ matrices $A$ satisfy both $AD=DA$ and $A^{2}=A$?",
-    "answer": "$\\boxed{8}$",
-    "trap": "One may forget the commuting condition pins down the *shape* of $A$ and try to count all idempotent $3\\times3$ matrices (there are infinitely many such idempotents). The condition $AD=DA$ with $D$ having three **distinct** diagonal entries forces $A$ to be diagonal; only then does idempotency reduce to a finite, easy count.",
-    "solutions": [
-      {
-        "name": "Commuting with distinct diagonal forces diagonal form",
-        "steps": [
-          "Write $A=(a_{ij})$. The $(i,j)$ entry of $AD-DA$ is $a_{ij}(d_{j}-d_{i})$ where $d=(1,2,3)$. Setting $AD=DA$ gives $a_{ij}(d_{j}-d_{i})=0$ for all $i,j$.",
-          "Since $d_{1},d_{2},d_{3}$ are distinct, $d_{j}-d_{i}\\neq0$ whenever $i\\neq j$, forcing every off-diagonal $a_{ij}=0$. So $A$ must be diagonal, $A=\\mathrm{diag}(t_{1},t_{2},t_{3})$.",
-          "Now $A^{2}=A$ becomes $t_{k}^{2}=t_{k}$ for each $k$, so each $t_{k}\\in\\{0,1\\}$ independently.",
-          "There are $2^{3}=\\boxed{8}$ choices."
-        ]
-      },
-      {
-        "name": "Listing the diagonal projections",
-        "steps": [
-          "After the commuting argument, $A=\\mathrm{diag}(t_{1},t_{2},t_{3})$ with each $t_{k}$ solving $t_{k}^{2}=t_{k}$, i.e. $t_{k}=0$ or $1$.",
-          "The eight matrices are the diagonal $0$/$1$ patterns: $O$, the three single-$1$ projections, the three double-$1$ projections, and $I$.",
-          "All eight are genuinely idempotent and commute with $D$, and no two coincide, so the count is $\\boxed{8}$."
-        ]
-      }
-    ],
-    "remark": "**Insight.** A matrix commuting with a diagonal matrix of *distinct* entries must itself be diagonal — the distinctness is the whole hinge. Drop it (e.g. $D=I$) and the idempotents become a continuum; keep it and the answer is a crisp $2^{3}$."
-  },
-  {
-    "theme": "specialmat",
-    "themeLabel": "Special Matrices",
-    "title": "Scalar Plus Nilpotent, Inverted",
-    "difficulty": 4,
-    "task": "Find the determinants",
-    "tags": [
-      "triangular",
-      "nilpotent",
-      "scalar matrix",
-      "adjoint",
-      "inverse"
-    ],
-    "statement": "Let $A=\\begin{pmatrix}2 & 3 & 1\\\\ 0 & 2 & 4\\\\ 0 & 0 & 2\\end{pmatrix}$. Writing $A=2I+N$ with $N$ strictly upper-triangular, find $\\det A$, $\\det(\\operatorname{adj}A)$, and verify $A^{-1}=\\tfrac12\\!\\left(I-\\tfrac{N}{2}+\\tfrac{N^{2}}{4}\\right)$.",
-    "answer": "$\\det A = 8$, $\\boxed{\\det(\\operatorname{adj}A)=64}$, and $A^{-1}=\\tfrac12\\big(I-\\tfrac{N}{2}+\\tfrac{N^{2}}{4}\\big)$.",
-    "trap": "Because $A$ has nonzero entries above the diagonal, a hasty solver expands the full $3\\times3$ determinant or fears the off-diagonal terms feed into $\\det A$. For a *triangular* matrix the determinant is just the product of diagonal entries, $2^{3}=8$. A second trap is using $\\det(\\operatorname{adj}A)=\\det A$; the correct law in order $3$ is $\\det(\\operatorname{adj}A)=(\\det A)^{n-1}=(\\det A)^{2}$.",
-    "solutions": [
-      {
-        "name": "Triangular determinant and adjoint law",
-        "steps": [
-          "$A$ is upper triangular, so $\\det A$ is the product of the diagonal: $\\det A=2\\cdot2\\cdot2=8$.",
-          "For an $n\\times n$ matrix, $\\det(\\operatorname{adj}A)=(\\det A)^{\\,n-1}$. With $n=3$, $\\det(\\operatorname{adj}A)=(\\det A)^{2}=8^{2}=\\boxed{64}$.",
-          "Split $A=2I+N$ with $N=\\begin{pmatrix}0&3&1\\\\0&0&4\\\\0&0&0\\end{pmatrix}$, $N^{3}=O$. Then $A^{-1}=(2I+N)^{-1}=\\tfrac12\\big(I+\\tfrac{N}{2}\\big)^{-1}=\\tfrac12\\big(I-\\tfrac{N}{2}+\\tfrac{N^{2}}{4}\\big)$ since the series truncates at $N^{2}$.",
-          "Direct check: $(2I+N)\\cdot\\tfrac12\\big(I-\\tfrac N2+\\tfrac{N^{2}}4\\big)=I-\\tfrac{N^{3}}{8}=I$, confirming the inverse and $\\boxed{\\det(\\operatorname{adj}A)=64}$."
-        ]
-      },
-      {
-        "name": "Cofactor cross-check",
-        "steps": [
-          "Computing the adjugate of $A$ directly gives $\\operatorname{adj}A=\\begin{pmatrix}4 & -6 & 10\\\\ 0 & 4 & -8\\\\ 0 & 0 & 4\\end{pmatrix}$, again upper triangular with diagonal $4,4,4$.",
-          "Hence $\\det(\\operatorname{adj}A)=4\\cdot4\\cdot4=64$, matching $(\\det A)^{2}=64$.",
-          "And $A^{-1}=\\tfrac{1}{\\det A}\\operatorname{adj}A=\\tfrac18\\operatorname{adj}A=\\begin{pmatrix}\\tfrac12 & -\\tfrac34 & \\tfrac{5}{4}\\\\ 0 & \\tfrac12 & -1\\\\ 0 & 0 & \\tfrac12\\end{pmatrix}$, which equals $\\tfrac12\\big(I-\\tfrac N2+\\tfrac{N^{2}}4\\big)$, so $\\boxed{\\det(\\operatorname{adj}A)=64}$."
-        ]
-      }
-    ],
-    "remark": "**Insight.** A scalar-plus-nilpotent decomposition $A=cI+N$ makes inversion a *finite* binomial series and shows the inverse of a triangular matrix stays triangular. The adjoint determinant law $(\\det A)^{n-1}$ is the part most often misremembered."
   },
   {
     "theme": "specialmat",
@@ -929,6 +929,80 @@ window.PROBLEMS = [
   {
     "theme": "transpose",
     "themeLabel": "Transpose & Symmetric–Skew Decomposition",
+    "title": "Orthogonal Columns From a Gram Matrix",
+    "difficulty": 4,
+    "task": "Find all values",
+    "tags": [
+      "A^TA symmetric",
+      "gram matrix",
+      "column norms",
+      "orthogonal columns",
+      "parameters"
+    ],
+    "statement": "Let\n\\[A=\\begin{pmatrix}1&2&2\\\\2&a&-2\\\\2&-2&b\\end{pmatrix},\\qquad a,b\\in\\mathbb R.\\]\nThe Gram matrix $A^{\\mathsf T}A$ records dot products of the columns of $A$. Find all $(a,b)$ for which $A^{\\mathsf T}A$ is a diagonal matrix, and identify that diagonal matrix.",
+    "answer": "\\[\\boxed{(a,b)=(1,1)},\\qquad A^{\\mathsf T}A=9I.\\]",
+    "trap": "Believing $A^{\\mathsf T}A=AA^{\\mathsf T}$ and working with the row dot products by mistake, or — worse — thinking $A^{\\mathsf T}A$ ``is automatically diagonal because it is symmetric.'' Symmetry of $A^{\\mathsf T}A$ (always true) does **not** mean diagonal. The off-diagonal entry $(A^{\\mathsf T}A)_{ij}$ is the dot product of column $i$ with column $j$; making the matrix diagonal requires those column dot products to vanish, which constrains $a$ and $b$. Confusing $A^{\\mathsf T}A$ with $AA^{\\mathsf T}$ would impose the wrong (row) conditions and give a different, incorrect $(a,b)$.",
+    "solutions": [
+      {
+        "name": "Off-diagonal column dot products must vanish",
+        "steps": [
+          "The columns are $c_1=(1,2,2)^{\\mathsf T},\\;c_2=(2,a,-2)^{\\mathsf T},\\;c_3=(2,-2,b)^{\\mathsf T}$, and $(A^{\\mathsf T}A)_{ij}=c_i\\!\\cdot\\!c_j$. Diagonal $\\iff$ the three off-diagonal dot products are zero.",
+          "$c_1\\!\\cdot\\!c_2=2+2a-4=2a-2=0\\Rightarrow a=1.$  $c_1\\!\\cdot\\!c_3=2-4+2b=2b-2=0\\Rightarrow b=1.$",
+          "Check the last condition with $a=b=1$: $c_2\\!\\cdot\\!c_3=4-2a-2b=4-2-2=0.$ Consistent, so $(a,b)=(1,1)$.",
+          "Then the diagonal entries are $\\lVert c_1\\rVert^2=9,\\;\\lVert c_2\\rVert^2=4+1+4=9,\\;\\lVert c_3\\rVert^2=4+4+1=9$, giving $A^{\\mathsf T}A=9I$. So $\\boxed{(a,b)=(1,1)}$ and $A^{\\mathsf T}A=9I.$"
+        ]
+      },
+      {
+        "name": "Form $A^{\\mathsf T}A$ symbolically",
+        "steps": [
+          "Direct multiplication gives $A^{\\mathsf T}A=\\begin{pmatrix}9&2a-2&2b-2\\\\2a-2&a^2+8&-2a-2b+4\\\\2b-2&-2a-2b+4&b^2+8\\end{pmatrix}$ (symmetric, as it must be).",
+          "Set the three above-diagonal entries to $0$: $2a-2=0,\\;2b-2=0$, and $-2a-2b+4=0$. The first two give $a=1,b=1$, which also satisfies the third.",
+          "Substituting back, the diagonal becomes $9,\\;1+8,\\;1+8=9,9,9$, so $A^{\\mathsf T}A=9I$ and $\\boxed{(a,b)=(1,1)}.$"
+        ]
+      }
+    ],
+    "remark": "Insight. $A^{\\mathsf T}A$ is symmetric for every $A$, and its $(i,j)$ entry is the dot product of columns $i$ and $j$; the diagonal holds the squared column norms. Diagonality of the Gram matrix is precisely orthogonality of the columns — a far stronger statement than mere symmetry. Here the columns even share the common norm $3$, so $A/3$ is orthogonal."
+  },
+  {
+    "theme": "transpose",
+    "themeLabel": "Transpose & Symmetric–Skew Decomposition",
+    "title": "Why $I\\pm A$ Have Equal Determinants",
+    "difficulty": 4,
+    "task": "Evaluate the determinant",
+    "tags": [
+      "skew-symmetric",
+      "transpose argument",
+      "det not additive",
+      "I plus skew",
+      "skew-to-orthogonal"
+    ],
+    "statement": "Let\n\\[A=\\begin{pmatrix}0&2&3\\\\-2&0&6\\\\-3&-6&0\\end{pmatrix}\\]\n(a skew-symmetric matrix). Evaluate $\\det(I-A)$, and show by a transpose argument that $\\det(I-A)=\\det(I+A)$.",
+    "answer": "\\[\\boxed{\\det(I-A)=\\det(I+A)=50.}\\]",
+    "trap": "Splitting the determinant: $\\det(I-A)=\\det I-\\det A=1-0=1$ (using $\\det A=0$ for odd-order skew). This abuses non-existent additivity of $\\det$. The true value is $\\det(I-A)=1+(2^2+3^2+6^2)=50$. The equality $\\det(I-A)=\\det(I+A)$ is real, but it comes from $(I-A)^{\\mathsf T}=I+A$ for skew $A$ (so the two matrices are transposes and share a determinant), **not** from any additive split.",
+    "solutions": [
+      {
+        "name": "Transpose argument for the equality, then evaluate",
+        "steps": [
+          "Since $A$ is skew, $A^{\\mathsf T}=-A$, so $(I-A)^{\\mathsf T}=I^{\\mathsf T}-A^{\\mathsf T}=I+A$. Determinant is transpose-invariant: $\\det(I-A)=\\det\\bigl((I-A)^{\\mathsf T}\\bigr)=\\det(I+A)$. This proves the equality without computing anything.",
+          "Now evaluate $\\det(I-A)$ where $I-A=\\begin{pmatrix}1&-2&-3\\\\2&1&-6\\\\3&6&1\\end{pmatrix}$.",
+          "Expand along row $1$: $1(1\\cdot1-(-6)(6))-(-2)(2\\cdot1-(-6)(3))+(-3)(2\\cdot6-1\\cdot3)=1(1+36)+2(2+18)-3(12-3)=37+40-27=50.$",
+          "Therefore $\\det(I-A)=\\det(I+A)=\\boxed{50}$ — far from the false additive guess $1$."
+        ]
+      },
+      {
+        "name": "General formula $\\det(I+K)=1+p^2+q^2+r^2$ for a $3\\times3$ skew $K$",
+        "steps": [
+          "For $K=\\begin{pmatrix}0&p&q\\\\-p&0&r\\\\-q&-r&0\\end{pmatrix}$, direct expansion gives $\\det(I-K)=1+p^2+q^2+r^2$ (the cubic and the cross terms cancel by skewness).",
+          "Here $(p,q,r)=(2,3,6)$, so $\\det(I-A)=1+4+9+36=50$.",
+          "The same formula gives $\\det(I+A)=1+p^2+q^2+r^2=50$ (replacing $A$ by $-A$ leaves the squares unchanged), confirming the equality and the value $\\boxed{50}$."
+        ]
+      }
+    ],
+    "remark": "Insight. For any skew $A$, $(I-A)^{\\mathsf T}=I+A$, so $I-A$ and $I+A$ are transposes and have equal determinants — and that common value is $1+\\lVert\\text{above-diagonal}\\rVert^2>0$, so both are invertible. This positivity is exactly why $(I-A)^{-1}(I+A)$ always exists for skew $A$, and a direct computation shows that product is orthogonal."
+  },
+  {
+    "theme": "transpose",
+    "themeLabel": "Transpose & Symmetric–Skew Decomposition",
     "title": "The Right Answer for the Wrong Reason",
     "difficulty": 5,
     "task": "Evaluate and justify",
@@ -1006,80 +1080,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight. The adjugate of a scaled-orthogonal matrix $MM^{\\mathsf T}=cI$ is $\\operatorname{adj}M=(\\det M)M^{-1}=\\dfrac{\\det M}{c}\\,M^{\\mathsf T}$. The lone scalar $\\det M/c$ (here $27/9=3$) is where every shortcut goes wrong: ``orthogonal'' would set it to $1$, ``forget $\\det$'' would set it to $1/c$. Tracking both factors is the whole problem."
-  },
-  {
-    "theme": "transpose",
-    "themeLabel": "Transpose & Symmetric–Skew Decomposition",
-    "title": "Orthogonal Columns From a Gram Matrix",
-    "difficulty": 4,
-    "task": "Find all values",
-    "tags": [
-      "A^TA symmetric",
-      "gram matrix",
-      "column norms",
-      "orthogonal columns",
-      "parameters"
-    ],
-    "statement": "Let\n\\[A=\\begin{pmatrix}1&2&2\\\\2&a&-2\\\\2&-2&b\\end{pmatrix},\\qquad a,b\\in\\mathbb R.\\]\nThe Gram matrix $A^{\\mathsf T}A$ records dot products of the columns of $A$. Find all $(a,b)$ for which $A^{\\mathsf T}A$ is a diagonal matrix, and identify that diagonal matrix.",
-    "answer": "\\[\\boxed{(a,b)=(1,1)},\\qquad A^{\\mathsf T}A=9I.\\]",
-    "trap": "Believing $A^{\\mathsf T}A=AA^{\\mathsf T}$ and working with the row dot products by mistake, or — worse — thinking $A^{\\mathsf T}A$ ``is automatically diagonal because it is symmetric.'' Symmetry of $A^{\\mathsf T}A$ (always true) does **not** mean diagonal. The off-diagonal entry $(A^{\\mathsf T}A)_{ij}$ is the dot product of column $i$ with column $j$; making the matrix diagonal requires those column dot products to vanish, which constrains $a$ and $b$. Confusing $A^{\\mathsf T}A$ with $AA^{\\mathsf T}$ would impose the wrong (row) conditions and give a different, incorrect $(a,b)$.",
-    "solutions": [
-      {
-        "name": "Off-diagonal column dot products must vanish",
-        "steps": [
-          "The columns are $c_1=(1,2,2)^{\\mathsf T},\\;c_2=(2,a,-2)^{\\mathsf T},\\;c_3=(2,-2,b)^{\\mathsf T}$, and $(A^{\\mathsf T}A)_{ij}=c_i\\!\\cdot\\!c_j$. Diagonal $\\iff$ the three off-diagonal dot products are zero.",
-          "$c_1\\!\\cdot\\!c_2=2+2a-4=2a-2=0\\Rightarrow a=1.$  $c_1\\!\\cdot\\!c_3=2-4+2b=2b-2=0\\Rightarrow b=1.$",
-          "Check the last condition with $a=b=1$: $c_2\\!\\cdot\\!c_3=4-2a-2b=4-2-2=0.$ Consistent, so $(a,b)=(1,1)$.",
-          "Then the diagonal entries are $\\lVert c_1\\rVert^2=9,\\;\\lVert c_2\\rVert^2=4+1+4=9,\\;\\lVert c_3\\rVert^2=4+4+1=9$, giving $A^{\\mathsf T}A=9I$. So $\\boxed{(a,b)=(1,1)}$ and $A^{\\mathsf T}A=9I.$"
-        ]
-      },
-      {
-        "name": "Form $A^{\\mathsf T}A$ symbolically",
-        "steps": [
-          "Direct multiplication gives $A^{\\mathsf T}A=\\begin{pmatrix}9&2a-2&2b-2\\\\2a-2&a^2+8&-2a-2b+4\\\\2b-2&-2a-2b+4&b^2+8\\end{pmatrix}$ (symmetric, as it must be).",
-          "Set the three above-diagonal entries to $0$: $2a-2=0,\\;2b-2=0$, and $-2a-2b+4=0$. The first two give $a=1,b=1$, which also satisfies the third.",
-          "Substituting back, the diagonal becomes $9,\\;1+8,\\;1+8=9,9,9$, so $A^{\\mathsf T}A=9I$ and $\\boxed{(a,b)=(1,1)}.$"
-        ]
-      }
-    ],
-    "remark": "Insight. $A^{\\mathsf T}A$ is symmetric for every $A$, and its $(i,j)$ entry is the dot product of columns $i$ and $j$; the diagonal holds the squared column norms. Diagonality of the Gram matrix is precisely orthogonality of the columns — a far stronger statement than mere symmetry. Here the columns even share the common norm $3$, so $A/3$ is orthogonal."
-  },
-  {
-    "theme": "transpose",
-    "themeLabel": "Transpose & Symmetric–Skew Decomposition",
-    "title": "Why $I\\pm A$ Have Equal Determinants",
-    "difficulty": 4,
-    "task": "Evaluate the determinant",
-    "tags": [
-      "skew-symmetric",
-      "transpose argument",
-      "det not additive",
-      "I plus skew",
-      "skew-to-orthogonal"
-    ],
-    "statement": "Let\n\\[A=\\begin{pmatrix}0&2&3\\\\-2&0&6\\\\-3&-6&0\\end{pmatrix}\\]\n(a skew-symmetric matrix). Evaluate $\\det(I-A)$, and show by a transpose argument that $\\det(I-A)=\\det(I+A)$.",
-    "answer": "\\[\\boxed{\\det(I-A)=\\det(I+A)=50.}\\]",
-    "trap": "Splitting the determinant: $\\det(I-A)=\\det I-\\det A=1-0=1$ (using $\\det A=0$ for odd-order skew). This abuses non-existent additivity of $\\det$. The true value is $\\det(I-A)=1+(2^2+3^2+6^2)=50$. The equality $\\det(I-A)=\\det(I+A)$ is real, but it comes from $(I-A)^{\\mathsf T}=I+A$ for skew $A$ (so the two matrices are transposes and share a determinant), **not** from any additive split.",
-    "solutions": [
-      {
-        "name": "Transpose argument for the equality, then evaluate",
-        "steps": [
-          "Since $A$ is skew, $A^{\\mathsf T}=-A$, so $(I-A)^{\\mathsf T}=I^{\\mathsf T}-A^{\\mathsf T}=I+A$. Determinant is transpose-invariant: $\\det(I-A)=\\det\\bigl((I-A)^{\\mathsf T}\\bigr)=\\det(I+A)$. This proves the equality without computing anything.",
-          "Now evaluate $\\det(I-A)$ where $I-A=\\begin{pmatrix}1&-2&-3\\\\2&1&-6\\\\3&6&1\\end{pmatrix}$.",
-          "Expand along row $1$: $1(1\\cdot1-(-6)(6))-(-2)(2\\cdot1-(-6)(3))+(-3)(2\\cdot6-1\\cdot3)=1(1+36)+2(2+18)-3(12-3)=37+40-27=50.$",
-          "Therefore $\\det(I-A)=\\det(I+A)=\\boxed{50}$ — far from the false additive guess $1$."
-        ]
-      },
-      {
-        "name": "General formula $\\det(I+K)=1+p^2+q^2+r^2$ for a $3\\times3$ skew $K$",
-        "steps": [
-          "For $K=\\begin{pmatrix}0&p&q\\\\-p&0&r\\\\-q&-r&0\\end{pmatrix}$, direct expansion gives $\\det(I-K)=1+p^2+q^2+r^2$ (the cubic and the cross terms cancel by skewness).",
-          "Here $(p,q,r)=(2,3,6)$, so $\\det(I-A)=1+4+9+36=50$.",
-          "The same formula gives $\\det(I+A)=1+p^2+q^2+r^2=50$ (replacing $A$ by $-A$ leaves the squares unchanged), confirming the equality and the value $\\boxed{50}$."
-        ]
-      }
-    ],
-    "remark": "Insight. For any skew $A$, $(I-A)^{\\mathsf T}=I+A$, so $I-A$ and $I+A$ are transposes and have equal determinants — and that common value is $1+\\lVert\\text{above-diagonal}\\rVert^2>0$, so both are invertible. This positivity is exactly why $(I-A)^{-1}(I+A)$ always exists for skew $A$, and a direct computation shows that product is orthogonal."
   },
   {
     "theme": "transpose",
@@ -1345,43 +1345,6 @@ window.PROBLEMS = [
   {
     "theme": "detprops",
     "themeLabel": "Determinants: Properties & Evaluation",
-    "title": "The 4×4 That Folds Flat",
-    "difficulty": 5,
-    "task": "Evaluate",
-    "tags": [
-      "4x4 collapse",
-      "constant row sum",
-      "row operations",
-      "repeated factor"
-    ],
-    "statement": "Let $a\\ne b$. Evaluate the $4\\times4$ determinant\n$$\\Delta=\\begin{vmatrix} a & b & b & b\\\\ b & a & b & b\\\\ b & b & a & b\\\\ b & b & b & a \\end{vmatrix}.$$",
-    "answer": "$\\Delta=(a-b)^{3}(a+3b)$",
-    "trap": "Two false instincts compete. First, attempting a blind $4\\times4$ cofactor expansion (a $24$-term ordeal) invites sign chaos. Second, after spotting that $a=b$ makes all rows equal, one may conclude $(a-b)$ is just a single factor, or guess $(a-b)^{4}$. The correct multiplicity is $3$, not $1$ or $4$: collapsing the constant row sum peels off exactly one factor $(a+3b)$ and leaves a $(a-b)^{3}$ block.",
-    "solutions": [
-      {
-        "name": "Constant row sum then sweep",
-        "steps": [
-          "Each row sums to $a+3b$. Apply $C_1\\to C_1+C_2+C_3+C_4$, making column $1$ the constant $a+3b$: $$\\Delta=(a+3b)\\begin{vmatrix} 1 & b & b & b\\\\ 1 & a & b & b\\\\ 1 & b & a & b\\\\ 1 & b & b & a \\end{vmatrix}.$$",
-          "Now $R_2\\to R_2-R_1,\\ R_3\\to R_3-R_1,\\ R_4\\to R_4-R_1$ to kill column $1$ below the top: $$\\Delta=(a+3b)\\begin{vmatrix} 1 & b & b & b\\\\ 0 & a-b & 0 & 0\\\\ 0 & 0 & a-b & 0\\\\ 0 & 0 & 0 & a-b \\end{vmatrix}.$$",
-          "The matrix is now upper-triangular (after the first row, only diagonal $(a-b)$ entries survive), so its determinant is the product of the diagonal: $1\\cdot(a-b)^{3}.$",
-          "Therefore $\\boxed{\\Delta=(a+3b)(a-b)^{3}}.$"
-        ]
-      },
-      {
-        "name": "Factor theorem in a",
-        "steps": [
-          "Treat $\\Delta$ as a polynomial in $a$. When $a=b$ all four rows are identical, so $\\Delta=0$; differentiating shows $(a-b)^{3}\\mid\\Delta$ — three rows coincide at $a=b$, forcing a triple factor.",
-          "The total degree in $a$ is $4$, so $\\Delta=(a-b)^{3}(\\alpha a+\\beta)$ for constants $\\alpha,\\beta$.",
-          "The leading coefficient of $a^{4}$ is $1$ (the main diagonal term), so $\\alpha=1$. Evaluate at $a=0$: $\\Delta(0)=-3b^{4}$ (the all-$b$-with-zero-diagonal determinant), giving $(-b)^{3}\\beta=-3b^{4}\\Rightarrow\\beta=3b$.",
-          "Hence $\\Delta=(a-b)^{3}(a+3b)$, i.e. $\\boxed{\\Delta=(a-b)^{3}(a+3b)}.$"
-        ]
-      }
-    ],
-    "remark": "Insight: a $4\\times4$ is in syllabus only because it folds to $\\le3$ work. The pattern $aI+b(J-I)$ has determinant $(a-b)^{n-1}\\big(a+(n-1)b\\big)$; no determinant-expansion drudgery is needed — a single $C_1$-sum and three row subtractions triangularise it."
-  },
-  {
-    "theme": "detprops",
-    "themeLabel": "Determinants: Properties & Evaluation",
     "title": "A Determinant That Will Not Sit Still",
     "difficulty": 4,
     "task": "Find the maximum",
@@ -1415,6 +1378,43 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: the row-difference move $R_i\\to R_i-R_{i+1}$ strips the shared trig column to constants, exposing that $f$ is affine in $\\sin2x$ — not constant. The lesson: verify a determinant is constant before claiming it; here only the $1$'s of $I$ would have to dominate, and the off-set $4\\sin2x$ survives."
+  },
+  {
+    "theme": "detprops",
+    "themeLabel": "Determinants: Properties & Evaluation",
+    "title": "The 4×4 That Folds Flat",
+    "difficulty": 5,
+    "task": "Evaluate",
+    "tags": [
+      "4x4 collapse",
+      "constant row sum",
+      "row operations",
+      "repeated factor"
+    ],
+    "statement": "Let $a\\ne b$. Evaluate the $4\\times4$ determinant\n$$\\Delta=\\begin{vmatrix} a & b & b & b\\\\ b & a & b & b\\\\ b & b & a & b\\\\ b & b & b & a \\end{vmatrix}.$$",
+    "answer": "$\\Delta=(a-b)^{3}(a+3b)$",
+    "trap": "Two false instincts compete. First, attempting a blind $4\\times4$ cofactor expansion (a $24$-term ordeal) invites sign chaos. Second, after spotting that $a=b$ makes all rows equal, one may conclude $(a-b)$ is just a single factor, or guess $(a-b)^{4}$. The correct multiplicity is $3$, not $1$ or $4$: collapsing the constant row sum peels off exactly one factor $(a+3b)$ and leaves a $(a-b)^{3}$ block.",
+    "solutions": [
+      {
+        "name": "Constant row sum then sweep",
+        "steps": [
+          "Each row sums to $a+3b$. Apply $C_1\\to C_1+C_2+C_3+C_4$, making column $1$ the constant $a+3b$: $$\\Delta=(a+3b)\\begin{vmatrix} 1 & b & b & b\\\\ 1 & a & b & b\\\\ 1 & b & a & b\\\\ 1 & b & b & a \\end{vmatrix}.$$",
+          "Now $R_2\\to R_2-R_1,\\ R_3\\to R_3-R_1,\\ R_4\\to R_4-R_1$ to kill column $1$ below the top: $$\\Delta=(a+3b)\\begin{vmatrix} 1 & b & b & b\\\\ 0 & a-b & 0 & 0\\\\ 0 & 0 & a-b & 0\\\\ 0 & 0 & 0 & a-b \\end{vmatrix}.$$",
+          "The matrix is now upper-triangular (after the first row, only diagonal $(a-b)$ entries survive), so its determinant is the product of the diagonal: $1\\cdot(a-b)^{3}.$",
+          "Therefore $\\boxed{\\Delta=(a+3b)(a-b)^{3}}.$"
+        ]
+      },
+      {
+        "name": "Factor theorem in a",
+        "steps": [
+          "Treat $\\Delta$ as a polynomial in $a$. When $a=b$ all four rows are identical, so $\\Delta=0$; differentiating shows $(a-b)^{3}\\mid\\Delta$ — three rows coincide at $a=b$, forcing a triple factor.",
+          "The total degree in $a$ is $4$, so $\\Delta=(a-b)^{3}(\\alpha a+\\beta)$ for constants $\\alpha,\\beta$.",
+          "The leading coefficient of $a^{4}$ is $1$ (the main diagonal term), so $\\alpha=1$. Evaluate at $a=0$: $\\Delta(0)=-3b^{4}$ (the all-$b$-with-zero-diagonal determinant), giving $(-b)^{3}\\beta=-3b^{4}\\Rightarrow\\beta=3b$.",
+          "Hence $\\Delta=(a-b)^{3}(a+3b)$, i.e. $\\boxed{\\Delta=(a-b)^{3}(a+3b)}.$"
+        ]
+      }
+    ],
+    "remark": "Insight: a $4\\times4$ is in syllabus only because it folds to $\\le3$ work. The pattern $aI+b(J-I)$ has determinant $(a-b)^{n-1}\\big(a+(n-1)b\\big)$; no determinant-expansion drudgery is needed — a single $C_1$-sum and three row subtractions triangularise it."
   },
   {
     "theme": "detprops",
@@ -2123,43 +2123,6 @@ window.PROBLEMS = [
   {
     "theme": "adjinv",
     "themeLabel": "Adjoint & Inverse",
-    "title": "An Inverse Built From the Matrix Itself",
-    "difficulty": 5,
-    "task": "Express the inverse",
-    "tags": [
-      "inverse",
-      "matrix-polynomial",
-      "factoring",
-      "scalar"
-    ],
-    "statement": "A nonsingular matrix $A$ satisfies $A^{2}=4A-3I$. Express $A^{-1}$ as a linear combination $\\alpha A+\\beta I$ with rational $\\alpha,\\beta$, and report the ordered pair $(\\alpha,\\beta)$.",
-    "answer": "\\[\\boxed{(\\alpha,\\beta)=\\left(-\\tfrac13,\\ \\tfrac43\\right)}\\]",
-    "trap": "Rearranging $A^{2}=4A-3I$ to $A^{2}-4A=-3I$ and reading off $A^{-1}=4I-A$ (forgetting to divide by $-3$ and mishandling the sign). The correct manipulation isolates $A\\cdot(\\text{something})=I$ before naming the inverse.",
-    "solutions": [
-      {
-        "name": "Factor out one $A$",
-        "steps": [
-          "Rewrite $A^{2}-4A+3I=0$ as $A^{2}-4A=-3I$, i.e. $A(A-4I)=-3I$.",
-          "Divide by $-3$: $A\\cdot\\dfrac{4I-A}{3}=I$, so by definition $A^{-1}=\\dfrac{4I-A}{3}=-\\dfrac13 A+\\dfrac43 I$.",
-          "Hence $(\\alpha,\\beta)=\\left(-\\dfrac13,\\dfrac43\\right)$.",
-          "\\[\\boxed{(\\alpha,\\beta)=\\left(-\\tfrac13,\\ \\tfrac43\\right)}\\]"
-        ]
-      },
-      {
-        "name": "Undetermined coefficients",
-        "steps": [
-          "Seek $A^{-1}=\\alpha A+\\beta I$, so $I=A(\\alpha A+\\beta I)=\\alpha A^{2}+\\beta A$.",
-          "Substitute $A^{2}=4A-3I$: $I=\\alpha(4A-3I)+\\beta A=(4\\alpha+\\beta)A-3\\alpha I$.",
-          "Match coefficients of $A$ and $I$: $4\\alpha+\\beta=0$ and $-3\\alpha=1$, giving $\\alpha=-\\dfrac13,\\ \\beta=\\dfrac43$.",
-          "\\[\\boxed{(\\alpha,\\beta)=\\left(-\\tfrac13,\\ \\tfrac43\\right)}\\]"
-        ]
-      }
-    ],
-    "remark": "Insight: any polynomial relation $A^{2}=pA+qI$ with $q\\neq0$ secretly contains the inverse, because $A\\big(\\tfrac{p I - A}{-q}\\big)=I$. The constant term $q$ must be nonzero — it equals $\\pm|A|$-type information that certifies $A$ is invertible in the first place."
-  },
-  {
-    "theme": "adjinv",
-    "themeLabel": "Adjoint & Inverse",
     "title": "Where the Inverse Refuses to Exist",
     "difficulty": 4,
     "task": "Count the values",
@@ -2194,6 +2157,43 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: $\\operatorname{adj}A$ is singular precisely when $A$ is, because the exponent $n-1\\ge1$ keeps the zero. Multiplicity of a determinant root tells you about how the matrix degenerates, but the count of distinct values of the parameter is governed only by the set of roots — a classic distinct-vs-with-multiplicity slip."
+  },
+  {
+    "theme": "adjinv",
+    "themeLabel": "Adjoint & Inverse",
+    "title": "An Inverse Built From the Matrix Itself",
+    "difficulty": 5,
+    "task": "Express the inverse",
+    "tags": [
+      "inverse",
+      "matrix-polynomial",
+      "factoring",
+      "scalar"
+    ],
+    "statement": "A nonsingular matrix $A$ satisfies $A^{2}=4A-3I$. Express $A^{-1}$ as a linear combination $\\alpha A+\\beta I$ with rational $\\alpha,\\beta$, and report the ordered pair $(\\alpha,\\beta)$.",
+    "answer": "\\[\\boxed{(\\alpha,\\beta)=\\left(-\\tfrac13,\\ \\tfrac43\\right)}\\]",
+    "trap": "Rearranging $A^{2}=4A-3I$ to $A^{2}-4A=-3I$ and reading off $A^{-1}=4I-A$ (forgetting to divide by $-3$ and mishandling the sign). The correct manipulation isolates $A\\cdot(\\text{something})=I$ before naming the inverse.",
+    "solutions": [
+      {
+        "name": "Factor out one $A$",
+        "steps": [
+          "Rewrite $A^{2}-4A+3I=0$ as $A^{2}-4A=-3I$, i.e. $A(A-4I)=-3I$.",
+          "Divide by $-3$: $A\\cdot\\dfrac{4I-A}{3}=I$, so by definition $A^{-1}=\\dfrac{4I-A}{3}=-\\dfrac13 A+\\dfrac43 I$.",
+          "Hence $(\\alpha,\\beta)=\\left(-\\dfrac13,\\dfrac43\\right)$.",
+          "\\[\\boxed{(\\alpha,\\beta)=\\left(-\\tfrac13,\\ \\tfrac43\\right)}\\]"
+        ]
+      },
+      {
+        "name": "Undetermined coefficients",
+        "steps": [
+          "Seek $A^{-1}=\\alpha A+\\beta I$, so $I=A(\\alpha A+\\beta I)=\\alpha A^{2}+\\beta A$.",
+          "Substitute $A^{2}=4A-3I$: $I=\\alpha(4A-3I)+\\beta A=(4\\alpha+\\beta)A-3\\alpha I$.",
+          "Match coefficients of $A$ and $I$: $4\\alpha+\\beta=0$ and $-3\\alpha=1$, giving $\\alpha=-\\dfrac13,\\ \\beta=\\dfrac43$.",
+          "\\[\\boxed{(\\alpha,\\beta)=\\left(-\\tfrac13,\\ \\tfrac43\\right)}\\]"
+        ]
+      }
+    ],
+    "remark": "Insight: any polynomial relation $A^{2}=pA+qI$ with $q\\neq0$ secretly contains the inverse, because $A\\big(\\tfrac{p I - A}{-q}\\big)=I$. The constant term $q$ must be nonzero — it equals $\\pm|A|$-type information that certifies $A$ is invertible in the first place."
   },
   {
     "theme": "adjinv",
@@ -2474,52 +2474,6 @@ window.PROBLEMS = [
   {
     "theme": "elemtrans",
     "themeLabel": "Elementary Transformations",
-    "title": "Assembled from Elementaries",
-    "difficulty": 5,
-    "task": "Find A and its inverse",
-    "tags": [
-      "elementary matrix",
-      "product",
-      "inverse",
-      "reverse order",
-      "determinant"
-    ],
-    "statement": "Let $E_1$ be the elementary matrix for the swap $R_1\\leftrightarrow R_2$, let $E_2$ be the one for $R_3\\to R_3-2R_1$, and let $E_3$ be the one for $R_2\\to 3R_2$ (all $3\\times3$). Define $A=E_3E_2E_1$. Find $A$, then write $A^{-1}$ as a product of elementary matrices and evaluate it. Also state $\\det A$.",
-    "answer": "\\[A=\\begin{pmatrix}0&1&0\\\\ 3&0&0\\\\ 0&-2&1\\end{pmatrix},\\qquad A^{-1}=E_1^{-1}E_2^{-1}E_3^{-1}=\\boxed{\\begin{pmatrix}0&\\tfrac13&0\\\\ 1&0&0\\\\ 2&0&1\\end{pmatrix}},\\qquad \\det A=-3.\\]",
-    "trap": "The seductive error is to invert the product in the \\emph{same} order, writing $A^{-1}=E_1^{-1}E_2^{-1}E_3^{-1}$ as though it equalled $(E_3E_2E_1)^{-1}=E_1^{-1}E_2^{-1}E_3^{-1}$ but then computing it as $E_3^{-1}E_2^{-1}E_1^{-1}$, or worse, taking $A^{-1}=E_3^{-1}E_2^{-1}E_1^{-1}$. The inverse reverses the order: $(E_3E_2E_1)^{-1}=E_1^{-1}E_2^{-1}E_3^{-1}$. Multiplying the inverses in the original order gives a different (wrong) matrix.",
-    "solutions": [
-      {
-        "name": "Build the elementaries and multiply",
-        "steps": [
-          "$E_1=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$, $E_2=\\begin{pmatrix}1&0&0\\\\0&1&0\\\\-2&0&1\\end{pmatrix}$, $E_3=\\begin{pmatrix}1&0&0\\\\0&3&0\\\\0&0&1\\end{pmatrix}$.",
-          "$E_2E_1=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&-2&1\\end{pmatrix}$, then $A=E_3(E_2E_1)=\\begin{pmatrix}0&1&0\\\\3&0&0\\\\0&-2&1\\end{pmatrix}$.",
-          "Since $A^{-1}=(E_3E_2E_1)^{-1}=E_1^{-1}E_2^{-1}E_3^{-1}$ with $E_1^{-1}=E_1$, $E_2^{-1}=R_3\\to R_3+2R_1$, $E_3^{-1}=R_2\\to\\tfrac13R_2$, multiplying these in reversed order gives $A^{-1}=\\begin{pmatrix}0&\\tfrac13&0\\\\1&0&0\\\\2&0&1\\end{pmatrix}$.",
-          "$\\det A=\\det E_3\\det E_2\\det E_1=3\\cdot1\\cdot(-1)=-3$. Final: $\\boxed{A^{-1}=\\begin{pmatrix}0&\\tfrac13&0\\\\1&0&0\\\\2&0&1\\end{pmatrix}},\\ \\det A=-3$."
-        ]
-      },
-      {
-        "name": "Direct inversion of A",
-        "steps": [
-          "$\\det A$: expanding along row $1$, $\\det A=-1\\cdot\\det\\begin{pmatrix}3&0\\\\0&1\\end{pmatrix}=-3$ (the only nonzero entry in row $1$ is the $(1,2)$ entry $=1$, cofactor sign $-$).",
-          "Compute $\\operatorname{adj}A$ from cofactors of $A=\\begin{pmatrix}0&1&0\\\\3&0&0\\\\0&-2&1\\end{pmatrix}$, then $A^{-1}=\\frac{1}{-3}\\operatorname{adj}A$.",
-          "This yields $A^{-1}=\\begin{pmatrix}0&\\tfrac13&0\\\\1&0&0\\\\2&0&1\\end{pmatrix}$, and one checks $A\\,A^{-1}=I$.",
-          "So $\\boxed{A^{-1}=\\begin{pmatrix}0&\\tfrac13&0\\\\1&0&0\\\\2&0&1\\end{pmatrix}}$ with $\\det A=-3$."
-        ]
-      },
-      {
-        "name": "Verify the product order matters",
-        "steps": [
-          "Test the trap: $E_3^{-1}E_2^{-1}E_1^{-1}$ would compute $(E_1E_2E_3)^{-1}$, the inverse of a different matrix, giving $\\begin{pmatrix}0&\\tfrac13&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$ (note the lost $2$ in the $(3,1)$ slot).",
-          "Multiplying that wrong matrix by $A$ does not give $I$, confirming the order must be reversed: $A^{-1}=E_1^{-1}E_2^{-1}E_3^{-1}$.",
-          "The correct inverse is $\\boxed{A^{-1}=\\begin{pmatrix}0&\\tfrac13&0\\\\1&0&0\\\\2&0&1\\end{pmatrix}}$, with $\\det A=-3$."
-        ]
-      }
-    ],
-    "remark": "Insight. $(E_3E_2E_1)^{-1}=E_1^{-1}E_2^{-1}E_3^{-1}$: socks-and-shoes. The determinant ignores order, $\\det A=\\prod\\det E_i=-3$, but the inverse decidedly does not."
-  },
-  {
-    "theme": "elemtrans",
-    "themeLabel": "Elementary Transformations",
     "title": "Reverse-Engineering the Determinant",
     "difficulty": 4,
     "task": "Find det A",
@@ -2590,6 +2544,52 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight. Determinants treat rows and columns symmetrically: $\\det(E_rAE_c)=\\det E_r\\det A\\det E_c$. A column swap is a genuine sign flip, never a free relabelling — that lost minus sign is the whole trap."
+  },
+  {
+    "theme": "elemtrans",
+    "themeLabel": "Elementary Transformations",
+    "title": "Assembled from Elementaries",
+    "difficulty": 5,
+    "task": "Find A and its inverse",
+    "tags": [
+      "elementary matrix",
+      "product",
+      "inverse",
+      "reverse order",
+      "determinant"
+    ],
+    "statement": "Let $E_1$ be the elementary matrix for the swap $R_1\\leftrightarrow R_2$, let $E_2$ be the one for $R_3\\to R_3-2R_1$, and let $E_3$ be the one for $R_2\\to 3R_2$ (all $3\\times3$). Define $A=E_3E_2E_1$. Find $A$, then write $A^{-1}$ as a product of elementary matrices and evaluate it. Also state $\\det A$.",
+    "answer": "\\[A=\\begin{pmatrix}0&1&0\\\\ 3&0&0\\\\ 0&-2&1\\end{pmatrix},\\qquad A^{-1}=E_1^{-1}E_2^{-1}E_3^{-1}=\\boxed{\\begin{pmatrix}0&\\tfrac13&0\\\\ 1&0&0\\\\ 2&0&1\\end{pmatrix}},\\qquad \\det A=-3.\\]",
+    "trap": "The seductive error is to invert the product in the \\emph{same} order, writing $A^{-1}=E_1^{-1}E_2^{-1}E_3^{-1}$ as though it equalled $(E_3E_2E_1)^{-1}=E_1^{-1}E_2^{-1}E_3^{-1}$ but then computing it as $E_3^{-1}E_2^{-1}E_1^{-1}$, or worse, taking $A^{-1}=E_3^{-1}E_2^{-1}E_1^{-1}$. The inverse reverses the order: $(E_3E_2E_1)^{-1}=E_1^{-1}E_2^{-1}E_3^{-1}$. Multiplying the inverses in the original order gives a different (wrong) matrix.",
+    "solutions": [
+      {
+        "name": "Build the elementaries and multiply",
+        "steps": [
+          "$E_1=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$, $E_2=\\begin{pmatrix}1&0&0\\\\0&1&0\\\\-2&0&1\\end{pmatrix}$, $E_3=\\begin{pmatrix}1&0&0\\\\0&3&0\\\\0&0&1\\end{pmatrix}$.",
+          "$E_2E_1=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&-2&1\\end{pmatrix}$, then $A=E_3(E_2E_1)=\\begin{pmatrix}0&1&0\\\\3&0&0\\\\0&-2&1\\end{pmatrix}$.",
+          "Since $A^{-1}=(E_3E_2E_1)^{-1}=E_1^{-1}E_2^{-1}E_3^{-1}$ with $E_1^{-1}=E_1$, $E_2^{-1}=R_3\\to R_3+2R_1$, $E_3^{-1}=R_2\\to\\tfrac13R_2$, multiplying these in reversed order gives $A^{-1}=\\begin{pmatrix}0&\\tfrac13&0\\\\1&0&0\\\\2&0&1\\end{pmatrix}$.",
+          "$\\det A=\\det E_3\\det E_2\\det E_1=3\\cdot1\\cdot(-1)=-3$. Final: $\\boxed{A^{-1}=\\begin{pmatrix}0&\\tfrac13&0\\\\1&0&0\\\\2&0&1\\end{pmatrix}},\\ \\det A=-3$."
+        ]
+      },
+      {
+        "name": "Direct inversion of A",
+        "steps": [
+          "$\\det A$: expanding along row $1$, $\\det A=-1\\cdot\\det\\begin{pmatrix}3&0\\\\0&1\\end{pmatrix}=-3$ (the only nonzero entry in row $1$ is the $(1,2)$ entry $=1$, cofactor sign $-$).",
+          "Compute $\\operatorname{adj}A$ from cofactors of $A=\\begin{pmatrix}0&1&0\\\\3&0&0\\\\0&-2&1\\end{pmatrix}$, then $A^{-1}=\\frac{1}{-3}\\operatorname{adj}A$.",
+          "This yields $A^{-1}=\\begin{pmatrix}0&\\tfrac13&0\\\\1&0&0\\\\2&0&1\\end{pmatrix}$, and one checks $A\\,A^{-1}=I$.",
+          "So $\\boxed{A^{-1}=\\begin{pmatrix}0&\\tfrac13&0\\\\1&0&0\\\\2&0&1\\end{pmatrix}}$ with $\\det A=-3$."
+        ]
+      },
+      {
+        "name": "Verify the product order matters",
+        "steps": [
+          "Test the trap: $E_3^{-1}E_2^{-1}E_1^{-1}$ would compute $(E_1E_2E_3)^{-1}$, the inverse of a different matrix, giving $\\begin{pmatrix}0&\\tfrac13&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$ (note the lost $2$ in the $(3,1)$ slot).",
+          "Multiplying that wrong matrix by $A$ does not give $I$, confirming the order must be reversed: $A^{-1}=E_1^{-1}E_2^{-1}E_3^{-1}$.",
+          "The correct inverse is $\\boxed{A^{-1}=\\begin{pmatrix}0&\\tfrac13&0\\\\1&0&0\\\\2&0&1\\end{pmatrix}}$, with $\\det A=-3$."
+        ]
+      }
+    ],
+    "remark": "Insight. $(E_3E_2E_1)^{-1}=E_1^{-1}E_2^{-1}E_3^{-1}$: socks-and-shoes. The determinant ignores order, $\\det A=\\prod\\det E_i=-3$, but the inverse decidedly does not."
   },
   {
     "theme": "elemtrans",
@@ -2897,6 +2897,42 @@ window.PROBLEMS = [
   {
     "theme": "linsys",
     "themeLabel": "Systems of Linear Equations",
+    "title": "The Missing Infinity",
+    "difficulty": 4,
+    "task": "Classify by $k$",
+    "tags": [
+      "parameter in coefficient and rhs",
+      "D and Di",
+      "no infinite regime"
+    ],
+    "statement": "For $$2x-y+z=k,\\qquad x+2y-z=2,\\qquad kx+y+z=1,$$ the parameter $k$ appears in both a coefficient and a right-hand side. Determine all $k$ giving a unique solution, all $k$ giving infinitely many, and all $k$ giving none.",
+    "answer": "\\[\\boxed{k\\neq8:\\ \\text{unique};\\quad k=8:\\ \\text{no solution};\\quad \\text{infinitely many: never.}}\\]",
+    "trap": "Finding $D=8-k$ and setting $k=8$, then announcing 'infinitely many solutions because $D=0$' is the seductive error. At $k=8$ one checks $D_1=27,\\ D_2=-81,\\ D_3=-135$, all non-zero — so the system is inconsistent. There is no $k$ at all that yields infinitely many solutions.",
+    "solutions": [
+      {
+        "name": "D then the Dᵢ test",
+        "steps": [
+          "$D=\\begin{vmatrix}2&-1&1\\\\1&2&-1\\\\k&1&1\\end{vmatrix}=8-k$. For $k\\neq8$, $D\\neq0$: unique solution.",
+          "At $k=8$, compute $D_1=\\begin{vmatrix}8&-1&1\\\\2&2&-1\\\\1&1&1\\end{vmatrix}=27\\neq0$ (also $D_2=-81,\\ D_3=-135$).",
+          "$D=0$ together with some $D_i\\neq0$ is exactly the inconsistent case: no solution at $k=8$.",
+          "Since 'infinitely many' requires $D=0$ AND all $D_i=0$, and that never happens here, \\[\\boxed{k\\neq8:\\text{unique};\\ k=8:\\text{none};\\ \\infty:\\text{never}}.\\]"
+        ]
+      },
+      {
+        "name": "Elimination to a contradiction",
+        "steps": [
+          "From eq1 and eq2 eliminate $z$: $(2x-y)+ (x+2y)=k+2\\Rightarrow 3x+y=k+2$. From eq2 and eq3 eliminate $z$: $(x+2y)+(kx+y)=3\\Rightarrow (k+1)x+3y=3$.",
+          "Solve these two: $x=\\dfrac{3(k+1)}{8-k}$ type expressions are finite and unique whenever $8-k\\neq0$.",
+          "At $k=8$ the two reduced equations $3x+y=10$ and $9x+3y=3$ are parallel-inconsistent ($3(3x+y)=30\\neq3$): no solution.",
+          "Thus \\[\\boxed{k\\neq8:\\text{unique};\\ k=8:\\text{none};\\ \\infty:\\text{never}}.\\]"
+        ]
+      }
+    ],
+    "remark": "Insight: a system can fail to ever be 'infinitely many'. Once $D=0$, the $D_i$ decide: all zero permits infinitude, but a single non-zero $D_i$ slams the door to 'no solution'."
+  },
+  {
+    "theme": "linsys",
+    "themeLabel": "Systems of Linear Equations",
     "title": "Two Knobs on a Flat System",
     "difficulty": 5,
     "task": "Classify by $(a,b)$",
@@ -2930,42 +2966,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: a two-parameter RHS does not create a 'unique' regime when the coefficient matrix is singular. The whole $(a,b)$-plane splits into one consistency line $b=a+2$ (infinite solutions) and its complement (no solution)."
-  },
-  {
-    "theme": "linsys",
-    "themeLabel": "Systems of Linear Equations",
-    "title": "The Missing Infinity",
-    "difficulty": 4,
-    "task": "Classify by $k$",
-    "tags": [
-      "parameter in coefficient and rhs",
-      "D and Di",
-      "no infinite regime"
-    ],
-    "statement": "For $$2x-y+z=k,\\qquad x+2y-z=2,\\qquad kx+y+z=1,$$ the parameter $k$ appears in both a coefficient and a right-hand side. Determine all $k$ giving a unique solution, all $k$ giving infinitely many, and all $k$ giving none.",
-    "answer": "\\[\\boxed{k\\neq8:\\ \\text{unique};\\quad k=8:\\ \\text{no solution};\\quad \\text{infinitely many: never.}}\\]",
-    "trap": "Finding $D=8-k$ and setting $k=8$, then announcing 'infinitely many solutions because $D=0$' is the seductive error. At $k=8$ one checks $D_1=27,\\ D_2=-81,\\ D_3=-135$, all non-zero — so the system is inconsistent. There is no $k$ at all that yields infinitely many solutions.",
-    "solutions": [
-      {
-        "name": "D then the Dᵢ test",
-        "steps": [
-          "$D=\\begin{vmatrix}2&-1&1\\\\1&2&-1\\\\k&1&1\\end{vmatrix}=8-k$. For $k\\neq8$, $D\\neq0$: unique solution.",
-          "At $k=8$, compute $D_1=\\begin{vmatrix}8&-1&1\\\\2&2&-1\\\\1&1&1\\end{vmatrix}=27\\neq0$ (also $D_2=-81,\\ D_3=-135$).",
-          "$D=0$ together with some $D_i\\neq0$ is exactly the inconsistent case: no solution at $k=8$.",
-          "Since 'infinitely many' requires $D=0$ AND all $D_i=0$, and that never happens here, \\[\\boxed{k\\neq8:\\text{unique};\\ k=8:\\text{none};\\ \\infty:\\text{never}}.\\]"
-        ]
-      },
-      {
-        "name": "Elimination to a contradiction",
-        "steps": [
-          "From eq1 and eq2 eliminate $z$: $(2x-y)+ (x+2y)=k+2\\Rightarrow 3x+y=k+2$. From eq2 and eq3 eliminate $z$: $(x+2y)+(kx+y)=3\\Rightarrow (k+1)x+3y=3$.",
-          "Solve these two: $x=\\dfrac{3(k+1)}{8-k}$ type expressions are finite and unique whenever $8-k\\neq0$.",
-          "At $k=8$ the two reduced equations $3x+y=10$ and $9x+3y=3$ are parallel-inconsistent ($3(3x+y)=30\\neq3$): no solution.",
-          "Thus \\[\\boxed{k\\neq8:\\text{unique};\\ k=8:\\text{none};\\ \\infty:\\text{never}}.\\]"
-        ]
-      }
-    ],
-    "remark": "Insight: a system can fail to ever be 'infinitely many'. Once $D=0$, the $D_i$ decide: all zero permits infinitude, but a single non-zero $D_i$ slams the door to 'no solution'."
   },
   {
     "theme": "linsys",
@@ -3445,6 +3445,402 @@ window.PROBLEMS = [
     "remark": "**Insight.** The single most common top-scorer error is treating $\\Delta=0$ as if it already meant infinitely many solutions. It does not: $\\Delta=0$ merely kills uniqueness, and the **numerators** $\\Delta_1,\\Delta_2,\\Delta_3$ decide the rest. The cubic $\\Delta=(a+2)(a-1)^2$ deliberately offers two zeros, but they behave oppositely. The **simple root** $a=-2$ leaves the constants out of step ($\\Delta_i\\neq 0$, the equations add to $0=-3$), so the planes have no common point. The **double root** $a=1$ collapses all three equations into one, so they share a whole plane of solutions. The double-root multiplicity is a hint, not a guarantee: always finish by reducing the equations themselves."
   },
   {
+    "theme": "chareqn",
+    "themeLabel": "The Characteristic Equation & Cayley–Hamilton",
+    "title": "Inverse From the Trace Identity",
+    "difficulty": 3,
+    "task": "Find the inverse",
+    "tags": [
+      "characteristic equation",
+      "2x2 identity",
+      "trace",
+      "determinant",
+      "inverse",
+      "adjoint"
+    ],
+    "statement": "For a $2\\times2$ matrix $A$ the characteristic equation $\\det(A-\\lambda I)=0$ is $\\lambda^{2}-(\\operatorname{tr}A)\\lambda+\\det A=0$, and replacing $\\lambda$ by the matrix gives the one-line identity $A^{2}=(\\operatorname{tr}A)\\,A-(\\det A)\\,I$. Using this identity alone, derive a formula for $A^{-1}$ in terms of $A$, $\\operatorname{tr}A$ and $\\det A$ (no cofactor expansion), and then apply it to \\[A=\\begin{pmatrix}3&1\\\\2&4\\end{pmatrix}\\] to compute $A^{-1}$.",
+    "answer": "$$A^{-1}=\\frac{1}{\\det A}\\big((\\operatorname{tr}A)I-A\\big)\\qquad\\Longrightarrow\\qquad \\boxed{A^{-1}=\\frac{1}{10}\\begin{pmatrix}4&-1\\\\-2&3\\end{pmatrix}}$$",
+    "trap": "A tempting wrong answer is $\\begin{pmatrix}4&-1\\\\-2&3\\end{pmatrix}$, obtained by writing $A^{-1}=(\\operatorname{tr}A)I-A$ and dropping the $\\tfrac{1}{\\det A}$. This is seductive because it is *exactly* $\\operatorname{adj}A$, which looks like a finished answer — but $A\\cdot\\big((\\operatorname{tr}A)I-A\\big)=(\\det A)I=10I\\neq I$, so it is off by the scalar $\\det A=10$. A second trap is the sign slip $\\tfrac{1}{\\det A}(A-(\\operatorname{tr}A)I)$, which is the negative of the true inverse.",
+    "solutions": [
+      {
+        "name": "Derive the inverse formula from the $2\\times2$ identity",
+        "steps": [
+          "For a general $A=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$ expand $A^{2}$ directly and compare: $A^{2}=\\begin{pmatrix}a^{2}+bc&b(a+d)\\\\c(a+d)&d^{2}+bc\\end{pmatrix}$, while $(a+d)A-(ad-bc)I=\\begin{pmatrix}a^{2}+bc&b(a+d)\\\\c(a+d)&d^{2}+bc\\end{pmatrix}$. The two agree entry-by-entry, so $A^{2}=(\\operatorname{tr}A)\\,A-(\\det A)\\,I$.",
+          "Rearrange to isolate the identity: $(\\det A)\\,I=(\\operatorname{tr}A)\\,A-A^{2}=A\\big((\\operatorname{tr}A)I-A\\big)$. Dividing by $\\det A\\neq0$ and reading off the factor multiplying $A$ gives $A^{-1}=\\dfrac{1}{\\det A}\\big((\\operatorname{tr}A)I-A\\big)$.",
+          "Here $\\operatorname{tr}A=3+4=7$ and $\\det A=3\\cdot4-1\\cdot2=10$, so $A^{-1}=\\dfrac{1}{10}\\left(7\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}-\\begin{pmatrix}3&1\\\\2&4\\end{pmatrix}\\right)=\\dfrac{1}{10}\\begin{pmatrix}4&-1\\\\-2&3\\end{pmatrix}.$"
+        ]
+      },
+      {
+        "name": "Cross-check against the adjoint formula",
+        "steps": [
+          "The standard formula $A^{-1}=\\dfrac{1}{\\det A}\\operatorname{adj}A$ for a $2\\times2$ matrix uses $\\operatorname{adj}\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}=\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$, so $\\operatorname{adj}A=\\begin{pmatrix}4&-1\\\\-2&3\\end{pmatrix}$ and $A^{-1}=\\dfrac{1}{10}\\begin{pmatrix}4&-1\\\\-2&3\\end{pmatrix}.$",
+          "This matches the trace-identity result exactly, since $(\\operatorname{tr}A)I-A=\\begin{pmatrix}7-3&-1\\\\-2&7-4\\end{pmatrix}=\\begin{pmatrix}4&-1\\\\-2&3\\end{pmatrix}=\\operatorname{adj}A$ — i.e. $(\\operatorname{tr}A)I-A=\\operatorname{adj}A$ for every $2\\times2$ matrix.",
+          "Verify: $A\\,A^{-1}=\\begin{pmatrix}3&1\\\\2&4\\end{pmatrix}\\cdot\\dfrac{1}{10}\\begin{pmatrix}4&-1\\\\-2&3\\end{pmatrix}=\\dfrac{1}{10}\\begin{pmatrix}10&0\\\\0&10\\end{pmatrix}=I.$"
+        ]
+      }
+    ],
+    "remark": "**Insight.** The whole inverse drops out of one line of $2\\times2$ algebra: since $A^{2}=(\\operatorname{tr}A)A-(\\det A)I$, the matrix $A$ satisfies its own characteristic equation, and factoring out $A$ gives $A^{-1}=\\frac{1}{\\det A}((\\operatorname{tr}A)I-A)$ with no cofactors at all. The hidden gem is that $(\\operatorname{tr}A)I-A$ is precisely $\\operatorname{adj}A$ for a $2\\times2$ matrix — so the seductive 'forgot the $1/\\det A$' answer is exactly the adjoint, off by the scalar $\\det A$. The roots of $\\det(A-\\lambda I)=0$ are the characteristic roots; their sum is $\\operatorname{tr}A$ and product is $\\det A$, which is why those two quantities are all the inverse formula ever needs."
+  },
+  {
+    "theme": "chareqn",
+    "themeLabel": "The Characteristic Equation & Cayley–Hamilton",
+    "title": "Power Sums of a Mystery Matrix",
+    "difficulty": 3,
+    "task": "Find two traces, no entries",
+    "tags": [
+      "characteristic equation",
+      "trace",
+      "determinant",
+      "2x2 matrix",
+      "Newton power sums",
+      "matrix powers"
+    ],
+    "statement": "Let $A$ be a $2\\times2$ real matrix whose entries are not given, but for which it is known that $\\operatorname{tr}(A)=3$ and $\\det A=2$. Without ever recovering the entries of $A$, find $\\operatorname{tr}(A^2)$ and $\\operatorname{tr}(A^4)$.",
+    "answer": "$$\\boxed{\\operatorname{tr}(A^2)=5,\\qquad \\operatorname{tr}(A^4)=17.}$$",
+    "trap": "The seductive wrong answer is $\\operatorname{tr}(A^2)=(\\operatorname{tr}A)^2=9$ (and then $\\operatorname{tr}(A^4)=(\\operatorname{tr}A)^4=81$). Trace is linear but it is **not** multiplicative: $\\operatorname{tr}(A^2)\\ne(\\operatorname{tr}A)^2$ in general. Squaring the trace double-counts and drops the determinant entirely. The correct bridge is $\\operatorname{tr}(A^2)=(\\operatorname{tr}A)^2-2\\det A=9-4=5$, which is smaller precisely by $2\\det A$.",
+    "solutions": [
+      {
+        "name": "Newton power sums on the characteristic roots",
+        "steps": [
+          "The characteristic equation of a $2\\times2$ matrix is $\\det(A-\\lambda I)=\\lambda^2-(\\operatorname{tr}A)\\lambda+\\det A=0$, i.e. $\\lambda^2-3\\lambda+2=0$. Let its two roots be $a$ and $b$ (these are the characteristic roots of $A$). By Vieta, $a+b=\\operatorname{tr}A=3$ and $ab=\\det A=2$.",
+          "Write $p_k=a^k+b^k$ for the power sums. The trace of a power equals the corresponding power sum: $\\operatorname{tr}(A^2)=a^2+b^2=p_2$ and $\\operatorname{tr}(A^4)=a^4+b^4=p_4$, so we never need the entries — only $a+b$ and $ab$.",
+          "Compute $p_2=(a+b)^2-2ab=3^2-2\\cdot2=9-4=5$, hence $\\operatorname{tr}(A^2)=5$.",
+          "Compute $p_4=(a^2+b^2)^2-2(ab)^2=p_2^{\\,2}-2(\\det A)^2=5^2-2\\cdot2^2=25-8=17$, hence $\\operatorname{tr}(A^4)=17$."
+        ]
+      },
+      {
+        "name": "Reduce powers using the $2\\times2$ identity $A^2=(\\operatorname{tr}A)A-(\\det A)I$",
+        "steps": [
+          "Derive the identity in one line for a general $A=\\begin{pmatrix}p&q\\\\r&s\\end{pmatrix}$. Direct expansion gives $A^2=\\begin{pmatrix}p^2+qr & q(p+s)\\\\ r(p+s) & s^2+qr\\end{pmatrix}$, while $(p+s)A-(ps-qr)I=\\begin{pmatrix}p^2+qr & q(p+s)\\\\ r(p+s) & s^2+qr\\end{pmatrix}$; the two are equal, so $A^2=(\\operatorname{tr}A)A-(\\det A)I=3A-2I$.",
+          "Take the trace of $A^2=3A-2I$ using linearity and $\\operatorname{tr}(I)=2$: $\\operatorname{tr}(A^2)=3\\operatorname{tr}(A)-2\\operatorname{tr}(I)=3\\cdot3-2\\cdot2=9-4=5$.",
+          "Get $A^4=(A^2)^2=(3A-2I)^2=9A^2-12A+4I$, then substitute $A^2=3A-2I$ again: $A^4=9(3A-2I)-12A+4I=27A-18I-12A+4I=15A-14I$.",
+          "Take the trace of $A^4=15A-14I$: $\\operatorname{tr}(A^4)=15\\operatorname{tr}(A)-14\\operatorname{tr}(I)=15\\cdot3-14\\cdot2=45-28=17$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The whole point is that $\\operatorname{tr}(A^k)$ for a $2\\times2$ matrix depends on nothing more than $\\operatorname{tr}A$ and $\\det A$, because those two numbers fix the characteristic equation $\\lambda^2-3\\lambda+2=0$ and hence the characteristic roots $a,b$. Once you see $\\operatorname{tr}(A^k)=a^k+b^k$, Newton's recursion $p_{k}=(\\operatorname{tr}A)\\,p_{k-1}-(\\det A)\\,p_{k-2}$ grinds out every power sum: $p_0=2,\\ p_1=3,\\ p_2=5,\\ p_3=9,\\ p_4=17,\\dots$ The trap $\\operatorname{tr}(A^2)=(\\operatorname{tr}A)^2$ is the classic confusion of a linear operation (trace) with a multiplicative one; the exact correction term $-2\\det A$ is what the determinant is for."
+  },
+  {
+    "theme": "chareqn",
+    "themeLabel": "The Characteristic Equation & Cayley–Hamilton",
+    "title": "Trace of a Cube",
+    "difficulty": 4,
+    "task": "Find the determinant",
+    "tags": [
+      "characteristic equation",
+      "trace and determinant",
+      "Newton's identity",
+      "2x2 identity",
+      "PYQ"
+    ],
+    "statement": "Let $A$ be a $2\\times2$ real matrix with $\\operatorname{tr}(A)=3$ and $\\operatorname{tr}(A^{3})=-18$. Find $\\det A$.",
+    "answer": "$$\\det A=\\boxed{5}$$",
+    "trap": "Writing $\\operatorname{tr}(A^{3})=(\\operatorname{tr}A)^{3}-3\\det A$ — dropping the factor $\\operatorname{tr}A$ on the second term — gives $-18=27-3\\det A$, hence the seductive $\\det A=15$. The genuine Newton relation is $a^{3}+b^{3}=(a+b)^{3}-3ab(a+b)$, so the correction term is $3(\\det A)(\\operatorname{tr}A)$, not $3\\det A$. Forgetting the extra $\\operatorname{tr}A=3$ inflates the answer threefold.",
+    "solutions": [
+      {
+        "name": "Characteristic roots + Newton's identity",
+        "steps": [
+          "Let $a,b$ be the roots of the characteristic equation $\\det(A-\\lambda I)=\\lambda^{2}-(\\operatorname{tr}A)\\lambda+\\det A=0$. By Vieta, $a+b=\\operatorname{tr}A=3$ and $ab=\\det A$. The powers of $A$ have traces equal to the power sums of the roots, so $\\operatorname{tr}(A^{3})=a^{3}+b^{3}$.",
+          "Apply the Newton identity $a^{3}+b^{3}=(a+b)^{3}-3ab(a+b)$. Substituting, $-18=3^{3}-3(\\det A)(3)=27-9\\det A$.",
+          "Solve: $9\\det A=27+18=45$, so $\\det A=\\boxed{5}$."
+        ]
+      },
+      {
+        "name": "The 2×2 identity $A^{2}=(\\operatorname{tr}A)A-(\\det A)I$",
+        "steps": [
+          "For a general $2\\times2$ matrix $A=\\begin{pmatrix}p&q\\\\r&s\\end{pmatrix}$, expand directly: $A^{2}-(p+s)A+(ps-qr)I=O$. This is the one-line identity $A^{2}=(\\operatorname{tr}A)A-(\\det A)I$; write $t=\\operatorname{tr}A=3$ and $d=\\det A$, so $A^{2}=tA-dI$.",
+          "Multiply by $A$: $A^{3}=tA^{2}-dA=t(tA-dI)-dA=(t^{2}-d)A-tdI$. Take traces, using $\\operatorname{tr}(A)=t$ and $\\operatorname{tr}(I)=2$: $\\operatorname{tr}(A^{3})=(t^{2}-d)t-td\\cdot 2=t^{3}-3td$.",
+          "Plug in $t=3$, $\\operatorname{tr}(A^{3})=-18$: $-18=27-9d$, giving $d=\\det A=\\boxed{5}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** This is JEE Advanced 2020, Paper 2. The whole problem lives inside the syllabus: the characteristic equation of a $2\\times2$ matrix is just the order-$2$ determinant $\\det(A-\\lambda I)=\\lambda^{2}-(\\operatorname{tr}A)\\lambda+\\det A$, and trace/determinant are exactly its root-sum and root-product. The decisive move is recognising $\\operatorname{tr}(A^{3})$ as the power sum $a^{3}+b^{3}$ and reaching for the Newton identity — the same fact you can get with no roots at all by squaring through $A^{2}=(\\operatorname{tr}A)A-(\\det A)I$ and taking a trace. Note that the actual roots $\\tfrac{3\\pm i\\sqrt{11}}{2}$ are complex, yet $\\det A=5$ is real — a reminder that trace and determinant are honest real invariants regardless of whether the roots are."
+  },
+  {
+    "theme": "chareqn",
+    "themeLabel": "The Characteristic Equation & Cayley–Hamilton",
+    "title": "A Matrix Obeys Its Own Equation",
+    "difficulty": 4,
+    "task": "Compute a high power as cA+dI",
+    "tags": [
+      "characteristic equation",
+      "Cayley–Hamilton",
+      "matrix powers",
+      "trace and determinant",
+      "2x2 matrix"
+    ],
+    "statement": "Let $A=\\begin{pmatrix}3 & 1\\\\ 2 & 2\\end{pmatrix}$. Write down the characteristic equation of $A$, i.e. the equation $\\det(A-\\lambda I)=0$, and verify by direct substitution that $A$ itself satisfies it (so that $A^2$ collapses to a linear combination of $A$ and $I$). Using this, express $A^5$ in the form $cA+dI$ for integers $c,d$, and report the ordered pair $(c,d)$.",
+    "answer": "$$\\boxed{(c,d)=(341,\\,-340)}$$",
+    "trap": "A very tempting wrong answer is $(c,d)=(941,660)$, obtained by mis-deriving the reduction as $A^2=5A+4I$ — i.e. carrying $\\det A=+4$ straight into the relation instead of $-\\det A=-4$. The characteristic equation is $\\lambda^2-(\\operatorname{tr}A)\\lambda+\\det A=0$, so substituting $A$ gives $A^2-5A+4I=0$, hence $A^2=5A-\\mathbf{4}I$. The sign on the $I$-term is negative; forgetting it flips every step of the recurrence and inflates the coefficients. Another near miss is stopping one step early and reporting the $A^4$ coefficients $(85,-84)$.",
+    "solutions": [
+      {
+        "name": "Derive the 2×2 Cayley–Hamilton relation and iterate",
+        "steps": [
+          "The characteristic equation is $\\det(A-\\lambda I)=\\begin{vmatrix}3-\\lambda & 1\\\\ 2 & 2-\\lambda\\end{vmatrix}=(3-\\lambda)(2-\\lambda)-2=\\lambda^2-5\\lambda+4=0$. Note $\\operatorname{tr}A=5$ and $\\det A=4$ appear as the coefficients, exactly as $\\lambda^2-(\\operatorname{tr}A)\\lambda+\\det A=0$. (Its roots $\\lambda=1,4$ are the characteristic roots, also called eigenvalues.)",
+          "Substitute $A$ for $\\lambda$ and check directly: $A^2=\\begin{pmatrix}11 & 5\\\\ 10 & 6\\end{pmatrix}$, so $A^2-5A+4I=\\begin{pmatrix}11 & 5\\\\ 10 & 6\\end{pmatrix}-\\begin{pmatrix}15 & 5\\\\ 10 & 10\\end{pmatrix}+\\begin{pmatrix}4 & 0\\\\ 0 & 4\\end{pmatrix}=\\begin{pmatrix}0 & 0\\\\ 0 & 0\\end{pmatrix}$. This is the $2\\times2$ Cayley–Hamilton statement, shown by hand rather than quoted; it gives the reduction $A^2=5A-4I$.",
+          "Write $A^n=a_nA+b_nI$. Then $A^{n+1}=a_nA^2+b_nA=a_n(5A-4I)+b_nA=(5a_n+b_n)A-4a_nI$, so $a_{n+1}=5a_n+b_n,\\ b_{n+1}=-4a_n$, starting from $(a_1,b_1)=(1,0)$.",
+          "Iterate: $(a_2,b_2)=(5,-4)$, $(a_3,b_3)=(21,-20)$, $(a_4,b_4)=(85,-84)$, $(a_5,b_5)=(341,-340)$. Hence $A^5=341A-340I$, i.e. $(c,d)=(341,-340)$."
+        ]
+      },
+      {
+        "name": "Use the characteristic roots and divide $\\lambda^5$ by the characteristic polynomial",
+        "steps": [
+          "Since $A^2=5A-4I$, every power $A^5$ reduces to $cA+dI$ where $\\lambda^5\\equiv c\\lambda+d \\pmod{\\lambda^2-5\\lambda+4}$. Because the characteristic roots $\\lambda=1$ and $\\lambda=4$ each satisfy $\\lambda^2-5\\lambda+4=0$, the remainder $c\\lambda+d$ must agree with $\\lambda^5$ at both roots.",
+          "At $\\lambda=1$: $c+d=1^5=1$. At $\\lambda=4$: $4c+d=4^5=1024$.",
+          "Subtract: $3c=1023\\Rightarrow c=341$, then $d=1-341=-340$.",
+          "Therefore $A^5=341A-340I$, giving $(c,d)=(341,-340)$. (As a check, $341\\cdot A+(-340)I=\\begin{pmatrix}683 & 341\\\\ 682 & 342\\end{pmatrix}=A^5$.)"
+        ]
+      }
+    ],
+    "remark": "**Insight.** The phrase “a matrix satisfies its own characteristic equation” is not a black box for $2\\times2$ matrices — expand $A^2$ once and you watch $A^2-(\\operatorname{tr}A)A+(\\det A)I$ vanish on the spot. Once you have $A^2=(\\operatorname{tr}A)A-(\\det A)I$, every higher power folds back to $cA+dI$, so an apparently brutal $A^5$ is just a two-term linear recurrence — or, even faster, a remainder of $\\lambda^5$ modulo the characteristic polynomial, pinned down by evaluating at the two characteristic roots. The single decisive sign is the $-\\det A$ on the $I$-term; getting it backwards is the whole trap."
+  },
+  {
+    "theme": "chareqn",
+    "themeLabel": "The Characteristic Equation & Cayley–Hamilton",
+    "title": "A Power of a Triangular Matrix",
+    "difficulty": 4,
+    "task": "Find one entry of a power",
+    "tags": [
+      "matrix powers",
+      "nilpotent",
+      "binomial theorem",
+      "3x3 matrix",
+      "strictly lower triangular"
+    ],
+    "statement": "Let \\[P=\\begin{pmatrix}1&0&0\\\\1&1&0\\\\1&2&1\\end{pmatrix}.\\] Write $P=I+N$, where $N$ is the strictly lower-triangular part of $P$. Compute $P^{50}$, and report the entry in its third row and first column.",
+    "answer": "$$\\boxed{\\,(P^{50})_{31}=2500\\,}$$",
+    "trap": "The seductive wrong answer is $50$. A student writes $P=I+N$ and reasons that powers of a triangular matrix just multiply the off-diagonal part, so $P^{n}\\overset{?}{=}I+nN$, reading off $(P^{50})_{31}=50\\cdot N_{31}=50\\cdot 1=50$. This silently drops the $\\binom{n}{2}N^2$ term. It is wrong because $N^2\\ne 0$: here $N^2$ has a single nonzero entry $(N^2)_{31}=2$, and that term contributes $\\binom{50}{2}\\cdot 2=2450$ to the $(3,1)$ slot. The honest value is $50+2450=2500$, not $50$.",
+    "solutions": [
+      {
+        "name": "Binomial expansion with nilpotent truncation",
+        "steps": [
+          "Split $P=I+N$ with $N=\\begin{pmatrix}0&0&0\\\\1&0&0\\\\1&2&0\\end{pmatrix}$. Since $I$ commutes with everything, the binomial theorem applies exactly: $P^{n}=(I+N)^{n}=\\sum_{k=0}^{n}\\binom{n}{k}N^{k}$.",
+          "Compute the powers of $N$. A strictly lower-triangular $3\\times3$ matrix pushes its nonzero band one diagonal lower on each multiplication: $N^2=\\begin{pmatrix}0&0&0\\\\0&0&0\\\\2&0&0\\end{pmatrix}$ and $N^3=0$. The band has run off the bottom-left corner, so $N$ is nilpotent of index $3$.",
+          "Because $N^3=0$, every term with $k\\ge 3$ in the binomial sum vanishes, no matter how large $n$ is. This is the whole point: the infinite-looking expansion truncates after three terms, giving the exact closed form \\[P^{n}=I+nN+\\binom{n}{2}N^2.\\]",
+          "Read the $(3,1)$ entry: $I$ contributes $0$, $nN$ contributes $n\\cdot N_{31}=n$, and $\\binom{n}{2}N^2$ contributes $\\binom{n}{2}\\cdot 2=n(n-1)$. So $(P^{n})_{31}=n+n(n-1)=n^2$.",
+          "At $n=50$ this gives $(P^{50})_{31}=50^2=2500$."
+        ]
+      },
+      {
+        "name": "Track the third row directly",
+        "steps": [
+          "Let $r_n$ denote the third row of $P^{n}$, written $r_n=(x_n,\\;y_n,\\;1)$ (the last entry stays $1$ because $P$ is lower-triangular with unit diagonal). Using $P^{n+1}=P^{n}P$ and reading the third row of the product against the columns of $P=\\begin{pmatrix}1&0&0\\\\1&1&0\\\\1&2&1\\end{pmatrix}$ gives $x_{n+1}=x_n+y_n+1$ and $y_{n+1}=y_n+2$.",
+          "From $y_{n+1}=y_n+2$ with $y_1=2$ we get $y_n=2n$. Substituting, $x_{n+1}-x_n=2n+1$, and summing from $n=1$ with $x_1=1$ telescopes to $x_n=1+\\sum_{j=1}^{n-1}(2j+1)=1+\\big[(n-1)n+(n-1)\\big]=n^2$.",
+          "Hence $(P^{n})_{31}=x_n=n^2$, and at $n=50$, $(P^{50})_{31}=2500$. (One checks $x_2=4,\\;x_3=9$ against $P^2,P^3$ by hand, matching $n^2$.)"
+        ]
+      }
+    ],
+    "remark": "**Insight.** This mirrors JEE Advanced 2016, Paper 1, where $P=\\begin{pmatrix}1&0&0\\\\4&1&0\\\\16&4&1\\end{pmatrix}$ and one is asked for an entry of $P^{50}$. The mechanism is universal: write $P=I+N$ with $N$ strictly lower-triangular, so $N$ is nilpotent — the nonzero band marches one diagonal down per power until it falls off the $3\\times3$ corner, forcing $N^3=0$. That single fact collapses $(I+N)^{n}$ from $n+1$ binomial terms to just three, $I+nN+\\binom{n}{2}N^2$, valid for every $n$. The only trap is impatience: dropping the $\\binom{n}{2}N^2$ term turns the true $n^2=2500$ into the tempting-but-wrong $n=50$. No characteristic roots are needed here — $P$ is triangular with every characteristic root equal to $1$ — the entire problem is the binomial theorem plus nilpotency."
+  },
+  {
+    "theme": "chareqn",
+    "themeLabel": "The Characteristic Equation & Cayley–Hamilton",
+    "title": "Choosing the Right Pair of Roots",
+    "difficulty": 4,
+    "task": "Find the determinant",
+    "tags": [
+      "characteristic equation",
+      "trace and determinant",
+      "polynomial identity",
+      "root pairing",
+      "non-scalar matrix",
+      "2x2"
+    ],
+    "statement": "Let $A$ be a real, $\\textit{non-scalar}$ $2\\times2$ matrix satisfying the identity \\[A^{3}-6A^{2}+11A-6I=0,\\] where $I$ is the identity matrix and $0$ is the zero matrix. Given in addition that $\\operatorname{tr}(A)=4$, determine $\\det A$.",
+    "answer": "$$\\boxed{\\det A = 3}$$",
+    "trap": "The tempting shortcut is to ask which scalar $A=cI$ satisfies the identity. The polynomial factors as $(\\lambda-1)(\\lambda-2)(\\lambda-3)$, so $c\\in\\{1,2,3\\}$, and matching $\\operatorname{tr}(A)=2c=4$ gives $c=2$ — hence $\\det A=c^{2}=4$. But the matrix is $\\textit{non-scalar}$, so this is exactly the forbidden case. The choice $c=2$ would force the characteristic equation $\\lambda^{2}-4\\lambda+4=(\\lambda-2)^{2}=0$, i.e. a repeated root $2$; the only $2\\times2$ matrix whose characteristic equation is $(\\lambda-2)^2$ and which also satisfies the given cubic is $A=2I$ itself (one checks $\\gcd\\big((\\lambda-2)^2,\\ \\lambda^3-6\\lambda^2+11\\lambda-6\\big)=\\lambda-2$). So $\\det A=4$ is impossible for a non-scalar $A$ — the seductive value comes from secretly assuming the very scalarity the problem excludes.",
+    "solutions": [
+      {
+        "name": "Characteristic equation must divide the given polynomial",
+        "steps": [
+          "Every $2\\times2$ matrix obeys its own characteristic equation $\\lambda^{2}-(\\operatorname{tr}A)\\lambda+(\\det A)=0$, which we get from $\\det(A-\\lambda I)=0$; write the two characteristic roots as $\\lambda_1,\\lambda_2$, so $\\lambda_1+\\lambda_2=\\operatorname{tr}A$ and $\\lambda_1\\lambda_2=\\det A$ by Vieta.",
+          "The identity $A^{3}-6A^{2}+11A-6I=0$ forces each characteristic root to satisfy $\\lambda^{3}-6\\lambda^{2}+11\\lambda-6=0$ (apply the polynomial to its own root). Since $\\lambda^{3}-6\\lambda^{2}+11\\lambda-6=(\\lambda-1)(\\lambda-2)(\\lambda-3)$, both $\\lambda_1,\\lambda_2$ lie in $\\{1,2,3\\}$.",
+          "Because $A$ is non-scalar its two characteristic roots are distinct (a non-scalar $2\\times2$ with a repeated root would have characteristic equation $(\\lambda-r)^2$, and the only such matrix forced by the cubic is the scalar $rI$). So $\\{\\lambda_1,\\lambda_2\\}$ is a $2$-element subset of $\\{1,2,3\\}$: namely $\\{1,2\\},\\{1,3\\},$ or $\\{2,3\\}$, with traces $3,4,5$ respectively.",
+          "The given $\\operatorname{tr}A=4$ selects the pair $\\{1,3\\}$ uniquely, hence $\\det A=\\lambda_1\\lambda_2=1\\cdot3=3$."
+        ]
+      },
+      {
+        "name": "Use $A^{2}=(\\operatorname{tr}A)A-(\\det A)I$ to collapse the cubic",
+        "steps": [
+          "Expanding a general $2\\times2$ matrix gives, in one line, $A^{2}=(\\operatorname{tr}A)A-(\\det A)I$; with $\\operatorname{tr}A=4$ and $\\det A=d$ (the unknown), $A^{2}=4A-dI$. This lets us reduce every higher power to the form $\\alpha A+\\beta I$.",
+          "Then $A^{3}=A\\cdot A^{2}=A(4A-dI)=4A^{2}-dA=4(4A-dI)-dA=(16-d)A-4dI$. Substituting into the identity, $A^{3}-6A^{2}+11A-6I=\\big[(16-d)-6\\cdot4+11\\big]A+\\big[-4d-6(-d)-6\\big]I$.",
+          "Simplify the coefficients: the $A$-coefficient is $(16-d)-24+11=3-d$, and the $I$-coefficient is $-4d+6d-6=2d-6$. So the identity reads $(3-d)A+(2d-6)I=0$, i.e. $(3-d)A=(6-2d)I=2(3-d)I$.",
+          "If $d\\neq3$ we could divide by $(3-d)$ to get $A=2I$, a scalar matrix — contradicting that $A$ is non-scalar. Hence the only possibility is $3-d=0$, giving $\\det A=d=3$ (and the $I$-coefficient $2d-6$ then vanishes automatically, so the identity is genuinely satisfied)."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A polynomial identity in $A$ is a statement about the characteristic roots: every root of $A$ must be a root of that polynomial. For a $2\\times2$ matrix the characteristic equation $\\lambda^{2}-(\\operatorname{tr}A)\\lambda+(\\det A)=0$ is the lowest-degree such relation, so it must divide any other one the matrix obeys — here, the cubic. That leaves only a choice of $\\textit{which pair}$ of roots; the supplied trace pins the pair, and the determinant is then their product. The word non-scalar is not decoration: it kills the repeated-root branch $(\\lambda-2)^2$ that produces the trap value $\\det A=4$. The cleanest engine is the in-syllabus identity $A^{2}=(\\operatorname{tr}A)A-(\\det A)I$, which collapses the cubic to a single linear equation $(3-d)A=2(3-d)I$ whose only non-scalar solution forces $d=3$. Nothing here needs more than $\\det(A-\\lambda I)=0$, trace, and determinant."
+  },
+  {
+    "theme": "chareqn",
+    "themeLabel": "The Characteristic Equation & Cayley–Hamilton",
+    "title": "Non-Scalar Involution Forces Trace Zero",
+    "difficulty": 4,
+    "task": "Find trace and determinant",
+    "tags": [
+      "characteristic equation",
+      "involution",
+      "trace",
+      "determinant",
+      "2x2 matrix"
+    ],
+    "statement": "Let $A$ be a $2\\times2$ real matrix that is $\\emph{not}$ a scalar matrix (i.e. $A\\neq cI$ for any scalar $c$) and satisfies $A^2=I$. Determine $\\operatorname{tr}(A)$ and $\\det(A)$, and exhibit one such matrix $A$.",
+    "answer": "$$\\boxed{\\operatorname{tr}(A)=0,\\qquad \\det(A)=-1}$$",
+    "trap": "The tempting answer is $\\det(A)=+1$. Students reason \"$A^2=I$, so $\\det(A)^2=\\det(A^2)=\\det(I)=1$, hence $\\det A=\\pm1$\" and then quietly pick $+1$ because $A$ \"behaves like the identity.\" But $\\det A^2=1$ only gives $\\det A=\\pm1$; it cannot by itself rule out $-1$. For a $non$-$scalar$ involution the sign is forced to be $-1$: a non-scalar $A$ with $\\det A=+1$ and $A^2=I$ would need $\\operatorname{tr}A=0$ and $\\det A=1$, whose characteristic equation $\\lambda^2+1=0$ gives $A^2=-I\\neq I$. So $\\det A=+1$ is impossible here.",
+    "solutions": [
+      {
+        "name": "Cayley–Hamilton for $2\\times2$ (derived), matched against $A^2=I$",
+        "steps": [
+          "For any $2\\times2$ matrix $A=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$, expand directly: $A^2=\\begin{pmatrix}a^2+bc & b(a+d)\\\\ c(a+d) & d^2+bc\\end{pmatrix}$. Comparing with $(a+d)A-(ad-bc)I$ entry by entry shows $A^2-(\\operatorname{tr}A)\\,A+(\\det A)\\,I=0$ — the characteristic equation $\\lambda^2-(\\operatorname{tr}A)\\lambda+\\det A=0$ satisfied by $A$ itself.",
+          "Substitute the hypothesis $A^2=I$ into this relation: $I-(\\operatorname{tr}A)\\,A+(\\det A)\\,I=0$, i.e. $(\\operatorname{tr}A)\\,A=(1+\\det A)\\,I$.",
+          "If $\\operatorname{tr}A\\neq0$ we could divide to get $A=\\dfrac{1+\\det A}{\\operatorname{tr}A}\\,I$, a scalar matrix — contradicting that $A$ is non-scalar. Hence $\\operatorname{tr}A=0$.",
+          "With $\\operatorname{tr}A=0$ the relation collapses to $(1+\\det A)\\,I=0$, forcing $\\det A=-1$. So $\\boxed{\\operatorname{tr}A=0,\\ \\det A=-1}$."
+        ]
+      },
+      {
+        "name": "Characteristic roots of an involution (Vieta)",
+        "steps": [
+          "Let $\\lambda$ be a root of the characteristic equation $\\det(A-\\lambda I)=0$. Squaring the defining relation, $A^2=I$ means the characteristic roots satisfy $\\lambda^2=1$, so each root is $+1$ or $-1$.",
+          "If both roots were $+1$, then $A$ satisfies $(A-I)^2=0$; combined with $A^2=I$ this gives $A=I$ (scalar). If both were $-1$, similarly $A=-I$ (scalar). Both are excluded since $A$ is non-scalar, so the two roots must be $+1$ and $-1$.",
+          "By Vieta on $\\lambda^2-(\\operatorname{tr}A)\\lambda+\\det A=0$: $\\operatorname{tr}A=(+1)+(-1)=0$ and $\\det A=(+1)(-1)=-1$, giving $\\boxed{\\operatorname{tr}A=0,\\ \\det A=-1}$."
+        ]
+      },
+      {
+        "name": "Explicit witness matrix",
+        "steps": [
+          "Take $A=\\begin{pmatrix}1&2\\\\0&-1\\end{pmatrix}$. It is non-scalar (off-diagonal entry $2\\neq0$, diagonal entries unequal).",
+          "Compute $A^2=\\begin{pmatrix}1&2\\\\0&-1\\end{pmatrix}\\begin{pmatrix}1&2\\\\0&-1\\end{pmatrix}=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}=I$, confirming $A$ is an involution.",
+          "Read off $\\operatorname{tr}A=1+(-1)=0$ and $\\det A=(1)(-1)-(2)(0)=-1$, consistent with $\\boxed{\\operatorname{tr}A=0,\\ \\det A=-1}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Every non-scalar $2\\times2$ involution is a reflection in disguise: its characteristic roots are exactly $+1$ and $-1$, so trace and determinant are pinned to $0$ and $-1$ with no freedom at all. The $\\det A^2=1$ argument only narrows the determinant to $\\pm1$; it is the $non$-$scalar$ hypothesis, fed through the characteristic equation $A^2-(\\operatorname{tr}A)A+(\\det A)I=0$, that snaps the sign to $-1$. The lesson is that $\\det(A^2)=\\det(A)^2$ loses sign information — recover it from the characteristic equation, never by guessing."
+  },
+  {
+    "theme": "chareqn",
+    "themeLabel": "The Characteristic Equation & Cayley–Hamilton",
+    "title": "Reading Alpha and Beta From a Trig Matrix",
+    "difficulty": 5,
+    "task": "Find alpha, then minimise beta",
+    "tags": [
+      "characteristic equation",
+      "trace",
+      "determinant",
+      "2x2 matrix",
+      "minimisation",
+      "trigonometry"
+    ],
+    "statement": "For $\\theta\\in\\mathbb{R}$ consider the symmetric $2\\times2$ matrix \\[M=\\begin{pmatrix}1+\\sin^2\\theta & \\cos\\theta\\\\[2pt]\\cos\\theta & 1+\\cos^2\\theta\\end{pmatrix},\\] which is invertible for every $\\theta$. There exist real numbers $\\alpha$ and $\\beta$, depending on $\\theta$, such that $M=\\alpha I+\\beta M^{-1}$. Show that $\\alpha$ is in fact independent of $\\theta$, and find that constant value together with the minimum value of $\\beta$ taken over all $\\theta$.",
+    "answer": "$$\\boxed{\\alpha=3\\quad\\text{(constant)},\\qquad \\beta_{\\min}=-2.}$$",
+    "trap": "The tempting wrong answer is $\\beta_{\\min}=-1$. A student correctly finds $\\beta=-\\det M$ with $\\det M=1+\\sin^2\\theta+\\sin^2\\theta\\cos^2\\theta\\in[1,2]$, but then forgets the minus sign and reports the minimum of $\\beta$ as $-(\\min\\det M)=-1$. Because $\\beta=-\\det M$, the minimum of $\\beta$ occurs where $\\det M$ is **largest**, not smallest: $\\beta_{\\min}=-\\max\\det M=-2$.",
+    "solutions": [
+      {
+        "name": "Multiply by $M$ and match the $2\\times2$ characteristic identity",
+        "steps": [
+          "Multiply the given relation $M=\\alpha I+\\beta M^{-1}$ on the right by $M$ (legal since $M$ is invertible) to clear the inverse: $M^2=\\alpha M+\\beta I$.",
+          "Now derive the universal $2\\times2$ identity in one line. For a general $M=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$ a direct expansion gives $M^2=\\begin{pmatrix}a^2+bc & b(a+d)\\\\ c(a+d) & d^2+bc\\end{pmatrix}$, while $(a+d)M-(ad-bc)I=\\begin{pmatrix}a^2+bc & b(a+d)\\\\ c(a+d) & d^2+bc\\end{pmatrix}$; the two agree, so $M^2=(\\operatorname{tr}M)\\,M-(\\det M)\\,I$. This is exactly $\\det(M-\\lambda I)=\\lambda^2-(\\operatorname{tr}M)\\lambda+\\det M$ evaluated at $\\lambda=M$.",
+          "Comparing $M^2=\\alpha M+\\beta I$ with $M^2=(\\operatorname{tr}M)M-(\\det M)I$ and using that $I$ and $M$ are independent (as $M$ is not a scalar matrix) reads off $\\alpha=\\operatorname{tr}M$ and $\\beta=-\\det M$.",
+          "Compute the trace: $\\operatorname{tr}M=(1+\\sin^2\\theta)+(1+\\cos^2\\theta)=2+(\\sin^2\\theta+\\cos^2\\theta)=3$, independent of $\\theta$, so $\\alpha=3$.",
+          "Compute the determinant: $\\det M=(1+\\sin^2\\theta)(1+\\cos^2\\theta)-\\cos^2\\theta=1+\\sin^2\\theta+\\sin^2\\theta\\cos^2\\theta$. Writing $u=\\sin^2\\theta\\in[0,1]$ this is $\\det M=1+u+u(1-u)=1+2u-u^2$, increasing on $[0,1]$, so $\\det M\\in[1,2]$ with maximum $2$ at $u=1$.",
+          "Hence $\\beta=-\\det M\\in[-2,-1]$, and $\\beta$ is smallest where $\\det M$ is largest: $\\beta_{\\min}=-2$, attained when $\\sin^2\\theta=1$, i.e. $\\theta=\\tfrac{\\pi}{2}+k\\pi$."
+        ]
+      },
+      {
+        "name": "Characteristic roots via Vieta",
+        "steps": [
+          "Let $\\lambda_1,\\lambda_2$ be the roots of the characteristic equation $\\det(M-\\lambda I)=0$, i.e. $\\lambda^2-(\\operatorname{tr}M)\\lambda+\\det M=0$. By Vieta, $\\lambda_1+\\lambda_2=\\operatorname{tr}M$ and $\\lambda_1\\lambda_2=\\det M$.",
+          "Each root satisfies its own equation $\\lambda_i^2=(\\operatorname{tr}M)\\lambda_i-(\\det M)$, and the same relation lifts to the matrix: $M^2=(\\operatorname{tr}M)M-(\\det M)I$. Multiplying $M=\\alpha I+\\beta M^{-1}$ by $M$ gives $M^2=\\alpha M+\\beta I$; matching coefficients yields $\\alpha=\\operatorname{tr}M=\\lambda_1+\\lambda_2$ and $\\beta=-\\det M=-\\lambda_1\\lambda_2$.",
+          "Here $\\lambda_1+\\lambda_2=\\operatorname{tr}M=3$ for all $\\theta$, so $\\alpha=3$ is forced to be constant.",
+          "And $\\beta=-\\lambda_1\\lambda_2=-\\det M=-(1+2\\sin^2\\theta-\\sin^4\\theta)$. Maximising $\\det M$ over $\\theta$ gives $2$ at $\\sin^2\\theta=1$, so the minimum of $\\beta$ is $-2$."
+        ]
+      },
+      {
+        "name": "Direct inverse computation",
+        "steps": [
+          "For an invertible $2\\times2$ matrix, $M^{-1}=\\dfrac{1}{\\det M}\\begin{pmatrix}1+\\cos^2\\theta & -\\cos\\theta\\\\ -\\cos\\theta & 1+\\sin^2\\theta\\end{pmatrix}$ (adjugate over determinant). Set $D=\\det M$.",
+          "Require $M=\\alpha I+\\beta M^{-1}$ entrywise. The $(1,1)$ and $(2,2)$ entries give $1+\\sin^2\\theta=\\alpha+\\dfrac{\\beta}{D}(1+\\cos^2\\theta)$ and $1+\\cos^2\\theta=\\alpha+\\dfrac{\\beta}{D}(1+\\sin^2\\theta)$; the off-diagonal entries give $\\cos\\theta=-\\dfrac{\\beta}{D}\\cos\\theta$, so $\\beta=-D=-\\det M$ (when $\\cos\\theta\\ne0$, and by continuity everywhere).",
+          "Substituting $\\beta=-D$ into either diagonal equation collapses it to $1+\\sin^2\\theta=\\alpha-(1+\\cos^2\\theta)+\\,2$... more cleanly, adding the two diagonal equations gives $\\operatorname{tr}M=2\\alpha+\\dfrac{\\beta}{D}\\operatorname{tr}M=2\\alpha-\\operatorname{tr}M$, hence $\\alpha=\\operatorname{tr}M=3$.",
+          "Finally $\\beta=-\\det M=-(1+2\\sin^2\\theta-\\sin^4\\theta)\\in[-2,-1]$, so $\\beta_{\\min}=-2$ at $\\theta=\\tfrac{\\pi}{2}+k\\pi$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** This is JEE Advanced 2019, Paper 1 in spirit: the relation $M=\\alpha I+\\beta M^{-1}$ is a disguise. Multiply by $M$ and it becomes $M^2=\\alpha M+\\beta I$, which every $2\\times2$ matrix already obeys in the form $M^2=(\\operatorname{tr}M)M-(\\det M)I$ — the characteristic equation $\\lambda^2-(\\operatorname{tr}M)\\lambda+\\det M=0$ promoted from scalars to the matrix. So $\\alpha$ and $\\beta$ are never anything but the trace and minus the determinant; the trig is only there to make $\\operatorname{tr}M=3$ a constant while $\\det M$ breathes between $1$ and $2$. The whole minimisation lives in one quadratic in $\\sin^2\\theta$, and the only place to fall is the sign: $\\beta=-\\det M$ is minimised where $\\det M$ is maximised."
+  },
+  {
+    "theme": "chareqn",
+    "themeLabel": "The Characteristic Equation & Cayley–Hamilton",
+    "title": "Tuning a Matrix to Period Six",
+    "difficulty": 5,
+    "task": "Find the parameter forcing period six",
+    "tags": [
+      "characteristic equation",
+      "matrix powers",
+      "recurrence",
+      "periodicity",
+      "trace and determinant",
+      "2x2"
+    ],
+    "statement": "Let $a$ be a real number and let $A=\\begin{pmatrix} 1 & a\\\\ -1 & 0\\end{pmatrix}$. It is observed that $A\\neq I$ yet $A^{6}=I$, and that $6$ is the smallest positive integer with this property. Find the value of $a$, and identify the smallest positive integer $n$ for which $A^{n}=I$ when instead $a=-1$.",
+    "answer": "$$\\boxed{a=1,\\qquad\\text{and for } a=-1 \\text{ no such } n \\text{ exists (the powers never return to } I).}$$",
+    "trap": "The seductive misread is to say \"$A^{6}=I\\Rightarrow(\\det A)^{6}=\\det I=1$, and $\\det A=a$, so $a$ is any real $6$th root of unity,\" then casually accept $a=-1$ as well (since $(-1)^{6}=1$). But $\\det A=1$ is only a necessary scalar condition, not sufficient: it forces the product of the characteristic roots to be $1$, while $A^{6}=I$ demands each root itself be a $6$th root of unity. With $a=-1$ the characteristic equation is $\\lambda^{2}-\\lambda-1=0$, whose roots are the golden ratio $\\tfrac{1\\pm\\sqrt5}{2}$ — real, of modulus $\\neq 1$ — so $A^{n}$ grows without bound and never equals $I$. Only $a=1$ survives.",
+    "solutions": [
+      {
+        "name": "Characteristic equation + roots on the unit circle",
+        "steps": [
+          "The characteristic equation is $\\det(A-\\lambda I)=0$, i.e. $\\begin{vmatrix} 1-\\lambda & a\\\\ -1 & -\\lambda\\end{vmatrix}=\\lambda^{2}-\\lambda+a=0$, since $\\operatorname{tr}A=1$ and $\\det A=a$. Its roots $\\lambda_{1},\\lambda_{2}$ are the characteristic roots, with $\\lambda_1+\\lambda_2=1$ and $\\lambda_1\\lambda_2=a$.",
+          "If $A^{6}=I$ then each characteristic root satisfies $\\lambda^{6}=1$, so $|\\lambda|=1$; hence $a=\\lambda_1\\lambda_2$ has $|a|=1$, and being real, $a=\\pm1$. For the roots to be genuinely $6$th roots of unity with sum $1$ we need $\\lambda=e^{\\pm i\\theta}$ with $2\\cos\\theta=1$, i.e. $\\theta=\\pm\\tfrac{\\pi}{3}$, giving $\\lambda_1\\lambda_2=e^{i\\pi/3}e^{-i\\pi/3}=1$. Thus $a=1$.",
+          "With $a=1$ the roots are $e^{\\pm i\\pi/3}$, primitive $6$th roots of unity, so the order is exactly $6$: $A^{6}=I$ but no smaller power. With $a=-1$ the roots are $\\tfrac{1\\pm\\sqrt5}{2}$ (real, modulus $>1$ and $<1$), so $A^{n}\\neq I$ for every $n$. Hence $a=1$, and for $a=-1$ no such $n$ exists."
+        ]
+      },
+      {
+        "name": "Derive $A^2=(\\operatorname{tr}A)A-(\\det A)I$ and run the recurrence",
+        "steps": [
+          "For any $2\\times2$ matrix expanding directly gives $A^{2}=(\\operatorname{tr}A)\\,A-(\\det A)\\,I$; here $\\operatorname{tr}A=1$, $\\det A=a$, so $A^{2}=A-aI$. This lets every power be written $A^{n}=c_nA+d_nI$, and substituting $A^{2}=A-aI$ yields $A^{n+1}=(c_n+d_n)A-a\\,c_nI$, i.e. $c_{n+1}=c_n+d_n,\\ d_{n+1}=-a\\,c_n$, starting from $c_1=1,d_1=0$.",
+          "We need $A^{6}=I$, i.e. $c_6=0$ and $d_6=1$. Take $a=1$ (so $d_{n+1}=-c_n$): the sequence $c_n$ runs $1,1,0,-1,-1,0,\\dots$ and $d_n$ runs $0,-1,-1,0,1,1,\\dots$, giving $(c_6,d_6)=(0,1)$, hence $A^{6}=0\\cdot A+1\\cdot I=I$, while $c_n\\neq0$ for $1\\le n\\le5$, so $6$ is minimal.",
+          "Solving $A^{6}=I$ in general, the entries of $A^{6}-I$ factor through $(a-1)$ — direct computation gives the $(1,0)$ entry as $-(a-1)(3a-1)$ and the $(1,1)$ entry as $-(a-1)(a^{2}-2a-1)$; the only common real root is $a=1$. For $a=-1$ the recurrence $c_{n+1}=c_n+d_n,\\ d_{n+1}=c_n$ produces Fibonacci-type growth, so $A^{n}$ never returns to $I$. Therefore $a=1$, and no $n$ works when $a=-1$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A $2\\times2$ matrix is \"periodic\" ($A^{n}=I$ for some $n$) precisely when its characteristic roots are roots of unity — equivalently when its rotation lives on the unit circle, $|\\det A|=1$ with $\\operatorname{tr}A=2\\cos\\theta$ and $\\theta$ a rational multiple of $\\pi$. Fixing $\\operatorname{tr}A=1$ pins $\\cos\\theta=\\tfrac12$, $\\theta=\\tfrac{\\pi}{3}$, which is the unique angle giving period $6$; the determinant $a=1$ is then forced. The trap (accepting $a=-1$ from $\\det^6=1$) is the classic error of treating a necessary scalar condition as sufficient — the characteristic roots, not just their product, must be roots of unity. Everything here flows from the in-syllabus identity $A^{2}=(\\operatorname{tr}A)A-(\\det A)I$ and the determinant det$(A-\\lambda I)=0$."
+  },
+  {
+    "theme": "chareqn",
+    "themeLabel": "The Characteristic Equation & Cayley–Hamilton",
+    "title": "Reducing a Fourth Power",
+    "difficulty": 5,
+    "task": "Express A^4 via A^2, A, I",
+    "tags": [
+      "characteristic equation",
+      "3x3 invariants",
+      "matrix powers",
+      "trace and determinant",
+      "Cayley–Hamilton"
+    ],
+    "statement": "Let \\[A=\\begin{pmatrix}1&1&0\\\\0&2&1\\\\1&0&2\\end{pmatrix}.\\] Working entirely from the three determinant invariants of $A$ — its trace, the sum of its principal $2\\times2$ minors, and its determinant — build the characteristic equation $\\det(A-\\lambda I)=0$ and use it to write $A^{4}$ in the form $A^{4}=pA^{2}+qA+rI$ for scalars $p,q,r$. Report the ordered triple $(p,q,r)$.",
+    "answer": "$$\\boxed{(p,q,r)=(17,\\,-35,\\,25)}$$",
+    "trap": "The seductive wrong move is to read off the coefficients of the characteristic equation as the reduction of $A^4$ itself, or to stop at the cubic and write $A^{4}=\\operatorname{tr}(A)\\,A^{3}-\\dots$ leaving an $A^{3}$ term — giving something like $(p,q,r)=(5,-8,5)$ (the raw cubic coefficients) or a triple still containing $A^3$. Both fail: the characteristic relation only reduces $A^{3}$, so $A^{4}$ must be obtained by multiplying that relation by $A$ once more and then substituting for the new $A^{3}$ that appears. Forgetting that second substitution leaves a stray $A^{3}$ and the wrong scalars.",
+    "solutions": [
+      {
+        "name": "The three invariants, then one extra multiplication",
+        "steps": [
+          "For a $3\\times3$ matrix the characteristic equation is $\\lambda^{3}-(\\operatorname{tr}A)\\lambda^{2}+(\\text{sum of principal }2\\times2\\text{ minors})\\lambda-\\det A=0$. Compute the three invariants: $\\operatorname{tr}A=1+2+2=5$; the principal $2\\times2$ minors are $\\begin{vmatrix}1&1\\\\0&2\\end{vmatrix}=2,\\ \\begin{vmatrix}1&0\\\\1&2\\end{vmatrix}=2,\\ \\begin{vmatrix}2&1\\\\0&2\\end{vmatrix}=4$, summing to $8$; and $\\det A=5$.",
+          "Hence the characteristic equation is $\\lambda^{3}-5\\lambda^{2}+8\\lambda-5=0$, and the corresponding matrix relation (each characteristic root of $A$ satisfies this, so $A$ does too) is $A^{3}=5A^{2}-8A+5I$.",
+          "Multiply by $A$: $A^{4}=5A^{3}-8A^{2}+5A$. The stray $A^{3}$ must be removed using the line above: $A^{4}=5(5A^{2}-8A+5I)-8A^{2}+5A=(25-8)A^{2}+(-40+5)A+25I$.",
+          "Collecting, $A^{4}=17A^{2}-35A+25I$, so $(p,q,r)=(17,-35,25)$."
+        ]
+      },
+      {
+        "name": "Newton-style: reduce powers of the roots",
+        "steps": [
+          "Let the characteristic roots (the roots of $\\lambda^{3}-5\\lambda^{2}+8\\lambda-5=0$) be the numbers $\\lambda$ satisfying $\\lambda^{3}=5\\lambda^{2}-8\\lambda+5$. Whatever reduction expresses $\\lambda^{4}$ as $p\\lambda^{2}+q\\lambda+r$ valid for every root will hold verbatim for $A$, since $A$ obeys the same cubic.",
+          "Multiply the scalar relation by $\\lambda$: $\\lambda^{4}=5\\lambda^{3}-8\\lambda^{2}+5\\lambda$, then substitute $\\lambda^{3}=5\\lambda^{2}-8\\lambda+5$ to get $\\lambda^{4}=5(5\\lambda^{2}-8\\lambda+5)-8\\lambda^{2}+5\\lambda=17\\lambda^{2}-35\\lambda+25$.",
+          "Therefore the same polynomial in $A$ gives $A^{4}=17A^{2}-35A+25I$, i.e. $(p,q,r)=(17,-35,25)$. (Equivalently, dividing $\\lambda^{4}$ by $\\lambda^{3}-5\\lambda^{2}+8\\lambda-5$ leaves remainder $17\\lambda^{2}-35\\lambda+25$.)"
+        ]
+      }
+    ],
+    "remark": "**Insight.** The whole problem is the order-$3$ analogue of the $2\\times2$ trick $A^{2}=(\\operatorname{tr}A)A-(\\det A)I$: a $3\\times3$ matrix is pinned by exactly three numbers — trace, sum of principal $2\\times2$ minors, and determinant — which are precisely the coefficients of its characteristic equation, so every power $A^{n}$ with $n\\ge3$ collapses back into the span of $\\{A^{2},A,I\\}$. You never expand a single matrix product of $A^{4}$ directly; you reduce powers of $\\lambda$ and transplant the answer. The trap exists because the cubic only kills $A^{3}$ — climbing to $A^{4}$ needs one more multiply-and-substitute, and skipping it leaves the raw coefficients $(5,-8,5)$ masquerading as the answer."
+  },
+  {
     "theme": "hybrid",
     "themeLabel": "The Grand Hybrids",
     "title": "The Decomposition That Splits a Determinant",
@@ -3603,6 +3999,44 @@ window.PROBLEMS = [
   {
     "theme": "hybrid",
     "themeLabel": "The Grand Hybrids",
+    "title": "A Vanishing Determinant Hides a Family",
+    "difficulty": 4,
+    "task": "Find all consistent values",
+    "tags": [
+      "singular system",
+      "Cramer determinants",
+      "consistency",
+      "determinant",
+      "general solution"
+    ],
+    "statement": "Consider the system $$x+2y+3z=1,\\qquad 2x+y+z=2,\\qquad 3x+3y+4z=\\lambda,$$ with coefficient matrix $A=\\begin{pmatrix} 1 & 2 & 3\\\\ 2 & 1 & 1\\\\ 3 & 3 & 4\\end{pmatrix}$. First show $\\det A=0$. Then determine all real $\\lambda$ for which the system is consistent, and write the complete solution for each such $\\lambda$.",
+    "answer": "The system is consistent for the single value $\\boxed{\\lambda=3}$, with general solution $(x,y,z)=(1,0,0)+t\\,(1,-5,3),\\ t\\in\\mathbb{R}$ (infinitely many). For every $\\lambda\\neq 3$ the system has no solution.",
+    "trap": "Computing $\\det A=0$, a hurried student declares the system inconsistent for every $\\lambda$ (\"a singular matrix can never be solved\") and answers \\emph{no value}. That is false: $\\Delta=0$ only kills \\emph{uniqueness}. The right-hand side $\\lambda$ can still be tuned so that the three Cramer numerators $\\Delta_1,\\Delta_2,\\Delta_3$ \\emph{all} vanish, and then there are infinitely many solutions. Here that tuning is exactly $\\lambda=3$, so the seductive answer \"no $\\lambda$ works\" is wrong.",
+    "solutions": [
+      {
+        "name": "Cramer determinants (Delta and the Delta_i)",
+        "steps": [
+          "Expand $\\det A$ along the first row: $\\det A = 1(1\\cdot4-1\\cdot3) - 2(2\\cdot4-1\\cdot3) + 3(2\\cdot3-1\\cdot3) = 1(1) - 2(5) + 3(3) = 1-10+9 = 0$, so $\\Delta=0$ and uniqueness is impossible.",
+          "Form the three numerators by replacing each column of $A$ with $\\mathbf b=(1,2,\\lambda)^{\\mathsf T}$. Evaluating the $3\\times3$ determinants gives $\\Delta_1=3-\\lambda$, $\\Delta_2=5\\lambda-15$, and $\\Delta_3=9-3\\lambda$.",
+          "With $\\Delta=0$, a solution can exist only if every $\\Delta_i=0$. The equations $3-\\lambda=0$, $5\\lambda-15=0$, $9-3\\lambda=0$ are all satisfied by the same value $\\lambda=3$, and by no other $\\lambda$. Hence $\\lambda\\neq3\\Rightarrow$ some $\\Delta_i\\neq0\\Rightarrow$ no solution.",
+          "At $\\lambda=3$ all $\\Delta_i=0$, so the system has infinitely many solutions. Solving the first two (independent) equations for $x,y$ in terms of $z$: $x=1+\\tfrac{z}{3},\\ y=-\\tfrac{5z}{3}$. Writing $z=3t$ gives $(x,y,z)=(1,0,0)+t(1,-5,3)$. Thus $\\boxed{\\lambda=3}$, with that one-parameter family of solutions."
+        ]
+      },
+      {
+        "name": "Combine the equations directly",
+        "steps": [
+          "Add the first two equations: $(x+2y+3z)+(2x+y+z)=1+2$, i.e. $3x+3y+4z=3$. But the left side is exactly the left side of the third equation, so the third equation reads $3x+3y+4z=\\lambda$ while the first two force $3x+3y+4z=3$.",
+          "These agree only when $\\lambda=3$. If $\\lambda\\neq3$ the third equation contradicts the sum of the first two ($3=\\lambda$ is false), so the system has no solution — consistent with the row dependency $\\mathrm{R}_3=\\mathrm{R}_1+\\mathrm{R}_2$ that made $\\det A=0$.",
+          "When $\\lambda=3$ the third equation becomes the redundant statement $3=3$; only the first two equations remain. They are independent, leaving one free variable $z=3t$.",
+          "Back-substituting: $x=1+t,\\ y=-5t,\\ z=3t$, i.e. $(x,y,z)=(1,0,0)+t(1,-5,3)$. Therefore the system is consistent precisely for $\\boxed{\\lambda=3}$, with infinitely many solutions."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A zero determinant forbids a *unique* solution, never *all* solutions. The honest test for a singular system is the trichotomy on the Cramer numerators: $\\Delta=0$ with some $\\Delta_i\\neq0$ means no solution, while $\\Delta=0$ with **every** $\\Delta_i=0$ means infinitely many. The same dependency $\\mathrm{R}_3=\\mathrm{R}_1+\\mathrm{R}_2$ that nulls $\\det A$ is what pins the lone consistent right-hand side $\\lambda=3$, turning the determinant into a detector of which $\\mathbf b$ the family can reach."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
     "title": "Adjoint of an Adjoint, Scaled",
     "difficulty": 5,
     "task": "Evaluate",
@@ -3713,44 +4147,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: $BB^{\\mathsf T}=k^{2}I$ tells you the rows are an orthogonal frame of length $k$, which pins $|\\det B|=k^{3}$ but is blind to orientation. The sign — proper vs improper — must be recovered by an actual computation, a reminder that $(\\det B)^2$ identities never determine $\\det B$ itself."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
-    "title": "A Vanishing Determinant Hides a Family",
-    "difficulty": 4,
-    "task": "Find all consistent values",
-    "tags": [
-      "singular system",
-      "Cramer determinants",
-      "consistency",
-      "determinant",
-      "general solution"
-    ],
-    "statement": "Consider the system $$x+2y+3z=1,\\qquad 2x+y+z=2,\\qquad 3x+3y+4z=\\lambda,$$ with coefficient matrix $A=\\begin{pmatrix} 1 & 2 & 3\\\\ 2 & 1 & 1\\\\ 3 & 3 & 4\\end{pmatrix}$. First show $\\det A=0$. Then determine all real $\\lambda$ for which the system is consistent, and write the complete solution for each such $\\lambda$.",
-    "answer": "The system is consistent for the single value $\\boxed{\\lambda=3}$, with general solution $(x,y,z)=(1,0,0)+t\\,(1,-5,3),\\ t\\in\\mathbb{R}$ (infinitely many). For every $\\lambda\\neq 3$ the system has no solution.",
-    "trap": "Computing $\\det A=0$, a hurried student declares the system inconsistent for every $\\lambda$ (\"a singular matrix can never be solved\") and answers \\emph{no value}. That is false: $\\Delta=0$ only kills \\emph{uniqueness}. The right-hand side $\\lambda$ can still be tuned so that the three Cramer numerators $\\Delta_1,\\Delta_2,\\Delta_3$ \\emph{all} vanish, and then there are infinitely many solutions. Here that tuning is exactly $\\lambda=3$, so the seductive answer \"no $\\lambda$ works\" is wrong.",
-    "solutions": [
-      {
-        "name": "Cramer determinants (Delta and the Delta_i)",
-        "steps": [
-          "Expand $\\det A$ along the first row: $\\det A = 1(1\\cdot4-1\\cdot3) - 2(2\\cdot4-1\\cdot3) + 3(2\\cdot3-1\\cdot3) = 1(1) - 2(5) + 3(3) = 1-10+9 = 0$, so $\\Delta=0$ and uniqueness is impossible.",
-          "Form the three numerators by replacing each column of $A$ with $\\mathbf b=(1,2,\\lambda)^{\\mathsf T}$. Evaluating the $3\\times3$ determinants gives $\\Delta_1=3-\\lambda$, $\\Delta_2=5\\lambda-15$, and $\\Delta_3=9-3\\lambda$.",
-          "With $\\Delta=0$, a solution can exist only if every $\\Delta_i=0$. The equations $3-\\lambda=0$, $5\\lambda-15=0$, $9-3\\lambda=0$ are all satisfied by the same value $\\lambda=3$, and by no other $\\lambda$. Hence $\\lambda\\neq3\\Rightarrow$ some $\\Delta_i\\neq0\\Rightarrow$ no solution.",
-          "At $\\lambda=3$ all $\\Delta_i=0$, so the system has infinitely many solutions. Solving the first two (independent) equations for $x,y$ in terms of $z$: $x=1+\\tfrac{z}{3},\\ y=-\\tfrac{5z}{3}$. Writing $z=3t$ gives $(x,y,z)=(1,0,0)+t(1,-5,3)$. Thus $\\boxed{\\lambda=3}$, with that one-parameter family of solutions."
-        ]
-      },
-      {
-        "name": "Combine the equations directly",
-        "steps": [
-          "Add the first two equations: $(x+2y+3z)+(2x+y+z)=1+2$, i.e. $3x+3y+4z=3$. But the left side is exactly the left side of the third equation, so the third equation reads $3x+3y+4z=\\lambda$ while the first two force $3x+3y+4z=3$.",
-          "These agree only when $\\lambda=3$. If $\\lambda\\neq3$ the third equation contradicts the sum of the first two ($3=\\lambda$ is false), so the system has no solution — consistent with the row dependency $\\mathrm{R}_3=\\mathrm{R}_1+\\mathrm{R}_2$ that made $\\det A=0$.",
-          "When $\\lambda=3$ the third equation becomes the redundant statement $3=3$; only the first two equations remain. They are independent, leaving one free variable $z=3t$.",
-          "Back-substituting: $x=1+t,\\ y=-5t,\\ z=3t$, i.e. $(x,y,z)=(1,0,0)+t(1,-5,3)$. Therefore the system is consistent precisely for $\\boxed{\\lambda=3}$, with infinitely many solutions."
-        ]
-      }
-    ],
-    "remark": "**Insight.** A zero determinant forbids a *unique* solution, never *all* solutions. The honest test for a singular system is the trichotomy on the Cramer numerators: $\\Delta=0$ with some $\\Delta_i\\neq0$ means no solution, while $\\Delta=0$ with **every** $\\Delta_i=0$ means infinitely many. The same dependency $\\mathrm{R}_3=\\mathrm{R}_1+\\mathrm{R}_2$ that nulls $\\det A$ is what pins the lone consistent right-hand side $\\lambda=3$, turning the determinant into a detector of which $\\mathbf b$ the family can reach."
   },
   {
     "theme": "hybrid",

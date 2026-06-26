@@ -4,7 +4,7 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['matalgebra','specialmat','transpose','detprops','detspecial','adjinv','elemtrans','linsys','parammat','hybrid'];
+  const THEME_ORDER = ['matalgebra','specialmat','transpose','detprops','detspecial','adjinv','elemtrans','linsys','parammat','chareqn','hybrid'];
   const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
   const THEME_META = {
     matalgebra:  { glyph:'AB',    blurb:'Addition, scalar multiples and the matrix product; powers and polynomials in a matrix; when AB equals BA — and the many ways it does not.' },
@@ -16,6 +16,7 @@
     elemtrans:   { glyph:'R↔',    blurb:'Elementary row and column operations, the inverse by Gauss–Jordan, and operations as multiplication by elementary matrices.' },
     linsys:      { glyph:'AX=B',  blurb:'Two- and three-variable systems by Cramer’s rule and a full consistency analysis, including homogeneous systems.' },
     parammat:    { glyph:'λ',     blurb:'Finding the parameter values that make a matrix singular or a system consistent, and solving matrix equations.' },
+    chareqn:     { glyph:'A−λI',  blurb:'The characteristic equation det(A−λI)=0 of a matrix of order ≤3, trace and determinant as the sum and product of its roots, power sums through tr(Aⁿ), and the order-2 identity A²=(tr A)A−(det A)I that drives Aⁿ and the inverse — every tool derived from the determinant, never assumed.' },
     hybrid:      { glyph:'⊕',     blurb:'Capstones that fuse several in-syllabus ideas — structure, determinant, adjoint and a linear system — into one multi-step problem.' },
   };
 
