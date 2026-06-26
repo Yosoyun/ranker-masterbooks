@@ -1,7 +1,7 @@
 /* Ranker's Masterbooks — service worker (offline shell).
    Runtime stale-while-revalidate cache for same-origin assets + KaTeX/fonts CDNs.
    Scope: the site root (registered from each book as ../sw.js). */
-const CACHE = 'rmb-v7';
+const CACHE = 'rmb-v8';
 self.addEventListener('install', function (e) { self.skipWaiting(); });
 self.addEventListener('activate', function (e) {
   e.waitUntil((async function () {

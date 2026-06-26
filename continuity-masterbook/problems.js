@@ -1,444 +1,362 @@
-/* problems.js — DATA. 100 original JEE Advanced continuity problems for C⁰ · The Continuous & the Broken. Adversarially verified in Python. statement/answer raw LaTeX (app auto-detects prose+math); steps use $...$ and $$...$$. */
+/* problems.js — DATA. 100 original continuity problems for C⁰ · The Continuous & the Broken, strictly within the JEE Advanced syllabus: continuity at a point via limits, piecewise gluing, classifying discontinuities, continuous functional equations (basic Cauchy type), the Intermediate Value Theorem, the greatest-integer/fractional-part/signum/modulus functions, composite continuity, the Extreme Value Theorem, and monotonic & inverse functions. No formal ε–δ proofs, Thomae/Dirichlet pathological functions, uniform continuity, Cauchy sequences, or olympiad functional equations (Pexider/Jensen/D'Alembert/parallelogram). Verified in sympy. statement/answer are raw LaTeX (the app auto-detects prose+math); steps use $...$ and $$...$$. */
 window.PROBLEMS = [
   {
-    "theme": "epsilondelta",
-    "themeLabel": "The ε–δ Definition",
-    "title": "The Tightest Tube Around a Parabola",
+    "theme": "pointcont",
+    "themeLabel": "Continuity at a Point & Piecewise",
+    "title": "Patching a Square Root at a Point",
     "difficulty": 4,
-    "task": "Find the largest",
+    "task": "Find the patch value",
     "tags": [
-      "epsilon-delta",
-      "quadratic",
-      "largest-delta",
-      "continuity"
-    ],
-    "statement": "Consider $f(x)=x^2$ at the point $c=3$. For the challenge value $\\varepsilon=\\tfrac{1}{100}$, find the largest number $\\delta>0$ such that\n\\[\n|x-3|<\\delta \\;\\Longrightarrow\\; |x^2-9|<\\tfrac{1}{100}.\n\\]\nGive the exact value of this optimal $\\delta$.",
-    "answer": "The largest such $\\delta$ is $\\displaystyle \\delta=\\sqrt{\\tfrac{901}{100}}-3=\\tfrac{\\sqrt{901}}{10}-3=\\sqrt{9.01}-3\\approx 0.00166620$. The two one-sided gaps are unequal: the left gap $3-\\sqrt{8.99}\\approx0.00166713$ is larger, while the right gap $\\sqrt{9.01}-3\\approx0.00166620$ is smaller, so the right side is binding and fixes $\\delta$ at the smaller value.",
-    "trap": "Taking the left one-sided gap $\\delta=3-\\sqrt{8.99}=3-\\tfrac{\\sqrt{899}}{10}\\approx0.00166713$ (or, equivalently, the lazy textbook value $\\delta=\\varepsilon/6=\\tfrac{1}{600}\\approx0.00166667$ from the approximation $|x+3|\\approx6$). Both are too large: because $|x+3|$ grows above $6$ to the right of $c=3$, the point $x=3+\\delta$ already escapes the tube. For instance $x=3+\\tfrac{1}{600}$ gives $|x^2-9|=\\tfrac{6}{600}+\\tfrac{1}{360000}>\\tfrac{1}{100}$. The correct $\\delta$ must be the smaller (right-side) gap.",
-    "solutions": [
-      {
-        "name": "Solve the defining interval exactly, take the smaller gap",
-        "steps": [
-          "The condition $|x^2-9|<\\tfrac1{100}$ is equivalent to $\\tfrac{899}{100}<x^2<\\tfrac{901}{100}$, i.e. $8.99<x^2<9.01$.",
-          "We work near $x=3>0$, so taking positive square roots gives the exact solution set $\\sqrt{8.99}<x<\\sqrt{9.01}$.",
-          "The largest symmetric interval $(3-\\delta,\\,3+\\delta)$ that fits inside is limited by the closer endpoint. Left gap $=3-\\sqrt{8.99}\\approx0.00166713$; right gap $=\\sqrt{9.01}-3\\approx0.00166620$.",
-          "The right gap is smaller (the parabola steepens to the right), so $\\boxed{\\delta=\\sqrt{9.01}-3=\\dfrac{\\sqrt{901}}{10}-3}$, the largest $\\delta$ that keeps both sides inside the tube."
-        ]
-      },
-      {
-        "name": "Optimize the factored bound on the worst (right) side",
-        "steps": [
-          "Factor $|x^2-9|=|x-3|\\,|x+3|$. Write $|x-3|=t\\ge0$. On the right side $x=3+t$ gives $|x+3|=6+t$, the larger of the two products.",
-          "The worst (largest) value of the product on $(3-\\delta,3+\\delta)$ occurs at the right end, so the binding requirement is $t(6+t)<\\tfrac1{100}$ as $t\\to\\delta^-$.",
-          "Solve $t(6+t)=\\tfrac1{100}\\Rightarrow t^2+6t-\\tfrac1{100}=0\\Rightarrow t=\\dfrac{-6+\\sqrt{36+\\tfrac{4}{100}}}{2}=\\dfrac{-6+\\sqrt{36.04}}{2}.$",
-          "Now $\\sqrt{36.04}=\\sqrt{4\\cdot 9.01}=2\\sqrt{9.01}$, so $t=\\dfrac{-6+2\\sqrt{9.01}}{2}=\\sqrt{9.01}-3\\approx0.00166620$, confirming $\\boxed{\\delta=\\dfrac{\\sqrt{901}}{10}-3}$ and that the right side is binding. (The left side requires $t(6-t)<\\tfrac1{100}$, which permits the larger value $0.00166713$, so it is not the active constraint.)"
-        ]
-      },
-      {
-        "name": "Verify optimality by testing the endpoints",
-        "steps": [
-          "Set $\\delta=\\sqrt{9.01}-3$. At the right endpoint $x=3+\\delta=\\sqrt{9.01}$ we get $x^2=9.01$, so $|x^2-9|=\\tfrac1{100}$ exactly — the tube is touched but (with the strict inequality $|x-3|<\\delta$) never exceeded.",
-          "At the left endpoint $x=3-\\delta=6-\\sqrt{9.01}\\approx2.99833$ we get $x^2=(6-\\sqrt{9.01})^2\\approx8.99001$, so $|x^2-9|\\approx0.0099944<\\tfrac1{100}$ — strictly inside, with room to spare.",
-          "Any larger $\\delta'>\\delta$ would admit some $x$ with $\\sqrt{9.01}<x<3+\\delta'$, where $x^2>9.01$ and the implication fails. Hence $\\delta=\\sqrt{9.01}-3$ is exactly the supremum, and it works, so it is the largest valid value."
-        ]
-      }
-    ],
-    "remark": "Insight: 'largest $\\delta$' problems are not about clever bounding — they are about inverting the function. Solve $f(x)=f(c)\\pm\\varepsilon$ to get the exact solution interval $(\\sqrt{8.99},\\sqrt{9.01})$, then take the smaller one-sided gap. Because $x^2$ is convex, it climbs faster on the right of $c=3$, so the right endpoint is closer to $c$ and binds first. The lazy estimate $\\delta=\\varepsilon/6$ uses $|x+3|\\approx6$, but $|x+3|$ actually exceeds $6$ on the binding side, making $\\varepsilon/6$ too large and hence invalid — a reminder that the linearized slope $f'(c)=6$ only describes the tangent, not the secant the tube actually rides on."
-  },
-  {
-    "theme": "epsilondelta",
-    "themeLabel": "The ε–δ Definition",
-    "title": "Taming the Reciprocal Without Touching Zero",
-    "difficulty": 4,
-    "task": "Prove that",
-    "tags": [
-      "epsilon-delta",
-      "reciprocal",
-      "continuity",
-      "clamping"
-    ],
-    "statement": "Let $f(x)=\\dfrac1x$ on $(0,\\infty)$. Prove directly from the $\\varepsilon$–$\\delta$ definition that $f$ is continuous at $c=2$, by producing an explicit $\\delta(\\varepsilon)$ that depends only on $\\varepsilon$ (and the fixed point $c=2$) — never on the running variable $x$.",
-    "answer": "Proved. An explicit choice is $\\delta(\\varepsilon)=\\min\\!\\left\\{1,\\;2\\varepsilon\\right\\}$. Then $|x-2|<\\delta\\Rightarrow\\left|\\tfrac1x-\\tfrac12\\right|<\\varepsilon$.",
-    "trap": "Stopping at $\\left|\\tfrac1x-\\tfrac12\\right|=\\dfrac{|x-2|}{2|x|}$ and declaring '$\\delta=2\\varepsilon$ works.' That hides a $\\dfrac1{|x|}$ that blows up as $x\\to0$: the candidate $\\delta$ secretly depends on $x$. You MUST first clamp $|x|$ away from $0$ (here via $|x-2|<1\\Rightarrow x>1$) before choosing $\\delta$.",
-    "solutions": [
-      {
-        "name": "Clamp then bound",
-        "steps": [
-          "Compute $\\left|\\dfrac1x-\\dfrac12\\right|=\\dfrac{|2-x|}{2|x|}=\\dfrac{|x-2|}{2|x|}$.",
-          "First constrain $|x-2|<1$, which forces $1<x<3$, hence $|x|>1$ and $\\dfrac1{|x|}<1$.",
-          "Under that constraint $\\left|\\dfrac1x-\\dfrac12\\right|<\\dfrac{|x-2|}{2}$.",
-          "Choose $\\delta=\\min\\{1,2\\varepsilon\\}$. If $|x-2|<\\delta$ then $\\left|\\dfrac1x-\\dfrac12\\right|<\\dfrac{|x-2|}{2}<\\dfrac{2\\varepsilon}{2}=\\varepsilon.$ $\\boxed{\\text{Continuous at }2.}$"
-        ]
-      },
-      {
-        "name": "Geometric interval inversion",
-        "steps": [
-          "Solve $\\left|\\dfrac1x-\\dfrac12\\right|<\\varepsilon$ directly: $\\dfrac12-\\varepsilon<\\dfrac1x<\\dfrac12+\\varepsilon$.",
-          "For small $\\varepsilon$ ($\\varepsilon<\\tfrac12$) all terms positive, invert: $\\dfrac{1}{\\tfrac12+\\varepsilon}<x<\\dfrac{1}{\\tfrac12-\\varepsilon}$, i.e. $\\dfrac{2}{1+2\\varepsilon}<x<\\dfrac{2}{1-2\\varepsilon}$.",
-          "This open interval contains $2$; its smaller one-sided gap is the left gap $2-\\dfrac{2}{1+2\\varepsilon}=\\dfrac{4\\varepsilon}{1+2\\varepsilon}$.",
-          "Any $\\delta\\le\\dfrac{4\\varepsilon}{1+2\\varepsilon}$ works; since $\\dfrac{4\\varepsilon}{1+2\\varepsilon}>\\varepsilon\\ge\\min\\{1,2\\varepsilon\\}$ for the relevant range too, the simple $\\boxed{\\delta=\\min\\{1,2\\varepsilon\\}}$ is rigorously valid."
-        ]
-      }
-    ],
-    "remark": "Insight: every continuity proof for an unbounded-derivative function (reciprocals, roots, logs) splits into two acts — Act I clamps the domain to control the 'amplification factor', Act II chooses $\\delta$ proportional to $\\varepsilon$. Skipping Act I is the single most common $\\varepsilon$–$\\delta$ sin."
-  },
-  {
-    "theme": "epsilondelta",
-    "themeLabel": "The ε–δ Definition",
-    "title": "The Square Root's Vertical Tangent",
-    "difficulty": 4,
-    "task": "Prove that",
-    "tags": [
-      "epsilon-delta",
-      "square-root",
-      "continuity",
-      "one-sided"
-    ],
-    "statement": "Let $f(x)=\\sqrt{x}$ on $[0,\\infty)$. Prove from the definition that: (a) $f$ is (right-)continuous at $c=0$, exhibiting $\\delta(\\varepsilon)$; (b) $f$ is continuous at a general point $c>0$, exhibiting $\\delta(\\varepsilon,c)$. In each case the $\\delta$ must be explicit and may depend only on $\\varepsilon$ and $c$.",
-    "answer": "Proved. (a) At $c=0$: take $\\delta(\\varepsilon)=\\varepsilon^2$. (b) At $c>0$: take $\\delta(\\varepsilon,c)=\\varepsilon\\sqrt{c}$ (equivalently $\\min\\{c,\\varepsilon\\sqrt c\\}$ if one wants to also guarantee $x>0$).",
-    "trap": "At $c=0$ choosing $\\delta=\\varepsilon$ 'because $\\sqrt{}$ is increasing.' That fails: $|\\sqrt{x}-0|<\\varepsilon$ requires $x<\\varepsilon^2$, not $x<\\varepsilon$. The square root's vertical tangent at $0$ means $\\delta$ must shrink quadratically in $\\varepsilon$, while at $c>0$ it grows linearly.",
-    "solutions": [
-      {
-        "name": "At 0: invert; at c>0: conjugate",
-        "steps": [
-          "(a) $|\\sqrt x-0|<\\varepsilon\\iff \\sqrt x<\\varepsilon\\iff 0\\le x<\\varepsilon^2$. So $\\delta=\\varepsilon^2$ makes $|x-0|<\\delta\\Rightarrow\\sqrt x<\\varepsilon$. $\\boxed{\\delta=\\varepsilon^2}$.",
-          "(b) For $c>0$, rationalize: $|\\sqrt x-\\sqrt c|=\\dfrac{|x-c|}{\\sqrt x+\\sqrt c}\\le\\dfrac{|x-c|}{\\sqrt c}$ (since $\\sqrt x\\ge0$).",
-          "Choose $\\delta=\\varepsilon\\sqrt c$. Then $|x-c|<\\delta\\Rightarrow|\\sqrt x-\\sqrt c|\\le\\dfrac{|x-c|}{\\sqrt c}<\\dfrac{\\varepsilon\\sqrt c}{\\sqrt c}=\\varepsilon.$ $\\boxed{\\delta=\\varepsilon\\sqrt c}$."
-        ]
-      },
-      {
-        "name": "Uniform-looking bound via |√x−√c|≤√|x−c|",
-        "steps": [
-          "Use the elementary inequality $|\\sqrt a-\\sqrt b|\\le\\sqrt{|a-b|}$ for $a,b\\ge0$ (square both sides to verify).",
-          "Then $|\\sqrt x-\\sqrt c|\\le\\sqrt{|x-c|}$, valid for ALL $c\\ge0$ including $c=0$.",
-          "To force $\\sqrt{|x-c|}<\\varepsilon$ pick $\\delta=\\varepsilon^2$; this single rule proves continuity everywhere on $[0,\\infty)$ at once.",
-          "Note the linear-$\\varepsilon$ bound of Solution 1 is sharper for fixed $c>0$, but this $\\boxed{\\delta=\\varepsilon^2}$ rule is the honest uniformly-valid one — illustrating $\\sqrt{}$ is uniformly continuous."
-        ]
-      }
-    ],
-    "remark": "Insight: the SHAPE of $\\delta(\\varepsilon)$ encodes the steepness of $f$. Linear $\\delta$ ($\\propto\\varepsilon$) means bounded slope; the quadratic $\\delta=\\varepsilon^2$ at $0$ is the analytic fingerprint of the vertical tangent. The inequality $|\\sqrt a-\\sqrt b|\\le\\sqrt{|a-b|}$ is the key that simultaneously handles the pathological point and proves uniform continuity."
-  },
-  {
-    "theme": "epsilondelta",
-    "themeLabel": "The ε–δ Definition",
-    "title": "The Side That Wins Changes Its Mind",
-    "difficulty": 5,
-    "task": "Find the largest delta",
-    "tags": [
-      "largest-delta",
-      "piecewise",
-      "binding-side",
-      "case-split",
-      "logarithm",
+      "removable",
+      "rationalization",
+      "one-point",
       "square-root"
     ],
-    "statement": "Define $f:(0,\\infty)\\to\\mathbb{R}$ by \\[ f(x)=\\begin{cases}\\ln x, & 0<x\\le 1,\\\\ \\sqrt{x-1}, & x\\ge 1.\\end{cases}\\] Then $f$ is continuous at $c=1$ with $f(1)=0$. For $\\varepsilon=\\tfrac12$, find the largest $\\delta>0$ such that $|f(x)-f(1)|<\\varepsilon$ for every $x$ with $|x-1|<\\delta$. Identify which side of $c$ is the binding constraint, and explain why the binding side depends on $\\varepsilon$ in general.",
-    "answer": "\\[\\boxed{\\delta_{\\max}=\\tfrac14}\\]",
-    "trap": "Because the statement leads with $\\ln x$, students compute the gap the logarithm allows, $1-e^{-\\varepsilon}=1-e^{-1/2}\\approx 0.393$, and report that as $\\delta$. But the right-hand piece $\\sqrt{x-1}$ tolerates only $x-1<\\varepsilon^{2}=\\tfrac14$, a much tighter cap. The harder error is assuming the binding side is fixed: the left gap $1-e^{-\\varepsilon}$ and right gap $\\varepsilon^{2}$ cross near $\\varepsilon\\approx0.715$, so the side that wins actually flips with $\\varepsilon$ — a single “smaller-gap” rule is wrong.",
+    "statement": "Let $f(x)=\\dfrac{\\sqrt{x+3}-2}{x-1}$ for $x\\neq 1$, with $f(1)$ left undefined. There is exactly one value $f(1)=L$ that makes $f$ continuous at $x=1$. Find $L$.",
+    "answer": "Since $\\displaystyle\\lim_{x\\to 1}f(x)=\\frac14$, continuity at $1$ forces $f(1)=L$ where $\\boxed{L=\\dfrac14}$.",
+    "trap": "Answering $L=0$. The numerator $\\sqrt{x+3}-2\\to 0$ as $x\\to1$, and a careless reader declares the whole quotient $\\to 0$. This ignores that the denominator $x-1\\to0$ too: the form is $\\tfrac00$, not $\\tfrac0{\\text{nonzero}}$, so the limit is the finite value $\\tfrac14$, not $0$.",
     "solutions": [
       {
-        "name": "Invert each piece, then take the worse side",
+        "name": "Rationalize the numerator",
         "steps": [
-          "Since $f(1)=0$, the condition $|f(x)|<\\tfrac12$ must hold on a symmetric interval $(1-\\delta,1+\\delta)$, so it must hold on each side separately.",
-          "Right side ($x\\ge 1$): $\\sqrt{x-1}<\\tfrac12\\iff x-1<\\tfrac14$, allowing $x$ up to $1+\\tfrac14$; the right gap is $\\tfrac14$.",
-          "Left side ($x\\le 1$): $|\\ln x|<\\tfrac12\\iff e^{-1/2}<x\\le 1$, allowing $x$ down to $e^{-1/2}$; the left gap is $1-e^{-1/2}\\approx0.393$.",
-          "A symmetric $\\delta$ must respect both, so $\\delta_{\\max}=\\min\\!\\big(\\tfrac14,\\;1-e^{-1/2}\\big)=\\tfrac14$, with the right ($\\sqrt{\\cdot}$) side binding. $\\boxed{\\delta_{\\max}=\\tfrac14}$"
+          "Multiply top and bottom by the conjugate: $\\dfrac{\\sqrt{x+3}-2}{x-1}\\cdot\\dfrac{\\sqrt{x+3}+2}{\\sqrt{x+3}+2}=\\dfrac{(x+3)-4}{(x-1)(\\sqrt{x+3}+2)}=\\dfrac{x-1}{(x-1)(\\sqrt{x+3}+2)}.$",
+          "For $x\\neq1$ cancel $x-1$ to get $\\dfrac{1}{\\sqrt{x+3}+2}$, which is continuous at $x=1$.",
+          "Hence $\\displaystyle\\lim_{x\\to1}f(x)=\\dfrac{1}{\\sqrt{4}+2}=\\dfrac{1}{4}$, so $\\boxed{L=\\dfrac14}.$"
         ]
       },
       {
-        "name": "Largest by tightness: push δ until a side breaks",
+        "name": "Substitution $t=x-1$",
         "steps": [
-          "Take any $\\delta\\le\\tfrac14$. For $x\\in(1,1+\\delta)$, $\\sqrt{x-1}<\\sqrt{\\delta}\\le\\tfrac12$; for $x\\in(1-\\delta,1)$, $|\\ln x|\\le|\\ln(1-\\tfrac14)|=\\ln\\tfrac43\\approx0.288<\\tfrac12$. So $\\delta=\\tfrac14$ works.",
-          "Now take any $\\delta>\\tfrac14$. The point $x=1+\\delta>1+\\tfrac14$ satisfies $\\sqrt{x-1}=\\sqrt{\\delta}>\\tfrac12$, violating $|f(x)|<\\tfrac12$.",
-          "Hence no $\\delta>\\tfrac14$ is admissible, while $\\delta=\\tfrac14$ is admissible.",
-          "Therefore the supremum of admissible $\\delta$ is attained: $\\boxed{\\delta_{\\max}=\\tfrac14}$."
-        ]
-      },
-      {
-        "name": "Why the binding side flips with ε",
-        "steps": [
-          "For a general $\\varepsilon>0$ the two gaps are $g_{R}(\\varepsilon)=\\varepsilon^{2}$ (right, $\\sqrt{x-1}<\\varepsilon$) and $g_{L}(\\varepsilon)=1-e^{-\\varepsilon}$ (left, $|\\ln x|<\\varepsilon$), and $\\delta_{\\max}=\\min(g_{R},g_{L})$.",
-          "As $\\varepsilon\\to0^{+}$, $g_{R}\\sim\\varepsilon^{2}\\ll g_{L}\\sim\\varepsilon$, so the right side binds; the difference $h(\\varepsilon)=g_{L}-g_{R}=1-e^{-\\varepsilon}-\\varepsilon^{2}$ starts positive.",
-          "But $h(1)=1-e^{-1}-1=-e^{-1}<0$, so $h$ changes sign: there is a crossing $\\varepsilon_{0}$ (numerically $\\varepsilon_{0}\\approx0.715$) beyond which $g_{L}<g_{R}$ and the left ($\\ln$) side binds instead.",
-          "At $\\varepsilon=\\tfrac12<\\varepsilon_{0}$ we are still in the right-binding regime, confirming $\\delta_{\\max}=g_{R}(\\tfrac12)=\\big(\\tfrac12\\big)^{2}=\\boxed{\\tfrac14}$."
+          "Put $t=x-1\\to0$. Then $\\sqrt{x+3}-2=\\sqrt{t+4}-2=2\\!\\left(\\sqrt{1+\\tfrac t4}-1\\right).$",
+          "For small $t$, $\\sqrt{1+\\tfrac t4}-1=\\dfrac{t/4}{\\sqrt{1+\\tfrac t4}+1}$, so the quotient becomes $\\dfrac{2\\cdot \\tfrac{t/4}{\\sqrt{1+t/4}+1}}{t}=\\dfrac{1/2}{\\sqrt{1+t/4}+1}.$",
+          "Letting $t\\to0$ gives $\\dfrac{1/2}{2}=\\dfrac14$, confirming $\\boxed{L=\\dfrac14}.$"
         ]
       }
     ],
-    "remark": "Insight: the largest $\\delta$ is the minimum of the two one-sided gaps, and which gap is smaller is not a fixed property of the function — it is a property of $\\varepsilon$. Here the square-root side grows its tolerance like $\\varepsilon^{2}$ (slow near $0$) while the logarithm side grows like $1-e^{-\\varepsilon}\\sim\\varepsilon$, so the “innocent” $\\sqrt{x-1}$ is the true bottleneck for small $\\varepsilon$ even though the problem foregrounds $\\ln x$. A correct $\\delta(\\varepsilon)$ for such a function is a case-split, not a one-liner."
+    "remark": "**Insight.** A removable discontinuity is the gentlest kind: the two-sided limit **exists and is finite**, the formula simply forgot to define the point. The job is never to *evaluate* the formula at the bad point but to **cancel the shared zero factor** and read off the survivor. The $\\tfrac00$ form is an invitation, not a verdict."
   },
   {
-    "theme": "epsilondelta",
-    "themeLabel": "The ε–δ Definition",
-    "title": "The Dirichlet Lamp Dimmed by Its Own Argument",
+    "theme": "pointcont",
+    "themeLabel": "Continuity at a Point & Piecewise",
+    "title": "Tangent Minus Sine, Repaired",
     "difficulty": 4,
-    "task": "Prove",
+    "task": "Find the patch value",
     "tags": [
-      "dirichlet",
-      "density",
-      "product",
-      "sequential",
-      "single-point"
+      "removable",
+      "trigonometric",
+      "series",
+      "one-point"
     ],
-    "statement": "Let $D:\\mathbb{R}\\to\\mathbb{R}$ be the Dirichlet function $D(x)=1$ if $x\\in\\mathbb{Q}$ and $D(x)=0$ if $x\\notin\\mathbb{Q}$, and set\n\\[\nf(x)=x\\,D(x)=\\begin{cases}x,&x\\in\\mathbb{Q},\\\\0,&x\\notin\\mathbb{Q}.\\end{cases}\n\\]\nWorking strictly from the $\\varepsilon$–$\\delta$ (or Heine sequential) definition of continuity—squeeze/sandwich theorems are NOT admissible, since $D$ has no limit anywhere—determine the exact set of points $c$ at which $f$ is continuous. At each point of continuity exhibit an explicit $\\delta(\\varepsilon)$ depending only on $\\varepsilon$, and at each point of discontinuity produce a single $\\varepsilon_0>0$ that no $\\delta$ can satisfy.",
-    "answer": "\\[\\boxed{\\{0\\}\\ \\text{with}\\ \\delta(\\varepsilon)=\\varepsilon}\\]",
-    "trap": "The fatal move is to treat $f$ like the squeeze problem $x\\sin(1/x)$ and write $|f(x)|\\le|x|\\to0$ to claim continuity 'wherever $x$ is small enough,' or worse, at every $c$. The bound $|f(x)|\\le|x|$ is TRUE but only forces $f(x)\\to0$, which equals $f(c)$ ONLY when $c=0$. The hidden case is that off the origin the amplitude $|c|>0$ no longer crushes the $\\{0,1\\}$ jump of $D$: along rationals $f\\to c\\neq0$ but along irrationals $f\\to0$, so the limit fails to exist. There is no squeeze to invoke because $D(x)$ has no limit at any point—the only legitimate tool is the definition itself, exploiting that BOTH $\\mathbb{Q}$ and $\\mathbb{R}\\setminus\\mathbb{Q}$ are dense.",
+    "statement": "Let $f(x)=\\dfrac{\\tan x-\\sin x}{x^{3}}$ for $x\\neq0$ near the origin. Find the value $f(0)=L$ that makes $f$ continuous at $x=0$.",
+    "answer": "Factoring, $\\tan x-\\sin x=\\sin x\\,\\dfrac{1-\\cos x}{\\cos x}$, which gives $\\displaystyle\\lim_{x\\to0}f(x)=\\tfrac12$, so $\\boxed{L=\\dfrac12}$.",
+    "trap": "Answering $L=0$ (numerator $\\to0$, ignoring the $\\tfrac00$ form) or $L=\\tfrac13$ by mismatching orders — e.g. treating $\\tan x-\\sin x$ as if it were $O(x)$ over $x^3$. The difference is third order, $\\tan x-\\sin x\\sim\\tfrac{x^3}{2}$, so the ratio tends to $\\tfrac12$, not $0$ or $\\tfrac13$.",
     "solutions": [
       {
-        "name": "Direct $\\varepsilon$–$\\delta$ at $0$; density witness elsewhere",
+        "name": "Factor and use standard limits",
         "steps": [
-          "Continuity at $c=0$: here $f(0)=0\\cdot D(0)=0$. For any $x$, $|f(x)-f(0)|=|x\\,D(x)|=|x|\\,D(x)\\le|x|$ because $D(x)\\in\\{0,1\\}$.",
-          "Given $\\varepsilon>0$, choose $\\delta(\\varepsilon)=\\varepsilon$. Then $|x-0|<\\delta\\Rightarrow|f(x)-f(0)|\\le|x|<\\varepsilon$. This $\\delta$ depends on $\\varepsilon$ alone, so $f$ is continuous at $0$.",
-          "Discontinuity at any $c\\neq0$: fix the single witness $\\varepsilon_0=\\tfrac{|c|}{2}>0$. We show no $\\delta>0$ works. The value to match is $f(c)$, which is either $c$ (if $c\\in\\mathbb{Q}$) or $0$ (if $c\\notin\\mathbb{Q}$).",
-          "Case $c\\in\\mathbb{Q}$ (so $f(c)=c$): by density of the irrationals, every interval $(c-\\delta,c+\\delta)$ contains an irrational $x$ with $|x|>\\tfrac{|c|}{2}$ (shrink toward $c$); there $f(x)=0$, so $|f(x)-f(c)|=|c|>\\tfrac{|c|}{2}=\\varepsilon_0$.",
-          "Case $c\\notin\\mathbb{Q}$ (so $f(c)=0$): by density of the rationals, every $(c-\\delta,c+\\delta)$ contains a rational $x$ with $|x|>\\tfrac{|c|}{2}$; there $f(x)=x$, so $|f(x)-f(c)|=|x|>\\tfrac{|c|}{2}=\\varepsilon_0$.",
-          "In both cases the $\\varepsilon_0$ test fails for every $\\delta$, so $f$ is discontinuous at each $c\\neq0$. Hence the continuity set is $\\boxed{\\{0\\}}$, with $\\delta(\\varepsilon)=\\varepsilon$ at $0$."
+          "$\\tan x-\\sin x=\\dfrac{\\sin x}{\\cos x}-\\sin x=\\sin x\\cdot\\dfrac{1-\\cos x}{\\cos x}.$",
+          "So $f(x)=\\dfrac{\\sin x}{x}\\cdot\\dfrac{1-\\cos x}{x^2}\\cdot\\dfrac{1}{\\cos x}.$",
+          "As $x\\to0$: $\\dfrac{\\sin x}{x}\\to1$, $\\dfrac{1-\\cos x}{x^2}\\to\\tfrac12$, $\\dfrac1{\\cos x}\\to1$; product $\\to\\tfrac12$, so $\\boxed{L=\\dfrac12}.$"
         ]
       },
       {
-        "name": "Heine sequential characterisation",
+        "name": "Series expansion",
         "steps": [
-          "Continuity at $0$: take any sequence $x_n\\to0$. Then $|f(x_n)|=|x_n|D(x_n)\\le|x_n|\\to0$, so $f(x_n)\\to0=f(0)$ for EVERY such sequence; by Heine's criterion $f$ is continuous at $0$.",
-          "Discontinuity at $c\\neq0$: choose two sequences both converging to $c$, a rational one $q_n\\to c$ and an irrational one $\\alpha_n\\to c$ (each exists by density).",
-          "Along the rationals $f(q_n)=q_n\\to c$; along the irrationals $f(\\alpha_n)=0\\to0$.",
-          "Since $c\\neq0$, the two subsequential limits $c$ and $0$ differ, so $\\lim_{x\\to c}f(x)$ does not exist; Heine's criterion is violated and $f$ is discontinuous at $c$.",
-          "Therefore the set of continuity points is exactly $\\boxed{\\{0\\}}$, and at $0$ the explicit modulus is $\\delta(\\varepsilon)=\\varepsilon$."
-        ]
-      },
-      {
-        "name": "Contrast with the genuine product $x\\sin(1/x)$",
-        "steps": [
-          "For $g(x)=x\\sin(1/x)$ the factor $\\sin(1/x)$ is bounded AND the product squeezes to a limit at $0$; one might hope to copy this to $f=x\\,D(x)$.",
-          "At $0$ the copy succeeds for the SAME structural reason: $|f(x)|\\le|x|\\cdot1\\to0=f(0)$, giving $\\delta(\\varepsilon)=\\varepsilon$—the amplitude $|x|$ annihilates the bounded oscillating factor regardless of whether it is $\\sin(1/x)$ or the $\\{0,1\\}$ jump of $D$.",
-          "Away from $0$ the analogy BREAKS: $\\sin(1/x)$ is continuous at every $c\\neq0$, so $g$ is continuous there, but $D$ is continuous NOWHERE, and near $c\\neq0$ the surviving amplitude $|c|>0$ exposes the jump—rationals give $f\\approx c$, irrationals give $f=0$.",
-          "Quantitatively, for $c\\neq0$ pick $\\varepsilon_0=\\tfrac{|c|}{2}$: inside any $\\delta$-neighbourhood the density of $\\mathbb{Q}$ and of $\\mathbb{R}\\setminus\\mathbb{Q}$ produces points whose $f$-values straddle a gap of size $|c|>\\varepsilon_0$, so no $\\delta$ works.",
-          "Thus the squeeze imitation is valid only at the single point where the amplitude vanishes, and the continuity set is $\\boxed{\\{0\\}}$."
+          "$\\tan x=x+\\tfrac{x^3}{3}+\\cdots$ and $\\sin x=x-\\tfrac{x^3}{6}+\\cdots$.",
+          "Subtracting, $\\tan x-\\sin x=\\left(\\tfrac13+\\tfrac16\\right)x^3+\\cdots=\\tfrac{x^3}{2}+O(x^5).$",
+          "Dividing by $x^3$ gives $\\tfrac12+O(x^2)\\to\\tfrac12$, so $\\boxed{L=\\dfrac12}.$"
         ]
       }
     ],
-    "remark": "Insight: multiplying a wildly discontinuous bounded factor $\\phi$ (here $D$, with $0\\le\\phi\\le1$) by $x$ does not 'fix' it everywhere—continuity of $x\\,\\phi(x)$ survives exactly at the zeros of the amplitude where $\\phi$ is bounded, i.e. only at $x=0$, because there $|x\\phi(x)|\\le|x|\\to0$ pins the value irrespective of $\\phi$'s chaos. The decisive engine is DENSITY of both $\\mathbb{Q}$ and its complement (two sequences, two limits), NOT a squeeze—which is unavailable since $D$ has no limit. Contrast $x\\sin(1/x)$, continuous on all of $\\mathbb{R}$ precisely because its oscillating factor is itself continuous off $0$."
+    "remark": "**Insight.** The whole problem is a contest of **orders of smallness**: $\\tan x$ and $\\sin x$ agree to first order, so their difference begins at $x^3$ — exactly the scale of the denominator. Matching that order yields the finite patch $\\tfrac12$. Guessing $0$ underestimates the cancellation; guessing $\\tfrac13$ forgets that $\\sin x$ contributes too."
   },
   {
-    "theme": "epsilondelta",
-    "themeLabel": "The ε–δ Definition",
-    "title": "The Reciprocal That Outruns Every Bound",
-    "difficulty": 5,
-    "task": "Prove that",
-    "tags": [
-      "epsilon-delta",
-      "essential-discontinuity",
-      "unbounded",
-      "no-limit",
-      "witness-sequence"
-    ],
-    "statement": "Let\n\\[\ng(x)=\\frac{\\sin(1/x)}{x}\\qquad(x\\neq0),\n\\]\nand suppose we try to extend $g$ to a function continuous at $0$ by assigning some value $g(0)=L$. Prove, strictly from the $\\varepsilon$–$\\delta$ (equivalently Heine sequential) definition, that no value $L$ makes $g$ continuous at $0$. More precisely, show that $\\displaystyle\\lim_{x\\to0}g(x)$ fails to exist as a finite number, and also fails to be $+\\infty$ or $-\\infty$ — so the discontinuity at $0$ is essential of a strictly stronger kind than bounded oscillation: $g$ is unbounded in every neighbourhood of $0$.",
-    "answer": "\\[\\boxed{\\text{No such }L\\text{ exists; }g\\text{ has an essential (unbounded) discontinuity at }0.}\\]",
-    "trap": "Reflexively invoking the Squeeze Theorem as for the famous pin-through-the-origin map $x\\sin(1/x)$: since $|\\sin(1/x)|\\le 1$, a hasty solver writes $|g(x)|\\le \\tfrac1{|x|}$ and either declares the bound 'controls' $g$ or, worse, mentally cancels and treats $g$ like $x\\sin(1/x)\\to0$. The reciprocal $1/x$ is an amplifier, not a damper: the factor $1/x$ blows up exactly where $\\sin(1/x)$ refuses to die down. The correct mechanism is unboundedness — a single divergent-to-$+\\infty$ branch defeats every $\\delta$ — and it must be exhibited, not bounded away.",
-    "solutions": [
-      {
-        "name": "Unboundedness lemma kills every finite L, zeros kill ±∞",
-        "steps": [
-          "Lemma (a limit forces local boundedness). Suppose for contradiction $\\lim_{x\\to0}g(x)=L$ for some finite $L$. Apply the definition with the single choice $\\varepsilon=1$: there is $\\delta>0$ such that $0<|x|<\\delta\\Rightarrow|g(x)-L|<1$, hence $|g(x)|<|L|+1$ for ALL $x$ in the punctured ball $0<|x|<\\delta$. So a finite limit would make $g$ bounded near $0$.",
-          "Construct the divergent branch. For $k=1,2,3,\\dots$ let $x_k=\\dfrac{1}{\\tfrac{\\pi}{2}+2\\pi k}$. Then $\\dfrac1{x_k}=\\dfrac{\\pi}{2}+2\\pi k$, so $\\sin(1/x_k)=1$ and $g(x_k)=\\dfrac{1}{x_k}=\\dfrac{\\pi}{2}+2\\pi k\\xrightarrow[k\\to\\infty]{}+\\infty$, while $x_k\\to0^{+}$.",
-          "Defeat the lemma. Given the $\\delta$ above, $x_k\\to0$ guarantees some $x_K$ with $0<x_K<\\delta$, and $g(x_K)=\\tfrac{\\pi}{2}+2\\pi K$ can be made $>|L|+1$ by taking $K$ large. This contradicts $|g|<|L|+1$ on the ball. Hence no finite $L$ is the limit, and (since $g(0)=L$ would need $|g(x)-L|<\\varepsilon$) no finite assignment yields continuity.",
-          "Rule out $\\pm\\infty$. The candidates $L=+\\infty$ and $L=-\\infty$ require $g(x)$ to stay large in magnitude near $0$, yet $g$ takes the value $0$ arbitrarily close to $0$: at $z_n=\\dfrac1{n\\pi}$ we have $\\sin(1/z_n)=\\sin(n\\pi)=0$, so $g(z_n)=0$ with $z_n\\to0$. Thus $g$ neither diverges to $+\\infty$ nor to $-\\infty$. \\[\\boxed{\\text{No }L\\in\\mathbb{R}\\cup\\{\\pm\\infty\\}\\text{ works.}}\\]"
-        ]
-      },
-      {
-        "name": "Heine: three sequences with three different fates",
-        "steps": [
-          "By the Heine (sequential) criterion, $\\lim_{x\\to0}g(x)=L$ would force $g(t_n)\\to L$ for EVERY sequence $t_n\\to0$ ($t_n\\neq0$). We exhibit three sequences with incompatible images.",
-          "Plus branch: $a_k=\\dfrac1{\\tfrac{\\pi}{2}+2\\pi k}\\to0$ gives $g(a_k)=\\tfrac{\\pi}{2}+2\\pi k\\to+\\infty$.",
-          "Minus branch: $b_k=\\dfrac1{\\tfrac{3\\pi}{2}+2\\pi k}\\to0$ gives $\\sin(1/b_k)=\\sin\\!\\big(\\tfrac{3\\pi}{2}\\big)=-1$, so $g(b_k)=-\\big(\\tfrac{3\\pi}{2}+2\\pi k\\big)\\to-\\infty$.",
-          "Zero branch: $z_n=\\dfrac1{n\\pi}\\to0$ gives $g(z_n)=0$ for all $n$, so $g(z_n)\\to0$.",
-          "A single $L$ cannot simultaneously equal $+\\infty$, $-\\infty$, and $0$. The criterion fails on three fronts at once, so no limit (finite or infinite) exists, and $g$ admits no continuous extension to $0$. \\[\\boxed{\\text{Limit does not exist; discontinuity is essential and unbounded.}}\\]"
-        ]
-      },
-      {
-        "name": "Direct (M, δ) unboundedness, the negation of every bound",
-        "steps": [
-          "Boundedness-near-$0$ means: $\\exists M>0,\\ \\exists\\delta>0$ with $|g(x)|\\le M$ for all $0<|x|<\\delta$. We prove the logical negation for ALL $M,\\delta$, which already forbids any finite limit (by the lemma of Solution 1).",
-          "Fix arbitrary $M>0$ and $\\delta>0$. Choose an integer $k$ with $\\dfrac{\\pi}{2}+2\\pi k>\\max\\!\\Big\\{M,\\ \\dfrac1{\\delta}\\Big\\}$ (possible since the left side $\\to\\infty$).",
-          "Set $x=\\dfrac1{\\tfrac{\\pi}{2}+2\\pi k}$. From $\\tfrac{\\pi}{2}+2\\pi k>\\tfrac1\\delta$ we get $0<x<\\delta$; and $g(x)=\\sin\\!\\big(\\tfrac{\\pi}{2}+2\\pi k\\big)\\cdot\\big(\\tfrac{\\pi}{2}+2\\pi k\\big)=\\tfrac{\\pi}{2}+2\\pi k>M$.",
-          "So every punctured neighbourhood of $0$ contains a point where $|g|$ exceeds the proposed bound $M$: $g$ is unbounded on $(0,\\delta)$ for every $\\delta$. By the contrapositive of 'limit $\\Rightarrow$ locally bounded', $\\lim_{x\\to0}g(x)$ cannot be finite; the $0$-values at $z_n=\\tfrac1{n\\pi}$ exclude $\\pm\\infty$. \\[\\boxed{\\text{Unbounded in every neighbourhood }\\Rightarrow\\text{ no admissible }L.}\\]"
-        ]
-      }
-    ],
-    "remark": "Insight: there is a hierarchy of incurable discontinuities. The companion $x\\sin(1/x)$ has a REMOVABLE discontinuity (squeeze gives limit $0$); $\\sin(1/x)$ alone has an essential discontinuity by BOUNDED oscillation (two sequences give $+1$ and $-1$); but $\\sin(1/x)/x$ is worse still — UNBOUNDED oscillation. The decisive lever is the one-line lemma 'a finite limit forces local boundedness': you never have to estimate $g$, you only have to break a bound, and a single branch racing to $+\\infty$ does that against every $\\delta$. The zeros at $1/(n\\pi)$ are the elegant finishing touch that simultaneously rules out $+\\infty$ and $-\\infty$, certifying the discontinuity as genuinely essential rather than a vertical asymptote."
-  },
-  {
-    "theme": "epsilondelta",
-    "themeLabel": "The ε–δ Definition",
-    "title": "Where the Parabola Kisses the Cosine",
-    "difficulty": 5,
-    "task": "Determine the exact continuity set and prove it",
-    "tags": [
-      "epsilon-delta",
-      "dirichlet-veil",
-      "dense-branches",
-      "transcendental",
-      "heine"
-    ],
-    "statement": "Let $\\mathbb{Q}$ denote the rationals and define $f:\\mathbb{R}\\to\\mathbb{R}$ by\n\\[\nf(x)=\\begin{cases} x^{2}, & x\\in\\mathbb{Q},\\\\ \\cos x, & x\\notin\\mathbb{Q}.\\end{cases}\n\\]\nDetermine the exact set $C$ of points at which $f$ is continuous. Prove, using only the $\\varepsilon$–$\\delta$ (equivalently Heine sequential) definition, both directions: (i) at each point of $C$ exhibit an explicit $\\delta(\\varepsilon)$ certifying continuity, and (ii) at every point outside $C$ produce the witnesses that destroy continuity. State how large $C$ is and why it has exactly that cardinality.",
-    "answer": "$C=\\{-\\alpha,\\ \\alpha\\}$ where $\\alpha\\in(0,1)$ is the unique positive root of $x^{2}=\\cos x$ (so $|C|=2$, $\\alpha\\approx 0.8241$).",
-    "trap": "Two seductive errors. (a) Both branch-formulas $x^{2}$ and $\\cos x$ are continuous everywhere, so a hasty solver declares $f$ continuous on all of $\\mathbb{R}$ — confusing continuity of the two formulas with continuity of the glued function, whose value jumps between dense rational and dense irrational inputs. The function can only be continuous where the two branch-limits agree, i.e. on the solution set of $x^{2}=\\cos x$. (b) Reflexively guessing the agreement happens at $x=0$ (the symmetry point, the cosine's crest): but $0^{2}=0\\neq 1=\\cos 0$, so $0\\notin C$. The honest answer is a transcendental coincidence set $\\{\\pm\\alpha\\}$ that must be located and counted, never read off.",
-    "solutions": [
-      {
-        "name": "Coincidence locates C; explicit δ proves it; density destroys the rest",
-        "steps": [
-          "Necessity of $g(c)=h(c)$. Put $g(x)=x^{2}$, $h(x)=\\cos x$. Both $\\mathbb{Q}$ and $\\mathbb{R}\\setminus\\mathbb{Q}$ are dense, so for any $c$ there are rationals $q_{n}\\to c$ and irrationals $r_{n}\\to c$. Then $f(q_{n})=q_{n}^{2}\\to c^{2}$ and $f(r_{n})=\\cos r_{n}\\to\\cos c$ (continuity of $g,h$). If $f$ is continuous at $c$ both sequential limits must equal $f(c)$, forcing $c^{2}=\\cos c$. Thus $C\\subseteq\\{x:x^{2}=\\cos x\\}$.",
-          "Locate and count the solutions. $F(x)=x^{2}-\\cos x$ is even with $F(0)=-1<0$ and $F(1)=1-\\cos 1>0$; on $(0,\\infty)$, $F'(x)=2x+\\sin x>0$ (since $2x>1\\ge|\\sin x|$ for $x\\ge\\tfrac12$, and $2x+\\sin x>0$ trivially on $(0,\\tfrac12]$), so $F$ is strictly increasing there and has exactly one positive root $\\alpha\\in(0,1)$. By evenness the full solution set is $\\{\\pm\\alpha\\}$, and $|x|\\ge1\\Rightarrow x^{2}\\ge1\\ge\\cos x$ with equality impossible, so there are no others.",
-          "Explicit $\\delta$ at $c=\\pm\\alpha$. Here $c^{2}=\\cos c=:L$, so $g(c)=h(c)=L$, hence $f(c)=L$ whichever class $c$ lies in. For any $x$ with $|x-c|<1$: $|g(x)-L|=|x^{2}-c^{2}|=|x-c|\\,|x+c|\\le|x-c|\\,(2|c|+1)$, and $|h(x)-L|=|\\cos x-\\cos c|\\le|x-c|$ (mean value / $|\\cos'|\\le1$). Given $\\varepsilon>0$ choose \\[ \\delta=\\min\\!\\Big(1,\\ \\frac{\\varepsilon}{2|c|+1}\\Big). \\] If $|x-c|<\\delta$ then both $|g(x)-L|<\\varepsilon$ and $|h(x)-L|<\\varepsilon$; since $f(x)$ equals one of $g(x),h(x)$, $|f(x)-L|<\\varepsilon$. So $f$ is continuous at $\\pm\\alpha$ — note the single $\\delta$ must tame both dense branches at once.",
-          "Discontinuity off $C$. If $c\\notin\\{\\pm\\alpha\\}$ then $c^{2}\\neq\\cos c$; take $\\varepsilon_{0}=\\tfrac12|c^{2}-\\cos c|>0$. Whatever $f(c)$ is, it cannot lie within $\\varepsilon_{0}$ of both $c^{2}$ and $\\cos c$. The witness from the other class — rationals $q_{n}\\to c$ if $f(c)=\\cos c$, or irrationals $r_{n}\\to c$ if $f(c)=c^{2}$ — yields $|f(\\cdot)-f(c)|\\to|c^{2}-\\cos c|>\\varepsilon_{0}$, so no $\\delta$ works. Hence $f$ is discontinuous at every such $c$. Combining, $\\boxed{C=\\{\\pm\\alpha\\}}$."
-        ]
-      },
-      {
-        "name": "Pure Heine sequential criterion, both directions",
-        "steps": [
-          "Heine: $f$ is continuous at $c$ iff $f(t_{n})\\to f(c)$ for every $t_{n}\\to c$. Fix any $c$ and split sequences by class.",
-          "At $c=\\pm\\alpha$ (where $c^{2}=\\cos c=L$, $f(c)=L$): for an arbitrary $t_{n}\\to c$ write $f(t_{n})=t_{n}^{2}$ on the rational indices and $\\cos t_{n}$ on the irrational indices. Both $t_{n}^{2}\\to c^{2}=L$ and $\\cos t_{n}\\to\\cos c=L$, so the merged sequence $f(t_{n})\\to L=f(c)$ regardless of how the indices are interleaved. Continuity holds.",
-          "At $c\\notin\\{\\pm\\alpha\\}$: by density pick rationals $q_{n}\\to c$ and irrationals $r_{n}\\to c$. Then $f(q_{n})\\to c^{2}$ but $f(r_{n})\\to\\cos c$, and $c^{2}\\neq\\cos c$. Two subsequential limits of $f$ along sequences tending to $c$ disagree, so $\\lim_{t\\to c}f(t)$ does not exist; a fortiori it cannot equal $f(c)$. Discontinuity holds.",
-          "Therefore the continuity set is exactly the agreement locus $\\{x:x^{2}=\\cos x\\}$, which (Solution 1, step 2) is $\\boxed{\\{-\\alpha,\\alpha\\}}$, $\\alpha$ the unique positive root of $x^{2}=\\cos x$."
-        ]
-      },
-      {
-        "name": "Structural lemma: glued Dirichlet-veil is continuous iff branches meet",
-        "steps": [
-          "Lemma. If $g,h$ are continuous at $c$ and $f=g\\cdot\\mathbf 1_{\\mathbb{Q}}+h\\cdot\\mathbf 1_{\\mathbb{Q}^{c}}$, then $f$ is continuous at $c$ $\\iff g(c)=h(c)$. Proof of $\\Leftarrow$: let $L=g(c)=h(c)$; given $\\varepsilon$, continuity of $g,h$ gives $\\delta_{g},\\delta_{h}$ with $|g(x)-L|<\\varepsilon$ and $|h(x)-L|<\\varepsilon$ on $|x-c|<\\delta:=\\min(\\delta_{g},\\delta_{h})$; as $f(x)\\in\\{g(x),h(x)\\}$ and $f(c)=L$, $|f(x)-f(c)|<\\varepsilon$. Proof of $\\Rightarrow$: contrapositive — if $g(c)\\neq h(c)$, the dense rational/irrational sequences give limits $g(c)\\neq h(c)$, breaking the sequential criterion.",
-          "Apply with $g(x)=x^{2}$, $h(x)=\\cos x$ (both entire/continuous): $f$ is continuous at $c$ iff $c^{2}=\\cos c$.",
-          "Solve the transcendental equation by monotone counting: $F(x)=x^{2}-\\cos x$ is even, $F'(x)=2x+\\sin x>0$ on $(0,\\infty)$, $F(0)=-1<0$, $F(1)>0$, giving exactly one positive root $\\alpha\\approx0.8241$ and, by symmetry, the second root $-\\alpha$; none with $|x|\\ge1$. ",
-          "Hence the continuity set has cardinality $2$: $\\boxed{C=\\{\\pm\\alpha\\},\\ \\alpha^{2}=\\cos\\alpha}$. The explicit certificate is $\\delta(\\varepsilon)=\\min\\!\\big(1,\\varepsilon/(2\\alpha+1)\\big)$ from the lemma's $\\Leftarrow$ direction."
-        ]
-      }
-    ],
-    "remark": "Insight: a Dirichlet-veiled blend of two everywhere-continuous formulas is continuous precisely on the agreement locus $\\{g=h\\}$ — nowhere else, no matter how smooth each branch is. The density of $\\mathbb{Q}$ and of its complement is the whole engine: it forces two competing one-sided-in-class limits at every point, and only where they coincide can a single $\\delta$ corral both. The lever turning a global gluing into a pointwise question is the one-line lemma 'continuous at $c$ $\\iff g(c)=h(c)$'. Here the agreement is a genuinely transcendental event located by $x^{2}=\\cos x$, and the count ($|C|=2$) follows not from the definition but from monotonicity of $F(x)=x^{2}-\\cos x$ — a clean fusion of $\\varepsilon$–$\\delta$ rigor with root-counting. The decoy $x=0$ shows the coincidence cannot be guessed from symmetry; it must be earned."
-  },
-  {
-    "theme": "epsilondelta",
-    "themeLabel": "The ε–δ Definition",
-    "title": "Thomae's Function: Continuity Hiding in the Irrationals",
-    "difficulty": 5,
-    "task": "Determine",
-    "tags": [
-      "epsilon-delta",
-      "thomae",
-      "continuity-set",
-      "finiteness-argument"
-    ],
-    "statement": "Let Thomae's function $T:(0,1)\\to\\mathbb{R}$ be\n\\[\nT(x)=\\begin{cases}\\dfrac1q,&x=\\dfrac pq\\text{ in lowest terms},\\;q\\ge1,\\\\ 0,&x\\text{ irrational}.\\end{cases}\n\\]\nDetermine the set of continuity points of $T$. Prove discontinuity at $x=\\tfrac13$ with an explicit witness $\\varepsilon$, and prove continuity at $x=\\dfrac1{\\sqrt2}$ by producing an explicit $\\delta$ for a general $\\varepsilon$.",
-    "answer": "$T$ is continuous at every irrational and discontinuous at every rational. At $\\tfrac13$: $T(\\tfrac13)=\\tfrac13$, witness $\\varepsilon=\\tfrac16$. At $\\alpha=\\tfrac1{\\sqrt2}$ (irrational): for given $\\varepsilon>0$, with $N=\\lfloor1/\\varepsilon\\rfloor$, take $\\delta=\\min\\{\\,\\text{dist}(\\alpha,\\,p/q):1\\le q\\le N,\\;p/q\\in(0,1)\\,\\}>0$; then $|x-\\alpha|<\\delta\\Rightarrow|T(x)-0|<\\varepsilon.$",
-    "trap": "Thinking continuity needs a single formula-based $\\delta$. Here $\\delta$ comes from a FINITENESS argument: only finitely many rationals in $(0,1)$ have denominator $\\le N$, so their finite minimal distance to the irrational $\\alpha$ is positive and serves as $\\delta$. A student who hand-waves 'rationals are dense so it must be discontinuous everywhere' misses that the bad values $1/q$ become rare and small.",
-    "solutions": [
-      {
-        "name": "Discontinuity at 1/3 via dense irrationals",
-        "steps": [
-          "$T(\\tfrac13)=\\tfrac13$. Choose witness $\\varepsilon=\\tfrac16$.",
-          "For any $\\delta>0$, density of irrationals gives an irrational $x$ with $|x-\\tfrac13|<\\delta$ and $T(x)=0$.",
-          "Then $|T(x)-T(\\tfrac13)|=|0-\\tfrac13|=\\tfrac13>\\tfrac16=\\varepsilon$.",
-          "So no $\\delta$ works for $\\varepsilon=\\tfrac16$: $\\boxed{T\\text{ is discontinuous at }\\tfrac13}$ (the same with $\\varepsilon=\\tfrac1{2q}$ at any $p/q$)."
-        ]
-      },
-      {
-        "name": "Continuity at the irrational 1/√2 by finiteness",
-        "steps": [
-          "Let $\\alpha=\\tfrac1{\\sqrt2}$ (irrational, $T(\\alpha)=0$) and fix $\\varepsilon>0$. Set $N=\\lfloor1/\\varepsilon\\rfloor$.",
-          "A rational $p/q\\in(0,1)$ has $T=1/q\\ge\\varepsilon$ ONLY if $q\\le N$. There are finitely many such $p/q$ (at most $\\sum_{q\\le N}q$), and none equals $\\alpha$.",
-          "Let $\\delta=\\min$ over these finitely many points of $|\\alpha-p/q|>0$ (a positive minimum of a finite set).",
-          "If $|x-\\alpha|<\\delta$: either $x$ is irrational so $T(x)=0<\\varepsilon$, or $x=p/q$ with $q>N$ so $T(x)=1/q<1/N\\le\\varepsilon$ (and $x$ avoids all the $q\\le N$ points by choice of $\\delta$). Either way $|T(x)-0|<\\varepsilon$, so $\\boxed{T\\text{ is continuous at }\\tfrac1{\\sqrt2}.}$"
-        ]
-      },
-      {
-        "name": "Limit-is-zero everywhere argument",
-        "steps": [
-          "Claim $\\lim_{x\\to c}T(x)=0$ for EVERY $c\\in(0,1)$, rational or not, by the same finiteness $\\delta$ as above (the value at $c$ itself is excluded in the limit).",
-          "Continuity at $c$ holds iff $T(c)=\\lim_{x\\to c}T(x)=0$, i.e. iff $c$ is irrational.",
-          "At rational $c=p/q$, $T(c)=1/q\\ne0=\\lim$, giving discontinuity (witness $\\varepsilon=\\tfrac1{2q}$).",
-          "Therefore the continuity set is exactly the irrationals in $(0,1)$; in particular continuous at $\\tfrac1{\\sqrt2}$, discontinuous at $\\tfrac13$. $\\boxed{\\text{Continuity set}=\\text{irrationals}.}$"
-        ]
-      }
-    ],
-    "remark": "Insight: Thomae's function is the crown jewel of $\\varepsilon$–$\\delta$ pedagogy — its $\\delta$ is not algebraic but combinatorial, born from the fact that 'large-denominator' rationals are simultaneously dense AND have tiny values. It exhibits a function continuous on an uncountable dense set and discontinuous on a countable dense set."
-  },
-  {
-    "theme": "epsilondelta",
-    "themeLabel": "The ε–δ Definition",
-    "title": "Where the Clamp Must Bend One Way",
+    "theme": "pointcont",
+    "themeLabel": "Continuity at a Point & Piecewise",
+    "title": "The Constant That Cannot Exist",
     "difficulty": 4,
-    "task": "Prove and find the explicit",
+    "task": "Decide if a value exists",
     "tags": [
-      "epsilon-delta",
-      "one-sided",
-      "vertical-tangent",
-      "domain-restriction",
-      "quadratic-delta"
+      "jump",
+      "one-sided-limits",
+      "piecewise",
+      "irremovable"
     ],
-    "statement": "Consider the function\n\\[\nf(x)=\\sqrt{x}\\,(x-1),\n\\]\nwhose natural (maximal real) domain is $D=[0,\\infty)$, and set $f(0)=\\sqrt{0}\\,(0-1)=0$. Working strictly from the $\\varepsilon$–$\\delta$ definition of continuity at the boundary point $c=0$, prove that $f$ is continuous at $0$ and produce an explicit admissible response $\\delta=\\delta(\\varepsilon)$ — valid for every $\\varepsilon>0$ — together with the complete verification that $0\\le x<\\delta$ forces $|f(x)-f(0)|<\\varepsilon$. Your $\\delta$ must be honest at all scales of $\\varepsilon$ (both $\\varepsilon$ small and $\\varepsilon$ large), and you must justify why the cofactor $(x-1)$ cannot simply be bounded by the constant $1$ without a side condition.",
-    "answer": "\\[\\boxed{\\delta(\\varepsilon)=\\min\\{1,\\ \\varepsilon^{2}\\}}\\]",
-    "trap": "Two reflexes sink the strong solver. (1) Symmetric thinking: writing the condition on a two-sided ball $0<|x|<\\delta$ and hunting for a limit from both sides — but $\\sqrt{x}$ is not real for $x<0$, so $0$ is a left endpoint and only the one-sided (right) condition $0\\le x<\\delta$ is even meaningful; the continuity here is intrinsically one-sided. (2) A linear clamp: bounding $|x-1|$ by a constant and concluding $|f(x)|\\le C\\sqrt{x}$, then carelessly demanding $C\\sqrt{x}<\\varepsilon$ but solving as though $\\sqrt{x}$ scaled like $x$, producing a LINEAR $\\delta\\sim\\varepsilon$. The vertical tangent of $\\sqrt{x}$ at $0$ makes $\\sqrt{x}$ outrun any linear rate: $\\delta=\\varepsilon$ fails outright (for $\\varepsilon=10^{-6}$, $x=5\\cdot10^{-7}<\\delta$ already gives $|f(x)|\\approx7\\cdot10^{-4}\\gg\\varepsilon$). One needs $\\delta\\sim\\varepsilon^{2}$. The bound $|x-1|\\le1$ is itself false in general (it breaks for $x>2$); it holds only after the domain restriction $0\\le x<1$, which is exactly why $\\delta$ must carry the extra factor $\\min\\{1,\\cdot\\}$ — a quadratic rate AND a domain clamp, not a plug-in linear one.",
+    "statement": "Define $f(x)=\\dfrac{\\sin 3x}{x}$ for $x<0$, $f(0)=c$, and $f(x)=\\dfrac{e^{2x}-1}{x}$ for $x>0$. Find all real $c$ for which $f$ is continuous at $x=0$.",
+    "answer": "The left limit is $\\lim_{x\\to0^-}\\tfrac{\\sin 3x}{x}=3$ and the right limit is $\\lim_{x\\to0^+}\\tfrac{e^{2x}-1}{x}=2$. Since $3\\neq 2$ the two-sided limit does not exist, so $\\boxed{\\text{no value of }c\\text{ works}}$ (a jump discontinuity).",
+    "trap": "Answering $c=3$ (or $c=2$). A student matches the value to one side only — typically the left, $\\lim_{x\\to0^-}f(x)=3$ — and stops. But continuity at $0$ demands LHL $=$ RHL $=f(0)$ simultaneously; with LHL $=3\\neq2=$ RHL no single $c$ can equal both. Averaging to $c=\\tfrac52$ fails for the same reason.",
     "solutions": [
       {
-        "name": "Asymmetric clamp: restrict domain first, then beat the vertical tangent",
+        "name": "Compute both one-sided limits",
         "steps": [
-          "Setup. Since $D=[0,\\infty)$, the point $c=0$ is a left endpoint; continuity at $0$ means: $\\forall\\varepsilon>0\\ \\exists\\delta>0$ such that $x\\in D,\\ 0\\le x<\\delta\\ \\Rightarrow\\ |f(x)-f(0)|=|\\sqrt{x}\\,(x-1)|<\\varepsilon$. No $x<0$ is ever tested — the condition is genuinely one-sided.",
-          "Tame the cofactor with a side condition. The naive bound $|x-1|\\le1$ is FALSE for $x>2$, so it is not free; impose the domain clamp $x<1$ first. For $0\\le x<1$ we have $0<1-x\\le1$, hence $|x-1|=1-x\\le1$ and therefore $|f(x)|=\\sqrt{x}\\,(1-x)\\le\\sqrt{x}$.",
-          "Beat the vertical tangent (quadratic rate). On $0\\le x<1$ we now need $\\sqrt{x}<\\varepsilon$, i.e. $x<\\varepsilon^{2}$ — the square is forced by $\\sqrt{x}$, not a typo for $\\varepsilon$. Combining the domain clamp with this rate, choose $\\delta=\\min\\{1,\\varepsilon^{2}\\}$.",
-          "Verify both regimes. If $\\varepsilon\\le1$: then $\\delta=\\varepsilon^{2}\\le1$, so $0\\le x<\\delta$ gives $x<1$ (cofactor bound valid) and $\\sqrt{x}<\\sqrt{\\delta}=\\varepsilon$, hence $|f(x)|\\le\\sqrt{x}<\\varepsilon$. If $\\varepsilon>1$: then $\\delta=1$, and for $0\\le x<1$ we have $|f(x)|\\le\\sqrt{x}<1<\\varepsilon$. In all cases $|f(x)-f(0)|<\\varepsilon$, so $f$ is continuous at $0$ with \\[\\boxed{\\delta(\\varepsilon)=\\min\\{1,\\varepsilon^{2}\\}}.\\]"
+          "Left: $\\dfrac{\\sin 3x}{x}=3\\cdot\\dfrac{\\sin 3x}{3x}\\to 3\\cdot1=3$ as $x\\to0^-$.",
+          "Right: $\\dfrac{e^{2x}-1}{x}=2\\cdot\\dfrac{e^{2x}-1}{2x}\\to 2\\cdot1=2$ as $x\\to0^+$.",
+          "For continuity we need $3=c=2$, impossible. Hence $\\boxed{\\text{no }c\\text{ exists}}$ and $0$ is a jump discontinuity."
         ]
       },
       {
-        "name": "Heine sequential criterion (one-sided)",
+        "name": "Series comparison",
         "steps": [
-          "By the Heine criterion adapted to the boundary, $f$ is continuous at $0$ iff $f(x_n)\\to f(0)=0$ for EVERY sequence $x_n\\in D$ with $x_n\\to0$ (necessarily $x_n\\ge0$, since $D=[0,\\infty)$ — no left-approaching sequences exist).",
-          "Factor the limit. For any such $x_n\\to0^{+}$, $\\sqrt{x_n}\\to0$ by continuity of the square root at $0$, while $(x_n-1)\\to-1$ is bounded. A null sequence times a bounded sequence is null: $f(x_n)=\\sqrt{x_n}\\,(x_n-1)\\to0\\cdot(-1)=0=f(0)$.",
-          "Since this holds for every admissible sequence, $f$ is (right-)continuous at $0$. To match the $\\varepsilon$–$\\delta$ form, the boundedness $|x_n-1|\\le1$ used above is licensed only once $x_n<1$ (it fails past $x=2$), and the rate $\\sqrt{x_n}<\\varepsilon$ needs $x_n<\\varepsilon^2$; intersecting gives exactly \\[\\boxed{\\delta(\\varepsilon)=\\min\\{1,\\varepsilon^{2}\\}}.\\]"
-        ]
-      },
-      {
-        "name": "Exact threshold by substitution u=√x (largest δ, then a clean sufficient one)",
-        "steps": [
-          "Substitute $u=\\sqrt{x}\\ge0$, so $f=u(u^{2}-1)$ and $|f|=u(1-u^{2})=u-u^{3}$ for $0\\le u\\le1$ (i.e. $0\\le x\\le1$). This $h(u)=u-u^{3}$ rises from $0$, peaks at $u=1/\\sqrt3$ (value $2\\sqrt3/9\\approx0.385$), so for any target $0<\\varepsilon<2\\sqrt3/9$ the smallest positive solution $u_0$ of $u-u^{3}=\\varepsilon$ gives the LARGEST admissible $\\delta_{\\max}=u_0^{2}$.",
-          "Locate $u_0$. Since $u_0-u_0^{3}=\\varepsilon$ with $0<u_0<1/\\sqrt3$, we have $u_0=\\varepsilon+u_0^{3}>\\varepsilon$, hence $\\delta_{\\max}=u_0^{2}>\\varepsilon^{2}$. The cubic correction is exactly the cofactor $(1-x)$ shaving $f$ below $\\sqrt{x}$, so the true largest $\\delta$ STRICTLY exceeds $\\varepsilon^{2}$ — proof that $\\varepsilon^{2}$ is a safe under-estimate, never an overreach.",
-          "Pick the clean sufficient $\\delta$. Because $\\delta_{\\max}>\\varepsilon^{2}$ (for $\\varepsilon<2\\sqrt3/9$) and the whole analysis lives on $x<1$, the choice $\\delta=\\min\\{1,\\varepsilon^{2}\\}$ is always admissible: it never exceeds $\\delta_{\\max}$ and never leaves the region where $|x-1|\\le1$. For $\\varepsilon\\ge2\\sqrt3/9$ the supremum of $|f|$ on $[0,1)$ is $0.385<\\varepsilon$, so $\\delta=1$ works, consistent with $\\min\\{1,\\varepsilon^{2}\\}=1$. \\[\\boxed{\\delta(\\varepsilon)=\\min\\{1,\\varepsilon^{2}\\}}.\\]"
+          "Near $0$, $\\sin 3x = 3x-\\tfrac{(3x)^3}{6}+\\cdots$, so $\\dfrac{\\sin 3x}{x}=3-\\tfrac{27x^2}{6}+\\cdots\\to3$.",
+          "Also $e^{2x}-1=2x+\\tfrac{(2x)^2}{2}+\\cdots$, so $\\dfrac{e^{2x}-1}{x}=2+2x+\\cdots\\to2$.",
+          "The leading constants $3$ and $2$ differ, so the left and right limits disagree and $\\boxed{\\text{no }c\\text{ makes }f\\text{ continuous}}$."
         ]
       }
     ],
-    "remark": "Insight: at a vertical-tangent point the $\\varepsilon$–$\\delta$ response is governed by the LOCAL RATE of the slowest-decaying factor, not by linear intuition — $\\sqrt{x}$ forces a quadratic $\\delta\\sim\\varepsilon^{2}$, and any linear $\\delta\\sim\\varepsilon$ collapses. Two independent obstructions must be answered at once and combined by a $\\min$: the vertical tangent (handled by $\\varepsilon^{2}$) and the unbounded cofactor (handled by the domain clamp $x<1$, since $|x-1|\\le1$ is a conditional, not universal, fact). The deepest point is that the domain itself is one-sided: $0$ is an endpoint, so the symmetric $0<|x|<\\delta$ language is not merely unnecessary but meaningless, and 'two-sided continuity' is a category error rather than a computation. Continuity here is right-continuity, and the asymmetry is structural, baked into where $\\sqrt{x}$ is allowed to live."
+    "remark": "**Insight.** Continuity at a point is a **three-way agreement**: the left limit, the right limit, and the value must all coincide. When the two one-sided limits already disagree, the discontinuity is a **jump** and **no choice of $f(0)$** can repair it. Matching one side is a half-truth that fools the eye but not the definition."
   },
   {
-    "theme": "epsilondelta",
-    "themeLabel": "The ε–δ Definition",
-    "title": "The Cubic's Three-Term Companion",
+    "theme": "pointcont",
+    "themeLabel": "Continuity at a Point & Piecewise",
+    "title": "Modulus Splits the Limit in Two",
     "difficulty": 4,
-    "task": "Prove that",
+    "task": "Classify the discontinuity",
     "tags": [
-      "epsilon-delta",
-      "cubic",
-      "continuity",
-      "clamping"
+      "modulus",
+      "jump",
+      "one-sided-limits",
+      "factoring"
     ],
-    "statement": "Prove from the $\\varepsilon$–$\\delta$ definition that $f(x)=x^3$ is continuous at an arbitrary point $c\\in\\mathbb{R}$, by exhibiting an explicit $\\delta(\\varepsilon,c)$ that depends only on $\\varepsilon$ and $c$. Verify your formula at $c=2$ with $\\varepsilon=\\tfrac1{10}$.",
-    "answer": "Proved. With $M=(|c|+1)^2+|c|(|c|+1)+c^2=3c^2+3|c|+1$, the choice $\\delta(\\varepsilon,c)=\\min\\!\\left\\{1,\\dfrac{\\varepsilon}{M}\\right\\}$ works. At $c=2$: $M=9+6+4=19$, so for $\\varepsilon=\\tfrac1{10}$, $\\delta=\\min\\{1,\\tfrac1{190}\\}=\\dfrac1{190}\\approx0.005263.$",
-    "trap": "Bounding the factor $|x^2+cx+c^2|$ using $|x|$ without clamping, or assuming $|x^2+cx+c^2|\\le3c^2$ (true only at $x=c$). The cofactor grows with $|x|$, so on $|x-c|<1$ it can reach $3c^2+3|c|+1>3c^2$ (e.g. at $c=2$ it hits $19>12$). You must clamp $|x-c|<1\\Rightarrow|x|<|c|+1$ first, THEN bound each of the three terms by a constant.",
+    "statement": "Let $f(x)=\\dfrac{x^2-4}{\\,|x-2|\\,}$ for $x\\neq 2$. Decide whether $f$ has a removable discontinuity at $x=2$, and if not, name the jump.",
+    "answer": "Writing $x^2-4=(x-2)(x+2)$ and splitting $|x-2|$ by sign gives $\\lim_{x\\to2^-}f=-4$ and $\\lim_{x\\to2^+}f=4$. The one-sided limits differ, so the discontinuity is $\\boxed{\\text{a jump of size }8\\text{ (not removable)}}$.",
+    "trap": "Answering that it is removable with limit $4$. Replacing $|x-2|$ blindly by $x-2$ gives $\\dfrac{(x-2)(x+2)}{x-2}=x+2\\to4$ — but that cancellation is only valid for $x>2$. For $x<2$, $|x-2|=-(x-2)$, so the left side tends to $-4$. The single answer $4$ silently throws away the left half.",
     "solutions": [
       {
-        "name": "Factor the difference of cubes",
+        "name": "Split the absolute value by sign",
         "steps": [
-          "$|x^3-c^3|=|x-c|\\,|x^2+cx+c^2|$.",
-          "Clamp $|x-c|<1\\Rightarrow|x|<|c|+1$. Bound each term: $|x^2|<(|c|+1)^2$, $|cx|<|c|(|c|+1)$, $|c^2|=c^2$.",
-          "Hence $|x^2+cx+c^2|\\le(|c|+1)^2+|c|(|c|+1)+c^2=:M$.",
-          "Choose $\\delta=\\min\\{1,\\varepsilon/M\\}$; then $|x-c|<\\delta\\Rightarrow|x^3-c^3|<M\\cdot\\tfrac\\varepsilon M=\\varepsilon.$ At $c=2$, $M=19$, $\\varepsilon=\\tfrac1{10}\\Rightarrow\\boxed{\\delta=\\tfrac1{190}.}$"
+          "For $x>2$: $|x-2|=x-2$, so $f(x)=\\dfrac{(x-2)(x+2)}{x-2}=x+2\\to4$ as $x\\to2^+$.",
+          "For $x<2$: $|x-2|=-(x-2)$, so $f(x)=\\dfrac{(x-2)(x+2)}{-(x-2)}=-(x+2)\\to-4$ as $x\\to2^-$.",
+          "Since $4\\neq-4$, the two-sided limit fails to exist; $\\boxed{\\text{jump discontinuity of magnitude }8}$."
         ]
       },
       {
-        "name": "Telescoping with the algebraic identity a³−b³",
+        "name": "Substitute $t=x-2$",
         "steps": [
-          "Use $x^3-c^3=(x-c)(x^2+cx+c^2)$ and the substitution $x=c+t$ with $|t|=|x-c|<1$.",
-          "Expand the cofactor: $x^2+cx+c^2=(c+t)^2+c(c+t)+c^2=3c^2+3ct+t^2$.",
-          "Bound: $|3c^2+3ct+t^2|\\le3c^2+3|c|\\,|t|+t^2\\le3c^2+3|c|+1=:M'$ (using $|t|<1$).",
-          "Take $\\delta=\\min\\{1,\\varepsilon/M'\\}$. At $c=2$: $M'=12+6+1=19$, matching, so $\\boxed{\\delta=\\tfrac1{190}}$ for $\\varepsilon=\\tfrac1{10}$ — the two bounds coincide here."
+          "With $t=x-2\\to0$, $f=\\dfrac{t(t+4)}{|t|}=(t+4)\\cdot\\dfrac{t}{|t|}=(t+4)\\,\\mathrm{sgn}(t).$",
+          "As $t\\to0^+$, $\\mathrm{sgn}(t)=+1$ gives $f\\to4$; as $t\\to0^-$, $\\mathrm{sgn}(t)=-1$ gives $f\\to-4$.",
+          "The signum flips the limit's sign across $0$, so $\\boxed{\\text{the discontinuity is a jump, not removable}}$."
         ]
       }
     ],
-    "remark": "Insight: continuity of every polynomial follows from this single template — difference-of-powers factoring plus a clamp that caps the cofactor. The constant $M=3c^2+3|c|+1\\approx3c^2$ for large $|c|$ is exactly $|f'(c)|$, foreshadowing that the local Lipschitz constant IS the derivative; the $\\varepsilon$–$\\delta$ proof secretly computes a crude bound on $f'$."
+    "remark": "**Insight.** A modulus in the denominator is a **disguised signum**: it multiplies the natural cancellation by $\\pm1$ depending on the side. Always cancel **separately on each side of the point**; only if both halves land on the same number is the discontinuity removable. Here they land on opposite signs — a textbook **jump**."
+  },
+  {
+    "theme": "pointcont",
+    "themeLabel": "Continuity at a Point & Piecewise",
+    "title": "Why the Product Heals but Sine Cannot",
+    "difficulty": 4,
+    "task": "Decide which function can be repaired at the origin, and give the value",
+    "tags": [
+      "continuity at a point",
+      "squeeze theorem",
+      "oscillatory limit",
+      "removable vs essential"
+    ],
+    "statement": "Two functions are defined for $x\\neq 0$ by\n$$g(x)=\\sin\\!\\Big(\\tfrac{1}{x}\\Big),\\qquad h(x)=x\\,\\sin\\!\\Big(\\tfrac{1}{x}\\Big).$$\nFor exactly one of them there is a real number $c$ such that assigning the value $c$ at $x=0$ makes the extended function continuous at $x=0$. Determine which function admits such a repair, and give the value of $c$. \\textbf{Hint:} compare the two using the elementary bound $\\big|x\\sin(1/x)\\big|\\le |x|$.",
+    "answer": "\\boxed{h \\text{ is repairable with } c=0;\\ g \\text{ cannot be repaired.}}",
+    "trap": "Treating the two seams the same way. A frequent error is to call $\\sin(1/x)$ repairable because it is bounded (so it \"should settle\" somewhere), or to call $x\\sin(1/x)$ irreparable because $1/x$ blows up. Boundedness alone never forces a limit to exist, while the factor $x\\to 0$ is exactly what squeezes the oscillation down to $0$.",
+    "solutions": [
+      {
+        "name": "Squeeze for $h$, two sequences for $g$",
+        "steps": [
+          "For $h$: since $|\\sin(1/x)|\\le 1$ for every $x\\neq 0$, multiplying by $|x|$ gives $0\\le |h(x)|=|x\\,\\sin(1/x)|\\le |x|$.",
+          "As $x\\to 0$ both outer bounds $0$ and $|x|$ tend to $0$, so by the squeeze theorem $\\lim_{x\\to 0}h(x)=0$. Setting $c=0$ gives $\\lim_{x\\to0}h(x)=c$, so the extended $h$ is continuous at $0$.",
+          "For $g$: take $x_n=\\dfrac{1}{2\\pi n}\\to 0$, where $g(x_n)=\\sin(2\\pi n)=0$, and $y_n=\\dfrac{1}{2\\pi n+\\pi/2}\\to 0$, where $g(y_n)=\\sin\\!\\big(2\\pi n+\\tfrac{\\pi}{2}\\big)=1$.",
+          "Two inputs heading to $0$ give outputs heading to $0$ and to $1$, so $\\lim_{x\\to 0}g(x)$ does not exist; no value $c$ can equal a non-existent limit. Hence only $h$ is repairable, with $c=0$."
+        ]
+      },
+      {
+        "name": "Substitution $t=1/x$ exposes the difference",
+        "steps": [
+          "Put $t=1/x$, so $x\\to 0$ corresponds to $|t|\\to\\infty$, and then $g=\\sin t$ while $h=\\dfrac{\\sin t}{t}$.",
+          "As $|t|\\to\\infty$, $\\sin t$ keeps oscillating between $-1$ and $1$ and approaches no single value, so $\\lim_{x\\to0}g(x)$ fails to exist and $g$ cannot be repaired.",
+          "For $h$, the bound $\\Big|\\dfrac{\\sin t}{t}\\Big|\\le \\dfrac{1}{|t|}\\to 0$ forces $\\lim_{|t|\\to\\infty}\\dfrac{\\sin t}{t}=0$, i.e. $\\lim_{x\\to0}h(x)=0$.",
+          "Therefore assigning $c=0$ makes $h$ continuous at $0$ (and this value is the only one that works), while $g$ admits no such $c$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A removable discontinuity needs a \\emph{limit} to remove, not merely boundedness. $\\sin(1/x)$ stays bounded yet oscillates forever, so it has no limiting value at $0$; multiplying by the vanishing factor $x$ traps the same oscillation inside $\\pm|x|$, and the squeeze collapses it to the genuine limit $0$. The repair is possible exactly when the oscillation is damped to zero."
+  },
+  {
+    "theme": "pointcont",
+    "themeLabel": "Continuity at a Point & Piecewise",
+    "title": "Two Seams, Two Constants",
+    "difficulty": 4,
+    "task": "Find both constants",
+    "tags": [
+      "piecewise",
+      "matching-constants",
+      "two-points",
+      "continuity"
+    ],
+    "statement": "Let $f(x)=\\begin{cases} x+a, & x\\le 1,\\\\[2pt] b\\,x^{2}, & 1<x<2,\\\\[2pt] 5x, & x\\ge 2.\\end{cases}$ Find the constants $a,b$ so that $f$ is continuous on all of $\\mathbb{R}$.",
+    "answer": "Matching at $x=2$: $4b=10\\Rightarrow b=\\tfrac52$. Matching at $x=1$: $1+a=b=\\tfrac52\\Rightarrow a=\\tfrac32$. So $\\boxed{a=\\tfrac32,\\ b=\\tfrac52}$.",
+    "trap": "Solving only the seam $x=1$ ($1+a=b$) and leaving a free parameter, or matching $x=1$ against the wrong branch — e.g. setting $1+a=5\\cdot1=5$ using the $5x$ piece, which does not apply at $x=1$. The middle branch $bx^2$ is the neighbour at $x=1$; the $5x$ branch is the neighbour at $x=2$.",
+    "solutions": [
+      {
+        "name": "Match each seam to its correct neighbour",
+        "steps": [
+          "At $x=2$ the relevant branches are $bx^2$ (left) and $5x$ (right): continuity needs $b(2)^2=5(2)$, i.e. $4b=10$, so $b=\\tfrac52.$",
+          "At $x=1$ the branches are $x+a$ (left) and $bx^2$ (right): continuity needs $1+a=b(1)^2=b$, so $a=b-1=\\tfrac52-1=\\tfrac32.$",
+          "Each branch is itself continuous, so with these values $f$ is continuous everywhere: $\\boxed{a=\\tfrac32,\\ b=\\tfrac52}.$"
+        ]
+      },
+      {
+        "name": "One-sided limits at both points",
+        "steps": [
+          "At $x=2$: $\\lim_{x\\to2^-}bx^2=4b$ and $f(2)=\\lim_{x\\to2^+}5x=10$; equate to get $b=\\tfrac52.$",
+          "At $x=1$: $f(1)=\\lim_{x\\to1^-}(x+a)=1+a$ and $\\lim_{x\\to1^+}bx^2=b$; equate to get $1+a=\\tfrac52.$",
+          "Hence $a=\\tfrac32$, $b=\\tfrac52$, giving $\\boxed{a=\\tfrac32,\\ b=\\tfrac52}.$"
+        ]
+      }
+    ],
+    "remark": "**Insight.** A piecewise function with two seams needs **one equation per seam**, and each seam must be matched against its **immediate neighbour**, not a distant branch. Solve the seam that involves a single unknown first ($x=2$ fixes $b$), then propagate to the other ($x=1$ fixes $a$). Order turns two coupled conditions into a clean chain."
+  },
+  {
+    "theme": "pointcont",
+    "themeLabel": "Continuity at a Point & Piecewise",
+    "title": "An Exponential Hidden in a Power",
+    "difficulty": 5,
+    "task": "Find the continuous value",
+    "tags": [
+      "exponential-limit",
+      "logarithm",
+      "removable",
+      "composite"
+    ],
+    "statement": "Let $f(x)=\\bigl(1+\\sin 2x\\bigr)^{1/x}$ for $x>0$, with $f(0)$ to be defined. Find the value $f(0)=L$ that makes $f$ right-continuous at $x=0$.",
+    "answer": "Taking logarithms, $\\dfrac{1}{x}\\ln(1+\\sin 2x)\\to 2$ as $x\\to0^+$, so $\\displaystyle\\lim_{x\\to0^+}f(x)=e^{2}$ and continuity forces $\\boxed{L=e^{2}}$.",
+    "trap": "Answering $L=e$. A reader replaces $\\sin 2x$ by $2x$ inside, writes $(1+2x)^{1/x}$, then misremembers the standard limit as $e^{1}$ — dropping the factor $2$. The exponent is $\\lim \\tfrac1x\\ln(1+\\sin2x)=2$, giving $e^{2}$, not $e$. Forgetting the angle's coefficient halves the exponent.",
+    "solutions": [
+      {
+        "name": "Logarithm then exponentiate",
+        "steps": [
+          "Let $y=f(x)$. Then $\\ln y=\\dfrac{\\ln(1+\\sin 2x)}{x}.$",
+          "As $x\\to0^+$: $\\dfrac{\\ln(1+\\sin 2x)}{\\sin 2x}\\to1$ and $\\dfrac{\\sin 2x}{x}\\to2$, so $\\ln y\\to 1\\cdot2=2.$",
+          "Since $\\exp$ is continuous, $y\\to e^{2}$, hence $\\boxed{L=e^{2}}.$"
+        ]
+      },
+      {
+        "name": "$1^{\\infty}$ standard form",
+        "steps": [
+          "The base $\\to1$ and exponent $\\to\\infty$, a $1^{\\infty}$ form; use $\\lim (1+u)^{1/u}=e$ with $u=\\sin 2x$.",
+          "Write $f=\\Bigl[(1+\\sin 2x)^{1/\\sin 2x}\\Bigr]^{\\sin 2x/x}$. The bracket $\\to e$ and the outer exponent $\\sin 2x/x\\to2$.",
+          "Therefore $f\\to e^{2}$, so $\\boxed{L=e^{2}}.$"
+        ]
+      }
+    ],
+    "remark": "**Insight.** A $1^{\\infty}$ limit is decided **entirely by the exponent** $\\lim\\tfrac1x\\ln(\\text{base})$, and that logarithm linearizes the inner function: $\\sin 2x$ behaves like $2x$, so the surviving constant is $2$. The continuity of $\\exp$ then transports the limit through the power. Lose the coefficient and you lose the answer."
+  },
+  {
+    "theme": "pointcont",
+    "themeLabel": "Continuity at a Point & Piecewise",
+    "title": "An Exponential Glued to a Square Root",
+    "difficulty": 5,
+    "task": "Find the gluing constant",
+    "tags": [
+      "piecewise",
+      "one-sided-limits",
+      "exponential",
+      "rationalization",
+      "gluing-constant"
+    ],
+    "statement": "Let $a$ be a real constant and define\n$$f(x)=\\begin{cases}\\dfrac{1-\\cos 2x}{x\\,\\sin 3x},& x<0,\\\\[2mm] \\dfrac{2}{3},& x=0,\\\\[2mm] \\dfrac{e^{a x}-1}{\\sqrt{1+x}-1},& x>0.\\end{cases}$$\nThere is exactly one value of $a$ for which $f$ is continuous at $x=0$. Find it.",
+    "answer": "The left limit is $\\tfrac23$ (which already matches $f(0)$), while the right limit equals $2a$; continuity forces $2a=\\tfrac23$, so $\\boxed{a=\\dfrac13}$.",
+    "trap": "Answering $a=\\tfrac23$. This comes from approximating $\\sqrt{1+x}-1\\approx x$ in the right-hand piece, which together with $e^{ax}-1\\approx ax$ gives the (wrong) right limit $a$, seemingly matched by setting $a=\\tfrac23=f(0)$. But $\\sqrt{1+x}-1\\sim \\tfrac{x}{2}$, not $x$: the correct right limit is $\\dfrac{ax}{x/2}=2a$. With $a=\\tfrac23$ the right limit is $\\tfrac43\\neq f(0)$, so the function is actually discontinuous from the right. Matching $f(0)$ to a mis-expanded one-sided limit is exactly the snare.",
+    "solutions": [
+      {
+        "name": "Rationalize the right piece, standard limit on the left",
+        "steps": [
+          "Left limit ($x\\to0^-$): write $1-\\cos 2x=2\\sin^2 x$, so $\\dfrac{1-\\cos2x}{x\\sin3x}=\\dfrac{2\\sin^2 x}{x\\sin 3x}=2\\cdot\\dfrac{\\sin x}{x}\\cdot\\dfrac{\\sin x}{3x}\\cdot\\dfrac{3x}{\\sin 3x}\\to 2\\cdot1\\cdot\\tfrac13\\cdot1=\\tfrac23.$ This already equals $f(0)=\\tfrac23$.",
+          "Right limit ($x\\to0^+$): multiply numerator and denominator of $\\dfrac{e^{ax}-1}{\\sqrt{1+x}-1}$ by the conjugate $\\sqrt{1+x}+1$. The denominator becomes $(1+x)-1=x$, giving $\\dfrac{(e^{ax}-1)\\,(\\sqrt{1+x}+1)}{x}.$",
+          "Split as $\\dfrac{e^{ax}-1}{ax}\\cdot a\\cdot(\\sqrt{1+x}+1)$. As $x\\to0^+$, $\\dfrac{e^{ax}-1}{ax}\\to1$ and $\\sqrt{1+x}+1\\to2$, so the right limit is $a\\cdot 2=2a.$",
+          "Continuity at $0$ requires left limit $=$ value $=$ right limit, i.e. $\\tfrac23=\\tfrac23=2a$. Hence $2a=\\tfrac23$ and $\\boxed{a=\\dfrac13}.$"
+        ]
+      },
+      {
+        "name": "First-order (Taylor) comparison of both seams",
+        "steps": [
+          "Near $0$: $1-\\cos2x=2x^2+o(x^2)$ and $\\sin3x=3x+o(x)$, so the left expression is $\\dfrac{2x^2+o(x^2)}{x(3x+o(x))}=\\dfrac{2x^2}{3x^2}+o(1)\\to\\tfrac23$, matching $f(0)=\\tfrac23.$",
+          "For the right piece use $e^{ax}-1=ax+o(x)$ and $\\sqrt{1+x}-1=\\tfrac{x}{2}+o(x)$ (the binomial series, where the $\\tfrac12$ is essential).",
+          "Therefore $\\dfrac{e^{ax}-1}{\\sqrt{1+x}-1}=\\dfrac{ax+o(x)}{\\tfrac{x}{2}+o(x)}\\to\\dfrac{a}{1/2}=2a$ as $x\\to0^+.$",
+          "Setting the right limit equal to the common value $\\tfrac23$ gives $2a=\\tfrac23$, so $\\boxed{a=\\dfrac13}.$"
+        ]
+      }
+    ],
+    "remark": "**Insight.** Gluing a piecewise function at a point is a three-way handshake: $\\text{LHL}=f(a)=\\text{RHL}$, and every one of the three must be checked. Here the value and the left limit conspire to look settled at $\\tfrac23$, tempting you to read off $a$ from a careless expansion of the right branch. The whole problem hides in a single coefficient: $\\sqrt{1+x}-1$ behaves like $\\tfrac{x}{2}$, not $x$. Honour that factor of $\\tfrac12$ and the unique gluing constant $a=\\tfrac13$ falls out; forget it and you match the value while silently breaking the right-hand limit."
+  },
+  {
+    "theme": "pointcont",
+    "themeLabel": "Continuity at a Point & Piecewise",
+    "title": "A Sign Wraps a Hidden Hole",
+    "difficulty": 5,
+    "task": "Find every point where the composite $g(f(x))$ fails to be continuous, and classify each failure.",
+    "tags": [
+      "composite",
+      "sgn",
+      "removable",
+      "jump",
+      "one-sided-limits"
+    ],
+    "statement": "Let $f(x)=\\dfrac{x^{2}-x}{x-1}$ for $x\\neq 1$, with the value at the gap \\textbf{assigned} to be $f(1)=0$. Let $g(u)=\\operatorname{sgn}(u)$, so $g(u)=-1,0,1$ according as $u<0$, $u=0$, $u>0$. Define the composite $H(x)=g\\bigl(f(x)\\bigr)$ for all real $x$. Determine every point at which $H$ is discontinuous, and classify each discontinuity as removable or a jump.",
+    "answer": "$\\boxed{H \\text{ is discontinuous at } x=0 \\text{ (jump) and } x=1 \\text{ (removable).}}$",
+    "trap": "Composing limits blindly: $\\lim_{x\\to 1}g(f(x))\\stackrel{?}{=}g\\bigl(\\lim_{x\\to1}f(x)\\bigr)=g(1)=1$, and then mistaking the \\emph{assigned} value $f(1)=0$ for the limiting value $1$, one declares $H$ continuous at $x=1$ and reports only $\\{x=0\\}$. The assignment $f(1)=0$ (not $1$) makes $H(1)=g(0)=0\\neq 1$, so $x=1$ is a genuine removable discontinuity.",
+    "solutions": [
+      {
+        "name": "Simplify the inner map, then read off $\\operatorname{sgn}$",
+        "steps": [
+          "For $x\\neq 1$, $f(x)=\\dfrac{x(x-1)}{x-1}=x$. So $f(x)=x$ on $x\\neq 1$, while $f(1)=0$ is assigned separately; thus $f$ itself is discontinuous at $x=1$ (limit $1$, value $0$).",
+          "Hence for $x\\neq 1$, $H(x)=\\operatorname{sgn}(x)$, which equals $-1$ for $x<0$, $0$ at $x=0$, and $+1$ for $x>0$. Separately $H(1)=\\operatorname{sgn}(f(1))=\\operatorname{sgn}(0)=0$.",
+          "At $x=0$: $\\lim_{x\\to0^-}H=-1$ and $\\lim_{x\\to0^+}H=+1$ disagree, so the two-sided limit does not exist — a \\textbf{jump} discontinuity.",
+          "At $x=1$: for $x$ near $1$ (and $x\\neq1$) we have $H(x)=\\operatorname{sgn}(x)=+1$, so $\\lim_{x\\to1}H(x)=1$, but $H(1)=0$. The limit exists yet differs from the value — a \\textbf{removable} discontinuity. Everywhere else $\\operatorname{sgn}$ is locally constant, so $H$ is continuous. Answer: $x=0$ (jump), $x=1$ (removable)."
+        ]
+      },
+      {
+        "name": "One-sided limits of the composite directly",
+        "steps": [
+          "Track the inner value: as $x\\to 0^-$, $f(x)=x\\to 0^-$, so $g(f(x))=\\operatorname{sgn}(x)\\to -1$; as $x\\to 0^+$, $g(f(x))\\to +1$, while $H(0)=g(0)=0$. The one-sided limits differ, giving a jump at $x=0$.",
+          "As $x\\to 1$ (both sides, $x\\neq1$), $f(x)=x$ stays positive and bounded away from $0$, so $g(f(x))=+1$ on a punctured neighbourhood; thus $\\lim_{x\\to1}H(x)=1$.",
+          "But $H(1)=g\\bigl(f(1)\\bigr)=g(0)=0$. Since $\\lim_{x\\to1}H(x)=1\\neq 0=H(1)$ and the limit exists, $x=1$ is removable (redefining $H(1)=1$ would restore continuity).",
+          "For any $a\\notin\\{0,1\\}$, $f$ is continuous at $a$ with $f(a)=a\\neq0$, and $g$ is continuous at $f(a)$ (it is locally constant there), so $H$ is continuous at $a$. Therefore the only failures are $x=0$ (jump) and $x=1$ (removable)."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A step like $\\operatorname{sgn}$ is continuous \\emph{except} where its argument crosses the jump value $0$, and a removable hole in the inner map travels through the composite as a removable defect of its own. So $H$ can break for two independent reasons — the outer sign flipping at $x=0$, and the inner assignment disagreeing with its limit at $x=1$ — and the law $\\lim g(f)=g(\\lim f)$ is licensed only when $g$ is continuous at $\\lim f$, which fails precisely at these seams."
+  },
+  {
+    "theme": "pointcont",
+    "themeLabel": "Continuity at a Point & Piecewise",
+    "title": "A Logarithm of Cosine, Patched",
+    "difficulty": 5,
+    "task": "Find the patch value",
+    "tags": [
+      "logarithm",
+      "removable",
+      "trigonometric",
+      "series"
+    ],
+    "statement": "Let $f(x)=\\dfrac{\\ln(\\cos x)}{x^{2}}$ for $x\\neq0$ near the origin. Find the value $f(0)=L$ that makes $f$ continuous at $x=0$.",
+    "answer": "Since $\\ln(\\cos x)\\sim-\\tfrac{x^2}{2}$ as $x\\to0$, $\\displaystyle\\lim_{x\\to0}f(x)=-\\tfrac12$, so continuity forces $\\boxed{L=-\\dfrac12}$.",
+    "trap": "Answering $L=0$. Both $\\ln(\\cos x)\\to0$ and $x^2\\to0$, and a hasty reader calls the ratio $0$. It is a $\\tfrac00$ form whose true value is $-\\tfrac12$. A second slip is reporting $L=+\\tfrac12$, dropping the minus sign that comes from $\\cos x<1$ making $\\ln(\\cos x)$ negative.",
+    "solutions": [
+      {
+        "name": "Series expansion",
+        "steps": [
+          "$\\cos x=1-\\tfrac{x^2}{2}+\\tfrac{x^4}{24}-\\cdots$, so with $u=\\cos x-1=-\\tfrac{x^2}{2}+\\cdots$ we use $\\ln(1+u)=u-\\tfrac{u^2}{2}+\\cdots$.",
+          "Thus $\\ln(\\cos x)=-\\tfrac{x^2}{2}+\\tfrac{x^4}{24}-\\tfrac12\\!\\left(-\\tfrac{x^2}{2}\\right)^2+\\cdots=-\\tfrac{x^2}{2}+O(x^4).$",
+          "Dividing by $x^2$ gives $-\\tfrac12+O(x^2)\\to-\\tfrac12$, so $\\boxed{L=-\\dfrac12}.$"
+        ]
+      },
+      {
+        "name": "Reduce to standard limits",
+        "steps": [
+          "Write $f(x)=\\dfrac{\\ln(1+(\\cos x-1))}{\\cos x-1}\\cdot\\dfrac{\\cos x-1}{x^2}.$",
+          "As $x\\to0$, the first factor $\\to1$ (since $\\cos x-1\\to0$), and $\\dfrac{\\cos x-1}{x^2}\\to-\\tfrac12.$",
+          "The product of limits is $1\\cdot(-\\tfrac12)=-\\tfrac12$, so $\\boxed{L=-\\dfrac12}.$"
+        ]
+      }
+    ],
+    "remark": "**Insight.** Continuity here is a **second-order measurement**: dividing by $x^2$ probes the curvature of $\\ln(\\cos x)$ at $0$. The leading term $-\\tfrac{x^2}{2}$ survives; everything else is higher order. The sign is not decoration — $\\cos x<1$ forces $\\ln(\\cos x)<0$, so the patch value is genuinely **negative**."
   },
   {
     "theme": "types",
@@ -480,39 +398,38 @@ window.PROBLEMS = [
   {
     "theme": "types",
     "themeLabel": "Classifying Discontinuities",
-    "title": "Twin Floors at War",
+    "title": "The Absolute Value Splits the Factor",
     "difficulty": 3,
-    "task": "Determine the type and count",
+    "task": "Classify the discontinuity at the indicated point.",
     "tags": [
-      "floor",
-      "removable",
-      "count",
-      "piecewise"
+      "classifying-discontinuities",
+      "jump-discontinuity",
+      "one-sided-limits",
+      "absolute-value",
+      "rational-functions"
     ],
-    "statement": "Define $g(x)=\\lfloor x\\rfloor+\\lfloor -x\\rfloor$ for all real $x$. Determine the type of discontinuity of $g$ at a typical integer, and find the number of points of $(-2,\\,3)$ at which $g$ is discontinuous.",
-    "answer": "For non-integer $x$, $g(x)=-1$; for integer $x$, $g(x)=0$. At every integer $n$ both one-sided limits equal $-1$, so the two-sided limit $\\lim_{x\\to n}g(x)=-1$ exists but differs from $g(n)=0$. Hence each integer is a removable discontinuity. The integers inside $(-2,3)$ are $-1,0,1,2$, giving $\\boxed{4}$ discontinuities, each removable.",
-    "trap": "Believing $\\lfloor x\\rfloor+\\lfloor -x\\rfloor=0$ for all $x$ (the 'odd-function' reflex). That holds only at integers; for non-integers $\\lfloor -x\\rfloor=-\\lfloor x\\rfloor-1$, giving $-1$. Missing this makes you declare $g\\equiv0$ continuous. A second, subtler trap is to call the integer discontinuities 'jumps': a jump needs the two one-sided limits to be unequal, but here they coincide at $-1$, so the break is removable, not a jump.",
+    "statement": "Consider the function $f(x) = \\dfrac{x^2 - 9}{|x - 3|}$, defined for all $x \\neq 3$. The numerator vanishes at $x = 3$, exactly where the denominator does, so a careless reader may expect the $(x-3)$ factor to cancel and leave behind a \\emph{removable} discontinuity. Classify the discontinuity of $f$ at $x = 3$ as removable, jump, or infinite, justifying your choice with the appropriate one-sided behaviour.",
+    "answer": "\\boxed{\\text{Jump discontinuity (one-sided limits } +6 \\text{ and } -6)}",
+    "trap": "Removable. The reasoning is that $x^2-9=(x-3)(x+3)$ shares the factor $(x-3)$ with the denominator, so it cancels to give the limit $x+3 \\to 6$, making the single hole fillable. This is wrong because the denominator is $|x-3|$, not $(x-3)$: the absolute value forces a sign flip on the left side, so the two one-sided limits are $\\pm 6$, not a common value.",
     "solutions": [
       {
-        "name": "Identity for the floor of a negative",
+        "name": "Split the absolute value by side",
         "steps": [
-          "For non-integer $x$, $\\lfloor -x\\rfloor=-\\lceil x\\rceil=-\\lfloor x\\rfloor-1$, so $g(x)=\\lfloor x\\rfloor+(-\\lfloor x\\rfloor-1)=-1$.",
-          "For integer $x$, $\\lfloor -x\\rfloor=-x$ and $\\lfloor x\\rfloor=x$, so $g(x)=0$.",
-          "Thus $g\\equiv-1$ on a punctured neighbourhood of any integer $n$ while $g(n)=0$. Both one-sided limits equal $-1$, so the two-sided limit $\\lim_{x\\to n}g(x)=-1$ exists; since it differs from $g(n)=0$, the discontinuity is removable (redefining $g(n):=-1$ would heal it).",
-          "Integers inside $(-2,3)$ are $-1,0,1,2$: $\\boxed{4}$ removable discontinuities."
+          "Factor the numerator: $x^2-9=(x-3)(x+3)$. For $x>3$ we have $|x-3|=x-3$, so $f(x)=\\dfrac{(x-3)(x+3)}{x-3}=x+3$, giving $\\lim_{x\\to 3^+}f(x)=6$.",
+          "For $x<3$ we have $|x-3|=-(x-3)$, so $f(x)=\\dfrac{(x-3)(x+3)}{-(x-3)}=-(x+3)$, giving $\\lim_{x\\to 3^-}f(x)=-6$.",
+          "Both one-sided limits are finite but unequal ($6\\neq-6$), so the two-sided limit does not exist while neither side blows up. By definition this is a $\\textbf{jump discontinuity}$, with jump $6-(-6)=12$, reaching $\\boxed{\\text{Jump discontinuity (one-sided limits } +6 \\text{ and } -6)}$."
         ]
       },
       {
-        "name": "Direct one-sided evaluation",
+        "name": "Rewrite using the sign function",
         "steps": [
-          "At any integer $n$: for $x\\to n^{-}$ and $x\\to n^{+}$, $x$ is non-integer, so $g\\to-1$ from both sides.",
-          "Because the left and right limits are equal ($-1=-1$), the limit exists; a jump would require them to differ, which never happens here.",
-          "But $g(n)=0\\neq-1$, so the function value disagrees with the (existing) limit: this is precisely a removable discontinuity, never a jump or an essential singularity.",
-          "Counting integers strictly between $-2$ and $3$: $\\{-1,0,1,2\\}\\Rightarrow\\boxed{4}$."
+          "For $x\\neq 3$, write $|x-3|=(x-3)\\,\\operatorname{sgn}(x-3)$. Then $f(x)=\\dfrac{(x-3)(x+3)}{(x-3)\\,\\operatorname{sgn}(x-3)}=\\dfrac{x+3}{\\operatorname{sgn}(x-3)}=(x+3)\\,\\operatorname{sgn}(x-3)$.",
+          "As $x\\to 3$, the factor $x+3\\to 6$ (finite and continuous), while $\\operatorname{sgn}(x-3)$ jumps from $-1$ on the left to $+1$ on the right. Hence the product jumps from $6\\cdot(-1)=-6$ to $6\\cdot(+1)=+6$.",
+          "The finite, unequal one-sided limits $-6$ and $+6$ mean the discontinuity is neither removable (limit doesn't exist) nor infinite (limits are finite); it is a $\\textbf{jump discontinuity}$, giving $\\boxed{\\text{Jump discontinuity (one-sided limits } +6 \\text{ and } -6)}$."
         ]
       }
     ],
-    "remark": "The graph sits at level $-1$ everywhere except for isolated points lifted to $0$ at every integer, a comb of identical punctures. Each puncture is removable because the surrounding values close in on a single height $-1$; the lone mismatch is the function value itself. The lesson: $\\lfloor -x\\rfloor\\neq-\\lfloor x\\rfloor$ off the integers, and when both one-sided limits agree, the break is removable, not a jump."
+    "remark": "**Insight.** The deciding factor is whether the cancelled denominator carries a sign. With $(x-3)$ in the denominator the hole truly cancels and the discontinuity is removable; replacing it by $|x-3|$ injects a $\\operatorname{sgn}(x-3)$ that survives cancellation, converting the would-be hole into a genuine jump. Always check the denominator's sign on each side before declaring a shared factor 'cancellable'."
   },
   {
     "theme": "types",
@@ -555,50 +472,78 @@ window.PROBLEMS = [
   {
     "theme": "types",
     "themeLabel": "Classifying Discontinuities",
-    "title": "The Dirichlet Function Assembled From Continuous Bricks",
-    "difficulty": 5,
-    "task": "Classify and count",
+    "title": "Same Reciprocal, Different Souls",
+    "difficulty": 4,
+    "task": "Classify each",
     "tags": [
-      "essential-discontinuity",
-      "pointwise-limit",
-      "dirichlet-function",
-      "double-limit",
-      "nowhere-continuous",
-      "order-of-limits"
+      "essential",
+      "jump",
+      "one-sided-limits",
+      "exponential",
+      "arctan"
     ],
-    "statement": "For integers $m,n\\ge 1$ define the perfectly continuous building block\n\\[\nF_{m,n}(x)=\\cos^{2n}\\!\\big(m!\\,\\pi x\\big),\\qquad x\\in\\mathbb{R}.\n\\]\nForm the iterated limit (inner limit in $n$, outer limit in $m$)\n\\[\nf(x)=\\lim_{m\\to\\infty}\\ \\Big(\\lim_{n\\to\\infty}\\cos^{2n}\\!\\big(m!\\,\\pi x\\big)\\Big).\n\\]\nFirst show this $f$ is well defined for every real $x$. Then classify the discontinuity of $f$ (removable, jump, or essential) at a rational point $a\\in\\mathbb{Q}$ and at an irrational point $a\\notin\\mathbb{Q}$, and count the discontinuities of $f$ on $\\mathbb{R}$. Finally explain the apparent paradox: every brick $F_{m,n}$ is continuous on all of $\\mathbb{R}$, yet the limit object $f$ is continuous nowhere. A tempting shortcut declares $f$ removably discontinuous at each rational (\"just lower the spike\"); decide whether that is correct.",
-    "answer": "\\[\\boxed{\\;f=\\mathbf{1}_{\\mathbb{Q}};\\ \\text{essential discontinuity at every }a\\in\\mathbb{R};\\ \\#=\\text{uncountable}\\;}\\]",
-    "trap": "Seeing $f(a)=1$ at a rational $a$ while $f$ is $0$ at the irrationals crowding around it, a strong student pictures an isolated upward \"spike\" and labels it removable — \"just redefine $f(a)=0$ and continuity is restored.\" This silently assumes $\\lim_{x\\to a}f(x)$ exists (equal to $0$). It does not: every punctured neighbourhood of $a$ also contains rationals where $f=1$, so the limit fails to exist on both sides. Removability requires an existing two-sided limit that merely disagrees with the value; here NO finite limit exists, so the discontinuity is essential, not removable — and editing one value (or even countably many) cannot mend a limit that fails at every point.",
+    "statement": "At $x=0$, classify the discontinuity of each function: \\[ u(x)=e^{1/x},\\qquad v(x)=\\arctan\\!\\frac1x,\\qquad w(x)=\\frac{1}{1+e^{1/x}}. \\] For each, decide removable / jump / essential, justifying with one-sided limits.",
+    "answer": "$u$: essential — $\\lim_{x\\to0^-}u=0$ but $\\lim_{x\\to0^+}u=+\\infty$ (one side infinite). $v$: jump — $\\lim_{x\\to0^-}v=-\\tfrac\\pi2$, $\\lim_{x\\to0^+}v=+\\tfrac\\pi2$ (both finite, unequal). $w$: jump — $\\lim_{x\\to0^-}w=1$, $\\lim_{x\\to0^+}w=0$ (both finite, unequal).",
+    "trap": "Lumping all three together because they share the term $1/x$. The behaviour depends on the OUTER function: $e^{(\\cdot)}$ sends $+\\infty\\mapsto\\infty$ (essential), while $\\arctan$ and the logistic squash $\\pm\\infty$ to finite values (jumps). Assuming '$1/x$ inside $\\Rightarrow$ essential' is wrong.",
     "solutions": [
       {
-        "name": "Evaluate the double limit, then read off the type",
+        "name": "One-sided limits of $1/x$ pushed through",
         "steps": [
-          "Inner limit (in $n$, $m$ fixed). For fixed $m$ put $\\theta=m!\\,\\pi x$. If $\\cos\\theta=\\pm1$ then $\\cos^{2n}\\theta=1$ for all $n$; otherwise $0\\le\\cos^{2}\\theta<1$ and $\\cos^{2n}\\theta\\to0$. Now $\\cos(m!\\pi x)=\\pm1\\iff m!\\,x\\in\\mathbb{Z}$. Hence $h_m(x):=\\lim_{n\\to\\infty}\\cos^{2n}(m!\\pi x)=\\mathbf{1}\\{m!\\,x\\in\\mathbb{Z}\\}$, the indicator of the arithmetic \"comb\" $\\{k/m!:k\\in\\mathbb{Z}\\}$.",
-          "Outer limit (in $m$). If $x=p/q\\in\\mathbb{Q}$ (lowest terms), then $q\\mid m!$ for every $m\\ge q$, so $m!\\,x\\in\\mathbb{Z}$ and $h_m(x)=1$ for all large $m$; thus $f(x)=1$. If $x\\notin\\mathbb{Q}$, then $m!\\,x$ is never an integer, so $h_m(x)=0$ for every $m$; thus $f(x)=0$. Therefore $f=\\mathbf{1}_{\\mathbb{Q}}$ is exactly the Dirichlet function, and it is well defined everywhere.",
-          "Classify at any $a$. Between any two reals lie both a rational and an irrational, so every interval $(a-\\delta,a)$ and $(a,a+\\delta)$ contains points where $f=1$ and points where $f=0$. Hence neither one-sided limit exists (the values cluster at both $0$ and $1$). No one-sided limit existing rules out removable (needs a two-sided limit) and rules out jump (needs both one-sided limits to exist). What remains is essential.",
-          "Count. The argument used no special feature of $a$, so $f$ is discontinuous at $every$ real number. The discontinuity set is all of $\\mathbb{R}$, an uncountable set: $f$ is nowhere continuous. $f$ has an essential discontinuity at every $a\\in\\mathbb{R}$; the discontinuity set is $\\mathbb{R}$ (uncountably many)."
+          "As $x\\to0^+$, $1/x\\to+\\infty$; as $x\\to0^-$, $1/x\\to-\\infty$.",
+          "$u$: $e^{+\\infty}=+\\infty$, $e^{-\\infty}=0$ — one side infinite $\\Rightarrow$ essential.",
+          "$v$: $\\arctan(+\\infty)=\\tfrac\\pi2$, $\\arctan(-\\infty)=-\\tfrac\\pi2$ — finite and unequal $\\Rightarrow$ jump of size $\\pi$.",
+          "$w$: $\\frac{1}{1+e^{+\\infty}}=0$, $\\frac{1}{1+e^{-\\infty}}=\\frac1{1+0}=1$ — finite and unequal $\\Rightarrow$ jump. $\\boxed{u\\text{ essential},\\ v\\text{ jump},\\ w\\text{ jump}}$"
         ]
       },
       {
-        "name": "Oscillation criterion (quantitative essential test)",
+        "name": "Boundedness test",
         "steps": [
-          "Recall the oscillation of $g$ at $a$: $\\omega(g,a)=\\lim_{\\delta\\to0^+}\\big(\\sup_{|x-a|<\\delta} g(x)-\\inf_{|x-a|<\\delta} g(x)\\big)$. A point $a$ is a continuity point iff $\\omega(g,a)=0$; if $\\omega(g,a)>0$ the discontinuity is essential whenever, additionally, no one-sided limit exists (oscillatory rather than a clean jump).",
-          "Take $f=\\mathbf{1}_{\\mathbb{Q}}$ from Method 1. For every $\\delta>0$ and every $a$, the ball $(a-\\delta,a+\\delta)$ contains a rational (so $\\sup f=1$) and an irrational (so $\\inf f=0$). Thus $\\omega(f,a)=1$ for all $a$.",
-          "Since $\\omega(f,a)=1>0$ at every $a$, $f$ is discontinuous everywhere. Moreover the supremum $1$ and infimum $0$ are attained in BOTH the left and the right half-neighbourhoods, so each one-sided limit oscillates between $0$ and $1$ and fails to exist; this is the essential (second-kind) signature, not a jump (a jump would give existing, unequal one-sided limits) and not removable ($\\omega=0$ would be required after a single redefinition, impossible here).",
-          "Constant positive oscillation at every point is the maximal possible failure for a $\\{0,1\\}$-valued function. So the discontinuity is essential at all of $\\mathbb{R}$, uncountably many points. $f$ is essentially discontinuous at every real; discontinuity set $=\\mathbb{R}$."
-        ]
-      },
-      {
-        "name": "Why continuous bricks fail: order of limits and Baire",
-        "steps": [
-          "Each brick $F_{m,n}(x)=\\cos^{2n}(m!\\pi x)$ is a finite power of a cosine, hence continuous on $\\mathbb{R}$ for every fixed $(m,n)$. Continuity of $f$ would follow ONLY if the convergence $F_{m,n}\\to f$ were uniform; it is merely pointwise, and the uniform limit theorem does not apply — pointwise limits of continuous functions need not be continuous.",
-          "The failure is genuine and is sharpened by where the breakage enters: the inner limit $h_m=\\lim_n F_{m,n}=\\mathbf{1}\\{m!x\\in\\mathbb{Z}\\}$ is already discontinuous, with essential discontinuities exactly on the comb $\\{k/m!\\}$. As $m$ grows the combs nest and their union sweeps out $\\mathbb{Q}$, so the outer limit promotes a sparse comb of breaks into a dense, everywhere essential break set. (The order matters: taking the limits in the swapped order $\\lim_n\\lim_m$ would require $\\lim_m\\cos^{2n}(m!\\pi x)$ to exist for fixed $n$, which fails at typical irrationals — so only this order yields a well-defined $f$.)",
-          "A structural confirmation via Baire category: a pointwise limit of continuous functions (a Baire class $1$ function) must have a DENSE set of continuity points. If $f$ were such a limit AND essential everywhere, it would have no continuity points — contradicting Baire. Indeed $\\mathbf{1}_{\\mathbb{Q}}$ is Baire class $2$, not class $1$; it cannot be a pointwise limit of continuous functions in ONE step, which is precisely why the construction needs the DOUBLE limit $\\lim_m\\lim_n$.",
-          "Thus continuity of each brick is fully compatible with $f$ being nowhere continuous, and the discontinuity is essential at every point. $f$ is nowhere continuous with an essential discontinuity at every $a\\in\\mathbb{R}$; the discontinuity set is all of $\\mathbb{R}$."
+          "A discontinuity is a jump iff BOTH one-sided limits exist finitely; it is essential if some one-sided limit is infinite or fails to exist.",
+          "$\\arctan$ and the logistic are bounded, so feeding them $1/x$ yields finite one-sided limits — both $v,w$ are jumps.",
+          "$e^{1/x}$ is unbounded as $x\\to0^+$, breaking finiteness on the right — $u$ is essential.",
+          "$\\boxed{u\\text{ essential},\\ v\\text{ jump},\\ w\\text{ jump}}$"
         ]
       }
     ],
-    "remark": "Insight: continuity is not preserved by pointwise limits, and this example is the loudest possible witness — continuous bricks, one limit, then a second limit, and out drops the nowhere-continuous Dirichlet function. The double limit is not decoration: a single pointwise limit of continuous functions is Baire class 1 and (by Baire) must be continuous on a dense set, so it can never be essential everywhere; $\\mathbf{1}_{\\mathbb{Q}}$ is Baire class 2 and genuinely requires $\\lim_m\\lim_n$. The order of the limits is load-bearing too: only inner-$n$/outer-$m$ is well defined. The trap — \"redefine the rational spikes and it heals\" — confuses a value mismatch (removable) with a missing limit (essential): when the limit fails at every point, no countable surgery can restore continuity, because the oscillation $\\omega(f,a)=1$ persists at every $a$."
+    "remark": "The reciprocal $1/x$ only supplies the divergent input $\\pm\\infty$; the outer function decides the fate. Bounded outer functions convert a pole into a finite jump; an unbounded one keeps it essential. Always classify by the limit of the whole composite, never by an inner factor."
+  },
+  {
+    "theme": "types",
+    "themeLabel": "Classifying Discontinuities",
+    "title": "A Comb With No Last Tooth",
+    "difficulty": 4,
+    "task": "Determine the count and type",
+    "tags": [
+      "sin-reciprocal",
+      "sign",
+      "accumulation",
+      "essential",
+      "count"
+    ],
+    "statement": "Let \\[ s(x)=\\operatorname{sgn}\\!\\Big(\\sin\\frac{\\pi}{x}\\Big),\\qquad x\\in(0,1], \\] where $\\operatorname{sgn}(0)=0$. Find every point of $(0,1]$ at which $s$ is discontinuous, classify each (removable / jump / essential), being careful at the right endpoint $x=1$, and classify the behaviour at the missing endpoint $x=0$.",
+    "answer": "$s$ has countably (infinitely) many discontinuities in $(0,1]$, exactly the points $x=\\tfrac1n$ for $n=1,2,3,\\dots$ At each interior crossing $x=\\tfrac1n$ with $n\\ge 2$ the function $\\sin(\\pi/x)$ changes sign, so the two one-sided limits are $+1$ and $-1$ (finite, unequal) while $s(\\tfrac1n)=0$: these are jump discontinuities, and there are infinitely many of them. The right endpoint $x=1$ is special: only the left limit exists, $\\lim_{x\\to1^-}s(x)=-1$, yet $s(1)=\\operatorname{sgn}(\\sin\\pi)=0$; since the (one-sided) limit exists but differs from the value, $x=1$ is a removable discontinuity, not a jump. Finally, at the limit point $x=0\\notin(0,1]$ the behaviour is essential/oscillatory: along $x\\to0^+$ the value $s(x)$ takes $+1$ and $-1$ infinitely often, so no one-sided limit exists.",
+    "trap": "Two traps. First, answering a finite count by forgetting that the zeros of $\\sin(\\pi/x)$ at $x=1/n$ accumulate at $0$ — there are infinitely many, and $x=0$ is essential, not a jump. Second, the lazier fix of declaring all the $x=1/n$ jumps: that over-counts the type at the right endpoint $x=1$, where only one side of the domain exists, so the one-sided limit exists and the point is removable rather than a jump.",
+    "solutions": [
+      {
+        "name": "Locate the sign changes, then split off the endpoint",
+        "steps": [
+          "$\\sin(\\pi/x)=0\\iff \\pi/x=n\\pi\\iff x=1/n$, $n\\in\\mathbb{N}$, all lying in $(0,1]$; there are infinitely many of them, accumulating at $0$.",
+          "For an interior zero $x=1/n$ with $n\\ge 2$, $\\sin$ has a simple zero, so $\\sin(\\pi/x)$ changes sign as $x$ crosses $1/n$. Both one-sided limits of $s$ exist and equal $+1$ and $-1$ (finite, unequal) while $s(1/n)=0$, so $x=1/n$ is a jump discontinuity. Infinitely many such $n\\ge2$ give infinitely many jumps.",
+          "At the right endpoint $x=1$ the domain lies only to the left, so only the left limit is defined: just below $1$, $\\pi/x>\\pi$ gives $\\sin(\\pi/x)<0$, hence $\\lim_{x\\to1^-}s(x)=-1$. But $s(1)=\\operatorname{sgn}(\\sin\\pi)=\\operatorname{sgn}(0)=0\\ne-1$. A one-sided limit that exists but disagrees with the value is a removable discontinuity — there is no second side to make it a jump.",
+          "As $x\\to0^+$ the crossings $1/n$ pile up, so $s$ keeps flipping $\\pm1$ and $\\lim_{x\\to0^+}s$ fails to exist: $x=0$ is essential. $\\boxed{\\infty\\text{ jumps at }1/n\\,(n\\ge2),\\ x=1\\text{ removable},\\ x=0\\text{ essential}}$"
+        ]
+      },
+      {
+        "name": "Sequence argument at 0 and a direct endpoint check",
+        "steps": [
+          "Take $a_n=\\dfrac{1}{n+1/2}\\to0^+$. Then $\\sin(\\pi/a_n)=\\sin\\!\\big((n+\\tfrac12)\\pi\\big)=(-1)^n$, so $s(a_n)=(-1)^n$ alternates $+1,-1$.",
+          "The even and odd subsequences give limits $+1$ and $-1$, so no limit exists at $0$: the behaviour at the missing endpoint is essential/oscillatory.",
+          "On any open interval between consecutive zeros, $1/(n+1)<x<1/n$, the sine keeps one sign, so $s$ is the constant $\\pm1$ there; at each interior endpoint $1/n$ ($n\\ge2$) it dips to $0$ with opposite constants on the two sides — a jump. Infinitely many zeros give infinitely many jumps.",
+          "Checking the boundary tooth directly: at $x=1$ there is no right side inside $(0,1]$, the single available limit $\\lim_{x\\to1^-}s=-1$ exists, and $s(1)=0$, so the lone discontinuity here is removable. $\\boxed{\\text{infinitely many jumps}+\\text{removable at }1+\\text{essential at }0}$"
+        ]
+      }
+    ],
+    "remark": "Zeros that accumulate turn a sequence of ordinary jumps into an essential singularity at the accumulation point, so \"how many discontinuities?\" can legitimately be infinite. But type depends on how much of the domain surrounds the point: an interior crossing has two one-sided limits and jumps, whereas the right endpoint $x=1$ has only one side, so its existing one-sided limit makes it merely removable. Counting is not the same as classifying."
   },
   {
     "theme": "types",
@@ -686,82 +631,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: classifying a parametrised $\\tfrac00$ is a contest between the orders of vanishing of top and bottom, and the decisive quantity is the LOWEST surviving coefficient, never the most convenient one. Here the denominator is locked at order $2$, while the numerator's order is a step function of $a$: it is $1$ (coefficient $a-1$) for almost every $a$ and jumps up to $2$ only at the single value $a=1$ that kills the linear term. So the discontinuity undergoes a genuine phase transition — infinite pole for $a\\neq1$, removable for $a=1$ — driven by one vanishing coefficient. The trap 'limit $=a^2$' is the value of the order-$\\ge2$ remainder you get AFTER the linear term is gone; quoting it for general $a$ silently assumes the very cancellation ($a=1$) that defines the critical case."
-  },
-  {
-    "theme": "types",
-    "themeLabel": "Classifying Discontinuities",
-    "title": "Same Reciprocal, Different Souls",
-    "difficulty": 4,
-    "task": "Classify each",
-    "tags": [
-      "essential",
-      "jump",
-      "one-sided-limits",
-      "exponential",
-      "arctan"
-    ],
-    "statement": "At $x=0$, classify the discontinuity of each function: \\[ u(x)=e^{1/x},\\qquad v(x)=\\arctan\\!\\frac1x,\\qquad w(x)=\\frac{1}{1+e^{1/x}}. \\] For each, decide removable / jump / essential, justifying with one-sided limits.",
-    "answer": "$u$: essential — $\\lim_{x\\to0^-}u=0$ but $\\lim_{x\\to0^+}u=+\\infty$ (one side infinite). $v$: jump — $\\lim_{x\\to0^-}v=-\\tfrac\\pi2$, $\\lim_{x\\to0^+}v=+\\tfrac\\pi2$ (both finite, unequal). $w$: jump — $\\lim_{x\\to0^-}w=1$, $\\lim_{x\\to0^+}w=0$ (both finite, unequal).",
-    "trap": "Lumping all three together because they share the term $1/x$. The behaviour depends on the OUTER function: $e^{(\\cdot)}$ sends $+\\infty\\mapsto\\infty$ (essential), while $\\arctan$ and the logistic squash $\\pm\\infty$ to finite values (jumps). Assuming '$1/x$ inside $\\Rightarrow$ essential' is wrong.",
-    "solutions": [
-      {
-        "name": "One-sided limits of $1/x$ pushed through",
-        "steps": [
-          "As $x\\to0^+$, $1/x\\to+\\infty$; as $x\\to0^-$, $1/x\\to-\\infty$.",
-          "$u$: $e^{+\\infty}=+\\infty$, $e^{-\\infty}=0$ — one side infinite $\\Rightarrow$ essential.",
-          "$v$: $\\arctan(+\\infty)=\\tfrac\\pi2$, $\\arctan(-\\infty)=-\\tfrac\\pi2$ — finite and unequal $\\Rightarrow$ jump of size $\\pi$.",
-          "$w$: $\\frac{1}{1+e^{+\\infty}}=0$, $\\frac{1}{1+e^{-\\infty}}=\\frac1{1+0}=1$ — finite and unequal $\\Rightarrow$ jump. $\\boxed{u\\text{ essential},\\ v\\text{ jump},\\ w\\text{ jump}}$"
-        ]
-      },
-      {
-        "name": "Boundedness test",
-        "steps": [
-          "A discontinuity is a jump iff BOTH one-sided limits exist finitely; it is essential if some one-sided limit is infinite or fails to exist.",
-          "$\\arctan$ and the logistic are bounded, so feeding them $1/x$ yields finite one-sided limits — both $v,w$ are jumps.",
-          "$e^{1/x}$ is unbounded as $x\\to0^+$, breaking finiteness on the right — $u$ is essential.",
-          "$\\boxed{u\\text{ essential},\\ v\\text{ jump},\\ w\\text{ jump}}$"
-        ]
-      }
-    ],
-    "remark": "The reciprocal $1/x$ only supplies the divergent input $\\pm\\infty$; the outer function decides the fate. Bounded outer functions convert a pole into a finite jump; an unbounded one keeps it essential. Always classify by the limit of the whole composite, never by an inner factor."
-  },
-  {
-    "theme": "types",
-    "themeLabel": "Classifying Discontinuities",
-    "title": "A Comb With No Last Tooth",
-    "difficulty": 4,
-    "task": "Determine the count and type",
-    "tags": [
-      "sin-reciprocal",
-      "sign",
-      "accumulation",
-      "essential",
-      "count"
-    ],
-    "statement": "Let \\[ s(x)=\\operatorname{sgn}\\!\\Big(\\sin\\frac{\\pi}{x}\\Big),\\qquad x\\in(0,1], \\] where $\\operatorname{sgn}(0)=0$. Find every point of $(0,1]$ at which $s$ is discontinuous, classify each (removable / jump / essential), being careful at the right endpoint $x=1$, and classify the behaviour at the missing endpoint $x=0$.",
-    "answer": "$s$ has countably (infinitely) many discontinuities in $(0,1]$, exactly the points $x=\\tfrac1n$ for $n=1,2,3,\\dots$ At each interior crossing $x=\\tfrac1n$ with $n\\ge 2$ the function $\\sin(\\pi/x)$ changes sign, so the two one-sided limits are $+1$ and $-1$ (finite, unequal) while $s(\\tfrac1n)=0$: these are jump discontinuities, and there are infinitely many of them. The right endpoint $x=1$ is special: only the left limit exists, $\\lim_{x\\to1^-}s(x)=-1$, yet $s(1)=\\operatorname{sgn}(\\sin\\pi)=0$; since the (one-sided) limit exists but differs from the value, $x=1$ is a removable discontinuity, not a jump. Finally, at the limit point $x=0\\notin(0,1]$ the behaviour is essential/oscillatory: along $x\\to0^+$ the value $s(x)$ takes $+1$ and $-1$ infinitely often, so no one-sided limit exists.",
-    "trap": "Two traps. First, answering a finite count by forgetting that the zeros of $\\sin(\\pi/x)$ at $x=1/n$ accumulate at $0$ — there are infinitely many, and $x=0$ is essential, not a jump. Second, the lazier fix of declaring all the $x=1/n$ jumps: that over-counts the type at the right endpoint $x=1$, where only one side of the domain exists, so the one-sided limit exists and the point is removable rather than a jump.",
-    "solutions": [
-      {
-        "name": "Locate the sign changes, then split off the endpoint",
-        "steps": [
-          "$\\sin(\\pi/x)=0\\iff \\pi/x=n\\pi\\iff x=1/n$, $n\\in\\mathbb{N}$, all lying in $(0,1]$; there are infinitely many of them, accumulating at $0$.",
-          "For an interior zero $x=1/n$ with $n\\ge 2$, $\\sin$ has a simple zero, so $\\sin(\\pi/x)$ changes sign as $x$ crosses $1/n$. Both one-sided limits of $s$ exist and equal $+1$ and $-1$ (finite, unequal) while $s(1/n)=0$, so $x=1/n$ is a jump discontinuity. Infinitely many such $n\\ge2$ give infinitely many jumps.",
-          "At the right endpoint $x=1$ the domain lies only to the left, so only the left limit is defined: just below $1$, $\\pi/x>\\pi$ gives $\\sin(\\pi/x)<0$, hence $\\lim_{x\\to1^-}s(x)=-1$. But $s(1)=\\operatorname{sgn}(\\sin\\pi)=\\operatorname{sgn}(0)=0\\ne-1$. A one-sided limit that exists but disagrees with the value is a removable discontinuity — there is no second side to make it a jump.",
-          "As $x\\to0^+$ the crossings $1/n$ pile up, so $s$ keeps flipping $\\pm1$ and $\\lim_{x\\to0^+}s$ fails to exist: $x=0$ is essential. $\\boxed{\\infty\\text{ jumps at }1/n\\,(n\\ge2),\\ x=1\\text{ removable},\\ x=0\\text{ essential}}$"
-        ]
-      },
-      {
-        "name": "Sequence argument at 0 and a direct endpoint check",
-        "steps": [
-          "Take $a_n=\\dfrac{1}{n+1/2}\\to0^+$. Then $\\sin(\\pi/a_n)=\\sin\\!\\big((n+\\tfrac12)\\pi\\big)=(-1)^n$, so $s(a_n)=(-1)^n$ alternates $+1,-1$.",
-          "The even and odd subsequences give limits $+1$ and $-1$, so no limit exists at $0$: the behaviour at the missing endpoint is essential/oscillatory.",
-          "On any open interval between consecutive zeros, $1/(n+1)<x<1/n$, the sine keeps one sign, so $s$ is the constant $\\pm1$ there; at each interior endpoint $1/n$ ($n\\ge2$) it dips to $0$ with opposite constants on the two sides — a jump. Infinitely many zeros give infinitely many jumps.",
-          "Checking the boundary tooth directly: at $x=1$ there is no right side inside $(0,1]$, the single available limit $\\lim_{x\\to1^-}s=-1$ exists, and $s(1)=0$, so the lone discontinuity here is removable. $\\boxed{\\text{infinitely many jumps}+\\text{removable at }1+\\text{essential at }0}$"
-        ]
-      }
-    ],
-    "remark": "Zeros that accumulate turn a sequence of ordinary jumps into an essential singularity at the accumulation point, so \"how many discontinuities?\" can legitimately be infinite. But type depends on how much of the domain surrounds the point: an interior crossing has two one-sided limits and jumps, whereas the right endpoint $x=1$ has only one side, so its existing one-sided limit makes it merely removable. Counting is not the same as classifying."
   },
   {
     "theme": "types",
@@ -854,6 +723,45 @@ window.PROBLEMS = [
     "remark": "This is the full taxonomy in one function: a one-sided limit that exists, paired with one that doesn't, forces 'essential'; a clean cancellable factor with a deliberately-wrong stated value is the textbook 'removable.' The discipline is to test each one-sided limit on its own and never let a tidy value or a tidy side fool the classification."
   },
   {
+    "theme": "types",
+    "themeLabel": "Classifying Discontinuities",
+    "title": "A Staircase Crossing a Triple Pole",
+    "difficulty": 5,
+    "task": "Classify each break",
+    "tags": [
+      "greatest integer",
+      "removable discontinuity",
+      "jump discontinuity",
+      "infinite discontinuity",
+      "one-sided limits"
+    ],
+    "statement": "Consider $f(x)=\\lfloor x\\rfloor+\\dfrac{\\sin(\\pi x)}{(x-1)(x-2)^2}$, defined for all $x$ except where its denominator vanishes. For each of the points $x=1,\\,x=2,\\,x=3$ inside the window $(0,3]$, decide whether $f$ has a removable, a jump, or an infinite (essential) discontinuity there. Then state how many of these three breaks are genuinely \\emph{not} removable.",
+    "answer": "$\\boxed{x=1\\text{ jump},\\ x=2\\text{ infinite},\\ x=3\\text{ jump; all }3\\text{ are non-removable}}$",
+    "trap": "The seductive wrong answer calls $x=2$ removable. One notices $\\sin(\\pi x)$ has a simple zero at $x=2$ and writes $\\sin(\\pi x)\\approx\\pi(x-2)$, cancelling \\emph{one} factor of $(x-2)$ and declaring the singularity \"healed.\" But the denominator carries $(x-2)^2$: after the single cancellation a lone $(x-2)$ survives downstairs, so the rational part behaves like $\\pm\\dfrac{\\pi}{x-2}$ and blows up. The one-sided limits are $-\\infty$ and $+\\infty$, never finite — so $x=2$ is infinite, not removable.",
+    "solutions": [
+      {
+        "name": "One-sided limits point by point",
+        "steps": [
+          "Split $f$ into the staircase $\\lfloor x\\rfloor$ and the rational-trigonometric part $r(x)=\\dfrac{\\sin(\\pi x)}{(x-1)(x-2)^2}$. Across an integer $n$, $\\lfloor x\\rfloor$ jumps from $n-1$ (left) to $n$ (right); $r$ is continuous wherever its denominator is nonzero.",
+          "At $x=1$: near $1$, $\\sin(\\pi x)\\approx-\\pi(x-1)$, so the single $(x-1)$ cancels and $r(x)\\to\\dfrac{-\\pi}{(1-2)^2}=-\\pi$, finite from both sides. Adding the floor's left value $0$ and right value $1$ gives $\\mathrm{LHL}=0-\\pi=-\\pi$ and $\\mathrm{RHL}=1-\\pi$: both finite, differing by $1$, hence a \\textbf{jump}.",
+          "At $x=2$: now $\\sin(\\pi x)\\approx\\pi(x-2)$ cancels only one factor of $(x-2)^2$, leaving $r(x)\\approx\\dfrac{\\pi}{(2-1)(x-2)}$, which tends to $-\\infty$ as $x\\to2^-$ and $+\\infty$ as $x\\to2^+$. The bounded floor cannot rescue this, so $\\mathrm{LHL}=-\\infty$, $\\mathrm{RHL}=+\\infty$: an \\textbf{infinite (essential)} discontinuity.",
+          "At $x=3$: the denominator $(3-1)(3-2)^2=2\\neq0$, so $r$ is continuous there with $r(3)=\\dfrac{\\sin3\\pi}{2}=0$. Only the floor jumps: $\\mathrm{LHL}=2+0=2$, $\\mathrm{RHL}=3+0=3$, finite and unequal — a \\textbf{jump}.",
+          "Removable would require both one-sided limits finite and equal; none of the three satisfies that, so all $3$ breaks are non-removable: $\\boxed{x=1\\text{ jump},\\ x=2\\text{ infinite},\\ x=3\\text{ jump; all }3}$."
+        ]
+      },
+      {
+        "name": "Zero-order bookkeeping",
+        "steps": [
+          "List the order of vanishing of numerator and denominator of $r(x)=\\dfrac{\\sin(\\pi x)}{(x-1)(x-2)^2}$ at each suspect point. The numerator $\\sin(\\pi x)$ has a simple ($1$st-order) zero at every integer.",
+          "At $x=1$: numerator order $1$, denominator order $1$ (from $(x-1)$); orders match, so $r$ has a finite limit there and contributes no infinity — the only break comes from the floor's unit step, a jump.",
+          "At $x=2$: numerator order $1$, denominator order $2$ (from $(x-2)^2$); denominator wins by one power, so $r\\sim c/(x-2)$ with opposite signs on the two sides $\\Rightarrow$ infinite discontinuity, and a bounded floor term cannot change that.",
+          "At $x=3$: denominator order $0$ (nonzero), numerator order $1$, so $r$ is continuous and $r(3)=0$; the floor again supplies a unit jump. Counting non-removable breaks: jump, infinite, jump $\\Rightarrow$ all $\\boxed{3}$ are non-removable."
+        ]
+      }
+    ],
+    "remark": "**Insight.** When you cancel a zero of $\\sin(\\pi x)$ against a pole, **count powers, do not just spot a matching root.** A simple numerator zero heals a simple denominator factor (giving a removable or merely finite contribution), but against a **squared** factor one power survives and the graph still escapes to $\\pm\\infty$. Layer a **bounded** staircase like $\\lfloor x\\rfloor$ on top and it can only add unit jumps — it can never tame an infinite break, nor manufacture one where the rational part is already finite."
+  },
+  {
     "theme": "functionaleq",
     "themeLabel": "Continuous Functional Equations",
     "title": "The Bilinear Bonus",
@@ -904,238 +812,113 @@ window.PROBLEMS = [
   {
     "theme": "functionaleq",
     "themeLabel": "Continuous Functional Equations",
-    "title": "The Exponential Caged by a Single Bounded Window",
-    "difficulty": 5,
-    "task": "Determine all such f and prove the boundedness hypothesis is what forces uniqueness",
+    "title": "Additive and Continuous, Anchored at Three",
+    "difficulty": 4,
+    "task": "Evaluate the function",
     "tags": [
-      "multiplicative-cauchy",
-      "local-boundedness",
-      "hamel-pathology",
-      "regularity-from-boundedness",
-      "positivity",
-      "uniqueness"
-    ],
-    "statement": "A function $f:\\mathbb{R}\\to\\mathbb{R}$ satisfies, for all real $x,y$,\n\\[\nf(x+y)=f(x)\\,f(y),\\qquad f(x)\\,f(-x)=1,\n\\]\nand is bounded on some nondegenerate interval $(\\alpha,\\beta)$ — that is, there exist a real constant $M$ with $|f(t)|\\le M$ for every $t\\in(\\alpha,\\beta)$. Continuity is not assumed anywhere. You are also told $f(1)=\\tfrac13$.\n\nDetermine $f$ completely. In your argument you must (i) use $f(x)f(-x)=1$ to settle the sign and non-vanishing of $f$; (ii) reduce the equation to additive Cauchy and show that boundedness on the single window $(\\alpha,\\beta)$ propagates to a neighbourhood of $0$, forcing continuity and hence linearity of the additive function; and (iii) explain precisely why dropping the boundedness clause would make the answer non-unique, exhibiting the kind of solution that then sneaks in. Could $f$ ever take a negative value?",
-    "answer": "\\[\\boxed{\\,f(x)=3^{-x}\\,}\\]",
-    "trap": "The fatal shortcut is to treat $f(x+y)=f(x)f(y)$ together with $f(1)=\\tfrac13$ as if the equation alone pins $f(x)=3^{-x}$ — pattern-matching to \"the exponential equation\" and never spending the boundedness hypothesis. It does not: take any non-linear additive (Hamel) function $L:\\mathbb{R}\\to\\mathbb{R}$ with $L(1)=\\ln\\tfrac13$ and set $f(x)=e^{L(x)}$. This $f$ satisfies $f(x+y)=f(x)f(y)$, satisfies $f(x)f(-x)=e^{L(x)+L(-x)}=e^{0}=1$, and even hits $f(1)=\\tfrac13$ — yet it is a wild, everywhere-discontinuous monster. The ONLY thing that murders it is local boundedness: a non-linear additive map has graph dense in the plane, hence is unbounded on every interval, so it cannot survive the clause $|f|\\le M$ on $(\\alpha,\\beta)$. A second, subtler slip is to imagine the bound must live on a large or symmetric interval — any nondegenerate window suffices, because boundedness there transfers to a neighbourhood of $0$ via $g(x)-g(y)$. (A third decoy: guessing $f$ might be negative because $\\tfrac13<1$ \"looks like\" it could flip — but $f(x)=f(x/2)^2\\ge0$ and $f$ never vanishes force $f>0$ outright.)",
-    "solutions": [
-      {
-        "name": "Sign-pin, logarithm, then boundedness forces linearity",
-        "steps": [
-          "Non-vanishing and positivity from $f(x)f(-x)=1$. The product being $1$ shows $f(x)\\ne0$ for every $x$ (a zero would make the product $0$). Setting $x=y=0$ in $f(x+y)=f(x)f(y)$ gives $f(0)=f(0)^2$, so $f(0)\\in\\{0,1\\}$; since $f$ is nowhere $0$, $f(0)=1$. Finally $f(x)=f\\!\\left(\\tfrac{x}{2}+\\tfrac{x}{2}\\right)=f\\!\\left(\\tfrac{x}{2}\\right)^2\\ge0$, and combined with non-vanishing this gives $f(x)>0$ for all $x$. So $f$ can never be negative.",
-          "Reduce to additive Cauchy. Because $f>0$ we may define $g(x)=\\ln f(x)$. Then $g(x+y)=\\ln\\!\\big(f(x)f(y)\\big)=g(x)+g(y)$, the additive Cauchy equation, with $g(1)=\\ln\\tfrac13=-\\ln 3$. The window hypothesis transfers: on $(\\alpha,\\beta)$ we have $0<f\\le M$, and also $f\\ge \\tfrac1{M'}$ for some $M'$ on a subinterval (since $f>0$ is finite there), so $g=\\ln f$ is bounded on a nondegenerate subinterval $I=(a,b)$, say $|g|\\le K$ on $I$.",
-          "Boundedness on $I$ propagates to a neighbourhood of $0$. Let $L=b-a>0$. For any $t$ with $|t|<L$ choose $x,y\\in I$ with $x-y=t$ (possible because the difference set of $I$ is $(-L,L)$). Additivity gives $g(t)=g(x-y)=g(x)-g(y)$, hence $|g(t)|\\le 2K$ for all $|t|<L$. Thus $g$ is bounded on the symmetric neighbourhood $(-L,L)$ of $0$ — the single window has spread to the origin.",
-          "Bounded near $0$ $\\Rightarrow$ continuous at $0$ $\\Rightarrow$ linear. Say $|g|\\le 2K$ on $(-L,L)$. We show $g$ is continuous at $0$ by a scaling argument. Take any sequence $s_k\\to0$; choose integers $m_k=\\big\\lfloor L/(2|s_k|)\\big\\rfloor\\to\\infty$, so that $m_k|s_k|<L$, hence $m_k s_k\\in(-L,L)$ and $|g(m_k s_k)|\\le 2K$. Additivity gives $g(m_k s_k)=m_k\\,g(s_k)$, so $|g(s_k)|=\\dfrac{|g(m_k s_k)|}{m_k}\\le\\dfrac{2K}{m_k}\\to0=g(0)$. Thus $g(s_k)\\to0$, i.e. $g$ is continuous at $0$. For any $a$, $g(x)-g(a)=g(x-a)\\to g(0)=0$ as $x\\to a$, so $g$ is continuous everywhere. A continuous additive function is linear: $g(q)=q\\,g(1)$ for rationals $q$, and continuity extends this to all reals, giving $g(x)=x\\,g(1)=-x\\ln3$.",
-          "Assemble. $f(x)=e^{g(x)}=e^{-x\\ln3}=3^{-x}$. It indeed satisfies $f(x+y)=f(x)f(y)$, $f(x)f(-x)=3^{-x}\\,3^{x}=1$, is bounded on every bounded interval, and $f(1)=3^{-1}=\\tfrac13$. Therefore $\\boxed{f(x)=3^{-x}}$ is the unique solution."
-        ]
-      },
-      {
-        "name": "Continuity at one point, dragged everywhere by the equation",
-        "steps": [
-          "As in Solution 1, $f(x)f(-x)=1$ forces $f$ nowhere zero, $f(0)=1$, and $f(x)=f(x/2)^2>0$; so $f>0$ and $g=\\ln f$ is additive with $g(1)=-\\ln3$, bounded on a window $I=(a,b)$ and (by the difference trick $g(t)=g(x)-g(y)$) bounded on $(-L,L)$, $L=b-a$.",
-          "Continuity of $g$ at $0$. An additive function bounded on a neighbourhood of $0$ is continuous at $0$: scale the bound. Suppose $g(t_k)\\not\\to0$ for some $t_k\\to0$; passing to a subsequence, $|g(t_k)|\\ge\\varepsilon>0$. Choose integers $N_k\\to\\infty$ with $N_k|t_k|<L$ but $N_k\\varepsilon\\to\\infty$ (possible since $t_k\\to0$, e.g. $N_k=\\lfloor L/(2|t_k|)\\rfloor$). Then $N_k t_k\\in(-L,L)$ so $|g(N_k t_k)|\\le 2K$, yet $|g(N_k t_k)|=N_k|g(t_k)|\\ge N_k\\varepsilon\\to\\infty$ — contradiction. Hence $g$ is continuous at $0$.",
-          "Continuity at $0$ spreads to all of $\\mathbb{R}$ via additivity. For any $a$ and any $x\\to a$, $g(x)-g(a)=g(x-a)\\to g(0)=0$ because $x-a\\to0$ and $g$ is continuous at $0$. So $g$ is continuous everywhere.",
-          "Continuous additive $\\Rightarrow$ linear. On $\\mathbb{Q}$, additivity gives $g(q)=q\\,g(1)$; continuity extends this to all reals, so $g(x)=x\\,g(1)=-x\\ln3$. Exponentiating, $f(x)=3^{-x}$, and one checks all three hypotheses hold. Thus $\\boxed{f(x)=3^{-x}}$."
-        ]
-      },
-      {
-        "name": "Why uniqueness fails without boundedness (necessity of the hypothesis)",
-        "steps": [
-          "Strip the boundedness clause and keep only $f(x+y)=f(x)f(y)$, $f(x)f(-x)=1$, $f(1)=\\tfrac13$. As before $f>0$ and $g=\\ln f$ is an additive function with $g(1)=-\\ln3$. Additive functions form a $\\mathbb{Q}$-vector space; using a Hamel basis $B$ of $\\mathbb{R}$ over $\\mathbb{Q}$ containing $1$, prescribe $g$ freely on $B$ subject only to $g(1)=-\\ln3$ and extend $\\mathbb{Q}$-linearly.",
-          "Make it genuinely wild. Pick a basis element $\\xi\\ne1$ and set $g(\\xi)$ to any value $\\notin\\{-\\xi\\ln3\\}$, so $g$ is NOT of the form $x\\mapsto -x\\ln3$. The resulting $f=e^{g}$ satisfies $f(x+y)=f(x)f(y)$ and $f(x)f(-x)=e^{g(x)+g(-x)}=e^{0}=1$ and $f(1)=e^{-\\ln3}=\\tfrac13$ — every surviving hypothesis — yet $f\\ne3^{-x}$.",
-          "Such an $f$ is forced to violate boundedness on every interval. A non-linear additive $g$ has graph $\\{(x,g(x))\\}$ dense in $\\mathbb{R}^2$ (two $\\mathbb{Q}$-independent directions $(\\,1,g(1))$ and $(\\xi,g(\\xi))$ that are not parallel span a dense $\\mathbb{Q}$-lattice), so on any interval $g$ is unbounded above and below; hence $f=e^{g}$ is unbounded on every interval. This is exactly the wall the hypothesis $|f|\\le M$ on $(\\alpha,\\beta)$ removes.",
-          "Conclusion: among ALL solutions of the equation with the sign/normalization data, the maps $f=e^{g}$ ($g$ additive, $g(1)=-\\ln3$) are a vast non-measurable family; the boundedness window selects the unique continuous representative. Since $3^{-x}$ is bounded on bounded intervals and the wild ones are not, the hypothesis pins exactly one survivor: $\\boxed{f(x)=3^{-x}}$. The boundedness is not decoration — it is the entire uniqueness mechanism."
-        ]
-      }
-    ],
-    "remark": "Insight: the exponential equation $f(x+y)=f(x)f(y)$ does NOT, by itself, deliver $a^x$ — its solution set is a wilderness of $e^{(\\text{Hamel-additive})}$ functions, all everywhere discontinuous and non-measurable. Continuity (the usual textbook hypothesis) tames it, but the sharp truth is that you need far less: boundedness on one tiny interval is already a death sentence for every wild solution. The lever is a two-line transfer, $g(t)=g(x)-g(y)$ with $x-y=t$, which carries a bound from any window to a neighbourhood of $0$; an additive function bounded near $0$ is continuous at $0$, and additivity then drags continuity everywhere, collapsing to linearity. The companion clause $f(x)f(-x)=1$ does triple duty for free — it kills the trivial $f\\equiv0$, certifies $f(0)=1$, and (with $f=f(\\cdot/2)^2$) forces strict positivity so the logarithm is legal and no negative-valued branch can exist. The chosen value $f(1)=\\tfrac13<1$ is a deliberate decoy: a decreasing exponential tempts one to look for a sign flip that the positivity argument forbids. The whole problem is a referendum on a single principle — for $f(x+y)=f(x)f(y)$, local boundedness $\\Rightarrow$ continuity $\\Rightarrow$ $f=a^x$ — and on remembering that without that regularity the answer is not unique."
-  },
-  {
-    "theme": "functionaleq",
-    "themeLabel": "Continuous Functional Equations",
-    "title": "The Logarithm That Hides a Double-Touch Minimum",
-    "difficulty": 5,
-    "task": "Pin f from continuity, then determine all c",
-    "tags": [
-      "log-cauchy",
-      "continuity-forces-uniqueness",
-      "odd-under-inversion",
-      "global-vs-local-min",
-      "double-root",
-      "parameter-threshold"
-    ],
-    "statement": "Let $f:(0,\\infty)\\to\\mathbb{R}$ be continuous and satisfy, for all $x,y>0$,\n\\[\nf(xy)=f(x)+f(y),\\qquad\\text{and}\\qquad f(x)+f\\!\\left(\\tfrac1x\\right)=0 .\n\\]\nYou are given the single normalization $f(e)=1$.\n\nPart (a). Prove from continuity alone (differentiability is not assumed) that these conditions determine $f$ uniquely on $(0,\\infty)$, and identify $f$. In your argument show that the inversion identity $f(x)+f(1/x)=0$ — \"$f$ is odd under $x\\mapsto 1/x$\" — is in fact a free consequence of the multiplicative-to-additive equation, and explain what continuity rules out that the bare equation does not.\n\nPart (b). With this $f$ now fixed, and a real parameter $c$, define on the closed interval $[1,e]$ the function\n\\[\ng(x)=2\\,f(x)^{3}-3\\,f(x)^{2}+c\\,f(x)+x^{0}-1 .\n\\]\n(The harmless tail $x^{0}-1=0$ is written only to stress $g$ is built purely from $f$ and a linear-in-$f$ parameter term.) Determine all real $c$ for which $g$ attains its minimum value on $[1,e]$ at exactly one point of $[1,e]$.",
-    "answer": "\\[\\boxed{\\,c\\in\\mathbb{R}\\setminus\\left\\{\\tfrac98\\right\\}\\,}\\]",
-    "trap": "Part (b) is a referendum on the difference between a LOCAL interior minimum and the GLOBAL minimum. After substituting $t=f(x)=\\ln x\\in[0,1]$, the natural move is to set $h'(t)=6t^{2}-6t+c=0$, note its discriminant $36-24c\\ge0$ gives an interior critical point $t^{+}=\\tfrac12+\\tfrac{\\sqrt{36-24c}}{12}\\in(0,1)$ for $0<c<\\tfrac32$, check $h''(t^{+})>0$ to certify it is a local minimum, and then declare that this lone interior local minimum is the unique global minimizer — concluding the minimum is attained exactly once for every such $c$, and hence (gluing the monotone regimes) for ALL $c$. That is the fatal error. A local minimum need not be the global minimum on a closed interval: one must compare $h(t^{+})$ with the endpoint values $h(0)=0$ and $h(1)=c-1$. As $c$ increases through $\\tfrac98$ the interior value $h(t^{+})$ rises through $0$ and the LEFT endpoint $t=0$ (i.e. $x=1$) silently overtakes it. Exactly at $c=\\tfrac98$ the two are EQUAL — the global minimum value $0$ is hit at BOTH $x=1$ and $x=e^{3/4}$, because there $h(t)=\\tfrac18\\,t(4t-3)^{2}$ has a genuine double root at $t=\\tfrac34$ riding on top of the simple root at $t=0$. So the minimum is attained exactly once for every $c$ EXCEPT $c=\\tfrac98$. A second, subtler slip is to trust the discriminant $36-24c$ as the whole story and miss that for $c\\ge\\tfrac32$ (no interior critical point) and for $c\\le0$ the function is monotone — those regimes are fine (unique min), but they lull you into thinking 'critical-point bookkeeping' settles everything, when the tie that kills uniqueness happens at an interior $c$ where a perfectly ordinary-looking local min coincides in value with an endpoint. A third decoy: assuming the inversion identity $f(x)+f(1/x)=0$ is an extra constraint that helps pin $c$ — it constrains nothing beyond what $f(xy)=f(x)+f(y)$ already forces.",
-    "solutions": [
-      {
-        "name": "Continuity collapses Cauchy to the logarithm; then exact factorization at the threshold",
-        "steps": [
-          "Part (a): identify $f$. Put $x=y=1$ in $f(xy)=f(x)+f(y)$: $f(1)=2f(1)$, so $f(1)=0$. The inversion identity is then automatic: $0=f(1)=f(x\\cdot\\tfrac1x)=f(x)+f(\\tfrac1x)$, i.e. $f(x)+f(1/x)=0$ for every $x>0$ — it is a free consequence, not an independent hypothesis. Now transport to additive Cauchy by $u=\\ln x$: define $A(u)=f(e^{u})$ for $u\\in\\mathbb{R}$. Then $A(u+v)=f(e^{u}e^{v})=f(e^{u})+f(e^{v})=A(u)+A(v)$, the additive Cauchy equation, and $A$ is continuous because $f$ and $\\exp$ are. A continuous additive function is linear: $A(u)=A(1)\\,u$, and $A(1)=f(e)=1$, so $A(u)=u$. Hence $f(x)=A(\\ln x)=\\ln x$. Continuity is exactly what rules out the pathological non-measurable additive solutions (those built from a Hamel basis), which would otherwise let $A$ — and hence $f$ — be wild; so $f(x)=\\ln x$ is the unique continuous solution.",
-          "Part (b): reduce to a cubic on $[0,1]$. Since $f(x)=\\ln x$ and $x^{0}-1=0$, on $[1,e]$ set $t=\\ln x$, which sweeps $[0,1]$ continuously and strictly monotonically as $x$ runs over $[1,e]$; thus $x\\mapsto t$ is a bijection $[1,e]\\to[0,1]$ and minimizers correspond one-to-one. The objective becomes $h(t)=2t^{3}-3t^{2}+ct$ on $t\\in[0,1]$. Counting argmin points of $g$ on $[1,e]$ is identical to counting argmin points of $h$ on $[0,1]$.",
-          "Locate the tie by an exact factorization. The endpoint values are $h(0)=0$ and $h(1)=c-1$. Ask when the global minimum is attained at two points. Try the candidate $c=\\tfrac98$: then $h(t)=2t^{3}-3t^{2}+\\tfrac98 t=\\tfrac18\\,t\\,(16t^{2}-24t+9)=\\tfrac18\\,t\\,(4t-3)^{2}$. On $[0,1]$ this is $\\ge0$ (product of $t\\ge0$ and a square), and equals $0$ exactly where $t=0$ or $4t-3=0$, i.e. at $t=0$ and $t=\\tfrac34$. So the minimum value is $0$, attained at BOTH $t=0$ ($x=1$) and $t=\\tfrac34$ ($x=e^{3/4}$): two points. Hence $c=\\tfrac98$ FAILS the 'exactly one' requirement.",
-          "Show every other $c$ gives a unique minimizer. Write $h(t)=t\\,\\big(2t^{2}-3t+c\\big)$. The global minimum on the compact $[0,1]$ exists; we show its argmin is a singleton for $c\\ne\\tfrac98$. Consider the difference of $h$ from its minimum and use $h'(t)=6t^{2}-6t+c$, discriminant $36-24c$. (i) If $c\\ge\\tfrac32$: $36-24c\\le0$, so $h'\\ge0$ on $\\mathbb{R}$, $h$ is non-decreasing and in fact strictly increasing on $[0,1]$ except possibly at the single point $c=\\tfrac32$ where $h'$ has one zero; either way the minimum is at $t=0$ only. (ii) If $c\\le0$: on $[0,1]$, $h'(t)=6t^{2}-6t+c\\le6t^{2}-6t=6t(t-1)\\le0$, so $h$ is non-increasing, minimum at $t=1$ only. (iii) If $0<c<\\tfrac32$: there is a unique interior critical point $t^{+}=\\tfrac12+\\tfrac{\\sqrt{36-24c}}{12}\\in(0,1)$ that is a local min ($h''(t^{+})=12t^{+}-6>0$), and the interior value is $h(t^{+})$. The global min is $\\min\\{0,\\,h(t^{+})\\}$ (the right endpoint $h(1)=c-1$ is never below both: for $0<c<\\tfrac32$, $h(1)=c-1$ exceeds $h(t^{+})$, as $t^{+}$ is the strict interior min). Since $h(t)-h(t^{+})$ has $t^{+}$ as a double root, $h(t^{+})=0$ has the single solution $c=\\tfrac98$ in this range (the factorization above), with $h(t^{+})<0$ for $c<\\tfrac98$ (interior is the strict unique min) and $h(t^{+})>0$ for $c>\\tfrac98$ (endpoint $t=0$ is the strict unique min). In all sub-cases except $c=\\tfrac98$ the argmin is a single point.",
-          "Conclude. The minimum of $g$ on $[1,e]$ is attained at exactly one point for every real $c$ except $c=\\tfrac98$, where it is attained at the two points $x=1$ and $x=e^{3/4}$. Therefore $\\boxed{c\\in\\mathbb{R}\\setminus\\{\\tfrac98\\}}$."
-        ]
-      },
-      {
-        "name": "Endpoint-versus-interior crossing tracked by the value gap",
-        "steps": [
-          "Part (a) as before gives $f(x)=\\ln x$: $f(1)=0$ makes the inversion identity free, $A(u)=f(e^{u})$ is continuous and additive hence linear with $A(1)=f(e)=1$, so $f(x)=\\ln x$ uniquely (continuity excludes the Hamel pathologies). Set $t=\\ln x\\in[0,1]$, $h(t)=2t^{3}-3t^{2}+ct$ on $[0,1]$; argmin points of $g$ on $[1,e]$ match argmin points of $h$ on $[0,1]$ bijectively.",
-          "Define the value gap between the left endpoint and the interior local minimum. Only $0<c<\\tfrac32$ can produce a tie that is not at an endpoint, because outside this range $h$ is monotone (Solution 1, cases (i),(ii)) and the minimizer is a lone endpoint. For $0<c<\\tfrac32$ let $t^{+}=\\tfrac12+\\tfrac{\\sqrt{36-24c}}{12}$ be the interior local minimizer and set $D(c)=h(t^{+})-h(0)=h(t^{+})$. A tie of the global minimum between the interior point and $t=0$ occurs precisely when $D(c)=0$, and a strict unique minimizer occurs when $D(c)\\ne0$ (interior wins if $D<0$, left endpoint wins if $D>0$).",
-          "Evaluate the gap and find its only zero. Since $t^{+}$ is a critical point, $h(t)-h(t^{+})$ is divisible by $(t-t^{+})^{2}$; writing $h(t)=2t^{3}-3t^{2}+ct$ and comparing leading and constant coefficients gives $h(t)=2(t-t^{+})^{2}(t-r)+h(t^{+})$ for the third root location $r$, but most cleanly one solves $h(t^{+})=0$ directly. From $6(t^{+})^{2}-6t^{+}+c=0$ we get $c=6t^{+}-6(t^{+})^{2}$, and substituting into $h(t^{+})=2(t^{+})^{3}-3(t^{+})^{2}+ct^{+}=2(t^{+})^{3}-3(t^{+})^{2}+t^{+}(6t^{+}-6(t^{+})^{2})=-4(t^{+})^{3}+3(t^{+})^{2}=(t^{+})^{2}(3-4t^{+})$. Thus $D(c)=(t^{+})^{2}(3-4t^{+})$, which (with $t^{+}>0$) vanishes iff $t^{+}=\\tfrac34$; then $c=6\\cdot\\tfrac34-6\\cdot\\tfrac9{16}=\\tfrac92-\\tfrac{27}{8}=\\tfrac98$.",
-          "Read off monotonicity of the gap and conclude. For $t^{+}\\in(\\tfrac12,1)$ (the interior branch), $D(c)=(t^{+})^{2}(3-4t^{+})$ is positive when $t^{+}<\\tfrac34$ and negative when $t^{+}>\\tfrac34$; since $t^{+}$ decreases from $1$ toward $\\tfrac12$ as $c$ increases from $0$ to $\\tfrac32$, we get $D<0$ for $c<\\tfrac98$ (interior strict min) and $D>0$ for $c>\\tfrac98$ (left endpoint strict min), with equality only at $c=\\tfrac98$. There the global minimum value $0$ is shared by $t=0$ and $t=t^{+}=\\tfrac34$, two argmin points. Hence the minimum is attained at exactly one point iff $\\boxed{c\\in\\mathbb{R}\\setminus\\{\\tfrac98\\}}$."
-        ]
-      },
-      {
-        "name": "Resultant / discriminant view of when min value is hit twice",
-        "steps": [
-          "Part (a): $f(x)=\\ln x$ as established (continuity kills the wild additive solutions; the inversion identity is the free fact $f(x)+f(1/x)=f(1)=0$). Reduce part (b) to $h(t)=2t^{3}-3t^{2}+ct$ on $[0,1]$ via $t=\\ln x$.",
-          "The minimum value $m(c)=\\min_{[0,1]}h$ is attained at two points iff the level set $\\{t\\in[0,1]:h(t)=m\\}$ has at least two elements, equivalently iff the cubic $h(t)-m$ has, inside $[0,1]$, either a double root (an interior tangency at the min level) together with a second root, or two distinct simple roots both at the minimum. For a cubic the minimum-level set on a compact interval has more than one point exactly when an interior local-min touches the level of an endpoint. So encode the candidate tie as: there is $t^{*}\\in(0,1)$ with $h(t^{*})=h(0)=0$ AND $h'(t^{*})=0$ (interior tangency at the endpoint level $0$).",
-          "Solve the tangency system. $h(t^{*})=0$: $t^{*}(2(t^{*})^{2}-3t^{*}+c)=0$, and since $t^{*}\\ne0$, $2(t^{*})^{2}-3t^{*}+c=0$. $h'(t^{*})=0$: $6(t^{*})^{2}-6t^{*}+c=0$. Subtract the first (times $3$) from the second: $(6-6)(t^{*})^{2}+(-6+9)t^{*}+(c-3c)=0\\Rightarrow 3t^{*}-2c=0$, wait—do it cleanly: from $2(t^{*})^{2}-3t^{*}+c=0$ multiply by $3$: $6(t^{*})^{2}-9t^{*}+3c=0$; subtract $6(t^{*})^{2}-6t^{*}+c=0$: $(-9+6)t^{*}+(3c-c)=0\\Rightarrow -3t^{*}+2c=0\\Rightarrow t^{*}=\\tfrac{2c}{3}$. Plug into $6(t^{*})^{2}-6t^{*}+c=0$: $6\\cdot\\tfrac{4c^{2}}{9}-6\\cdot\\tfrac{2c}{3}+c=\\tfrac{8c^{2}}{3}-4c+c=\\tfrac{8c^{2}}{3}-3c=0\\Rightarrow c\\big(\\tfrac{8c}{3}-3\\big)=0\\Rightarrow c=0\\ \\text{or}\\ c=\\tfrac98$.",
-          "Discard the spurious root and verify the genuine one. $c=0$ gives $t^{*}=0$, which is the endpoint itself (not an interior tangency), so it does not create a second minimizer — indeed at $c=0$, $h(t)=2t^{3}-3t^{2}=t^{2}(2t-3)<0$ on $(0,1]$ with unique min at $t=1$. The root $c=\\tfrac98$ gives $t^{*}=\\tfrac34\\in(0,1)$, a true interior point, and the factorization $h(t)=\\tfrac18 t(4t-3)^{2}$ confirms the min value $0$ is attained at $t=0$ and $t=\\tfrac34$ — two points. For all other $c$ the tangency system has no interior solution, so no second minimizer appears and the argmin is a singleton (using the monotone regimes $c\\le0$ and $c\\ge\\tfrac32$, and the strict interior min for $0<c<\\tfrac98$ or strict endpoint min for $\\tfrac98<c<\\tfrac32$).",
-          "Therefore the minimum is attained exactly once for every real $c$ except $c=\\tfrac98$: $\\boxed{c\\in\\mathbb{R}\\setminus\\{\\tfrac98\\}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: two ideas are fused. First, the soft-analysis half — a CONTINUOUS solution of $f(xy)=f(x)+f(y)$ is forced to be $k\\ln x$, because the substitution $u=\\ln x$ turns it into additive Cauchy $A(u+v)=A(u)+A(v)$, and continuity (not differentiability) is precisely the regularity that collapses Cauchy's wilderness of non-measurable Hamel solutions down to the single linear one; the inversion identity $f(x)+f(1/x)=0$ is a decoy 'extra hypothesis' that is really just $f(1)=0$ in disguise. Second, the calculus half is a trap about LOCAL versus GLOBAL extrema: the discriminant $36-24c$ of $g'$ faithfully reports when an interior critical point exists and the second-derivative test faithfully certifies it as a local minimum — yet none of that decides whether it is the GLOBAL minimizer on the closed interval, nor whether the minimum value is also achieved at an endpoint. The whole question turns on a single algebraic coincidence: at $c=\\tfrac98$ the objective becomes $\\tfrac18 t(4t-3)^{2}$, a simple root at the left endpoint sitting at the same height as a double root in the interior, so the minimum is touched twice. Strong students who stop at 'I found the local min, so it's the answer' miss exactly this. The honest discipline is: on a compact interval always compare every local minimum value against both endpoint values, and remember that a double root in the level set is the algebraic signature of a tied minimum."
-  },
-  {
-    "theme": "functionaleq",
-    "themeLabel": "Continuous Functional Equations",
-    "title": "D'Alembert's Trichotomy",
-    "difficulty": 5,
-    "task": "Classify",
-    "tags": [
-      "dalembert",
-      "cosine-cosh",
-      "classification",
+      "additive",
       "continuity",
-      "trichotomy"
+      "cauchy-additive",
+      "linear-function"
     ],
-    "statement": "Classify all continuous functions $f:\\mathbb{R}\\to\\mathbb{R}$ satisfying \\[ f(x+y)+f(x-y)=2\\,f(x)\\,f(y)\\qquad\\text{for all } x,y\\in\\mathbb{R}. \\]",
-    "answer": "Exactly three families: $f\\equiv 0$; $f(x)=\\cos(kx)$ for some $k\\ge 0$ (which includes $f\\equiv 1$ at $k=0$); and $f(x)=\\cosh(kx)$ for some $k>0$.",
-    "trap": "Stopping at $f(x)=\\cos(kx)$ and forgetting the hyperbolic branch $\\cosh(kx)$. The equation does not pin the sign of $f''(0)$: if $f''(0)>0$ the solution is $\\cosh$, if $f''(0)<0$ it is $\\cos$. Also forgetting the degenerate $f\\equiv 0$ and the trivial $f\\equiv 1$.",
+    "statement": "A function $f:\\mathbb{R}\\to\\mathbb{R}$ is continuous on $\\mathbb{R}$ and satisfies $f(x+y)=f(x)+f(y)$ for all real $x,y$. Given that $f(3)=12$, find the exact value of $f(2026)$.",
+    "answer": "Putting $y=x$ repeatedly (or using continuity) forces $f(x)=cx$. From $f(3)=3c=12$ we get $c=4$, so $f(x)=4x$ and $\\boxed{f(2026)=8104}$.",
+    "trap": "Reading $f(3)=12$ as if the multiplier were the value itself, i.e. taking $f(x)=12x$ and reporting $f(2026)=12\\cdot 2026=24312$. The constant is $c=f(3)/3=4$, not $12$; the anchor gives the slope only after dividing by $3$.",
     "solutions": [
       {
-        "name": "Extract f(0), parity, and a second-order ODE",
+        "name": "Continuity pins down the linear form",
         "steps": [
-          "Put $x=y=0$: $2f(0)=2f(0)^2$, so $f(0)\\in\\{0,1\\}$. If $f(0)=0$, set $y=0$ to get $2f(x)=2f(x)f(0)=0$, so $f\\equiv 0$.",
-          "Assume $f(0)=1$. Put $x=0$: $f(y)+f(-y)=2f(0)f(y)=2f(y)$, so $f(-y)=f(y)$ and $f$ is even.",
-          "Continuity upgrades to smoothness (continuous d'Alembert solutions are analytic). Differentiate the identity twice in $y$ and set $y=0$: $f''(x)+f''(x)=2f(x)f''(0)$, i.e. with $g:=f''(0)$ we obtain $f''(x)=g\\,f(x)$ together with $f(0)=1,\\ f'(0)=0$.",
-          "Solve the initial value problem. If $g=-k^2<0$: $f(x)=\\cos(kx)$. If $g=0$: $f\\equiv 1$. If $g=k^2>0$: $f(x)=\\cosh(kx)$.",
-          "Each candidate satisfies the original identity by the standard sum-to-product formulas, so the full list is $f\\equiv 0,\\ \\cos(kx),\\ \\cosh(kx)$. $\\boxed{}$"
+          "Set $x=y=0$: $f(0)=f(0)+f(0)$, so $f(0)=0$. For integer $n$, induction on $f(x+y)=f(x)+f(y)$ gives $f(nx)=nf(x)$, and replacing $x$ by $x/n$ gives $f(x/n)=f(x)/n$; hence $f(q)=q\\,f(1)$ holds at each rational number $q$.",
+          "Write $c=f(1)$. The maps $x\\mapsto f(x)$ and $x\\mapsto cx$ are both continuous and agree on the rationals, which are dense, so they agree everywhere: $f(x)=cx$ for all real $x$.",
+          "Use the anchor: $f(3)=3c=12\\Rightarrow c=4$, so $f(x)=4x$.",
+          "Therefore $\\boxed{f(2026)=4\\cdot 2026=8104}$."
         ]
       },
       {
-        "name": "Recognize the cosine/cosh addition law and propagate by continuity",
+        "name": "Scale the anchor directly",
         "steps": [
-          "The identity $f(x+y)+f(x-y)=2f(x)f(y)$ is precisely the addition law obeyed by $\\cos$ and by $\\cosh$ (and by the constants $0$ and $1$).",
-          "For a nonzero solution, $f(0)=1$ and evenness follow as in the first method; let $c=f(1)$. Setting $y=x$ gives the doubling relation $f(2x)=2f(x)^2-1$, which fixes $f$ on all dyadic multiples of $1$ from $c$ alone.",
-          "If $|c|\\le 1$ write $c=\\cos k$ with $k\\ge 0$ to get $f=\\cos(kx)$; if $c>1$ write $c=\\cosh k$ with $k>0$ to get $f=\\cosh(kx)$. These determine $f$ on a dense set, and continuity then forces them everywhere.",
-          "Conversely all listed functions verify the equation, completing the classification: $\\boxed{f\\equiv 0,\\ \\cos(kx),\\ \\cosh(kx)}$."
+          "From $f(0)=0$ and $f(nx)=nf(x)$ (additivity iterated), every value is determined by one anchor through rational scaling, and continuity extends this to all reals, giving $f(x)=cx$.",
+          "Express the target in terms of the anchor: $f(2026)=\\dfrac{2026}{3}\\,f(3)$, since $f(\\lambda\\cdot 3)=\\lambda f(3)$ holds for rational $\\lambda$ and continuity covers the rest.",
+          "Substitute $f(3)=12$: $f(2026)=\\dfrac{2026}{3}\\cdot 12=2026\\cdot 4$.",
+          "Hence $\\boxed{f(2026)=8104}$."
         ]
       }
     ],
-    "remark": "Insight: this is the d'Alembert functional equation. Over the reals it has a clean trichotomy, circular or hyperbolic or degenerate, governed entirely by the sign of $f''(0)$. Allowing complex $k$ unifies the two analytic branches as $\\cos(kx)$ with $k\\in i\\mathbb{R}$ recovering $\\cosh$."
+    "remark": "**Insight.** The functional equation alone, without a regularity condition, does not force $f(x)=cx$. It is **continuity** that collapses the wild possibilities down to the single line through the origin: $f$ agrees with $cx$ on the dense rationals, and two continuous functions equal on a dense set are equal everywhere. The anchor $f(3)=12$ then fixes the slope as $c=4$, not $12$ — always divide the anchor value by its input."
   },
   {
     "theme": "functionaleq",
     "themeLabel": "Continuous Functional Equations",
-    "title": "Jensen Tamed by a Whisper of Monotonicity",
-    "difficulty": 5,
-    "task": "Prove f is affine and count the real solutions of f(x)=f(x^2) as a function of the slope",
+    "title": "From a Sum Law to an Exponential",
+    "difficulty": 4,
+    "task": "Find the half-step value",
     "tags": [
-      "jensen",
-      "midpoint-convexity",
-      "monotone-on-an-interval",
-      "hamel-pathology",
-      "affine-rigidity",
-      "case-split"
+      "exponential",
+      "continuity",
+      "multiplicative-sum",
+      "functional-equation"
     ],
-    "statement": "A function $f:\\mathbb{R}\\to\\mathbb{R}$ satisfies the Jensen midpoint identity\n\\[\nf\\!\\left(\\frac{x+y}{2}\\right)=\\frac{f(x)+f(y)}{2}\\qquad\\text{for all real }x,y,\n\\]\nand is monotone (non-decreasing or non-increasing) on $(0,\\tfrac1{1000})$ — only on that one tiny interval; nothing about monotonicity is assumed anywhere else. No continuity, differentiability, rationality of values, or boundedness is assumed. You are given $f(0)=2$, and you write $m=f(1)-f(0)$ for the resulting slope.\n\nFirst prove that $f$ must be affine on all of $\\mathbb{R}$, namely $f(x)=mx+2$, arguing carefully why the lone monotonicity window rules out every pathological solution. Then determine, as a function of the parameter $m$, the number of real solutions of\n\\[\nf(x)=f(x^2).\n\\]\nState the count in each regime of $m$.",
-    "answer": "\\[\\boxed{\\,\\#\\{x:\\,f(x)=f(x^2)\\}=\\begin{cases}2,&m\\neq0\\ (x=0,1)\\\\\\infty,&m=0\\end{cases}}\\]",
-    "trap": "Two traps, both fatal. (1) Treating Jensen ALONE as enough to force affineness. It is not: with a Hamel basis of the reals over the rationals one builds wild additive (hence Jensen) functions that are everywhere discontinuous, unbounded on every interval, and emphatically not affine. The single monotonicity window is the entire uniqueness mechanism, because a non-affine Jensen solution differs from a non-linear additive map by a constant and such a map has graph dense in the plane, so it cannot be monotone on ANY interval, however tiny. A student who pattern-matches Jensen to a straight line skips precisely the step that is being tested, and the count question itself collapses without it: for a wild Jensen f, the equation f(x)=f(x^2) acquires extra solutions far from 0 and 1 (a concrete one sits near x=1.905), so the clean count 2 is a theorem about affineness, not about Jensen. (2) After reducing to f(x)=mx+2, blindly solving m x(1-x)=0 and answering two for every m, forgetting the degenerate slope. When m=0 the function is the constant 2, the equation f(x)=f(x^2) reduces to 2=2 and holds for every real x, giving infinitely many solutions, not two. The values x=0 and x=1 are the fixed points of squaring, so they satisfy the equation automatically for ANY f; what the slope controls is whether anything else can; the genuine case split is m=0 versus m!=0, not the sign of m.",
+    "statement": "A continuous function $f:\\mathbb{R}\\to\\mathbb{R}$ satisfies $f(x+y)=f(x)\\,f(y)$ for all real $x,y$, and $f$ is not identically zero. Given $f(1)=e^{2}$, determine $f\\!\\left(\\tfrac12\\right)$.",
+    "answer": "Such an $f$ must be $f(x)=a^{x}$ with $a=f(1)=e^{2}>0$, i.e. $f(x)=e^{2x}$. Hence $f\\!\\left(\\tfrac12\\right)=e^{2\\cdot\\frac12}=\\boxed{e}$.",
+    "trap": "Treating the law as if it were additive and writing $f\\!\\left(\\tfrac12\\right)=\\tfrac12 f(1)=\\tfrac12 e^{2}$. The relation multiplies values, so halving the input takes a square root of the value, not half of it: $f\\!\\left(\\tfrac12\\right)^{2}=f(1)=e^{2}$ gives $e$, not $\\tfrac12 e^{2}$.",
     "solutions": [
       {
-        "name": "Jensen to additive, then monotonicity selects the linear branch",
+        "name": "Positivity then exponential form",
         "steps": [
-          "Normalize to a zero at the origin. Put $g(x)=f(x)-2=f(x)-f(0)$. Jensen is preserved by subtracting a constant: $g((x+y)/2)=(g(x)+g(y))/2$, and $g(0)=0$. Setting $y=0$ gives $g(x/2)=g(x)/2$, equivalently $g(2x)=2g(x)$.",
-          "Upgrade Jensen to additive Cauchy. For any $u,v$ apply Jensen at the pair $(2u,2v)$: $g(u+v)=g\\!\\left(\\frac{2u+2v}{2}\\right)=\\frac{g(2u)+g(2v)}{2}=\\frac{2g(u)+2g(v)}{2}=g(u)+g(v)$. Thus $g$ is additive: $g(u+v)=g(u)+g(v)$ for all reals.",
-          "Monotone on one interval kills every pathology. Suppose $g$ were not of the form $cx$. Then $g$ is a non-linear additive map; choosing two rationally independent reals $p,q$, the vectors $(p,g(p))$ and $(q,g(q))$ are non-parallel, so the rational combinations $\\{(r p+s q,\\,r g(p)+s g(q)):r,s\\in\\mathbb{Q}\\}$ form a set dense in $\\mathbb{R}^2$. Hence on the window $(0,\\tfrac1{1000})$ the graph of $g$ is dense vertically: $g$ takes arbitrarily large and arbitrarily small values, so it is monotone on no subinterval. But $f=g+2$ is assumed monotone on $(0,\\tfrac1{1000})$, and adding the constant $2$ does not change monotonicity, so $g$ is monotone there — contradiction. Therefore $g(x)=cx$ for some constant $c$.",
-          "Identify the slope and assemble. From $g(x)=cx$ we get $f(x)=cx+2$, and $m=f(1)-f(0)=(c+2)-2=c$, so $c=m$ and $f(x)=mx+2$ on all of $\\mathbb{R}$. This is the unique affine solution consistent with the data.",
-          "Count $f(x)=f(x^2)$. The equation becomes $mx+2=mx^2+2$, i.e. $m\\,x(1-x)=0$. If $m\\neq0$ this forces $x(1-x)=0$, so $x\\in\\{0,1\\}$: exactly two solutions. If $m=0$ then $f\\equiv2$ and the equation is $2=2$, true for every real $x$: infinitely many. Hence \\[\\#\\{x:f(x)=f(x^2)\\}=\\begin{cases}2,&m\\neq0\\\\\\infty,&m=0.\\end{cases}\\]"
+          "Since $f$ is not identically zero, pick $x_0$ with $f(x_0)\\neq 0$; then $f(x_0)=f(x)\\,f(x_0-x)$ shows $f(x)\\neq 0$ for every $x$. Moreover $f(x)=f\\!\\left(\\tfrac{x}{2}\\right)^{2}>0$, so $f$ is strictly positive.",
+          "Let $g(x)=\\ln f(x)$, which is continuous. The law becomes $g(x+y)=g(x)+g(y)$, the additive equation, so by continuity $g(x)=cx$ and $f(x)=e^{cx}$.",
+          "Use the anchor: $f(1)=e^{c}=e^{2}\\Rightarrow c=2$, so $f(x)=e^{2x}$.",
+          "Therefore $f\\!\\left(\\tfrac12\\right)=e^{2\\cdot\\frac12}=\\boxed{e}$."
         ]
       },
       {
-        "name": "Rational backbone plus monotone squeeze (no Hamel language)",
+        "name": "Direct half-angle from the law",
         "steps": [
-          "As above, $g=f-2$ is additive with $g(0)=0$. Additivity forces $\\mathbb{Q}$-linearity: by induction $g(nx)=ng(x)$ for integers $n$, then $g(x)=g(q\\cdot \\tfrac{x}{q})=q\\,g(x/q)$ gives $g(qx)=qg(x)$ for rationals $q$, so $g(r)=r\\,g(1)$ for every rational $r$. Write $c=g(1)$, so $g$ agrees with $x\\mapsto cx$ on $\\mathbb{Q}$.",
-          "Use monotonicity to extend $g(x)=cx$ to all reals. Suppose WLOG $f$ is non-decreasing on $(0,\\tfrac1{1000})$; then so is $g$ there. Fix any real $t\\in(0,\\tfrac1{1000})$ and squeeze it between rationals: for rationals $r_1<t<r_2$ inside the window, monotonicity gives $g(r_1)\\le g(t)\\le g(r_2)$, i.e. $cr_1\\le g(t)\\le cr_2$ (assume $c\\ge0$; the case $c<0$ or non-increasing $f$ is symmetric). Letting $r_1\\uparrow t$ and $r_2\\downarrow t$ through rationals forces $g(t)=ct$ for every $t$ in the window.",
-          "Spread the identity off the window by additivity. For arbitrary real $x$, pick a rational $r$ and a point $w\\in(0,\\tfrac1{1000})$ with $x=r+w$ when possible; more cleanly, for any real $x$ choose an integer $N$ so large that $x/2^N$ lands in the window (it does, since $x/2^N\\to0$, and we may also add a rational to enter $(0,\\tfrac1{1000})$ then subtract it back using $g$ linear on rationals). Then $g(x/2^N)=c\\,(x/2^N)$, and $g(x)=2^N g(x/2^N)=cx$. Hence $g(x)=cx$ everywhere, so $f(x)=cx+2$ and $c=m$ as before: $f(x)=mx+2$.",
-          "Solve $f(x)=f(x^2)$. Subtracting, $m(x-x^2)=0$. For $m\\neq0$: $x=0$ or $x=1$, two solutions. For $m=0$: identity, all reals. \\[\\boxed{\\#=2\\ (m\\neq0),\\quad \\#=\\infty\\ (m=0)}.\\]"
-        ]
-      },
-      {
-        "name": "Fixed-point view: why only the slope, not its sign, matters",
-        "steps": [
-          "Granting affineness $f(x)=mx+2$ from Solution 1, observe that $x=0$ and $x=1$ are the two fixed points of the squaring map $x\\mapsto x^2$ (the real roots of $x^2=x$). At any fixed point the equation $f(x)=f(x^2)$ holds automatically for ANY function whatsoever, so $\\{0,1\\}$ is always contained in the solution set; the only question is whether non-fixed points can join.",
-          "A non-fixed point $x$ (so $x^2\\neq x$) satisfies $f(x)=f(x^2)$ iff $f$ takes the same value at the two distinct inputs $x$ and $x^2$. For the strictly monotone affine map ($m\\neq0$) $f$ is injective, so $f(x)=f(x^2)\\Rightarrow x=x^2$, contradicting $x^2\\neq x$. Thus no non-fixed point qualifies and the solution set is exactly $\\{0,1\\}$: count $2$.",
-          "For $m=0$, $f$ is the constant $2$, hence not injective at all; every pair of inputs shares the value $2$, so every real $x$ (fixed or not) satisfies $f(x)=f(x^2)$: infinitely many. This is the unique regime where extra solutions appear, and it is governed by $m=0$ alone, independent of any sign.",
-          "Therefore the count is decided entirely by whether the slope vanishes: \\[\\#\\{x:f(x)=f(x^2)\\}=\\begin{cases}2,&m\\neq0\\\\\\infty,&m=0.\\end{cases}\\] Note the sign of $m$ is irrelevant; only its vanishing flips the answer, which is exactly the case split the trap hides."
+          "Apply the law with $x=y=\\tfrac12$: $f(1)=f\\!\\left(\\tfrac12\\right)f\\!\\left(\\tfrac12\\right)=\\left[f\\!\\left(\\tfrac12\\right)\\right]^{2}$.",
+          "Because $f\\!\\left(\\tfrac12\\right)=f\\!\\left(\\tfrac14\\right)^{2}\\ge 0$ and $f$ is nowhere zero, $f\\!\\left(\\tfrac12\\right)>0$, so we take the positive square root.",
+          "Thus $f\\!\\left(\\tfrac12\\right)=\\sqrt{f(1)}=\\sqrt{e^{2}}=e$.",
+          "Hence $\\boxed{f\\!\\left(\\tfrac12\\right)=e}$."
         ]
       }
     ],
-    "remark": "Insight: Jensen's midpoint identity is not the straight-line condition students remember it as. On its own it is identical in strength to additive Cauchy, whose solution set is a wilderness of everywhere-discontinuous, unbounded, non-measurable functions built from a Hamel basis. What collapses that wilderness here is astonishingly cheap: monotonicity on a single interval of length one-thousandth. The reason is geometric. A non-affine additive map has graph dense in the plane, so it oscillates without bound on every interval and can be monotone on none; demanding monotonicity anywhere, however briefly, exterminates all pathologies at once. This is the monotone-on-a-set implies affine theorem, and it is strictly weaker than assuming continuity, boundedness, or measurability, any one of which would also suffice. The payoff problem is a referendum on whether the solver actually earned affineness: only an affine f makes f(x)=f(x^2) reduce to m x(1-x)=0, whose count is governed by the fixed points of squaring (always 0 and 1) plus injectivity. The buried subtlety is the degenerate slope: when m=0 the function is constant, injectivity is lost, and the count jumps from 2 to infinity. The sign of m is a decoy; only its vanishing matters."
+    "remark": "**Insight.** The hinge is recognising that $f(x+y)=f(x)f(y)$ with a nonzero continuous $f$ forces $f>0$ everywhere — that is what lets $\\ln f$ exist and convert the product law into the additive law, where continuity delivers $g(x)=cx$. Skipping the positivity step is the usual slip. Once $f(x)=e^{2x}$, halving the input is a **square root** of the value, exposing the additive-style trap as wrong."
   },
   {
     "theme": "functionaleq",
     "themeLabel": "Continuous Functional Equations",
-    "title": "Cauchy on the First Quadrant Only",
-    "difficulty": 5,
-    "task": "Determine f as far as the data force it, and decide exactly how much of f is pinned",
+    "title": "A Product That Becomes a Sum",
+    "difficulty": 4,
+    "task": "Evaluate at a power",
     "tags": [
-      "restricted-cauchy",
-      "cone-domain",
-      "monotonicity",
-      "tangency-pin",
-      "uniqueness",
-      "extension"
+      "logarithm",
+      "continuity",
+      "multiplicative-input",
+      "functional-equation"
     ],
-    "statement": "A function $f:\\mathbb{R}\\to\\mathbb{R}$ is continuous everywhere and strictly increasing, and it satisfies the additive Cauchy relation\n\\[\nf(x+y)=f(x)+f(y)\n\\]\nbut only when both $x\\ge 0$ and $y\\ge 0$ — the identity is asserted on the closed first quadrant of arguments, and is not assumed for any pair in which a coordinate is negative. You are told in addition the single sharp bound\n\\[\n|f(x)|\\le x^{2}-x+1\\qquad\\text{for every }x\\ge 0,\n\\]\nand that this bound is attained with equality at some $x_{0}>0$.\n\nDetermine $f$ as completely as the hypotheses permit. Your solution must (i) prove that the cone restriction $x,y\\ge0$ already forces $f(x)=cx$ on $[0,\\infty)$, naming exactly where continuity is spent and confirming that no negative argument is ever needed; (ii) use the tightness of the bound together with the monotonicity to fix the constant $c$, being explicit about which hypothesis kills which candidate value; and (iii) decide whether $f$ is thereby determined on all of $\\mathbb{R}$ — if not, describe precisely the freedom that remains and why the functional equation is powerless to remove it.",
-    "answer": "\\[\\boxed{\\,f(x)=x\\ \\text{on}\\ [0,\\infty);\\ \\text{undetermined on}\\ (-\\infty,0)\\,}\\]",
-    "trap": "The fatal reflex is to declare $f(x)=x$ for all real $x$. Two layers of overreach hide in that one line. First, on the constant: the bound is two-sided, $|f(x)|\\le x^{2}-x+1$, and \"attained with equality\" only gives $|cx_0|=x_0^{2}-x_0+1$, i.e. $|c|=1$, so $c=+1$ or $c=-1$ — both are perfectly consistent with the bound and with the cone equation. It is the word increasing, not the bound, that murders $c=-1$ (a strictly increasing additive map cannot have negative slope). A student who pins $c$ from the bound alone keeps a spurious second solution $f(x)=-x$ on $[0,\\infty)$, which is decreasing and must be thrown out by monotonicity — miss that and you either keep two answers or pick the right one for the wrong reason. Second, and deeper: the equation is asserted only on the cone $x,y\\ge0$. Every step that yields $f(x)=cx$ — the doubling $f(2x)=2f(x)$, the rational scaling $f(qx)=qf(x)$, the continuity limit — uses only nonnegative arguments. The relation NEVER touches a negative input, because $x+y\\ge0$ whenever $x,y\\ge0$. Hence on $(-\\infty,0)$ the only constraints surviving are continuity (forcing $f(0^-)=f(0)=0$) and strict monotonicity (forcing $f<0$ there): infinitely many continuous strictly increasing extensions ($f(x)=x$, $f(x)=2x$, $f(x)=e^{x}-1$, $f(x)=x^{3}$, \\dots) all agree on $[0,\\infty)$ yet differ on the negatives. Believing continuity \"glues\" the two sides into the single line $y=x$ is the conceptual error: continuity only forbids a jump at $0$, it does not propagate the slope across a half-line where no equation lives. A third, subtler slip is to think a discontinuous (Hamel) additive map could sneak back in — it cannot, since it is unbounded on every interval and non-monotone, so it fails both the bound and \"increasing\"; but that is a separate fact, not the reason the negatives are free.",
+    "statement": "A function $f:(0,\\infty)\\to\\mathbb{R}$ is continuous and satisfies $f(xy)=f(x)+f(y)$ for all positive $x,y$. Given $f(2)=5$, find $f(8)$.",
+    "answer": "Continuity forces $f(x)=c\\ln x$. Then $f(2)=c\\ln 2=5$, and since $8=2^{3}$, $f(8)=f(2^{3})=3f(2)=3\\cdot 5=\\boxed{15}$.",
+    "trap": "Confusing this with the multiplicative law $f(xy)=f(x)f(y)$ and writing $f(8)=f(2)f(4)=f(2)\\,[f(2)]^{2}=5\\cdot 25=125$. Here equal inputs multiplied give values that are **added**, not multiplied, so $f(2^{3})=3f(2)=15$.",
     "solutions": [
       {
-        "name": "Rational scaling on the cone, then continuity, then monotonicity fixes the sign",
+        "name": "Iterate the law on powers of two",
         "steps": [
-          "Spend the cone equation. Put $x=y=0$ (legal: both $\\ge0$): $f(0)=2f(0)$, so $f(0)=0$. For $x\\ge0$ and $n\\in\\mathbb{N}$, induction with the pairs $\\big(x,(n-1)x\\big)$ — both nonnegative — gives $f(nx)=nf(x)$. Replacing $x$ by $x/n$ yields $f(x/n)=\\tfrac1n f(x)$, and combining, $f\\!\\big(\\tfrac{p}{q}x\\big)=\\tfrac{p}{q}f(x)$ for all nonnegative rationals $p/q$ and all $x\\ge0$. With $x=1$ and $c:=f(1)$ this reads $f(q)=cq$ for every rational $q\\ge0$. Crucially, every argument that appeared was $\\ge0$: the negative half-line has not been mentioned, and could not be, since $x+y\\ge0$ whenever $x,y\\ge0$.",
-          "Spend continuity (on $[0,\\infty)$ only). Fix any real $t\\ge0$ and choose nonnegative rationals $q_k\\to t$. Then $f(q_k)=cq_k\\to ct$, while continuity of $f$ at $t$ gives $f(q_k)\\to f(t)$. Hence $f(t)=ct$ for all $t\\ge0$: on the half-line $f(x)=cx$. (This is exactly the classical Cauchy collapse; the only novelty is that the cone provided every relation we needed without ever evaluating $f$ at a negative point.)",
-          "Use the sharp bound to size $|c|$. On $[0,\\infty)$, $|f(x)|=|c|\\,x\\le x^{2}-x+1$, i.e. $x^{2}-(|c|+1)x+1\\ge0$ for all $x\\ge0$. Since the equality $|c|\\,x_0=x_0^{2}-x_0+1$ holds at some $x_0>0$, the quadratic $q(x)=x^{2}-(|c|+1)x+1$ is $\\ge0$ on $[0,\\infty)$ yet vanishes at the interior point $x_0>0$; an upward parabola with positive product of roots ($=1$) and a positive root where it stays nonnegative must have a double root, so its discriminant vanishes: $(|c|+1)^{2}=4$, giving $|c|+1=2$, hence $|c|=1$ and $x_0=1$. Thus $c=+1$ or $c=-1$.",
-          "Use monotonicity to choose the branch. The candidate $c=-1$ gives $f(x)=-x$ on $[0,\\infty)$, which is strictly decreasing — contradicting that $f$ is strictly increasing. So $c=-1$ is impossible and $c=+1$: on the half-line $f(x)=x$. (Note both hypotheses earned their keep: the bound delivered $|c|=1$, the monotonicity delivered the sign.)",
-          "Decide the negatives. No hypothesis constrains $f$ on $(-\\infty,0)$ except continuity at $0$ — which forces $\\lim_{x\\to0^-}f(x)=f(0)=0$ — and strict monotonicity — which forces $f(x)<f(0)=0$ for $x<0$ and $f$ increasing there. The functional equation cannot help, since it is asserted only for nonnegative arguments. Therefore $f(x)=x$ on $[0,\\infty)$ is forced, while on $(-\\infty,0)$ any continuous strictly increasing function $h$ with $h(0^-)=0$ (for instance $x$, $2x$, $e^{x}-1$, or $x^{3}$) yields a valid $f$. So $\\boxed{f(x)=x\\ \\text{on }[0,\\infty),\\ \\text{undetermined on }(-\\infty,0)}$."
+          "Put $x=y$: $f(x^{2})=2f(x)$, and inductively $f(x^{n})=n f(x)$ for positive integers $n$.",
+          "With $x=2$, $n=3$: $f(8)=f(2^{3})=3f(2)$.",
+          "Substitute $f(2)=5$: $f(8)=3\\cdot 5=15$.",
+          "Hence $\\boxed{f(8)=15}$ (no use of the explicit logarithm form needed)."
         ]
       },
       {
-        "name": "AM-GM tangency for the constant, scaling for the rest",
+        "name": "Reduce to additive via the logarithm",
         "steps": [
-          "As in Solution 1, the cone equation plus continuity force $f(x)=cx$ on $[0,\\infty)$ for some constant $c=f(1)$, with no negative argument ever used.",
-          "Read the bound through AM-GM. For $x>0$ the bound says $|c|\\,x\\le x^{2}-x+1$, equivalently $|c|+1\\le x+\\tfrac1x$. By AM-GM, $x+\\tfrac1x\\ge2$ with equality iff $x=1$. Hence $|c|+1\\le \\min_{x>0}\\big(x+\\tfrac1x\\big)=2$ only if the bound is to be tight: since equality in the original inequality is attained at some $x_0>0$, we get $|c|+1=x_0+\\tfrac1{x_0}$, and tightness can only meet the floor $2$, forcing $x_0=1$ and $|c|+1=2$. Thus $|c|=1$.",
-          "Select $c=+1$ by monotonicity. A strictly increasing $f$ has $f(1)=c>f(0)=0$, so $c>0$; with $|c|=1$ this gives $c=1$. (Equivalently, $c=-1$ would make $f(x)=-x$ decreasing on $[0,\\infty)$, excluded.) Hence $f(x)=x$ for $x\\ge0$.",
-          "The negatives are free. The equation is silent on negative inputs, so the only residual constraints are continuity at $0$ and strict monotonicity; these admit infinitely many distinct extensions agreeing with $x$ on $[0,\\infty)$. Therefore $f$ is pinned to $\\boxed{f(x)=x\\ \\text{on }[0,\\infty),\\ \\text{undetermined on }(-\\infty,0)}$, no more."
-        ]
-      },
-      {
-        "name": "Necessity by counterexample — exhibit the surviving freedom and the excluded impostors",
-        "steps": [
-          "Granting $f(x)=cx$ on $[0,\\infty)$ (cone equation + continuity, Solution 1) and $|c|=1$ with $c>0$ by monotonicity (so $f(x)=x$ on $[0,\\infty)$), we test whether more is forced by trying to break uniqueness on the negatives. Define $f_1(x)=x$ for all $x$, and $f_2(x)=x$ for $x\\ge0$ but $f_2(x)=2x$ for $x<0$. Both are continuous (each piece is continuous and they agree at $0$ with value $0$), both are strictly increasing, both satisfy $|f_i(x)|\\le x^{2}-x+1$ on $x\\ge0$ with equality at $x=1$, and both satisfy $f_i(x+y)=f_i(x)+f_i(y)$ for $x,y\\ge0$ (where each equals the identity). Yet $f_1(-1)=-1\\ne-2=f_2(-1)$. So two genuinely different functions satisfy every hypothesis: $f$ is NOT unique on $(-\\infty,0)$.",
-          "Pin down exactly the freedom. Any admissible $f$ must restrict to a continuous strictly increasing map $h=f|_{(-\\infty,0]}$ with $h(0)=0$ (continuity glues to the half-line value) and $h<0$ on $(-\\infty,0)$ (monotonicity). Conversely any such $h$, pasted to $x\\mapsto x$ on $[0,\\infty)$, gives an admissible $f$: continuity holds (both sides limit to $0$ at $0$), strict monotonicity holds across $0$ since $h<0\\le x$, the bound involves only $x\\ge0$ where $f(x)=x$ satisfies it, and the cone equation involves only nonnegative arguments where $f$ is the identity. Thus the solution set is exactly $\\{\\,x\\mapsto x\\ \\text{on }[0,\\infty)\\,\\}\\times\\{\\,\\text{continuous strictly increasing }h\\le0,\\ h(0)=0\\,\\}$.",
-          "Rule out the tempting wrong answers, each by its own hypothesis. $f(x)=-x$ on $[0,\\infty)$: consistent with the cone equation and the bound, killed by increasing. A discontinuous additive (Hamel) function with $g(1)=1$: satisfies the cone equation, but is unbounded on every interval, so it violates $|f|\\le x^{2}-x+1$ and is non-monotone — killed by both the bound and increasing. The single line $f(x)=x$ on all of $\\mathbb{R}$: a valid solution, but only one of infinitely many, so it cannot be the answer for the negatives.",
-          "Conclusion. The data force $f(x)=x$ on $[0,\\infty)$ and nothing sharper on $(-\\infty,0)$: $\\boxed{f(x)=x\\ \\text{on }[0,\\infty),\\ \\text{undetermined on }(-\\infty,0)}$. The cone restriction is the entire reason the negative half-line escapes."
+          "Substitute $x=e^{u},\\,y=e^{v}$ and set $g(u)=f(e^{u})$. The law becomes $g(u+v)=g(u)+g(v)$, the continuous additive equation, so $g(u)=cu$ and therefore $f(x)=c\\ln x$.",
+          "Anchor: $f(2)=c\\ln 2=5\\Rightarrow c=\\dfrac{5}{\\ln 2}$.",
+          "Compute $f(8)=c\\ln 8=\\dfrac{5}{\\ln 2}\\cdot 3\\ln 2=15$.",
+          "Thus $\\boxed{f(8)=15}$."
         ]
       }
     ],
-    "remark": "Insight: a Cauchy equation asserted on a cone ($x,y\\ge0$) is a one-way street — because the sum of nonnegatives is nonnegative, every consequence (doubling, rational scaling, the continuity limit) lives on the half-line and never reaches across $0$. So continuity does its full classical job, collapsing the wild Hamel solutions to a single slope $cx$, but only on $[0,\\infty)$; on the negatives it can forbid a jump at $0$ and nothing more. The result is a problem where three regularity hypotheses each do a precise, non-overlapping job: continuity linearizes the half-line, the tight bound $|f|\\le x^{2}-x+1$ (touched, via a double-root / AM-GM argument, only at $x=1$) sizes $|c|=1$, and strict monotonicity breaks the residual sign ambiguity to give $c=+1$ — drop monotonicity and the impostor $f(x)=-x$ survives. The headline trap, writing $f(x)=x$ for all real $x$, is wrong not arithmetically but conceptually: it treats a relation on a half-space as if it held on all of $\\mathbb{R}$, smuggling a uniqueness that the geometry of the domain never grants. The sharp lesson for a Cauchy-style problem is to ask first where the equation lives, because that domain — not the formula — decides how much of $f$ is actually determined."
+    "remark": "**Insight.** The substitution $x=e^{u}$ turns a product on the inputs into a sum, converting $f(xy)=f(x)+f(y)$ into the additive equation — and **continuity** is exactly what then forces $g(u)=cu$, hence $f(x)=c\\ln x$. You never even need the constant $c$: the structural rule $f(x^{n})=nf(x)$ gives the answer directly. The seductive error is mixing up the additive-output law with the multiplicative-output one."
   },
   {
     "theme": "functionaleq",
@@ -1177,127 +960,188 @@ window.PROBLEMS = [
   {
     "theme": "functionaleq",
     "themeLabel": "Continuous Functional Equations",
-    "title": "The Character Hiding in the Sign",
+    "title": "The Bilinear Correction Term",
     "difficulty": 5,
-    "task": "Classify every nontrivial solution, then use the data to determine f and evaluate it",
+    "task": "Evaluate the function",
     "tags": [
-      "multiplicative-cauchy",
-      "sign-character",
-      "branch-trap",
-      "continuity-uniqueness",
-      "classification",
-      "even-vs-odd"
-    ],
-    "statement": "Let $f:\\mathbb{R}\\setminus\\{0\\}\\to\\mathbb{R}$ be continuous on $\\mathbb{R}\\setminus\\{0\\}$ and satisfy the multiplicative Cauchy relation\n\\[\nf(xy)=f(x)\\,f(y)\\qquad\\text{for all nonzero }x,y,\n\\]\nwith $f$ not identically zero. Note carefully: $f$ is not assumed positive, so $f$ may take negative values.\n\n(a) Classify all such $f$. Your argument must run uniqueness from continuity: show that continuity collapses the wild (non-measurable) solutions on the positive half-line to a single power, and find every way the negative half-line can be filled in. State the complete solution set as a union of one-parameter families.\n\n(b) Now suppose, in addition, that $f(2)=8$ and $f(-2)=-8$. Determine $f(x)$ explicitly for every nonzero $x$, decide which family it lives in, and compute $f\\!\\left(-\\tfrac18\\right)$.",
-    "answer": "\\[\\boxed{\\;f(x)=|x|^{c}\\ \\text{ or }\\ f(x)=\\operatorname{sgn}(x)\\,|x|^{c}\\ \\ (c\\in\\mathbb{R});\\quad\\text{here }f(x)=\\operatorname{sgn}(x)\\,|x|^{3},\\ \\ f\\!\\left(-\\tfrac18\\right)=-\\tfrac1{512}\\;}\\]",
-    "trap": "The seductive shortcut is to declare $f>0$ \"because it equals $f(\\sqrt{x})^2$,\" linearize $\\ln f$, and announce $f(x)=|x|^{c}$ as the answer — a single even power law. That square argument is honest only for positive arguments: for $x>0$, $f(x)=f(\\sqrt x)^2\\ge0$, and continuity plus nonvanishing force $f(x)>0$ there. But for $x<0$ there is no real square root, so the positivity proof simply does not reach the negative half-line, and the whole sign question reopens. The hidden case lives at $x=-1$: from $f(1)=1$ and $f(-1)^2=f\\big((-1)(-1)\\big)=f(1)=1$, the only constraint is $f(-1)\\in\\{+1,-1\\}$ — two admissible values, not one. The choice $f(-1)=-1$ is perfectly continuous and perfectly multiplicative, and it produces the genuinely different odd solution $f(x)=\\operatorname{sgn}(x)\\,|x|^{c}$ (a nontrivial sign-character times a power), which the \"$f>0$\" reflex erases. With the data of part (b) the trap is fatal: a student who writes $f(x)=|x|^{3}$ gets $f(-2)=8$, flatly contradicting the given $f(-2)=-8$, yet may \"fix\" it by hand and still report $f(-\\tfrac18)=+\\tfrac1{512}$ with the wrong sign. The true value is $-\\tfrac1{512}$. A second, lazier slip is to allow $f(-1)$ to be any number whose square is $1$ over the complexes or to think a different exponent could serve the negative side; over $\\mathbb{R}$ the square pins $f(-1)=\\pm1$ exactly, and since $f(x)=f(-1)f(|x|)$ the same exponent $c$ governs both sides — no hybrid exists.",
-    "solutions": [
-      {
-        "name": "Positives by continuity, negatives by the sign-character at $-1$",
-        "steps": [
-          "Pin the anchors. $f(1)=f(1\\cdot1)=f(1)^2$ gives $f(1)\\in\\{0,1\\}$; if $f(1)=0$ then $f(x)=f(x\\cdot1)=f(x)f(1)=0$ for all $x$, the excluded trivial map, so $f(1)=1$. Next $f(-1)^2=f\\big((-1)(-1)\\big)=f(1)=1$, hence $f(-1)\\in\\{+1,-1\\}$ — and over $\\mathbb{R}$ there is no third option. This single fork is the entire source of the two families.",
-          "Linearize the positive half-line from continuity. For $x>0$, $f(x)=f(\\sqrt x)^2\\ge0$; if $f$ vanished at some $x_0>0$ then $f(x)=f(x/x_0)f(x_0)=0$ on all of $(0,\\infty)$ and then everywhere, contradiction, so $f(x)>0$ for $x>0$. Put $g(t)=\\ln f(e^{t})$: it is continuous on $\\mathbb{R}$ and $g(s+t)=\\ln f(e^{s}e^{t})=\\ln\\big(f(e^{s})f(e^{t})\\big)=g(s)+g(t)$, the additive Cauchy equation. Continuity is exactly what kills the pathological non-measurable additive maps and forces $g(t)=ct$ with $c=g(1)=\\ln f(e)$. Hence $f(x)=e^{c\\ln x}=x^{c}=|x|^{c}$ for every $x>0$.",
-          "Fill the negative half-line. Any $x<0$ factors as $x=(-1)\\cdot|x|$ with $|x|>0$, so $f(x)=f(-1)\\,f(|x|)=f(-1)\\,|x|^{c}$. The two values of $f(-1)$ give exactly two outcomes: $f(-1)=+1\\Rightarrow f(x)=|x|^{c}$ (the even branch), and $f(-1)=-1\\Rightarrow f(x)=-|x|^{c}=\\operatorname{sgn}(x)\\,|x|^{c}$ (the sign-character branch). The exponent is the same $c$ on both sides — it was determined on the positives and merely carried across by the factor $f(-1)$, so no hybrid with two exponents can occur.",
-          "Verify and assemble. Both candidates are continuous on $\\mathbb{R}\\setminus\\{0\\}$ and multiplicative: $|xy|^{c}=|x|^{c}|y|^{c}$, and $\\operatorname{sgn}(xy)|xy|^{c}=\\operatorname{sgn}(x)\\operatorname{sgn}(y)\\,|x|^{c}|y|^{c}$ since $\\operatorname{sgn}$ is itself multiplicative. Therefore the complete solution set is $\\{\\,f(x)=|x|^{c}\\,\\}\\cup\\{\\,f(x)=\\operatorname{sgn}(x)|x|^{c}\\,\\}$ over $c\\in\\mathbb{R}$ (the cases $c=0$ giving the constant $1$ and the pure sign $\\operatorname{sgn}(x)$). $\\boxed{f(x)=|x|^{c}\\ \\text{or}\\ \\operatorname{sgn}(x)|x|^{c}}$",
-          "Apply the data of part (b). On the positives $f(2)=2^{c}=8$ forces $c=3$. The branch is decided by $f(-2)=f(-1)f(2)=8\\,f(-1)=-8$, so $f(-1)=-1$: the sign branch. Thus $f(x)=\\operatorname{sgn}(x)\\,|x|^{3}$, and $f\\!\\left(-\\tfrac18\\right)=-\\left(\\tfrac18\\right)^{3}=\\boxed{-\\tfrac1{512}}$ (the even-branch impostor would have given the contradictory $f(-2)=8$ and the wrong sign $+\\tfrac1{512}$)."
-        ]
-      },
-      {
-        "name": "Separate the magnitude and the sign as two characters",
-        "steps": [
-          "Define $A(x)=|f(x)|$ and observe $A(xy)=|f(x)f(y)|=A(x)A(y)$, so $A$ is a nonnegative continuous multiplicative map. Since $A(1)=|f(1)|=1$ and $A>0$ on positives (as $A(x)=f(\\sqrt x)^2$ there is nonnegative and nonvanishing), and $A(-x)=|f(-1)|\\,A(x)=A(x)$ because $|f(-1)|=1$, $A$ depends only on $|x|$. Running the continuity/Cauchy argument on $t\\mapsto\\ln A(e^{t})$ gives $A(x)=|x|^{c}$ for a unique $c\\in\\mathbb{R}$.",
-          "Now isolate the sign $\\varepsilon(x)=f(x)/A(x)\\in\\{+1,-1\\}$ (well defined since $A>0$). It is multiplicative: $\\varepsilon(xy)=\\varepsilon(x)\\varepsilon(y)$. A multiplicative map $\\mathbb{R}\\setminus\\{0\\}\\to\\{\\pm1\\}$ is a real character; continuity forces $\\varepsilon\\equiv1$ on the connected positive ray (any continuous $\\pm1$-valued function on an interval is constant, and $\\varepsilon(1)=1$). On the negatives $\\varepsilon(x)=\\varepsilon(-1)\\varepsilon(|x|)=\\varepsilon(-1)$ is the single bit $\\varepsilon(-1)\\in\\{+1,-1\\}$.",
-          "Combine. $f=\\varepsilon\\cdot A$ where $A(x)=|x|^{c}$ and $\\varepsilon$ is either the trivial character ($\\varepsilon\\equiv1$) or the sign character ($\\varepsilon=\\operatorname{sgn}$). Hence $f(x)=|x|^{c}$ or $f(x)=\\operatorname{sgn}(x)|x|^{c}$, and these are all. $\\boxed{f(x)=|x|^{c}\\ \\text{or}\\ \\operatorname{sgn}(x)|x|^{c}}$",
-          "Use the data. $A(2)=|f(2)|=8\\Rightarrow 2^{c}=8\\Rightarrow c=3$; $\\varepsilon(2)=+1$ but $f(-2)=-8<0$ gives $\\varepsilon(-1)=-1$, the sign character. So $f(x)=\\operatorname{sgn}(x)|x|^{3}$ and $f\\!\\left(-\\tfrac18\\right)=\\operatorname{sgn}\\!\\left(-\\tfrac18\\right)\\left(\\tfrac18\\right)^{3}=\\boxed{-\\tfrac1{512}}$."
-        ]
-      },
-      {
-        "name": "Necessity by counterexample — exhibit the missed solution the trap erases",
-        "steps": [
-          "Suppose someone proves $f(x)=|x|^{c}$ and stops. To show this is incomplete, exhibit a second admissible map. Take $h(x)=\\operatorname{sgn}(x)\\,|x|^{c}$ for the same $c$. Then $h$ is continuous on $\\mathbb{R}\\setminus\\{0\\}$, not identically zero, and $h(xy)=\\operatorname{sgn}(xy)|xy|^{c}=\\operatorname{sgn}(x)\\operatorname{sgn}(y)|x|^{c}|y|^{c}=h(x)h(y)$, so it satisfies every hypothesis. Yet $h(-1)=-1\\ne1=|-1|^{c}$, so $h\\ne|x|^{c}$. Two genuinely different continuous solutions coexist — uniqueness on the negatives fails, exactly because $f(-1)^2=1$ has two real roots.",
-          "Show no further freedom and no hybrid. Given any solution, the positives are forced to $|x|^{c}$ (Solution 1, step 2) and the negatives obey $f(x)=f(-1)|x|^{c}$ with $f(-1)\\in\\{\\pm1\\}$; there is no room for a different exponent on the negative side, since the exponent already came from the positives via $f(|x|)$. So the solution set is precisely the two families and nothing in between.",
-          "Resolve the data unambiguously, ruling out the impostor by its own contradiction. The even candidate $f(x)=|x|^{3}$ gives $f(-2)=|-2|^{3}=8$, contradicting the required $f(-2)=-8$; so the data select the sign branch and reject the trap outright. The sign candidate $f(x)=\\operatorname{sgn}(x)|x|^{3}$ gives $f(2)=8$ and $f(-2)=-8$, both correct.",
-          "Conclude. The full answer is $f(x)=|x|^{c}$ or $\\operatorname{sgn}(x)|x|^{c}$; the data pin $c=3$ and the sign branch, so $f\\!\\left(-\\tfrac18\\right)=-\\left(\\tfrac18\\right)^{3}=\\boxed{-\\tfrac1{512}}$, not $+\\tfrac1{512}$."
-        ]
-      }
-    ],
-    "remark": "Insight: positivity is not free here — it is a theorem only on the half-line where square roots live. For $x>0$ the identity $f(x)=f(\\sqrt x)^2$ plus continuity genuinely forces $f>0$ and then the unique power $|x|^{c}$, the classic place where continuity earns its keep by exterminating the non-measurable Cauchy solutions. But the negative half-line has no real square root, so the only thing the equation can say there is $f(-1)^2=1$, i.e. $f(-1)=\\pm1$: a one-bit choice that splits the answer into a magnitude character $|x|^{c}$ times a sign character that is either trivial or $\\operatorname{sgn}(x)$. The deep lesson is that a multiplicative function on $\\mathbb{R}\\setminus\\{0\\}$ factors as (positive multiplicative magnitude) $\\times$ (real multiplicative sign), and continuity pins the magnitude completely while leaving the sign exactly one free bit. The headline trap — assuming $f>0$ everywhere and reporting only $|x|^{c}$ — is not an arithmetic slip but a domain error: it imports the positivity proof from the positive ray onto a ray where it has no footing, silently discarding half of all solutions."
-  },
-  {
-    "theme": "functionaleq",
-    "themeLabel": "Continuous Functional Equations",
-    "title": "The Pexider Triplet",
-    "difficulty": 5,
-    "task": "Find a,b",
-    "tags": [
-      "pexider",
-      "system",
-      "affine",
+      "additive-with-correction",
       "continuity",
-      "three-functions"
+      "quadratic-function",
+      "functional-equation"
     ],
-    "statement": "Let $f,g,h:\\mathbb{R}\\to\\mathbb{R}$ be continuous and satisfy the Pexider equation \\[ f(x+y)=g(x)+h(y)\\qquad\\text{for all } x,y\\in\\mathbb{R}, \\] with $g(0)=1$, $h(0)=2$, and $f(1)=6$. Determine all three functions, and find $f(5)$.",
-    "answer": "$f(x)=3x+3$, $g(x)=3x+1$, $h(x)=3x+2$; and $f(5)=18$.",
-    "trap": "Assuming $f,g,h$ are the SAME function or that all are linear with no constant term. Pexider's equation forces a common slope but three different intercepts tied by $f(0)=g(0)+h(0)$; ignoring that constraint (here $f(0)=3$) yields an inconsistent system.",
+    "statement": "A continuous function $f:\\mathbb{R}\\to\\mathbb{R}$ satisfies $f(x+y)=f(x)+f(y)+3xy$ for all real $x,y$, with $f(1)=4$. Find $f(4)$.",
+    "answer": "Removing the bilinear term: $h(x)=f(x)-\\tfrac{3}{2}x^{2}$ is continuous and additive, so $h(x)=bx$ and $f(x)=\\tfrac{3}{2}x^{2}+bx$. From $f(1)=\\tfrac32+b=4$ we get $b=\\tfrac52$, so $f(x)=\\tfrac32 x^{2}+\\tfrac52 x$ and $f(4)=24+10=\\boxed{34}$.",
+    "trap": "Ignoring the $3xy$ term and treating the equation as purely additive, concluding $f(x)=cx$ with $c=f(1)=4$, hence $f(4)=16$. The correction term makes $f$ quadratic, not linear; the true value is $34$.",
     "solutions": [
       {
-        "name": "Reduce the triplet to one Cauchy function",
+        "name": "Subtract off the quadratic part",
         "steps": [
-          "Set $y=0$: $f(x)=g(x)+h(0)=g(x)+2$, so $g(x)=f(x)-2$. Set $x=0$: $f(y)=g(0)+h(y)=1+h(y)$, so $h(y)=f(y)-1$.",
-          "Substitute back: $f(x+y)=[f(x)-2]+[f(y)-1]=f(x)+f(y)-3$.",
-          "Let $F(x)=f(x)-3$; then $F(x+y)=F(x)+F(y)$ is Cauchy, so continuity gives $F(x)=cx$ and $f(x)=cx+3$ (consistent with $f(0)=g(0)+h(0)=3$).",
-          "From $f(1)=c+3=6$ we get $c=3$: $f(x)=3x+3$, $g(x)=3x+1$, $h(x)=3x+2$.",
-          "Therefore $f(5)=18$. $\\boxed{f(5)=18}$"
+          "Guess that $\\tfrac32 x^{2}$ generates the correction: with $p(x)=\\tfrac32 x^{2}$, $p(x+y)-p(x)-p(y)=\\tfrac32\\!\\left[(x+y)^2-x^2-y^2\\right]=3xy$, matching the extra term.",
+          "Define $h(x)=f(x)-\\tfrac32 x^{2}$. Then $h(x+y)=f(x+y)-\\tfrac32(x+y)^2=\\big(f(x)+f(y)+3xy\\big)-\\big(\\tfrac32x^2+\\tfrac32y^2+3xy\\big)=h(x)+h(y)$.",
+          "So $h$ is continuous and additive, giving $h(x)=bx$ and $f(x)=\\tfrac32 x^{2}+bx$. The anchor $f(1)=\\tfrac32+b=4$ yields $b=\\tfrac52$.",
+          "Thus $f(x)=\\tfrac32 x^{2}+\\tfrac52 x$ and $f(4)=\\tfrac32\\cdot 16+\\tfrac52\\cdot 4=24+10=\\boxed{34}$."
         ]
       },
       {
-        "name": "Difference out the constants",
+        "name": "Build f(4) from f(1) step by step",
         "steps": [
-          "For any $x$, $f(x+1)-f(x)=[g(x)+h(1)]-[g(x)+h(0)]=h(1)-h(0)$, a constant; likewise $f(x+1)-f(x)=g(1)-g(0)$. So $f$ has constant increments, forcing affinity $f(x)=cx+d$ under continuity.",
-          "Then $g(x)=f(x)-h(0)=cx+d-2$ and $h(y)=f(y)-g(0)=cy+d-1$; the conditions $g(0)=d-2=1$ and $h(0)=d-1=2$ both give $d=3$.",
-          "$f(1)=c+3=6\\Rightarrow c=3$, so $f(x)=3x+3$, $g(x)=3x+1$, $h(x)=3x+2$.",
-          "Hence $f(5)=3\\cdot5+3=\\boxed{18}$."
+          "First find $f(0)$: set $x=y=0$ to get $f(0)=2f(0)+0$, so $f(0)=0$ (consistent with a quadratic through the origin).",
+          "Use the law with $x=n,\\,y=1$: $f(n+1)=f(n)+f(1)+3n=f(n)+4+3n$. Starting from $f(1)=4$: $f(2)=4+4+3=11$.",
+          "Continue: $f(3)=f(2)+4+3\\cdot 2=11+4+6=21$; $f(4)=f(3)+4+3\\cdot 3=21+4+9=34$.",
+          "Hence $\\boxed{f(4)=34}$, matching $\\tfrac32 x^2+\\tfrac52 x$ at $x=4$."
         ]
       }
     ],
-    "remark": "Insight: the Pexider equation is Cauchy with three unknown functions; collapsing it via $g=f-h(0)$, $h=f-g(0)$ always recovers a single additive core plus the bookkeeping identity $f(0)=g(0)+h(0)$."
+    "remark": "**Insight.** A bilinear correction term $kxy$ is the fingerprint of a hidden $\\tfrac{k}{2}x^{2}$: subtracting it leaves a clean continuous additive equation, which continuity then forces into a line. The trap is to read the surface as additive and miss the quadratic entirely. Note also $f(0)=0$ here, but the $\\tfrac32 x^2$ piece means $f$ is genuinely nonlinear — the anchor must be applied to the full quadratic form, not to a phantom slope."
   },
   {
     "theme": "functionaleq",
     "themeLabel": "Continuous Functional Equations",
-    "title": "The Parallelogram Law",
+    "title": "The Sign Trap in an Exponential",
     "difficulty": 5,
-    "task": "Determine",
+    "task": "Find a negative input",
     "tags": [
-      "quadratic-functional",
-      "parallelogram-law",
-      "jordan-von-neumann",
-      "continuity"
+      "exponential",
+      "continuity",
+      "positivity",
+      "functional-equation"
     ],
-    "statement": "Let $f:\\mathbb{R}\\to\\mathbb{R}$ be continuous and satisfy the quadratic (parallelogram) equation \\[ f(x+y)+f(x-y)=2f(x)+2f(y)\\qquad\\text{for all } x,y\\in\\mathbb{R}, \\] with $f(3)=18$. Determine $f$, and find $f(5)$.",
-    "answer": "$f(x)=2x^{2}$, so $f(5)=50$.",
-    "trap": "Allowing a linear term, i.e. guessing $f(x)=ax^2+bx$. Substituting gives residual $-2by$, which forces $b=0$ (the equation tolerates no odd part), and a constant term must vanish since $f(0)=0$. The continuous solution is purely $cx^2$; admitting a linear or constant piece is the seductive error.",
+    "statement": "A continuous function $f:\\mathbb{R}\\to\\mathbb{R}$, not identically zero, satisfies $f(x+y)=f(x)\\,f(y)$ for all real $x,y$, and $f(2)=9$. Determine $f(-1)$.",
+    "answer": "Here $f(x)=f\\!\\left(\\tfrac{x}{2}\\right)^{2}\\ge 0$ and $f$ is nowhere zero, so $f>0$; thus $f(x)=a^{x}$ with $a=f(1)>0$. From $f(2)=a^{2}=9$ and $a>0$ we get $a=3$, so $f(x)=3^{x}$ and $f(-1)=3^{-1}=\\boxed{\\tfrac13}$.",
+    "trap": "Solving $a^{2}=9$ and taking $a=-3$, giving $f(-1)=\\tfrac{1}{-3}=-\\tfrac13$. The relation forces $f(x)=f(x/2)^{2}\\ge 0$, so $a=f(1)$ cannot be negative; only $a=3$ survives, making $f(-1)=+\\tfrac13$.",
     "solutions": [
       {
-        "name": "Force quadratic homogeneity",
+        "name": "Positivity kills the negative root",
         "steps": [
-          "Put $x=y=0$: $2f(0)=4f(0)$, so $f(0)=0$. Put $x=0$: $f(y)+f(-y)=2f(y)$, so $f$ is even.",
-          "Put $y=x$: $f(2x)+f(0)=4f(x)$, so $f(2x)=4f(x)$; inductively $f(nx)=n^2 f(x)$, and with rationals $f(rx)=r^2 f(x)$.",
-          "Taking $x=1$ gives $f(r)=r^2 f(1)$ on the rationals; continuity extends this to $f(x)=c x^2$ with $c=f(1)$.",
-          "From $f(3)=9c=18$ we get $c=2$, so $f(x)=2x^2$ and $f(5)=50$. $\\boxed{f(5)=50}$"
+          "Nonzero plus the law gives $f(x)=f(x_0)/f(x_0-x)\\neq 0$ everywhere, and $f(x)=f\\!\\left(\\tfrac{x}{2}\\right)^{2}>0$, so $f$ is strictly positive. Hence $g(x)=\\ln f(x)$ is continuous and additive, so $f(x)=a^{x}$ with $a=f(1)>0$.",
+          "From $f(2)=a^{2}=9$ and the constraint $a>0$, we must take $a=3$ (the value $a=-3$ is impossible since $a=f(1)>0$).",
+          "Thus $f(x)=3^{x}$.",
+          "Therefore $f(-1)=3^{-1}=\\boxed{\\tfrac13}$."
         ]
       },
       {
-        "name": "Strip the linear hypothesis by parity",
+        "name": "Chain inverses directly from the law",
         "steps": [
-          "Any solution splits as $f=f_{\\text{even}}+f_{\\text{odd}}$. Substituting and using that the right side $2f(x)+2f(y)$ is even in $y$ forces the odd part to satisfy $f_{\\text{odd}}(x+y)+f_{\\text{odd}}(x-y)=2f_{\\text{odd}}(x)$, whose continuous solutions are linear $bx$; but plugging $f=bx$ into the original gives $2bx=2bx+2by$, so $b=0$.",
-          "Thus $f$ is even and satisfies $f(2x)=4f(x)$, giving $f(x)=cx^2$ by the rational scaling above plus continuity.",
-          "$f(3)=9c=18\\Rightarrow c=2$, so $f(x)=2x^2$.",
-          "Therefore $f(5)=2\\cdot25=\\boxed{50}$."
+          "Set $y=-x$ in the law: $f(0)=f(x)f(-x)$. Taking $x=y=0$ gives $f(0)=f(0)^2$, and since $f\\not\\equiv 0$ forces $f(0)\\neq 0$, we get $f(0)=1$.",
+          "Hence $f(x)f(-x)=1$, so $f(-1)=\\dfrac{1}{f(1)}$. Also $f(2)=f(1)^2=9$ with $f(1)=f\\!\\left(\\tfrac12\\right)^2>0$, so $f(1)=3$.",
+          "Therefore $f(-1)=\\dfrac{1}{3}$.",
+          "That is $\\boxed{f(-1)=\\tfrac13}$."
         ]
       }
     ],
-    "remark": "Insight: this is the Jordan-von Neumann quadratic functional equation, whose continuous solutions are exactly $cx^2$ — the algebraic shadow of an inner-product norm $\\lVert x\\rVert^2$. Unlike Cauchy, it tolerates no linear term, because $f(2x)=4f(x)$ is incompatible with first-degree growth."
+    "remark": "**Insight.** The square-root step $a^{2}=9$ is where careless solvers leak a spurious $a=-3$. But $f(x)=f(x/2)^{2}$ pins $f$ to be **strictly positive** the moment it is nonzero, so the base $a=f(1)$ is positive and only $a=3$ is admissible. Continuity supplies the exponential form $a^{x}$; positivity supplies the correct sign. Both are needed."
+  },
+  {
+    "theme": "functionaleq",
+    "themeLabel": "Continuous Functional Equations",
+    "title": "The Constant That Shifts the Origin",
+    "difficulty": 5,
+    "task": "Evaluate the function",
+    "tags": [
+      "additive-shifted",
+      "continuity",
+      "affine-function",
+      "functional-equation"
+    ],
+    "statement": "A continuous function $g:\\mathbb{R}\\to\\mathbb{R}$ satisfies $g(x+y)=g(x)+g(y)-4$ for all real $x,y$, with $g(1)=1$. Find $g(3)$, and state $g(0)$.",
+    "answer": "Let $h(x)=g(x)-4$; then $h$ is continuous and additive, so $h(x)=cx$ and $g(x)=cx+4$. From $g(1)=c+4=1$ we get $c=-3$, so $g(x)=-3x+4$. Hence $g(3)=-9+4=\\boxed{-5}$ and $g(0)=4$.",
+    "trap": "Dropping the constant $-4$ and treating $g$ as additive, giving $g(x)=cx$ with $c=g(1)=1$ and $g(3)=3$ — and the companion error $g(0)=0$. The shift makes $g$ affine with $g(0)=4\\neq 0$; the correct values are $g(3)=-5$ and $g(0)=4$.",
+    "solutions": [
+      {
+        "name": "Shift to recover additivity",
+        "steps": [
+          "Find the fixed offset first: set $x=y=0$ to get $g(0)=2g(0)-4$, so $g(0)=4$ (not $0$).",
+          "Define $h(x)=g(x)-4$. Then $h(x+y)=g(x+y)-4=\\big(g(x)+g(y)-4\\big)-4=\\big(h(x)+4\\big)+\\big(h(y)+4\\big)-8=h(x)+h(y)$, so $h$ is continuous and additive.",
+          "Thus $h(x)=cx$ and $g(x)=cx+4$. The anchor $g(1)=c+4=1$ gives $c=-3$, so $g(x)=-3x+4$.",
+          "Therefore $g(3)=-3\\cdot 3+4=-5$, i.e. $\\boxed{g(3)=-5}$, with $g(0)=4$."
+        ]
+      },
+      {
+        "name": "Iterate the recurrence from g(1)",
+        "steps": [
+          "Take $y=1$: $g(x+1)=g(x)+g(1)-4=g(x)+1-4=g(x)-3$, a recurrence dropping by $3$ each unit step.",
+          "From $g(1)=1$: $g(2)=g(1)-3=-2$.",
+          "Then $g(3)=g(2)-3=-5$.",
+          "Hence $\\boxed{g(3)=-5}$; and stepping back, $g(0)=g(1)+3=4$, confirming the shifted origin."
+        ]
+      }
+    ],
+    "remark": "**Insight.** An additive law disguised by a constant, $g(x+y)=g(x)+g(y)+k$, hides an **affine** function: subtracting the constant restores pure additivity, which continuity turns into a line, and re-adding the constant gives $g(x)=cx-k$ with $g(0)=-k$. The lethal reflex is to assume $g(0)=0$; here $g(0)=4$. Always solve for $g(0)$ from the equation before trusting the additive template."
+  },
+  {
+    "theme": "functionaleq",
+    "themeLabel": "Continuous Functional Equations",
+    "title": "A Cubic Hiding Behind a Sum Law",
+    "difficulty": 5,
+    "task": "Evaluate the function",
+    "tags": [
+      "additive-with-correction",
+      "continuity",
+      "cubic-function",
+      "functional-equation"
+    ],
+    "statement": "A continuous function $f:\\mathbb{R}\\to\\mathbb{R}$ satisfies $f(x+y)=f(x)+f(y)+x^{2}y+xy^{2}$ for all real $x,y$, with $f(1)=2$. Find $f(3)$.",
+    "answer": "Since $x^2y+xy^2=xy(x+y)$ is produced by $\\tfrac13 x^{3}$, set $h(x)=f(x)-\\tfrac13 x^{3}$; then $h$ is continuous and additive, so $h(x)=ax$ and $f(x)=\\tfrac13 x^{3}+ax$. From $f(1)=\\tfrac13+a=2$ we get $a=\\tfrac53$, so $f(x)=\\tfrac13 x^{3}+\\tfrac53 x$ and $f(3)=9+5=\\boxed{14}$.",
+    "trap": "Discarding the term $x^{2}y+xy^{2}$ and calling $f$ additive, so $f(x)=cx$ with $c=f(1)=2$ and $f(3)=6$. The correction term forces a cubic, not a line; the actual value is $14$.",
+    "solutions": [
+      {
+        "name": "Subtract the cubic generator",
+        "steps": [
+          "Identify what produces the extra term: with $p(x)=\\tfrac13 x^{3}$, $p(x+y)-p(x)-p(y)=\\tfrac13\\!\\left[(x+y)^3-x^3-y^3\\right]=\\tfrac13\\,(3x^2y+3xy^2)=x^2y+xy^2$.",
+          "Define $h(x)=f(x)-\\tfrac13 x^{3}$. Then $h(x+y)=f(x+y)-\\tfrac13(x+y)^3=\\big(f(x)+f(y)+x^2y+xy^2\\big)-\\big(\\tfrac13x^3+\\tfrac13y^3+x^2y+xy^2\\big)=h(x)+h(y)$.",
+          "So $h$ is continuous and additive, giving $h(x)=ax$ and $f(x)=\\tfrac13 x^{3}+ax$. The anchor $f(1)=\\tfrac13+a=2$ yields $a=\\tfrac53$.",
+          "Hence $f(x)=\\tfrac13 x^{3}+\\tfrac53 x$ and $f(3)=\\tfrac13\\cdot 27+\\tfrac53\\cdot 3=9+5=\\boxed{14}$."
+        ]
+      },
+      {
+        "name": "March up using the recurrence",
+        "steps": [
+          "Set $y=1$: $f(x+1)=f(x)+f(1)+x^{2}\\cdot 1+x\\cdot 1=f(x)+2+x^{2}+x$.",
+          "From $f(1)=2$: $f(2)=f(1)+2+1^{2}+1=2+2+1+1=6$.",
+          "Then $f(3)=f(2)+2+2^{2}+2=6+2+4+2=14$.",
+          "Hence $\\boxed{f(3)=14}$, agreeing with $\\tfrac13 x^{3}+\\tfrac53 x$ at $x=3$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A symmetric correction like $x^{2}y+xy^{2}=xy(x+y)$ is the residue of a hidden $\\tfrac13 x^{3}$ — peel it off and a clean continuous additive equation remains, which continuity forces into a line. The trap is to read only the additive skeleton and report a linear answer. The recurrence route ($y=1$) is a fast independent check that never needs the closed form."
+  },
+  {
+    "theme": "functionaleq",
+    "themeLabel": "Continuous Functional Equations",
+    "title": "The Power Law With a Negative Exponent",
+    "difficulty": 5,
+    "task": "Evaluate at a fraction",
+    "tags": [
+      "power-law",
+      "continuity",
+      "multiplicative-input",
+      "functional-equation",
+      "positivity"
+    ],
+    "statement": "A function $f:(0,\\infty)\\to(0,\\infty)$ is continuous and satisfies $f(xy)=f(x)\\,f(y)$ for all positive $x,y$. It is given that $f$ is not identically $1$ and that $f(9)=\\tfrac{1}{3}$. Find the value of $f\\!\\left(\\tfrac{1}{4}\\right)$.",
+    "answer": "Continuity with positive values forces $f(x)=x^{c}$. From $f(9)=9^{c}=\\tfrac13$ we get $c=-\\tfrac12$, so $f(x)=x^{-1/2}=\\dfrac{1}{\\sqrt{x}}$ and $f\\!\\left(\\tfrac14\\right)=\\left(\\tfrac14\\right)^{-1/2}=\\boxed{2}$.",
+    "trap": "Reading off the exponent with the wrong sign. From $f(9)=1/3<1$ a hasty solver guesses $c=+\\tfrac12$ (a square root) and reports $f(1/4)=(1/4)^{1/2}=\\tfrac12$. But $9^{1/2}=3\\ne\\tfrac13$; the data forces $c=-\\tfrac12$, giving $f(1/4)=(1/4)^{-1/2}=2$. A second trap is overlooking that $f(1)=1$ is forced, then mis-anchoring the constant.",
+    "solutions": [
+      {
+        "name": "Convert to additive by taking a logarithm",
+        "steps": [
+          "First, putting $x=y=1$ gives $f(1)=f(1)^{2}$, and since $f>0$ we get $f(1)=1$ (the value $0$ is excluded by positivity). Because every value is positive, set $g(x)=\\ln f(x)$.",
+          "The law becomes $g(xy)=\\ln f(xy)=\\ln\\!\\big(f(x)f(y)\\big)=g(x)+g(y)$, the continuous additive equation in the multiplicative variable, so $g(x)=c\\ln x$ and hence $f(x)=x^{c}$.",
+          "Anchor with $f(9)=\\tfrac13$: $9^{c}=3^{2c}=3^{-1}\\Rightarrow 2c=-1\\Rightarrow c=-\\tfrac12$. (The hypothesis that $f$ is not identically $1$ rules out the trivial $c=0$ branch.)",
+          "Therefore $f(x)=x^{-1/2}$ and $f\\!\\left(\\tfrac14\\right)=\\left(\\tfrac14\\right)^{-1/2}=\\sqrt{4}=2$, i.e. $\\boxed{2}$."
+        ]
+      },
+      {
+        "name": "Iterate the law on powers without solving for c",
+        "steps": [
+          "Setting $x=y$ gives $f(x^{2})=f(x)^{2}$, and inductively $f(x^{n})=f(x)^{n}$ for every positive integer $n$. Also $f(1)=1$ and $f(x)f(1/x)=f(1)=1$, so $f(1/x)=1/f(x)$.",
+          "Let $a=f(3)$. Then $f(9)=f(3^{2})=a^{2}=\\tfrac13$, so $a^{2}=\\tfrac13$; positivity gives $a=\\dfrac{1}{\\sqrt3}$.",
+          "Now $f\\!\\left(\\tfrac14\\right)=\\dfrac{1}{f(4)}$ and $f(4)=f(2)^{2}$, while $f(2)$ is the unique positive value with $f(2)=2^{c}$ for the same $c$; from $a=3^{c}=3^{-1/2}$ we read $c=-\\tfrac12$, so $f(2)=2^{-1/2}$ and $f(4)=2^{-1}=\\tfrac12$.",
+          "Hence $f\\!\\left(\\tfrac14\\right)=\\dfrac{1}{f(4)}=\\dfrac{1}{1/2}=2$, giving $\\boxed{2}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Positivity is doing two silent jobs: it lets $\\ln f$ exist (turning the product law into the additive one, where continuity forces $g(x)=c\\ln x$), and it discards the spurious $f\\equiv 0$ solution while pinning $f(1)=1$. The exponent's sign is determined by the data, not its size: $f(9)<1$ does not mean a square root — solving $3^{2c}=3^{-1}$ honestly gives $c=-\\tfrac12$, so the seductive $\\tfrac12$ is wrong and the value at $\\tfrac14$ is $2$."
   },
   {
     "theme": "ivt",
@@ -1422,53 +1266,6 @@ window.PROBLEMS = [
   {
     "theme": "ivt",
     "themeLabel": "The Intermediate Value Theorem",
-    "title": "The Gap Between Two Trains Realizes a Whole Interval",
-    "difficulty": 5,
-    "task": "Prove the difference attains every value in a range, then pin the forced set",
-    "tags": [
-      "difference-function",
-      "range-realization",
-      "two-trains",
-      "first-instant",
-      "closed-preimage",
-      "hidden-constraint"
-    ],
-    "statement": "Two automated trains $A$ and $B$ run on straight parallel tracks during a normalized journey time $t\\in[0,1]$. Let $f,g:[0,1]\\to\\mathbb{R}$ be continuous, where $f(t)$ and $g(t)$ are the positions (in km, measured along the common direction of travel) of $A$ and $B$. Define the signed gap\n\\[\nD(t)=f(t)-g(t),\\qquad\\text{(positive means }A\\text{ is ahead of }B\\text{).}\n\\]\nYou are told only two facts about the whole journey:\n\\[\nf(0)-g(0)=-5\\quad(\\text{at the start, }A\\text{ trails }B\\text{ by }5\\text{ km}),\\qquad f(1)-g(1)=3\\quad(\\text{at the finish, }A\\text{ leads }B\\text{ by }3\\text{ km}).\n\\]\n\nPart (a). Prove that the gap function realizes an entire interval of values, not merely a single crossing: for every real number $m$ with $-5\\le m\\le 3$ there is at least one instant $t\\in[0,1]$ at which the signed gap equals exactly $m$ km. (In particular the trains are level, $D=0$, at some instant.)\n\nPart (b). Prove that there is a first instant the trains draw level, i.e. the set $\\{t:D(t)=0\\}$ has a least element. Then show by an explicit continuous example (with the same two endpoint facts) that this level instant need not be unique and that $D$ need not be monotone — so \"the trains pass each other exactly once\" is not a valid conclusion from the data.\n\nPart (c). Determine the set $S$ of all real numbers $m$ for which the two endpoint facts alone (continuity of $f,g$ together with $D(0)=-5$ and $D(1)=3$) force the existence of an instant whose signed gap equals exactly $m$. Express $S$ as an interval.",
-    "answer": "\\[\\boxed{\\,S=[-5,\\,3]\\,}\\]",
-    "trap": "The seductive wrong answer to part (c) is $S=[-5,5]$ (or, symmetrically, \"every gap $m$ with $|m|\\le 5$ is forced\"). Two flavours of the mistake feed it. First, a magnitude conflation: the start lead has magnitude $5$ and the finish lead $3$, and a hasty solver lets the larger figure $5$ set the outer reach of guaranteed gaps, reasoning \"surely any lead between $-5$ and $+5$ is achieved.\" But IVT forces values only between the two endpoint values of $D$, namely $D(0)=-5$ and $D(1)=3$; the number $5$ is the size of a position difference, not a value of $D$ at the finish, so it has no business as an endpoint of the realized interval. The linear witness $D(t)=-5+8t$ is continuous, meets both endpoint facts, yet has range exactly $[-5,3]$ and never equals $4$ — so a lead of $4$ km is genuinely not forced, killing $S=[-5,5]$. Second, a uniqueness/monotonicity illusion: many solvers tacitly picture $D$ climbing steadily from $-5$ to $3$, conclude the trains cross exactly once, and even believe IVT hands them the crossing time. IVT does neither — it certifies that some instant has $D=m$, not how many, and not a first one. A non-monotone continuous $D$ obeying both endpoint facts can cross level three times and can even exceed $3$ or dip below $-5$ along the way; values outside $[-5,3]$ may occur for particular trains but can never be guaranteed, which is exactly why they are excluded from $S$. (The 'first level instant' of part (b) is real, but it requires the separate observation that $\\{D=0\\}$ is a closed nonempty subset of $[0,1]$ and hence attains its infimum — not anything IVT alone delivers.)",
-    "solutions": [
-      {
-        "name": "Difference function plus IVT for the range, witnesses for the converse",
-        "steps": [
-          "Part (a). The map $D=f-g$ is continuous on $[0,1]$ as a difference of continuous functions, with $D(0)=f(0)-g(0)=-5$ and $D(1)=f(1)-g(1)=3$. Fix any target $m\\in[-5,3]$. Then $m$ lies between the two values $D(0)=-5$ and $D(1)=3$, so by the Intermediate Value Theorem applied to the continuous $D$ on $[0,1]$ there exists $t\\in[0,1]$ with $D(t)=m$, i.e. the signed gap equals $m$ km at that instant. Since $m$ was an arbitrary point of $[-5,3]$, the whole interval $[-5,3]$ is contained in the range of $D$ — the gap realizes an entire interval, not just the single level value. Taking $m=0$ (which lies in $[-5,3]$) gives an instant the trains are level.",
-          "Part (b), existence of a first level instant. Let $Z=\\{t\\in[0,1]:D(t)=0\\}=D^{-1}(\\{0\\})$. By part (a) $Z\\neq\\varnothing$. As the preimage of the closed set $\\{0\\}$ under the continuous $D$, $Z$ is closed; it is also bounded (a subset of $[0,1]$), hence compact. A nonempty compact subset of $\\mathbb{R}$ contains its infimum, so $t^{*}:=\\inf Z\\in Z$, and $t^{*}$ is the earliest instant with $D(t^{*})=0$: the first time the trains are level. (Equivalently, $\\inf Z$ is a limit of points of $Z$ and $Z$ is closed, so $\\inf Z\\in Z$.)",
-          "Part (b), non-uniqueness and non-monotonicity. Take $D(t)=-5+8t+30\\sin(3\\pi t)\\,t(1-t)$, and realize it by, say, $f(t)=D(t),\\ g(t)=0$ (both continuous). Then $D(0)=-5$ and $D(1)=3$ exactly, so the two endpoint facts hold, yet $D$ is not monotone (the oscillatory term forces sign changes of $D'$) and $D(t)=0$ at three distinct instants. Hence the trains draw level more than once: 'they pass each other exactly once' does not follow from the data. (This same $D$ rises above $3$ and falls below $-5$ in the interior, foreshadowing part (c): gaps outside $[-5,3]$ can happen, but only for special trains.)",
-          "Part (c), sufficiency $[-5,3]\\subseteq S$. By part (a), every $m\\in[-5,3]$ is forced: for any continuous $D$ with $D(0)=-5,\\ D(1)=3$, IVT produces an instant with $D=m$. The endpoints themselves are in $S$ since $D(0)=-5$ and $D(1)=3$ are attained at $t=0,1$. So $[-5,3]\\subseteq S$.",
-          "Part (c), necessity $S\\subseteq[-5,3]$. Suppose $m\\notin[-5,3]$. The continuous witness $D_0(t)=-5+8t$ satisfies $D_0(0)=-5,\\ D_0(1)=3$ and has range exactly $[-5,3]$ (it is increasing from $-5$ to $3$), so $D_0(t)=m$ has no solution. Realizing $D_0$ by $f=D_0,\\ g=0$ gives a legal pair of trains for which the gap never equals $m$; thus $m$ is not forced and $m\\notin S$. Combining, $S=[-5,3]$. $\\boxed{S=[-5,3]}$"
-        ]
-      },
-      {
-        "name": "Connectedness of the continuous image",
-        "steps": [
-          "Part (a) via connectedness. $D=f-g$ is continuous and $[0,1]$ is connected, so the image $D([0,1])$ is a connected subset of $\\mathbb{R}$, i.e. an interval. This interval contains $D(0)=-5$ and $D(1)=3$, and an interval containing $-5$ and $3$ contains the whole segment between them, so $[-5,3]\\subseteq D([0,1])$. Therefore every $m\\in[-5,3]$ equals $D(t)$ for some $t$ — the gap attains the entire interval. In particular $0\\in[-5,3]$ gives a level instant.",
-          "Part (b). The level set $Z=D^{-1}(\\{0\\})$ is closed (continuous preimage of a closed set) and nonempty (by part (a)), hence compact, so $t^{*}=\\min Z$ exists: a first level instant. For non-uniqueness/non-monotonicity, the same image-interval reasoning permits the curve to revisit $0$: e.g. $D(t)=-5+8t+30\\sin(3\\pi t)t(1-t)$ (with $f=D,g=0$) keeps the endpoints $-5,3$ but the connected image is a strictly larger interval than $[-5,3]$ and $0$ is hit thrice; monotonicity fails. So 'exactly one crossing' is unjustified.",
-          "Part (c). Sufficiency: for ANY admissible $D$, the connectedness argument forces $[-5,3]\\subseteq D([0,1])$, so each $m\\in[-5,3]$ is achieved — $[-5,3]\\subseteq S$. Necessity: $S$ cannot be larger, because the image interval is allowed to be exactly $[-5,3]$ — the increasing witness $D_0(t)=-5+8t$ has $D_0([0,1])=[-5,3]$, missing every $m\\notin[-5,3]$. Hence no such $m$ is forced and $S\\subseteq[-5,3]$. Together $\\boxed{S=[-5,3]}$."
-        ]
-      },
-      {
-        "name": "Explicit root-localization (constructive IVT) plus a sharp counterexample",
-        "steps": [
-          "Part (a), constructive form. Fix $m\\in[-5,3]$ and set $\\varphi(t)=D(t)-m=f(t)-g(t)-m$, continuous with $\\varphi(0)=-5-m\\le 0$ and $\\varphi(1)=3-m\\ge 0$. If either endpoint is $0$ we are done; otherwise $\\varphi(0)<0<\\varphi(1)$ and bisection localizes a root: maintain a nested sequence of intervals $[a_n,b_n]$ with $\\varphi(a_n)\\le 0\\le \\varphi(b_n)$ and length $2^{-n}$, whose common limit $c=\\lim a_n=\\lim b_n$ satisfies, by continuity, $\\varphi(c)\\le 0$ and $\\varphi(c)\\ge 0$, i.e. $\\varphi(c)=0$, so $D(c)=m$. This constructs an instant with gap $m$ for each $m\\in[-5,3]$.",
-          "Part (b). Existence of a first level instant: the bisection (or the closed-set argument) gives the level set $Z=\\{D=0\\}$ nonempty and closed, hence $\\min Z$ exists. Sharpening: among all roots produced, the infimum is attained because $Z$ is compact; that infimum is the first level moment. Non-uniqueness: with $D(t)=-5+8t+30\\sin(3\\pi t)t(1-t)$ and $f=D,g=0$, direct sign tracking shows $\\varphi=D$ changes sign three times on $[0,1]$, so $|Z|=3$; thus a unique crossing cannot be inferred and $D$ is non-monotone.",
-          "Part (c), pinning $S$. Sufficiency follows from part (a): each $m\\in[-5,3]$ admits the bisection root for every admissible $D$, so $[-5,3]\\subseteq S$, endpoints included since $D(0)=-5,D(1)=3$ are attained. Necessity by a single sharp witness: $D_0(t)=-5+8t$ is admissible and strictly increasing with range exactly $[-5,3]$; for any $m<-5$ or $m>3$ the equation $D_0(t)=m$ has no solution in $[0,1]$, so $m$ is not forced. (This also dispatches the tempting $m=4$, with $|4|\\le 5$ yet $4\\notin[-5,3]$: not forced.) Therefore $\\boxed{S=[-5,3]}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the engine here is not 'a sign change yields one root' but 'a continuous function pushes a connected domain onto a connected image,' so the difference $D=f-g$ does not merely cross a single level — it sweeps out the entire interval between its endpoint values. Framing the question through $D=f-g$ converts a two-object coupled problem ('do the trains meet, and by how much can their gap differ?') into one continuous function on $[0,1]$, and IVT then certifies an interval of realized gaps, $[-5,3]$, in one stroke. The conceptual discipline lives in part (c): IVT forces values strictly between the endpoint values of $D$, so the relevant numbers are $D(0)=-5$ and $D(1)=3$ — never the magnitude $5$ of the starting lead, which tempts one to claim $[-5,5]$. The increasing witness $D_0(t)=-5+8t$ shows the guaranteed set can be no larger than $[-5,3]$, while an oscillating witness shows interior gaps beyond $[-5,3]$ are possible but not guaranteed. Finally, 'a first level instant exists' is a genuinely separate fact: IVT gives existence of some level moment, but firstness comes from $\\{D=0\\}$ being a closed (hence compact) nonempty subset that attains its infimum — and uniqueness of the crossing is simply false without monotonicity. The takeaway for a ranker: turn coupled-existence into a single difference function, read off the realized range from connectedness, and keep the guaranteed range honestly clamped to the actual endpoint values."
-  },
-  {
-    "theme": "ivt",
-    "themeLabel": "The Intermediate Value Theorem",
     "title": "The Self-Map's Mirror",
     "difficulty": 4,
     "task": "Prove that",
@@ -1580,6 +1377,53 @@ window.PROBLEMS = [
   {
     "theme": "ivt",
     "themeLabel": "The Intermediate Value Theorem",
+    "title": "The Gap Between Two Trains Realizes a Whole Interval",
+    "difficulty": 5,
+    "task": "Prove the difference attains every value in a range, then pin the forced set",
+    "tags": [
+      "difference-function",
+      "range-realization",
+      "two-trains",
+      "first-instant",
+      "closed-preimage",
+      "hidden-constraint"
+    ],
+    "statement": "Two automated trains $A$ and $B$ run on straight parallel tracks during a normalized journey time $t\\in[0,1]$. Let $f,g:[0,1]\\to\\mathbb{R}$ be continuous, where $f(t)$ and $g(t)$ are the positions (in km, measured along the common direction of travel) of $A$ and $B$. Define the signed gap\n\\[\nD(t)=f(t)-g(t),\\qquad\\text{(positive means }A\\text{ is ahead of }B\\text{).}\n\\]\nYou are told only two facts about the whole journey:\n\\[\nf(0)-g(0)=-5\\quad(\\text{at the start, }A\\text{ trails }B\\text{ by }5\\text{ km}),\\qquad f(1)-g(1)=3\\quad(\\text{at the finish, }A\\text{ leads }B\\text{ by }3\\text{ km}).\n\\]\n\nPart (a). Prove that the gap function realizes an entire interval of values, not merely a single crossing: for every real number $m$ with $-5\\le m\\le 3$ there is at least one instant $t\\in[0,1]$ at which the signed gap equals exactly $m$ km. (In particular the trains are level, $D=0$, at some instant.)\n\nPart (b). Prove that there is a first instant the trains draw level, i.e. the set $\\{t:D(t)=0\\}$ has a least element. Then show by an explicit continuous example (with the same two endpoint facts) that this level instant need not be unique and that $D$ need not be monotone — so \"the trains pass each other exactly once\" is not a valid conclusion from the data.\n\nPart (c). Determine the set $S$ of all real numbers $m$ for which the two endpoint facts alone (continuity of $f,g$ together with $D(0)=-5$ and $D(1)=3$) force the existence of an instant whose signed gap equals exactly $m$. Express $S$ as an interval.",
+    "answer": "\\[\\boxed{\\,S=[-5,\\,3]\\,}\\]",
+    "trap": "The seductive wrong answer to part (c) is $S=[-5,5]$ (or, symmetrically, \"every gap $m$ with $|m|\\le 5$ is forced\"). Two flavours of the mistake feed it. First, a magnitude conflation: the start lead has magnitude $5$ and the finish lead $3$, and a hasty solver lets the larger figure $5$ set the outer reach of guaranteed gaps, reasoning \"surely any lead between $-5$ and $+5$ is achieved.\" But IVT forces values only between the two endpoint values of $D$, namely $D(0)=-5$ and $D(1)=3$; the number $5$ is the size of a position difference, not a value of $D$ at the finish, so it has no business as an endpoint of the realized interval. The linear witness $D(t)=-5+8t$ is continuous, meets both endpoint facts, yet has range exactly $[-5,3]$ and never equals $4$ — so a lead of $4$ km is genuinely not forced, killing $S=[-5,5]$. Second, a uniqueness/monotonicity illusion: many solvers tacitly picture $D$ climbing steadily from $-5$ to $3$, conclude the trains cross exactly once, and even believe IVT hands them the crossing time. IVT does neither — it certifies that some instant has $D=m$, not how many, and not a first one. A non-monotone continuous $D$ obeying both endpoint facts can cross level three times and can even exceed $3$ or dip below $-5$ along the way; values outside $[-5,3]$ may occur for particular trains but can never be guaranteed, which is exactly why they are excluded from $S$. (The 'first level instant' of part (b) is real, but it requires the separate observation that $\\{D=0\\}$ is a closed nonempty subset of $[0,1]$ and hence attains its infimum — not anything IVT alone delivers.)",
+    "solutions": [
+      {
+        "name": "Difference function plus IVT for the range, witnesses for the converse",
+        "steps": [
+          "Part (a). The map $D=f-g$ is continuous on $[0,1]$ as a difference of continuous functions, with $D(0)=f(0)-g(0)=-5$ and $D(1)=f(1)-g(1)=3$. Fix any target $m\\in[-5,3]$. Then $m$ lies between the two values $D(0)=-5$ and $D(1)=3$, so by the Intermediate Value Theorem applied to the continuous $D$ on $[0,1]$ there exists $t\\in[0,1]$ with $D(t)=m$, i.e. the signed gap equals $m$ km at that instant. Since $m$ was an arbitrary point of $[-5,3]$, the whole interval $[-5,3]$ is contained in the range of $D$ — the gap realizes an entire interval, not just the single level value. Taking $m=0$ (which lies in $[-5,3]$) gives an instant the trains are level.",
+          "Part (b), existence of a first level instant. Let $Z=\\{t\\in[0,1]:D(t)=0\\}=D^{-1}(\\{0\\})$. By part (a) $Z\\neq\\varnothing$. As the preimage of the closed set $\\{0\\}$ under the continuous $D$, $Z$ is closed; it is also bounded (a subset of $[0,1]$), hence compact. A nonempty compact subset of $\\mathbb{R}$ contains its infimum, so $t^{*}:=\\inf Z\\in Z$, and $t^{*}$ is the earliest instant with $D(t^{*})=0$: the first time the trains are level. (Equivalently, $\\inf Z$ is a limit of points of $Z$ and $Z$ is closed, so $\\inf Z\\in Z$.)",
+          "Part (b), non-uniqueness and non-monotonicity. Take $D(t)=-5+8t+30\\sin(3\\pi t)\\,t(1-t)$, and realize it by, say, $f(t)=D(t),\\ g(t)=0$ (both continuous). Then $D(0)=-5$ and $D(1)=3$ exactly, so the two endpoint facts hold, yet $D$ is not monotone (the oscillatory term forces sign changes of $D'$) and $D(t)=0$ at three distinct instants. Hence the trains draw level more than once: 'they pass each other exactly once' does not follow from the data. (This same $D$ rises above $3$ and falls below $-5$ in the interior, foreshadowing part (c): gaps outside $[-5,3]$ can happen, but only for special trains.)",
+          "Part (c), sufficiency $[-5,3]\\subseteq S$. By part (a), every $m\\in[-5,3]$ is forced: for any continuous $D$ with $D(0)=-5,\\ D(1)=3$, IVT produces an instant with $D=m$. The endpoints themselves are in $S$ since $D(0)=-5$ and $D(1)=3$ are attained at $t=0,1$. So $[-5,3]\\subseteq S$.",
+          "Part (c), necessity $S\\subseteq[-5,3]$. Suppose $m\\notin[-5,3]$. The continuous witness $D_0(t)=-5+8t$ satisfies $D_0(0)=-5,\\ D_0(1)=3$ and has range exactly $[-5,3]$ (it is increasing from $-5$ to $3$), so $D_0(t)=m$ has no solution. Realizing $D_0$ by $f=D_0,\\ g=0$ gives a legal pair of trains for which the gap never equals $m$; thus $m$ is not forced and $m\\notin S$. Combining, $S=[-5,3]$. $\\boxed{S=[-5,3]}$"
+        ]
+      },
+      {
+        "name": "Connectedness of the continuous image",
+        "steps": [
+          "Part (a) via connectedness. $D=f-g$ is continuous and $[0,1]$ is connected, so the image $D([0,1])$ is a connected subset of $\\mathbb{R}$, i.e. an interval. This interval contains $D(0)=-5$ and $D(1)=3$, and an interval containing $-5$ and $3$ contains the whole segment between them, so $[-5,3]\\subseteq D([0,1])$. Therefore every $m\\in[-5,3]$ equals $D(t)$ for some $t$ — the gap attains the entire interval. In particular $0\\in[-5,3]$ gives a level instant.",
+          "Part (b). The level set $Z=D^{-1}(\\{0\\})$ is closed (continuous preimage of a closed set) and nonempty (by part (a)), hence compact, so $t^{*}=\\min Z$ exists: a first level instant. For non-uniqueness/non-monotonicity, the same image-interval reasoning permits the curve to revisit $0$: e.g. $D(t)=-5+8t+30\\sin(3\\pi t)t(1-t)$ (with $f=D,g=0$) keeps the endpoints $-5,3$ but the connected image is a strictly larger interval than $[-5,3]$ and $0$ is hit thrice; monotonicity fails. So 'exactly one crossing' is unjustified.",
+          "Part (c). Sufficiency: for ANY admissible $D$, the connectedness argument forces $[-5,3]\\subseteq D([0,1])$, so each $m\\in[-5,3]$ is achieved — $[-5,3]\\subseteq S$. Necessity: $S$ cannot be larger, because the image interval is allowed to be exactly $[-5,3]$ — the increasing witness $D_0(t)=-5+8t$ has $D_0([0,1])=[-5,3]$, missing every $m\\notin[-5,3]$. Hence no such $m$ is forced and $S\\subseteq[-5,3]$. Together $\\boxed{S=[-5,3]}$."
+        ]
+      },
+      {
+        "name": "Explicit root-localization (constructive IVT) plus a sharp counterexample",
+        "steps": [
+          "Part (a), constructive form. Fix $m\\in[-5,3]$ and set $\\varphi(t)=D(t)-m=f(t)-g(t)-m$, continuous with $\\varphi(0)=-5-m\\le 0$ and $\\varphi(1)=3-m\\ge 0$. If either endpoint is $0$ we are done; otherwise $\\varphi(0)<0<\\varphi(1)$ and bisection localizes a root: maintain a nested sequence of intervals $[a_n,b_n]$ with $\\varphi(a_n)\\le 0\\le \\varphi(b_n)$ and length $2^{-n}$, whose common limit $c=\\lim a_n=\\lim b_n$ satisfies, by continuity, $\\varphi(c)\\le 0$ and $\\varphi(c)\\ge 0$, i.e. $\\varphi(c)=0$, so $D(c)=m$. This constructs an instant with gap $m$ for each $m\\in[-5,3]$.",
+          "Part (b). Existence of a first level instant: the bisection (or the closed-set argument) gives the level set $Z=\\{D=0\\}$ nonempty and closed, hence $\\min Z$ exists. Sharpening: among all roots produced, the infimum is attained because $Z$ is compact; that infimum is the first level moment. Non-uniqueness: with $D(t)=-5+8t+30\\sin(3\\pi t)t(1-t)$ and $f=D,g=0$, direct sign tracking shows $\\varphi=D$ changes sign three times on $[0,1]$, so $|Z|=3$; thus a unique crossing cannot be inferred and $D$ is non-monotone.",
+          "Part (c), pinning $S$. Sufficiency follows from part (a): each $m\\in[-5,3]$ admits the bisection root for every admissible $D$, so $[-5,3]\\subseteq S$, endpoints included since $D(0)=-5,D(1)=3$ are attained. Necessity by a single sharp witness: $D_0(t)=-5+8t$ is admissible and strictly increasing with range exactly $[-5,3]$; for any $m<-5$ or $m>3$ the equation $D_0(t)=m$ has no solution in $[0,1]$, so $m$ is not forced. (This also dispatches the tempting $m=4$, with $|4|\\le 5$ yet $4\\notin[-5,3]$: not forced.) Therefore $\\boxed{S=[-5,3]}$."
+        ]
+      }
+    ],
+    "remark": "Insight: the engine here is not 'a sign change yields one root' but 'a continuous function pushes a connected domain onto a connected image,' so the difference $D=f-g$ does not merely cross a single level — it sweeps out the entire interval between its endpoint values. Framing the question through $D=f-g$ converts a two-object coupled problem ('do the trains meet, and by how much can their gap differ?') into one continuous function on $[0,1]$, and IVT then certifies an interval of realized gaps, $[-5,3]$, in one stroke. The conceptual discipline lives in part (c): IVT forces values strictly between the endpoint values of $D$, so the relevant numbers are $D(0)=-5$ and $D(1)=3$ — never the magnitude $5$ of the starting lead, which tempts one to claim $[-5,5]$. The increasing witness $D_0(t)=-5+8t$ shows the guaranteed set can be no larger than $[-5,3]$, while an oscillating witness shows interior gaps beyond $[-5,3]$ are possible but not guaranteed. Finally, 'a first level instant exists' is a genuinely separate fact: IVT gives existence of some level moment, but firstness comes from $\\{D=0\\}$ being a closed (hence compact) nonempty subset that attains its infimum — and uniqueness of the crossing is simply false without monotonicity. The takeaway for a ranker: turn coupled-existence into a single difference function, read off the realized range from connectedness, and keep the guaranteed range honestly clamped to the actual endpoint values."
+  },
+  {
+    "theme": "ivt",
+    "themeLabel": "The Intermediate Value Theorem",
     "title": "The Average Refuses the Boundary of Its Range",
     "difficulty": 5,
     "task": "Prove the average is attained, and determine the exact functions for which f never strays to both sides of it",
@@ -1599,7 +1443,7 @@ window.PROBLEMS = [
         "name": "EVT bounds, then the positive-integral lemma forces strictness exactly off the constants",
         "steps": [
           "Existence of $c$ (assertion (i)). Since $f$ is continuous on the compact set $[0,1]$, the extreme-value theorem gives a minimum $m=f(p)$ and a maximum $M=f(q)$ with $m\\le f(x)\\le M$ for all $x$. Integrating over $[0,1]$ (length $1$) preserves the inequalities: $m=\\int_0^1 m\\,dt\\le \\int_0^1 f=A\\le \\int_0^1 M\\,dt=M$. Thus $m\\le A\\le M$, so $A$ lies in the range $[m,M]=f([0,1])$ (the range is an interval by IVT). Hence $A=f(c)$ for some $c\\in[0,1]$: $E\\neq\\varnothing$.",
-          "The strictness lemma. Claim: $A>m$ unless $f\\equiv m$, and $A<M$ unless $f\\equiv M$. Proof for the lower bound: the function $g=f-m$ is continuous and $g\\ge0$. Then $A-m=\\int_0^1 g$. If $f$ is non-constant there is a point $x_0$ with $f(x_0)>m$, i.e. $g(x_0)=\\delta>0$; by continuity $g>\\delta/2$ on some open subinterval $(x_0-\\eta,x_0+\\eta)\\cap[0,1]$ of positive length $\\ell$, so $\\int_0^1 g\\ge \\tfrac{\\delta}{2}\\,\\ell>0$, giving $A>m$. The same argument applied to $M-f\\ge0$ (positive somewhere when $f$ is non-constant) gives $A<M$. So: $f$ non-constant $\\Rightarrow m<A<M$ strictly.",
+          "The strictness lemma. Claim: $A>m$ unless $f\\equiv m$, and $A<M$ unless $f\\equiv M$. Proof for the lower bound: the function $g=f-m$ is continuous and $g\\ge0$. Then $A-m=\\int_0^1 g$. If $f$ is non-constant there is a point $x_0$ with $f(x_0)>m$, i.e. $g(x_0)=\\alpha>0$; by continuity $g>\\alpha/2$ on some open subinterval $(x_0-\\eta,x_0+\\eta)\\cap[0,1]$ of positive length $\\ell$, so $\\int_0^1 g\\ge \\tfrac{\\alpha}{2}\\,\\ell>0$, giving $A>m$. The same argument applied to $M-f\\ge0$ (positive somewhere when $f$ is non-constant) gives $A<M$. So: $f$ non-constant $\\Rightarrow m<A<M$ strictly.",
           "Crossing for non-constant $f$. With $m<A<M$, the minimizer $p$ has $f(p)=m<A$ so $p\\in L$, and the maximizer $q$ has $f(q)=M>A$ so $q\\in G$. Hence $L\\neq\\varnothing$ and $G\\neq\\varnothing$: the level $A$ is genuinely crossed. Moreover applying IVT to $f$ on the closed interval with endpoints $p,q$ (where $f$ runs from $m$ to $M$ and $A$ is strictly between) yields a point $c$ strictly between $p$ and $q$ with $f(c)=A$; since $f(p)\\ne A\\ne f(q)$, this $c$ is interior to that interval, hence an interior crossing of $A$.",
           "The exceptional class, and why it is exactly the constants. If instead $f$ is constant, $f\\equiv k$, then $m=M=k$ and $A=\\int_0^1 k=k$, so $A=m=M$. Now $L=\\{f<k\\}=\\varnothing$ and $G=\\{f>k\\}=\\varnothing$, while $E=[0,1]$. So the stronger claim fails. Conversely the lemma showed any non-constant $f$ makes both $L,G$ nonempty. Therefore $L$ and $G$ are both empty precisely when $f$ is constant: $\\boxed{L,G\\text{ both empty}\\iff f\\text{ constant}}$. Note assertion (i) holds in every case — for constants every point lies in $E$ — so existence of $c$ is never in jeopardy; only the crossing is, and only for constants."
         ]
@@ -1719,539 +1563,364 @@ window.PROBLEMS = [
     "remark": "Insight: the existence here is powered not by a sign change but by the universal fact that an average never escapes the range of what it averages. Once $Q(x)=\\int_0^x\\rho$ is recognized as continuous (Fundamental Theorem), the Extreme Value Theorem pins its range to a closed interval $[\\min Q,\\max Q]$, and the average accumulated charge $\\overline{Q}$ is trapped inside that interval — so the Intermediate Value Theorem forces a position where the running charge equals its own average. The whole difficulty is resisting the two seductive shortcuts that neutrality whispers. Neutrality, $\\int_0^3\\rho=0$, says $Q(0)=Q(3)=0$; it is tempting to conclude (i) the running charge must return to zero somewhere inside, and (ii) its average must be zero. Both are false, and the same sine rod refutes both: $Q(x)=\\frac{3}{2\\pi}(1-\\cos\\frac{2\\pi x}{3})$ is strictly positive in the interior (no interior zero of $Q$) with strictly positive average. The honest forced value is $\\overline{Q}$, generally nonzero, and the cleanest way to see it is the moment identity $\\overline{Q}=-\\frac13\\int_0^3 x\\rho\\,dx$: neutrality kills the zeroth moment but leaves the first moment free, which is exactly the quantity the average measures. The transferable lesson for a ranker: when a problem hands you a balanced quantity, the existence you can guarantee is almost never 'it returns to its starting value' — that needs a sign change — but rather 'it meets its own average', which needs only EVT to bound the range and IVT to enter it. Build the right auxiliary function ($Q$, or the shifted $R=Q-\\overline{Q}$ with zero net integral), prove the value you seek lies in the realized range, and let IVT do the rest."
   },
   {
-    "theme": "pathological",
-    "themeLabel": "Pathological Functions",
-    "title": "The Mirror at the Origin",
+    "theme": "stepmod",
+    "themeLabel": "Step Functions, Modulus & Combined",
+    "title": "Where the Step-Scaled Line Tears",
     "difficulty": 4,
-    "task": "Determine",
+    "task": "Count the discontinuities",
     "tags": [
-      "dirichlet",
-      "continuity-set",
-      "density",
-      "two-sided-limit",
-      "irrationals"
+      "greatest integer",
+      "step function",
+      "jump discontinuity",
+      "continuity at a point"
     ],
-    "statement": "Define $f:\\mathbb{R}\\to\\mathbb{R}$ by\n\\[ f(x)=\\begin{cases} x, & x\\in\\mathbb{Q},\\\\ -x, & x\\notin\\mathbb{Q}. \\end{cases} \\]\nDetermine the exact set of points at which $f$ is continuous.",
-    "answer": "$f$ is continuous at exactly one point: $\\{0\\}$.",
-    "trap": "Concluding that $f$ is continuous wherever the two formulas 'happen to be close', or claiming continuity on some interval. Both $\\mathbb{Q}$ and its complement are dense, so near any point $a$ there are inputs giving values arbitrarily close to BOTH $a$ and $-a$; continuity forces $a=-a$, leaving only $a=0$.",
+    "statement": "Let $f(x)=x\\lfloor x\\rfloor$. Determine the number of points in the interval $[-2,3]$ at which $f$ is discontinuous, and identify the one integer of that interval at which $f$ is nonetheless continuous.",
+    "answer": "$\\boxed{5\\text{ discontinuities; }f\\text{ is continuous at }x=0}$",
+    "trap": "A tempting wrong answer is $6$, obtained by declaring $f$ discontinuous at every integer of $[-2,3]$ (namely $-2,-1,0,1,2,3$). This forgets that at $x=0$ the factor $x$ vanishes, so both one-sided limits and the value equal $0$ and the jump of $\\lfloor x\\rfloor$ is healed.",
     "solutions": [
       {
-        "name": "Two dense sequences",
+        "name": "One-sided limits at each integer",
         "steps": [
-          "Fix any $a\\in\\mathbb{R}$. By density of $\\mathbb{Q}$, choose rationals $r_n\\to a$; then $f(r_n)=r_n\\to a$.",
-          "By density of the irrationals, choose irrationals $t_n\\to a$; then $f(t_n)=-t_n\\to -a$.",
-          "If $f$ is continuous at $a$ both sequences must give the same limit $f(a)$, so $a=-a$, i.e. $a=0$.",
-          "At $a=0$: for every $x$, $|f(x)|=|x|\\to 0=f(0)$, so $f$ IS continuous there. Hence the continuity set is $\\boxed{\\{0\\}}$."
+          "Away from integers $\\lfloor x\\rfloor$ is locally constant, so $f(x)=x\\lfloor x\\rfloor$ is a continuous product of continuous pieces; only integers can break it.",
+          "At an integer $n$: $\\lim_{x\\to n^-}f(x)=n(n-1)$ (here $\\lfloor x\\rfloor=n-1$), while $\\lim_{x\\to n^+}f(x)=n\\cdot n=n^2=f(n)$.",
+          "The two one-sided limits differ by $n^2-n(n-1)=n$, so $f$ jumps at $n$ exactly when $n\\neq 0$; at $n=0$ both limits and the value are $0$.",
+          "The nonzero integers in $[-2,3]$ are $-2,-1,1,2,3$: that is $5$ discontinuities, with continuity only at $x=0$."
         ]
       },
       {
-        "name": "Epsilon-delta directly",
+        "name": "Jump-size formula",
         "steps": [
-          "At $a=0$, given $\\varepsilon>0$ take $\\delta=\\varepsilon$: $|x|<\\delta\\Rightarrow |f(x)-f(0)|=|f(x)|=|x|<\\varepsilon$, so $f$ is continuous at $0$.",
-          "For $a\\neq 0$, set $\\varepsilon=|a|>0$. Any $\\delta$-neighborhood of $a$ contains both a rational $r$ (with $f(r)=r\\approx a$) and an irrational $t$ (with $f(t)=-t\\approx -a$).",
-          "These two values differ by $\\approx 2|a|>\\varepsilon$, so no single $L$ can keep $|f(x)-L|<\\tfrac{\\varepsilon}{2}$ throughout the neighborhood; the continuity criterion fails at $a$.",
-          "Therefore continuity holds only at $\\boxed{\\{0\\}}$."
-        ]
-      },
-      {
-        "name": "Pieces-agreement principle",
-        "steps": [
-          "Write $f=g\\cdot \\mathbf{1}_{\\mathbb{Q}}+h\\cdot \\mathbf{1}_{\\mathbb{Q}^c}$ with $g(x)=x$ and $h(x)=-x$, both continuous on $\\mathbb{R}$.",
-          "Since $\\mathbb{Q}$ and $\\mathbb{Q}^c$ are both dense, the continuity set of such an $f$ is exactly $\\{x: g(x)=h(x)\\}$.",
-          "Solve $g(a)=h(a)$: $a=-a\\Rightarrow 2a=0\\Rightarrow a=0$.",
-          "Thus the continuity set is $\\boxed{\\{0\\}}$, and at $a\\neq 0$ the jump in oscillation is $|a-(-a)|=2|a|>0$ — an essential discontinuity, never removable."
+          "Write the jump of $f$ at an integer $n$ as $J(n)=\\lim_{x\\to n^+}f(x)-\\lim_{x\\to n^-}f(x)$.",
+          "Since $\\lfloor x\\rfloor$ increases by $1$ across $n$, $J(n)=n\\cdot\\big(n-(n-1)\\big)=n$.",
+          "Thus $J(n)=0$ only at $n=0$, and $J(n)\\neq 0$ at the five integers $-2,-1,1,2,3$ of $[-2,3]$, giving $\\boxed{5}$ discontinuities and continuity at $x=0$."
         ]
       }
     ],
-    "remark": "The reflection $x\\mapsto -x$ acts as a 'mirror'; continuity survives only at the fixed point of the reflection, namely $0$. The general principle: for $f=g\\cdot \\mathbf{1}_{\\mathbb{Q}}+h\\cdot \\mathbf{1}_{\\mathbb{Q}^c}$ with $g,h$ continuous, density of both sets makes the continuity set exactly $\\{x: g(x)=h(x)\\}$. Here that locus is the single point where the line and its mirror image cross."
+    "remark": "**Insight.** A product **$g(x)\\lfloor x\\rfloor$** with a continuous $g$ jumps at an integer $n$ by exactly **$g(n)$ times the unit step of $\\lfloor x\\rfloor$**. So the discontinuity is **automatically healed wherever the smooth factor vanishes** — here only at the origin. The lesson: do not count integers blindly; weigh each step by the factor multiplying it."
   },
   {
-    "theme": "pathological",
-    "themeLabel": "Pathological Functions",
-    "title": "Where the Two Wild Curves Shake Hands",
-    "difficulty": 5,
-    "task": "Determine, with proof, the exact set of points at which the function is continuous",
-    "tags": [
-      "dirichlet-gate",
-      "two-branch-envelope",
-      "squeeze",
-      "density-argument",
-      "oscillation",
-      "cancellation"
-    ],
-    "statement": "Let $E:\\mathbb{R}\\to\\mathbb{R}$ be the function\n\\[\nE(x)=\\begin{cases}x^{2}\\sin\\dfrac1x, & x\\neq 0,\\\\[2mm] 0, & x=0,\\end{cases}\n\\]\nand define $f:\\mathbb{R}\\to\\mathbb{R}$ by\n\\[\nf(x)=\\begin{cases}x^{2}+E(x), & x\\in\\mathbb{Q},\\\\[1mm] (5x-6)+E(x), & x\\notin\\mathbb{Q}.\\end{cases}\n\\]\nThus on the rationals $f$ follows the curve $x^{2}+x^{2}\\sin\\tfrac1x$, while on the irrationals it follows $5x-6+x^{2}\\sin\\tfrac1x$; the same wildly oscillating term $E(x)$ rides on both branches. Determine, with proof, the exact set of points at which $f$ is continuous. Your argument must explain both why continuity holds where it does and why it fails everywhere else, and must address honestly the violent oscillation of $\\sin\\tfrac1x$ near the origin.",
-    "answer": "\\[\\boxed{\\{2,\\,3\\}}\\]",
-    "trap": "Three layered traps, each of which a strong solver can fall into. TRAP 1 (the oscillation red herring). The term $E(x)=x^{2}\\sin\\tfrac1x$ screams 'pathology at $0$', and many solvers spend their effort there, deciding that $0$ must be special and reporting an answer like $\\{0\\}$ or $\\{0\\}\\cup\\{\\dots\\}$. But $E$ is continuous on all of $\\mathbb{R}$ (the squeeze $|E(x)|\\le x^{2}$ gives $E(x)\\to 0=E(0)$), and crucially it appears identically on BOTH branches, so it cancels out of the only quantity that decides continuity: the gap between the branches. At $0$ the gap is $|0^{2}-(5\\cdot0-6)|=6\\neq 0$, so $0$ is a point of DIScontinuity, not continuity. The oscillation is pure misdirection. TRAP 2 (treating it like a single-envelope Dirichlet problem). A solver who has seen $h(x)\\mathbf{1}_{\\mathbb{Q}}(x)$ may reflexively look for 'where the envelope vanishes', i.e. solve $x^{2}+E(x)=0$ or $(5x-6)+E(x)=0$ separately. That is the wrong condition entirely: continuity here is governed by where the TWO branches AGREE, $p(c)=q(c)$, not where either branch hits zero. The zero sets of the individual branches are irrelevant and lead nowhere near $\\{2,3\\}$. TRAP 3 (the tangency miscount). The agreement condition is $x^{2}=5x-6$, i.e. $(x-2)(x-3)=0$, giving the two simple roots $2$ and $3$. A solver who slightly misreads the linear branch as $4x-4$ (a natural 'nice' choice) gets $x^{2}-4x+4=(x-2)^{2}=0$, a DOUBLE root, and may then either report only $\\{2\\}$ or wrongly believe the double root grants 'extra' smoothness or a different count. The correct branch $5x-6$ produces exactly two distinct continuity points; reporting one, or three, or attaching spurious significance to the origin, all miss the clean answer $\\{2,3\\}$.",
-    "solutions": [
-      {
-        "name": "Subtract the branches: cancel the oscillation, then density + squeeze",
-        "steps": [
-          "First record that $E(x)=x^{2}\\sin\\tfrac1x$ (with $E(0)=0$) is continuous on all of $\\mathbb{R}$: for $x\\neq 0$, $|E(x)|\\le x^{2}$ since $|\\sin\\tfrac1x|\\le 1$, so $E(x)\\to 0=E(0)$ as $x\\to 0$ by the squeeze, and away from $0$ it is a product of continuous functions. Write $p(x)=x^{2}+E(x)$ and $q(x)=(5x-6)+E(x)$; both are continuous on $\\mathbb{R}$, $f=p$ on $\\mathbb{Q}$ and $f=q$ on $\\mathbb{Q}^{c}$.",
-          "Fix any $c\\in\\mathbb{R}$. By density of $\\mathbb{Q}$ choose rationals $r_{n}\\to c$; since $p$ is continuous, $f(r_{n})=p(r_{n})\\to p(c)$. By density of the irrationals choose irrationals $s_{n}\\to c$; since $q$ is continuous, $f(s_{n})=q(s_{n})\\to q(c)$. Hence if $f$ is continuous at $c$ then $f(c)$ must equal both $p(c)$ and $q(c)$, forcing $p(c)=q(c)$. The oscillating $E(c)$ sits on both sides of this equation and cancels: $p(c)=q(c)\\iff c^{2}=5c-6$.",
-          "Conversely, suppose $p(c)=q(c)$, i.e. $c^{2}=5c-6$. Then $f(c)$ equals this common value $p(c)=q(c)$ no matter whether $c$ is rational or irrational. For any $x$ near $c$, $f(x)$ is either $p(x)$ or $q(x)$, so $|f(x)-f(c)|\\le\\max\\{|p(x)-p(c)|,\\,|q(x)-q(c)|\\}\\to 0$ by continuity of $p$ and $q$. Thus $f$ is continuous at $c$. Therefore $f$ is continuous at $c$ iff $c^{2}=5c-6$.",
-          "Solve $c^{2}-5c+6=0\\Rightarrow(c-2)(c-3)=0\\Rightarrow c\\in\\{2,3\\}$. At every other point the branch gap $|p(c)-q(c)|=|c^{2}-5c+6|>0$ and the two density-sequences above give different limits, so $f$ is discontinuous there — including at $0$, where the gap is $|{-6}|=6$. The continuity set is exactly $\\boxed{\\{2,3\\}}$."
-        ]
-      },
-      {
-        "name": "Direct $\\varepsilon$–$\\delta$ with an explicit jump witness",
-        "steps": [
-          "Continuity at $c\\in\\{2,3\\}$. Here $c^{2}-5c+6=0$, so $p(c)=q(c)=:L$ and $f(c)=L$. Given $\\varepsilon>0$, continuity of $p$ gives $\\delta_{1}$ with $|p(x)-L|<\\varepsilon$ for $|x-c|<\\delta_{1}$, and continuity of $q$ gives $\\delta_{2}$ with $|q(x)-L|<\\varepsilon$ for $|x-c|<\\delta_{2}$. Put $\\delta=\\min(\\delta_{1},\\delta_{2})$. For $|x-c|<\\delta$, $f(x)\\in\\{p(x),q(x)\\}$, so $|f(x)-f(c)|<\\varepsilon$. This is a complete certificate of continuity at $2$ and at $3$; the oscillating $E$ is absorbed harmlessly inside the continuity of $p$ and $q$.",
-          "Discontinuity at any $c\\notin\\{2,3\\}$. Set $g(c)=p(c)-q(c)=c^{2}-5c+6\\neq 0$ and let $\\varepsilon_{0}=\\tfrac12|g(c)|>0$. We show no $\\delta$ certifies continuity. Note $f(c)$ is either $p(c)$ or $q(c)$; in either case $f(c)$ differs from the OTHER branch value at $c$ by exactly $|g(c)|=2\\varepsilon_{0}$.",
-          "Fix any $\\delta>0$. If $c$ is rational then $f(c)=p(c)$; by density pick an irrational $x$ with $|x-c|<\\delta$ and (by continuity of $q$) close enough that $|q(x)-q(c)|<\\varepsilon_{0}$. Then $|f(x)-f(c)|=|q(x)-p(c)|\\ge|q(c)-p(c)|-|q(x)-q(c)|>2\\varepsilon_{0}-\\varepsilon_{0}=\\varepsilon_{0}$. If $c$ is irrational the symmetric argument with a nearby rational $x$ and continuity of $p$ gives $|f(x)-f(c)|>\\varepsilon_{0}$.",
-          "So for every $\\delta$ some point within $\\delta$ of $c$ breaks the $\\varepsilon_{0}$ bound, hence $f$ is discontinuous at every $c\\neq 2,3$ (at $c=0$ one has $\\varepsilon_{0}=3$). Combined with the first step, the continuity set is exactly $\\boxed{\\{2,3\\}}$."
-        ]
-      },
-      {
-        "name": "Oscillation criterion $\\omega_f(c)=|p(c)-q(c)|$",
-        "steps": [
-          "Recall $f$ is continuous at $c$ iff its oscillation $\\omega_{f}(c)=\\lim_{\\delta\\to0^{+}}\\big(\\sup_{|x-c|<\\delta}f(x)-\\inf_{|x-c|<\\delta}f(x)\\big)$ equals $0$. Compute $\\omega_{f}(c)$ for our $f$.",
-          "On any interval $(c-\\delta,c+\\delta)$ both rationals and irrationals are dense, so the values of $f$ there fill out (approximately) the union of $p$- and $q$-values on that interval. As $\\delta\\to0$, continuity of $p$ and $q$ pins these to $p(c)$ and $q(c)$ respectively, so $\\sup f\\to\\max\\{p(c),q(c)\\}$ and $\\inf f\\to\\min\\{p(c),q(c)\\}$. Hence $\\omega_{f}(c)=|p(c)-q(c)|=|c^{2}-5c+6|$. The shared oscillating term $E(c)$ cancels inside the absolute difference and contributes nothing to $\\omega_{f}$ — the precise statement that the $\\sin\\tfrac1x$ pathology is irrelevant to continuity here.",
-          "Therefore $\\omega_{f}(c)=0\\iff c^{2}-5c+6=0\\iff(c-2)(c-3)=0$. Numerically, sampling values in shrinking neighbourhoods gives $\\omega_f\\to 6$ at $0$, $\\to 2$ at $1$, $\\to\\tfrac14$ at $\\tfrac52$, and $\\to0$ only at $2$ and $3$ — matching $|c^{2}-5c+6|$ exactly.",
-          "Thus $\\{c:\\omega_{f}(c)=0\\}=\\boxed{\\{2,3\\}}$ is the complete continuity set. (Contrast the impostor branch $4x-4$: then $\\omega_{f}(c)=|(x-2)^{2}|$ vanishes only at the double root $c=2$, giving the single point $\\{2\\}$ — the genuine $5x-6$ yields two distinct hand-shake points.)"
-        ]
-      }
-    ],
-    "remark": "Insight: when a function is built from TWO continuous envelopes $p,q$ glued by the rational/irrational gate, $f=p\\,\\mathbf{1}_{\\mathbb{Q}}+q\\,\\mathbf{1}_{\\mathbb{Q}^{c}}$, density forces the oscillation at every point to equal the branch gap $|p(c)-q(c)|$; so $f$ is continuous exactly where the two curves SHAKE HANDS, $p(c)=q(c)$ — never at the zeros of either curve alone. This reframes the classic single-envelope picture ('continuous where the envelope hits zero') as a special case: there $q\\equiv 0$, and 'agreement' degenerates to 'envelope vanishes'. The engineered drama here is the shared term $E(x)=x^{2}\\sin\\tfrac1x$: it is genuinely pathological near $0$, yet because it rides identically on both branches it cancels in the difference $p-q=x^{2}-5x+6$ and is completely invisible to continuity. The lesson for a ranker is to refuse the bait of the oscillation, isolate the decisive quantity (the gap), and notice that it is a clean quadratic whose two simple roots $2,3$ — not zeros, not the origin, not a tangency — are the only places the wild graph becomes, for an instant, continuous."
-  },
-  {
-    "theme": "pathological",
-    "themeLabel": "Pathological Functions",
-    "title": "The Ruler That Hangs on a Parabola",
-    "difficulty": 5,
-    "task": "Determine, with proof, the exact set of points at which the function is continuous",
-    "tags": [
-      "thomae-twist",
-      "lowest-terms-parity",
-      "squeeze",
-      "density-argument",
-      "broken-symmetry",
-      "number-theory-fusion"
-    ],
-    "statement": "Work on the open interval $I=(0,1)$. Recall that every $x\\in I\\cap\\mathbb{Q}$ has a unique representation $x=p/q$ in lowest terms with $1\\le p<q$ and $\\gcd(p,q)=1$. Define $f:I\\to\\mathbb{R}$ by\n\\[\nf(x)=\\begin{cases}x(1-x), & x\\notin\\mathbb{Q},\\\\ x(1-x)+\\dfrac{1+(-1)^{p+1}}{2q}, & x=\\dfrac{p}{q}\\ \\text{in lowest terms}.\\end{cases}\n\\]\nThe added term is a Thomae-style \"ruler bump\": since $\\tfrac{1}{2}\\bigl(1+(-1)^{p+1}\\bigr)=1$ when $p$ is odd and $=0$ when $p$ is even, the bump equals $1/q$ exactly when the lowest-terms numerator is odd, and vanishes when it is even. Thus $f$ is the symmetric parabola $x(1-x)$ everywhere on the irrationals, while on the rationals it is that same parabola lifted by a $1/q$ spike at the odd-numerator points only. Determine, with full proof, the exact set $C\\subseteq I$ of points at which $f$ is continuous. Your argument must explain why continuity holds where it does, why it fails everywhere else, and must confront honestly the classic temptations: that $f$ \"should\" be continuous only at the irrationals, that continuity \"should\" coincide with the vanishing of $f$, and that a function built from the symmetric skeleton $x(1-x)$ \"should\" have a continuity set symmetric about $\\tfrac12$.",
-    "answer": "\\[\\boxed{\\,C=\\bigl((0,1)\\setminus\\mathbb{Q}\\bigr)\\ \\cup\\ \\Bigl\\{\\tfrac{p}{q}\\in(0,1):\\ \\gcd(p,q)=1,\\ p\\ \\text{even}\\Bigr\\}\\,}\\]",
-    "trap": "Four temptations, each catching a different reflex of a strong solver. TRAP 1 (the Thomae reflex 'continuous exactly at the irrationals'). The bump $\\tfrac1q\\,[p\\ \\text{odd}]$ looks like a pure popcorn term, so the muscle memory answer is 'continuous on $I\\setminus\\mathbb{Q}$, discontinuous on $I\\cap\\mathbb{Q}$.' That undercounts: at any rational with an EVEN lowest-terms numerator the bump is identically $0$, so there $f$ equals the parabola exactly and is continuous. The point $2/3$, $4/5$, $4/7,\\dots$ are all continuity points; the answer is strictly larger than the irrationals. TRAP 2 (the popcorn slogan 'continuous $\\iff$ the function value is $0$'). For the bare Thomae function continuity does coincide with the zero set, and a solver may transplant that slogan. Here it is false on BOTH sides: $f(x)=x(1-x)>0$ at every interior point (rational and irrational alike), yet the irrationals are continuity points with $f\\neq0$; and the extra continuity rationals have $f=x(1-x)\\neq0$ too. Continuity is governed by where the bump vanishes, i.e. where $f$ equals its SKELETON $x(1-x)$ — not by where $f$ equals $0$. TRAP 3 (the parity slip 'even denominator works too'). Having found that even numerators help, a solver may sloppily allow 'even $p$ or even $q$'. But in lowest terms an even $q$ forces $p$ odd (else $\\gcd\\ge2$), so every even-denominator rational has bump $1/q\\neq0$ and is DIScontinuous: $1/4,3/4,1/6,5/6,\\dots$ are all discontinuities. The correct gate is purely 'numerator even' (equivalently: $q$ odd and $p$ even). TRAP 4 (the false symmetry). The skeleton $x(1-x)$ is symmetric about $x=\\tfrac12$, tempting the claim that $C$ is symmetric too. It is not: if $p$ is even then $q$ is odd, so the mirror point $1-\\tfrac{p}{q}=\\tfrac{q-p}{q}$ has numerator $q-p=\\text{odd}-\\text{even}=$ odd — a DIScontinuity. Hence every extra continuity rational has its reflection landing on a discontinuity; no even-numerator rational has an even-numerator mirror. The only self-mirrored rational, $1/2$, has odd numerator and is itself a discontinuity. A symmetric skeleton can carry a violently asymmetric continuity set.",
-    "solutions": [
-      {
-        "name": "The master limit $\\lim_{y\\to c}f(y)=c(1-c)$, then match the value",
-        "steps": [
-          "Write $g(x)=x(1-x)$ (continuous on $\\mathbb{R}$) and $\\beta(x)$ for the bump, so $f=g+\\beta$ where $\\beta(x)=0$ for $x$ irrational and $\\beta(p/q)=\\tfrac1q\\,[p\\ \\text{odd}]$ for $x=p/q$ in lowest terms. The single decisive estimate is $0\\le\\beta(x)\\le\\tfrac1q\\le$ (Thomae bound): for every $\\varepsilon>0$ only finitely many rationals in $I$ have denominator $q\\le1/\\varepsilon$, so all but finitely many points of any small interval have $\\beta<\\varepsilon$.",
-          "Fix any $c\\in I$ and let $y\\to c$. If $y$ is irrational, $f(y)=g(y)\\to g(c)$ by continuity of $g$. If $y=a/b$ is rational then $f(y)=g(a/b)+\\beta(a/b)$, where $g(a/b)\\to g(c)$ and $0\\le\\beta(a/b)\\le 1/b\\to0$ because $y\\to c$ through rationals forces the denominator $b\\to\\infty$ (the finite-denominator rationals are isolated away from $c$ unless $c$ itself is one of them). Hence in all cases $f(y)\\to g(c)$, i.e. $\\lim_{y\\to c}f(y)=c(1-c)$ for EVERY $c\\in I$ — the wild bump contributes nothing to the limit.",
-          "Therefore $f$ is continuous at $c$ iff $f(c)=g(c)$, i.e. iff $\\beta(c)=0$. If $c$ is irrational, $\\beta(c)=0$ automatically, so $f$ is continuous there. If $c=p/q$ in lowest terms, $\\beta(c)=\\tfrac1q[p\\ \\text{odd}]=0\\iff p$ is even. The zeros of $g$ play no role: $g(c)>0$ throughout the interior, yet that never obstructs continuity, refuting the 'continuous $\\iff f=0$' slogan.",
-          "Hence the continuity set is exactly $C=\\bigl(I\\setminus\\mathbb{Q}\\bigr)\\cup\\{p/q\\in I:\\gcd(p,q)=1,\\ p\\ \\text{even}\\}$. Note $1/2$ (numerator $1$, odd) is a discontinuity, and an even denominator forces $p$ odd hence a discontinuity, so the gate is precisely 'numerator even'. $\\boxed{C=(I\\setminus\\mathbb{Q})\\cup\\{p/q:\\gcd(p,q)=1,\\ p\\ \\text{even}\\}}$."
-        ]
-      },
-      {
-        "name": "Oscillation $\\omega_f(c)=\\beta(c)$ via dense sampling",
-        "steps": [
-          "Use the oscillation criterion: $f$ is continuous at $c$ iff $\\omega_f(c)=\\lim_{\\delta\\to0^+}\\bigl(\\sup_{|y-c|<\\delta}f-\\inf_{|y-c|<\\delta}f\\bigr)=0$. On any interval $(c-\\delta,c+\\delta)\\subset I$ both irrationals and rationals are dense, and on it $g$ is continuous with small variation, while $\\beta\\ge0$ with $\\beta=0$ on a dense set (the irrationals).",
-          "As $\\delta\\to0$, $\\sup g$ and $\\inf g$ both tend to $g(c)$, so the spread of $f$ collapses onto the spread of $\\beta$. Because $\\beta\\ge0$, vanishes on the dense irrationals, and (by the Thomae bound) its values exceeding any $\\varepsilon$ are isolated, one gets $\\inf_{(c-\\delta,c+\\delta)}f\\to g(c)$ and $\\sup_{(c-\\delta,c+\\delta)}f\\to g(c)+\\beta(c)$ (the supremum keeps the value AT $c$ when $c$ carries a bump, since neighbouring bumps shrink). Thus $\\omega_f(c)=\\beta(c)$.",
-          "So $\\omega_f(c)=0\\iff\\beta(c)=0$. For irrational $c$, $\\beta(c)=0$. For $c=p/q$ lowest terms, $\\omega_f(c)=\\tfrac1q[p\\ \\text{odd}]$, which is $0$ exactly when $p$ is even and equals $1/q$ (a genuine jump) when $p$ is odd. Numerically, sampling shrinking windows gives $\\omega_f\\to0$ at $2/3,4/5$ and at every irrational, while $\\omega_f\\to\\tfrac12,\\tfrac13,\\tfrac15$ at $1/2,1/3,2/5$ respectively — matching $\\tfrac1q[p\\ \\text{odd}]$ exactly.",
-          "Hence $\\{c:\\omega_f(c)=0\\}=(I\\setminus\\mathbb{Q})\\cup\\{p/q:\\gcd(p,q)=1,\\ p\\ \\text{even}\\}=\\boxed{C}$. The shared skeleton $g$ cancels out of every oscillation because it is continuous, so only the bump's parity gate survives."
-        ]
-      },
-      {
-        "name": "Direct $\\varepsilon$–$\\delta$ with explicit certificates and witnesses",
-        "steps": [
-          "Continuity at an irrational $a$ or an even-numerator rational $a=p_0/q_0$. In both cases $\\beta(a)=0$, so $f(a)=g(a)$. Given $\\varepsilon>0$, pick $\\delta_1$ from continuity of $g$ so that $|g(y)-g(a)|<\\varepsilon/2$ for $|y-a|<\\delta_1$, and pick $\\delta_2>0$ small enough that the only rationals within $\\delta_2$ of $a$ with denominator $\\le 2/\\varepsilon$ are none (Thomae: finitely many such rationals, so they sit at positive distance from $a$; if $a$ itself is one, exclude it — its own bump is $0$). Then for $0<|y-a|<\\min(\\delta_1,\\delta_2)$ every $y$ has $\\beta(y)\\le1/q<\\varepsilon/2$, giving $|f(y)-f(a)|\\le|g(y)-g(a)|+\\beta(y)<\\varepsilon$. This certifies continuity at every irrational and every even-numerator rational.",
-          "Discontinuity at an odd-numerator rational $c=p/q$. Here $\\beta(c)=1/q>0$; set $\\varepsilon_0=\\tfrac1{2q}$. The value is $f(c)=g(c)+\\tfrac1q$. By density of the irrationals choose irrationals $y_n\\to c$; then $f(y_n)=g(y_n)\\to g(c)=f(c)-\\tfrac1q$, so $|f(y_n)-f(c)|\\to\\tfrac1q=2\\varepsilon_0>\\varepsilon_0$. No $\\delta$ can confine $f$ to within $\\varepsilon_0$ of $f(c)$, so $f$ is discontinuous at $c$. In particular every even-denominator rational (forced odd numerator) and $1/2$ itself are discontinuities.",
-          "The two steps partition $I$: continuity exactly on $(I\\setminus\\mathbb{Q})\\cup\\{p/q:p\\ \\text{even}\\}$, discontinuity exactly on $\\{p/q:p\\ \\text{odd}\\}$. The irrational witness sequence in step 2 is the honest refutation of the 'continuous $\\iff f=0$' slogan: it isolates the bump, which is what actually breaks continuity, independently of the (positive) value $g(c)$.",
-          "Finally, the broken symmetry: if $p$ is even then $q$ is odd, so the mirror $1-c=(q-p)/q$ has odd numerator and falls under step 2 — a discontinuity. Thus $C$ contains no mirror-pair of rationals; the symmetric skeleton carries an asymmetric continuity set. The complete answer is $\\boxed{C=(I\\setminus\\mathbb{Q})\\cup\\{p/q\\in I:\\gcd(p,q)=1,\\ p\\ \\text{even}\\}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: write any rational/irrational-gated function as $f=g+\\beta$ with $g$ a CONTINUOUS skeleton shared (effectively) by both branches and $\\beta$ a Thomae-type bump supported on the rationals with $0\\le\\beta(p/q)\\le 1/q$. The squeeze forces $\\lim_{y\\to c}f(y)=g(c)$ at EVERY point, so continuity reduces to the single equation $f(c)=g(c)\\iff\\beta(c)=0$ — never to $f(c)=0$. The whole problem is then a number-theory question about WHERE the engineered bump vanishes. Here the bump is gated by the parity of the lowest-terms numerator, so the continuity set is the irrationals together with the even-numerator rationals — a set strictly larger than 'just the irrationals' yet strictly smaller than 'all of $(0,1)$'. Three traps fall out of three reflexes: the popcorn slogan 'continuous $\\iff$ value $0$' (false because the skeleton is positive), the parity slip 'even denominator helps' (false because lowest terms ties an even denominator to an odd numerator), and the symmetry assumption (false because $p$ even $\\Rightarrow q$ odd $\\Rightarrow$ the mirror numerator $q-p$ is odd, so reflection maps every continuity rational to a discontinuity). The ranker's takeaway: in pathological-function continuity, isolate the bump, ask only where it dies, and never let a symmetric-looking skeleton lull you into assuming a symmetric answer."
-  },
-  {
-    "theme": "pathological",
-    "themeLabel": "Pathological Functions",
-    "title": "The Rational Veil",
+    "theme": "stepmod",
+    "themeLabel": "Step Functions, Modulus & Combined",
+    "title": "Modulus Times Signum Is Secretly the Line",
     "difficulty": 4,
-    "task": "Find all",
+    "task": "Identify and test continuity",
     "tags": [
-      "dirichlet",
-      "indicator",
-      "polynomial-zeros",
-      "continuity-set",
-      "density"
+      "modulus",
+      "signum",
+      "identity function",
+      "continuity at zero"
     ],
-    "statement": "Let $a<b$ be real constants and define\n\\[ h(x)=\\begin{cases} (x-a)(x-b), & x\\in\\mathbb{Q},\\\\ 0, & x\\notin\\mathbb{Q}. \\end{cases} \\]\nFind all points at which $h$ is continuous (in terms of $a,b$).",
-    "answer": "$h$ is continuous exactly at $x=a$ and $x=b$.",
-    "trap": "Believing $h\\equiv 0$ 'almost everywhere' makes it continuous on a large set. The irrational part is $0$, but the rational part $(x-a)(x-b)$ is nonzero except at $a,b$; since rationals are dense, the function jumps near every other point. In fact $h$ is discontinuous at every point of $\\mathbb{R}\\setminus\\{a,b\\}$ (a co-countable, full-measure set), the exact opposite of 'continuous almost everywhere'.",
+    "statement": "Define $f(x)=|x|\\,\\mathrm{sgn}(x)$, with the convention $\\mathrm{sgn}(0)=0$. Simplify $f$ to a single elementary expression valid for all real $x$ and decide whether $f$ is continuous at $x=0$.",
+    "answer": "$\\boxed{f(x)=x\\text{ for all }x;\\ f\\text{ is continuous on }\\mathbb{R}\\text{, in particular at }0}$",
+    "trap": "The seductive error is to declare $f$ discontinuous at $0$ because $\\mathrm{sgn}$ jumps there. But $|x|\\,\\mathrm{sgn}(x)=x$ everywhere — including $x=0$, where $|0|\\,\\mathrm{sgn}(0)=0=0$ — so the modulus' vanishing at the origin kills the jump.",
     "solutions": [
       {
-        "name": "Indicator times polynomial",
+        "name": "Case split on the sign",
         "steps": [
-          "Write $h(x)=P(x)\\cdot \\mathbf{1}_{\\mathbb{Q}}(x)$ with $P(x)=(x-a)(x-b)$ continuous.",
-          "At any $c$: rationals $r_n\\to c$ give $h(r_n)=P(r_n)\\to P(c)$; irrationals $t_n\\to c$ give $h(t_n)=0\\to 0$.",
-          "Since both $\\mathbb{Q}$ and $\\mathbb{R}\\setminus\\mathbb{Q}$ are dense, a limit at $c$ exists iff these two values agree, i.e. iff $P(c)=0$; then continuity also needs the common value $0$ to equal $h(c)$, which holds (if $c$ rational, $h(c)=P(c)=0$; if irrational, $h(c)=0$).",
-          "$P(c)=0\\iff c\\in\\{a,b\\}$. Hence the continuity set is $\\boxed{\\{a,b\\}}$."
+          "For $x>0$: $|x|=x$ and $\\mathrm{sgn}(x)=1$, so $f(x)=x\\cdot1=x$.",
+          "For $x<0$: $|x|=-x$ and $\\mathrm{sgn}(x)=-1$, so $f(x)=(-x)(-1)=x$.",
+          "For $x=0$: $f(0)=|0|\\,\\mathrm{sgn}(0)=0$, which also equals $x$ at $x=0$.",
+          "Hence $f(x)=x$ on all of $\\mathbb{R}$; being a polynomial it is continuous everywhere, in particular at $0$."
         ]
       },
       {
-        "name": "Direct estimate at the zeros",
+        "name": "Limit at the origin",
         "steps": [
-          "Sandwich for every $x$: regardless of rationality, $|h(x)|\\le |(x-a)(x-b)|$, because the irrational branch is $0\\le |(x-a)(x-b)|$ and the rational branch equals $(x-a)(x-b)$.",
-          "At $c=a$: $|h(x)-h(a)|=|h(x)|\\le |x-a|\\,|x-b|\\to 0$ as $x\\to a$, so $h$ is continuous at $a$; identically at $c=b$.",
-          "At any other $c$: $P(c)\\neq 0$, and rationals near $c$ give values $\\approx P(c)\\neq 0$ while irrationals give $0$, so no limit exists — the oscillation is $|P(c)|>0$ (an essential discontinuity).",
-          "Therefore $h$ is continuous exactly at $\\boxed{\\{a,b\\}}$."
+          "Bound $|f(x)|=\\big||x|\\,\\mathrm{sgn}(x)\\big|\\le |x|$ since $|\\mathrm{sgn}(x)|\\le 1$.",
+          "As $x\\to 0$ the right side $|x|\\to 0$, so $\\lim_{x\\to 0}f(x)=0=f(0)$, proving continuity at $0$.",
+          "Combined with $f(x)=x$ off the origin, $f$ is the identity and continuous on $\\mathbb{R}$, the boxed result."
         ]
       }
     ],
-    "remark": "The zero set of the polynomial coefficient is the continuity set when the other piece is the constant $0$. More generally, for any continuous $P$, the function $P\\cdot\\mathbf{1}_{\\mathbb{Q}}$ is continuous exactly on $P^{-1}(0)$: density forces the rational-limit $P(c)$ and irrational-limit $0$ to coincide, and where they do, the value matches. Here that zero set is the finite set $\\{a,b\\}$, so $h$ is discontinuous on a full-measure set yet continuous at precisely two points."
+    "remark": "**Insight.** Two functions that each break at the origin — the **slope-flip of $|x|$** and the **jump of $\\mathrm{sgn}(x)$** — combine into the perfectly smooth identity. The reason is that **$|x|$ vanishes exactly where $\\mathrm{sgn}$ jumps**, so the bounded jump is multiplied by zero. Never report a discontinuity from one factor before checking whether the other factor silences it."
   },
   {
-    "theme": "pathological",
-    "themeLabel": "Pathological Functions",
-    "title": "Two Irrationals, No Conjugates",
+    "theme": "stepmod",
+    "themeLabel": "Step Functions, Modulus & Combined",
+    "title": "A Tent Built on the Fractional Part",
     "difficulty": 5,
-    "task": "Construct such a function, prove its continuity set is exactly the prescribed pair, and prove the rational-coefficient route is impossible",
+    "task": "Decide continuity everywhere",
     "tags": [
-      "dirichlet-splice",
-      "branch-agreement",
-      "zero-set-design",
-      "galois-conjugate",
-      "irrational-offset",
-      "inverse-design"
+      "fractional part",
+      "modulus",
+      "self-healing jump",
+      "continuity on an interval"
     ],
-    "statement": "Call a function $f:\\mathbb{R}\\to\\mathbb{R}$ a splice if there are two continuous functions $R,I:\\mathbb{R}\\to\\mathbb{R}$ with\n\\[\nf(x)=\\begin{cases}R(x),&x\\in\\mathbb{Q},\\\\ I(x),&x\\notin\\mathbb{Q}.\\end{cases}\n\\]\nThe idea is Dirichlet's: $f$ glues one continuous formula onto the rationals and another onto the irrationals.\n\n(a) Show that a splice $f$ is continuous at a point $c$ if and only if $R(c)=I(c)$. Conclude that the set of continuity points of $f$ is exactly the zero set of the continuous function $D=R-I$, and that this set therefore can be any closed subset of $\\mathbb{R}$ that is the zero set of a continuous function.\n\n(b) (Inverse design.) Construct an explicit splice $f$ whose set of continuity points is exactly the two-element set $\\{\\sqrt2,\\sqrt3\\}$ — continuous at $\\sqrt2$ and at $\\sqrt3$, and discontinuous at every other real number. Note the constraint that the agreement set $\\{R=I\\}$ must contain no rational point at all. Prove your $f$ has the claimed continuity set.\n\n(c) A natural reflex is to engineer the offset $D=R-I$ from polynomials with rational coefficients, since $\\sqrt2,\\sqrt3$ are the familiar roots of $x^2-2$ and $x^2-3$. Prove this is impossible: if $R$ and $I$ are polynomials with rational coefficients (so $D\\in\\mathbb{Q}[x]$, not identically zero), the continuity set of $f$ can never equal $\\{\\sqrt2,\\sqrt3\\}$. Identify precisely what the rational-coefficient hypothesis forces, and explain why an irrational-coefficient offset is unavoidable.",
-    "answer": "\\[\\boxed{\\,f(x)=x-\\bigl(x-\\sqrt2\\,\\bigr)\\bigl(x-\\sqrt3\\,\\bigr)\\,\\mathbf{1}_{\\mathbb{R}\\setminus\\mathbb{Q}}(x)\\ \\text{ is continuous exactly on }\\{\\sqrt2,\\sqrt3\\}\\,}\\]",
-    "trap": "The fatal reflex in part (c) is to reach for rational-coefficient polynomials: \"$\\sqrt2$ is killed by $x^2-2$ and $\\sqrt3$ by $x^2-3$, so take the offset $D(x)=(x^2-2)(x^2-3)$ and be done.\" But the zero set of that $D$ is $\\{\\pm\\sqrt2,\\pm\\sqrt3\\}$ — four points — so the resulting splice is continuous at $-\\sqrt2$ and $-\\sqrt3$ as well, overshooting the prescribed pair. The error is not arithmetic; it is a hidden algebraic constraint. Any polynomial with rational coefficients that vanishes at $\\sqrt2$ is divisible by the minimal polynomial $x^2-2$, hence also vanishes at the conjugate $-\\sqrt2$ (concretely, writing $D(\\sqrt2)=u+v\\sqrt2$ with $u,v\\in\\mathbb{Q}$, vanishing forces $u=v=0$, and then $D(-\\sqrt2)=u-v\\sqrt2=0$ automatically). A rational-coefficient offset cannot separate $\\sqrt2$ from $-\\sqrt2$: it always drags the Galois conjugate into the zero set. So the prescribed set $\\{\\sqrt2,\\sqrt3\\}$, which omits both conjugates, is forever out of reach of $\\mathbb{Q}[x]$. The only escape is to abandon rational coefficients and write the offset factored over the prescribed roots themselves, $D(x)=(x-\\sqrt2)(x-\\sqrt3)=x^2-(\\sqrt2+\\sqrt3)x+\\sqrt6$, whose irrational coefficients are exactly what break the conjugation symmetry. A secondary slip is to forget that the agreement value must avoid rationals: a careless student writes $D=(x-\\sqrt2)(x-\\sqrt3)$ but then sets $R(x)\\equiv 0$ and $I(x)=-D(x)$, so the common value at $\\sqrt2$ is $R(\\sqrt2)=0\\in\\mathbb{Q}$ — harmless here, but the point of the constraint is that continuity is governed solely by where the two branches agree, never by the rationality of the shared value; one must check the zero set of $D$, not the values.",
+    "statement": "Let $T(x)=\\big|\\,\\{x\\}-\\tfrac12\\,\\big|-\\tfrac12$, where $\\{x\\}$ is the fractional part of $x$. Show that $T$ is continuous on all of $\\mathbb{R}$, and state its value at the integers and at the half-integers $x=n+\\tfrac12$.",
+    "answer": "$\\boxed{T\\text{ is continuous on }\\mathbb{R};\\ T(n)=0,\\ T\\!\\big(n+\\tfrac12\\big)=-\\tfrac12}$",
+    "trap": "The tempting wrong answer is “discontinuous at every integer,” inherited from $\\{x\\}$. But the outer map $\\psi(t)=|t-\\tfrac12|-\\tfrac12$ satisfies $\\psi(0)=\\psi(1)=0$, so the two lips of the integer seam are sent to the same height and the jump cancels; the corner at the half-integer is continuous too.",
     "solutions": [
       {
-        "name": "Branch-agreement criterion, then a factored irrational offset, then the conjugate obstruction",
+        "name": "Match the endpoints of the unit cell",
         "steps": [
-          "Part (a): both rationals and irrationals are dense in $\\mathbb{R}$. Fix $c$ and let $x_n\\to c$. If $x_n\\in\\mathbb{Q}$ then $f(x_n)=R(x_n)\\to R(c)$ by continuity of $R$; if $x_n\\notin\\mathbb{Q}$ then $f(x_n)=I(x_n)\\to I(c)$. Thus along rational sequences the limit is $R(c)$ and along irrational sequences it is $I(c)$, and both kinds of sequence exist by density. The two-sided limit of $f$ at $c$ exists (and equals $f(c)$) if and only if these two sub-limits coincide and equal $f(c)$ — i.e. iff $R(c)=I(c)$, in which case the common value automatically equals $f(c)$ (whichever branch $c$ falls in). Hence $f$ is continuous at $c\\iff D(c)=0$, so the continuity set is $Z(D)=\\{x:D(x)=0\\}$. Since $D=R-I$ is continuous, $Z(D)$ is closed; conversely every zero set of a continuous function is realizable, proving the stated characterization.",
-          "Part (b): we need $D$ continuous with $Z(D)=\\{\\sqrt2,\\sqrt3\\}$ and no rational in the agreement set (automatic, since neither $\\sqrt2$ nor $\\sqrt3$ is rational). Take the offset factored directly over the prescribed roots, $D(x)=(x-\\sqrt2)(x-\\sqrt3)$. Then $D(\\sqrt2)=D(\\sqrt3)=0$, and for any other $x$ both factors are nonzero so $D(x)\\neq0$; hence $Z(D)=\\{\\sqrt2,\\sqrt3\\}$ exactly. Realize it as a splice with $R(x)=x$ and $I(x)=x-D(x)=x-(x-\\sqrt2)(x-\\sqrt3)$, giving $f(x)=x-(x-\\sqrt2)(x-\\sqrt3)\\,\\mathbf{1}_{\\mathbb{R}\\setminus\\mathbb{Q}}(x)$. Both $R,I$ are polynomials, hence continuous, and $R-I=D$. By part (a), $f$ is continuous exactly on $Z(D)=\\{\\sqrt2,\\sqrt3\\}$ and discontinuous everywhere else.",
-          "Part (c): suppose $R,I\\in\\mathbb{Q}[x]$, so $D=R-I\\in\\mathbb{Q}[x]$ and $D\\not\\equiv0$. The minimal polynomial of $\\sqrt2$ over $\\mathbb{Q}$ is $x^2-2$. If $\\sqrt2\\in Z(D)$ then $x^2-2\\mid D(x)$ in $\\mathbb{Q}[x]$ (the minimal polynomial divides every rational polynomial vanishing at $\\sqrt2$), and since $-\\sqrt2$ is the other root of $x^2-2$ we get $D(-\\sqrt2)=0$ as well. Concretely, write $D(\\sqrt2)=u+v\\sqrt2$ with $u,v\\in\\mathbb{Q}$ (collect the even/odd powers); $u+v\\sqrt2=0$ with $u,v$ rational and $\\sqrt2$ irrational forces $u=v=0$, whence $D(-\\sqrt2)=u-v\\sqrt2=0$. Thus the conjugate $-\\sqrt2$ is inescapably in $Z(D)$, and likewise $-\\sqrt3$. Therefore $Z(D)\\supseteq\\{\\sqrt2,-\\sqrt2,\\sqrt3,-\\sqrt3\\}\\supsetneq\\{\\sqrt2,\\sqrt3\\}$, so the continuity set can never equal $\\{\\sqrt2,\\sqrt3\\}$. The rational-coefficient hypothesis forces the zero set to be closed under Galois conjugation; isolating $\\sqrt2$ from $-\\sqrt2$ demands an offset whose coefficients lie outside $\\mathbb{Q}$, exactly as in the factored $D$ of part (b). $\\boxed{f(x)=x-(x-\\sqrt2)(x-\\sqrt3)\\,\\mathbf{1}_{\\mathbb{R}\\setminus\\mathbb{Q}}(x)}$"
+          "Let $\\psi(t)=|t-\\tfrac12|-\\tfrac12$ on $[0,1]$; then $T(x)=\\psi(\\{x\\})$, continuous on each interval between integers since $\\{x\\}$ is.",
+          "At an integer $n$: as $x\\to n^-$, $\\{x\\}\\to1$, so $T\\to\\psi(1)=|\\tfrac12|-\\tfrac12=0$; as $x\\to n^+$, $\\{x\\}\\to0$, so $T\\to\\psi(0)=|{-\\tfrac12}|-\\tfrac12=0$; and $T(n)=\\psi(0)=0$.",
+          "All three equal $0$, so $T$ is continuous at every integer, hence on all of $\\mathbb{R}$.",
+          "At $x=n+\\tfrac12$, $\\{x\\}=\\tfrac12$, so $T=|\\tfrac12-\\tfrac12|-\\tfrac12=-\\tfrac12$ — a continuous corner (minimum), not a break."
         ]
       },
       {
-        "name": "Oscillation viewpoint: the jump equals $|D(c)|$",
+        "name": "Recognise the periodic tent",
         "steps": [
-          "For a splice $f$, compute the oscillation $\\omega_f(c)=\\limsup_{x\\to c}f(x)-\\liminf_{x\\to c}f(x)$. Near $c$ the values of $f$ are $R(x)$ on a dense set and $I(x)$ on a dense set, each clustering at $R(c),I(c)$ respectively as $x\\to c$ (continuity of $R,I$). Hence $\\limsup f=\\max(R(c),I(c))$ and $\\liminf f=\\min(R(c),I(c))$, so $\\omega_f(c)=|R(c)-I(c)|=|D(c)|$. A function is continuous at $c$ iff its oscillation there is $0$; therefore $f$ is continuous at $c\\iff|D(c)|=0\\iff D(c)=0$. This re-derives part (a) and quantifies the failure: away from a zero of $D$ the graph genuinely jumps by $|D(c)|$.",
-          "Part (b) via the jump: with $D(x)=(x-\\sqrt2)(x-\\sqrt3)$, the jump $|D(c)|$ vanishes precisely at $c=\\sqrt2$ and $c=\\sqrt3$ and is strictly positive elsewhere (product of two nonzero reals). So $f(x)=x-(x-\\sqrt2)(x-\\sqrt3)\\,\\mathbf{1}_{\\mathbb{R}\\setminus\\mathbb{Q}}(x)$ has oscillation $0$ at exactly $\\{\\sqrt2,\\sqrt3\\}$, i.e. is continuous there and nowhere else. The shared value at those points, $f(\\sqrt2)=\\sqrt2$ and $f(\\sqrt3)=\\sqrt3$, plays no role in continuity — only the agreement $R=I$ does — which is why the constraint that the agreement set avoid the rationals is automatically met yet irrelevant to the continuity count.",
-          "Part (c) via the jump: if $D\\in\\mathbb{Q}[x]\\setminus\\{0\\}$, then $|D(c)|=0$ defines $Z(D)$, a finite set closed under conjugation by Step 1 of Solution 1. The oscillation thus vanishes at $-\\sqrt2$ whenever it vanishes at $\\sqrt2$, so the zero-oscillation (continuity) set strictly contains $\\{\\sqrt2,\\sqrt3\\}$ — it can never equal it. Only an offset with irrational coefficients can make $|D|$ vanish at $\\sqrt2$ while staying positive at $-\\sqrt2$, and the factored $D=(x-\\sqrt2)(x-\\sqrt3)$ does exactly that. $\\boxed{f(x)=x-(x-\\sqrt2)(x-\\sqrt3)\\,\\mathbf{1}_{\\mathbb{R}\\setminus\\mathbb{Q}}(x)}$"
-        ]
-      },
-      {
-        "name": "Necessity by the impossibility of a rational separator, then exhibit the irrational one",
-        "steps": [
-          "Reduce to a pure algebra question. By part (a) the continuity set of a splice is $Z(R-I)$, so the whole problem is: build a continuous $D$ with $Z(D)=\\{\\sqrt2,\\sqrt3\\}$, and decide whether $D$ may have rational coefficients. We attack the second half first to expose what the construction must avoid.",
-          "Impossibility over $\\mathbb{Q}$. Let $\\sigma$ be the field automorphism of $K=\\mathbb{Q}(\\sqrt2,\\sqrt3)$ over $\\mathbb{Q}$ sending $\\sqrt2\\mapsto-\\sqrt2$ and fixing $\\sqrt3$ (it exists since $[K:\\mathbb{Q}]=4$ with Galois group $(\\mathbb{Z}/2)^2$). For any $D\\in\\mathbb{Q}[x]$, applying $\\sigma$ to the coefficients leaves $D$ fixed, so $D(\\sigma\\alpha)=\\sigma\\bigl(D(\\alpha)\\bigr)$ for $\\alpha\\in K$. If $D(\\sqrt2)=0$ then $D(-\\sqrt2)=D(\\sigma\\sqrt2)=\\sigma(D(\\sqrt2))=\\sigma(0)=0$. Hence $\\sqrt2\\in Z(D)\\Rightarrow-\\sqrt2\\in Z(D)$, and symmetrically for $\\sqrt3$. A rational-coefficient $D$ therefore cannot have $Z(D)=\\{\\sqrt2,\\sqrt3\\}$; it always contains at least one unwanted conjugate. (Elementarily, $\\sqrt2$ being a root forces $x^2-2\\mid D$, dragging in $-\\sqrt2$.)",
-          "Exhibit the irrational separator and finish. Drop the rationality requirement and take $D(x)=(x-\\sqrt2)(x-\\sqrt3)$, with coefficients $-(\\sqrt2+\\sqrt3)$ and $\\sqrt6$ lying outside $\\mathbb{Q}$ — precisely the feature that lets $D(\\sqrt2)=0$ while $D(-\\sqrt2)=(-\\sqrt2-\\sqrt2)(-\\sqrt2-\\sqrt3)=2\\sqrt2(\\sqrt2+\\sqrt3)\\neq0$. So $Z(D)=\\{\\sqrt2,\\sqrt3\\}$ exactly. Splicing with $R(x)=x,\\ I(x)=x-D(x)$ yields $f(x)=x-(x-\\sqrt2)(x-\\sqrt3)\\,\\mathbf{1}_{\\mathbb{R}\\setminus\\mathbb{Q}}(x)$, continuous on $\\{\\sqrt2,\\sqrt3\\}$ and nowhere else by part (a). $\\boxed{f(x)=x-(x-\\sqrt2)(x-\\sqrt3)\\,\\mathbf{1}_{\\mathbb{R}\\setminus\\mathbb{Q}}(x)}$"
+          "$\\psi(t)=|t-\\tfrac12|-\\tfrac12$ is a continuous tent on $[0,1]$ with $\\psi(0)=\\psi(1)=0$ and minimum $-\\tfrac12$ at $t=\\tfrac12$.",
+          "Because its endpoint values agree, the $1$-periodic function $T(x)=\\psi(\\{x\\})$ joins seamlessly at every integer, so no jump appears.",
+          "Thus $T$ is continuous on $\\mathbb{R}$ with $T(n)=0$ and $T(n+\\tfrac12)=-\\tfrac12$, the boxed answer."
         ]
       }
     ],
-    "remark": "Insight: the splice $f=R\\cdot\\mathbf{1}_{\\mathbb{Q}}+I\\cdot\\mathbf{1}_{\\mathbb{Q}^c}$ converts a continuity question into a zero-set question — $f$ is continuous exactly on $Z(R-I)$ — which is the engine behind Dirichlet and Thomae and lets one prescribe the continuity set at will. The trap is to think the prescribed set $\\{\\sqrt2,\\sqrt3\\}$ is innocently small and reachable by the textbook polynomials $x^2-2,\\,x^2-3$; but those carry their Galois conjugates $-\\sqrt2,-\\sqrt3$ as stowaways. The deep lesson is that the field of coefficients controls which finite sets are realizable as zero sets: a polynomial in $\\mathbb{Q}[x]$ has a conjugation-closed (Galois-stable) zero set, so it cannot single out one element of a conjugate pair. To target an asymmetric irrational set you must literally factor over the targets, $(x-\\sqrt2)(x-\\sqrt3)$, paying with irrational coefficients that break the symmetry. Prescribing pathological continuity sets is thus not just analysis — it is secretly Galois theory: the symmetry you forgot to break is the symmetry that ruins the naive construction."
+    "remark": "**Insight.** Feeding the sawtooth $\\{x\\}$ into a tent **$\\psi(t)=|t-\\tfrac12|-\\tfrac12$** yields a continuous periodic ripple, because **$\\psi(0)=\\psi(1)$** stitches the integer seams shut. The half-integer is only a corner (slope kink), which never breaks continuity. The recurring principle for $\\phi(\\{x\\})$: **continuity everywhere $\\iff$ the outer map agrees at the endpoints $0$ and $1$.**"
   },
   {
-    "theme": "pathological",
-    "themeLabel": "Pathological Functions",
-    "title": "The Oscillation That Refuses to Touch Zero",
+    "theme": "stepmod",
+    "themeLabel": "Step Functions, Modulus & Combined",
+    "title": "The Fractional Part That Never Jumps",
     "difficulty": 5,
-    "task": "Determine the exact set of points at which the function is continuous",
+    "task": "Decide continuity everywhere",
     "tags": [
-      "dirichlet-indicator",
-      "squeeze",
-      "topologist-sine",
-      "density-of-rationals",
-      "envelope",
-      "two-sequence-test"
+      "fractional part",
+      "self-healing jump",
+      "continuity on an interval",
+      "one-sided limits"
     ],
-    "statement": "Define $f:\\mathbb{R}\\to\\mathbb{R}$ by\n\\[\nf(x)=\\begin{cases}x\\,\\bigl(2+\\sin\\tfrac1x\\bigr)\\,\\mathbf{1}_{\\mathbb{Q}}(x), & x\\neq 0,\\\\ 0, & x=0,\\end{cases}\n\\]\nwhere $\\mathbf{1}_{\\mathbb{Q}}$ is the indicator of the rationals (so $f(x)=x\\,(2+\\sin\\tfrac1x)$ when $x$ is a nonzero rational, and $f(x)=0$ when $x$ is irrational or $x=0$). Determine, with proof, the exact set of points at which $f$ is continuous. Your argument must explain both why continuity holds where it does and why it fails everywhere else, treating the wildly oscillating factor $\\sin\\tfrac1x$ honestly.",
-    "answer": "\\[\\boxed{\\{0\\}}\\]",
-    "trap": "There are two layered traps. The first is to imagine the violent oscillation of $\\sin\\tfrac1x$ near $0$ is what destroys continuity at the origin, or conversely that it somehow helps; neither is right — the oscillating factor is harmless at $0$ because it is bounded, and continuity at $0$ comes purely from the vanishing prefactor $x$ via the squeeze $|f(x)|\\le 3|x|$. The deep trap is the role of the constant $2$. A student who mentally strips it down to the simpler-looking model $g(x)=x\\sin\\tfrac1x\\cdot\\mathbf{1}_{\\mathbb{Q}}(x)$ and reports the same answer $\\{0\\}$ is wrong: for $g$ the continuous envelope $x\\sin\\tfrac1x$ vanishes not only at $0$ but at every point $c=\\tfrac1{n\\pi}$ $(n\\in\\mathbb{Z}\\setminus\\{0\\})$, where $\\sin\\tfrac1c=\\sin(n\\pi)=0$. At each such $c$ both the rational and the irrational approaches send $g$ to $0=g(c)$, so $g$ is secretly continuous on the whole countable set $\\{0\\}\\cup\\{1/(n\\pi)\\}$, not on $\\{0\\}$ alone. The shift $2+\\sin\\tfrac1x\\in[1,3]$ is exactly the device that prevents the envelope from ever touching zero off the origin, sealing the leak. Missing this means giving a correct-looking final set $\\{0\\}$ for the wrong reason — and getting it flat wrong for the natural-looking variant. A third slip is to declare $f$ discontinuous at $0$ because $f$ disagrees with the smooth curve $x(2+\\sin\\tfrac1x)$ on the irrationals; but continuity only requires $f(x)\\to f(0)=0$, and every value of $f$ near $0$ — rational or irrational — is trapped between $-3|x|$ and $3|x|$.",
+    "statement": "Consider $g(x)=\\{x\\}^2-\\{x\\}$, where $\\{x\\}$ denotes the fractional part of $x$. At how many real points is $g$ discontinuous? Justify by examining the behaviour at an arbitrary integer $n$.",
+    "answer": "$\\boxed{g\\text{ is continuous on all of }\\mathbb{R};\\ 0\\text{ discontinuities}}$",
+    "trap": "The seductive wrong answer is “discontinuous at every integer,” reasoning that $\\{x\\}$ jumps there. But $g(x)=\\{x\\}(\\{x\\}-1)$, and the left limit $\\{x\\}\\to 1^-$ makes the factor $(\\{x\\}-1)\\to 0$, so the product's left limit is $0$ — equal to the right limit and the value.",
     "solutions": [
       {
-        "name": "Squeeze at the origin, two-sequence break elsewhere",
+        "name": "Factor and take one-sided limits",
         "steps": [
-          "Continuity at $0$. For every $x\\neq 0$, regardless of rationality, $|f(x)|=|x|\\,\\bigl(2+\\sin\\tfrac1x\\bigr)\\,\\mathbf{1}_{\\mathbb{Q}}(x)\\le |x|\\cdot 3\\cdot 1=3|x|$, because $2+\\sin\\tfrac1x\\in[1,3]$ and the indicator is at most $1$. Hence $0\\le|f(x)-f(0)|\\le 3|x|\\to 0$ as $x\\to 0$, so by the squeeze theorem $f$ is continuous at $0$. The oscillation never matters here: it is held inside the band $\\pm 3|x|$ that pinches shut.",
-          "Set up the off-origin envelope. For $x\\neq 0$ write $h(x)=x\\bigl(2+\\sin\\tfrac1x\\bigr)$, a function continuous on $\\mathbb{R}\\setminus\\{0\\}$ with $f(x)=h(x)$ at rationals and $f(x)=0$ at irrationals. The crucial fact is that $h(x)\\neq 0$ for every $x\\neq 0$: indeed $2+\\sin\\tfrac1x\\ge 2-1=1>0$, so $h(x)=0$ would force $x=0$. Thus $h(c)\\neq 0$ at every candidate point $c\\neq 0$.",
-          "Discontinuity at rational $c\\neq 0$. Here $f(c)=h(c)\\neq 0$. By density of the irrationals choose irrationals $x_n\\to c$; then $f(x_n)=0\\to 0\\neq h(c)=f(c)$. So the limit (if any) cannot equal $f(c)$, and $f$ is discontinuous at $c$.",
-          "Discontinuity at irrational $c\\neq 0$. Here $f(c)=0$. By density of the rationals choose rationals $x_n\\to c$; since $h$ is continuous and $h(c)\\neq 0$, $f(x_n)=h(x_n)\\to h(c)\\neq 0=f(c)$. Again continuity fails. Combining, $f$ is continuous at $0$ and nowhere else, so the continuity set is $\\boxed{\\{0\\}}$."
+          "Factor $g(x)=\\{x\\}^2-\\{x\\}=\\{x\\}\\big(\\{x\\}-1\\big)$.",
+          "On any open interval between consecutive integers $\\{x\\}=x-\\lfloor x\\rfloor$ is continuous, so $g$ is continuous there.",
+          "At an integer $n$: as $x\\to n^-$, $\\{x\\}\\to 1$, giving $g\\to 1\\cdot(1-1)=0$; as $x\\to n^+$, $\\{x\\}\\to 0$, giving $g\\to 0\\cdot(0-1)=0$; and $g(n)=0\\cdot(0-1)=0$.",
+          "All three agree at every integer, so $g$ is continuous everywhere: $0$ discontinuities."
         ]
       },
       {
-        "name": "Direct $\\varepsilon$–$\\delta$ with an explicit jump witness",
+        "name": "Rewrite as a periodic continuous function",
         "steps": [
-          "At $0$, produce $\\delta$ explicitly. Given $\\varepsilon>0$ set $\\delta=\\varepsilon/3$. If $|x|<\\delta$ then $|f(x)-f(0)|\\le 3|x|<3\\delta=\\varepsilon$ using $0\\le 2+\\sin\\tfrac1x\\le 3$ and $0\\le\\mathbf{1}_{\\mathbb{Q}}\\le 1$. This is the full $\\varepsilon$–$\\delta$ certificate of continuity at $0$.",
-          "At any $c\\neq 0$, produce a fixed $\\varepsilon_0$ no $\\delta$ can beat. Let $\\varepsilon_0=\\tfrac12|h(c)|$ where $h(c)=c(2+\\sin\\tfrac1c)$; since $2+\\sin\\tfrac1c\\ge 1$ we have $|h(c)|\\ge|c|>0$, so $\\varepsilon_0>0$ is genuinely positive.",
-          "Show the certificate fails. Fix any $\\delta>0$. If $c$ is rational, pick an irrational $x$ with $|x-c|<\\delta$ (possible by density); then $|f(x)-f(c)|=|0-h(c)|=2\\varepsilon_0>\\varepsilon_0$. If $c$ is irrational, pick a rational $x$ with $|x-c|<\\delta$ close enough that, by continuity of $h$, $|h(x)|>\\tfrac12|h(c)|$; then $|f(x)-f(c)|=|h(x)-0|>\\varepsilon_0$. Either way some point within $\\delta$ violates the $\\varepsilon_0$ bound.",
-          "Conclude. No $\\delta$ works at any $c\\neq 0$, so $f$ is discontinuous there; it is continuous at $0$ by the first step. The continuity set is exactly $\\boxed{\\{0\\}}$."
-        ]
-      },
-      {
-        "name": "Closure-of-graph / oscillation criterion",
-        "steps": [
-          "Reduce continuity to a value-matching condition. At any $c\\neq 0$, density of both $\\mathbb{Q}$ and its complement means the cluster set of $f$ as $x\\to c$ contains both the limit of $f$ along irrationals, namely $0$, and the limit along rationals, namely $\\lim_{x\\to c}h(x)=h(c)$ (as $h$ is continuous at $c\\neq 0$). Thus the limit $\\lim_{x\\to c}f(x)$ exists and equals a single value only when these two cluster values coincide, i.e. when $h(c)=0$; and even then it equals $0$, which matches $f(c)$ (the value at $c$ is $0$ if $c$ irrational, and $h(c)=0$ if $c$ rational).",
-          "Compute the oscillation. Equivalently, the oscillation of $f$ at $c\\neq 0$ is $\\omega_f(c)=|h(c)-0|=|h(c)|$, since arbitrarily near $c$ the function takes values as close as we like to both $0$ and $h(c)$. Continuity at $c$ is equivalent to $\\omega_f(c)=0$, i.e. to $h(c)=0$.",
-          "Locate the zeros of the envelope. Because $2+\\sin\\tfrac1c\\ge 1>0$ for all $c\\neq 0$, the only zero of $h(c)=c(2+\\sin\\tfrac1c)$ on $\\mathbb{R}\\setminus\\{0\\}$ would require $c=0$ — impossible. Hence $\\omega_f(c)=|h(c)|>0$ at every $c\\neq 0$, so $f$ is discontinuous at every nonzero point. (Contrast the impostor $x\\sin\\tfrac1x$, whose envelope vanishes at every $1/(n\\pi)$ and is therefore continuous there too.)",
-          "Add the origin. At $0$ the squeeze $|f|\\le 3|x|$ gives $\\omega_f(0)=0$, so $f$ is continuous at $0$. Therefore $\\{\\,c:\\omega_f(c)=0\\,\\}=\\boxed{\\{0\\}}$, the complete continuity set."
+          "Define $\\phi(t)=t^2-t=t(t-1)$ on $[0,1]$; then $g(x)=\\phi(\\{x\\})$.",
+          "Note $\\phi(0)=0$ and $\\phi(1)=0$, so $\\phi$ takes equal values at the two ends of the unit interval.",
+          "Hence the $1$-periodic extension built from $\\{x\\}$ joins up with no mismatch at the integers, and $g$ is continuous on $\\mathbb{R}$, with the boxed conclusion of $0$ discontinuities."
         ]
       }
     ],
-    "remark": "Insight: a Dirichlet-gated function $h(x)\\mathbf{1}_{\\mathbb{Q}}(x)$ (with $h$ continuous, $h(0)=0$) is continuous at exactly the zero set of its envelope $h$ together with the squeeze point, i.e. precisely where $h(c)=0$ — because density forces the oscillation there to equal $|h(c)|$. So the entire problem is decided by one question: where does the continuous envelope touch zero? The vanishing prefactor $x$ buys continuity at the origin, but the seductive choice $h=x\\sin\\tfrac1x$ also touches zero at the discrete sequence $1/(n\\pi)$, smuggling in a whole countable set of hidden continuity points. The single innocuous-looking constant in $2+\\sin\\tfrac1x$ lifts the oscillating factor strictly off zero, so the envelope vanishes only at the origin — and the answer collapses cleanly to $\\{0\\}$. The pathology of $\\sin\\tfrac1x$ is a red herring for continuity: boundedness, not oscillation, is what the squeeze cares about."
+    "remark": "**Insight.** A composite **$\\phi(\\{x\\})$** is continuous on all of $\\mathbb{R}$ precisely when **$\\phi(0)=\\phi(1)$** — the only place $\\{x\\}$ can misbehave is the integer seam, and matching the endpoint values stitches it shut. Here $\\phi(t)=t(t-1)$ vanishes at both $0$ and $1$, so the apparent jump is an illusion."
   },
   {
-    "theme": "pathological",
-    "themeLabel": "Pathological Functions",
-    "title": "The Half-Lit Popcorn and Its Mirror",
+    "theme": "stepmod",
+    "themeLabel": "Step Functions, Modulus & Combined",
+    "title": "Floor of x Plus Floor of Minus x",
     "difficulty": 5,
-    "task": "Determine each continuity set exactly, then pin the points that distinguish them",
+    "task": "Classify the discontinuities",
     "tags": [
-      "thomae",
-      "one-sided-weight",
-      "sign-weight",
-      "weight-zero-set",
-      "limit-zero-rescue",
-      "continuity-set"
+      "greatest integer",
+      "removable discontinuity",
+      "indicator of integers",
+      "one-sided limits"
     ],
-    "statement": "Let $T:\\mathbb{R}\\to\\mathbb{R}$ be Thomae's (popcorn) function, defined on the whole line by\n\\[\nT(x)=\\begin{cases}\\dfrac{1}{q}, & x=\\dfrac{p}{q}\\in\\mathbb{Q}\\ \\text{in lowest terms with } q\\ge 1,\\\\ 0, & x\\notin\\mathbb{Q},\\end{cases}\n\\]\nso that in particular $T(n)=1$ for every integer $n$ (denominator $1$) and $T$ is even. It is classical that $T$ is continuous at every irrational and discontinuous at every rational. Now switch this popcorn on with two different weights and define\n\\[\nF(x)=T(x)\\cdot\\mathbf{1}_{\\{x>0\\}}(x),\\qquad\\qquad G(x)=T(x)\\cdot\\operatorname{sgn}(x),\n\\]\nwhere $\\mathbf{1}_{\\{x>0\\}}$ is $1$ for $x>0$ and $0$ for $x\\le 0$, and $\\operatorname{sgn}(x)$ is $+1,\\,0,\\,-1$ for $x>0,\\,x=0,\\,x<0$ respectively. Thus $F$ is the popcorn turned on only to the right of the origin, while $G$ is the popcorn reflected to a trough on the left.\n\n(a) Determine, with proof, the exact set $C_F$ of points at which $F$ is continuous.\n\n(b) Determine, with proof, the exact set $C_G$ of points at which $G$ is continuous.\n\n(c) The two weights both have a jump at the origin, yet decide rigorously whether $F$ and $G$ are continuous at $x=0$. Finally identify the set $C_F\\,\\triangle\\,C_G$ of points where exactly one of $F,G$ is continuous (here $\\triangle$ is symmetric difference), and state its cardinality.",
-    "answer": "\\[\\boxed{\\,C_F=(-\\infty,0]\\cup\\big((0,\\infty)\\setminus\\mathbb{Q}\\big),\\quad C_G=\\{0\\}\\cup(\\mathbb{R}\\setminus\\mathbb{Q}),\\quad C_F\\triangle C_G=\\mathbb{Q}\\cap(-\\infty,0)\\ (\\text{countably infinite})\\,}\\]",
-    "trap": "Two reflexes wreck this problem, and both are conceptual, not arithmetic. Trap 1 — \\\"a jumping weight forces a jump.\\\" Because $\\mathbf{1}_{\\{x>0\\}}$ and $\\operatorname{sgn}$ each leap at the origin, the seductive verdict is that $F$ and $G$ are discontinuous at $0$. That is wrong: continuity of a product depends on the limit, and $T$ has limit $0$ at every point, including $0$. Since $\\lim_{x\\to0}T(x)=0$ and the weights are bounded by $1$, the product is squeezed: $|F(x)|\\le T(x)\\to0=F(0)$ and likewise for $G$, so both are continuous at $0$. The popcorn's universal limit-$0$ property silently repairs the jump — the weight's discontinuity is annihilated by being multiplied against something whose limit is $0$. A subtle sub-trap hides inside this: at $x=0$ one has $T(0)=1$ (the integer spike), so a careless solver computes $F(0)=1$; but the weight is $\\mathbf{1}_{\\{0>0\\}}=0$, giving $F(0)=0$, exactly the value continuity needs. The spike is switched off precisely where it would have done damage. \\textbf{Trap 2 — \\\"$\\mathbf{1}_{\\{x>0\\}}$ and $\\operatorname{sgn}$ behave the same.\\\"} Both look like \\\"turn the popcorn off / flip it,\\\" so one is tempted to give $F$ and $G$ the same continuity set. They differ on the entire negative ray. The indicator kills $F$ on $(-\\infty,0)$, making $F\\equiv0$ there and hence continuous at every negative point, rationals included. But $\\operatorname{sgn}$ merely reflects: on $(-\\infty,0)$ one has $G=-T$, which is still nonzero at every rational and still jumps against the surrounding irrationals, so every negative rational is a discontinuity of $G$. Hence $C_F$ contains all of $(-\\infty,0)$ while $C_G$ omits the negative rationals — the difference is exactly $\\mathbb{Q}\\cap(-\\infty,0)$, not the empty set, and certainly not a finite set or the whole left ray. The lazy \\\"$C_F=C_G$\\\" or \\\"both equal the irrationals\\\" answers miss that a multiplicative zero weight (the indicator) is fundamentally different from a $\\pm1$ sign weight.",
+    "statement": "Let $h(x)=\\lfloor x\\rfloor+\\lfloor -x\\rfloor$. Show that $h(x)=0$ when $x\\in\\mathbb{Z}$ and $h(x)=-1$ otherwise, and classify the discontinuity of $h$ at each integer.",
+    "answer": "$\\boxed{h\\text{ has a removable discontinuity at every integer; }\\lim_{x\\to n}h(x)=-1\\neq 0=h(n)}$",
+    "trap": "A common wrong answer is to call these jump discontinuities. They are not: the left and right limits are both $-1$ (they agree), so the limit exists; only the value $h(n)=0$ disagrees. That is the signature of a removable discontinuity, not a jump.",
     "solutions": [
       {
-        "name": "Region-by-region squeeze on each ray and at the seam",
+        "name": "Evaluate by cases",
         "steps": [
-          "Record the one fact that drives everything: for every real $a$, $\\lim_{x\\to a}T(x)=0$. Indeed, fix $\\varepsilon>0$; the points with $T(x)\\ge\\varepsilon$ are exactly the rationals of denominator $q\\le 1/\\varepsilon$, and in any bounded window around $a$ there are only finitely many such rationals, so a small deleted neighbourhood of $a$ contains none of them; thus $0\\le T(x)<\\varepsilon$ there. Consequently $T$ is continuous at $a$ iff $T(a)=0$, i.e. iff $a$ is irrational. We now multiply by the weights.",
-          "Part (a), $F=T\\cdot\\mathbf{1}_{\\{x>0\\}}$. On the open left ray $x<0$, $F\\equiv0$, a constant, hence continuous at every such point. On the open right ray $x>0$, $F=T$ on a neighbourhood, so $F$ inherits Thomae's behaviour there: continuous at the positive irrationals, discontinuous at the positive rationals (at a positive rational $r$, $F(r)=T(r)>0$ but irrationals nearby give $F=0$, a jump). It remains to test the seam $x=0$.",
-          "Part (a), the seam. $F(0)=T(0)\\cdot\\mathbf{1}_{\\{0>0\\}}=1\\cdot0=0$. For any $x$, $0\\le|F(x)|=T(x)\\,\\mathbf{1}_{\\{x>0\\}}\\le T(x)$, and $T(x)\\to0$ as $x\\to0$ by step 1, so by squeezing $\\lim_{x\\to0}F(x)=0=F(0)$: $F$ is continuous at $0$. Assembling the three regions, $C_F=(-\\infty,0)\\cup\\{0\\}\\cup\\big((0,\\infty)\\setminus\\mathbb{Q}\\big)=(-\\infty,0]\\cup\\big((0,\\infty)\\setminus\\mathbb{Q}\\big)$. $\\boxed{C_F=(-\\infty,0]\\cup\\big((0,\\infty)\\setminus\\mathbb{Q}\\big)}$",
-          "Part (b), $G=T\\cdot\\operatorname{sgn}$. On $x>0$, $G=T$: continuous at positive irrationals, discontinuous at positive rationals — same as $F$ on the right. On $x<0$, $G=-T$: scaling by $-1$ changes no continuity, so $G$ is continuous at negative irrationals and discontinuous at negative rationals (at a negative rational $r$, $G(r)=-T(r)\\ne0$ while nearby irrationals give $0$, a jump). At the seam, $G(0)=T(0)\\cdot\\operatorname{sgn}(0)=1\\cdot0=0$, and $|G(x)|\\le T(x)\\to0$, so $\\lim_{x\\to0}G(x)=0=G(0)$: continuous at $0$. Therefore $G$ is continuous exactly at all irrationals together with the single rational point $0$: $\\boxed{C_G=\\{0\\}\\cup(\\mathbb{R}\\setminus\\mathbb{Q})}$.",
-          "Part (c). Both are continuous at $0$ despite the weight jumps, because the bounded jump is multiplied against $T$, whose limit at $0$ is $0$; the integer spike $T(0)=1$ is harmless because the weight is $0$ there, forcing the correct value $F(0)=G(0)=0$. Compare the sets: on $(0,\\infty)$ both are continuous precisely at irrationals (agree); at $0$ both continuous (agree). On $(-\\infty,0)$, $F$ is continuous everywhere while $G$ is continuous only at irrationals; they differ exactly at the negative rationals. Hence $C_F\\triangle C_G=\\mathbb{Q}\\cap(-\\infty,0)$, a subset of $\\mathbb{Q}$ that is in bijection with $\\mathbb{N}$, so it is $\\boxed{\\text{countably infinite}}$."
+          "If $x=n\\in\\mathbb{Z}$ then $\\lfloor x\\rfloor=n$ and $\\lfloor -x\\rfloor=-n$, so $h(n)=n+(-n)=0$.",
+          "If $x\\notin\\mathbb{Z}$ write $x=n+f$ with $0<f<1$; then $\\lfloor x\\rfloor=n$ and $-x=-n-f$ gives $\\lfloor -x\\rfloor=-n-1$, so $h(x)=n+(-n-1)=-1$.",
+          "Thus $h$ equals $-1$ off the integers and $0$ on them; near any integer $n$, $\\lim_{x\\to n}h(x)=-1$ while $h(n)=0$.",
+          "Since the two-sided limit exists ($=-1$) but differs from the value, the discontinuity at every integer is removable."
         ]
       },
       {
-        "name": "Sequential characterization through three test sequences",
+        "name": "Identify the function",
         "steps": [
-          "Continuity of a function $h$ at $a$ is equivalent to: $h(x_n)\\to h(a)$ for every sequence $x_n\\to a$. We probe each candidate point with three kinds of approaching sequences — irrational, rational, and (where the seam matters) one-sided — and demand all give the same limit. The engine remains $\\lim_{x\\to a}T(x)=0$ (proved as in Solution 1, step 1), so along any sequence of irrationals $T\\to0$, and along any sequence of rationals with denominators $\\to\\infty$ also $T\\to0$; only rational sequences of bounded denominator (forced to be eventually constant near $a$) can keep $T$ bounded away from $0$, and that happens iff $a$ itself is rational.",
-          "Test $F$ at an arbitrary $a$. If $a<0$: every nearby $x$ eventually has $x<0$, so $F(x_n)=0\\to0=F(a)$ — continuous. If $a>0$ rational: the constant sequence-style approach by rationals equal to $a$'s reduced form is unavailable, but take irrationals $x_n\\to a$ giving $F(x_n)=0$ while $F(a)=T(a)>0$ — discontinuous. If $a>0$ irrational: any $x_n\\to a$ gives $F(x_n)=T(x_n)\\mathbf{1}_{\\{x_n>0\\}}\\to0=F(a)$ — continuous. If $a=0$: $|F(x_n)|\\le T(x_n)\\to0=F(0)$ — continuous. So $C_F=(-\\infty,0]\\cup\\big((0,\\infty)\\setminus\\mathbb{Q}\\big)$.",
-          "Test $G$ at an arbitrary $a$. For $a\\ne0$ the weight $\\operatorname{sgn}$ is locally the constant $\\pm1$, so $G=\\pm T$ near $a$ and continuity of $G$ at $a$ is equivalent to continuity of $T$ at $a$, i.e. holds iff $a$ is irrational. For $a=0$: $|G(x_n)|\\le T(x_n)\\to0=G(0)$, continuous. Hence $G$ is continuous exactly at the irrationals and at $0$: $C_G=\\{0\\}\\cup(\\mathbb{R}\\setminus\\mathbb{Q})$. $\\boxed{C_F=(-\\infty,0]\\cup\\big((0,\\infty)\\setminus\\mathbb{Q}\\big),\\ \\ C_G=\\{0\\}\\cup(\\mathbb{R}\\setminus\\mathbb{Q})}$",
-          "Part (c) by comparison of the membership tests. A point $a$ lies in exactly one of $C_F,C_G$ iff the two tests above disagree. They disagree only when $a<0$ and rational: there $F(x_n)\\to0=F(a)$ (continuous) but the rational-with-bounded-denominator obstruction makes $G$ discontinuous. Everywhere else (positive reals, irrationals, and $0$) the verdicts coincide. Thus $C_F\\triangle C_G=\\mathbb{Q}\\cap(-\\infty,0)$. Being an infinite subset of the countable set $\\mathbb{Q}$, it is $\\boxed{\\text{countably infinite}}$, and note $C_F\\setminus C_G$ is all of it while $C_G\\setminus C_F=\\varnothing$."
-        ]
-      },
-      {
-        "name": "Algebra of continuity sets via products and a single counterexample point",
-        "steps": [
-          "Use structural rules. (i) A product $u\\cdot v$ is continuous at any point where both $u,v$ are continuous. (ii) If $v$ is continuous at $a$ with $v(a)\\ne0$ and $u\\cdot v$ is continuous at $a$, then $u=(u v)/v$ is continuous at $a$ — so a nonvanishing continuous factor cannot create or hide a discontinuity. (iii) If a factor is the constant $0$ on a neighbourhood, the product is $0$ there, hence continuous. We apply these to $T$ (continuous exactly on the irrationals, limit $0$ everywhere) and the two weights.",
-          "Away from $0$ both weights are locally a nonzero constant ($\\mathbf{1}_{\\{x>0\\}}=1$ on $x>0$; $\\operatorname{sgn}=\\pm1$ off $0$), except that $\\mathbf{1}_{\\{x>0\\}}\\equiv0$ on the whole open ray $x<0$. By rule (iii), $F\\equiv0$ on $(-\\infty,0)$ is continuous there. By rule (ii) applied with the nonzero constant weight, on $x>0$ both $F,G$ share $T$'s continuity set (irrationals), and on $x<0$ the function $G=-T$ shares $T$'s set (irrationals). This already gives the two sets off the origin; only the seam needs the limit argument.",
-          "At $x=0$ the weights are discontinuous, so rule (i) does not apply and we argue directly. Both values are $0$ (weight $=0$ kills the spike $T(0)=1$), and $|F|,|G|\\le T\\to0$, so both are continuous at $0$ — a genuine repair that the algebra of continuous factors cannot see, because here the factor that vanishes is the discontinuous one. Collecting: $C_F=(-\\infty,0]\\cup\\big((0,\\infty)\\setminus\\mathbb{Q}\\big)$ and $C_G=\\{0\\}\\cup(\\mathbb{R}\\setminus\\mathbb{Q})$.",
-          "Part (c). The only ray on which the structural verdicts differ is $x<0$: indicator gives $F\\equiv0$ (continuous at every negative point), sign gives $G=-T$ (continuous only at negative irrationals). To certify the difference is genuine, exhibit one witness: at $x=-\\tfrac12$, $F(-\\tfrac12)=0$ with $F\\equiv0$ nearby on the left (continuous), whereas $G(-\\tfrac12)=-T(-\\tfrac12)=-\\tfrac12$ while irrationals near $-\\tfrac12$ give $G=0$, a jump of $\\tfrac12$ (discontinuous). Generalizing across all negative rationals, $C_F\\triangle C_G=\\mathbb{Q}\\cap(-\\infty,0)$, which is $\\boxed{\\text{countably infinite}}$ (an infinite subset of $\\mathbb{Q}$, with $C_F\\triangle C_G=C_F\\setminus C_G$ since $C_G\\subseteq C_F$ off the right ray's rationals balance out)."
+          "Recognise $h(x)=\\lfloor x\\rfloor+\\lfloor -x\\rfloor$ as $-1$ plus the indicator of the integers: $h(x)=\\mathbf{1}_{\\mathbb{Z}}(x)-1$.",
+          "The constant part $-1$ is continuous; the indicator $\\mathbf{1}_{\\mathbb{Z}}$ is $1$ only at isolated integer points, with surrounding limit $0$.",
+          "Hence at each integer the limit is $-1$ but the value is $0$: a removable discontinuity, matching the boxed answer."
         ]
       }
     ],
-    "remark": "Insight: the load-bearing property of Thomae's function is not merely \\\"continuous at irrationals\\\" but the stronger global statement $\\lim_{x\\to a}T(x)=0$ at every point $a$ — rational or not. The moment you multiply $T$ by any bounded weight, that universal limit-$0$ lets a squeeze repair any jump the weight contributes at a single point: this is exactly why both $F$ and $G$ stay continuous at the origin despite the indicator's and the sign's leap there, and why the integer spike $T(0)=1$ does no harm (the weight is $0$ precisely at $0$, pinning the value to $0$). The two weights then part ways everywhere the weight is locally constant: a zero constant (the indicator on the left ray) annihilates the popcorn outright and makes that entire ray continuous, while a $\\pm1$ sign constant only reflects it and preserves the rational discontinuities. So the contrast is the lesson: continuity of a product is governed by limits, multiplying by something with limit $0$ heals isolated jumps, multiplying by an identically-zero factor heals whole regions, and multiplying by a unit-modulus sign heals nothing. The clean separator $C_F\\triangle C_G=\\mathbb{Q}\\cap(-\\infty,0)$ is the fingerprint of \\\"zero weight versus sign weight\\\" on the half-line where the two designs disagree."
+    "remark": "**Insight.** The combination **$\\lfloor x\\rfloor+\\lfloor -x\\rfloor$** is the cleanest detector of integrality: it reads **$0$ on the integers and $-1$ everywhere else**. Because the surrounding limit is a single value $-1$, each break is **removable** — redefining $h$ to be $-1$ at the integers would make it continuous. Distinguishing removable from jump hinges on whether the two one-sided limits agree."
   },
   {
-    "theme": "pathological",
-    "themeLabel": "Pathological Functions",
-    "title": "Where Two Waves Cross the Rational Divide",
+    "theme": "stepmod",
+    "themeLabel": "Step Functions, Modulus & Combined",
+    "title": "Sine of Pi Times the Fractional Part",
     "difficulty": 5,
-    "task": "Determine, with proof, the exact set of points at which the function is continuous",
+    "task": "Test continuity at integers",
     "tags": [
-      "rational-irrational-clash",
-      "two-oscillations",
-      "density",
-      "periodic-continuity-set",
-      "arithmetic-progression",
-      "two-sequence-test"
+      "fractional part",
+      "trigonometric composite",
+      "self-healing jump",
+      "periodicity"
     ],
-    "statement": "Define $f:\\mathbb{R}\\to\\mathbb{R}$ by\n\\[\nf(x)=\\begin{cases}\\sin(\\pi x), & x\\in\\mathbb{Q},\\\\ \\cos(\\pi x), & x\\notin\\mathbb{Q}.\\end{cases}\n\\]\nSo on the rationals $f$ rides the sine wave, and on the irrationals it rides the cosine wave; everywhere the two graphs interleave on a set that is dense from both sides. Both pieces are individually smooth, yet $f$ as a whole is wildly broken. Determine, with proof, the exact set of points at which $f$ is continuous. Your argument must explain both why continuity holds where it does and why it fails everywhere else, and must say clearly what kind of set the continuity set is.",
-    "answer": "\\[\\boxed{\\left\\{\\,n+\\tfrac14 : n\\in\\mathbb{Z}\\,\\right\\}}\\]",
-    "trap": "The fatal reflex is to import the answer from the look-alike problem $\\big(\\sin(\\pi x)$ on $\\mathbb{Q}$, $-\\sin(\\pi x)$ on the irrationals$\\big)$, whose continuity condition is $\\sin(\\pi c)=-\\sin(\\pi c)$, i.e. $\\sin(\\pi c)=0$, i.e. $c\\in\\mathbb{Z}$ — the zero set of a single sine. A solver running on autopilot looks for where one wave vanishes and reports the integers. That is exactly wrong here: continuity is governed not by a zero of one oscillation but by the equality of two different oscillations, $\\sin(\\pi c)=\\cos(\\pi c)$. At an integer $c$, the rational branch gives $\\sin(\\pi c)=0$ but the irrational branch gives $\\cos(\\pi c)=\\pm1\\neq0$, so $f$ jumps by $1$ there — the integers are among the worst discontinuities, not continuity points. A second, subtler trap is to solve $\\tan(\\pi c)=1$ mechanically and then worry that some solution might be irrational, breaking the value-matching (since $f(c)$ is defined by which side of the rational divide $c$ falls on). One must verify that every solution is rational: the equation $\\sin(\\pi c)=\\cos(\\pi c)$ forces $c=n+\\tfrac14$, and $n+\\tfrac14\\in\\mathbb{Q}$ for all integers $n$, so each candidate point is rational and $f$ there equals $\\sin(\\pi c)=\\cos(\\pi c)$ — both branch-limits and the actual value agree. A third slip is to call the answer a sparse or finite collection: it is an infinite arithmetic progression with common difference $1$, a full periodic lattice $\\tfrac14+\\mathbb{Z}$ shifted off the integers by a quarter, not the empty set and not the integers.",
+    "statement": "Let $\\phi(x)=\\sin\\!\\big(\\pi\\{x\\}\\big)$, where $\\{x\\}$ is the fractional part of $x$. Show that $\\phi$ is continuous at every integer, and hence on all of $\\mathbb{R}$, even though $\\{x\\}$ itself is discontinuous at the integers.",
+    "answer": "$\\boxed{\\phi\\text{ is continuous on }\\mathbb{R};\\ \\text{in particular }\\lim_{x\\to n^-}\\phi=\\lim_{x\\to n^+}\\phi=\\phi(n)=0}$",
+    "trap": "The tempting wrong claim is that $\\phi$ inherits a discontinuity at each integer from $\\{x\\}$. It does not: as $x\\to n^-$, $\\{x\\}\\to 1$ and $\\sin(\\pi\\cdot 1)=0$, matching the right limit $\\sin(\\pi\\cdot 0)=0$; the sine maps both ends of the seam to the same value.",
     "solutions": [
       {
-        "name": "Two dense sequences and the value-matching condition",
+        "name": "One-sided limits at an integer",
         "steps": [
-          "Fix any $c\\in\\mathbb{R}$ and compute the two cluster values. Since $\\mathbb{Q}$ is dense, choose rationals $r_n\\to c$; then $f(r_n)=\\sin(\\pi r_n)\\to\\sin(\\pi c)$ because $\\sin(\\pi\\,\\cdot)$ is continuous. Since the irrationals are dense, choose irrationals $t_n\\to c$; then $f(t_n)=\\cos(\\pi t_n)\\to\\cos(\\pi c)$. Thus near $c$ the function $f$ takes values arbitrarily close to both $\\sin(\\pi c)$ and $\\cos(\\pi c)$, so the two-sided limit $\\lim_{x\\to c}f(x)$ exists if and only if these coincide, namely $\\sin(\\pi c)=\\cos(\\pi c)$.",
-          "Identify continuity with that single equation. If $\\sin(\\pi c)\\neq\\cos(\\pi c)$, the two dense sequences force two distinct sublimits, so $\\lim_{x\\to c}f(x)$ does not exist and $f$ is discontinuous at $c$. Conversely if $\\sin(\\pi c)=\\cos(\\pi c)=:L$, then $every$ sequence $x_n\\to c$ has $f(x_n)$ squeezed toward $L$ (split it into its rational and irrational terms, each subsequence tends to $L$), so $\\lim_{x\\to c}f(x)=L$; and $f(c)$ equals $\\sin(\\pi c)$ or $\\cos(\\pi c)$ according to the type of $c$, but both equal $L$, so $\\lim_{x\\to c}f(x)=L=f(c)$. Hence $f$ is continuous at $c$ exactly when $\\sin(\\pi c)=\\cos(\\pi c)$.",
-          "Solve the equation. $\\sin(\\pi c)=\\cos(\\pi c)$ with no need to divide: it is equivalent to $\\sin(\\pi c)-\\cos(\\pi c)=0$. Since $\\cos(\\pi c)=0$ would force $\\sin(\\pi c)=0$ too, contradicting $\\sin^2+\\cos^2=1$, we have $\\cos(\\pi c)\\neq0$ at any solution, so we may divide to get $\\tan(\\pi c)=1$, giving $\\pi c=\\tfrac{\\pi}{4}+n\\pi$, i.e. $c=\\tfrac14+n$ for $n\\in\\mathbb{Z}$.",
-          "Check the value-matching is automatic. Each candidate $c=n+\\tfrac14$ is rational, so $f(c)=\\sin(\\pi c)$, and at these points $\\sin(\\pi c)=\\cos(\\pi c)=\\pm\\tfrac{\\sqrt2}{2}\\neq0$, consistent with Step 2. No solution is irrational, so no value-branch mismatch can spoil any candidate. Therefore the continuity set is exactly $\\boxed{\\{\\,n+\\tfrac14:n\\in\\mathbb{Z}\\,\\}}$, an arithmetic progression of period $1$."
+          "Between integers $\\{x\\}=x-\\lfloor x\\rfloor$ is continuous, so $\\phi(x)=\\sin(\\pi\\{x\\})$ is continuous there.",
+          "At an integer $n$: as $x\\to n^-$, $\\{x\\}\\to 1$, so $\\phi\\to\\sin\\pi=0$; as $x\\to n^+$, $\\{x\\}\\to 0$, so $\\phi\\to\\sin 0=0$.",
+          "Also $\\phi(n)=\\sin(\\pi\\cdot 0)=0$, so left limit $=$ right limit $=$ value $=0$.",
+          "Thus $\\phi$ is continuous at every integer and therefore on all of $\\mathbb{R}$."
         ]
       },
       {
-        "name": "Oscillation via two continuous envelopes",
+        "name": "Reduce to a continuous closed form",
         "steps": [
-          "Introduce the two smooth envelopes $g(x)=\\sin(\\pi x)$ and $h(x)=\\cos(\\pi x)$, both continuous on $\\mathbb{R}$, with $f=g$ on $\\mathbb{Q}$ and $f=h$ on $\\mathbb{R}\\setminus\\mathbb{Q}$. Define the oscillation of $f$ at $c$ as $\\omega_f(c)=\\limsup_{x\\to c}f(x)-\\liminf_{x\\to c}f(x)$. By density of both $\\mathbb{Q}$ and its complement, every neighbourhood of $c$ contains points where $f$ is as close as desired to $g(c)$ and points where $f$ is as close as desired to $h(c)$, so $\\omega_f(c)=|g(c)-h(c)|=|\\sin(\\pi c)-\\cos(\\pi c)|$.",
-          "Use the standard fact that $f$ is continuous at $c$ iff $\\omega_f(c)=0$. Here $\\omega_f(c)=0\\iff\\sin(\\pi c)=\\cos(\\pi c)$. (When this holds, $f(c)$ also equals that common value, since $c$ is rational at every such point — verified below — so continuity is genuine and not merely a limit that misses the value.)",
-          "Find the zero set of the gap. Square-free reasoning: $\\sin\\theta=\\cos\\theta$ with $\\theta=\\pi c$ means $\\tan\\theta=1$ (legitimate since $\\cos\\theta=0$ would force $\\sin\\theta=0$, impossible), so $\\theta=\\tfrac{\\pi}{4}+n\\pi$ and $c=n+\\tfrac14$. Each such $c$ is rational, so $f(c)=g(c)=h(c)$ and the oscillation truly collapses.",
-          "Contrast and conclude. Off this lattice the gap $|\\sin(\\pi c)-\\cos(\\pi c)|>0$, so $\\omega_f(c)>0$ and $f$ is discontinuous; in particular at the integers the gap is $|0\\mp1|=1$, the maximal-type jump that the naive zero-of-sine answer mistakes for continuity. Hence the continuity set is exactly $\\boxed{\\{\\,n+\\tfrac14:n\\in\\mathbb{Z}\\,\\}}$."
-        ]
-      },
-      {
-        "name": "Single-wave reduction by amplitude-phase form",
-        "steps": [
-          "Collapse the two waves into one. For every real $x$, $\\sin(\\pi x)-\\cos(\\pi x)=\\sqrt2\\,\\sin\\!\\big(\\pi x-\\tfrac{\\pi}{4}\\big)$ by the harmonic-addition identity $a\\sin\\theta+b\\cos\\theta=\\sqrt{a^2+b^2}\\,\\sin(\\theta+\\varphi)$ with $a=1,\\,b=-1$. So the entire continuity question reduces to: where does the single continuous wave $D(x)=\\sqrt2\\,\\sin\\!\\big(\\pi x-\\tfrac{\\pi}{4}\\big)$ vanish? — because $f$ is continuous at $c$ iff the two branch-limits agree, i.e. iff $D(c)=0$.",
-          "Justify the reduction. By density, $\\lim_{x\\to c}f(x)$ exists iff $\\sin(\\pi c)=\\cos(\\pi c)$, equivalently $D(c)=0$; and then the common limit equals $f(c)$ because every $c$ with $D(c)=0$ turns out rational, so $f(c)$ sits on whichever branch and both branches share the value. (If a zero of $D$ were irrational, one would still have to confirm $f(c)$ matched the limit; we check it cannot happen.)",
-          "Solve $D(c)=0$. $\\sin\\!\\big(\\pi c-\\tfrac{\\pi}{4}\\big)=0\\iff \\pi c-\\tfrac{\\pi}{4}=n\\pi\\iff c=n+\\tfrac14$, $n\\in\\mathbb{Z}$. The amplitude $\\sqrt2\\neq0$ never interferes, and the phase shift $\\tfrac14$ is exactly what slides the continuity lattice off the integers — the fingerprint of using two distinct oscillations rather than one wave against its own negative.",
-          "Confirm rationality and finish. Each $c=n+\\tfrac14\\in\\mathbb{Q}$, so $f(c)=\\sin(\\pi c)$, which equals $\\cos(\\pi c)$ here; the value matches the limit, so continuity is genuine, and no irrational solution exists to break the matching. The continuity set is precisely the period-$1$ progression $\\boxed{\\{\\,n+\\tfrac14:n\\in\\mathbb{Z}\\,\\}}$."
+          "Write $\\pi x=\\pi\\lfloor x\\rfloor+\\pi\\{x\\}$, so $\\sin(\\pi x)=\\sin(\\pi\\{x\\})\\cos(\\pi\\lfloor x\\rfloor)=(-1)^{\\lfloor x\\rfloor}\\sin(\\pi\\{x\\})$.",
+          "Hence $\\phi(x)=\\sin(\\pi\\{x\\})=(-1)^{\\lfloor x\\rfloor}\\sin(\\pi x)=|\\sin(\\pi x)|$ on each interval, and since $\\sin(\\pi x)$ vanishes at integers, $\\phi(x)=|\\sin(\\pi x)|$ holds throughout.",
+          "As an absolute value of a continuous function, $|\\sin(\\pi x)|$ is continuous on $\\mathbb{R}$, confirming the boxed conclusion."
         ]
       }
     ],
-    "remark": "Insight: when a function is built by gluing one continuous function $g$ on the rationals to another continuous function $h$ on the irrationals, density of both sets forces the oscillation at $c$ to equal $|g(c)-h(c)|$, so the continuity set is exactly the coincidence locus $\\{g=h\\}$ — provided that locus lands inside the set whose branch carries the matching value (automatic when those points are rational and $f$ uses $g$ there). The popular template $g=\\sin\\pi x,\\,h=-\\sin\\pi x$ makes $\\{g=h\\}$ the zero set $\\{\\sin\\pi x=0\\}=\\mathbb{Z}$, and rote memory wants to repeat that. But replacing $h$ by a genuinely different wave $\\cos\\pi x$ changes the question from $a\\,zero$ of one oscillation to an $intersection$ of two, and $\\sin\\pi x=\\cos\\pi x$ is solved by $\\sqrt2\\sin(\\pi x-\\tfrac{\\pi}{4})=0$, i.e. by the shifted lattice $\\tfrac14+\\mathbb{Z}$. The continuity set is still infinite and periodic, but the quarter-period phase shift is the visible signature that two oscillations were equated, not one cancelled — and it is the difference between the integers and the quarter-integers that separates this problem from its look-alike."
+    "remark": "**Insight.** Wrapping the broken sawtooth $\\{x\\}$ inside **$\\sin(\\pi\\,\\cdot)$** heals it because **$\\sin(\\pi\\cdot 0)=\\sin(\\pi\\cdot 1)=0$** — the outer map sends both lips of the integer seam to the same height. Indeed $\\phi$ is just **$|\\sin(\\pi x)|$**, a familiar continuous wave. Always test a composite at the seam before trusting the inner function's jump."
   },
   {
-    "theme": "pathological",
-    "themeLabel": "Pathological Functions",
-    "title": "Continuity on the Integers",
-    "task": "Determine",
+    "theme": "stepmod",
+    "themeLabel": "Step Functions, Modulus & Combined",
+    "title": "Floor Times Fractional Part Heals at One",
     "difficulty": 5,
+    "task": "Find the lone continuity point",
     "tags": [
-      "dirichlet",
-      "indicator",
-      "sine",
-      "integer-zeros",
-      "continuity-set"
+      "greatest integer",
+      "fractional part",
+      "product of step functions",
+      "jump discontinuity"
     ],
-    "statement": "Define $\\Phi:\\mathbb{R}\\to\\mathbb{R}$ by\n\\[ \\Phi(x)=\\begin{cases} \\sin(\\pi x), & x\\in\\mathbb{Q},\\\\ 0, & x\\notin\\mathbb{Q}. \\end{cases} \\]\nDetermine the exact set of points at which $\\Phi$ is continuous.",
-    "answer": "$\\Phi$ is continuous exactly at the integers: $\\{x:\\Phi\\text{ continuous}\\}=\\mathbb{Z}$.",
-    "trap": "Claiming a finite continuity set (as with polynomial-coefficient examples) or claiming continuity wherever $\\sin(\\pi x)$ is small. Because $\\sin(\\pi x)$ has infinitely many zeros — exactly the integers — the continuity set is the infinite discrete set $\\mathbb{Z}$, not a handful of points; and $\\sin(\\pi x)$ being merely small is not the same as being zero, so off the integers the jump $|\\sin(\\pi x)|>0$ survives.",
+    "statement": "Let $F(x)=\\lfloor x\\rfloor\\,\\{x\\}$, the product of the integer part and the fractional part. Find every integer at which $F$ is continuous, and give the size of the jump of $F$ at an integer $n$ where it is discontinuous.",
+    "answer": "$\\boxed{F\\text{ is continuous only at }x=1;\\ \\text{at integer }n\\neq 1\\text{ the jump is }-(n-1)}$",
+    "trap": "A natural wrong answer is $x=0$, by analogy with $x\\lfloor x\\rfloor$. But here the left limit at $n$ uses $\\lfloor x\\rfloor\\to n-1$ and $\\{x\\}\\to 1$, giving $n-1$, while the right limit is $0$; these agree with the value $0$ only when $n-1=0$, i.e. $n=1$, not $n=0$.",
     "solutions": [
       {
-        "name": "Zero set of the coefficient",
+        "name": "One-sided limits at an integer",
         "steps": [
-          "Write $\\Phi(x)=\\sin(\\pi x)\\cdot \\mathbf{1}_{\\mathbb{Q}}(x)$, where $g(x)=\\sin(\\pi x)$ is continuous everywhere.",
-          "Fix $a\\in\\mathbb{R}$. Since $\\mathbb{Q}$ is dense, a sequence of rationals $q_n\\to a$ gives $\\Phi(q_n)=\\sin(\\pi q_n)\\to\\sin(\\pi a)$; since the irrationals are dense, a sequence of irrationals $r_n\\to a$ gives $\\Phi(r_n)=0\\to 0$.",
-          "The two-sided limit at $a$ exists iff these agree, i.e. iff $\\sin(\\pi a)=0$. And $\\sin(\\pi a)=0\\iff a\\in\\mathbb{Z}$.",
-          "At an integer $n$ the common limit is $0$, and $\\Phi(n)=\\sin(\\pi n)=0$ matches it, so $\\Phi$ is continuous there. Hence the continuity set is $\\boxed{\\mathbb{Z}}$."
+          "Between integers both $\\lfloor x\\rfloor$ and $\\{x\\}$ are continuous, so $F$ is continuous off the integers.",
+          "At an integer $n$: as $x\\to n^-$, $\\lfloor x\\rfloor\\to n-1$ and $\\{x\\}\\to 1$, so $F\\to (n-1)\\cdot 1=n-1$.",
+          "As $x\\to n^+$, $\\lfloor x\\rfloor\\to n$ and $\\{x\\}\\to 0$, so $F\\to n\\cdot 0=0$, which equals $F(n)=n\\cdot 0=0$.",
+          "Continuity needs $n-1=0$, so $F$ is continuous only at $x=1$; the jump (right minus left) at any other integer $n$ is $0-(n-1)=-(n-1)$."
         ]
       },
       {
-        "name": "Direct check at integers vs non-integers",
+        "name": "Rewrite the product",
         "steps": [
-          "At an integer $n$: for every $x$, $|\\Phi(x)|\\le|\\sin(\\pi x)|$, and $|\\sin(\\pi x)|\\to|\\sin(\\pi n)|=0$ as $x\\to n$. By squeezing $\\Phi(x)\\to 0=\\Phi(n)$, so $\\Phi$ is continuous at $n$.",
-          "At a non-integer $a$: here $\\sin(\\pi a)\\neq 0$. Rationals near $a$ give $\\Phi$-values near $\\sin(\\pi a)\\neq 0$, while irrationals near $a$ give $0$; the oscillation of $\\Phi$ in every neighbourhood is at least $|\\sin(\\pi a)|>0$, so the limit cannot exist.",
-          "Thus $\\Phi$ is discontinuous at every non-integer (a jump-type discontinuity of size $|\\sin(\\pi a)|$) and continuous at every integer.",
-          "$\\boxed{\\text{continuity set}=\\mathbb{Z}}$"
+          "Use $\\{x\\}=x-\\lfloor x\\rfloor$ to get $F(x)=\\lfloor x\\rfloor\\,x-\\lfloor x\\rfloor^2$.",
+          "Near integer $n$ from the left, $\\lfloor x\\rfloor=n-1$, so $F\\to (n-1)n-(n-1)^2=(n-1)\\big(n-(n-1)\\big)=n-1$.",
+          "From the right $\\lfloor x\\rfloor=n$, so $F\\to n\\cdot n-n^2=0=F(n)$; matching forces $n=1$, giving the boxed continuity point and jump $-(n-1)$."
         ]
       }
     ],
-    "remark": "Replacing a polynomial coefficient with a periodic one (here $\\sin\\pi x$) turns a finite continuity set into an infinite, discrete one. The slogan persists: for $g\\cdot\\mathbf{1}_{\\mathbb{Q}}$ with $g$ continuous, the continuity set is exactly the zero set $g^{-1}(0)$, because density of $\\mathbb{Q}$ and of its complement forces the limit to be both $g(a)$ and $0$."
+    "remark": "**Insight.** In the product **$\\lfloor x\\rfloor\\{x\\}$** the healing point is governed by the **left** limit, where $\\{x\\}\\to 1$ multiplies the freshly-decremented floor $n-1$. So continuity occurs where **$n-1=0$**, namely $x=1$ — not the origin. Memorising “$x=0$ heals it” from a sibling problem is exactly the trap; always recompute the left limit honestly."
   },
   {
-    "theme": "pathological",
-    "themeLabel": "Pathological Functions",
-    "title": "The Tangent Parabola Trick",
+    "theme": "stepmod",
+    "themeLabel": "Step Functions, Modulus & Combined",
+    "title": "Absolute Value Plus a Staircase",
     "difficulty": 5,
-    "task": "Determine",
+    "task": "Count and size the jumps",
     "tags": [
-      "dirichlet",
-      "parabola-line",
-      "double-root",
-      "one-point-continuity",
-      "density"
+      "modulus",
+      "greatest integer",
+      "jump discontinuity",
+      "continuity on an interval"
     ],
-    "statement": "Let\n\\[ \\psi(x)=\\begin{cases} x^{2}, & x\\in\\mathbb{Q},\\\\ 2x-1, & x\\notin\\mathbb{Q}. \\end{cases} \\]\nDetermine all points at which $\\psi$ is continuous, and decide whether $\\psi$ is differentiable at any such point.",
-    "answer": "$\\psi$ is continuous at exactly one point, $x=1$, and it is differentiable there with $\\psi'(1)=2$.",
-    "trap": "Expecting a line and a parabola to cross at two points and hence give two continuity points. Here $x^2=2x-1$ is a perfect square $(x-1)^2=0$: the line is TANGENT to the parabola, so they meet (and $\\psi$ is continuous) at the single point $x=1$. Also tempting but wrong: assuming continuity at a point automatically denies differentiability for such a pathological function.",
+    "statement": "Let $f(x)=|x-2|+\\lfloor x\\rfloor$ on the open interval $(0,4)$. Determine the number of points of discontinuity of $f$ in $(0,4)$, the common size of each jump, and confirm that the corner of $|x-2|$ at $x=2$ does not by itself create a discontinuity.",
+    "answer": "$\\boxed{3\\text{ discontinuities (at }x=1,2,3\\text{), each a jump of size }+1}$",
+    "trap": "A seductive wrong count is $4$, adding the point $x=2$ a second time as if the modulus' corner were a discontinuity. The corner of $|x-2|$ is continuous (only its slope breaks); the genuine jumps come solely from $\\lfloor x\\rfloor$ at $x=1,2,3$.",
     "solutions": [
       {
-        "name": "Continuity then differentiability",
+        "name": "Separate the two parts",
         "steps": [
-          "Both $\\mathbb{Q}$ and $\\mathbb{Q}^c$ are dense, so as $x\\to a$ the rational sub-sequences force $\\psi(x)\\to a^2$ while the irrational sub-sequences force $\\psi(x)\\to 2a-1$. A limit exists only when these agree, i.e. $a^2=2a-1$.",
-          "Solve $a^2-2a+1=0\\Rightarrow(a-1)^2=0\\Rightarrow a=1$ (a double root: the line is tangent to the parabola), so the only candidate is $a=1$, and there $\\psi(1)=1^2=1=2\\cdot1-1$, so $\\psi$ is indeed continuous at $1$.",
-          "Differentiability at $1$: note $\\psi(1)=1$, and on rationals $\\dfrac{\\psi(x)-1}{x-1}=\\dfrac{x^2-1}{x-1}=x+1\\to2$, while on irrationals $\\dfrac{\\psi(x)-1}{x-1}=\\dfrac{(2x-1)-1}{x-1}=2$.",
-          "Both sub-limits of the difference quotient equal $2$, so $\\psi$ is continuous only at $\\boxed{x=1}$ and differentiable there with $\\psi'(1)=2$."
+          "$|x-2|$ is continuous on all of $\\mathbb{R}$ (its only feature at $x=2$ is a corner, where the value and both limits equal $0$).",
+          "$\\lfloor x\\rfloor$ is continuous except at integers, where it jumps up by $1$; the integers inside $(0,4)$ are $1,2,3$.",
+          "A sum is discontinuous exactly where a non-cancelling summand is, so $f$ jumps precisely at $x=1,2,3$, each jump inherited from $\\lfloor x\\rfloor$ and equal to $+1$.",
+          "Hence there are $3$ discontinuities, all jumps of size $+1$, and $x=2$ is counted once (for the floor), not twice."
         ]
       },
       {
-        "name": "Squeeze about the tangency",
+        "name": "Direct one-sided limits at x=2",
         "steps": [
-          "Write each branch as $\\psi(x)=2x-1+e(x)$, where $e(x)=x^2-(2x-1)=(x-1)^2$ on $\\mathbb{Q}$ and $e(x)=0$ on $\\mathbb{Q}^c$; in all cases $0\\le e(x)\\le(x-1)^2$.",
-          "Continuity: $\\psi(x)-\\psi(1)=(2x-2)+e(x)$ with $0\\le e(x)\\le(x-1)^2\\to0$, so $\\psi(x)\\to1=\\psi(1)$ as $x\\to1$. At any $a\\ne1$ the rational and irrational sub-limits $a^2$ and $2a-1$ differ, giving a jump, so $1$ is the sole continuity point.",
-          "Difference quotient: $\\dfrac{\\psi(x)-1}{x-1}=2+\\dfrac{e(x)}{x-1}$, and $\\left|\\dfrac{e(x)}{x-1}\\right|\\le\\dfrac{(x-1)^2}{|x-1|}=|x-1|\\to0$.",
-          "Hence the derivative exists and equals $2$: $\\boxed{\\text{continuous only at }x=1,\\ \\psi'(1)=2}$."
+          "At $x=2$: $\\lim_{x\\to 2^-}f=|{-0}|+1=1$ and $\\lim_{x\\to 2^+}f=|0|+2=2$, with $f(2)=0+2=2$.",
+          "So the jump at $x=2$ is $2-1=+1$, driven entirely by $\\lfloor x\\rfloor$ while $|x-2|\\to 0$ smoothly from both sides.",
+          "Repeating at $x=1,3$ gives the same $+1$ jump, yielding the boxed total of $3$ discontinuities."
         ]
       }
     ],
-    "remark": "This is the surprise finale: a function continuous at just one point can still be differentiable there. The tangency $(x-1)^2$ makes the error vanish to second order, so the single point of continuity is also a point of differentiability, a striking hybrid of the chapter's themes."
+    "remark": "**Insight.** Adding a continuous modulus to a staircase **cannot create new breaks** — a corner is a slope kink, not a jump, and $|x-2|$ stays continuous everywhere. The discontinuities are exactly the **floor's integer jumps**, here $x=1,2,3$. The trap is double-counting $x=2$ because two ‘special’ features coincide there; only one of them (the step) actually tears the graph."
   },
   {
-    "theme": "sequential",
-    "themeLabel": "Sequential & Composite Continuity",
-    "title": "The Oscillator That Refuses to Settle",
-    "difficulty": 4,
-    "task": "Prove that",
-    "tags": [
-      "sequential criterion",
-      "oscillation",
-      "two-sequence test",
-      "discontinuity"
-    ],
-    "statement": "Define $g:\\mathbb{R}\\to\\mathbb{R}$ by \\[ g(x)=\\begin{cases}\\cos\\!\\left(\\dfrac{\\pi}{x}\\right), & x\\neq 0,\\\\[2mm] L, & x=0,\\end{cases} \\] where $L$ is any real constant. Prove that $g$ is discontinuous at $0$ no matter what value $L$ is assigned.",
-    "answer": "proved (no choice of $L$ makes $g$ continuous at $0$, since $g(1/(2n))\\to 1$ while $g(1/(2n+1))\\to -1$).",
-    "trap": "Trying to 'patch' continuity by computing a single limit (e.g. along $x_n=1/n$, which gives $\\cos(n\\pi)=(-1)^n$ and tempts you to declare 'no limit'): the rigorous disproof needs TWO sequences with DIFFERENT limits, not one inconclusive sequence. A single divergent sequence shows the value oscillates but the clean two-sequence argument is what actually disproves the limit.",
-    "solutions": [
-      {
-        "name": "Two sequences, two limits",
-        "steps": [
-          "By the sequential criterion, $g$ is continuous at $0$ iff $g(x_n)\\to g(0)=L$ for EVERY sequence $x_n\\to 0$.",
-          "Take $x_n=\\dfrac{1}{2n}\\to 0$: then $g(x_n)=\\cos(2n\\pi)=1$ for all $n$, so $g(x_n)\\to 1$.",
-          "Take $y_n=\\dfrac{1}{2n+1}\\to 0$: then $g(y_n)=\\cos((2n+1)\\pi)=-1$ for all $n$, so $g(y_n)\\to -1$.",
-          "Two sequences converging to $0$ yield image-limits $1$ and $-1$; they cannot both equal $L$. Hence $\\lim_{x\\to 0}g(x)$ does not exist, and $g$ is discontinuous at $0$ for every $L$. $\\blacksquare$"
-        ]
-      },
-      {
-        "name": "Negation of the $\\varepsilon$-$\\delta$ definition",
-        "steps": [
-          "Suppose, for contradiction, $g$ were continuous at $0$ with value $L$. Then for $\\varepsilon=\\tfrac12$ there is $\\delta>0$ with $|g(x)-L|<\\tfrac12$ whenever $0<|x|<\\delta$.",
-          "Choose $n$ so large that both $\\tfrac{1}{2n}<\\delta$ and $\\tfrac{1}{2n+1}<\\delta$; this is possible since both shrink to $0$.",
-          "Then $|1-L|<\\tfrac12$ and $|-1-L|<\\tfrac12$, so by the triangle inequality $2=|1-(-1)|\\le|1-L|+|L-(-1)|<1$, a contradiction.",
-          "Therefore no $L$ makes $g$ continuous at $0$. $\\blacksquare$"
-        ]
-      }
-    ],
-    "remark": "Insight: a function can be perfectly defined and finite everywhere yet have no limit at a point. The single sequence $1/n$ is a red herring — it merely oscillates. The decisive tool is producing two sequences whose images converge to provably different numbers; that is the sequential criterion used as a wrecking ball."
-  },
-  {
-    "theme": "sequential",
-    "themeLabel": "Sequential & Composite Continuity",
-    "title": "Where Sine Folds the Lonely Point into a Lattice",
+    "theme": "stepmod",
+    "themeLabel": "Step Functions, Modulus & Combined",
+    "title": "Signum of Fractional Part Minus Half",
     "difficulty": 5,
-    "task": "Determine each continuity set exactly, and explain why composition multiplies the points",
+    "task": "Locate all discontinuities",
     "tags": [
-      "sequential-criterion",
-      "two-sequence-test",
-      "dirichlet-type",
-      "transcendental-equation",
-      "composition",
-      "bounded-substitution"
+      "signum",
+      "fractional part",
+      "composite",
+      "jump discontinuity"
     ],
-    "statement": "All arguments are in radians. Define $f:\\mathbb{R}\\to\\mathbb{R}$ by\n\\[\nf(x)=\\begin{cases}\\,x, & x\\in\\mathbb{Q},\\\\ \\sin x, & x\\notin\\mathbb{Q}.\\end{cases}\n\\]\nBoth pieces are individually continuous, yet $f$ glues them along the rationals and irrationals, which are each dense in every interval.\n\n(a) Determine, with proof, the exact set $C_f$ of points at which $f$ is continuous. Justify your answer with the sequential criterion (continuity at $a$ means $f(x_n)\\to f(a)$ for every sequence $x_n\\to a$), and show explicitly how a rational approach and an irrational approach interact.\n\n(b) Now form the composition $h=\\sin\\circ f$, i.e. $h(x)=\\sin\\!\\big(f(x)\\big)$. Determine, with proof, the exact set $C_h$ of points at which $h$ is continuous.\n\n(c) The map $f$ is continuous at only one point, yet $h=\\sin\\circ f$ is continuous at infinitely many. State $C_f$ and $C_h$, and explain in one sentence the precise mechanism by which composing with $\\sin$ converts the single continuity point into an entire lattice — even at points such as $x=\\pi$ where $f$ itself is wildly discontinuous.",
-    "answer": "\\[\\boxed{\\,C_f=\\{0\\},\\qquad C_h=\\{\\,k\\pi:\\;k\\in\\mathbb{Z}\\,\\}\\,}\\]",
-    "trap": "Two distinct conceptual traps, neither of them arithmetic. Trap 1 (part a) — forgetting that BOTH branch-limits must agree. A strong student correctly writes the continuity condition as $a=\\sin a$ and gets the unique root $a=0$, but the deeper subtlety is why this is the condition at all: at any $a$, a rational sequence forces the limit toward $a$ (the $x$-branch) while an irrational sequence forces it toward $\\sin a$ (the $\\sin$-branch); continuity demands these two forced limits coincide and equal $f(a)$. Skipping the two-sequence reconciliation and merely 'plugging in' misses that $f(a)$ is $a$ or $\\sin a$ depending on the rationality of $a$ — at $a=0$ both the value ($0\\in\\mathbb{Q}$, so $f(0)=0$) and both branch-limits ($0$ and $\\sin 0=0$) must be checked to coincide, and they do. Trap 2 (part b) — collapsing $\\sin a=\\sin(\\sin a)$ to $a=\\sin a$. For $h$, the rational approach gives the limit $\\sin a$ and the irrational approach gives $\\sin(\\sin a)$, so continuity requires $\\sin a=\\sin(\\sin a)$. The fatal reflex is to 'reuse part (a)' and declare this equivalent to $a=\\sin a$, yielding $C_h=\\{0\\}$ — the same lonely point. That is wrong. The correct move is the bounded substitution: put $u=\\sin a\\in[-1,1]$, so the equation becomes $u=\\sin u$, whose unique root is $u=0$, i.e. $\\sin a=0$, i.e. $a=k\\pi$. Because $\\sin$ has already compressed the argument into $[-1,1]$ before the outer $\\sin$ acts, the transcendental equation that governs $h$ is fundamentally different from the one governing $f$, and it has infinitely many solutions. Anyone who treats $\\sin\\circ f$ as 'just another copy of $f$' lands on $\\{0\\}$ and misses the entire lattice $k\\pi$.",
+    "statement": "Let $p(x)=\\mathrm{sgn}\\!\\big(\\{x\\}-\\tfrac12\\big)$ on the interval $[0,2]$, with $\\mathrm{sgn}(0)=0$. Find every point of $[0,2]$ where $p$ is discontinuous and state the one-sided limits at each such point.",
+    "answer": "$\\boxed{\\text{discontinuous at }x=\\tfrac12,1,\\tfrac32,2\\ (4\\text{ points})}$",
+    "trap": "A tempting wrong answer is “only at the integers,” forgetting that $\\mathrm{sgn}$ itself jumps wherever its argument crosses $0$, i.e. where $\\{x\\}=\\tfrac12$ — namely $x=\\tfrac12$ and $x=\\tfrac32$. Both the half-integer sign-crossings and the integer seams of $\\{x\\}$ break $p$.",
     "solutions": [
       {
-        "name": "Two-sequence test, then a bounded substitution for the composite",
+        "name": "Track the argument across its critical values",
         "steps": [
-          "Part (a). Fix $a\\in\\mathbb{R}$. Because $\\mathbb{Q}$ and $\\mathbb{R}\\setminus\\mathbb{Q}$ are each dense, choose a rational sequence $r_n\\to a$ and an irrational sequence $t_n\\to a$. Then $f(r_n)=r_n\\to a$ while $f(t_n)=\\sin t_n\\to\\sin a$ (each inner function is continuous). By the sequential criterion, if $f$ is continuous at $a$ these two limits must coincide and equal $f(a)$; hence a necessary condition is $a=\\sin a$.",
-          "The map $\\varphi(x)=x-\\sin x$ has $\\varphi'(x)=1-\\cos x\\ge 0$, vanishing only on the isolated set $\\{2k\\pi\\}$ (never on an interval), so $\\varphi$ is strictly increasing; with $\\varphi(0)=0$ this gives the unique root $a=0$. Thus the only candidate is $a=0$.",
-          "Check sufficiency at $a=0$. Since $0\\in\\mathbb{Q}$, $f(0)=0$. For any sequence $x_n\\to 0$, split into its rational terms (where $f=x_n\\to0$) and irrational terms (where $f=\\sin x_n\\to\\sin 0=0$); every subsequence tends to $0=f(0)$, so $f$ is continuous at $0$. Therefore $\\boxed{C_f=\\{0\\}}$.",
-          "Part (b). Let $h=\\sin\\circ f$, so $h(x)=\\sin x$ for rational $x$ and $h(x)=\\sin(\\sin x)$ for irrational $x$. Repeat the two-sequence test at $a$: rationals give $h(r_n)=\\sin r_n\\to\\sin a$, irrationals give $h(t_n)=\\sin(\\sin t_n)\\to\\sin(\\sin a)$. Continuity forces $\\sin a=\\sin(\\sin a)$.",
-          "Substitute $u=\\sin a$, which lies in $[-1,1]$. The equation becomes $u=\\sin u$; by the same strict monotonicity of $u-\\sin u$ its only root is $u=0$. Hence $\\sin a=0$, i.e. $a=k\\pi$ for some integer $k$. For sufficiency: at $a=k\\pi$, $\\sin a=0$ and $\\sin(\\sin a)=\\sin 0=0$, so both branch-limits equal $0$, and the value is $h(k\\pi)=0$ (use whichever branch applies: $k=0$ is rational with $h(0)=\\sin 0=0$; $k\\ne0$ is irrational with $h(k\\pi)=\\sin(\\sin k\\pi)=0$). Every sequence $x_n\\to k\\pi$ then yields $h(x_n)\\to 0$. Therefore $\\boxed{C_h=\\{k\\pi:k\\in\\mathbb{Z}\\}}$.",
-          "Part (c). $C_f=\\{0\\}$ while $C_h=\\{k\\pi:k\\in\\mathbb{Z}\\}$: the outer $\\sin$ first folds the real line into $[-1,1]$, so the governing equation changes from $a=\\sin a$ (root $0$ only) to $\\sin a=\\sin(\\sin a)$, equivalently $\\sin a=0$, whose solutions are all the multiples of $\\pi$. $\\boxed{C_f=\\{0\\},\\ C_h=\\{k\\pi:k\\in\\mathbb{Z}\\}}$"
+          "On $(0,1)$, $\\{x\\}=x$, so $p(x)=\\mathrm{sgn}(x-\\tfrac12)$: it equals $-1$ for $x<\\tfrac12$, $0$ at $x=\\tfrac12$, and $+1$ for $x>\\tfrac12$ — a jump at $x=\\tfrac12$ (limits $-1$ and $+1$).",
+          "At $x=1$: as $x\\to1^-$, $\\{x\\}\\to1$ so $p\\to\\mathrm{sgn}(\\tfrac12)=+1$; as $x\\to1^+$, $\\{x\\}\\to0$ so $p\\to\\mathrm{sgn}(-\\tfrac12)=-1$, with $p(1)=\\mathrm{sgn}(-\\tfrac12)=-1$ — a jump.",
+          "By periodicity the pattern repeats: a jump at $x=\\tfrac32$ (limits $-1$ then $+1$) and at $x=2$ (left limit $+1$, value $\\mathrm{sgn}(-\\tfrac12)=-1$).",
+          "Hence $p$ is discontinuous at the four points $\\tfrac12,1,\\tfrac32,2$ of $[0,2]$."
         ]
       },
       {
-        "name": "Limit-of-two-continuous-branches and the oscillation gap",
+        "name": "Two independent break sources",
         "steps": [
-          "General principle. Suppose $F(x)=g_1(x)$ on $\\mathbb{Q}$ and $F(x)=g_2(x)$ on $\\mathbb{R}\\setminus\\mathbb{Q}$ with $g_1,g_2$ continuous. Since both $\\mathbb{Q}$ and its complement are dense, the cluster set of $F$ at $a$ is exactly $\\{g_1(a),g_2(a)\\}$; the oscillation of $F$ at $a$ equals $|g_1(a)-g_2(a)|$, and $F$ is continuous at $a$ iff this oscillation is $0$ and $F(a)$ equals the common value. So continuity holds precisely where the two continuous branches cross.",
-          "Part (a): $g_1(x)=x$, $g_2(x)=\\sin x$. They cross where $x=\\sin x$. As $\\varphi(x)=x-\\sin x$ is strictly increasing with $\\varphi(0)=0$, the unique crossing is $x=0$. The value condition is automatic there ($0\\in\\mathbb{Q}$, $f(0)=0$). Hence $C_f=\\{0\\}$, and at every $a\\ne0$ the oscillation is $|a-\\sin a|>0$, certifying discontinuity. $\\boxed{C_f=\\{0\\}}$",
-          "Part (b): $h$ has branches $g_1(x)=\\sin x$ and $g_2(x)=\\sin(\\sin x)$. They cross where $\\sin x=\\sin(\\sin x)$. Writing $u=\\sin x\\in[-1,1]$, this is $u=\\sin u$, with unique root $u=0$; so the crossing locus is $\\sin x=0$, i.e. $x=k\\pi$. At such points the common value is $0=h(k\\pi)$, so the value condition holds and $C_h=\\{k\\pi:k\\in\\mathbb{Z}\\}$.",
-          "To see the discontinuity quantitatively away from the lattice, the oscillation of $h$ at $a$ is $\\big|\\sin a-\\sin(\\sin a)\\big|$, which is strictly positive whenever $\\sin a\\ne0$ (because $u=\\sin a\\ne0$ gives $u\\ne\\sin u$); e.g. at $a=\\tfrac{\\pi}{2}$ the oscillation is $|1-\\sin 1|\\approx0.159>0$. $\\boxed{C_h=\\{k\\pi:k\\in\\mathbb{Z}\\}}$",
-          "Part (c). The branch-crossing equation is the whole story: composing with $\\sin$ replaces the unbounded right-hand side $\\sin x$ (crossing $x$ only at $0$) by the bounded right-hand side $\\sin(\\sin x)$, and a bounded perturbation of $\\sin x$ crosses it at every zero of $\\sin$, which are the points $k\\pi$. $\\boxed{C_f=\\{0\\},\\ C_h=\\{k\\pi:k\\in\\mathbb{Z}\\}}$"
-        ]
-      },
-      {
-        "name": "Composition law: track the image and where the outer map is locally injective",
-        "steps": [
-          "Structural view. For a two-branch Dirichlet-type map, continuity at $a$ requires the two branch values to coincide. For $h=\\sin\\circ f$, instead of analysing $h$ from scratch, note $h$'s branch values are $\\sin(\\,x\\text{-branch of }f)$ and $\\sin(\\,\\sin\\text{-branch of }f)$, i.e. $\\sin a$ and $\\sin(\\sin a)$; they agree iff $\\sin$ sends $a$ and $\\sin a$ to the same value.",
-          "Now $\\sin p=\\sin q$ iff $q=p+2m\\pi$ or $q=\\pi-p+2m\\pi$ for some integer $m$. Put $p=a$, $q=\\sin a$. Case 1: $\\sin a=a+2m\\pi$. Set $e=a+2m\\pi=\\sin a\\in[-1,1]$; since $\\sin$ has period $2\\pi$, $\\sin a=\\sin e$, so the equation reads $e=\\sin e$, whose unique root is $e=0$. Thus $a=-2m\\pi$: Case 1 produces exactly the even multiples of $\\pi$. Case 2: $\\sin a=\\pi-a+2m\\pi$, i.e. $\\psi(a):=a+\\sin a=\\pi(2m+1)$. The map $\\psi$ is strictly increasing (derivative $1+\\cos a\\ge0$, zero only on isolated points) and continuous from $-\\infty$ to $\\infty$, hitting each odd multiple of $\\pi$ exactly once; since $\\psi(k\\pi)=k\\pi$, the value $\\psi(a)$ equals an odd multiple of $\\pi$ precisely at the odd multiples $a=(2m+1)\\pi$. Combining Case 1 (even multiples) and Case 2 (odd multiples) recovers exactly $a=k\\pi$, all integers $k$.",
-          "Thus $C_h=\\{k\\pi:k\\in\\mathbb{Z}\\}$ and $C_f=\\{0\\}$ (the latter is just Case 1 in isolation, since for $f$ the two branch values are $a$ and $\\sin a$ directly). $\\boxed{C_f=\\{0\\},\\ C_h=\\{k\\pi:k\\in\\mathbb{Z}\\}}$",
-          "Part (c). The lattice appears because the outer $\\sin$ is many-to-one: it identifies $a$ with $\\sin a$ not only when $a=\\sin a$ but whenever the two land in the same fibre of $\\sin$, and the fibres of $\\sin$ are spaced by the zero set $\\{k\\pi\\}$ — that periodicity is precisely what the single point $0$ gets folded onto, even at $x=\\pi$ where $f$ is discontinuous ($f$'s branches $\\pi$ and $\\sin\\pi=0$ disagree) yet $\\sin$ closes the gap because $\\sin\\pi=\\sin 0=0$. $\\boxed{C_f=\\{0\\},\\ C_h=\\{k\\pi:k\\in\\mathbb{Z}\\}}$"
+          "Source one: $\\{x\\}$ jumps at integers $x=1,2$, carrying $p$ from $+1$ (just below) to $-1$ (just above/value).",
+          "Source two: the inner expression $\\{x\\}-\\tfrac12$ changes sign where $\\{x\\}=\\tfrac12$, i.e. $x=\\tfrac12,\\tfrac32$, and $\\mathrm{sgn}$ jumps across each such crossing.",
+          "Collecting both lists over $[0,2]$ gives the discontinuity set $\\{\\tfrac12,1,\\tfrac32,2\\}$, the boxed four points."
         ]
       }
     ],
-    "remark": "Insight: a two-branch function built from continuous pieces $g_1$ on $\\mathbb{Q}$ and $g_2$ on the irrationals is continuous exactly on the crossing set $\\{g_1=g_2\\}$, because density makes its oscillation equal $|g_1-g_2|$. For $f$ the crossing equation $x=\\sin x$ is rigid — the line $y=x$ meets $y=\\sin x$ only at the origin — so $f$ is continuous at the single point $0$. The lesson of part (b) is that continuity of a composition is NOT inherited from continuity of the inner map: post-composing with $\\sin$ replaces the crossing equation by $\\sin a=\\sin(\\sin a)$, and the right move is the bounded substitution $u=\\sin a\\in[-1,1]$, which reduces it to $u=\\sin u$ and hence to $\\sin a=0$. The outer $\\sin$ is many-to-one and periodic, so it folds the lone fixed point of the inner equation onto its entire zero lattice $k\\pi$ — and it does so even at $x=\\pi$, where the inner $f$ is violently discontinuous, because $\\sin$ closes the branch gap $\\pi$ vs $0$ into $\\sin\\pi=\\sin0=0$. The fingerprint to remember: an inner function continuous at one point can become, after composition, continuous at infinitely many, governed by an entirely new transcendental equation that lives in the compressed range of the outer map."
+    "remark": "**Insight.** A signum of a step-built argument can break for **two reasons at once**: the **inner sawtooth jumps at integers**, and the **sgn itself flips wherever its argument crosses zero**. Listing only the integer seams misses the half-integer sign changes. Map out where the argument hits its critical level $0$ *and* where it jumps — the union is the true discontinuity set."
+  },
+  {
+    "theme": "stepmod",
+    "themeLabel": "Step Functions, Modulus & Combined",
+    "title": "A Staircase Plus a Limiting Spike",
+    "difficulty": 5,
+    "task": "Classify the integer break",
+    "tags": [
+      "greatest integer",
+      "sequence of functions",
+      "indicator of integers",
+      "jump discontinuity"
+    ],
+    "statement": "Let $f(x)=\\lfloor x\\rfloor+\\lim_{n\\to\\infty}\\cos^{2n}(\\pi x)$. First identify the limit term as a function of $x$, then determine, at an integer $n$, the values of $\\lim_{x\\to n^-}f(x)$, $\\lim_{x\\to n^+}f(x)$ and $f(n)$, and classify the discontinuity.",
+    "answer": "$\\boxed{\\text{at integer }n:\\ \\text{LHL}=n-1,\\ \\text{RHL}=n,\\ f(n)=n+1;\\ \\text{a (non-removable) jump-type break}}$",
+    "trap": "A seductive wrong answer is “removable, since the limit term only spikes at integers.” But the value $f(n)=n+1$ differs from BOTH one-sided limits ($n-1$ and $n$), which themselves differ from each other, so the two-sided limit does not even exist — the break is essentially a jump, never removable.",
+    "solutions": [
+      {
+        "name": "Evaluate the limiting term, then one-sided limits",
+        "steps": [
+          "For $x\\notin\\mathbb{Z}$, $|\\cos(\\pi x)|<1$, so $\\cos^{2n}(\\pi x)\\to 0$; for $x\\in\\mathbb{Z}$, $\\cos(\\pi x)=\\pm1$, so $\\cos^{2n}(\\pi x)\\to 1$. Thus the limit term is $\\mathbf{1}_{\\mathbb{Z}}(x)$.",
+          "Therefore $f(x)=\\lfloor x\\rfloor$ for non-integer $x$, and $f(n)=n+1$ at an integer $n$.",
+          "At integer $n$: $\\lim_{x\\to n^-}f=\\lim_{x\\to n^-}\\lfloor x\\rfloor=n-1$ and $\\lim_{x\\to n^+}f=n$; the value is $f(n)=n+1$.",
+          "All three differ, so the two-sided limit fails to exist and the discontinuity is of jump type, not removable."
+        ]
+      },
+      {
+        "name": "Decompose into staircase plus indicator",
+        "steps": [
+          "Write $f=\\lfloor x\\rfloor+\\mathbf{1}_{\\mathbb{Z}}$. The staircase $\\lfloor x\\rfloor$ already jumps from $n-1$ to $n$ across an integer $n$.",
+          "Adding $\\mathbf{1}_{\\mathbb{Z}}$ leaves the off-integer values untouched but lifts the single point $x=n$ by $1$, to $n+1$.",
+          "So LHL $=n-1$, RHL $=n$, value $=n+1$: three distinct numbers, confirming the boxed non-removable jump at every integer."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The classic limit **$\\lim_{n\\to\\infty}\\cos^{2n}(\\pi x)$ is the indicator of the integers** — $1$ on $\\mathbb{Z}$, $0$ elsewhere. Stacked on a staircase it makes the value at each integer overshoot **both** one-sided limits. When LHL, RHL and the value are three different numbers, the limit does not exist, so calling the break ‘removable’ is wrong — only a single common one-sided value could be removable."
   },
   {
     "theme": "sequential",
@@ -2289,56 +1958,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: continuity of $f+g$, $fg$, $f/g$ is GUARANTEED only when $f$ and $g$ are themselves continuous (and the denominator nonzero). When they are not, anything can happen — the same two discontinuous building blocks give a continuous sum and a discontinuous product."
-  },
-  {
-    "theme": "sequential",
-    "themeLabel": "Sequential & Composite Continuity",
-    "title": "The Sine That Heals the Floor, and the One That Doesn't",
-    "difficulty": 5,
-    "task": "Determine each continuity set exactly and pin the points where the two composites disagree",
-    "tags": [
-      "composition",
-      "floor-function",
-      "step-function",
-      "two-sequence-test",
-      "image-constancy",
-      "sharp-hypothesis"
-    ],
-    "statement": "Let $\\lfloor\\,\\cdot\\,\\rfloor$ denote the floor function, so the inner map $g(x)=\\lfloor x\\rfloor$ is discontinuous at every integer and continuous nowhere on $\\mathbb{Z}$. Compose it with two continuous outer maps that both vanish at infinitely many integers:\n\\[\nF(x)=\\sin\\!\\bigl(\\pi\\lfloor x\\rfloor\\bigr),\\qquad\\qquad G(x)=\\sin\\!\\Bigl(\\tfrac{\\pi}{2}\\lfloor x\\rfloor\\Bigr).\n\\]\nHere the outer maps are $h(t)=\\sin(\\pi t)$ and $h_2(t)=\\sin(\\tfrac{\\pi}{2}t)$, each continuous on all of $\\mathbb{R}$; note $h$ vanishes at every integer, while $h_2$ vanishes at every even integer.\n\n(a) Determine, with proof, the exact set $C_F$ of points at which $F$ is continuous, and explain how a composite of a map that is discontinuous at every integer with a genuinely non-constant outer can be continuous on all of $\\mathbb{R}$.\n\n(b) Determine, with proof, the exact set $C_G$ of points at which $G$ is continuous. In particular decide whether $G$ is continuous at $x=2$, where the outer map satisfies $h_2(\\lfloor 2\\rfloor)=h_2(2)=\\sin\\pi=0$.\n\n(c) The two outer maps are both continuous and both vanish at infinitely many of the values $\\lfloor x\\rfloor$ actually attained. Yet only one composite is continuous everywhere. Identify the exact set $C_F\\,\\triangle\\,C_G$ on which precisely one of $F,G$ is continuous (here $\\triangle$ is symmetric difference), and state the single clean property of the outer map that decides continuity of $h\\circ\\lfloor\\,\\cdot\\,\\rfloor$.",
-    "answer": "\\[\\boxed{\\,C_F=\\mathbb{R},\\quad C_G=\\mathbb{R}\\setminus\\mathbb{Z},\\quad C_F\\triangle C_G=\\mathbb{Z}\\,}\\]",
-    "trap": "The fatal reflex is to judge the composite $h\\circ\\lfloor\\,\\cdot\\,\\rfloor$ by the value of the outer map at the landed point: \\\"$\\lfloor x\\rfloor$ is some integer $n$, and if $h(n)=0$ then the composite is $0$ there, hence continuous.\\\" By this rule a solver computes $h_2(\\lfloor 2\\rfloor)=\\sin\\pi=0$ and declares $G$ continuous at $x=2$ — wrong. Continuity of the step function $s(x)=h(\\lfloor x\\rfloor)$ at an integer $m$ is a seam condition: on $[m-1,m)$ the value is the constant $h(m-1)$, on $[m,m+1)$ it is the constant $h(m)$, so $s$ is continuous at $m$ iff $h(m-1)=h(m)$, i.e. iff the outer map takes equal values at the two consecutive integers straddling the jump. At $x=2$ the left interval $[1,2)$ carries $\\lfloor x\\rfloor=1$ with $h_2(1)=\\sin\\tfrac{\\pi}{2}=1\\ne 0=h_2(2)$, so $G$ jumps from $1$ to $0$ there and is discontinuous — even though $h_2$ vanishes at the landed value $2$. The correct hypothesis is not \\\"$h=0$ on the image\\\" nor even \\\"$h$ continuous\\\"; it is \\\"$h$ is constant on the image $\\mathbb{Z}$.\\\" For $F$ the image values are all $\\sin(\\pi n)=0$ — a constant — so $F$ is continuous on all of $\\mathbb{R}$ despite the inner map breaking at every integer. For $G$ the image values $\\sin(\\tfrac{\\pi}{2}n)$ cycle $0,1,0,-1$ and never repeat consecutively, so $G$ breaks at every integer. A second, opposite trap is to over-correct and claim $G$ is discontinuous only where $h_2(\\lfloor x\\rfloor)\\ne 0$ (the odd-floor intervals); but $G$ is locally constant, hence continuous, at every non-integer regardless of the floor's parity — e.g. at $x=1.5$ where $h_2(1)=1\\ne 0$, $G$ is perfectly continuous. The boundaries between intervals, not the interior values, are the only place anything can break.",
-    "solutions": [
-      {
-        "name": "Seam analysis of the induced step function",
-        "steps": [
-          "Both composites have the form $s(x)=h(\\lfloor x\\rfloor)$ for a continuous outer $h$. Since $\\lfloor x\\rfloor=n$ for all $x\\in[n,n+1)$, the function $s$ is constant, equal to $h(n)$, on each half-open interval $[n,n+1)$. Hence $s$ is automatically continuous at every non-integer point (it is locally constant there), and the only possible failures are at the integers $m\\in\\mathbb{Z}$.",
-          "Fix an integer $m$. Approaching from the right, $x\\in[m,m+1)$ gives $s(x)=h(m)=s(m)$, so the right limit and the value both equal $h(m)$. Approaching from the left, $x\\in[m-1,m)$ gives $s(x)=h(m-1)$, so the left limit is $h(m-1)$. Therefore $s$ is continuous at $m$ if and only if $h(m-1)=h(m)$: the seam closes exactly when the outer map repeats its value across consecutive integers.",
-          "Apply to $F$ with $h(t)=\\sin(\\pi t)$. For every integer $m$, $h(m)=\\sin(\\pi m)=0=\\sin(\\pi(m-1))=h(m-1)$, so the seam condition holds at every integer. Combined with continuity at all non-integers, $F$ is continuous on all of $\\mathbb{R}$: $\\boxed{C_F=\\mathbb{R}}$. The inner map shatters at every integer, but the outer map is constant ($\\equiv 0$) on the image $\\mathbb{Z}$, so no jump survives the composition.",
-          "Apply to $G$ with $h_2(t)=\\sin(\\tfrac{\\pi}{2}t)$. The values $h_2(n)=\\sin(\\tfrac{\\pi}{2}n)$ run through the $4$-periodic cycle $\\ldots,0,1,0,-1,0,1,\\ldots$; consecutive terms are never equal, so $h_2(m-1)\\ne h_2(m)$ for every integer $m$. Thus the seam fails at every integer while non-integers stay continuous: $\\boxed{C_G=\\mathbb{R}\\setminus\\mathbb{Z}}$. In particular at $m=2$ the left value is $h_2(1)=1$ and the right value is $h_2(2)=0$, a jump of $1$ — so $G$ is discontinuous at $x=2$ despite $h_2(2)=0$.",
-          "Part (c). $F$ is continuous everywhere and $G$ is continuous exactly off $\\mathbb{Z}$, so the verdicts differ precisely on the integers: $C_F\\triangle C_G=\\mathbb{R}\\setminus(\\mathbb{R}\\setminus\\mathbb{Z})=\\mathbb{Z}$. $\\boxed{C_F\\triangle C_G=\\mathbb{Z}}$. The decisive property of the outer map is not that it is continuous, nor that it vanishes on the landed values, but that it is constant on the image $\\mathbb{Z}$ of the inner map; $\\sin(\\pi t)$ has this property, $\\sin(\\tfrac{\\pi}{2}t)$ does not."
-        ]
-      },
-      {
-        "name": "Two-sequence test at each integer",
-        "steps": [
-          "Recall the sequential criterion: $s$ is continuous at $a$ iff $s(x_n)\\to s(a)$ for every sequence $x_n\\to a$. To disprove continuity at $a$ it suffices to exhibit two sequences converging to $a$ along which $s$ tends to different limits. At a non-integer $a$, every sequence is eventually inside a single interval $[n,n+1)$ where $s\\equiv h(n)$ is constant, so $s(x_n)\\to h(n)=s(a)$ for all sequences — continuity is automatic off $\\mathbb{Z}$ for both composites.",
-          "Now test an integer $m$. Take $x_n=m-\\tfrac1n\\uparrow m$ (so $x_n\\in[m-1,m)$, giving $s(x_n)=h(m-1)$) and $y_n=m+\\tfrac1n\\downarrow m$ (so $y_n\\in[m,m+1)$, giving $s(y_n)=h(m)$). Both $x_n,y_n\\to m$. If $h(m-1)\\ne h(m)$ these two admissible sequences yield different limits, so no single limit exists and $s$ is discontinuous at $m$; if $h(m-1)=h(m)$ both limits equal $h(m)=s(m)$ and, since every sequence is squeezed between such one-sided behaviour, $s$ is continuous at $m$.",
-          "For $F$: along $x_n\\uparrow m$, $F(x_n)=\\sin(\\pi(m-1))=0$; along $y_n\\downarrow m$, $F(y_n)=\\sin(\\pi m)=0$; and $F(m)=0$. All sequences give $0=F(m)$, so $F$ is continuous at every integer, hence on all of $\\mathbb{R}$: $\\boxed{C_F=\\mathbb{R}}$.",
-          "For $G$: along $x_n\\uparrow m$, $G(x_n)=\\sin(\\tfrac{\\pi}{2}(m-1))$; along $y_n\\downarrow m$, $G(y_n)=\\sin(\\tfrac{\\pi}{2}m)$. These differ for every $m$ because the sequence $\\sin(\\tfrac{\\pi}{2}n)$ never repeats consecutively. Concretely at $m=2$: $x_n\\uparrow 2$ gives $G\\to\\sin\\tfrac{\\pi}{2}=1$ while $y_n\\downarrow 2$ gives $G\\to\\sin\\pi=0$, two different limits, so $G$ is discontinuous at $2$. The same break occurs at every integer, and non-integers are continuous, so $\\boxed{C_G=\\mathbb{R}\\setminus\\mathbb{Z}}$.",
-          "Part (c). The membership tests agree everywhere except on $\\mathbb{Z}$, where $F$ passes (one-sided limits coincide at $0$) and $G$ fails (one-sided limits differ). Hence $C_F\\triangle C_G=\\mathbb{Z}$. $\\boxed{C_F\\triangle C_G=\\mathbb{Z}}$"
-        ]
-      },
-      {
-        "name": "Jump-size formula via the discrete first difference",
-        "steps": [
-          "For a step function $s(x)=h(\\lfloor x\\rfloor)$ the only candidate discontinuities are integers, and the saltus (jump) at integer $m$ is the gap between the right and left interval values, $J(m)=s(m^{+})-s(m^{-})=h(m)-h(m-1)=(\\Delta h)(m-1)$, where $\\Delta$ is the forward difference of the restriction $h\\big|_{\\mathbb{Z}}$. Continuity at $m$ is exactly $J(m)=0$, i.e. the discrete derivative of the outer map's integer samples vanishes there.",
-          "For $F$, $h(n)=\\sin(\\pi n)\\equiv 0$ on $\\mathbb{Z}$, so the integer-sample sequence is the constant $0$ and $\\Delta h\\equiv 0$. Every jump $J(m)=0$, so $F$ is continuous at all integers and at all non-integers: $\\boxed{C_F=\\mathbb{R}}$.",
-          "For $G$, $h_2(n)=\\sin(\\tfrac{\\pi}{2}n)$ samples the $4$-cycle $0,1,0,-1$. Its forward difference is $h_2(n)-h_2(n-1)\\in\\{+1,-1,+1,-1\\}$, which is nonzero for every $n$. Thus $J(m)=\\pm 1\\ne 0$ at every integer $m$, so $G$ is discontinuous at every integer; at the non-integers $J$ is undefined and $G$ is locally constant, hence continuous. Therefore $\\boxed{C_G=\\mathbb{R}\\setminus\\mathbb{Z}}$. (At $m=2$, $J(2)=h_2(2)-h_2(1)=0-1=-1\\ne0$, confirming the discontinuity even though $h_2(2)=0$.)",
-          "Part (c). Comparing the two jump profiles: $F$ has $J\\equiv 0$ (continuity set $\\mathbb{R}$) and $G$ has $|J|\\equiv 1$ on $\\mathbb{Z}$ (continuity set $\\mathbb{R}\\setminus\\mathbb{Z}$). They disagree exactly where one jump vanishes and the other does not, namely on all of $\\mathbb{Z}$, so $C_F\\triangle C_G=\\mathbb{Z}$. $\\boxed{C_F\\triangle C_G=\\mathbb{Z}}$"
-        ]
-      }
-    ],
-    "remark": "Insight: when a continuous outer map $h$ is composed with the floor function, the composite $h\\circ\\lfloor\\,\\cdot\\,\\rfloor$ is a step function whose only possible discontinuities sit at the integers, and the seam at integer $m$ closes precisely when $h(m)=h(m-1)$. So $h\\circ\\lfloor\\,\\cdot\\,\\rfloor$ is continuous on all of $\\mathbb{R}$ if and only if $h$ is constant on the image $\\mathbb{Z}$ of the inner map — a strictly stronger demand than \\\"$h$ is continuous\\\" and a strictly different demand from \\\"$h$ vanishes at the landed values.\\\" The vanishing condition is a decoy: $\\sin(\\tfrac{\\pi}{2}t)$ kills every even integer yet alternates $0,1,0,-1$, so it is never constant across a seam and the composite breaks at every integer; $\\sin(\\pi t)$ kills all integers to the single value $0$, a genuine constant, so its composite is the identically-zero function and the wild discontinuity of the floor is annihilated. This is the general principle of these problems: a discontinuous inner map produces a continuous composite exactly when the outer map cannot tell the inner map's jumps apart — here, when it assigns one common value to the entire landing set $\\mathbb{Z}$."
   },
   {
     "theme": "sequential",
@@ -2417,140 +2036,124 @@ window.PROBLEMS = [
   {
     "theme": "sequential",
     "themeLabel": "Sequential & Composite Continuity",
-    "title": "The Limit That Crowds All Its Breaks Against the Origin",
-    "difficulty": 5,
-    "task": "Identify the pointwise limit, pin its exact continuity set, and track what the reciprocal substitution does to the breaks",
+    "title": "The Smooth Factor That Heals Two Jumps",
+    "difficulty": 4,
+    "task": "Count the discontinuities",
     "tags": [
-      "pointwise-limit",
-      "indicator-function",
-      "two-sequence-test",
-      "composition",
-      "accumulation-point",
-      "homeomorphism"
+      "limit of a sequence of functions",
+      "removable discontinuity",
+      "continuity on an interval",
+      "product of functions"
     ],
-    "statement": "All arguments are in radians. On the punctured line $\\mathbb{R}\\setminus\\{0\\}$ define the sequence of continuous functions\n\\[\nf_n(x)=\\cos^{2n}\\!\\Bigl(\\frac{\\pi}{x}\\Bigr),\\qquad n=1,2,3,\\dots,\n\\]\nand let $f(x)=\\displaystyle\\lim_{n\\to\\infty}f_n(x)$ be the pointwise limit (it exists for every $x\\neq 0$, as you will verify).\n\n(a) Compute $f$ in closed form: find, with proof, the exact set $S$ on which $f=1$, and show $f=0$ off $S$. (Beware: each $f_n$ is continuous, but $f$ need not be.)\n\n(b) Determine, with proof, the exact set $C_f$ of points of $\\mathbb{R}\\setminus\\{0\\}$ at which $f$ is continuous. Decide in particular whether $f$ is continuous at the point $x=\\tfrac{2}{5}$ (which is not of the form $1/m$), and whether there is any open interval containing $0$ on which $f$ is continuous at every point.\n\n(c) Now perform the reciprocal substitution: let $r(x)=1/x$ on $\\mathbb{R}\\setminus\\{0\\}$ and form the composite $F=f\\circ r$, i.e. $F(x)=f\\!\\left(1/x\\right)$. Determine, with proof, the exact continuity set $C_F$, and explain in one sentence the precise mechanism by which composing with the (discontinuous-at-nothing, but unbounded) map $r$ converts the break set of $f$ — which piles up against the single point $0$ — into a uniformly spaced break set with no finite accumulation point at all.",
-    "answer": "\\[\\boxed{\\,S=\\{\\,1/m:\\,m\\in\\mathbb{Z}\\setminus\\{0\\}\\,\\},\\quad C_f=\\bigl(\\mathbb{R}\\setminus\\{0\\}\\bigr)\\setminus S,\\quad C_F=\\mathbb{R}\\setminus\\mathbb{Z}\\,}\\]",
-    "trap": "The decoy is the point $0$, and it bites two ways. Wrong move 1 (under-counting the breaks): a strong solver computes $f=\\mathbf{1}_S$ with $S=\\{1/m\\}$ and writes $C_f=(\\mathbb{R}\\setminus\\{0\\})\\setminus S$, then -- reasoning ``near $0$ the function is mostly $0$, and $0$ is not even in the domain'' -- quietly assumes $f$ behaves continuously in a whole neighbourhood of the origin. It does not: every interval $(0,\\varepsilon)$ contains $1/m$ for all $m>1/\\varepsilon$, so $f$ has infinitely many discontinuities arbitrarily close to $0$, and there is NO open interval around $0$ on which $f$ is continuous everywhere. The breaks do not stop -- they accumulate. Wrong move 2 (over-counting the breaks): over-correcting, a solver then declares $f$ discontinuous on some whole punctured interval $(0,\\varepsilon)\\setminus S$ ``because the discontinuities are dense near $0$.'' Also wrong: the points $1/m$ are isolated (the gap $1/m-1/(m+1)=1/[m(m+1)]>0$ is positive), so a non-reciprocal point such as $x=\\tfrac{2}{5}$ -- which lies strictly between $1/3$ and $1/2$ -- has a whole neighbourhood free of $S$ on which $f\\equiv 0$, hence $f$ is continuous there. The reciprocal lattice $\\{1/m\\}$ is a discrete set whose sole accumulation point is $0$: every individual non-reciprocal nonzero point is a continuity point, yet no interval reaching $0$ is clean. Wrong move 3 (part c): treating $r(x)=1/x$ as ``just a continuous relabelling'' and concluding $C_F$ has the same crowded shape near $0$. In fact $r$ sends $0$ off to infinity, so the accumulation point disappears from the finite plane and the breaks spread out to the evenly spaced lattice $\\mathbb{Z}\\setminus\\{0\\}$, giving $C_F=\\mathbb{R}\\setminus\\mathbb{Z}$ with no clustering anywhere. Finally, a purely computational trap: plugging a large finite $n$ into $f_n$ near a reciprocal point (e.g. $x=0.2500001$) returns a value close to $1$ and tempts the conclusion $f=1$ there -- but for any $x\\neq 1/m$ one has $\\cos^2(\\pi/x)<1$ strictly, so $f_n\\to 0$; the convergence is merely slow, not absent.",
+    "statement": "For each real $x$ let $g(x)=\\displaystyle\\lim_{n\\to\\infty}\\frac{1}{1+x^{2n}}$, and define $f(x)=(1-x^2)\\,g(x)$. First identify the set on which $g$ itself is discontinuous, then determine the number of points of $\\mathbb{R}$ at which $f$ is discontinuous, and state the value $f$ takes at $x=1$.",
+    "answer": "$\\boxed{g\\text{ jumps at }x=\\pm1;\\ f\\text{ has }0\\text{ discontinuities, with }f(1)=0}$",
+    "trap": "The seductive wrong answer is $2$, claiming $f$ inherits $g$'s jumps at $x=\\pm1$. This forgets that the smooth factor $1-x^2$ vanishes exactly at $x=\\pm1$, where $g$ stays bounded ($g(\\pm1)=\\tfrac12$); the product is squeezed to $0$ on both sides, so each jump of $g$ is healed rather than passed on.",
     "solutions": [
       {
-        "name": "Direct evaluation of the limit, then a gap argument for continuity",
+        "name": "Pointwise limit, then one-sided limits of the product",
         "steps": [
-          "Part (a). Fix $x\\neq 0$ and set $t=\\pi/x$. Since $0\\le\\cos^2 t\\le 1$, the powers $(\\cos^2 t)^n$ converge: if $\\cos^2 t=1$ the limit is $1$, and if $\\cos^2 t<1$ the limit is $0$. Now $\\cos^2 t=1\\iff \\cos t=\\pm1\\iff t=k\\pi$ for some integer $k\\iff \\pi/x=k\\pi\\iff x=1/k$. Because $x$ is finite and nonzero, $k$ ranges over $\\mathbb{Z}\\setminus\\{0\\}$. Hence the limit exists for every $x\\neq0$ and $f(x)=1$ exactly when $x=1/m$ with $m\\in\\mathbb{Z}\\setminus\\{0\\}$, and $f(x)=0$ otherwise. Thus $f=\\mathbf{1}_S$ with $\\boxed{S=\\{1/m:m\\in\\mathbb{Z}\\setminus\\{0\\}\\}}$.",
-          "Part (b), continuity off $S$. Take any $a\\in\\mathbb{R}\\setminus\\{0\\}$ with $a\\notin S$. The set $S$ has its only accumulation point at $0$ (since $1/m\\to0$ and $|1/m|\\ge|1/m_0|$ stays bounded away from $a$ for the finitely many $m$ with $1/m$ near $a$); concretely, $a$ lies strictly between two consecutive reciprocals $1/(m+1)<a<1/m$ (or symmetrically for $a<0$, or $a>1$ where no reciprocal lies), and the gap to the nearest reciprocal is positive. So there is $\\delta>0$ with $(a-\\delta,a+\\delta)\\cap S=\\varnothing$, on which $f\\equiv0=f(a)$. A locally constant function is continuous, so $f$ is continuous at $a$. In particular $a=\\tfrac25$ satisfies $1/3<\\tfrac25<1/2$ with $\\tfrac25\\notin S$, so $f$ is continuous at $\\tfrac25$.",
-          "Part (b), discontinuity on $S$. Take $a=1/m\\in S$. The neighbouring reciprocals $1/(m\\pm1)$ are distinct from $1/m$, and between any two of them lie non-reciprocal points; more simply, every punctured neighbourhood of $1/m$ contains points $x\\notin S$ (the reciprocals are isolated, gap $1/[m(m+1)]>0$). At such $x$, $f(x)=0$, while $f(1/m)=1$. So $f$ does not have limit $f(1/m)=1$ at $1/m$; it is discontinuous at every point of $S$. Combining, $\\boxed{C_f=(\\mathbb{R}\\setminus\\{0\\})\\setminus S}$.",
-          "Part (b), the origin. Although $0\\notin\\mathrm{dom}(f)$, examine whether some interval reaching $0$ is clean. For any $\\varepsilon>0$, choosing any integer $m>1/\\varepsilon$ gives $1/m\\in(0,\\varepsilon)\\cap S$, a discontinuity. Hence every interval $(0,\\varepsilon)$ contains infinitely many discontinuities of $f$, and there is NO open interval containing $0$ on which $f$ is continuous at every point: the break set crowds against the origin. (Each individual non-reciprocal point in $(0,\\varepsilon)$ is still a continuity point — the discontinuities are isolated, not dense — but they have no positive lower bound on spacing as $x\\to0$.)",
-          "Part (c). By part (a) applied to the argument $1/x$: $F(x)=f(1/x)=\\lim_n\\cos^{2n}\\!\\bigl(\\pi/(1/x)\\bigr)=\\lim_n\\cos^{2n}(\\pi x)$, which equals $1$ iff $\\cos^2(\\pi x)=1$ iff $x\\in\\mathbb{Z}$, and $0$ otherwise; on the domain $x\\neq0$ this is $F=\\mathbf{1}_{\\mathbb{Z}\\setminus\\{0\\}}$. The integers are uniformly spaced with gap $1$, each isolated, with no finite accumulation point. By the same gap/isolation argument as in (b), $F$ is continuous at every non-integer and discontinuous at every nonzero integer, so on its domain $\\boxed{C_F=\\mathbb{R}\\setminus\\mathbb{Z}}$. The reciprocal $r$ carries the accumulation point $0$ of $S$ off to infinity, so the breaks no longer pile up anywhere in the finite plane."
+          "Evaluate the sequence limit: if $|x|<1$ then $x^{2n}\\to0$ so $g(x)=1$; if $|x|>1$ then $x^{2n}\\to\\infty$ so $g(x)=0$; if $|x|=1$ then $x^{2n}=1$ so $g(x)=\\tfrac12$. Hence $g$ has jump discontinuities exactly at $x=\\pm1$ and is continuous elsewhere.",
+          "Away from $x=\\pm1$, $g$ is locally constant and $1-x^2$ is a polynomial, so $f=(1-x^2)g$ is continuous there.",
+          "At $x=1$: from the left $f\\to(1-x^2)\\cdot1\\to0$, from the right $f\\to(1-x^2)\\cdot0=0$, and $f(1)=(1-1)\\cdot\\tfrac12=0$; all three agree, so $f$ is continuous at $1$. By the same computation with $x\\to-1$, $f$ is continuous at $-1$.",
+          "Thus $f$ is continuous on all of $\\mathbb{R}$: $0$ discontinuities, and $f(1)=0$."
         ]
       },
       {
-        "name": "Sequential criterion: two competing sequences at each candidate point",
+        "name": "Squeeze on the bounded factor",
         "steps": [
-          "Recall continuity at $a$ means $f(x_n)\\to f(a)$ for EVERY sequence $x_n\\to a$; to disprove it, exhibit two sequences with different limits, or one sequence whose image misses $f(a)$. We use this on $f=\\mathbf{1}_S$, $S=\\{1/m\\}$, established as in Method 1.",
-          "Discontinuity on $S$. Fix $a=1/m$, so $f(a)=1$. Build $x_k\\to a$ avoiding $S$: e.g. $x_k=\\dfrac{1}{m+\\frac1k}$ for $k\\ge2$ (so $1/x_k=m+\\frac1k$ is never an integer, hence $x_k\\notin S$) and $x_k\\to 1/m=a$. Then $f(x_k)=0$ for all $k$, but $f(a)=1$; the image sequence converges to $0\\neq1=f(a)$. By the sequential criterion $f$ is discontinuous at every $a=1/m$.",
-          "Continuity off $S$ and off $0$. Fix $a\\neq0$, $a\\notin S$. Any sequence $x_n\\to a$ is eventually within the positive gap-distance of $a$ to the discrete set $S$, hence eventually $x_n\\notin S$, giving $f(x_n)=0$ for all large $n$; thus $f(x_n)\\to0=f(a)$ for every such sequence. So $f$ is continuous at $a$ (e.g. $a=\\tfrac25$, with $1/3<\\tfrac25<1/2$). Therefore $C_f=(\\mathbb{R}\\setminus\\{0\\})\\setminus S$.",
-          "The crowding at $0$ via sequences. Although $0$ is outside the domain, the two-sequence phenomenon shows why no interval reaching $0$ is clean: the sequence $a_m=1/m\\to0$ consists entirely of discontinuities of $f$, while the interleaved sequence $b_m=\\dfrac{1}{m+\\frac12}\\to0$ consists of continuity points with $f=0$. Two sequences tending to $0$ — one landing on breaks, one on continuity points — confirm the break set accumulates exactly at $0$ and nowhere else.",
-          "Part (c). For $F(x)=f(1/x)$, the inner map $r(x)=1/x$ is a homeomorphism of $\\mathbb{R}\\setminus\\{0\\}$ onto itself, so $x_n\\to a$ (with $a\\neq0$) iff $1/x_n\\to1/a$. Continuity of $F$ at $a$ is therefore equivalent to continuity of $f$ at $1/a$. Thus $a\\in C_F\\iff 1/a\\in C_f\\iff 1/a\\notin S\\iff a\\notin\\{m:m\\in\\mathbb{Z}\\setminus\\{0\\}\\}=\\mathbb{Z}\\setminus\\{0\\}$. On the domain $\\mathbb{R}\\setminus\\{0\\}$ this is $\\boxed{C_F=\\mathbb{R}\\setminus\\mathbb{Z}}$; the homeomorphism $r$ relocates the lone accumulation point from $0$ to infinity, so the breaks spread to the evenly spaced lattice."
-        ]
-      },
-      {
-        "name": "Composition law: pull the break set back through the homeomorphism r",
-        "steps": [
-          "Structural setup. Write $f=\\mathbf{1}_S$ (Method 1). For an indicator $\\mathbf{1}_S$ the continuity set is exactly the complement of the topological boundary: $\\mathbf{1}_S$ is continuous at $a$ iff $a$ is an interior point of $S$ or of its complement, i.e. iff $a\\notin\\partial S$. So everything reduces to computing $\\partial S$.",
-          "Compute $\\partial S$ for $S=\\{1/m:m\\in\\mathbb{Z}\\setminus\\{0\\}\\}$. Each $1/m$ is isolated (positive gap $1/[m(m+1)]$ to its neighbours), so $S$ has empty interior; hence $\\partial S=\\overline{S}\\setminus\\mathrm{int}(S)=\\overline S$. The closure adds exactly the accumulation point $0$: $\\overline S=S\\cup\\{0\\}$. Therefore the breaks of $f$ are $\\partial S=S\\cup\\{0\\}$, and on the domain $\\mathbb{R}\\setminus\\{0\\}$ the continuity set is $C_f=(\\mathbb{R}\\setminus\\{0\\})\\setminus(\\,\\partial S\\,)=(\\mathbb{R}\\setminus\\{0\\})\\setminus S$. The presence of $0\\in\\partial S$ is precisely why no interval reaching $0$ is clean, even though $0\\notin\\mathrm{dom}(f)$; at $x=\\tfrac25\\notin\\partial S$, $f$ is continuous. $\\boxed{C_f=(\\mathbb{R}\\setminus\\{0\\})\\setminus S}$",
-          "Pull back through $r$. The composite $F=\\mathbf{1}_S\\circ r=\\mathbf{1}_{r^{-1}(S)}$, and $r^{-1}(S)=\\{x:1/x\\in S\\}=\\{x:1/x=1/m\\}=\\{m:m\\in\\mathbb{Z}\\setminus\\{0\\}\\}=\\mathbb{Z}\\setminus\\{0\\}=:T$. So $F=\\mathbf{1}_T$ with $T$ the nonzero integers.",
-          "Compute $\\partial T$. The nonzero integers are isolated with uniform gap $1$ and no finite accumulation point, so $\\overline T=T$ and $\\partial T=T$. Hence $F$ is discontinuous exactly on $T=\\mathbb{Z}\\setminus\\{0\\}$ and continuous elsewhere on its domain: $\\boxed{C_F=\\mathbb{R}\\setminus\\mathbb{Z}}$.",
-          "Mechanism (part c). The homeomorphism $r(x)=1/x$ of $\\mathbb{R}\\setminus\\{0\\}$ maps the crowded reciprocal lattice $S$ (whose closure in $\\mathbb{R}$ gains the single accumulation point $0$) bijectively onto the uniform lattice $T=\\mathbb{Z}\\setminus\\{0\\}$ (whose closure gains nothing): under $r$ the only accumulation point $0\\in\\partial S$ is sent toward $\\pm\\infty$, off the finite plane, so the inherited discontinuity set $\\partial T$ has no finite accumulation point and the breaks become evenly spaced. Continuity of the composite is governed entirely by where $\\partial S$ pulls back to — here, by $r^{-1}$ unfolding a clustering set into a uniform one."
+          "From the explicit values, $0\\le g(x)\\le 1$ for every $x$, so $g$ is bounded.",
+          "Therefore $|f(x)|=|1-x^2|\\,g(x)\\le |1-x^2|$ for all $x$.",
+          "As $x\\to1$ (or $x\\to-1$) the bound $|1-x^2|\\to0$, so by squeezing $f(x)\\to0=f(\\pm1)$; combined with continuity at every other point, $f$ has $\\boxed{0}$ discontinuities and $f(1)=0$."
         ]
       }
     ],
-    "remark": "Insight: a pointwise limit of continuous functions, $f_n(x)=\\cos^{2n}(\\pi/x)$, lands on the indicator $\\mathbf{1}_S$ of the reciprocal lattice $S=\\{1/m\\}$, because $\\cos^{2}$ saturates to $1$ exactly when $\\pi/x$ is a multiple of $\\pi$ and otherwise decays geometrically under the $2n$-th power. The subtlety students must locate is not WHICH points are breaks (they are the isolated reciprocals) but the shape of the break set: $S$ is discrete yet its closure smuggles in one extra point, the accumulation point $0$, so although every individual non-reciprocal point is a genuine continuity point, no interval reaching the origin is ever clean. The cleanest organising principle is that an indicator $\\mathbf{1}_S$ is continuous precisely off $\\partial S=\\overline S\\setminus\\mathrm{int}(S)$, which here is $S\\cup\\{0\\}$. The composite payoff is the real lesson of this chapter: post-composing with the reciprocal homeomorphism $r(x)=1/x$ pulls the break set back to $r^{-1}(S)=\\mathbb{Z}\\setminus\\{0\\}$, and because $r$ carries the lone accumulation point $0$ off to infinity, the once-crowded breaks become uniformly spaced with no finite cluster at all — continuity of $f\\circ r$ is read off entirely from how $r^{-1}$ reshapes $\\partial S$, not from any pointwise value of $f$."
+    "remark": "**Insight.** A pointwise limit of continuous functions need **not** be continuous, and indeed $g$ here jumps at $x=\\pm1$. But continuity of a **product** depends on both factors: a jump of one factor is **harmless wherever the other factor vanishes**. Multiplying by $1-x^2$ pins the only two break-points to height $0$, so the bounded spikes of $g$ are squeezed flat. Always weigh each discontinuity by the factor sitting beside it before counting."
   },
   {
     "theme": "sequential",
     "themeLabel": "Sequential & Composite Continuity",
-    "title": "The Outer Map That Must Forget Which Island It Landed On",
+    "title": "The Oscillation No Value Can Tame",
+    "difficulty": 4,
+    "task": "Decide if a value restores continuity",
+    "tags": [
+      "two-path test",
+      "oscillatory discontinuity",
+      "one-sided limits",
+      "composite of standard functions"
+    ],
+    "statement": "Define $f(x)=\\cos\\!\\left(\\dfrac{\\pi}{x}\\right)$ for $x\\neq 0$. A student proposes to assign a value $f(0)=c$ so that the extended function becomes continuous at $0$. Determine whether any real constant $c$ makes $f$ continuous at $0$. Justify by exhibiting two sequences $x_n\\to 0$ along which $f(x_n)$ tends to different limits, and state how many values of $c\\in\\{-1,0,1\\}$ succeed.",
+    "answer": "$\\boxed{\\text{No value works: }\\lim_{x\\to0}f(x)\\text{ does not exist, so }0\\text{ of the candidates succeed}}$",
+    "trap": "The tempting wrong move is to notice $\\cos$ is bounded in $[-1,1]$ and pick the \"central\" value $c=0$ (or the average of the extremes), imagining the wild oscillation averages out. But continuity at $0$ requires $\\lim_{x\\to0}f(x)$ to exist as a single number; a bounded function can still fail to have a limit, and here it does, so $c=0$ (and every other constant) fails.",
+    "solutions": [
+      {
+        "name": "Two sequences with different limits",
+        "steps": [
+          "Take $x_n=\\dfrac{1}{2n}\\to 0$. Then $\\dfrac{\\pi}{x_n}=2\\pi n$, so $f(x_n)=\\cos(2\\pi n)=1$ for every $n$; hence $f(x_n)\\to 1$.",
+          "Take $y_n=\\dfrac{1}{2n+1}\\to 0$. Then $\\dfrac{\\pi}{y_n}=(2n+1)\\pi$, so $f(y_n)=\\cos((2n+1)\\pi)=-1$ for every $n$; hence $f(y_n)\\to -1$.",
+          "Both $x_n\\to0$ and $y_n\\to0$, yet $f(x_n)\\to1$ while $f(y_n)\\to-1$. Since two paths to $0$ give different limiting values, $\\lim_{x\\to0}f(x)$ does not exist.",
+          "Continuity at $0$ would require this limit to exist and equal $f(0)=c$. As the limit fails to exist, no assignment $c$ can repair it; among $\\{-1,0,1\\}$, exactly $0$ values succeed."
+        ]
+      },
+      {
+        "name": "Range stays full on every neighbourhood of 0",
+        "steps": [
+          "For any small $\\rho>0$, the values $\\dfrac{\\pi}{x}$ with $0<|x|<\\rho$ cover all sufficiently large arguments, so $\\cos\\!\\left(\\dfrac{\\pi}{x}\\right)$ attains every value in $[-1,1]$ on each punctured neighbourhood of $0$.",
+          "In particular $f$ takes both the value $1$ (e.g. at $x=\\tfrac{1}{2n}$) and the value $-1$ (e.g. at $x=\\tfrac{1}{2n+1}$) at points arbitrarily close to $0$.",
+          "If $\\lim_{x\\to0}f(x)=L$ existed, all values near $0$ would cluster around the single number $L$, contradicting the persistence of both $1$ and $-1$. So no limit exists, and no chosen $f(0)=c$ can make $f$ continuous at $0$; the count of successful $c$ in $\\{-1,0,1\\}$ is $\\boxed{0}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Boundedness is not the same as having a limit. The map $x\\mapsto \\pi/x$ stretches every punctured neighbourhood of $0$ onto an unbounded ray, and feeding that into the periodic $\\cos$ produces oscillation that never settles. The cleanest disproof of a limit is the two-path test: one sequence hits the crests, another the troughs, and a single number cannot be approached along both. No clever value at the point can heal an oscillatory break, because the defect lives in the surrounding behaviour, not at the point itself."
+  },
+  {
+    "theme": "sequential",
+    "themeLabel": "Sequential & Composite Continuity",
+    "title": "The Sine That Heals the Floor, and the One That Doesn't",
     "difficulty": 5,
-    "task": "Pin the exact condition on the outer map for each part, then find the unique threshold that heals the perturbed composite",
+    "task": "Determine each continuity set exactly and pin the points where the two composites disagree",
     "tags": [
       "composition",
-      "dirichlet-indicator",
-      "everywhere-discontinuous-inner",
+      "floor-function",
+      "step-function",
       "two-sequence-test",
       "image-constancy",
-      "threshold"
+      "sharp-hypothesis"
     ],
-    "statement": "For real parameters $a<b$ let the inner map be the two-island Dirichlet indicator\n\\[\nD_{a,b}(x)=\\begin{cases} a, & x\\in\\mathbb{Q},\\\\ b, & x\\notin\\mathbb{Q},\\end{cases}\n\\]\nwhich is discontinuous at \\text{every} real $x$ (both $\\mathbb{Q}$ and its complement are dense) and has range exactly the two-point set $\\{a,b\\}$. Throughout, $f:\\mathbb{R}\\to\\mathbb{R}$ is a \\text{continuous} outer map, and we study the composite $f\\circ D_{a,b}$.\n\n(a) Fix $g=D_{0,1}$. Prove that, although $g$ is discontinuous everywhere, the composite $f\\circ g$ is continuous on all of $\\mathbb{R}$ if and only if $f(0)=f(1)$, and that when this fails $f\\circ g$ is discontinuous at \\text{every} point of $\\mathbb{R}$.\n\n(b) Now consider the whole family $\\mathcal{G}=\\{\\,D_{a,b}\\ :\\ 0\\le a<b\\le 1\\,\\}$. Determine the exact condition on $f$ under which $f\\circ g$ is continuous on $\\mathbb{R}$ for \\text{every} $g\\in\\mathcal{G}$ simultaneously. State precisely what this forces $f$ to be on $[0,1]$, and show by an explicit example that the condition $f(0)=f(1)$ alone is \\text{not} sufficient.\n\n(c) Take the one-parameter outer map $f_t(y)=(y-t)^2$ (continuous for each real $t$) composed with the fixed inner map $g=D_{0,1}$. Find every value of $t$ for which $f_t\\circ g$ is continuous on $\\mathbb{R}$, and identify the size of the jump that the composite suffers (at every point) when $t$ is perturbed away from that value.",
-    "answer": "\\[\\boxed{\\text{(a) } f(0)=f(1);\\quad \\text{(b) } f\\equiv\\text{const on }[0,1];\\quad \\text{(c) } t=\\tfrac12,\\ \\text{jump}=|2t-1|}\\]",
-    "trap": "The seductive error is to carry the part-(a) verdict over to part (b) verbatim: \\\"$f\\circ g$ is continuous iff $f$ agrees at the two endpoints of the range, so for the whole family it should be enough that $f(0)=f(1)$.\\\" This silently confuses one fixed two-point range $\\{0,1\\}$ with the union of all the ranges that $\\mathcal{G}$ produces. As $(a,b)$ ranges over all pairs with $0\\le a<b\\le 1$, the two-point sets $\\{a,b\\}$ sweep out every value in $[0,1]$, and continuity of $f\\circ D_{a,b}$ requires $f(a)=f(b)$ for that particular pair; quantifying over all pairs forces $f(a)=f(b)$ for all $a,b\\in[0,1]$, i.e. $f$ \\text{constant on the entire interval} $[0,1]$ — far stronger than equality at two endpoints. The explicit demolisher is $f(y)=y(1-y)$, which satisfies $f(0)=f(1)=0$ yet is non-constant on $[0,1]$; choosing $g=D_{0,1/2}\\in\\mathcal{G}$ gives composite values $f(0)=0$ on $\\mathbb{Q}$ and $f(\\tfrac12)=\\tfrac14$ on the irrationals, so $f\\circ g$ jumps by $\\tfrac14$ at every point despite $f(0)=f(1)$. A second trap, the mirror of the first, is to imagine the discontinuities of $f\\circ g$ live only at special points (integers, or where some inner value is nonzero). They do not: because $D_{0,1}$ is locally two-valued at every $x$ — every neighbourhood meets both $\\mathbb{Q}$ and its complement — the composite, when it breaks, breaks at \\text{every single real number} at once; there is no \\\"continuity set\\\" of positive size to salvage. A third slip in part (c) is to set $f_t(0)=0$, i.e. $t=0$ (\\\"make the outer map vanish on the landed value $0$\\\"), mistaking \\\"$f$ kills one island\\\" for \\\"$f$ cannot tell the two islands apart\\\"; the correct demand is $f_t(0)=f_t(1)$, namely $t^2=(1-t)^2$, whose only solution is the midpoint $t=\\tfrac12$, not $t=0$.",
+    "statement": "Let $\\lfloor\\,\\cdot\\,\\rfloor$ denote the floor function, so the inner map $g(x)=\\lfloor x\\rfloor$ is discontinuous at every integer and continuous nowhere on $\\mathbb{Z}$. Compose it with two continuous outer maps that both vanish at infinitely many integers:\n\\[\nF(x)=\\sin\\!\\bigl(\\pi\\lfloor x\\rfloor\\bigr),\\qquad\\qquad G(x)=\\sin\\!\\Bigl(\\tfrac{\\pi}{2}\\lfloor x\\rfloor\\Bigr).\n\\]\nHere the outer maps are $h(t)=\\sin(\\pi t)$ and $h_2(t)=\\sin(\\tfrac{\\pi}{2}t)$, each continuous on all of $\\mathbb{R}$; note $h$ vanishes at every integer, while $h_2$ vanishes at every even integer.\n\n(a) Determine, with proof, the exact set $C_F$ of points at which $F$ is continuous, and explain how a composite of a map that is discontinuous at every integer with a genuinely non-constant outer can be continuous on all of $\\mathbb{R}$.\n\n(b) Determine, with proof, the exact set $C_G$ of points at which $G$ is continuous. In particular decide whether $G$ is continuous at $x=2$, where the outer map satisfies $h_2(\\lfloor 2\\rfloor)=h_2(2)=\\sin\\pi=0$.\n\n(c) The two outer maps are both continuous and both vanish at infinitely many of the values $\\lfloor x\\rfloor$ actually attained. Yet only one composite is continuous everywhere. Identify the exact set $C_F\\,\\triangle\\,C_G$ on which precisely one of $F,G$ is continuous (here $\\triangle$ is symmetric difference), and state the single clean property of the outer map that decides continuity of $h\\circ\\lfloor\\,\\cdot\\,\\rfloor$.",
+    "answer": "\\[\\boxed{\\,C_F=\\mathbb{R},\\quad C_G=\\mathbb{R}\\setminus\\mathbb{Z},\\quad C_F\\triangle C_G=\\mathbb{Z}\\,}\\]",
+    "trap": "The fatal reflex is to judge the composite $h\\circ\\lfloor\\,\\cdot\\,\\rfloor$ by the value of the outer map at the landed point: \\\"$\\lfloor x\\rfloor$ is some integer $n$, and if $h(n)=0$ then the composite is $0$ there, hence continuous.\\\" By this rule a solver computes $h_2(\\lfloor 2\\rfloor)=\\sin\\pi=0$ and declares $G$ continuous at $x=2$ — wrong. Continuity of the step function $s(x)=h(\\lfloor x\\rfloor)$ at an integer $m$ is a seam condition: on $[m-1,m)$ the value is the constant $h(m-1)$, on $[m,m+1)$ it is the constant $h(m)$, so $s$ is continuous at $m$ iff $h(m-1)=h(m)$, i.e. iff the outer map takes equal values at the two consecutive integers straddling the jump. At $x=2$ the left interval $[1,2)$ carries $\\lfloor x\\rfloor=1$ with $h_2(1)=\\sin\\tfrac{\\pi}{2}=1\\ne 0=h_2(2)$, so $G$ jumps from $1$ to $0$ there and is discontinuous — even though $h_2$ vanishes at the landed value $2$. The correct hypothesis is not \\\"$h=0$ on the image\\\" nor even \\\"$h$ continuous\\\"; it is \\\"$h$ is constant on the image $\\mathbb{Z}$.\\\" For $F$ the image values are all $\\sin(\\pi n)=0$ — a constant — so $F$ is continuous on all of $\\mathbb{R}$ despite the inner map breaking at every integer. For $G$ the image values $\\sin(\\tfrac{\\pi}{2}n)$ cycle $0,1,0,-1$ and never repeat consecutively, so $G$ breaks at every integer. A second, opposite trap is to over-correct and claim $G$ is discontinuous only where $h_2(\\lfloor x\\rfloor)\\ne 0$ (the odd-floor intervals); but $G$ is locally constant, hence continuous, at every non-integer regardless of the floor's parity — e.g. at $x=1.5$ where $h_2(1)=1\\ne 0$, $G$ is perfectly continuous. The boundaries between intervals, not the interior values, are the only place anything can break.",
     "solutions": [
       {
-        "name": "Direct value-matching: a composite that is globally two-valued",
+        "name": "Seam analysis of the induced step function",
         "steps": [
-          "For any continuous $f$ and any pair $a<b$, the composite $h=f\\circ D_{a,b}$ takes only two values: $h(x)=f(a)$ for $x\\in\\mathbb{Q}$ and $h(x)=f(b)$ for $x\\notin\\mathbb{Q}$. Fix an arbitrary point $x_0\\in\\mathbb{R}$. Every neighbourhood of $x_0$ contains both rationals and irrationals (density), so $h$ takes both values $f(a)$ and $f(b)$ in every neighbourhood of $x_0$. Hence $\\lim_{x\\to x_0}h(x)$ exists iff $f(a)=f(b)$, and this single condition is independent of $x_0$.",
-          "Part (a): with $g=D_{0,1}$ the two values are $f(0)$ and $f(1)$. If $f(0)=f(1)=:L$ then $h\\equiv L$ is the constant function, continuous on all of $\\mathbb{R}$. If $f(0)\\ne f(1)$, then at every $x_0$ the function takes two distinct values arbitrarily near $x_0$, so the limit fails to exist there; thus $h$ is discontinuous at every point. Therefore $f\\circ g$ is continuous on $\\mathbb{R}$ $\\iff f(0)=f(1)$. $\\boxed{f(0)=f(1)}$",
-          "Part (b): for $g=D_{a,b}$ the same argument gives continuity $\\iff f(a)=f(b)$. Requiring this for every $g\\in\\mathcal{G}$ means $f(a)=f(b)$ for \\text{all} pairs $0\\le a<b\\le 1$. Picking any $a,b\\in[0,1]$ shows $f$ takes one common value on all of $[0,1]$, so $f$ must be constant on $[0,1]$; conversely a function constant on $[0,1]$ trivially has $f(a)=f(b)$ for every such pair, making every composite constant hence continuous. So the exact condition is $f\\equiv\\text{const on }[0,1]$. The endpoint-only condition is insufficient: $f(y)=y(1-y)$ has $f(0)=f(1)=0$ but $f(\\tfrac12)=\\tfrac14$, so with $g=D_{0,1/2}$ the composite is $0$ on $\\mathbb{Q}$ and $\\tfrac14$ on the irrationals — discontinuous everywhere. $\\boxed{f\\equiv\\text{const on }[0,1]}$",
-          "Part (c): with $f_t(y)=(y-t)^2$ and $g=D_{0,1}$, continuity needs $f_t(0)=f_t(1)$, i.e. $t^2=(1-t)^2$. Expanding, $t^2=1-2t+t^2\\Rightarrow 2t=1\\Rightarrow t=\\tfrac12$, the unique solution. At $t=\\tfrac12$ the composite is the constant $f_{1/2}(0)=\\tfrac14$. For general $t$ the composite jumps from $t^2$ (on $\\mathbb{Q}$) to $(1-t)^2$ (on the irrationals); the jump size is $|t^2-(1-t)^2|=|(t-(1-t))(t+(1-t))|=|2t-1|$, which vanishes exactly at the threshold $t=\\tfrac12$. $\\boxed{t=\\tfrac12,\\ \\text{jump}=|2t-1|}$"
+          "Both composites have the form $s(x)=h(\\lfloor x\\rfloor)$ for a continuous outer $h$. Since $\\lfloor x\\rfloor=n$ for all $x\\in[n,n+1)$, the function $s$ is constant, equal to $h(n)$, on each half-open interval $[n,n+1)$. Hence $s$ is automatically continuous at every non-integer point (it is locally constant there), and the only possible failures are at the integers $m\\in\\mathbb{Z}$.",
+          "Fix an integer $m$. Approaching from the right, $x\\in[m,m+1)$ gives $s(x)=h(m)=s(m)$, so the right limit and the value both equal $h(m)$. Approaching from the left, $x\\in[m-1,m)$ gives $s(x)=h(m-1)$, so the left limit is $h(m-1)$. Therefore $s$ is continuous at $m$ if and only if $h(m-1)=h(m)$: the seam closes exactly when the outer map repeats its value across consecutive integers.",
+          "Apply to $F$ with $h(t)=\\sin(\\pi t)$. For every integer $m$, $h(m)=\\sin(\\pi m)=0=\\sin(\\pi(m-1))=h(m-1)$, so the seam condition holds at every integer. Combined with continuity at all non-integers, $F$ is continuous on all of $\\mathbb{R}$: $\\boxed{C_F=\\mathbb{R}}$. The inner map shatters at every integer, but the outer map is constant ($\\equiv 0$) on the image $\\mathbb{Z}$, so no jump survives the composition.",
+          "Apply to $G$ with $h_2(t)=\\sin(\\tfrac{\\pi}{2}t)$. The values $h_2(n)=\\sin(\\tfrac{\\pi}{2}n)$ run through the $4$-periodic cycle $\\ldots,0,1,0,-1,0,1,\\ldots$; consecutive terms are never equal, so $h_2(m-1)\\ne h_2(m)$ for every integer $m$. Thus the seam fails at every integer while non-integers stay continuous: $\\boxed{C_G=\\mathbb{R}\\setminus\\mathbb{Z}}$. In particular at $m=2$ the left value is $h_2(1)=1$ and the right value is $h_2(2)=0$, a jump of $1$ — so $G$ is discontinuous at $x=2$ despite $h_2(2)=0$.",
+          "Part (c). $F$ is continuous everywhere and $G$ is continuous exactly off $\\mathbb{Z}$, so the verdicts differ precisely on the integers: $C_F\\triangle C_G=\\mathbb{R}\\setminus(\\mathbb{R}\\setminus\\mathbb{Z})=\\mathbb{Z}$. $\\boxed{C_F\\triangle C_G=\\mathbb{Z}}$. The decisive property of the outer map is not that it is continuous, nor that it vanishes on the landed values, but that it is constant on the image $\\mathbb{Z}$ of the inner map; $\\sin(\\pi t)$ has this property, $\\sin(\\tfrac{\\pi}{2}t)$ does not."
         ]
       },
       {
-        "name": "Two-sequence test at an arbitrary point",
+        "name": "Two-sequence test at each integer",
         "steps": [
-          "Use the sequential criterion: $h$ is continuous at $x_0$ iff $h(x_n)\\to h(x_0)$ for every $x_n\\to x_0$, and to disprove continuity it suffices to find two sequences with different limits. Fix any $x_0\\in\\mathbb{R}$. By density choose rationals $r_n\\to x_0$ and irrationals $s_n\\to x_0$. For $h=f\\circ D_{0,1}$ we get $h(r_n)=f(0)$ for all $n$ and $h(s_n)=f(1)$ for all $n$, two constant sequences.",
-          "Part (a): if $f(0)\\ne f(1)$, the sequences $r_n,s_n\\to x_0$ give $h(r_n)\\to f(0)\\ne f(1)\\leftarrow h(s_n)$, so no limit exists at $x_0$; since $x_0$ was arbitrary, $h$ is discontinuous everywhere. If $f(0)=f(1)=L$, every sequence (split into its rational and irrational terms) has $h(x_n)\\to L=h(x_0)$, so $h$ is continuous everywhere. Hence continuity $\\iff f(0)=f(1)$. $\\boxed{f(0)=f(1)}$",
-          "Part (b): for $g=D_{a,b}$ the same two-sequence argument yields, at every $x_0$, limits $f(a)$ and $f(b)$; continuity for that $g$ needs $f(a)=f(b)$. Demanding it for every pair $0\\le a<b\\le 1$ forces $f$ to take a single value across $[0,1]$, i.e. constant on $[0,1]$. The counterexample $f(y)=y(1-y)$ with $g=D_{0,1/2}$ produces rational-sequence limit $0$ and irrational-sequence limit $\\tfrac14$ at every $x_0$, confirming $f(0)=f(1)$ does not suffice. $\\boxed{f\\equiv\\text{const on }[0,1]}$",
-          "Part (c): with $f_t(y)=(y-t)^2$ and $g=D_{0,1}$, at any $x_0$ the rational sequence gives limit $f_t(0)=t^2$ and the irrational sequence gives $f_t(1)=(1-t)^2$. These two limits agree (so a limit exists, equal to the value, at every point) iff $t^2=(1-t)^2$, i.e. $t=\\tfrac12$, where both equal $\\tfrac14$. Off the threshold the two admissible-sequence limits differ by exactly $|t^2-(1-t)^2|=|2t-1|$, the universal jump. $\\boxed{t=\\tfrac12,\\ \\text{jump}=|2t-1|}$"
+          "Recall the sequential criterion: $s$ is continuous at $a$ iff $s(x_n)\\to s(a)$ for every sequence $x_n\\to a$. To disprove continuity at $a$ it suffices to exhibit two sequences converging to $a$ along which $s$ tends to different limits. At a non-integer $a$, every sequence is eventually inside a single interval $[n,n+1)$ where $s\\equiv h(n)$ is constant, so $s(x_n)\\to h(n)=s(a)$ for all sequences — continuity is automatic off $\\mathbb{Z}$ for both composites.",
+          "Now test an integer $m$. Take $x_n=m-\\tfrac1n\\uparrow m$ (so $x_n\\in[m-1,m)$, giving $s(x_n)=h(m-1)$) and $y_n=m+\\tfrac1n\\downarrow m$ (so $y_n\\in[m,m+1)$, giving $s(y_n)=h(m)$). Both $x_n,y_n\\to m$. If $h(m-1)\\ne h(m)$ these two admissible sequences yield different limits, so no single limit exists and $s$ is discontinuous at $m$; if $h(m-1)=h(m)$ both limits equal $h(m)=s(m)$ and, since every sequence is squeezed between such one-sided behaviour, $s$ is continuous at $m$.",
+          "For $F$: along $x_n\\uparrow m$, $F(x_n)=\\sin(\\pi(m-1))=0$; along $y_n\\downarrow m$, $F(y_n)=\\sin(\\pi m)=0$; and $F(m)=0$. All sequences give $0=F(m)$, so $F$ is continuous at every integer, hence on all of $\\mathbb{R}$: $\\boxed{C_F=\\mathbb{R}}$.",
+          "For $G$: along $x_n\\uparrow m$, $G(x_n)=\\sin(\\tfrac{\\pi}{2}(m-1))$; along $y_n\\downarrow m$, $G(y_n)=\\sin(\\tfrac{\\pi}{2}m)$. These differ for every $m$ because the sequence $\\sin(\\tfrac{\\pi}{2}n)$ never repeats consecutively. Concretely at $m=2$: $x_n\\uparrow 2$ gives $G\\to\\sin\\tfrac{\\pi}{2}=1$ while $y_n\\downarrow 2$ gives $G\\to\\sin\\pi=0$, two different limits, so $G$ is discontinuous at $2$. The same break occurs at every integer, and non-integers are continuous, so $\\boxed{C_G=\\mathbb{R}\\setminus\\mathbb{Z}}$.",
+          "Part (c). The membership tests agree everywhere except on $\\mathbb{Z}$, where $F$ passes (one-sided limits coincide at $0$) and $G$ fails (one-sided limits differ). Hence $C_F\\triangle C_G=\\mathbb{Z}$. $\\boxed{C_F\\triangle C_G=\\mathbb{Z}}$"
         ]
       },
       {
-        "name": "Oscillation via continuous envelopes",
+        "name": "Jump-size formula via the discrete first difference",
         "steps": [
-          "Define the oscillation of $h$ at $x_0$ by $\\omega_h(x_0)=\\limsup_{x\\to x_0}h(x)-\\liminf_{x\\to x_0}h(x)$; the standard fact is $h$ continuous at $x_0$ iff $\\omega_h(x_0)=0$. For $h=f\\circ D_{a,b}$ the values $f(a)$ (on the dense set $\\mathbb{Q}$) and $f(b)$ (on the dense complement) are attained in every neighbourhood of every $x_0$, so $\\omega_h(x_0)=|f(a)-f(b)|$, a constant independent of $x_0$.",
-          "Part (a): with $a=0,b=1$, $\\omega_h\\equiv|f(0)-f(1)|$. This is $0$ at every point (hence $h$ continuous everywhere) iff $f(0)=f(1)$, and otherwise it is a fixed positive number at every point (hence $h$ discontinuous everywhere). $\\boxed{f(0)=f(1)}$",
-          "Part (b): for the family, $h$ has $\\omega\\equiv|f(a)-f(b)|$ for the member $D_{a,b}$. Requiring $\\omega\\equiv 0$ for all $g\\in\\mathcal{G}$ means $|f(a)-f(b)|=0$ for every $0\\le a<b\\le 1$, i.e. $f$ has zero oscillation between any two points of $[0,1]$, which is precisely $f$ being constant on $[0,1]$. Since $f(y)=y(1-y)$ has $|f(0)-f(\\tfrac12)|=\\tfrac14\\ne 0$, the member $D_{0,1/2}$ alone already forces $\\omega\\equiv\\tfrac14>0$, refuting the endpoint-only condition. $\\boxed{f\\equiv\\text{const on }[0,1]}$",
-          "Part (c): for $f_t(y)=(y-t)^2$, $g=D_{0,1}$, the oscillation everywhere equals $|f_t(0)-f_t(1)|=|t^2-(1-t)^2|=|2t-1|$. It is $0$ (composite continuous) iff $|2t-1|=0$, i.e. $t=\\tfrac12$; any perturbation $t=\\tfrac12+\\varepsilon$ raises the oscillation — and the actual pointwise jump — to $|2\\varepsilon|$, linear in the perturbation and present at every real point at once. $\\boxed{t=\\tfrac12,\\ \\text{jump}=|2t-1|}$"
+          "For a step function $s(x)=h(\\lfloor x\\rfloor)$ the only candidate discontinuities are integers, and the saltus (jump) at integer $m$ is the gap between the right and left interval values, $J(m)=s(m^{+})-s(m^{-})=h(m)-h(m-1)=(\\Delta h)(m-1)$, where $\\Delta$ is the forward difference of the restriction $h\\big|_{\\mathbb{Z}}$. Continuity at $m$ is exactly $J(m)=0$, i.e. the discrete derivative of the outer map's integer samples vanishes there.",
+          "For $F$, $h(n)=\\sin(\\pi n)\\equiv 0$ on $\\mathbb{Z}$, so the integer-sample sequence is the constant $0$ and $\\Delta h\\equiv 0$. Every jump $J(m)=0$, so $F$ is continuous at all integers and at all non-integers: $\\boxed{C_F=\\mathbb{R}}$.",
+          "For $G$, $h_2(n)=\\sin(\\tfrac{\\pi}{2}n)$ samples the $4$-cycle $0,1,0,-1$. Its forward difference is $h_2(n)-h_2(n-1)\\in\\{+1,-1,+1,-1\\}$, which is nonzero for every $n$. Thus $J(m)=\\pm 1\\ne 0$ at every integer $m$, so $G$ is discontinuous at every integer; at the non-integers $J$ is undefined and $G$ is locally constant, hence continuous. Therefore $\\boxed{C_G=\\mathbb{R}\\setminus\\mathbb{Z}}$. (At $m=2$, $J(2)=h_2(2)-h_2(1)=0-1=-1\\ne0$, confirming the discontinuity even though $h_2(2)=0$.)",
+          "Part (c). Comparing the two jump profiles: $F$ has $J\\equiv 0$ (continuity set $\\mathbb{R}$) and $G$ has $|J|\\equiv 1$ on $\\mathbb{Z}$ (continuity set $\\mathbb{R}\\setminus\\mathbb{Z}$). They disagree exactly where one jump vanishes and the other does not, namely on all of $\\mathbb{Z}$, so $C_F\\triangle C_G=\\mathbb{Z}$. $\\boxed{C_F\\triangle C_G=\\mathbb{Z}}$"
         ]
       }
     ],
-    "remark": "Insight: composing a continuous outer $f$ with an everywhere-discontinuous, two-island inner $D_{a,b}$ gives a composite that is \\text{globally two-valued} — it equals $f(a)$ on a dense set and $f(b)$ on its dense complement — so it is either continuous \\text{everywhere} (when $f$ cannot distinguish the two islands, $f(a)=f(b)$) or discontinuous \\text{everywhere} (when it can). There is no halfway continuity set. This is the precise reverse of the usual $f\\circ g$ slogan: a wild inner map is tamed not by smoothness of $f$ but by $f$ being \\text{constant on the inner map's range}. The leap from part (a) to (b) is the heart of the trap: holding $f$ fixed and varying $g$ over a family whose ranges \\text{cover} an interval converts a two-point matching condition into the demand that $f$ be constant on that whole interval — \\text{for every} $g$ forces $f$ flat on $\\bigcup_g\\operatorname{range}(g)=[0,1]$, an enormously stronger requirement than $f(0)=f(1)$, as $f(y)=y(1-y)$ shows. Part (c) sharpens this into a threshold: the squared outer map $(y-t)^2$ heals the broken floor at the unique self-symmetric value $t=\\tfrac12$ (the only $t$ equidistant from the two islands $0$ and $1$), and the moment $t$ leaves $\\tfrac12$ the composite shatters everywhere with jump $|2t-1|$ — linear in the perturbation, with no transitional regime. The decoy $t=0$ (\\\"make $f$ vanish on the landed value\\\") is the eternal confusion of \\text{killing one island} with \\text{equating both}."
-  },
-  {
-    "theme": "sequential",
-    "themeLabel": "Sequential & Composite Continuity",
-    "title": "The Map That Tears Cauchy Sequences Apart",
-    "difficulty": 5,
-    "task": "Prove that",
-    "tags": [
-      "cauchy sequences",
-      "uniform continuity",
-      "preservation",
-      "counterexample"
-    ],
-    "statement": "A function $\\varphi$ defined on a set $S\\subseteq\\mathbb{R}$ is said to PRESERVE CAUCHY SEQUENCES if for every Cauchy sequence $(x_n)$ in $S$, the image sequence $(\\varphi(x_n))$ is Cauchy. Consider the open interval $S=(0,1)$. (a) Prove that $u(x)=1/x$ does NOT preserve Cauchy sequences on $(0,1)$. (b) Prove that $v(x)=x^2$ DOES preserve Cauchy sequences on $(0,1)$. State the general principle distinguishing the two.",
-    "answer": "Proved. (a) $u(x)=1/x$ fails: the Cauchy sequence $x_n=1/(n+1)\\in(0,1)$ is mapped to $u(x_n)=n+1$, which is unbounded and hence not Cauchy. (b) $v(x)=x^2$ succeeds: it is Lipschitz with constant $2$ on $(0,1)$ (equivalently, it extends to a continuous function on the compact $[0,1]$, hence is uniformly continuous), so it sends Cauchy sequences to Cauchy sequences. General principle: a function preserves Cauchy sequences on $S$ if and only if it is uniformly continuous on $S$; $v$ is uniformly continuous on $(0,1)$ while $u$, being unbounded near the deleted endpoint $0$, is not.",
-    "trap": "Assuming that mere continuity (which both $u$ and $v$ have on $(0,1)$) is enough to preserve Cauchy sequences. It is not. Cauchy-preservation is equivalent to UNIFORM continuity, and $u(x)=1/x$ is continuous but not uniformly continuous on $(0,1)$. Pointwise continuity transports limits that actually live inside the domain, but it can shred a Cauchy sequence whose limit has been deleted from the domain (here, the endpoint $0$).",
-    "solutions": [
-      {
-        "name": "Explicit counterexample and a uniform-continuity argument",
-        "steps": [
-          "(a) Let $x_n=\\dfrac{1}{n+1}$ for $n\\ge 1$, so every term lies strictly in $(0,1)$. The sequence is Cauchy: for $m,n\\ge N$, $|x_m-x_n|\\le \\frac{1}{m+1}+\\frac{1}{n+1}\\le \\frac{2}{N+1}\\to 0$. (It converges to $0$ in $\\mathbb{R}$, but $0\\notin(0,1)$.)",
-          "(a) Now $u(x_n)=n+1$, so $|u(x_{2n+1})-u(x_n)|=|(2n+2)-(n+1)|=n+1\\to\\infty$. An unbounded sequence cannot be Cauchy, so $(u(x_n))$ is not Cauchy. Hence $u$ does NOT preserve Cauchy sequences.",
-          "(b) The function $\\tilde v(x)=x^2$ is continuous on the compact interval $[0,1]$, and a continuous function on a compact set is uniformly continuous; restricting to $(0,1)$ shows $v$ is uniformly continuous on $(0,1)$.",
-          "(b) Uniform continuity preserves Cauchy sequences: given $\\varepsilon>0$, pick $\\delta>0$ with $|x-y|<\\delta\\Rightarrow|v(x)-v(y)|<\\varepsilon$. If $(x_n)$ is Cauchy, choose $N$ with $|x_m-x_n|<\\delta$ for all $m,n\\ge N$; then $|v(x_m)-v(x_n)|<\\varepsilon$ for $m,n\\ge N$, so $(v(x_n))$ is Cauchy.",
-          "Principle: on a set $S$, $\\varphi$ preserves Cauchy sequences $\\iff$ $\\varphi$ is uniformly continuous on $S$. Here $u$ is not uniformly continuous (it is unbounded near the missing endpoint $0$) while $v$ is."
-        ]
-      },
-      {
-        "name": "Direct Cauchy estimate for $v$, oscillation argument for $u$",
-        "steps": [
-          "(b) For all $x,y\\in(0,1)$, $|v(x)-v(y)|=|x^2-y^2|=|x+y|\\,|x-y|\\le 2|x-y|$, because $x+y<2$. Thus $v$ is Lipschitz on $(0,1)$ with constant $2$.",
-          "(b) If $(x_n)$ is Cauchy, then $|v(x_m)-v(x_n)|\\le 2|x_m-x_n|\\to 0$, so $(v(x_n))$ is Cauchy. Hence $v$ preserves Cauchy sequences.",
-          "(a) For $u$, take $x_n=\\dfrac{1}{n+1}\\in(0,1)$, which is Cauchy. Then $u(x_n)=n+1$ is unbounded, and every Cauchy sequence is bounded (Cauchy $\\Rightarrow$ bounded); the contrapositive shows $(u(x_n))$ is not Cauchy.",
-          "(a) Equivalently, $u$ fails uniform continuity directly: taking $x_n=\\frac1n$ and $y_n=\\frac1{2n}$ in $(0,1)$ gives $|x_n-y_n|=\\frac{1}{2n}\\to 0$ while $|u(x_n)-u(y_n)|=|n-2n|=n\\to\\infty$, so no single $\\delta$ can work.",
-          "Conclusion: $v$ preserves Cauchy sequences and $u$ does not; the obstruction for $u$ is the absence of any Lipschitz/uniform bound near the deleted endpoint $0$. $\\blacksquare$"
-        ]
-      }
-    ],
-    "remark": "Convergent and Cauchy coincide in the complete space $\\mathbb{R}$, but on a non-closed domain like $(0,1)$ a Cauchy sequence may chase a limit that has been deleted from the domain. Continuous functions faithfully transport limits that exist inside the domain; only uniformly continuous functions also honor these phantom boundary limits, which is exactly what Cauchy-preservation demands. Equivalently, $\\varphi$ preserves Cauchy sequences on $S$ iff $\\varphi$ extends to a continuous function on the completion $\\overline{S}$, i.e. iff $\\varphi$ is uniformly continuous on $S$."
+    "remark": "Insight: when a continuous outer map $h$ is composed with the floor function, the composite $h\\circ\\lfloor\\,\\cdot\\,\\rfloor$ is a step function whose only possible discontinuities sit at the integers, and the seam at integer $m$ closes precisely when $h(m)=h(m-1)$. So $h\\circ\\lfloor\\,\\cdot\\,\\rfloor$ is continuous on all of $\\mathbb{R}$ if and only if $h$ is constant on the image $\\mathbb{Z}$ of the inner map — a strictly stronger demand than \\\"$h$ is continuous\\\" and a strictly different demand from \\\"$h$ vanishes at the landed values.\\\" The vanishing condition is a decoy: $\\sin(\\tfrac{\\pi}{2}t)$ kills every even integer yet alternates $0,1,0,-1$, so it is never constant across a seam and the composite breaks at every integer; $\\sin(\\pi t)$ kills all integers to the single value $0$, a genuine constant, so its composite is the identically-zero function and the wild discontinuity of the floor is annihilated. This is the general principle of these problems: a discontinuous inner map produces a continuous composite exactly when the outer map cannot tell the inner map's jumps apart — here, when it assigns one common value to the entire landing set $\\mathbb{Z}$."
   },
   {
     "theme": "sequential",
@@ -2603,102 +2206,118 @@ window.PROBLEMS = [
     "remark": "Insight: the equation $L=\\phi(L)$ obtained by 'passing the limit through the continuous map' is necessary but never sufficient — it only enumerates the values a limit could equal IF one exists, and it cannot tell an attracting root from a repelling one. The classification of the fixed points by $|\\phi'(p)|$ is what does the real work: $|\\phi'(2)|=\\tfrac45<1$ (attracting) versus $|\\phi'(3)|=\\tfrac65>1$ (repelling). A repelling fixed point is a spurious limit for almost every seed — it is attained only by seeds whose orbit is sent onto it exactly, here the two preimages $a_1\\in\\{-3,3\\}$ of $3$ under $\\phi$. The punchline for this chapter is that the seed-to-limit map $L(a_1)$ is itself a discontinuous function: it is the constant $2$ throughout the open basin $(-3,3)$ but jumps to $3$ on the boundary $\\partial S=\\{\\pm 3\\}$, and a two-sequence test at $a_1=3$ (interior seeds $3-\\tfrac1k\\to 3$ give limit $2$, the constant seed $3$ gives limit $3$) certifies the break. The general moral: when a recursion has several fixed points, continuity lets you pass the limit through the map but cannot choose the root; you must add monotonicity/boundedness (or the derivative test) to prove existence and to reject the dynamically unreachable spurious roots — and you must hunt for the degenerate boundary seeds where the 'spurious' root quietly becomes the true one."
   },
   {
-    "theme": "parametric",
-    "themeLabel": "Parametric Continuity",
-    "title": "The Seam Heals, But the Curve Must Never Turn Back",
+    "theme": "sequential",
+    "themeLabel": "Sequential & Composite Continuity",
+    "title": "The Limit That Spikes Above the Axis",
     "difficulty": 5,
-    "task": "Glue the seam via the removable limit, then force global injectivity and count the integer parameters",
+    "task": "Find the pointwise limit explicitly, classify every discontinuity, and report the total jump magnitude.",
     "tags": [
-      "removable-limit",
-      "piecewise-glue",
-      "injectivity",
-      "strict-monotonicity",
-      "slope-sign",
-      "integer-count"
+      "pointwise limit",
+      "function sequence",
+      "removable discontinuity",
+      "composite",
+      "continuity transfer"
     ],
-    "statement": "Let $a$ be an integer parameter. Define $f:\\mathbb{R}\\to\\mathbb{R}$ by\n\\[\nf(x)=\\begin{cases}\\dfrac{a^{2}}{2}+(6-a)\\,x, & x<0,\\\\ \\ell(a), & x=0,\\\\ \\dfrac{a^{2}}{2}+(a-2)\\,x+x^{3}, & x>0,\\end{cases}\n\\]\nwhere the seam value is \\text{not} written down directly but is fixed by the removable-limit constraint\n\\[\n\\ell(a)=\\lim_{x\\to 0}\\frac{e^{a x}-1-a x}{x^{2}} .\n\\]\n(The quotient $\\dfrac{e^{ax}-1-ax}{x^{2}}$ is a genuine $0/0$ indeterminate at $x=0$; its limit is the only value of $\\ell(a)$ that could make the seam removable, and we install exactly that value.)\n\nFind, with full justification, the number of integer values of $a$ for which $f$ is both continuous on all of $\\mathbb{R}$ \\text{and} injective (one-to-one) on all of $\\mathbb{R}$.",
-    "answer": "$4$",
-    "trap": "There are several deadly slips, none of them arithmetic. (1) Many students burn their energy proving continuity at $x=0$ and think the parameter is pinned there. It is not: evaluating the removable limit gives $\\ell(a)=\\dfrac{a^{2}}{2}$ (since $e^{ax}=1+ax+\\tfrac{a^2x^2}{2}+\\cdots$), and BOTH side-branches were built to pass through $\\bigl(0,\\tfrac{a^2}{2}\\bigr)$, so $f$ is continuous at $0$ for \\text{every} integer $a$. Continuity contributes \\text{no} constraint at all; the entire problem lives in the injectivity demand, which students under-weight. (2) For a continuous map on $\\mathbb{R}$, injective is equivalent to strictly monotone, so BOTH pieces must be strictly increasing (or both strictly decreasing) — here both must be strictly increasing because the right branch $x^3$ dominates. The classic error is to check only ONE piece: enforcing only the cubic's monotonicity ($a\\ge 2$) or only the line's positive slope ($a<6$), and forgetting the other, gives a wrong (often infinite) set. The real condition is the \\text{intersection} $2\\le a<6$. (3) The sharpest trap is the lower boundary $a=2$. There the right branch is $\\tfrac{a^2}{2}+x^3$ with derivative $3x^2$, which \\text{vanishes at} $x=0$; panicked students declare '$r'(0)=0\\Rightarrow$ not strictly increasing' and DROP $a=2$, getting $3$. But a zero derivative at an isolated point does not break strict monotonicity — $x^3$ is the textbook example of a strictly increasing function with $r'(0)=0$ — so $a=2$ is VALID and must be kept. (4) The mirror trap is the upper boundary $a=6$: there the left line has slope $6-a=0$, so $f$ is the \\text{constant} $\\tfrac{a^2}{2}=18$ on all of $(-\\infty,0)$ — e.g. $f(-1)=f(-2)=18$ — destroying injectivity, so $a=6$ must be EXCLUDED. Keeping $a=6$ (line 'just barely flat') gives the wrong count $5$. Only $a\\in\\{2,3,4,5\\}$ survives both endpoints correctly.",
+    "statement": "For each $n\\in\\mathbb{N}$ define the function $f_n:\\mathbb{R}\\to\\mathbb{R}$ by $f_n(x)=\\dfrac{x^2+3}{\\,1+n\\,(x^2-4)^2\\,}.$ Every $f_n$ is continuous on all of $\\mathbb{R}$, since its denominator $1+n(x^2-4)^2\\ge 1>0$. Let $f(x)=\\lim_{n\\to\\infty} f_n(x)$ denote the pointwise limit. Determine $f$ explicitly, list and classify all of its discontinuities, and compute the sum $S$ of the magnitudes $\\bigl|\\,f(a)-\\lim_{x\\to a} f(x)\\,\\bigr|$ taken over every discontinuity $a$.",
+    "answer": "$f(x)=7$ at $x=\\pm 2$ and $f(x)=0$ otherwise; two removable discontinuities at $x=\\pm 2$, with $\\boxed{S=14}$.",
+    "trap": "Concluding that because every $f_n$ is continuous the limit $f$ must also be continuous (so $S=0$). The pointwise limit of continuous functions need not be continuous: here it spikes to $7$ exactly where $x^2-4=0$, breaking continuity at $x=\\pm 2$.",
     "solutions": [
       {
-        "name": "Evaluate the seam, then split injectivity into a slope-sign test on each piece",
+        "name": "Split on the sign of the denominator term",
         "steps": [
-          "Step 1 — install the seam. Using $e^{ax}=1+ax+\\tfrac{a^2x^2}{2}+\\tfrac{a^3x^3}{6}+\\cdots$, the numerator is $e^{ax}-1-ax=\\tfrac{a^2}{2}x^2+O(x^3)$, so $\\ell(a)=\\lim_{x\\to0}\\dfrac{e^{ax}-1-ax}{x^{2}}=\\dfrac{a^{2}}{2}$. Hence the seam value is $f(0)=\\tfrac{a^2}{2}$. Both branches were written with the same constant term $\\tfrac{a^2}{2}$, so $\\lim_{x\\to0^-}f=\\tfrac{a^2}{2}=\\lim_{x\\to0^+}f=f(0)$: $f$ is continuous at $0$ for EVERY integer $a$. Continuity therefore imposes no restriction, and the whole problem reduces to injectivity.",
-          "Step 2 — injective $\\Leftrightarrow$ strictly monotone. $f$ is continuous on $\\mathbb{R}$; a continuous function on an interval is injective iff it is strictly monotone. Since the right branch contains $+x^3\\to+\\infty$, any monotone $f$ must be strictly increasing. So we require: the left line strictly increasing on $(-\\infty,0)$ AND the right cubic strictly increasing on $(0,\\infty)$, with the seam preserving order (the left piece feeds into the seam, the right leaves it).",
-          "Step 3 — left piece. The line $\\tfrac{a^2}{2}+(6-a)x$ has constant slope $6-a$; it is strictly increasing iff $6-a>0$, i.e. $a<6$. (At $a=6$ the slope is $0$, making $f\\equiv 18$ on $(-\\infty,0)$ — not injective.)",
-          "Step 4 — right piece. The cubic $r(x)=\\tfrac{a^2}{2}+(a-2)x+x^3$ has $r'(x)=(a-2)+3x^2$, which on $[0,\\infty)$ attains its minimum at $x=0$, value $a-2$. If $a-2>0$ then $r'>0$ throughout, strictly increasing. If $a-2=0$ (i.e. $a=2$) then $r'(x)=3x^2\\ge0$, vanishing only at the isolated point $x=0$, so $r$ is STILL strictly increasing ($x^3$ is the canonical example). If $a-2<0$ then $r'(0)<0$, so $r$ decreases on $(0,\\varepsilon)$ before rising — a local max/min appears and $r$ repeats values, destroying injectivity. Hence the right piece is strictly increasing iff $a\\ge 2$.",
-          "Step 5 — glue and count. Both pieces strictly increasing requires $a<6$ and $a\\ge 2$, i.e. $2\\le a<6$. Continuity then makes $f$ strictly increasing across the seam: for $x_1<0<x_2$, $f(x_1)<\\tfrac{a^2}{2}=f(0)<f(x_2)$, so $f$ is strictly increasing on all of $\\mathbb{R}$, hence injective. The integers satisfying $2\\le a<6$ are $\\{2,3,4,5\\}$. Count $=4$. $\\boxed{4}$"
+          "Fix $x$. The behaviour of $f_n(x)=\\dfrac{x^2+3}{1+n(x^2-4)^2}$ as $n\\to\\infty$ is governed by the coefficient $(x^2-4)^2\\ge 0$ multiplying $n$.",
+          "If $x^2-4\\neq 0$, i.e. $x\\neq\\pm 2$, then $(x^2-4)^2>0$ is a positive constant, so the denominator $1+n(x^2-4)^2\\to\\infty$ while the numerator $x^2+3$ is fixed; hence $f(x)=0$.",
+          "If $x=\\pm 2$, then $x^2-4=0$, so the denominator equals $1$ for every $n$ and $f_n(\\pm 2)=\\dfrac{4+3}{1}=7$ for all $n$; thus $f(\\pm 2)=7$.",
+          "Therefore $f(x)=7$ at $x=\\pm 2$ and $f(x)=0$ elsewhere. Near $x=2$ every nearby point has $x\\neq\\pm 2$, so $\\lim_{x\\to 2}f(x)=0\\neq 7=f(2)$; the limit exists but disagrees with the value, so the discontinuity is removable. The same holds at $x=-2$.",
+          "Each removable break contributes $|f(\\pm2)-0|=|7-0|=7$, so $S=7+7=\\boxed{14}.$"
         ]
       },
       {
-        "name": "Derivative as a single global object (one-sided derivatives at the seam)",
+        "name": "Reduce to a known model limit via composition",
         "steps": [
-          "After Step 1 of Solution 1 ($\\ell(a)=\\tfrac{a^2}{2}$, continuity for all $a$), differentiate piecewise: $f'(x)=6-a$ for $x<0$ and $f'(x)=(a-2)+3x^2$ for $x>0$. For a continuous $f$ to be injective on $\\mathbb{R}$ we need $f'\\ge 0$ everywhere it exists (no sign change) with the zero set having empty interior, and we must inspect the seam.",
-          "On $(-\\infty,0)$: $f'=6-a$, a constant. It is $\\ge0$ with no interval of zeros iff $6-a>0$ (if $6-a=0$ the derivative is identically $0$ on a whole interval — the function is flat — which is fatal). So $a<6$.",
-          "On $(0,\\infty)$: $f'=(a-2)+3x^2\\ge a-2$, with equality only at the single point $x=0^+$. The infimum $a-2$ must be $\\ge0$ for $f'$ to stay nonnegative on the whole ray; $a\\ge2$. When $a=2$ the only zero of $f'$ is the isolated point $x=0$, so monotonicity is preserved.",
-          "Seam check: the left one-sided derivative is $6-a>0$ and the right one-sided derivative at $0^+$ is $a-2\\ge0$; the function value is continuous, so no folding occurs at $x=0$ (left arrives strictly increasing, right departs nondecreasing with only an isolated stationary point). Thus $f'\\ge0$ globally with isolated zeros exactly when $a<6$ and $a\\ge2$. Integers: $a\\in\\{2,3,4,5\\}$, giving $\\boxed{4}$ values."
-        ]
-      },
-      {
-        "name": "Contrapositive: hunt for a repeated value (collision test)",
-        "steps": [
-          "Injectivity fails iff some value is taken twice. After fixing $\\ell(a)=\\tfrac{a^2}{2}$ (Solution 1, Step 1), test each obstruction directly. Left collision: the line $\\tfrac{a^2}{2}+(6-a)x$ repeats a value on $(-\\infty,0)$ iff its slope is $0$, i.e. $a=6$ (then $f(-1)=f(-2)=18$). For $a\\ne6$ the line is one-to-one on its ray.",
-          "Right collision: $r(x)=\\tfrac{a^2}{2}+(a-2)x+x^3$. A repeat needs $r(x_1)=r(x_2)$ for $0\\le x_1<x_2$, i.e. $(a-2)(x_1-x_2)+(x_1^3-x_2^3)=0\\Rightarrow (a-2)+(x_1^2+x_1x_2+x_2^2)=0$. Since $x_1^2+x_1x_2+x_2^2>0$ for $(x_1,x_2)\\ne(0,0)$, a solution with $x_1,x_2\\ge0$ exists iff $a-2<0$, i.e. $a<2$. So the right ray is injective iff $a\\ge2$ (the borderline $a=2$ forces $x_1^2+x_1x_2+x_2^2=0$, impossible for distinct nonnegative arguments — no collision, $a=2$ survives).",
-          "Cross-collision (left value equals right value): left values fill $(\\tfrac{a^2}{2},\\infty)$-below, precisely $f(x)<\\tfrac{a^2}{2}$ for $x<0$ when slope $>0$, while right values are $\\ge\\tfrac{a^2}{2}$; with slope $6-a>0$ the two ranges meet only at the seam value $\\tfrac{a^2}{2}=f(0)$, attained once. So no cross-collision when $a<6$ and $a\\ge2$.",
-          "Therefore collisions are absent exactly when $a\\ne6$, $a\\ge2$, and $a<6$ together, i.e. $2\\le a<6$. Combined with $a$ integer this is $\\{2,3,4,5\\}$, so the count of injectivity-preserving integers is $\\boxed{4}$."
+          "Let $g(t)=\\lim_{n\\to\\infty}\\dfrac{1}{1+n\\,t^2}$. For $t\\neq 0$ the denominator blows up so $g(t)=0$, while for $t=0$ each term equals $1$ so $g(0)=1$; thus $g$ is $1$ at $t=0$ and $0$ elsewhere.",
+          "Write $f_n(x)=(x^2+3)\\cdot\\dfrac{1}{1+n(x^2-4)^2}$. The factor $x^2+3$ is independent of $n$ and continuous, so $f(x)=(x^2+3)\\,g(x^2-4)$.",
+          "The composite $g(x^2-4)$ equals $1$ exactly when $x^2-4=0$, i.e. $x=\\pm 2$, and $0$ otherwise.",
+          "Hence $f(x)=(x^2+3)\\cdot 1=7$ at $x=\\pm 2$ (since $4+3=7$) and $f(x)=(x^2+3)\\cdot 0=0$ for all other $x$.",
+          "At each of $x=\\pm 2$ the punctured neighbourhood gives $f\\equiv 0$, so $\\lim_{x\\to\\pm2}f=0\\neq 7$: two removable discontinuities, each of magnitude $7$, giving $S=14=\\boxed{14}.$"
         ]
       }
     ],
-    "remark": "Insight: this problem deliberately decouples the two reflexes. The removable-limit constraint $\\ell(a)=\\lim_{x\\to0}\\tfrac{e^{ax}-1-ax}{x^2}=\\tfrac{a^2}{2}$ looks like the crux, but once you evaluate it you discover both branches were engineered to share that constant term — so continuity holds for every integer $a$ and supplies ZERO equations. All the discrimination comes from injectivity, and the bridge that makes it tractable is the theorem 'continuous + injective on an interval $\\Leftrightarrow$ strictly monotone', which converts a one-to-one demand into a slope-sign inequality on each piece. The casework then turns on two boundaries that are mirror images: $a=2$ must be KEPT because a derivative vanishing at an isolated point ($r'(x)=3x^2$ at $x=0$) does not break strict monotonicity (think $x^3$), while $a=6$ must be DROPPED because a derivative vanishing on a whole interval (the flat line) does. Confusing these two kinds of stationary behaviour is exactly the difference between the right answer $4$ and the wrong answers $3$ or $5$. The meta-lesson: 'continuity' and 'injectivity' are independent gates — solve them separately, and watch the endpoints of every inequality with a derivative-sign argument, not a reflex."
+    "remark": "**Insight.** Continuity does not survive an arbitrary pointwise limit. Each $f_n$ is a smooth continuous bump, yet the limit collapses to the zero function everywhere except at the two zeros of $x^2-4$, where a fixed denominator of $1$ lets the numerator $x^2+3$ survive as an isolated spike of height $7$. The break is removable precisely because the surrounding values all tend to $0$: redefining $f(\\pm2):=0$ would restore continuity, the signature of a removable discontinuity."
   },
   {
-    "theme": "parametric",
-    "themeLabel": "Parametric Continuity",
-    "title": "The Largest Hole You Are Allowed to Fill",
+    "theme": "sequential",
+    "themeLabel": "Sequential & Composite Continuity",
+    "title": "A Smooth Outer Map Cannot Mend the Break",
     "difficulty": 5,
-    "task": "Patch the removable discontinuity, then maximize the patched value over the constrained parameter family",
+    "task": "Count and value the breaks",
     "tags": [
-      "removable-discontinuity",
-      "parametric-family",
-      "constrained-optimization",
-      "difference-of-squares",
-      "boundary-vs-interior",
-      "degenerate-case"
+      "composite function",
+      "limit of a sequence of functions",
+      "jump discontinuity",
+      "continuity on an interval",
+      "trigonometric functions"
     ],
-    "statement": "For real parameters $a,b$, define\n\\[\nf_{a,b}(x)=\\frac{\\cos(ax)-\\cos(bx)}{x^{2}}\\quad (x\\neq 0),\\qquad f_{a,b}(0)=\\lambda ,\n\\]\nand let $\\lambda=\\lambda(a,b)$ be chosen so that $f_{a,b}$ is continuous at $x=0$ (i.e. $\\lambda$ fills the removable discontinuity).\n\n(a) Compute $\\lambda(a,b)$.\n\n(b) Now restrict the pair $(a,b)$ to the line $a+b=2$ while also requiring $a^{2}+b^{2}\\le 10$. Over this family, find the maximum possible value of the patched height $\\lambda$, and state every pair $(a,b)$ at which it is attained.\n\nThroughout, $f_{a,b}$ must genuinely possess a (removable) discontinuity at $0$ for the patching question to be meaningful; take care to identify any parameter pairs in your family for which this fails, and say what happens to $\\lambda$ there.",
-    "answer": "\\[\\boxed{\\lambda_{\\max}=4,\\ \\text{attained only at }(a,b)=(-1,\\,3)}\\]",
-    "trap": "There are three baited pits, and a strong solver typically falls into at least one. PIT 1 (the sign-blind reflex / 'coefficients are positive'). After getting $\\lambda=\\tfrac{b^2-a^2}{2}$ and the line $a+b=2$, many students silently treat $a,b$ as nonnegative 'frequencies' and search only $a,b\\ge 0$. On $a+b=2$ that forces $b\\in[0,2]$, giving $\\lambda=2b-2\\le 2$, and they confidently report $\\lambda_{\\max}=2$ at $(a,b)=(0,2)$. This is WRONG: nothing in the problem restricts the sign of $a$, and the true optimum lives at $a=-1<0$. PIT 2 (forgetting the budget makes the problem ill-posed). On the line, $\\lambda=\\tfrac{(b-a)(b+a)}{2}=\\tfrac{(b-a)\\cdot 2}{2}=b-a$, which is UNBOUNDED above as you slide along the unconstrained line ($b\\to+\\infty$). A student who drops the constraint $a^2+b^2\\le 10$ concludes 'no maximum / supremum $=+\\infty$.' The disk is precisely what caps the seam height; with $a+b=2$ it forces $|b-a|\\le 4$ (since $a^2+b^2=\\tfrac{(a+b)^2+(b-a)^2}{2}=2+\\tfrac{(b-a)^2}{2}\\le 10$), so $\\lambda=b-a\\le 4$, with equality only when $a^2+b^2=10$ exactly — the optimum is forced onto the boundary circle, not the interior. PIT 3 (the degenerate non-discontinuity, and its symmetric impostor). When $a=b$ the numerator $\\cos(ax)-\\cos(bx)\\equiv 0$, so $f_{a,b}\\equiv 0$: there is NO removable discontinuity at all (the natural value is just $0$, and $\\lambda=0$ trivially), yet $(a,b)=(1,1)$ sits right on the line $a+b=2$ and must be discussed, not optimized over as if it were a genuine seam. The mirror point $(a,b)=(3,-1)$ — the other intersection of the line with the circle — is the global MINIMUM $\\lambda=-4$, and is a tempting 'by symmetry the answer is $\\pm 4$, take $+4$ at $(3,-1)$' slip: the maximizer is $(-1,3)$, NOT $(3,-1)$ (note $\\lambda=b-a$, so big $\\lambda$ wants $b$ large and $a$ small/negative). Anyone who maximizes $a-b$, or reports the wrong intersection point, or never realizes the maximizer has a negative coefficient, gets the height right but the parameters wrong — or the height wrong entirely.",
+    "statement": "Define $s(x)=\\displaystyle\\lim_{n\\to\\infty}\\frac{x^{2n}}{1+x^{2n}}$ and form the composite $F(x)=\\cos\\!\\big(\\pi\\,s(x)\\big)$. Determine the number of points of $\\mathbb{R}$ at which $F$ is discontinuous, classify each such discontinuity, and give the value of $F$ there.",
+    "answer": "$\\boxed{F\\text{ is discontinuous at }x=\\pm1\\ (\\text{jumps});\\ 2\\text{ points, with }F(\\pm1)=0}$",
+    "trap": "The seductive wrong answer is $0$: \"the outer map $\\cos$ is continuous and a composite of continuous functions is continuous, so $F$ is continuous everywhere.\" This silently assumes the inner map $s$ is continuous. It is not — $s$ itself jumps at $x=\\pm1$, and a continuous outer function applied to a discontinuous inner function generally stays discontinuous.",
     "solutions": [
       {
-        "name": "Removable-limit via half-angle, then difference-of-squares + sum/difference substitution",
+        "name": "Resolve the inner limit, then compose",
         "steps": [
-          "Part (a). For continuity at $0$ we need $\\lambda=\\lim_{x\\to 0}\\dfrac{\\cos(ax)-\\cos(bx)}{x^{2}}$. Use the sum-to-product identity $\\cos(ax)-\\cos(bx)=-2\\sin\\!\\big(\\tfrac{(a+b)x}{2}\\big)\\sin\\!\\big(\\tfrac{(a-b)x}{2}\\big)$. As $x\\to 0$, $\\sin(\\theta x)\\sim \\theta x$, so the numerator $\\sim -2\\cdot\\tfrac{(a+b)x}{2}\\cdot\\tfrac{(a-b)x}{2}=-\\tfrac{(a+b)(a-b)}{2}x^{2}=-\\tfrac{a^{2}-b^{2}}{2}x^{2}=\\tfrac{b^{2}-a^{2}}{2}x^{2}$. Dividing by $x^{2}$ and taking the limit gives $\\boxed{\\lambda(a,b)=\\dfrac{b^{2}-a^{2}}{2}}$. (Equivalently, $\\cos\\theta=1-\\tfrac{\\theta^2}{2}+O(\\theta^4)$ gives $\\cos(ax)-\\cos(bx)=\\tfrac{b^2-a^2}{2}x^2+O(x^4)$, same result.)",
-          "Part (b). On the line $a+b=2$, factor the patched height: $\\lambda=\\dfrac{b^{2}-a^{2}}{2}=\\dfrac{(b-a)(b+a)}{2}=\\dfrac{(b-a)\\cdot 2}{2}=b-a$. So maximizing the seam height is exactly maximizing $b-a$ along the line, subject to the budget $a^{2}+b^{2}\\le 10$.",
-          "Convert the budget into a bound on $b-a$ using the algebraic identity $a^{2}+b^{2}=\\dfrac{(a+b)^{2}+(b-a)^{2}}{2}$. With $a+b=2$ this is $a^{2}+b^{2}=\\dfrac{4+(b-a)^{2}}{2}=2+\\dfrac{(b-a)^{2}}{2}$. The constraint $a^{2}+b^{2}\\le 10$ becomes $2+\\dfrac{(b-a)^{2}}{2}\\le 10$, i.e. $(b-a)^{2}\\le 16$, i.e. $-4\\le b-a\\le 4$.",
-          "Hence $\\lambda=b-a\\le 4$, with equality iff $b-a=4$ AND $a+b=2$, i.e. $b=3,\\ a=-1$; this pair indeed lies on the boundary circle ($a^2+b^2=1+9=10$), so it is feasible. The maximum patched height is $\\boxed{\\lambda_{\\max}=4}$, attained only at $\\boxed{(a,b)=(-1,3)}$.",
-          "Degenerate check (PIT 3). The point $(1,1)$ on the line has $a=b$, so $f\\equiv 0$ with no genuine discontinuity and $\\lambda=0$; it is not a competitor for the maximum. The other line-circle intersection $(3,-1)$ gives $\\lambda=b-a=-1-3=-4$, the global minimum — not the maximum. The maximizer $(-1,3)$ has a negative coefficient $a=-1$, which is why a 'positive-coefficients' search misses it and reports the too-small $\\lambda=2$. None of this disturbs the conclusion: $\\boxed{\\lambda_{\\max}=4\\ \\text{at}\\ (a,b)=(-1,3)}$."
+          "For the inner function: if $|x|<1$ then $x^{2n}\\to0$ so $s(x)=0$; if $|x|>1$ then $x^{2n}\\to\\infty$ so $\\frac{x^{2n}}{1+x^{2n}}\\to1$, giving $s(x)=1$; if $|x|=1$ then $x^{2n}=1$ so $s(x)=\\tfrac12$. Hence $s$ has jump discontinuities exactly at $x=\\pm1$.",
+          "Apply the continuous outer map $\\cos(\\pi\\,\\cdot\\,)$: for $|x|<1$, $F=\\cos0=1$; for $|x|>1$, $F=\\cos\\pi=-1$; at $|x|=1$, $F=\\cos\\tfrac{\\pi}{2}=0$.",
+          "At $x=1$: the left limit is $\\cos(\\pi\\cdot0)=1$, the right limit is $\\cos(\\pi\\cdot1)=-1$, and $F(1)=0$. The one-sided limits disagree, so $F$ has a jump discontinuity at $1$; the same holds at $x=-1$ by symmetry ($s$ is even).",
+          "Everywhere else $s$ is locally constant, so $F$ is continuous there. Therefore $F$ is discontinuous at exactly the $2$ points $x=\\pm1$, both jumps, with $F(\\pm1)=0$."
         ]
       },
       {
-        "name": "Single-variable reduction and monotonicity on the feasible segment",
+        "name": "Continuity of a composite breaks only where the inner one does",
         "steps": [
-          "From part (a), $\\lambda=\\dfrac{b^{2}-a^{2}}{2}$. Eliminate $a$ using $a=2-b$: $\\lambda(b)=\\dfrac{b^{2}-(2-b)^{2}}{2}=\\dfrac{b^{2}-(4-4b+b^{2})}{2}=\\dfrac{4b-4}{2}=2b-2$. So along the line, $\\lambda$ is an increasing affine function of $b$ — its maximum sits at the largest admissible $b$.",
-          "Find the admissible range of $b$ from the budget. Substituting $a=2-b$ into $a^{2}+b^{2}\\le 10$: $(2-b)^{2}+b^{2}\\le 10\\Rightarrow 2b^{2}-4b+4\\le 10\\Rightarrow 2b^{2}-4b-6\\le 0\\Rightarrow b^{2}-2b-3\\le 0\\Rightarrow (b-3)(b+1)\\le 0$, giving $b\\in[-1,3]$. Thus the feasible parameters form the closed segment of the line from $(3,-1)$ (at $b=-1$) to $(-1,3)$ (at $b=3$).",
-          "Since $\\lambda(b)=2b-2$ is strictly increasing in $b$, its maximum on $b\\in[-1,3]$ occurs at the right endpoint $b=3$, where $a=2-3=-1$, giving $\\lambda=2(3)-2=4$. The minimum is at $b=-1$: $\\lambda=-4$ at $(3,-1)$. Therefore $\\boxed{\\lambda_{\\max}=4}$ at $(a,b)=(-1,3)$, attained uniquely (the function is strictly monotone, so no other point ties).",
-          "Genuine-discontinuity audit. The interior point $b=1$ (i.e. $a=b=1$) makes the numerator vanish identically, $f\\equiv 0$: no removable seam, $\\lambda=0$. This sits strictly inside the segment and is consistent with $\\lambda(1)=2(1)-2=0$, but it is not an extremum and not a true discontinuity — it is exactly the parameter pair the problem warns to flag. The maximum at $b=3$ is a genuine $0/0$ removable point: there $\\cos(-x)-\\cos(3x)\\to 0$ and the patched value $4$ removes the hole, confirming $\\boxed{\\lambda_{\\max}=4\\ \\text{at}\\ (a,b)=(-1,3)}$."
-        ]
-      },
-      {
-        "name": "Symmetric line parametrization (centering the family)",
-        "steps": [
-          "From part (a), $\\lambda=\\dfrac{b^{2}-a^{2}}{2}$. Parametrize the line $a+b=2$ symmetrically about its midpoint $(1,1)$ by a single parameter $t$: set $a=1-t,\\ b=1+t$ (then $a+b=2$ automatically, and $t=\\tfrac{b-a}{2}$). This change of variable is the natural one because it diagonalizes the difference of squares.",
-          "Compute the objective: $\\lambda=\\dfrac{(1+t)^{2}-(1-t)^{2}}{2}=\\dfrac{4t}{2}=2t$. So $\\lambda=2t$ is linear and increasing in $t$; maximizing $\\lambda$ means pushing $t$ as large as the budget allows.",
-          "Impose the budget in the same variable: $a^{2}+b^{2}=(1-t)^{2}+(1+t)^{2}=2+2t^{2}\\le 10\\Rightarrow t^{2}\\le 4\\Rightarrow -2\\le t\\le 2$. Hence $\\lambda=2t\\le 4$, with equality at $t=2$, i.e. $a=1-2=-1,\\ b=1+2=3$. So $\\boxed{\\lambda_{\\max}=4}$ at $(a,b)=(-1,3)$ (and the minimum $\\lambda=-4$ is at $t=-2$, the impostor point $(3,-1)$).",
-          "Lagrange cross-check on the binding boundary. The unconstrained-on-the-line height $\\lambda=2t$ has no interior critical point ($\\tfrac{d}{dt}(2t)=2\\neq 0$), so the optimum must lie on the budget boundary $a^{2}+b^{2}=10$; the two boundary points are $t=\\pm 2$, and the larger $\\lambda$ is at $t=+2$. The degenerate seamless point $t=0$ ($a=b=1$, $f\\equiv 0$) is the unique place the discontinuity disappears, lying exactly at the symmetry center — neither a maximizer nor a minimizer. The verdict stands: $\\boxed{\\lambda_{\\max}=4\\ \\text{at}\\ (a,b)=(-1,3)}$."
+          "A composite $g\\circ h$ with $g$ continuous is continuous at every point where $h$ is continuous, so the candidate break-points of $F=\\cos(\\pi s)$ are precisely the discontinuities of $s$, namely $x=\\pm1$.",
+          "At each such point check directly: near $x=1$ the inner $s$ takes the two distinct one-sided limits $0$ and $1$, which the continuous $\\cos(\\pi\\,\\cdot)$ maps to the distinct values $1$ and $-1$; since these differ, the discontinuity is genuine (a jump), not removable.",
+          "Hence exactly $\\boxed{2}$ jump discontinuities, at $x=\\pm1$, and the composite value at each is $\\cos\\!\\big(\\tfrac{\\pi}{2}\\big)=0$."
         ]
       }
     ],
-    "remark": "Insight: the whole problem turns on the identity $\\lambda=\\dfrac{b^{2}-a^{2}}{2}=\\dfrac{(b-a)(b+a)}{2}$, which on the line $b+a=2$ collapses to the strikingly simple $\\lambda=b-a$. Once you see this, the optimization is not a calculus grind but a one-line observation: maximize the gap $b-a$ under a quadratic budget. The constraint $a^{2}+b^{2}\\le 10$ is doing real work — without it the seam height is unbounded along the line, so the problem is only well-posed because the budget caps $|b-a|$ via $a^{2}+b^{2}=2+\\tfrac{(b-a)^{2}}{2}$. The optimum is therefore forced onto the boundary circle (a max of a non-constant linear functional never lands in the interior of a convex region), landing at $(-1,3)$ with $\\lambda=4$. The three traps encode the three ways top students lose this: assuming the coefficients are positive (you miss the negative $a=-1$ and report $2$), forgetting the budget (you claim $+\\infty$), and mishandling the degenerate $a=b$ point where the function is identically zero and there is no hole to fill at all. The chapter moral: a removable-discontinuity value is a function of the parameters, and 'continuity-completion' fuses naturally with optimization — but only after you respect the family's geometry (sign-freedom, the binding budget) and quarantine the degenerate members where the discontinuity silently ceases to exist."
+    "remark": "**Insight.** Composition propagates continuity **only through points where the inner function is already continuous**. Here the sequence limit $s$ jumps at $x=\\pm1$, so wrapping it in the perfectly smooth $\\cos(\\pi\\,\\cdot)$ cannot heal anything — the outer map merely relabels the two distinct one-sided inner-limits as two distinct outer values, leaving the jump intact. The reflex \"continuous $\\circ$ continuous\" is valid only once you have **verified the inner map is continuous**, which a sequence limit is not entitled to be."
+  },
+  {
+    "theme": "sequential",
+    "themeLabel": "Sequential & Composite Continuity",
+    "title": "Two Breaks Hidden in One Rational Limit",
+    "difficulty": 5,
+    "task": "Count and classify the breaks",
+    "tags": [
+      "limit of a sequence of functions",
+      "jump discontinuity",
+      "one-sided limits",
+      "piecewise gluing",
+      "rational function"
+    ],
+    "statement": "For each real $x$ define $g(x)=\\displaystyle\\lim_{n\\to\\infty}\\frac{x^{2n+1}+x+1}{x^{2n}+1}$. First write $g$ as an explicit piecewise function, then determine the number of points of $\\mathbb{R}$ at which $g$ is discontinuous, classify each such discontinuity, and report the saltus (the jump $g(a^{+})-g(a^{-})$) at the right-hand break point.",
+    "answer": "$\\boxed{g\\text{ has }2\\text{ discontinuities, both jumps (at }x=\\pm1),\\text{ with saltus }-1\\text{ at }x=1}$",
+    "trap": "The seductive wrong answer is $0$: since every term $\\frac{x^{2n+1}+x+1}{x^{2n}+1}$ is a continuous function of $x$, one is tempted to declare the limit continuous too. But a pointwise limit of continuous functions need not be continuous. Here the dominant power $x^{2n}$ switches its behaviour across $|x|=1$, so the three regimes $|x|<1$, $|x|>1$, $|x|=1$ glue to a function that actually jumps at both $x=1$ and $x=-1$.",
+    "solutions": [
+      {
+        "name": "Resolve the limit by the size of $|x|$",
+        "steps": [
+          "If $|x|<1$ then $x^{2n}\\to0$ and $x^{2n+1}\\to0$, so $g(x)=\\dfrac{0+x+1}{0+1}=x+1$.",
+          "If $|x|>1$ then $x^{2n}\\to\\infty$; dividing numerator and denominator by $x^{2n}$ gives $g(x)=\\dfrac{x+(x+1)x^{-2n}}{1+x^{-2n}}\\to x$.",
+          "At $x=1$: $x^{2n}=1$, so $g(1)=\\dfrac{1+1+1}{1+1}=\\tfrac32$. At $x=-1$: $x^{2n}=1,\\ x^{2n+1}=-1$, so $g(-1)=\\dfrac{-1-1+1}{1+1}=-\\tfrac12$. Hence $g(x)=x+1$ on $(-1,1)$, $g(x)=x$ on $|x|>1$, $g(1)=\\tfrac32$, $g(-1)=-\\tfrac12$.",
+          "Each branch is a polynomial, so $g$ is continuous on $(-1,1)$, on $(1,\\infty)$ and on $(-\\infty,-1)$; only $x=\\pm1$ can break."
+        ]
+      },
+      {
+        "name": "Compare one-sided limits at the two seams",
+        "steps": [
+          "At $x=1$: the left limit (from $(-1,1)$) is $\\lim_{x\\to1^{-}}(x+1)=2$, the right limit (from $|x|>1$) is $\\lim_{x\\to1^{+}}x=1$. The two one-sided limits are finite but unequal, so $x=1$ is a jump discontinuity; its saltus is $g(1^{+})-g(1^{-})=1-2=-1$ (the value $g(1)=\\tfrac32$ sits between them, confirming it is non-removable).",
+          "At $x=-1$: the left limit (from $|x|>1$) is $\\lim_{x\\to-1^{-}}x=-1$, the right limit (from $(-1,1)$) is $\\lim_{x\\to-1^{+}}(x+1)=0$. Again finite and unequal, so $x=-1$ is a jump discontinuity.",
+          "Therefore $g$ has exactly $2$ discontinuities, both of jump type, and the saltus at the right-hand break $x=1$ is $-1$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The single fraction looks innocuous, but $x^{2n}$ is a switch: it crushes to $0$ inside the unit interval and blows up outside it, so the one formula secretly encodes three different polynomials. The lesson is that taking a limit term-by-term can manufacture jumps out of perfectly continuous building blocks; never assume $\\lim_n f_n$ inherits the continuity of the $f_n$. To classify, glue the branches and read off the one-sided limits at each seam $|x|=1$."
   },
   {
     "theme": "parametric",
@@ -2748,6 +2367,102 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: continuity and differentiability at a seam are independent constraints, and the right way to read a piecewise-parameter problem is to COUNT them, not to count seams. Here three unknowns $a,b,c$ meet two seams, but the seams supply only two continuity equations, leaving a genuine one-parameter family $(t,1-t,1)$ — continuity alone is underdetermined, the missing equation is real, not an arithmetic oversight. The single differentiability condition at $x=0$ is precisely the third, independent equation (a full-rank $3\\times3$ system), collapsing the family to the unique $(-1,2,1)$. The trap that fells strong students is the unexamined belief that 'smooth' means differentiable at every join: forcing differentiability at both seams over-determines the system to inconsistency ($0=-\\tfrac23$), so the obtained $f$ is deliberately a corner at $x=1$. The transferable rule: each unknown parameter buys you one constraint; continuity at $n$ joins gives $n$ equations, and every additional smoothness requirement (matching a derivative) is one more equation you may impose only until the count reaches the number of free parameters — beyond that, the geometry of the surrounding curves decides whether it is even possible."
+  },
+  {
+    "theme": "parametric",
+    "themeLabel": "Parametric Continuity",
+    "title": "The Hole That Heals — Unless the Pole Lands On It",
+    "difficulty": 4,
+    "task": "Classify the singularity at x=1 across all parameters and report every pair making it removable",
+    "tags": [
+      "removable-discontinuity",
+      "double-pole",
+      "parameter-dependent",
+      "factor-cancellation",
+      "casework"
+    ],
+    "statement": "For real parameters $a,b$ define, on its natural domain $\\mathbb{R}\\setminus\\{1,b\\}$,\n\\[\nf(x)=\\frac{x^{2}-(a+1)x+a}{(x-1)(x-b)}.\n\\]\nThe numerator vanishes at $x=1$, so it is tempting to declare the singularity at $x=1$ harmless for every choice of parameters. Investigate honestly. Call the singularity at $x=1$ \\text{removable} if $\\lim_{x\\to 1}f(x)$ exists as a finite number (so a single re-definition of $f(1)$ restores continuity at $x=1$). Determine the complete set $S$ of pairs $(a,b)$ for which the singularity at $x=1$ is removable, distinguishing the cases where $x=1$ is a simple removable hole, where it is a genuine pole, and where it is a doubly cancelled (twice-removable) point.",
+    "answer": "$S=\\{(a,b):b\\neq 1\\}\\cup\\{(1,1)\\}$",
+    "trap": "The seductive error is to factor the numerator as $x^{2}-(a+1)x+a=(x-1)(x-a)$, cancel the visible $(x-1)$ against the $(x-1)$ in the denominator, and conclude that $x=1$ is removable for EVERY $(a,b)$ with limit $\\dfrac{1-a}{1-b}$. The cancellation is legitimate only while the denominator contributes a SINGLE factor of $(x-1)$ — that is, only when $b\\neq 1$. If $b=1$ the denominator is $(x-1)^{2}$, and after cancelling one $(x-1)$ the surviving function is $\\dfrac{x-a}{x-1}$, which still blows up at $x=1$ unless the numerator also vanishes there, i.e. unless $a=1$. So at $b=1$ the point $x=1$ is a genuine simple pole for every $a\\neq 1$, and the glib formula $\\dfrac{1-a}{1-b}$ secretly divides by zero. A strong student who never asks 'what if the denominator's zero at $1$ is a DOUBLE zero?' will report 'removable for all $(a,b)$' and miss the entire punctured line $\\{(a,1):a\\neq1\\}$ where the hole is actually a pole.",
+    "solutions": [
+      {
+        "name": "Factor, then split on the multiplicity of the denominator's zero at 1",
+        "steps": [
+          "Factor the numerator: $x^{2}-(a+1)x+a=(x-1)(x-a)$ (the roots are $1$ and $a$, summing to $a+1$ and multiplying to $a$). Hence $f(x)=\\dfrac{(x-1)(x-a)}{(x-1)(x-b)}$, and the only question at $x=1$ is whether the $(x-1)$ in the denominator is fully cancelled.",
+          "Case $b\\neq 1$. Near $x=1$ the factor $(x-b)$ is nonzero, so cancelling the common $(x-1)$ gives $f(x)=\\dfrac{x-a}{x-b}$ on a punctured neighbourhood of $1$, a function continuous at $1$. Thus $\\lim_{x\\to1}f(x)=\\dfrac{1-a}{1-b}$ is finite for EVERY $a$: $x=1$ is a (simple) removable hole, no condition on $a$ at all.",
+          "Case $b=1$. Now the denominator is $(x-1)^{2}$, so $f(x)=\\dfrac{(x-1)(x-a)}{(x-1)^{2}}=\\dfrac{x-a}{x-1}$ near $1$. If $a\\neq 1$ the numerator tends to $1-a\\neq0$ while the denominator tends to $0$, giving $\\lim_{x\\to1}f=\\pm\\infty$: a genuine simple pole, NOT removable. If $a=1$ then $f(x)=\\dfrac{x-1}{x-1}=1$, so the limit is $1$ — both factors of $(x-1)$ cancelled, a doubly removable point.",
+          "Collecting: $x=1$ is removable exactly when $b\\neq1$ (any $a$), or $b=1$ together with $a=1$. Hence $S=\\{(a,b):b\\neq 1\\}\\cup\\{(1,1)\\}$, i.e. every pair except the punctured line $\\{(a,1):a\\neq1\\}$, and the boxed answer is $\\boxed{S=\\{(a,b):b\\neq 1\\}\\cup\\{(1,1)\\}}$."
+        ]
+      },
+      {
+        "name": "Order-of-vanishing (multiplicity) bookkeeping",
+        "steps": [
+          "Write $N(x)=(x-1)(x-a)$ and $D(x)=(x-1)(x-b)$. At $x=1$ the numerator has a zero of order $\\nu_N=1$ if $a\\neq1$ and order $2$ if $a=1$. The denominator has a zero of order $\\nu_D=1$ if $b\\neq1$ and order $2$ if $b=1$.",
+          "A rational function $N/D$ has a removable singularity (finite limit) at a point precisely when the order of the numerator's zero is at least the order of the denominator's zero there: $\\nu_N\\ge \\nu_D$. A pole occurs when $\\nu_N<\\nu_D$.",
+          "If $b\\neq1$ then $\\nu_D=1$ and $\\nu_N\\ge1$ always, so $\\nu_N\\ge\\nu_D$ holds for every $a$: removable. If $b=1$ then $\\nu_D=2$, and we need $\\nu_N\\ge2$, i.e. $a=1$; for $a\\neq1$ we have $\\nu_N=1<2=\\nu_D$, a pole.",
+          "Therefore removability holds iff ($b\\neq1$) or ($b=1$ and $a=1$), giving $\\boxed{S=\\{(a,b):b\\neq 1\\}\\cup\\{(1,1)\\}}$. The three regimes are: simple removable hole on $b\\neq1$, doubly removable at $(1,1)$, and a pole on the deleted line $b=1,\\,a\\neq1$."
+        ]
+      },
+      {
+        "name": "Direct one-sided limits at b=1 expose the pole",
+        "steps": [
+          "For $b\\neq1$ the computation in Solution 1 already yields the finite value $\\dfrac{1-a}{1-b}$, so removability there needs no further argument. The whole subtlety lives at $b=1$, which we test by one-sided limits.",
+          "Set $b=1$, so $f(x)=\\dfrac{x-a}{x-1}$ near $1$ (after one cancellation). Suppose $a\\neq1$, say write $1-a=:c\\neq0$. As $x\\to1^{+}$, $x-1\\to0^{+}$ and $x-a\\to c$, so $f\\to+\\infty$ if $c>0$ and $-\\infty$ if $c<0$; as $x\\to1^{-}$ the sign of $x-1$ flips, so $f$ runs to the opposite infinity. The two one-sided limits are infinite and of opposite sign — unambiguously a pole, not a removable point.",
+          "Now take $a=1$ (with $b=1$): $f(x)=\\dfrac{x-1}{x-1}=1$ for all $x\\neq1$, so both one-sided limits equal $1$ and the singularity is removable (in fact $f$ was already the constant $1$ off the hole).",
+          "Combining with the $b\\neq1$ regime, the singularity at $x=1$ is removable exactly on $\\{b\\neq1\\}\\cup\\{(1,1)\\}$, so $\\boxed{S=\\{(a,b):b\\neq 1\\}\\cup\\{(1,1)\\}}$."
+        ]
+      }
+    ],
+    "remark": "Insight: a shared factor in numerator and denominator does not automatically heal a hole — what matters is the order of vanishing on each side. The denominator here hides a parameter-controlled multiplicity: it carries one factor of $(x-1)$ for generic $b$ but a double factor when the second root $b$ slides onto $1$. The single visible $(x-1)$ in the numerator can absorb a simple zero of the denominator but not a double one, so the very same expression realizes all three textbook behaviours of a rational singularity — removable hole, simple pole, twice-cancelled point — depending only on where the parameters sit. The discipline to extract: before declaring a factor 'cancelled', count multiplicities, and always ask whether a parameter can collapse two distinct roots into a repeated one. The naive value $\\tfrac{1-a}{1-b}$ even advertises its own failure by dividing by zero exactly on the line $b=1$ it forgot to examine."
+  },
+  {
+    "theme": "parametric",
+    "themeLabel": "Parametric Continuity",
+    "title": "The Largest Hole You Are Allowed to Fill",
+    "difficulty": 5,
+    "task": "Patch the removable discontinuity, then maximize the patched value over the constrained parameter family",
+    "tags": [
+      "removable-discontinuity",
+      "parametric-family",
+      "constrained-optimization",
+      "difference-of-squares",
+      "boundary-vs-interior",
+      "degenerate-case"
+    ],
+    "statement": "For real parameters $a,b$, define\n\\[\nf_{a,b}(x)=\\frac{\\cos(ax)-\\cos(bx)}{x^{2}}\\quad (x\\neq 0),\\qquad f_{a,b}(0)=\\lambda ,\n\\]\nand let $\\lambda=\\lambda(a,b)$ be chosen so that $f_{a,b}$ is continuous at $x=0$ (i.e. $\\lambda$ fills the removable discontinuity).\n\n(a) Compute $\\lambda(a,b)$.\n\n(b) Now restrict the pair $(a,b)$ to the line $a+b=2$ while also requiring $a^{2}+b^{2}\\le 10$. Over this family, find the maximum possible value of the patched height $\\lambda$, and state every pair $(a,b)$ at which it is attained.\n\nThroughout, $f_{a,b}$ must genuinely possess a (removable) discontinuity at $0$ for the patching question to be meaningful; take care to identify any parameter pairs in your family for which this fails, and say what happens to $\\lambda$ there.",
+    "answer": "\\[\\boxed{\\lambda_{\\max}=4,\\ \\text{attained only at }(a,b)=(-1,\\,3)}\\]",
+    "trap": "There are three baited pits, and a strong solver typically falls into at least one. PIT 1 (the sign-blind reflex / 'coefficients are positive'). After getting $\\lambda=\\tfrac{b^2-a^2}{2}$ and the line $a+b=2$, many students silently treat $a,b$ as nonnegative 'frequencies' and search only $a,b\\ge 0$. On $a+b=2$ that forces $b\\in[0,2]$, giving $\\lambda=2b-2\\le 2$, and they confidently report $\\lambda_{\\max}=2$ at $(a,b)=(0,2)$. This is WRONG: nothing in the problem restricts the sign of $a$, and the true optimum lives at $a=-1<0$. PIT 2 (forgetting the budget makes the problem ill-posed). On the line, $\\lambda=\\tfrac{(b-a)(b+a)}{2}=\\tfrac{(b-a)\\cdot 2}{2}=b-a$, which is UNBOUNDED above as you slide along the unconstrained line ($b\\to+\\infty$). A student who drops the constraint $a^2+b^2\\le 10$ concludes 'no maximum / supremum $=+\\infty$.' The disk is precisely what caps the seam height; with $a+b=2$ it forces $|b-a|\\le 4$ (since $a^2+b^2=\\tfrac{(a+b)^2+(b-a)^2}{2}=2+\\tfrac{(b-a)^2}{2}\\le 10$), so $\\lambda=b-a\\le 4$, with equality only when $a^2+b^2=10$ exactly — the optimum is forced onto the boundary circle, not the interior. PIT 3 (the degenerate non-discontinuity, and its symmetric impostor). When $a=b$ the numerator $\\cos(ax)-\\cos(bx)\\equiv 0$, so $f_{a,b}\\equiv 0$: there is NO removable discontinuity at all (the natural value is just $0$, and $\\lambda=0$ trivially), yet $(a,b)=(1,1)$ sits right on the line $a+b=2$ and must be discussed, not optimized over as if it were a genuine seam. The mirror point $(a,b)=(3,-1)$ — the other intersection of the line with the circle — is the global MINIMUM $\\lambda=-4$, and is a tempting 'by symmetry the answer is $\\pm 4$, take $+4$ at $(3,-1)$' slip: the maximizer is $(-1,3)$, NOT $(3,-1)$ (note $\\lambda=b-a$, so big $\\lambda$ wants $b$ large and $a$ small/negative). Anyone who maximizes $a-b$, or reports the wrong intersection point, or never realizes the maximizer has a negative coefficient, gets the height right but the parameters wrong — or the height wrong entirely.",
+    "solutions": [
+      {
+        "name": "Removable-limit via half-angle, then difference-of-squares + sum/difference substitution",
+        "steps": [
+          "Part (a). For continuity at $0$ we need $\\lambda=\\lim_{x\\to 0}\\dfrac{\\cos(ax)-\\cos(bx)}{x^{2}}$. Use the sum-to-product identity $\\cos(ax)-\\cos(bx)=-2\\sin\\!\\big(\\tfrac{(a+b)x}{2}\\big)\\sin\\!\\big(\\tfrac{(a-b)x}{2}\\big)$. As $x\\to 0$, $\\sin(\\theta x)\\sim \\theta x$, so the numerator $\\sim -2\\cdot\\tfrac{(a+b)x}{2}\\cdot\\tfrac{(a-b)x}{2}=-\\tfrac{(a+b)(a-b)}{2}x^{2}=-\\tfrac{a^{2}-b^{2}}{2}x^{2}=\\tfrac{b^{2}-a^{2}}{2}x^{2}$. Dividing by $x^{2}$ and taking the limit gives $\\boxed{\\lambda(a,b)=\\dfrac{b^{2}-a^{2}}{2}}$. (Equivalently, $\\cos\\theta=1-\\tfrac{\\theta^2}{2}+O(\\theta^4)$ gives $\\cos(ax)-\\cos(bx)=\\tfrac{b^2-a^2}{2}x^2+O(x^4)$, same result.)",
+          "Part (b). On the line $a+b=2$, factor the patched height: $\\lambda=\\dfrac{b^{2}-a^{2}}{2}=\\dfrac{(b-a)(b+a)}{2}=\\dfrac{(b-a)\\cdot 2}{2}=b-a$. So maximizing the seam height is exactly maximizing $b-a$ along the line, subject to the budget $a^{2}+b^{2}\\le 10$.",
+          "Convert the budget into a bound on $b-a$ using the algebraic identity $a^{2}+b^{2}=\\dfrac{(a+b)^{2}+(b-a)^{2}}{2}$. With $a+b=2$ this is $a^{2}+b^{2}=\\dfrac{4+(b-a)^{2}}{2}=2+\\dfrac{(b-a)^{2}}{2}$. The constraint $a^{2}+b^{2}\\le 10$ becomes $2+\\dfrac{(b-a)^{2}}{2}\\le 10$, i.e. $(b-a)^{2}\\le 16$, i.e. $-4\\le b-a\\le 4$.",
+          "Hence $\\lambda=b-a\\le 4$, with equality iff $b-a=4$ AND $a+b=2$, i.e. $b=3,\\ a=-1$; this pair indeed lies on the boundary circle ($a^2+b^2=1+9=10$), so it is feasible. The maximum patched height is $\\boxed{\\lambda_{\\max}=4}$, attained only at $\\boxed{(a,b)=(-1,3)}$.",
+          "Degenerate check (PIT 3). The point $(1,1)$ on the line has $a=b$, so $f\\equiv 0$ with no genuine discontinuity and $\\lambda=0$; it is not a competitor for the maximum. The other line-circle intersection $(3,-1)$ gives $\\lambda=b-a=-1-3=-4$, the global minimum — not the maximum. The maximizer $(-1,3)$ has a negative coefficient $a=-1$, which is why a 'positive-coefficients' search misses it and reports the too-small $\\lambda=2$. None of this disturbs the conclusion: $\\boxed{\\lambda_{\\max}=4\\ \\text{at}\\ (a,b)=(-1,3)}$."
+        ]
+      },
+      {
+        "name": "Single-variable reduction and monotonicity on the feasible segment",
+        "steps": [
+          "From part (a), $\\lambda=\\dfrac{b^{2}-a^{2}}{2}$. Eliminate $a$ using $a=2-b$: $\\lambda(b)=\\dfrac{b^{2}-(2-b)^{2}}{2}=\\dfrac{b^{2}-(4-4b+b^{2})}{2}=\\dfrac{4b-4}{2}=2b-2$. So along the line, $\\lambda$ is an increasing affine function of $b$ — its maximum sits at the largest admissible $b$.",
+          "Find the admissible range of $b$ from the budget. Substituting $a=2-b$ into $a^{2}+b^{2}\\le 10$: $(2-b)^{2}+b^{2}\\le 10\\Rightarrow 2b^{2}-4b+4\\le 10\\Rightarrow 2b^{2}-4b-6\\le 0\\Rightarrow b^{2}-2b-3\\le 0\\Rightarrow (b-3)(b+1)\\le 0$, giving $b\\in[-1,3]$. Thus the feasible parameters form the closed segment of the line from $(3,-1)$ (at $b=-1$) to $(-1,3)$ (at $b=3$).",
+          "Since $\\lambda(b)=2b-2$ is strictly increasing in $b$, its maximum on $b\\in[-1,3]$ occurs at the right endpoint $b=3$, where $a=2-3=-1$, giving $\\lambda=2(3)-2=4$. The minimum is at $b=-1$: $\\lambda=-4$ at $(3,-1)$. Therefore $\\boxed{\\lambda_{\\max}=4}$ at $(a,b)=(-1,3)$, attained uniquely (the function is strictly monotone, so no other point ties).",
+          "Genuine-discontinuity audit. The interior point $b=1$ (i.e. $a=b=1$) makes the numerator vanish identically, $f\\equiv 0$: no removable seam, $\\lambda=0$. This sits strictly inside the segment and is consistent with $\\lambda(1)=2(1)-2=0$, but it is not an extremum and not a true discontinuity — it is exactly the parameter pair the problem warns to flag. The maximum at $b=3$ is a genuine $0/0$ removable point: there $\\cos(-x)-\\cos(3x)\\to 0$ and the patched value $4$ removes the hole, confirming $\\boxed{\\lambda_{\\max}=4\\ \\text{at}\\ (a,b)=(-1,3)}$."
+        ]
+      },
+      {
+        "name": "Symmetric line parametrization (centering the family)",
+        "steps": [
+          "From part (a), $\\lambda=\\dfrac{b^{2}-a^{2}}{2}$. Parametrize the line $a+b=2$ symmetrically about its midpoint $(1,1)$ by a single parameter $t$: set $a=1-t,\\ b=1+t$ (then $a+b=2$ automatically, and $t=\\tfrac{b-a}{2}$). This change of variable is the natural one because it diagonalizes the difference of squares.",
+          "Compute the objective: $\\lambda=\\dfrac{(1+t)^{2}-(1-t)^{2}}{2}=\\dfrac{4t}{2}=2t$. So $\\lambda=2t$ is linear and increasing in $t$; maximizing $\\lambda$ means pushing $t$ as large as the budget allows.",
+          "Impose the budget in the same variable: $a^{2}+b^{2}=(1-t)^{2}+(1+t)^{2}=2+2t^{2}\\le 10\\Rightarrow t^{2}\\le 4\\Rightarrow -2\\le t\\le 2$. Hence $\\lambda=2t\\le 4$, with equality at $t=2$, i.e. $a=1-2=-1,\\ b=1+2=3$. So $\\boxed{\\lambda_{\\max}=4}$ at $(a,b)=(-1,3)$ (and the minimum $\\lambda=-4$ is at $t=-2$, the impostor point $(3,-1)$).",
+          "Lagrange cross-check on the binding boundary. The unconstrained-on-the-line height $\\lambda=2t$ has no interior critical point ($\\tfrac{d}{dt}(2t)=2\\neq 0$), so the optimum must lie on the budget boundary $a^{2}+b^{2}=10$; the two boundary points are $t=\\pm 2$, and the larger $\\lambda$ is at $t=+2$. The degenerate seamless point $t=0$ ($a=b=1$, $f\\equiv 0$) is the unique place the discontinuity disappears, lying exactly at the symmetry center — neither a maximizer nor a minimizer. The verdict stands: $\\boxed{\\lambda_{\\max}=4\\ \\text{at}\\ (a,b)=(-1,3)}$."
+        ]
+      }
+    ],
+    "remark": "Insight: the whole problem turns on the identity $\\lambda=\\dfrac{b^{2}-a^{2}}{2}=\\dfrac{(b-a)(b+a)}{2}$, which on the line $b+a=2$ collapses to the strikingly simple $\\lambda=b-a$. Once you see this, the optimization is not a calculus grind but a one-line observation: maximize the gap $b-a$ under a quadratic budget. The constraint $a^{2}+b^{2}\\le 10$ is doing real work — without it the seam height is unbounded along the line, so the problem is only well-posed because the budget caps $|b-a|$ via $a^{2}+b^{2}=2+\\tfrac{(b-a)^{2}}{2}$. The optimum is therefore forced onto the boundary circle (a max of a non-constant linear functional never lands in the interior of a convex region), landing at $(-1,3)$ with $\\lambda=4$. The three traps encode the three ways top students lose this: assuming the coefficients are positive (you miss the negative $a=-1$ and report $2$), forgetting the budget (you claim $+\\infty$), and mishandling the degenerate $a=b$ point where the function is identically zero and there is no hole to fill at all. The chapter moral: a removable-discontinuity value is a function of the parameters, and 'continuity-completion' fuses naturally with optimization — but only after you respect the family's geometry (sign-freedom, the binding budget) and quarantine the degenerate members where the discontinuity silently ceases to exist."
   },
   {
     "theme": "parametric",
@@ -2943,53 +2658,6 @@ window.PROBLEMS = [
   {
     "theme": "parametric",
     "themeLabel": "Parametric Continuity",
-    "title": "The Hole That Heals — Unless the Pole Lands On It",
-    "difficulty": 4,
-    "task": "Classify the singularity at x=1 across all parameters and report every pair making it removable",
-    "tags": [
-      "removable-discontinuity",
-      "double-pole",
-      "parameter-dependent",
-      "factor-cancellation",
-      "casework"
-    ],
-    "statement": "For real parameters $a,b$ define, on its natural domain $\\mathbb{R}\\setminus\\{1,b\\}$,\n\\[\nf(x)=\\frac{x^{2}-(a+1)x+a}{(x-1)(x-b)}.\n\\]\nThe numerator vanishes at $x=1$, so it is tempting to declare the singularity at $x=1$ harmless for every choice of parameters. Investigate honestly. Call the singularity at $x=1$ \\text{removable} if $\\lim_{x\\to 1}f(x)$ exists as a finite number (so a single re-definition of $f(1)$ restores continuity at $x=1$). Determine the complete set $S$ of pairs $(a,b)$ for which the singularity at $x=1$ is removable, distinguishing the cases where $x=1$ is a simple removable hole, where it is a genuine pole, and where it is a doubly cancelled (twice-removable) point.",
-    "answer": "$S=\\{(a,b):b\\neq 1\\}\\cup\\{(1,1)\\}$",
-    "trap": "The seductive error is to factor the numerator as $x^{2}-(a+1)x+a=(x-1)(x-a)$, cancel the visible $(x-1)$ against the $(x-1)$ in the denominator, and conclude that $x=1$ is removable for EVERY $(a,b)$ with limit $\\dfrac{1-a}{1-b}$. The cancellation is legitimate only while the denominator contributes a SINGLE factor of $(x-1)$ — that is, only when $b\\neq 1$. If $b=1$ the denominator is $(x-1)^{2}$, and after cancelling one $(x-1)$ the surviving function is $\\dfrac{x-a}{x-1}$, which still blows up at $x=1$ unless the numerator also vanishes there, i.e. unless $a=1$. So at $b=1$ the point $x=1$ is a genuine simple pole for every $a\\neq 1$, and the glib formula $\\dfrac{1-a}{1-b}$ secretly divides by zero. A strong student who never asks 'what if the denominator's zero at $1$ is a DOUBLE zero?' will report 'removable for all $(a,b)$' and miss the entire punctured line $\\{(a,1):a\\neq1\\}$ where the hole is actually a pole.",
-    "solutions": [
-      {
-        "name": "Factor, then split on the multiplicity of the denominator's zero at 1",
-        "steps": [
-          "Factor the numerator: $x^{2}-(a+1)x+a=(x-1)(x-a)$ (the roots are $1$ and $a$, summing to $a+1$ and multiplying to $a$). Hence $f(x)=\\dfrac{(x-1)(x-a)}{(x-1)(x-b)}$, and the only question at $x=1$ is whether the $(x-1)$ in the denominator is fully cancelled.",
-          "Case $b\\neq 1$. Near $x=1$ the factor $(x-b)$ is nonzero, so cancelling the common $(x-1)$ gives $f(x)=\\dfrac{x-a}{x-b}$ on a punctured neighbourhood of $1$, a function continuous at $1$. Thus $\\lim_{x\\to1}f(x)=\\dfrac{1-a}{1-b}$ is finite for EVERY $a$: $x=1$ is a (simple) removable hole, no condition on $a$ at all.",
-          "Case $b=1$. Now the denominator is $(x-1)^{2}$, so $f(x)=\\dfrac{(x-1)(x-a)}{(x-1)^{2}}=\\dfrac{x-a}{x-1}$ near $1$. If $a\\neq 1$ the numerator tends to $1-a\\neq0$ while the denominator tends to $0$, giving $\\lim_{x\\to1}f=\\pm\\infty$: a genuine simple pole, NOT removable. If $a=1$ then $f(x)=\\dfrac{x-1}{x-1}=1$, so the limit is $1$ — both factors of $(x-1)$ cancelled, a doubly removable point.",
-          "Collecting: $x=1$ is removable exactly when $b\\neq1$ (any $a$), or $b=1$ together with $a=1$. Hence $S=\\{(a,b):b\\neq 1\\}\\cup\\{(1,1)\\}$, i.e. every pair except the punctured line $\\{(a,1):a\\neq1\\}$, and the boxed answer is $\\boxed{S=\\{(a,b):b\\neq 1\\}\\cup\\{(1,1)\\}}$."
-        ]
-      },
-      {
-        "name": "Order-of-vanishing (multiplicity) bookkeeping",
-        "steps": [
-          "Write $N(x)=(x-1)(x-a)$ and $D(x)=(x-1)(x-b)$. At $x=1$ the numerator has a zero of order $\\nu_N=1$ if $a\\neq1$ and order $2$ if $a=1$. The denominator has a zero of order $\\nu_D=1$ if $b\\neq1$ and order $2$ if $b=1$.",
-          "A rational function $N/D$ has a removable singularity (finite limit) at a point precisely when the order of the numerator's zero is at least the order of the denominator's zero there: $\\nu_N\\ge \\nu_D$. A pole occurs when $\\nu_N<\\nu_D$.",
-          "If $b\\neq1$ then $\\nu_D=1$ and $\\nu_N\\ge1$ always, so $\\nu_N\\ge\\nu_D$ holds for every $a$: removable. If $b=1$ then $\\nu_D=2$, and we need $\\nu_N\\ge2$, i.e. $a=1$; for $a\\neq1$ we have $\\nu_N=1<2=\\nu_D$, a pole.",
-          "Therefore removability holds iff ($b\\neq1$) or ($b=1$ and $a=1$), giving $\\boxed{S=\\{(a,b):b\\neq 1\\}\\cup\\{(1,1)\\}}$. The three regimes are: simple removable hole on $b\\neq1$, doubly removable at $(1,1)$, and a pole on the deleted line $b=1,\\,a\\neq1$."
-        ]
-      },
-      {
-        "name": "Direct one-sided limits at b=1 expose the pole",
-        "steps": [
-          "For $b\\neq1$ the computation in Solution 1 already yields the finite value $\\dfrac{1-a}{1-b}$, so removability there needs no further argument. The whole subtlety lives at $b=1$, which we test by one-sided limits.",
-          "Set $b=1$, so $f(x)=\\dfrac{x-a}{x-1}$ near $1$ (after one cancellation). Suppose $a\\neq1$, say write $1-a=:c\\neq0$. As $x\\to1^{+}$, $x-1\\to0^{+}$ and $x-a\\to c$, so $f\\to+\\infty$ if $c>0$ and $-\\infty$ if $c<0$; as $x\\to1^{-}$ the sign of $x-1$ flips, so $f$ runs to the opposite infinity. The two one-sided limits are infinite and of opposite sign — unambiguously a pole, not a removable point.",
-          "Now take $a=1$ (with $b=1$): $f(x)=\\dfrac{x-1}{x-1}=1$ for all $x\\neq1$, so both one-sided limits equal $1$ and the singularity is removable (in fact $f$ was already the constant $1$ off the hole).",
-          "Combining with the $b\\neq1$ regime, the singularity at $x=1$ is removable exactly on $\\{b\\neq1\\}\\cup\\{(1,1)\\}$, so $\\boxed{S=\\{(a,b):b\\neq 1\\}\\cup\\{(1,1)\\}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: a shared factor in numerator and denominator does not automatically heal a hole — what matters is the order of vanishing on each side. The denominator here hides a parameter-controlled multiplicity: it carries one factor of $(x-1)$ for generic $b$ but a double factor when the second root $b$ slides onto $1$. The single visible $(x-1)$ in the numerator can absorb a simple zero of the denominator but not a double one, so the very same expression realizes all three textbook behaviours of a rational singularity — removable hole, simple pole, twice-cancelled point — depending only on where the parameters sit. The discipline to extract: before declaring a factor 'cancelled', count multiplicities, and always ask whether a parameter can collapse two distinct roots into a repeated one. The naive value $\\tfrac{1-a}{1-b}$ even advertises its own failure by dividing by zero exactly on the line $b=1$ it forgot to examine."
-  },
-  {
-    "theme": "parametric",
-    "themeLabel": "Parametric Continuity",
     "title": "The Seam That Will Not Close",
     "difficulty": 5,
     "task": "Prove that",
@@ -3063,6 +2731,42 @@ window.PROBLEMS = [
     "remark": "Insight: the hardest single-join problems hide their difficulty in leading coefficients ($1-\\cos2x\\sim 2x^2$, $\\sqrt{1+bx}\\sim1+\\tfrac{b}{2}x$). Continuity is three numbers agreeing: left limit, value, right limit."
   },
   {
+    "theme": "parametric",
+    "themeLabel": "Parametric Continuity",
+    "title": "Two Seams One Curve Has a Hidden Hole",
+    "difficulty": 5,
+    "task": "Find both constants",
+    "tags": [
+      "piecewise",
+      "two-seams",
+      "removable-hole",
+      "half-angle",
+      "one-sided-limits"
+    ],
+    "statement": "Let $a,b\\in\\mathbb{R}$ and define\n$$f(x)=\\begin{cases}\\dfrac{\\cos 2x-1}{x^2}, & x<0,\\\\[2mm] a\\,x+b, & 0\\le x\\le 3,\\\\[2mm] \\dfrac{x^2-9}{\\sqrt{x}-\\sqrt{3}}, & x>3.\\end{cases}$$\nFind the unique pair $(a,b)$ for which $f$ is continuous on all of $\\mathbb{R}$.",
+    "answer": "Matching both seams forces $b=-2$ at $x=0$ and then $3a+b=12\\sqrt3$ at $x=3$, so $\\boxed{(a,b)=\\left(\\dfrac{2}{3}+4\\sqrt3,\\ -2\\right)}$.",
+    "trap": "Answering $(a,b)=\\big(4\\sqrt3,\\,0\\big)$. At $x=0$ the left piece is $\\dfrac{\\cos 2x-1}{x^2}$, which has the indeterminate form $\\tfrac00$; a careless reader sees the numerator $\\cos 2x-1\\to 0$ and declares the whole quotient $\\to 0$, forcing $b=0$. But the denominator $x^2\\to 0$ too, and the true left-hand limit is $-2$, not $0$. With $b=0$ there is a gap of $2$ at the origin, so $f$ is not continuous there even though the $x=3$ seam still happens to close.",
+    "solutions": [
+      {
+        "name": "Glue each seam with one-sided limits",
+        "steps": [
+          "Left seam $x=0$. Use $1-\\cos 2x=2\\sin^2 x$, so $\\dfrac{\\cos 2x-1}{x^2}=-2\\,\\dfrac{\\sin^2 x}{x^2}$. Hence $\\displaystyle\\lim_{x\\to 0^-}f(x)=-2\\cdot 1^2=-2$. Since $f(0)=a\\cdot 0+b=b$, continuity at $0$ gives $b=-2$.",
+          "Right seam $x=3$. Plugging $x=3$ into $\\dfrac{x^2-9}{\\sqrt{x}-\\sqrt{3}}$ gives $\\tfrac00$ (a removable hole), so factor: $x-3=(\\sqrt x-\\sqrt3)(\\sqrt x+\\sqrt3)$ and $x^2-9=(x-3)(x+3)$, giving $\\dfrac{x^2-9}{\\sqrt x-\\sqrt3}=(\\sqrt x+\\sqrt3)(x+3)$ for $x>3$. Thus $\\displaystyle\\lim_{x\\to 3^+}f(x)=(2\\sqrt3)(6)=12\\sqrt3$.",
+          "Continuity at $3$: $f(3)=3a+b=3a-2$ must equal $12\\sqrt3$, so $3a=12\\sqrt3+2$ and $a=4\\sqrt3+\\tfrac23$. Therefore $\\boxed{(a,b)=\\left(\\tfrac23+4\\sqrt3,\\ -2\\right)}$."
+        ]
+      },
+      {
+        "name": "Substitution at each seam",
+        "steps": [
+          "At $x=0$ put $u=2x\\to 0$: $\\dfrac{\\cos u-1}{(u/2)^2}=-4\\cdot\\dfrac{1-\\cos u}{u^2}\\to -4\\cdot\\tfrac12=-2$, so $b=f(0)=-2$.",
+          "At $x=3$ put $t=\\sqrt x\\to\\sqrt3$ (so $x=t^2$): $\\dfrac{x^2-9}{\\sqrt x-\\sqrt3}=\\dfrac{(t^2-3)(t^2+3)}{t-\\sqrt3}=\\dfrac{(t-\\sqrt3)(t+\\sqrt3)(t^2+3)}{t-\\sqrt3}=(t+\\sqrt3)(t^2+3)$. Letting $t\\to\\sqrt3$ gives $(2\\sqrt3)(6)=12\\sqrt3$.",
+          "Setting $3a+b=12\\sqrt3$ with $b=-2$ yields $a=\\tfrac{12\\sqrt3+2}{3}=4\\sqrt3+\\tfrac23$, confirming $\\boxed{(a,b)=\\left(\\tfrac23+4\\sqrt3,\\ -2\\right)}$."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Two seams, two equations $-$ but the difficulty hides in which value each side actually approaches, not in the bookkeeping. Both danger points wear a $\\tfrac00$ mask: at $x=0$ the mask conceals the limit $-2$ (kill it with the half-angle identity), and at $x=3$ it conceals a genuinely removable hole (kill it by factoring the radical difference). Continuity asks you to match the limit, never the raw formula at the bad point; reading $\\tfrac00$ as $0$ closes one seam by luck while quietly tearing the other open."
+  },
+  {
     "theme": "evt",
     "themeLabel": "Boundedness & Extreme Values",
     "title": "The Hospitable Square",
@@ -3101,50 +2805,39 @@ window.PROBLEMS = [
   {
     "theme": "evt",
     "themeLabel": "Boundedness & Extreme Values",
-    "title": "The Wave That Outruns Every Delta",
-    "difficulty": 5,
-    "task": "Compute the limiting modulus of continuity and pin down which compactness hypothesis fails",
+    "title": "A Tale of Sup and Inf",
+    "difficulty": 3,
+    "task": "Find a,b",
     "tags": [
-      "uniform-continuity",
-      "modulus-of-continuity",
-      "heine-cantor",
-      "compactness",
-      "oscillation",
-      "open-interval"
+      "construction",
+      "open interval",
+      "supremum",
+      "attainment"
     ],
-    "statement": "For a function $f$ on an interval $I$, define its modulus of continuity \\[ \\omega_f(\\delta)=\\sup\\bigl\\{\\,|f(x)-f(y)|\\;:\\;x,y\\in I,\\ |x-y|\\le\\delta\\,\\bigr\\},\\qquad \\delta>0. \\] By definition $f$ is uniformly continuous on $I$ exactly when $\\omega_f(\\delta)\\to 0$ as $\\delta\\to 0^{+}$. Consider \\[ f(x)=\\sin\\!\\frac{1}{x}\\qquad\\text{on the open interval } I=(0,1). \\] The function is continuous at every point of $(0,1)$ and is bounded (indeed $|f|\\le 1$). Determine the value of \\[ L=\\lim_{\\delta\\to 0^{+}}\\omega_f(\\delta), \\] and, in your solution, identify precisely which hypothesis of the Heine--Cantor theorem (a continuous function on a closed bounded interval is uniformly continuous) is the one that fails here.",
-    "answer": "\\[\\boxed{L=2}\\]",
-    "trap": "The seductive error is to argue: \"$f$ is continuous on $(0,1)$, and continuous functions are uniformly continuous, so $\\omega_f(\\delta)\\to 0$ and $L=0$.\" That conflates pointwise continuity with uniform continuity; Heine--Cantor only delivers uniform continuity on a closed bounded (compact) interval, and $(0,1)$ is not closed. A second, subtler trap traces the failure to the wrong cause: a student recalls the chapter's earlier example $u(x)=1/x$ and concludes \"the trouble is that $f$ blows up near $0$.\" But here $f$ is perfectly bounded ($|f|\\le 1$), so unboundedness is not the mechanism at all — the failure is the infinite-frequency oscillation as $x\\to 0^{+}$, which makes $f$ jump the full distance $2$ between values that are arbitrarily close in $x$. A third trap is to imagine that because $|x-y|\\to 0$ forces the two abscissae together, the values must also draw together \"by continuity\"; they do for each fixed pair as you shrink the gap, but the supremum over all admissible pairs never relaxes — there is always a fresh pair, deeper toward $0$, realizing the maximal gap $2$. Hence $\\omega_f(\\delta)=2$ for every $\\delta>0$ and $L=2$, not $0$.",
+    "statement": "Construct an explicit continuous function $\\varphi:(0,1)\\to\\mathbb R$ that is bounded, attains its supremum, but does NOT attain its infimum; report the constants $a=\\sup\\varphi$ and $b=\\inf\\varphi$ that your construction achieves.",
+    "answer": "Such a $\\varphi$ exists; e.g. $\\varphi(x)=\\tfrac14-\\bigl(x-\\tfrac12\\bigr)^2$ gives $a=\\sup\\varphi=\\tfrac14$ (attained at $x=\\tfrac12$) and $b=\\inf\\varphi=0$ (not attained).",
+    "trap": "Believing no such function can exist, reasoning that a bounded continuous function must attain at least one of its extremes and surely both or neither. On a closed bounded interval EVT forces both; on an open interval the two extremes are completely decoupled, so attaining one while missing the other is perfectly possible.",
     "solutions": [
       {
-        "name": "Explicit peak-trough sequences force the full gap 2 at every scale",
+        "name": "Downward parabola construction",
         "steps": [
-          "Pick the two sequences $a_n=\\dfrac{1}{2\\pi n+\\frac{\\pi}{2}}$ and $b_n=\\dfrac{1}{2\\pi n-\\frac{\\pi}{2}}$ for $n\\ge 1$. Both lie in $(0,1)$ (already $a_1\\approx 0.127$, $b_1\\approx 0.212$, and they decrease toward $0$). They are chosen so that $\\dfrac{1}{a_n}=2\\pi n+\\dfrac{\\pi}{2}$ and $\\dfrac{1}{b_n}=2\\pi n-\\dfrac{\\pi}{2}$ hit a crest and a trough of sine: $f(a_n)=\\sin\\!\\bigl(2\\pi n+\\tfrac{\\pi}{2}\\bigr)=+1$ and $f(b_n)=\\sin\\!\\bigl(2\\pi n-\\tfrac{\\pi}{2}\\bigr)=-1$.",
-          "Hence $|f(a_n)-f(b_n)|=|1-(-1)|=2$ for every $n$, while the abscissae crowd together: $a_n-b_n=\\dfrac{1}{2\\pi n+\\frac{\\pi}{2}}-\\dfrac{1}{2\\pi n-\\frac{\\pi}{2}}=\\dfrac{-\\pi}{(2\\pi n)^2-(\\frac{\\pi}{2})^2}=\\dfrac{-4}{\\pi\\,(16n^2-1)}$, so $|a_n-b_n|=\\dfrac{4}{\\pi(16n^2-1)}\\to 0$ as $n\\to\\infty$.",
-          "Now fix any $\\delta>0$. Choose $n$ large enough that $|a_n-b_n|=\\dfrac{4}{\\pi(16n^2-1)}\\le\\delta$ (possible since the left side $\\to 0$). Then $a_n,b_n\\in(0,1)$ form an admissible pair for $\\omega_f(\\delta)$ with $|f(a_n)-f(b_n)|=2$, so $\\omega_f(\\delta)\\ge 2$. On the other hand $|f(x)-f(y)|\\le |f(x)|+|f(y)|\\le 2$ always, so $\\omega_f(\\delta)\\le 2$. Therefore $\\omega_f(\\delta)=2$ for every $\\delta>0$.",
-          "Consequently $L=\\lim_{\\delta\\to 0^{+}}\\omega_f(\\delta)=2\\neq 0$, so $f$ is NOT uniformly continuous on $(0,1)$. The Heine--Cantor hypothesis that fails is compactness of the domain: $(0,1)$ is bounded but not closed — the limit point $0$ is missing, and it is exactly the accumulation of oscillations at that absent endpoint that sustains the gap. $\\boxed{L=2}$."
+          "Take $\\varphi(x)=\\tfrac14-\\bigl(x-\\tfrac12\\bigr)^2$ on $(0,1)$; it is a polynomial, hence continuous, and since $0<\\bigl(x-\\tfrac12\\bigr)^2<\\tfrac14$ for $x\\in(0,1)$ we get $0<\\varphi(x)\\le\\tfrac14$, so $\\varphi$ is bounded.",
+          "The maximum value $\\tfrac14$ is achieved precisely when $\\bigl(x-\\tfrac12\\bigr)^2=0$, i.e. at the interior point $x=\\tfrac12\\in(0,1)$; hence $\\sup\\varphi=a=\\tfrac14$ is attained.",
+          "Solving $\\varphi(x)=0$ gives $x\\in\\{0,1\\}$, neither of which lies in $(0,1)$, so $\\varphi(x)>0$ throughout; yet $\\varphi(x)\\to0$ as $x\\to0^+$ and as $x\\to1^-$. Thus $0$ is a lower bound and no smaller bound works, so $\\inf\\varphi=b=0$, never reached.",
+          "Hence $\\varphi$ has the required properties with $\\boxed{a=\\tfrac14,\\ b=0}$ (sup attained, inf not)."
         ]
       },
       {
-        "name": "Heine--Cantor via the obstruction to continuous extension",
+        "name": "Sine-bump construction",
         "steps": [
-          "Heine--Cantor states: a continuous function on a closed bounded interval is uniformly continuous. Equivalently, $g$ is uniformly continuous on a bounded interval $(\\alpha,\\beta)$ iff it extends to a continuous function on the closure $[\\alpha,\\beta]$ (a uniformly continuous function maps Cauchy sequences to Cauchy sequences, so the one-sided limits at the endpoints exist and the extension is continuous on the compact set).",
-          "Test whether $f(x)=\\sin(1/x)$ extends continuously to $[0,1]$ at the left endpoint. Along $x_n=\\dfrac{1}{2\\pi n+\\frac{\\pi}{2}}\\to 0^{+}$ we get $f(x_n)\\to +1$, while along $x_n'=\\dfrac{1}{2\\pi n-\\frac{\\pi}{2}}\\to 0^{+}$ we get $f(x_n')\\to -1$. Two sequences tending to $0$ produce two different limits, so $\\lim_{x\\to 0^{+}}f(x)$ does not exist; no value at $0$ can make $f$ continuous on $[0,1]$.",
-          "Since $f$ admits no continuous extension to the compact closure $[0,1]$, it cannot be uniformly continuous on $(0,1)$. Therefore $\\omega_f(\\delta)\\not\\to 0$; as $\\omega_f$ is nonincreasing in $\\delta$ and bounded by $2$, its limit $L=\\inf_{\\delta>0}\\omega_f(\\delta)$ exists and is a strictly positive number $\\le 2$.",
-          "To pin the value, note the oscillation of $f$ on every initial slice $(0,\\eta)$ is the full $[-1,1]$ (sine runs through a complete period infinitely often as $x\\to 0^{+}$), so $\\sup_{(0,\\eta)}f-\\inf_{(0,\\eta)}f=2$ for all $\\eta>0$; taking two points in such a thin slice at distance $\\le\\delta$ realizing the crest and trough gives $\\omega_f(\\delta)=2$ for every $\\delta$. Hence the failing hypothesis is precisely closedness/compactness of the domain, and $\\boxed{L=2}$."
-        ]
-      },
-      {
-        "name": "Restoring compactness pins the cause: only the endpoint 0 is to blame",
-        "steps": [
-          "Contrast with any shifted slice $[c,1]$ for $0<c<1$. There $f$ is continuously differentiable with $f'(x)=-\\dfrac{\\cos(1/x)}{x^2}$, so $|f'(x)|\\le\\dfrac{1}{x^2}\\le\\dfrac{1}{c^2}$ on $[c,1]$. By the Mean Value Theorem $|f(x)-f(y)|\\le\\dfrac{1}{c^2}|x-y|$, i.e. $f$ is Lipschitz, hence uniformly continuous, on the compact $[c,1]$ with $\\omega_f^{[c,1]}(\\delta)\\le\\delta/c^2\\to 0$.",
-          "So for any $c>0$ the function behaves impeccably away from $0$; the entire obstruction is concentrated at the single removed limit point $0$. This isolates the mechanism: on $(0,1)$ the Lipschitz bound $1/x^2$ is unbounded as $x\\to 0^{+}$, the local wiggle accelerates without limit, and no global $\\delta$ can tame all scales at once — yet, crucially, $f$ itself stays bounded, so the failure is oscillation, not blow-up.",
-          "Quantify the residual gap on the full domain. For each $\\delta>0$, the crest/trough pair from any deep period near $0$ lies within distance $<\\delta$ once we go far enough in (the period in $x$ shrinks to $0$), and that pair differs by the maximal possible $2$. Since also $|f(x)-f(y)|\\le 2$ universally, the supremum is pinned: $\\omega_f(\\delta)=2$ independent of $\\delta$.",
-          "Letting $\\delta\\to 0^{+}$ leaves the constant value untouched, so $L=2$. The Heine--Cantor theorem is not violated — its conclusion simply does not apply, because its compactness hypothesis (a closed bounded interval) is unmet at the open endpoint $0$. $\\boxed{L=2}$."
+          "Take $\\psi(x)=\\sin(\\pi x)$ on $(0,1)$, which is continuous and bounded since $|\\psi|\\le1$.",
+          "On $(0,1)$ the argument $\\pi x$ lies in $(0,\\pi)$, so $\\psi(x)>0$; the unique maximiser of $\\sin$ there is $\\pi x=\\tfrac\\pi2$, i.e. $x=\\tfrac12\\in(0,1)$, giving $\\psi\\bigl(\\tfrac12\\bigr)=1$. Hence $\\sup\\psi=1$ is attained.",
+          "As $x\\to0^+$ or $x\\to1^-$ we have $\\psi(x)\\to\\sin0=\\sin\\pi=0$, while $\\psi(x)>0$ inside; so $\\inf\\psi=0$ is the greatest lower bound but is not attained.",
+          "This is another valid construction with $a=1,\\ b=0$; either example settles the question. $\\boxed{\\text{sup attained, inf not}}$"
         ]
       }
     ],
-    "remark": "Insight: uniform continuity is not about each point but about a single $\\delta$ that must work everywhere at once, and the modulus of continuity $\\omega_f(\\delta)$ is the honest scoreboard — $f$ is uniformly continuous iff $\\omega_f(\\delta)\\to 0$. For $\\sin(1/x)$ on $(0,1)$ the scoreboard never moves: $\\omega_f(\\delta)\\equiv 2$, because however small the window $\\delta$, a fresh crest-trough pair lurks deeper toward $0$ realizing the full swing of $2$. The lesson a ranker should carry away is the diagnostic: when continuity refuses to become uniform, look for the missing limit point of a non-compact domain and ask whether $f$ extends continuously across it. Here it cannot — $\\lim_{x\\to0^{+}}\\sin(1/x)$ does not exist — and that single absent endpoint is the whole story, as the clean behavior on every $[c,1]$ confirms. Note especially that the obstruction is oscillation, not unboundedness: a bounded continuous function can still fail to be uniformly continuous, which is exactly the case Heine--Cantor's compactness hypothesis exists to rule out."
+    "remark": "Insight: the existence question is really about which hypothesis of EVT you drop. Removing closedness of the domain frees the infimum to escape to a missing endpoint while the supremum stays safely at an interior point, so the two extremes no longer rise or fall together. (Swapping signs, $-\\varphi$ attains its infimum but not its supremum, and a strictly monotone example like $x$ itself attains neither.)"
   },
   {
     "theme": "evt",
@@ -3233,54 +2926,6 @@ window.PROBLEMS = [
   {
     "theme": "evt",
     "themeLabel": "Boundedness & Extreme Values",
-    "title": "The Diameter of a Shadow",
-    "difficulty": 5,
-    "task": "Prove the image-diameter is attained and equals the oscillation, then evaluate it for the given cubic",
-    "tags": [
-      "extreme-value-theorem",
-      "compact-image",
-      "oscillation",
-      "attained-supremum",
-      "endpoint-extremum",
-      "diameter"
-    ],
-    "statement": "For a continuous function $f$ on the closed interval $[a,b]$ define its image-diameter \\[ D(f)=\\sup\\{\\,|f(x)-f(y)|\\;:\\;x,y\\in[a,b]\\,\\}. \\] Part (a) (the principle). Prove that the supremum $D(f)$ is in fact \\text{attained} — there exist points $p,q\\in[a,b]$ with $D(f)=|f(p)-f(q)|$ — and that $D(f)=M-m$, where $M=\\max_{[a,b]}f$ and $m=\\min_{[a,b]}f$. (Equivalently: the image $f([a,b])$ is a closed bounded interval $[m,M]$, and $D(f)$ is the length of that interval.) Part (b) (the instance). Apply this to \\[ f(x)=x^{3}-3x \\qquad\\text{on}\\qquad [-2,\\,3], \\] and compute the exact value of $D(f)$, naming a pair $(p,q)$ at which it is attained. Note carefully that the interval $[-2,3]$ is \\text{not} symmetric about the origin.",
-    "answer": "\\[\\boxed{D(f)=20}\\]",
-    "trap": "The headline trap is to locate $M$ and $m$ from the interior critical points alone and never test the endpoints. Setting $f'(x)=3x^{2}-3=0$ gives the local extrema $x=\\pm1$ with $f(-1)=2$ (a local max) and $f(1)=-2$ (a local min). A strong student reads these off as 'the' maximum and minimum, getting $D=f(-1)-f(1)=2-(-2)=4$ — and is completely wrong. On a COMPACT interval the Extreme Value Theorem guarantees the global extrema are attained, but it does not say they sit at critical points: they may occur at the endpoints, and here the right endpoint dominates everything. Since the interval $[-2,3]$ is asymmetric, $f(3)=27-9=18$ is the true global maximum (far above the local max $2$), while the global minimum is $m=-2$, attained at the LEFT endpoint $x=-2$ ($f(-2)=-8+6=-2$) and ALSO at the interior critical point $x=1$. Hence $D=18-(-2)=20$, not $4$. Three distinct conceptual errors feed the wrong answer of $4$: (PIT 1) believing 'extremum $\\Rightarrow$ $f'=0$', forgetting that on $[a,b]$ the EVT extremum can be a boundary point where the derivative need not vanish; (PIT 2) a phantom-symmetry reflex — because $x^{3}-3x$ is an odd function, students assume its extreme values are $\\pm$ a common number and that the symmetric pairing of critical points gives the widest spread, an assumption silently destroyed once the domain is no longer symmetric; (PIT 3) confusing the largest gap between two TURNING values with the diameter of the IMAGE — the diameter is $\\max f-\\min f$ over the whole compact set, and the maximizing pair here is the non-critical endpoint $x=3$ paired with either point of the minimum. A subtler over-correction also lurks: a student who does check endpoints but reports the minimizer as only $x=-2$ misses that $m=-2$ is attained at TWO points ($x=-2$ and $x=1$), so the attaining pair $(p,q)$ is not unique.",
-    "solutions": [
-      {
-        "name": "Compact image is an interval; EVT attains its endpoints",
-        "steps": [
-          "(a) Boundedness and attainment. $[a,b]$ is closed and bounded (compact) and $f$ is continuous, so by the Extreme Value Theorem $f$ is bounded and attains a global maximum $M=f(x_{M})$ and a global minimum $m=f(x_{m})$ for some $x_{M},x_{m}\\in[a,b]$. For ANY $x,y$ we have $m\\le f(x),f(y)\\le M$, hence $|f(x)-f(y)|\\le M-m$; therefore $D(f)\\le M-m$. Conversely the specific pair $(x_{M},x_{m})$ gives $|f(x_{M})-f(x_{m})|=M-m$, so $D(f)\\ge M-m$. Combining, $D(f)=M-m$ and the supremum is ATTAINED at $(p,q)=(x_{M},x_{m})$ (one can verify $f([a,b])=[m,M]$: it lies in $[m,M]$ by the bound, contains $m,M$ by attainment, and is an interval by the Intermediate Value Theorem — so the image is the closed interval $[m,M]$ of length $M-m$).",
-          "(b) Catalogue every candidate for $f(x)=x^{3}-3x$ on $[-2,3]$. The global extrema can occur only at interior critical points or at the endpoints. Critical points: $f'(x)=3x^{2}-3=0\\Rightarrow x=\\pm1$, both inside $[-2,3]$. Evaluate $f$ at the full candidate set $\\{-2,-1,1,3\\}$: $f(-2)=-8+6=-2$, $f(-1)=-1+3=2$, $f(1)=1-3=-2$, $f(3)=27-9=18$.",
-          "Read off the global extremes from this finite list (EVT guarantees the extremes are among them): $M=\\max\\{-2,2,-2,18\\}=18$, attained only at the right endpoint $x=3$; $m=\\min\\{-2,2,-2,18\\}=-2$, attained at both $x=-2$ and $x=1$.",
-          "Conclude. By part (a), $D(f)=M-m=18-(-2)=20$, attained at $(p,q)=(3,-2)$ (and equally at $(3,1)$). Thus $\\boxed{D(f)=20}$."
-        ]
-      },
-      {
-        "name": "Direct two-variable maximization of |f(x)-f(y)|",
-        "steps": [
-          "Treat $g(x,y)=f(x)-f(y)$ on the compact square $[-2,3]^{2}$; it is continuous, so it attains a maximum, and $D(f)=\\max|g|=\\max g$ (since swapping $x,y$ flips the sign). Maximizing $g$ separates: $\\max_{x,y}\\,(f(x)-f(y))=\\big(\\max_{x}f(x)\\big)-\\big(\\min_{y}f(y)\\big)$, because the two variables are independent. So the problem reduces to finding $\\max f$ and $\\min f$ separately — exactly $M$ and $m$.",
-          "Maximize $f(x)=x^{3}-3x$ on $[-2,3]$. On $[1,3]$, $f'=3x^{2}-3>0$, so $f$ is increasing there and the right endpoint wins: the candidates for $\\max$ are the local max $x=-1$ ($f=2$) and the right endpoint $x=3$ ($f=18$). Hence $M=18$ at $x=3$. The endpoint beats the critical point precisely because the interval extends well past $x=1$ into the increasing region.",
-          "Minimize $f$ on $[-2,3]$. Candidates are the local min $x=1$ ($f=-2$) and the left endpoint $x=-2$ ($f=-2$). Both give $-2$, so $m=-2$, attained at the two points $x=1$ and $x=-2$.",
-          "Therefore $D(f)=M-m=18-(-2)=20$, with the maximizing pair $(x,y)=(3,-2)$ or $(3,1)$. Hence $\\boxed{D(f)=20}$."
-        ]
-      },
-      {
-        "name": "Monotone-piece decomposition (no calculus tables, pure EVT reasoning)",
-        "steps": [
-          "Split $[-2,3]$ at the critical points $x=\\pm1$ into monotone pieces, which the EVT lets us handle by endpoints alone. On a monotone piece $f$ attains its max and min exactly at the two ends of that piece, so the extremes over $[-2,3]$ lie among the breakpoints $\\{-2,-1,1,3\\}$.",
-          "Piece $[-2,-1]$: $f'>0$ (since $x^{2}>1$), increasing from $f(-2)=-2$ up to $f(-1)=2$. Piece $[-1,1]$: $f'<0$, decreasing from $f(-1)=2$ down to $f(1)=-2$. Piece $[1,3]$: $f'>0$, increasing from $f(1)=-2$ up to $f(3)=18$.",
-          "The running extremes across the pieces: the highest value reached is $18$ (top of the last, rising piece, at $x=3$), and the lowest value reached is $-2$ (bottom of the second and start of the third piece, at $x=1$, and equally the start of the first piece at $x=-2$). So $M=18$ and $m=-2$ over the whole interval — the last increasing piece overshoots the modest local max $2$.",
-          "Since the image is the union of the three sub-images $[-2,2]\\cup[-2,2]\\cup[-2,18]=[-2,18]$, a single closed interval of length $20$, the diameter is its length: $D(f)=18-(-2)=20$, attained between $x=3$ and either $x=1$ or $x=-2$. Hence $\\boxed{D(f)=20}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the load-bearing idea is that continuity on a COMPACT set turns a supremum into a maximum. The map $(x,y)\\mapsto|f(x)-f(y)|$ on $[a,b]^{2}$ is continuous on a compact square, so its supremum $D(f)$ is genuinely attained — and a one-line bound plus the EVT-attained pair $(x_{M},x_{m})$ shows $D(f)=M-m$, the length of the compact image $[m,M]$. That is EVT used as an EXISTENCE certificate ('the diameter is achieved') followed by LOCATION ('where?'). Every hypothesis earns its place: drop closedness (try $f(x)=x^{3}-3x$ on the open $(-2,3)$) and the value $18$ is approached but never reached, so $M$ — and hence the diameter — is a supremum that is no longer attained; drop boundedness (an unbounded domain) and $D$ can be infinite. The instance is engineered so the naive critical-point answer $4$ is seductive and wrong: the asymmetry of $[-2,3]$ pushes the true maximum onto the right endpoint $x=3$ (where $f'\\ne0$), a place the 'set the derivative to zero' reflex never visits. The transferable discipline: to extremize a continuous function on $[a,b]$, the candidate set is interior critical points $\\cup$ endpoints — never critical points alone — and the global extrema (whose existence EVT guarantees) may, and here do, live on the boundary."
-  },
-  {
-    "theme": "evt",
-    "themeLabel": "Boundedness & Extreme Values",
     "title": "Two Cosines in Concert",
     "difficulty": 4,
     "task": "Determine",
@@ -3356,78 +3001,50 @@ window.PROBLEMS = [
   {
     "theme": "evt",
     "themeLabel": "Boundedness & Extreme Values",
-    "title": "A Tale of Sup and Inf",
-    "difficulty": 3,
-    "task": "Find a,b",
-    "tags": [
-      "construction",
-      "open interval",
-      "supremum",
-      "attainment"
-    ],
-    "statement": "Construct an explicit continuous function $\\varphi:(0,1)\\to\\mathbb R$ that is bounded, attains its supremum, but does NOT attain its infimum; report the constants $a=\\sup\\varphi$ and $b=\\inf\\varphi$ that your construction achieves.",
-    "answer": "Such a $\\varphi$ exists; e.g. $\\varphi(x)=\\tfrac14-\\bigl(x-\\tfrac12\\bigr)^2$ gives $a=\\sup\\varphi=\\tfrac14$ (attained at $x=\\tfrac12$) and $b=\\inf\\varphi=0$ (not attained).",
-    "trap": "Believing no such function can exist, reasoning that a bounded continuous function must attain at least one of its extremes and surely both or neither. On a closed bounded interval EVT forces both; on an open interval the two extremes are completely decoupled, so attaining one while missing the other is perfectly possible.",
-    "solutions": [
-      {
-        "name": "Downward parabola construction",
-        "steps": [
-          "Take $\\varphi(x)=\\tfrac14-\\bigl(x-\\tfrac12\\bigr)^2$ on $(0,1)$; it is a polynomial, hence continuous, and since $0<\\bigl(x-\\tfrac12\\bigr)^2<\\tfrac14$ for $x\\in(0,1)$ we get $0<\\varphi(x)\\le\\tfrac14$, so $\\varphi$ is bounded.",
-          "The maximum value $\\tfrac14$ is achieved precisely when $\\bigl(x-\\tfrac12\\bigr)^2=0$, i.e. at the interior point $x=\\tfrac12\\in(0,1)$; hence $\\sup\\varphi=a=\\tfrac14$ is attained.",
-          "Solving $\\varphi(x)=0$ gives $x\\in\\{0,1\\}$, neither of which lies in $(0,1)$, so $\\varphi(x)>0$ throughout; yet $\\varphi(x)\\to0$ as $x\\to0^+$ and as $x\\to1^-$. Thus $0$ is a lower bound and no smaller bound works, so $\\inf\\varphi=b=0$, never reached.",
-          "Hence $\\varphi$ has the required properties with $\\boxed{a=\\tfrac14,\\ b=0}$ (sup attained, inf not)."
-        ]
-      },
-      {
-        "name": "Sine-bump construction",
-        "steps": [
-          "Take $\\psi(x)=\\sin(\\pi x)$ on $(0,1)$, which is continuous and bounded since $|\\psi|\\le1$.",
-          "On $(0,1)$ the argument $\\pi x$ lies in $(0,\\pi)$, so $\\psi(x)>0$; the unique maximiser of $\\sin$ there is $\\pi x=\\tfrac\\pi2$, i.e. $x=\\tfrac12\\in(0,1)$, giving $\\psi\\bigl(\\tfrac12\\bigr)=1$. Hence $\\sup\\psi=1$ is attained.",
-          "As $x\\to0^+$ or $x\\to1^-$ we have $\\psi(x)\\to\\sin0=\\sin\\pi=0$, while $\\psi(x)>0$ inside; so $\\inf\\psi=0$ is the greatest lower bound but is not attained.",
-          "This is another valid construction with $a=1,\\ b=0$; either example settles the question. $\\boxed{\\text{sup attained, inf not}}$"
-        ]
-      }
-    ],
-    "remark": "Insight: the existence question is really about which hypothesis of EVT you drop. Removing closedness of the domain frees the infimum to escape to a missing endpoint while the supremum stays safely at an interior point, so the two extremes no longer rise or fall together. (Swapping signs, $-\\varphi$ attains its infimum but not its supremum, and a strictly monotone example like $x$ itself attains neither.)"
-  },
-  {
-    "theme": "evt",
-    "themeLabel": "Boundedness & Extreme Values",
-    "title": "The Quasi-Periodic Mirage",
+    "title": "The Diameter of a Shadow",
     "difficulty": 5,
-    "task": "Prove that",
+    "task": "Prove the image-diameter is attained and equals the oscillation, then evaluate it for the given cubic",
     "tags": [
-      "quasiperiodic",
-      "supremum not attained",
-      "dense orbit",
-      "irrational"
+      "extreme-value-theorem",
+      "compact-image",
+      "oscillation",
+      "attained-supremum",
+      "endpoint-extremum",
+      "diameter"
     ],
-    "statement": "Let $F(x)=\\sin x+\\cos\\!\\big(\\sqrt2\\,x\\big)$ for $x\\in\\mathbb R$. Prove that $F$ is bounded with $\\sup_{x\\in\\mathbb R}F(x)=2$, yet $F$ NEVER attains the value $2$; conclude that $F$ has no global maximum on $\\mathbb R$.",
-    "answer": "proved: $\\sup F=2$ but the supremum is not attained, so no global maximum exists.",
-    "trap": "Treating $F$ as if it were periodic (\"a sum of two sinusoids must be periodic\"), then invoking the periodic-function principle to claim the bound $2$ is attained. The two frequencies $1$ and $\\sqrt2$ are incommensurable, so $F$ is only quasi-periodic, not periodic, and the would-be maximum $2$ is approached arbitrarily closely but never reached.",
+    "statement": "For a continuous function $f$ on the closed interval $[a,b]$ define its image-diameter \\[ D(f)=\\sup\\{\\,|f(x)-f(y)|\\;:\\;x,y\\in[a,b]\\,\\}. \\] Part (a) (the principle). Prove that the supremum $D(f)$ is in fact \\text{attained} — there exist points $p,q\\in[a,b]$ with $D(f)=|f(p)-f(q)|$ — and that $D(f)=M-m$, where $M=\\max_{[a,b]}f$ and $m=\\min_{[a,b]}f$. (Equivalently: the image $f([a,b])$ is a closed bounded interval $[m,M]$, and $D(f)$ is the length of that interval.) Part (b) (the instance). Apply this to \\[ f(x)=x^{3}-3x \\qquad\\text{on}\\qquad [-2,\\,3], \\] and compute the exact value of $D(f)$, naming a pair $(p,q)$ at which it is attained. Note carefully that the interval $[-2,3]$ is \\text{not} symmetric about the origin.",
+    "answer": "\\[\\boxed{D(f)=20}\\]",
+    "trap": "The headline trap is to locate $M$ and $m$ from the interior critical points alone and never test the endpoints. Setting $f'(x)=3x^{2}-3=0$ gives the local extrema $x=\\pm1$ with $f(-1)=2$ (a local max) and $f(1)=-2$ (a local min). A strong student reads these off as 'the' maximum and minimum, getting $D=f(-1)-f(1)=2-(-2)=4$ — and is completely wrong. On a COMPACT interval the Extreme Value Theorem guarantees the global extrema are attained, but it does not say they sit at critical points: they may occur at the endpoints, and here the right endpoint dominates everything. Since the interval $[-2,3]$ is asymmetric, $f(3)=27-9=18$ is the true global maximum (far above the local max $2$), while the global minimum is $m=-2$, attained at the LEFT endpoint $x=-2$ ($f(-2)=-8+6=-2$) and ALSO at the interior critical point $x=1$. Hence $D=18-(-2)=20$, not $4$. Three distinct conceptual errors feed the wrong answer of $4$: (PIT 1) believing 'extremum $\\Rightarrow$ $f'=0$', forgetting that on $[a,b]$ the EVT extremum can be a boundary point where the derivative need not vanish; (PIT 2) a phantom-symmetry reflex — because $x^{3}-3x$ is an odd function, students assume its extreme values are $\\pm$ a common number and that the symmetric pairing of critical points gives the widest spread, an assumption silently destroyed once the domain is no longer symmetric; (PIT 3) confusing the largest gap between two TURNING values with the diameter of the IMAGE — the diameter is $\\max f-\\min f$ over the whole compact set, and the maximizing pair here is the non-critical endpoint $x=3$ paired with either point of the minimum. A subtler over-correction also lurks: a student who does check endpoints but reports the minimizer as only $x=-2$ misses that $m=-2$ is attained at TWO points ($x=-2$ and $x=1$), so the attaining pair $(p,q)$ is not unique.",
     "solutions": [
       {
-        "name": "Equioscillation forces incommensurability",
+        "name": "Compact image is an interval; EVT attains its endpoints",
         "steps": [
-          "Upper bound. Since $\\sin x\\le1$ and $\\cos(\\sqrt2 x)\\le1$ for all $x$, we have $F(x)=\\sin x+\\cos(\\sqrt2 x)\\le 2$. Thus $F$ is bounded above by $2$ (and likewise $F\\ge-2$, so $F$ is bounded).",
-          "Equality is forced to be exact. Because each term is at most $1$, $F(x)=2$ can hold only if $\\sin x=1$ AND $\\cos(\\sqrt2 x)=1$ simultaneously, i.e. $x=\\tfrac\\pi2+2\\pi m$ and $\\sqrt2\\,x=2\\pi n$ for some integers $m,n$.",
-          "Contradiction via irrationality. Substituting the first relation into the second gives $\\sqrt2\\big(\\tfrac\\pi2+2\\pi m\\big)=2\\pi n$, hence $\\sqrt2=\\dfrac{2n}{\\tfrac12+2m}=\\dfrac{4n}{1+4m}\\in\\mathbb Q$. This contradicts the irrationality of $\\sqrt2$. Therefore $F(x)=2$ is impossible, and indeed $F(x)<2$ for every real $x$.",
-          "The bound is sharp. Take the points $x_m=\\tfrac\\pi2+2\\pi m$, where $\\sin x_m=1$ exactly, so $F(x_m)=1+\\cos(\\sqrt2 x_m)$. By Kronecker–Weyl equidistribution, the numbers $\\tfrac{\\sqrt2 x_m}{2\\pi}=\\sqrt2\\big(\\tfrac14+m\\big)$ are equidistributed mod $1$ (since $\\sqrt2$ is irrational), so $\\cos(\\sqrt2 x_m)$ comes within any $\\varepsilon>0$ of its maximum $1$. Hence $F(x_m)$ gets within $\\varepsilon$ of $2$.",
-          "Conclusion. Combining the strict bound $F<2$ with the approximation $\\sup_m F(x_m)=2$ gives $\\sup_{x\\in\\mathbb R}F(x)=2$, attained nowhere. A global maximum would be a point where the supremum is achieved; none exists, so $F$ has no global maximum on $\\mathbb R$. $\\blacksquare$"
+          "(a) Boundedness and attainment. $[a,b]$ is closed and bounded (compact) and $f$ is continuous, so by the Extreme Value Theorem $f$ is bounded and attains a global maximum $M=f(x_{M})$ and a global minimum $m=f(x_{m})$ for some $x_{M},x_{m}\\in[a,b]$. For ANY $x,y$ we have $m\\le f(x),f(y)\\le M$, hence $|f(x)-f(y)|\\le M-m$; therefore $D(f)\\le M-m$. Conversely the specific pair $(x_{M},x_{m})$ gives $|f(x_{M})-f(x_{m})|=M-m$, so $D(f)\\ge M-m$. Combining, $D(f)=M-m$ and the supremum is ATTAINED at $(p,q)=(x_{M},x_{m})$ (one can verify $f([a,b])=[m,M]$: it lies in $[m,M]$ by the bound, contains $m,M$ by attainment, and is an interval by the Intermediate Value Theorem — so the image is the closed interval $[m,M]$ of length $M-m$).",
+          "(b) Catalogue every candidate for $f(x)=x^{3}-3x$ on $[-2,3]$. The global extrema can occur only at interior critical points or at the endpoints. Critical points: $f'(x)=3x^{2}-3=0\\Rightarrow x=\\pm1$, both inside $[-2,3]$. Evaluate $f$ at the full candidate set $\\{-2,-1,1,3\\}$: $f(-2)=-8+6=-2$, $f(-1)=-1+3=2$, $f(1)=1-3=-2$, $f(3)=27-9=18$.",
+          "Read off the global extremes from this finite list (EVT guarantees the extremes are among them): $M=\\max\\{-2,2,-2,18\\}=18$, attained only at the right endpoint $x=3$; $m=\\min\\{-2,2,-2,18\\}=-2$, attained at both $x=-2$ and $x=1$.",
+          "Conclude. By part (a), $D(f)=M-m=18-(-2)=20$, attained at $(p,q)=(3,-2)$ (and equally at $(3,1)$). Thus $\\boxed{D(f)=20}$."
         ]
       },
       {
-        "name": "Approach via simultaneous Diophantine approximation",
+        "name": "Direct two-variable maximization of |f(x)-f(y)|",
         "steps": [
-          "Bound. As above $F(x)\\le\\sin x+1\\le2$ and $F(x)\\le1+\\cos(\\sqrt2 x)\\le2$, so $F\\le2$ on $\\mathbb R$.",
-          "Why $2$ is never reached. Equality needs $\\sin x=1$ and $\\cos(\\sqrt2 x)=1$ at the SAME $x$, an exact commensurability between the periods $2\\pi$ and $2\\pi/\\sqrt2$. That would force a rational relation between $1$ and $\\sqrt2$, impossible since $\\sqrt2\\notin\\mathbb Q$; so $F<2$ pointwise.",
-          "An explicit approximating sequence. Fix $x_m=\\tfrac\\pi2+2\\pi m$ so that $\\sin x_m=1$ exactly; then $F(x_m)=1+\\cos(\\sqrt2 x_m)$. Because $\\sqrt2$ is irrational, the sequence $m\\mapsto\\{\\sqrt2\\,m\\}$ of fractional parts is dense in $[0,1)$ (a classical consequence of the three-distance / equidistribution theorem), hence $\\{\\sqrt2(\\tfrac14+m)\\}$ is dense in $[0,1)$ as well.",
-          "Pumping the value up. Density gives integers $m_k$ with $\\{\\sqrt2(\\tfrac14+m_k)\\}\\to0$, so $\\sqrt2 x_{m_k}$ is arbitrarily close to a multiple of $2\\pi$ and $\\cos(\\sqrt2 x_{m_k})\\to1$. Therefore $F(x_{m_k})\\to2$, giving $\\sup_m F(x_m)=2$.",
-          "Conclusion. We have $F<2$ everywhere yet $F$ takes values within every $\\varepsilon$ of $2$; thus $\\sup_{x\\in\\mathbb R}F(x)=2$ is approached but never reached, and $F$ admits no global maximum. $\\blacksquare$"
+          "Treat $g(x,y)=f(x)-f(y)$ on the compact square $[-2,3]^{2}$; it is continuous, so it attains a maximum, and $D(f)=\\max|g|=\\max g$ (since swapping $x,y$ flips the sign). Maximizing $g$ separates: $\\max_{x,y}\\,(f(x)-f(y))=\\big(\\max_{x}f(x)\\big)-\\big(\\min_{y}f(y)\\big)$, because the two variables are independent. So the problem reduces to finding $\\max f$ and $\\min f$ separately — exactly $M$ and $m$.",
+          "Maximize $f(x)=x^{3}-3x$ on $[-2,3]$. On $[1,3]$, $f'=3x^{2}-3>0$, so $f$ is increasing there and the right endpoint wins: the candidates for $\\max$ are the local max $x=-1$ ($f=2$) and the right endpoint $x=3$ ($f=18$). Hence $M=18$ at $x=3$. The endpoint beats the critical point precisely because the interval extends well past $x=1$ into the increasing region.",
+          "Minimize $f$ on $[-2,3]$. Candidates are the local min $x=1$ ($f=-2$) and the left endpoint $x=-2$ ($f=-2$). Both give $-2$, so $m=-2$, attained at the two points $x=1$ and $x=-2$.",
+          "Therefore $D(f)=M-m=18-(-2)=20$, with the maximizing pair $(x,y)=(3,-2)$ or $(3,1)$. Hence $\\boxed{D(f)=20}$."
+        ]
+      },
+      {
+        "name": "Monotone-piece decomposition (no calculus tables, pure EVT reasoning)",
+        "steps": [
+          "Split $[-2,3]$ at the critical points $x=\\pm1$ into monotone pieces, which the EVT lets us handle by endpoints alone. On a monotone piece $f$ attains its max and min exactly at the two ends of that piece, so the extremes over $[-2,3]$ lie among the breakpoints $\\{-2,-1,1,3\\}$.",
+          "Piece $[-2,-1]$: $f'>0$ (since $x^{2}>1$), increasing from $f(-2)=-2$ up to $f(-1)=2$. Piece $[-1,1]$: $f'<0$, decreasing from $f(-1)=2$ down to $f(1)=-2$. Piece $[1,3]$: $f'>0$, increasing from $f(1)=-2$ up to $f(3)=18$.",
+          "The running extremes across the pieces: the highest value reached is $18$ (top of the last, rising piece, at $x=3$), and the lowest value reached is $-2$ (bottom of the second and start of the third piece, at $x=1$, and equally the start of the first piece at $x=-2$). So $M=18$ and $m=-2$ over the whole interval — the last increasing piece overshoots the modest local max $2$.",
+          "Since the image is the union of the three sub-images $[-2,2]\\cup[-2,2]\\cup[-2,18]=[-2,18]$, a single closed interval of length $20$, the diameter is its length: $D(f)=18-(-2)=20$, attained between $x=3$ and either $x=1$ or $x=-2$. Hence $\\boxed{D(f)=20}$."
         ]
       }
     ],
-    "remark": "Insight: the sum of sinusoids with incommensurable frequencies is the canonical bounded continuous function on $\\mathbb R$ whose supremum is NOT attained, exactly the failure the EVT/periodic principle is meant to rule out. The Extreme Value Theorem rescues periodic functions because one full period is a compact (closed and bounded) set, so the continuous $F$ attains its max there; quasi-periodicity offers no such period to compactify, and the bound $2$ survives only as an unreached limit along a dense orbit."
+    "remark": "Insight: the load-bearing idea is that continuity on a COMPACT set turns a supremum into a maximum. The map $(x,y)\\mapsto|f(x)-f(y)|$ on $[a,b]^{2}$ is continuous on a compact square, so its supremum $D(f)$ is genuinely attained — and a one-line bound plus the EVT-attained pair $(x_{M},x_{m})$ shows $D(f)=M-m$, the length of the compact image $[m,M]$. That is EVT used as an EXISTENCE certificate ('the diameter is achieved') followed by LOCATION ('where?'). Every hypothesis earns its place: drop closedness (try $f(x)=x^{3}-3x$ on the open $(-2,3)$) and the value $18$ is approached but never reached, so $M$ — and hence the diameter — is a supremum that is no longer attained; drop boundedness (an unbounded domain) and $D$ can be infinite. The instance is engineered so the naive critical-point answer $4$ is seductive and wrong: the asymmetry of $[-2,3]$ pushes the true maximum onto the right endpoint $x=3$ (where $f'\\ne0$), a place the 'set the derivative to zero' reflex never visits. The transferable discipline: to extremize a continuous function on $[a,b]$, the candidate set is interior critical points $\\cup$ endpoints — never critical points alone — and the global extrema (whose existence EVT guarantees) may, and here do, live on the boundary."
   },
   {
     "theme": "evt",
@@ -3467,103 +3084,79 @@ window.PROBLEMS = [
     "remark": "Insight: the minimum of a maximum of functions lives at a 'kink' — a crossing of the active branches — not at any branch's own vertex. Coercivity supplies existence (an EVT-on-a-box argument), and the crossing principle pins down the location; here both the value and the minimizer come out perfectly clean at $(2,0)$."
   },
   {
-    "theme": "monotone",
-    "themeLabel": "Monotonic & Inverse Functions",
-    "title": "The Plateau That Tears the Inverse",
+    "theme": "evt",
+    "themeLabel": "Boundedness & Extreme Values",
+    "title": "Where the Floor Slips Away",
     "difficulty": 5,
-    "task": "Decide invertibility and measure the jump the inverse is forced to carry",
+    "task": "Compare extremes: closed vs open",
     "tags": [
-      "monotone",
-      "strict-monotonicity",
-      "generalized-inverse",
-      "plateau",
-      "jump-discontinuity",
-      "injectivity"
+      "extreme value theorem",
+      "closed interval",
+      "open interval",
+      "boundedness",
+      "rational function"
     ],
-    "statement": "Define $f:[0,1]\\to\\mathbb{R}$ by \\[ f(x)=\\begin{cases} x^{2}, & 0\\le x\\le \\tfrac12,\\\\ \\tfrac14, & \\tfrac12\\le x\\le \\tfrac34,\\\\ x-\\tfrac12, & \\tfrac34\\le x\\le 1. \\end{cases} \\] One checks that $f$ is continuous on $[0,1]$ (the three pieces agree at $x=\\tfrac12$ and $x=\\tfrac34$, both equal to $\\tfrac14$) and nondecreasing, with $f(0)=0$ and $f(1)=\\tfrac12$, so its range is the full interval $[0,\\tfrac12]$. A student claims: \\[ \\text{``} f \\text{ is a continuous monotone surjection onto } [0,\\tfrac12], \\text{ hence it is invertible and its inverse is continuous.''} \\] Decide whether $f$ is invertible as a function on $[0,1]$. Then form the canonical left-continuous generalized inverse $g(y)=\\inf\\{\\,x\\in[0,1]:f(x)\\ge y\\,\\}$ for $y\\in[0,\\tfrac12]$, and determine the magnitude $J$ of the single jump discontinuity that $g$ is forced to have, identifying the exact value of $y$ at which it occurs.",
-    "answer": "\\[\\boxed{J=\\tfrac14}\\]",
-    "trap": "The claim is false, and it fails for a reason strictness, not mere monotonicity, is what manufactures a continuous inverse. A continuous nondecreasing function is injective only when it is strictly increasing; here $f$ is constant on the plateau $[\\tfrac12,\\tfrac34]$, so $f(\\tfrac12)=f(\\tfrac34)=\\tfrac14$ and $f$ is not one-to-one, hence has no genuine functional inverse at all. The seductive error is to invoke ``continuous strictly monotone bijections have continuous inverses'' while quietly dropping the word strictly, concluding $J=0$ (a continuous inverse). A second, subtler trap appears once one accepts that the inverse jumps: students locate the jump at $y=\\tfrac12$, mistaking the domain coordinate where the plateau begins ($x=\\tfrac12$) for the image value the inverse is indexed by. But $g$ lives on the $y$-axis, and the plateau collapses to the single output $f\\equiv\\tfrac14$; the tear in $g$ therefore sits at $y=\\tfrac14$, not $y=\\tfrac12$. A third trap is to report the jump as the gap between the plateau endpoints measured the wrong way, e.g. $\\tfrac34-\\tfrac12$ but assigned to the limit from below; the left limit $g(\\tfrac14^{-})=\\tfrac12$ and the value/right limit $g(\\tfrac14^{+})=\\tfrac34$ must be read off the correct one-sided behaviour to get $J=\\tfrac34-\\tfrac12=\\tfrac14$.",
+    "statement": "Let $h(x)=\\dfrac{2x}{1+x^{2}}$. (a) On the closed interval $[0,3]$, decide whether $h$ attains a maximum and a minimum, and give those values together with the points where they occur. (b) On the open interval $(0,3)$, decide which of the supremum and the infimum of $h$ is actually attained, and which is only approached. Justify every claim using continuity.",
+    "answer": "$\\boxed{\\text{On }[0,3]:\\ \\max h=1\\ (x=1),\\ \\min h=0\\ (x=0).\\ \\ \\text{On }(0,3):\\ \\sup h=1\\text{ attained at }x=1,\\ \\inf h=0\\text{ NOT attained.}}$",
+    "trap": "The seductive wrong answer is to copy the closed-interval result and declare $\\min h=0$ on $(0,3)$ as well. But $h(x)=0$ forces $2x=0$, i.e. $x=0$, which is excluded from $(0,3)$; for every $x\\in(0,3)$ we have $h(x)>0$. So $0$ is the infimum yet is approached only as $x\\to0^{+}$ and is never a value — the Extreme Value Theorem fails the moment the closing endpoint is removed.",
     "solutions": [
       {
-        "name": "Direct construction of the generalized inverse and its saltus",
+        "name": "Critical points plus the EVT hypothesis",
         "steps": [
-          "First, $f$ is not invertible as a function: it is nondecreasing but not strictly so, since $f\\equiv\\tfrac14$ on the whole plateau $[\\tfrac12,\\tfrac34]$. Thus $f(\\tfrac12)=f(\\tfrac34)$ with $\\tfrac12\\neq\\tfrac34$, so $f$ is not injective and no two-sided inverse exists; the best one can do is the left-continuous generalized inverse $g(y)=\\inf\\{x:f(x)\\ge y\\}$.",
-          "Compute $g$ piecewise on the range $[0,\\tfrac14]\\cup[\\tfrac14,\\tfrac12]$. For $0\\le y\\le\\tfrac14$ the condition $f(x)\\ge y$ is first met on the branch $x^{2}\\ge y$, giving $g(y)=\\sqrt{y}$ (so $g$ climbs from $0$ to $\\sqrt{\\tfrac14}=\\tfrac12$). For $\\tfrac14<y\\le\\tfrac12$ the values $f(x)\\ge y>\\tfrac14$ can only occur on the rising branch $x-\\tfrac12\\ge y$, i.e. $x\\ge y+\\tfrac12$, giving $g(y)=y+\\tfrac12$ (so $g$ jumps up and continues from $\\tfrac34$ to $1$).",
-          "Read the one-sided behaviour at $y=\\tfrac14$. From below, $g(\\tfrac14^{-})=\\lim_{y\\to\\frac14^{-}}\\sqrt{y}=\\tfrac12$, and by left-continuity $g(\\tfrac14)=\\tfrac12$. From above, $g(\\tfrac14^{+})=\\lim_{y\\to\\frac14^{+}}(y+\\tfrac12)=\\tfrac34$. Hence $g$ has a genuine jump there of size $g(\\tfrac14^{+})-g(\\tfrac14^{-})=\\tfrac34-\\tfrac12$.",
-          "Everywhere else $g$ is a composition/translation of continuous strictly increasing maps, so the jump at $y=\\tfrac14$ is the only discontinuity. Therefore $J=\\tfrac34-\\tfrac12=\\boxed{\\tfrac14}$, occurring at $y=\\tfrac14$."
+          "Since $1+x^{2}>0$ for all $x$, $h$ is a quotient of continuous functions with nonzero denominator, hence continuous on all of $\\mathbb{R}$; in particular it is continuous on the closed bounded interval $[0,3]$, so by the Extreme Value Theorem it attains both a maximum and a minimum there.",
+          "Differentiate: $h'(x)=\\dfrac{2(1-x^{2})}{(1+x^{2})^{2}}$, which vanishes only at $x=1$ inside $[0,3]$, with $h'>0$ on $(0,1)$ and $h'<0$ on $(1,3)$, so $x=1$ is the interior maximum.",
+          "Compare the candidate values $h(0)=0$, $h(1)=1$, $h(3)=\\tfrac{6}{10}=\\tfrac35$: the maximum is $h(1)=1$ and the minimum is $h(0)=0$. This proves part (a).",
+          "On $(0,3)$ the maximiser $x=1$ still lies inside, so $\\sup h=1$ is attained. But $h(x)=0\\iff x=0$, which is now excluded; for $x\\in(0,3)$, $h(x)>0$, so the value $0$ is never reached although $h(x)\\to0$ as $x\\to0^{+}$. Hence $\\inf h=0$ is not attained, giving the boxed answer."
         ]
       },
       {
-        "name": "Plateau-to-jump duality for monotone functions",
+        "name": "Substitution to a bounded amplitude",
         "steps": [
-          "There is a clean correspondence for a continuous nondecreasing $f$: each maximal interval on which $f$ is constant (a plateau) collapses, under any generalized inverse, to a single output value at which the inverse must leap across the whole plateau. Conversely a jump of $f$ would become a plateau of the inverse. Here $f$ has no jumps (it is continuous), but it has exactly one plateau, $[\\tfrac12,\\tfrac34]$ at height $\\tfrac14$.",
-          "Because the inverse must return $x$-values and the plateau occupies the $x$-interval $[\\tfrac12,\\tfrac34]$ while sharing the single $y$-value $\\tfrac14$, the inverse at $y=\\tfrac14$ is set-valued, equal to the whole $[\\tfrac12,\\tfrac34]$; selecting the left-continuous branch forces $g$ to jump from the bottom $\\tfrac12$ to the top $\\tfrac34$ of this interval as $y$ crosses $\\tfrac14$.",
-          "Hence the jump magnitude equals the length of the plateau in the domain, $J=\\tfrac34-\\tfrac12=\\tfrac14$, and it is located at the plateau's common image value $y=\\tfrac14$ (not at the domain coordinate $x=\\tfrac12$).",
-          "Since a continuous monotone function has no jumps and only this one plateau, the inverse has exactly one discontinuity, of size $\\boxed{\\tfrac14}$."
-        ]
-      },
-      {
-        "name": "Contrapositive via the inverse-continuity theorem",
-        "steps": [
-          "The correct theorem is: if $h$ is continuous and strictly monotone on an interval, then $h$ is a bijection onto its image and $h^{-1}$ is continuous. Run it in contrapositive: were our $g$ continuous, it would be a continuous nondecreasing right inverse satisfying $f(g(y))=y$ on $[0,\\tfrac12]$, and $g([0,\\tfrac12])$ would be a connected (interval) subset of $[0,1]$ by the intermediate value property.",
-          "But $g$ takes the value $\\tfrac12$ (at $y=\\tfrac14$) and the value $\\tfrac34$ (as $y\\to\\tfrac14^{+}$), while it never takes any value strictly between $\\tfrac12$ and $\\tfrac34$: any such $x_0\\in(\\tfrac12,\\tfrac34)$ has $f(x_0)=\\tfrac14$, and $g$ by its infimum definition would have already returned $\\tfrac12$, not $x_0$. So the image of $g$ skips the open interval $(\\tfrac12,\\tfrac34)$ and is disconnected, contradicting continuity.",
-          "Thus $g$ cannot be continuous; the obstruction is exactly the missing strictness of $f$ on $[\\tfrac12,\\tfrac34]$. The size of the gap the image skips is $\\tfrac34-\\tfrac12=\\tfrac14$, which is precisely the saltus of $g$ at the crossing value.",
-          "That crossing value is the height of the plateau, $y=\\tfrac14$, so the unique jump has magnitude $J=\\boxed{\\tfrac14}$."
+          "Write $x=\\tan\\theta$ with $\\theta\\in[0,\\arctan 3]$; then $h=\\dfrac{2\\tan\\theta}{1+\\tan^{2}\\theta}=2\\sin\\theta\\cos\\theta=\\sin 2\\theta$, a continuous function of $\\theta$.",
+          "As $x$ runs over $[0,3]$, $2\\theta$ runs over $[0,\\,2\\arctan 3]$, and since $\\arctan 3>\\tfrac{\\pi}{4}$ this range contains $\\tfrac{\\pi}{2}$; thus $\\sin 2\\theta$ reaches its peak $1$ (at $2\\theta=\\tfrac\\pi2$, i.e. $x=1$) and its least value $0$ at the left end $\\theta=0$, i.e. $x=0$. So on $[0,3]$ the maximum is $1$ and the minimum is $0$, both attained.",
+          "Removing the endpoint $x=0$ removes $\\theta=0$, hence removes the only point with $\\sin2\\theta=0$; the peak at $x=1$ survives. Therefore on $(0,3)$ the supremum $1$ is attained while the infimum $0$ is merely approached, matching the boxed answer."
         ]
       }
     ],
-    "remark": "Insight: monotone alone is not enough monotone-and-continuous gives you surjectivity onto an interval and a well-defined generalized inverse, but it is strict monotonicity that upgrades that inverse to a continuous function. The dictionary to memorize is the plateau-jump duality: a flat stretch of $f$ (failure of strictness) becomes a jump of the inverse, and a jump of $f$ would become a flat stretch of the inverse. Two reflexes a top ranker should drill: (1) the inverse is indexed by output values, so a domain plateau over $[\\tfrac12,\\tfrac34]$ produces a tear at the image height $\\tfrac14$, never at $x=\\tfrac12$; (2) the jump's size is the domain-length of the plateau, $\\tfrac34-\\tfrac12=\\tfrac14$, read off the correct one-sided limits $g(\\tfrac14^{-})=\\tfrac12$ and $g(\\tfrac14^{+})=\\tfrac34$. The same mechanism is why quantile functions of distributions with atoms jump, and why a CDF with a flat stretch has a discontinuous quantile inverse."
+    "remark": "**Insight.** The Extreme Value Theorem needs **both** continuity **and** a **closed, bounded** interval. Here $h$ is continuous everywhere, so on $[0,3]$ both extremes are guaranteed and located by the single critical point. The whole drama lives at the **endpoint $x=0$**: it is the *only* place where $h$ equals its infimum, so deleting it to form the open interval $(0,3)$ keeps the interior maximum but lets the minimum **escape to a limit**. A supremum or infimum is just a number the values crowd toward; whether it is *attained* is a separate question that the closed-interval hypothesis — not continuity alone — settles."
   },
   {
-    "theme": "monotone",
-    "themeLabel": "Monotonic & Inverse Functions",
-    "title": "Three Cracks to Order, and a Floor You Cannot Touch",
+    "theme": "evt",
+    "themeLabel": "Boundedness & Extreme Values",
+    "title": "The Minimum That Lives on the Edge",
     "difficulty": 5,
-    "task": "Build a strictly increasing function to the prescribed discontinuity spec, find the infimum of its terminal value and decide if it is attained, then prove the positive-measure impossibility",
+    "task": "Find sum of extreme values",
     "tags": [
-      "monotone-jump-decomposition",
-      "saltus",
-      "countable-discontinuities",
-      "infimum-not-attained",
-      "strict-monotonicity",
-      "measure-zero"
+      "extreme-value-theorem",
+      "closed-interval",
+      "endpoint-extremum",
+      "open-interval-trap",
+      "continuity"
     ],
-    "statement": "Fix the three points $S=\\left\\{\\tfrac14,\\ \\tfrac1\\pi,\\ \\tfrac{\\sqrt2}{2}\\right\\}\\subset(0,1)$ (note $\\tfrac14<\\tfrac1\\pi<\\tfrac{\\sqrt2}{2}$). Call a function $f:[0,1]\\to\\mathbb{R}$ \\text{admissible} if all three hold: (i) $f$ is strictly increasing on $[0,1]$ with $f(0)=0$; (ii) the set of points at which $f$ is discontinuous is \\text{exactly} $S$ (continuous everywhere else); (iii) the jump (saltus) of $f$ equals $\\tfrac12$ at $x=\\tfrac14$, equals $\\tfrac13$ at $x=\\tfrac1\\pi$, and equals $\\tfrac16$ at $x=\\tfrac{\\sqrt2}{2}$, where the saltus at an interior point $d$ is $f(d^{+})-f(d^{-})$. Part (a). Exhibit one admissible $f$ (give an explicit formula) and verify it meets (i)-(iii). Part (b). Over all admissible $f$, determine the infimum $m=\\inf f(1)$ and state, with proof, whether the infimum is attained. Part (c) (the principle behind the spec). Prove that no strictly increasing function on $[0,1]$ can have a discontinuity set of positive Lebesgue measure; in fact its discontinuity set is at most countable. Report the value $m$ from part (b) as your answer.",
-    "answer": "\\[\\boxed{m=1}\\]",
-    "trap": "The seductive wrong answer is to say $m=1$ and that it \\text{is} attained, achieved by the pure jump (step) function $J(x)$ that starts at $0$ and rises by $\\tfrac12,\\tfrac13,\\tfrac16$ at the three points, giving $J(1)=\\tfrac12+\\tfrac13+\\tfrac16=1$. The arithmetic of the saltus is correct and the discontinuity set is exactly $S$ — so the candidate looks perfect — but it is NOT admissible, and this is the whole point. A pure step function is CONSTANT on each gap between consecutive jump points (e.g. $J\\equiv\\tfrac56$ on the entire open interval $(\\tfrac1\\pi,\\tfrac{\\sqrt2}{2})$), so it is only non-decreasing, never strictly increasing; condition (i) is violated. The conceptual trap is conflating 'monotone' with 'strictly monotone'. By the monotone jump decomposition every admissible $f$ splits as $f=g+J$ with $g$ the continuous part and $J$ the jump part; $J$ contributes exactly the forced total saltus $1$ to $f(1)$, while strict increase forces the continuous part $g$ to be STRICTLY increasing, hence $g(1)-g(0)>0$ strictly (not merely $\\ge0$). Therefore $f(1)=g(1)+J(1)=g(1)+1>1$ for every admissible $f$, so $1$ is a strict lower bound that is approached but never reached: taking $g(x)=\\varepsilon x$ with $\\varepsilon\\downarrow0$ drives $f(1)=1+\\varepsilon\\to1^{+}$, proving $\\inf f(1)=1$ while no admissible $f$ achieves it. A second, subtler error is over-counting: writing $f(1)=g(1)+\\tfrac12+\\tfrac13+\\tfrac16$ but forgetting that a jump AT an interior point fully lands inside $[0,1]$ (it does — all three points lie in $(0,1)$, so the entire saltus $1$ is collected by $x=1$), or conversely double-counting an endpoint jump that does not exist here. The headline value $1$ is right; the claim that it is achieved is the error.",
+    "statement": "Let $f(x) = x + 2\\cos x$ be considered on the closed bounded interval $I = \\left[0,\\ \\tfrac{5\\pi}{6}\\right]$. Since $f$ is continuous on $I$, the Extreme Value Theorem guarantees that $f$ attains a global maximum value $M$ and a global minimum value $m$ on $I$. \\par Determine $M + m$. \\par (While doing so, decide carefully whether each extreme value would still be attained if the interval were the open interval $\\left(0,\\ \\tfrac{5\\pi}{6}\\right)$ instead.)",
+    "answer": "\\boxed{M + m = \\pi}",
+    "trap": "Assuming that because $f$ attains its minimum on the closed interval, it would also attain that same minimum on the open interval $\\left(0,\\tfrac{5\\pi}{6}\\right)$. The minimum value $m = \\tfrac{5\\pi}{6}-\\sqrt 3$ occurs ONLY at the right endpoint $x=\\tfrac{5\\pi}{6}$; at every interior point of the open interval the value of $f$ is strictly larger, so on the open interval the infimum is approached but never reached. The EVT requires a closed bounded interval precisely for this reason.",
     "solutions": [
       {
-        "name": "Jump decomposition: forced saltus plus a strictly-positive continuous part",
+        "name": "Critical points versus endpoints",
         "steps": [
-          "(a) Construction. Let $d_1=\\tfrac14,\\,d_2=\\tfrac1\\pi,\\,d_3=\\tfrac{\\sqrt2}{2}$ with jumps $c_1=\\tfrac12,\\,c_2=\\tfrac13,\\,c_3=\\tfrac16$. Define the right-continuous jump function $J(x)=\\sum_{k:\\,d_k\\le x}c_k$ and set, for any fixed $\\varepsilon>0$, $f(x)=\\varepsilon x+J(x)$ on $[0,1]$. Then $f(0)=0$. The term $\\varepsilon x$ is continuous and strictly increasing, and $J$ is non-decreasing, so $f$ is strictly increasing (a strictly increasing function plus a non-decreasing one is strictly increasing). At each $d_k$, $J$ jumps by $c_k$ and $\\varepsilon x$ is continuous, so the saltus of $f$ at $d_k$ is exactly $f(d_k^{+})-f(d_k^{-})=c_k$; away from $S$ both summands are continuous, so $f$ is continuous there. Hence the discontinuity set is exactly $S$, and (i)-(iii) hold: $f$ is admissible.",
-          "(b) Lower bound. Let $f$ be ANY admissible function. By the monotone jump decomposition, write $f=g+J$ where $J(x)=\\sum_{k:\\,d_k\\le x}c_k$ collects the prescribed saltus and $g=f-J$. Then $g$ is continuous (its only candidate discontinuities are at the $d_k$, where the saltus of $f$ and of $J$ both equal $c_k$ and cancel) and $g$ is strictly increasing (between consecutive jump points $f$ is continuous and strictly increasing, and $J$ is constant there, so $g=f-J$ is strictly increasing; across a jump $g$ is continuous and still strictly increasing by checking one-sided limits). All three points lie in $(0,1)$, so $J(1)=c_1+c_2+c_3=\\tfrac12+\\tfrac13+\\tfrac16=1$ and $J(0)=0$.",
-          "Therefore $f(1)=g(1)+J(1)=g(1)+1$ and $f(0)=g(0)+0=0\\Rightarrow g(0)=0$. Since $g$ is strictly increasing, $g(1)>g(0)=0$, so $f(1)=g(1)+1>1$. Thus $1$ is a lower bound and is never attained.",
-          "(b) Sharpness. The family $f_\\varepsilon(x)=\\varepsilon x+J(x)$ from part (a) is admissible for every $\\varepsilon>0$ and gives $f_\\varepsilon(1)=\\varepsilon+1\\to1^{+}$ as $\\varepsilon\\downarrow0$. Hence the infimum equals $1$ but is approached only in the limit. Conclusion: $m=\\inf f(1)=1$, NOT attained, so $\\boxed{m=1}$.",
-          "(c) Countability and measure zero. Let $h$ be strictly increasing on $[0,1]$ (so bounded: $h(0)\\le h(x)\\le h(1)$, total rise $L=h(1)-h(0)<\\infty$). At a discontinuity $d$ the saltus $s(d)=h(d^{+})-h(d^{-})>0$, and for $d<d'$ the open intervals $\\big(h(d^{-}),h(d^{+})\\big)$ and $\\big(h(d'^{-}),h(d'^{+})\\big)$ are disjoint (order preservation) and contained in $[h(0),h(1)]$. So any finite set of discontinuities has total saltus $\\le L$. Fix $n\\in\\mathbb{N}$: the set $D_n=\\{d:\\,s(d)>L/n\\}$ has at most $n$ elements (else the total saltus exceeds $L$). The full discontinuity set is $\\bigcup_{n\\ge1}D_n$, a countable union of finite sets, hence at most countable. A countable set is Lebesgue measurable with measure $0$, so it can never have positive measure. $\\square$"
+          "$f(x)=x+2\\cos x$ is differentiable with $f'(x)=1-2\\sin x$. Setting $f'(x)=0$ gives $\\sin x=\\tfrac12$, so within $\\left[0,\\tfrac{5\\pi}{6}\\right]$ the stationary points are $x=\\tfrac{\\pi}{6}$ and $x=\\tfrac{5\\pi}{6}$ (the latter coincides with the right endpoint).",
+          "By the EVT the extreme values occur among the endpoints and interior stationary points. Evaluate the candidates: $f(0)=2$, $f\\!\\left(\\tfrac{\\pi}{6}\\right)=\\tfrac{\\pi}{6}+\\sqrt 3\\approx 2.2556$, and $f\\!\\left(\\tfrac{5\\pi}{6}\\right)=\\tfrac{5\\pi}{6}-\\sqrt 3\\approx 0.8859$.",
+          "Comparing: the maximum is $M=\\tfrac{\\pi}{6}+\\sqrt 3$ (attained at the interior point $x=\\tfrac{\\pi}{6}$) and the minimum is $m=\\tfrac{5\\pi}{6}-\\sqrt 3$ (attained at the endpoint $x=\\tfrac{5\\pi}{6}$).",
+          "Therefore $M+m=\\left(\\tfrac{\\pi}{6}+\\sqrt 3\\right)+\\left(\\tfrac{5\\pi}{6}-\\sqrt 3\\right)=\\tfrac{\\pi}{6}+\\tfrac{5\\pi}{6}=\\pi$, since the $\\sqrt 3$ terms cancel."
         ]
       },
       {
-        "name": "Telescoping the gaps: a direct accounting of the total rise",
+        "name": "Monotonic blocks and IVT-free comparison",
         "steps": [
-          "(b) Order the points $0<d_1<d_2<d_3<1$ and consider any admissible $f$. Split the rise of $f$ across $[0,1]$ into one-sided pieces. Define the continuous increments over the closed gaps and the jumps at the points; because $f$ is strictly increasing, every continuous piece contributes a STRICTLY positive amount.",
-          "Concretely, $f(1)-f(0)=\\big[f(d_1^{-})-f(0)\\big]+\\big[f(d_1^{+})-f(d_1^{-})\\big]+\\big[f(d_2^{-})-f(d_1^{+})\\big]+\\big[f(d_2^{+})-f(d_2^{-})\\big]+\\big[f(d_3^{-})-f(d_2^{+})\\big]+\\big[f(d_3^{+})-f(d_3^{-})\\big]+\\big[f(1)-f(d_3^{+})\\big].$ The three bracketed saltus terms equal $\\tfrac12,\\tfrac13,\\tfrac16$ (sum $1$). The four remaining bracketed terms are the continuous increments over $[0,d_1],[d_1,d_2],[d_2,d_3],[d_3,1]$; on each such gap $f$ is continuous and strictly increasing, so each increment is $>0$.",
-          "Hence with $f(0)=0$: $f(1)=\\underbrace{(\\text{4 strictly positive continuous increments})}_{>0}+\\underbrace{\\big(\\tfrac12+\\tfrac13+\\tfrac16\\big)}_{=1}>1$. So $f(1)>1$ for every admissible $f$: $1$ is a strict lower bound, never attained.",
-          "To see $1$ is the greatest lower bound, distribute a tiny continuous rise $\\varepsilon$ across the four gaps (e.g. $f(x)=\\varepsilon x+J(x)$): then the four continuous increments sum to $\\varepsilon$ and $f(1)=1+\\varepsilon\\to1^{+}$. Therefore $m=1$, not attained, and $\\boxed{m=1}$.",
-          "(c) The same accounting bounds discontinuities: for a strictly increasing $h$ with finite rise $L$, summing the saltus over any finite collection of jump points cannot exceed $L$ (each gap increment is nonnegative and the saltus are disjoint contributions to the total rise). So for each $n$ only finitely many ($\\le n$) jumps exceed $L/n$, and the discontinuity set is a countable union of these finite sets — countable, hence Lebesgue-null, never of positive measure. $\\square$"
-        ]
-      },
-      {
-        "name": "Inverse-image viewpoint: gaps in the range force a strictly positive continuous part",
-        "steps": [
-          "(b) A strictly increasing $f:[0,1]\\to\\mathbb{R}$ is a bijection onto its image $R=f([0,1])$, and its inverse is automatically continuous and strictly increasing on $R$. A jump of saltus $c_k$ at $d_k$ means $R$ omits the open interval $\\big(f(d_k^{-}),f(d_k^{+})\\big)$ of length exactly $c_k$ — these omitted 'gap' intervals are disjoint and total $\\tfrac12+\\tfrac13+\\tfrac16=1$ in length.",
-          "The image $R$ is contained in $[f(0),f(1)]=[0,f(1)]$, an interval of length $f(1)$. The actual ATTAINED values form $R$; the part of $R$ that is genuinely traversed continuously (where $f$ acts like a continuous strictly increasing map onto a sub-interval) has positive total length $\\Lambda$, because on each of the four gaps between/around the jump points $f$ is continuous and strictly increasing, so it sweeps out an interval of POSITIVE length.",
-          "Length bookkeeping inside $[0,f(1)]$: $f(1)=(\\text{length swept continuously})+(\\text{total gap length})=\\Lambda+1$ with $\\Lambda>0$. Hence $f(1)=\\Lambda+1>1$ for every admissible $f$, with equality impossible (it would force $\\Lambda=0$, i.e. $f$ constant on each gap — contradicting strict increase).",
-          "Letting the continuously-swept length $\\Lambda\\to0^{+}$ (e.g. $f(x)=\\varepsilon x+J(x)$, where $\\Lambda=\\varepsilon$) shows the infimum is exactly $1$ and is not attained. Therefore $\\boxed{m=1}$.",
-          "(c) In this language: each discontinuity of a strictly increasing $h$ punches a disjoint open gap of positive length into the bounded range $[h(0),h(1)]$. Disjoint open subintervals of a bounded interval whose lengths exceed $L/n$ number at most $n$; ranging over $n$, there are at most countably many gaps, hence at most countably many discontinuities — a measure-zero set, never of positive measure. $\\square$"
+          "Read the sign of $f'(x)=1-2\\sin x$ across the interval. On $\\left(0,\\tfrac{\\pi}{6}\\right)$ we have $\\sin x<\\tfrac12$, so $f'>0$ and $f$ strictly increases; on $\\left(\\tfrac{\\pi}{6},\\tfrac{5\\pi}{6}\\right)$ we have $\\sin x>\\tfrac12$, so $f'<0$ and $f$ strictly decreases.",
+          "Thus $f$ rises from $f(0)=2$ to a single peak at $x=\\tfrac{\\pi}{6}$, then falls all the way to the right endpoint. The peak value $M=\\tfrac{\\pi}{6}+\\sqrt 3$ is the global maximum.",
+          "Because $f$ is strictly decreasing on the whole stretch up to $x=\\tfrac{5\\pi}{6}$, the smallest value on the closed interval is the right-endpoint value $m=f\\!\\left(\\tfrac{5\\pi}{6}\\right)=\\tfrac{5\\pi}{6}-\\sqrt 3$; every interior point gives something strictly larger (this is exactly why the open interval would have no minimum).",
+          "Adding, $M+m=\\tfrac{\\pi}{6}+\\sqrt 3+\\tfrac{5\\pi}{6}-\\sqrt 3=\\pi$."
         ]
       }
     ],
-    "remark": "Insight: the spec is a trap that separates 'monotone' from 'strictly monotone'. Reading off the three saltus and summing to $1$ is the easy, correct part; the hard part is realising that the pure step function realising those jumps is only weakly increasing, so the genuine constraint forces a strictly positive continuous part $g$ on top of the forced jump part $J$. The decomposition $f=g+J$ makes the answer transparent: $f(1)=g(1)+1$ with $g(1)>0$, so $1$ is an infimum that is approached ($g(x)=\\varepsilon x$, $\\varepsilon\\downarrow0$) but never attained — a textbook case of an extremum that exists as $\\inf$ yet not as $\\min$. Part (c) is the structural reason the spec can only ever name a finite (or countable) set: a strictly increasing function carves disjoint positive-length gaps into a bounded range, so at most $n$ jumps can exceed $L/n$, forcing the discontinuity set to be a countable union of finite sets — Lebesgue-null. The transferable discipline: to build a monotone function to a discontinuity specification, count the saltus to fix the jump part, then remember that strict increase demands a genuinely growing continuous part, which is exactly what obstructs the naive 'attained' answer."
+    "remark": "**Insight.** The Extreme Value Theorem promises that a continuous function on a closed bounded interval attains both bounds, but it never promises the attaining point lies inside. Here the minimum is captured by the endpoint alone, and the cancelling $\\sqrt 3$ makes $M+m=\\pi$ exact. Strip the interval to its open version and the minimum evaporates: the same value is still the infimum, yet no point of the open set achieves it. Closedness is not decoration in the EVT; it is the hypothesis that traps the extremum."
   },
   {
     "theme": "monotone",
@@ -3711,37 +3304,88 @@ window.PROBLEMS = [
   {
     "theme": "monotone",
     "themeLabel": "Monotonic & Inverse Functions",
-    "title": "A Jump at Every Rational",
-    "difficulty": 5,
-    "task": "Prove that",
+    "title": "The Auctioneer's Discontinuous Ladder",
+    "difficulty": 4,
+    "task": "Determine",
     "tags": [
-      "dense discontinuities",
-      "countable set",
-      "pure jump function",
-      "monotone"
+      "monotone",
+      "jump discontinuity",
+      "sum of jumps",
+      "left and right limits",
+      "word problem"
     ],
-    "statement": "Enumerate the rationals of $(0,1)$ as $q_1,q_2,q_3,\\dots$ and define, for $x\\in[0,1]$, \\[ \\Phi(x)=\\sum_{n:\\,q_n\\le x}\\frac{1}{2^{\\,n}}. \\] Prove that $\\Phi$ is nondecreasing on $[0,1]$ with $\\Phi(0)=0,\\ \\Phi(1)=1$; that $\\Phi$ is discontinuous at every rational of $(0,1)$ and continuous at every irrational; and conclude that, although its discontinuity set is dense in $[0,1]$, it is countable. State the total of all jump sizes.",
-    "answer": "$\\Phi$ is a nondecreasing function with $\\Phi(0)=0$, $\\Phi(1)=1$, right-continuous everywhere; it has a jump of size $2^{-n}$ at each rational $q_n\\in(0,1)$ and is continuous at every irrational of $(0,1)$. Its discontinuity set is exactly $\\mathbb{Q}\\cap(0,1)$, which is dense yet countable, and the total of all jump sizes is $\\sum_{n\\ge1}2^{-n}=1$. Hence: proved, with total jump $\\boxed{1}$.",
-    "trap": "Reasoning 'the discontinuities are dense, so they must be uncountable / $\\Phi$ must be wildly discontinuous on a fat set': density does not imply uncountability. For ANY monotone function the discontinuity set is countable, because the open jump intervals $(\\Phi(x^-),\\Phi(x^+))$ are pairwise disjoint and each catches a distinct rational. Here it is precisely the (countable) rationals, despite being dense.",
+    "statement": "At a sealed-bid auction the clearing price, as a function of the quantity released $q\\in[0,4]$, is the nonincreasing 'demand-ladder' \\[ P(q)=10-\\lfloor q\\rfloor-\\Bigl\\lceil \\tfrac{q}{2}\\Bigr\\rceil, \\] where $\\lfloor\\cdot\\rfloor$ is the floor and $\\lceil\\cdot\\rceil$ is the ceiling. (a) Show $P$ is nonincreasing on $[0,4]$. (b) Find every $q\\in[0,4]$ at which the ladder is discontinuous; at each give the left limit $P(q^-)$, the right limit $P(q^+)$ and the downward jump $P(q^-)-P(q^+)$ (use the one available side at the endpoints $q=0,4$). (c) Compute the total drop $\\sum|\\text{jump}|$ and verify it equals $P(0)-P(4)$. Beware: $\\lceil\\cdot\\rceil$ and $\\lfloor\\cdot\\rfloor$ do not step at the same instants, nor on the same side.",
+    "answer": "$P$ is nonincreasing. It is discontinuous (jump discontinuities) at $q=0,1,2,3,4$ with downward jumps of sizes $1,1,2,1,1$. The floor $\\lfloor q\\rfloor$ contributes a $+1$ step at each of $q=1,2,3,4$ (so $P$ drops $1$ there), while the ceiling $\\lceil q/2\\rceil$ contributes a $+1$ step only as $q$ leaves the even values $0$ and $2$ (it equals $0$ at $q=0$, then $1$ on $(0,2]$, then $2$ on $(2,4]$), so $P$ drops $1$ at $q=0$ and an extra $1$ at $q=2$. Hence the per-point drops are $q=0\\!:1,\\ q=1\\!:1,\\ q=2\\!:2,\\ q=3\\!:1,\\ q=4\\!:1$. The total drop is $1+1+2+1+1=6$, and $P(0)-P(4)=10-4=6$, matching. (A subtlety: at $q=2$ the value $P(2)=7$ lies strictly between $P(2^-)=8$ and $P(2^+)=6$, because the right-continuous floor has already stepped at $q=2$ while the left-continuous ceiling has not.) So $\\boxed{\\text{jumps at }q=0,1,2,3,4\\text{ of sizes }1,1,2,1,1;\\ \\text{total }=6}$.",
+    "trap": "The seductive error is to read the ceiling like an offset floor and put its extra unit drops at $q=2$ and $q=4$ while ignoring $q=0$ — giving the bogus list 'jumps at $q=1,2,3,4$ of sizes $1,2,1,2$, total $6$'. The total $6$ even coincides, which makes the mistake look right. But $\\lceil q/2\\rceil$ does NOT step at $q=4$: it already reached its value $2$ on the whole interval $(2,4]$, so $\\lceil q/2\\rceil$ is continuous at $q=4$ and the only drop there is the floor's $1$, not $2$. Symmetrically the ceiling DOES step out of $q=0$ (from $\\lceil 0\\rceil=0$ to $1$), creating a real jump at $q=0$ that the bogus list omits. Correct placements: ceiling jumps as $q$ leaves the even points $0,2$, never at $q=4$.",
     "solutions": [
       {
-        "name": "Monotonicity, jumps, and the saltus sum",
+        "name": "Separate the two staircases",
         "steps": [
-          "If $x<y$, every index $n$ with $q_n\\le x$ also has $q_n\\le y$, so the defining sum gains only nonnegative extra terms: $\\Phi(x)\\le\\Phi(y)$; thus $\\Phi$ is nondecreasing. $\\Phi(0)=0$ (no rational $q_n\\le 0$) and $\\Phi(1)=\\sum_{n\\ge1}2^{-n}=1$. The series converges absolutely, with tail $\\sum_{n>N}2^{-n}=2^{-N}$.",
-          "Fix a rational $q_m\\in(0,1)$. For $x<q_m$ the index $m$ is excluded; for $x\\ge q_m$ it is included. Writing $\\Phi(q_m^-)=\\sum_{q_n<q_m}2^{-n}$ and $\\Phi(q_m)=\\sum_{q_n\\le q_m}2^{-n}$, the only term that switches on is the $m$-th, so $\\Phi(q_m)-\\Phi(q_m^-)=2^{-m}>0$: $\\Phi$ has a jump discontinuity at $q_m$ of size exactly $2^{-m}$. Moreover $\\Phi(q_m^+)=\\Phi(q_m)$, so $\\Phi$ is right-continuous there.",
-          "At an irrational $\\alpha\\in(0,1)$, given $\\varepsilon>0$ choose $N$ with $\\sum_{n>N}2^{-n}=2^{-N}<\\varepsilon$. The finitely many points $q_1,\\dots,q_N$ all differ from $\\alpha$, so pick $\\delta>0$ with no $q_n$ ($n\\le N$) in $(\\alpha-\\delta,\\alpha+\\delta)$. For $x,y$ in that interval the sums $\\Phi(x),\\Phi(y)$ differ only by terms with index $>N$, hence $|\\Phi(y)-\\Phi(x)|\\le\\sum_{n>N}2^{-n}<\\varepsilon$. Thus the oscillation of $\\Phi$ at $\\alpha$ is $0$ and $\\Phi$ is continuous at every irrational.",
-          "The discontinuity set is therefore exactly $\\mathbb{Q}\\cap(0,1)$: dense in $[0,1]$ but countable. Summing the jumps gives the saltus $\\sum_{n\\ge1}2^{-n}=\\boxed{1}$, equal to $\\Phi(1)-\\Phi(0)$ since $\\Phi$ is a pure jump function (its continuous part is constant)."
+          "Both $\\lfloor q\\rfloor$ and $\\lceil q/2\\rceil$ are nondecreasing on $[0,4]$, so $P=10-\\lfloor q\\rfloor-\\lceil q/2\\rceil$ is nonincreasing. This proves (a).",
+          "Locate the steps of each piece. The floor $\\lfloor q\\rfloor$ is right-continuous and steps up by $1$ at each integer $q=1,2,3,4$. The ceiling $\\lceil q/2\\rceil$ is left-continuous: $\\lceil q/2\\rceil=n$ exactly when $q/2\\in(n-1,n]$, i.e. $q\\in(2n-2,2n]$. Thus $\\lceil q/2\\rceil=0$ at $q=0$, $=1$ on $(0,2]$, $=2$ on $(2,4]$ — its only upward steps occur as $q$ leaves the even values $0$ and $2$ (never at $q=4$).",
+          "Combine the contributions of the two pieces at each candidate point. At $q=0$ only the ceiling steps (drop $1$). At $q=1$ and $q=3$ only the floor steps (drop $1$ each). At $q=2$ both step (drop $1+1=2$). At $q=4$ only the floor steps (drop $1$).",
+          "So the discontinuities are exactly $q=0,1,2,3,4$ with downward jumps $1,1,2,1,1$. The total drop is $1+1+2+1+1=6$. Endpoints: $P(0)=10-0-0=10$, $P(4)=10-4-2=4$, so $P(0)-P(4)=6$, matching the jump total (as it must for a nonincreasing pure step function). $\\boxed{\\text{jumps at }0,1,2,3,4:\\ 1,1,2,1,1;\\ \\text{total }6}.$"
         ]
       },
       {
-        "name": "General monotone discontinuity theorem",
+        "name": "Tabulate, then read one-sided limits",
         "steps": [
-          "Any nondecreasing $\\Phi$ has, at each interior point, finite left and right limits $\\Phi(x^-)\\le\\Phi(x)\\le\\Phi(x^+)$; a discontinuity is necessarily a jump $\\Phi(x^+)-\\Phi(x^-)>0$. To each such jump assign a distinct rational $r_x\\in(\\Phi(x^-),\\Phi(x^+))$. If $x<y$ are two discontinuities then monotonicity forces $\\Phi(x^+)\\le\\Phi(y^-)$, so the open intervals $(\\Phi(x^-),\\Phi(x^+))$ and $(\\Phi(y^-),\\Phi(y^+))$ are disjoint; hence $x\\mapsto r_x$ injects the discontinuity set into $\\mathbb{Q}$, which is countable — no matter how dense the jumps are.",
-          "Applied here, the jump at $q_n$ is $2^{-n}$ (the single term switched on), and by the irrational-continuity argument these are the only discontinuities; so the discontinuity set is exactly $\\mathbb{Q}\\cap(0,1)$. The saltus (sum of jumps) is $\\sum_n 2^{-n}=1=\\Phi(1)-\\Phi(0)$, confirming $\\Phi$ is purely a jump function with total jump $\\boxed{1}$. This refutes the 'dense $\\Rightarrow$ uncountable' reflex: the disjoint-interval injection caps the count at $|\\mathbb{Q}|$."
+          "Evaluate $\\lfloor q\\rfloor$ and $\\lceil q/2\\rceil$ on each open unit block and hence $P$. On $(0,1)$: $0,1\\Rightarrow P=9$. On $(1,2)$: $1,1\\Rightarrow P=8$. On $(2,3)$: $2,2\\Rightarrow P=6$. On $(3,4)$: $3,2\\Rightarrow P=5$. The constant block values are $9,8,6,5$.",
+          "Add the boundary values: $P(0)=10-0-0=10$ and $P(4)=10-4-2=4$. The right-limit profile as $q$ runs from $0$ to $4$ is therefore $10,\\,9,\\,8,\\,6,\\,5,\\,4$ (the value at $q=0$ followed by the four block values and the value at $q=4$).",
+          "Read each jump as left limit minus right limit, $P(q^-)-P(q^+)$ (one-sided at the ends). $q=0$: $10\\to 9$, drop $1$. $q=1$: $9\\to 8$, drop $1$. $q=2$: $8\\to 6$, drop $2$. $q=3$: $6\\to 5$, drop $1$. $q=4$: $5\\to 4$, drop $1$. Every discontinuity is a genuine jump (finite one-sided limits), and the drops are $1,1,2,1,1$.",
+          "Telescoping the consecutive drops gives $1+1+2+1+1=6$, which equals $P(0)-P(4)=10-4=6$. Note the half-step at $q=2$: $P(2)=10-2-1=7$ sits strictly between $P(2^-)=8$ and $P(2^+)=6$, since the floor (right-continuous) has stepped at $q=2$ but the ceiling (left-continuous) has not — this does not change the jump size $|8-6|=2$. $\\boxed{6}.$"
         ]
       }
     ],
-    "remark": "Insight: this is the cleanest demonstration that 'dense' and 'countable' coexist. The disjoint-jump-interval injection into the rationals works for every monotone function, so a monotone function can never have uncountably many discontinuities. The same construction shows that for any prescribed countable set $S$ and any summable positive weights $w_n>0$ there is a monotone function whose jumps sit exactly on $S$ with exactly those sizes, total jump $\\sum_n w_n$."
+    "remark": "Insight: a real-world 'ladder' price is a monotone step function, so all its discontinuities are jumps and the cumulative drop is forced to equal $P(0)-P(4)$ no matter how the steps are arranged. The genuine subtlety is timing and sidedness. A floor steps as $q$ passes each integer and is right-continuous; a ceiling of $q/2$ steps as $q$ leaves each even integer and is left-continuous. They coincide only at $q=2$, where the mismatch in continuity side leaves the function value $P(2)=7$ stranded strictly between its two one-sided limits. Matching totals can hide a wrong per-point breakdown, so always pin each jump to the side and instant where the relevant staircase actually moves."
+  },
+  {
+    "theme": "monotone",
+    "themeLabel": "Monotonic & Inverse Functions",
+    "title": "The Plateau That Tears the Inverse",
+    "difficulty": 5,
+    "task": "Decide invertibility and measure the jump the inverse is forced to carry",
+    "tags": [
+      "monotone",
+      "strict-monotonicity",
+      "generalized-inverse",
+      "plateau",
+      "jump-discontinuity",
+      "injectivity"
+    ],
+    "statement": "Define $f:[0,1]\\to\\mathbb{R}$ by \\[ f(x)=\\begin{cases} x^{2}, & 0\\le x\\le \\tfrac12,\\\\ \\tfrac14, & \\tfrac12\\le x\\le \\tfrac34,\\\\ x-\\tfrac12, & \\tfrac34\\le x\\le 1. \\end{cases} \\] One checks that $f$ is continuous on $[0,1]$ (the three pieces agree at $x=\\tfrac12$ and $x=\\tfrac34$, both equal to $\\tfrac14$) and nondecreasing, with $f(0)=0$ and $f(1)=\\tfrac12$, so its range is the full interval $[0,\\tfrac12]$. A student claims: \\[ \\text{``} f \\text{ is a continuous monotone surjection onto } [0,\\tfrac12], \\text{ hence it is invertible and its inverse is continuous.''} \\] Decide whether $f$ is invertible as a function on $[0,1]$. Then form the canonical left-continuous generalized inverse $g(y)=\\inf\\{\\,x\\in[0,1]:f(x)\\ge y\\,\\}$ for $y\\in[0,\\tfrac12]$, and determine the magnitude $J$ of the single jump discontinuity that $g$ is forced to have, identifying the exact value of $y$ at which it occurs.",
+    "answer": "\\[\\boxed{J=\\tfrac14}\\]",
+    "trap": "The claim is false, and it fails for a reason strictness, not mere monotonicity, is what manufactures a continuous inverse. A continuous nondecreasing function is injective only when it is strictly increasing; here $f$ is constant on the plateau $[\\tfrac12,\\tfrac34]$, so $f(\\tfrac12)=f(\\tfrac34)=\\tfrac14$ and $f$ is not one-to-one, hence has no genuine functional inverse at all. The seductive error is to invoke ``continuous strictly monotone bijections have continuous inverses'' while quietly dropping the word strictly, concluding $J=0$ (a continuous inverse). A second, subtler trap appears once one accepts that the inverse jumps: students locate the jump at $y=\\tfrac12$, mistaking the domain coordinate where the plateau begins ($x=\\tfrac12$) for the image value the inverse is indexed by. But $g$ lives on the $y$-axis, and the plateau collapses to the single output $f\\equiv\\tfrac14$; the tear in $g$ therefore sits at $y=\\tfrac14$, not $y=\\tfrac12$. A third trap is to report the jump as the gap between the plateau endpoints measured the wrong way, e.g. $\\tfrac34-\\tfrac12$ but assigned to the limit from below; the left limit $g(\\tfrac14^{-})=\\tfrac12$ and the value/right limit $g(\\tfrac14^{+})=\\tfrac34$ must be read off the correct one-sided behaviour to get $J=\\tfrac34-\\tfrac12=\\tfrac14$.",
+    "solutions": [
+      {
+        "name": "Direct construction of the generalized inverse and its saltus",
+        "steps": [
+          "First, $f$ is not invertible as a function: it is nondecreasing but not strictly so, since $f\\equiv\\tfrac14$ on the whole plateau $[\\tfrac12,\\tfrac34]$. Thus $f(\\tfrac12)=f(\\tfrac34)$ with $\\tfrac12\\neq\\tfrac34$, so $f$ is not injective and no two-sided inverse exists; the best one can do is the left-continuous generalized inverse $g(y)=\\inf\\{x:f(x)\\ge y\\}$.",
+          "Compute $g$ piecewise on the range $[0,\\tfrac14]\\cup[\\tfrac14,\\tfrac12]$. For $0\\le y\\le\\tfrac14$ the condition $f(x)\\ge y$ is first met on the branch $x^{2}\\ge y$, giving $g(y)=\\sqrt{y}$ (so $g$ climbs from $0$ to $\\sqrt{\\tfrac14}=\\tfrac12$). For $\\tfrac14<y\\le\\tfrac12$ the values $f(x)\\ge y>\\tfrac14$ can only occur on the rising branch $x-\\tfrac12\\ge y$, i.e. $x\\ge y+\\tfrac12$, giving $g(y)=y+\\tfrac12$ (so $g$ jumps up and continues from $\\tfrac34$ to $1$).",
+          "Read the one-sided behaviour at $y=\\tfrac14$. From below, $g(\\tfrac14^{-})=\\lim_{y\\to\\frac14^{-}}\\sqrt{y}=\\tfrac12$, and by left-continuity $g(\\tfrac14)=\\tfrac12$. From above, $g(\\tfrac14^{+})=\\lim_{y\\to\\frac14^{+}}(y+\\tfrac12)=\\tfrac34$. Hence $g$ has a genuine jump there of size $g(\\tfrac14^{+})-g(\\tfrac14^{-})=\\tfrac34-\\tfrac12$.",
+          "Everywhere else $g$ is a composition/translation of continuous strictly increasing maps, so the jump at $y=\\tfrac14$ is the only discontinuity. Therefore $J=\\tfrac34-\\tfrac12=\\boxed{\\tfrac14}$, occurring at $y=\\tfrac14$."
+        ]
+      },
+      {
+        "name": "Plateau-to-jump duality for monotone functions",
+        "steps": [
+          "There is a clean correspondence for a continuous nondecreasing $f$: each maximal interval on which $f$ is constant (a plateau) collapses, under any generalized inverse, to a single output value at which the inverse must leap across the whole plateau. Conversely a jump of $f$ would become a plateau of the inverse. Here $f$ has no jumps (it is continuous), but it has exactly one plateau, $[\\tfrac12,\\tfrac34]$ at height $\\tfrac14$.",
+          "Because the inverse must return $x$-values and the plateau occupies the $x$-interval $[\\tfrac12,\\tfrac34]$ while sharing the single $y$-value $\\tfrac14$, the inverse at $y=\\tfrac14$ is set-valued, equal to the whole $[\\tfrac12,\\tfrac34]$; selecting the left-continuous branch forces $g$ to jump from the bottom $\\tfrac12$ to the top $\\tfrac34$ of this interval as $y$ crosses $\\tfrac14$.",
+          "Hence the jump magnitude equals the length of the plateau in the domain, $J=\\tfrac34-\\tfrac12=\\tfrac14$, and it is located at the plateau's common image value $y=\\tfrac14$ (not at the domain coordinate $x=\\tfrac12$).",
+          "Since a continuous monotone function has no jumps and only this one plateau, the inverse has exactly one discontinuity, of size $\\boxed{\\tfrac14}$."
+        ]
+      },
+      {
+        "name": "Contrapositive via the inverse-continuity theorem",
+        "steps": [
+          "The correct theorem is: if $h$ is continuous and strictly monotone on an interval, then $h$ is a bijection onto its image and $h^{-1}$ is continuous. Run it in contrapositive: were our $g$ continuous, it would be a continuous nondecreasing right inverse satisfying $f(g(y))=y$ on $[0,\\tfrac12]$, and $g([0,\\tfrac12])$ would be a connected (interval) subset of $[0,1]$ by the intermediate value property.",
+          "But $g$ takes the value $\\tfrac12$ (at $y=\\tfrac14$) and the value $\\tfrac34$ (as $y\\to\\tfrac14^{+}$), while it never takes any value strictly between $\\tfrac12$ and $\\tfrac34$: any such $x_0\\in(\\tfrac12,\\tfrac34)$ has $f(x_0)=\\tfrac14$, and $g$ by its infimum definition would have already returned $\\tfrac12$, not $x_0$. So the image of $g$ skips the open interval $(\\tfrac12,\\tfrac34)$ and is disconnected, contradicting continuity.",
+          "Thus $g$ cannot be continuous; the obstruction is exactly the missing strictness of $f$ on $[\\tfrac12,\\tfrac34]$. The size of the gap the image skips is $\\tfrac34-\\tfrac12=\\tfrac14$, which is precisely the saltus of $g$ at the crossing value.",
+          "That crossing value is the height of the plateau, $y=\\tfrac14$, so the unique jump has magnitude $J=\\boxed{\\tfrac14}$."
+        ]
+      }
+    ],
+    "remark": "Insight: monotone alone is not enough monotone-and-continuous gives you surjectivity onto an interval and a well-defined generalized inverse, but it is strict monotonicity that upgrades that inverse to a continuous function. The dictionary to memorize is the plateau-jump duality: a flat stretch of $f$ (failure of strictness) becomes a jump of the inverse, and a jump of $f$ would become a flat stretch of the inverse. Two reflexes a top ranker should drill: (1) the inverse is indexed by output values, so a domain plateau over $[\\tfrac12,\\tfrac34]$ produces a tear at the image height $\\tfrac14$, never at $x=\\tfrac12$; (2) the jump's size is the domain-length of the plateau, $\\tfrac34-\\tfrac12=\\tfrac14$, read off the correct one-sided limits $g(\\tfrac14^{-})=\\tfrac12$ and $g(\\tfrac14^{+})=\\tfrac34$. The same mechanism is why quantile functions of distributions with atoms jump, and why a CDF with a flat stretch has a discontinuous quantile inverse."
   },
   {
     "theme": "monotone",
@@ -3784,183 +3428,112 @@ window.PROBLEMS = [
   {
     "theme": "monotone",
     "themeLabel": "Monotonic & Inverse Functions",
-    "title": "The Inverse That Forgets How to Be Uniform",
+    "title": "The Inverse You Never Have to Invert",
     "difficulty": 5,
-    "task": "Decide continuity, uniform continuity, and continuous extendability of the inverse, and pin down its modulus of continuity",
+    "task": "Evaluate the inverse value",
     "tags": [
-      "inverse-function-continuity",
-      "uniform-continuity",
-      "non-compact-domain",
-      "modulus-of-continuity",
-      "strict-monotonicity"
+      "strictly-increasing",
+      "continuous-inverse",
+      "bijection",
+      "exponential",
+      "no-closed-form"
     ],
-    "statement": "Let $f:[0,\\infty)\\to[0,1)$ be given by $f(x)=1-e^{-x}$. It is continuous and strictly increasing, and one checks $f(0)=0$ with $f(x)\\to 1^{-}$ as $x\\to\\infty$, so $f$ is a continuous strictly increasing bijection of the non-compact half-line $[0,\\infty)$ onto the bounded interval $[0,1)$. Let $g=f^{-1}:[0,1)\\to[0,\\infty)$ be its inverse. A standard theorem says the inverse of a continuous strictly monotone function is again continuous, so it is tempting to conclude that $g$ inherits every good property of a 'nice' inverse. Investigate honestly and answer three questions, with proof. (a) Is $g$ continuous on $[0,1)$? (b) Does $g$ extend to a continuous function on the closed range $[0,1]$ (i.e.\\ can one define a finite value $g(1)$ making the extension continuous at $y=1$)? (c) Is $g$ uniformly continuous on $[0,1)$? Finally, for the modulus of continuity $\\omega(\\delta)=\\sup\\{\\,|g(y)-g(y')|:\\ y,y'\\in[0,1),\\ |y-y'|\\le\\delta\\,\\}$, determine $\\omega(\\delta)$ for each $\\delta>0$.",
-    "answer": "\\[\\boxed{\\text{(a) yes},\\quad \\text{(b) no},\\quad \\text{(c) no},\\qquad \\omega(\\delta)=+\\infty\\ \\text{for every }\\delta>0}\\]",
-    "trap": "The fatal reflex is to treat 'continuous strictly monotone $\\Rightarrow$ continuous inverse' as if it also delivered uniform continuity and a continuous extension to the closed range. It delivers neither, and the reason is the non-compactness of the domain $[0,\\infty)$, not any defect of $f$. The trap has two faces. First face (extendability): a student sees that $g$ is continuous and that the range $[0,1)$ has the single missing endpoint $1$, and assumes a continuous function on a half-open interval always extends to the closed one, so 'just set $g(1)=\\lim_{y\\to1^{-}}g(y)$'. But that limit is $+\\infty$: $g(y)=-\\ln(1-y)\\to+\\infty$, so no finite value of $g(1)$ exists and the extension fails. Extendability to a missing endpoint requires the one-sided limit to be FINITE — here it is not, precisely because $f$ takes infinitely long (an unbounded $x$) to climb the last sliver up to height $1$. Second face (uniform continuity): a student recalls that a continuous function on a compact interval is uniformly continuous, glances at the bounded interval $[0,1)$, and wrongly invokes that theorem. But $[0,1)$ is NOT compact (not closed), and $g$ is unbounded on it; an unbounded function on a bounded interval can never be uniformly continuous, because uniform continuity forces a bounded image on a bounded domain. Concretely $g'(y)=\\tfrac{1}{1-y}\\to\\infty$, so no single $\\delta$ controls $|g(y)-g(y')|$ near $y=1$: taking the fixed gap $|y-y'|=\\delta$ and pushing the pair toward $1$ makes $|g(y)-g(y')|$ grow without bound, so the modulus $\\omega(\\delta)$ is not small for small $\\delta$ — it is $+\\infty$ for every $\\delta>0$. The deeper misconception is that mapping ONTO a bounded interval should tame the inverse; in fact compressing an infinite domain into a finite length is exactly what forces the inverse to stretch ever more violently near the compressed end.",
+    "statement": "Let $f(x)=x+e^{x}$ for all real $x$. Granting that $f$ is a continuous strictly increasing bijection of $\\mathbb{R}$ onto $\\mathbb{R}$, let $g=f^{-1}$ denote its inverse. Decide whether $g$ is continuous at the point $y_0=1+e$, and find the value $g(1+e)$.",
+    "answer": "Because $f$ is continuous and strictly increasing on all of $\\mathbb{R}$, its inverse $g$ is continuous everywhere; in particular $g$ is continuous at $1+e$. Since $f(1)=1+e$, $\\boxed{g(1+e)=1}$.",
+    "trap": "Trying to ``solve termwise'': from $y=x+e^{x}$ a careless reader writes $e^{x}=y-x$ and then $x=\\ln(y-x)$, or simply guesses that $g(1+e)$ has no clean value because $x+e^{x}=1+e$ ``cannot be solved''. Both miss that $x=1$ is the obvious root: $1+e^{1}=1+e$. The equation $x+e^{x}=y$ has no elementary formula in general, but that never means a *particular* value is unavailable — strict monotonicity guarantees exactly one preimage, and here it is visibly $x=1$.",
     "solutions": [
       {
-        "name": "Explicit inverse, then test each property directly",
+        "name": "Read off the preimage; invoke the inverse-continuity theorem",
         "steps": [
-          "Solve $y=1-e^{-x}$ for $x\\ge 0$: $e^{-x}=1-y$, so $x=-\\ln(1-y)$. Hence $g(y)=-\\ln(1-y)$ for $y\\in[0,1)$, with $g(0)=0$. (a) On $[0,1)$ the map $y\\mapsto 1-y$ is continuous and positive, and $\\ln$ is continuous on $(0,\\infty)$, so $g$ is a composition of continuous functions and is continuous on $[0,1)$ — answer (a) is YES. This also re-proves, in this instance, the general theorem that the inverse of a continuous strictly monotone bijection is continuous.",
-          "(b) Extendability to $y=1$. As $y\\to1^{-}$, $1-y\\to0^{+}$, so $g(y)=-\\ln(1-y)\\to+\\infty$. The one-sided limit at the missing endpoint is infinite, hence no finite value $g(1)$ can make the extension continuous at $1$: answer (b) is NO. (Geometrically, $f$ needs $x\\to\\infty$ to reach height $1$, so the inverse 'lands at infinity' there.)",
-          "(c) Uniform continuity. Suppose, for contradiction, $g$ were uniformly continuous on $[0,1)$. Take any Cauchy sequence in $[0,1)$ converging to $1$, e.g.\\ $y_n=1-\\tfrac1n$; it is Cauchy. Uniform continuity sends Cauchy sequences to Cauchy sequences, so $(g(y_n))$ would be Cauchy, hence bounded. But $g(y_n)=-\\ln(1/n)=\\ln n\\to+\\infty$ is unbounded — contradiction. So $g$ is NOT uniformly continuous: answer (c) is NO.",
-          "Modulus of continuity. Fix any $\\delta>0$. For a pair with fixed gap, take $y'=1-t$ and $y=1-2t$ with $0<t\\le\\delta$ small enough that $y\\ge0$, but more decisively use gap exactly $\\delta$: for $y'\\in[\\delta,1)$ set $y=y'-\\delta$, so $|y-y'|=\\delta$. Then $g(y')-g(y)=-\\ln(1-y')+\\ln(1-y)=\\ln\\dfrac{1-y}{1-y'}=\\ln\\dfrac{1-y'+\\delta}{1-y'}=\\ln\\!\\Big(1+\\dfrac{\\delta}{1-y'}\\Big)$. As $y'\\to1^{-}$ the term $\\tfrac{\\delta}{1-y'}\\to+\\infty$, so $g(y')-g(y)\\to+\\infty$. Thus the supremum over admissible pairs is unbounded: $\\boxed{\\omega(\\delta)=+\\infty}$ for every $\\delta>0$, confirming (c) and packaging the whole verdict as (a) yes, (b) no, (c) no."
+          "First the value. We need $g(1+e)$, i.e. the unique $x$ with $f(x)=1+e$. Test $x=1$: $f(1)=1+e^{1}=1+e$. Since $f$ is strictly increasing it is injective, so $x=1$ is the *only* solution and $g(1+e)=1$.",
+          "Now continuity. The derivative $f'(x)=1+e^{x}>0$ for every real $x$, so $f$ is continuous and strictly increasing on the interval $\\mathbb{R}$.",
+          "A continuous strictly monotone function on an interval has a continuous inverse on its range. As $x\\to+\\infty$, $f\\to+\\infty$, and as $x\\to-\\infty$, $f(x)=x+e^{x}\\to-\\infty$; by the Intermediate Value Theorem the range is all of $\\mathbb{R}$. Hence $g:\\mathbb{R}\\to\\mathbb{R}$ is continuous everywhere, in particular at $1+e$, and $\\boxed{g(1+e)=1}$."
         ]
       },
       {
-        "name": "Coordinate-free: read everything off the geometry of f",
+        "name": "Squeeze the inverse directly through monotonicity",
         "steps": [
-          "Work only from the stated properties of $f$ (continuous, strictly increasing, $f([0,\\infty))=[0,1)$), to show the phenomenon is structural, not special to $1-e^{-x}$. (a) Continuity of $g$: let $y_0\\in[0,1)$ with $x_0=g(y_0)$. Strict monotonicity of $f$ makes $g$ strictly monotone, so $g$ can only have jump discontinuities; but the image of $g$ is the full interval $[0,\\infty)$ (since $f$ is a bijection onto $[0,1)$), which has no gaps. A monotone function whose image is an interval (no gaps) has no jumps, hence is continuous. So $g$ is continuous on $[0,1)$ — (a) YES.",
-          "(b) Extendability: $g$ is increasing and its image is all of $[0,\\infty)$, which is unbounded above. An increasing function with unbounded image on $[0,1)$ must satisfy $\\lim_{y\\to1^{-}}g(y)=\\sup g=+\\infty$. An infinite one-sided limit cannot be patched by a finite value, so $g$ has no continuous extension to $[0,1]$ — (b) NO. The unboundedness of the domain $[0,\\infty)$ of $f$ is precisely what makes the range of $g$ unbounded.",
-          "(c) Uniform continuity: a uniformly continuous function maps a bounded domain to a bounded image (it preserves Cauchy sequences, so it cannot run off to infinity along a convergent input sequence). Here the domain $[0,1)$ is bounded but the image $[0,\\infty)$ is unbounded, an outright contradiction with uniform continuity. Hence $g$ is NOT uniformly continuous — (c) NO. Note the compactness theorem 'continuous on $[a,b]\\Rightarrow$ uniformly continuous' does not apply: $[0,1)$ is not closed, so not compact.",
-          "Modulus: uniform continuity is exactly the statement $\\omega(\\delta)\\to0$ as $\\delta\\to0^{+}$ with each $\\omega(\\delta)$ finite. Since $g$ is unbounded and increasing, for any $\\delta>0$ choose $y'$ near $1$ and $y=y'-\\delta$; as $g(y')\\to+\\infty$ while $g(y)\\ge0$, the gap $g(y')-g(y)$ exceeds any bound, so $\\omega(\\delta)=+\\infty$. The verdict is $\\boxed{(a)\\,\\text{yes},\\,(b)\\,\\text{no},\\,(c)\\,\\text{no},\\,\\omega\\equiv+\\infty}$."
-        ]
-      },
-      {
-        "name": "Mean-value / slope blow-up controlling the modulus",
-        "steps": [
-          "With $g(y)=-\\ln(1-y)$ we have $g'(y)=\\dfrac{1}{1-y}>0$ on $[0,1)$, confirming $g$ is differentiable, strictly increasing, hence continuous — (a) YES. The slope $g'(y)\\to+\\infty$ as $y\\to1^{-}$, which is the engine of everything that follows.",
-          "(b) Integrate the slope: $g(y)-g(0)=\\int_{0}^{y}\\dfrac{dt}{1-t}$, and $\\int_{0}^{1}\\dfrac{dt}{1-t}$ diverges. So $g(y)\\to+\\infty$ as $y\\to1^{-}$, the one-sided limit is infinite, and no finite $g(1)$ extends $g$ continuously — (b) NO.",
-          "(c) For uniform continuity one would need a single $\\delta$ with $|g(y)-g(y')|<\\varepsilon$ whenever $|y-y'|<\\delta$. By the Mean Value Theorem, $g(y')-g(y)=g'(c)\\,(y'-y)$ for some $c$ between them, and $g'(c)=\\tfrac{1}{1-c}$ is unbounded as $c\\to1$. Fix $\\delta>0$ and the gap $y'-y=\\delta/2$ with the pair near $1$: then $g(y')-g(y)=\\tfrac{\\delta/2}{1-c}\\to\\infty$, so no $\\delta$ can force the increment below a fixed $\\varepsilon$. Hence $g$ is NOT uniformly continuous — (c) NO.",
-          "This same estimate computes the modulus exactly: for fixed $\\delta>0$, $\\sup_{|y-y'|\\le\\delta}|g(y)-g(y')|=\\sup_{y'\\to1^{-}}\\ln\\!\\Big(1+\\dfrac{\\delta}{1-y'}\\Big)=+\\infty$. Therefore $\\omega(\\delta)=+\\infty$ for every $\\delta>0$, and the complete verdict is $\\boxed{(a)\\,\\text{yes},\\ (b)\\,\\text{no},\\ (c)\\,\\text{no},\\ \\omega(\\delta)\\equiv+\\infty}$."
+          "Fix the target value $x=1$, where $f(1)=1+e$. For any $y$ with $y>1+e$, monotonicity gives $g(y)>g(1+e)=1$; for $y<1+e$ it gives $g(y)<1$. So $g$ is monotone with $g(1+e)=1$.",
+          "Take any small interval $(1-h,\\,1+h)$ around the preimage $1$, with $h>0$. Because $f$ is strictly increasing and continuous, $f(1-h)<1+e<f(1+h)$, and these two values bracket $1+e$. For every $y$ in the interval $\\bigl(f(1-h),\\,f(1+h)\\bigr)$, applying the increasing map $g$ yields $1-h<g(y)<1+h$.",
+          "So whenever $y$ lies in that neighbourhood of $1+e$, the value $g(y)$ lies in $(1-h,1+h)$; letting the window shrink ($h\\to 0$) gives $\\displaystyle\\lim_{y\\to 1+e}g(y)=1=g(1+e)$. Hence $g$ is continuous at $1+e$ and $\\boxed{g(1+e)=1}$."
         ]
       }
     ],
-    "remark": "Insight: 'continuous strictly monotone $\\Rightarrow$ continuous inverse' is a purely local/topological fact and says nothing about uniform behaviour. When a continuous increasing bijection squeezes a non-compact domain $[0,\\infty)$ onto a bounded range $[0,1)$, the inverse must accommodate the entire infinite half-line inside a finite length, so it stretches without bound as it approaches the compressed endpoint. Three otherwise-reliable theorems all fail for the SAME structural reason, and each fails because a hypothesis is quietly absent: extendability to a missing endpoint needs a finite one-sided limit (absent, since $g\\to\\infty$); the 'continuous on $[a,b]\\Rightarrow$ uniformly continuous' theorem needs a closed, hence compact, interval (absent, $[0,1)$ is not closed); and uniform continuity needs the image of a bounded domain to stay bounded (absent, the image is $[0,\\infty)$). The clean diagnostic is the modulus of continuity: $\\omega(\\delta)\\to0$ as $\\delta\\to0$ is the definition of uniform continuity, and here $\\omega(\\delta)=+\\infty$ for every $\\delta$ — the strongest possible failure. The transferable discipline for a top ranker: before promoting 'continuous' to 'uniformly continuous' or 'extendable', check whether the domain is compact and whether the function stays bounded; non-compactness on either side of a monotone bijection is exactly where these upgrades break."
+    "remark": "**Insight.** You almost never *solve* for an inverse to know it is continuous. The theorem does the heavy lifting: **continuous plus strictly monotone on an interval forces a continuous inverse**, no formula required. The only real work is spotting the preimage, and a transcendental equation like $x+e^{x}=1+e$ can still have a value you can simply **read off** by inspection. **Monotonicity manufactures both the existence of the inverse and its continuity at once.**"
   },
   {
     "theme": "monotone",
     "themeLabel": "Monotonic & Inverse Functions",
-    "title": "The Auctioneer's Discontinuous Ladder",
-    "difficulty": 4,
-    "task": "Determine",
+    "title": "Where a Jump Vanishes Under Inversion",
+    "difficulty": 5,
+    "task": "Test the inverse at the jump",
     "tags": [
-      "monotone",
-      "jump discontinuity",
-      "sum of jumps",
-      "left and right limits",
-      "word problem"
+      "jump-discontinuity",
+      "strictly-increasing",
+      "range-gap",
+      "continuous-inverse",
+      "one-sided-limit"
     ],
-    "statement": "At a sealed-bid auction the clearing price, as a function of the quantity released $q\\in[0,4]$, is the nonincreasing 'demand-ladder' \\[ P(q)=10-\\lfloor q\\rfloor-\\Bigl\\lceil \\tfrac{q}{2}\\Bigr\\rceil, \\] where $\\lfloor\\cdot\\rfloor$ is the floor and $\\lceil\\cdot\\rceil$ is the ceiling. (a) Show $P$ is nonincreasing on $[0,4]$. (b) Find every $q\\in[0,4]$ at which the ladder is discontinuous; at each give the left limit $P(q^-)$, the right limit $P(q^+)$ and the downward jump $P(q^-)-P(q^+)$ (use the one available side at the endpoints $q=0,4$). (c) Compute the total drop $\\sum|\\text{jump}|$ and verify it equals $P(0)-P(4)$. Beware: $\\lceil\\cdot\\rceil$ and $\\lfloor\\cdot\\rfloor$ do not step at the same instants, nor on the same side.",
-    "answer": "$P$ is nonincreasing. It is discontinuous (jump discontinuities) at $q=0,1,2,3,4$ with downward jumps of sizes $1,1,2,1,1$. The floor $\\lfloor q\\rfloor$ contributes a $+1$ step at each of $q=1,2,3,4$ (so $P$ drops $1$ there), while the ceiling $\\lceil q/2\\rceil$ contributes a $+1$ step only as $q$ leaves the even values $0$ and $2$ (it equals $0$ at $q=0$, then $1$ on $(0,2]$, then $2$ on $(2,4]$), so $P$ drops $1$ at $q=0$ and an extra $1$ at $q=2$. Hence the per-point drops are $q=0\\!:1,\\ q=1\\!:1,\\ q=2\\!:2,\\ q=3\\!:1,\\ q=4\\!:1$. The total drop is $1+1+2+1+1=6$, and $P(0)-P(4)=10-4=6$, matching. (A subtlety: at $q=2$ the value $P(2)=7$ lies strictly between $P(2^-)=8$ and $P(2^+)=6$, because the right-continuous floor has already stepped at $q=2$ while the left-continuous ceiling has not.) So $\\boxed{\\text{jumps at }q=0,1,2,3,4\\text{ of sizes }1,1,2,1,1;\\ \\text{total }=6}$.",
-    "trap": "The seductive error is to read the ceiling like an offset floor and put its extra unit drops at $q=2$ and $q=4$ while ignoring $q=0$ — giving the bogus list 'jumps at $q=1,2,3,4$ of sizes $1,2,1,2$, total $6$'. The total $6$ even coincides, which makes the mistake look right. But $\\lceil q/2\\rceil$ does NOT step at $q=4$: it already reached its value $2$ on the whole interval $(2,4]$, so $\\lceil q/2\\rceil$ is continuous at $q=4$ and the only drop there is the floor's $1$, not $2$. Symmetrically the ceiling DOES step out of $q=0$ (from $\\lceil 0\\rceil=0$ to $1$), creating a real jump at $q=0$ that the bogus list omits. Correct placements: ceiling jumps as $q$ leaves the even points $0,2$, never at $q=4$.",
+    "statement": "Define $f(x)=x$ for $x<1$ and $f(x)=x+2$ for $x\\ge 1$, so $f$ is strictly increasing on $\\mathbb{R}$ but has a jump at $x=1$. Its range is $S=(-\\infty,1)\\cup[3,\\infty)$, and on $S$ the inverse $g=f^{-1}$ is defined. Working only with $y\\in S$, evaluate $\\displaystyle\\lim_{y\\to 3^{+}}g(y)$ and $g(3)$, and state how many points of $S$ are discontinuities of $g$.",
+    "answer": "On $[3,\\infty)$ one has $g(y)=y-2$, so $\\displaystyle\\lim_{y\\to 3^{+}}g(y)=1=g(3)$; the domain $S$ has the gap $(1,3)$ removed, so $y=3$ is never approached from the left within $S$. Checking every point of $S$ shows $g$ is continuous there, so the number of discontinuities of $g$ on $S$ is $\\boxed{0}$.",
+    "trap": "Answering ``$1$ discontinuity, a jump at $y=3$.'' The seduction is symmetry: $f$ jumps at $x=1$, so surely $g$ jumps at the image $y=3$. But continuity of $g$ at $3$ is tested **only with $y\\in S$**, and $S$ has no points in $(1,3)$. The left-hand approach to $3$ simply does not exist in the domain; the one-sided limit that survives, $\\lim_{y\\to 3^{+}}g(y)=1$, equals $g(3)=1$. The jump of $f$ became a *hole in the domain* of $g$, not a discontinuity of $g$.",
     "solutions": [
       {
-        "name": "Separate the two staircases",
+        "name": "Piecewise inverse and domain-restricted limits",
         "steps": [
-          "Both $\\lfloor q\\rfloor$ and $\\lceil q/2\\rceil$ are nondecreasing on $[0,4]$, so $P=10-\\lfloor q\\rfloor-\\lceil q/2\\rceil$ is nonincreasing. This proves (a).",
-          "Locate the steps of each piece. The floor $\\lfloor q\\rfloor$ is right-continuous and steps up by $1$ at each integer $q=1,2,3,4$. The ceiling $\\lceil q/2\\rceil$ is left-continuous: $\\lceil q/2\\rceil=n$ exactly when $q/2\\in(n-1,n]$, i.e. $q\\in(2n-2,2n]$. Thus $\\lceil q/2\\rceil=0$ at $q=0$, $=1$ on $(0,2]$, $=2$ on $(2,4]$ — its only upward steps occur as $q$ leaves the even values $0$ and $2$ (never at $q=4$).",
-          "Combine the contributions of the two pieces at each candidate point. At $q=0$ only the ceiling steps (drop $1$). At $q=1$ and $q=3$ only the floor steps (drop $1$ each). At $q=2$ both step (drop $1+1=2$). At $q=4$ only the floor steps (drop $1$).",
-          "So the discontinuities are exactly $q=0,1,2,3,4$ with downward jumps $1,1,2,1,1$. The total drop is $1+1+2+1+1=6$. Endpoints: $P(0)=10-0-0=10$, $P(4)=10-4-2=4$, so $P(0)-P(4)=6$, matching the jump total (as it must for a nonincreasing pure step function). $\\boxed{\\text{jumps at }0,1,2,3,4:\\ 1,1,2,1,1;\\ \\text{total }6}.$"
+          "Invert each branch. For $x<1$, $f(x)=x$ runs over $(-\\infty,1)$, so $g(y)=y$ on $(-\\infty,1)$. For $x\\ge1$, $f(x)=x+2$ runs over $[3,\\infty)$, so $g(y)=y-2$ on $[3,\\infty)$. These two pieces cover exactly $S=(-\\infty,1)\\cup[3,\\infty)$.",
+          "At $y=3$: $g(3)=3-2=1$. The only way to approach $3$ within $S$ is from the right (the interval $(1,3)$ is absent from $S$), and $\\displaystyle\\lim_{y\\to3^{+}}(y-2)=1$. Hence $g$ is continuous at $3$.",
+          "On $(-\\infty,1)$, $g(y)=y$ is continuous; on $(3,\\infty)$, $g(y)=y-2$ is continuous; and $y=3$ was just checked. Every point of $S$ passes, so $g$ has $\\boxed{0}$ discontinuities on $S$."
         ]
       },
       {
-        "name": "Tabulate, then read one-sided limits",
+        "name": "Monotone-inverse principle on the actual range",
         "steps": [
-          "Evaluate $\\lfloor q\\rfloor$ and $\\lceil q/2\\rceil$ on each open unit block and hence $P$. On $(0,1)$: $0,1\\Rightarrow P=9$. On $(1,2)$: $1,1\\Rightarrow P=8$. On $(2,3)$: $2,2\\Rightarrow P=6$. On $(3,4)$: $3,2\\Rightarrow P=5$. The constant block values are $9,8,6,5$.",
-          "Add the boundary values: $P(0)=10-0-0=10$ and $P(4)=10-4-2=4$. The right-limit profile as $q$ runs from $0$ to $4$ is therefore $10,\\,9,\\,8,\\,6,\\,5,\\,4$ (the value at $q=0$ followed by the four block values and the value at $q=4$).",
-          "Read each jump as left limit minus right limit, $P(q^-)-P(q^+)$ (one-sided at the ends). $q=0$: $10\\to 9$, drop $1$. $q=1$: $9\\to 8$, drop $1$. $q=2$: $8\\to 6$, drop $2$. $q=3$: $6\\to 5$, drop $1$. $q=4$: $5\\to 4$, drop $1$. Every discontinuity is a genuine jump (finite one-sided limits), and the drops are $1,1,2,1,1$.",
-          "Telescoping the consecutive drops gives $1+1+2+1+1=6$, which equals $P(0)-P(4)=10-4=6$. Note the half-step at $q=2$: $P(2)=10-2-1=7$ sits strictly between $P(2^-)=8$ and $P(2^+)=6$, since the floor (right-continuous) has stepped at $q=2$ but the ceiling (left-continuous) has not — this does not change the jump size $|8-6|=2$. $\\boxed{6}.$"
+          "$f$ is strictly increasing, so it is a bijection from $\\mathbb{R}$ onto its range $S$, and the inverse $g:S\\to\\mathbb{R}$ is strictly increasing. A monotone function can only fail continuity by a jump, i.e. a gap between its left and right limits at an interior point of its domain.",
+          "For $g$ to jump at a point $y_0\\in S$, $y_0$ must be approachable from both sides within $S$. The only candidate is $y_0=3$, but $S$ contains nothing in $(1,3)$, so $3$ is a left endpoint of the piece $[3,\\infty)$ and has no left-hand neighbours in $S$; the required two-sided approach is impossible.",
+          "With $\\lim_{y\\to3^{+}}g(y)=1=g(3)$ and no other candidate point, $g$ is continuous throughout $S$. The count of discontinuities is $\\boxed{0}$."
         ]
       }
     ],
-    "remark": "Insight: a real-world 'ladder' price is a monotone step function, so all its discontinuities are jumps and the cumulative drop is forced to equal $P(0)-P(4)$ no matter how the steps are arranged. The genuine subtlety is timing and sidedness. A floor steps as $q$ passes each integer and is right-continuous; a ceiling of $q/2$ steps as $q$ leaves each even integer and is left-continuous. They coincide only at $q=2$, where the mismatch in continuity side leaves the function value $P(2)=7$ stranded strictly between its two one-sided limits. Matching totals can hide a wrong per-point breakdown, so always pin each jump to the side and instant where the relevant staircase actually moves."
+    "remark": "**Insight.** A strictly monotone function need not be continuous — it may jump — but its jumps are always **isolated**, and each jump of $f$ opens a corresponding **gap in the range**. When you invert, that gap is carved out of the *domain* of $g$, so the place where you expect a discontinuity is precisely a place the inverse is never asked about. **Continuity is judged only on the actual domain**, and that is why the inverse of a jumping monotone map can still be perfectly continuous everywhere it lives."
   },
   {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
-    "title": "The Wave That Cannot Crest Above One",
+    "theme": "monotone",
+    "themeLabel": "Monotonic & Inverse Functions",
+    "title": "The Climbing Cubic That Skips Each Integer",
     "difficulty": 5,
-    "task": "Refute an existence claim by classifying the continuous solution family and extracting the only possible attained maximum",
+    "task": "Count jumps, invert one value",
     "tags": [
-      "functional-equation",
-      "dalembert",
-      "extreme-value-theorem",
-      "global-bound",
-      "non-compact-domain",
-      "doubling-recursion"
+      "strictly-increasing",
+      "jump-discontinuity",
+      "floor-function",
+      "continuous-inverse",
+      "closed-interval"
     ],
-    "statement": "A student claims to have found a function $f:\\mathbb{R}\\to\\mathbb{R}$ with all of the following properties simultaneously: (1) $f$ is continuous on $\\mathbb{R}$; (2) $f$ satisfies d'Alembert's functional equation $f(x+y)+f(x-y)=2\\,f(x)\\,f(y)$ for all real $x,y$; (3) $f$ is not identically zero; (4) $f$ attains a global maximum, and that maximum value equals $f(2)=\\tfrac32$. Prove that no such function exists. More precisely, determine the set of all values that the global maximum (when attained) of a continuous, not-identically-zero solution of $f(x+y)+f(x-y)=2f(x)f(y)$ can take, and report that set as your answer.",
-    "answer": "$\\{1\\}$",
-    "trap": "The fatal move is to treat condition (4) as harmless and reach for the Extreme Value Theorem as if it manufactured the maximum for free. A strong student reasons: '$f$ is continuous, EVT guarantees a continuous function attains its max, so an attained value of $\\tfrac32$ is perfectly possible — I just need to build the right $f$.' But EVT requires a COMPACT domain, and here the domain is all of $\\mathbb{R}$, which is not compact; EVT says nothing, and whether a maximum is attained is exactly the live question, not a given. The deeper trap is a hidden bound that the solver never checks. Setting $y=0$ forces $f(0)=1$ (since $f\\not\\equiv0$), and setting $x=y$ gives the doubling recursion $f(2x)=2f(x)^2-1$. From here the solution family splits into a sharp dichotomy that the careless solver collapses. If $|f|\\le1$ everywhere (the cosine branch, $f(x)=\\cos(bx)$), then $\\max f=f(0)=1$ and a value of $\\tfrac32$ is flatly impossible because $\\tfrac32>1$. The student who notices this then 'rescues' the claim by jumping to the cosh branch, $f(x)=\\cosh(ax)$, whose values DO exceed $1$ — but this is precisely the missed case that destroys the claim a second time: as soon as $f$ exceeds $1$ at even one point, the doubling recursion drives $f(2^k x)\\to+\\infty$, so $f$ is unbounded above and has NO global maximum at all. So the assertion is self-defeating on both branches: bounded $\\Rightarrow$ max is exactly $1$ (never $\\tfrac32$); unbounded $\\Rightarrow$ no max exists. The conceptual error is believing that 'attains a maximum' and 'takes a value above $1$' can coexist for a continuous d'Alembert solution; the doubling map forbids it. The only attainable maximum value is $1$, so the set of possible attained maxima is $\\{1\\}$ and $\\tfrac32\\notin\\{1\\}$.",
+    "statement": "Let $f(x)=x^{3}+\\lfloor x\\rfloor$ for all real $x$. (a) Show $f$ is strictly increasing on $\\mathbb{R}$, yet determine how many points of the closed interval $[0,2]$ are discontinuities of $f$ and classify each. (b) Granting that $f$ is a strictly increasing bijection of $\\mathbb{R}$ onto its range, let $g=f^{-1}$. Decide whether $g$ is continuous at $y_{0}=28$ and find $g(28)$.",
+    "answer": "On $[0,2]$, $f$ jumps at $x=1$ (where $f(1^-)=1$, $f(1)=2$) and at the right endpoint $x=2$ (where $f(2^-)=9$, $f(2)=10$); both are jump discontinuities, so there are $2$ of them. For the inverse, $28$ lies in $f$'s range with the unique preimage $x=\\sqrt[3]{26}\\in[2,3)$, and since $g$ is monotone with $28$ approachable from both sides inside the range, $g$ is continuous at $28$ with $g(28)=\\sqrt[3]{26}$. Reporting the discontinuity count and the inverse value, $\\boxed{2 \\text{ discontinuities},\\ g(28)=\\sqrt[3]{26}}$.",
+    "trap": "Reasoning ``$f$ is strictly increasing, therefore $f$ is continuous, so there are $0$ discontinuities, and its inverse must be continuous everywhere automatically.'' Monotonicity does not buy continuity: at each integer the floor term leaps by $1$ while $x^{3}$ moves continuously, so $f(n^-)=n^{3}+(n-1)$ but $f(n)=n^{3}+n$, a genuine upward jump of size $1$. The function climbs without ever flattening, yet it is riddled with isolated jumps. A second snare is to imagine $g$ inherits a jump at $y=28$; in fact the jumps of $f$ punch *gaps* into its range, and $28$ sits safely inside a solid piece of that range, so $g$ is continuous there.",
     "solutions": [
       {
-        "name": "Doubling recursion forces a clean dichotomy, then EVT cannot save the maximum",
+        "name": "Branchwise monotonicity, endpoint check, then read off the preimage",
         "steps": [
-          "Normalize. Put $y=0$ in $f(x+y)+f(x-y)=2f(x)f(y)$ to get $2f(x)=2f(x)f(0)$, i.e. $f(x)\\bigl(1-f(0)\\bigr)=0$ for all $x$. Since $f\\not\\equiv0$ there is a point where $f\\ne0$, so $f(0)=1$. Putting $x=0$ gives $f(y)+f(-y)=2f(0)f(y)=2f(y)$, so $f$ is even. Now put $x=y$: $f(2x)+f(0)=2f(x)^2$, i.e. the doubling recursion $f(2x)=2f(x)^2-1$ for all $x$.",
-          "Dichotomy. Claim: either $|f(x)|\\le1$ for every $x$, or $f$ is unbounded above. Suppose $f(c)>1$ for some $c$ (necessarily $c\\ne0$ since $f(0)=1$). Set $t_0=f(c)$ and, using the recursion along $c,2c,4c,\\dots$, let $t_{k}=f(2^k c)$, so $t_{k+1}=2t_k^2-1=:h(t_k)$. For $t>1$ we have $h(t)-t=2t^2-t-1=(t-1)(2t+1)>0$ and $h(t)-1=2(t-1)(t+1)>0$, so the sequence $t_k$ is strictly increasing and stays above $1$. Its limit $L\\in(1,\\infty]$ would satisfy $L=2L^2-1$ if finite, whose roots are $L=1,-\\tfrac12$, both $\\le1$ — impossible. Hence $L=+\\infty$, so $f(2^k c)\\to+\\infty$ and $f$ is unbounded above.",
-          "Kill the maximum. Suppose, for contradiction, that the claimed $f$ exists and attains a global maximum $M=f(2)=\\tfrac32>1$. Then $f$ takes the value $\\tfrac32>1$, so by the dichotomy $f$ is unbounded above; thus $\\sup f=+\\infty>M$, contradicting that $M$ is the maximum (an upper bound for all values). Therefore no continuous, nonzero d'Alembert solution can have an attained maximum exceeding $1$. Note EVT is powerless here: the domain $\\mathbb{R}$ is not compact, so continuity alone never guaranteed an attained maximum in the first place.",
-          "Pin the answer. The boundary value $1$ IS attainable: $f(x)=\\cos(bx)$ is a continuous nonzero solution with $f(0)=1=\\max f$ attained at $x=0$ (indeed any $|f|\\le1$ branch has $f(0)=1$ as a global max). And no value other than $1$ can be the attained maximum: if $\\max f=M<1$ then $M\\ge f(0)=1$ forces $M\\ge1$, a contradiction, while $M>1$ was just excluded. Hence the set of possible attained maxima is exactly $\\boxed{\\{1\\}}$, and since $\\tfrac32\\notin\\{1\\}$ the asserted $f$ does not exist."
+          "Strict increase. On each unit block $[n,n+1)$ the floor is constant ($\\lfloor x\\rfloor=n$), so $f(x)=x^{3}+n$ is strictly increasing there. Across a boundary, compare the top of one block with the bottom of the next: as $x\\to n^{-}$, $f(x)\\to n^{3}+(n-1)$, while $f(n)=n^{3}+n$, and $n^{3}+n>n^{3}+(n-1)$. So values never decrease as $x$ rises; $f$ is strictly increasing on all of $\\mathbb{R}$.",
+          "Discontinuities on $[0,2]$. At $x=0$ (left endpoint) only the right side matters: $\\lim_{x\\to0^{+}}(x^{3}+0)=0=f(0)$, continuous. At $x=1$: left limit $1^{3}+0=1$ but $f(1)=1^{3}+1=2$, a jump. At the right endpoint $x=2$: left limit $\\lim_{x\\to2^{-}}(x^{3}+1)=9$ but $f(2)=2^{3}+2=10$, again a jump. So exactly $2$ points, $x=1$ and $x=2$, are (jump) discontinuities.",
+          "Locate the preimage of $28$. Guess the block: if $\\lfloor x\\rfloor=2$ then $f(x)=x^{3}+2=28\\Rightarrow x^{3}=26\\Rightarrow x=\\sqrt[3]{26}\\approx 2.962$, which indeed satisfies $2\\le x<3$, so the guess is consistent. By strict monotonicity this preimage is unique, hence $g(28)=\\sqrt[3]{26}$.",
+          "Continuity of $g$ at $28$. The block $[2,3)$ maps onto $[10,29)$ continuously and strictly increasingly, and $28$ is an interior point of $[10,29)$. A continuous strictly increasing function on an interval has a continuous inverse on its image, so $g$ is continuous at $28$. Final: $\\boxed{2 \\text{ discontinuities},\\ g(28)=\\sqrt[3]{26}}$."
         ]
       },
       {
-        "name": "Full classification of the continuous solution family",
+        "name": "Jumps of a monotone map are isolated; gaps fall outside the inverse's domain",
         "steps": [
-          "Reduce as before: $f(0)=1$, $f$ even, and $f(2x)=2f(x)^2-1$. The classical theorem on d'Alembert's equation states that every continuous solution that is not identically zero has exactly one of the forms $f(x)=\\cos(bx)$ with $b\\ge0$, or $f(x)=\\cosh(ax)$ with $a\\ge0$ (the case $b=0$ or $a=0$ giving $f\\equiv1$). One checks directly that each satisfies the identity: $\\cos$ via the product-to-sum formula $\\cos(bx{+}by)+\\cos(bx{-}by)=2\\cos(bx)\\cos(by)$, and $\\cosh$ via $\\cosh(ax{+}ay)+\\cosh(ax{-}ay)=2\\cosh(ax)\\cosh(ay)$.",
-          "Read off the supremum of each branch. For $f(x)=\\cos(bx)$ we have $|f|\\le1$ with $f(0)=1$, so $\\sup f=1$, attained at $x=0$. For $f(x)=\\cosh(ax)$ with $a>0$ we have $f(x)\\to+\\infty$ as $x\\to\\infty$, so $\\sup f=+\\infty$ and the maximum is NOT attained. For $f\\equiv1$, $\\max f=1$. Thus the only finite, attained maximum that ever occurs across the entire family equals $1$.",
-          "Apply to the claim. An attained maximum equal to $\\tfrac32$ would require a branch whose attained maximum is $\\tfrac32$; but the only attained maxima available are $1$ (cosine / constant branch) — the cosh branch attains no maximum at all. Since $\\tfrac32\\ne1$, no continuous nonzero solution can satisfy condition (4).",
-          "Conclude. The set of attainable global maxima of continuous nonzero d'Alembert solutions is $\\boxed{\\{1\\}}$. Because $f(2)=\\tfrac32>1$ would force the unbounded $\\cosh$ branch (where no maximum exists) yet simultaneously demand an attained maximum, the requirements are mutually exclusive and the function described cannot exist."
-        ]
-      },
-      {
-        "name": "Branch selector via the curvature at the origin",
-        "steps": [
-          "From $f(0)=1$, $f$ even, and the doubling identity $f(2x)=2f(x)^2-1$, the local behaviour at $0$ already decides the global branch. Since $f$ is even and continuous with the smoothing that d'Alembert solutions enjoy, write the second-order behaviour at the origin as $f(x)=1+\\tfrac{k}{2}x^2+o(x^2)$ where $k$ is the curvature $f''(0)$ (and $f'(0)=0$ by evenness). Substituting into $f(2x)=2f(x)^2-1$: the left side is $1+2k x^2+o(x^2)$ and the right side is $2\\bigl(1+\\tfrac{k}{2}x^2\\bigr)^2-1=1+2k x^2+o(x^2)$, consistent for every $k$, so $k$ is a free real parameter that labels the solution.",
-          "Identify the branches by the sign of $k$. If $k<0$, the solution is $f(x)=\\cos\\!\\bigl(\\sqrt{-k}\\,x\\bigr)$, bounded with $\\sup f=f(0)=1$. If $k=0$, $f\\equiv1$ with $\\max f=1$. If $k>0$, $f(x)=\\cosh\\!\\bigl(\\sqrt{k}\\,x\\bigr)$, which is increasing in $|x|$ and unbounded, so $\\sup f=+\\infty$ and no maximum is attained. The sign of the curvature at $0$ is thus the single switch between 'bounded, max $=1$' and 'unbounded, no max'.",
-          "Confront the assertion. Demanding $f(2)=\\tfrac32>1$ forces $k>0$ (the cosh branch is the only one taking values above $1$): indeed $\\cosh(\\sqrt{k}\\cdot2)=\\tfrac32$ pins $\\sqrt{k}=\\tfrac12\\operatorname{arccosh}\\tfrac32>0$. But on that branch $f$ has no global maximum at all, so condition (4) ('attains a global maximum') fails outright. Meanwhile the only branches with an attained maximum ($k\\le0$) have maximum exactly $1<\\tfrac32$, so they cannot reach $\\tfrac32$ either.",
-          "Therefore no choice of curvature $k$ produces a continuous nonzero solution that both attains a maximum and has that maximum equal to $\\tfrac32$: the attained-maximum value is always $1$. The set of attainable maxima is $\\boxed{\\{1\\}}$, and the claimed function does not exist."
+          "A monotone function can fail continuity only by a jump, and such jumps occur exactly where its one-sided limits disagree. For $f(x)=x^{3}+\\lfloor x\\rfloor$ the cubic part is continuous, so disagreement happens precisely where $\\lfloor x\\rfloor$ leaps — at the integers. On $[0,2]$ the candidate integers are $0,1,2$; the endpoint $0$ is continuous from the right, while $1$ and $2$ each carry a unit jump. That is $2$ jump discontinuities, confirming monotone need not mean continuous.",
+          "Each jump of $f$ removes an open interval of length $1$ from its range: near $x=n$ the values skip from $n^{3}+(n-1)$ up to $n^{3}+n$. The range is therefore a union of the solid pieces $[\\,n^{3}+n,\\ (n+1)^{3}+n\\,)$ coming from the blocks $[n,n+1)$.",
+          "The block $n=2$ contributes the solid piece $[10,29)$, and $28$ lies strictly inside it — not at any gap edge. Since $g$ is monotone and $28$ can be approached from both sides within the range, the only way $g$ could break is a two-sided jump, which a monotone inverse exhibits only at a gap boundary; $28$ is not one. Hence $g$ is continuous at $28$.",
+          "Solving on that piece, $x^{3}+2=28$ gives the unique $x=\\sqrt[3]{26}$, so $g(28)=\\sqrt[3]{26}$, and altogether $\\boxed{2 \\text{ discontinuities},\\ g(28)=\\sqrt[3]{26}}$."
         ]
       }
     ],
-    "remark": "Insight: this is a continuity capstone disguised as a functional equation. The single normalization $f(0)=1$ plus the doubling identity $f(2x)=2f(x)^2-1$ converts a global question about a function on all of $\\mathbb{R}$ into a one-dimensional discrete dynamical system $t\\mapsto 2t^2-1$, whose only fixed points are $1$ and $-\\tfrac12$. The interval $[-1,1]$ is the stable, bounded regime (the cosine world, where $1$ is a genuine attained ceiling); the instant a value pokes above $1$ the orbit escapes to $+\\infty$ (the cosh world, where the ceiling is removed entirely and no maximum exists). The trap fuses two reflexes that strong students trust: 'continuous functions attain their maxima' (true only on COMPACT domains — $\\mathbb{R}$ is not compact, so EVT is silent) and 'I can always build a solution hitting any prescribed value' (false here — the solution family is rigidly classified into cosine and cosh, with attainable maxima frozen at $\\{1\\}$). The transferable discipline for a top ranker: before accepting that an extremum is attained, check compactness; and before accepting a prescribed value, classify the entire solution family and extract the global bound it imposes. A functional equation can quietly install a hard ceiling that no amount of cleverness lifts."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
-    "title": "The Dirichlet Tilt and the Maximum That Refuses the Theorem",
-    "difficulty": 5,
-    "task": "Determine the continuity set, then decide on two closed intervals whether the supremum is an attained maximum, locating it as a limit superior",
-    "tags": [
-      "dirichlet-function",
-      "extreme-value-theorem",
-      "limsup",
-      "supremum-vs-maximum",
-      "pathological",
-      "sequential-continuity"
-    ],
-    "statement": "Let $D:\\mathbb{R}\\to\\{0,1\\}$ be the Dirichlet indicator, $D(x)=1$ if $x\\in\\mathbb{Q}$ and $D(x)=0$ if $x\\notin\\mathbb{Q}$, and define the tilted Dirichlet function\n\\[ f(x)=x\\,D(x),\\qquad\\text{i.e. } f(x)=\\begin{cases} x, & x\\in\\mathbb{Q},\\\\ 0, & x\\notin\\mathbb{Q}. \\end{cases} \\]\nThis $f$ is discontinuous at all but one point, yet on the compact interval $[0,1]$ it still manages to obey the conclusion of the Extreme Value Theorem — even though the theorem's hypothesis fails almost everywhere. Investigate honestly, with proof. (a) Find, with justification, the set $C$ of points at which $f$ is continuous. (b) Decide whether $f$ attains a maximum on the closed interval $[0,1]$; if so give its value and every point where it is attained, and likewise decide whether $f$ attains a minimum on $[0,1]$. (c) Now restrict $f$ to the closed interval $J=\\left[\\tfrac12,\\tfrac{1}{\\sqrt2}\\right]$ (whose right endpoint $\\tfrac1{\\sqrt2}$ is irrational). Determine $\\displaystyle S=\\sup_{x\\in J} f(x)$, decide whether this supremum is attained (i.e.\\ is a genuine maximum), and identify $S$ as a limit superior $\\displaystyle\\limsup_{x\\to (1/\\sqrt2)^{-}} f(x)$. Explain why $J$ is compact and $f$ is bounded on $J$, yet no maximizer exists, and why this does not contradict the Extreme Value Theorem.",
-    "answer": "\\[\\boxed{\\,C=\\{0\\};\\quad \\max_{[0,1]}f=1\\ \\text{at }x=1,\\ \\min_{[0,1]}f=0;\\quad S=\\tfrac1{\\sqrt2}\\ \\text{(not attained)}\\,}\\]",
-    "trap": "There are two opposite, equally fatal reflexes, and the problem is engineered to spring both. The first is the false converse of the Extreme Value Theorem: a strong student computes that $f$ is discontinuous everywhere except $0$, declares 'EVT needs continuity, $f$ isn't continuous, so $f$ need not — or even cannot — attain a maximum on $[0,1]$,' and either refuses to give a max or claims none exists. This treats a SUFFICIENT hypothesis as if it were NECESSARY. EVT says continuous $\\Rightarrow$ extrema attained; it says nothing about discontinuous functions, which may or may not attain extrema. Here $f$ does attain its max: for every $x\\in[0,1]$ we have $f(x)\\le x\\le 1$ with equality only at the rational point $x=1$, so $\\max_{[0,1]}f=f(1)=1$ honestly exists — and the minimum $0$ is attained at $x=0$ and at every irrational. The discontinuity is real but irrelevant to attainment here. The second reflex is the opposite over-confidence: having been burned, the student now assumes the sup is ALWAYS attained and, on $J=[\\tfrac12,\\tfrac1{\\sqrt2}]$, writes 'sup $=\\tfrac1{\\sqrt2}$ attained at the right endpoint,' forgetting that the endpoint $\\tfrac1{\\sqrt2}$ is irrational, where $f$ equals $0$, not $\\tfrac1{\\sqrt2}$. By density of $\\mathbb{Q}$ the supremum over $J$ is still $\\tfrac1{\\sqrt2}$ (rationals creep arbitrarily close to it from below), but no point of $J$ achieves it: $f(\\tfrac1{\\sqrt2})=0$, and every rational $q<\\tfrac1{\\sqrt2}$ gives $f(q)=q<\\tfrac1{\\sqrt2}$ strictly. So $S=\\tfrac1{\\sqrt2}$ is a true supremum but NOT a maximum, and it equals the limit superior $\\limsup_{x\\to(1/\\sqrt2)^-}f(x)=\\tfrac1{\\sqrt2}$. The deepest misconception the problem targets is that the location of the supremum of a discontinuous function can be read off like the maximum of a continuous one; in reality one must locate it as a limsup and then separately ask whether any point realizes that value. There is no contradiction with EVT in part (c): EVT's hypothesis (continuity on the compact $J$) is simply absent, so the theorem makes no promise, and the promise fails.",
-    "solutions": [
-      {
-        "name": "Sequential criterion plus the pinch $0\\le f(x)\\le x$",
-        "steps": [
-          "(a) Continuity set. At $x_0=0$: for every sequence $x_n\\to0$, $|f(x_n)|=|x_n|\\,D(x_n)\\le|x_n|\\to0=f(0)$ by the squeeze, so $f$ is continuous at $0$. At any $x_0\\neq0$: by density choose rationals $q_n\\to x_0$ and irrationals $t_n\\to x_0$; then $f(q_n)=q_n\\to x_0$ while $f(t_n)=0\\to0$. The two subsequential limits $x_0$ and $0$ differ (as $x_0\\neq0$), so $\\lim_{x\\to x_0}f$ does not exist and $f$ is discontinuous at $x_0$. Hence $C=\\{0\\}$.",
-          "(b) Maximum on $[0,1]$. For every $x\\in[0,1]$, $f(x)$ is either $x$ (if $x\\in\\mathbb{Q}$) or $0$, so in all cases $0\\le f(x)\\le x\\le 1$. The upper bound $1$ is achieved precisely when $f(x)=x$ and $x=1$, i.e.\\ at the rational point $x=1$ where $f(1)=1$. No other point reaches $1$: an irrational gives $0$, and a rational $q<1$ gives $f(q)=q<1$. Therefore $\\max_{[0,1]}f=1$, attained only at $x=1$. For the minimum, $f(x)\\ge0$ everywhere with equality at $x=0$ and at every irrational of $[0,1]$ (an uncountable set), so $\\min_{[0,1]}f=0$, attained. Both extrema exist despite discontinuity at every nonzero point.",
-          "(c) The interval $J=[\\tfrac12,\\tfrac1{\\sqrt2}]$. First, $S=\\sup_J f$. Every value of $f$ on $J$ is either a rational $q\\in J$ (giving $q\\le\\tfrac1{\\sqrt2}$) or $0$, so $S\\le\\tfrac1{\\sqrt2}$. By density of $\\mathbb{Q}$ pick rationals $q_n\\in J$ with $q_n\\to\\tfrac1{\\sqrt2}^-$ (e.g.\\ truncate the decimal expansion of $\\tfrac1{\\sqrt2}=0.70710678\\ldots$); then $f(q_n)=q_n\\to\\tfrac1{\\sqrt2}$, forcing $S\\ge\\tfrac1{\\sqrt2}$. Hence $S=\\tfrac1{\\sqrt2}$.",
-          "Attainment fails. The endpoint $\\tfrac1{\\sqrt2}$ is irrational, so $f(\\tfrac1{\\sqrt2})=0\\neq S$; any rational $q\\in J$ has $q<\\tfrac1{\\sqrt2}$ strictly (equality is impossible since $\\tfrac1{\\sqrt2}\\notin\\mathbb{Q}$), so $f(q)=q<S$; and irrationals give $0<S$. No point of $J$ attains $S$, so the supremum is not a maximum. Finally, $\\limsup_{x\\to(1/\\sqrt2)^-}f(x)=\\tfrac1{\\sqrt2}$: along the rationals $q_n\\nearrow\\tfrac1{\\sqrt2}$ the values $f(q_n)=q_n\\to\\tfrac1{\\sqrt2}$ realize this limsup, while no nearby value exceeds $\\tfrac1{\\sqrt2}$. So $S=\\tfrac1{\\sqrt2}=\\limsup_{x\\to(1/\\sqrt2)^-}f(x)$, not attained. There is no clash with EVT: $J$ is compact (closed and bounded) and $f$ is bounded on $J$, but $f$ is not continuous on $J$, so the theorem's hypothesis is unmet and it predicts nothing. $\\boxed{C=\\{0\\},\\ \\max_{[0,1]}f=1\\text{ at }x=1,\\ \\min_{[0,1]}f=0,\\ S=\\tfrac1{\\sqrt2}\\text{ not attained}}$"
-        ]
-      },
-      {
-        "name": "Decompose the range: split each interval into its rational and irrational shadows",
-        "steps": [
-          "(a) Write $f=g\\cdot D$ with $g(x)=x$ continuous. Continuity of $f$ at $x_0$ requires the rational-side limit ($g(x_0)=x_0$) and the irrational-side limit ($0$) to agree, i.e.\\ $x_0=0$. So $C=\\{0\\}$, recovering part (a) by comparing the two 'shadows' of $f$ — its restriction to $\\mathbb{Q}$ (the line $y=x$) and to the irrationals (the constant $0$).",
-          "(b) On any set $A$, the image $f(A)=\\{q:q\\in A\\cap\\mathbb{Q}\\}\\cup\\{0\\}$ (the latter present iff $A$ contains an irrational). For $A=[0,1]$: the rational shadow is $\\mathbb{Q}\\cap[0,1]$, whose supremum is $1$ and is itself rational, hence $1\\in f([0,1])$ and is the largest value; the constant shadow contributes $0$, the smallest value, which is also attained (at $x=0$, a rational, or any irrational). Thus $\\sup f([0,1])=1$ is in the image (a max at $x=1$) and $\\inf f([0,1])=0$ is in the image (a min). Both extrema attained.",
-          "(c) For $A=J=[\\tfrac12,\\tfrac1{\\sqrt2}]$: the rational shadow is $\\mathbb{Q}\\cap J$, a set whose supremum is the right endpoint $\\tfrac1{\\sqrt2}$ but — crucially — $\\tfrac1{\\sqrt2}\\notin\\mathbb{Q}$, so the supremum is a limit point of the shadow that the shadow does not contain. Hence $S=\\sup f(J)=\\tfrac1{\\sqrt2}$ but $\\tfrac1{\\sqrt2}\\notin f(J)$: the supremum is not attained. The constant shadow $\\{0\\}$ supplies the minimum $0$, which is attained. The asymmetry between (b) and (c) is entirely whether the right endpoint of the interval lies in $\\mathbb{Q}$.",
-          "Identify the limsup: $S$ equals the largest subsequential limit of $f$ as $x\\to\\tfrac1{\\sqrt2}^-$. Approaching through the rational shadow gives values $\\to\\tfrac1{\\sqrt2}$; approaching through irrationals gives $0$; nothing exceeds $\\tfrac1{\\sqrt2}$. So $\\limsup_{x\\to(1/\\sqrt2)^-}f(x)=\\tfrac1{\\sqrt2}=S$. Compactness of $J$ and boundedness of $f$ do not rescue attainment because the missing ingredient is continuity, not compactness. $\\boxed{C=\\{0\\},\\ \\max_{[0,1]}f=1,\\ \\min_{[0,1]}f=0,\\ S=\\tfrac1{\\sqrt2}\\text{ not attained}}$"
-        ]
-      },
-      {
-        "name": "Contrapositive stress test of EVT on a sub-interval",
-        "steps": [
-          "(a) Quick oscillation argument: define $\\operatorname{osc}_f(x_0)=\\limsup_{x\\to x_0}f-\\liminf_{x\\to x_0}f$. For $x_0\\neq0$, rationals push the limsup up to $x_0$ and irrationals push the liminf down to $0$, so $\\operatorname{osc}_f(x_0)=|x_0|>0$ and $f$ is discontinuous there; at $x_0=0$ the oscillation is $0$. A function is continuous exactly where its oscillation vanishes, so $C=\\{0\\}$.",
-          "(b) EVT is a one-way implication: continuity on a compact set $\\Rightarrow$ extrema attained. To probe whether attainment can occur without the hypothesis, test directly. On $[0,1]$, the candidate top value is $\\sup_x f(x)$. Since $f(x)\\le x\\le1$ and $x=1$ is rational with $f(1)=1$, the bound $1$ is achieved — attainment holds even though continuity fails everywhere except $0$. So EVT's conclusion can be true while its hypothesis is false: the hypothesis is sufficient, not necessary. The minimum value $0$ is likewise achieved (at $0$ and all irrationals). Verdict for $[0,1]$: max $1$, min $0$, both attained.",
-          "(c) Now construct the explicit failure on $J=[\\tfrac12,\\tfrac1{\\sqrt2}]$. Take the increasing rational sequence $q_n=\\lfloor 10^n/\\sqrt2\\rfloor/10^n$ (the $n$-decimal truncation of $\\tfrac1{\\sqrt2}$); each $q_n\\in J$, $q_n\\nearrow\\tfrac1{\\sqrt2}$, and $f(q_n)=q_n\\nearrow\\tfrac1{\\sqrt2}$. Thus the values of $f$ on $J$ come arbitrarily close to $\\tfrac1{\\sqrt2}$, so $S=\\sup_J f\\ge\\tfrac1{\\sqrt2}$; combined with $f\\le x\\le\\tfrac1{\\sqrt2}$ on $J$, we get $S=\\tfrac1{\\sqrt2}$.",
-          "Show no maximizer and read off the limsup. If some $x^*\\in J$ had $f(x^*)=S=\\tfrac1{\\sqrt2}$, then $f(x^*)\\neq0$ forces $x^*\\in\\mathbb{Q}$ and $f(x^*)=x^*$, giving $x^*=\\tfrac1{\\sqrt2}$ — impossible since $\\tfrac1{\\sqrt2}$ is irrational. So the sup is unattained: $S$ is a supremum but not a maximum, realized only in the limit, $S=\\limsup_{x\\to(1/\\sqrt2)^-}f(x)=\\tfrac1{\\sqrt2}$. The interval $J$ is compact and $f$ is bounded on it, yet the conclusion of EVT fails — precisely because the missing hypothesis (continuity) is the one that matters, confirming from the other side that in part (b) the attained maximum was a gift of the function's structure, not of any theorem. $\\boxed{C=\\{0\\},\\ \\max_{[0,1]}f=1,\\ \\min_{[0,1]}f=0,\\ S=\\tfrac1{\\sqrt2}\\text{ not attained}}$"
-        ]
-      }
-    ],
-    "remark": "Insight: the Extreme Value Theorem is a one-directional gift — continuity on a compact set guarantees attained extrema, but the converse is false in both possible ways, and this single function exhibits both. On $[0,1]$ the tilted Dirichlet function $f(x)=x\\,D(x)$ is discontinuous at every nonzero point yet still attains its maximum ($1$ at $x=1$) and minimum ($0$), proving the continuity hypothesis is sufficient but not necessary; on the twin interval $J=[\\tfrac12,\\tfrac1{\\sqrt2}]$ the same function, equally compact-domained and bounded, fails to attain its supremum $\\tfrac1{\\sqrt2}$ because the only point that could realize it is irrational, where $f$ collapses to $0$. The decisive habit for a top ranker is to never read the supremum of a discontinuous function as a maximum: locate it as a limit superior ($S=\\limsup_{x\\to(1/\\sqrt2)^-}f=\\tfrac1{\\sqrt2}$) and then ask separately whether any point realizes that value. Whether the supremum becomes a maximum here turns on a single arithmetic fact — is the boundary value rational? — which is invisible to compactness and boundedness alone. EVT predicts attainment when its hypotheses hold; outside them, attainment is a coincidence of the function, to be proved by hand, never assumed."
+    "remark": "**Insight.** Strictly increasing is a statement about *order*, not about *gaplessness*: a function can climb forever and still skip — here the floor term forces a clean unit jump at every integer while the cubic keeps it strictly rising. The two ideas to separate are that (i) a monotone function's only possible failures are **isolated jumps**, and (ii) every such jump carves a **gap out of the range**, so when you invert, those troublesome values live *outside* the inverse's domain. Ask about the inverse at a value sitting inside a solid range-block, and monotonicity hands you continuity for free — no formula-inversion required."
   },
   {
     "theme": "hybrid",
@@ -4160,54 +3733,6 @@ window.PROBLEMS = [
   {
     "theme": "hybrid",
     "themeLabel": "The Grand Hybrids",
-    "title": "The Sawtooth Choir That Sings to Two-Thirds",
-    "difficulty": 5,
-    "task": "Prove a nowhere-differentiable series is nonetheless continuous, decide whether it attains a maximum on the compact interval, and compute that maximum exactly",
-    "tags": [
-      "uniform-convergence",
-      "weierstrass-m-test",
-      "extreme-value-theorem",
-      "self-similarity",
-      "nowhere-differentiable",
-      "continuity"
-    ],
-    "statement": "For a real number $y$ let $\\langle y\\rangle$ denote the distance from $y$ to the nearest integer, so $\\langle y\\rangle=\\min_{k\\in\\mathbb{Z}}|y-k|\\in[0,\\tfrac12]$. Define\n\\[ T(x)=\\sum_{n=0}^{\\infty}\\frac{\\langle 2^{n}x\\rangle}{2^{n}} \\qquad(x\\in\\mathbb{R}). \\]\nEach term is a sawtooth of height $\\tfrac12\\cdot 2^{-n}$ and the partial sums are jagged, with corners doubling in number at every step; it is a classical fact that the limit $T$ is differentiable at no point whatsoever. \\text{Part (a).} Prove that the series defining $T$ converges for every $x$ and that $T$ is continuous on all of $\\mathbb{R}$ (in particular on $[0,1]$), despite $T$ being nowhere differentiable. \\text{Part (b).} Decide, with proof, whether $T$ attains a maximum value on the closed interval $[0,1]$ — i.e. whether there exists $x_\\star\\in[0,1]$ with $T(x_\\star)\\ge T(x)$ for all $x\\in[0,1]$. \\text{Part (c).} Determine the exact value $M=\\max_{x\\in[0,1]}T(x)$ and report $M$ as your final answer.",
-    "answer": "\\[\\boxed{M=\\dfrac{2}{3}}\\]",
-    "trap": "The problem is engineered to defeat two reflexes. First trap — confusing 'nowhere differentiable' with 'discontinuous' or 'pathological.' Each summand $\\langle 2^n x\\rangle$ is a sawtooth whose corners proliferate without bound, and the limit is the celebrated nowhere-differentiable Takagi (blancmange) function; a strong student, primed by Thomae and Dirichlet earlier in the book, reaches for a Baire-category or full-measure argument and suspects the maximum either fails to exist or is attained only on a measure-zero fractal he cannot pin down. But non-differentiability is irrelevant to existence of a maximum: the only hypothesis the Extreme Value Theorem needs is continuity on a compact set, and continuity here is cheap — the Weierstrass M-test applies because $\\sup_x|\\langle 2^n x\\rangle/2^n|=\\tfrac12\\cdot 2^{-n}$ and $\\sum\\tfrac12\\cdot 2^{-n}=1<\\infty$, so the series converges uniformly and its sum, a uniform limit of continuous partial sums, is continuous. Jaggedness never threatens continuity; it only kills differentiability. Second trap — the term-by-term supremum, which the same M-test makes seductive. Having computed $\\sum_n\\sup_x\\tfrac{\\langle 2^n x\\rangle}{2^n}=\\sum_n\\tfrac12\\cdot2^{-n}=1$, the student concludes $\\max T=1$, as if every sawtooth could simultaneously sit at its own peak. It cannot: $\\langle 2^nx\\rangle=\\tfrac12$ forces the binary digit string of $x$ into a pattern that the very next term $\\langle 2^{n+1}x\\rangle$ then sends to $0$, so consecutive peaks are mutually exclusive. The digits are coupled, the suprema are not independent, and the true maximum is the strictly smaller $\\tfrac23$, attained at $x=\\tfrac13$ and $x=\\tfrac23$. Reading $\\sup\\sum\\le\\sum\\sup$ as an equality — treating an upper bound from independent maximization as the actual extremum — is the error, and the gap $1$ versus $\\tfrac23$ is the price.",
-    "solutions": [
-      {
-        "name": "M-test for continuity, EVT for existence, two-step self-similarity for the value",
-        "steps": [
-          "(a) Continuity. The function $\\phi(y)=\\langle y\\rangle$ (distance to nearest integer) is continuous and satisfies $0\\le\\phi(y)\\le\\tfrac12$ for all $y$, so the $n$-th term $u_n(x)=\\tfrac{1}{2^n}\\langle 2^n x\\rangle$ is continuous with $\\sup_{x\\in\\mathbb{R}}|u_n(x)|=\\tfrac12\\cdot 2^{-n}=:M_n$. Since $\\sum_{n\\ge0}M_n=\\tfrac12\\sum_{n\\ge0}2^{-n}=\\tfrac12\\cdot2=1<\\infty$, the Weierstrass M-test gives that $\\sum u_n$ converges uniformly on $\\mathbb{R}$. A uniform limit of continuous functions is continuous, so $T$ is continuous on all of $\\mathbb{R}$, hence on $[0,1]$. Nowhere-differentiability is a statement about difference quotients and is logically independent of this; it does not enter.",
-          "(b) Existence of a maximum. $T$ is continuous (part (a)) and $[0,1]$ is closed and bounded, hence compact. By the Extreme Value Theorem $T$ attains both a maximum and a minimum on $[0,1]$; in particular a maximizer $x_\\star$ exists. No regularity beyond continuity is needed, so the jaggedness is no obstruction.",
-          "(c) Upper bound $T\\le\\tfrac23$. Separate the first two terms and reindex the tail. Writing $\\phi(y)=\\langle y\\rangle$,\\[ T(x)=\\phi(x)+\\tfrac12\\phi(2x)+\\sum_{n\\ge2}2^{-n}\\phi(2^nx)=\\phi(x)+\\tfrac12\\phi(2x)+\\tfrac14\\,T(4x), \\]where the last equality uses $\\sum_{n\\ge2}2^{-n}\\phi(2^nx)=\\tfrac14\\sum_{m\\ge0}2^{-m}\\phi(2^m\\cdot 4x)=\\tfrac14T(4x)$. Let $S=\\sup_{x}T(x)$ (finite, since $0\\le T\\le 1$). Then $S\\le \\big(\\sup_x[\\phi(x)+\\tfrac12\\phi(2x)]\\big)+\\tfrac14 S$. The bracketed function is $1$-periodic and piecewise linear with corners only at $x\\in\\{0,\\tfrac14,\\tfrac12,\\tfrac34,1\\}$ (the points where $x$ or $2x$ crosses a half-integer); evaluating there gives values $0,\\tfrac12,\\tfrac12,\\tfrac12,0$, so its maximum is exactly $\\tfrac12$. Hence $S\\le\\tfrac12+\\tfrac14 S$, i.e. $\\tfrac34S\\le\\tfrac12$, giving $S\\le\\tfrac23$. (Note the naive one-step version $T=\\phi(x)+\\tfrac12T(2x)$ only yields $S\\le\\tfrac12+\\tfrac12S$, i.e. the useless $S\\le1$ — the trap; the two-step grouping is what tightens it.)",
-          "(c) Attainment at $x=\\tfrac13$. In binary $\\tfrac13=0.010101\\ldots$, so $2^n\\cdot\\tfrac13$ has fractional part $\\tfrac13$ (for even $n$) or $\\tfrac23$ (for odd $n$); in both cases the distance to the nearest integer is $\\tfrac13$. Thus $\\langle 2^n\\cdot\\tfrac13\\rangle=\\tfrac13$ for every $n$, and\\[ T(\\tfrac13)=\\sum_{n\\ge0}2^{-n}\\cdot\\tfrac13=\\tfrac13\\cdot 2=\\tfrac23. \\]Combined with $T\\le\\tfrac23$ this proves $\\max_{[0,1]}T=\\tfrac23$, attained at $x=\\tfrac13$ (and, by $T(1-x)=T(x)$, also at $x=\\tfrac23$). Therefore $\\boxed{M=\\tfrac23}$."
-        ]
-      },
-      {
-        "name": "Dyadic modulus of continuity, and the digit-coupling that caps the sum",
-        "steps": [
-          "(a) Continuity by an explicit estimate (independent of the M-test). Let $S_N(x)=\\sum_{n=0}^{N}2^{-n}\\langle2^nx\\rangle$, a continuous (indeed Lipschitz) function. The tail obeys $0\\le T(x)-S_N(x)=\\sum_{n>N}2^{-n}\\langle2^nx\\rangle\\le\\sum_{n>N}2^{-n}\\cdot\\tfrac12=2^{-N-1}$, uniformly in $x$. Given $\\varepsilon>0$ choose $N$ with $2^{-N-1}<\\varepsilon/3$; since $S_N$ is continuous at any $x_0$ there is $\\delta>0$ with $|S_N(x)-S_N(x_0)|<\\varepsilon/3$ for $|x-x_0|<\\delta$. Then $|T(x)-T(x_0)|\\le|T-S_N|(x)+|S_N(x)-S_N(x_0)|+|S_N-T|(x_0)<\\varepsilon$. So $T$ is continuous everywhere; the uniform tail bound is exactly uniform convergence in disguise.",
-          "(b) The image $T([0,1])$ is the continuous image of a compact connected set, hence a closed bounded interval $[m,M]$; its right endpoint $M$ is attained (closedness), so a maximum exists — the Extreme Value Theorem in interval form.",
-          "(c) Why $1$ is wrong and $\\tfrac23$ is right, via binary digits. Write $x=0.b_1b_2b_3\\ldots$ in binary. Then $\\langle 2^{n}x\\rangle$ depends on the digits from position $n{+}1$ onward, and equals its peak $\\tfrac12$ exactly when $b_{n+1}=1$ and the following digits begin $b_{n+2}=0$ in the sense that the fractional part of $2^nx$ is near $\\tfrac12$. The decisive observation: $\\langle 2^nx\\rangle$ and $\\langle 2^{n+1}x\\rangle$ cannot both equal $\\tfrac12$, because fractional part $\\tfrac12$ at level $n$ doubles to fractional part $0$ at level $n+1$, where $\\langle\\cdot\\rangle=0$. So the term-by-term maximum $\\sum 2^{-n}\\cdot\\tfrac12=1$ is unattainable — the peaks are mutually exclusive across consecutive levels.",
-          "(c) The sharp constant. To extract the true bound, the only periodic pattern that keeps every $\\langle2^nx\\rangle$ as large as jointly possible is the alternating digit string, which makes every fractional part land at $\\tfrac13$ or $\\tfrac23$, i.e. $\\langle2^nx\\rangle\\equiv\\tfrac13$ — precisely $x=\\tfrac13$. There $T=\\sum2^{-n}\\tfrac13=\\tfrac23$. Rigor for the inequality $T\\le\\tfrac23$ comes from the coupling made quantitative: pairing levels, $\\langle2^nx\\rangle+\\tfrac12\\langle2^{n+1}x\\rangle\\le\\tfrac12$ for every $x$ (a piecewise-linear check on the fractional part $t=\\{2^nx\\}$, where the function $\\min(t,1-t)+\\tfrac12\\min(\\{2t\\},1-\\{2t\\})$ has maximum $\\tfrac12$). Summing $2^{-2k}\\big(\\langle2^{2k}x\\rangle+\\tfrac12\\langle2^{2k+1}x\\rangle\\big)\\le 2^{-2k}\\cdot\\tfrac12$ over $k\\ge0$ telescopes to $T(x)\\le\\tfrac12\\sum_{k\\ge0}4^{-k}=\\tfrac12\\cdot\\tfrac43=\\tfrac23$. With attainment at $\\tfrac13$, $\\boxed{M=\\tfrac23}$."
-        ]
-      },
-      {
-        "name": "Fixed point of the operator: the self-similar functional equation",
-        "steps": [
-          "(a) $T$ is the unique bounded continuous solution of a contraction equation. Define the operator $(\\Lambda g)(x)=\\langle x\\rangle+\\tfrac12 g(2x)$ on bounded functions with the sup norm. Splitting off the $n=0$ term of the series shows $T=\\Lambda T$, i.e. $T(x)=\\langle x\\rangle+\\tfrac12 T(2x)$. Moreover $\\Lambda$ is a contraction: $\\|\\Lambda g-\\Lambda h\\|_\\infty=\\tfrac12\\|g(2\\cdot)-h(2\\cdot)\\|_\\infty=\\tfrac12\\|g-h\\|_\\infty$. By the Banach fixed-point theorem on the complete space of bounded continuous functions, $\\Lambda$ has a unique fixed point, and it is continuous because $\\Lambda$ maps continuous functions to continuous functions (sum of $\\langle x\\rangle$ and a continuous rescaling) and the closed subspace of bounded continuous functions is complete. That fixed point is $T$; hence $T$ is continuous. (This is the M-test repackaged as a contraction, and again says nothing about differentiability.)",
-          "(b) Continuous on the compact $[0,1]$ $\\Rightarrow$ a maximizer exists, by the Extreme Value Theorem.",
-          "(c) Bound from the fixed-point equation, two steps deep. Iterating $T(x)=\\langle x\\rangle+\\tfrac12T(2x)$ once more, $T(x)=\\langle x\\rangle+\\tfrac12\\langle 2x\\rangle+\\tfrac14T(4x)$. Taking suprema and writing $S=\\sup T\\le 1$, $S\\le\\sup_x\\big(\\langle x\\rangle+\\tfrac12\\langle2x\\rangle\\big)+\\tfrac14S=\\tfrac12+\\tfrac14S$, so $S\\le\\tfrac23$. The single-step equation alone gives only $S\\le\\tfrac12+\\tfrac12S=1$, which is exactly the false term-by-term bound; the contraction must be applied twice to feel the digit coupling.",
-          "(c) Attainment. Test $x=\\tfrac13$ in the fixed-point equation: $\\langle\\tfrac13\\rangle=\\tfrac13$ and $2\\cdot\\tfrac13=\\tfrac23$ has $\\langle\\tfrac23\\rangle=\\tfrac13$, and $\\tfrac13,\\tfrac23$ map to each other under $x\\mapsto2x\\bmod1$, so $T(\\tfrac13)=\\tfrac13+\\tfrac12T(\\tfrac23)$ and $T(\\tfrac23)=\\tfrac13+\\tfrac12T(\\tfrac13)$. Solving the $2\\times2$ linear system gives $T(\\tfrac13)=T(\\tfrac23)=\\tfrac23$. Since $\\tfrac23$ meets the upper bound, the maximum is attained and equals $\\boxed{M=\\tfrac23}$."
-        ]
-      }
-    ],
-    "remark": "Insight: continuity, extremum-existence, and non-differentiability are three independent facts about the same object, and the whole problem is about not letting one masquerade as another. The Weierstrass M-test does all the heavy lifting for continuity — $\\sum\\sup|u_n|=1<\\infty$ forces uniform convergence, and a uniform limit of continuous partial sums is continuous — while the celebrated fact that $T$ (the Takagi/blancmange function) is differentiable nowhere is simply irrelevant to whether it has a maximum: the Extreme Value Theorem asks only for continuity on a compact set, which it has. The same M-test that proves continuity sets the second trap: its convergent majorant $\\sum 2^{-n}\\cdot\\tfrac12=1$ is the term-by-term supremum, and reading $\\sup\\sum\\le\\sum\\sup$ as equality predicts $\\max=1$. But the suprema are coupled — a sawtooth at its peak ($\\langle2^nx\\rangle=\\tfrac12$) drives the next one to a zero ($\\langle2^{n+1}x\\rangle=0$) — so the peaks are mutually exclusive, and the honest maximum is $\\tfrac23$, attained where every digit conspires to keep all fractional parts at distance $\\tfrac13$, namely $x=\\tfrac13$ and $x=\\tfrac23$. The mechanism that recovers the sharp constant is self-similarity: the single functional equation $T(x)=\\langle x\\rangle+\\tfrac12T(2x)$ only re-derives the loose bound $S\\le1$, but applied twice it tightens to $S\\le\\tfrac12+\\tfrac14S=\\tfrac23$. The transferable lesson for a top ranker: jaggedness never breaks continuity, a convergent M-test majorant is an upper bound and almost never the extremum, and the exact value of a self-similar object is unlocked by iterating its own scaling law just deep enough to expose the hidden coupling between scales."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
     "title": "The Removable Floor and the Phantom Critical Point",
     "difficulty": 5,
     "task": "Patch a removable singularity, then locate the global extrema on a closed interval, proving that the seductive interior critical point is a phantom",
@@ -4301,48 +3826,148 @@ window.PROBLEMS = [
   {
     "theme": "hybrid",
     "themeLabel": "The Grand Hybrids",
-    "title": "The Cubic Hidden in a Cauchy Shadow",
+    "title": "The Additive Law Meets a Doubling Curve",
     "difficulty": 5,
-    "task": "Extract the structural skeleton of a functional equation without continuity, prove that continuity is the one hypothesis that rescues the Extreme Value Theorem, then locate the forced extremes and the guaranteed crossing",
+    "task": "Force the line, count crossings",
     "tags": [
-      "cauchy-functional-equation",
-      "continuity-as-hypothesis",
-      "extreme-value-theorem",
-      "intermediate-value-theorem",
-      "hamel-pathology",
-      "classification"
+      "additive functional equation",
+      "continuity",
+      "intermediate value theorem",
+      "exponential growth",
+      "root counting"
     ],
-    "statement": "A function $f:\\mathbb{R}\\to\\mathbb{R}$ satisfies the functional equation\n\\[\nf(x+y)=f(x)+f(y)+3xy(x+y)\\qquad\\text{for all } x,y\\in\\mathbb{R},\n\\]\ntogether with the single datum $f(1)=-2$.\n\n\\text{Part (a).} Using ONLY the functional equation (no continuity, no differentiability), prove that $f(0)=0$, that $f$ is odd, and that $f$ is pinned on the rationals: $f(q)=q^{3}-3q$ for every $q\\in\\mathbb{Q}$.\n\n\\text{Part (b).} A student claims part (a) already determines $f$ on all of $\\mathbb{R}$, so that $f$ certainly attains a maximum and minimum on $[0,2]$ by the Extreme Value Theorem. Decide, with proof, whether the functional equation plus the datum — WITHOUT assuming continuity — forces $f(x)=x^{3}-3x$ for every real $x$, and whether they force $f$ to attain a maximum on $[0,2]$. If not, explain precisely what extra hypothesis is the crux, and exhibit the obstruction.\n\n\\text{Part (c).} Now ADD the hypothesis that $f$ is continuous. Determine the maximum value $M$ and minimum value $m$ of $f$ on $[0,2]$, the points where they are attained, and prove that there is exactly one $r\\in(0,2)$ with $f(r)=0$ besides any endpoint, giving $r$ exactly. Report $\\bigl(M\\text{ at its point};\\ m\\text{ at its point};\\ r\\bigr)$ as your final answer.",
-    "answer": "\\[\\boxed{\\left(M=2\\text{ at }x=2;\\ \\ m=-2\\text{ at }x=1;\\ \\ r=\\sqrt{3}\\right)}\\]",
-    "trap": "The problem is built to spring the single most seductive error in the whole subject: believing that an algebraic functional equation, once it pins a function on a dense set, has pinned it everywhere — so that continuity is a decoration rather than the load-bearing wall. Trap 1 (the phantom classification). Part (a) is honest and powerful: setting $x=y=0$ gives $f(0)=2f(0)$, so $f(0)=0$; setting $y=-x$ gives $0=f(0)=f(x)+f(-x)+3x(-x)(0)=f(x)+f(-x)$, so $f$ is odd; and the substitution $g(x):=f(x)-x^{3}$ converts the equation into Cauchy's equation $g(x+y)=g(x)+g(y)$ because the cubic cross-term is exactly $(x+y)^3-x^3-y^3=3xy(x+y)$. Standard additive algebra then forces $g(q)=q\\,g(1)$ on rationals, and the datum $f(1)=-2$ gives $g(1)=-3$, so $f(q)=q^{3}-3q$ for ALL rationals $q$. A strong student, flushed with this, declares $f(x)=x^{3}-3x$ everywhere and applies EVT on $[0,2]$ as if the job were done. It is not. A Cauchy solution $g$ is $\\mathbb{Q}$-linear but, without a regularity hypothesis (continuity, monotonicity, boundedness on a set of positive measure, or measurability), need NOT be $g(x)=-3x$: Hamel's construction gives additive $g$ whose graph is DENSE in the plane, so $g$ — and hence $f=g+x^3$ — is unbounded on every interval, in particular on $[0,2]$. For such an $f$ the supremum on $[0,2]$ is $+\\infty$: NO maximum exists, and the Extreme Value Theorem simply does not apply, because its sole hypothesis — continuity on a compact set — is absent. Continuity is the crux, the exact extra axiom that collapses the entire Hamel zoo to the single line $g(x)=-3x$ (an additive function continuous at one point is linear), and only then does $f(x)=x^3-3x$ hold on all of $\\mathbb{R}$ and EVT bite. Trap 2 (max at the interior critical point). Granted continuity and $f(x)=x^3-3x$, the reflex is to set $f'(x)=3x^2-3=0$, find the interior critical point $x=1$ in $(0,2)$, and announce the maximum there. But $x=1$ is the MINIMUM: $f(1)=-2$, while the maximum $2$ lives at the right endpoint $x=2$, which carries no vanishing derivative. EVT promises the max exists on the compact set; it never promises it sits at an interior stationary point, and on $[0,2]$ the cubic is increasing past $x=1$, carrying its peak to the boundary. Trap 3 (the min is zero). Since $f(0)=0$ and $f$ is odd, a careless reader expects the minimum on $[0,2]$ to be $0$ at the left endpoint; in fact $f$ dips to $-2$ at the interior point $x=1$ — precisely the datum value — and $x^3-3x+2=(x-1)^2(x+2)$ shows this minimum is attained uniquely at $x=1$. Confusing the value the equation HANDS you, $f(1)=-2$, with an incidental data point rather than recognizing it as the genuine global minimum on $[0,2]$ is the last slip; symmetrically $x^3-3x-2=(x-2)(x+1)^2$ pins the maximum uniquely to $x=2$.",
+    "statement": "Let $f:\\mathbb{R}\\to\\mathbb{R}$ be continuous and satisfy $f(x+y)=f(x)+f(y)$ for all real $x,y$, with $f(1)=3$. Determine $f$ explicitly, and then find the exact number of real solutions of the equation $f(x)=2^{x}$. Justify the count using continuity and the Intermediate Value Theorem rather than by solving the transcendental equation.",
+    "answer": "$\\boxed{f(x)=3x,\\ \\text{and the equation }3x=2^{x}\\text{ has exactly }2\\text{ real solutions.}}$",
+    "trap": "The seductive wrong answer is $1$ solution. A solver who only checks the obvious large-$x$ behaviour notes that $2^{x}$ eventually dwarfs the line $3x$, spots a single crossing on the right, and stops. This ignores the crossing on the left: $\\psi(x)=3x-2^{x}$ has $\\psi(0)=-1<0$ but $\\psi(0.5)=1.5-\\sqrt2>0$, so a root already lives in $(0,1)$. There are two crossings, not one.",
     "solutions": [
       {
-        "name": "Cauchy reduction: continuity collapses the Hamel zoo, then calculus EVT/IVT",
+        "name": "Solve the functional equation, then sign-chase",
         "steps": [
-          "Part (a). Put $x=y=0$ in the functional equation: $f(0)=2f(0)+0$, hence $f(0)=0$. Put $y=-x$: $f(0)=f(x)+f(-x)+3x(-x)(x-x)=f(x)+f(-x)$, so $f(x)+f(-x)=0$ and $f$ is odd. Now define $g(x)=f(x)-x^{3}$. Since $(x+y)^3-x^3-y^3=3xy(x+y)$, the equation becomes $g(x+y)+(x+y)^3=g(x)+x^3+g(y)+y^3+3xy(x+y)$, i.e. $g(x+y)=g(x)+g(y)$: $g$ satisfies Cauchy's equation. Additivity gives $g(nx)=ng(x)$ for $n\\in\\mathbb{Z}$ and $g(x)=n\\,g(x/n)$, whence $g(q)=q\\,g(1)$ for every rational $q$. The datum $f(1)=-2$ gives $g(1)=f(1)-1=-3$, so $g(q)=-3q$ and $f(q)=q^{3}-3q$ for all $q\\in\\mathbb{Q}$. No continuity was used.",
-          "Part (b). The equation plus the datum do NOT force $f(x)=x^3-3x$ off the rationals, and they do NOT force a maximum on $[0,2]$. The reason is that a $\\mathbb{Q}$-linear (Cauchy) function $g$ need not be linear: choosing a Hamel basis of $\\mathbb{R}$ over $\\mathbb{Q}$ and prescribing $g$ arbitrarily on basis vectors (subject only to $g(1)=-3$) yields additive $g$ whose graph $\\{(x,g(x))\\}$ is DENSE in $\\mathbb{R}^2$; such $g$ is unbounded on every interval. Then $f=g+x^3$ is also unbounded above on $[0,2]$, so $\\sup_{[0,2]}f=+\\infty$ and NO maximum is attained — the Extreme Value Theorem cannot even be invoked, because its only hypothesis, continuity on the compact set $[0,2]$, is missing. Continuity is precisely the crux: an additive function continuous at a single point (equivalently bounded on a set of positive measure, or monotone) is linear, $g(x)=g(1)\\,x=-3x$ for all real $x$; hence with continuity $f(x)=x^3-3x$ everywhere and EVT applies. Without it, part (a)'s rational pinning is genuine but powerless to control $f$ between rationals, and the supposed maximum is a phantom.",
-          "Part (c). With continuity, $f(x)=x^{3}-3x$ on $\\mathbb{R}$. On the compact interval $[0,2]$ the Extreme Value Theorem guarantees a max and min, located among the endpoints and the interior critical points. From $f'(x)=3x^{2}-3=3(x-1)(x+1)$ the only critical point in $[0,2]$ is $x=1$. Comparing $f(0)=0,\\ f(1)=-2,\\ f(2)=2$ gives $M=\\max=2$ at $x=2$ and $m=\\min=-2$ at $x=1$. Uniqueness of the locations is exact: $f(x)-2=x^3-3x-2=(x-2)(x+1)^2$ vanishes on $[0,2]$ only at $x=2$, and $f(x)+2=x^3-3x+2=(x-1)^2(x+2)$ vanishes only at $x=1$. (Note the trap: the interior critical point $x=1$ is the MINIMUM, while the maximum sits at the right endpoint $x=2$ where $f'\\ne0$.)",
-          "Part (c), the IVT crossing. On $[1,2]$, $f(1)=-2<0<2=f(2)$, and $f$ is continuous, so the Intermediate Value Theorem yields some $r\\in(1,2)\\subset(0,2)$ with $f(r)=0$. Uniqueness there: $f'(x)=3(x^2-1)>0$ for $x>1$, so $f$ is strictly increasing on $[1,2]$ and crosses $0$ exactly once. Solving $x^3-3x=0=x(x^2-3)$ gives $x\\in\\{0,\\sqrt3,-\\sqrt3\\}$; the only root in $(0,2)$ other than the endpoint contribution is $r=\\sqrt3\\approx1.732$. Hence $\\bigl(M=2\\text{ at }x=2;\\ m=-2\\text{ at }x=1;\\ r=\\sqrt3\\bigr)$, i.e. $\\boxed{\\left(M=2\\text{ at }x=2;\\ m=-2\\text{ at }x=1;\\ r=\\sqrt{3}\\right)}$."
+          "By induction $f(nx)=nf(x)$ for integers $n$, so $f(q)=3q$ for each rational number $q$ (taking $x=1$ gives $f(n)=3n$, and $f(p/q)$ follows from $q\\,f(p/q)=f(p)=3p$). Since $f$ is continuous and agrees with the continuous map $x\\mapsto 3x$ on the dense set of rationals, $f(x)=3x$ for all real $x$.",
+          "The equation becomes $3x=2^{x}$, i.e. $\\psi(x)=3x-2^{x}=0$. As a difference of continuous functions, $\\psi$ is continuous on $\\mathbb{R}$.",
+          "Sample signs: $\\psi(0)=-1<0$, $\\psi(0.5)=1.5-\\sqrt2\\approx0.086>0$, and $\\psi(4)=12-16=-4<0$. By the IVT there is a root in $(0,0.5)$ and another in $(0.5,4)$, so there are at least two real solutions.",
+          "There are no more: $\\psi'(x)=3-2^{x}\\ln 2$ vanishes at exactly one point $x_{0}=\\log_{2}\\!\\big(3/\\ln 2\\big)$, with $\\psi'>0$ before $x_{0}$ and $\\psi'<0$ after. Thus $\\psi$ rises to a single maximum then falls, and a function with one interior maximum and limits $-\\infty$ at both ends crosses zero at most twice. Hence exactly $2$ real solutions, giving the boxed answer."
         ]
       },
       {
-        "name": "Bounded-additive rigidity and a derivative-free, factored sign analysis",
+        "name": "Curvature argument on the difference",
         "steps": [
-          "Part (a). As in the algebra above, $f(0)=0$ and oddness follow from $x=y=0$ and $y=-x$, and $g=f-x^3$ is additive with $g(q)=-3q$ on $\\mathbb{Q}$ (using $g(1)=f(1)-1=-3$). Record the consequence we will need: on the rationals $f$ already coincides with the cubic $x^3-3x$.",
-          "Part (b). Here is the rigidity that continuity buys, phrased without derivatives. If $f$ is continuous then so is $g=f-x^3$, and a continuous additive function is linear: for any real $x$ pick rationals $q_n\\to x$; then $g(x)=\\lim g(q_n)=\\lim(-3q_n)=-3x$ by continuity, so $f(x)=x^3-3x$ for ALL real $x$. This is exactly the step that fails without continuity. To show it MUST fail in general, note that an additive $g$ that is bounded on some interval is automatically linear (boundedness on a set of positive measure forces linearity); contrapositively, a NONlinear additive solution is unbounded on every interval. Such solutions exist by a Hamel-basis choice consistent with $g(1)=-3$, and for them $f=g+x^3$ is unbounded on $[0,2]$, so no maximum exists and EVT is inapplicable. Thus the bridge from 'pinned on $\\mathbb{Q}$' to 'pinned on $\\mathbb{R}$' is continuity, and only continuity (or an equivalent regularity) makes the Extreme Value Theorem available.",
-          "Part (c), extremes by factoring, no calculus. Assume continuity, so $f(x)=x^3-3x$. To find the max on $[0,2]$ compare $f(x)$ with the boundary value $f(2)=2$: $f(x)-2=x^3-3x-2=(x-2)(x+1)^2\\le0$ for $x\\in[0,2]$ since $x-2\\le0$ and $(x+1)^2\\ge0$. Hence $f(x)\\le 2$ throughout, with equality iff $x=2$; so $M=2$ attained uniquely at $x=2$. Likewise compare with $f(1)=-2$: $f(x)+2=x^3-3x+2=(x-1)^2(x+2)\\ge0$ for $x\\in[0,2]$ since $(x-1)^2\\ge0$ and $x+2>0$. Hence $f(x)\\ge-2$, with equality iff $x=1$; so $m=-2$ attained uniquely at $x=1$. The two factorizations replace differentiation entirely and simultaneously deliver the values, the locations, and their uniqueness.",
-          "Part (c), the crossing by sign change and monotone factoring. Continuity gives $f(1)=-2<0$ and $f(2)=2>0$, so by IVT a zero $r$ lies in $(1,2)$. Factor $f(x)=x(x-\\sqrt3)(x+\\sqrt3)$; on $(0,2)$ the factors $x>0$ and $x+\\sqrt3>0$ are positive, so the sign of $f$ matches that of $x-\\sqrt3$, which is negative for $x<\\sqrt3$ and positive for $x>\\sqrt3$ — a single crossing at $r=\\sqrt3\\in(1,2)$. Therefore $\\boxed{\\left(M=2\\text{ at }x=2;\\ m=-2\\text{ at }x=1;\\ r=\\sqrt{3}\\right)}$."
-        ]
-      },
-      {
-        "name": "Third-difference operator to nail the cubic, then EVT/IVT on the compact",
-        "steps": [
-          "Part (a). The structural facts $f(0)=0$ and $f(-x)=-f(x)$ come from $x=y=0$ and $y=-x$ as before. To see the cubic skeleton operator-style, define the forward difference $\\Delta_h f(x)=f(x+h)-f(x)$. The functional equation gives $\\Delta_h f(x)=f(x+h)-f(x)=f(h)+3xh(x+h)$ (set $y=h$), so $\\Delta_h f(x)=f(h)+3h x^2+3h^2 x$. Differencing again in $x$ removes the dependence on $f$ entirely: $\\Delta_h(\\Delta_h f)(x)=3h\\big[(x+h)^2-x^2\\big]+3h^2\\big[(x+h)-x\\big]=6h^2x+3h^3+3h^3=6h^2x+6h^3$, and a third difference $\\Delta_h^3 f(x)=6h^3$ is constant — the signature of a cubic. In particular the equation already forces $f$ to behave like a cubic plus an additive remainder; pinning on $\\mathbb{Q}$ via $g=f-x^3$ additive with $g(1)=-3$ gives $f(q)=q^3-3q$ on rationals.",
-          "Part (b). The third-difference computation is purely algebraic and holds for EVERY solution, continuous or not, so it cannot by itself eliminate the additive freedom: writing $f=x^3+g$, the operator identity is satisfied by any additive $g$ (additive functions have $\\Delta_h^3 g\\equiv0$). Hence the equation alone leaves the Cauchy term free, and nonlinear additive $g$ (Hamel) make $f$ unbounded on $[0,2]$, defeating any maximum. Continuity is the missing hypothesis that forces $g$ linear ($g(x)=-3x$) and thereby supplies the compact-set continuity the Extreme Value Theorem requires; this is the crux the student overlooked.",
-          "Part (c). Under continuity $f(x)=x^3-3x$. Existence of a max and min on $[0,2]$ is the Extreme Value Theorem (continuous on compact). To evaluate, use $f'(x)=3(x^2-1)$: $f$ decreases on $[0,1]$ and increases on $[1,2]$, so the interior critical point $x=1$ is the unique minimum with $m=f(1)=-2$, and the maximum is the larger boundary value, $\\max\\{f(0),f(2)\\}=\\max\\{0,2\\}=2=f(2)$, attained at $x=2$. The increase on $[1,2]$ from $f(1)=-2$ to $f(2)=2$ passes through $0$ exactly once (strict monotonicity), and $x^3-3x=0$ gives the interior root $r=\\sqrt3$. Assembling: $\\boxed{\\left(M=2\\text{ at }x=2;\\ m=-2\\text{ at }x=1;\\ r=\\sqrt{3}\\right)}$."
+          "As above continuity plus $f(1)=3$ forces $f(x)=3x$, so we study $\\psi(x)=3x-2^{x}$.",
+          "Compute $\\psi''(x)=-2^{x}(\\ln 2)^{2}<0$ for every $x$, so $\\psi$ is strictly concave on all of $\\mathbb{R}$. A strictly concave continuous function can meet the level $0$ in at most two points.",
+          "Now exhibit two: $\\psi(0)=-1<0$ while $\\psi(1)=3-2=1>0$ gives a root in $(0,1)$ by the IVT, and $\\psi(3)=9-8=1>0$ while $\\psi(4)=12-16=-4<0$ gives a root in $(3,4)$. Two roots are guaranteed and at most two are possible, so the count is exactly $2$, matching the boxed answer."
         ]
       }
     ],
-    "remark": "Insight: this capstone is a single sustained argument about which hypothesis is actually doing the work. The functional equation $f(x+y)=f(x)+f(y)+3xy(x+y)$ is a Cauchy equation in disguise — the substitution $g=f-x^3$ exploits $(x+y)^3-x^3-y^3=3xy(x+y)$ to turn it into $g(x+y)=g(x)+g(y)$ — and the seductive truth is that algebra alone pins $f$ on the entire rational line, $f(q)=q^3-3q$, with no analysis whatsoever. The whole difficulty, and the whole point, is recognizing that this is NOT enough: a $\\mathbb{Q}$-linear additive function is the canonical pathological object, with Hamel-basis solutions whose graphs are dense in the plane and which are unbounded on every interval, so $f=g+x^3$ can fail to attain a maximum on $[0,2]$ and the Extreme Value Theorem cannot even be quoted. Continuity is the precise extra axiom that collapses this entire zoo to the single line $g(x)=-3x$ — an additive function continuous at one point (or bounded on a set of positive measure, or monotone) is linear — and only then does $f(x)=x^3-3x$ hold on all of $\\mathbb{R}$ and EVT bite, delivering a genuine max and min on the compact $[0,2]$. The final extremal layer rewards the same habit of not trusting reflexes: the interior critical point $x=1$ is the minimum, not the maximum; the maximum hides at the right endpoint $x=2$ where the derivative does not vanish; the minimum value is the datum $-2$, not the endpoint value $0$; and the factorizations $(x-2)(x+1)^2$ and $(x-1)^2(x+2)$ deliver values, locations, and uniqueness without a single derivative. The transferable lesson for a top ranker: a functional equation hands you a skeleton on a dense set, but flesh between the bones is built by continuity, not algebra — and the Extreme Value Theorem is a promise about continuous functions on compact sets, never a license to read off extrema from stationary points alone."
+    "remark": "**Insight.** Two independent pillars hold this problem up. The functional-equation pillar uses **continuity as a rigidity tool**: an additive map is pinned to $3x$ on the rationals by pure algebra, and continuity then **propagates that to every real number** because the rationals are dense. The counting pillar is **not** about solving $3x=2^{x}$ — there is no elementary closed form — but about **shape**: the difference is **strictly concave**, so it can cross any horizontal level at most twice, and the IVT supplies exactly two crossings. The trap is tunnel vision on the right-hand crossing; the left-hand root hides in the narrow window where the line still outruns the slow early growth of $2^{x}$."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "The Sealed Staircase and Its Hidden Root",
+    "difficulty": 5,
+    "task": "Seal the steps, locate a root",
+    "tags": [
+      "greatest integer function",
+      "fractional part",
+      "piecewise continuity",
+      "intermediate value theorem",
+      "monotonic function"
+    ],
+    "statement": "On $[0,3]$ define $f(x)=a\\lfloor x\\rfloor+\\{x\\}^{2}+b\\{x\\}$, where $\\lfloor x\\rfloor$ is the greatest integer not exceeding $x$ and $\\{x\\}=x-\\lfloor x\\rfloor$. Choose the constants $a,b$ so that $f$ is continuous on all of $[0,3]$ and $f(3)=6$. With those values, prove that the equation $f(x)=4-x$ has exactly one solution in $[0,3]$ and find it exactly.",
+    "answer": "$\\boxed{a=2,\\ b=1;\\ \\ f(x)=2\\lfloor x\\rfloor+\\{x\\}^{2}+\\{x\\}\\ \\text{has the unique root }x=\\sqrt2\\ \\text{of}\\ f(x)=4-x.}$",
+    "trap": "The seductive wrong answer is that no conclusion is possible because $\\lfloor x\\rfloor$ makes $f$ discontinuous, so the Intermediate Value Theorem cannot be applied. But the very conditions $a=2,\\ b=1$ are chosen precisely to cancel the unit jump of $\\lfloor x\\rfloor$ against the reset of $\\{x\\}$, sealing every step: the assembled $f$ is genuinely continuous on $[0,3]$, the IVT applies, and the root $x=\\sqrt2$ is real.",
+    "solutions": [
+      {
+        "name": "Match one-sided limits at the integers, then IVT",
+        "steps": [
+          "Near an integer $n\\in\\{1,2,3\\}$ the left limit uses $\\lfloor x\\rfloor=n-1,\\ \\{x\\}\\to1^{-}$, giving $\\lim_{x\\to n^{-}}f=a(n-1)+1+b$. The value (and right limit) uses $\\lfloor x\\rfloor=n,\\ \\{x\\}=0$, giving $f(n)=an$. Continuity demands $a(n-1)+1+b=an$, i.e. $1+b=a$, the same condition at every integer.",
+          "The endpoint condition $f(3)=6$ gives $3a+0=6$, so $a=2$, and then $1+b=2$ forces $b=1$. Thus $f(x)=2\\lfloor x\\rfloor+\\{x\\}^{2}+\\{x\\}$, continuous on the closed interval $[0,3]$.",
+          "Let $\\phi(x)=f(x)-(4-x)=f(x)+x-4$, a difference of continuous functions, hence continuous on $[0,3]$. On each unit piece $f$ has the form $2\\lfloor x\\rfloor+t^{2}+t$ with $t=\\{x\\}\\in[0,1)$, strictly increasing in $t$; together with the sealed steps $f$ is strictly increasing on $[0,3]$, so $\\phi$ (sum of two strictly increasing functions) is strictly increasing and can vanish at most once.",
+          "Evaluate $\\phi(0)=0+0-4=-4<0$ and $\\phi(3)=6+3-4=5>0$, so by the IVT a root exists; strict monotonicity makes it unique. Locating it: $\\phi(1)=2+1-4=-1<0,\\ \\phi(2)=4+2-4=2>0$, so the root lies in $(1,2)$. There $f(x)=2+t^{2}+t$ with $t=x-1$, and $\\phi=2+t^{2}+t+(1+t)-4=t^{2}+2t-1=0$ gives $t=-1+\\sqrt2$, hence $x=1+t=\\sqrt2$, the boxed answer."
+        ]
+      },
+      {
+        "name": "Telescoping the steps into a single increasing curve",
+        "steps": [
+          "Writing $x=\\lfloor x\\rfloor+\\{x\\}$, continuity at each integer requires the jump $a$ of $a\\lfloor x\\rfloor$ to equal the drop $\\big(1+b\\big)-0$ that $\\{x\\}^{2}+b\\{x\\}$ suffers as $\\{x\\}$ falls from $1^{-}$ back to $0$; this is $a=1+b$, and $f(3)=3a=6$ fixes $a=2,\\ b=1$. With these, on $[n,n+1)$ one has $f(x)=2n+(x-n)^{2}+(x-n)$, and consecutive pieces meet flush, so $f$ is continuous and strictly increasing across the whole interval $[0,3]$ from $f(0)=0$ to $f(3)=6$.",
+          "Because $f$ is continuous and strictly increasing while $4-x$ is continuous and strictly decreasing, their graphs meet at most once; since $f(0)=0<4-0=4$ and $f(3)=6>4-3=1$, the IVT guarantees exactly one crossing. Restricting to the piece $[1,2)$, where $f(x)=2+(x-1)^{2}+(x-1)$, the equation $f(x)=4-x$ reduces to $(x-1)^{2}+2(x-1)-1=0$, whose root in $[0,1)$ for $t=x-1$ is $t=\\sqrt2-1$, giving $x=\\sqrt2$, matching the boxed answer."
+        ]
+      }
+    ],
+    "remark": "**Insight.** This is a step function in disguise. The greatest-integer term $2\\lfloor x\\rfloor$ wants to jump by $2$ at each integer; the fractional-part term wants to drop by $1+b$ as $\\{x\\}$ snaps from just-below-one back to zero. Continuity is the single bookkeeping equation $a=1+b$ that makes those two motions **cancel exactly**, and the endpoint value supplies the second equation. Once the staircase is **sealed**, $f$ is not merely continuous but **strictly increasing**, which upgrades the IVT's *existence* of a root to **uniqueness**. The trap is to see $\\lfloor x\\rfloor$ and reflexively declare the function discontinuous — when the whole point of the parameters is to defeat that jump."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "The Multiplicative Law and Its Single Fixed Point",
+    "difficulty": 5,
+    "task": "Force exponential, pin fixed point",
+    "tags": [
+      "multiplicative functional equation",
+      "continuity",
+      "exponential function",
+      "intermediate value theorem",
+      "fixed point"
+    ],
+    "statement": "Let $f:\\mathbb{R}\\to\\mathbb{R}$ be continuous, not identically zero, and satisfy $f(x+y)=f(x)\\,f(y)$ for all real $x,y$, with $f(1)=\\tfrac12$. Determine $f$ explicitly, then prove that $f$ has exactly one fixed point (a solution of $f(x)=x$), show it lies in $(0,1)$, and decide whether that fixed point is positive.",
+    "answer": "$\\boxed{f(x)=2^{-x};\\ \\text{there is exactly one fixed point, it lies in }(0,1)\\text{, and it is positive.}}$",
+    "trap": "The seductive wrong answer is that there are two fixed points, by reasoning that a decreasing curve and the line $y=x$ could cross twice. But $f(x)=2^{-x}$ is strictly decreasing while $y=x$ is strictly increasing, so $f(x)-x$ is strictly decreasing and vanishes at most once; the single crossing in $(0,1)$ is the only fixed point.",
+    "solutions": [
+      {
+        "name": "Solve the functional equation, then a monotone IVT",
+        "steps": [
+          "Putting $y=0$ gives $f(x)=f(x)f(0)$; since $f$ is not identically zero, $f(0)=1$. Putting $y=x$ gives $f(2x)=f(x)^{2}\\ge0$, and as $f(x)=f(\\tfrac x2)^{2}\\ge0$ with $f$ never zero (a zero would force $f\\equiv0$ via $f(x)=f(x-c)f(c)$), $f>0$ everywhere.",
+          "For integers, $f(n)=f(1)^{n}=2^{-n}$, and $f(p/q)^{q}=f(p)=2^{-p}$ gives $f(p/q)=2^{-p/q}$; so $f(r)=2^{-r}$ for each rational number $r$. By continuity on the dense rationals, $f(x)=2^{-x}$ for all real $x$.",
+          "Set $h(x)=f(x)-x=2^{-x}-x$, continuous on $\\mathbb{R}$. Then $h(0)=1>0$ and $h(1)=\\tfrac12-1=-\\tfrac12<0$, so by the IVT a fixed point exists in $(0,1)$.",
+          "Uniqueness: $h'(x)=-2^{-x}\\ln2-1<0$ for all $x$, so $h$ is strictly decreasing and crosses zero at most once. Hence the fixed point is unique; being in $(0,1)$ it is positive, giving the boxed answer."
+        ]
+      },
+      {
+        "name": "Bounding the crossing and ruling out other ranges",
+        "steps": [
+          "As in the first method, $f(0)=1$, $f>0$, and continuity with $f(1)=\\tfrac12$ forces $f(x)=2^{-x}$.",
+          "For $x\\le0$ we have $2^{-x}\\ge1>0\\ge x$ on $(-\\infty,0]$, so $f(x)>x$ there and no fixed point can occur; for $x\\ge1$ we have $2^{-x}\\le\\tfrac12<1\\le x$, so $f(x)<x$ and again none. Every fixed point must lie in the open interval $(0,1)$.",
+          "On $[0,1]$, $h(x)=2^{-x}-x$ is continuous with $h(0)=1>0$ and $h(1)=-\\tfrac12<0$, so the IVT gives a root; since $2^{-x}$ strictly decreases and $x$ strictly increases, the root is unique. Therefore $f$ has exactly one fixed point, it lies in $(0,1)$, and it is positive, matching the boxed answer."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The exponential law $f(x+y)=f(x)f(y)$ behaves like the additive law one rung up: continuity pins $f$ to $2^{-x}$ first on the rationals, then everywhere by **density**, while the harmless probes $y=0$ and $y=x$ force $f(0)=1$ and positivity for free. The fixed-point half then turns on a clean **monotonicity clash**: a strictly decreasing function meets the strictly increasing line $y=x$ in **at most** one point, and the IVT certifies **exactly** one. The trap of imagining two crossings forgets that monotone-opposing curves cannot intersect twice — uniqueness here is a structural fact, not a coincidence of the numbers."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "The Integer Spike and the Guaranteed Valley",
+    "difficulty": 5,
+    "task": "Kill the spike, find the valley",
+    "tags": [
+      "sequential limit",
+      "continuity",
+      "extreme value theorem",
+      "intermediate value theorem",
+      "greatest integer set"
+    ],
+    "statement": "For real $x$ let $g(x)=\\displaystyle\\lim_{n\\to\\infty}\\cos^{2n}(\\pi x)$, and on $[0,3]$ define $F(x)=(x-1)(x-2)+a\\,g(x)$. First identify $g$ as an explicit function. Then find the value of $a$ for which $F$ is continuous on $[0,3]$; with that $a$, state the maximum and minimum values $F$ attains on $[0,3]$ and where, and show that $F(x)=1$ has a solution in the open interval $(0,1)$.",
+    "answer": "$\\boxed{g(x)=1\\text{ if }x\\in\\mathbb{Z},\\ 0\\text{ otherwise};\\ a=0;\\ \\max F=2\\ (x=0,3),\\ \\min F=-\\tfrac14\\ (x=\\tfrac32);\\ F(x)=1\\text{ has a root in }(0,1).}$",
+    "trap": "The seductive wrong answer is to keep $a\\neq0$ to \"add a peak\" at the integers, or to declare $F$ discontinuous and conclude the Extreme Value Theorem cannot guarantee a minimum. Both fail: $g$ jumps to $1$ only at isolated integers and is $0$ around them, so any $a\\neq0$ creates a removable-style spike that destroys continuity; only $a=0$ seals it, after which the EVT applies and the minimum $-\\tfrac14$ is genuinely attained.",
+    "solutions": [
+      {
+        "name": "Evaluate the sequential limit, force continuity, then EVT and IVT",
+        "steps": [
+          "Fix $x$. Then $\\cos^{2}(\\pi x)\\in[0,1]$, and $\\cos^{2}(\\pi x)=1$ exactly when $\\cos(\\pi x)=\\pm1$, i.e. when $\\pi x$ is an integer multiple of $\\pi$, i.e. when $x\\in\\mathbb{Z}$. If $x\\in\\mathbb{Z}$ every term is $1$ so the limit is $1$; otherwise $0\\le\\cos^{2}(\\pi x)<1$ and $\\cos^{2n}(\\pi x)\\to0$. Hence $g(x)=1$ on $\\mathbb{Z}$ and $g(x)=0$ off $\\mathbb{Z}$, discontinuous exactly at each integer.",
+          "On $[0,3]$ the integers $0,1,2,3$ are the only points where $g\\neq0$. Approaching any integer $n$ through non-integers, $a\\,g(x)\\to0$, so $\\lim_{x\\to n}F(x)=(n-1)(n-2)$, whereas $F(n)=(n-1)(n-2)+a$. Continuity at $n$ forces $a=0$; and $a=0$ indeed makes $F(x)=(x-1)(x-2)$ continuous everywhere on $[0,3]$.",
+          "With $a=0$, $F(x)=x^{2}-3x+2$ is continuous on the closed bounded interval $[0,3]$, so by the Extreme Value Theorem it attains a maximum and a minimum. Its vertex is at $x=\\tfrac32$ with $F(\\tfrac32)=-\\tfrac14$ (the minimum), and the largest values occur at the endpoints $F(0)=2=F(3)$ (the maximum).",
+          "For the root: $F$ is continuous on $[0,1]$ with $F(0)=2>1$ and $F(1)=0<1$, so $F(0)-1>0>F(1)-1$; by the IVT applied to $F(x)-1$ there is some $x\\in(0,1)$ with $F(x)=1$. (Explicitly $x^{2}-3x+1=0$ gives $x=\\tfrac{3-\\sqrt5}{2}\\approx0.382\\in(0,1)$.) This establishes every claim in the boxed answer."
+        ]
+      },
+      {
+        "name": "Spike analysis plus completing the square",
+        "steps": [
+          "Since $|\\cos(\\pi x)|<1$ unless $x$ is an integer, the powers $\\cos^{2n}(\\pi x)$ collapse to $0$ off $\\mathbb{Z}$ and stay at $1$ on $\\mathbb{Z}$; thus $g$ is the indicator of the integers, a function whose only discontinuities are the isolated integer spikes. Adding $a\\,g$ to the continuous polynomial $(x-1)(x-2)$ leaves a spike of height $a$ at each integer in $[0,3]$, so $F$ is continuous there if and only if $a=0$.",
+          "With $a=0$, complete the square: $F(x)=\\big(x-\\tfrac32\\big)^{2}-\\tfrac14$. This is continuous on $[0,3]$, so the EVT guarantees both extremes; the squared term is smallest ($0$) at $x=\\tfrac32$, giving $\\min F=-\\tfrac14$, and largest at the endpoint farthest from $\\tfrac32$ — both ends are at distance $\\tfrac32$, so $\\max F=(\\tfrac32)^{2}-\\tfrac14=2$ at $x=0$ and $x=3$.",
+          "Finally $\\big(x-\\tfrac32\\big)^{2}-\\tfrac14=1$ means $\\big(x-\\tfrac32\\big)^{2}=\\tfrac54$, i.e. $x=\\tfrac32-\\tfrac{\\sqrt5}{2}\\approx0.382$, which lies in $(0,1)$; continuity of $F$ on $[0,1]$ with $F(0)=2>1>0=F(1)$ confirms the crossing via the IVT, matching the boxed answer."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The headache is the imported object $g(x)=\\lim_{n\\to\\infty}\\cos^{2n}(\\pi x)$, which is just the **indicator of the integers** — a clean sequential limit that lands on $1$ only where $\\cos^{2}$ equals $1$. Because that spike sits on **isolated** integers with $0$ all around, the only way to fold it into a continuous $F$ is to **switch it off**, $a=0$. Once continuity is restored, the closed interval $[0,3]$ unlocks the **Extreme Value Theorem**, so the valley $-\\tfrac14$ is not just a low point of a formula but a value that is genuinely **attained**, and the IVT then plants a root of $F(x)=1$ between the endpoint and the integer. The trap mistakes an isolated spike for a feature worth keeping."
   }
 ];

@@ -4,19 +4,19 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['epsilondelta','types','functionaleq','ivt','pathological','sequential','parametric','evt','monotone','hybrid'];
+  const THEME_ORDER = ['pointcont','types','functionaleq','ivt','stepmod','sequential','parametric','evt','monotone','hybrid'];
   const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
   const THEME_META = {
-    epsilondelta: { glyph:'ε,δ',    blurb:'Continuity proven the honest way: for every ε an explicit δ — no hand-waving, no δ that secretly peeks at x.' },
+    pointcont:    { glyph:'f(a)',   blurb:'Continuity at a point, settled by the two-sided limit: f is continuous at a exactly when lim_{x→a} f(x) = f(a). Match the pieces of a function and locate every removable or essential break.' },
     types:        { glyph:'↯',      blurb:'Removable, jump, or essential? Every break has a name, and the two-sided limit is what decides it.' },
-    functionaleq: { glyph:'f(x+y)', blurb:'Cauchy, Jensen, the exponential — continuity is the single hypothesis that tames a functional equation into one clean function.' },
+    functionaleq: { glyph:'f(x+y)', blurb:'A continuous function pinned down by an identity: the additive and multiplicative Cauchy relations, and the substitutions that reduce a functional equation to one clean function.' },
     ivt:          { glyph:'IVT',    blurb:'If it changes sign it has a root; if it maps a box into itself it has a fixed point. Existence without a formula.' },
-    pathological: { glyph:'1_ℚ',    blurb:'Dirichlet, Thomae, the rational/irrational monsters — continuity surviving at exactly the points you would never guess.' },
-    sequential:   { glyph:'xₙ→',    blurb:'Continuity through sequences and compositions — and the pointwise limit that quietly destroys it.' },
+    stepmod:      { glyph:'⌊x⌋',    blurb:'The greatest-integer ⌊x⌋, the fractional part {x}, the signum and the modulus — where these step and corner functions, and their sums, products and composites, are continuous.' },
+    sequential:   { glyph:'g∘f',    blurb:'Continuity of composite functions, and the limit of a sequence of functions that can quietly create or heal a discontinuity.' },
     parametric:   { glyph:'a,b',    blurb:'Glue the pieces: choose the constants that make the one-sided limits agree, or prove no choice ever can.' },
     evt:          { glyph:'max',    blurb:'On a closed interval a continuous function is bounded and reaches its peak. Open the interval and the guarantee dies.' },
     monotone:     { glyph:'↗',      blurb:'A monotone function can only jump, and only countably often; reverse a continuous bijection and continuity survives.' },
-    hybrid:       { glyph:'⊕',      blurb:'The capstones: functional equations, the IVT, the pathological and the sequential, fused into one.' },
+    hybrid:       { glyph:'⊕',      blurb:'The capstones: functional equations, the IVT and EVT, step functions and composites, fused into one resistant problem.' },
   };
 
   // ---- state ----
@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>C<sup style="font-size:.5em;top:-.6em;position:relative">0</sup><em>.</em></h2>'
-      + '<div class="tagline">Original problems on continuity — the ε–δ definition, discontinuities, continuous functional equations, the IVT, pathological functions, parametric gluing, the EVT and monotonicity. Where a single broken point changes everything. Each solved several ways.</div>'
+      + '<div class="tagline">Original problems on continuity — continuity at a point and piecewise gluing, classifying discontinuities, continuous functional equations, the IVT, the greatest-integer, fractional-part and modulus functions, composite continuity, the EVT and monotonicity. Where a single broken point changes everything. Each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')
@@ -245,13 +245,13 @@
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/CONTINUITY-Problems.pdf" download>&#8595; Problems PDF</a>'
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/CONTINUITY-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
-      + '<p class="cover-manifesto">The ε–δ definition, the classification of discontinuities, continuous functional equations, the Intermediate Value Theorem, the pathological functions, parametric gluing, the Extreme Value Theorem and monotonicity — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t memorise a rule; they learn where the function breaks.</p>'
+      + '<p class="cover-manifesto">Continuity at a point and the gluing of pieces, the classification of discontinuities, continuous functional equations, the Intermediate Value Theorem, the greatest-integer and fractional-part and modulus functions, composite continuity, the Extreme Value Theorem and monotonicity — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t memorise a rule; they learn where the function breaks.</p>'
       + '</div>';
 
     // legend of instruments
     html+='<div class="sec-head"><span class="sh-rom">i</span><h3>The Instruments</h3><span class="sh-line"></span></div>';
     html+='<div class="legend">';
-    const fam=[['epsilondelta','ε–δ definition','ε,δ'],['types','Discontinuities','↯'],['functionaleq','Functional equations','f(x+y)'],['ivt','Intermediate Value','IVT'],['pathological','Pathological','1_ℚ'],['sequential','Sequential','xₙ→'],['evt','Extreme Value','max'],['monotone','Monotone & inverse','↗'],['hybrid','Hybrids','⊕']];
+    const fam=[['pointcont','Continuity at a point','f(a)'],['types','Discontinuities','↯'],['functionaleq','Functional equations','f(x+y)'],['ivt','Intermediate Value','IVT'],['stepmod','Step & modulus','⌊x⌋'],['sequential','Sequential & composite','g∘f'],['evt','Extreme Value','max'],['monotone','Monotone & inverse','↗'],['hybrid','Hybrids','⊕']];
     fam.forEach(f=>{ const c=byChapter[f[0]]; const cnt=c?c.problems.length:0;
       html+='<div class="lg card"><div class="glyph">'+f[2]+'</div><div><div class="lgname">'+f[1]+'</div><div class="lgcount">'+cnt+' problems</div></div></div>'; });
     html+='</div>';

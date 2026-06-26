@@ -11,21 +11,21 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['epsilondelta','types','functionaleq','ivt','pathological','sequential','parametric','evt','monotone','hybrid'];
+const THEME_ORDER = ['pointcont','types','functionaleq','ivt','stepmod','sequential','parametric','evt','monotone','hybrid'];
 const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { epsilondelta:'ε,δ', types:'↯', functionaleq:'f(x+y)', ivt:'IVT', pathological:'1_ℚ', sequential:'xₙ→', parametric:'a,b', evt:'max', monotone:'↗', hybrid:'⊕' };
+const GLYPH = { pointcont:'f(a)', types:'↯', functionaleq:'f(x+y)', ivt:'IVT', stepmod:'⌊x⌋', sequential:'g∘f', parametric:'a,b', evt:'max', monotone:'↗', hybrid:'⊕' };
 const BLURB = {
-  epsilondelta:'Continuity proven the honest way: for every ε an explicit δ.',
+  pointcont:'Continuity at a point: f is continuous at a iff lim f = f(a). Glue the pieces.',
   types:'Removable, jump, or essential — the two-sided limit decides.',
-  functionaleq:'Continuity tames Cauchy and Jensen into one clean function.',
+  functionaleq:'Continuity pins down the additive and multiplicative Cauchy relations.',
   ivt:'Sign change ⇒ a root; box into itself ⇒ a fixed point.',
-  pathological:'Dirichlet and Thomae — continuity at exactly the unguessable points.',
-  sequential:'Continuity by sequences and composition; the pointwise limit that breaks it.',
+  stepmod:'Greatest-integer ⌊x⌋, fractional part {x}, signum and modulus — where they break.',
+  sequential:'Composite continuity, and the limit of functions that breaks or heals it.',
   parametric:'Glue the pieces — the constants that make one-sided limits agree.',
   evt:'On a closed interval, bounded and attained. Open it and the guarantee dies.',
   monotone:'A monotone function jumps only countably; its inverse stays continuous.',
-  hybrid:'Functional equations, the IVT, the pathological and the sequential, fused.',
-};
+  hybrid:'Functional equations, the IVT and EVT, step functions and composites, fused.',
+}
 
 // order + index
 PROBLEMS.sort((a,b)=>THEME_ORDER.indexOf(a.theme)-THEME_ORDER.indexOf(b.theme));
