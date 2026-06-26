@@ -22,7 +22,7 @@ const BLURB = {
   leibniz:'Differentiate under the integral; a moving limit times its speed.',
   estimation:'Bound what you cannot evaluate; the integral MVT pins the middle.',
   periodicfloor:'Floor, fractional part and |sin| — tamed one period at a time.',
-  famous:'ln(sin), Frullani, Dirichlet, π²/6 — and the symmetry that cracks each.',
+  famous:'ln(sin x), ln(1+tan x), x·f(sin x) — the famous integrals symmetry cracks.',
   improper:'Infinite range or a singularity — convergence first, value second.',
   hybrid:'Reflection, reduction, Leibniz and the limit of sums, fused.',
 };
@@ -164,7 +164,7 @@ function coverHTML(kind){
       <div><b>3–5</b><span>Difficulty</span></div>
       ${isSol ? `<div><b>${totalMethods}</b><span>Worked Solutions</span></div>` : ''}
     </div>
-    <div class="foot">${PROBLEMS.length} original definite-integral problems where the antiderivative is a trap, not a tool — for the very top of JEE Advanced, the JEE Advanced and the Putnam. ${isSol ? 'Every problem solved more than one way.' : 'Solutions in the companion volume.'}</div>
+    <div class="foot">${PROBLEMS.length} original definite-integral problems where the antiderivative is a trap, not a tool — for the very top of JEE Advanced. ${isSol ? 'Every problem solved more than one way.' : 'Solutions in the companion volume.'}</div>
   </section>`;
 }
 function tocHTML(){

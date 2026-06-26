@@ -14,7 +14,7 @@
     leibniz:       { glyph:'F′',   blurb:'Differentiate an integral with a moving limit — the boundary value, times its speed, is the answer.' },
     estimation:    { glyph:'≤',    blurb:'Bound the integral you cannot evaluate; the mean-value theorem hands you the exact middle.' },
     periodicfloor: { glyph:'⌊x⌋',  blurb:'Floor, fractional part and |sin| — discontinuous integrands tamed one period at a time.' },
-    famous:        { glyph:'lnsin',blurb:'The integrals everyone quotes — ln(sin), Frullani, π²/6 — and the symmetry that cracks each.' },
+    famous:        { glyph:'lnsin',blurb:'The integrals everyone quotes — ln(sin x), ln(1+tan x) and x·f(sin x) — and the symmetry that cracks each.' },
     improper:      { glyph:'∞',    blurb:'Where the interval runs to infinity or the integrand blows up — convergence first, value second.' },
     hybrid:        { glyph:'⊕',    blurb:'The capstones: reflection, reduction, Leibniz and the limit of sums, fused.' },
   };
@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>&#8747;<em>.</em></h2>'
-      + '<div class="tagline">Original definite-integral problems where the antiderivative is a trap, not a tool — symmetry, the king rule, reduction, Leibniz, the limit of sums and the famous closed forms. Drawn from the rarest corners of Putnam calculus, each solved several ways.</div>'
+      + '<div class="tagline">Original definite-integral problems where the antiderivative is a trap, not a tool — symmetry, the king rule, reduction, Leibniz, the limit of sums and the famous closed forms. Strictly within the JEE Advanced syllabus, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')
@@ -245,7 +245,7 @@
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/DEFINT-Problems.pdf" download>&#8595; Problems PDF</a>'
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/DEFINT-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
-      + '<p class="cover-manifesto">Reflection, the king rule, reduction formulae, Wallis, differentiation under the integral sign, the Riemann sum read backwards, the estimation that beats evaluation, the discontinuous integrand tamed period by period, and the famous integrals everyone quotes — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t hunt for an antiderivative; they read the symmetry that makes one unnecessary.</p>'
+      + '<p class="cover-manifesto">Reflection, the king rule, reduction formulae, Wallis, Leibniz differentiation under a moving limit, the Riemann sum read backwards, the estimation that beats evaluation, the discontinuous integrand tamed period by period, and the famous integrals everyone quotes — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t hunt for an antiderivative; they read the symmetry that makes one unnecessary.</p>'
       + '</div>';
 
     // legend of instruments

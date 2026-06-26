@@ -1,6 +1,6 @@
 # ∫ · The Definite Integral
 
-**The Ranker's Masterbook — original, olympiad/JEE-Advanced problems on the definite integral.** The
+**The Ranker's Masterbook — original problems on the definite integral, strictly within the JEE Advanced syllabus.** The
 ninth volume in the series, same engine, **teal** theme. The antiderivative is a trap, not a tool —
 each problem worked **several ways**.
 
@@ -12,7 +12,7 @@ The ten chapters are organised by the instrument that powers the problem:
 | II | The King's Rule | | VII | Floor & Periodic Integrands |
 | III | The Limit of a Sum | | VIII | Famous Integrals & Their Symmetries |
 | IV | Reduction Formulae & Wallis | | IX | Improper Integrals |
-| V | Differentiation Under the Integral | | X | The Grand Hybrids |
+| V | Newton–Leibniz & Variable Limits | | X | The Grand Hybrids |
 
 Each problem ships with a clean LaTeX statement & answer, **The Trap**, **2–3 distinct solution
 methods**, and an **Insight** note. Adversarially verified in Python (`sympy`/`numpy`/`mpmath`). Run
