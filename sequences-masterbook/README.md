@@ -1,6 +1,6 @@
 # Σ · Patterns, Sums & Limits
 
-**The Ranker's Masterbook — original, olympiad/JEE-Advanced problems on sequences & series.** The
+**The Ranker's Masterbook — original, JEE-Advanced problems on sequences & series.** The
 thirteenth volume in the series, same engine, **slate** theme. Don't add term by term — find the pattern
 that closes the sum. Each problem worked **several ways**.
 
@@ -8,7 +8,7 @@ The ten chapters are organised by the instrument that powers the problem:
 
 | # | Chapter | | # | Chapter |
 |---|---------|---|---|---------|
-| I | AP, GP, HP & Means | | VI | Generating Functions |
+| I | AP, GP, HP & Means | | VI | Applications of Progressions |
 | II | AGP & Special Sums | | VII | Convergence & Infinite Series |
 | III | Telescoping & the Vₙ Method | | VIII | Sequence Inequalities |
 | IV | Sums of Powers & Figurate | | IX | Greatest Term, Integer Part & Estimation |

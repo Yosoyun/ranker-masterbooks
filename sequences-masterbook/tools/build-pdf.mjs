@@ -11,16 +11,16 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['apgphp','agp','telescoping','powersfigurate','recurrences','genfunc','convergence','inequalities','misc','hybrid'];
+const THEME_ORDER = ['apgphp','agp','telescoping','powersfigurate','recurrences','apps','convergence','inequalities','misc','hybrid'];
 const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { apgphp:'aₙ', agp:'Σkxᵏ', telescoping:'Vₙ', powersfigurate:'Σk³', recurrences:'aₙ₊₁', genfunc:'G(x)', convergence:'Σ∞', inequalities:'≤', misc:'⌊aₙ⌋', hybrid:'⊕' };
+const GLYPH = { apgphp:'aₙ', agp:'Σkxᵏ', telescoping:'Vₙ', powersfigurate:'Σk³', recurrences:'aₙ₊₁', apps:'r,d', convergence:'Σ∞', inequalities:'≤', misc:'⌊aₙ⌋', hybrid:'⊕' };
 const BLURB = {
   apgphp:'Arithmetic, geometric, harmonic progressions — and AM ≥ GM ≥ HM.',
   agp:'The arithmetico-geometric series — multiply by the ratio and subtract.',
   telescoping:'Each term a difference; the middle vanishes (the Vₙ method).',
   powersfigurate:'Sums of powers and figurate numbers — the partial sum is a polynomial.',
   recurrences:'Linear recurrences by the characteristic equation — Fibonacci and kin.',
-  genfunc:'Hang a sequence on a power series; algebra solves the recurrence.',
+  apps:'Instalments, interest, bouncing balls, mean insertion — progressions applied.',
   convergence:'Comparison, ratio and integral tests — then evaluate what converges.',
   inequalities:'AM–GM, Cauchy–Schwarz and rearrangement, applied to sequences.',
   misc:'The greatest term, the integer part of a sum, and sharp estimates.',

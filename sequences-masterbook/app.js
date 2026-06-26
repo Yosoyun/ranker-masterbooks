@@ -4,7 +4,7 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['apgphp','agp','telescoping','powersfigurate','recurrences','genfunc','convergence','inequalities','misc','hybrid'];
+  const THEME_ORDER = ['apgphp','agp','telescoping','powersfigurate','recurrences','apps','convergence','inequalities','misc','hybrid'];
   const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
   const THEME_META = {
     apgphp:         { glyph:'aₙ',     blurb:'Arithmetic, geometric and harmonic progressions — and the three means that interleave them, AM ≥ GM ≥ HM, never to be forgotten.' },
@@ -12,7 +12,7 @@
     telescoping:    { glyph:'Vₙ',     blurb:'Write each term as a difference, and the middle vanishes. The Vₙ method turns a fearsome sum into its two surviving ends.' },
     powersfigurate: { glyph:'Σk³',    blurb:'Sums of powers and figurate numbers — triangular, square, pyramidal — and the polynomial that the partial sum always is.' },
     recurrences:    { glyph:'aₙ₊₁',   blurb:'A sequence defined by its own past — solve the linear recurrence by its characteristic equation, Fibonacci and all its kin.' },
-    genfunc:        { glyph:'G(x)',   blurb:'Hang a sequence on the coefficients of a power series, and algebra on the series solves the recurrence in one stroke.' },
+    apps:           { glyph:'r,d',    blurb:'Progressions in the wild — instalments and compound interest, the bouncing ball and geometric growth, inserting means, and the AP/GP/HP hiding inside a word problem.' },
     convergence:    { glyph:'Σ∞',     blurb:'When does an infinite sum settle? Comparison, ratio and the integral test decide; then we evaluate the ones that do.' },
     inequalities:   { glyph:'≤',      blurb:'AM–GM, Cauchy–Schwarz and rearrangement on sequences — bound a sum, a product, or a term you cannot compute.' },
     misc:           { glyph:'⌊aₙ⌋',   blurb:'The greatest term, the integer part of a sum, and the estimate that pins a series between two values it never reaches.' },
@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>&Sigma;<em>.</em></h2>'
-      + '<div class="tagline">Original sequences &amp; series problems where a pattern hides a closed form — progressions and means, the AGP, telescoping, sums of powers, recurrences, generating functions, convergence and sequence inequalities. Drawn from the rarest corners of advanced and JEE-Advanced algebra, each solved several ways.</div>'
+      + '<div class="tagline">Original sequences &amp; series problems where a pattern hides a closed form — progressions and means, the AGP, telescoping, sums of powers, recurrences, applications of progressions, infinite GP &amp; telescoping series and the AM-GM-HM inequalities. Strictly within the JEE Advanced syllabus, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')
@@ -245,13 +245,13 @@
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/SEQ-Problems.pdf" download>&#8595; Problems PDF</a>'
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/SEQ-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
-      + '<p class="cover-manifesto">Arithmetic, geometric and harmonic progressions and their means, the arithmetico-geometric series, telescoping and the V&#8345; method, sums of powers and figurate numbers, linear recurrences, generating functions, convergence of infinite series and sequence inequalities — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t add term by term; they find the pattern that closes the sum.</p>'
+      + '<p class="cover-manifesto">Arithmetic, geometric and harmonic progressions and their means, the arithmetico-geometric series, telescoping and the V&#8345; method, sums of powers and figurate numbers, linear recurrences, applications of progressions, infinite GP and telescoping series and the AM-GM-HM inequalities — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t add term by term; they find the pattern that closes the sum.</p>'
       + '</div>';
 
     // legend of instruments
     html+='<div class="sec-head"><span class="sh-rom">i</span><h3>The Instruments</h3><span class="sh-line"></span></div>';
     html+='<div class="legend">';
-    const fam=[['apgphp','AP · GP · HP & means','aₙ'],['agp','AGP & special sums','Σkxᵏ'],['telescoping','Telescoping (Vₙ)','Vₙ'],['powersfigurate','Powers & figurate','Σk³'],['recurrences','Recurrences','aₙ₊₁'],['genfunc','Generating functions','G(x)'],['convergence','Convergence','Σ∞'],['inequalities','Sequence bounds','≤'],['misc','Greatest term & ⌊·⌋','⌊aₙ⌋'],['hybrid','Hybrids','⊕']];
+    const fam=[['apgphp','AP · GP · HP & means','aₙ'],['agp','AGP & special sums','Σkxᵏ'],['telescoping','Telescoping (Vₙ)','Vₙ'],['powersfigurate','Powers & figurate','Σk³'],['recurrences','Recurrences','aₙ₊₁'],['apps','Applications','r,d'],['convergence','Convergence','Σ∞'],['inequalities','Sequence bounds','≤'],['misc','Greatest term & ⌊·⌋','⌊aₙ⌋'],['hybrid','Hybrids','⊕']];
     fam.forEach(f=>{ const c=byChapter[f[0]]; const cnt=c?c.problems.length:0;
       html+='<div class="lg card"><div class="glyph">'+f[2]+'</div><div><div class="lgname">'+f[1]+'</div><div class="lgcount">'+cnt+' problems</div></div></div>'; });
     html+='</div>';
