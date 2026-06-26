@@ -11,20 +11,20 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['fundamental','permutations','combinations','circular','distributions','inclusionexclusion','identities','recurrence','lattice','hybrid'];
+const THEME_ORDER = ['fundamental','permutations','combinations','circular','distributions','inclusionexclusion','identities','geomcount','lattice','hybrid'];
 const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { fundamental:'×+', permutations:'ₙPᵣ', combinations:'ₙCᵣ', circular:'↻', distributions:'★|', inclusionexclusion:'∪∩', identities:'ΣC', recurrence:'aₙ', lattice:'↗', hybrid:'⊕' };
+const GLYPH = { fundamental:'×+', permutations:'ₙPᵣ', combinations:'ₙCᵣ', circular:'↻', distributions:'★|', inclusionexclusion:'∪∩', identities:'ΣC', geomcount:'△ₙ', lattice:'↗', hybrid:'⊕' };
 const BLURB = {
   fundamental:'Multiply for a chain of choices, add for a split into cases — and bijections.',
   permutations:'Order matters — arrangements, repetition, identical objects, forbidden spots.',
   combinations:'Order forgotten — committees, hands, subsets, the same count two ways.',
-  circular:'Round a table or on a necklace — rotations and reflections quietly over-count.',
+  circular:'Round a table — the (n-1)! count, with constraints and gaps.',
   distributions:'Stars and bars — balls into boxes, integer solutions, onto-maps, partitions.',
   inclusionexclusion:'Subtract the forbidden back — derangements, surjections, “at least one”.',
   identities:'One quantity counted two ways — Vandermonde, hockey-stick, committee–chair.',
-  recurrence:'When n leans on n−1 — set the recurrence, and meet the Catalan numbers.',
-  lattice:'Monotone grid walks, the ballot problem, and the reflection principle.',
-  hybrid:'Bijection, inclusion–exclusion, recurrence and symmetry, fused.',
+  geomcount:'Lines, triangles, diagonals & regions from n points in general position.',
+  lattice:'Monotone grid walks counted by C(m+n,n); through or around a point.',
+  hybrid:'Arrangements, selections, inclusion–exclusion and geometric counting, fused.',
 };
 
 // order + index
@@ -164,7 +164,7 @@ function coverHTML(kind){
       <div><b>3–5</b><span>Difficulty</span></div>
       ${isSol ? `<div><b>${totalMethods}</b><span>Worked Solutions</span></div>` : ''}
     </div>
-    <div class="foot">${PROBLEMS.length} original permutations &amp; combinations problems where the obvious tally over-counts — for the very top of JEE Advanced, the JEE Advanced and the Putnam. ${isSol ? 'Every problem solved more than one way.' : 'Solutions in the companion volume.'}</div>
+    <div class="foot">${PROBLEMS.length} original permutations &amp; combinations problems where the obvious tally over-counts — for the very top of JEE Advanced. ${isSol ? 'Every problem solved more than one way.' : 'Solutions in the companion volume.'}</div>
   </section>`;
 }
 function tocHTML(){

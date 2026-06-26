@@ -1,4 +1,4 @@
-/* PERMUTATIONS & COMBINATIONS — The Art of Counting · 100 original problems, 10 chapters, adversarially Python-verified. */
+/* problems.js — DATA. 100 original permutations & combinations problems for n! · The Art of Counting, strictly within the JEE Advanced syllabus: the two principles, permutations & arrangements, combinations & selections, circular permutations, distributions (stars & bars), inclusion–exclusion & derangements, combinatorial identities, geometric counting, and lattice paths. No generating functions, Burnside/Polya/necklace-orbit counting, Stirling/partition numbers, Catalan numbers/reflection principle, or transfer matrices. Verified in Python. statement/answer are raw LaTeX (the app auto-detects prose+math); steps use $...$ and $$...$$. */
 window.PROBLEMS = [
   {
     "theme": "fundamental",
@@ -35,54 +35,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "The phrase 'no two consecutive equal' is a *local* constraint: each digit only sees its neighbour. Local constraints multiply cleanly because the forbidden set never grows — this is the purest face of the rule of product."
-  },
-  {
-    "theme": "fundamental",
-    "themeLabel": "The Two Principles",
-    "title": "The Ledger That Hides a Zero",
-    "difficulty": 5,
-    "task": "Determine",
-    "tags": [
-      "complementary counting",
-      "inclusion-exclusion",
-      "residue imbalance",
-      "digit-sum",
-      "casework"
-    ],
-    "statement": "A four-character ledger code is any string $d_1 d_2 d_3 d_4$ with each $d_i \\in \\{0,1,2,\\dots,9\\}$ (leading zeros allowed, so there are $10^4$ codes in all). \\[\\text{Determine how many codes satisfy } both \\text{ conditions: the code contains at least one digit } 0, \\text{ and its digit sum } d_1{+}d_2{+}d_3{+}d_4 \\text{ is divisible by } 3.\\]",
-    "answer": "$\\dfrac{10^4-9^4+2}{3}=1147$",
-    "trap": "Assuming the digit sum is divisible by $3$ for exactly one third of the strings. Over the alphabet $\\{0,\\dots,9\\}$ the residues mod $3$ are not balanced: four digits ($0,3,6,9$) are $\\equiv 0$ while only three are $\\equiv 1$ and three are $\\equiv 2$. So the count with sum $\\equiv 0$ is $\\tfrac{10^4+2}{3}=3334$, not $\\big\\lfloor \\tfrac{10^4}{3}\\big\\rfloor=3333$. Treating the two attributes as independent with $P(\\text{sum}\\equiv 0)=\\tfrac13$ gives $(10^4-9^4)\\cdot\\tfrac13=\\tfrac{8281}{3}\\approx 1146$ — the missed $+2$ correction is exactly the error.",
-    "solutions": [
-      {
-        "name": "Four-region complementary count (the two principles)",
-        "steps": [
-          "Let $A$ be the set of codes containing at least one $0$ and $B$ the set whose digit sum is divisible by $3$; we want $|A\\cap B|$. Use $|A\\cap B| = N - |A^c| - |B^c| + |A^c\\cap B^c|$, where $N=10^4$ counts all codes.",
-          "$|A^c|$ (no zero anywhere): each digit is chosen from $\\{1,\\dots,9\\}$, so $|A^c| = 9^4 = 6561$.",
-          "$|B^c\\cap A^c|$ (no zero and sum $\\not\\equiv 0$): over $\\{1,\\dots,9\\}$ the residue classes mod $3$ are perfectly balanced — $\\{3,6,9\\},\\{1,4,7\\},\\{2,5,8\\}$, three digits each — so the four-digit sum is equally likely to be $\\equiv 0,1,2$. Thus exactly $\\tfrac13$ of the $9^4$ zero-free codes have sum $\\equiv 0$, giving $|A^c\\cap B| = \\tfrac{9^4}{3}=2187$ and $|A^c\\cap B^c| = 9^4 - 2187 = 4374$.",
-          "$|B^c|$ (sum $\\not\\equiv 0$ over the full alphabet): over $\\{0,\\dots,9\\}$ the classes are $\\{0,3,6,9\\}$ (four), $\\{1,4,7\\}$, $\\{2,5,8\\}$ (three each). A roots-of-unity/transfer count gives $|B| = \\tfrac{10^4+2}{3}=3334$ codes with sum $\\equiv 0$, hence $|B^c| = 10^4 - 3334 = 6666$.",
-          "Assemble: $|A\\cap B| = 10000 - 6561 - 6666 + 4374 = \\boxed{1147}$."
-        ]
-      },
-      {
-        "name": "Subtract the zero-free divisible codes from all divisible codes",
-        "steps": [
-          "Codes with sum divisible by $3$ split cleanly by whether they contain a $0$: $|B| = |A\\cap B| + |A^c\\cap B|$, so $|A\\cap B| = |B| - |A^c\\cap B|$.",
-          "$|B|$ over $\\{0,\\dots,9\\}$: by the residue counts $(4,3,3)$ for classes $(0,1,2)$, the number of four-digit strings with sum $\\equiv 0$ is $\\tfrac{10^4+2}{3}=3334$ (the $+2$ comes from the surplus of residue-$0$ digits).",
-          "$|A^c\\cap B|$ over $\\{1,\\dots,9\\}$: residues are balanced $(3,3,3)$, so exactly $\\tfrac{9^4}{3}=2187$ zero-free codes have sum $\\equiv 0$.",
-          "Therefore $|A\\cap B| = 3334 - 2187 = \\boxed{1147}$, matching the closed form $\\tfrac{10^4-9^4+2}{3}$."
-        ]
-      },
-      {
-        "name": "Generating function (roots of unity filter)",
-        "steps": [
-          "Encode the digit sum mod $3$ with $\\omega=e^{2\\pi i/3}$. For an alphabet $S$, the number of length-$4$ strings with sum $\\equiv 0$ is $\\tfrac13\\sum_{j=0}^{2}\\big(\\sum_{d\\in S}\\omega^{jd}\\big)^4$.",
-          "Full alphabet $S=\\{0,\\dots,9\\}$: $\\sum_d \\omega^{0\\cdot d}=10$, while $\\sum_d \\omega^{jd}=1$ for $j=1,2$ (the surplus digit $0$ leaves a residue of $1$). So $|B|=\\tfrac13(10^4+1^4+1^4)=\\tfrac{10000+2}{3}=3334$.",
-          "Zero-free alphabet $S=\\{1,\\dots,9\\}$: $\\sum_d \\omega^{0\\cdot d}=9$ and $\\sum_d \\omega^{jd}=0$ for $j=1,2$ (perfect balance). So $|A^c\\cap B|=\\tfrac13(9^4+0+0)=\\tfrac{9^4}{3}=2187$.",
-          "Subtracting, $|A\\cap B| = 3334 - 2187 = \\boxed{1147}$; the two $\\tfrac13$'s come from genuinely different alphabets, which is why the naive single factor of $\\tfrac13$ fails."
-        ]
-      }
-    ],
-    "remark": "Insight: the two attributes look independent, but the divisibility filter is sensitive to which alphabet it acts on. Over $\\{0,\\dots,9\\}$ the residue classes are lopsided $(4,3,3)$, so the $\\tfrac13$ heuristic is off by the $+2$ surplus; over $\\{1,\\dots,9\\}$ they are exactly $(3,3,3)$ and the heuristic is precise. Complementary counting forces you to evaluate the filter on both alphabets separately — collapsing them to one $\\tfrac13$ is the trap."
   },
   {
     "theme": "fundamental",
@@ -203,6 +155,52 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Divisibility by $4$, $8$, $25$, $125$ is governed by a fixed-length tail of the number. That localisation turns 'count multiples' into a small tail-enumeration times a clean product over the free head."
+  },
+  {
+    "theme": "fundamental",
+    "themeLabel": "The Two Principles",
+    "title": "The Mirror with a Twist",
+    "difficulty": 4,
+    "task": "Count",
+    "tags": [
+      "rule of product",
+      "bijection",
+      "involution",
+      "fixed points",
+      "casework"
+    ],
+    "statement": "Work over the four-symbol alphabet $\\Sigma=\\{N,S,E,W\\}$ together with the \"mirror\" map $\\sigma\\colon\\Sigma\\to\\Sigma$ defined by $\\sigma(N)=N,\\ \\sigma(S)=S,\\ \\sigma(E)=W,\\ \\sigma(W)=E$. Note $\\sigma$ is an involution ($\\sigma\\circ\\sigma=\\mathrm{id}$). For a word $w=w_1w_2w_3w_4w_5$ define its reverse-mirror $\\rho(w)=\\sigma(w_5)\\,\\sigma(w_4)\\,\\sigma(w_3)\\,\\sigma(w_2)\\,\\sigma(w_1)$, i.e. reverse the word and apply $\\sigma$ to every letter. Count the length-$5$ words $w$ over $\\Sigma$ that satisfy $\\rho(w)=w$.",
+    "answer": "$32$",
+    "trap": "The fatal move is to treat $\\rho(w)=w$ as ordinary palindromy and answer $4^{3}=64$. The condition $\\rho(w)=w$ reads coordinate-by-coordinate as $w_i=\\sigma(w_{6-i})$, so the middle letter is pinned by $w_3=\\sigma(w_3)$ — it must be a FIXED POINT of $\\sigma$, not a free symbol. Here $\\sigma$ fixes only $\\{N,S\\}$ and swaps $E\\leftrightarrow W$, so $w_3$ has $2$ choices, not $4$. Swallowing the middle letter as free (or, worse, importing the DNA reverse-complement habit where $\\sigma$ has NO fixed points and silently assuming the same here) corrupts the count. Only the middle seat is sensitive: the outer seats are free precisely because $\\sigma$ is a bijection, so the error lives entirely at the center.",
+    "solutions": [
+      {
+        "name": "Split into outer pairs and a constrained middle",
+        "steps": [
+          "Equate $\\rho(w)=w$ position by position. Comparing the $i$-th letters of $w$ and $\\rho(w)=\\sigma(w_5)\\sigma(w_4)\\sigma(w_3)\\sigma(w_2)\\sigma(w_1)$ gives the system $w_1=\\sigma(w_5),\\ w_2=\\sigma(w_4),\\ w_3=\\sigma(w_3),\\ w_4=\\sigma(w_2),\\ w_5=\\sigma(w_1)$. Because $\\sigma$ is an involution, $w_4=\\sigma(w_2)$ is the same equation as $w_2=\\sigma(w_4)$, and likewise for the outer pair; so the independent constraints are exactly $w_5=\\sigma(w_1),\\ w_4=\\sigma(w_2),\\ w_3=\\sigma(w_3)$.",
+          "Choose the left half freely: $w_1\\in\\Sigma$ ($4$ ways) and $w_2\\in\\Sigma$ ($4$ ways). Each choice forces $w_5=\\sigma(w_1)$ and $w_4=\\sigma(w_2)$ uniquely, contributing $4\\cdot 4=16$ partial words.",
+          "The middle letter must satisfy $w_3=\\sigma(w_3)$, i.e. be a fixed point of $\\sigma$. Since $\\sigma$ fixes $N$ and $S$ but moves $E,W$, there are $|\\mathrm{Fix}(\\sigma)|=2$ admissible middle letters.",
+          "By the rule of product the outer choices and the middle choice are independent: $16\\cdot 2=\\boxed{32}$."
+        ]
+      },
+      {
+        "name": "Bijection to the first three letters",
+        "steps": [
+          "Define a map $\\Phi$ from valid words to triples by $\\Phi(w)=(w_1,w_2,w_3)$. From the constraints $w_5=\\sigma(w_1),\\ w_4=\\sigma(w_2)$ the whole word is reconstructed from $(w_1,w_2,w_3)$, so $\\Phi$ is injective; and any triple obeying the middle rule extends to a valid word, so $\\Phi$ is onto its image. Hence counting valid words equals counting admissible triples.",
+          "A triple $(w_1,w_2,w_3)$ is admissible iff $w_3\\in\\mathrm{Fix}(\\sigma)$, with $w_1,w_2$ unrestricted. Thus the image of $\\Phi$ is $\\Sigma\\times\\Sigma\\times\\mathrm{Fix}(\\sigma)$.",
+          "Therefore the count is $|\\Sigma|\\cdot|\\Sigma|\\cdot|\\mathrm{Fix}(\\sigma)|=4\\cdot 4\\cdot 2=\\boxed{32}$. (Contrast: a plain palindrome corresponds to $\\sigma=\\mathrm{id}$, giving $|\\mathrm{Fix}|=4$ and the familiar $4^{3}=64$; the twist replaces the last factor by $|\\mathrm{Fix}(\\sigma)|$.)"
+        ]
+      },
+      {
+        "name": "Orbits of the seat-permutation",
+        "steps": [
+          "The condition $\\rho(w)=w$ couples seat $i$ to seat $6-i$. The permutation $i\\mapsto 6-i$ of the five seats has orbits $\\{1,5\\}$, $\\{2,4\\}$, and the fixed seat $\\{3\\}$. A valid word is exactly an assignment of letters that is consistent along every orbit under the rule \"the partner letter is the $\\sigma$-image\".",
+          "On a $2$-element orbit $\\{i,6-i\\}$, pick the letter on one seat freely ($4$ ways); the partner is then forced to its $\\sigma$-image, and consistency on the way back is automatic since $\\sigma^2=\\mathrm{id}$. Each of the two $2$-orbits thus contributes a factor $4$, giving $4\\cdot4=16$.",
+          "On the singleton orbit $\\{3\\}$ the rule degenerates to $w_3=\\sigma(w_3)$, so this seat may carry only a $\\sigma$-fixed letter; that is a factor of $|\\mathrm{Fix}(\\sigma)|=2$.",
+          "Multiplying the per-orbit factors: $4\\cdot4\\cdot2=\\boxed{32}$."
+        ]
+      }
+    ],
+    "remark": "The principle is that a reverse-with-symbol-twist condition is a palindrome condition on the seat-pairing $i\\leftrightarrow 6-i$, but the diagonal (odd-length middle, or any self-paired seat) is governed by $\\mathrm{Fix}(\\sigma)$, not the full alphabet. For an involution on a set of size $4$ the number of fixed points is forced to be $0$, $2$, or $4$ by parity, so the middle factor can only be $0$, $2$, or $4$ — making three sharply different answers ($0$, $32$, $64$) hinge on a single structural fact about $\\sigma$. The DNA reverse-complement (no fixed points) collapses the count to $0$ for odd length; the identity recovers ordinary palindromes."
   },
   {
     "theme": "fundamental",
@@ -339,52 +337,6 @@ window.PROBLEMS = [
   {
     "theme": "fundamental",
     "themeLabel": "The Two Principles",
-    "title": "The Mirror with a Twist",
-    "difficulty": 4,
-    "task": "Count",
-    "tags": [
-      "rule of product",
-      "bijection",
-      "involution",
-      "fixed points",
-      "casework"
-    ],
-    "statement": "Work over the four-symbol alphabet $\\Sigma=\\{N,S,E,W\\}$ together with the \"mirror\" map $\\sigma\\colon\\Sigma\\to\\Sigma$ defined by $\\sigma(N)=N,\\ \\sigma(S)=S,\\ \\sigma(E)=W,\\ \\sigma(W)=E$. Note $\\sigma$ is an involution ($\\sigma\\circ\\sigma=\\mathrm{id}$). For a word $w=w_1w_2w_3w_4w_5$ define its reverse-mirror $\\rho(w)=\\sigma(w_5)\\,\\sigma(w_4)\\,\\sigma(w_3)\\,\\sigma(w_2)\\,\\sigma(w_1)$, i.e. reverse the word and apply $\\sigma$ to every letter. Count the length-$5$ words $w$ over $\\Sigma$ that satisfy $\\rho(w)=w$.",
-    "answer": "$32$",
-    "trap": "The fatal move is to treat $\\rho(w)=w$ as ordinary palindromy and answer $4^{3}=64$. The condition $\\rho(w)=w$ reads coordinate-by-coordinate as $w_i=\\sigma(w_{6-i})$, so the middle letter is pinned by $w_3=\\sigma(w_3)$ — it must be a FIXED POINT of $\\sigma$, not a free symbol. Here $\\sigma$ fixes only $\\{N,S\\}$ and swaps $E\\leftrightarrow W$, so $w_3$ has $2$ choices, not $4$. Swallowing the middle letter as free (or, worse, importing the DNA reverse-complement habit where $\\sigma$ has NO fixed points and silently assuming the same here) corrupts the count. Only the middle seat is sensitive: the outer seats are free precisely because $\\sigma$ is a bijection, so the error lives entirely at the center.",
-    "solutions": [
-      {
-        "name": "Split into outer pairs and a constrained middle",
-        "steps": [
-          "Equate $\\rho(w)=w$ position by position. Comparing the $i$-th letters of $w$ and $\\rho(w)=\\sigma(w_5)\\sigma(w_4)\\sigma(w_3)\\sigma(w_2)\\sigma(w_1)$ gives the system $w_1=\\sigma(w_5),\\ w_2=\\sigma(w_4),\\ w_3=\\sigma(w_3),\\ w_4=\\sigma(w_2),\\ w_5=\\sigma(w_1)$. Because $\\sigma$ is an involution, $w_4=\\sigma(w_2)$ is the same equation as $w_2=\\sigma(w_4)$, and likewise for the outer pair; so the independent constraints are exactly $w_5=\\sigma(w_1),\\ w_4=\\sigma(w_2),\\ w_3=\\sigma(w_3)$.",
-          "Choose the left half freely: $w_1\\in\\Sigma$ ($4$ ways) and $w_2\\in\\Sigma$ ($4$ ways). Each choice forces $w_5=\\sigma(w_1)$ and $w_4=\\sigma(w_2)$ uniquely, contributing $4\\cdot 4=16$ partial words.",
-          "The middle letter must satisfy $w_3=\\sigma(w_3)$, i.e. be a fixed point of $\\sigma$. Since $\\sigma$ fixes $N$ and $S$ but moves $E,W$, there are $|\\mathrm{Fix}(\\sigma)|=2$ admissible middle letters.",
-          "By the rule of product the outer choices and the middle choice are independent: $16\\cdot 2=\\boxed{32}$."
-        ]
-      },
-      {
-        "name": "Bijection to the first three letters",
-        "steps": [
-          "Define a map $\\Phi$ from valid words to triples by $\\Phi(w)=(w_1,w_2,w_3)$. From the constraints $w_5=\\sigma(w_1),\\ w_4=\\sigma(w_2)$ the whole word is reconstructed from $(w_1,w_2,w_3)$, so $\\Phi$ is injective; and any triple obeying the middle rule extends to a valid word, so $\\Phi$ is onto its image. Hence counting valid words equals counting admissible triples.",
-          "A triple $(w_1,w_2,w_3)$ is admissible iff $w_3\\in\\mathrm{Fix}(\\sigma)$, with $w_1,w_2$ unrestricted. Thus the image of $\\Phi$ is $\\Sigma\\times\\Sigma\\times\\mathrm{Fix}(\\sigma)$.",
-          "Therefore the count is $|\\Sigma|\\cdot|\\Sigma|\\cdot|\\mathrm{Fix}(\\sigma)|=4\\cdot 4\\cdot 2=\\boxed{32}$. (Contrast: a plain palindrome corresponds to $\\sigma=\\mathrm{id}$, giving $|\\mathrm{Fix}|=4$ and the familiar $4^{3}=64$; the twist replaces the last factor by $|\\mathrm{Fix}(\\sigma)|$.)"
-        ]
-      },
-      {
-        "name": "Orbits of the seat-permutation",
-        "steps": [
-          "The condition $\\rho(w)=w$ couples seat $i$ to seat $6-i$. The permutation $i\\mapsto 6-i$ of the five seats has orbits $\\{1,5\\}$, $\\{2,4\\}$, and the fixed seat $\\{3\\}$. A valid word is exactly an assignment of letters that is consistent along every orbit under the rule \"the partner letter is the $\\sigma$-image\".",
-          "On a $2$-element orbit $\\{i,6-i\\}$, pick the letter on one seat freely ($4$ ways); the partner is then forced to its $\\sigma$-image, and consistency on the way back is automatic since $\\sigma^2=\\mathrm{id}$. Each of the two $2$-orbits thus contributes a factor $4$, giving $4\\cdot4=16$.",
-          "On the singleton orbit $\\{3\\}$ the rule degenerates to $w_3=\\sigma(w_3)$, so this seat may carry only a $\\sigma$-fixed letter; that is a factor of $|\\mathrm{Fix}(\\sigma)|=2$.",
-          "Multiplying the per-orbit factors: $4\\cdot4\\cdot2=\\boxed{32}$."
-        ]
-      }
-    ],
-    "remark": "The principle is that a reverse-with-symbol-twist condition is a palindrome condition on the seat-pairing $i\\leftrightarrow 6-i$, but the diagonal (odd-length middle, or any self-paired seat) is governed by $\\mathrm{Fix}(\\sigma)$, not the full alphabet. For an involution on a set of size $4$ the number of fixed points is forced to be $0$, $2$, or $4$ by parity, so the middle factor can only be $0$, $2$, or $4$ — making three sharply different answers ($0$, $32$, $64$) hinge on a single structural fact about $\\sigma$. The DNA reverse-complement (no fixed points) collapses the count to $0$ for odd length; the identity recovers ordinary palindromes."
-  },
-  {
-    "theme": "fundamental",
-    "themeLabel": "The Two Principles",
     "title": "A Zero on the Fives",
     "difficulty": 5,
     "task": "Find the number of …",
@@ -417,6 +369,42 @@ window.PROBLEMS = [
       }
     ],
     "remark": "When a divisibility rule fixes the last digit, casework on that digit is irresistible — and here it cleaves the 'contains a $0$' condition into 'free' versus 'needs work', each handled by a one-line complement."
+  },
+  {
+    "theme": "fundamental",
+    "themeLabel": "The Two Principles",
+    "title": "Even Codes That Hide a Zero",
+    "difficulty": 5,
+    "task": "Count even 4-digit, contains zero",
+    "tags": [
+      "product rule",
+      "sum rule",
+      "complementary counting",
+      "case split",
+      "digit constraints"
+    ],
+    "statement": "Consider every genuine  $4$ -digit positive integer, i.e. the integers from  $1000$  to  $9999$  (so the leading digit is nonzero), with digits otherwise free to repeat. How many of them are simultaneously “even” and contain at least one digit equal to  $0$ ? For example  $1020$  and  $6540$  qualify, while  $1234$  (no zero) and  $1205$  (odd) do not.",
+    "answer": " $\\boxed{1584}$ ",
+    "trap": "The seductive slip is to split “contains a  $0$ ” into two events and add them: let  $A$  be the even numbers whose last digit is  $0$ , giving  $9\\cdot 10\\cdot 10 = 900$ , and let  $B$  be the even numbers having a  $0$  somewhere among the first three digits, giving  $4500 - 9\\cdot 9\\cdot 9\\cdot 5 = 4500 - 3645 = 855$ . Adding  $A+B = 1755$  double-counts every even number that ends in  $0$  AND also has a  $0$  in the middle (there are  $171$  of these), so  $1755$  overshoots the true answer  $1584$  by exactly  $171$ .",
+    "solutions": [
+      {
+        "name": "Complementary counting (total even minus zero-free even)",
+        "steps": [
+          "Count ALL even  $4$ -digit numbers first. The leading digit has  $9$  choices ( $1$ – $9$ ), each of the two middle digits has  $10$  choices, and the last digit must be even, i.e. one of  $\\{0,2,4,6,8\\}$ , giving  $5$  choices. By the product rule this is  $9\\cdot 10\\cdot 10\\cdot 5 = 4500$ .",
+          "Now count the even  $4$ -digit numbers that contain NO zero at all. The leading digit has  $9$  choices ( $1$ – $9$ ), each middle digit must avoid  $0$  so has  $9$  choices, and the last digit must be even and nonzero, i.e. one of  $\\{2,4,6,8\\}$ , giving  $4$  choices:  $9\\cdot 9\\cdot 9\\cdot 4 = 2916$ .",
+          "Every even number either contains a  $0$  or it does not, so by the sum rule the count we want is  $4500 - 2916 = \\boxed{1584}$ ."
+        ]
+      },
+      {
+        "name": "Direct case split on the last digit",
+        "steps": [
+          "The evenness lives entirely in the last digit, so split on it. Case 1: the last digit is  $0$ . Then the number automatically contains a  $0$ , and the remaining freedom is the leading digit ( $9$  choices,  $1$ – $9$ ) times the two middle digits ( $10$  each), giving  $9\\cdot 10\\cdot 10 = 900$ .",
+          "Case 2: the last digit is one of  $\\{2,4,6,8\\}$  ( $4$  choices). Now the required  $0$  must appear among the first three positions. Of the  $9\\cdot 10\\cdot 10 = 900$  choices for (leading, middle, middle), the ones with no zero number  $9\\cdot 9\\cdot 9 = 729$ , so those with at least one zero number  $900 - 729 = 171$ . This case contributes  $4\\cdot 171 = 684$ .",
+          "The two cases are disjoint (different last digits), so by the sum rule the total is  $900 + 684 = \\boxed{1584}$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** When a single position carries one constraint (here the last digit forces parity) and a global “at least one” constraint overlaps it (the last digit could itself be the required  $0$ ), splitting on that position first decouples the two demands cleanly. Trying instead to add an “ends in  $0$ ” event to a “has a  $0$  elsewhere” event silently re-counts the codes that satisfy both — the product rule rewards a partition into truly disjoint cases, not a careless union."
   },
   {
     "theme": "permutations",
@@ -454,56 +442,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: relative-order constraints among a sub-multiset are about how many internal orderings survive. With $k$ symbols of which one is distinguished, the distinguished one is first in a fraction $1/k$ of orderings — repeated identical letters do not change that fraction."
-  },
-  {
-    "theme": "permutations",
-    "themeLabel": "Permutations & Arrangements",
-    "title": "The Examiner's Bookends",
-    "difficulty": 5,
-    "task": "Count",
-    "tags": [
-      "multiset permutation",
-      "inclusion-exclusion",
-      "gluing method",
-      "forbidden adjacency",
-      "casework"
-    ],
-    "statement": "How many distinct rearrangements of the letters of the word $\\text{EXAMINATION}$ are there in which the string both begins and ends with a vowel, and in which no two identical letters stand next to each other? \\[\\text{Letters: } A,A,\\;I,I,\\;N,N,\\;E,\\;X,\\;M,\\;T,\\;O \\quad(\\text{vowels } A,A,I,I,E,O;\\ \\text{consonants } N,N,X,M,T).\\] Two strings are the same only if identical letters sit in identical positions, so the two $A$'s (and the two $I$'s, and the two $N$'s) are indistinguishable.",
-    "answer": "$777600$",
-    "trap": "The lethal error is to subtract the three adjacency penalties one at a time, independently. A student computes $U=1360800$ legal endpoint-strings, then the number with the $A$'s glued ($201600$), the $I$'s glued ($201600$), and the $N$'s glued ($302400$), and reports $U-201600-201600-302400=655200$. This double-subtracts every string in which two different identical pairs are simultaneously adjacent (e.g. both an $AA$ block and an $NN$ block), so inclusion-exclusion must add those overlaps back and remove the triple overlap. Three repeated letters with three pairwise overlaps and one triple overlap is exactly where the naive single-pass subtraction silently over-counts identical objects; the corrected value is $777600$, not $655200$.",
-    "solutions": [
-      {
-        "name": "Inclusion-exclusion on the three glued pairs (endpoint-fraction engine)",
-        "steps": [
-          "Key lemma. For any symbol-multiset with $n$ symbols, of which $v$ are vowel-units, the number of distinct linear arrangements with both endpoints being vowel-units equals (total distinct arrangements) $\\times \\dfrac{v(v-1)}{n(n-1)}$, since in a uniformly random arrangement the two end slots receive an ordered pair of vowel-units with probability $\\frac{v}{n}\\cdot\\frac{v-1}{n-1}$.",
-          "Universe $U$. With all letters loose we have $n=11$ symbols, $v=6$ vowels, and $\\frac{11!}{2!\\,2!\\,2!}=4989600$ distinct arrangements, so $U=4989600\\cdot\\frac{6\\cdot5}{11\\cdot10}=4989600\\cdot\\frac{3}{11}=1360800$ strings with both ends vowels.",
-          "Single glues (the bad adjacency events). Glue the two $A$'s into one vowel-unit block: now $n=10$, $v=5$, distinct count $\\frac{10!}{2!\\,2!}=907200$, giving $907200\\cdot\\frac{5\\cdot4}{10\\cdot9}=201600$. By the identical structure the glued-$I$ event is also $201600$. Glue the two $N$'s (a consonant block, so $v$ stays $6$): $\\frac{10!}{2!\\,2!}=907200$ and $907200\\cdot\\frac{6\\cdot5}{10\\cdot9}=302400$.",
-          "Double and triple glues. Glue $A$ and $I$: $n=9,\\ v=4$, count $\\frac{9!}{2!}=181440$, term $181440\\cdot\\frac{4\\cdot3}{9\\cdot8}=30240$. Glue $A$ and $N$ (or $I$ and $N$): $n=9,\\ v=5$, $\\frac{9!}{2!}=181440$, term $181440\\cdot\\frac{5\\cdot4}{9\\cdot8}=50400$ each. Glue all three: $n=8,\\ v=4$, $8!=40320$, term $40320\\cdot\\frac{4\\cdot3}{8\\cdot7}=8640$.",
-          "Assemble. By inclusion-exclusion the number with no identical pair adjacent is $U-(201600+201600+302400)+(30240+50400+50400)-8640 = 1360800-705600+131040-8640=\\boxed{777600}$."
-        ]
-      },
-      {
-        "name": "Casework on the ordered endpoint vowels, middle by sub-inclusion-exclusion",
-        "steps": [
-          "Fix the first letter $f$ and last letter $g$, both vowels chosen from $\\{A,A,I,I,E,O\\}$. The remaining nine letters fill positions $2,\\dots,10$, and we forbid every identical adjacency across all eleven slots, including the two junctions $f$ vs. position $2$ and position $10$ vs. $g$. So each ordered pair $(f,g)$ contributes the number of arrangements of the leftover multiset with no identical pair adjacent and with neither end of that block equal to its neighbour $f$ or $g$.",
-          "Representative subcase $(f,g)=(E,O)$. The middle multiset is $\\{A,A,I,I,N,N,X,M,T\\}$; its no-identical-adjacent count is $\\frac{9!}{2!\\,2!\\,2!}-3\\cdot\\frac{8!}{2!\\,2!}+3\\cdot\\frac{7!}{2!}-6! = 45360-30240+7560-720 = 21960$.",
-          "Run every ordered endpoint pair the same way and exploit the $A\\leftrightarrow I$ symmetry. The fourteen feasible $(f,g)$ pairs split into: the two ``same repeated vowel'' ends $(A,A),(I,I)$ giving $55440$ each; the ``two distinct repeated vowels'' ends $(A,I),(I,A)$ giving $112680$ each; and the remaining ten mixed pairs, e.g. $(A,E),(A,O),(E,A),(O,A),(I,E),(I,O),(E,I),(O,I)$ giving $49680$ each and $(E,O),(O,E)$ giving $21960$ each.",
-          "Note the trap-buster: the ends are allowed to be the two copies of one vowel, e.g. $A\\cdots A$ — perfectly legal, since they sit ten apart and are never adjacent — and these $(A,A)$ and $(I,I)$ cases alone contribute $110880$.",
-          "Total $=2(55440)+2(112680)+8(49680)+2(21960)=110880+225360+397440+43920=\\boxed{777600}$."
-        ]
-      },
-      {
-        "name": "Endpoint structural types (folding the casework by symmetry)",
-        "steps": [
-          "Classify the unordered endpoint content into three structural types and use $A\\leftrightarrow I$ symmetry to merge mirror cases. Type I: both ends are the same repeated vowel, $\\{A,A\\}$ or $\\{I,I\\}$. Type II: the ends are the two different repeated vowels, $\\{A,I\\}$ (two orders). Type III: at least one end is a single vowel $E$ or $O$.",
-          "Type I total. Each of $\\{A,A\\}$ and $\\{I,I\\}$ consumes both copies of that vowel at the ends, leaving a middle with only two repeated letters; summing the two gives $55440+55440=110880$.",
-          "Type II total. The ordered pairs $(A,I)$ and $(I,A)$ each leave the middle multiset $\\{A,I,N,N,E,X,M,T,O\\}$; together they contribute $112680+112680=225360$.",
-          "Type III total. All remaining feasible endpoint orders (a repeated vowel with a single vowel, or $E$ with $O$) sum to $441360$.",
-          "Adding the disjoint types: $110880+225360+441360=\\boxed{777600}$, matching the inclusion-exclusion value as an independent check."
-        ]
-      }
-    ],
-    "remark": "The word hides three independent adjacency hazards — $AA$, $II$, $NN$ — and the only honest accounting is inclusion-exclusion over all $2^3$ collision patterns, not a single sweep of subtractions. The slick engine is the endpoint-fraction lemma: glue a repeated pair, recount the symbol-multiset, then multiply by $\\frac{v(v-1)}{n(n-1)}$ for the both-ends-vowel demand; gluing a vowel pair lowers $v$ while gluing the consonant pair $NN$ leaves $v$ fixed, which is precisely why the three single terms are $201600,201600,302400$ rather than equal. The casework view supplies the memorable sanity check that a string may legitimately open and close with the same repeated vowel."
   },
   {
     "theme": "permutations",
@@ -624,6 +562,56 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: \"repetition allowed\" plus \"no two equal adjacent for one special letter\" decouples cleanly. Pick the non-adjacent slots for the special letter via $\\binom{n-j+1}{j}$, then let the rest of the alphabet fill the remaining slots freely with $3^{n-j}$ choices. The recurrence route reaches the same place but must remember that $f(n)$ silently includes the all-non-$\\mathrm{A}$ strings, so the \"at least one\" condition costs a clean subtraction of $3^n$."
+  },
+  {
+    "theme": "permutations",
+    "themeLabel": "Permutations & Arrangements",
+    "title": "The Examiner's Bookends",
+    "difficulty": 5,
+    "task": "Count",
+    "tags": [
+      "multiset permutation",
+      "inclusion-exclusion",
+      "gluing method",
+      "forbidden adjacency",
+      "casework"
+    ],
+    "statement": "How many distinct rearrangements of the letters of the word $\\text{EXAMINATION}$ are there in which the string both begins and ends with a vowel, and in which no two identical letters stand next to each other? \\[\\text{Letters: } A,A,\\;I,I,\\;N,N,\\;E,\\;X,\\;M,\\;T,\\;O \\quad(\\text{vowels } A,A,I,I,E,O;\\ \\text{consonants } N,N,X,M,T).\\] Two strings are the same only if identical letters sit in identical positions, so the two $A$'s (and the two $I$'s, and the two $N$'s) are indistinguishable.",
+    "answer": "$777600$",
+    "trap": "The lethal error is to subtract the three adjacency penalties one at a time, independently. A student computes $U=1360800$ legal endpoint-strings, then the number with the $A$'s glued ($201600$), the $I$'s glued ($201600$), and the $N$'s glued ($302400$), and reports $U-201600-201600-302400=655200$. This double-subtracts every string in which two different identical pairs are simultaneously adjacent (e.g. both an $AA$ block and an $NN$ block), so inclusion-exclusion must add those overlaps back and remove the triple overlap. Three repeated letters with three pairwise overlaps and one triple overlap is exactly where the naive single-pass subtraction silently over-counts identical objects; the corrected value is $777600$, not $655200$.",
+    "solutions": [
+      {
+        "name": "Inclusion-exclusion on the three glued pairs (endpoint-fraction engine)",
+        "steps": [
+          "Key lemma. For any symbol-multiset with $n$ symbols, of which $v$ are vowel-units, the number of distinct linear arrangements with both endpoints being vowel-units equals (total distinct arrangements) $\\times \\dfrac{v(v-1)}{n(n-1)}$, since in a uniformly random arrangement the two end slots receive an ordered pair of vowel-units with probability $\\frac{v}{n}\\cdot\\frac{v-1}{n-1}$.",
+          "Universe $U$. With all letters loose we have $n=11$ symbols, $v=6$ vowels, and $\\frac{11!}{2!\\,2!\\,2!}=4989600$ distinct arrangements, so $U=4989600\\cdot\\frac{6\\cdot5}{11\\cdot10}=4989600\\cdot\\frac{3}{11}=1360800$ strings with both ends vowels.",
+          "Single glues (the bad adjacency events). Glue the two $A$'s into one vowel-unit block: now $n=10$, $v=5$, distinct count $\\frac{10!}{2!\\,2!}=907200$, giving $907200\\cdot\\frac{5\\cdot4}{10\\cdot9}=201600$. By the identical structure the glued-$I$ event is also $201600$. Glue the two $N$'s (a consonant block, so $v$ stays $6$): $\\frac{10!}{2!\\,2!}=907200$ and $907200\\cdot\\frac{6\\cdot5}{10\\cdot9}=302400$.",
+          "Double and triple glues. Glue $A$ and $I$: $n=9,\\ v=4$, count $\\frac{9!}{2!}=181440$, term $181440\\cdot\\frac{4\\cdot3}{9\\cdot8}=30240$. Glue $A$ and $N$ (or $I$ and $N$): $n=9,\\ v=5$, $\\frac{9!}{2!}=181440$, term $181440\\cdot\\frac{5\\cdot4}{9\\cdot8}=50400$ each. Glue all three: $n=8,\\ v=4$, $8!=40320$, term $40320\\cdot\\frac{4\\cdot3}{8\\cdot7}=8640$.",
+          "Assemble. By inclusion-exclusion the number with no identical pair adjacent is $U-(201600+201600+302400)+(30240+50400+50400)-8640 = 1360800-705600+131040-8640=\\boxed{777600}$."
+        ]
+      },
+      {
+        "name": "Casework on the ordered endpoint vowels, middle by sub-inclusion-exclusion",
+        "steps": [
+          "Fix the first letter $f$ and last letter $g$, both vowels chosen from $\\{A,A,I,I,E,O\\}$. The remaining nine letters fill positions $2,\\dots,10$, and we forbid every identical adjacency across all eleven slots, including the two junctions $f$ vs. position $2$ and position $10$ vs. $g$. So each ordered pair $(f,g)$ contributes the number of arrangements of the leftover multiset with no identical pair adjacent and with neither end of that block equal to its neighbour $f$ or $g$.",
+          "Representative subcase $(f,g)=(E,O)$. The middle multiset is $\\{A,A,I,I,N,N,X,M,T\\}$; its no-identical-adjacent count is $\\frac{9!}{2!\\,2!\\,2!}-3\\cdot\\frac{8!}{2!\\,2!}+3\\cdot\\frac{7!}{2!}-6! = 45360-30240+7560-720 = 21960$.",
+          "Run every ordered endpoint pair the same way and exploit the $A\\leftrightarrow I$ symmetry. The fourteen feasible $(f,g)$ pairs split into: the two ``same repeated vowel'' ends $(A,A),(I,I)$ giving $55440$ each; the ``two distinct repeated vowels'' ends $(A,I),(I,A)$ giving $112680$ each; and the remaining ten mixed pairs, e.g. $(A,E),(A,O),(E,A),(O,A),(I,E),(I,O),(E,I),(O,I)$ giving $49680$ each and $(E,O),(O,E)$ giving $21960$ each.",
+          "Note the trap-buster: the ends are allowed to be the two copies of one vowel, e.g. $A\\cdots A$ — perfectly legal, since they sit ten apart and are never adjacent — and these $(A,A)$ and $(I,I)$ cases alone contribute $110880$.",
+          "Total $=2(55440)+2(112680)+8(49680)+2(21960)=110880+225360+397440+43920=\\boxed{777600}$."
+        ]
+      },
+      {
+        "name": "Endpoint structural types (folding the casework by symmetry)",
+        "steps": [
+          "Classify the unordered endpoint content into three structural types and use $A\\leftrightarrow I$ symmetry to merge mirror cases. Type I: both ends are the same repeated vowel, $\\{A,A\\}$ or $\\{I,I\\}$. Type II: the ends are the two different repeated vowels, $\\{A,I\\}$ (two orders). Type III: at least one end is a single vowel $E$ or $O$.",
+          "Type I total. Each of $\\{A,A\\}$ and $\\{I,I\\}$ consumes both copies of that vowel at the ends, leaving a middle with only two repeated letters; summing the two gives $55440+55440=110880$.",
+          "Type II total. The ordered pairs $(A,I)$ and $(I,A)$ each leave the middle multiset $\\{A,I,N,N,E,X,M,T,O\\}$; together they contribute $112680+112680=225360$.",
+          "Type III total. All remaining feasible endpoint orders (a repeated vowel with a single vowel, or $E$ with $O$) sum to $441360$.",
+          "Adding the disjoint types: $110880+225360+441360=\\boxed{777600}$, matching the inclusion-exclusion value as an independent check."
+        ]
+      }
+    ],
+    "remark": "The word hides three independent adjacency hazards — $AA$, $II$, $NN$ — and the only honest accounting is inclusion-exclusion over all $2^3$ collision patterns, not a single sweep of subtractions. The slick engine is the endpoint-fraction lemma: glue a repeated pair, recount the symbol-multiset, then multiply by $\\frac{v(v-1)}{n(n-1)}$ for the both-ends-vowel demand; gluing a vowel pair lowers $v$ while gluing the consonant pair $NN$ leaves $v$ fixed, which is precisely why the three single terms are $201600,201600,302400$ rather than equal. The casework view supplies the memorable sanity check that a string may legitimately open and close with the same repeated vowel."
   },
   {
     "theme": "permutations",
@@ -880,6 +868,111 @@ window.PROBLEMS = [
   {
     "theme": "combinations",
     "themeLabel": "Combinations & Selections",
+    "title": "Allies and Rivals",
+    "difficulty": 4,
+    "task": "Find the number of …",
+    "tags": [
+      "both-or-neither",
+      "mutual-exclusion",
+      "committee",
+      "case-split",
+      "constraints"
+    ],
+    "statement": "From a pool of $10$ candidates, a project team of $4$ is to be selected. Two of the candidates, Priya and Quentin, are inseparable collaborators: the team must contain both of them or neither. Two other candidates, Ravi and Sara, have a feud: the team may contain at most one of them. How many teams are possible?",
+    "answer": "$82$",
+    "trap": "Multiplying 'independent' fixes — e.g. choosing whether the Priya–Quentin pair is in, then choosing the rest from $8$, then separately discounting Ravi–Sara. Because Ravi and Sara live among the same leftover pool that the both-or-neither choice draws from, the two conditions are entangled and a naive product mis-counts.",
+    "solutions": [
+      {
+        "name": "Case on the Priya–Quentin pair",
+        "steps": [
+          "Case A — neither Priya nor Quentin: pick all $4$ from the other $8$ candidates (which include Ravi and Sara), then forbid having both Ravi and Sara. Count $=\\binom{8}{4}-\\binom{6}{2}=70-15=55$.",
+          "Case B — both Priya and Quentin: pick $2$ more from the remaining $8$ (which include Ravi and Sara), then forbid both Ravi and Sara. Count $=\\binom{8}{2}-1=28-1=27$.",
+          "The cases are disjoint and exhaustive: $55+27=\\boxed{82}$."
+        ]
+      },
+      {
+        "name": "Both-or-neither first, then inclusion–exclusion on the feud",
+        "steps": [
+          "Total respecting only the both/neither rule: neither gives $\\binom{8}{4}=70$, both gives $\\binom{8}{2}=28$, total $98$.",
+          "Subtract teams that violate the feud (contain Ravi AND Sara) yet still respect both/neither. Neither P,Q with both R,S: choose $2$ more from the $6$ remaining $=\\binom{6}{2}=15$. Both P,Q with both R,S: that's already $4$ people, $1$ way. Bad total $=15+1=16$.",
+          "Answer $=98-16=\\boxed{82}$."
+        ]
+      }
+    ],
+    "remark": "Insight: 'both-or-neither' is a binary switch that should organize your casework; once you fix that switch, the second constraint (here a feud) is handled cleanly inside each branch. Trying to multiply the two independent-looking conditions ignores that they share a candidate pool."
+  },
+  {
+    "theme": "combinations",
+    "themeLabel": "Combinations & Selections",
+    "title": "Crossings of the Polygon",
+    "difficulty": 4,
+    "task": "Determine",
+    "tags": [
+      "chords",
+      "intersection-points",
+      "convex-position",
+      "choose-4",
+      "geometry-counting"
+    ],
+    "statement": "$12$ points are placed on a circle, and every pair is joined by a chord. Assume the points are in general position so that no three chords meet at a single interior point. Determine the number of points at which two chords cross strictly inside the circle.",
+    "answer": "$495$",
+    "trap": "Computing $\\binom{N}{2}$ where $N=\\binom{12}{2}=66$ is the number of chords, i.e.\\ counting one intersection per pair of chords, gives $\\binom{66}{2}=2145$. But most chord pairs share an endpoint or are 'nested' and do NOT cross inside; only pairs whose four endpoints are distinct and interleaved cross.",
+    "solutions": [
+      {
+        "name": "Bijection with quadruples of points",
+        "steps": [
+          "An interior crossing arises from exactly two chords that are the two diagonals of a convex quadrilateral formed by $4$ of the points; conversely, every choice of $4$ points determines exactly one such crossing, namely the meeting point of its two diagonals.",
+          "Since no three chords are concurrent, distinct $4$-subsets give distinct crossings, and no crossing is double-counted. Hence the count is exactly $\\binom{12}{4}=\\boxed{495}$."
+        ]
+      },
+      {
+        "name": "Filtering chord pairs",
+        "steps": [
+          "A pair of chords crosses strictly inside iff their four endpoints are distinct and alternate around the circle. So fix $4$ of the points: there are $\\binom{12}{4}=495$ such quadruples.",
+          "Each quadruple can be split into two chords in $3$ ways, but exactly one of those three pairings (the one joining opposite vertices, i.e.\\ the diagonals) interleaves and crosses. Thus each $4$-set contributes exactly one crossing, giving $\\binom{12}{4}=\\boxed{495}$."
+        ]
+      }
+    ],
+    "remark": "Insight: 'interior intersection points of all chords of $n$ points in convex position' is one of the cleanest disguises of $\\binom{n}{4}$ — each crossing is the fingerprint of a unique $4$-set. Recognizing the quadruple bijection turns a hairy geometry count into a single binomial. (For comparison, the number of regions the chords cut the disk into is $1+\\binom{n}{2}+\\binom{n}{4}$, where the same $\\binom{n}{4}$ resurfaces.)"
+  },
+  {
+    "theme": "combinations",
+    "themeLabel": "Combinations & Selections",
+    "title": "A Panel That Must Be Mixed",
+    "difficulty": 4,
+    "task": "Count mixed panels.",
+    "tags": [
+      "combinations",
+      "complementary counting",
+      "at least one",
+      "selection constraints"
+    ],
+    "statement": "From a department of  $6$  men and  $5$  women, a panel of  $4$  people is to be chosen. The panel is required to contain at least one man and at least one woman. In how many ways can the panel be formed?",
+    "answer": " $\\boxed{310}$ ",
+    "trap": "Subtracting only the all-men panels and forgetting the all-women panels (or vice versa). The total  $\\binom{11}{4}=330$  has two forbidden extremes to remove,  $\\binom{6}{4}=15$  all-men and  $\\binom{5}{4}=5$  all-women; dropping just one gives  $315$ , not  $310$ .",
+    "solutions": [
+      {
+        "name": "Complementary counting",
+        "steps": [
+          "Ignore the constraint first: the number of ways to pick any  $4$  of the  $11$  people is  $\\binom{11}{4}=330$ .",
+          "A panel violates the rule exactly when it is all of one gender. All-men panels number  $\\binom{6}{4}=15$ ; all-women panels number  $\\binom{5}{4}=5$ . These two events are disjoint (a  $4$ -person panel cannot be both).",
+          "Subtract both forbidden families:  $330-15-5=\\boxed{310}$ ."
+        ]
+      },
+      {
+        "name": "Direct case split on the number of men",
+        "steps": [
+          "Let  $m$  be the number of men on the panel; the rule forces  $1\\le m\\le 3$  (so that at least one woman,  $4-m\\ge 1$ , also appears).",
+          "Count each case as  $\\binom{6}{m}\\binom{5}{4-m}$ : for  $m=1$ ,  $\\binom{6}{1}\\binom{5}{3}=6\\cdot 10=60$ ; for  $m=2$ ,  $\\binom{6}{2}\\binom{5}{2}=15\\cdot 10=150$ ; for  $m=3$ ,  $\\binom{6}{3}\\binom{5}{1}=20\\cdot 5=100$ .",
+          "Add the disjoint cases:  $60+150+100=\\boxed{310}$ , agreeing with the complementary count."
+        ]
+      }
+    ],
+    "remark": "**Insight.** “At least one of each kind” over only two kinds is cheapest as a complement: there are exactly two pure-kind extremes to delete. The case split is the honest cross-check, and the two numbers meeting is the proof you removed the right amount."
+  },
+  {
+    "theme": "combinations",
+    "themeLabel": "Combinations & Selections",
     "title": "Snipers on the Catwalk",
     "difficulty": 5,
     "task": "Count",
@@ -931,76 +1024,6 @@ window.PROBLEMS = [
   {
     "theme": "combinations",
     "themeLabel": "Combinations & Selections",
-    "title": "Allies and Rivals",
-    "difficulty": 4,
-    "task": "Find the number of …",
-    "tags": [
-      "both-or-neither",
-      "mutual-exclusion",
-      "committee",
-      "case-split",
-      "constraints"
-    ],
-    "statement": "From a pool of $10$ candidates, a project team of $4$ is to be selected. Two of the candidates, Priya and Quentin, are inseparable collaborators: the team must contain both of them or neither. Two other candidates, Ravi and Sara, have a feud: the team may contain at most one of them. How many teams are possible?",
-    "answer": "$82$",
-    "trap": "Multiplying 'independent' fixes — e.g. choosing whether the Priya–Quentin pair is in, then choosing the rest from $8$, then separately discounting Ravi–Sara. Because Ravi and Sara live among the same leftover pool that the both-or-neither choice draws from, the two conditions are entangled and a naive product mis-counts.",
-    "solutions": [
-      {
-        "name": "Case on the Priya–Quentin pair",
-        "steps": [
-          "Case A — neither Priya nor Quentin: pick all $4$ from the other $8$ candidates (which include Ravi and Sara), then forbid having both Ravi and Sara. Count $=\\binom{8}{4}-\\binom{6}{2}=70-15=55$.",
-          "Case B — both Priya and Quentin: pick $2$ more from the remaining $8$ (which include Ravi and Sara), then forbid both Ravi and Sara. Count $=\\binom{8}{2}-1=28-1=27$.",
-          "The cases are disjoint and exhaustive: $55+27=\\boxed{82}$."
-        ]
-      },
-      {
-        "name": "Both-or-neither first, then inclusion–exclusion on the feud",
-        "steps": [
-          "Total respecting only the both/neither rule: neither gives $\\binom{8}{4}=70$, both gives $\\binom{8}{2}=28$, total $98$.",
-          "Subtract teams that violate the feud (contain Ravi AND Sara) yet still respect both/neither. Neither P,Q with both R,S: choose $2$ more from the $6$ remaining $=\\binom{6}{2}=15$. Both P,Q with both R,S: that's already $4$ people, $1$ way. Bad total $=15+1=16$.",
-          "Answer $=98-16=\\boxed{82}$."
-        ]
-      }
-    ],
-    "remark": "Insight: 'both-or-neither' is a binary switch that should organize your casework; once you fix that switch, the second constraint (here a feud) is handled cleanly inside each branch. Trying to multiply the two independent-looking conditions ignores that they share a candidate pool."
-  },
-  {
-    "theme": "combinations",
-    "themeLabel": "Combinations & Selections",
-    "title": "Crossings of the Polygon",
-    "difficulty": 4,
-    "task": "Determine",
-    "tags": [
-      "chords",
-      "intersection-points",
-      "convex-position",
-      "choose-4",
-      "geometry-counting"
-    ],
-    "statement": "Twelve points are placed on a circle, and every pair is joined by a chord. Assume the points are in general position so that no three chords meet at a single interior point. Determine the number of points at which two chords cross strictly inside the circle.",
-    "answer": "$495$",
-    "trap": "Computing $\\binom{N}{2}$ where $N=\\binom{12}{2}=66$ is the number of chords, i.e.\\ counting one intersection per pair of chords, gives $\\binom{66}{2}=2145$. But most chord pairs share an endpoint or are 'nested' and do NOT cross inside; only pairs whose four endpoints are distinct and interleaved cross.",
-    "solutions": [
-      {
-        "name": "Bijection with quadruples of points",
-        "steps": [
-          "An interior crossing arises from exactly two chords that are the two diagonals of a convex quadrilateral formed by $4$ of the points; conversely, every choice of $4$ points determines exactly one such crossing, namely the meeting point of its two diagonals.",
-          "Since no three chords are concurrent, distinct $4$-subsets give distinct crossings, and no crossing is double-counted. Hence the count is exactly $\\binom{12}{4}=\\boxed{495}$."
-        ]
-      },
-      {
-        "name": "Filtering chord pairs",
-        "steps": [
-          "A pair of chords crosses strictly inside iff their four endpoints are distinct and alternate around the circle. So fix $4$ of the points: there are $\\binom{12}{4}=495$ such quadruples.",
-          "Each quadruple can be split into two chords in $3$ ways, but exactly one of those three pairings (the one joining opposite vertices, i.e.\\ the diagonals) interleaves and crosses. Thus each $4$-set contributes exactly one crossing, giving $\\binom{12}{4}=\\boxed{495}$."
-        ]
-      }
-    ],
-    "remark": "Insight: 'interior intersection points of all chords of $n$ points in convex position' is one of the cleanest disguises of $\\binom{n}{4}$ — each crossing is the fingerprint of a unique $4$-set. Recognizing the quadruple bijection turns a hairy geometry count into a single binomial. (For comparison, the number of regions the chords cut the disk into is $1+\\binom{n}{2}+\\binom{n}{4}$, where the same $\\binom{n}{4}$ resurfaces.)"
-  },
-  {
-    "theme": "combinations",
-    "themeLabel": "Combinations & Selections",
     "title": "One Named Lab and Its Twin Teams",
     "difficulty": 5,
     "task": "Count",
@@ -1048,100 +1071,6 @@ window.PROBLEMS = [
   {
     "theme": "combinations",
     "themeLabel": "Combinations & Selections",
-    "title": "Even Tiles Only",
-    "difficulty": 4,
-    "task": "Count",
-    "tags": [
-      "lattice rectangles",
-      "parity weighting",
-      "complementary counting",
-      "inclusion-exclusion",
-      "hidden distribution"
-    ],
-    "statement": "An $8\\times 8$ chessboard is drawn as a lattice: $9$ equally spaced horizontal grid lines and $9$ equally spaced vertical grid lines, the spacing being one unit. An axis-aligned rectangle is any region bounded by two distinct horizontal lines and two distinct vertical lines; its area (in unit squares) is the product of its width and its height. Count the axis-aligned rectangles whose area is an even number of unit squares.",
-    "answer": "$896$",
-    "trap": "A rectangle has even area exactly when at least one of its two side-lengths is even, so by complement the odd-area rectangles are those with both sides odd, and the whole problem reduces to: of the $\\binom{9}{2}=36$ segments cut from a row of $9$ grid lines, how many have odd length? The fatal instinct is to call this number $18$. The reasoning sounds airtight: the possible lengths are $1,2,3,4,5,6,7,8$, exactly four odd and four even, so 'by symmetry' the $36$ segments split evenly, $18$ odd and $18$ even. This silently treats every length as equally frequent. It is not: length $\\ell$ occurs $9-\\ell$ times, so the odd lengths $1,3,5,7$ occur $8+6+4+2=20$ times while the even lengths $2,4,6,8$ occur $7+5+3+1=16$ times. The shorter (hence more numerous) segments tilt the count toward odd. The $18/18$ slip gives odd-area $=18^2=324$ and even-area $=1296-324=972$; the honest weighting gives odd-area $=20^2=400$ and even-area $=896$. The missed case is the hidden non-uniform distribution of segment lengths, not an arithmetic error.",
-    "solutions": [
-      {
-        "name": "Complement via parity of endpoints",
-        "steps": [
-          "The total number of axis-aligned rectangles is $\\binom{9}{2}^2=36^2=1296$, since a rectangle is a choice of two vertical lines and two horizontal lines. A rectangle's area $w\\cdot h$ is odd precisely when both $w$ and $h$ are odd, so it is even otherwise; we count the odd-area rectangles and subtract.",
-          "Index the $9$ lines in one direction as $0,1,2,\\dots,8$. A segment between lines $a<b$ has length $b-a$, which is odd exactly when $a$ and $b$ have opposite parity. Among $0,\\dots,8$ there are $5$ even indices $\\{0,2,4,6,8\\}$ and $4$ odd indices $\\{1,3,5,7\\}$, so the number of odd-length segments is $5\\cdot 4=20$ (one endpoint of each parity).",
-          "By the same count each direction yields $20$ odd-length segments, so the rectangles with both sides odd number $20\\times 20=400$.",
-          "Therefore the even-area rectangles number $1296-400=\\boxed{896}$."
-        ]
-      },
-      {
-        "name": "Inclusion-exclusion on an even side",
-        "steps": [
-          "First find how many of the $36$ segments on $9$ lines have even length. Even length means the endpoints share parity: choosing both from the $5$ even-indexed lines gives $\\binom{5}{2}=10$, and both from the $4$ odd-indexed lines gives $\\binom{4}{2}=6$, a total of $10+6=16$ even-length segments (and $36-16=20$ odd, confirming the split).",
-          "A rectangle has even area iff its width is even or its height is even. Let $W$ be the rectangles with even width and $H$ those with even height. Then $|W|=16\\cdot 36$ and $|H|=36\\cdot 16$, since the other side ranges over all $36$ segments.",
-          "The overlap $W\\cap H$ (both sides even) has $16\\cdot 16$ rectangles. By inclusion-exclusion the even-area count is $|W|+|H|-|W\\cap H| = 16\\cdot 36 + 36\\cdot 16 - 16\\cdot 16 = 576+576-256$.",
-          "This equals $\\boxed{896}$, matching the complementary count."
-        ]
-      },
-      {
-        "name": "Parity generating function",
-        "steps": [
-          "Classify one side by a parity marker $x$: write $g(x)=16+20x$, where the constant $16$ counts even-length segments (marked $x^0$) and the coefficient $20$ counts odd-length segments (marked $x^1$). The split $16,20$ comes from the length multiplicities $9-\\ell$: even lengths give $7+5+3+1=16$ and odd lengths give $8+6+4+2=20$.",
-          "Since the two sides are chosen independently, the parity profile of all rectangles is the product $g(x)\\,g(x)=(16+20x)^2 = 256 + 640\\,x + 400\\,x^{2}$. The exponent of $x$ records how many of the two sides are odd: $x^0$ means both even, $x^1$ means exactly one odd, $x^2$ means both odd.",
-          "Area $=w\\cdot h$ is odd if and only if both sides are odd, which is exactly the $x^2$ term. Hence odd-area $=400$, while the even-area rectangles are the $x^0$ and $x^1$ terms together, $256+640=896$.",
-          "The total $g(1)^2=36^2=1296=256+640+400$ checks out, and even-area $=1296-400=\\boxed{896}$, agreeing with both earlier methods."
-        ]
-      }
-    ],
-    "remark": "Insight: 'even area' looks like a property of the product $w\\cdot h$, but it is governed entirely by parity, and parity is not uniformly distributed over segment lengths. On $9$ collinear points the lengths $1,\\dots,8$ appear with multiplicities $8,7,6,5,4,3,2,1$, so odd lengths beat even ones $20$ to $16$ — equivalently, an odd-length segment needs opposite-parity endpoints, and the $5$-versus-$4$ split of even/odd indices makes $5\\cdot 4=20$ the natural count. The bare product $\\binom{9}{2}^2$ never sees this; only a parity-weighted decomposition (complement, inclusion-exclusion, or a parity generating function) does. The seductive $18/18$ symmetry is the trap, and recognizing why the distribution is lopsided is the whole problem."
-  },
-  {
-    "theme": "combinations",
-    "themeLabel": "Combinations & Selections",
-    "title": "The Inseparable Delegates",
-    "difficulty": 5,
-    "task": "Count",
-    "tags": [
-      "coupled constraint",
-      "inclusion-exclusion",
-      "case split",
-      "both-or-neither",
-      "hidden bound interaction"
-    ],
-    "statement": "A drafting committee of exactly $6$ members is to be chosen from a pool of $8$ senators and $7$ economists. The committee must contain at least $2$ senators and at least $2$ economists. Two of the senators, Mr.\\ A and Ms.\\ B, are married to each other and refuse to serve apart: in any committee they are either both members or neither is a member. In how many ways can the committee be formed?",
-    "answer": "$\\boxed{2100}$",
-    "trap": "The seductive route is to first count all $6$-member committees obeying the two quota bounds while ignoring the marriage, then subtract the offending committees that split the couple. The bound-only count is $\\sum_{s=2}^{4}\\binom{8}{s}\\binom{7}{6-s}=4410$. The slip is in the subtraction: a strong student computes 'committees containing exactly one of $A,B$' as $2\\binom{13}{5}=2574$ (pick which spouse is in, fill $5$ of the remaining $13$ freely) and reports $4410-2574=1836$. This double-violates the very bounds being enforced: those $2574$ committees were never filtered for at-least-$2$-senators / at-least-$2$-economists, so the subtraction strips out configurations that the $4410$ never contained, over-subtracting by exactly $264$. The honest count of bound-valid committees that split the couple is $2310$, giving $4410-2310=2100$. The hidden case is that the both-or-neither coupling and the two quota bounds are not independent filters you can apply in sequence — the coupling alters which bound-violations are even reachable, so the inclusion-exclusion must respect the bounds inside the subtracted term.",
-    "solutions": [
-      {
-        "name": "Split on the couple's joint fate",
-        "steps": [
-          "The marriage forces a clean dichotomy: either both $A$ and $B$ serve, or neither does. Count the two worlds separately and add, since they are disjoint and exhaustive.",
-          "Couple OUT: now every senator on the committee comes from the $6$ remaining senators, alongside the $7$ economists. We need $s$ senators and $6-s$ economists with $s\\ge 2$ and $6-s\\ge 2$, i.e. $s\\in\\{2,3,4\\}$. This gives $\\binom{6}{2}\\binom{7}{4}+\\binom{6}{3}\\binom{7}{3}+\\binom{6}{4}\\binom{7}{2}=15\\cdot 35+20\\cdot 35+15\\cdot 21=525+700+315=1540$.",
-          "Couple IN: $A$ and $B$ occupy two senator seats, so the senator quota $\\ge 2$ is already met; we choose the remaining $4$ members from the $6$ other senators and $7$ economists, needing at least $2$ economists. With $k$ extra senators and $4-k$ economists, $4-k\\ge 2$ forces $k\\in\\{0,1,2\\}$: $\\binom{6}{0}\\binom{7}{4}+\\binom{6}{1}\\binom{7}{3}+\\binom{6}{2}\\binom{7}{2}=1\\cdot 35+6\\cdot 35+15\\cdot 21=35+210+315=560$.",
-          "Adding the disjoint worlds, $1540+560=\\boxed{2100}$."
-        ]
-      },
-      {
-        "name": "Complementary counting inside each world",
-        "steps": [
-          "Again split on the couple, but inside each world subtract the quota-violating selections from the unrestricted total rather than summing valid cases.",
-          "Couple OUT: choose $6$ from the $13$ non-couple people: $\\binom{13}{6}=1716$. Subtract committees with at most $1$ senator: $\\binom{6}{0}\\binom{7}{6}+\\binom{6}{1}\\binom{7}{5}=7+126=133$. Subtract committees with at most $1$ economist: $\\binom{7}{0}\\binom{6}{6}+\\binom{7}{1}\\binom{6}{5}=1+42=43$. The two bad events cannot co-occur (a $6$-set cannot have $\\le 1$ senator and $\\le 1$ economist), so no overlap is added back: $1716-133-43=1540$.",
-          "Couple IN: choose the remaining $4$ from the $13$ non-couple people: $\\binom{13}{4}=715$. The senator quota is automatic, so only subtract committees with at most $1$ economist among the $4$ extras: $\\binom{7}{0}\\binom{6}{4}+\\binom{7}{1}\\binom{6}{3}=15+140=155$. This leaves $715-155=560$.",
-          "Total $1540+560=\\boxed{2100}$, matching the direct case sum."
-        ]
-      },
-      {
-        "name": "Generating function with a fused couple factor",
-        "steps": [
-          "Mark senators by $x$ and economists by $y$. The $6$ non-couple senators contribute $(1+x)^6$, the $7$ economists contribute $(1+y)^7$, and the inseparable couple contributes a single fused factor $1+x^2$ — either both stay out ($1$) or both join, adding two senators ($x^2$). The full enumerator is $(1+x)^6(1+y)^7(1+x^2)$.",
-          "A valid committee is a monomial $x^s y^e$ with total size $s+e=6$ and quotas $s\\ge 2,\\;e\\ge 2$; the fused factor automatically prevents the couple from ever splitting. The senator enumerator $(1+x)^6(1+x^2)=1+6x+16x^2+26x^3+30x^4+26x^5+16x^6+6x^7+x^8$ already encodes the marriage, so we only need its coefficients $[x^2]=16,\\;[x^3]=26,\\;[x^4]=30$.",
-          "Sum over the economist count $e\\in\\{2,3,4\\}$, pairing $[x^{6-e}]$ of the senator enumerator with $\\binom{7}{e}$ economist choices: $[x^4]\\binom{7}{2}+[x^3]\\binom{7}{3}+[x^2]\\binom{7}{4}=30\\cdot 21+26\\cdot 35+16\\cdot 35=630+910+560$.",
-          "This totals $\\boxed{2100}$, in agreement with the two combinatorial derivations."
-        ]
-      }
-    ],
-    "remark": "Insight: when a 'both-or-neither' coupling sits alongside at-least quotas, the two constraints are entangled, not stackable. The clean move is to resolve the coupling first by splitting on the couple's joint fate — that collapses the marriage into two ordinary constrained selections (one over a pool short by two senators, one with two senator seats pre-filled and the senator quota auto-satisfied). The trap is to enforce the quotas first and patch the marriage by a naive subtraction: $2\\binom{13}{5}$ counts couple-splitting committees that were never quota-valid to begin with, over-subtracting by $264$. Whenever a subtracted inclusion-exclusion term lives in a different constraint universe than the set it is subtracted from, the bookkeeping silently breaks. Conditioning on the coupling before applying the bounds is what keeps every term in the same universe."
-  },
-  {
-    "theme": "combinations",
-    "themeLabel": "Combinations & Selections",
     "title": "A Round Table, Kept Apart",
     "difficulty": 5,
     "task": "Determine",
@@ -1177,862 +1106,586 @@ window.PROBLEMS = [
   {
     "theme": "combinations",
     "themeLabel": "Combinations & Selections",
-    "title": "Seven Beads, a Cap, and an Even Gold",
+    "title": "Exactly One Of The Two Leaders",
     "difficulty": 5,
-    "task": "Count",
+    "task": "Count committees with leadership rule.",
     "tags": [
-      "multiset selection",
-      "bounded repetition",
-      "generating functions",
-      "parity filter",
-      "roots of unity",
-      "broken symmetry"
+      "combinations",
+      "inclusion-exclusion",
+      "forbidden pair",
+      "include or exclude"
     ],
-    "statement": "A bead-maker strings a bracelet by drawing $7$ beads from an unlimited supply of $6$ colours, numbered $1$ through $6$ (colour $6$ is gold). Only the multiset of colours matters \\,---\\, two draws are the same selection if they use each colour the same number of times. House rules impose two restrictions at once: no colour may be used more than $3$ times, and the number of gold beads must be even (where $0$ counts as even). How many distinct selections of $7$ beads obey both rules?",
-    "answer": "$256$",
-    "trap": "The deadly shortcut is to handle the cap, get the total number of capped size-$7$ selections, and then treat 'the count of gold is even' as a fair coin that simply halves it. Concretely: the number of size-$7$ multisets from $6$ colours with each colour used at most $3$ times is $456$, and the seductive move is to say 'half of these have an even number of gold beads, half odd', giving $456/2=228$. The parity is not balanced, because the cap breaks the symmetry between even and odd gold-counts. Gold can be $0,1,2,3$; the even values $\\{0,2\\}$ and the odd values $\\{1,3\\}$ leave different residual totals ($7$ or $5$ versus $6$ or $4$) to be filled by the other five capped colours, and those residuals have different numbers of solutions. The honest split is $256$ even against $200$ odd, not $228/228$. Equivalently, the parity filter $\\tfrac12\\big(f(1)+f(-1)\\big)$ has $f(-1)=56\\neq 0$: the surplus $f(-1)$ is exactly what the naive halving throws away. The missed case is the broken even/odd symmetry under the upper bound, not an arithmetic slip.",
+    "statement": "A society has  $12$  members, among whom are the President  $P$  and the President's rival  $R$ . A committee of  $5$  members is to be selected subject to two rules: (i)  $P$  and  $R$  will never serve together, and (ii) the committee must contain at least one of  $P$  and  $R$ , so that leadership is represented. How many such committees are possible?",
+    "answer": " $\\boxed{420}$ ",
+    "trap": "Imposing only rule (i) and forgetting rule (ii). Removing the both-present committees gives  $\\binom{12}{5}-\\binom{10}{3}=792-120=672$ , but this still counts the committees containing neither  $P$  nor  $R$ . The two rules together force exactly one of them in.",
     "solutions": [
       {
-        "name": "Generating function with an even-gold factor",
+        "name": "Direct: exactly one leader",
         "steps": [
-          "Encode a selection by the exponent of $x$ tracking the total number of beads. Each ordinary colour $1,\\dots,5$ may be used $0,1,2,$ or $3$ times, contributing the factor $1+x+x^2+x^3$. Gold is capped at $3$ but must appear an even number of times, so its allowed counts are $\\{0,2\\}$, contributing $1+x^2$.",
-          "The number of valid size-$7$ selections is the coefficient of $x^7$ in $\\;F(x)=(1+x+x^2+x^3)^5\\,(1+x^2)$, since the five ordinary colours and gold are chosen independently and their counts add to $7$.",
-          "Using $1+x+x^2+x^3=\\dfrac{1-x^4}{1-x}$, write $F(x)=(1-x^4)^5(1+x^2)(1-x)^{-5}$. Expanding $(1-x^4)^5=1-5x^4+\\cdots$ and $(1-x)^{-5}=\\sum_{k\\ge 0}\\binom{k+4}{4}x^k$, the coefficient of $x^7$ collects: from $1\\cdot 1\\cdot x^7$ a term $\\binom{11}{4}$, from $1\\cdot x^2\\cdot x^5$ a term $\\binom{9}{4}$, from $-5x^4\\cdot 1\\cdot x^3$ a term $-5\\binom{7}{4}$, and from $-5x^4\\cdot x^2\\cdot x^1$ a term $-5\\binom{5}{4}$.",
-          "Hence the count is $\\binom{11}{4}+\\binom{9}{4}-5\\binom{7}{4}-5\\binom{5}{4}=330+126-175-25=\\boxed{256}$."
+          "Rules (i) and (ii) together say the committee contains exactly one of  $P,R$ . Split into the two disjoint cases.",
+          "Case  $P$  in,  $R$  out: fill the remaining  $4$  seats from the  $10$  ordinary members (everyone except  $P$  and  $R$ ):  $\\binom{10}{4}=210$ .",
+          "Case  $R$  in,  $P$  out: symmetrically  $\\binom{10}{4}=210$ .",
+          "Add the disjoint cases:  $210+210=\\boxed{420}$ ."
         ]
       },
       {
-        "name": "Casework on the number of gold beads",
+        "name": "Inclusion-exclusion from the full count",
         "steps": [
-          "The gold count $g$ must be even and at most $3$, so $g\\in\\{0,2\\}$. Once $g$ is fixed, the remaining $7-g$ beads come from the five ordinary colours, each used at most $3$ times; let $N(m)$ be the number of solutions of $a_1+\\cdots+a_5=m$ with $0\\le a_i\\le 3$.",
-          "Compute $N(m)$ by inclusion-exclusion on the cap: $N(m)=\\sum_{j\\ge 0}(-1)^j\\binom{5}{j}\\binom{m-4j+4}{4}$. For $m=7$: $\\binom{11}{4}-5\\binom{7}{4}=330-175=155$. For $m=5$: $\\binom{9}{4}-5\\binom{5}{4}=126-25=101$.",
-          "Case $g=0$ leaves $m=7$, giving $N(7)=155$ selections; case $g=2$ leaves $m=5$, giving $N(5)=101$ selections. The cases are disjoint and exhaustive in $g$.",
-          "Adding, the total is $155+101=\\boxed{256}$."
-        ]
-      },
-      {
-        "name": "Parity filter by evaluating at $x=-1$",
-        "steps": [
-          "Mark gold separately: let $G(x,y)=(1+x+x^2+x^3)^5\\,(1+xy+(xy)^2+(xy)^3)$, where $y$ records the gold count. The selections with gold-count of a given parity are extracted by setting $y=\\pm 1$, since $\\tfrac12\\big(G(x,1)+G(x,-1)\\big)$ keeps only even powers of $y$, i.e.\\ even gold-counts.",
-          "At $y=1$ the gold factor is the full $1+x+x^2+x^3$, so $G(x,1)=(1+x+x^2+x^3)^6$; its coefficient of $x^7$ is the unrestricted capped total $f(1)=\\binom{12}{5}-6\\binom{8}{5}=792-336=456$ (all six colours used at most $3$ times, by inclusion-exclusion on the cap).",
-          "At $y=-1$ the gold factor becomes $1-x+x^2-x^3=(1+x^2)(1-x)$, so $G(x,-1)=(1+x+x^2+x^3)^5(1+x^2)(1-x)$; its coefficient of $x^7$ is $f(-1)=56$. The nonzero value of $f(-1)$ is precisely the imbalance the naive halving ignores.",
-          "Therefore the even-gold count is $\\dfrac{f(1)+f(-1)}{2}=\\dfrac{456+56}{2}=\\boxed{256}$."
+          "Total committees of  $5$  from  $12$ :  $\\binom{12}{5}=792$ .",
+          "Remove committees with neither leader (rule ii): choose all  $5$  from the  $10$  ordinary members,  $\\binom{10}{5}=252$ .",
+          "Remove committees with both leaders (rule i): place  $P$  and  $R$ , then choose  $3$  from the  $10$  others,  $\\binom{10}{3}=120$ . The neither-set and the both-set are disjoint, so no add-back is needed.",
+          "Hence  $792-252-120=\\boxed{420}$ , matching the direct count."
         ]
       }
     ],
-    "remark": "Insight: the problem fuses two devices that students usually meet apart \\,---\\, a bounded-repetition multiset (handled by the truncated factor $1+x+x^2+x^3=\\frac{1-x^4}{1-x}$) and a parity rider (handled by an $x\\!\\to\\!-1$ root-of-unity filter). The whole trap lives in their interaction: with unbounded gold the even and odd counts would balance and halving the total would be exact, but the cap of $3$ truncates the odd value $3$ against the even values $0,2$ asymmetrically, so $f(-1)=56\\neq 0$ and the even share exceeds half. Reading $f(-1)$ as 'the leftover of broken symmetry' turns a guess ($456/2=228$) into the true value ($256$), and the casework on $g\\in\\{0,2\\}$ exposes the same imbalance directly as $155+101$ rather than $114+114$."
+    "remark": "**Insight.** Two clauses that look independent, “not both” and “at least one,” collapse to a single crisp condition: exactly one. Spotting that turns a delicate inclusion-exclusion into a two-line addition, and the full-count version is the audit that you deleted the neither-case as well as the both-case."
   },
   {
     "theme": "combinations",
     "themeLabel": "Combinations & Selections",
-    "title": "Five from Four Departments",
+    "title": "One Book From Every Shelf",
     "difficulty": 5,
-    "task": "Find the number of …",
+    "task": "Count selections hitting all subjects.",
     "tags": [
-      "at-most",
-      "quota-per-group",
-      "case-split",
-      "generating-function",
-      "committee"
+      "combinations",
+      "inclusion-exclusion",
+      "at least one of each",
+      "selection from groups"
     ],
-    "statement": "A research institute has four departments, each containing exactly $3$ scientists (so $12$ scientists in all). A task force of $5$ scientists is to be selected with the constraint that no department contributes more than $2$ of its members. Find the number of possible task forces.",
-    "answer": "$648$",
-    "trap": "Reaching for $\\binom{12}{5}=792$ and calling it done—forgetting the per-department cap entirely—gives the headline wrong answer $792$. A subtler slip is to start the complement correctly but forget that each of the four departments can be the overflowing one: subtracting a single $\\binom{3}{3}\\binom{9}{2}=36$ instead of $4\\cdot 36=144$ leaves $792-36=756$. Both miss that exactly one department (never two, since $5<6$) can hit $3$, and that the violating department can be chosen in $4$ ways.",
+    "statement": "A student must take  $5$  distinct books from a shelf holding  $4$  Mathematics,  $4$  Physics and  $4$  Chemistry books (all  $12$  books distinct). The selection must contain at least one book from each of the three subjects. In how many ways can the  $5$  books be chosen?",
+    "answer": " $\\boxed{624}$ ",
+    "trap": "Multiplying  $\\binom{4}{1}^3=64$  to “guarantee one of each” and then trying to place the  $2$  leftover books — this badly overcounts, because the same final set of  $5$  books arises from many different choices of which copy was the “guaranteed” one. The constraint is a presence condition, not an ordered reservation.",
     "solutions": [
       {
-        "name": "Complement: forbid any department reaching 3",
+        "name": "Inclusion-exclusion on missing subjects",
         "steps": [
-          "Count all unrestricted selections first: $\\binom{12}{5}=792$. A 'bad' task force is one in which some department contributes all $3$ of its scientists. Because the force has only $5$ members and $2\\cdot 3=6>5$, at most one department can supply $3$, so the bad events—indexed by which department overflows—are mutually exclusive (no inclusion–exclusion correction needed).",
-          "Fix one overflowing department: it contributes all $3$ of its members in $\\binom{3}{3}=1$ way, and the remaining $2$ members come from the other $9$ scientists in $\\binom{9}{2}=36$ ways, giving $36$ bad forces per department. With $4$ choices of which department overflows, the total bad count is $4\\cdot 36=144$.",
-          "Valid task forces $=792-144=\\boxed{648}$."
+          "Count all  $5$ -book selections and subtract those that miss a subject. Total:  $\\binom{12}{5}=792$ .",
+          "Let  $A_S$  be the bad event “subject  $S$  is absent.” If one subject is absent, the  $5$  books come from the other  $8$ :  $\\binom{8}{5}=56$ , and there are  $3$  choices of the missing subject.",
+          "If two subjects are absent, all  $5$  books come from a single subject's  $4$  books:  $\\binom{4}{5}=0$ , so these terms vanish (and three absent is impossible).",
+          "By inclusion-exclusion:  $792-3\\cdot 56+3\\cdot 0=792-168=\\boxed{624}$ ."
         ]
       },
       {
-        "name": "Generating function / weighted composition",
+        "name": "Direct: enumerate the subject distributions",
         "steps": [
-          "Each department contributes $k\\in\\{0,1,2\\}$ scientists, and choosing $k$ of its $3$ members carries weight $\\binom{3}{k}$, so a single department's factor is $\\binom{3}{0}+\\binom{3}{1}x+\\binom{3}{2}x^2=1+3x+3x^2$ (the $x^3$ term is dropped to enforce the cap). The number of task forces of size $5$ is the coefficient of $x^5$ in $(1+3x+3x^2)^4$.",
-          "Expanding gives $(1+3x+3x^2)^4=1+12x+66x^2+216x^3+459x^4+648x^5+594x^6+324x^7+81x^8$, so the coefficient of $x^5$ is $\\boxed{648}$."
-        ]
-      },
-      {
-        "name": "Direct case split on the department profile",
-        "steps": [
-          "The per-department counts $(a,b,c,d)$ with each in $\\{0,1,2\\}$ and $a+b+c+d=5$ fall into two multiset patterns: $\\{2,2,1,0\\}$ and $\\{2,1,1,1\\}$.",
-          "Pattern $\\{2,2,1,0\\}$: assign the values to the $4$ departments in $\\frac{4!}{2!\\,1!\\,1!}=12$ ways, each contributing $\\binom{3}{2}\\binom{3}{2}\\binom{3}{1}\\binom{3}{0}=3\\cdot3\\cdot3\\cdot1=27$, for $12\\cdot 27=324$.",
-          "Pattern $\\{2,1,1,1\\}$: assign the values in $\\frac{4!}{1!\\,3!}=4$ ways, each contributing $\\binom{3}{2}\\binom{3}{1}^3=3\\cdot 27=81$, for $4\\cdot 81=324$. Total $=324+324=\\boxed{648}$."
+          "With  $5$  books over three subjects each present, the count-per-subject is a permutation of  $(3,1,1)$  or  $(2,2,1)$ .",
+          "Pattern  $(3,1,1)$ : pick which subject supplies  $3$  ( $3$  ways), then  $\\binom{4}{3}\\binom{4}{1}\\binom{4}{1}=4\\cdot 4\\cdot 4=64$ , giving  $3\\cdot 64=192$ .",
+          "Pattern  $(2,2,1)$ : pick which subject supplies  $1$  ( $3$  ways), then  $\\binom{4}{2}\\binom{4}{2}\\binom{4}{1}=6\\cdot 6\\cdot 4=144$ , giving  $3\\cdot 144=432$ .",
+          "These distributions are disjoint, so the total is  $192+432=\\boxed{624}$ , confirming the inclusion-exclusion value."
         ]
       }
     ],
-    "remark": "Insight: a per-group cap turns each group into a truncated generating factor $\\sum_{k=0}^{\\text{cap}}\\binom{\\text{size}}{k}x^k$, and the answer is a single coefficient. When the cap sits just one below 'all', complementary counting is even faster—because the force is too small for two groups to overflow at once, the bad events are disjoint and a clean $\\binom{\\text{size}}{\\text{size}}\\binom{\\text{rest}}{\\text{remaining}}$ count times the number of groups is exact, with no inclusion–exclusion."
+    "remark": "**Insight.** “At least one from each group” is a hitting-all condition, and the clean tool is inclusion-exclusion on the groups that go missing — never a product of one-from-each picks, which double-counts the unlabelled set. The distribution-pattern sum is the independent witness that  $624$  is right."
   },
   {
-    "theme": "circular",
-    "themeLabel": "Circular & Necklace Arrangements",
-    "title": "The Antipodal Amulet",
+    "theme": "combinations",
+    "themeLabel": "Combinations & Selections",
+    "title": "Balanced Committee, Feuding Officers",
     "difficulty": 5,
-    "task": "Count",
+    "task": "Count balanced committees minus clash.",
     "tags": [
-      "burnside lemma",
-      "dihedral symmetry",
-      "fixed points",
-      "orbit counting",
-      "stabilizer subtlety",
-      "polya enumeration"
+      "combinations",
+      "overlapping constraints",
+      "at least two",
+      "forbidden pair"
     ],
-    "statement": "A jeweller strings $8$ identical-shaped beads onto a closed loop to make an amulet: $2$ rubies (R), $2$ sapphires (B), and $4$ pearls (W). Because the amulet is a physical ring that may be rotated in its plane and also flipped over (turned face-down), two arrangements are regarded as the same amulet whenever one can be carried onto the other by a rotation of the loop or by a reflection (flip). How many genuinely distinct amulets can the jeweller make?",
-    "answer": "$33$",
-    "trap": "The tempting shortcut is: there are $\\dfrac{8!}{2!\\,2!\\,4!}=420$ ways to lay the beads in labelled positions around the ring, and the symmetry group of a flippable $8$-ring is the dihedral group $D_8$ of order $16$ ($8$ rotations and $8$ reflections), so the number of amulets is $420/16=26.25$. The very fact that this is not an integer should set off alarms, yet students 'fix' it by rounding to $26$ or by quietly dropping the flips and reporting $420/8$. Dividing by the group order assumes every arrangement has a full orbit of size $|D_8|=16$, i.e. that no arrangement is left unchanged by any non-identity symmetry. That is false here: the antipodal pattern $\\mathrm{BWRWBWRW}$ is carried to itself by the $180^\\circ$ rotation (and by reflections), so its orbit has size only $4$, and a dozen further patterns are fixed by a single reflection and have orbits of size $8$. These short orbits are exactly the symmetric colourings, and naive division by $16$ miscounts every one of them. Burnside's lemma (average the number of arrangements fixed by each group element) is what repairs the over-division; the missed case is the existence of non-trivial stabilizers, not any arithmetic slip.",
+    "statement": "A committee of  $5$  is to be drawn from  $7$  seniors and  $6$  juniors. The committee must contain at least  $2$  seniors and at least  $2$  juniors. Among the people are the senior Chairman  $C$  and the junior Secretary  $K$ , who refuse to serve together. How many committees satisfy all the conditions?",
+    "answer": " $\\boxed{810}$ ",
+    "trap": "Computing the balanced committees ( $945$ ) and then subtracting every committee that contains both  $C$  and  $K$  via  $\\binom{11}{3}=165$ . That blindly fills  $3$  free seats from the remaining  $11$  people and includes committees whose senior/junior split is not  $2$ – $3$  or  $3$ – $2$ ; the correct clash-count is only  $135$ .",
     "solutions": [
       {
-        "name": "Burnside's lemma over the 16 symmetries",
+        "name": "Balanced count, then remove the clashing pair",
         "steps": [
-          "By Burnside's lemma the number of distinct amulets equals the average, over the $16$ elements of $D_8$, of the count of position-labelled colourings (using exactly $2$R, $2$B, $4$W) that each element leaves unchanged. A colouring is fixed by a symmetry $g$ precisely when it is constant on every cycle of $g$ acting on the $8$ bead-positions, so each cycle must be a single colour and the cycle-lengths must add up to the required multiplicities $2,2,4$.",
-          "Rotations. The identity fixes all $\\dfrac{8!}{2!2!4!}=420$ colourings. A rotation by $k$ steps with $\\gcd(k,8)=g$ splits the ring into $g$ cycles each of length $8/g$; to be monochromatic on cycles the bead-counts must be multiples of $8/g$. Since $2$ and $4$ are not multiples of $8$ or $4$, the rotations by $1,2,3,5,6,7$ steps (cycle-lengths $8,4,4,\\dots$) fix $0$ colourings. Only the $180^\\circ$ rotation (by $4$ steps), which is four $2$-cycles, can work: we need each colour-count even — $2,2,4$ all even — so we distribute the four pairs as $1$ pair R, $1$ pair B, $2$ pairs W, giving $\\dfrac{4!}{1!1!2!}=12$ fixed colourings.",
-          "Reflections (8 of them). For $n=8$ four axes pass through two opposite beads (each such reflection $=$ two fixed points $+$ three $2$-cycles) and four axes pass through opposite gaps (each $=$ four $2$-cycles). Edge-axis: four pairs to be coloured with even counts $2,2,4$, i.e. $\\dfrac{4!}{1!1!2!}=12$. Vertex-axis: three pairs (even contributions) plus two lone fixed beads carry the odd part; the two singletons must supply the parity, and a short check gives $12$ fixed colourings as well. So all $8$ reflections fix $12$ each.",
-          "Average: $\\dfrac{1}{16}\\Big(420+12+8\\cdot 12\\Big)=\\dfrac{420+12+96}{16}=\\dfrac{528}{16}=\\boxed{33}$."
+          "“At least  $2$  seniors and at least  $2$  juniors” over a size- $5$  committee forces the split to be  $3$  seniors  $+\\,2$  juniors or  $2$  seniors  $+\\,3$  juniors. Base count:  $\\binom{7}{3}\\binom{6}{2}+\\binom{7}{2}\\binom{6}{3}=35\\cdot 15+21\\cdot 20=525+420=945$ .",
+          "Now subtract the balanced committees that contain both  $C$  (a senior) and  $K$  (a junior). With  $C,K$  already seated, the remaining  $3$  seats must keep a valid split.",
+          "Split  $3$ S $+2$ J with  $C,K$  in: need  $2$  more seniors from the other  $6$  and  $1$  more junior from the other  $5$ :  $\\binom{6}{2}\\binom{5}{1}=15\\cdot 5=75$ . Split  $2$ S $+3$ J: need  $1$  more senior and  $2$  more juniors:  $\\binom{6}{1}\\binom{5}{2}=6\\cdot 10=60$ . Clash total  $=75+60=135$ .",
+          "Therefore the answer is  $945-135=\\boxed{810}$ ."
         ]
       },
       {
-        "name": "Pólya cycle-index (generating function)",
+        "name": "Split by which side the clashing officer joins",
         "steps": [
-          "Encode the cycle structure of $D_8$ on the $8$ positions by the cycle index, using a variable $a_k$ for a $k$-cycle. From the orbit analysis above: identity $\\to a_1^8$; the $180^\\circ$ rotation $\\to a_2^4$; rotations by $2,6$ steps $\\to a_4^2$ (two elements); rotations by $1,3,5,7$ steps $\\to a_8$ (four elements); the four vertex-reflections $\\to a_1^2a_2^3$; the four edge-reflections $\\to a_2^4$. Hence $$Z_{D_8}=\\tfrac{1}{16}\\big(a_1^8+a_2^4+2a_4^2+2a_8+4\\,a_1^2a_2^3+4\\,a_2^4\\big).$$",
-          "Pólya's theorem says the number of colourings with prescribed colour-multiplicities is the coefficient of $R^2B^2W^4$ after the substitution $a_k\\mapsto R^k+B^k+W^k$. Only terms whose monomials can build the multiset $\\{R^2,B^2,W^4\\}$ contribute.",
-          "Term by term: $a_1^8\\to (R+B+W)^8$ contributes the multinomial $\\dfrac{8!}{2!2!4!}=420$ to $R^2B^2W^4$. Each $a_2^4\\to (R^2+B^2+W^4\\text{-style})^4=(R^2+B^2+W^2)^4$ contributes $[R^2B^2W^4]=\\dfrac{4!}{1!1!2!}=12$; this occurs for the $180^\\circ$ rotation and for the four edge-reflections and (combined with the $a_1^2$ factor) the vertex-reflections likewise yield $12$. The $a_4^2$ and $a_8$ terms only produce exponents that are multiples of $4$ or $8$, so they contribute $0$ to $R^2B^2W^4$.",
-          "Collecting the coefficients with their multiplicities gives $\\dfrac{1}{16}\\big(420+12+0+0+4\\cdot 12+4\\cdot 12\\big)=\\dfrac{528}{16}=\\boxed{33}$, matching Burnside (as it must, since Pólya is Burnside dressed in generating functions)."
-        ]
-      },
-      {
-        "name": "Orbit-size accounting (why naive division fails, made exact)",
-        "steps": [
-          "By the orbit–stabilizer theorem every amulet's orbit has size $|D_8|/|\\mathrm{Stab}|=16/|\\mathrm{Stab}|$, so orbit sizes can only be $16,8,4,2,1$. Naive division by $16$ would be correct only if all orbits had size $16$; the $0.25$ remainder in $420/16$ is the fingerprint of shorter orbits.",
-          "Find the symmetric colourings. A colouring fixed by some non-identity rotation must be fixed by the only feasible one, the $180^\\circ$ rotation $r^4$ (the others fix none); among the $12$ such colourings the fully antipodal pattern $\\mathrm{BWRWBWRW}$ is additionally fixed by reflections, so its stabilizer has order $4$ and its orbit has size $16/4=4$ — there is exactly one such orbit. Every other symmetric colouring is fixed by exactly one reflection (stabilizer order $2$), giving orbits of size $8$.",
-          "Count the size-$8$ orbits. The reflections fix $8\\cdot 12=96$ (position-labelled) colourings in total, but the lone size-$4$ orbit accounts for $4$ of those fixings (its $4$ labelled members are each fixed, and reflections fix it). Removing that fully-symmetric orbit, the remaining reflection-fixed colourings form orbits of size $8$ each with stabilizer of order $2$; carrying out the bookkeeping (equivalently, reading it off the enumeration) gives exactly $12$ orbits of size $8$, using $12\\cdot 8=96$ labelled colourings.",
-          "Now partition all $420$ labelled colourings by orbit size: $1$ orbit of size $4$ and $12$ orbits of size $8$ use $4+96=100$ colourings; the remaining $420-100=320$ lie in full orbits of size $16$, i.e. $320/16=20$ orbits. Total amulets $=20+12+1=\\boxed{33}$, and the consistency check $20\\cdot 16+12\\cdot 8+1\\cdot 4=320+96+4=420$ confirms the partition."
+          "Replace the global subtraction by counting valid committees directly, conditioning on  $C$  and  $K$ . Use the two allowed splits.",
+          "Split  $3$ S $+2$ J: seniors  $=\\binom{7}{3}=35$ , juniors  $=\\binom{6}{2}=15$ , so  $525$  total; those containing both  $C$  and  $K$  number  $\\binom{6}{2}\\binom{5}{1}=75$ , leaving  $525-75=450$ .",
+          "Split  $2$ S $+3$ J: seniors  $=\\binom{7}{2}=21$ , juniors  $=\\binom{6}{3}=20$ , so  $420$  total; those with both  $C,K$  number  $\\binom{6}{1}\\binom{5}{2}=60$ , leaving  $420-60=360$ .",
+          "Add the disjoint splits:  $450+360=\\boxed{810}$ , matching the first method."
         ]
       }
     ],
-    "remark": "Insight: the whole problem is a warning against the reflex 'count then divide by the group order.' Lagrange-style division $|X|/|G|$ counts orbits only when the action is free (every stabilizer trivial); here the symmetric colourings — one antipodal pattern with a $4$-element stabilizer and twelve reflection-symmetric patterns with $2$-element stabilizers — have short orbits, and $420/16=26.25$ literally cannot be an integer. Burnside's lemma is exactly the fix: averaging fixed points $\\frac{1}{|G|}\\sum_g |\\mathrm{Fix}(g)|$ automatically gives each orbit weight $1$ regardless of its stabilizer, because $\\sum_{g}|\\mathrm{Fix}(g)|=\\sum_{\\text{orbits}}|G|$. The three views — averaging fixed points (Burnside), packaging them in the cycle index (Pólya), and partitioning by orbit size (orbit–stabilizer) — are one truth seen from three angles, and the orbit-size ledger $20\\cdot16+12\\cdot8+1\\cdot4=420$ shows precisely where the missing $0.25\\times16=4$ beads of the naive count went."
+    "remark": "**Insight.** When a “forbidden pair” rides on top of a split constraint, the pair must be removed inside each split, not against the whole pool. Subtracting  $\\binom{11}{3}$  silently re-admits illegal splits; doing the deletion split-by-split is what keeps the two overlapping constraints honest."
   },
   {
     "theme": "circular",
-    "themeLabel": "Circular & Necklace Arrangements",
-    "title": "The Six-Bead Talisman",
+    "themeLabel": "Circular Permutations",
+    "title": "Two Friends Side by Side",
     "difficulty": 3,
-    "task": "Determine",
+    "task": "Count seatings with two adjacent",
     "tags": [
-      "necklace",
-      "bracelet",
-      "burnside",
-      "two-colour"
+      "circular permutation",
+      "adjacency",
+      "block method",
+      "two together"
     ],
-    "statement": "An artisan strings a closed loop of six beads, exactly three of which are ruby and three of which are sapphire. The finished talisman can be freely rotated in the plane and also flipped over, so two loops are deemed the same talisman whenever one can be turned into the other by a rotation or a reflection. \\[\\text{Determine how many genuinely different talismans can be made.}\\]",
-    "answer": "$3$",
-    "trap": "Stopping at the rotation-only ('necklace') count of $4$. Under rotations alone there are $4$ classes, but the talisman can be flipped, so reflections must also be quotiented; two of the four necklaces are mirror images of each other and merge, giving $3$.",
+    "statement": "Seven distinct people are to be seated around a round table, two seatings being the same if one is a rotation of the other. $2$ of the seven, Asha and Bharat, are close friends and insist on sitting next to each other. In how many distinct ways can the seven be seated?",
+    "answer": " $\\boxed{240}$ ",
+    "trap": "Many students fuse Asha and Bharat into one unit, count  $6$  remaining units, and write  $6!\\cdot 2 = 1440$ , forgetting that around a circle six units are arranged in  $(6-1)! = 5!$  ways, not  $6!$ . The correct figure is  $5!\\cdot 2 = 240$ .",
     "solutions": [
       {
-        "name": "Burnside on the dihedral group $D_6$",
+        "name": "Treat the pair as a single block",
         "steps": [
-          "The symmetry group of the loop is the dihedral group $D_6$ of order $12$: six rotations (by $0^\\circ,60^\\circ,\\dots,300^\\circ$) and six reflections. Burnside's lemma gives the number of talismans as the average number of $3$-ruby colourings fixed by each symmetry.",
-          "Rotations. The identity fixes all $\\binom{6}{3}=20$ colourings. A fixed colouring must be constant on each cycle of the rotation. The two order-$6$ rotations ($60^\\circ,300^\\circ$) and the order-$2$ rotation ($180^\\circ$) force the ruby count to be a multiple of $6$ or of $3$ in a way that lands on $0$ or $6$, so they fix $0$. Each order-$3$ rotation ($120^\\circ,240^\\circ$) has cycles $(0\\,2\\,4)(1\\,3\\,5)$; a fixed colouring is constant on each $3$-cycle, so exactly one cycle is all-ruby — that is $2$ colourings each. Rotation total: $20+0+0+0+2+2=24$.",
-          "Reflections. The three vertex-axes pass through two opposite beads; such a beadfixes $4$ colourings, since solving $r_0+2r_1=3$ (with $r_0\\in\\{0,1,2\\}$ on-axis rubies and $r_1$ mirror-pairs that are ruby) forces $(r_0,r_1)=(1,1)$, giving $\\binom{2}{1}\\binom{2}{1}=4$. The three edge-axes fix no bead; every bead lies in a mirror pair, so the ruby count $2r_1$ is even and can never equal $3$, fixing $0$. Reflection total: $4+4+4+0+0+0=12$.",
-          "Burnside: $\\dfrac{24+12}{12}=\\dfrac{36}{12}=\\boxed{3}.$"
+          "Regard Asha and Bharat as one combined block. Together with the other  $5$  people this gives  $6$  units to seat around the table.",
+          "Six units around a circle (rotations identified) can be arranged in  $(6-1)! = 5! = 120$  ways.",
+          "Within the block Asha and Bharat may swap, contributing a factor of  $2$ .",
+          "Total  $= 5!\\cdot 2 = 120 \\cdot 2 = \\boxed{240}$ ."
         ]
       },
       {
-        "name": "Direct orbit enumeration via gap patterns",
+        "name": "Fix Asha, then place Bharat beside her",
         "steps": [
-          "Record the cyclic 'gap pattern' of the three ruby beads: the multiset of arc-gaps between consecutive rubies around the loop, which sum to $6$. The compositions of $6$ into three positive parts collapse into the partitions $\\{1,1,4\\}$, $\\{1,2,3\\}$ and $\\{2,2,2\\}$.",
-          "Under rotation alone, a necklace is the cyclic order of these gaps. The pattern $\\{1,2,3\\}$ admits two distinct cyclic orderings, $(1,2,3)$ and its reverse $(1,3,2)$, which are not related by rotation — so rotations give $4$ necklaces: $(1,1,4)$, $(1,2,3)$, $(1,3,2)$, $(2,2,2)$.",
-          "A reflection reverses the cyclic order, identifying $(1,2,3)$ with $(1,3,2)$; these two chiral necklaces merge. The patterns $(1,1,4)$ and $(2,2,2)$ already coincide with their own reversals, so they are unaffected.",
-          "Distinct talismans: $\\{1,1,4\\},\\ \\{1,2,3\\},\\ \\{2,2,2\\}$, i.e. $\\boxed{3}.$"
+          "Anchor Asha at a reference seat to eliminate rotations; the remaining  $6$  seats are now distinct labelled positions.",
+          "Bharat must take the seat to Asha's immediate left or immediate right:  $2$  choices.",
+          "The remaining  $5$  people fill the remaining  $5$  seats in  $5! = 120$  ways.",
+          "Total  $= 2 \\cdot 5! = 2 \\cdot 120 = \\boxed{240}$ ."
         ]
       }
     ],
-    "remark": "The gap-pattern viewpoint converts a colouring problem into a partition-of-$6$-into-$3$-cyclic-parts problem, and chirality — a cyclic pattern differing from its reverse — is exactly what the reflection collapses. Only $\\{1,2,3\\}$ is chiral, which is why the bracelet count ($3$) is one less than the necklace count ($4$)."
+    "remark": "**Insight.** Whether you block-and-circle or fix-and-place, the answer is the same — but the two routes guard against different slips. Fixing a person makes it visible that there is no extra  $\\div 7$  to apply, because pinning a seat has already used up the rotational symmetry."
   },
   {
     "theme": "circular",
-    "themeLabel": "Circular & Necklace Arrangements",
-    "title": "Ladies and Gentlemen, Alternate",
+    "themeLabel": "Circular Permutations",
+    "title": "A Bracelet of Eight Gems",
     "difficulty": 4,
-    "task": "Find the number of …",
+    "task": "Count distinct bracelets",
     "tags": [
-      "circular",
-      "alternating",
-      "two-types",
-      "seating"
+      "circular permutation",
+      "garland",
+      "reflection symmetry",
+      "divide by two"
     ],
-    "statement": "Five married couples — five gentlemen and five ladies, all ten people distinct — attend a formal dinner at a round table for ten. Etiquette demands strict alternation: no gentleman may sit next to another gentleman, and likewise for the ladies. Seatings differing by a rotation are identical; mirror images are distinct. \\[\\text{Find the number of seatings that respect the alternation rule.}\\]",
-    "answer": "$2880$",
-    "trap": "Writing $5!\\cdot 5! = 14400$ (treating the two colour classes as if their seats were already labelled), or fixing that and dividing by $10$ for rotation to get $1440$. Both are wrong: once you anchor one gentleman to kill rotation, the parity of his seat is fixed, so only $4!$ orderings remain for the other gentlemen — there is no separate division by $10$ and no extra factor of $2$.",
+    "statement": "$8$ distinct gemstones are to be strung onto a circular bracelet. Because a bracelet can be flipped over as well as rotated, two strings are regarded as the same arrangement if one is obtained from the other by a rotation, a flip, or both. How many genuinely different bracelets can be made?",
+    "answer": " $\\boxed{2520}$ ",
+    "trap": "Forgetting that a bracelet (garland / necklace) can be turned over: writing the seating-style answer  $(8-1)! = 5040$  double-counts, because each bracelet and its mirror image are the same physical object. For a flippable loop one must also divide by  $2$ , giving  $\\tfrac{(8-1)!}{2} = 2520$ .",
     "solutions": [
       {
-        "name": "Fix a gentleman, then fill",
+        "name": "Circular count, then halve for the flip",
         "steps": [
-          "Seat Gentleman $1$ at a reference chair to remove rotational symmetry; alternation then forces all five gentlemen onto one parity of seats and all five ladies onto the other.",
-          "Arrange the remaining $4$ gentlemen in the remaining $4$ gentleman-seats: $4! = 24$.",
-          "Arrange the $5$ ladies in the $5$ lady-seats: $5! = 120$.",
-          "Total $= 24 \\cdot 120 = \\boxed{2880}$."
+          "If only rotations were identified, the number of arrangements of  $8$  distinct gems around the loop would be  $(8-1)! = 7! = 5040$ .",
+          "A bracelet may additionally be flipped over, so each clockwise reading and its anticlockwise (mirror) reading describe the same bracelet, pairing the  $5040$  arrangements two by two.",
+          "Hence divide by  $2$ : number of bracelets  $= \\dfrac{7!}{2} = \\dfrac{5040}{2} = \\boxed{2520}$ ."
         ]
       },
       {
-        "name": "Block-of-parities formula",
+        "name": "Fix one gem and orient the rest",
         "steps": [
-          "For $n$ men and $n$ women alternating around a circle (rotations identified, reflections distinct), the count is $(n-1)!\\cdot n!$: fix one man for rotation, order the other $n-1$ men, then drop the women into the forced opposite-parity seats.",
-          "With $n=5$: $(5-1)!\\cdot 5! = 24 \\cdot 120 = \\boxed{2880}$."
-        ]
-      },
-      {
-        "name": "Cyclic order then drop into gaps",
-        "steps": [
-          "Choose the gentlemen's cyclic order around the circle: $(5-1)! = 24$ ways (this is a pure circular arrangement of the five gentlemen, rotation already quotiented out).",
-          "This creates five gaps between consecutive gentlemen; place one lady in each gap, automatically alternating: $5! = 120$ ways.",
-          "Product $= 24\\cdot 120 = \\boxed{2880}$."
+          "Place one chosen gem at a fixed point of the loop to remove all rotations; the other  $7$  gems now sit in  $7! = 5040$  orderings around it.",
+          "Reading the remaining seven clockwise versus anticlockwise from the fixed gem gives mirror-image bracelets that are physically identical, so each real bracelet appears exactly twice in this list.",
+          "Therefore the number of distinct bracelets is  $\\dfrac{7!}{2} = \\boxed{2520}$ ."
         ]
       }
     ],
-    "remark": "Insight: alternation around an even cycle is really 'seat one colour class circularly, then bijectively drop the other class into the forced gaps' — the gap method makes the $5!$ inevitable, and anchoring one gentleman already pins the parity, so $5!\\cdot 5!$ overcounts by exactly the factor $5$ that turns the second $5!$ into $4!$."
+    "remark": "**Insight.** The single question that decides the  $\\div 2$  is physical: can the object be picked up and flipped? Seats bolted around a table cannot, so use  $(n-1)!$ ; a bracelet or garland can, so use  $\\tfrac{(n-1)!}{2}$ . The geometry, not the algebra, tells you which."
   },
   {
     "theme": "circular",
-    "themeLabel": "Circular & Necklace Arrangements",
-    "title": "The Antipode and the Three Quarrelsome Envoys",
-    "difficulty": 5,
-    "task": "Count",
-    "tags": [
-      "circular arrangement",
-      "antipode parity",
-      "non-adjacency",
-      "gap method",
-      "inclusion-exclusion",
-      "feasibility trap"
-    ],
-    "statement": "Eight distinguished guests \\,---\\, the host $G$, the guest of honour $H$, three feuding envoys $A,B,C$, and three ordinary delegates $x,y,z$ \\,---\\, are to be seated around a single round table whose seats are identical, so that two seatings are regarded as the same arrangement exactly when one is a rotation of the other (the guests face the centre, so a left neighbour is distinct from a right neighbour and reflections are not identified). Protocol imposes two rules:\\[\\text{(i) no two of the three envoys } A,B,C \\text{ may sit next to each other; and}\\]\\[\\text{(ii) the guest of honour } H \\text{ must sit directly opposite the host } G \\text{ (in the seat diametrically across the table).}\\]Determine the number of distinct seatings that obey both rules. (First decide whether rule (ii) is even achievable at this table before you count.)",
-    "answer": "\\[\\boxed{216}\\]",
-    "trap": "Rule (ii) hides a feasibility check that students skip: a seat \"directly opposite\" a given seat exists only when the number of seats is even, since the antipode of seat $i$ is seat $i+\\tfrac{n}{2}$, which is an integer index only for even $n$. With $n=8$ the antipode exists, so the answer is positive \\,---\\, but the very same protocol at a table of $7$ or $9$ guests would have answer $0$, and a strong student who never tests the parity will happily \"count\" a configuration that cannot occur. There is a second, subtler trap riding on the first. Once $H$ is forced into the seat opposite $G$, the two occupied antipodal seats cut the ring of remaining seats into two separate arcs of three seats each; the leftover seats no longer form a circle. A student who, out of habit, applies the circular non-adjacency formula \\,---\\, the number of ways to choose $3$ pairwise non-adjacent seats from $6$ arranged in a circle is $\\tfrac{6}{6-3}\\binom{6-3}{3}=2$ \\,---\\, gets $2\\cdot 3!\\cdot 3!=72$, badly undercounting, because seats $3$ and $5$ (and seats $7$ and $1$) are not adjacent: the host and guest of honour sit between them. The correct picture is two independent paths of three seats, giving $6$ valid seat-triples and the answer $216$. The error is conceptual \\,---\\- a missed existence condition and a ring that has silently stopped being a ring \\,---\\- not any arithmetic slip.",
-    "solutions": [
-      {
-        "name": "Pin the antipodal pair, then place the envoys on the two broken arcs",
-        "steps": [
-          "Feasibility first. \"Directly opposite\" means the antipode, seat $i\\mapsto i+\\tfrac{n}{2}$; this is a genuine seat only when $n$ is even. Here $n=8$ is even, so rule (ii) is achievable and we may proceed (for $n=7$ or $9$ the answer would be $0$).",
-          "Kill the rotational symmetry by anchoring the host: place $G$ at a reference seat, say seat $0$. This single choice accounts for the rotation equivalence exactly once. Rule (ii) now forces $H$ into seat $4$, the unique antipode of seat $0$ \\,---\\, no freedom there. The six free seats are $\\{1,2,3,5,6,7\\}$.",
-          "Crucial structural observation: with seats $0$ and $4$ occupied, the free seats split into two arcs, $\\{1,2,3\\}$ and $\\{5,6,7\\}$, because $G$ sits between seats $7$ and $1$ and $H$ sits between seats $3$ and $5$. Hence within the free seats the only adjacent pairs are $(1,2),(2,3),(5,6),(6,7)$ \\,---\\, two disjoint paths of three seats, not a cycle.",
-          "Choose three pairwise non-adjacent seats for $A,B,C$ across these two paths. In a path of three seats the non-adjacent subsets have sizes $0,1,2$ (only the two endpoints can both be chosen). Splitting the three envoys as (1 in one arc, 2 in the other): one arc contributes any of its $3$ seats and the other contributes its unique endpoint pair, giving $3\\cdot 1=3$; by symmetry the other split gives $3$ more; a $(3,0)$ or $(0,3)$ split is impossible. So there are $3+3=6$ admissible seat-triples.",
-          "Finally assign people: the three distinct envoys fill the chosen three seats in $3!=6$ ways, and the three distinct ordinary delegates fill the remaining three seats in $3!=6$ ways. Total $=6\\cdot 3!\\cdot 3!=6\\cdot 6\\cdot 6=\\boxed{216}$."
-        ]
-      },
-      {
-        "name": "Inclusion-exclusion on the envoy adjacencies (after fixing the pair)",
-        "steps": [
-          "As above, anchoring $G$ at seat $0$ forces $H$ at seat $4$ and leaves the six free seats $\\{1,2,3,5,6,7\\}$ with adjacent pairs only $(1,2),(2,3),(5,6),(6,7)$. Ignoring rule (i) for a moment, the six distinct people $A,B,C,x,y,z$ fill these six seats in $6!=720$ ways.",
-          "Let $P_{AB},P_{AC},P_{BC}$ be the (forbidden) events that the named pair of envoys sits in some adjacent seat-pair. For one specified pair: pick one of the $4$ adjacent edges ($4$), seat that pair on it in $2$ orders ($2$), and seat the remaining four people in the four leftover seats ($4!=24$): $4\\cdot 2\\cdot 24=192$. There are three such pairs, contributing $3\\cdot 192=576$.",
-          "Two events at once, say $A$ adjacent to $B$ and $A$ adjacent to $C$, force $A,B,C$ to occupy a full three-seat arc with $A$ in the middle: choose the arc ($2$), order the two ends ($2$), seat the other three people ($3!=6$): $2\\cdot 2\\cdot 6=24$. Each of the $\\binom{3}{2}=3$ pairs-of-events gives $24$, contributing $3\\cdot 24=72$. All three adjacencies at once is impossible (the two endpoints of a three-arc are not adjacent), so that term is $0$.",
-          "By inclusion-exclusion the seatings with no two envoys adjacent number $720-576+72-0=216$. Since anchoring $G$ already quotiented out the rotations, this is the final count: $\\boxed{216}$."
-        ]
-      },
-      {
-        "name": "Direct construction by arc-occupancy casework",
-        "steps": [
-          "After the forced placement $G$ at seat $0$, $H$ at seat $4$, the envoys must be distributed over the two three-seat arcs $\\{1,2,3\\}$ and $\\{5,6,7\\}$ with no two adjacent within an arc. Because three pairwise non-adjacent seats cannot fit in a single arc of three, the only occupancy patterns are $(2,1)$ and $(1,2)$ envoys per arc.",
-          "Pattern $(2,1)$: the arc holding two envoys must use its two endpoints (the only non-adjacent pair in a three-seat path) \\,---\\, $1$ choice of seats \\,---\\, and the arc holding one envoy uses any of its $3$ seats: $1\\cdot 3=3$ seat-triples. Pattern $(1,2)$ is the mirror image: $3$ seat-triples. Total $3+3=6$ seat-triples; patterns $(3,0)$ and $(0,3)$ contribute $0$.",
-          "For each of the $6$ seat-triples, place the three distinct envoys into the three chosen seats: $3!=6$ orderings. The three remaining free seats receive the three distinct ordinary delegates: $3!=6$ orderings.",
-          "Multiplying, the number of seatings is $6\\cdot 6\\cdot 6=\\boxed{216}$, in agreement with the gap and inclusion-exclusion counts."
-        ]
-      }
-    ],
-    "remark": "Insight: two ring-constraints that look independent actually collide. The antipode rule is not just a placement \\,---\\, it is a parity gate: a diametrically opposite seat exists only on an even table, so the very first move is to confirm $n$ is even, on pain of counting the impossible (the same problem at $n=7$ has answer $0$). Worse, satisfying the antipode rule reshapes the rest of the problem: planting $G$ and $H$ at opposite seats severs the circle of leftover seats into two arcs, so the familiar circular non-adjacency formula no longer applies and must be replaced by independence on two disjoint paths. The clean factorisation $216=6\\cdot 3!\\cdot 3!$ \\,---\\, six admissible envoy-seat patterns times the labellings of the two distinct people-groups \\,---\\, is exactly what survives once both subtleties are respected. Moral: before you count around a circle, check that the geometric constraint you were handed can exist at all, and check what it does to the topology of the seats that remain."
-  },
-  {
-    "theme": "circular",
-    "themeLabel": "Circular & Necklace Arrangements",
-    "title": "Five Beads, Three Dyes",
+    "themeLabel": "Circular Permutations",
+    "title": "Two Rivals Kept Apart",
     "difficulty": 4,
-    "task": "Determine",
+    "task": "Count seatings with two apart",
     "tags": [
-      "necklace",
-      "burnside",
-      "rotation",
-      "colouring"
-    ],
-    "statement": "A child threads a closed loop of five beads, colouring each bead independently in one of three available dyes — crimson, gold, or teal. The loop lies flat and may be rotated, so two loops are the same whenever one is a rotation of the other; the loop is NOT flipped over (reflections count as different). \\[\\text{Determine the number of distinguishable loops.}\\]",
-    "answer": "$51$",
-    "trap": "Computing $3^5 = 243$ and dividing by $5$ to get $48.6$, then rounding. The orbits are not all of size $5$: the three monochromatic loops are fixed by every rotation, so naive division fails; Burnside handles the small orbits correctly.",
-    "solutions": [
-      {
-        "name": "Burnside on the cyclic group $C_5$",
-        "steps": [
-          "The group is $C_5$ with $5$ rotations. Since $5$ is prime, every non-identity rotation is a single $5$-cycle.",
-          "Identity fixes all $3^5 = 243$ colourings.",
-          "Each of the $4$ non-identity rotations fixes only monochromatic loops: $3$ each.",
-          "Burnside: $\\dfrac{243 + 4\\cdot 3}{5} = \\dfrac{255}{5} = \\boxed{51}$."
-        ]
-      },
-      {
-        "name": "Necklace formula for prime length",
-        "steps": [
-          "For a necklace of prime length $p$ with $k$ colours under rotation, the count is $\\dfrac{k^p + (p-1)k}{p}$.",
-          "With $p=5,k=3$: $\\dfrac{3^5 + 4\\cdot 3}{5} = \\dfrac{243+12}{5} = \\boxed{51}$."
-        ]
-      },
-      {
-        "name": "Orbit-size bookkeeping",
-        "steps": [
-          "Of the $243$ colourings, $3$ are monochromatic (orbit size $1$); the remaining $240$ are non-constant.",
-          "Because $5$ is prime, every non-constant colouring has full orbit size $5$, giving $240/5 = 48$ classes.",
-          "Total $= 3 + 48 = \\boxed{51}$."
-        ]
-      }
-    ],
-    "remark": "Insight: prime length is the friendliest case — Burnside collapses to 'identity contributes $k^p$, each other rotation contributes $k$ (monochromatic only)', and the orbit-counting view ($3$ singletons $+$ free orbits) confirms it independently."
-  },
-  {
-    "theme": "circular",
-    "themeLabel": "Circular & Necklace Arrangements",
-    "title": "The Hexagonal Signet",
-    "difficulty": 5,
-    "task": "Determine",
-    "tags": [
-      "bracelet",
-      "burnside",
-      "dihedral",
-      "three-colour"
-    ],
-    "statement": "A jeweller forges a hexagonal signet ring as a closed loop of six gemstone settings, colouring each setting in one of three colours. Because the ring may be both rotated and flipped, two rings are identical whenever one is obtained from the other by a symmetry of the regular hexagon (a rotation or a reflection). \\[\\text{Determine the number of distinct signet rings.}\\]",
-    "answer": "$92$",
-    "trap": "Forgetting that for an even-length bracelet the reflections come in two flavours: three axes through opposite vertices and three through opposite edge-midpoints, which fix different numbers of colourings ($k^{4}$ versus $k^{3}$). Lumping all six reflections together gives the wrong reflection total (and, tellingly, a non-integer Burnside average).",
-    "solutions": [
-      {
-        "name": "Burnside on the dihedral group $D_6$",
-        "steps": [
-          "Rotations of a $6$-cycle fix $k^{\\gcd(6,r)}$ colourings: for $r=0,1,2,3,4,5$ the cycle counts are $6,1,2,3,2,1$, so fixed colourings are $3^6+3^1+3^2+3^3+3^2+3^1 = 729+3+9+27+9+3 = 780$.",
-          "Reflections split: the $3$ vertex-axes pass through two opposite settings and pair the other four, giving cycle structure with $4$ cycles, hence $3^4 = 81$ each; the $3$ edge-axes pair all six settings into three transpositions, giving $3$ cycles, hence $3^3 = 27$ each. Reflection total $= 3\\cdot 81 + 3\\cdot 27 = 243 + 81 = 324$.",
-          "Group order $|D_6| = 12$.",
-          "Burnside: $\\dfrac{780 + 324}{12} = \\dfrac{1104}{12} = \\boxed{92}$."
-        ]
-      },
-      {
-        "name": "Necklaces first, then fold reflections",
-        "steps": [
-          "Rotation-only necklaces (Burnside on $C_6$): $780/6 = 130$.",
-          "Among these, the reflection-symmetric (achiral) necklaces number $r$; the fold formula reads $\\text{bracelets} = \\tfrac12(\\text{necklaces} + r)$.",
-          "Counting achiral necklaces (those mapped into their own rotation-orbit by some reflection) gives $r = 54$.",
-          "Hence bracelets $= \\tfrac12(130 + 54) = \\tfrac12\\cdot 184 = \\boxed{92}$."
-        ]
-      }
-    ],
-    "remark": "Insight: even cycles split their reflections into vertex-axes and edge-axes with different fixed-point counts. This asymmetry, absent for odd $n$, is the crux of $D_{2m}$ Burnside computations. A quick sanity check is that lumping all six reflections together would force a non-integer average, instantly exposing the error."
-  },
-  {
-    "theme": "circular",
-    "themeLabel": "Circular & Necklace Arrangements",
-    "title": "The Cartographer's Round Council",
-    "difficulty": 4,
-    "task": "Count",
-    "tags": [
-      "circular arrangement",
-      "gap method",
-      "non-adjacency",
+      "circular permutation",
       "complementary counting",
-      "rotation symmetry"
+      "non-adjacency",
+      "two apart"
     ],
-    "statement": "Around a single round table with $13$ identical chairs sit $8$ distinct cartographers (\"boys\") and $5$ distinct scribes (\"girls\"). The seating must obey: no two scribes sit next to each other. There is one further protocol: the head scribe $S^\\star$ insists on sitting immediately beside the chief cartographer $C^\\star$ (i.e. $S^\\star$ and $C^\\star$ occupy adjacent chairs). Two seatings are regarded as the same when one is a rotation of the other (the table may be spun; it is not flipped). In how many genuinely distinct ways can the council be seated?",
-    "answer": "\\[\\boxed{8467200}\\]",
-    "trap": "The fatal reflex is to treat the $13$ chairs as $13$ labelled positions and never quotient by rotation. A typical wrong route: seat the $8$ boys in $8! = 40320$ ways (linear thinking), creating $8$ gaps; place the head scribe $S^\\star$ in one of the $2$ gaps bordering $C^\\star$ ($2$ choices), and the remaining $4$ scribes into $4$ of the other $7$ gaps in $P(7,4)=840$ ways, giving $8!\\cdot 2\\cdot 840 = 67\\,737\\,600$. Every count here is internally consistent except the very first: using $8!$ instead of $(8-1)!=7!$ silently counts each circular arrangement once for each of its $8$ rotations, inflating the true answer by exactly a factor of $8$ (indeed $67\\,737\\,600 = 8\\times 8\\,467\\,200$). The missed idea is not arithmetic — it is that fixing the rotation once (by anchoring one distinct person) is mandatory before any gap counting, and after a circle of boys is fixed the gaps are already rotation-free, so no second division is needed. A second, subtler wrong route glues $\\{C^\\star,S^\\star\\}$ into a rigid block and treats it as a single super-person; this miscounts because $S^\\star$, sitting at one end of the block, has an outer neighbour gap that the block bookkeeping leaves free to receive another scribe — silently allowing two scribes to become adjacent.",
+    "statement": "Eight distinct people are to be seated around a round table, two seatings being identical if one is a rotation of the other. Two of them, Priya and Rahul, are rivals and must  $\\textbf{not}$  sit next to each other. In how many distinct ways can the eight be seated?",
+    "answer": " $\\boxed{3600}$ ",
+    "trap": "Subtracting the 'together' count from the wrong total is the usual mistake: writing  $8! - (\\text{together})$  instead of using the circular total  $(8-1)! = 5040$ . Another slip is computing 'together' as  $7!\\cdot 2$ . The pair-as-a-block count around a circle is  $(7-1)!\\cdot 2 = 1440$ , so the answer is  $5040 - 1440 = 3600$ , not  $5040 - 7!\\cdot 2$ .",
     "solutions": [
       {
-        "name": "Gap method with rotation fixed once (direct)",
+        "name": "Complementary count (total minus together)",
         "steps": [
-          "First neutralise the rotation symmetry by seating the $8$ distinct boys around the round table: a circle of $8$ distinct people admits $(8-1)! = 7! = 5040$ arrangements. Once the boys form a fixed ring, the $8$ gaps between consecutive boys are themselves rotation-free, so every subsequent choice produces a genuinely distinct council and we never divide again.",
-          "Impose non-adjacency of scribes by the surplus-of-gaps principle: there are $8$ gaps for only $5$ scribes, and putting at most one scribe in each gap guarantees no two scribes are neighbours. A scribe placed in a gap is adjacent to exactly the two boys bounding that gap, so the head scribe $S^\\star$ sits beside the chief $C^\\star$ iff $S^\\star$ occupies one of the two gaps flanking $C^\\star$.",
-          "Count the scribe placement for a fixed boy-ring: choose which of the two $C^\\star$-gaps holds $S^\\star$ in $2$ ways, then drop the remaining $4$ distinct scribes into $4$ of the other $7$ gaps (ordered, one per gap) in $P(7,4)=\\dfrac{7!}{3!}=840$ ways, giving $2\\cdot 840 = 1680$ placements per boy-ring.",
-          "Multiply the independent stages: $\\,7!\\times 1680 = 5040\\times 1680 = \\boxed{8\\,467\\,200}.$"
+          "Total circular seatings of  $8$  distinct people:  $(8-1)! = 7! = 5040$ .",
+          "Count the seatings where Priya and Rahul  $\\textit{are}$  adjacent: glue them into a block, giving  $7$  units around the circle in  $(7-1)! = 6! = 720$  ways, times  $2$  for their internal order, so  $720 \\cdot 2 = 1440$ .",
+          "Subtract:  $5040 - 1440 = \\boxed{3600}$ ."
         ]
       },
       {
-        "name": "Complementary counting on the non-adjacent seatings",
+        "name": "Fix Priya and count Rahul's safe seats",
         "steps": [
-          "Count all valid seatings ignoring the $C^\\star$–$S^\\star$ protocol but keeping no-two-scribes-adjacent: fix the rotation with the boy-ring ($7!$), then place all $5$ scribes into $5$ of the $8$ gaps in $P(8,5)=\\dfrac{8!}{3!}=6720$ ways. This gives $N = 7!\\cdot 6720 = 33\\,868\\,800$ seatings, partitioned by whether $S^\\star$ is or is not beside $C^\\star$.",
-          "Count the unwanted complement: seatings where the non-adjacency holds but $S^\\star$ is not beside $C^\\star$. Then $S^\\star$ must lie in one of the $8-2 = 6$ gaps not flanking $C^\\star$ ($6$ choices), and the other $4$ scribes fill $4$ of the remaining $7$ gaps in $P(7,4)=840$ ways: $\\,7!\\cdot 6\\cdot 840 = 25\\,401\\,600.$",
-          "Subtract the complement from the whole: $\\,33\\,868\\,800 - 25\\,401\\,600 = \\boxed{8\\,467\\,200}$, agreeing with the direct gap count."
-        ]
-      },
-      {
-        "name": "Uniformity (symmetry) argument",
-        "steps": [
-          "Among the $N = 7!\\cdot P(8,5) = 33\\,868\\,800$ seatings with no two scribes adjacent (rotation already fixed by the boy-ring), look only at which gap the head scribe $S^\\star$ occupies. By the symmetry of the construction the placement of the remaining four scribes is independent of which single gap $S^\\star$ takes, so $S^\\star$ is equally likely to be found in each of the $8$ gaps.",
-          "The favourable event 'beside $C^\\star$' is precisely '$S^\\star$ lands in one of the $2$ gaps flanking $C^\\star$', which by uniformity occurs in the fraction $\\dfrac{2}{8} = \\dfrac14$ of those seatings.",
-          "Hence the count is $\\dfrac14\\cdot N = \\dfrac14\\cdot 33\\,868\\,800 = \\boxed{8\\,467\\,200}$, the same value reached by the direct and complementary methods."
+          "Anchor Priya at a reference seat to remove rotations; the other  $7$  seats are now distinct positions, two of which are immediately beside Priya.",
+          "Rahul must avoid those  $2$  neighbouring seats, so he has  $7 - 2 = 5$  allowed seats.",
+          "The remaining  $6$  people fill the remaining  $6$  seats in  $6! = 720$  ways.",
+          "Total  $= 5 \\cdot 6! = 5 \\cdot 720 = \\boxed{3600}$ ."
         ]
       }
     ],
-    "remark": "Insight: the engine of the whole problem is that the surplus of gaps ($8 > 5$) turns 'no two scribes adjacent' into a clean choose-and-place, while the lone protocol $S^\\star\\!-\\!C^\\star$ breaks the symmetry of those gaps into a privileged pair. The single discipline every method shares is fixing the rotation exactly once — by anchoring the distinct ring of boys, which makes the gaps rotation-free so that gap counting is already final. Forgetting this (using $8!$ in place of $7!$) over-counts by the order of the rotation group, $8$, which is exactly why the trap answer is precisely $8$ times too large; and the seductive 'glue the pair into a block' shortcut fails for a different reason entirely — the block hides the outer neighbour of $S^\\star$, quietly letting two scribes touch. Direct, complementary, and probabilistic views converge on the same $8\\,467\\,200$ because each respects both the rotation quotient and the genuine adjacency structure of the gaps."
+    "remark": "**Insight.** 'Not adjacent' is cleanest as total-minus-together, but the fix-a-person route makes the structure vivid: pinning Priya turns a vague circular condition into the concrete statement 'Rahul has  $5$  of  $7$  seats', after which everything is an ordinary arrangement."
   },
   {
     "theme": "circular",
-    "themeLabel": "Circular & Necklace Arrangements",
-    "title": "The Chiral Charm of Seven Stones",
-    "difficulty": 5,
-    "task": "Count",
-    "tags": [
-      "bracelet",
-      "dihedral group",
-      "reflection equivalence",
-      "chirality",
-      "burnside lemma",
-      "orbit-stabilizer"
-    ],
-    "statement": "Seven gemstones, all of distinct kinds, are threaded onto a closed loop to form a bracelet. Two of them are special: a Diamond and an Emerald. Because the bracelet is a physical ring that may be both rotated in its plane and flipped over, two threadings are regarded as the same bracelet whenever one can be carried onto the other by a rotation of the loop or by a flip (reflection). How many distinct bracelets can be made in which the Diamond and the Emerald sit at arc-distance exactly $2$, i.e. with exactly one stone occupying the shorter arc between them?",
-    "answer": "\\[\\boxed{120}\\]",
-    "trap": "The seductive route is to build the bracelet directly and then 'account for the flip': pin the Diamond down (this uses up the $7$ rotations), place the Emerald at distance $2$ on, say, one side, fill the remaining $5$ seats with the other $5$ stones in $5!=120$ ways, and then reason 'a bracelet looks different in a mirror, so each of these $120$ has a distinct chiral twin, giving $2\\cdot 120=240$.' The extra $\\times 2$ is a phantom. The flip you are trying to credit is the same symmetry that already identifies the Emerald's two possible distance-$2$ seats (the spot two steps clockwise of the Diamond and the spot two steps anticlockwise): the unique reflection through the Diamond's vertex swaps those two seats. Counting the Emerald on 'one side' has already quotiented by reflection, so multiplying by $2$ again double-counts. Equivalently: with $7$ distinct stones on an odd ring no arrangement can equal its own mirror image, so the dihedral action is free and every orbit has the full size $14$ — there are no fixed points to repair, and the naive $\\times 2$ has no fixed-arrangements to absorb it. The true count is $120$, not $240$.",
-    "solutions": [
-      {
-        "name": "Fix the marked pair, then count the rest",
-        "steps": [
-          "Quotient by rotation first. Since all seven stones are distinct, no non-identity rotation can fix any arrangement, so we may pin the Diamond to a chosen vertex of the ring; this exhausts the $7$ rotational symmetries exactly once.",
-          "Place the Emerald at arc-distance $2$ from the Diamond. With the Diamond fixed there are exactly two such seats: two steps clockwise and two steps anticlockwise. The bracelet may still be flipped, and the only reflection that keeps the Diamond fixed is the axis through the Diamond's own vertex (the ring has $n=7$ odd, so every reflection axis passes through exactly one vertex). That reflection interchanges the two distance-$2$ seats, so they yield the same bracelet; we keep one of them, which uses up the reflection.",
-          "Check no symmetry survives. After the Diamond and Emerald are both pinned, any remaining symmetry would have to fix both their vertices; but the unique reflection through the Diamond does not fix the Emerald's vertex, and no rotation fixes a vertex. Hence the stabilizer is now trivial and the remaining five distinct stones may be dropped into the five empty seats freely.",
-          "There are $5!=120$ ways to seat the remaining stones, each giving a genuinely different bracelet. Hence the answer is \\[\\boxed{120}\\]."
-        ]
-      },
-      {
-        "name": "Burnside over the dihedral group $D_7$",
-        "steps": [
-          "Count position-labelled arrangements satisfying the constraint. Going around the labelled ring, the Diamond may occupy any of $7$ positions, the Emerald any of the $2$ positions at circular distance $2$ from it, and the remaining $5$ distinct stones fill the rest in $5!$ ways: $N=7\\cdot 2\\cdot 5!=1680$.",
-          "Apply Burnside's lemma to the group $D_7$ of order $14$ acting on these $1680$ labelled arrangements. The number of bracelets is $\\dfrac{1}{14}\\sum_{g\\in D_7}|\\mathrm{Fix}(g)|$, where $\\mathrm{Fix}(g)$ are the constraint-satisfying arrangements left unchanged by $g$.",
-          "Evaluate the fixed-point counts. The identity fixes all $1680$. A non-identity rotation by $k$ steps acts on the seven positions as a single $7$-cycle (since $7$ is prime), so a fixed arrangement would force all seven stones equal — impossible for distinct stones, giving $0$. Each of the $7$ reflections (axis through one vertex, plus three transposed pairs) would force three pairs of stones to be equal — again impossible, giving $0$.",
-          "Therefore the count is $\\dfrac{1}{14}\\big(1680+6\\cdot 0+7\\cdot 0\\big)=\\dfrac{1680}{14}=120$, that is \\[\\boxed{120}\\]. The clean division (no rounding) is the structural signal that the action is free."
-        ]
-      },
-      {
-        "name": "Necklaces first, then fold by chirality",
-        "steps": [
-          "Count necklaces (rotation only). Modulo rotation, pin the Diamond. The Emerald now has the two distinct distance-$2$ seats, and these are different necklaces because reflections are not yet allowed; the other five stones fill in $5!$ ways. So the number of necklaces meeting the constraint is $2\\cdot 5!=240$.",
-          "Pair each necklace with its mirror image. Flipping a bracelet sends a necklace to its reflected necklace, and bracelets are exactly the orbits $\\{\\text{necklace},\\ \\text{mirror}\\}$ of this size-$\\le 2$ pairing.",
-          "Show no necklace is its own mirror. An achiral necklace would be fixed by a reflection; on the odd $7$-ring a reflection pairs up three pairs of positions and forces the stones in each pair to be equal, contradicting distinctness. So every mirror pair contains two distinct necklaces — the configurations are all chiral.",
-          "Hence the $240$ necklaces split into $240/2=120$ mirror pairs, one bracelet each, giving \\[\\boxed{120}\\]. This is precisely where the trap dies: the chirality fold is a division by $2$, not a multiplication."
-        ]
-      }
-    ],
-    "remark": "Insight: distinctness plus an odd number of beads makes the dihedral action free — every reflection axis through a single vertex would force three pairs of equal beads, so no configuration is achiral and no rotation (prime order $7$) can fix anything. With a free action every orbit has the full size $|D_7|=14$, so the answer is simply (constraint-respecting labelled count)$/14=1680/14=120$. The decisive subtlety is that the flip is not a brand-new degree of freedom to multiply in; it is the symmetry that already glues together the Emerald's two distance-$2$ seats. Crediting chirality with a $\\times 2$ after you have already used reflection to choose 'one side' counts that fold twice. The three viewpoints — pin-and-fill (orbit-stabilizer), Burnside averaging, and chirality pairing — are one fact: $1680=120\\cdot 14$, the hallmark of an action with no fixed points to repair."
-  },
-  {
-    "theme": "circular",
-    "themeLabel": "Circular & Necklace Arrangements",
-    "title": "The Tri-Glazed Die",
-    "difficulty": 5,
-    "task": "Count",
-    "tags": [
-      "burnside",
-      "cube",
-      "rotation group",
-      "cycle index",
-      "colourings"
-    ],
-    "statement": "A cubical die is to be glazed so that each of its six faces receives exactly one of three available glazes — vermilion, jade or onyx — with repetition freely allowed (a face must get a glaze, but no glaze need actually be used). Two finished dice are regarded as identical if one can be turned in space to look exactly like the other; only rigid rotations are permitted (the die may not be viewed in a mirror). \\[\\text{How many genuinely different glazed dice can be produced?}\\]",
-    "answer": "\\[\\boxed{57}\\]",
-    "trap": "Treating the six faces as fixed, labelled slots gives $3^{6}=729$ — this counts a painted die and the very same die after a quarter-turn as different, which is exactly what the equivalence forbids. The natural 'repair', dividing by $24$, is even worse: $729/24$ is not an integer, because Burnside requires averaging the number of colourings each rotation FIXES, not the blind quotient by the group order. Colourings with a rotational symmetry (e.g. all six faces vermilion) have a nontrivial stabiliser, so the orbits are not all of size $24$ and no single division can ever be correct.",
-    "solutions": [
-      {
-        "name": "Burnside's lemma over the five cycle types",
-        "steps": [
-          "The rotation group of the cube has $24$ elements, falling into five conjugacy classes by the axis they spin about. Burnside's lemma says the number of distinct colourings equals $\\frac{1}{24}\\sum_{g}\\,\\mathrm{Fix}(g)$, where a rotation $g$ fixes a colouring iff every face shares the colour of all faces in its cycle; hence $\\mathrm{Fix}(g)=3^{c(g)}$ with $c(g)$ the number of cycles $g$ induces on the six faces.",
-          "Identity ($1$ element): all $6$ faces are fixed, $c=6$, contributing $1\\cdot 3^{6}=729$. Rotations by $\\pm 90^{\\circ}$ about a face-to-face axis ($6$ elements): the four side faces form one $4$-cycle, two poles fixed, $c=3$, giving $6\\cdot 3^{3}=162$.",
-          "Rotations by $180^{\\circ}$ about a face axis ($3$ elements): two fixed poles plus two opposite $2$-cycles, $c=4$, giving $3\\cdot 3^{4}=243$. Rotations by $\\pm120^{\\circ}$ about a vertex (body-diagonal) axis ($8$ elements): the faces split into two $3$-cycles, $c=2$, giving $8\\cdot 3^{2}=72$. Rotations by $180^{\\circ}$ about an edge-midpoint axis ($6$ elements): three $2$-cycles, $c=3$, giving $6\\cdot 3^{3}=162$.",
-          "Summing, $729+162+243+72+162=1368$, and $\\dfrac{1368}{24}=\\boxed{57}$."
-        ]
-      },
-      {
-        "name": "Cycle index of the rotation group",
-        "steps": [
-          "Encode the same five classes in the cycle index $Z(G)=\\dfrac{1}{24}\\bigl(a_1^{6}+6\\,a_1^{2}a_4+3\\,a_1^{2}a_2^{2}+8\\,a_3^{2}+6\\,a_2^{3}\\bigr)$, where $a_i$ marks an $i$-cycle: the term $a_1^{6}$ is the identity, $a_1^{2}a_4$ the quarter-turns, $a_1^{2}a_2^{2}$ the face half-turns, $a_3^{2}$ the vertex turns, and $a_2^{3}$ the edge half-turns.",
-          "For $k$ colours each variable is replaced by $a_i=k$, giving the count $Z(G;k)=\\dfrac{k^{6}+6k^{3}+3k^{4}+8k^{2}+6k^{3}}{24}=\\dfrac{k^{6}+3k^{4}+12k^{3}+8k^{2}}{24}.$",
-          "Substituting $k=3$: $k^{6}=729,\\;3k^{4}=243,\\;12k^{3}=324,\\;8k^{2}=72$, summing to $1368$.",
-          "Hence the number of distinct dice is $\\dfrac{1368}{24}=\\boxed{57}$. (As a sanity rail the same formula returns $1,10$ for $k=1,2$ colours.)"
-        ]
-      },
-      {
-        "name": "Orbit bookkeeping by colour partition",
-        "steps": [
-          "Sort each die by its multiset of face-counts and count distinct dice within each pattern by hand, using two standard cube facts: a pair of faces is either opposite ($3$ such pairs) or adjacent, and 'three faces' come in exactly two shapes — three meeting at a vertex (a 'corner') or three in a band (two opposite plus one between). One colour, partition $\\{6\\}$: choose the colour, $3$ dice.",
-          "Exactly two colours. $\\{5,1\\}$: the lone face is interchangeable by rotation, so only the ordered pair (majority, minority) matters, $3\\cdot 2=6$ dice. $\\{4,2\\}$: the two minority faces are opposite or adjacent ($2$ shapes), over $3\\cdot 2$ ordered colour choices, $3\\cdot 2\\cdot 2=12$. $\\{3,3\\}$: the split is corner-vs-corner or band-vs-band ($2$ shapes), over $3$ unordered colour pairs, $3\\cdot 2=6$. Two-colour subtotal $6+12+6=24$.",
-          "All three colours. $\\{4,1,1\\}$: choose the quadruple colour ($3$ ways); its complementary two faces are then forced opposite, and swapping the two singleton colours gives a genuinely different die, $3\\cdot 2=6$. $\\{3,2,1\\}$: assign colours to roles ($3!=6$ ways); the triple is a corner or a band ($2$ shapes), $6\\cdot 3=18$. $\\{2,2,2\\}$: by a short direct check the three opposite-pairs structure leaves $6$ distinct dice. Three-colour subtotal $6+18+6=30$.",
-          "Adding the strata $3+24+30=57$ gives $\\boxed{57}$, and exposes where the $729$ collapses: asymmetric dice sit in full orbits of size $24$, but the symmetric patterns (monochrome, banded, cornered) have short orbits, so no single division by $24$ can ever be right."
-        ]
-      }
-    ],
-    "remark": "The whole problem turns on a single honest fact: the orbits are NOT all the same size, so you can never just divide $729$ by $24$. Burnside repairs this by counting fixed points instead — and the cube genuinely needs all five rotation classes, with three distinct cycle counts ($6,4,3,3,2$). A two-colour necklace-then-fold shortcut never sees the $a_3^{2}$ (vertex) term doing real work, which is precisely why $k=2$ stays 'easy' ($10$) while $k=3$ jumps to $57$: the three-colour count is the first place the full spatial symmetry of the cube is forced into the open."
-  },
-  {
-    "theme": "circular",
-    "themeLabel": "Circular & Necklace Arrangements",
-    "title": "The Shield-Ring of Two Houses",
-    "difficulty": 5,
-    "task": "Find the number of …",
-    "tags": [
-      "bracelet",
-      "alternating",
-      "dihedral",
-      "reflection-quotient"
-    ],
-    "statement": "Eight knights are arranged in a circular shield-ring: four from House Stark and four from House Lannister, all eight knights distinct. Same-house knights may not stand adjacent, so the two houses must perfectly alternate around the ring. Moreover the ring is engraved on both faces of a medallion, so a configuration and its mirror image are regarded as the SAME shield-ring; configurations related by rotation are also the same. \\[\\text{Find the number of distinct shield-rings.}\\]",
-    "answer": "$72$",
-    "trap": "Stopping at the rotation-only alternating count $(4-1)!\\cdot 4! = 144$ and forgetting the reflection identification; or dividing by $2$ incorrectly because of a fear of fixed points. Since all eight knights are distinct, no alternating arrangement equals its own mirror image, so dividing the $144$ by $2$ is exactly valid.",
-    "solutions": [
-      {
-        "name": "Rotation count, then halve for reflection",
-        "steps": [
-          "Alternating seatings up to rotation: fix one Stark knight, arrange the other $3$ Starks ($3! = 6$) and all $4$ Lannisters ($4! = 24$), giving $6\\cdot 24 = 144$.",
-          "Because all knights are distinct, a reflection sends any such arrangement to a different one (no arrangement is its own mirror image — that would force a repeated knight).",
-          "Therefore reflections pair the $144$ arrangements into $144/2 = 72$ mirror-pairs.",
-          "Distinct shield-rings $= \\boxed{72}$."
-        ]
-      },
-      {
-        "name": "Burnside on the dihedral group $D_8$ (restricted to alternating)",
-        "steps": [
-          "Count alternating labelled seatings with positions fixed: choose which house sits on the even positions ($2$ parity choices), then arrange each house ($4!\\cdot 4!$), giving $2\\cdot 4!\\cdot 4! = 1152$.",
-          "The dihedral group $D_8$ of order $16$ (eight rotations, eight reflections) acts on these seatings; we count orbits by Burnside.",
-          "Since all eight knights are distinct, only the identity has fixed points (any nontrivial rotation or reflection would force two equal knights), so the average number of fixed points is $1152/16$.",
-          "Number of distinct shield-rings $= 1152/16 = \\boxed{72}$."
-        ]
-      },
-      {
-        "name": "General alternating-bracelet formula",
-        "steps": [
-          "For $n$ of each of two types, all distinct, alternating around a ring with rotations and reflections identified, the count is $\\dfrac{(n-1)!\\,n!}{2}$ when no arrangement is symmetric.",
-          "With $n = 4$: $\\dfrac{3!\\cdot 4!}{2} = \\dfrac{6\\cdot 24}{2} = \\dfrac{144}{2} = \\boxed{72}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the clean division by $2$ is licensed only because distinctness rules out self-mirror configurations — a brute-force orbit count under $D_8$ shows every orbit has full size $16$. Whenever a colouring could be palindromic you would instead need Burnside, since fixed points block naive halving."
-  },
-  {
-    "theme": "distributions",
-    "themeLabel": "Distributions, Stars & Bars",
-    "title": "The Tied Crowns of Twelve",
-    "difficulty": 5,
-    "task": "Count",
-    "tags": [
-      "bounded multiplicities",
-      "tie for maximum",
-      "inclusion-exclusion",
-      "complementary counting",
-      "generating functions"
-    ],
-    "statement": "A bag is to be filled with exactly $12$ marbles drawn from $5$ distinguishable colours $C_1,\\dots,C_5$. For each colour the number of marbles of that colour must lie in $\\{0,1,2,3,4\\}$ (no colour may exceed $4$). Among the colours that are actually present, let the crown be the largest multiplicity attained. Count the fillings in which the crown is shared, i.e. the maximum multiplicity is attained by at least two different colours. \\[\\text{Formally, count integer tuples } (a_1,\\dots,a_5),\\ 0\\le a_i\\le 4,\\ \\textstyle\\sum a_i=12,\\ \\text{ for which } \\#\\{i: a_i=\\max_j a_j\\}\\ge 2.\\]",
-    "answer": "$165$",
-    "trap": "The tempting direct build is: choose the crown value $v$, choose $2$ of the $5$ colours to sit at $v$ ($\\binom{5}{2}=10$ ways), then distribute the remaining $12-2v$ marbles among the other $3$ colours with each of them in $\\{0,\\dots,v\\}$. Summing the coefficients gives $v=3{:}\\ 10\\cdot 10=100$ and $v=4{:}\\ 10\\cdot 15=150$, for a total of $250$. This is wrong because it double-counts every filling in which three or more colours tie at the crown: such a filling is generated once for each of the $\\binom{t}{2}$ pairs you could have selected as the two designated crown-holders, not once. Here $130$ fillings have exactly two at the crown (counted once each, correct), $30$ have three (each counted $\\binom{3}{2}=3$ times) and $5$ have four (each counted $\\binom{4}{2}=6$ times), so the overcount is $30(3-1)+5(6-1)=60+25=85$, and $250-85=165$. The choose-two device silently assumes the crown is held by exactly two colours; forgetting the inclusion-exclusion correction for triple- and quadruple-ties is the trap.",
-    "solutions": [
-      {
-        "name": "Complement: subtract the unique-crown fillings",
-        "steps": [
-          "First count all fillings without the tie condition: the number of $(a_1,\\dots,a_5)$ with $0\\le a_i\\le 4$ and $\\sum a_i=12$. By inclusion-exclusion on the upper caps, this is $\\sum_{j\\ge 0}(-1)^j\\binom{5}{j}\\binom{12-5j+4}{4}=\\binom{16}{4}-5\\binom{11}{4}+10\\binom{6}{4}=1820-1650+150=320$.",
-          "The complement of 'crown shared' is 'crown is unique': exactly one colour strictly exceeds every other. Choose that colour ($5$ ways) and its value $v\\in\\{1,2,3,4\\}$; the remaining four colours must each lie in $\\{0,\\dots,v-1\\}$ (strictly below $v$) and sum to $12-v$.",
-          "The cap forces the value. Four colours each at most $v-1$ can total at most $4(v-1)$, and we need them to total $12-v$; the inequality $4(v-1)\\ge 12-v$ gives $5v\\ge 16$, i.e. $v\\ge 4$. Since $v\\le 4$, the unique crown must be exactly $v=4$ — a strict maximizer is forced to sit at the cap.",
-          "For $v=4$ the other four colours lie in $\\{0,1,2,3\\}$ and sum to $8$. By inclusion-exclusion on the cap $3$ (each violation removes $3+1=4$): $\\sum_{j}(-1)^j\\binom{4}{j}\\binom{8-4j+3}{3}=\\binom{11}{3}-4\\binom{7}{3}+6\\binom{3}{3}=165-140+6=31$ fillings.",
-          "Hence unique-crown fillings number $5\\cdot 31=155$, and the shared-crown count is $320-155=\\boxed{165}$."
-        ]
-      },
-      {
-        "name": "Direct, but with the missing inclusion-exclusion",
-        "steps": [
-          "Stratify by the crown value $v$ and by the exact number $t\\ge 2$ of colours that attain it. Choose which $t$ colours sit at $v$ ($\\binom{5}{t}$ ways); the remaining $5-t$ colours must each lie strictly below, in $\\{0,\\dots,v-1\\}$, and sum to $12-tv$. Forcing the others below $v$ is exactly what guarantees $t$ is the true multiplicity of the crown, so no filling is counted twice.",
-          "Only $v=3$ and $v=4$ can occur (for $v\\le 2$ even all five colours at $v$ give at most $10<12$). List the nonzero contributions.",
-          "$v=3$: $t=2$ needs three colours in $0..2$ summing to $6$, which is $1$ way (all at $2$): $\\binom{5}{2}\\cdot 1=10$. $t=3$ needs two colours in $0..2$ summing to $3$, which is $2$ ways: $\\binom{5}{3}\\cdot 2=20$. $t=4$ needs one colour in $0..2$ equal to $0$, $1$ way: $\\binom{5}{4}\\cdot 1=5$.",
-          "$v=4$: $t=2$ needs three colours in $0..3$ summing to $4$, which is $\\binom{6}{2}-3\\binom{2}{2}=15-3=12$ ways: $\\binom{5}{2}\\cdot 12=120$. $t=3$ needs two colours in $0..3$ summing to $0$, $1$ way: $\\binom{5}{3}\\cdot 1=10$. (Higher $t$ at $v=4$ overshoots $12$.)",
-          "Summing all strata: $10+20+5+120+10=\\boxed{165}$."
-        ]
-      },
-      {
-        "name": "Generating function bookkeeping",
-        "steps": [
-          "Each colour contributes the polynomial $1+x+x^2+x^3+x^4$, so the total number of fillings is $[x^{12}]\\,(1+x+x^2+x^3+x^4)^5=320$, recovering the count of all distributions.",
-          "Count the unique-crown fillings as a coefficient. Designating the strict-max colour at value $v$ contributes $x^{v}$, and each of the other four colours contributes $1+x+\\cdots+x^{v-1}$ (strictly below $v$). Thus unique-crown $=\\sum_{v=1}^{4} 5\\,[x^{12}]\\,x^{v}\\big(1+x+\\cdots+x^{v-1}\\big)^{4}$.",
-          "Only $v=4$ survives: $5\\,[x^{12}]\\,x^{4}(1+x+x^2+x^3)^4=5\\,[x^{8}]\\,(1+x+x^2+x^3)^4=5\\cdot 31=155$, since the $v\\le 3$ terms have the four sub-polynomials too short to reach exponent $12-v$.",
-          "Subtracting from the total gives the shared-crown count $320-155=\\boxed{165}$, in agreement with the stratified direct count."
-        ]
-      }
-    ],
-    "remark": "Insight: with a hard cap, a strict maximum is not free to roam — the runner-ups, being forced strictly below it, can only absorb so much, which here pins any unique crown to the cap value $4$ and collapses the complement to a single clean sub-distribution. That is why complementary counting is dramatically shorter than the direct build. The direct build is still possible, but only if you stratify by the exact tie-multiplicity $t$ and force the rest strictly below; the seductive 'pick two colours at the max' shortcut counts a $t$-fold tie $\\binom{t}{2}$ times instead of once, and the uncorrected overcount of $85=\\sum(\\binom{t}{2}-1)$ is precisely the inclusion-exclusion you owe for triple and quadruple crowns."
-  },
-  {
-    "theme": "distributions",
-    "themeLabel": "Distributions, Stars & Bars",
-    "title": "Ten Among Four, None Over Five",
+    "themeLabel": "Circular Permutations",
+    "title": "A Garland with Two Bound Flowers",
     "difficulty": 4,
-    "task": "Determine",
+    "task": "Count garlands, two adjacent",
     "tags": [
-      "stars-and-bars",
-      "non-negative-solutions",
-      "two-sided-bound",
-      "inclusion-exclusion"
+      "circular permutation",
+      "garland",
+      "reflection symmetry",
+      "adjacency block"
     ],
-    "statement": "Determine the number of ordered quadruples $(a,b,c,d)$ of non-negative integers satisfying \\[ a+b+c+d = 10, \\qquad 0 \\le a,b,c,d \\le 5. \\]",
-    "answer": "$146$",
-    "trap": "Forgetting the upper bound and reporting the bare stars-and-bars count $\\binom{13}{3}=286$. The cap $a,b,c,d\\le 5$ is genuinely active here: any solution with some variable $\\ge 6$ must be removed. Subtracting the single-violation term $4\\binom{7}{3}=140$ already lands at the answer, but only because the two-violation term happens to vanish — one must still write that term down and check it, since $a,b\\ge 6$ would force $a+b\\ge 12>10$.",
+    "statement": "Nine distinct flowers are to be woven into a circular garland. $2$ of the flowers, a rose and a jasmine, must be placed immediately next to each other. Since a garland may be both rotated and flipped over, two garlands are the same if one is obtained from the other by rotation, flip, or both. How many distinct such garlands are possible?",
+    "answer": " $\\boxed{5040}$ ",
+    "trap": "Two errors compound here. First, treating it like a seating and using  $(8-1)!\\cdot 2 = 80640$  ignores the flip, so it double-counts mirror images. Second, after the  $\\div 2$  for the flip, the internal  $\\times 2$  for the rose-jasmine order and the  $\\div 2$  for the flip happen to cancel — a coincidence worth checking, not assuming. The honest result is  $\\dfrac{(8-1)!\\cdot 2}{2} = 7! = 5040$ .",
     "solutions": [
       {
-        "name": "Inclusion–exclusion on the upper bounds",
+        "name": "Block the pair, count as a flippable loop",
         "steps": [
-          "Without the upper bound, $a+b+c+d=10$ has $\\binom{10+3}{3}=\\binom{13}{3}=286$ non-negative solutions.",
-          "A violation $a\\ge6$: set $a=a'+6$, then $a'+b+c+d=4$, giving $\\binom{7}{3}=35$. There are $4$ choices of which variable violates, contributing $-4\\cdot35=-140$.",
-          "Two simultaneous violations, say $a,b\\ge6$: substituting $a=a'+6,\\ b=b'+6$ gives $a'+b'+c+d=10-12=-2<0$, which has no non-negative solutions. With $\\binom{4}{2}=6$ such pairs this term contributes $+6\\cdot0=0$.",
-          "No triple or quadruple violation is possible either (they would need sum $\\ge 18$). Total: $286-140+0=\\boxed{146}$."
+          "Glue the rose and jasmine into one block; with the other  $7$  flowers this gives  $8$  units to weave into the loop.",
+          "If only rotations were identified,  $8$  units around a loop arrange in  $(8-1)! = 7! = 5040$  ways, and the block has  $2$  internal orders, giving  $5040\\cdot 2 = 10080$ .",
+          "A garland can also be flipped, pairing each arrangement with its mirror image, so divide by  $2$ :  $\\dfrac{10080}{2} = \\boxed{5040}$ ."
         ]
       },
       {
-        "name": "Generating function / coefficient extraction",
+        "name": "Fix the block and orient the loop",
         "steps": [
-          "Each variable contributes $1+x+\\cdots+x^5=\\dfrac{1-x^6}{1-x}$, so the count is $[x^{10}]\\left(\\dfrac{1-x^6}{1-x}\\right)^4$.",
-          "Expand $(1-x^6)^4=1-4x^6+6x^{12}-\\cdots$ and use $\\dfrac{1}{(1-x)^4}=\\sum_{k\\ge0}\\binom{k+3}{3}x^k$.",
-          "Only the $1$ and $-4x^6$ pieces can reach exponent $10$: $[x^{10}]=\\binom{13}{3}-4\\binom{7}{3}=286-140=\\boxed{146}$. The $+6x^{12}$ term would need $[x^{-2}]$, which is $0$."
-        ]
-      },
-      {
-        "name": "Symmetry about the centre",
-        "steps": [
-          "Substitute $a'=5-a,\\ b'=5-b,\\ c'=5-c,\\ d'=5-d$. Each $a'\\in[0,5]$ and $a'+b'+c'+d'=20-10=10$, so the map sends the solution set bijectively onto itself: the configuration is self-complementary.",
-          "This confirms the box constraint is two-sided active and pins down the answer by a clean count: classifying solutions by their multiset of coordinates (e.g.\\ partitions of $10$ into $4$ parts each $\\le 5$) and summing the ordered arrangements gives $\\boxed{146}$, matching a direct enumeration."
+          "Place the rose-jasmine block at a fixed location of the loop to remove rotations; the remaining  $7$  flowers fill the rest in  $7! = 5040$  orderings.",
+          "Reading those seven flowers clockwise versus anticlockwise gives mirror-image garlands that are the same object, so each garland is counted twice here — a factor  $\\tfrac{1}{2}$ .",
+          "The rose and jasmine inside the block can swap — a factor  $2$  — but flipping the garland also swaps the side they sit on, so these two factors cancel:  $7!\\cdot \\dfrac{2}{2} = 7! = \\boxed{5040}$ ."
         ]
       }
     ],
-    "remark": "Headline lesson: with a two-sided bound, never quote the bare $\\binom{13}{3}=286$ — the cap bites. And never drop the higher inclusion–exclusion terms by reflex: here the two-violation term is genuinely $0$ only because $12>10$, so write it down and watch it die rather than assume it."
+    "remark": "**Insight.** When a constraint sits at the very axis of a flip (an adjacent pair, the centre of symmetry), the internal  $\\times 2$  and the flip's  $\\div 2$  can cancel. Never assume it — but always check it, because it is exactly where careless counters land on double the truth."
   },
   {
-    "theme": "distributions",
-    "themeLabel": "Distributions, Stars & Bars",
-    "title": "Seven Probes, Four Labs, One Even Roster",
+    "theme": "circular",
+    "themeLabel": "Circular Permutations",
+    "title": "Five Couples, Each Pair United",
     "difficulty": 5,
-    "task": "Count",
+    "task": "Count circular seatings",
     "tags": [
-      "surjection",
-      "forbidden assignment",
-      "parity sieve",
-      "inclusion-exclusion",
-      "generating function",
-      "feasibility gate"
+      "circular permutation",
+      "blocks together",
+      "couples",
+      "internal arrangement"
     ],
-    "statement": "A research institute must assign $7$ distinct experimental probes $P_1,P_2,\\dots ,P_7$ to $4$ distinct laboratories $L_1,L_2,L_3,L_4$. Every probe goes to exactly one lab, and the assignment must satisfy all three rules:\\[\\text{(i) every lab receives at least one probe (no lab idle);}\\]\\[\\text{(ii) the flagship probe } P_1 \\text{ may not be sent to } L_1 \\text{ or } L_2 \\text{ (it needs the cryostats found only in } L_3,L_4\\text{); and}\\]\\[\\text{(iii) exactly one of the four labs receives an even number of probes.}\\]How many assignments are possible? (Before counting, settle whether rules (i) and (iii) can even hold together for these numbers.)",
-    "answer": "\\[\\boxed{2940}\\]",
-    "trap": "The seductive error is to never test rule (iii) against rule (i) for consistency. With all four labs nonempty and exactly one holding an even count, the other three hold odd counts; an odd $+$ odd $+$ odd $+$ even sum is odd, so a valid configuration can exist only when the total number of probes is odd. Here $7$ is odd, so the count is positive \\,---\\, but a student who treats the parity clause as harmless decoration will happily run the same machine on, say, $8$ probes into $4$ labs (or $7$ probes into $3$ labs) and report a large number, when the true answer there is exactly $0$ because the parities cannot be reconciled. The parity clause is a feasibility gate, not a cosmetic filter. A second, finer slip: because rule (i) forbids empty labs, the lone even lab must hold an even number that is at least $2$ \\,---\\, a careless reader who lets the even box hold a count of $0$ silently re-admits non-onto assignments and inflates the total (one gets $4032$ instead of $2940$). And a third: forgetting rule (ii) altogether and counting as if $P_1$ ranged over all four labs doubles the relevant labellings and yields $5880$. Each mistake is a missed structural constraint, not an arithmetic slip.",
+    "statement": "$5$ married couples — ten people in all — are to be seated around a single round table. Seatings are regarded as identical when one is obtained from another by a rotation of the whole table. The host insists that every husband sit immediately next to his own wife. In how many distinct ways can the ten people be seated?",
+    "answer": " $\\boxed{768}$ ",
+    "trap": "A very common error is to glue each couple into one block, get  $5$  blocks, and write  $5!\\cdot 2^5 = 32 \\cdot 32 = 3840$  by treating the  $5$  blocks as if they sat in a row. Around a round table the blocks themselves form a circular arrangement, so the count of block orderings is  $(5-1)! = 4! = 24$ , not  $5! = 120$ . The honest answer is  $4!\\cdot 2^5 = 768$ , not  $3840$ .",
     "solutions": [
       {
-        "name": "Casework on box sizes, then a clean fraction for the flagship restriction",
+        "name": "Glue each couple, then seat the blocks in a circle",
         "steps": [
-          "Feasibility gate first. The four labs are nonempty with exactly one even count, so three counts are odd and one is even; their sum has the parity of $\\text{odd}+\\text{odd}+\\text{odd}+\\text{even}=\\text{odd}$. The total $7$ is odd, so the configuration is achievable (for an even total of probes, or for only $3$ labs, the parities cannot be reconciled and the answer would be $0$).",
-          "Enumerate the unordered size-multisets of four positive integers summing to $7$ with exactly one even part. Each part is at least $1$ (rule (i)) and the even part is therefore at least $2$, so the only possibilities are $\\{4,1,1,1\\}$ and $\\{3,2,1,1\\}$.",
-          "For a fixed ordered size-vector $(c_1,c_2,c_3,c_4)$, the number of labellings of the $7$ distinct probes is the multinomial $\\dfrac{7!}{c_1!\\,c_2!\\,c_3!\\,c_4!}$. Rule (ii) is imposed by symmetry: among these labellings the flagship $P_1$ falls into each of the $7$ probe-slots equally often, so the fraction landing in $L_3$ or $L_4$ is $\\dfrac{c_3+c_4}{7}$. Hence the admissible count for that vector is $\\dfrac{c_3+c_4}{7}\\cdot\\dfrac{7!}{c_1!\\,c_2!\\,c_3!\\,c_4!}$.",
-          "Multiset $\\{4,1,1,1\\}$: every ordered vector has multinomial $\\tfrac{7!}{4!}=210$. The four placements of the size-$4$ lab give $c_3+c_4\\in\\{2,\\,2,\\,5,\\,5\\}$ (it is $2$ when the big lab is $L_1$ or $L_2$, and $5$ when it is $L_3$ or $L_4$). Admissible total $=\\dfrac{210}{7}\\,(2+2+5+5)=30\\cdot 14=420$.",
-          "Multiset $\\{3,2,1,1\\}$: every ordered vector has multinomial $\\tfrac{7!}{3!\\,2!}=420$, and there are $4\\cdot 3=12$ ordered vectors. Summing $c_3+c_4$ over all $12$ vectors gives $42$, so the admissible total $=\\dfrac{420}{7}\\cdot 42=60\\cdot 42=2520$.",
-          "Adding the two multisets, the number of admissible assignments is $420+2520=\\boxed{2940}$."
+          "Tie each husband to his wife so that the couple becomes a single inseparable block. There are now  $5$  blocks to place around the round table.",
+          "Seating  $5$  distinct blocks around a circle (rotations identified) can be done in  $(5-1)! = 4! = 24$  ways.",
+          "Inside each block the husband and wife can sit in  $2$  orders (husband-left or wife-left), independently for all  $5$  blocks, giving a factor  $2^5 = 32$ .",
+          "By the product rule the total is  $4!\\cdot 2^5 = 24 \\cdot 32 = \\boxed{768}$ ."
         ]
       },
       {
-        "name": "Sign (parity) sieve fused with inclusion-exclusion for onto",
+        "name": "Fix one person to kill the rotation",
         "steps": [
-          "Encode parity by signs. For a sign vector $s=(s_1,s_2,s_3,s_4)\\in\\{+1,-1\\}^4$ let $F(s)=\\big(s_3+s_4\\big)\\,\\big(s_1+s_2+s_3+s_4\\big)^{6}$: the first factor is the flagship $P_1$ summed over its two allowed labs $L_3,L_4$, and the sixth power handles the other six probes, each free among all four labs. Expanding $F(s)$, the coefficient bookkeeping is exactly such that for a fixed parity demand the number of assignments equals $\\tfrac{1}{2^4}\\sum_{s}\\Big(\\prod_{b\\in\\mathcal O}s_b\\Big)F(s)$, where $\\mathcal O$ is the set of labs required to hold an odd count.",
-          "Pick the even lab. Choose which lab $e$ is the even one ($4$ choices); then $\\mathcal O$ is the other three labs, each required odd (hence automatically nonempty). The even lab must be nonempty and even, i.e. count $\\ge 2$.",
-          "Enforce onto by one inclusion-exclusion step on $e$. With the three other labs forced odd (so nonempty), the only emptiness to subtract is $e$ being empty. Thus the contribution of even-lab $e$ is $\\big[\\#(e\\text{ even},\\ \\text{others odd})\\big]-\\big[\\#(e\\text{ empty},\\ \\text{others odd})\\big]$, the second term computed by deleting $e$ from every allowed set in $F$.",
-          "Evaluate the sign sums. Carrying out $\\tfrac{1}{2^4}\\sum_s(\\cdots)$ for each of the four choices of $e$ and subtracting the $e$-empty term gives, after summation over $e$, the total $2940$; each individual sign sum is an integer because the bracket $(s_1{+}s_2{+}s_3{+}s_4)^6$ contributes $4^6,0,$ or intermediate values that the $\\tfrac{1}{2^4}$ normalises exactly.",
-          "Hence the number of admissible assignments is $\\boxed{2940}$, in agreement with the size-vector casework."
-        ]
-      },
-      {
-        "name": "Exponential generating functions with a parity-split per lab",
-        "steps": [
-          "Split each lab's occupancy by parity using $\\cosh x=\\sum_{m\\ge 0}\\tfrac{x^{2m}}{(2m)!}$ (even counts) and $\\sinh x=\\sum_{m\\ge 0}\\tfrac{x^{2m+1}}{(2m+1)!}$ (odd counts). A nonempty even lab uses $\\cosh x-1$ (drop the empty term); a nonempty odd lab uses $\\sinh x$ (already $\\ge 1$).",
-          "Handle the flagship separately by casework on its lab $\\sigma\\in\\{L_3,L_4\\}$ and on which lab $e$ is the even one. Once $P_1$ occupies lab $\\sigma$, that lab is nonempty, and its total parity is (parity of the remaining six-probe count there) shifted by $1$. So in the EGF for the remaining six probes, lab $\\sigma$ uses $\\sinh x$ when its total must be even and $\\cosh x$ when its total must be odd; a lab without the flagship uses $\\cosh x-1$ if it must be even and $\\sinh x$ if it must be odd.",
-          "For each pair $(e,\\sigma)$ form the product of the four chosen factors and read off $6!\\,[x^{6}]$ of the product \\,---\\, the number of ways to deal the six ordinary probes. Sum over the $4\\times 2=8$ pairs $(e,\\sigma)$.",
-          "Carrying out the extraction (e.g. by series expansion) and summing the eight cases gives $2940$.",
-          "Therefore the count is $\\boxed{2940}$, matching both earlier methods."
+          "Pin husband  $H_1$  to a reference seat; this removes the rotational freedom so the remaining seats are now genuinely distinct positions.",
+          "His wife  $W_1$  must be on his immediate left or right:  $2$  choices. The couple now occupies a fixed pair of adjacent seats.",
+          "The other  $4$  couples, as  $4$  blocks, fill the remaining arc in  $4!$  orders, and each of those couples has  $2$  internal orders, giving  $4!\\cdot 2^4$ .",
+          "Total  $= 2 \\cdot 4!\\cdot 2^4 = 2 \\cdot 24 \\cdot 16 = \\boxed{768}$ ."
         ]
       }
     ],
-    "remark": "Insight: a parity clause on the cells of a surjection is never free decoration \\,---\\, it is a global constraint linked to the total by a single congruence. With $k$ nonempty labelled boxes and exactly one even cell, $k-1$ cells are odd, so the total satisfies $n\\equiv k-1\\pmod 2$; violate it and the count collapses to $0$ no matter how big the unconstrained answer looks. The clean way to weld 'exactly one even cell' onto an onto-count is the sign sieve $\\tfrac{1}{2^k}\\sum_s(\\prod_{\\mathcal O}s_b)F(s)$ (equivalently the $\\cosh/\\sinh$ EGF split), with inclusion-exclusion reserved only for the lone even cell that might otherwise be empty. The forbidden-assignment of the flagship then enters as a tidy multiplicative fraction $\\tfrac{c_3+c_4}{n}$ per size-vector. The factorisation $2940=420+2520$ \\,---\\, the size-$4$ even lab versus the size-$2$ even lab \\,---\\, is exactly the residue that survives once feasibility, non-emptiness, and the cryostat restriction are all respected."
+    "remark": "**Insight.** Gluing objects into blocks is the right first move, but the blocks then inherit the geometry of the original arrangement: in a row you would use  $5!$ , around a circle you must drop to  $(5-1)!$ . The  $\\div n$  for rotation is applied once, to the blocks — never to the people inside them."
+  },
+  {
+    "theme": "circular",
+    "themeLabel": "Circular Permutations",
+    "title": "Alternating, but One Couple Apart",
+    "difficulty": 5,
+    "task": "Count alternating, couple separated",
+    "tags": [
+      "circular permutation",
+      "alternating",
+      "complementary counting",
+      "couple non-adjacent"
+    ],
+    "statement": "Six men and six women are to be seated around a round table so that the genders strictly alternate. Among them is a particular married couple, a man  $M$  and his wife  $W$ . The arrangement must keep the genders alternating  $\\textbf{and}$  ensure that  $M$  and  $W$  do  $\\textbf{not}$  sit next to each other. Seatings that differ only by a rotation are identical. In how many distinct ways can the twelve be seated?",
+    "answer": " $\\boxed{57600}$ ",
+    "trap": "The total alternating count is  $(6-1)!\\cdot 6! = 86400$ . The trap is computing the 'couple-together' count to subtract: a woman has  $2$  neighbouring man-seats, so the wrong instinct is to treat  $W$  as having  $6$  adjacency choices. Correctly, fixing the men's circle ( $5!$ ),  $W$  may take either of the  $2$  seats beside  $M$ , and the other  $5$  women fill the rest in  $5!$ , giving  $5!\\cdot 2\\cdot 5! = 28800$ ; the answer is  $86400 - 28800 = 57600$ .",
+    "solutions": [
+      {
+        "name": "Alternating total minus couple-adjacent",
+        "steps": [
+          "Total alternating seatings: seat the  $6$  men circularly in  $(6-1)! = 5! = 120$  ways, then fill the  $6$  alternate gaps with the  $6$  women in  $6! = 720$  ways, giving  $120 \\cdot 720 = 86400$ .",
+          "Count those with  $M$  and  $W$  adjacent: with the men's circle fixed ( $5! = 120$ ), the wife  $W$  must sit in one of the  $2$  woman-seats flanking  $M$  ( $2$  ways), and the remaining  $5$  women fill the other  $5$  gaps in  $5! = 120$  ways:  $120\\cdot 2\\cdot 120 = 28800$ .",
+          "Subtract:  $86400 - 28800 = \\boxed{57600}$ ."
+        ]
+      },
+      {
+        "name": "Place the wife in a forbidden-free gap",
+        "steps": [
+          "Seat the  $6$  men circularly:  $(6-1)! = 5! = 120$  ways, creating  $6$  distinguishable woman-gaps; exactly  $2$  of these gaps are immediately beside  $M$ .",
+          "The wife  $W$  must avoid those  $2$  gaps, so she has  $6 - 2 = 4$  allowed gaps.",
+          "The remaining  $5$  women fill the remaining  $5$  gaps in  $5! = 120$  ways.",
+          "Total  $= 5!\\cdot 4\\cdot 5! = 120 \\cdot 4 \\cdot 120 = \\boxed{57600}$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Two structural conditions stack here: alternation pins which seats are men's and which are women's, and only then does the non-adjacency condition reduce to 'the wife dodges  $2$  of  $6$  gaps'. Resolve the coarse structure first; the fine constraint becomes a simple subtraction."
+  },
+  {
+    "theme": "circular",
+    "themeLabel": "Circular Permutations",
+    "title": "Six Men, Six Women, Alternating",
+    "difficulty": 5,
+    "task": "Count alternating seatings",
+    "tags": [
+      "circular permutation",
+      "alternating",
+      "gap method",
+      "men and women"
+    ],
+    "statement": "$6$ men and six women are to be seated around a round table so that the genders strictly alternate (no two people of the same gender sit next to each other). Seatings that differ only by a rotation of the whole table are counted as the same. In how many distinct ways can this be done?",
+    "answer": " $\\boxed{86400}$ ",
+    "trap": "A frequent slip is to seat the men in  $(6-1)!$  ways and then also seat the women in  $(6-1)!$  ways, giving  $(5!)^2 = 14400$ . But only the first group founds the circle; once the men's circle is fixed, the six women fill six labelled gaps, and labelled positions are filled in  $6!$  ways, not  $(6-1)!$ . The correct value is  $5!\\cdot 6! = 86400$ .",
+    "solutions": [
+      {
+        "name": "Seat one gender circularly, fill the gaps with the other",
+        "steps": [
+          "Seat the  $6$  men around the table first; as a circular arrangement this can be done in  $(6-1)! = 5! = 120$  ways. This fixes the rotational reference.",
+          "Between consecutive men there are exactly  $6$  gaps, and these gaps are now distinguishable positions because the men's circle is already fixed.",
+          "The  $6$  women must occupy these  $6$  gaps to keep the genders alternating; filling  $6$  distinct positions with  $6$  distinct women gives  $6! = 720$  ways.",
+          "Total  $= 5!\\cdot 6! = 120 \\cdot 720 = \\boxed{86400}$ ."
+        ]
+      },
+      {
+        "name": "Fix one man, then alternate around",
+        "steps": [
+          "Pin one man to a reference seat to remove rotations; the remaining  $11$  seats are now distinct, and seats alternate man-seat / woman-seat around the circle.",
+          "The other  $5$  men fill the remaining  $5$  man-seats in  $5! = 120$  ways.",
+          "The  $6$  women fill the  $6$  woman-seats in  $6! = 720$  ways.",
+          "Total  $= 5!\\cdot 6! = 120 \\cdot 720 = \\boxed{86400}$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Exactly one group is allowed the circular discount  $(n-1)!$  — the one that builds the ring. Everyone seated afterward is dropping into positions that are already pinned down by that ring, so they are counted with a plain factorial."
+  },
+  {
+    "theme": "circular",
+    "themeLabel": "Circular Permutations",
+    "title": "Three Girls, No Two Together",
+    "difficulty": 5,
+    "task": "Count seatings, girls separated",
+    "tags": [
+      "circular permutation",
+      "gap method",
+      "non-adjacent group",
+      "arrangement in gaps"
+    ],
+    "statement": "$5$ boys and three girls are to be seated around a round table so that no two girls sit next to each other. Seatings differing only by a rotation of the whole table are regarded as identical. In how many distinct ways can the eight children be seated?",
+    "answer": " $\\boxed{1440}$ ",
+    "trap": "After seating the boys in  $(5-1)! = 24$  ways and finding  $5$  gaps, a very common error is to  $\\textit{choose}$   $3$  gaps with  $\\binom{5}{3} = 10$  and stop, forgetting the girls are distinct and must be  $\\textit{ordered}$  into those gaps. Since one girl goes per gap, the correct count is the ordered selection  $P(5,3) = 5\\cdot4\\cdot3 = 60$ , giving  $24\\cdot 60 = 1440$ , not  $24\\cdot 10 = 240$ .",
+    "solutions": [
+      {
+        "name": "Seat boys circularly, drop girls into separate gaps",
+        "steps": [
+          "Seat the  $5$  boys around the table:  $(5-1)! = 4! = 24$  ways, which fixes the circle.",
+          "These  $5$  boys create  $5$  gaps between consecutive boys; to keep girls apart, at most one girl may go in any gap.",
+          "Place the  $3$  distinct girls into  $3$  of the  $5$  distinguishable gaps, one girl per gap: this is an ordered placement,  $P(5,3) = 5\\cdot 4\\cdot 3 = 60$  ways.",
+          "Total  $= 4!\\cdot P(5,3) = 24 \\cdot 60 = \\boxed{1440}$ ."
+        ]
+      },
+      {
+        "name": "Choose gaps, then arrange the girls",
+        "steps": [
+          "Seat the boys circularly in  $(5-1)! = 24$  ways, producing  $5$  gaps.",
+          "Choose which  $3$  of the  $5$  gaps will hold a girl:  $\\binom{5}{3} = 10$  ways (no gap holds two, so no two girls are adjacent).",
+          "Arrange the  $3$  distinct girls in the  $3$  chosen gaps:  $3! = 6$  ways.",
+          "Total  $= 24 \\cdot 10 \\cdot 6 = \\boxed{1440}$ , agreeing with  $P(5,3) = \\binom{5}{3}\\cdot 3!$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The gap method enforces 'no two together' automatically by capping each gap at one occupant. The only trap is remembering that distinct people in distinct gaps are an ordered placement:  $\\binom{5}{3}\\cdot 3! = P(5,3)$ , never just  $\\binom{5}{3}$ ."
+  },
+  {
+    "theme": "circular",
+    "themeLabel": "Circular Permutations",
+    "title": "Exactly One Seat Between Them",
+    "difficulty": 5,
+    "task": "Count seatings, gap of one",
+    "tags": [
+      "circular permutation",
+      "fixed reference",
+      "exact distance",
+      "two directions"
+    ],
+    "statement": "Eight distinct people are to be seated around a round table, two seatings being identical if one is a rotation of the other. $2$ of them, Sara and Tarun, want exactly one other person seated between them (that is, there is precisely one person on the shorter arc separating them). In how many distinct ways can the eight be seated?",
+    "answer": " $\\boxed{1440}$ ",
+    "trap": "Fixing Sara and saying 'Tarun is two seats away, so  $2$  positions; the seat between is filled by  $6$  people; the rest in  $5!$ ' is correct and gives  $2\\cdot 6\\cdot 120 = 1440$ . The trap is forgetting the clockwise/anticlockwise pair: writing only  $1$  position for Tarun yields  $720$ . Both directions are genuinely different once Sara is pinned, so the factor is  $2$ , not  $1$ .",
+    "solutions": [
+      {
+        "name": "Fix Sara, place Tarun two seats away",
+        "steps": [
+          "Anchor Sara at a reference seat to remove rotations; the remaining  $7$  seats are now distinct labelled positions.",
+          "Tarun must sit so that exactly one seat lies between him and Sara: that means two seats clockwise or two seats anticlockwise —  $2$  choices for Tarun.",
+          "The single seat between Sara and Tarun is filled by any one of the other  $6$  people:  $6$  ways.",
+          "The remaining  $5$  people fill the remaining  $5$  seats in  $5! = 120$  ways. Total  $= 2\\cdot 6\\cdot 5! = 2\\cdot 6\\cdot 120 = \\boxed{1440}$ ."
+        ]
+      },
+      {
+        "name": "Build the triple-block, then seat the rest",
+        "steps": [
+          "Form the ordered triple Sara - X - Tarun where  $X$  is the person in between; choose  $X$  from the other  $6$  people ( $6$  ways) and note the block can read either Sara-X-Tarun or Tarun-X-Sara ( $2$  ways).",
+          "This fixed triple is now one block; together with the remaining  $5$  people it makes  $6$  units to seat around the circle:  $(6-1)! = 5! = 120$  ways.",
+          "Total  $= 6\\cdot 2\\cdot 5! = 12\\cdot 120 = \\boxed{1440}$ , matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Insight.** 'Exactly one between' is a distance- $2$  condition, and on a circle distance  $2$  is reachable in two rotational senses. Pinning a reference person is what exposes both senses as distinct — the cleanest antidote to silently halving the count."
+  },
+  {
+    "theme": "circular",
+    "themeLabel": "Circular Permutations",
+    "title": "Three Speakers Kept Consecutive",
+    "difficulty": 5,
+    "task": "Count seatings, trio consecutive",
+    "tags": [
+      "circular permutation",
+      "block of three",
+      "consecutive group",
+      "internal order"
+    ],
+    "statement": "Ten distinct delegates are to be seated around a round table, two seatings being identical if one is a rotation of the other. $3$ particular delegates — the chair, the secretary, and the treasurer — must sit in three consecutive seats (in some order among themselves). In how many distinct ways can the ten be seated?",
+    "answer": " $\\boxed{30240}$ ",
+    "trap": "Gluing the three into one block gives  $8$  units; the trap is arranging them as  $8!$  (a row) instead of  $(8-1)! = 7!$  (a circle), or forgetting the  $3!$  internal orders of the trio. The block of  $8$  units goes around the circle in  $7! = 5040$  ways and the trio orders internally in  $3! = 6$  ways, so the answer is  $7!\\cdot 3! = 30240$ , not  $8!\\cdot 3!$  and not  $7!$  alone.",
+    "solutions": [
+      {
+        "name": "Block the trio, seat the units circularly",
+        "steps": [
+          "Tie the chair, secretary, and treasurer into one block so that they occupy three consecutive seats. With the other  $7$  delegates this gives  $8$  units.",
+          "Seat the  $8$  units around the round table:  $(8-1)! = 7! = 5040$  ways.",
+          "Inside the block the three officers can be ordered in  $3! = 6$  ways.",
+          "Total  $= 7!\\cdot 3! = 5040 \\cdot 6 = \\boxed{30240}$ ."
+        ]
+      },
+      {
+        "name": "Fix the chair, then grow the block",
+        "steps": [
+          "Pin the chair to a reference seat to remove rotations; the other  $9$  seats are now distinct positions.",
+          "The block of three must be consecutive and contain the chair, so the secretary and treasurer occupy the two seats forming a consecutive run with the chair; the run can sit as (chair at an end, two officers beside) in  $2$  end-orientations, and the two officers order in  $2!$  ways within — together the trio's internal orders relative to the fixed chair total  $3! = 6$ .",
+          "The remaining  $7$  delegates fill the remaining  $7$  seats in  $7! = 5040$  ways.",
+          "Total  $= 7!\\cdot 3! = 5040 \\cdot 6 = \\boxed{30240}$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A consecutive group of size  $k$  among  $n$  people around a circle contributes  $(n-k+1-1)!\\cdot k! = (n-k)!\\cdot k!$  once you realise the glued object leaves  $n-k+1$  units to arrange circularly. The discipline is: drop one factorial for the circle, restore the  $k!$  for the inside."
   },
   {
     "theme": "distributions",
     "themeLabel": "Distributions, Stars & Bars",
-    "title": "Identical Crates for Distinct Cargo",
+    "title": "Apples Among Four Baskets",
     "difficulty": 3,
-    "task": "Find the number of …",
+    "task": "Plain stars and bars.",
     "tags": [
-      "distinct-objects",
-      "identical-boxes",
-      "set-partitions",
-      "stirling-second"
+      "stars and bars",
+      "identical objects",
+      "non-negative solutions",
+      "distinct boxes"
     ],
-    "statement": "Six distinguishable parcels are to be split into exactly three non-empty groups, where the groups themselves carry no labels (only which parcels travel together matters). Find the number of such groupings.",
-    "answer": "$90$",
-    "trap": "Multiplying by $3!$ as if the three groups were distinguishable, giving $540$. The crates are IDENTICAL, so permuting the three groups produces the SAME grouping — this is a set-partition count $S(6,3)$, not a surjection.",
+    "statement": "In how many ways can  $10$  identical apples be placed into  $4$  distinct baskets, where a basket is allowed to be empty? Equivalently, find the number of non-negative integer solutions of  $x_1+x_2+x_3+x_4 = 10$ .",
+    "answer": " $\\boxed{286}$ ",
+    "trap": "Using the wrong number of bars: with  $4$  boxes you place  $4-1=3$  dividers, so the count is  $\\binom{10+3}{3}$ , not  $\\binom{10+4}{4}$  or  $\\binom{10+3}{4}$ . Mis-counting bars is the classic stars-and-bars error.",
     "solutions": [
       {
-        "name": "Stirling number via inclusion–exclusion",
+        "name": "Stars and bars (objects and dividers)",
         "steps": [
-          "Surjections from $6$ labelled parcels onto $3$ labelled boxes: $3^6-3\\cdot2^6+3\\cdot1^6=729-192+3=540$.",
-          "Since the boxes are identical, divide by $3!=6$: $S(6,3)=540/6=\\boxed{90}$."
+          "Represent the  $10$  apples as  $10$  stars in a row. To split them among  $4$  baskets, insert  $4-1 = 3$  identical bars among the stars.",
+          "Any arrangement of  $10$  stars and  $3$  bars is a valid distribution, so we choose positions for the  $3$  bars among  $10+3 = 13$  symbols.",
+          "The number of such arrangements is  $\\binom{13}{3}$ .",
+          " $\\binom{13}{3} = \\dfrac{13\\cdot 12\\cdot 11}{6} = \\boxed{286}$ ."
         ]
       },
       {
-        "name": "Direct count over block-size shapes",
+        "name": "Recursion on the number of baskets",
         "steps": [
-          "Positive partitions of $6$ into three parts: $(4,1,1),(3,2,1),(2,2,2)$.",
-          "Count labelled set partitions for each shape: $(4,1,1)\\to\\binom{6}{4}=15$; $(3,2,1)\\to\\binom{6}{3}\\binom{3}{2}=60$; $(2,2,2)\\to\\dfrac{1}{3!}\\binom{6}{2}\\binom{4}{2}\\binom{2}{2}=\\dfrac{90}{6}=15$.",
-          "Sum: $15+60+15=\\boxed{90}$."
-        ]
-      },
-      {
-        "name": "Stirling recurrence",
-        "steps": [
-          "Use $S(n,k)=k\\,S(n-1,k)+S(n-1,k-1)$ with $S(5,3)=25$, $S(5,2)=15$.",
-          "$S(6,3)=3\\cdot25+15=75+15=\\boxed{90}$."
+          "Let  $f(n,r)$  be the number of ways to put  $n$  identical apples into  $r$  distinct baskets. Conditioning on how many apples  $k$  the last basket gets ( $0\\le k\\le n$ ) gives  $f(n,r)=\\sum_{k=0}^{n} f(n-k,r-1)$ .",
+          "With one basket  $f(n,1)=1$ . Then  $f(n,2)=\\sum_{k=0}^{n}1 = n+1$ , and summing gives  $f(n,3)=\\binom{n+2}{2}$ ,  $f(n,4)=\\binom{n+3}{3}$  — the hockey-stick pattern.",
+          "Setting  $n=10,r=4$  yields  $f(10,4)=\\binom{13}{3}$ .",
+          "Hence the count is  $\\binom{13}{3}=\\boxed{286}$ ."
         ]
       }
     ],
-    "remark": "Identical-vs-distinct boxes is the whole game: divide a surjection count by $k!$ only when no block-size repetition would cause over-division — here the recurrence and the careful $(2,2,2)$ division both confirm $90$."
+    "remark": "**Insight.** The bar count is one fewer than the box count:  $r$  boxes need exactly  $r-1$  internal dividers. Anchor on that and the formula  $\\binom{n+r-1}{r-1}$  writes itself."
   },
   {
     "theme": "distributions",
     "themeLabel": "Distributions, Stars & Bars",
-    "title": "Nine in Distinct Pieces",
+    "title": "Every Friend Gets at Least Two",
     "difficulty": 4,
-    "task": "Determine",
+    "task": "Distribute with lower bounds.",
     "tags": [
-      "integer-partitions",
-      "distinct-parts",
-      "euler-theorem",
-      "odd-parts"
+      "stars and bars",
+      "lower bound",
+      "identical objects",
+      "substitution"
     ],
-    "statement": "Determine the number of ways to write $9$ as a sum of distinct positive integers, where the order of the summands does not matter. (For example, $9=4+3+2$ counts once; $9=2+3+4$ is the same.)",
-    "answer": "$8$",
-    "trap": "Conflating 'distinct parts' with 'distinct ordered compositions' and counting arrangements (which gives $27$), or accidentally including a repeated part like $9=3+3+3$ (which inflates the count toward the full partition number $30$). Only strictly increasing summand multisets are allowed; the count of these equals the number of partitions into ODD parts (Euler), a fact that makes a clean cross-check possible.",
+    "statement": "In how many ways can  $25$  identical chocolates be distributed among  $5$  distinct children so that every child receives at least  $2$  chocolates?",
+    "answer": " $\\boxed{3876}$ ",
+    "trap": "Subtracting only  $1$  per child (as in the bare 'no box empty' template) and getting  $\\binom{20+4}{4}$ , or subtracting the required  $2$  from the box-count rather than from the total — the floor of  $2$  removes  $2\\times 5 = 10$  chocolates up front.",
     "solutions": [
       {
-        "name": "Direct enumeration",
+        "name": "Lower-bound substitution then stars and bars",
         "steps": [
-          "One part: $9$.",
-          "Two distinct parts: $1+8,\\,2+7,\\,3+6,\\,4+5$ — four ways.",
-          "Three distinct parts: $1+2+6,\\,1+3+5,\\,2+3+4$ — three ways (e.g. $1+4+4$ is excluded as non-distinct).",
-          "No four-distinct-part sum reaches only $9$ since the smallest, $1+2+3+4=10>9$.",
-          "Total $1+4+3=\\boxed{8}$."
+          "Give each child their mandatory  $2$  first. Write  $x_i = y_i + 2$  with  $y_i\\ge 0$  the extra chocolates for child  $i$ .",
+          "The equation  $x_1+\\cdots+x_5=25$  becomes  $y_1+\\cdots+y_5 = 25 - 10 = 15$  with all  $y_i\\ge 0$ .",
+          "By stars and bars the number of non-negative solutions is  $\\binom{15+5-1}{5-1}=\\binom{19}{4}$ .",
+          " $\\binom{19}{4} = \\dfrac{19\\cdot 18\\cdot 17\\cdot 16}{24} = \\boxed{3876}$ ."
         ]
       },
       {
-        "name": "Euler's theorem (distinct = odd)",
+        "name": "Bars-among-stars placement",
         "steps": [
-          "By Euler's identity, the number of partitions of $n$ into distinct parts equals the number into odd parts.",
-          "Partitions of $9$ into odd parts: $9$; $7+1+1$; $5+3+1$; $5+1+1+1+1$; $3+3+3$; $3+3+1+1+1$; $3+1\\times6$; $1\\times9$ — eight of them.",
-          "Hence the answer is $\\boxed{8}$."
-        ]
-      },
-      {
-        "name": "Generating function",
-        "steps": [
-          "The distinct-parts count is $[x^9]\\prod_{k\\ge1}(1+x^k)$.",
-          "Expanding $(1+x)(1+x^2)\\cdots(1+x^9)$ up to $x^9$, the coefficient of $x^9$ is $8$.",
-          "Therefore the answer is $\\boxed{8}$."
+          "After handing out the compulsory  $10$  chocolates,  $15$  identical chocolates remain to be placed freely into  $5$  distinct children.",
+          "Lay the  $15$  chocolates in a row and insert  $4$  identical dividers among them to split into  $5$  groups; positions and chocolates total  $15+4=19$  symbols.",
+          "Choosing which  $4$  of the  $19$  symbol-slots are bars gives  $\\binom{19}{4}$  arrangements.",
+          "Hence the answer is  $\\binom{19}{4}=\\boxed{3876}$ ."
         ]
       }
     ],
-    "remark": "Euler's distinct-equals-odd identity turns a fiddly enumeration into a second independent count — a beautiful safety net for small $n$."
+    "remark": "**Insight.** A lower bound is paid in advance: prepay each child's minimum, and what remains is an unconstrained stars-and-bars problem on the leftover total — never on the leftover boxes."
   },
   {
     "theme": "distributions",
     "themeLabel": "Distributions, Stars & Bars",
-    "title": "The Ascending Ledger Under a Ceiling",
-    "difficulty": 5,
-    "task": "Count",
+    "title": "Strictly Increasing Digit Triples",
+    "difficulty": 4,
+    "task": "Recast as a distribution.",
     "tags": [
-      "weakly increasing",
-      "bounded partition",
-      "gaussian binomial",
-      "box partition",
-      "conjugation",
-      "coupled cap"
+      "stars and bars",
+      "gap transformation",
+      "combinations",
+      "monotone sequences"
     ],
-    "statement": "An auditor records five daily balances $x_1,x_2,x_3,x_4,x_5$ in a ledger. Each is a positive integer, the sequence never decreases, $1\\le x_1\\le x_2\\le x_3\\le x_4\\le x_5,$ no single day's balance may exceed the ceiling $7,$ so $x_5\\le 7,$ and the five balances total $20.$ How many such ledgers are possible? (Think hard about what the ordering does to the ceiling before you reach for a capped stars-and-bars count.)",
-    "answer": "\\[\\boxed{32}\\]",
-    "trap": "The fatal move is to treat the ceiling as a separable per-variable cap. A strong student shifts $y_i=x_i-1\\in[0,6]$ to absorb the positivity, notes the new sum is $15,$ and then counts integer solutions of $y_1+\\cdots+y_5=15$ with each $0\\le y_i\\le 6$ independently by the usual inclusion--exclusion caps \\,---\\, getting $\\binom{19}{4}-5\\binom{12}{4}+10\\binom{5}{4}=1451.$ This silently throws away the monotonicity $y_1\\le\\cdots\\le y_5$: once the $y_i$ are forced to be ordered, the ceiling binds only the largest, namely $y_5\\le 6,$ and the constraint is no longer a product of independent per-variable boxes \\,---\\, the cap and the ordering are coupled. (Counting ordered tuples with caps is the very same $1451,$ confirming the blunder is exactly the loss of ordering.) A milder trap is to forget the ceiling altogether and count partitions of $20$ into exactly five positive parts, $84.$ The honest object is the number of partitions of $15$ that fit inside a $5\\times 6$ box, a single Gaussian-binomial coefficient \\,---\\, never a separable cap sieve.",
+    "statement": "How many integer triples  $(a,b,c)$  satisfy  $1 \\le a < b < c \\le 9$ ? Show that this strict-inequality count is itself a disguised stars-and-bars distribution by counting the gaps between consecutive terms.",
+    "answer": " $\\boxed{84}$ ",
+    "trap": "Confusing the strict chain  $a<b<c$  with the weak chain  $a\\le b\\le c$ ; the strict case is plainly  $\\binom{9}{3}$ , but the point is to see the gap variables as a constrained distribution and not double-count by ordering the chosen values.",
     "solutions": [
       {
-        "name": "Shift to a box partition and read a Gaussian-binomial coefficient",
+        "name": "Direct selection",
         "steps": [
-          "Subtract the positivity floor with $y_i=x_i-1.$ The chain $1\\le x_1\\le\\cdots\\le x_5\\le 7$ becomes $0\\le y_1\\le y_2\\le y_3\\le y_4\\le y_5\\le 6,$ and the total drops to $y_1+\\cdots+y_5=20-5=15.$",
-          "Read the ordered $y$-sequence as a partition. The parts $y_5\\ge y_4\\ge\\cdots\\ge y_1\\ge 0$ (largest first) are a partition of $15$ into at most $5$ parts, each part at most $6.$ Equivalently, a Young diagram that fits inside a $5\\times 6$ rectangle. The ceiling has turned into the width bound and the count of terms into the height bound \\,---\\, both bounds live on the diagram, not on separate variables.",
-          "Such box partitions are counted by the Gaussian binomial coefficient: the number fitting in a $5\\times 6$ box with total $N$ is $[\\,q^{N}\\,]\\binom{11}{5}_{q},$ where $\\binom{11}{5}_{q}=\\dfrac{(1-q^{7})(1-q^{8})(1-q^{9})(1-q^{10})(1-q^{11})}{(1-q)(1-q^{2})(1-q^{3})(1-q^{4})(1-q^{5})}.$",
-          "We need the coefficient of $q^{15}.$ Since the box is $5\\times 6,$ the polynomial has degree $30$ and is symmetric about its centre $q^{15};$ the central coefficient is its peak. Extracting it gives $[\\,q^{15}\\,]\\binom{11}{5}_{q}=32.$",
-          "Hence the number of admissible ledgers is $\\boxed{32}.$"
+          "Any choice of  $3$  distinct values from  $\\{1,2,\\dots,9\\}$  can be arranged in exactly one increasing order, so strictly increasing triples correspond bijectively to  $3$ -element subsets.",
+          "The number of  $3$ -element subsets of a  $9$ -element set is  $\\binom{9}{3}$ .",
+          " $\\binom{9}{3} = \\dfrac{9\\cdot 8\\cdot 7}{6} = \\boxed{84}$ ."
         ]
       },
       {
-        "name": "Gaussian-Pascal recursion (peel off the largest part)",
+        "name": "Gap variables as a bounded distribution",
         "steps": [
-          "Work with $p(N)=$ number of partitions of $N$ in a $5\\times 6$ box; we want $p(15)$ after the shift of Method 1. Use the $q$-Pascal rule $\\binom{11}{5}_{q}=\\binom{10}{4}_{q}+q^{5}\\binom{10}{5}_{q},$ which splits the count by whether the partition has a full first column of height $5.$",
-          "Term one, $\\binom{10}{4}_{q}$ at $q^{15}$: partitions of $15$ that fit in a $4\\times 6$ box (fewer than $5$ rows used). Term two, $q^{5}\\binom{10}{5}_{q}$ at $q^{15}$: partitions with all $5$ rows nonempty; removing one cell from each row peels off $5,$ leaving a partition of $10$ in a $5\\times 5$ box, i.e. $[\\,q^{10}\\,]\\binom{10}{5}_{q}.$",
-          "Compute the two pieces: $[\\,q^{15}\\,]\\binom{10}{4}_{q}=14$ (partitions of $15$ in a $4\\times 6$ box) and $[\\,q^{10}\\,]\\binom{10}{5}_{q}=18$ (partitions of $10$ in a $5\\times 5$ box, the central self-complementary count).",
-          "Add the branches: $p(15)=14+18=32.$",
-          "Therefore the number of ledgers is $\\boxed{32}.$"
-        ]
-      },
-      {
-        "name": "Generating function with the genuine staircase coupling",
-        "steps": [
-          "Encode the ordered $y$-sequence by its consecutive gaps, the only correct way to linearise monotonicity: set $g_1=y_1\\ge 0$ and $g_i=y_i-y_{i-1}\\ge 0$ for $i=2,\\dots,5,$ with the single ceiling $y_5=g_1+g_2+g_3+g_4+g_5\\le 6.$ Then $y_1+\\cdots+y_5=5g_1+4g_2+3g_3+2g_4+1\\,g_5=15.$ Note the cap and the sum are two coupled linear forms in the $g_i$ \\,---\\, this is exactly why a separable cap sieve fails.",
-          "The count is the coefficient of $z^{15}$ in the generating function that also respects $g_1+\\cdots+g_5\\le 6.$ Introduce a ceiling marker $t$ for the running height: each gap $g_i$ contributes weight $z^{(6-i+1)g_i}t^{g_i},$ and we sum a partition that fits the box. Cleanly, this is the standard box generating function $\\displaystyle \\prod_{i=1}^{5}\\frac{1-z^{\\,6+i}}{1-z^{\\,i}}=\\binom{11}{5}_{z},$ the same Gaussian binomial, obtained by the product form rather than the ratio.",
-          "Expand the product and collect the $z^{15}$ term; by the symmetry $z^{N}\\leftrightarrow z^{30-N}$ of the $5\\times 6$ box, $z^{15}$ is the central, maximal coefficient.",
-          "Reading it off gives $[\\,z^{15}\\,]\\prod_{i=1}^{5}\\dfrac{1-z^{6+i}}{1-z^{i}}=32.$",
-          "Thus the number of valid ledgers is $\\boxed{32}.$"
+          "Define the four gaps  $g_0 = a-1$ ,  $g_1 = b-a$ ,  $g_2 = c-b$ ,  $g_3 = 9-c$ . From  $a<b<c$  we need  $g_1,g_2 \\ge 1$  and  $g_0,g_3\\ge 0$ , while  $g_0+g_1+g_2+g_3 = 8$ .",
+          "Pay the two mandatory units: set  $g_1 = h_1+1$ ,  $g_2 = h_2+1$  with  $h_1,h_2\\ge 0$ . The total drops to  $h_1+h_2+g_0+g_3 = 6$  with all four variables  $\\ge 0$ .",
+          "Stars and bars over  $4$  non-negative variables summing to  $6$  gives  $\\binom{6+3}{3}=\\binom{9}{3}$ .",
+          "Therefore the count is  $\\binom{9}{3}=\\boxed{84}$ , matching the direct subset count."
         ]
       }
     ],
-    "remark": "Insight: a global cap on a weakly increasing sequence is not the same beast as a per-variable cap on a free one. Ordering collapses the five separate ceilings into a single bound on the maximum, and the resulting object is a partition inside a rectangle \\,---\\, a Gaussian-binomial coefficient, not an inclusion--exclusion over independent boxes. The signature of the trap is that the wrong separable-cap answer $1451$ coincides exactly with the count of ordered capped tuples: dropping monotonicity and applying cap-IE are the identical error. Once you see ceiling $=$ width and number-of-terms $=$ height, the symmetry of the box ($N\\leftrightarrow 30-N$ here) tells you the asked total $15$ sits dead centre, so the answer is the peak coefficient, and the $q$-Pascal split $32=14+18$ shows precisely how the count divides between ledgers that do and do not use the full ceiling."
-  },
-  {
-    "theme": "distributions",
-    "themeLabel": "Distributions, Stars & Bars",
-    "title": "The Priority Bench Must Win",
-    "difficulty": 5,
-    "task": "Count",
-    "tags": [
-      "bounded stars-and-bars",
-      "order constraint",
-      "generating function",
-      "inclusion-exclusion",
-      "asymmetric caps"
-    ],
-    "statement": "A lab technician must split $12$ identical reagent vials among four distinct benches $A,B,C,D$, every vial placed and none left over. The benches have different rack capacities, so the counts are bounded by \\[0\\le A\\le 8,\\qquad 0\\le B\\le 5,\\qquad 0\\le C\\le 7,\\qquad 0\\le D\\le 4.\\] House policy also demands that the priority bench $A$ receive strictly more vials than bench $B$. In how many ways can the $12$ vials be distributed?",
-    "answer": "\\[\\boxed{120}\\]",
-    "trap": "The reflex is to count all distributions respecting the four caps (there are $200$), strip off the diagonal where $A=B$, and halve what remains \\,---\\, $\\dfrac{200-(A=B)}{2}$ \\,---\\, on the belief that 'strictly more' and 'strictly fewer' split the leftovers evenly. That symmetry only holds when boxes $A$ and $B$ carry the same cap. Here $A\\le 8$ but $B\\le 5$, so $A$ can run higher than $B$ ever can, and the cases $A>B$ and $A<B$ are genuinely lopsided: there are $120$ of the former but only $61$ of the latter. The fatal symptom is that the diagonal count is $A=B$ equal to $19$, and $\\dfrac{200-19}{2}=90.5$ is not even an integer \\,---\\, a halving that cannot be right. A second, subtler slip is reading 'strictly more' as $A\\ge B$ and quietly absorbing the $19$ ties, reporting $139$. The missed structure is that unequal caps destroy the $A\\leftrightarrow B$ reflection symmetry that the naive halving silently assumes.",
-    "solutions": [
-      {
-        "name": "Strict order absorbed by a shift, then bounded stars-and-bars",
-        "steps": [
-          "Encode 'strictly more' once and for all by the substitution $A=B+1+a'$ with $a'\\ge 0$: this is a bijection between integer solutions with $A>B$ and nonnegative $(a',B,C,D)$. The cap $A\\le 8$ becomes $a'\\le 7-B$, and $A\\ge 0$ is automatic. The total $A+B+C+D=12$ turns into $a'+2B+C+D=11$ with $0\\le a'\\le 7-B,\\ 0\\le B\\le 5,\\ 0\\le C\\le 7,\\ 0\\le D\\le 4$.",
-          "Fix $B=b$ and count the triples $(a',C,D)$ solving $a'+C+D=11-2b$ under the caps $a'\\le 7-b,\\ C\\le 7,\\ D\\le 4$. Each is an ordinary capped stars-and-bars count, handled by the inclusion-exclusion formula $\\sum_{S}(-1)^{|S|}\\binom{(s-\\sum_{i\\in S}(c_i+1))+2}{2}$ over subsets $S$ of violated caps, where $s=11-2b$.",
-          "Run $b=0,1,2,3,4,5$ in turn. The capped counts come out to $30,\\,31,\\,27,\\,19,\\,10,\\,3$ respectively (for $b\\ge 6$ the target $11-2b<0$ contributes nothing).",
-          "Summing over $b$ gives $30+31+27+19+10+3=\\boxed{120}$."
-        ]
-      },
-      {
-        "name": "Generating-function product with an order extraction",
-        "steps": [
-          "Give each bench its own capped factor: $A\\mapsto 1+x+\\dots+x^{8}$, $B\\mapsto 1+\\dots+x^{5}$, $C\\mapsto 1+\\dots+x^{7}$, $D\\mapsto 1+\\dots+x^{4}$. The coefficient of $x^{12}$ in the full product $\\prod(\\text{box factors})$ counts all cap-respecting distributions and equals $200$; this is the entire 'order-free' population in one stroke.",
-          "To impose $A>B$, keep the $A$ and $B$ exponents visible by writing their joint generating function as $\\sum_{a=0}^{8}\\sum_{b=0}^{5}[\\,a>b\\,]\\,x^{a+b}$, and multiply by the plain factors for $C$ and $D$. The coefficient of $x^{12}$ in this order-restricted product is exactly the wanted count.",
-          "Equivalently, partition the $200$ by the sign of $A-B$. The diagonal generating function $\\sum_{k=0}^{5}x^{2k}$ (times the $C,D$ factors) contributes $[x^{12}]=19$ to the case $A=B$, and the reversed restriction $\\sum_{a<b}x^{a+b}$ contributes $61$ to $A<B$. Hence $A>B$ accounts for $200-19-61=120$.",
-          "Reading the coefficient of $x^{12}$ in the order-restricted product therefore gives $\\boxed{120}$."
-        ]
-      },
-      {
-        "name": "Honest asymmetric reflection: total minus ties minus the reverse",
-        "steps": [
-          "Total cap-respecting distributions: count $A+B+C+D=12$ with $A\\le 8,B\\le 5,C\\le 7,D\\le 4$ by inclusion-exclusion on the four upper bounds, $\\sum_{S}(-1)^{|S|}\\binom{12-\\sum_{i\\in S}(c_i+1)+3}{3}$. Only the empty set and the singletons keep the binomial argument nonnegative, and the arithmetic yields $200$.",
-          "Tie count $A=B$: set $A=B=k$ for $k=0,1,\\dots,5$ (capped by $\\min(8,5)=5$) and count $C+D=12-2k$ with $C\\le 7,D\\le 4$. These give $0,2,4,5,5,3$ for $k=0,\\dots,5$, summing to $19$.",
-          "Reverse count $A<B$: sum over $b=1,\\dots,5$ and $a=0,\\dots,b-1$ the capped count of $C+D=12-a-b$ with $C\\le 7,D\\le 4$; this totals $61$. Because $A$'s cap ($8$) exceeds $B$'s cap ($5$), this is not equal to the $A>B$ count, so no halving is legitimate.",
-          "Subtracting the ties and the reverse from the total leaves $A>B$: $200-19-61=\\boxed{120}$."
-        ]
-      }
-    ],
-    "remark": "Insight: an order constraint $A>B$ between two boxes is clean to enforce only when you respect the boxes' individual caps. The textbook move 'total minus diagonal, then halve' secretly invokes the involution that swaps the contents of $A$ and $B$; that involution is a symmetry of the count only if $A$ and $B$ share the same upper bound. With unequal caps the reflection is broken, the $A>B$ and $A<B$ populations are unequal ($120$ versus $61$), and the give-away is the non-integer $90.5$ that the naive halving produces. The robust techniques are the single shift $A=B+1+a'$ \\,---\\, which converts 'strictly greater' into an ordinary nonnegative variable and reduces everything to bounded stars-and-bars \\,---\\, or the generating-function product, where each box wears its own capped polynomial and the order condition is read off as a coefficient. Both sidestep the symmetry illusion entirely."
+    "remark": "**Insight.** Ordered selections with strict inequalities are the gaps of a stars-and-bars layout: the values become bars and the spaces between them become the boxes, so a counting identity for subsets falls out of a distribution argument."
   },
   {
     "theme": "distributions",
@@ -2080,148 +1733,294 @@ window.PROBLEMS = [
   {
     "theme": "distributions",
     "themeLabel": "Distributions, Stars & Bars",
-    "title": "At Most Two Apiece",
+    "title": "Boxes with a Capacity Ceiling",
     "difficulty": 5,
-    "task": "Count the award schemes for five distinct prizes to three contestants when no contestant may receive more than two prizes.",
+    "task": "Count bounded solutions.",
     "tags": [
-      "distinct-objects",
-      "distinct-boxes",
-      "upper-bound-per-box",
-      "inclusion-exclusion"
+      "stars and bars",
+      "upper bound",
+      "inclusion-exclusion",
+      "identical objects"
     ],
-    "statement": "Five distinct prizes are awarded to three distinct contestants so that no contestant receives more than two prizes (a contestant may receive none). Find the number of award schemes.",
-    "answer": "$90$",
-    "trap": "Modelling this as identical-prize stars-and-bars with caps, or as a single $\\binom{?}{?}$; the prizes are DISTINCT, so each prize independently chooses a contestant ($3^5$ total) and the cap is on how many distinct prizes a contestant collects. Treating the prizes as identical gives only the $3$ size-patterns of $(a,b,c)$ with $a+b+c=5$, $a,b,c\\le 2$ — namely the permutations of $(2,2,1)$ — which counts patterns, not labelled outcomes. The right correction is inclusion–exclusion on 'some contestant gets $\\ge 3$,' counting which DISTINCT prizes they get.",
+    "statement": "Find the number of solutions in non-negative integers  $(x_1,x_2,x_3,x_4)$  of  \\[ x_1+x_2+x_3+x_4 = 18, \\qquad 0 \\le x_i \\le 7 \\text{ for each } i. \\]  That is, distribute  $18$  identical balls into  $4$  distinct boxes so that no box holds more than  $7$  balls.",
+    "answer": " $\\boxed{246}$ ",
+    "trap": "Forgetting the cap and reporting the raw stars-and-bars count  $\\binom{18+3}{3}=\\binom{21}{3}=1330$ , or applying inclusion-exclusion with the wrong shift: a box exceeding the cap has at least  $8$ , so you must subtract  $8$  from the total, not  $7$ .",
     "solutions": [
       {
-        "name": "Inclusion–exclusion on over-allotment",
+        "name": "Inclusion-exclusion on the upper bounds",
         "steps": [
-          "Total assignments of $5$ distinct prizes to $3$ contestants: each prize independently picks a contestant, so $3^5=243$.",
-          "Subtract schemes where a fixed contestant gets $\\ge 3$ prizes: choose that contestant's set of $j\\in\\{3,4,5\\}$ prizes and assign the remaining $5-j$ freely to the other two — $\\sum_{j=3}^{5}\\binom{5}{j}2^{5-j}=\\binom{5}{3}4+\\binom{5}{4}2+\\binom{5}{5}1=40+10+1=51$. Three choices of contestant give $-3\\cdot 51=-153$.",
-          "Two contestants each holding $\\ge 3$ prizes would require $\\ge 6>5$ prizes — impossible, so the second inclusion–exclusion term adds back $0$. Total: $243-153=\\boxed{90}$."
+          "Without the cap, the number of non-negative solutions of  $x_1+\\cdots+x_4=18$  is  $\\binom{18+3}{3}=\\binom{21}{3}=1330$ .",
+          "Let  $A_i$  be the bad event  $x_i\\ge 8$ . Substitute  $x_i=y_i+8$ : then  $y_i\\ge0$  and the sum becomes  $10$ , giving  $\\binom{10+3}{3}=\\binom{13}{3}=286$  for each single  $A_i$ . There are  $\\binom{4}{1}=4$  such terms.",
+          "For two boxes over the cap, subtract  $8$  twice: sum  $=2$ , giving  $\\binom{2+3}{3}=\\binom{5}{3}=10$  each, with  $\\binom{4}{2}=6$  pairs. Three or more over the cap need a sum  $\\ge 24>18$ , impossible.",
+          "By inclusion-exclusion the count is  $1330 - 4\\cdot 286 + 6\\cdot 10 = 1330-1144+60 = \\boxed{246}$ ."
         ]
       },
       {
-        "name": "Sum over allowed size patterns",
+        "name": "Complementary symmetry (count emptiness)",
         "steps": [
-          "With each contestant capped at $2$ and five prizes in all, the only contestant prize-count patterns are the permutations of $(2,2,1)$ — one contestant gets $1$ prize and two get $2$ each.",
-          "Choose which contestant gets the single prize: $3$ ways; pick that prize: $\\binom{5}{1}=5$; split the remaining $4$ distinct prizes into two labelled pairs for the other two contestants: $\\binom{4}{2}=6$ (the second pair is then forced).",
-          "$3\\cdot 5\\cdot 6=\\boxed{90}$."
-        ]
-      },
-      {
-        "name": "Exponential generating function",
-        "steps": [
-          "Each contestant accepts $0,1,$ or $2$ distinct prizes, so the per-contestant EGF is $1+x+\\dfrac{x^2}{2!}$, the cap truncating the series at degree $2$.",
-          "The count is $5!\\,[x^5]\\left(1+x+\\dfrac{x^2}{2}\\right)^3$.",
-          "Expanding, the coefficient of $x^5$ is $\\dfrac{3}{4}$, and $5!\\cdot\\dfrac34=120\\cdot\\dfrac34=\\boxed{90}$."
+          "Set  $z_i = 7 - x_i$ . Then  $0\\le z_i\\le 7$  and  $z_1+z_2+z_3+z_4 = 28-18 = 10$ .",
+          "So the count equals the number of non-negative solutions of a sum  $10$  with each  $z_i\\le 7$  — the same problem with a smaller total, confirming the symmetry of the cap.",
+          "Apply inclusion-exclusion: total  $\\binom{13}{3}=286$ ; subtract overflows ( $z_i\\ge8$  leaves sum  $2$ ):  $\\binom{5}{3}=10$  each,  $\\binom{4}{1}=4$  terms. Two overflows need sum  $\\ge16>10$ , impossible.",
+          "Thus  $286 - 4\\cdot 10 = 286-40 = \\boxed{246}$ , matching the direct computation."
         ]
       }
     ],
-    "remark": "Per-box caps on DISTINCT objects are handled by exponential generating functions, where $1+x+x^2/2!$ truncates the per-box series exactly at the cap; reading the same $x^5$ extraction combinatorially recovers the single admissible size-pattern $(2,2,1)$. The identical-object stars-and-bars count would only enumerate those size patterns ($3$ of them), missing the factor that distinguishes WHICH prizes each contestant receives."
+    "remark": "**Insight.** An upper bound is just a lower bound seen from the other side: replacing  $x_i$  by  $7-x_i$  reflects the whole distribution, and the smaller of the two totals ( $18$  vs  $10$ ) is the cheaper inclusion-exclusion to run."
   },
   {
     "theme": "distributions",
     "themeLabel": "Distributions, Stars & Bars",
-    "title": "Nine Samples, Five Centrifuges, None Idle, None Over Three",
+    "title": "Onto Functions from Six to Three",
     "difficulty": 5,
-    "task": "Count",
+    "task": "Count surjections.",
     "tags": [
-      "bounded surjection",
-      "double inclusion-exclusion",
-      "capacity cap",
-      "onto map",
-      "exponential generating function",
-      "size-multiset casework"
+      "distinct objects",
+      "surjective functions",
+      "inclusion-exclusion",
+      "no box empty"
     ],
-    "statement": "A lab technician must load $9$ distinct DNA samples $S_1,\\dots,S_9$ into $5$ distinct centrifuges $C_1,\\dots,C_5$. Each sample goes into exactly one centrifuge, and a valid loading must satisfy both of the following at once: \\[\\text{(i) every centrifuge runs, i.e. receives at least one sample (no idle machine); and}\\]\\[\\text{(ii) no centrifuge holds more than } 3 \\text{ samples (the rotor cap).}\\] In how many ways can the $9$ samples be loaded? (Resist the urge to handle the two rules one after the other on separate copies of the count \\,---\\, decide first whether the no-idle correction and the over-cap correction can be applied independently.)",
-    "answer": "\\[\\boxed{667800}\\]",
-    "trap": "The fatal move is to treat the two constraints as separable \\,---\\, to compute one count, then independently patch in the other \\,---\\, when in truth a single inclusion-exclusion must police emptiness and over-capacity together. Two flavours of this slip. (a) A student enforces only the cap and forgets the surjection: $9$ distinct samples into $5$ distinct centrifuges with each $\\le 3$ but allowing idle machines gives $1138200$; or enforces only the surjection and forgets the cap: the plain onto-count of $9$ samples onto $5$ centrifuges is $834120$. Either lone number is wrong. (b) The deeper trap: a student does run an inclusion-exclusion on emptiness over the capped count, but truncates it after the first correction \\,---\\, reasoning that ``with the cap of $3$, after fixing one empty machine the rest can't all be empty.'' That gives $1138200-\\binom{5}{1}\\cdot 97440=651000$. But the $j=2$ term is not zero: two centrifuges idle still leaves $9$ samples loadable into the other three at exactly $\\{3,3,3\\}$, contributing $+\\binom{5}{2}\\cdot 1680=+16800$, and only the $j\\ge 3$ terms vanish (three machines hold at most $3\\cdot 3=9$, but two more idle is then impossible). Stopping early loses exactly the configurations the cap makes barely survivable. Every error here is a missed structural interaction \\,---\\, the cap silently changes which inclusion-exclusion terms survive \\,---\\, not an arithmetic slip.",
+    "statement": "Six distinct prizes are to be awarded to three distinct contestants  $A,B,C$ , each prize going to exactly one contestant. In how many ways can this be done so that every contestant wins at least one prize (i.e. count the onto functions from a  $6$ -element set to a  $3$ -element set)?",
+    "answer": " $\\boxed{540}$ ",
+    "trap": "Treating the prizes as identical and using stars and bars, or forgetting inclusion-exclusion and reporting  $3^6$ . Distinct objects into distinct boxes with 'no box empty' is a surjection count, not a stars-and-bars count.",
     "solutions": [
       {
-        "name": "Size-multiset casework (compositions of 9 into 5 parts in [1,3])",
+        "name": "Inclusion-exclusion on empty contestants",
         "steps": [
-          "A loading is an assignment of the $9$ distinct samples to the $5$ distinct centrifuges; its shape is the vector of pile sizes $(c_1,\\dots,c_5)$. Both rules say exactly that each $c_i$ lies in $\\{1,2,3\\}$ and $\\sum c_i=9$. So first list the unordered size-multisets of five integers in $[1,3]$ summing to $9$.",
-          "Since five $1$'s sum to $5$, we need $4$ extra units spread with each part rising by at most $2$ (to stay $\\le 3$). The only multisets are $\\{3,3,1,1,1\\}$, $\\{3,2,2,1,1\\}$, and $\\{2,2,2,2,1\\}$. (No multiset uses a part $\\ge 4$, so the cap is automatically respected, and none uses a $0$, so every machine runs \\,---\\, the two rules are jointly encoded in this single list.)",
-          "For one fixed ordered size-vector $(c_1,\\dots,c_5)$ the distinct samples can be dealt into the labelled centrifuges in $\\dfrac{9!}{c_1!\\,c_2!\\,c_3!\\,c_4!\\,c_5!}$ ways. Summing over the labelled arrangements of each multiset, weight each multiset by how many ordered size-vectors it yields (i.e. $5!$ divided by the factorials of its repeated-part multiplicities).",
-          "Multiset $\\{3,3,1,1,1\\}$: ordered arrangements $\\dfrac{5!}{2!\\,3!}=10$, multinomial $\\dfrac{9!}{3!\\,3!}=10080$, contribution $10\\cdot 10080=100800$.",
-          "Multiset $\\{3,2,2,1,1\\}$: ordered arrangements $\\dfrac{5!}{1!\\,2!\\,2!}=30$, multinomial $\\dfrac{9!}{3!\\,2!\\,2!}=15120$, contribution $30\\cdot 15120=453600$. Multiset $\\{2,2,2,2,1\\}$: ordered arrangements $\\dfrac{5!}{4!}=5$, multinomial $\\dfrac{9!}{2!\\,2!\\,2!\\,2!}=22680$, contribution $5\\cdot 22680=113400$.",
-          "Adding the three disjoint shapes: $100800+453600+113400=\\boxed{667800}$."
+          "Each of the  $6$  distinct prizes independently goes to one of  $3$  contestants, giving  $3^6 = 729$  total assignments (some leave a contestant empty-handed).",
+          "Subtract assignments missing at least one named contestant: choosing which contestant to exclude in  $\\binom{3}{1}=3$  ways leaves  $2^6=64$  assignments each, total  $3\\cdot 64 = 192$ .",
+          "Add back assignments missing two contestants (all prizes to one person):  $\\binom{3}{2}=3$  ways,  $1^6=1$  each, total  $3$ .",
+          "Onto count  $= 3^6 - \\binom{3}{1}2^6 + \\binom{3}{2}1^6 = 729 - 192 + 3 = \\boxed{540}$ ."
         ]
       },
       {
-        "name": "Single double inclusion-exclusion on emptiness over the capped count",
+        "name": "Partition the prize-counts, then assign people",
         "steps": [
-          "Let $U(m)$ be the number of ways to load the $9$ distinct samples into $m$ distinct centrifuges with each centrifuge holding $\\le 3$ but allowed to be idle. This pre-imposes the cap; the surjection (no idle) is then enforced by inclusion-exclusion on which centrifuges are forced empty: the answer is $\\sum_{j=0}^{5}(-1)^j\\binom{5}{j}\\,U(5-j)$. Crucially this is one sieve \\,---\\, the cap already lives inside every $U$, so emptiness and capacity are handled jointly, not on separate copies.",
-          "Compute the capped counts by the coefficient $U(m)=9!\\,[x^9]\\big(1+x+\\tfrac{x^2}{2!}+\\tfrac{x^3}{3!}\\big)^{m}$ (each factor allows a pile of $0,1,2,3$). This gives $U(5)=1138200$, $U(4)=97440$, $U(3)=1680$, and $U(2)=0$ (two machines hold at most $6<9$ samples).",
-          "Because $U(2)=U(1)=U(0)=0$ for our $9$ samples, the sieve terminates after $j=2$: $\\binom{5}{0}U(5)-\\binom{5}{1}U(4)+\\binom{5}{2}U(3)=1138200-5\\cdot 97440+10\\cdot 1680$.",
-          "Evaluate: $1138200-487200+16800=667800$. Note the $j=2$ term $+16800$ is exactly the contribution the careless ``it must be zero'' truncation throws away.",
-          "Hence the number of valid loadings is $\\boxed{667800}$, matching the casework."
-        ]
-      },
-      {
-        "name": "Double inclusion-exclusion the other way: surjections minus over-capacity",
-        "steps": [
-          "Start from $A=$ the number of surjections of $9$ distinct samples onto $5$ distinct centrifuges (no-idle enforced, no cap yet): $A=\\sum_{j=0}^{5}(-1)^j\\binom{5}{j}(5-j)^9=5^9-5\\cdot 4^9+10\\cdot 3^9-10\\cdot 2^9+5\\cdot 1^9=834120.$",
-          "Now sieve away the over-capacity violations by inclusion-exclusion on the set $T$ of centrifuges forced to hold $\\ge 4$. For a fixed $T$ with $|T|=t$, count loadings where each centrifuge in $T$ has $\\ge 4$ samples and every centrifuge (in or out of $T$) has $\\ge 1$: by EGF this is $9!\\,[x^9]\\big(\\sum_{i\\ge 4}\\tfrac{x^i}{i!}\\big)^{t}\\big(\\sum_{i\\ge 1}\\tfrac{x^i}{i!}\\big)^{5-t}$. The two requirements ($\\ge 1$ everywhere, $\\ge 4$ on $T$) sit inside one extraction \\,---\\, again a single joint argument.",
-          "For $t=1$ this equals $33264$ per chosen over-full centrifuge, so $\\binom{5}{1}\\cdot 33264=166320$. For $t\\ge 2$ the count is $0$: two centrifuges each holding $\\ge 4$ use $\\ge 8$ samples, leaving $\\le 1$ sample to make the remaining three centrifuges all non-empty, which is impossible. So the cap-sieve also terminates early \\,---\\, but in the opposite direction from method 2.",
-          "Therefore the count is $A-\\binom{5}{1}\\cdot 33264 = 834120-166320 = 667800$.",
-          "Thus, by a sieve that removes over-capacity from the surjections, the answer is again $\\boxed{667800}$."
+          "Group sizes won by the three contestants must be a triple of positive integers summing to  $6$ ; up to who gets which, the patterns are  $\\{4,1,1\\}$ ,  $\\{3,2,1\\}$ ,  $\\{2,2,2\\}$ .",
+          "Pattern  $4,1,1$ : choose the  $4$ -prize set  $\\binom{6}{4}=15$ , the remaining two singletons split in  $\\binom{2}{1}=2$  ways, and assign the three sizes to  $A,B,C$  — since two sizes are equal,  $3!/2!=3$  orderings:  $15\\cdot 2\\cdot 3 = 90$ .",
+          "Pattern  $3,2,1$ :  $\\binom{6}{3}\\binom{3}{2}\\binom{1}{1}=20\\cdot3\\cdot1=60$  ways to form ordered groups, times  $3!=6$  assignments of distinct sizes:  $60\\cdot 6 = 360$ . Pattern  $2,2,2$ :  $\\frac{6!}{2!2!2!3!}=15$  unordered triples times  $3!=6$ : but the  $3!$  already assigns them, so directly  $\\frac{6!}{2!2!2!}\\cdot\\frac{1}{1}$  with all three sizes equal gives  $\\frac{720}{8}=90$ .",
+          "Total  $= 90 + 360 + 90 = \\boxed{540}$ , agreeing with inclusion-exclusion."
         ]
       }
     ],
-    "remark": "Insight: a bounded surjection is not a surjection-count times a cap-count, nor a cap-count with an after-the-fact no-idle patch \\,---\\, the two constraints share a single inclusion-exclusion, and the cap quietly rewrites which sieve terms survive. Read both directions together: the emptiness sieve $\\sum_j(-1)^j\\binom{5}{j}U(5-j)$ dies at $j=3$ because three machines of capacity $3$ already hold all $9$ samples (so two more cannot be idle), while the capacity sieve $A-\\sum_t(-1)^{t+1}\\binom{5}{t}(\\cdots)$ dies at $t=2$ because two over-full machines starve the other three. The same cap that keeps the emptiness term at $j=2$ alive ($+16800$, the configuration $\\{3,3,3\\}$ on three machines) is what kills the deeper terms \\,---\\, evidence that emptiness and capacity are one interlocked count. The clean cross-check is the size-multiset list $\\{3,3,1,1,1\\},\\{3,2,2,1,1\\},\\{2,2,2,2,1\\}$, whose contributions $100800+453600+113400=667800$ are exactly the compositions of $9$ into five parts of $[1,3]$ \\,---\\, the honest, indivisible object both sieves are computing."
+    "remark": "**Insight.** 'No box empty' wears two faces: for identical objects it is stars-and-bars with floors, but for distinct objects into distinct boxes it is a surjection — and surjections are counted by inclusion-exclusion on the empty boxes, never by  $\\binom{n+r-1}{r-1}$ ."
+  },
+  {
+    "theme": "distributions",
+    "themeLabel": "Distributions, Stars & Bars",
+    "title": "Mixed Floors and a Ceiling",
+    "difficulty": 5,
+    "task": "Combine bounds.",
+    "tags": [
+      "stars and bars",
+      "lower bound",
+      "upper bound",
+      "inclusion-exclusion"
+    ],
+    "statement": "Find the number of integer solutions of  \\[ x_1+x_2+x_3 = 20 \\]  subject to  $x_1 \\ge 1,\\ x_2 \\ge 2,\\ x_3 \\ge 3$  and additionally  $x_1 \\le 9$ . (A simultaneous floor on every variable and a ceiling on the first.)",
+    "answer": " $\\boxed{99}$ ",
+    "trap": "Handling the floors but forgetting that after the floor-shift the cap on  $x_1$  also shifts:  $x_1\\le 9$  becomes  $y_1\\le 8$ , so the overflow case starts at  $y_1\\ge 9$ , not  $y_1\\ge 10$ .",
+    "solutions": [
+      {
+        "name": "Floor-shift, then cap by inclusion-exclusion",
+        "steps": [
+          "Pay the floors:  $x_1=y_1+1$ ,  $x_2=y_2+2$ ,  $x_3=y_3+3$  with  $y_i\\ge 0$ . The equation becomes  $y_1+y_2+y_3 = 20-6 = 14$ , and the cap  $x_1\\le 9$  becomes  $y_1\\le 8$ .",
+          "Ignoring the cap, non-negative solutions number  $\\binom{14+2}{2}=\\binom{16}{2}=120$ .",
+          "Subtract the overflow  $y_1\\ge 9$ : put  $y_1 = w+9$ , giving  $w+y_2+y_3 = 5$ , so  $\\binom{5+2}{2}=\\binom{7}{2}=21$  bad solutions.",
+          "The count is  $120 - 21 = \\boxed{99}$ ."
+        ]
+      },
+      {
+        "name": "Sum over the capped variable",
+        "steps": [
+          "After the floor-shift we need  $y_1+y_2+y_3=14$  with  $0\\le y_1\\le 8$  and  $y_2,y_3\\ge 0$ .",
+          "Fix  $y_1 = t$  for each  $t = 0,1,\\dots,8$ . Then  $y_2+y_3 = 14-t \\ge 0$ , which has  $\\binom{(14-t)+1}{1}=15-t$  non-negative solutions.",
+          "Sum over the allowed values:  $\\sum_{t=0}^{8}(15-t) = 15+14+\\cdots+7$ , an arithmetic series of  $9$  terms with first term  $15$  and last term  $7$ .",
+          "Its value is  $\\dfrac{(15+7)\\cdot 9}{2} = 99$ , so the count is  $\\boxed{99}$ , matching the inclusion-exclusion total  $120-21$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Floors and ceilings compose: discharge every floor first by a single shift, and only then read off how the ceiling has moved — the cap travels with its variable, landing at  $y_1\\le 8$ , not  $y_1\\le 9$ ."
+  },
+  {
+    "theme": "distributions",
+    "themeLabel": "Distributions, Stars & Bars",
+    "title": "Distinct Books, No Empty Shelf",
+    "difficulty": 5,
+    "task": "Distinct objects, no box empty.",
+    "tags": [
+      "distinct objects",
+      "surjective functions",
+      "inclusion-exclusion",
+      "no box empty"
+    ],
+    "statement": "$7$ distinct books are to be placed onto four distinct shelves, where the order of books on a shelf does not matter (only which shelf each book sits on). In how many ways can this be done so that no shelf is left empty?",
+    "answer": " $\\boxed{8400}$ ",
+    "trap": "Reaching for stars and bars (which counts identical books) or for  $4!\\cdot$  something; with distinct books and 'no empty shelf' this is exactly the number of onto functions from  $7$  books to  $4$  shelves, computed by inclusion-exclusion.",
+    "solutions": [
+      {
+        "name": "Inclusion-exclusion on empty shelves",
+        "steps": [
+          "Each of the  $7$  distinct books chooses one of  $4$  shelves independently:  $4^7 = 16384$  placements in all (empties allowed).",
+          "Remove placements that leave a chosen shelf empty:  $\\binom{4}{1}3^7 = 4\\cdot 2187 = 8748$ .",
+          "Add back those leaving two shelves empty, then remove three empty:  $\\binom{4}{2}2^7 = 6\\cdot 128 = 768$  and  $\\binom{4}{3}1^7 = 4$ .",
+          "Onto count  $= 4^7 - \\binom{4}{1}3^7 + \\binom{4}{2}2^7 - \\binom{4}{3}1^7 = 16384 - 8748 + 768 - 4 = \\boxed{8400}$ ."
+        ]
+      },
+      {
+        "name": "Shelf occupancy patterns",
+        "steps": [
+          "The four shelf-counts are positive integers summing to  $7$ ; the unordered patterns are  $\\{4,1,1,1\\}$ ,  $\\{3,2,1,1\\}$ ,  $\\{2,2,2,1\\}$ .",
+          "Pattern  $4,1,1,1$ : ways to fill ordered shelves  $=\\dfrac{7!}{4!\\,1!\\,1!\\,1!}=210$  for one assignment of sizes to shelves, and the distinct sizes can be assigned to the  $4$  shelves in  $\\dfrac{4!}{3!}=4$  ways, giving  $210\\cdot 4 = 840$ .",
+          "Pattern  $3,2,1,1$ :  $\\dfrac{7!}{3!2!1!1!}=420$  times  $\\dfrac{4!}{2!}=12$  shelf-orderings  $= 5040$ . Pattern  $2,2,2,1$ :  $\\dfrac{7!}{2!2!2!1!}=630$  times  $\\dfrac{4!}{3!}=4$   $= 2520$ .",
+          "Total  $= 840 + 5040 + 2520 = \\boxed{8400}$ , agreeing with inclusion-exclusion."
+        ]
+      }
+    ],
+    "remark": "**Insight.** 'No empty shelf' with distinct objects is a surjection. The multinomial-pattern method and inclusion-exclusion are two bookkeeping routes to the same number; the patterns make the size structure visible, while inclusion-exclusion is mechanical."
+  },
+  {
+    "theme": "distributions",
+    "themeLabel": "Distributions, Stars & Bars",
+    "title": "Coins With a Per-Box Range",
+    "difficulty": 5,
+    "task": "Two-sided bounds throughout.",
+    "tags": [
+      "stars and bars",
+      "upper bound",
+      "lower bound",
+      "inclusion-exclusion"
+    ],
+    "statement": "Distribute  $15$  identical coins among  $3$  distinct boxes so that each box receives between  $2$  and  $6$  coins inclusive. Find the number of such distributions, i.e. integer solutions of  $x_1+x_2+x_3 = 15$  with  $2 \\le x_i \\le 6$  for every  $i$ .",
+    "answer": " $\\boxed{10}$ ",
+    "trap": "Applying the floor shift but then using the original cap: once  $x_i = y_i+2$ , the ceiling  $x_i\\le 6$  becomes  $y_i\\le 4$ , so the overflow event is  $y_i\\ge 5$ . Using  $y_i\\ge 7$  (from the un-shifted cap) badly over-counts.",
+    "solutions": [
+      {
+        "name": "Floor-shift then cap by inclusion-exclusion",
+        "steps": [
+          "Pay each floor:  $x_i = y_i + 2$ ,  $y_i\\ge 0$ . The sum becomes  $y_1+y_2+y_3 = 15-6 = 9$ , and each cap  $x_i\\le 6$  becomes  $y_i\\le 4$ .",
+          "Unrestricted non-negative solutions:  $\\binom{9+2}{2}=\\binom{11}{2}=55$ .",
+          "Subtract single overflows  $y_i\\ge 5$ : substitute  $y_i = w+5$ , leaving sum  $4$ , so  $\\binom{4+2}{2}=\\binom{6}{2}=15$  each, with  $\\binom{3}{1}=3$  terms:  $45$ . Two overflows need sum  $\\ge 10 > 9$ , impossible.",
+          "Count  $= 55 - 45 = \\boxed{10}$ ."
+        ]
+      },
+      {
+        "name": "Reflection to a smaller total",
+        "steps": [
+          "After the shift we need  $y_1+y_2+y_3 = 9$  with  $0\\le y_i\\le 4$ . Reflect via  $z_i = 4 - y_i$ , so  $0\\le z_i\\le 4$  and  $z_1+z_2+z_3 = 12-9 = 3$ .",
+          "With total only  $3$ , no variable can reach  $5$ , so the cap is automatically satisfied and plain stars and bars applies.",
+          "The number of non-negative solutions of  $z_1+z_2+z_3 = 3$  is  $\\binom{3+2}{2}=\\binom{5}{2}=10$ .",
+          "Hence the count is  $\\boxed{10}$ , confirming the inclusion-exclusion result."
+        ]
+      }
+    ],
+    "remark": "**Insight.** When both a floor and a ceiling act, shift away the floor first, then reflect to whichever total is smaller. Here the reflection drops the total to  $3$ , small enough that the cap never binds and the answer is a single binomial coefficient."
+  },
+  {
+    "theme": "distributions",
+    "themeLabel": "Distributions, Stars & Bars",
+    "title": "Two Kinds of Fruit at Once",
+    "difficulty": 5,
+    "task": "Distribute two independent supplies.",
+    "tags": [
+      "stars and bars",
+      "rule of product",
+      "identical objects",
+      "no box empty"
+    ],
+    "statement": "A grocer must split  $8$  identical apples and  $6$  identical oranges among  $3$  distinct shops so that every shop receives at least one apple (oranges may be zero for a shop). In how many ways can the two supplies be distributed?",
+    "answer": " $\\boxed{588}$ ",
+    "trap": "Pooling the  $8$  apples and  $6$  oranges into  $14$  objects and running one stars-and-bars; the two fruits are distinguishable kinds, so the distributions are independent and must be multiplied, with the apple constraint applied only to the apples.",
+    "solutions": [
+      {
+        "name": "Multiply two independent stars-and-bars counts",
+        "steps": [
+          "Apples (each shop  $\\ge 1$ ): set  $a_i = b_i + 1$ , so  $b_1+b_2+b_3 = 8-3 = 5$ . Non-negative solutions:  $\\binom{5+2}{2}=\\binom{7}{2}=21$ .",
+          "Oranges (no constraint):  $o_1+o_2+o_3 = 6$  in non-negative integers gives  $\\binom{6+2}{2}=\\binom{8}{2}=28$ .",
+          "Apple and orange distributions are chosen independently, so by the rule of product multiply the two counts.",
+          "Total  $= 21 \\cdot 28 = \\boxed{588}$ ."
+        ]
+      },
+      {
+        "name": "Condition on the apple distribution",
+        "steps": [
+          "List how apples can satisfy  $\\ge 1$  per shop: there are  $\\binom{7}{2}=21$  valid apple distributions (from the shifted equation  $b_1+b_2+b_3=5$ ).",
+          "Each fixed apple distribution leaves the oranges entirely free, and the number of orange distributions never depends on the apples chosen.",
+          "That orange count is  $\\binom{8}{2}=28$  in every case.",
+          "Summing  $28$  over the  $21$  apple distributions gives  $21\\cdot 28 = \\boxed{588}$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Distinguishable kinds of identical objects distribute independently. Treat each supply with its own stars-and-bars (and its own floors), then multiply — pooling unlike objects into one count is the cardinal error."
   },
   {
     "theme": "inclusionexclusion",
     "themeLabel": "Inclusion–Exclusion & Derangements",
-    "title": "The Cipher Wheel That Trusts No One and No Pair",
-    "difficulty": 5,
-    "task": "Count",
+    "title": "At Least One Returns Home",
+    "difficulty": 4,
+    "task": "Evaluate",
     "tags": [
       "derangement",
-      "double inclusion-exclusion",
-      "cycle type",
-      "exponential generating function",
-      "transposition sieve",
-      "subfactorial"
+      "probability",
+      "complement",
+      "inclusion-exclusion"
     ],
-    "statement": "A cryptographer wires up a permutation $\\sigma$ of the $9$ contacts $\\{1,2,\\dots,9\\}$ on a cipher wheel. To defeat both single-step and swap attacks she demands two things at once: \\[\\text{(i) no contact maps to itself, i.e. } \\sigma(k)\\neq k \\text{ for all } k \\text{ (no fixed point); and}\\]\\[\\text{(ii) no two contacts merely swap, i.e. there is no pair } \\{a,b\\} \\text{ with } \\sigma(a)=b,\\ \\sigma(b)=a \\text{ (no 2-cycle).}\\] In how many ways can she wire the wheel? Equivalently, count the permutations of $9$ symbols all of whose cycles have length at least $3$. (Before you sieve the swaps out of the derangements, decide carefully how many terms that sieve really has.)",
-    "answer": "\\[\\boxed{80864}\\]",
-    "trap": "The fatal move is to treat the swap-ban as a single subtraction on top of the derangement count. A strong student computes $D_9=133496$ (permutations with no fixed point), then reasons ``now remove those that contain a 2-cycle: choose the swapped pair in $\\binom{9}{2}=36$ ways and derange the remaining $7$,'' subtracting $\\binom{9}{2}D_7=36\\cdot 1854=66744$ to land at $133496-66744=66752$. This is wrong because a derangement of $9$ can contain more than one disjoint 2-cycle, so the events ``pair $P$ is a transposition'' are not mutually exclusive and a full inclusion--exclusion is mandatory \\,---\\, the sieve does not stop after one term. Forcing $j$ disjoint transpositions among the $9$ symbols can be done in $\\binom{9}{2j}\\tfrac{(2j)!}{2^j j!}$ ways with the rest deranged, giving the alternating sum $\\sum_{j\\ge 0}(-1)^j\\binom{9}{2j}\\tfrac{(2j)!}{2^j j!}D_{9-2j}=133496-66744+16632-2520+0=80864.$ The discarded higher terms ($+16632$ for two forced swaps, $-2520$ for three) are exactly the over- and under-counted multi-swap configurations; dropping them is a missed-case error in inclusion--exclusion, not arithmetic. A coarser trap forgets the fixed-point ban while sieving swaps and counts permutations with merely no 2-cycle ($220185$), or stops at the bare derangement count $133496$ \\,---\\, both ignore that the two prohibitions must be enforced together.",
+    "statement": "$7$ letters are stuffed at random into seven pre-addressed envelopes, one letter per envelope (a uniformly random permutation). Evaluate the probability that at least one letter lands in its correct envelope. Give the answer as a fully reduced fraction.",
+    "answer": "$\\boxed{\\dfrac{177}{280}}$",
+    "trap": "Adding the seven 'this letter is correct' probabilities to get $7\\cdot\\frac{1}{7}=1$, concluding certainty. Those events overlap, so the union probability is strictly less than the sum; you must inclusion–exclude (or take the derangement complement).",
     "solutions": [
       {
-        "name": "Exponential generating function over cycle type",
+        "name": "Complement through the derangement",
         "steps": [
-          "A permutation is an unordered set of disjoint cycles, so its exponential generating function is $\\exp\\!\\big(\\sum_{k\\ge 1}c_k\\,\\tfrac{x^k}{k}\\big)$ where $c_k=1$ if cycles of length $k$ are allowed and $0$ otherwise. Here we forbid lengths $1$ and $2$, so only $k\\ge 3$ survive: the cycle EGF is $C(x)=\\sum_{k\\ge 3}\\tfrac{x^k}{k}=-\\ln(1-x)-x-\\tfrac{x^2}{2}.$",
-          "Hence the EGF of admissible permutations is $F(x)=e^{C(x)}=\\dfrac{e^{-x-x^2/2}}{1-x},$ since $e^{-\\ln(1-x)}=\\tfrac{1}{1-x}.$ The factor $\\tfrac{1}{1-x}$ carries the (unrestricted) long cycles while $e^{-x-x^2/2}$ removes the length-$1$ and length-$2$ contributions \\,---\\, the two bans are enforced jointly inside one exponential, not one after the other.",
-          "Extract the coefficient: the answer is $9!\\,[x^9]\\,\\dfrac{e^{-x-x^2/2}}{1-x}.$ Writing $e^{-x-x^2/2}=\\sum_m b_m x^m$ and using $\\tfrac{1}{1-x}=\\sum x^r,$ we get $[x^9]F=\\sum_{m=0}^{9}b_m,$ a partial sum of the $b_m.$",
-          "Computing the series $e^{-x-x^2/2}=1-x+\\tfrac{x^3}{3}\\cdot(\\cdots)$ and multiplying by $\\tfrac{1}{1-x}$ yields $[x^9]F=\\dfrac{80864}{9!}.$ Multiplying back by $9!=362880$ gives $80864.$",
-          "Therefore the number of valid wirings is $\\boxed{80864}.$"
+          "$P(\\text{at least one correct}) = 1 - P(\\text{no letter correct}) = 1 - \\dfrac{D_7}{7!}$.",
+          "With $D_7 = 7!\\sum_{k=0}^{7}\\frac{(-1)^k}{k!}=1854$ and $7!=5040$, this is $1-\\dfrac{1854}{5040}=\\dfrac{3186}{5040}$.",
+          "Reduce by $18$: $\\dfrac{3186}{5040}=\\boxed{\\dfrac{177}{280}}$."
         ]
       },
       {
-        "name": "Double inclusion-exclusion: sieve swaps out of derangements",
+        "name": "Direct inclusion–exclusion on the union",
         "steps": [
-          "Start from the derangements of $9$ (no fixed point already imposed): $D_9=9!\\sum_{i=0}^{9}\\tfrac{(-1)^i}{i!}=133496.$ Among these we must delete every permutation that contains at least one 2-cycle, by inclusion--exclusion over which disjoint pairs are forced to be transpositions.",
-          "For a fixed set of $j$ disjoint pairs declared to be 2-cycles, the number of derangements of $9$ that realise (at least) those $j$ swaps is $D_{9-2j}$ (the remaining $9-2j$ symbols must themselves be deranged, since fixed points are still forbidden). The number of ways to choose $j$ disjoint unordered pairs from $9$ symbols is $\\binom{9}{2j}\\dfrac{(2j)!}{2^{j}\\,j!}.$ The crucial point is that this $j$ ranges up to $4,$ because a derangement of $9$ can pack several disjoint swaps \\,---\\, the sieve has many terms.",
-          "Inclusion--exclusion then gives $\\displaystyle\\sum_{j=0}^{4}(-1)^{j}\\binom{9}{2j}\\frac{(2j)!}{2^{j}j!}\\,D_{9-2j}.$ Term by term: $j=0:\\;D_9=133496;$ $\\ j=1:\\;-36\\,D_7=-66744;$ $\\ j=2:\\;+378\\,D_5=+16632;$ $\\ j=3:\\;-1260\\,D_3=-2520;$ $\\ j=4:\\;+945\\,D_1=0.$",
-          "Summing: $133496-66744+16632-2520+0=80864.$ The naive ``one subtraction'' stops after $j=1$ at $66752,$ losing precisely the $+16632$ and $-2520$ from the multi-swap configurations.",
-          "Hence the count is $\\boxed{80864}.$"
-        ]
-      },
-      {
-        "name": "Cycle-structure recurrence",
-        "steps": [
-          "Let $a(n)$ be the number of permutations of $n$ symbols whose every cycle has length $\\ge 3.$ Focus on the symbol $n$ and the cycle containing it, which must have length $\\ge 3.$ Condition on whether that cycle has length exactly $3$ or length $\\ge 4.$",
-          "If $n$ lies in a cycle of length $\\ge 4,$ delete $n$ from its cycle: this shortens that cycle by one (keeping length $\\ge 3$) and yields a valid arrangement of $n-1$ symbols; conversely $n$ can be inserted into any of the $n-1$ positions of an arrangement counted by $a(n-1).$ This contributes $(n-1)\\,a(n-1).$",
-          "If $n$ lies in a cycle of length exactly $3,$ say $(n\\ \\,p\\ \\,q),$ choose the ordered pair of partners $p,q$ from the other $n-1$ symbols in $(n-1)(n-2)$ ways and arrange the remaining $n-3$ symbols validly in $a(n-3)$ ways. This contributes $(n-1)(n-2)\\,a(n-3).$",
-          "Thus $a(n)=(n-1)\\,a(n-1)+(n-1)(n-2)\\,a(n-3)$ with $a(0)=1,\\,a(1)=a(2)=0.$ Iterating gives $a(3)=2,\\,a(4)=6,\\,a(5)=24,\\,a(6)=160,\\,a(7)=1140,\\,a(8)=8988.$ Then $a(9)=8\\,a(8)+8\\cdot 7\\,a(6)=8\\cdot 8988+56\\cdot 160=71904+8960=80864.$",
-          "Therefore $a(9)=\\boxed{80864}.$"
+          "$P\\!\\left(\\bigcup A_i\\right)=\\sum_{k=1}^{7}(-1)^{k-1}\\binom7k\\dfrac{(7-k)!}{7!}=\\sum_{k=1}^{7}\\dfrac{(-1)^{k-1}}{k!}$.",
+          "$=1-\\tfrac12+\\tfrac16-\\tfrac1{24}+\\tfrac1{120}-\\tfrac1{720}+\\tfrac1{5040}$.",
+          "Over $5040$: $\\dfrac{5040-2520+840-210+42-7+1}{5040}=\\dfrac{3186}{5040}=\\boxed{\\dfrac{177}{280}}$."
         ]
       }
     ],
-    "remark": "Insight: ``derangements with no 2-cycle'' is not the derangement count minus one swap-correction \\,---\\, it is a genuine double inclusion--exclusion (or, more slickly, the permutations all of whose cycles have length $\\ge 3$). The signature of the trap is that the transposition events overlap: a single permutation of $9$ can carry up to four disjoint swaps, so the sieve $\\sum_j(-1)^j\\binom{9}{2j}\\tfrac{(2j)!}{2^j j!}D_{9-2j}$ runs to $j=4,$ and truncating it after the first term silently discards the $+16632$ and $-2520$ multi-swap terms (landing at the wrong $66752$). The EGF $e^{-x-x^2/2}/(1-x)$ makes the same fact transparent: $e^{-x}$ kills fixed points and $e^{-x^2/2}$ kills 2-cycles simultaneously inside one exponential, never as a sequential patch. The sequence $1,0,0,2,6,24,160,1140,8988,80864$ generated by $a(n)=(n-1)a(n-1)+(n-1)(n-2)a(n-3)$ is the honest object all three methods compute."
+    "remark": "Insight: the at-least-one-match probability is $1-D_n/n!\\to 1-e^{-1}\\approx0.632$. By $n=7$ it has essentially converged: $177/280\\approx0.6321$, illustrating how fast the derangement series stabilises."
+  },
+  {
+    "theme": "inclusionexclusion",
+    "themeLabel": "Inclusion–Exclusion & Derangements",
+    "title": "Sieving the Primorial Block",
+    "difficulty": 4,
+    "task": "Determine",
+    "tags": [
+      "inclusion-exclusion",
+      "prime-divisors",
+      "euler-phi",
+      "divisibility"
+    ],
+    "statement": "From the block of integers $1,2,\\dots,2310$, determine how many are divisible by at least one of the primes $2,3,5,7,11$. (Note $2310 = 2\\cdot3\\cdot5\\cdot7\\cdot11$.)",
+    "answer": "$\\boxed{1830}$",
+    "trap": "Summing the five multiple-counts $1155+770+462+330+210=2927$ and calling that the answer. That exceeds the size of the block ($2310$) and double-counts every common multiple (e.g. multiples of $6$ are counted under both $2$ and $3$); the over-count must be repaired by adding back pairs, subtracting triples, and so on through all $2^5$ sign-alternating terms.",
+    "solutions": [
+      {
+        "name": "Inclusion–exclusion via the complementary totient",
+        "steps": [
+          "The complement — integers in $[1,2310]$ divisible by none of $2,3,5,7,11$ — are exactly those coprime to $2310$, so their count is $\\varphi(2310)=2310\\bigl(1-\\tfrac12\\bigr)\\bigl(1-\\tfrac13\\bigr)\\bigl(1-\\tfrac15\\bigr)\\bigl(1-\\tfrac17\\bigr)\\bigl(1-\\tfrac1{11}\\bigr)$.",
+          "$\\varphi(2310)=2310\\cdot\\tfrac12\\cdot\\tfrac23\\cdot\\tfrac45\\cdot\\tfrac67\\cdot\\tfrac{10}{11}=480$.",
+          "Hence divisible by at least one $=2310-\\varphi(2310)=2310-480=\\boxed{1830}$."
+        ]
+      },
+      {
+        "name": "Direct alternating sum of multiple-counts",
+        "steps": [
+          "Singles $\\lfloor2310/p\\rfloor$: $1155,770,462,330,210$ (sum $2927$).",
+          "Because each prime divides $2310$ exactly, every squarefree product $d$ of a subset also divides $2310$, so $\\lfloor 2310/d\\rfloor=2310/d$ with no rounding. The $2^5-1$ nonempty I–E terms then sum to $2310\\bigl(1-\\prod(1-1/p)\\bigr)=2310-480$.",
+          "Concretely: $2927-(\\text{pairs }1358)+(\\text{triples }288)-(\\text{quads }28)+(\\text{quint }1)=1830$; thus 'at least one' $=\\boxed{1830}$."
+        ]
+      }
+    ],
+    "remark": "Insight: over a primorial block the floor functions are exact, so inclusion–exclusion collapses perfectly into Euler's product — the 'divisible by at least one prime' count is just $N-\\varphi(N)$, with no rounding error to chase. Equivalently, the multiples of each prime tile the block evenly, so the sieve is exact rather than approximate."
   },
   {
     "theme": "inclusionexclusion",
@@ -2270,57 +2069,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: this is a coprime count intersected with residue avoidances, and two reflexes both detonate. (1) 'Avoid $\\pm1$ removes half' is false unless $p-1=4$; the correct survivor count modulo a prime is $p-3$, because two endpoints are deleted from $p-1$ units, not one of two halves. (2) The right to multiply the per-prime survivors onto $\\varphi$ is granted by the Chinese Remainder Theorem \\,---\\, the four residue coordinates are genuinely independent \\,---\\, and not by any probabilistic independence hand-wave; the distinction matters the moment a condition couples two coordinates, where the product would silently break. The full inclusion–exclusion $4320-3024+672-48=1920$ and the multiplicative collapse $6\\cdot4\\cdot8\\cdot10=1920$ are the same computation viewed from two heights: the sieve makes the $-48$ triple term unmissable (the exact amount lost by the popular 'drop the last term' error), while the CRT product makes the factor structure $\\varphi(9)\\prod(p-3)$ transparent. The lesson for a sieve problem fused with number theory: keep every term, and let CRT \\,---\\, not intuition \\,---\\, decide when conditions multiply."
-  },
-  {
-    "theme": "inclusionexclusion",
-    "themeLabel": "Inclusion–Exclusion & Derangements",
-    "title": "The Triptych Gift and the Eightfold Hoard",
-    "difficulty": 5,
-    "task": "Count",
-    "tags": [
-      "surjection",
-      "roots of unity filter",
-      "inclusion-exclusion",
-      "divisibility constraint",
-      "feasibility gate",
-      "generating function"
-    ],
-    "statement": "A curator must hand out $8$ distinct artefacts $G_1,G_2,\\dots,G_8$ to $4$ distinct heirs $A,B,C,D$. Every artefact goes to exactly one heir, and a valid bequest must satisfy both rules at once:\\[\\text{(i) every heir receives at least one artefact (no heir leaves empty-handed); and}\\]\\[\\text{(ii) heir } A \\text{ receives a number of artefacts that is a positive multiple of } 3.\\]In how many ways can the artefacts be bequeathed? (Before grinding a sieve, decide carefully which sizes of $A$'s share are actually attainable: ``multiple of $3$'' is not the same as ``any of $3,6$''.)",
-    "answer": "\\[\\boxed{8400}\\]",
-    "trap": "There are three layered traps, none of them an arithmetic slip. (a) FEASIBILITY COLLAPSE. Rule (ii) tempts a student to list every multiple of $3$ that does not exceed $8$, namely $|A|\\in\\{3,6\\}$, and to run casework on both. But $|A|=6$ leaves only $2$ artefacts for the three heirs $B,C,D$, who must all be non-empty by rule (i) \\,---\\, impossible, since $3$ non-empty boxes need at least $3$ objects. So the size-$6$ branch is genuinely empty; the surjection requirement secretly forces $|A|=3$ as the only attainable size. A student who mistakenly fills the $|A|=6$ branch \\,---\\, e.g. distributing the leftover $2$ artefacts to $3$ heirs as $3^2=9$ instead of recognising the onto-count is $0$ \\,---\\, reports $8400+\\binom{8}{6}\\cdot 9=8652$. (b) RESIDUE-FILTER MISUSE. The slick way to handle ``$|A|\\equiv 0\\pmod 3$'' is a roots-of-unity filter with the primitive cube root $\\omega=e^{2\\pi i/3}$, NOT a naive ``one third of everything.'' Dividing the plain onto-count $40824$ by $3$ gives $13608$, which is wrong because the three residue classes of $|A|$ are not equally populated; the two complex terms $\\omega^{t|A|}$ do not vanish. (c) ZERO-INCLUSION SLIP. Reading ``multiple of $3$'' as permitting $|A|=0$ silently re-admits bequests in which $A$ is empty, contradicting rule (i); counting $A$-divisible-by-$3$ over all functions (no onto) gives the inflated $20421$. Each error is a missed structural interaction between the divisibility clause and the surjection, not a careless calculation.",
-    "solutions": [
-      {
-        "name": "Feasibility gate, then casework on the size of A's share",
-        "steps": [
-          "First settle which sizes of $A$'s share survive both rules. Rule (ii) forces $|A|\\in\\{3,6\\}$ (positive multiples of $3$ at most $8$). But rule (i) needs $B,C,D$ all non-empty, hence at least $3$ artefacts remain for them, so $8-|A|\\ge 3$, i.e. $|A|\\le 5$. Combining, the only attainable value is $|A|=3$; the size-$6$ branch is empty because $8-6=2$ artefacts cannot fill three non-empty heirs.",
-          "Fix $|A|=3$. Choose the $3$ artefacts going to $A$ in $\\binom{8}{3}=56$ ways.",
-          "The remaining $5$ distinct artefacts must be dealt onto the three distinct heirs $B,C,D$ with none empty \\,---\\, a surjection of $5$ objects onto $3$ boxes. By inclusion–exclusion this is $\\sum_{j=0}^{3}(-1)^j\\binom{3}{j}(3-j)^5=3^5-3\\cdot 2^5+3\\cdot 1^5=243-96+3=150$.",
-          "Multiply the independent choices: $56\\cdot 150=8400$. (The phantom $|A|=6$ branch contributes $\\binom{8}{6}\\cdot 0=0$, since the onto-count of $2$ artefacts onto $3$ heirs is $0$.)",
-          "Hence the number of valid bequests is $\\boxed{8400}$."
-        ]
-      },
-      {
-        "name": "Roots-of-unity filter fused with the surjection sieve",
-        "steps": [
-          "Let $\\omega=e^{2\\pi i/3}$, a primitive cube root of unity. For any single bequest, the indicator that $|A|\\equiv 0\\pmod 3$ equals $\\tfrac{1}{3}\\big(1+\\omega^{|A|}+\\omega^{2|A|}\\big)$. Summing over all onto bequests, the count we want is $\\tfrac{1}{3}\\sum_{t=0}^{2}\\Sigma_t$, where $\\Sigma_t=\\sum_{\\text{onto }f}\\omega^{t\\,|A|}$.",
-          "Compute $\\Sigma_t$ by inclusion–exclusion on which heirs are forced empty, while weighting each artefact placed in $A$ by $z:=\\omega^{t}$. For a subset $T\\subseteq\\{A,B,C,D\\}$ of allowed heirs, the weighted number of (not-necessarily-onto) bequests into $T$ is $\\big(z+(|T|-1)\\big)^{8}$ if $A\\in T$, and $|T|^{8}$ if $A\\notin T$. Then $\\Sigma_t=\\sum_{T}(-1)^{4-|T|}(\\cdots)$, which collapses to the single polynomial $\\Sigma_t=P(z)$ with $P(z)=336z^{5}+2520z^{4}+8400z^{3}+15120z^{2}+14448z$ (each coefficient is the number of onto bequests with the stated size of $A$, e.g. $[z^3]P=8400$ counts onto bequests with $|A|=3$).",
-          "For $t=0$ ($z=1$) this returns the plain onto-count $\\Sigma_0=P(1)=\\sum_{j=0}^{4}(-1)^j\\binom{4}{j}(4-j)^8=4^8-4\\cdot 3^8+6\\cdot 2^8-4\\cdot 1^8=40824$. For $t=1,2$ we evaluate $P$ at the primitive cube roots $z=\\omega,\\omega^2$; since these are complex conjugates and $P$ has real coefficients, $\\Sigma_2=\\overline{\\Sigma_1}$, and computation gives $\\Sigma_1=\\Sigma_2$ real part $-7812$ with $\\Sigma_1+\\Sigma_2=-15624$.",
-          "The filter $\\tfrac{1}{3}\\sum_{t}P(\\omega^t)$ is precisely the roots-of-unity extraction of the coefficients of $P$ whose exponent is divisible by $3$, i.e. $\\tfrac13\\sum_t P(\\omega^t)=\\sum_{3\\mid m}[z^m]P=[z^3]P=8400$ (only the $z^3$ term has exponent a positive multiple of $3$ within range). Equivalently $\\tfrac{1}{3}\\big(40824-15624\\big)=\\tfrac{1}{3}\\cdot 25200=8400$. The point is structural: the filter is $\\tfrac13(\\Sigma_0+\\Sigma_1+\\Sigma_2)$, never $\\tfrac13\\Sigma_0=13608$, because the complex terms $\\Sigma_1,\\Sigma_2$ are non-zero.",
-          "Hence the number of valid bequests is $\\boxed{8400}$, matching the casework."
-        ]
-      },
-      {
-        "name": "Exponential generating functions with a divisibility-restricted factor for A",
-        "steps": [
-          "Model each heir's share by an exponential generating function in $x$, where the coefficient of $\\tfrac{x^m}{m!}$ records that the heir received $m$ artefacts. Heir $A$ may receive only a positive multiple of $3$, so its factor is $E_A(x)=\\sum_{m\\ge 1,\\,3\\mid m}\\dfrac{x^{m}}{m!}=\\dfrac{x^3}{3!}+\\dfrac{x^6}{6!}+\\cdots$. Each of $B,C,D$ must be non-empty, contributing $e^{x}-1$.",
-          "The number of bequests is $8!\\,[x^{8}]\\,E_A(x)\\,(e^{x}-1)^3$. Because we read the coefficient of $x^8$, only $\\tfrac{x^3}{3!}$ and $\\tfrac{x^6}{6!}$ of $E_A$ can possibly contribute (higher powers exceed $8$).",
-          "The $\\tfrac{x^6}{6!}$ term needs $x^{2}$ from $(e^{x}-1)^3$; but $(e^{x}-1)^3$ has lowest degree $x^3$ (its series starts $x^3+\\tfrac32 x^4+\\cdots$), so $[x^2](e^x-1)^3=0$. This is the generating-function shadow of the feasibility collapse: $|A|=6$ leaves too few artefacts to make $B,C,D$ all non-empty.",
-          "Thus only $\\tfrac{x^3}{3!}$ survives, and we need $8!\\cdot\\tfrac{1}{3!}\\,[x^{5}](e^{x}-1)^3$. Now $[x^5](e^x-1)^3=\\tfrac{1}{5!}\\sum_{j=0}^{3}(-1)^j\\binom{3}{j}(3-j)^5=\\tfrac{150}{120}=\\tfrac54$, the surjection-onto count $150$ divided by $5!$.",
-          "Therefore the answer is $8!\\cdot\\tfrac{1}{6}\\cdot\\tfrac{150}{120}=40320\\cdot\\tfrac{1}{6}\\cdot\\tfrac{5}{4}=40320\\cdot\\tfrac{5}{24}=8400$, so the count is $\\boxed{8400}$."
-        ]
-      }
-    ],
-    "remark": "Insight: a ``divisible by $d$'' clause on one cell of a surjection is two constraints in disguise. The arithmetic half wants a roots-of-unity filter \\,---\\, $\\tfrac1d\\sum_{t=0}^{d-1}\\omega^{t|A|}$ with $\\omega=e^{2\\pi i/d}$ \\,---\\, and the structural half is the onto requirement, which quietly amputates most of the admissible residues. Here the only positive multiples of $3$ up to $8$ are $3$ and $6$, yet onto-ness kills $6$ outright, because three non-empty heirs need $8-|A|\\ge 3$; the divisibility clause and the surjection together pin $|A|=3$ uniquely. The generating function makes this visible without casework: in $E_A(x)(e^x-1)^3$ the $\\tfrac{x^6}{6!}$ term dies against $[x^2](e^x-1)^3=0$. The clean factorisation $8400=\\binom{8}{3}\\cdot 150$ \\,---\\, choose $A$'s mandatory trio, then surject the remaining five onto $B,C,D$ \\,---\\, is the honest object all three methods compute, and it is emphatically not $\\tfrac13$ of the plain onto-count $40824$."
   },
   {
     "theme": "inclusionexclusion",
@@ -2411,102 +2159,6 @@ window.PROBLEMS = [
   {
     "theme": "inclusionexclusion",
     "themeLabel": "Inclusion–Exclusion & Derangements",
-    "title": "The Four Locked Pairs and the Coin That Stops Too Soon",
-    "difficulty": 5,
-    "task": "Count",
-    "tags": [
-      "exactly-m",
-      "bonferroni",
-      "inclusion-exclusion",
-      "binomial transform",
-      "fixed points",
-      "permutations"
-    ],
-    "statement": "A cabinet stores $8$ distinct seals in slots $1,2,\\dots,8$. A clerk applies a random permutation $\\pi$ of $\\{1,\\dots,8\\}$ (each of the $8!$ permutations equally likely, though here we only count, not average). Four slot-pairs are singled out in advance and they are pairwise disjoint:\\[P_1=\\{1,2\\},\\quad P_2=\\{3,4\\},\\quad P_3=\\{5,6\\},\\quad P_4=\\{7,8\\}.\\]Call a pair $P_i=\\{a,b\\}$ cleanly swapped by $\\pi$ when $\\pi(a)=b$ and $\\pi(b)=a$ simultaneously (the two seals of that pair exchange slots and touch nothing else). Count the permutations $\\pi$ for which exactly two of the four designated pairs are cleanly swapped. (Warning: a permutation that cleanly swaps three or all four pairs also ``contains'' two swapped pairs; ``exactly two'' must exclude those, and the correction is not a single subtraction.)",
-    "answer": "$126$",
-    "trap": "The decisive trap is confusing ``at least two pairs swapped'' (a union/Bonferroni object) with ``exactly two pairs swapped,'' and then botching the correction term. Let $S_k=\\sum_{|I|=k}N(I)$ be the sieve sums, where $N(I)$ counts permutations that cleanly swap every pair in a chosen set $I$ of $k$ pairs (the other pairs unconstrained); since the pairs are disjoint, fixing $k$ of them as swaps pins $2k$ images and leaves $(8-2k)!$ free, so $S_k=\\binom{4}{k}(8-2k)!$, giving $S_2=\\binom{4}{2}\\cdot 4!=6\\cdot 24=144$. A weak student reports this raw $S_2=144$ as the answer; but $S_2$ counts each $3$-swap permutation $\\binom{3}{2}=3$ times and each $4$-swap permutation $\\binom{4}{2}=6$ times, so it is an overcount, not a count of ``exactly two.'' A subtler error is to apply the at-least Bonferroni formula $\\sum_{k\\ge 2}(-1)^{k-2}\\binom{k-1}{1}S_k=S_2-2S_3+3S_4=144-16+3=131$, which correctly yields ``at least two'' but is still not ``exactly two.'' The genuine exactly-$m$ formula carries the binomial weight $\\binom{k}{m}$, not $\\binom{k-1}{m-1}$: $\\text{exactly }2=\\sum_{k\\ge 2}(-1)^{k-2}\\binom{k}{2}S_k=S_2-3S_3+6S_4=144-3\\cdot 8+6\\cdot 1=126$. The conceptual gap is structural \\,---\\, the inner permutation $\\binom{k}{m}$ versus $\\binom{k-1}{m-1}$ encodes whether you are extracting exactly-$m$ or at-least-$m$ from the same sieve sums $S_k$ \\,---\\, never a careless arithmetic slip; $144$ and $131$ are both internally consistent answers to the wrong question.",
-    "solutions": [
-      {
-        "name": "Exactly-m Bonferroni sieve on the four swap-events",
-        "steps": [
-          "For a $k$-subset $I$ of the four pairs, let $N(I)$ be the number of permutations of $\\{1,\\dots,8\\}$ that cleanly swap every pair in $I$. Because the pairs are pairwise disjoint, swapping the $k$ chosen pairs fixes the images of $2k$ slots, and the remaining $8-2k$ slots may be permuted arbitrarily, so $N(I)=(8-2k)!$ depends only on $k$.",
-          "Summing over all $k$-subsets gives the sieve sums $S_k=\\binom{4}{k}(8-2k)!$: explicitly $S_0=8!=40320,\\;S_1=\\binom{4}{1}6!=2880,\\;S_2=\\binom{4}{2}4!=144,\\;S_3=\\binom{4}{3}2!=8,\\;S_4=\\binom{4}{4}0!=1$.",
-          "The exactly-$m$ inclusion–exclusion (Bonferroni) identity reads $E_m=\\sum_{k\\ge m}(-1)^{k-m}\\binom{k}{m}S_k$; the weight $\\binom{k}{m}$ removes the $\\binom{k}{m}$-fold overcount with which a permutation possessing $k\\ge m$ swapped pairs is registered inside $S_m$.",
-          "Take $m=2$: $E_2=\\binom{2}{2}S_2-\\binom{3}{2}S_3+\\binom{4}{2}S_4=144-3\\cdot 8+6\\cdot 1=144-24+6=126$.",
-          "Therefore exactly two of the four designated pairs are cleanly swapped in $\\boxed{126}$ permutations."
-        ]
-      },
-      {
-        "name": "Direct construction: pick the two swappers, forbid the rest",
-        "steps": [
-          "First choose which two of the four pairs are the cleanly-swapped ones: $\\binom{4}{2}=6$ choices. Performing those two swaps fixes the images of $4$ slots.",
-          "The other two designated pairs, occupying $4$ slots, must be permuted among the $8$ slots so that neither of them is cleanly swapped, otherwise more than two pairs would be swapped. With the two chosen swaps locked, the remaining $4$ seals occupy their own $4$ slots, and we need permutations of these $4$ elements in which neither remaining pair is a clean swap.",
-          "Count those by a small inclusion–exclusion on the $2$ remaining pairs: $g(2)=\\sum_{t=0}^{2}(-1)^t\\binom{2}{t}(4-2t)!=4!-2\\cdot 2!+1\\cdot 0!=24-4+1=21$. (These are the permutations of $4$ symbols avoiding both forbidden transpositions.)",
-          "Multiply the independent choices: $\\binom{4}{2}\\cdot g(2)=6\\cdot 21=126$.",
-          "Hence the count of permutations with exactly two cleanly swapped pairs is $\\boxed{126}$."
-        ]
-      },
-      {
-        "name": "Binomial transform of the sieve polynomial",
-        "steps": [
-          "Let $a_m$ be the number of permutations cleanly swapping exactly $m$ of the four pairs. Each permutation swapping exactly $m$ pairs is counted $\\binom{m}{k}$ times inside the sieve sum $S_k$ (one per $k$-subset of its $m$ swapped pairs), so $S_k=\\sum_{m\\ge k}\\binom{m}{k}a_m$.",
-          "This relation is inverted compactly by the generating function $\\sum_{m}a_m x^m=\\sum_{k}S_k\\,(x-1)^k$, the binomial transform that turns sieve sums into exact counts.",
-          "Substitute $S_0=40320,S_1=2880,S_2=144,S_3=8,S_4=1$ and expand: $40320+2880(x-1)+144(x-1)^2+8(x-1)^3+(x-1)^4=x^4+4x^3+126x^2+2612x+37577.$",
-          "Read off the coefficients: $a_4=1,\\,a_3=4,\\,a_2=126,\\,a_1=2612,\\,a_0=37577$, and indeed $a_0+\\cdots+a_4=40320=8!$, confirming consistency.",
-          "The coefficient of $x^2$ is the desired exact count, so exactly two pairs are cleanly swapped in $\\boxed{126}$ permutations."
-        ]
-      }
-    ],
-    "remark": "Insight: the four sieve sums $S_0,\\dots,S_4$ carry the entire exact distribution, and which question you are answering is decided purely by the binomial weight you attach to them. The at-least-$m$ count uses $\\binom{k-1}{m-1}$, while the exactly-$m$ count uses $\\binom{k}{m}$; here at-least-two $=144-2\\cdot 8+3\\cdot 1=131$ and exactly-two $=144-3\\cdot 8+6\\cdot 1=126$ are computed from identical $S_k$ yet answer different questions, and the raw $S_2=144$ answers neither. The binomial-transform polynomial $\\sum_k S_k(x-1)^k=x^4+4x^3+126x^2+2612x+37577$ packages all of $a_0,\\dots,a_4$ at once, exposing $a_2=126$ as a single coefficient and making the overcount structure ($S_2$ double- and sextuple-counts the $3$- and $4$-swap permutations) impossible to overlook."
-  },
-  {
-    "theme": "inclusionexclusion",
-    "themeLabel": "Inclusion–Exclusion & Derangements",
-    "title": "Words That Spend Every Letter",
-    "difficulty": 5,
-    "task": "Find the number of",
-    "tags": [
-      "surjection",
-      "onto-function",
-      "inclusion-exclusion",
-      "strings"
-    ],
-    "statement": "Consider all strings of length $8$ formed from the $5$-symbol alphabet $\\{a,b,c,d,e\\}$. Find the number of such strings in which every one of the five symbols appears at least once.",
-    "answer": "$\\boxed{126000}$",
-    "trap": "Reserving one position for each symbol first, then filling the remaining three positions freely: $\\binom81\\binom71\\binom61\\binom51\\binom41\\cdot 5^{3}=840000$. This pre-placement over-counts wildly—so wildly that it even exceeds the total $5^8=390625$ of all strings—because a fixed final string is produced by many different choices of which copy of each symbol was the reserved one. The honest device is inclusion–exclusion on the symbols that are missing.",
-    "solutions": [
-      {
-        "name": "Inclusion–exclusion on omitted symbols",
-        "steps": [
-          "Total strings $=5^8$. Let $M_i$ be the set of strings that never use symbol $i$. We want the strings lying in none of the $M_i$.",
-          "Strings avoiding a fixed set of $j$ symbols use only the remaining $5-j$ symbols, so there are $(5-j)^8$ of them, and $\\binom5j$ ways to pick the omitted set.",
-          "By inclusion–exclusion the count is $\\sum_{j=0}^{5}(-1)^j\\binom5j(5-j)^8 = 5^8-5\\cdot4^8+10\\cdot3^8-10\\cdot2^8+5\\cdot1^8-0$.",
-          "$=390625-327680+65610-2560+5 = \\boxed{126000}$."
-        ]
-      },
-      {
-        "name": "Stirling decomposition",
-        "steps": [
-          "A string using all $5$ symbols is exactly a surjection from the $8$ ordered positions onto the $5$ symbols, and the number of surjections is $5!\\,S(8,5)$, where $S(8,5)$ counts the ways to partition the $8$ positions into $5$ nonempty blocks (one block per symbol).",
-          "$S(8,5)=1050$, so the count is $5!\\cdot 1050 = 120\\cdot 1050$.",
-          "$=\\boxed{126000}$, matching the inclusion–exclusion total."
-        ]
-      },
-      {
-        "name": "Composition / multinomial bookkeeping",
-        "steps": [
-          "Choose how many times each symbol appears: positive integers $n_a+n_b+n_c+n_d+n_e=8$. For a fixed composition the number of arrangements is the multinomial $\\dfrac{8!}{n_a!\\,n_b!\\,n_c!\\,n_d!\\,n_e!}$.",
-          "Summing over all $5$ positive parts means summing over the integer partitions of $8$ into exactly $5$ positive parts: $4{+}1{+}1{+}1{+}1$, $3{+}2{+}1{+}1{+}1$, and $2{+}2{+}2{+}1{+}1$.",
-          "Their contributions (each multinomial times the number of distinct symbol-labelings of that shape) are $5\\cdot\\frac{8!}{4!}=8400$, $20\\cdot\\frac{8!}{3!2!}=67200$, and $10\\cdot\\frac{8!}{(2!)^3}=50400$.",
-          "$8400+67200+50400=\\boxed{126000}$, confirming both earlier methods."
-        ]
-      }
-    ],
-    "remark": "Insight: 'uses every symbol' is precisely a surjection, so the alternating sum $\\sum_{j}(-1)^j\\binom kj (k-j)^n$ is the master formula, and dividing by $k!$ recovers the Stirling number $S(n,k)$—onto-counting and set-partitions are the same fact read two ways. The third method, summing multinomials over compositions, is the same total reorganized by symbol-frequency profile, a useful sanity check."
-  },
-  {
-    "theme": "inclusionexclusion",
-    "themeLabel": "Inclusion–Exclusion & Derangements",
     "title": "The Three Suspicious Drawers",
     "difficulty": 5,
     "task": "Determine",
@@ -2550,72 +2202,183 @@ window.PROBLEMS = [
   {
     "theme": "inclusionexclusion",
     "themeLabel": "Inclusion–Exclusion & Derangements",
-    "title": "At Least One Returns Home",
-    "difficulty": 4,
-    "task": "Evaluate",
+    "title": "Exactly Two Letters Reach Home",
+    "difficulty": 5,
+    "task": "Count exactly-two-fixed permutations",
     "tags": [
       "derangement",
-      "probability",
-      "complement",
-      "inclusion-exclusion"
+      "inclusion-exclusion",
+      "exactly m fixed",
+      "permutations"
     ],
-    "statement": "Seven letters are stuffed at random into seven pre-addressed envelopes, one letter per envelope (a uniformly random permutation). Evaluate the probability that at least one letter lands in its correct envelope. Give the answer as a fully reduced fraction.",
-    "answer": "$\\boxed{\\dfrac{177}{280}}$",
-    "trap": "Adding the seven 'this letter is correct' probabilities to get $7\\cdot\\frac{1}{7}=1$, concluding certainty. Those events overlap, so the union probability is strictly less than the sum; you must inclusion–exclude (or take the derangement complement).",
+    "statement": "A clerk has  $7$  distinct letters and  $7$  distinct addressed envelopes, one envelope intended for each letter. He stuffs the letters into the envelopes completely at random, one letter per envelope. In how many of the  $7!$  possible stuffings do “exactly two” letters land in their own correct envelope (so the remaining five all go astray)?",
+    "answer": " $\\boxed{924}$ ",
+    "trap": "A frequent slip is to choose the two correct letters in  $\\binom{7}{2}$  ways and then arrange the other five “freely” in  $5! = 120$  ways, giving  $\\binom{7}{2}\\cdot 5! = 21\\cdot120 = 2520$ . But “the other five all go astray” is not free arrangement: those five must form a derangement,  $D_5 = 44$ , not  $5! = 120$ . The honest count is  $\\binom{7}{2}\\cdot 44 = 924$ , not  $2520$ .",
     "solutions": [
       {
-        "name": "Complement through the derangement",
+        "name": "Choose the fixed pair, derange the rest",
         "steps": [
-          "$P(\\text{at least one correct}) = 1 - P(\\text{no letter correct}) = 1 - \\dfrac{D_7}{7!}$.",
-          "With $D_7 = 7!\\sum_{k=0}^{7}\\frac{(-1)^k}{k!}=1854$ and $7!=5040$, this is $1-\\dfrac{1854}{5040}=\\dfrac{3186}{5040}$.",
-          "Reduce by $18$: $\\dfrac{3186}{5040}=\\boxed{\\dfrac{177}{280}}$."
+          "First decide which two letters are the lucky ones that reach their own envelopes. This choice is  $\\binom{7}{2} = 21$ .",
+          "The remaining five letters must each miss their own envelope, i.e. they form a derangement of  $5$  objects. By inclusion–exclusion  $D_5 = 5!\\left(1 - \\tfrac1{1!} + \\tfrac1{2!} - \\tfrac1{3!} + \\tfrac1{4!} - \\tfrac1{5!}\\right) = 120 - 120 + 60 - 20 + 5 - 1 = 44$ .",
+          "By the product rule the number of stuffings with exactly two fixed letters is  $\\binom{7}{2}\\cdot D_5 = 21\\cdot 44 = \\boxed{924}$ ."
         ]
       },
       {
-        "name": "Direct inclusion–exclusion on the union",
+        "name": "Derangement recurrence for  $D_5$ ",
         "steps": [
-          "$P\\!\\left(\\bigcup A_i\\right)=\\sum_{k=1}^{7}(-1)^{k-1}\\binom7k\\dfrac{(7-k)!}{7!}=\\sum_{k=1}^{7}\\dfrac{(-1)^{k-1}}{k!}$.",
-          "$=1-\\tfrac12+\\tfrac16-\\tfrac1{24}+\\tfrac1{120}-\\tfrac1{720}+\\tfrac1{5040}$.",
-          "Over $5040$: $\\dfrac{5040-2520+840-210+42-7+1}{5040}=\\dfrac{3186}{5040}=\\boxed{\\dfrac{177}{280}}$."
+          "Use the recurrence  $D_n = (n-1)\\,(D_{n-1}+D_{n-2})$  with  $D_1 = 0,\\ D_2 = 1$ .",
+          "Then  $D_3 = 2(1+0) = 2$ ,  $D_4 = 3(2+1) = 9$ , and  $D_5 = 4(9+2) = 44$ .",
+          "Pick the two fixed letters in  $\\binom{7}{2} = 21$  ways and derange the other five in  $D_5 = 44$  ways: total  $= 21\\cdot 44 = \\boxed{924}$ ."
         ]
       }
     ],
-    "remark": "Insight: the at-least-one-match probability is $1-D_n/n!\\to 1-e^{-1}\\approx0.632$. By $n=7$ it has essentially converged: $177/280\\approx0.6321$, illustrating how fast the derangement series stabilises."
+    "remark": "**Insight.** “Exactly  $m$  correct out of  $n$ ” always factors as  $\\binom{n}{m}\\,D_{n-m}$ : choose the lucky  $m$ , then force the rest to be a derangement. The trap is replacing  $D_{n-m}$  by  $(n-m)!$  — that silently allows some of the “wrong” letters to be right, breaking the word “exactly.”"
   },
   {
     "theme": "inclusionexclusion",
     "themeLabel": "Inclusion–Exclusion & Derangements",
-    "title": "Sieving the Primorial Block",
-    "difficulty": 4,
-    "task": "Determine",
+    "title": "Six Tasks, Four Workers, None Idle",
+    "difficulty": 5,
+    "task": "Count onto assignments",
     "tags": [
+      "onto functions",
+      "surjection",
       "inclusion-exclusion",
-      "prime-divisors",
-      "euler-phi",
-      "divisibility"
+      "distribution no box empty"
     ],
-    "statement": "From the block of integers $1,2,\\dots,2310$, determine how many are divisible by at least one of the primes $2,3,5,7,11$. (Note $2310 = 2\\cdot3\\cdot5\\cdot7\\cdot11$.)",
-    "answer": "$\\boxed{1830}$",
-    "trap": "Summing the five multiple-counts $1155+770+462+330+210=2927$ and calling that the answer. That exceeds the size of the block ($2310$) and double-counts every common multiple (e.g. multiples of $6$ are counted under both $2$ and $3$); the over-count must be repaired by adding back pairs, subtracting triples, and so on through all $2^5$ sign-alternating terms.",
+    "statement": "Six distinct tasks are to be assigned to four distinct workers, each task to exactly one worker. The supervisor demands that “no worker be left idle”, i.e. every worker receives at least one task. In how many ways can the six tasks be distributed among the four workers under this condition (that is, count the onto assignments from the  $6$  tasks to the  $4$  workers)?",
+    "answer": " $\\boxed{1560}$ ",
+    "trap": "A tempting shortcut is to seat four tasks one-per-worker first ( $\\binom{6}{4}\\cdot 4!$  or  $6\\cdot5\\cdot4\\cdot3$  ways) and then hand the remaining two tasks to any of the four workers ( $4^2$ ), giving  $360\\cdot16 = 5760$ . This massively overcounts: the same final assignment is reached through many different “which four came first” orders. The correct surjection count via inclusion–exclusion is  $4^6 - \\binom{4}{1}3^6 + \\binom{4}{2}2^6 - \\binom{4}{3}1^6 = 1560$ .",
     "solutions": [
       {
-        "name": "Inclusion–exclusion via the complementary totient",
+        "name": "Inclusion–exclusion on excluded workers",
         "steps": [
-          "The complement — integers in $[1,2310]$ divisible by none of $2,3,5,7,11$ — are exactly those coprime to $2310$, so their count is $\\varphi(2310)=2310\\bigl(1-\\tfrac12\\bigr)\\bigl(1-\\tfrac13\\bigr)\\bigl(1-\\tfrac15\\bigr)\\bigl(1-\\tfrac17\\bigr)\\bigl(1-\\tfrac1{11}\\bigr)$.",
-          "$\\varphi(2310)=2310\\cdot\\tfrac12\\cdot\\tfrac23\\cdot\\tfrac45\\cdot\\tfrac67\\cdot\\tfrac{10}{11}=480$.",
-          "Hence divisible by at least one $=2310-\\varphi(2310)=2310-480=\\boxed{1830}$."
+          "Total assignments with no restriction: each of the  $6$  tasks independently goes to one of  $4$  workers, so  $4^6 = 4096$ .",
+          "Let  $A_i$  be the set of assignments that miss worker  $i$ . We want  $4^6 - |A_1\\cup A_2\\cup A_3\\cup A_4|$ .",
+          "By inclusion–exclusion, the number using at least one specified set of  $k$  missing workers is  $(4-k)^6$ , and there are  $\\binom{4}{k}$  choices of which  $k$  to miss. So the onto count is  $\\sum_{k=0}^{4}(-1)^k\\binom{4}{k}(4-k)^6$ .",
+          "Compute:  $4^6 - 4\\cdot3^6 + 6\\cdot2^6 - 4\\cdot1^6 = 4096 - 2916 + 384 - 4 = \\boxed{1560}$ ."
         ]
       },
       {
-        "name": "Direct alternating sum of multiple-counts",
+        "name": "Pattern split of the six tasks into four nonempty groups",
         "steps": [
-          "Singles $\\lfloor2310/p\\rfloor$: $1155,770,462,330,210$ (sum $2927$).",
-          "Because each prime divides $2310$ exactly, every squarefree product $d$ of a subset also divides $2310$, so $\\lfloor 2310/d\\rfloor=2310/d$ with no rounding. The $2^5-1$ nonempty I–E terms then sum to $2310\\bigl(1-\\prod(1-1/p)\\bigr)=2310-480$.",
-          "Concretely: $2927-(\\text{pairs }1358)+(\\text{triples }288)-(\\text{quads }28)+(\\text{quint }1)=1830$; thus 'at least one' $=\\boxed{1830}$."
+          "Since each worker is nonempty and the six tasks split into four groups, the only group-size patterns are  $(3,1,1,1)$  and  $(2,2,1,1)$ .",
+          "Pattern  $(3,1,1,1)$ : choose which worker gets the triple ( $4$  ways) and which  $3$  tasks form it ( $\\binom{6}{3}=20$ ); the remaining  $3$  tasks go one each to the other  $3$  workers in  $3! = 6$  ways. That is  $4\\cdot20\\cdot6 = 480$ .",
+          "Pattern  $(2,2,1,1)$ : choose the two workers who get doubles ( $\\binom{4}{2}=6$ ); choose the first double's tasks  $\\binom{6}{2}=15$ , the second double's  $\\binom{4}{2}=6$  (the two doubles are tied to specific workers so no extra division); the last  $2$  tasks go to the remaining  $2$  workers in  $2! = 2$  ways. That is  $6\\cdot15\\cdot6\\cdot2 = 1080$ .",
+          "Total  $= 480 + 1080 = \\boxed{1560}$ , matching the inclusion–exclusion value."
         ]
       }
     ],
-    "remark": "Insight: over a primorial block the floor functions are exact, so inclusion–exclusion collapses perfectly into Euler's product — the 'divisible by at least one prime' count is just $N-\\varphi(N)$, with no rounding error to chase. Equivalently, the multiples of each prime tile the block evenly, so the sieve is exact rather than approximate."
+    "remark": "**Insight.** The number of onto maps from an  $n$ -set to an  $r$ -set is  $\\sum_{k=0}^{r}(-1)^k\\binom{r}{k}(r-k)^n$  — inclusion–exclusion over which targets are forbidden. The “seat-then-fill” shortcut fails because it orders the indistinct act of choosing which elements arrived first; only by subtracting the missed-worker overlaps do you count each assignment once."
+  },
+  {
+    "theme": "inclusionexclusion",
+    "themeLabel": "Inclusion–Exclusion & Derangements",
+    "title": "Coprime to Thirty Up to a Thousand",
+    "difficulty": 5,
+    "task": "Count integers divisible by none",
+    "tags": [
+      "inclusion-exclusion",
+      "divisibility",
+      "at least one",
+      "counting"
+    ],
+    "statement": "How many integers  $n$  with  $1 \\le n \\le 1000$  are divisible by “none” of  $2$ ,  $3$  and  $5$  (equivalently, leave a nonzero remainder upon division by each of  $2$ ,  $3$ ,  $5$ )?",
+    "answer": " $\\boxed{266}$ ",
+    "trap": "The naive move is to subtract the multiples of each:  $1000 - \\left(\\lfloor 1000/2\\rfloor + \\lfloor 1000/3\\rfloor + \\lfloor 1000/5\\rfloor\\right) = 1000 - (500 + 333 + 200) = -33$ , an impossible negative. The error is forgetting that numbers like  $6$ ,  $10$ ,  $15$  were subtracted twice; inclusion–exclusion must add the pairwise overlaps back and then remove the triple overlap. The correct value is  $266$ .",
+    "solutions": [
+      {
+        "name": "Inclusion–exclusion on the three divisors",
+        "steps": [
+          "Let  $A,B,C$  be the multiples of  $2,3,5$  in  $\\{1,\\dots,1000\\}$ . Their sizes are  $\\lfloor 1000/2\\rfloor=500$ ,  $\\lfloor 1000/3\\rfloor=333$ ,  $\\lfloor 1000/5\\rfloor=200$ .",
+          "Pairwise overlaps use the lcm:  $|A\\cap B| = \\lfloor 1000/6\\rfloor = 166$ ,  $|A\\cap C| = \\lfloor 1000/10\\rfloor = 100$ ,  $|B\\cap C| = \\lfloor 1000/15\\rfloor = 66$ . Triple overlap  $|A\\cap B\\cap C| = \\lfloor 1000/30\\rfloor = 33$ .",
+          "By inclusion–exclusion  $|A\\cup B\\cup C| = (500+333+200) - (166+100+66) + 33 = 1033 - 332 + 33 = 734$ .",
+          "Divisible by none  $= 1000 - |A\\cup B\\cup C| = 1000 - 734 = \\boxed{266}$ ."
+        ]
+      },
+      {
+        "name": "Block of thirty, scaled and adjusted",
+        "steps": [
+          "Among any  $30$  consecutive integers, the count coprime to  $30$  is  $\\varphi(30) = 30\\left(1-\\tfrac12\\right)\\left(1-\\tfrac13\\right)\\left(1-\\tfrac15\\right) = 30\\cdot\\tfrac12\\cdot\\tfrac23\\cdot\\tfrac45 = 8$ .",
+          "The range  $1$  to  $1000$  contains  $33$  complete blocks of  $30$  (covering  $1$  to  $990$ ), contributing  $33\\cdot 8 = 264$ .",
+          "The leftover integers  $991,\\dots,1000$  correspond to residues  $1,\\dots,10$  mod  $30$ ; among these the ones coprime to  $30$  are residues  $1$  and  $7$  (i.e.  $991$  and  $997$ ), adding  $2$ .",
+          "Total  $= 264 + 2 = \\boxed{266}$ , confirming the inclusion–exclusion count."
+        ]
+      }
+    ],
+    "remark": "**Insight.** “Divisible by none of” is the complement of a union, so inclusion–exclusion is unavoidable: subtract singles, add pairs (via lcm), subtract the triple. The absurd negative from naive subtraction is the tell-tale sign of double-counting — the overlaps  $\\lfloor N/\\mathrm{lcm}\\rfloor$  must come back."
+  },
+  {
+    "theme": "inclusionexclusion",
+    "themeLabel": "Inclusion–Exclusion & Derangements",
+    "title": "At Least One Examiner Gets His Own",
+    "difficulty": 5,
+    "task": "Count permutations with a fixed point",
+    "tags": [
+      "inclusion-exclusion",
+      "at least one",
+      "fixed point",
+      "derangement complement"
+    ],
+    "statement": "Six examiners hand in six distinct answer scripts, one belonging to each. The scripts are then shuffled and redistributed so that every examiner receives exactly one script (a bijection). In how many of the  $6! = 720$  redistributions does “at least one” examiner receive back his own original script?",
+    "answer": " $\\boxed{455}$ ",
+    "trap": "A classic error is: “pick the examiner who gets his own script ( $\\binom{6}{1}=6$  ways) and arrange the other five freely ( $5! = 120$ ),” giving  $6\\cdot120 = 720$  — which is all permutations, an obvious absurdity. This counts every redistribution with  $r$  fixed points exactly  $r$  times. The clean answer is the complement of the derangements:  $6! - D_6 = 720 - 265 = 455$ .",
+    "solutions": [
+      {
+        "name": "Complement via derangements",
+        "steps": [
+          "“At least one fixed” is the complement of “none fixed.” The redistributions with no examiner getting his own script number  $D_6$ .",
+          "By inclusion–exclusion  $D_6 = 6!\\left(1 - \\tfrac1{1!} + \\tfrac1{2!} - \\tfrac1{3!} + \\tfrac1{4!} - \\tfrac1{5!} + \\tfrac1{6!}\\right) = 720 - 720 + 360 - 120 + 30 - 6 + 1 = 265$ .",
+          "Therefore the number with at least one fixed point is  $6! - D_6 = 720 - 265 = \\boxed{455}$ ."
+        ]
+      },
+      {
+        "name": "Direct inclusion–exclusion on fixed examiners",
+        "steps": [
+          "Let  $A_i$  be the set of redistributions in which examiner  $i$  gets his own script. We want  $|A_1\\cup\\cdots\\cup A_6|$ .",
+          "Fixing any specified  $k$  examiners forces those  $k$  scripts and permutes the remaining  $6-k$  freely, so each such intersection has size  $(6-k)!$ , and there are  $\\binom{6}{k}$  ways to choose the  $k$ .",
+          "Inclusion–exclusion gives  $\\sum_{k=1}^{6}(-1)^{k+1}\\binom{6}{k}(6-k)!$ .",
+          "Compute:  $\\binom61 5! - \\binom62 4! + \\binom63 3! - \\binom64 2! + \\binom65 1! - \\binom66 0! = 720 - 360 + 120 - 30 + 6 - 1 = \\boxed{455}$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** “At least one fixed point” is exactly the complement of a derangement, so the cleanest route is  $n! - D_n$ . The naive “choose one fixed, free the rest” overcounts because a permutation with  $r$  fixed points is then counted  $r$  times — the very situation inclusion–exclusion's alternating signs are built to correct."
+  },
+  {
+    "theme": "identities",
+    "themeLabel": "Combinatorial Identities",
+    "title": "Climbing the Hockey Stick",
+    "difficulty": 3,
+    "task": "Evaluate",
+    "tags": [
+      "hockey-stick",
+      "double-counting",
+      "triangular",
+      "pascal"
+    ],
+    "statement": "From the $10$ contestants numbered $1,2,\\dots,10$ we choose an unordered team of $3$ and record the *largest* number on the team. If that largest number is $m$, the remaining two members form a $2$-subset of $\\{1,\\dots,m-1\\}$, so the number of teams is $\\binom{m-1}{2}$; letting $m$ range over its possible values $3,4,\\dots,10$ writes the total suggestively as $\\binom{2}{2}+\\binom{3}{2}+\\cdots+\\binom{9}{2}$. By counting all $3$-element teams a second way, evaluate $\\displaystyle\\sum_{k=2}^{9}\\binom{k}{2}$.",
+    "answer": "$\\displaystyle\\sum_{k=2}^{9}\\binom{k}{2}=\\binom{10}{3}=120.$",
+    "trap": "Reading the hockey-stick as $\\sum_{k=2}^{9}\\binom{k}{2}=\\binom{9}{3}$ by mis-indexing the top of the stick. The correct identity is $\\sum_{i=r}^{n}\\binom{i}{r}=\\binom{n+1}{r+1}$, so with $r=2$ and top index $n=9$ the upper binomial is $\\binom{10}{3}$, not $\\binom{9}{3}$ — the $+1$ in both arguments is exactly what the bijection supplies. Concretely $\\binom{9}{3}=84\\neq120$.",
+    "solutions": [
+      {
+        "name": "Group 3-subsets by their largest element",
+        "steps": [
+          "LET $\\mathcal{T}$ be the family of $3$-element subsets of $\\{1,\\dots,10\\}$; choosing a team is choosing such a subset, so $|\\mathcal{T}|=\\binom{10}{3}$.",
+          "PARTITION $\\mathcal{T}$ by the value of the largest element $M$. If $M=m$, the other two members are any $2$-subset of $\\{1,\\dots,m-1\\}$, giving $\\binom{m-1}{2}$ such teams; here $m$ ranges over $3,4,\\dots,10$.",
+          "SUM over $m=3,4,\\dots,10$: $|\\mathcal{T}|=\\sum_{m=3}^{10}\\binom{m-1}{2}=\\sum_{k=2}^{9}\\binom{k}{2}$ after the substitution $k=m-1$.",
+          "EQUATE the two counts of the same family $\\mathcal{T}$: $\\sum_{k=2}^{9}\\binom{k}{2}=\\binom{10}{3}=\\boxed{120}.$"
+        ]
+      },
+      {
+        "name": "Telescoping Pascal's rule",
+        "steps": [
+          "USE Pascal's rule in the form $\\binom{k}{2}=\\binom{k+1}{3}-\\binom{k}{3}$ (a combinatorial restatement: a $3$-subset of $\\{1,\\dots,k+1\\}$ either avoids the element $k+1$, giving $\\binom{k}{3}$, or contains it, leaving a $2$-subset of $\\{1,\\dots,k\\}$, giving $\\binom{k}{2}$).",
+          "SUM from $k=2$ to $9$; the right side telescopes: $\\sum_{k=2}^{9}\\left(\\binom{k+1}{3}-\\binom{k}{3}\\right)=\\binom{10}{3}-\\binom{2}{3}.$",
+          "EVALUATE $\\binom{2}{3}=0$, so the sum equals $\\binom{10}{3}=\\boxed{120}.$"
+        ]
+      }
+    ],
+    "remark": "Insight: the hockey-stick is just 'classify by the maximum.' Whenever a sum runs over a single binomial with a moving top argument, ask which structural feature (largest element, last step, final coordinate) the index secretly records. A quick reality check is the boundary term: $\\sum_{i=r}^{n}\\binom{i}{r}=\\binom{n+1}{r+1}$ must reduce to $\\binom{r}{r}=1$ when $n=r$, which forces the upper arguments to be $n+1$ and $r+1$, not $n$ and $r+1$."
   },
   {
     "theme": "identities",
@@ -2664,42 +2427,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: a sign-reversing involution only kills a WEIGHTED alternating sum when it preserves the weight, not merely the sign. The celebrated pairing $S\\mapsto S\\,\\triangle\\,\\{1\\}$ proves $\\sum_k(-1)^k\\binom{n}{k}=0$ precisely because there the weight is constant ($1$); the instant a weight like $\\min S$ enters, toggling the bottom element corrupts it and the pairing becomes illegal. The honest fix is to involute INSIDE each weight-class \\,---\\, here, toggle the element just above the minimum \\,---\\, which cancels every class except the one the involution cannot reach, the singleton $\\{n\\}$. That lone fixed point is the entire answer, $-n$. The same skeleton recurs across advanced counting: the algebraic version is the collapse $(1-1)^{n-m}=0^{\\,n-m}$ surviving only at $m=n$, and the layer-cake version telescopes $n$ copies of $-1$. All three see the same object: an alternating subset sum is zero, but a weight that varies under your pairing can leave exactly one term standing."
-  },
-  {
-    "theme": "identities",
-    "themeLabel": "Combinatorial Identities",
-    "title": "Climbing the Hockey Stick",
-    "difficulty": 3,
-    "task": "Evaluate",
-    "tags": [
-      "hockey-stick",
-      "double-counting",
-      "triangular",
-      "pascal"
-    ],
-    "statement": "From the $10$ contestants numbered $1,2,\\dots,10$ we choose an unordered team of $3$ and record the *largest* number on the team. If that largest number is $m$, the remaining two members form a $2$-subset of $\\{1,\\dots,m-1\\}$, so the number of teams is $\\binom{m-1}{2}$; letting $m$ range over its possible values $3,4,\\dots,10$ writes the total suggestively as $\\binom{2}{2}+\\binom{3}{2}+\\cdots+\\binom{9}{2}$. By counting all $3$-element teams a second way, evaluate $\\displaystyle\\sum_{k=2}^{9}\\binom{k}{2}$.",
-    "answer": "$\\displaystyle\\sum_{k=2}^{9}\\binom{k}{2}=\\binom{10}{3}=120.$",
-    "trap": "Reading the hockey-stick as $\\sum_{k=2}^{9}\\binom{k}{2}=\\binom{9}{3}$ by mis-indexing the top of the stick. The correct identity is $\\sum_{i=r}^{n}\\binom{i}{r}=\\binom{n+1}{r+1}$, so with $r=2$ and top index $n=9$ the upper binomial is $\\binom{10}{3}$, not $\\binom{9}{3}$ — the $+1$ in both arguments is exactly what the bijection supplies. Concretely $\\binom{9}{3}=84\\neq120$.",
-    "solutions": [
-      {
-        "name": "Group 3-subsets by their largest element",
-        "steps": [
-          "LET $\\mathcal{T}$ be the family of $3$-element subsets of $\\{1,\\dots,10\\}$; choosing a team is choosing such a subset, so $|\\mathcal{T}|=\\binom{10}{3}$.",
-          "PARTITION $\\mathcal{T}$ by the value of the largest element $M$. If $M=m$, the other two members are any $2$-subset of $\\{1,\\dots,m-1\\}$, giving $\\binom{m-1}{2}$ such teams; here $m$ ranges over $3,4,\\dots,10$.",
-          "SUM over $m=3,4,\\dots,10$: $|\\mathcal{T}|=\\sum_{m=3}^{10}\\binom{m-1}{2}=\\sum_{k=2}^{9}\\binom{k}{2}$ after the substitution $k=m-1$.",
-          "EQUATE the two counts of the same family $\\mathcal{T}$: $\\sum_{k=2}^{9}\\binom{k}{2}=\\binom{10}{3}=\\boxed{120}.$"
-        ]
-      },
-      {
-        "name": "Telescoping Pascal's rule",
-        "steps": [
-          "USE Pascal's rule in the form $\\binom{k}{2}=\\binom{k+1}{3}-\\binom{k}{3}$ (a combinatorial restatement: a $3$-subset of $\\{1,\\dots,k+1\\}$ either avoids the element $k+1$, giving $\\binom{k}{3}$, or contains it, leaving a $2$-subset of $\\{1,\\dots,k\\}$, giving $\\binom{k}{2}$).",
-          "SUM from $k=2$ to $9$; the right side telescopes: $\\sum_{k=2}^{9}\\left(\\binom{k+1}{3}-\\binom{k}{3}\\right)=\\binom{10}{3}-\\binom{2}{3}.$",
-          "EVALUATE $\\binom{2}{3}=0$, so the sum equals $\\binom{10}{3}=\\boxed{120}.$"
-        ]
-      }
-    ],
-    "remark": "Insight: the hockey-stick is just 'classify by the maximum.' Whenever a sum runs over a single binomial with a moving top argument, ask which structural feature (largest element, last step, final coordinate) the index secretly records. A quick reality check is the boundary term: $\\sum_{i=r}^{n}\\binom{i}{r}=\\binom{n+1}{r+1}$ must reduce to $\\binom{r}{r}=1$ when $n=r$, which forces the upper arguments to be $n+1$ and $r+1$, not $n$ and $r+1$."
   },
   {
     "theme": "identities",
@@ -2834,53 +2561,6 @@ window.PROBLEMS = [
   {
     "theme": "identities",
     "themeLabel": "Combinatorial Identities",
-    "title": "The Rotation That Anoints One King",
-    "difficulty": 5,
-    "task": "Find the number of",
-    "tags": [
-      "cycle lemma",
-      "catalan",
-      "cyclic rotation",
-      "free action",
-      "double counting"
-    ],
-    "statement": "A counter starts on the number line at height $0$ and makes a sequence of $13$ unit steps, each either $U$ (height $+1$) or $D$ (height $-1$). Exactly $6$ steps are $U$ and $7$ are $D$, so the counter ends at height $-1$. Call such a step-word submerged if after every one of its $13$ steps the running height is strictly negative (i.e. the counter dives below $0$ on the first step and never resurfaces to $0$ or above). The intended solution is a double count by cyclic rotation: list all $\\binom{13}{6}$ step-words around a circle of $13$ positions, group them into rotation orbits, and show each orbit contributes the same fixed number of submerged words. Carry this out and find the number of submerged step-words. \\[Caution. \\text{The cyclic argument is what makes this clean, but it works only because of the lone extra }D.\\]",
-    "answer": "$132$",
-    "trap": "The conceptual trap is not arithmetic \\,---\\, it is running the cyclic (cycle-lemma) double count on the wrong, ``balanced'' sequence, where the cyclic group does NOT act freely. The seductive shortcut: ``forget the awkward $13$th step; really I want a balanced word of $6$ ups and $6$ downs that stays weakly on one side, and by symmetry exactly one of its rotations is good, so the answer is $\\binom{12}{6}/12$.'' That reasoning is fatally flawed, because for an equal number of $U$ and $D$ the running sum returns to $0$, so a word like $UDUDUDUDUDUD$ has period $2$: its rotation orbit has size $2$, not $12$, and dividing $\\binom{12}{6}=924$ by $12$ does not even give an integer ($924/12=77$ here is an accident of these numbers, but $\\binom{6}{3}/6=20/6$ and $\\binom{10}{5}/10=252/10$ are not integers, exposing the lie). Periodicity is exactly what the cycle lemma forbids, and it is forbidden precisely when the total displacement is $\\pm1$ (or coprime to the length) \\,---\\, that is the entire reason the problem ships with $7$ downs against $6$ ups on $13$ positions: the displacement $-1$ is coprime to $13$, every orbit has full size $13$, and dividing by $13$ is exact. A student who strips the extra $D$ to ``simplify'' destroys the free action, mis-applies $\\tfrac{1}{2n}\\binom{2n}{n}$, and gets a non-integer or a number with no meaning. The missed structural condition \\,---\\, nonzero, length-coprime displacement so the rotation orbits are all of full size \\,---\\, is the whole engine of the count.",
-    "solutions": [
-      {
-        "name": "Cycle lemma: each rotation orbit anoints exactly one submerged word",
-        "steps": [
-          "Write each step-word as a sequence $a_1a_2\\cdots a_{13}$ with $a_i=+1$ for $U$ and $a_i=-1$ for $D$; there are $\\binom{13}{6}=1716$ words, all with total $S=6-7=-1$. Arrange the $13$ positions around a circle and let the cyclic group $\\mathbb{Z}_{13}$ act by rotation, $\\rho(a_1\\cdots a_{13})=a_2\\cdots a_{13}a_1$. Because $13$ is prime and a word is not all-equal (it mixes $U$ and $D$), no nontrivial rotation fixes it, so every orbit has full size $13$. Hence the $1716$ words split into $1716/13=132$ orbits of $13$ words each.",
-          "Claim: each orbit contains exactly one submerged word. Fix an orbit and any representative $w$. Form the height profile $h_0=0,\\;h_k=a_1+\\cdots+a_k$. Over one full loop the height drops by $1$ ($h_{13}=-1$), so over a doubled loop it drops by $2$, $-3,\\dots$; reading the heights around and around, the sequence of running totals drifts steadily downward by $1$ per lap. A rotation starting at position $j+1$ is submerged exactly when position $j$ is a strict record low of this drifting walk \\,---\\, a height never matched again before the walk has descended one more full unit. Because the per-lap drop is exactly $1$ and $13$ is coprime to $1$, the $13$ shifted heights $h_j-h_{j}$ within a lap are all distinct, so there is a unique position achieving the strict minimum over the lap; starting just after it makes every subsequent partial sum strictly below $0$. Thus exactly one of the $13$ rotations is submerged.",
-          "Counting submerged words two ways: summing ``one per orbit'' over the $132$ orbits gives $132$ submerged words; equivalently, $\\#\\{\\text{submerged}\\}=\\dfrac{1}{13}\\binom{13}{6}\\cdot 1=\\dfrac{1716}{13}=132$. This is the cycle-lemma form of the Catalan number, $\\dfrac{1}{2n+1}\\binom{2n+1}{n}$ with $n=6$.",
-          "Therefore the number of submerged step-words is $\\boxed{132}$."
-        ]
-      },
-      {
-        "name": "Reflection principle on the augmented path",
-        "steps": [
-          "A submerged word must begin with $D$: the very first partial sum is strictly negative, forcing $a_1=-1$. Delete that forced leading $D$. What remains is a length-$12$ word with $6$ ups and $6$ downs, and the submerged condition $h_k\\le -1$ for all $k\\ge 1$ becomes, after the shift by the removed $-1$, the condition that the remainder's running heights never become strictly positive (it stays weakly below the start). So submerged $13$-words biject with length-$12$ balanced words that never go strictly positive.",
-          "Count the balanced words that DO go strictly positive (height reaches $+1$) by reflection. Take the first step where the height first hits $+1$ and flip every step before and including it ($U\\leftrightarrow D$). A path with $6$ $U$'s and $6$ $D$'s that touches $+1$ maps bijectively to a path with $7$ $U$'s and $5$ $D$'s, of which there are $\\binom{12}{7}$. Hence the number that never go strictly positive is $\\binom{12}{6}-\\binom{12}{7}=924-792=132$.",
-          "Since the leading-$D$ deletion is a bijection, the submerged $13$-words number the same. This is the ballot form $\\binom{2n}{n}-\\binom{2n}{n+1}=\\binom{2n}{n}-\\binom{2n}{n-1}$ of the Catalan number, here $\\binom{12}{6}-\\binom{12}{5}=924-792=132$.",
-          "Therefore the count is $\\boxed{132}$."
-        ]
-      },
-      {
-        "name": "Bijection to Dyck paths and the Catalan recurrence",
-        "steps": [
-          "Reverse a submerged word and swap $U\\leftrightarrow D$. Reversal turns ``every prefix sum $<0$'' into ``every suffix sum $>0$,'' and the swap turns that into ``every prefix sum of the new word $>0$'' after also flipping the forced first/last step; concretely, deleting the forced leading $D$ (Solution 2) and reading the remaining $12$ steps bottom-to-top yields a genuine Dyck path of $6$ up and $6$ down steps that stays at height $\\ge 0$ throughout and returns to $0$.",
-          "Dyck paths of semilength $6$ are counted by the Catalan number $C_6$. Using the Segner recurrence $C_{m+1}=\\sum_{i=0}^{m}C_iC_{m-i}$ from the first return to $0$: $C_0=1,\\,C_1=1,\\,C_2=2,\\,C_3=5,\\,C_4=14,\\,C_5=42$, and $C_6=C_0C_5+C_1C_4+C_2C_3+C_3C_2+C_4C_1+C_5C_0=42+14+10+10+14+42=132.$",
-          "Equivalently $C_6=\\dfrac{1}{6+1}\\binom{12}{6}=\\dfrac{924}{7}=132$, agreeing with the recurrence.",
-          "Hence the number of submerged step-words equals $C_6=\\boxed{132}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the cycle lemma divides a total by the loop length only when the cyclic action is FREE, and freeness is bought by the single extra $D$. With $6$ ups against $7$ downs the net displacement is $-1$, coprime to the length $13$, so no step-word can be periodic; every rotation orbit has full size $13$ and exactly one of its members is submerged. The instant you ``balance'' the word to $6$ ups and $6$ downs to make it look symmetric, the displacement becomes $0$, periodic words such as $(UD)^6$ appear, orbits shrink, and the clean division collapses \\,---\\, the same disease that makes $\\tfrac{1}{2n}\\binom{2n}{n}$ a non-integer. The reflection and Dyck-recurrence solutions reach the identical Catalan number $C_n=\\tfrac{1}{2n+1}\\binom{2n+1}{n}=\\binom{2n}{n}-\\binom{2n}{n-1}=\\tfrac{1}{n+1}\\binom{2n}{n}$ by entirely different mechanisms, but only the rotation argument explains WHY the strange $+1$ extra step is not a blemish but the load-bearing beam."
-  },
-  {
-    "theme": "identities",
-    "themeLabel": "Combinatorial Identities",
     "title": "Chair, Deputy, and the Doubled Diagonal",
     "difficulty": 5,
     "task": "Evaluate",
@@ -2967,54 +2647,6 @@ window.PROBLEMS = [
   {
     "theme": "identities",
     "themeLabel": "Combinatorial Identities",
-    "title": "Two Hockey Sticks Cross the Line",
-    "difficulty": 5,
-    "task": "Prove that",
-    "tags": [
-      "hockey-stick",
-      "vandermonde",
-      "lattice-paths",
-      "double-counting",
-      "grand-hybrid"
-    ],
-    "statement": "Fix integers $n\\ge 0$ and $a,b\\ge 0$ with $a+b\\le n$. Prove the two-block hockey-stick identity \\[\\sum_{i=0}^{n}\\binom{i}{a}\\binom{\\,n-i\\,}{b}\\;=\\;\\binom{\\,n+1\\,}{\\,a+b+1\\,}\\] by choosing an $(a+b+1)$-element subset of $\\{0,1,\\dots,n\\}$ and classifying it by its $(a+1)$-th smallest element.",
-    "answer": "Proved: both sides count the $(a+b+1)$-element subsets of the $(n+1)$-element ground set $\\{0,1,\\dots,n\\}$, so $\\sum_{i=0}^{n}\\binom{i}{a}\\binom{n-i}{b}=\\binom{n+1}{a+b+1}.$",
-    "trap": "Off-by-one on the ground set. The pivot $i$ is one specific chosen element with exactly $a$ chosen elements strictly below it and exactly $b$ strictly above it, so the ground set must contain the value $0$ as a legal slot below: it is $\\{0,1,\\dots,n\\}$, with $n+1$ elements, giving $\\binom{n+1}{a+b+1}$. If you instead picture the ground set as $\\{1,\\dots,n\\}$ (only $n$ elements) you land on the WRONG total $\\binom{n}{a+b+1}$. Concretely at $n=5,a=b=1$ the sum is $20=\\binom{6}{3}$, whereas $\\binom{5}{3}=10$; a direct check over all $n\\le 24$ with $a+b\\le n$ shows $\\binom{n}{a+b+1}$ never equals the sum (and they agree by accident in zero cases). The phantom missing slot is exactly the value $0$ available to the $\\binom{i}{a}$ block when $i$ is small.",
-    "solutions": [
-      {
-        "name": "Classify by the pivot element",
-        "steps": [
-          "LET $\\mathcal{F}$ be the family of all $(a+b+1)$-element subsets of the ground set $G=\\{0,1,\\dots,n\\}$. Since $|G|=n+1$, we have $|\\mathcal{F}|=\\binom{n+1}{a+b+1}$ by definition of the binomial coefficient.",
-          "FOR each $T\\in\\mathcal{F}$, write its elements in increasing order as $t_0<t_1<\\cdots<t_{a+b}$, and call $p=t_a$ its PIVOT, the $(a+1)$-th smallest element. Every $T$ has exactly one pivot, so the value of $p$ partitions $\\mathcal{F}$.",
-          "COUNT the subsets with pivot $p=i$. Below the pivot we must choose the $a$ smallest elements $t_0<\\cdots<t_{a-1}$ from $\\{0,1,\\dots,i-1\\}$, an $i$-element set: $\\binom{i}{a}$ ways. Above the pivot we choose the $b$ largest elements $t_{a+1}<\\cdots<t_{a+b}$ from $\\{i+1,\\dots,n\\}$, an $(n-i)$-element set: $\\binom{n-i}{b}$ ways. The two choices are independent, so there are $\\binom{i}{a}\\binom{n-i}{b}$ subsets with pivot $i$.",
-          "SUM over all admissible pivot values. As $i$ ranges over $0,1,\\dots,n$ the classes are disjoint and exhaust $\\mathcal{F}$ (terms with $i<a$ or $n-i<b$ contribute $0$ automatically), so $|\\mathcal{F}|=\\sum_{i=0}^{n}\\binom{i}{a}\\binom{n-i}{b}$.",
-          "EQUATE the two counts of $|\\mathcal{F}|$: $\\displaystyle\\sum_{i=0}^{n}\\binom{i}{a}\\binom{n-i}{b}=\\binom{n+1}{a+b+1}.\\qquad\\blacksquare$"
-        ]
-      },
-      {
-        "name": "Lattice-path crossing",
-        "steps": [
-          "ENCODE each $(a+b+1)$-subset of $\\{0,1,\\dots,n\\}$ as a monotone lattice path. Reading positions $0,1,\\dots,n$ left to right, take a North (up) step at each chosen position and an East step at each unchosen position. This is a bijection between subsets and paths from $(0,0)$ using exactly $a+b+1$ North steps and $n-a-b$ East steps, i.e. paths to $(\\,n-a-b,\\;a+b+1\\,)$; there are $\\binom{n+1}{a+b+1}$ of them since we place $a+b+1$ North steps among $n+1$ total steps.",
-          "CONDITION on the $(a+1)$-th North step, the path's middle crossing. Suppose it occurs at position $i$ (the $i$-th of the $n+1$ steps, $0$-indexed). Among the first $i$ positions the path has used exactly $a$ North steps: $\\binom{i}{a}$ ways. Among the last $n-i$ positions it uses the remaining $b$ North steps: $\\binom{n-i}{b}$ ways.",
-          "SUM over the crossing position $i=0,1,\\dots,n$. Each path has a unique $(a+1)$-th North step, so summing the disjoint cases counts every path exactly once: the total is $\\sum_{i=0}^{n}\\binom{i}{a}\\binom{n-i}{b}$.",
-          "CONCLUDE. The two counts of the same path family must agree: $\\displaystyle\\sum_{i=0}^{n}\\binom{i}{a}\\binom{n-i}{b}=\\binom{n+1}{a+b+1}.\\qquad\\blacksquare$"
-        ]
-      },
-      {
-        "name": "Generating functions (Cauchy product)",
-        "steps": [
-          "RECALL the negative-binomial generating series, valid as a formal power series for each fixed integer $k\\ge 0$: $\\displaystyle\\sum_{m\\ge 0}\\binom{m}{k}x^{m}=\\frac{x^{k}}{(1-x)^{k+1}}$, since $\\binom{m}{k}$ is the number of ways to write $m$ as $k$ markers plus gaps.",
-          "MULTIPLY the two such series with $k=a$ and $k=b$: $\\displaystyle\\Bigl(\\sum_{m\\ge 0}\\binom{m}{a}x^{m}\\Bigr)\\Bigl(\\sum_{m\\ge 0}\\binom{m}{b}x^{m}\\Bigr)=\\frac{x^{a}}{(1-x)^{a+1}}\\cdot\\frac{x^{b}}{(1-x)^{b+1}}=\\frac{x^{a+b}}{(1-x)^{a+b+2}}.$",
-          "READ OFF the coefficient two ways. By the Cauchy product, the coefficient of $x^{n}$ on the left is $\\sum_{i=0}^{n}\\binom{i}{a}\\binom{n-i}{b}$. On the right, $\\dfrac{x^{a+b}}{(1-x)^{a+b+2}}=\\sum_{m\\ge 0}\\binom{m}{a+b+1}x^{\\,m+1}$ (re-indexing the series of step 1 with $k=a+b+1$), whose coefficient of $x^{n}$ is $\\binom{n}{a+b+1}$... and shifting the exponent gives $\\binom{n+1}{a+b+1}$ once aligned. Precisely: $\\dfrac{x^{a+b}}{(1-x)^{a+b+2}}=\\dfrac{1}{x}\\cdot\\dfrac{x^{a+b+1}}{(1-x)^{(a+b+1)+1}}=\\dfrac{1}{x}\\sum_{m\\ge 0}\\binom{m}{a+b+1}x^{m}$, so the coefficient of $x^{n}$ equals the coefficient of $x^{n+1}$ in $\\sum_m\\binom{m}{a+b+1}x^m$, namely $\\binom{n+1}{a+b+1}$.",
-          "EQUATE the two coefficient extractions of $x^{n}$: $\\displaystyle\\sum_{i=0}^{n}\\binom{i}{a}\\binom{n-i}{b}=\\binom{n+1}{a+b+1}.\\qquad\\blacksquare$"
-        ]
-      }
-    ],
-    "remark": "Insight: this is the convolution that fuses two hockey sticks. The single hockey-stick identity $\\sum_{i}\\binom{i}{a}=\\binom{n+1}{a+1}$ is 'classify an $(a+1)$-subset by its maximum'; the two-block version classifies an $(a+b+1)$-subset by a distinguished interior element, the pivot, with $\\binom{i}{a}$ choices below it and $\\binom{n-i}{b}$ above. The same fact wears three hats: a pivot-partition (double counting), a path's middle crossing (lattice paths), and a Cauchy product of two $\\tfrac{x^{k}}{(1-x)^{k+1}}$ series (Vandermonde-style convolution). The lone trap is the ground set: the value $0$ is a genuine slot below the pivot, so there are $n+1$ slots, not $n$ — drop it and the right side collapses to the wrong $\\binom{n}{a+b+1}$."
-  },
-  {
-    "theme": "identities",
-    "themeLabel": "Combinatorial Identities",
     "title": "How Much Do Two Random Clubs Share?",
     "difficulty": 5,
     "task": "Determine",
@@ -3059,467 +2691,438 @@ window.PROBLEMS = [
     "remark": "Insight: the grandest double counts are incidence counts — build a bipartite relation (here, element $x$ versus pair $(S,T)$) and count its edges from both sides. Swapping which side you fix first turns an intractable triple binomial sum into a one-line product, and recovers the chair identity $\\sum_k k\\binom{n}{k}=n\\,2^{n-1}$ as a special case."
   },
   {
-    "theme": "recurrence",
-    "themeLabel": "Recurrences & Catalan",
-    "title": "The Two-Tone Corridor",
-    "difficulty": 3,
-    "task": "Find the number of …",
+    "theme": "identities",
+    "themeLabel": "Combinatorial Identities",
+    "title": "Hockey Stick by the Largest Element",
+    "difficulty": 5,
+    "task": "Prove the hockey-stick identity by counting subsets according to their largest element, then apply it to a concrete count.",
     "tags": [
-      "tiling",
-      "fibonacci-type",
-      "jacobsthal",
-      "recurrence",
-      "closed-form"
+      "combinatorial-identities",
+      "hockey-stick",
+      "counting-two-ways",
+      "binomial-coefficients",
+      "largest-element-method"
     ],
-    "statement": "A corridor is a $1\\times 10$ strip of unit cells. We tile it completely, left to right, using two kinds of tiles: a white $1\\times1$ square, or a $1\\times2$ domino that comes in one of two colours, red or blue. (Two tilings are the same only if they use the same tiles in the same positions and colours.) \\[Find the number of distinct tilings of the 1\\times10 corridor.\\]",
-    "answer": "$683$.",
-    "trap": "Treating the coloured domino as a single tile and getting plain Fibonacci $F_{11}=89$. The two colours mean a domino contributes a factor of $2$, not $1$, in the recurrence; ignoring colour undercounts massively.",
+    "statement": "For integers $0 \\le r \\le n$, prove the \\emph{hockey-stick identity} $$\\sum_{j=r}^{n}\\binom{j}{r}=\\binom{n+1}{r+1}$$ by counting the $(r+1)$-element subsets of $\\{0,1,2,\\dots,n\\}$ in two different ways. Then use the identity to evaluate, in closed form, the number $N$ of strictly increasing integer quadruples $0 \\le a_1 < a_2 < a_3 < a_4 \\le 20$, classified by the value of the largest entry $a_4$.",
+    "answer": "$\\boxed{\\;\\displaystyle\\sum_{j=r}^{n}\\binom{j}{r}=\\binom{n+1}{r+1},\\qquad N=\\sum_{m=3}^{20}\\binom{m}{3}=\\binom{21}{4}=5985\\;}$",
+    "trap": "Students try to push the sum through Pascal's rule mechanically and lose track of the telescoping endpoints, or they mis-index the largest-element classification (writing $\\binom{m-1}{r}$ instead of $\\binom{m}{r}$, or summing the largest entry over the wrong range). The clean fix is to fix the largest chosen element first and count the rest, so each $(r+1)$-subset is counted exactly once.",
     "solutions": [
       {
-        "name": "Recurrence on the last tile",
+        "name": "Counting two ways (largest-element classification)",
         "steps": [
-          "Let $a_n$ be the number of tilings of $1\\times n$. Look at the rightmost tile.",
-          "If it is a white square (1 way), the rest is a tiling of $1\\times(n-1)$: contributes $a_{n-1}$.",
-          "If it is a coloured domino (2 choices of colour), the rest tiles $1\\times(n-2)$: contributes $2a_{n-2}$.",
-          "Hence $a_n=a_{n-1}+2a_{n-2}$ with $a_0=1,\\ a_1=1$.",
-          "Iterate: $1,1,3,5,11,21,43,85,171,341,683$, so $a_{10}=\\boxed{683}$."
+          "Count the $(r+1)$-element subsets of $S=\\{0,1,2,\\dots,n\\}$. The set $S$ has $n+1$ elements, so directly there are $\\binom{n+1}{r+1}$ such subsets — this is the right-hand side.",
+          "Now count the same subsets by their \\emph{largest} element. If the largest chosen element equals $j$, then the remaining $r$ elements must come from $\\{0,1,\\dots,j-1\\}$, a set of size $j$, giving $\\binom{j}{r}$ choices. For $r$ smaller picks to exist we need $j \\ge r$, and $j$ ranges up to $n$.",
+          "Every $(r+1)$-subset has exactly one largest element, so this classification partitions all of them with no overlap. Summing the cases gives $\\sum_{j=r}^{n}\\binom{j}{r}$, the left-hand side. Equating the two counts of the same family yields $\\sum_{j=r}^{n}\\binom{j}{r}=\\binom{n+1}{r+1}$."
         ]
       },
       {
-        "name": "Closed form (Jacobsthal)",
+        "name": "Pascal's rule telescoping",
         "steps": [
-          "The characteristic equation $x^2=x+2$ factors as $(x-2)(x+1)=0$, roots $2$ and $-1$.",
-          "So $a_n=A\\cdot2^n+B(-1)^n$; using $a_0=1,a_1=1$ gives $A=\\tfrac23,\\ B=\\tfrac13$.",
-          "Thus $a_n=\\dfrac{2^{\\,n+1}+(-1)^n}{3}$.",
-          "At $n=10$: $\\dfrac{2^{11}+1}{3}=\\dfrac{2049}{3}=\\boxed{683}$."
+          "Rewrite each term using Pascal's rule $\\binom{j+1}{r+1}=\\binom{j}{r}+\\binom{j}{r+1}$ rearranged to $\\binom{j}{r}=\\binom{j+1}{r+1}-\\binom{j}{r+1}$.",
+          "Substitute: $\\sum_{j=r}^{n}\\binom{j}{r}=\\sum_{j=r}^{n}\\left[\\binom{j+1}{r+1}-\\binom{j}{r+1}\\right]$, a telescoping sum.",
+          "Adjacent terms cancel, leaving $\\binom{n+1}{r+1}-\\binom{r}{r+1}$. Since $\\binom{r}{r+1}=0$, the value is $\\binom{n+1}{r+1}$, proving the identity."
         ]
       },
       {
-        "name": "Sum over number of dominoes",
+        "name": "Application to the concrete count",
         "steps": [
-          "If a tiling uses $k$ dominoes it uses $10-2k$ squares, occupying $10-k$ tile-slots arranged in $\\binom{10-k}{k}$ ways.",
-          "Each domino independently picks a colour: factor $2^k$.",
-          "Total $=\\sum_{k=0}^{5}\\binom{10-k}{k}2^k=1+18+112+280+240+32=683$.",
-          "Hence $\\boxed{683}$."
+          "A strictly increasing quadruple $0 \\le a_1<a_2<a_3<a_4 \\le 20$ is exactly a $4$-element subset of $\\{0,1,\\dots,20\\}$, so take $n=20$ and $r+1=4$, i.e. $r=3$.",
+          "Classify by the largest entry $a_4=m$. The three smaller entries form a $3$-subset of $\\{0,1,\\dots,m-1\\}$, giving $\\binom{m}{3}$ quadruples; here $m$ ranges over $3,4,\\dots,20$.",
+          "By the hockey-stick identity with $n=20,\\ r=3$: $N=\\sum_{m=3}^{20}\\binom{m}{3}=\\binom{21}{4}=5985$, matching the direct count $\\binom{21}{4}$ of $4$-subsets of the $21$-element set."
         ]
       }
     ],
-    "remark": "Insight: a tile that can be 'decorated' in $c$ ways simply multiplies that branch of the recurrence by $c$. Colours turn ordinary Fibonacci into the Jacobsthal numbers $\\frac{2^{n+1}+(-1)^n}{3}$ — same structure, richer growth."
+    "remark": "**Insight.** The phrase \"classify by the largest element\" is the whole idea: every collection chosen from an ordered ground set has a unique maximum, so splitting the count on that maximum turns one binomial coefficient into a sum of smaller ones. Reading the hockey-stick identity this way — rather than as a telescoping accident — makes it a reusable counting move: whenever you meet $\\sum\\binom{j}{r}$, you are really being handed the count of $(r+1)$-subsets sorted by their top element."
   },
   {
-    "theme": "recurrence",
-    "themeLabel": "Recurrences & Catalan",
-    "title": "The River With a Floor",
+    "theme": "identities",
+    "themeLabel": "Combinatorial Identities",
+    "title": "The Hockey Stick on a Diagonal",
     "difficulty": 5,
-    "task": "Count",
+    "task": "Sum a diagonal of binomials.",
     "tags": [
-      "motzkin",
+      "hockey stick identity",
+      "double counting",
+      "Pascal's rule",
+      "diagonal sum"
+    ],
+    "statement": "From the integers  $\\{1,2,3,\\dots,10\\}$  a committee of exactly  $4$  members is to be formed. By classifying every such committee according to the value of its largest member, prove the hockey-stick identity  \\[ \\sum_{m=4}^{10}\\binom{m-1}{3} \\;=\\; \\binom{10}{4}, \\]  equivalently  $\\displaystyle\\sum_{j=3}^{9}\\binom{j}{3}=\\binom{10}{4}$ , and evaluate the sum.",
+    "answer": " $\\boxed{210}$ ",
+    "trap": "An off-by-one in the upper index of the diagonal. Because the largest element  $m$  of a  $4$ -set runs only from  $4$  to  $10$ , the summed term is  $\\binom{m-1}{3}$  with  $j=m-1$  running  $3$  to  $9$  — NOT  $\\sum_{j=3}^{10}\\binom{j}{3}$ . Including  $\\binom{10}{3}$  wrongly gives  $\\binom{11}{4}=330$  instead of  $\\binom{10}{4}=210$ ; the hockey-stick top index is  $n=9$ , and the answer is  $\\binom{9+1}{3+1}=\\binom{10}{4}$ .",
+    "solutions": [
+      {
+        "name": "Double counting by the largest element",
+        "steps": [
+          "Count all  $4$ -element committees from  $\\{1,\\dots,10\\}$  directly: there are  $\\binom{10}{4}$  of them.",
+          "Now partition the committees by their maximum element  $m$ . If the largest chosen number is  $m$ , the other  $3$  members are chosen from  $\\{1,2,\\dots,m-1\\}$ , which can be done in  $\\binom{m-1}{3}$  ways.",
+          "The maximum  $m$  of a  $4$ -set must be at least  $4$  and at most  $10$ , so summing over the disjoint classes gives  $\\sum_{m=4}^{10}\\binom{m-1}{3}$ . Substituting  $j=m-1$  turns this into  $\\sum_{j=3}^{9}\\binom{j}{3}$ .",
+          "Both counts enumerate the same committees, so  $\\sum_{j=3}^{9}\\binom{j}{3}=\\binom{10}{4}=210=\\boxed{210}$ ."
+        ]
+      },
+      {
+        "name": "Telescoping via Pascal's rule",
+        "steps": [
+          "Pascal's rule gives  $\\binom{j+1}{4}-\\binom{j}{4}=\\binom{j}{3}$  for every  $j$ .",
+          "Summing this from  $j=3$  to  $j=9$ , the left side telescopes:  $\\sum_{j=3}^{9}\\left[\\binom{j+1}{4}-\\binom{j}{4}\\right]=\\binom{10}{4}-\\binom{3}{4}$ .",
+          "Since  $\\binom{3}{4}=0$ , the right side equals  $\\binom{10}{4}$ , so  $\\sum_{j=3}^{9}\\binom{j}{3}=\\binom{10}{4}$ .",
+          "Numerically  $\\binom{3}{3}+\\binom{4}{3}+\\cdots+\\binom{9}{3}=1+4+10+20+35+56+84=210=\\binom{10}{4}=\\boxed{210}$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The hockey-stick sum is just sorting subsets by their top element: each  $4$ -set is named uniquely by its maximum  $m$ , and the remaining three come from the  $m-1$  smaller numbers. The diagonal of Pascal's triangle stops at  $\\binom{9}{3}$ , not  $\\binom{10}{3}$ , precisely because a maximum of  $4$  leaves only  $\\{1,2,3\\}$  below it — the single off-by-one that decides  $210$  versus  $330$ ."
+  },
+  {
+    "title": "Twelve Stars on a Circle",
+    "difficulty": 3,
+    "task": "Count the triangles formed",
+    "tags": [
+      "combinations",
+      "triangles",
+      "points on a circle",
+      "general position"
+    ],
+    "statement": "Twelve distinct points are marked on a circle. Since no three points on a circle can ever be collinear, every choice of three of them is the vertex-set of a genuine triangle. How many triangles can be drawn whose vertices are three of these  $12$  points?",
+    "answer": " $\\boxed{220}$ ",
+    "trap": "A tempting error is to use an ordered count such as  $12\\cdot 11\\cdot 10$ , or to worry about subtracting collinear triples. Here the order of the three chosen vertices does not matter (a triangle is an unordered set), and because the points lie on a circle no three are ever collinear, so  $\\textbf{nothing}$  is subtracted. The count is the plain combination  $\\binom{12}{3}$ .",
+    "solutions": [
+      {
+        "name": "Direct selection of three vertices",
+        "steps": [
+          "A triangle is determined by an unordered choice of  $3$  of the  $12$  points.",
+          "On a circle no three points are collinear, so every such triple is non-degenerate.",
+          "Hence the count is  $\\binom{12}{3}=\\dfrac{12\\cdot 11\\cdot 10}{3!}=\\dfrac{1320}{6}=\\boxed{220}.$ "
+        ]
+      },
+      {
+        "name": "Order then divide out",
+        "steps": [
+          "Pick the vertices in order:  $12$  ways for the first,  $11$  for the second,  $10$  for the third, giving  $12\\cdot 11\\cdot 10=1320$  ordered triples.",
+          "Each triangle is counted once for each ordering of its  $3$  vertices, i.e.  $3!=6$  times.",
+          "Therefore the number of triangles is  $\\dfrac{1320}{6}=\\boxed{220}.$ "
+        ]
+      }
+    ],
+    "remark": "**Insight.** “Points on a circle” is a code-phrase for general position:  $\\binom{n}{2}$  chords and  $\\binom{n}{3}$  triangles with  $\\emph{no}$  collinear correction, because a line meets a circle in at most two points.",
+    "theme": "geomcount",
+    "themeLabel": "Geometric Counting"
+  },
+  {
+    "title": "Diagonals of a Dodecagon",
+    "difficulty": 3,
+    "task": "Count the diagonals",
+    "tags": [
+      "polygon diagonals",
+      "combinations",
+      "sides versus diagonals"
+    ],
+    "statement": "A convex polygon has  $12$  vertices (a regular dodecagon, say). A  $\\emph{diagonal}$  is a segment joining two vertices that is not a side. How many diagonals does it have?",
+    "answer": " $\\boxed{54}$ ",
+    "trap": "Counting  $\\binom{12}{2}=66$  counts every vertex-pair, but  $12$  of those pairs are adjacent vertices, i.e.  $\\emph{sides}$  of the polygon, not diagonals. Forgetting to subtract the  $12$  sides (or mis-counting the sides) is the classic slip.",
+    "solutions": [
+      {
+        "name": "Segments minus sides",
+        "steps": [
+          "Joining any  $2$  of the  $12$  vertices gives  $\\binom{12}{2}=66$  segments.",
+          "Exactly  $12$  of these segments are sides of the polygon.",
+          "Diagonals  $=66-12=\\boxed{54}.$ "
+        ]
+      },
+      {
+        "name": "Diagonals from each vertex",
+        "steps": [
+          "From one vertex you can draw a diagonal to every vertex except itself and its two neighbours, i.e. to  $12-3=9$  vertices.",
+          "Over all  $12$  vertices that is  $12\\cdot 9=108$  endpoint-incidences, but each diagonal has been counted at both of its ends.",
+          "Diagonals  $=\\dfrac{12\\cdot 9}{2}=\\boxed{54}.$ "
+        ]
+      }
+    ],
+    "remark": "**Insight.** The diagonal count of a convex  $n$ -gon is  $\\binom{n}{2}-n=\\dfrac{n(n-3)}{2}$ : all vertex-pairs minus the  $n$  adjacent ones.",
+    "theme": "geomcount",
+    "themeLabel": "Geometric Counting"
+  },
+  {
+    "title": "Rectangles in a Grid",
+    "difficulty": 4,
+    "task": "Count the rectangles",
+    "tags": [
+      "grid counting",
+      "rectangles",
+      "combinations",
+      "choosing lines"
+    ],
+    "statement": "Consider a rectangular grid made of  $5$  rows and  $7$  columns of unit squares; its boundary lines form  $6$  horizontal lines and  $8$  vertical lines. How many rectangles (of all sizes, sides parallel to the grid) are there in the figure?",
+    "answer": " $\\boxed{420}$ ",
+    "trap": "Counting only the  $5\\times 7=35$  unit squares — or trying to add up rectangles size-by-size — misses the elegant fact that a rectangle is fixed by choosing  $\\emph{two}$  of the horizontal lines and  $\\emph{two}$  of the vertical lines. Use the line count  $6$  and  $8$ , not the square count  $5$  and  $7$ .",
+    "solutions": [
+      {
+        "name": "Choose two horizontal and two vertical lines",
+        "steps": [
+          "A rectangle is determined by picking  $2$  of the  $6$  horizontal lines and  $2$  of the  $8$  vertical lines.",
+          "That is  $\\binom{6}{2}\\cdot\\binom{8}{2}=15\\cdot 28$ .",
+          "So the number of rectangles is  $15\\cdot 28=\\boxed{420}.$ "
+        ]
+      },
+      {
+        "name": "Sum over widths and heights",
+        "steps": [
+          "A rectangle spanning  $a$  columns ( $1\\le a\\le 7$ ) has  $8-a$  horizontal positions; summing,  $\\sum_{a=1}^{7}(8-a)=7+6+\\dots+1=28$  choices of vertical extent.",
+          "Likewise the number of ways to fix the top and bottom over  $5$  rows is  $\\sum_{b=1}^{5}(6-b)=5+4+3+2+1=15$ .",
+          "By the product rule the total is  $28\\cdot 15=\\boxed{420}.$ "
+        ]
+      }
+    ],
+    "remark": "**Insight.** In a grid bounded by  $p$  vertical and  $q$  horizontal lines the rectangle count is  $\\binom{p}{2}\\binom{q}{2}$ : every rectangle  $\\leftrightarrow$  a pair of verticals and a pair of horizontals.",
+    "theme": "geomcount",
+    "themeLabel": "Geometric Counting"
+  },
+  {
+    "title": "A Detour Through a Checkpoint",
+    "difficulty": 4,
+    "task": "Count paths through a point",
+    "tags": [
       "lattice paths",
-      "recurrence",
-      "generating function",
-      "catalan"
+      "monotonic paths",
+      "through a point",
+      "product rule"
     ],
-    "statement": "A pebble starts at the origin and takes a sequence of $9$ moves. Each move is one of three kinds: a rise $(+1,+1)$, a drop $(+1,-1)$, or a glide $(+1,0)$. The pebble must finish back at height $0$ after the $9$th move, and at no intermediate moment may its height become negative (it may touch height $0$ as often as it likes, but it can never go below the floor). How many such $9$-move walks are there? Set up a recurrence by classifying the walk according to the behaviour of its first step, then confirm the count by a second, structurally different method.",
-    "answer": "$835$",
-    "trap": "The fatal move is to read ``finish at height $0$'' as the only constraint and quietly drop the floor. With $j$ rises, $j$ drops and $9-2j$ glides the multiset of steps can be ordered in $\\frac{9!}{j!\\,j!\\,(9-2j)!}$ ways, and summing over $j=0,\\dots,4$ gives $\\sum_{j}\\frac{9!}{j!\\,j!\\,(9-2j)!}=3139$, the central trinomial coefficient $[x^9](1+x+x^2)^9$. It looks authoritative because it is a real named number and it does enforce ``ends at $0$'' \\,---\\, but it counts every height-balanced word, including the $3139-835=2304$ words that dip below the floor at some point (e.g. a leading drop). The non-negativity wall is exactly the difference between a free balanced walk and a Motzkin walk, and it cannot be patched by a single reflection the way a pure up/down (Dyck) path can, because the glide steps make the lengths and parities interleave; one must build the floor into the recurrence itself. A second, subtler trap is to copy the Catalan first-return recurrence verbatim \\,---\\, ``either the path starts with a step that returns to $0$ giving $M_{n-1}$, or it makes an excursion'' \\,---\\, but treat the excursion as a single first-return arch of $C_{n-1}$ closing one step later, i.e. $M_n=M_{n-1}+\\sum_k M_kM_{n-1-k}$; this miscounts because a genuine arch that lifts off the floor and comes back consumes two boundary steps (the opening rise and the closing drop), not one, so the inner convolution must be over length $n-2$, not $n-1$. The wrong version explodes to $206098$ at $n=9$.",
+    "statement": "A robot moves on the integer grid from  $(0,0)$  to  $(5,4)$ , taking unit steps only  $\\emph{right}$  or  $\\emph{up}$ . How many such monotonic paths pass through the checkpoint  $(2,3)$ ?",
+    "answer": " $\\boxed{40}$ ",
+    "trap": "A common mistake is to compute the total number of paths  $\\binom{9}{4}=126$  and stop, or to  $\\emph{add}$  the two leg-counts instead of multiplying them. Passing through  $(2,3)$  means doing the first leg  $\\textbf{and}$  the second leg, so the two independent counts  $\\textbf{multiply}$ .",
     "solutions": [
       {
-        "name": "First-step (Motzkin) recurrence",
+        "name": "Split at the checkpoint and multiply",
         "steps": [
-          "Let $M_n$ be the number of admissible $n$-move walks (start and end at height $0$, never below the floor). Read $M_0=1$ (the empty walk) and $M_1=1$ (only a glide works; a lone rise or drop cannot return to $0$). Classify any walk of length $n\\ge 2$ by its first step.",
-          "Case A \\,---\\, the first step is a glide. The pebble is back at height $0$ after one move and the remaining $n-1$ moves form an arbitrary admissible walk; this contributes $M_{n-1}$.",
-          "Case B \\,---\\, the first step is a rise. It must eventually be cancelled by a matching drop that brings the height back to $0$ for the first time. Say that first return to $0$ happens at move $j+2$: the rise at step $1$, an admissible walk of length $j$ strictly above the floor (which, shifted down by one, is an arbitrary admissible walk of length $j$), then the closing drop, then an arbitrary admissible walk on the remaining $n-2-j$ moves. Summing $j$ from $0$ to $n-2$ contributes $\\sum_{j=0}^{n-2}M_j\\,M_{n-2-j}$. A first drop is impossible (it breaks the floor immediately).",
-          "Hence $M_n=M_{n-1}+\\sum_{j=0}^{n-2}M_j\\,M_{n-2-j}$. Note the inner sum runs over length $n-2$: the arch eats the opening rise and the closing drop, two steps, which is exactly what the careless first-return copy gets wrong.",
-          "Iterate: $M_2=M_1+M_0M_0=1+1=2$; $M_3=M_2+(M_0M_1+M_1M_0)=2+2=4$; $M_4=M_3+(M_0M_2+M_1M_1+M_2M_0)=4+(2+1+2)=9$; $M_5=9+(M_0M_3+M_1M_2+M_2M_1+M_3M_0)=9+(4+2+2+4)=21$; $M_6=21+(M_0M_4+M_1M_3+M_2M_2+M_3M_1+M_4M_0)=21+(9+4+4+4+9)=51$.",
-          "Continue: $M_7=51+(M_0M_5+M_1M_4+M_2M_3+M_3M_2+M_4M_1+M_5M_0)=51+(21+9+8+8+9+21)=127$; $M_8=127+(M_0M_6+M_1M_5+M_2M_4+M_3M_3+M_4M_2+M_5M_1+M_6M_0)=127+(51+21+18+16+18+21+51)=323$.",
-          "Finally $M_9=M_8+(M_0M_7+M_1M_6+M_2M_5+M_3M_4+M_4M_3+M_5M_2+M_6M_1+M_7M_0)=323+(127+51+42+36+36+42+51+127)=323+512=\\boxed{835}.$"
+          "Paths  $(0,0)\\to(2,3)$  use  $2$  rights and  $3$  ups:  $\\binom{2+3}{2}=\\binom{5}{2}=10$ .",
+          "Paths  $(2,3)\\to(5,4)$  use  $3$  rights and  $1$  up:  $\\binom{3+1}{1}=\\binom{4}{1}=4$ .",
+          "By the product rule the number through  $(2,3)$  is  $10\\cdot 4=\\boxed{40}.$ "
         ]
       },
       {
-        "name": "Generating function (algebraic kernel)",
+        "name": "Step-word viewpoint",
         "steps": [
-          "Let $M(x)=\\sum_{n\\ge 0}M_nx^n$. The first-step decomposition says a non-empty admissible walk is either a glide followed by an admissible walk, contributing $x\\,M(x)$, or a rise, an admissible walk lifted off the floor, a drop, and another admissible walk, contributing $x^2M(x)^2$. Adding the empty walk gives the functional equation $M(x)=1+x\\,M(x)+x^2M(x)^2$.",
-          "Solve the quadratic $x^2M^2+(x-1)M+1=0$ for $M$, taking the branch analytic at $0$ (so that $M(0)=1$): $M(x)=\\dfrac{1-x-\\sqrt{1-2x-3x^2}}{2x^2}$, where $1-2x-3x^2=(1+x)(1-3x)$.",
-          "Extract coefficients. Writing $\\sqrt{1-2x-3x^2}=\\sqrt{(1+x)(1-3x)}$ and expanding, or simply re-expanding $M(x)=1+xM+x^2M^2$ as a power series, the coefficients come out $1,1,2,4,9,21,51,127,323,835,\\dots$ \\,---\\, identical to the recurrence run, since the functional equation is the generating-function shadow of that very recurrence.",
-          "Reading off the coefficient of $x^9$ gives $M_9=\\boxed{835}.$"
-        ]
-      },
-      {
-        "name": "Bijection to Dyck paths via the rise/drop subword (binomial-Catalan sum)",
-        "steps": [
-          "Decide first which of the $9$ positions hold the non-glide moves. If there are $2k$ such positions (they must come in equal numbers of rises and drops to return to $0$), choose them in $\\binom{9}{2k}$ ways; the remaining $9-2k$ positions are forced glides and never affect the height.",
-          "On the $2k$ chosen positions the walk, with glides deleted, is a sequence of $k$ rises and $k$ drops that starts and ends at $0$ and never dips below the floor \\,---\\, exactly a Dyck path of semilength $k$. The number of these is the Catalan number $C_k=\\frac{1}{k+1}\\binom{2k}{k}$. Crucially, deleting the glides preserves the floor condition: glides are horizontal, so the running height at every retained step is unchanged, and the non-negativity of the whole walk is equivalent to that of its rise/drop subword.",
-          "Therefore $M_9=\\sum_{k=0}^{4}\\binom{9}{2k}C_k$. Here is precisely where the trap dies: the central-trinomial count uses $\\binom{2k}{k}$ (all balanced rise/drop orderings) in place of $C_k$ (only those obeying the floor), and the ratio $C_k/\\binom{2k}{k}=\\frac{1}{k+1}$ is the floor's toll.",
-          "Compute with $C_0,C_1,C_2,C_3,C_4=1,1,2,5,14$: $\\binom{9}{0}C_0=1$, $\\binom{9}{2}C_1=36$, $\\binom{9}{4}C_2=126\\cdot2=252$, $\\binom{9}{6}C_3=84\\cdot5=420$, $\\binom{9}{8}C_4=9\\cdot14=126$.",
-          "Summing: $1+36+252+420+126=835$, so $M_9=\\boxed{835}$, agreeing with both the recurrence and the generating function."
+          "Any full path is a word with  $5$  R's and  $4$  U's; passing through  $(2,3)$  means the prefix up to the  $5$ th step is a rearrangement of  $\\{R,R,U,U,U\\}$  and the suffix of  $\\{R,R,R,U\\}$ .",
+          "Prefixes:  $\\dfrac{5!}{2!\\,3!}=10$ ; suffixes:  $\\dfrac{4!}{3!\\,1!}=4$ .",
+          "Total words through the checkpoint  $=10\\cdot 4=\\boxed{40}.$ "
         ]
       }
     ],
-    "remark": "Insight: a Motzkin walk is genuinely two-piece, and that is the whole lesson. A glide is a self-contained one-step return; an excursion off the floor is an opening rise, an arbitrary lifted walk, and a closing drop \\,---\\, two boundary steps \\,---\\, so the honest recurrence is $M_n=M_{n-1}+\\sum_{j}M_jM_{n-2-j}$, never the Catalan first-return $M_n=M_{n-1}+\\sum_j M_jM_{n-1-j}$, and never the floorless trinomial sum. The cleanest way to see the floor's role is the third method: among all $\\binom{2k}{k}$ ways to interleave $k$ rises and $k$ drops, only the fraction $\\frac{1}{k+1}$ stay non-negative, so $\\sum_k\\binom{9}{2k}\\binom{2k}{k}=3139$ collapses to $\\sum_k\\binom{9}{2k}C_k=835$ once the wall is enforced. The same algebraic kernel $M=1+xM+x^2M^2$ encodes all three views at once: the linear $xM$ is the glide, the quadratic $x^2M^2$ is the arch, and the two boundary steps in $x^2$ are exactly the steps the careless copy forgets."
+    "remark": "**Insight.** Forcing a monotonic path through  $(a,b)$  factorises it into two independent sub-paths whose path-counts  $\\emph{multiply}$ :  $\\binom{a+b}{a}\\binom{(m-a)+(n-b)}{m-a}$ .",
+    "theme": "geomcount",
+    "themeLabel": "Geometric Counting"
   },
   {
-    "theme": "recurrence",
-    "themeLabel": "Recurrences & Catalan",
-    "title": "Slicing the Nonagon",
-    "difficulty": 3,
-    "task": "Determine",
-    "tags": [
-      "catalan",
-      "triangulation",
-      "convex-polygon",
-      "recurrence",
-      "euler"
-    ],
-    "statement": "A convex nonagon (9 vertices) is cut into triangles by drawing non-crossing diagonals so that every interior region is a triangle (a triangulation). \\[Determine the number of distinct triangulations of the convex nonagon.\\]",
-    "answer": "$429$.",
-    "trap": "Computing $\\frac{1}{2}\\binom{9}{2}$ or some 'choose the diagonals' count. Diagonals are heavily constrained by non-crossing; the count is the Catalan number $C_{7}$, not a binomial of diagonals.",
-    "solutions": [
-      {
-        "name": "Euler / Catalan recurrence",
-        "steps": [
-          "Let $T_m$ be the number of triangulations of a convex $m$-gon ($T_2=1$ conventionally, $T_3=1$).",
-          "Fix the edge $\\,v_1v_m$. In any triangulation it lies in a unique triangle $v_1 v_k v_m$ for some $2\\le k\\le m-1$.",
-          "That triangle splits the polygon into a $k$-gon ($v_1\\dots v_k$) and an $(m-k+1)$-gon: $T_m=\\sum_{k=2}^{m-1}T_k\\,T_{m-k+1}$.",
-          "This is the Catalan recurrence; $T_{m}=C_{m-2}$.",
-          "For $m=9$: $T_9=C_7=\\dfrac{1}{8}\\binom{14}{7}=\\boxed{429}$."
-        ]
-      },
-      {
-        "name": "Direct Catalan formula",
-        "steps": [
-          "Triangulations of a convex $(n+2)$-gon are counted by the Catalan number $C_n$ (a standard Catalan model).",
-          "Here $n+2=9$, so $n=7$.",
-          "$C_7=\\dfrac{1}{7+1}\\binom{14}{7}=\\dfrac{3432}{8}=\\boxed{429}$."
-        ]
-      }
-    ],
-    "remark": "Insight: 'fix one edge, sum over its triangle's apex' is THE move that produces the Catalan convolution $C_n=\\sum C_kC_{n-1-k}$ across all of its avatars — polygons, trees, parentheses."
-  },
-  {
-    "theme": "recurrence",
-    "themeLabel": "Recurrences & Catalan",
-    "title": "The Twelve-Bead Bracelet",
-    "difficulty": 5,
-    "task": "Count",
-    "tags": [
-      "cyclic tiling",
-      "lucas numbers",
-      "transfer matrix",
-      "seam casework",
-      "fibonacci"
-    ],
-    "statement": "A bracelet is a ring of $12$ beads arranged in a circle, the positions labelled $1,2,\\dots,12$ clockwise with position $12$ adjacent to position $1$. We cover the bracelet completely with two kinds of charms: a $stud$ that occupies a single bead, and a $bar$ that occupies two beads which are adjacent on the ring (so a bar may sit on $\\{4,5\\}$, on $\\{12,1\\}$ across the clasp, and so on). Charms may not overlap and every bead must be covered. \\[\\text{Count the number of distinct ways to cover the bracelet.}\\] Two coverings are the same only if they assign the identical charm to every bead; rotations and reflections are $not$ identified.",
-    "answer": "$\\boxed{322}$",
-    "trap": "Cutting the ring open at the clasp and tiling it as a straight $1\\times 12$ strip. A strip of length $n$ has $F_{n+1}$ square-and-domino tilings, so this gives $F_{13}=233$. But severing the bond between bead $12$ and bead $1$ silently forbids every covering in which a single $bar$ straddles the clasp, i.e. occupies $\\{12,1\\}$. Those wrap-around coverings are real and must be added back. The honest answer is the Lucas number $L_{12}=322$, and the gap $322-233=89=F_{11}$ is exactly the number of coverings the straight-strip count throws away.",
-    "solutions": [
-      {
-        "name": "Seam casework (Lucas via the two Fibonacci pieces)",
-        "steps": [
-          "Classify every covering by what happens at the clasp, the bond joining bead $12$ to bead $1$. Either no bar straddles the clasp, or exactly one bar does (two charms cannot share a bead, so at most one bar can sit on $\\{12,1\\}$).",
-          "Case A — no straddling bar. Then nothing crosses the clasp, so we may cut the ring there and read the beads as a straight line $1,2,\\dots,12$. The number of ways to tile a $1\\times n$ strip with studs (length $1$) and bars (length $2$) satisfies $a_n=a_{n-1}+a_{n-2}$ with $a_0=a_1=1$, hence $a_n=F_{n+1}$. For $n=12$ this is $a_{12}=F_{13}=233$.",
-          "Case B — exactly one bar on $\\{12,1\\}$. Fix that bar; beads $12$ and $1$ are now used. The remaining uncovered beads form the straight run $2,3,\\dots,11$, a strip of length $10$, tiled in $a_{10}=F_{11}=89$ ways.",
-          "The two cases are disjoint and exhaustive, so the total is $F_{13}+F_{11}=233+89=\\boxed{322}$. (This is precisely the identity $L_n=F_{n+1}+F_{n-1}$ at $n=12$, the recurrence-level signature of the wrap-around.)"
-        ]
-      },
-      {
-        "name": "Transfer matrix on the cycle (trace)",
-        "steps": [
-          "Walk around the ring and track a single bit of memory: whether the current bead is already half-claimed by a bar that began on the previous bead. Encode a step by the matrix $T=\\begin{pmatrix} 1 & 1 \\\\ 1 & 0 \\end{pmatrix}$, where the row/column index records that memory bit; the $(0,0)$ entry is 'place a stud', the off-diagonal entries open or close a bar.",
-          "For a $linear$ strip the count is a matrix product, but for a $ring$ the memory at the clasp must return to its starting value, so the count is the trace of $T^{\\,n}$ rather than a single matrix entry. Taking the trace is exactly what re-admits a bar across bead $12$–bead $1$.",
-          "Since $T$ has eigenvalues $\\varphi=\\tfrac{1+\\sqrt5}{2}$ and $\\psi=\\tfrac{1-\\sqrt5}{2}$ (roots of $x^2=x+1$), $\\operatorname{tr}(T^{n})=\\varphi^{n}+\\psi^{n}=L_n$, the $n$-th Lucas number.",
-          "Evaluate at $n=12$: $L_{12}=322$, so the bracelet has $\\boxed{322}$ coverings. (By contrast the strip count is the single entry $(T^{12})_{00}=F_{13}=233$, visibly smaller than the trace.)"
-        ]
-      },
-      {
-        "name": "Direct Lucas recurrence from a stud/bar at one bead",
-        "steps": [
-          "Let $L_n$ be the number of coverings of a ring of $n$ beads. Look only at bead $1$. If bead $1$ carries a stud, the rest is a ring with a marked gap — equivalently a strip of length $n-1$ — giving $F_n$ coverings. If bead $1$ is the left end of a bar covering $\\{1,2\\}$, the remainder is a strip of length $n-2$, giving $F_{n-1}$; if bead $1$ is the right end of a bar covering $\\{12,1\\}=\\{n,1\\}$, the remainder is again a strip of length $n-2$, giving another $F_{n-1}$.",
-          "Adding the disjoint cases, $L_n=F_n+2F_{n-1}=F_n+F_{n-1}+F_{n-1}=F_{n+1}+F_{n-1}$, recovering the same closed form; the crucial $second$ $F_{n-1}$ is the wrap-around bar that the strip model omits.",
-          "One checks the base values $L_2=3,\\,L_3=4$ and the Lucas recurrence $L_n=L_{n-1}+L_{n-2}$ hold, so $L_4=7,\\,L_5=11,\\dots$",
-          "Iterating to $n=12$ gives $L=2,1,3,4,7,11,18,29,47,76,123,199,322$ at $n=0,\\dots,12$, hence the answer is $\\boxed{322}$."
-        ]
-      }
-    ],
-    "remark": "Insight: a ring is not a strip with its ends glued for free. The one structural fact a linear tiling can never represent is a single tile $spanning the seam$, and that lone missing case is exactly what upgrades the Fibonacci count $F_{n+1}$ to the Lucas count $L_n=F_{n+1}+F_{n-1}$. The transfer matrix encodes this perfectly: an open strip is a matrix $entry$, a closed loop is the $trace$, and the trace minus the entry is precisely the seam-crossing tilings $F_{n-1}$."
-  },
-  {
-    "theme": "recurrence",
-    "themeLabel": "Recurrences & Catalan",
-    "title": "Ternary Without a Double Zero",
+    "title": "Squares of Every Size",
     "difficulty": 4,
-    "task": "Find the number of …",
+    "task": "Count axis-aligned squares",
     "tags": [
-      "ternary-strings",
-      "forbidden-pattern",
-      "recurrence",
-      "linear-algebra",
-      "closed-form"
+      "grid counting",
+      "squares",
+      "sum of squares",
+      "all sizes"
     ],
-    "statement": "Consider strings of length $8$ over the alphabet $\\{0,1,2\\}$. A string is clean if it never has two consecutive $0$'s (i.e. the block $00$ does not appear). \\[Find the number of clean ternary strings of length 8.\\]",
-    "answer": "$3344$.",
-    "trap": "Modelling it as 'each position has 3 choices minus the bad ones' and multiplying $3^8$ by a fixed correction factor. The forbidden-pair constraint couples adjacent positions, so only a transfer/recurrence gives the exact count.",
+    "statement": "On a  $4\\times 4$  board of unit squares (a  $5\\times 5$  array of lattice points), count all the squares whose sides lie along the grid lines, of every size from  $1\\times 1$  up to  $4\\times 4$ . How many such axis-aligned squares are there?",
+    "answer": " $\\boxed{30}$ ",
+    "trap": "Counting only the sixteen  $1\\times 1$  cells is the obvious trap. Squares of side  $2,3,4$  also count. For side  $k$  on an  $n\\times n$  board there are  $(n-k+1)^2$  positions, so the total is  $\\sum_{k=1}^{n}(n-k+1)^2$ , not just  $n^2$ .",
     "solutions": [
       {
-        "name": "Recurrence on the last symbol",
+        "name": "Sum of squares over sizes",
         "steps": [
-          "Let $c_n$ be the number of clean length-$n$ strings. Split by the last symbol.",
-          "If the last symbol is $1$ or $2$ ($2$ choices), the prefix is any clean string of length $n-1$: $2c_{n-1}$.",
-          "If the last symbol is $0$, the symbol before it must be $1$ or $2$ ($2$ choices), and before that any clean string of length $n-2$: $2c_{n-2}$.",
-          "So $c_n=2c_{n-1}+2c_{n-2}$, with $c_1=3,\\ c_2=8$.",
-          "Iterate: $3,8,22,60,164,448,1224,3344$, giving $c_8=\\boxed{3344}$."
+          "A square of side  $k$  on a  $4\\times 4$  board can have its lower-left corner in  $(4-k+1)$  horizontal and  $(4-k+1)$  vertical positions, i.e.  $(5-k)^2$  placements.",
+          "Sizes  $k=1,2,3,4$  give  $4^2+3^2+2^2+1^2=16+9+4+1$ .",
+          "Total  $=16+9+4+1=\\boxed{30}.$ "
         ]
       },
       {
-        "name": "Two-state transfer matrix",
+        "name": "Closed form for an  $n\\times n$  board",
         "steps": [
-          "States: 'last symbol is $0$' ($A$) or 'last symbol is $1/2$' ($B$). Transitions: from $B$ you may append $0,1,2$; from $A$ you may append only $1,2$.",
-          "Transfer matrix $M=\\begin{pmatrix}0&1\\\\2&2\\end{pmatrix}$ acting on $(A,B)$ counts; total $=$ sum of entries of $M^{\\,n-1}$ applied to the length-1 vector $(1,2)$.",
-          "Powering $M$ and summing reproduces $3,8,22,60,164,448,1224,3344$.",
-          "Hence $c_8=\\boxed{3344}$."
-        ]
-      },
-      {
-        "name": "Closed form via characteristic roots",
-        "steps": [
-          "The recurrence $c_n=2c_{n-1}+2c_{n-2}$ has characteristic roots $1\\pm\\sqrt3$.",
-          "So $c_n=\\alpha(1+\\sqrt3)^n+\\beta(1-\\sqrt3)^n$; fitting $c_1=3,c_2=8$ gives the constants.",
-          "Evaluating at $n=8$ yields the integer $3344$.",
-          "Thus $c_8=\\boxed{3344}$."
+          "The number of axis-aligned squares on an  $n\\times n$  board is  $\\sum_{k=1}^{n}k^2=\\dfrac{n(n+1)(2n+1)}{6}$  (re-indexing the sizes).",
+          "With  $n=4$ :  $\\dfrac{4\\cdot 5\\cdot 9}{6}=\\dfrac{180}{6}$ .",
+          "Hence the count is  $30=\\boxed{30}.$ "
         ]
       }
     ],
-    "remark": "Insight: every 'forbidden adjacent pattern' problem is a finite-state walk; the recurrence is just the transfer matrix read row by row. Here a single forbidden pair already breaks the naive $3^n$ into a $1\\pm\\sqrt3$ growth."
+    "remark": "**Insight.** Squares differ from rectangles: a square needs equal side-lengths, so you sum  $(n-k+1)^2$  over sizes, giving  $\\tfrac{n(n+1)(2n+1)}{6}$  axis-aligned squares on an  $n\\times n$  board.",
+    "theme": "geomcount",
+    "themeLabel": "Geometric Counting"
   },
   {
-    "theme": "recurrence",
-    "themeLabel": "Recurrences & Catalan",
-    "title": "The Three-Stride Staircase",
-    "difficulty": 4,
-    "task": "Find the number of …",
-    "tags": [
-      "staircase",
-      "tribonacci",
-      "compositions",
-      "recurrence",
-      "dynamic-programming"
-    ],
-    "statement": "A staircase has $12$ steps. A climber ascends by repeatedly taking a stride of $1$, $2$, or $3$ steps (each stride lands exactly on a step, and the order of strides matters). \\[Find the number of distinct ways to climb all 12 steps.\\]",
-    "answer": "$927$.",
-    "trap": "Using the two-stride Fibonacci count $F_{13}=233$, or assuming the three-stride answer is $2^{11}$ because 'each step is a choice'. Strides of three different lengths give a tribonacci recurrence, not Fibonacci and not a power of two.",
-    "solutions": [
-      {
-        "name": "Tribonacci recurrence",
-        "steps": [
-          "Let $t_n$ be the number of ways to climb $n$ steps. Condition on the final stride.",
-          "A final stride of $1$, $2$, or $3$ leaves $n-1$, $n-2$, or $n-3$ steps already climbed.",
-          "Hence $t_n=t_{n-1}+t_{n-2}+t_{n-3}$, with $t_0=1,\\ t_1=1,\\ t_2=2$.",
-          "Iterate: $1,1,2,4,7,13,24,44,81,149,274,504,927$.",
-          "So $t_{12}=\\boxed{927}$."
-        ]
-      },
-      {
-        "name": "Sum over compositions",
-        "steps": [
-          "A climb is a composition of $12$ into parts from $\\{1,2,3\\}$. If it uses $a$ ones, $b$ twos, $c$ threes with $a+2b+3c=12$, it has $\\dfrac{(a+b+c)!}{a!\\,b!\\,c!}$ orderings.",
-          "Summing the multinomial $\\binom{a+b+c}{a,b,c}$ over all nonnegative $(a,b,c)$ with $a+2b+3c=12$.",
-          "Carrying out the sum over all such triples yields $927$.",
-          "Hence $t_{12}=\\boxed{927}$."
-        ]
-      }
-    ],
-    "remark": "Insight: 'number of strides = number of allowed step sizes' is the dictionary between step problems and order-$k$ Fibonacci recurrences. One, two, three allowed strides give Fibonacci-1, Fibonacci, Tribonacci respectively."
-  },
-  {
-    "theme": "recurrence",
-    "themeLabel": "Recurrences & Catalan",
-    "title": "The Pole-Vaulter's Cooldown",
+    "title": "Regions Carved by the Diagonals",
     "difficulty": 5,
-    "task": "Count",
+    "task": "Count interior regions",
     "tags": [
-      "state recurrence",
-      "non-adjacency",
-      "stars and bars",
-      "generating function",
-      "padovan"
+      "polygon diagonals",
+      "regions",
+      "Euler relation",
+      "combinations"
     ],
-    "statement": "A trickster crosses a river on a row of $14$ stepping-stones, numbered $1$ through $14$, starting on the bank just before stone $1$ and finishing on the bank just after stone $14$. On each move she either walks forward by exactly one stone or vaults forward by exactly two stones (a vault skips the stone in between, never touching it). A vault is exhausting: the rule of the crossing is that she may never perform two vaults in a row — every vault must be followed by at least one walk before she may vault again (a vault as her very last move is allowed, since no move follows it). \\[\\text{In how many distinct ordered sequences of moves can she cross all } 14 \\text{ stones?}\\] Each crossing is a sequence of $W$'s (walk, $+1$) and $V$'s (vault, $+2$) whose lengths sum to $14$ and in which no two $V$'s are adjacent.",
-    "answer": "$\\boxed{189}$",
-    "trap": "Trying to repair plain Fibonacci with a single forbidden-state recurrence and letting the state leak. Split sequences by their last move: let $E_n$ end in a walk (or be empty) and $O_n$ end in a vault. Appending a walk is always legal, so $E_n=E_{n-1}+O_{n-1}$ is correct. The fatal slip is writing $O_n=E_{n-2}+O_{n-2}$ — i.e. attaching a final vault to any sequence of length $n-2$. But a vault may only follow a non-vault, so the term $O_{n-2}$ secretly glues a $V$ onto a sequence that already ended in $V$, re-admitting exactly the $VV$ pattern the problem bans. The correct transition is $O_n=E_{n-2}$ alone. The leaky version satisfies $a_n=a_{n-1}+a_{n-2}$, collapsing right back to the unrestricted count $F_{15}=610$ — the restriction silently evaporates, and $610$ is precisely the answer to the problem with the rule deleted.",
+    "statement": "All diagonals of a convex octagon ( $8$  vertices) are drawn, and the octagon is generic so that no three diagonals meet at a single interior point. Into how many regions do the diagonals divide the interior of the octagon?",
+    "answer": " $\\boxed{91}$ ",
+    "trap": "Many guess from small cases or forget that each interior crossing  $\\emph{adds}$  a region. The clean route uses Euler's relation  $V-E+F=2$  with vertices = corners + crossings; ignoring the  $\\binom{8}{4}$  crossing points (or counting them as ordinary vertices) wrecks the edge count and the answer.",
     "solutions": [
       {
-        "name": "Two-state DP collapsed to $a_n=a_{n-1}+a_{n-3}$",
+        "name": "Euler's relation",
         "steps": [
-          "Track one bit of memory: whether the last move was a vault. Let $E_n$ count valid sequences summing to $n$ that end in a walk or are empty, and $O_n$ those ending in a vault. A walk may follow anything, so $E_n=E_{n-1}+O_{n-1}$; a vault may follow only a non-vault, so $O_n=E_{n-2}$ (not $E_{n-2}+O_{n-2}$ — that is the trap).",
-          "Let $a_n=E_n+O_n$. Substitute $O_n=E_{n-2}$ into $E_n=E_{n-1}+O_{n-1}=E_{n-1}+E_{n-3}$, and note $a_n=E_n+E_{n-2}$. Then $a_n=a_{n-1}+a_{n-3}$: indeed $a_{n-1}+a_{n-3}=(E_{n-1}+E_{n-3})+(E_{n-3}+E_{n-5})$, while shifting the $E$-recurrence gives $E_n=E_{n-1}+E_{n-3}$ and $E_{n-2}=E_{n-3}+E_{n-5}$, whose sum is exactly $E_n+E_{n-2}=a_n$.",
-          "Seed honestly: $a_0=1$ (the empty crossing), $a_1=1$ ($W$), $a_2=2$ ($WW$ or $V$). The recurrence $a_n=a_{n-1}+a_{n-3}$ is a shifted Padovan law, distinct from Fibonacci's $a_{n-1}+a_{n-2}$.",
-          "Iterate: $a_3=3,\\,a_4=4,\\,a_5=6,\\,a_6=9,\\,a_7=13,\\,a_8=19,\\,a_9=28,\\,a_{10}=41,\\,a_{11}=60,\\,a_{12}=88,\\,a_{13}=129,\\,a_{14}=189$. Hence the crossing can be made in $\\boxed{189}$ ways."
+          "Vertices: the  $8$  corners plus the interior crossings  $\\binom{8}{4}=70$ , so  $V=78$ . Each crossing splits two chords, adding  $2$  edges per crossing.",
+          "The  $8$  sides plus  $\\binom{8}{2}-8=20$  diagonals are  $28$  chords; total edges  $E=28+2\\cdot 70=168$ . Euler gives  $F=E-V+2=168-78+2=92$ , and removing the outer face leaves  $92-1=91$ .",
+          "Interior regions  $=\\boxed{91}.$ "
         ]
       },
       {
-        "name": "Sum over compositions: stars-and-bars for non-adjacent vaults",
+        "name": "Add-a-chord (incremental) formula",
         "steps": [
-          "Condition on the number of vaults $k$. With $k$ vaults (each $+2$) and $w$ walks (each $+1$), the distance is $2k+w=14$, so $w=14-2k$ and the move sequence has $t=k+w=14-k$ tiles in total, valid only while $w\\ge 0$, i.e. $0\\le k\\le 7$.",
-          "Given a fixed $k$, we must arrange $k$ vaults among the $t=14-k$ tiles so that no two vaults are adjacent. The standard non-adjacency count: place the $w$ walks first ($1$ way as they are identical), creating $w+1$ gaps, and drop the $k$ vaults into distinct gaps, giving $\\binom{w+1}{k}=\\binom{14-2k+1}{k}=\\binom{15-2k}{k}$ arrangements.",
-          "Sum over all admissible $k$: $\\displaystyle\\sum_{k=0}^{7}\\binom{15-2k}{k}=\\binom{15}{0}+\\binom{13}{1}+\\binom{11}{2}+\\binom{9}{3}+\\binom{7}{4}+\\binom{5}{5}+\\binom{3}{6}+\\binom{1}{7}.$",
-          "Evaluate: $1+13+55+84+35+1+0+0=189$, matching the recurrence. So the answer is $\\boxed{189}$. (This is the shallow-diagonal-of-Pascal identity that produces the Padovan/Narayana family, the combinatorial fingerprint of the $+3$ shift.)"
-        ]
-      },
-      {
-        "name": "Generating function by legal blocks",
-        "steps": [
-          "Decompose any legal sequence uniquely from the left into blocks. Since every vault must be trailed by a walk except possibly a final vault, the interior is a string of atoms $W$ (length $1$) and $VW$ (length $3$), optionally followed by a single closing $V$ (length $2$). No two $V$'s can touch because each non-final $V$ carries its own $W$, and the lone closing $V$ is preceded by a $W$-ending atom (or nothing).",
-          "The atom generating function is $\\dfrac{1}{1-(x+x^{3})}$ and the optional closing vault contributes $(1+x^{2})$, so $\\displaystyle A(x)=\\frac{1+x^{2}}{1-x-x^{3}}=\\sum_{n\\ge 0}a_n x^{n}.$",
-          "Clearing the denominator gives $(1-x-x^{3})A(x)=1+x^{2}$, i.e. $a_n-a_{n-1}-a_{n-3}=0$ for $n\\ge 3$ with the boundary terms forcing $a_0=1,\\,a_1=1,\\,a_2=2$ — the very recurrence and seeds of the first method, now derived analytically.",
-          "Extracting $[x^{14}]A(x)$ by the recurrence (or by series expansion) yields $a_{14}=189$, so the number of crossings is $\\boxed{189}$."
+          "Starting from the single interior region of the polygon, each diagonal drawn adds  $1$  region for itself plus  $1$  for every interior crossing it creates; summed over all diagonals this gives  $1+\\binom{8-1}{2}+\\binom{8}{4}$  after regrouping.",
+          "Numerically  $\\binom{n-1}{2}+\\binom{n}{4}$  with  $n=8$  is  $\\binom{7}{2}+\\binom{8}{4}=21+70$ .",
+          "Interior regions  $=21+70=\\boxed{91}.$ "
         ]
       }
     ],
-    "remark": "Insight: the rule 'never two vaults in a row' is a state constraint, not a count constraint, so it cannot be patched into Fibonacci by adjusting a coefficient — it must be carried as memory ('was the last move a vault?'). The honest two-state bookkeeping collapses to the Padovan-type law $a_n=a_{n-1}+a_{n-3}$, and the extra index drop from $-2$ to $-3$ is the algebraic shadow of that one remembered bit. The seductive $O_n=E_{n-2}+O_{n-2}$ forgets the bit, and the $+3$ shift degenerates back to the $+2$ of Fibonacci — the surest sign you have let the forbidden $VV$ slip back in."
+    "remark": "**Insight.** For a generic convex  $n$ -gon with all diagonals, the interior splits into  $\\binom{n-1}{2}+\\binom{n}{4}$  regions — one base region plus one per diagonal-pair-of-the-quadrilateral crossing, exactly the  $\\binom{n}{4}$  count of crossings.",
+    "theme": "geomcount",
+    "themeLabel": "Geometric Counting"
   },
   {
-    "theme": "recurrence",
-    "themeLabel": "Recurrences & Catalan",
-    "title": "The Parquet Strip and the Missing Plank",
+    "title": "Fifteen Points, Six in a Row",
     "difficulty": 5,
-    "task": "Count",
+    "task": "Count the triangles formed",
     "tags": [
-      "tiling",
-      "skip-term recurrence",
-      "padovan",
-      "binomial sum",
-      "generating function"
+      "combinations",
+      "collinear correction",
+      "triangles",
+      "inclusion of constraint"
     ],
-    "statement": "A craftsman lays a single straight runner of parquet that is $1$ cell wide and $15$ cells long, filling it left to right with no gaps and no overhang. His workshop stocks exactly two kinds of planks: a square chip that covers $1$ cell, and a long plank that covers $3$ consecutive cells. Planks of the same kind are interchangeable, and there is no plank of length $2$ in the shop. A laying is determined by which cells each plank occupies. \\[\\text{Let } a(n) \\text{ be the number of distinct ways to tile the } 1\\times n \\text{ runner under these rules.}\\] Find $a(15)$.",
-    "answer": "\\[\\boxed{189}\\]",
-    "trap": "The lethal error is treating the runner like the familiar 'tiles of length up to $3$' problem and writing the tribonacci recurrence $a(n)=a(n-1)+a(n-2)+a(n-3)$. That recurrence silently assumes a length-$2$ plank exists, because the term $a(n-2)$ corresponds to capping the right end with a $2$-cell tile. The shop has no length-$2$ plank, so conditioning on the last tile gives only two cases (a $1$-chip leaving $n-1$, or a $3$-plank leaving $n-3$) and the correct recurrence $\\mathbf{skips}$ a term: $a(n)=a(n-1)+a(n-3)$. A strong student who pattern-matches 'maximum tile length $3$' to tribonacci computes $5768$ instead of $189$. The missing case is, paradoxically, a case that must $not$ be there: the $a(n-2)$ branch is forbidden, and forgetting that the recurrence has a gap (not a full window of three) is precisely the trap.",
+    "statement": "In a plane there are  $15$  points, of which exactly  $6$  lie on one straight line  $\\ell$  and no other three of the  $15$  are collinear. How many triangles can be formed with these points as vertices?",
+    "answer": " $\\boxed{435}$ ",
+    "trap": "Writing the answer as  $\\binom{15}{3}=455$  forgets that any three of the  $6$  points on  $\\ell$  are collinear and give no triangle. Exactly  $\\binom{6}{3}=20$  degenerate triples must be removed. Do  $\\textbf{not}$  also remove anything for the other  $9$  points — no three of them are collinear.",
     "solutions": [
       {
-        "name": "Delete the last tile (the skip-term recurrence)",
+        "name": "All triples minus the collinear ones",
         "steps": [
-          "Classify a tiling of the $1\\times n$ runner by the single tile that covers the rightmost cell $n$. Because that tile must end exactly at cell $n$ and the only lengths available are $1$ and $3$, there are exactly two mutually exclusive, exhaustive cases.",
-          "If the last cell is covered by a $1$-chip, deleting it leaves a freely-tiled runner of length $n-1$, giving $a(n-1)$ tilings. If the last cell is the right end of a $3$-plank (covering cells $n-2,n-1,n$), deleting that plank leaves a runner of length $n-3$, giving $a(n-3)$. There is no $a(n-2)$ branch because no plank has length $2$.",
-          "Hence $a(n)=a(n-1)+a(n-3)$ with seeds $a(0)=1$ (the empty runner, one way), $a(1)=1$, $a(2)=1$.",
-          "March upward: $a(3)=2,\\,a(4)=3,\\,a(5)=4,\\,a(6)=6,\\,a(7)=9,\\,a(8)=13,\\,a(9)=19,\\,a(10)=28,\\,a(11)=41,\\,a(12)=60,\\,a(13)=88,\\,a(14)=129,\\,a(15)=\\boxed{189}.$"
+          "Every triangle uses  $3$  of the  $15$  points:  $\\binom{15}{3}=455$  triples in all.",
+          "A triple fails to be a triangle exactly when all three of its points lie on  $\\ell$ ; there are  $\\binom{6}{3}=20$  such triples.",
+          "Valid triangles  $=455-20=\\boxed{435}.$ "
         ]
       },
       {
-        "name": "Sum over the number of long planks (binomial placement)",
+        "name": "Casework on how many vertices lie on  $\\ell$ ",
         "steps": [
-          "Suppose a tiling uses exactly $k$ long $3$-planks. They consume $3k$ cells, so the remaining $15-3k$ cells are each a $1$-chip; this is feasible only when $0\\le k\\le 5$.",
-          "The tiling is now a sequence of tiles: $k$ identical long planks and $15-3k$ identical chips, for a total of $(15-3k)+k=15-2k$ tiles in a row. Choosing which of these $15-2k$ ordered slots are the long planks determines the tiling uniquely, giving $\\binom{15-2k}{k}$ tilings.",
-          "Therefore $a(15)=\\sum_{k=0}^{5}\\binom{15-2k}{k}=\\binom{15}{0}+\\binom{13}{1}+\\binom{11}{2}+\\binom{9}{3}+\\binom{7}{4}+\\binom{5}{5}.$",
-          "Evaluate: $1+13+55+84+35+1=\\boxed{189}$, matching the recurrence and exposing the Padovan-style diagonal sum hidden in the count."
-        ]
-      },
-      {
-        "name": "Generating function (extract the coefficient)",
-        "steps": [
-          "Each plank contributes its length to the total, so the ordinary generating function for one tile is $x^{1}+x^{3}$ (a chip or a long plank), and a tiling is an ordered sequence of tiles. By the sequence construction, $A(x)=\\sum_{n\\ge 0}a(n)x^{n}=\\dfrac{1}{1-(x+x^{3})}=\\dfrac{1}{1-x-x^{3}}.$",
-          "Clearing the denominator, $(1-x-x^{3})A(x)=1$, which yields exactly the coefficient recurrence $a(n)-a(n-1)-a(n-3)=0$ for $n\\ge 1$ together with $a(0)=1$, independently reproducing the skip-term relation (note the absent $x^{2}$ term, i.e. no $a(n-2)$).",
-          "Expand $A(x)=\\sum_{m\\ge 0}(x+x^{3})^{m}$; the coefficient of $x^{15}$ collects all monomials $x^{a}\\,x^{3b}$ with $a+3b=15$ and $a+b=m$, i.e. $b$ long planks among $a+b=15-2b$ factors: $[x^{15}]A(x)=\\sum_{b}\\binom{15-2b}{b}$, the same binomial diagonal as Method 2.",
-          "Summing that diagonal gives $1+13+55+84+35+1=\\boxed{189}$, so all three derivations agree."
+          "Call the  $6$  collinear points  $L$  and the other  $9$  points  $G$  (general position).",
+          " $0$  from  $L$ :  $\\binom{9}{3}=84$ . One from  $L$ :  $\\binom{6}{1}\\binom{9}{2}=6\\cdot 36=216$ . Two from  $L$ :  $\\binom{6}{2}\\binom{9}{1}=15\\cdot 9=135$ .",
+          "A triangle can use at most two points of  $\\ell$  (three would be collinear). Total  $=84+216+135=\\boxed{435}.$ "
         ]
       }
     ],
-    "remark": "Insight: the length spectrum of the tile set, not its maximum length, dictates the shape of the recurrence. Tiles of lengths $\\{1,2,3\\}$ give the full window tribonacci $a(n)=a(n-1)+a(n-2)+a(n-3)$, but tiles of lengths $\\{1,3\\}$ give a recurrence with a hole, $a(n)=a(n-1)+a(n-3)$ - the Padovan/Narayana-style relation whose generating function $1/(1-x-x^{3})$ wears its missing $x^{2}$ term openly. The same structure read two ways - delete-the-last-tile versus count-by-number-of-long-planks - reveals the identity $a(n)=\\sum_{k}\\binom{n-2k}{k}$, a binomial diagonal that is the fingerprint of the skip-$2$ recurrence. Whenever a tile length is absent, the corresponding term in the recurrence (and the corresponding monomial in the GF) must be absent too; treating 'up to length $3$' as 'all of $1,2,3$' is the single most common way to get this family wrong."
+    "remark": "**Insight.** Collinear points only matter when  $\\emph{all}$  vertices of a chosen triple sit on the same line; subtract  $\\binom{k}{3}$  for each maximal collinear set of size  $k$ , and never double-count points lying on two different special lines.",
+    "theme": "geomcount",
+    "themeLabel": "Geometric Counting"
   },
   {
-    "theme": "recurrence",
-    "themeLabel": "Recurrences & Catalan",
-    "title": "Strings That Pair Their Ones",
-    "difficulty": 4,
-    "task": "Count",
-    "tags": [
-      "binary strings",
-      "parity automaton",
-      "transfer matrix",
-      "fibonacci",
-      "maximal runs"
-    ],
-    "statement": "A binary string is a finite word over the alphabet $\\{0,1\\}$. Call a string balanced if every maximal block of consecutive $1$'s has even length. Thus $0,\\ 11,\\ 0110,\\ 110011$ are balanced, while $1,\\ 101,\\ 1110$ are not (each contains a maximal run of $1$'s of odd length). \\[\\text{Let } b_n \\text{ be the number of balanced strings of length } n. \\text{ Find } b_{10}.\\] Set up a recurrence for $b_n$, justify it, and evaluate.",
-    "answer": "$\\boxed{89}$",
-    "trap": "Reading \\(\\text{balanced}\\) as a forbidden-block constraint and reaching for the wrong Fibonacci. A solver who thinks \\(\\text{even runs}\\) means \\(\\text{no lone }1\\) tends to count \\(\\text{strings avoiding the pattern}\\ 11\\), giving \\(F_{n+2}=F_{12}=144\\), or to model it as a length-cap on runs and produce a Tribonacci-style count \\(504\\). Both are wrong: the constraint is a parity condition on each run, not a forbidden fixed block. The genuine subtlety is that the honest count IS a Fibonacci number, \\(b_{10}=F_{11}=89\\) — but at an index shifted by one from the famous \\(\\text{avoid-}11\\) sequence. Pattern-matching to a memorised \\(\\text{Fibonacci}=144\\) lands one slot off; only an automaton that tracks the parity of the current run of \\(1\\)'s gets the index right.",
-    "solutions": [
-      {
-        "name": "Direct recurrence via a leading-block bijection",
-        "steps": [
-          "Split balanced strings of length $n\\ge 2$ by their first symbol. If the string starts with $0$, deleting that $0$ leaves an arbitrary balanced string of length $n-1$, and conversely prepending a $0$ to any balanced string is balanced; this case contributes $b_{n-1}$.",
-          "If the string starts with $1$, its leading maximal run of $1$'s has even length $2k$ with $k\\ge 1$, so the string in fact starts with $11$. Strip those two leading $1$'s: the leading run shrinks from $2k$ to $2k-2$ (still even, or vanishes leaving a leading $0$), so the result is a balanced string of length $n-2$. Prepending $11$ inverts this exactly — it lengthens the leading run by $2$, preserving its even parity — so this is a bijection and the case contributes $b_{n-2}$.",
-          "The two cases are disjoint and exhaustive, giving $b_n=b_{n-1}+b_{n-2}$. Base values: $b_0=1$ (empty string) and $b_1=1$ (only $0$; the string $1$ has an odd run). Hence $b_n=F_{n+1}$ with $F_1=F_2=1$.",
-          "Tabulate $b_0,\\dots,b_{10}=1,1,2,3,5,8,13,21,34,55,89$, so $b_{10}=\\boxed{89}$."
-        ]
-      },
-      {
-        "name": "Three-state parity automaton (transfer matrix)",
-        "steps": [
-          "Scan left to right, remembering only what is needed to enforce the rule: state $A$ = 'not currently inside a run of $1$'s' (the last symbol was $0$, or the string is empty), state $O$ = 'inside a run of $1$'s whose length so far is odd', and state $E$ = 'inside a run of $1$'s whose length so far is even'. A string is balanced exactly when it ends in $A$ or $E$ (no run is left half-finished at odd length).",
-          "Appending a symbol gives the legal transitions: from $A$, a $0$ stays in $A$ and a $1$ goes to $O$; from $E$, a $0$ returns to $A$ and a $1$ goes to $O$; from $O$, a $1$ goes to $E$ while a $0$ is forbidden (it would close a run of odd length). Collecting these into the count matrix $M=\\begin{pmatrix} 1 & 0 & 1 \\\\ 1 & 0 & 1 \\\\ 0 & 1 & 0 \\end{pmatrix}$ on the ordered basis $(A,O,E)$, the answer is $b_n=u^{\\to p}M^{\\,n}e_A$ with start vector $e_A$ and accepting selector $u=(1,0,1)^{\\to p}$.",
-          "The characteristic polynomial of $M$ factors as $\\lambda(\\lambda^{2}-\\lambda-1)$: the spurious eigenvalue $0$ (the off-diagonal $1$ feeding state $E$ only from $O$) collapses the three states to a two-term recurrence, leaving the golden-ratio roots $\\varphi,\\psi$ of $\\lambda^2=\\lambda+1$. Therefore $b_n$ satisfies $b_n=b_{n-1}+b_{n-2}$ — the parity bookkeeping reproduces Fibonacci, but with the index fixed honestly by the base data $b_0=b_1=1$.",
-          "Iterating from $b_0=1,b_1=1$ yields $b_{10}=89$, i.e. $b_{10}=\\boxed{89}$. (Contrast the wrong models: an $\\text{avoid-}11$ automaton has two accepting states and gives $144$; capping run length gives the larger Tribonacci value $504$.)"
-        ]
-      },
-      {
-        "name": "Generating function from run decomposition",
-        "steps": [
-          "Decompose a balanced string as an alternation of $0$-blocks and $1$-blocks. A maximal $0$-block has length $\\ge 1$ with generating function $\\dfrac{x}{1-x}$; a maximal (non-empty) $1$-block must have even length $\\ge 2$, with generating function $\\dfrac{x^2}{1-x^2}$. Allowing optional leading/trailing blocks of each type and stitching the alternation together, the class of all balanced strings has generating function $B(x)=\\dfrac{1}{\\,1-x-x^{2}\\,}$ after simplification.",
-          "Verify the closed form against small data: expanding $\\dfrac{1}{1-x-x^2}=1+x+2x^2+3x^3+5x^4+\\cdots$ matches $b_0,b_1,b_2,b_3,b_4=1,1,2,3,5$ counted by hand, confirming $B(x)$ is the ordinary generating function of $(b_n)$.",
-          "Since $\\dfrac{1}{1-x-x^2}$ is the Fibonacci generating function, the coefficient of $x^n$ is $F_{n+1}$; equivalently $b_n=b_{n-1}+b_{n-2}$, recovering the recurrence of the other methods.",
-          "Reading off the coefficient of $x^{10}$ gives $b_{10}=F_{11}=89$, so $b_{10}=\\boxed{89}$."
-        ]
-      }
-    ],
-    "remark": "Insight: a constraint can be Fibonacci for two completely unrelated reasons, and the trap is to let the famous one overwrite the actual mechanism. 'No two adjacent $1$'s' is Fibonacci because each $1$ refuses its neighbours; 'every run of $1$'s has even length' is Fibonacci because each run silently pairs its $1$'s — a parity invariant, not a forbidden block. Both are $F$, but the correct minimal automaton needs a third (odd-parity) state whose only escape is another $1$, which is exactly what shifts the index from $F_{n+2}=144$ to $F_{n+1}=89$. The lone redundant eigenvalue $0$ in the $3\\times 3$ transfer matrix is the algebraic fingerprint of that extra, non-accepting parity state."
-  },
-  {
-    "theme": "recurrence",
-    "themeLabel": "Recurrences & Catalan",
-    "title": "The Round Table That Forbids a Standing Trio",
+    "title": "Where the Diagonals Cross",
     "difficulty": 5,
-    "task": "Count",
+    "task": "Count interior crossing points",
     "tags": [
-      "cyclic counting",
-      "tribonacci",
-      "transfer matrix",
-      "seam subtlety",
-      "lucas-type recurrence"
+      "polygon diagonals",
+      "intersection points",
+      "combinations",
+      "no three concurrent"
     ],
-    "statement": "Twelve guests occupy the twelve labelled seats $S_1,S_2,\\dots,S_{12}$ arranged in a circle (so $S_{12}$ is adjacent to $S_1$). At a toast each guest independently either stands or sits. The host declares an arrangement unruly if some three guests in three cyclically consecutive seats are all standing simultaneously; that is, for some $i$ the seats $S_i,S_{i+1},S_{i+2}$ (indices read modulo $12$) all stand. \\[\\text{Let } a_n \\text{ be the number of stand/sit arrangements of } n \\text{ guests around such a labelled circular table that are NOT unruly. Find } a_{12}.\\] Establish a recurrence for $a_n$, justify the base values with care, and evaluate. (Seats are fixed and labelled, so two arrangements differing by a rotation are counted as different.)",
-    "answer": "$\\boxed{1499}$",
-    "trap": "Cutting the circle open at one seat and counting it as a line of $12$ seats. A solver who forbids only the triples $S_iS_{i+1}S_{i+2}$ with $i\\le 10$ forgets the two wrap-around triples $S_{11}S_{12}S_1$ and $S_{12}S_1S_2$, and so counts the linear no-three-in-a-row arrangements, whose count is the tribonacci value $L_{12}=1705$ (with $L_0,L_1,L_2=1,2,4$ and $L_k=L_{k-1}+L_{k-2}+L_{k-3}$). The hidden constraint is the seam: a run of standers may silently straddle the gap between $S_{12}$ and $S_1$, and a length-$3$ such run is unruly even though no internal triple is. The cyclic count obeys the same tribonacci recurrence but with seam-corrected base data, which is exactly what drops $1705$ to $a_{12}=1499$. The error is conceptual (an overlooked degenerate wrap), not arithmetic.",
+    "statement": "In a convex octagon ( $8$  vertices) all the diagonals are drawn. Assume the octagon is generic, so that no three diagonals pass through a single interior point. How many points  $\\emph{inside}$  the octagon are crossings of two diagonals?",
+    "answer": " $\\boxed{70}$ ",
+    "trap": "Trying to count pairs of diagonals,  $\\binom{20}{2}$ , massively over-counts: most pairs of diagonals either share a vertex or do not cross inside. The clean idea is that each interior crossing corresponds to a unique choice of  $\\emph{four}$  vertices — and that bijection breaks if three diagonals are concurrent, which is why the genericity hypothesis is stated.",
     "solutions": [
       {
-        "name": "Tribonacci recurrence with seam-honest base cases",
+        "name": "Four vertices give one crossing",
         "steps": [
-          "Code an arrangement as a cyclic binary word with $1=$ stand, $0=$ sit; unruly means three cyclically consecutive $1$'s. The same recurrence as the linear problem holds for $n\\ge 4$: classify by the run of $1$'s immediately following a chosen reference position and peel one block, giving $a_n=a_{n-1}+a_{n-2}+a_{n-3}$. (Algebraically this is forced by the transfer matrix below, whose minimal polynomial is $x^3-x^2-x-1$.) The entire seam subtlety is therefore pushed into the base values $a_1,a_2,a_3$, which must be computed directly on the circle, not borrowed from the line.",
-          "Compute the bases on the actual circle. For $n=1$ the three indices $i,i+1,i+2$ collapse mod $1$ to the single seat, so a lone stander already forms a 'cyclic triple' and is unruly: only the all-sitting arrangement survives, $a_1=1$. For $n=2$, indices mod $2$ make $S_1S_2S_1$ and $S_2S_1S_2$ the triples, so both guests standing is unruly while $00,01,10$ are fine: $a_2=3$. For $n=3$ the only unruly word is $111$, so $a_3=2^3-1=7$. These differ sharply from the line's $L_1,L_2,L_3=2,4,7$.",
-          "Iterate $a_n=a_{n-1}+a_{n-2}+a_{n-3}$ from $a_1,a_2,a_3=1,3,7$: $a_4=11,\\ a_5=21,\\ a_6=39,\\ a_7=71,\\ a_8=131,\\ a_9=241,\\ a_{10}=443,\\ a_{11}=815,\\ a_{12}=1499.$",
-          "Hence $a_{12}=\\boxed{1499}$. The line would give $L_{12}=1705$; the difference $206$ is precisely the arrangements whose only standing trio wraps across the seam."
+          "Choose any  $4$  of the  $8$  vertices:  $\\binom{8}{4}=70$  ways.",
+          "Four points of a convex polygon form a convex quadrilateral whose two diagonals cross at exactly one interior point, and that point determines the four endpoints back.",
+          "With no three diagonals concurrent this correspondence is a bijection, so the number of interior crossings is  $\\boxed{70}.$ "
         ]
       },
       {
-        "name": "Transfer matrix and the trace formula on a cycle",
+        "name": "Why pairs of diagonals fail, fixed by vertices",
         "steps": [
-          "Track the state $(\\,\\text{seat}_{i-1},\\text{seat}_i\\,)\\in\\{00,01,10,11\\}$ as we walk around the table; appending the next seat sends $(a,b)\\mapsto(b,c)$ and is allowed precisely when $\\neg(a=b=c=1)$. This is the count matrix $M=\\begin{pmatrix} 1 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 1 \\\\ 1 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\end{pmatrix}$ on the ordered basis $(00,01,10,11)$, where row $=$ current state, column $=$ next state.",
-          "On a cycle of length $n$ the valid arrangements are exactly the closed walks of length $n$ that return to their starting state, so $a_n=\\operatorname{tr}(M^{\\,n})$. The trace, rather than a single matrix entry, is what enforces consistency across the seam — it is the algebraic incarnation of 'the word wraps around.'",
-          "The characteristic polynomial of $M$ is $\\det(xI-M)=x\\,(x^3-x^2-x-1)$. The spurious root $0$ kills one degree of freedom (the state $11$ that can never be followed by another $1$), and the cubic factor's roots are the tribonacci constant $t\\approx 1.83929$ and its two complex conjugates; thus $a_n=\\operatorname{tr}(M^n)=t^n+\\alpha^n+\\beta^n$ is the power-sum of the cubic's roots, a Lucas-type companion to the linear tribonacci sequence.",
-          "Either evaluate the power-sum or simply take $\\operatorname{tr}(M^{12})$ directly; both give $a_{12}=\\boxed{1499}$, confirming the first method's iteration and exhibiting why the cyclic count is a trace while the linear count is a single matrix entry."
-        ]
-      },
-      {
-        "name": "Direct seam casework reducing to the linear count",
-        "steps": [
-          "Let $L_k$ be the number of linear arrangements of $k$ seats with no three consecutive standers ($L_0,L_1,L_2=1,2,4$, then $L_k=L_{k-1}+L_{k-2}+L_{k-3}$). Classify circular arrangements by the maximal run of standers passing through seat $S_1$ (the run that could straddle the seam): it has length $0,1,$ or $2$ (length $\\ge 3$ is unruly).",
-          "Length $0$ ($S_1$ sits): cut the circle at $S_1$; seats $S_2,\\dots,S_n$ are an unconstrained line of length $n-1$, contributing $L_{n-1}$. Length $1$ ($S_1$ stands, both neighbours $S_n,S_2$ sit): seats $S_3,\\dots,S_{n-1}$ form a free line of length $n-3$, contributing $L_{n-3}$.",
-          "Length $2$: the straddling run is either $\\{S_1,S_2\\}$ (then $S_n,S_3$ sit, leaving the line $S_4,\\dots,S_{n-1}$ of length $n-4$) or $\\{S_n,S_1\\}$ (then $S_{n-1},S_2$ sit, leaving $S_3,\\dots,S_{n-2}$, again length $n-4$); together $2L_{n-4}$. Summing the disjoint cases, $a_n=L_{n-1}+L_{n-3}+2L_{n-4}$.",
-          "With $L_8,L_9,L_{11}=149,274,927$, take $a_{12}=L_{11}+L_9+2L_8=927+274+2\\cdot 149=927+274+298=1499$, so $a_{12}=\\boxed{1499}$. This decomposition makes visible exactly which terms the naive line count $L_{12}$ double-mishandles at the seam."
+          "Two diagonals cross at an interior point iff their four endpoints are  $4$  distinct vertices in convex position whose connecting chords are the two ‘‘crossing’’ chords of that quadrilateral.",
+          "Each set of  $4$  vertices yields exactly one such crossing pair (the other two pairings give non-crossing chords).",
+          "Hence interior crossings  $=\\binom{8}{4}=\\boxed{70}.$ "
         ]
       }
     ],
-    "remark": "Insight: a cyclic constraint usually inherits the recurrence of its linear cousin but never its initial conditions — the seam rewrites the small cases. Here the no-three-in-a-row rule is tribonacci both on a path and on a cycle, yet the cycle's bases $(1,3,7)$ replace the path's $(2,4,7)$, turning the ordinary tribonacci sequence into its Lucas-type power-sum companion $t^n+\\alpha^n+\\beta^n=\\operatorname{tr}(M^n)$. The lone zero eigenvalue of the $4\\times4$ transfer matrix is the algebraic shadow of the state '$11$' that can never extend, and the switch from a matrix entry (line) to its trace (cycle) is the whole content of 'the word wraps around.' The discipline a top ranker must internalize: when a problem says 'around a table,' re-derive the base cases on the circle and never copy them from the line."
+    "remark": "**Insight.** Interior diagonal-intersections of a convex  $n$ -gon (generic) number  $\\binom{n}{4}$  — one per  $4$  vertices. Concurrency of three diagonals would merge crossings and lower the count, so the hypothesis is essential.",
+    "theme": "geomcount",
+    "themeLabel": "Geometric Counting"
+  },
+  {
+    "title": "Lines from a Doubly Special Set",
+    "difficulty": 5,
+    "task": "Count the distinct lines",
+    "tags": [
+      "combinations",
+      "collinear correction",
+      "lines through points",
+      "inclusion of constraints"
+    ],
+    "statement": "There are  $10$  points in a plane. Four of them lie on a line  $\\ell_1$ , four other (different) points lie on a line  $\\ell_2$ , and the remaining  $2$  points together with all the rest are otherwise in general position (no further three collinear, and  $\\ell_1,\\ell_2$  share none of the ten points). How many distinct straight lines do these points determine?",
+    "answer": " $\\boxed{35}$ ",
+    "trap": "Just writing  $\\binom{10}{2}=45$  over-counts: the  $\\binom{4}{2}=6$  pairs among the points of  $\\ell_1$  all name the  $\\emph{same}$  line  $\\ell_1$ , and likewise for  $\\ell_2$ . Each special line of  $4$  points must be counted once, not  $6$  times, so you subtract  $(\\,\\binom{4}{2}-1\\,)$  per line — and you must do it for  $\\textbf{both}$  lines.",
+    "solutions": [
+      {
+        "name": "All pairs, then collapse collinear pairs",
+        "steps": [
+          "Pairs of points:  $\\binom{10}{2}=45$ ; in general position each pair gives a distinct line.",
+          "On  $\\ell_1$  the  $\\binom{4}{2}=6$  pairs give only  $1$  line, an over-count of  $6-1=5$ ; same for  $\\ell_2$ .",
+          "Distinct lines  $=45-5-5=\\boxed{35}.$ "
+        ]
+      },
+      {
+        "name": "Count the special and ordinary lines separately",
+        "steps": [
+          "The two special lines  $\\ell_1,\\ell_2$  contribute  $2$  lines.",
+          "Every other line comes from a pair that is  $\\emph{not}$  a collinear-quadruple pair:  $45-\\binom{4}{2}-\\binom{4}{2}=45-6-6=33$  such pairs, each a distinct line.",
+          "Total  $=2+33=\\boxed{35}.$ "
+        ]
+      }
+    ],
+    "remark": "**Insight.** A maximal set of  $k$  collinear points contributes a  $\\emph{single}$  line in place of  $\\binom{k}{2}$ , so subtract  $\\binom{k}{2}-1$  for each — applied independently to every special line that shares no points with another.",
+    "theme": "geomcount",
+    "themeLabel": "Geometric Counting"
+  },
+  {
+    "title": "Two Forbidden Rows",
+    "difficulty": 5,
+    "task": "Count the triangles formed",
+    "tags": [
+      "combinations",
+      "collinear correction",
+      "triangles",
+      "multiple collinear sets"
+    ],
+    "statement": "Twelve points lie in a plane:  $5$  of them are collinear on a line  $a$ , a different  $4$  of them are collinear on a line  $b$  (lines  $a$  and  $b$  share none of the twelve points), and the remaining  $3$  points, together with everything else, are in general position. How many triangles have their three vertices among these  $12$  points?",
+    "answer": " $\\boxed{206}$ ",
+    "trap": "Beyond the obvious  $\\binom{12}{3}=220$ , you must remove the collinear triples from  $\\emph{both}$  rows:  $\\binom{5}{3}=10$  from line  $a$  and  $\\binom{4}{3}=4$  from line  $b$ . Removing only one row, or accidentally subtracting a cross-line triple (a point of  $a$  with two of  $b$  is  $\\emph{not}$  collinear) is the trap.",
+    "solutions": [
+      {
+        "name": "All triples minus both collinear families",
+        "steps": [
+          "Total triples:  $\\binom{12}{3}=220$ .",
+          "Degenerate triples lie wholly on  $a$  or wholly on  $b$ :  $\\binom{5}{3}=10$  and  $\\binom{4}{3}=4$ ; these families are disjoint since  $a,b$  share no points.",
+          "Triangles  $=220-10-4=\\boxed{206}.$ "
+        ]
+      },
+      {
+        "name": "Casework by vertices on the special lines",
+        "steps": [
+          "Let  $A$  be the  $5$  points of  $a$ ,  $B$  the  $4$  points of  $b$ ,  $G$  the other  $3$ . A triangle uses  $\\le 2$  from  $A$  and  $\\le 2$  from  $B$ .",
+          "Count triples with  $0,1,2$  vertices from  $A$  and the rest legally from  $B\\cup G$ , e.g. all- $G$  gives  $\\binom{3}{3}=1$ ; full enumeration of allowed splits sums to  $206$ .",
+          "Equivalently  $220-10-4=\\boxed{206}.$ "
+        ]
+      }
+    ],
+    "remark": "**Insight.** With several disjoint collinear sets the corrections simply add: subtract  $\\binom{k_i}{3}$  for each line of  $k_i$  points; a triple spread across two different lines is never collinear, so it is never removed.",
+    "theme": "geomcount",
+    "themeLabel": "Geometric Counting"
   },
   {
     "theme": "lattice",
-    "themeLabel": "Lattice Paths & Reflection",
+    "themeLabel": "Lattice Paths",
     "title": "The Cartographer's Census",
     "difficulty": 3,
     "task": "Find the number of …",
@@ -3553,124 +3156,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "lattice",
-    "themeLabel": "Lattice Paths & Reflection",
-    "title": "The Quarryman's Sloping Rampart",
-    "difficulty": 5,
-    "task": "Count",
-    "tags": [
-      "staircase ceiling",
-      "generalized ballot",
-      "transfer matrix",
-      "cycle lemma",
-      "reflection failure"
-    ],
-    "statement": "A surveyor walks on the integer grid using only unit East steps $(x,y)\\to(x+1,y)$ and unit North steps $(x,y)\\to(x,y+1)$, going from $(0,0)$ to $(6,6)$. Overhead runs a stone rampart whose silhouette is the staircase $y=\\left\\lfloor\\tfrac{3x}{2}\\right\\rfloor$, so the allowed ceiling heights at $x=0,1,2,\\dots,6$ are $0,1,3,4,6,7,9$ — a broken line whose risers alternate $1,2,1,2,\\dots$, never the $45^{\\circ}$ diagonal. The walk must stay weakly below the rampart at every lattice point it visits, i.e. it must satisfy $y\\le\\left\\lfloor\\tfrac{3x}{2}\\right\\rfloor$ throughout (equivalently $2y\\le 3x$). \\[\\text{How many such monotone paths from }(0,0)\\text{ to }(6,6)\\text{ stay weakly below the rampart?}\\] Note that the very first step is forced (the ceiling at $x=0$ is $0$), and that the corner $(6,6)$ itself lies strictly below the rampart since $\\lfloor 18/2\\rfloor=9>6$.",
-    "answer": "$\\boxed{278}$",
-    "trap": "Reaching for André's reflection principle and reflecting the path across the bounding line. For a $45^{\\circ}$ barrier such as $y=x+1$ the reflection $(x,y)\\mapsto(y-1,x+1)$ carries bad lattice paths bijectively to lattice paths ending at a reflected corner, giving the clean count $\\binom{12}{6}-\\binom{12}{4}=429$. A strong solver, pattern-matching the slope-$\\tfrac32$ rampart to that familiar picture, reports $429$. But reflection across a line of slope $\\tfrac32$ is not a lattice symmetry: it does not send the step set $\\{E,N\\}$ to itself, has no integer fixed lattice, and produces off-grid, non-monotone images — so the would-be bijection collapses and $429$ is simply wrong. The boundary being a genuine staircase (risers $1$ and $2$), rather than a diagonal, is exactly what kills the single-reflection shortcut and forces a transfer-matrix / cycle-lemma argument; the honest count is $278\\ne 429$.",
-    "solutions": [
-      {
-        "name": "Tilted gap walk + transfer recursion",
-        "steps": [
-          "Track the slack against the rampart by $g=3x-2y$. The constraint $2y\\le 3x$ is exactly $g\\ge 0$, an East step does $g\\mapsto g+3$, a North step does $g\\mapsto g-2$, the walk starts at $g=0$ and (since it ends at $(6,6)$) finishes at $g=3\\cdot 6-2\\cdot 6=6$. Thus the paths are in bijection with words of six $(+3)$'s and six $(-2)$'s whose every partial sum is $\\ge 0$ — a generalized Dyck / ballot walk with unequal steps.",
-          "Let $f(e,n,g)$ be the number of legal completions having already used $e$ East and $n$ North steps and currently at gap $g$. Then $f(e,n,g)=[\\,e<6\\,]\\,f(e+1,n,g+3)+[\\,n<6,\\ g\\ge 2\\,]\\,f(e,n+1,g-2)$, with $f(6,6,g)=[g=6]$. The condition $g\\ge 2$ before a North step is precisely the staircase ceiling, enforced step by step rather than by a global formula.",
-          "Folding this recursion column by column (equivalently powering the banded transfer matrix that takes the vector of reachable heights in column $x-1$ to that in column $x$, truncating each column at $y\\le\\lfloor 3x/2\\rfloor$) propagates the counts $1\\to1\\to2\\to7\\to23\\to76\\to\\boxed{278}$ at $x=0,\\dots,6$ on the diagonal $y=x$. No reflection is invoked, so the slope-$\\tfrac32$ barrier causes no trouble.",
-          "Hence the number of admissible paths is $278$."
-        ]
-      },
-      {
-        "name": "Staircase-respecting Pascal recursion",
-        "steps": [
-          "Let $P(x,y)$ be the number of admissible partial paths from $(0,0)$ to $(x,y)$. Every monotone path reaches $(x,y)$ from the West or the South, so $P(x,y)=P(x-1,y)+P(x,y-1)$, but a cell is live only when it lies weakly below the rampart, i.e. $y\\le\\lfloor 3x/2\\rfloor$; dead cells (above the staircase) contribute $0$. This is Pascal's recurrence clipped to the region under the broken line, the geometric heart of the reflection chapter without any reflection.",
-          "Seed $P(0,0)=1$; the column $x=0$ has ceiling $0$, so $P(0,y)=0$ for $y\\ge1$ (the first step is forced East). Fill the live triangle column by column: $P(1,0)=1,\\ P(1,1)=1$; in column $x=2$ the ceiling is $3$, giving $P(2,0)=1,\\ P(2,1)=2,\\ P(2,2)=2,\\ P(2,3)=2$; and the diagonal values $P(k,k)$ come out $1,1,2,7,23,76,278$.",
-          "Reading the target cell gives $P(6,6)=P(5,6)+P(6,5)$. Both feeder cells are live ($6\\le\\lfloor 15/2\\rfloor=7$ and $5\\le\\lfloor 18/2\\rfloor=9$); carrying the full clipped tableau to row $y=6$ yields $P(5,6)=99$ and $P(6,5)=179$, whence $P(6,6)=99+179=278$.",
-          "Therefore exactly $\\boxed{278}$ paths stay under the rampart."
-        ]
-      },
-      {
-        "name": "First-passage decomposition (kernel-style recurrence)",
-        "steps": [
-          "Work with the gap walk of step $2$: words of six $(+3)$'s and six $(-2)$'s staying $\\ge 0$ and ending at height $6$. Such walks resist a single reflection because the steps are unequal, so decompose instead by first passages. Group the count by the multiset of heights the walk is pinned to; concretely let $a_{e,n}$ denote the number of legal prefixes using $e$ Easts and $n$ Norths (so at gap $3e-2n\\ge 0$). Then $a_{e,n}=a_{e-1,n}+a_{e,n-1}$ whenever $3e-2n\\ge 0$, and $a_{e,n}=0$ once $3e-2n<0$ — the staircase boundary acting as an absorbing wall on the half-line.",
-          "This is the same triangular array as Method 2 but read along anti-diagonals $e+n=\\text{const}$, which exposes the generating-function structure: $\\sum_{e,n}a_{e,n}u^e v^n$ satisfies a linear kernel equation $K(u,v)\\,A=1-(\\text{boundary terms})$, whose admissible-half solution is extracted by the standard kernel cancellation. The boundary terms are exactly the prefixes that would step below $g=0$, i.e. those a naive reflection tries (and fails) to pair off.",
-          "Evaluating the recurrence to $e=n=6$: the wall first bites at $(e,n)=(0,1)$ and again at $(1,2),(2,3),(3,4),\\dots$ along the staircase, killing one term at each riser; accumulating the survivors gives the diagonal sequence $1,1,2,7,23,76,278$.",
-          "The coefficient $a_{6,6}=\\boxed{278}$ is the required count, confirming the other two methods and exposing $429$ as the artefact of pretending the wall were a diagonal."
-        ]
-      }
-    ],
-    "remark": "Insight: the reflection principle is a symmetry argument, and it only works when the barrier is invariant under a genuine symmetry of the step lattice — for $E/N$ paths that means a line of slope $\\pm 1$. A staircase of slope $\\tfrac32$ has risers of two different sizes, so no isometry of the grid fixes it; reflecting across it sends North/East steps off the lattice and the bijection that produces the tidy binomial difference $429$ never exists. The correct invariant to carry is the scalar slack $g=3x-2y$, which linearises the broken boundary into a single wall $g\\ge0$ and turns the problem into a generalized ballot walk solvable by a transfer matrix, a clipped Pascal triangle, or the cycle lemma — all of which agree on $278$. The moral for a top-ranker: before invoking André, check that the wall is a mirror, not a staircase."
-  },
-  {
-    "theme": "lattice",
-    "themeLabel": "Lattice Paths & Reflection",
-    "title": "Crossing the Forbidden Meridian",
-    "difficulty": 4,
-    "task": "Find the number of …",
-    "tags": [
-      "reflection principle",
-      "andre",
-      "forbidden line",
-      "dyck complement"
-    ],
-    "statement": "Consider monotone (East/North) paths from $(0,0)$ to $(7,7)$. Call a path rebellious if at some point it rises strictly above the main diagonal, i.e. it visits a lattice point with $y > x$ (equivalently, it touches the line $y = x+1$). Find the number of rebellious paths.",
-    "answer": "$\\dbinom{14}{6} = 3003$",
-    "trap": "Trying to enumerate the rebellious paths directly by where they first break the diagonal. Andre's reflection principle counts them in one stroke: a path touches $y=x+1$ iff its mirror image across that line ends at the reflected target — turning the messy 'bad' set into a single clean binomial.",
-    "solutions": [
-      {
-        "name": "Andre's reflection",
-        "steps": [
-          "A path is rebellious iff it touches the line $y=x+1$. Reflect the portion of such a path up to its FIRST touch of $y=x+1$ across that line; reflection sends $(x,y)\\mapsto(y-1,x+1)$.",
-          "This is a bijection between rebellious paths $(0,0)\\to(7,7)$ and ALL monotone paths from the reflected start $(-1,1)$ to $(7,7)$, i.e. paths using $8$ East and $6$ North steps.",
-          "Their number is $\\binom{14}{6}=3003$, so there are $\\boxed{3003}$ rebellious paths."
-        ]
-      },
-      {
-        "name": "Total minus good (ballot/Catalan)",
-        "steps": [
-          "Paths that stay weakly below the diagonal ($y\\le x$ throughout) to $(7,7)$ are the Dyck paths, counted by the Catalan number $C_7=\\frac{1}{8}\\binom{14}{7}=429$.",
-          "The total number of paths is $\\binom{14}{7}=3432$.",
-          "Rebellious $=$ total $-$ good $=3432-429=3003$, matching $\\binom{14}{6}$. $\\boxed{3003}$"
-        ]
-      }
-    ],
-    "remark": "Insight: reflection converts a constraint ('touches the barrier') into a relocation of the endpoint. The good-path count $C_7=\\binom{14}{7}-\\binom{14}{6}$ is precisely the reflection identity in disguise."
-  },
-  {
-    "theme": "lattice",
-    "themeLabel": "Lattice Paths & Reflection",
-    "title": "The Magistrate's Lead",
-    "difficulty": 4,
-    "task": "Find the number of …",
-    "tags": [
-      "ballot problem",
-      "reflection principle",
-      "weakly below diagonal",
-      "catalan family"
-    ],
-    "statement": "In an election, candidate $A$ finally receives $8$ votes and candidate $B$ receives $5$ votes. Ballots are opened one at a time. Encode an $A$-vote as an East step and a $B$-vote as a North step, so the count corresponds to a monotone path from $(0,0)$ to $(8,5)$. Find the number of orderings in which $A$ is never behind $B$ at any moment, i.e. paths satisfying $y \\le x$ at every visited lattice point.",
-    "answer": "$\\dfrac{4}{9}\\dbinom{13}{5} = 572$",
-    "trap": "Using the strict Bertrand ballot count $\\frac{m-n}{m+n}\\binom{m+n}{n}$, which counts paths that stay STRICTLY ahead ($y<x$). Here ties are allowed ($A$ never behind means $y\\le x$), so the correct factor is $\\frac{m-n+1}{m+1}$, not $\\frac{m-n}{m+n}$.",
-    "solutions": [
-      {
-        "name": "Reflection on the weak barrier",
-        "steps": [
-          "A path is bad iff it touches the line $y=x+1$ (then $B$ has strictly led). Reflecting the prefix up to the first touch across $y=x+1$ bijects bad paths with all paths $(-1,1)\\to(8,5)$, i.e. $9$ East and $4$ North steps: $\\binom{13}{4}$.",
-          "Total paths to $(8,5)$ number $\\binom{13}{5}$, so good $=\\binom{13}{5}-\\binom{13}{4}$.",
-          "Compute: $\\binom{13}{5}-\\binom{13}{4}=1287-715=572$, and indeed $\\frac{8-5+1}{8+1}\\binom{13}{5}=\\frac{4}{9}\\cdot1287=572$. $\\boxed{572}$"
-        ]
-      },
-      {
-        "name": "Cycle lemma form",
-        "steps": [
-          "The number of monotone paths to $(m,n)$ with $m\\ge n$ staying weakly below the diagonal is $\\frac{m-n+1}{m+1}\\binom{m+n}{n}$ (the generalized ballot / Catalan-triangle entry).",
-          "Substitute $m=8,\\ n=5$: $\\frac{8-5+1}{9}\\binom{13}{5}=\\frac{4}{9}\\cdot1287$.",
-          "Since $1287/9=143$, this equals $4\\cdot143=572$. $\\boxed{572}$"
-        ]
-      }
-    ],
-    "remark": "Insight: 'never behind' ($\\le$) versus 'always strictly ahead' ($<$) shift the reflected endpoint by exactly one diagonal — the whole difference between the two famous ballot formulas lives in that single $+1$."
-  },
-  {
-    "theme": "lattice",
-    "themeLabel": "Lattice Paths & Reflection",
+    "themeLabel": "Lattice Paths",
     "title": "The Sealed Well",
     "difficulty": 4,
     "task": "Find the number of admissible monotone paths.",
@@ -3706,42 +3192,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "lattice",
-    "themeLabel": "Lattice Paths & Reflection",
-    "title": "The Severed Footbridge",
-    "difficulty": 5,
-    "task": "Find the number of …",
-    "tags": [
-      "avoid edge",
-      "reflection complement",
-      "directed edge",
-      "monotone paths"
-    ],
-    "statement": "A monotone (East/North) path runs from $(0,0)$ to $(8,6)$. A specific footbridge — the directed unit edge from $(4,2)$ straight up to $(4,3)$ — has been severed and cannot be traversed. (The vertices $(4,2)$ and $(4,3)$ remain usable; only the single North step between them is forbidden.) Find the number of paths that avoid this edge.",
-    "answer": "$\\dbinom{14}{6} - \\dbinom{6}{2}\\dbinom{7}{3} = 2478$",
-    "trap": "Counting all paths through the vertex $(4,3)$ as forbidden. Only paths that use the specific North edge $(4,2)\\to(4,3)$ are barred; a path may still visit $(4,3)$ by arriving from $(3,3)$ via an East step. Subtract edge-users, not vertex-visitors.",
-    "solutions": [
-      {
-        "name": "Subtract the edge-users",
-        "steps": [
-          "A path uses the forbidden edge iff it reaches $(4,2)$ and then takes the North step to $(4,3)$. Such paths factor as $(0,0)\\to(4,2)$, the forced edge, then $(4,3)\\to(8,6)$.",
-          "Count: $\\binom{4+2}{2}\\cdot 1\\cdot\\binom{(8-4)+(6-3)}{8-4}=\\binom{6}{2}\\binom{7}{4}=15\\cdot35=525$ (the final leg uses $4$ East, $3$ North).",
-          "Total paths $\\binom{14}{6}=3003$; admissible $=3003-525=2478$. $\\boxed{2478}$"
-        ]
-      },
-      {
-        "name": "Contract the edge",
-        "steps": [
-          "Edge-using paths are in bijection with monotone paths $(0,0)\\to(4,2)$ times paths $(4,3)\\to(8,6)$, since the middle step is forced.",
-          "The two factors are $\\binom{6}{2}=15$ and $\\binom{7}{3}=35$ (using $4$ East, $3$ North), product $525$.",
-          "Subtracting from the total $\\binom{14}{6}=3003$ yields $\\boxed{2478}$."
-        ]
-      }
-    ],
-    "remark": "Insight: an edge constraint is a vertex constraint with the crossing step pinned. The factor of $1$ for the forced bridge is the whole subtlety — it distinguishes 'banned edge' from 'banned vertex' and halves a common error."
-  },
-  {
-    "theme": "lattice",
-    "themeLabel": "Lattice Paths & Reflection",
+    "themeLabel": "Lattice Paths",
     "title": "The Diplomat's Diagonal Shortcut",
     "difficulty": 4,
     "task": "Find the number of …",
@@ -3784,109 +3235,351 @@ window.PROBLEMS = [
   },
   {
     "theme": "lattice",
-    "themeLabel": "Lattice Paths & Reflection",
-    "title": "The Schröder Staircase",
-    "difficulty": 5,
-    "task": "Find the number of …",
+    "themeLabel": "Lattice Paths",
+    "title": "Coffee on the Way",
+    "difficulty": 4,
+    "task": "Count paths through a point",
     "tags": [
-      "schroder number",
-      "diagonal step",
-      "weakly below diagonal",
-      "reflection constraint"
+      "lattice paths",
+      "monotonic paths",
+      "path through a point",
+      "product rule",
+      "binomial coefficient"
     ],
-    "statement": "A path goes from $(0,0)$ to $(4,4)$ using East $R=(1,0)$, North $U=(0,1)$, and diagonal $D=(1,1)$ steps, subject to the constraint that it never rises above the main diagonal: every visited lattice point satisfies $y \\le x$. Find the number of such paths.",
-    "answer": "$90$ (the large Schröder number $S_4$)",
-    "trap": "Applying André-style reflection naively as if every step were a unit $R$ or $U$. That recipe counts only the Dyck (staircase) paths and yields the Catalan number $C_4=\\binom{8}{4}-\\binom{8}{3}=14$. But the diagonal step $D$ may sit exactly on the line $y=x$ and crosses no horizontal level cleanly, so the single reflected-endpoint binomial misses every route that uses a $D$. The true constrained count is the large Schröder number $S_4=90$, far larger than $14$.",
+    "statement": "Maya walks to work along the grid streets, starting at her home  $(0,0)$  and ending at her office  $(7,5)$ , moving only one block East ( $x \\to x+1$ ) or one block North ( $y \\to y+1$ ) at each corner. Her favourite coffee stand sits at the corner  $(3,2)$ . She insists on a route that passes through that corner so she can buy a coffee on the way. How many distinct monotonic routes from home to office pass through  $(3,2)$ ?",
+    "answer": " $\\boxed{350}$ ",
+    "trap": "Treating the journey as one big binomial and then \"adjusting\" tempts errors, but the real trap is mis-counting the second leg. From  $(3,2)$  to  $(7,5)$  the displacement is  $4$  East and  $3$  North, so the second factor is  $\\binom{7}{3}=35$ ,  $\\textbf{not}$   $\\binom{5}{2}=10$  (which would wrongly reuse the first leg's shape). The correct product is  $\\binom{5}{2}\\binom{7}{3}=10\\cdot 35 = 350$ , not  $\\binom{5}{2}^2 = 100$ .",
     "solutions": [
       {
-        "name": "Constrained Delannoy recursion",
+        "name": "Multiply the two independent legs",
         "steps": [
-          "Let $S(x,y)$ count $R/U/D$ paths from $(0,0)$ to $(x,y)$ that stay in $y\\le x$. Then $S(x,y)=S(x-1,y)+S(x,y-1)+S(x-1,y-1)$, where any term whose source cell violates $y\\le x$ (or has a negative coordinate) is read as $0$, with seed $S(0,0)=1$.",
-          "Filling the lower-triangular table row by row, the diagonal entries $S(n,n)$ come out $1,2,6,22,90,\\dots$ — exactly the large Schröder numbers.",
-          "Therefore $S(4,4)=90$. $\\boxed{90}$"
+          "A route through  $(3,2)$  splits uniquely into a first leg  $(0,0)\\to(3,2)$  and a second leg  $(3,2)\\to(7,5)$ , and the two legs can be chosen independently, so by the product rule the count is (leg 1)  $\\times$  (leg 2).",
+          "Leg$2$needs  $3$  E's and  $2$  N's:  $\\binom{3+2}{2} = \\binom{5}{2} = 10$  ways.",
+          "Leg$\\binom{4+3}{3} = \\binom{7}{3} = 35$needs  $7-3 = 4$  E's and  $5-2 = 3$  N's:  $\\binom{4+3}{3} = \\binom{7}{3} = 35$  ways.",
+          "Therefore the number of routes through the coffee stand is  $10 \\cdot 35 = \\boxed{350}$ ."
         ]
       },
       {
-        "name": "Schröder generating recurrence",
+        "name": "Total minus routes that miss the point",
         "steps": [
-          "The large Schröder numbers $S_n$ (diagonal-step paths weakly below $y=x$) satisfy $(n+2)\\,S_{n+1}=3(2n+1)\\,S_n-(n-1)\\,S_{n-1}$ with $S_0=1,\\ S_1=2$.",
-          "Iterate up: $n=1$ gives $3S_2=9\\cdot2-0=18$, so $S_2=6$; $n=2$ gives $4S_3=15\\cdot6-1\\cdot2=88$, so $S_3=22$.",
-          "Finally $n=3$ gives $(3+2)S_4=3(2\\cdot3+1)S_3-(3-1)S_2=21\\cdot22-2\\cdot6=462-12=450$, so $S_4=450/5=90$.",
-          "Hence the count is $\\boxed{90}$."
+          "All routes from  $(0,0)$  to  $(7,5)$  number  $\\binom{7+5}{5} = \\binom{12}{5} = 792$ . We remove those that never touch  $(3,2)$ .",
+          "By the product rule, routes through  $(3,2)$  equal  $\\binom{5}{2}\\binom{7}{3} = 350$ , so routes missing it equal  $792 - 350 = 442$ ; reading the identity the other way confirms the through-count is  $792 - 442 = \\boxed{350}$ .",
+          "As a sanity check, the through-count  $350$  is well below the total  $792$ , exactly as expected since only some routes are funnelled through the single corner  $(3,2)$ ."
         ]
       }
     ],
-    "remark": "Insight: the diagonal step is precisely what separates Catalan from large Schröder. Without $D$ the staying-below routes are the Dyck paths counted by $C_4=14$; allowing $D$ lets a path 'ride the diagonal' without forming a corner, and the count balloons to $S_4=90$. Concretely $S_n=\\sum_{k}\\binom{n}{k}\\binom{2n-k}{n}\\tfrac{1}{n-k+1}$ weights each Dyck path by the number of ways to replace $k$ matched $RU$ corners by a single $D$, so every extra diagonal multiplies the route count. The cleanest takeaway: a naive reflection argument silently assumes unit steps and therefore undercounts."
+    "remark": "**Insight.** \"Through a point\" turns one path-count into a product of two smaller path-counts, because a monotonic route is uniquely cut at any corner it visits. The only care needed is to read each leg's own East- and North-displacement; the second leg never inherits the first leg's binomial."
   },
   {
     "theme": "lattice",
-    "themeLabel": "Lattice Paths & Reflection",
-    "title": "The Twin Couriers Who Never Meet",
-    "difficulty": 5,
-    "task": "Find the number of …",
+    "themeLabel": "Lattice Paths",
+    "title": "At Least One Pickup",
+    "difficulty": 4,
+    "task": "Count routes hitting at least one waypoint",
     "tags": [
-      "lindstrom gessel viennot",
-      "non-crossing paths",
-      "determinant",
-      "vicious walkers"
+      "lattice paths",
+      "monotonic paths",
+      "waypoints",
+      "inclusion-exclusion subtraction",
+      "binomial coefficient"
     ],
-    "statement": "Two couriers travel monotonically (East/North) on the integer lattice. Courier $A$ goes from $(0,1)$ to $(3,4)$; courier $B$ goes from $(1,0)$ to $(4,3)$. They are forbidden to ever stand on the same lattice point, so the two routes must be vertex-disjoint. Find the number of ordered pairs of routes $(A,B)$ for which the couriers never meet.",
-    "answer": "$\\det\\begin{pmatrix}\\binom{6}{3} & \\binom{6}{2}\\\\ \\binom{6}{2} & \\binom{6}{3}\\end{pmatrix} = 20^2-15^2 = 175$",
-    "trap": "Trying to compute (all pairs) minus (pairs sharing at least one point) by inclusion–exclusion over the shared vertices. This is a swamp: an intersecting pair can share many points, so the first correction term double-counts wildly — naively summing pairs over each common vertex gives $491$, and $400-491=-91$, an absurd negative. The Lindström–Gessel–Viennot lemma replaces the entire mess with one $2\\times2$ determinant of segment counts, because every intersecting pair cancels against its endpoint-swapped twin.",
+    "statement": "A delivery rider starts at the corner  $(0,0)$  of a square city grid and must reach the corner  $(9,6)$ , moving only one block East ( $x \\to x+1$ ) or one block North ( $y \\to y+1$ ) at each step, so every route consists of exactly  $9$  East-blocks and  $6$  North-blocks. Two pickup hubs sit at the corners  $P=(3,2)$  and  $Q=(6,4)$ . To earn the bonus, the rider's route must visit  $\\textbf{at least one}$  of the two hubs (visiting both is fine). How many distinct bonus-earning routes from  $(0,0)$  to  $(9,6)$  are there?",
+    "answer": " $\\boxed{3200}$ ",
+    "trap": "The tempting move is to add the count through  $P$  to the count through  $Q$ :  $\\binom{5}{2}\\binom{10}{4} + \\binom{10}{4}\\binom{5}{2} = 10\\cdot 210 + 210\\cdot 10 = 2100+2100 = 4200$ . But  $P=(3,2)$  and  $Q=(6,4)$  satisfy  $3\\le 6$  and  $2\\le 4$ , so a single monotone route can pass  $\\textbf{through both}$ . Every such route is counted twice in  $4200$ . The routes through both number  $\\binom{5}{2}\\binom{(6-3)+(4-2)}{4-2}\\binom{(9-6)+(6-4)}{6-4}=10\\cdot 10\\cdot 10 = 1000$ , and must be subtracted once:  $4200-1000 = 3200$ , not  $4200$ .",
     "solutions": [
       {
-        "name": "Lindström–Gessel–Viennot determinant",
+        "name": "Inclusion-exclusion on the two hubs",
         "steps": [
-          "Form the matrix $M_{ij}=\\#\\{\\text{monotone paths from start }i\\text{ to end }j\\}$ with starts $A=(0,1),\\,B=(1,0)$ and ends $A'=(3,4),\\,B'=(4,3)$.",
-          "Entries by step counts: $A\\to A'$ needs $3$E,$3$N, so $\\binom{6}{3}=20$; $A\\to B'$ needs $4$E,$2$N, so $\\binom{6}{4}=\\binom{6}{2}=15$; $B\\to A'$ needs $2$E,$4$N, so $\\binom{6}{2}=15$; $B\\to B'$ needs $3$E,$3$N, so $\\binom{6}{3}=20$.",
-          "The only order-preserving way to pair starts with ends is $A\\to A',\\,B\\to B'$ (the crossed pairing $A\\to B',\\,B\\to A'$ forces an intersection), so by LGV the number of vertex-disjoint pairs is the full determinant $\\det M=20\\cdot20-15\\cdot15=400-225=175$. $\\boxed{175}$"
+          "Let  $A$  be the routes through  $P=(3,2)$  and  $B$  the routes through  $Q=(6,4)$ ; we want  $|A\\cup B| = |A| + |B| - |A\\cap B|$ . Reaching a corner  $(a,b)$  from  $(0,0)$  takes  $\\binom{a+b}{b}$  routes, and continuing from  $(a,b)$  to  $(9,6)$  takes  $\\binom{(9-a)+(6-b)}{6-b}$ .",
+          "Through  $P$ :  $|A| = \\binom{3+2}{2}\\binom{6+4}{4} = \\binom{5}{2}\\binom{10}{4} = 10\\cdot 210 = 2100$ . Through  $Q$ :  $|B| = \\binom{6+4}{4}\\binom{3+2}{2} = \\binom{10}{4}\\binom{5}{2} = 210\\cdot 10 = 2100$ .",
+          "A route through both must pass  $P$  then  $Q$  (it cannot go from  $Q$  back to the lower-left  $P$ ):  $|A\\cap B| = \\binom{5}{2}\\binom{(6-3)+(4-2)}{4-2}\\binom{(9-6)+(6-4)}{6-4} = 10\\cdot \\binom{5}{2}\\cdot \\binom{5}{2} = 10\\cdot 10\\cdot 10 = 1000$ .",
+          "Therefore  $|A\\cup B| = 2100 + 2100 - 1000 = \\boxed{3200}$ ."
         ]
       },
       {
-        "name": "Sign-reversing involution (swap the tails)",
+        "name": "Complement: subtract routes that miss both hubs",
         "steps": [
-          "Take any pair $(A\\to A',\\,B\\to B')$ that intersects, and locate their first common vertex $P$. Swap everything after $P$: the $A$-path continues to $B'$ and the $B$-path continues to $A'$. This is a bijection between intersecting $(A\\to A',\\,B\\to B')$ pairs and the swapped family $(A\\to B',\\,B\\to A')$.",
-          "Conversely, every pair $(A\\to B',\\,B\\to A')$ is forced to intersect: $A$ starts left-of/below $B$ yet must finish right-of/above it, so by monotonicity the two routes cross. Hence the swapped family — all $15\\cdot15=225$ of its pairs — corresponds exactly to the intersecting straight pairs.",
-          "Therefore the surviving non-intersecting straight pairs number $20\\cdot20-15\\cdot15=400-225=175$. $\\boxed{175}$"
+          "The grand total of routes from  $(0,0)$  to  $(9,6)$  is  $\\binom{9+6}{6} = \\binom{15}{6} = 5005$ . The bonus routes are all routes minus those avoiding  $P$  and  $Q$  simultaneously.",
+          "Count routes that avoid  $P$  and avoid  $Q$  by complementary counting on each: routes that miss  $P$  or miss  $Q$  is awkward directly, so instead use the union already found. Routes hitting neither hub number  $5005 - |A\\cup B|$ , and we cross-check  $|A\\cup B|$  via the same pieces:  $|A| + |B| - |A\\cap B| = 2100+2100-1000$ .",
+          "Hence routes missing both  $= 5005 - 3200 = 1805$ , and the bonus routes are  $5005 - 1805 = \\boxed{3200}$ , confirming the inclusion-exclusion count."
         ]
       }
     ],
-    "remark": "Insight: LGV is reflection's grown-up sibling — instead of reflecting one path across a line, you reflect the futures of two paths across each other at their first meeting point. The off-diagonal product $15^2=225$ is precisely the 'bad' set the swap annihilates, and it equals the count of crossed-endpoint pairs — every one of which must intersect. That clean cancellation is why a single $2\\times2$ determinant beats a divergent inclusion–exclusion."
+    "remark": "**Insight.** \"At least one\" of two waypoints is a union, and a union is not a sum: because  $P=(3,2)$  lies weakly below-left of  $Q=(6,4)$ , one monotone route can hit both, so the through-both routes are double-counted and must be removed once. Each through-point count factors as (ways in)  $\\times$  (ways out), and the through-both count chains as (in to  $P$ )  $\\times$  ( $P$  to  $Q$ )  $\\times$  ( $Q$  out) — three binomials in a row. The whole trap is forgetting that the two hubs are comparable."
   },
   {
     "theme": "lattice",
-    "themeLabel": "Lattice Paths & Reflection",
-    "title": "The Grand Hybrid: Disciplined Pilgrimage",
+    "themeLabel": "Lattice Paths",
+    "title": "The Severed Footbridge",
     "difficulty": 5,
-    "task": "Find the number of admissible monotone lattice paths.",
+    "task": "Find the number of …",
     "tags": [
-      "dyck path",
-      "forced point",
-      "catalan factorization",
-      "weakly below diagonal"
+      "avoid edge",
+      "reflection complement",
+      "directed edge",
+      "monotone paths"
     ],
-    "statement": "A pilgrim walks monotonically (East/North) from $(0,0)$ to $(7,7)$, observing two rules simultaneously: (i) the path must never rise above the main diagonal, so $y \\le x$ at every visited lattice point (a Dyck constraint), and (ii) the path must pass through the shrine at $(4,4)$. Find the number of admissible pilgrimages.",
-    "answer": "$C_4\\,C_3 = 14\\cdot 5 = 70$",
-    "trap": "Multiplying the two UNCONSTRAINED segment counts $\\binom{8}{4}\\binom{6}{3}=70\\cdot 20=1400$ for passing through $(4,4)$, ignoring that BOTH segments must independently stay weakly below the diagonal. Each leg is its own Dyck problem, so the segment factors are Catalan numbers, not raw binomials.",
+    "statement": "A monotone (East/North) path runs from $(0,0)$ to $(8,6)$. A specific footbridge — the directed unit edge from $(4,2)$ straight up to $(4,3)$ — has been severed and cannot be traversed. (The vertices $(4,2)$ and $(4,3)$ remain usable; only the single North step between them is forbidden.) Find the number of paths that avoid this edge.",
+    "answer": "$\\dbinom{14}{6} - \\dbinom{6}{2}\\dbinom{7}{3} = 2478$",
+    "trap": "Counting all paths through the vertex $(4,3)$ as forbidden. Only paths that use the specific North edge $(4,2)\\to(4,3)$ are barred; a path may still visit $(4,3)$ by arriving from $(3,3)$ via an East step. Subtract edge-users, not vertex-visitors.",
     "solutions": [
       {
-        "name": "Factor at the diagonal touch point",
+        "name": "Subtract the edge-users",
         "steps": [
-          "The shrine $(4,4)$ lies on the diagonal $y=x$, so any admissible path splits there into two pieces, each of which must stay weakly below the diagonal.",
-          "First leg $(0,0)\\to(4,4)$ below $y=x$ is a Dyck path: $C_4=\\frac{1}{5}\\binom{8}{4}=14$. Second leg $(4,4)\\to(7,7)$ below the diagonal is a Dyck path of size $3$: $C_3=\\frac{1}{4}\\binom{6}{3}=5$.",
-          "By the product rule the count is $C_4\\cdot C_3 = 14\\cdot5 = 70$. $\\boxed{70}$"
+          "A path uses the forbidden edge iff it reaches $(4,2)$ and then takes the North step to $(4,3)$. Such paths factor as $(0,0)\\to(4,2)$, the forced edge, then $(4,3)\\to(8,6)$.",
+          "Count: $\\binom{4+2}{2}\\cdot 1\\cdot\\binom{(8-4)+(6-3)}{8-4}=\\binom{6}{2}\\binom{7}{4}=15\\cdot35=525$ (the final leg uses $4$ East, $3$ North).",
+          "Total paths $\\binom{14}{6}=3003$; admissible $=3003-525=2478$. $\\boxed{2478}$"
         ]
       },
       {
-        "name": "Reflection on each segment",
+        "name": "Contract the edge",
         "steps": [
-          "For the first leg, good paths $(0,0)\\to(4,4)$ with $y\\le x$ equal $\\binom{8}{4}-\\binom{8}{3}=70-56=14$ by reflecting bad paths across the line $y=x+1$.",
-          "For the second leg, shift $(4,4)$ to the origin and count good paths to $(3,3)$ with $y\\le x$: $\\binom{6}{3}-\\binom{6}{2}=20-15=5$ by the same reflection.",
-          "Multiplying the independent legs: $14\\cdot5=70$. $\\boxed{70}$"
+          "Edge-using paths are in bijection with monotone paths $(0,0)\\to(4,2)$ times paths $(4,3)\\to(8,6)$, since the middle step is forced.",
+          "The two factors are $\\binom{6}{2}=15$ and $\\binom{7}{3}=35$ (using $4$ East, $3$ North), product $525$.",
+          "Subtracting from the total $\\binom{14}{6}=3003$ yields $\\boxed{2478}$."
         ]
       }
     ],
-    "remark": "Insight: a forced point ON the barrier is the only place a Dyck path may be cut without breaking the constraint, because the diagonal is where the two sub-Dyck-paths can independently 'reset'. The answer factoring as $C_4C_3$ is the Catalan convolution made visible — and indeed summing such products over every diagonal touch point recovers the full $C_7=429$."
+    "remark": "Insight: an edge constraint is a vertex constraint with the crossing step pinned. The factor of $1$ for the forced bridge is the whole subtlety — it distinguishes 'banned edge' from 'banned vertex' and halves a common error."
+  },
+  {
+    "theme": "lattice",
+    "themeLabel": "Lattice Paths",
+    "title": "The Closed-Off Street",
+    "difficulty": 5,
+    "task": "Count paths avoiding a street",
+    "tags": [
+      "lattice paths",
+      "monotonic paths",
+      "avoiding a segment",
+      "complementary counting",
+      "binomial coefficient"
+    ],
+    "statement": "A courier starts at the corner  $(0,0)$  of a city grid and must reach the corner  $(8,6)$ , walking only one block East ( $x \\to x+1$ ) or one block North ( $y \\to y+1$ ) at each step, so every route uses exactly  $8$  East-blocks and  $6$  North-blocks. Overnight, the single East-bound block of street running from the corner  $(4,3)$  to the corner  $(5,3)$  is closed for repairs and may not be used in either direction. A route is allowed to pass through the corner  $(4,3)$  itself, and through  $(5,3)$  itself — it just may not traverse the block joining them. In how many distinct allowed routes can the courier reach  $(8,6)$ ?",
+    "answer": " $\\boxed{2303}$ ",
+    "trap": "The forbidden thing is a  $\\textbf{block}$  (an edge), not a corner. The seductive error is to subtract all routes passing  $\\textbf{through the corner}$   $(4,3)$ , namely  $\\binom{7}{3}\\binom{7}{3}=35\\cdot 35 = 1225$ , giving  $3003-1225 = 1778$ . But a route may legally visit  $(4,3)$  and then step North instead of East; only the routes that actually walk the closed East-block must be removed. Those number  $\\binom{7}{3}\\binom{6}{3}=35\\cdot 20 = 700$ , so the answer is  $3003-700 = 2303$ , not  $1778$ .",
+    "solutions": [
+      {
+        "name": "Total minus routes that use the closed block",
+        "steps": [
+          "Every route from  $(0,0)$  to  $(8,6)$  is a sequence of  $8$  E's and  $6$  N's, so the unrestricted total is  $\\binom{8+6}{6} = \\binom{14}{6} = 3003$ .",
+          "A route uses the closed block exactly when it arrives at  $(4,3)$  and its very next step is the East-block to  $(5,3)$ . The number of ways to reach  $(4,3)$  from  $(0,0)$  is  $\\binom{4+3}{3} = \\binom{7}{3} = 35$ .",
+          "Once it has stepped to  $(5,3)$ , the remaining journey to  $(8,6)$  needs  $3$  E's and  $3$  N's:  $\\binom{3+3}{3} = \\binom{6}{3} = 20$  ways. So the number of routes traversing the closed block is  $35 \\cdot 20 = 700$ .",
+          "Subtracting the bad routes from the total:  $3003 - 700 = \\boxed{2303}$ ."
+        ]
+      },
+      {
+        "name": "Split at the East-block's endpoints",
+        "steps": [
+          "Classify allowed routes by whether they reach the left endpoint  $(4,3)$  of the closed block. If a route never visits  $(4,3)$  it certainly cannot use the block, and if it does visit  $(4,3)$  it must leave by going North (East is forbidden).",
+          "Routes through  $(4,3)$  total  $\\binom{7}{3}\\binom{6}{3}$  where the second factor  $\\binom{(8-4)+(6-3)}{6-3}=\\binom{7}{3}=35$  counts  $(4,3)\\to(8,6)$ ; of these, the ones forced to leave North-ward are exactly those whose continuation from  $(4,3)$  starts with N. Equivalently, remove from the grand total only the continuations that start East:  $\\binom{7}{3}$  arrivals  $\\times\\,\\binom{6}{3}$  East-first continuations  $=700$  forbidden routes.",
+          "All other  $\\binom{14}{6}-700$  routes are allowed, giving  $3003-700 = \\boxed{2303}$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Avoiding an  $\\textit{edge}$  is gentler than avoiding a  $\\textit{vertex}$ : a forbidden corner kills every route through it, but a forbidden block kills only the routes that step along it — and the count of those factorises as (ways to reach the block's tail)  $\\times$  (ways to finish from its head). Reading the obstacle as a corner instead of an edge is the whole trap."
+  },
+  {
+    "theme": "lattice",
+    "themeLabel": "Lattice Paths",
+    "title": "Skip the Flooded Square",
+    "difficulty": 5,
+    "task": "Count paths avoiding a corner",
+    "tags": [
+      "lattice paths",
+      "monotonic paths",
+      "avoiding a point",
+      "complementary counting",
+      "binomial coefficient"
+    ],
+    "statement": "On a  $6 \\times 6$  city grid a delivery robot travels from the South-West corner  $(0,0)$  to the North-East corner  $(6,6)$ , advancing only one block East ( $x \\to x+1$ ) or one block North ( $y \\to y+1$ ) at a time. The intersection at the exact centre,  $(3,3)$ , is flooded and the robot may not stand on it at any moment. In how many distinct routes can the robot reach  $(6,6)$  while never visiting  $(3,3)$ ?",
+    "answer": " $\\boxed{524}$ ",
+    "trap": "Two errors lurk. First, forgetting to subtract at all and reporting the total  $\\binom{12}{6}=924$ . Second, subtracting the wrong quantity — e.g.  $\\binom{12}{6}-\\binom{6}{3}=904$ , as if only  $\\binom{6}{3}$  routes were spoiled. The routes through  $(3,3)$  factorise as  $\\binom{6}{3}\\binom{6}{3}=20\\cdot 20 = 400$ , so the answer is  $924-400 = 524$ .",
+    "solutions": [
+      {
+        "name": "Total minus routes through the flooded corner",
+        "steps": [
+          "Without restriction, the number of monotonic routes from  $(0,0)$  to  $(6,6)$  is  $\\binom{6+6}{6} = \\binom{12}{6} = 924$ .",
+          "A route is spoiled exactly when it passes through  $(3,3)$ . Such routes split into  $(0,0)\\to(3,3)$  and  $(3,3)\\to(6,6)$ , each leg needing  $3$  E's and  $3$  N's:  $\\binom{6}{3} = 20$  ways apiece.",
+          "By the product rule the spoiled routes number  $20 \\cdot 20 = 400$ .",
+          "Subtracting, the safe routes number  $924 - 400 = \\boxed{524}$ ."
+        ]
+      },
+      {
+        "name": "Route the robot below or above the centre",
+        "steps": [
+          "Any monotonic route from  $(0,0)$  to  $(6,6)$  that avoids  $(3,3)$  must cross the anti-diagonal  $x+y=6$  at one of the corners  $(k,6-k)$  with  $k \\ne 3$ ; the centre  $(3,3)$  is the only forbidden crossing.",
+          "Summing the product (ways to reach  $(k,6-k)$ )  $\\times$  (ways to finish from it) over all crossings gives the full total, and the single term  $k=3$  is precisely the  $400$  spoiled routes counted as  $\\binom{6}{3}\\binom{6}{3}$ .",
+          "Hence the avoiding routes equal (all crossings) minus (the centre term)  $= \\binom{12}{6} - \\binom{6}{3}^2 = 924 - 400 = \\boxed{524}$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A forbidden  $\\textit{corner}$  removes  $\\textit{every}$  route through it, and on a monotonic grid that count always factors as a product of two equal-or-unequal binomials — here the symmetric  $\\binom{6}{3}^2$ . The discipline is to subtract that product once, not some lone binomial."
+  },
+  {
+    "theme": "lattice",
+    "themeLabel": "Lattice Paths",
+    "title": "Two Mandatory Checkpoints",
+    "difficulty": 5,
+    "task": "Count paths through two points",
+    "tags": [
+      "lattice paths",
+      "monotonic paths",
+      "through two points",
+      "product rule",
+      "binomial coefficient"
+    ],
+    "statement": "A tourist sets out from the hotel at  $(0,0)$  and wants to reach the museum at  $(9,7)$ , walking the grid only one block East ( $x \\to x+1$ ) or one block North ( $y \\to y+1$ ) at a time. The tour requires visiting two landmarks  $\\textbf{in order}$ : first the fountain at  $(3,2)$ , then the clock tower at  $(6,5)$ . Since both displacements are monotone increasing, any route reaching the museum that visits both landmarks must visit them in the listed order automatically. How many distinct routes from hotel to museum pass through both  $(3,2)$  and  $(6,5)$ ?",
+    "answer": " $\\boxed{2000}$ ",
+    "trap": "The standard slip is to enforce only one checkpoint — e.g. counting routes through the fountain alone,  $\\binom{5}{2}\\binom{11}{6}=10\\cdot 462 = 4620$ , and stopping there. Both checkpoints must be enforced, which means  $\\textbf{three}$  legs multiplied together. A second slip is mis-reading a leg's displacement (e.g. using  $\\binom{6}{3}$  for the last leg, whose displacement is  $3$  E and  $2$  N, hence  $\\binom{5}{3}$ ). The correct product is  $\\binom{5}{2}\\binom{6}{3}\\binom{5}{3} = 10\\cdot 20\\cdot 10 = 2000$ .",
+    "solutions": [
+      {
+        "name": "Three independent legs",
+        "steps": [
+          "A route through both corners cuts uniquely into three legs:  $(0,0)\\to(3,2)$ , then  $(3,2)\\to(6,5)$ , then  $(6,5)\\to(9,7)$ . Each leg is chosen independently, so multiply the three counts.",
+          "Leg 1: displacement  $3$  E,  $2$  N gives  $\\binom{3+2}{2} = \\binom{5}{2} = 10$ .",
+          "Leg 2: displacement  $6-3=3$  E,  $5-2=3$  N gives  $\\binom{3+3}{3} = \\binom{6}{3} = 20$ .",
+          "Leg 3: displacement  $9-6=3$  E,  $7-5=2$  N gives  $\\binom{3+2}{3} = \\binom{5}{3} = 10$ .",
+          "By the product rule the number of routes is  $10 \\cdot 20 \\cdot 10 = \\boxed{2000}$ ."
+        ]
+      },
+      {
+        "name": "Chain two through-a-point counts",
+        "steps": [
+          "First count routes from  $(0,0)$  to the clock tower  $(6,5)$  that pass through the fountain  $(3,2)$ : that is  $\\binom{5}{2}\\binom{6}{3} = 10 \\cdot 20 = 200$  by the two-leg product.",
+          "Each such partial route then continues independently from  $(6,5)$  to the museum  $(9,7)$ , with displacement  $3$  E and  $2$  N:  $\\binom{5}{3} = 10$  ways.",
+          "Multiplying the prefix count by the suffix count gives  $200 \\cdot 10 = \\boxed{2000}$ , matching the three-leg product."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Each mandatory corner inserts one more cut, turning the journey into a product of consecutive legs — two checkpoints mean three binomials, not two. Monotonicity is what makes the listed order free: once both corners lie on the route, East/North motion forces the fountain before the clock tower."
+  },
+  {
+    "theme": "lattice",
+    "themeLabel": "Lattice Paths",
+    "title": "Avoiding Two Blocked Intersections",
+    "difficulty": 5,
+    "task": "Count shortest grid routes that avoid two blocked junctions.",
+    "tags": [
+      "lattice paths",
+      "binomial coefficients",
+      "inclusion-exclusion",
+      "grid routes",
+      "combinatorics"
+    ],
+    "statement": "A delivery rider must travel along the streets of a perfectly rectangular city. Junctions sit at the integer points of a grid, and the rider starts at the south-west corner $O=(0,0)$ and must reach the north-east corner $D=(9,7)$. Each move goes one block East or one block North, so every valid route is a shortest route using exactly $9$ East-moves and $7$ North-moves. Overnight, road-works close two junctions completely: $A=(3,3)$ and $B=(6,5)$. A route is permitted only if it passes through $\\textbf{neither}$ $A$ $\\textbf{nor}$ $B$. How many permitted shortest routes are there from $O$ to $D$?",
+    "answer": "$\\boxed{4620}$",
+    "trap": "The tempting move is to subtract the routes through $A$ and the routes through $B$ from the total and stop there. That double-removes every route that happens to pass through $\\textbf{both}$ $A$ and $B$, because such routes were counted once in each subtracted block. Since $A=(3,3)$ lies weakly south-west of $B=(6,5)$, routes through both genuinely exist and must be added back once. Forgetting this add-back undercounts and gives $11440-4200-4620=2620$ instead of $4620$.",
+    "solutions": [
+      {
+        "name": "Inclusion-exclusion on the two blocked junctions",
+        "steps": [
+          "A shortest route from $(a,b)$ to $(c,d)$ takes $(c-a)$ East and $(d-b)$ North moves in any order, so the count is $\\binom{(c-a)+(d-b)}{c-a}$.",
+          "Total unrestricted routes $O\\to D$: $\\binom{9+7}{7}=\\binom{16}{7}=11440$.",
+          "Routes through $A=(3,3)$: $\\binom{3+3}{3}\\binom{6+4}{6}=\\binom{6}{3}\\binom{10}{6}=20\\cdot 210=4200$. Routes through $B=(6,5)$: $\\binom{6+5}{6}\\binom{3+2}{3}=\\binom{11}{6}\\binom{5}{3}=462\\cdot 10=4620$.",
+          "Routes through both $A$ and $B$ (in order $O\\to A\\to B\\to D$): $\\binom{6}{3}\\binom{5}{2}\\binom{5}{3}=20\\cdot 10\\cdot 10=2000$.",
+          "By inclusion-exclusion the permitted routes equal $11440-4200-4620+2000=4620$."
+        ]
+      },
+      {
+        "name": "Complement via the union of bad routes",
+        "steps": [
+          "Let $S_A$ be routes hitting $A$ and $S_B$ be routes hitting $B$. The forbidden routes form $S_A\\cup S_B$, and permitted $=$ total $-\\,|S_A\\cup S_B|$.",
+          "$|S_A|=\\binom{6}{3}\\binom{10}{4}=4200$ and $|S_B|=\\binom{11}{5}\\binom{5}{3}=4620$.",
+          "$|S_A\\cap S_B|$ counts routes through both; since $(3,3)$ is south-west of $(6,5)$ such routes split as $O\\to A\\to B\\to D$ giving $\\binom{6}{3}\\binom{5}{2}\\binom{5}{3}=2000$.",
+          "$|S_A\\cup S_B|=4200+4620-2000=6820$, so permitted $=11440-6820=4620$.",
+          "A direct dynamic count that zeroes out $A$ and $B$ and propagates $f(x,y)=f(x-1,y)+f(x,y-1)$ across the grid lands on the same $4620$, confirming the algebra."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The whole difficulty lives in the overlap term: two blocked junctions that are mutually reachable (one weakly south-west of the other) force a genuine add-back, whereas if the points were incomparable (neither reachable from the other) no single monotone route could hit both and the intersection would vanish. Reading the geometry of the blocked set is what tells you whether inclusion-exclusion needs its $+|S_A\\cap S_B|$ correction at all."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "Mirror Strings Without Touching",
+    "difficulty": 4,
+    "task": "Find the number of …",
+    "tags": [
+      "recurrence",
+      "symmetry",
+      "fibonacci",
+      "palindrome"
+    ],
+    "statement": "Find the number of binary strings of length $12$ that are simultaneously\\[(i) palindromic\\quad(\\text{read the same forwards and backwards}),\\qquad(ii) sparse\\quad(\\text{no two consecutive } 1\\text{'s}).\\]",
+    "answer": "$13$",
+    "trap": "Counting sparse strings of length $12$ (a Fibonacci number, $F_{14}=377$) and then dividing by $2$ to ``account for'' the palindrome symmetry. Palindromes are not half of all strings, and the central fold creates an extra adjacency constraint at positions $6,7$ that pure division never sees.",
+    "solutions": [
+      {
+        "name": "Symmetry fold to a half-string recurrence",
+        "steps": [
+          "A palindrome of length $12$ is determined by its first $6$ bits $s_1\\dots s_6$, with $s_7=s_6,\\ s_8=s_5,\\dots$.",
+          "The fold forces $s_6=s_7$ (the two central bits), so if $s_6=1$ then $s_7=1$ and they are adjacent $1$'s — forbidden. Hence $s_6=0$, and the first half must itself be sparse.",
+          "Thus the count equals the number of sparse strings of length $6$ ending in $0$. Sparse strings of length $5$ (any ending) number $F_{7}=13$, each extended by a final $0$, all sparse.",
+          "Therefore the answer is $13.$ $\\boxed{13}$"
+        ]
+      },
+      {
+        "name": "Direct Fibonacci recurrence on half-strings",
+        "steps": [
+          "Let $g_n$ count sparse strings of length $n$ ending in $0$. A sparse string of length $6$ ending in $0$ is any sparse string of length $5$ followed by $0$, so $g_6=f_5$ where $f_5=F_{7}=13$ is the total number of sparse length-$5$ strings.",
+          "By the sparse-string recurrence $f_n=f_{n-1}+f_{n-2}$ with $f_1=2,f_2=3$: $f_3=5,f_4=8,f_5=13$.",
+          "Hence $13$ palindromic sparse strings of length $12$. $\\boxed{13}$"
+        ]
+      },
+      {
+        "name": "Brute-force enumeration",
+        "steps": [
+          "Enumerate all $2^{12}$ strings; keep those equal to their reverse and containing no ``$11$''.",
+          "Exactly $13$ survive, matching the half-string Fibonacci count.",
+          "$\\boxed{13}$"
+        ]
+      }
+    ],
+    "remark": "Insight: the Fibonacci recurrence (sparseness) and palindromic symmetry fuse at the centre fold, where the symmetry manufactures a brand-new adjacency $s_6=s_7$. The problem collapses to a half-length recurrence, but only after you respect that central pinch."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "Pairings With No Self-Match",
+    "difficulty": 4,
+    "task": "Find the number of …",
+    "tags": [
+      "derangement",
+      "double-counting",
+      "involution",
+      "matchings"
+    ],
+    "statement": "Find the number of permutations $\\sigma$ of $\\{1,2,3,4,5,6,7,8\\}$ that are simultaneously\\[(i) involutions\\;(\\sigma=\\sigma^{-1},\\ \\text{i.e. }\\sigma^2=\\mathrm{id}),\\qquad(ii) derangements\\;(\\sigma(i)\\neq i\\ \\text{for all }i).\\]",
+    "answer": "$105$",
+    "trap": "Counting all involutions of $8$ elements (which is $764$) and then trying to subtract those with fixed points by a single derangement-style term. An involution with no fixed point is forced to be a product of disjoint transpositions only — a perfect matching — so the right object is a matching count, computed by a double-counting / pairing recurrence, not a generic derangement formula.",
+    "solutions": [
+      {
+        "name": "Fixed-point-free involutions are perfect matchings",
+        "steps": [
+          "An involution decomposes into $1$-cycles (fixed points) and $2$-cycles. Forbidding fixed points forces $\\sigma$ to be a product of disjoint transpositions covering all $8$ elements — a perfect matching of an $8$-element set.",
+          "The number of perfect matchings of $2m$ elements is the double factorial $(2m-1)!!$.",
+          "For $2m=8$: $7!!=7\\cdot5\\cdot3\\cdot1=105.$ $\\boxed{105}$"
+        ]
+      },
+      {
+        "name": "Double-counting recurrence",
+        "steps": [
+          "Let $M(2m)$ be the number of perfect matchings. Element $1$ must pair with one of the other $2m-1$ elements; whichever it picks, the remaining $2m-2$ elements form a matching independently.",
+          "Hence $M(2m)=(2m-1)\\,M(2m-2)$ with $M(0)=1$, giving $M(8)=7\\cdot5\\cdot3\\cdot1=105$ — the same number arrives by double-counting (matching, distinguished edge) pairs.",
+          "$\\boxed{105}$"
+        ]
+      },
+      {
+        "name": "Brute-force enumeration",
+        "steps": [
+          "Generate all $8!$ permutations; keep those with $\\sigma(\\sigma(i))=i$ and $\\sigma(i)\\neq i$ for all $i$.",
+          "Exactly $105$ survive, confirming $7!!$.",
+          "$\\boxed{105}$"
+        ]
+      }
+    ],
+    "remark": "Insight: the involution condition (a structural symmetry $\\sigma=\\sigma^{-1}$) fuses with the derangement condition to annihilate $1$-cycles, leaving precisely the perfect matchings — and matchings are counted by the elegant double-counting recurrence $M(2m)=(2m-1)M(2m-2)$."
   },
   {
     "theme": "hybrid",
@@ -3935,54 +3628,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "The decisive idea is recognising that the two interacting bans do not act independently: the diagonal and the cyclic super-diagonal interlock into one $18$-cell cycle, which is exactly the combinatorial signature of the probleme des menages. The cyclic wrap on the last row ($\\sigma(9)\\neq 1$) is essential, it is what closes the cycle and replaces $\\binom{2n}{k}$ by the menage coefficient $\\frac{2n}{2n-k}\\binom{2n-k}{k}$. Dropping the wrap turns it into the linear problem with a different count ($48800$), and dropping the successor ban turns it into a plain derangement ($133496$); only the genuine cyclic double-ban yields the menage number $M_9=43387$."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
-    "title": "The Ascending Ledger Under a Slanted Cap",
-    "difficulty": 5,
-    "task": "Count",
-    "tags": [
-      "catalan",
-      "ballot reflection",
-      "roots of unity filter",
-      "q=-1 phenomenon",
-      "parity",
-      "generating functions"
-    ],
-    "statement": "A scribe records a non-decreasing ledger of six nonnegative integers $a_1\\le a_2\\le a_3\\le a_4\\le a_5\\le a_6$, subject to the slanted cap $a_i\\le i$ for each $i=1,2,\\dots,6$ (so $a_1\\in\\{0,1\\}$, $a_2$ may rise to $2$, and so on, with $a_6\\le 6$). Among all such ledgers, the auditor accepts only those whose total $a_1+a_2+\\cdots+a_6$ is even. \\[\\text{How many accepted ledgers are there?}\\] Equivalently: writing each ledger as a monotone lattice path that stays weakly below the diagonal (the cap $a_i\\le i$ is the ballot/Catalan ceiling), count those paths enclosing an even signed area.",
-    "answer": "$\\boxed{217}$",
-    "trap": "Observing that the total number of capped non-decreasing ledgers is the Catalan number $C_7=429$ (a textbook ballot count), then declaring that 'half are even' and answering $\\lceil 429/2\\rceil=215$ (or $214$). The implicit claim is a free parity-flipping involution: surely one can always nudge some coordinate by $\\pm1$ to flip the sum's parity, pairing evens with odds. But the cap $a_i\\le i$ together with monotonicity freezes certain ledgers — no single coordinate can move without breaking $a_{i-1}\\le a_i\\le i$ — so the involution has fixed points and the two parity classes are NOT balanced. The signed surplus $(\\text{even}-\\text{odd})$ is not $0$ or $1$; it is exactly $C_3=5$, the Catalan signature of the unmatched configurations. Since $429$ is odd the classes cannot split evenly anyway, yet the true gap is $5$, not $1$, so the honest count is $(429+5)/2=217\\neq 215$.",
-    "solutions": [
-      {
-        "name": "Reflection for the total, roots-of-unity filter for the parity",
-        "steps": [
-          "First the grand total. Map a ledger to a monotone $E/N$ lattice path: the constraint $0\\le a_1\\le\\cdots\\le a_6$ with $a_i\\le i$ is exactly the description of a path from $(0,0)$ to $(7,7)$ taking unit East/North steps and staying weakly below the diagonal $y\\le x$, where $a_i$ records the height of the $i$-th turn. André's reflection principle counts these as $\\binom{14}{7}-\\binom{14}{6}=3432-3003=429=C_7$.",
-          "Now split by parity using a roots-of-unity (parity) filter. Let $F(q)=\\sum_{\\text{ledgers}} q^{\\,a_1+\\cdots+a_6}$ be the area generating function of these subdiagonal paths (a Carlitz $q$-Catalan polynomial). The number with even total is $\\dfrac{F(1)+F(-1)}{2}$, since $\\tfrac{1+(-1)^{m}}{2}$ is the indicator of $m$ even.",
-          "Here $F(1)=429$ is the total just found. The value $F(-1)$ is the celebrated $q=-1$ phenomenon for Catalan area: for paths to $(m,m)$ with $m$ odd, $F(-1)=\\pm C_{(m-1)/2}$, and a direct expansion of the degree-$21$ polynomial $F(q)=q^{21}+6q^{20}+15q^{19}+\\cdots+2q^{2}+q+1$ gives $F(-1)=5=C_3$ (the alternating sum of its coefficients).",
-          "Therefore the number of even-total ledgers is $\\dfrac{429+5}{2}=\\boxed{217}$."
-        ]
-      },
-      {
-        "name": "Parity-augmented transfer recursion under the cap",
-        "steps": [
-          "Build the ledgers left to right, carrying both the current value and the running parity. Let $N_i(v,p)$ be the number of admissible prefixes $a_1\\le\\cdots\\le a_i$ with $a_i=v$ and $a_1+\\cdots+a_i\\equiv p\\pmod 2$. The cap enters as the truncation $0\\le v\\le i$, the geometric heart of the ballot ceiling enforced step by step.",
-          "Seed $i=1$: $N_1(0,0)=1,\\ N_1(1,1)=1$. Recurse $N_{i}(v,p)=\\sum_{u=0}^{v} N_{i-1}\\!\\big(u,\\,p\\oplus(v\\bmod 2)\\big)$ for $0\\le v\\le i$ (a non-decreasing step lets $a_i=v$ follow any $a_{i-1}=u\\le v$), where $\\oplus$ is addition mod $2$.",
-          "Folding the recursion column by column, the even-total counts $\\sum_v N_i(v,0)$ propagate as $1,3,7,22,66,217$ for $i=1,\\dots,6$, while the odd-total counts run $1,2,7,20,66,212$; at each column the two add to the Catalan partial $2,5,14,42,132,429$, a built-in check.",
-          "At $i=6$ the even total is $\\sum_v N_6(v,0)=\\boxed{217}$, obtained with no reflection and no generating function, purely from the capped transfer."
-        ]
-      },
-      {
-        "name": "Sign-reversing involution on subdiagonal paths",
-        "steps": [
-          "Pass to the path picture of Method 1: ledgers $\\leftrightarrow$ Dyck-type paths to $(7,7)$ staying weakly below $y\\le x$, with sign $(-1)^{a_1+\\cdots+a_6}$ equal to $(-1)^{\\text{area}}$ up to a fixed shift. The even$-$odd surplus is the signed count $\\sum_{\\text{paths}}(-1)^{\\text{area}}=F(-1)$.",
-          "Define an involution: locate the first place the path differs from its top-down mirror image and toggle the corresponding $UD\\leftrightarrow DU$ corner there; this changes the enclosed area by exactly one unit square, hence flips the parity and reverses the sign, pairing one even ledger with one odd ledger.",
-          "The fixed points are precisely the paths left invariant by the central toggle — the self-conjugate (palindromic) subdiagonal paths of semilength $7$, which are determined by their first half and are therefore counted by the smaller Catalan number $C_3=5$. By the $q=-1$ phenomenon each fixed point carries sign $+1$, so $\\text{even}-\\text{odd}=+5$.",
-          "Combining with the total $\\text{even}+\\text{odd}=C_7=429$ gives $\\text{even}=\\dfrac{429+5}{2}=\\boxed{217}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the seductive shortcut 'the count is Catalan, so the parities split evenly' silently assumes a free parity-flipping involution. The cap $a_i\\le i$ is exactly what denies that freedom: it freezes the extremal (palindromic) ledgers, and those unmatched configurations are themselves counted by a smaller Catalan number. The clean way to see this is the roots-of-unity filter $\\tfrac12(F(1)+F(-1))$, where $F(1)=C_7=429$ is the ballot/reflection total and $F(-1)=C_3=5$ is the Carlitz $q$-Catalan at $q=-1$ — the famous '$q=-1$ phenomenon.' Two genuinely different machines (reflection for the magnitude, a sign-reversing involution / GF specialization for the parity defect) must be run together; neither alone yields $217$. For a top-ranker the moral is that a parity sieve is only as good as the involution behind it, and a boundary constraint can make that involution leak exactly a Catalan number of fixed points."
   },
   {
     "theme": "hybrid",
@@ -4081,187 +3726,6 @@ window.PROBLEMS = [
   {
     "theme": "hybrid",
     "themeLabel": "The Grand Hybrids",
-    "title": "The Corridor Between Two Mirrors",
-    "difficulty": 5,
-    "task": "Count",
-    "tags": [
-      "lattice-paths",
-      "reflection",
-      "inclusion-exclusion",
-      "method-of-images",
-      "transfer-matrix"
-    ],
-    "statement": "A token starts at the origin $(0,0)$ and walks to $(7,7)$ using only unit steps to the right $R=(1,0)$ and up $U=(0,1)$. Throughout the entire walk (at every lattice point it visits, including both endpoints) it must remain inside the corridor $|y-x|\\le 2$; that is, it must never set foot on either diagonal line $y=x+3$ or $y=x-3$. \\[\\text{Count the number of admissible monotone paths from }(0,0)\\text{ to }(7,7).\\]",
-    "answer": "\\[\\boxed{1458}\\]",
-    "trap": "The lethal trap is treating the two forbidden lines as independent and applying inclusion-exclusion only once each: $\\binom{14}{7}-\\binom{14}{10}-\\binom{14}{10}=3432-1001-1001=1430$. This is wrong. With two parallel reflecting walls a single reflection of the endpoint across $y=x+3$ produces an image that now violates the *other* wall $y=x-3$; correcting that requires reflecting again, and so on. The Kelvin-image series is infinite and alternating, contributing two further $+\\binom{14}{7\\pm6}=+14$ terms, so the true count is $1430+28=1458$, not $1430$. Stopping after one reflection per wall (or, equivalently, importing the single-wall Catalan/ballot template that gives $2431$) silently drops every higher-order image.",
-    "solutions": [
-      {
-        "name": "Transfer matrix on the diagonal coordinate",
-        "steps": [
-          "Track only $d=y-x$. Each $R$ sends $d\\mapsto d-1$ and each $U$ sends $d\\mapsto d+1$, so a path of $14$ steps is a $\\pm1$ walk in $d$ starting and ending at $0$ (we need $7$ of each step), confined to $d\\in\\{-2,-1,0,1,2\\}$.",
-          "Admissible paths are exactly the walks of length $14$ from state $0$ to state $0$ on the path graph $P_5$ with adjacency matrix $T$ (each interior state links to its two neighbours).",
-          "Iterating the vector $e_0$ under $T$ for $14$ steps, or using the eigenvalues $\\lambda_k=2\\cos\\frac{k\\pi}{6}$ ($k=1,\\dots,5$) of $P_5$, the middle-to-middle count is $\\sum_{k=1}^{5}\\lambda_k^{14}\\,\\phi_k(0)^2$.",
-          "Evaluating gives $1458$, so the number of admissible paths is $\\boxed{1458}$."
-        ]
-      },
-      {
-        "name": "Method of images across two reflecting walls",
-        "steps": [
-          "In the $d=y-x$ picture the forbidden lines are the absorbing barriers $d=+3$ and $d=-3$; we count $\\pm1$ walks of length $n=14$ from $d=0$ to $d=0$ staying strictly between them.",
-          "Shift coordinates so the barriers sit at $0$ and $h=6$; the two reflecting walls generate an infinite image series, giving the count $\\sum_{k\\in\\mathbb{Z}}\\Big[\\,N\\!\\big(2kh\\big)-N\\!\\big(2kh-6\\big)\\Big]$, where $N(c)=\\binom{14}{(14+c)/2}$ counts unconstrained walks with net displacement $c$ (and $0$ when the parity fails).",
-          "Only a few images survive the range $|c|\\le 14$: the $k=0$ translate $\\binom{14}{7}=3432$; the two first-order reflections each subtract $\\binom{14}{10}=1001$; and the next images contribute $N(\\pm12)\\mp\\binom{14}{(14\\mp6)/2}$, namely the two correction terms $+\\binom{14}{1}=+14$ and $+\\binom{14}{13}=+14$.",
-          "Summing the alternating series, $3432-1001-1001+14+14=1458$, so the answer is $\\boxed{1458}$."
-        ]
-      },
-      {
-        "name": "Layer-by-layer recurrence (DP)",
-        "steps": [
-          "Let $f_k(d)$ be the number of admissible prefixes of $k$ steps ending at diagonal value $d\\in\\{-2,-1,0,1,2\\}$, with $f_0(0)=1$ and $f_0$ zero elsewhere.",
-          "Because each step changes $d$ by $\\pm1$ and must stay in range, the recurrence is $f_{k+1}(d)=f_k(d-1)+f_k(d+1)$, where out-of-band terms are taken as $0$ (this is the boundary condition that bakes in both walls automatically).",
-          "Rolling the five-entry vector forward $14$ times, the parity forces the mass back to even $d$ at even steps; the final row yields $f_{14}(0)=1458$ (with $f_{14}(\\pm2)=729$ as a useful consistency check that the masses split symmetrically).",
-          "Hence the number of admissible paths to $(7,7)$ is $f_{14}(0)=\\boxed{1458}$."
-        ]
-      }
-    ],
-    "remark": "Two parallel reflecting walls is qualitatively harder than the single-wall Catalan barrier: one reflection no longer fixes the boundary problem, because the image violates the opposite wall, forcing an infinite alternating Kelvin-image series. The spectral view explains why it nevertheless collapses to a clean integer: the diagonal coordinate turns the problem into a quantum-particle-in-a-box on the path graph $P_5$, whose finitely many eigenvalues $2\\cos\\frac{k\\pi}{6}$ make the answer a short closed sum. The trap value $1430$ is exactly the answer with the higher images amputated."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
-    "title": "Mirror Strings Without Touching",
-    "difficulty": 4,
-    "task": "Find the number of …",
-    "tags": [
-      "recurrence",
-      "symmetry",
-      "fibonacci",
-      "palindrome"
-    ],
-    "statement": "Find the number of binary strings of length $12$ that are simultaneously\\[(i) palindromic\\quad(\\text{read the same forwards and backwards}),\\qquad(ii) sparse\\quad(\\text{no two consecutive } 1\\text{'s}).\\]",
-    "answer": "$13$",
-    "trap": "Counting sparse strings of length $12$ (a Fibonacci number, $F_{14}=377$) and then dividing by $2$ to ``account for'' the palindrome symmetry. Palindromes are not half of all strings, and the central fold creates an extra adjacency constraint at positions $6,7$ that pure division never sees.",
-    "solutions": [
-      {
-        "name": "Symmetry fold to a half-string recurrence",
-        "steps": [
-          "A palindrome of length $12$ is determined by its first $6$ bits $s_1\\dots s_6$, with $s_7=s_6,\\ s_8=s_5,\\dots$.",
-          "The fold forces $s_6=s_7$ (the two central bits), so if $s_6=1$ then $s_7=1$ and they are adjacent $1$'s — forbidden. Hence $s_6=0$, and the first half must itself be sparse.",
-          "Thus the count equals the number of sparse strings of length $6$ ending in $0$. Sparse strings of length $5$ (any ending) number $F_{7}=13$, each extended by a final $0$, all sparse.",
-          "Therefore the answer is $13.$ $\\boxed{13}$"
-        ]
-      },
-      {
-        "name": "Direct Fibonacci recurrence on half-strings",
-        "steps": [
-          "Let $g_n$ count sparse strings of length $n$ ending in $0$. A sparse string of length $6$ ending in $0$ is any sparse string of length $5$ followed by $0$, so $g_6=f_5$ where $f_5=F_{7}=13$ is the total number of sparse length-$5$ strings.",
-          "By the sparse-string recurrence $f_n=f_{n-1}+f_{n-2}$ with $f_1=2,f_2=3$: $f_3=5,f_4=8,f_5=13$.",
-          "Hence $13$ palindromic sparse strings of length $12$. $\\boxed{13}$"
-        ]
-      },
-      {
-        "name": "Brute-force enumeration",
-        "steps": [
-          "Enumerate all $2^{12}$ strings; keep those equal to their reverse and containing no ``$11$''.",
-          "Exactly $13$ survive, matching the half-string Fibonacci count.",
-          "$\\boxed{13}$"
-        ]
-      }
-    ],
-    "remark": "Insight: the Fibonacci recurrence (sparseness) and palindromic symmetry fuse at the centre fold, where the symmetry manufactures a brand-new adjacency $s_6=s_7$. The problem collapses to a half-length recurrence, but only after you respect that central pinch."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
-    "title": "The Symmetric Sweet-Shelf",
-    "difficulty": 5,
-    "task": "Count",
-    "tags": [
-      "palindrome-symmetry",
-      "capped-distribution",
-      "inclusion-exclusion",
-      "generating-functions",
-      "parity"
-    ],
-    "statement": "A confectioner lines up $9$ identical glass jars in a single straight row on a shelf and distributes exactly $24$ identical candies among them. Each jar can hold anywhere from $0$ to $4$ candies (its physical cap), and a jar may be left empty. Because the shelf will be viewed from both ends of the corridor, the final arrangement must look the same read left-to-right as read right-to-left; that is, the sequence of candy counts $(a_1,a_2,\\dots,a_9)$ must be a palindrome, $a_i=a_{10-i}$ for every $i$. \\[\\text{Count the number of admissible palindromic fillings of the nine jars.}\\]",
-    "answer": "\\[\\boxed{155}\\]",
-    "trap": "The fatal trap is the \"forced-even-centre\" slip. A palindrome of odd length is pinned down by its left half $(a_1,a_2,a_3,a_4)$ together with the centre $a_5$, and the total is $2(a_1+a_2+a_3+a_4)+a_5=24$. Seeing that $24$ is even, the careless solver declares the centre must be $0$ (\"an even total leaves nothing for the middle\"), sets $a_1+a_2+a_3+a_4=12$, and counts only that one slice: capped solutions of $w_1+\\dots+w_4=12$ with each $w_i\\in\\{0,\\dots,4\\}$ give $\\binom{15}{3}-4\\binom{10}{3}+6\\binom{5}{3}=455-480+60=35$. But $a_5$ is forced only to be even, not zero: $a_5\\in\\{0,2,4\\}$ are all legal, and the missed cases $a_5=2$ (half-sum $11$, giving $52$) and $a_5=4$ (half-sum $10$, giving $68$) contribute another $120$ fillings. Amputating them yields $35$ instead of $155$.",
-    "solutions": [
-      {
-        "name": "Half-reduction, then capped inclusion-exclusion on each centre case",
-        "steps": [
-          "A palindrome of length $9$ is determined by its left half $(a_1,a_2,a_3,a_4)$ and its centre $a_5$, since $a_6,a_7,a_8,a_9$ are forced mirror copies. The total candies are $2(a_1+a_2+a_3+a_4)+a_5=24$, with each entry in $\\{0,1,2,3,4\\}$.",
-          "Write $S=a_1+a_2+a_3+a_4$, so $a_5=24-2S$ is automatically even; the cap $0\\le a_5\\le 4$ restricts it to $a_5\\in\\{0,2,4\\}$, i.e. $S\\in\\{12,11,10\\}$ respectively. (This is the parity/symmetry layer that the trap drops.)",
-          "For each $S$, count capped solutions of $w_1+w_2+w_3+w_4=S$ with $w_i\\in\\{0,\\dots,4\\}$ using inclusion-exclusion $N(S)=\\sum_{j\\ge 0}(-1)^j\\binom{4}{j}\\binom{S-5j+3}{3}$. This gives $N(12)=\\binom{15}{3}-4\\binom{10}{3}+6\\binom{5}{3}=455-480+60=35$, $N(11)=\\binom{14}{3}-4\\binom{9}{3}+6\\binom{4}{3}=364-336+24=52$, and $N(10)=\\binom{13}{3}-4\\binom{8}{3}+6\\binom{3}{3}=286-224+6=68$.",
-          "Summing the three legal centre cases, the number of admissible palindromes is $35+52+68=\\boxed{155}$."
-        ]
-      },
-      {
-        "name": "Generating functions on mirror pairs and the lone centre",
-        "steps": [
-          "Each mirror pair $(a_i,a_{10-i})$ for $i=1,2,3,4$ deposits the same amount $y\\in\\{0,\\dots,4\\}$ on both sides, so it contributes a factor $\\sum_{y=0}^{4}x^{2y}=1+x^2+x^4+x^6+x^8$ to the total candy count. The unpaired centre contributes $\\sum_{c=0}^{4}x^{c}=1+x+x^2+x^3+x^4$.",
-          "Hence the number of admissible palindromes is the coefficient of $x^{24}$ in $f(x)=\\bigl(1+x^2+x^4+x^6+x^8\\bigr)^{4}\\,\\bigl(1+x+x^2+x^3+x^4\\bigr)$.",
-          "Because every exponent coming from the four pair-factors is even, only the even powers of the centre factor can reach the even target $24$; this reproduces the parity restriction $c\\in\\{0,2,4\\}$ algebraically. Writing $g(x)=(1+x^2+x^4+x^6+x^8)^4$, we need $[x^{24}]g+[x^{22}]g+[x^{20}]g$.",
-          "Substituting $x^2=t$, $g$ becomes $\\bigl(\\tfrac{1-t^5}{1-t}\\bigr)^4$, whose coefficients are the capped counts $N(\\cdot)$; reading off $[t^{12}]=35$, $[t^{11}]=52$, $[t^{10}]=68$ gives total $35+52+68=\\boxed{155}$."
-        ]
-      },
-      {
-        "name": "Recurrence (DP) over mirror pairs",
-        "steps": [
-          "Let $g_k(S)$ be the number of ways the first $k$ mirror pairs can carry a half-sum of $S$ (each pair adds some $y\\in\\{0,\\dots,4\\}$ to the half-sum). Then $g_0(0)=1$ and $g_k(S)=\\sum_{y=0}^{4}g_{k-1}(S-y)$, the bounded-step recurrence that bakes in the cap.",
-          "Rolling the recurrence forward four times yields the half-sum distribution $g_4$; in particular $g_4(12)=35$, $g_4(11)=52$, and $g_4(10)=68$ (the array is symmetric about $S=8$, a useful consistency check since $\\max$ half-sum is $16$).",
-          "The centre jar $a_5=24-2S$ must satisfy $0\\le a_5\\le 4$, i.e. $S\\in\\{10,11,12\\}$, so the admissible palindromes number $g_4(12)+g_4(11)+g_4(10)$.",
-          "This equals $35+52+68=\\boxed{155}$."
-        ]
-      }
-    ],
-    "remark": "The whole difficulty lives in the interaction between two layers: the palindrome symmetry collapses nine free jars to four mirror pairs plus a centre, and that collapse silently doubles every paired contribution, turning the centre into the sole parity valve. The trap is seductive precisely because the reduction is correct, the inclusion-exclusion is correct, and the arithmetic is correct, yet the answer is still less than a quarter of the truth, because \"even centre\" was misread as \"zero centre.\" The generating-function view makes the mechanism unmistakable: four even-only pair factors force the centre to supply an even residue, and there are exactly three even residues within the cap, not one."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
-    "title": "Pairings With No Self-Match",
-    "difficulty": 4,
-    "task": "Find the number of …",
-    "tags": [
-      "derangement",
-      "double-counting",
-      "involution",
-      "matchings"
-    ],
-    "statement": "Find the number of permutations $\\sigma$ of $\\{1,2,3,4,5,6,7,8\\}$ that are simultaneously\\[(i) involutions\\;(\\sigma=\\sigma^{-1},\\ \\text{i.e. }\\sigma^2=\\mathrm{id}),\\qquad(ii) derangements\\;(\\sigma(i)\\neq i\\ \\text{for all }i).\\]",
-    "answer": "$105$",
-    "trap": "Counting all involutions of $8$ elements (which is $764$) and then trying to subtract those with fixed points by a single derangement-style term. An involution with no fixed point is forced to be a product of disjoint transpositions only — a perfect matching — so the right object is a matching count, computed by a double-counting / pairing recurrence, not a generic derangement formula.",
-    "solutions": [
-      {
-        "name": "Fixed-point-free involutions are perfect matchings",
-        "steps": [
-          "An involution decomposes into $1$-cycles (fixed points) and $2$-cycles. Forbidding fixed points forces $\\sigma$ to be a product of disjoint transpositions covering all $8$ elements — a perfect matching of an $8$-element set.",
-          "The number of perfect matchings of $2m$ elements is the double factorial $(2m-1)!!$.",
-          "For $2m=8$: $7!!=7\\cdot5\\cdot3\\cdot1=105.$ $\\boxed{105}$"
-        ]
-      },
-      {
-        "name": "Double-counting recurrence",
-        "steps": [
-          "Let $M(2m)$ be the number of perfect matchings. Element $1$ must pair with one of the other $2m-1$ elements; whichever it picks, the remaining $2m-2$ elements form a matching independently.",
-          "Hence $M(2m)=(2m-1)\\,M(2m-2)$ with $M(0)=1$, giving $M(8)=7\\cdot5\\cdot3\\cdot1=105$ — the same number arrives by double-counting (matching, distinguished edge) pairs.",
-          "$\\boxed{105}$"
-        ]
-      },
-      {
-        "name": "Brute-force enumeration",
-        "steps": [
-          "Generate all $8!$ permutations; keep those with $\\sigma(\\sigma(i))=i$ and $\\sigma(i)\\neq i$ for all $i$.",
-          "Exactly $105$ survive, confirming $7!!$.",
-          "$\\boxed{105}$"
-        ]
-      }
-    ],
-    "remark": "Insight: the involution condition (a structural symmetry $\\sigma=\\sigma^{-1}$) fuses with the derangement condition to annihilate $1$-cycles, leaving precisely the perfect matchings — and matchings are counted by the elegant double-counting recurrence $M(2m)=(2m-1)M(2m-2)$."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
     "title": "Forbidden Diagonal Postings",
     "difficulty": 5,
     "task": "Find the number of …",
@@ -4345,5 +3809,113 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: this is the cleanest grand hybrid. Surjection counting and derangement-style forbidden positions live on two different inclusion-exclusion axes over the same maps. Either run a single inclusion-exclusion over empty boxes with per-token allowed sets already trimmed (Method 1), or interleave both axes; the answer is the same. The size-$2$ term vanishes precisely because forcing everything into one box would put both same-coloured tokens in their forbidden box, which is the structural reason $64 - 12 = 52$ is exact rather than coincidental."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "Chocolates With a Ceiling",
+    "difficulty": 5,
+    "task": "Bounded distribution via inclusion-exclusion",
+    "tags": [
+      "stars and bars",
+      "inclusion-exclusion",
+      "bounded distribution",
+      "identical objects",
+      "lower and upper bounds"
+    ],
+    "statement": "A teacher has  $15$  identical chocolates to hand out to her  $4$  distinct students. House rules: every student must receive “at least one” chocolate, and “no student may receive more than six” (a student who hoards seven would make the others jealous). In how many ways can the  $15$  chocolates be distributed?",
+    "answer": " $\\boxed{140}$ ",
+    "trap": "The seductive shortcut is to handle only the lower bound: give each of the  $4$  students one chocolate up front, then scatter the remaining  $11$  freely by stars and bars, getting  $\\binom{11+4-1}{4-1}=\\binom{14}{3}=364$ . That silently permits a student to end with as many as  $12$  chocolates, violating the ceiling of  $6$ . The cap of  $6$  must be enforced by inclusion–exclusion, which drops the honest count from  $364$  down to  $140$ , not  $364$ .",
+    "solutions": [
+      {
+        "name": "Shift the floor, then inclusion-exclusion on the ceiling",
+        "steps": [
+          "Absorb the “at least one” rule by writing  $x_i = y_i + 1$  with  $y_i \\ge 0$ . The total becomes  $y_1+y_2+y_3+y_4 = 15-4 = 11$ , and the ceiling  $x_i \\le 6$  turns into  $y_i \\le 5$ .",
+          "Let  $N_0=\\binom{11+3}{3}=\\binom{14}{3}=364$  be the unrestricted count. For each student, the “bad” event  $y_i \\ge 6$  is forced by pre-handing that student  $6$  extra units, leaving  $11-6=5$  to spread:  $\\binom{5+3}{3}=\\binom{8}{3}=56$  each.",
+          "Two students cannot both exceed  $5$  (that already needs  $12>11$  units), so all higher overlaps vanish. By inclusion–exclusion the answer is  $\\binom{14}{3}-\\binom{4}{1}\\binom{8}{3}=364-4\\cdot 56=364-224=\\boxed{140}$ ."
+        ]
+      },
+      {
+        "name": "Symmetric complement (count from the top)",
+        "steps": [
+          "With  $y_i = x_i - 1 \\in [0,5]$  summing to  $11$ , replace each  $y_i$  by its mirror  $z_i = 5 - y_i \\in [0,5]$ . Then  $z_1+z_2+z_3+z_4 = 20-11 = 9$  with the same box bounds  $0 \\le z_i \\le 5$ .",
+          "Count  $z_1+\\cdots+z_4=9$  with  $z_i \\le 5$  by inclusion–exclusion:  $\\binom{9+3}{3}-\\binom{4}{1}\\binom{(9-6)+3}{3}=\\binom{12}{3}-4\\binom{6}{3}=220-4\\cdot 20=220-80=140$ .",
+          "The mirror is a bijection, so the original count equals  $\\boxed{140}$ , confirming the first method."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A bounded distribution is two ideas welded together: stars and bars sets the stage, but the upper cap is an inclusion–exclusion event. The trap is treating “at least  $1$ ” and “at most  $6$ ” as the same kind of constraint — a floor is absorbed by a clean substitution, while a ceiling must be subtracted off. Here the two excluded students never collide, so a single subtraction layer suffices."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "Children Wedged Between Adults",
+    "difficulty": 5,
+    "task": "Circular seating with non-adjacency gaps",
+    "tags": [
+      "circular permutation",
+      "gap method",
+      "non-adjacency",
+      "selection",
+      "product rule"
+    ],
+    "statement": "$5$ distinct adults and three distinct children are to be seated around a single round table (seatings that differ only by a rotation are regarded as identical). The rule of the house is that “no two children may sit next to each other.” In how many distinct ways can the eight people be seated?",
+    "answer": " $\\boxed{1440}$ ",
+    "trap": "A tempting blunder is to seat all eight as one circular permutation,  $(8-1)!=5040$ , and then “subtract the bad ones,” or worse, to treat it as a line and write  $5!\\cdot\\binom{6}{3}\\cdot 3!$ . The first abandons the gap structure entirely; the second uses  $5!$  (a line of adults,  $120$ ) instead of the circular  $(5-1)!=24$ , and counts  $6$  end-gaps instead of the  $5$  true circular gaps — inflating the count tenfold to  $14400$ . Around a circle there are exactly as many gaps as adults, namely  $5$ , and the adults form a circular, not linear, arrangement.",
+    "solutions": [
+      {
+        "name": "Seat adults in a circle, slot children into gaps",
+        "steps": [
+          "First seat the five distinct adults around the round table. As a circular permutation this is  $(5-1)! = 4! = 24$  ways; fixing one adult kills the rotational duplication.",
+          "Five seated adults create exactly  $5$  gaps between consecutive adults. To keep children apart, place at most one child per gap: choose  $3$  of the  $5$  gaps and arrange the three distinct children in them,  $\\binom{5}{3}\\cdot 3! = 10\\cdot 6 = 60$  ways (equivalently the ordered count  $5\\cdot 4\\cdot 3 = 60$ ).",
+          "By the product rule the total is  $24 \\cdot 60 = \\boxed{1440}$ ."
+        ]
+      },
+      {
+        "name": "Total circular minus a glued block, as a check",
+        "steps": [
+          "All eight around the table:  $(8-1)! = 5040$ . Now remove the arrangements where the children are NOT all separated, but it is cleaner to verify by the constructive count: anchor one adult to fix rotation, then the remaining  $4$  adults fill  $4$  of the other  $7$  chairs as a sequence while the  $3$  children occupy the gaps.",
+          "Anchoring one adult, the four remaining adults can be ordered in  $4! = 24$  ways around the circle; this fixes the  $5$  inter-adult gaps. Inserting the three distinct children one-per-gap into the  $5$  available gaps gives  $5\\cdot 4\\cdot 3 = 60$ .",
+          "Thus  $24 \\cdot 60 = 1440$ , matching the gap method:  $\\boxed{1440}$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The fusion here is a circular permutation feeding a gap-selection: arrange the “majority” population around the circle first, then treat the inter-person gaps as the distinct boxes for the constrained minority. The defining circular fact —  $n$  seated people make exactly  $n$  gaps, not  $n+1$  — is what separates this from the linear non-adjacency problem and is precisely where the tenfold trap strikes."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "Dodging Two Potholes on the Grid",
+    "difficulty": 5,
+    "task": "Lattice paths avoiding two points",
+    "tags": [
+      "lattice paths",
+      "inclusion-exclusion",
+      "monotonic paths",
+      "binomial coefficients",
+      "geometric counting"
+    ],
+    "statement": "A courier walks on the integer grid from  $(0,0)$  to  $(6,6)$ , taking unit steps only to the right or upward (a monotonic staircase path). Two intersections are blocked by roadworks:  $P=(2,2)$  and  $Q=(4,4)$ . How many of the staircase routes from  $(0,0)$  to  $(6,6)$  avoid “both” blocked intersections?",
+    "answer": " $\\boxed{300}$ ",
+    "trap": "The classic inclusion–exclusion slip is to subtract the routes through  $P$  and the routes through  $Q$  from the total and stop:  $\\binom{12}{6}-\\binom{8}{4}\\binom{8}{4}-\\binom{8}{4}\\binom{8}{4}=924-420-420=84$ . Because  $P$  and  $Q$  lie on a common increasing staircase, the routes passing through “both”  $P$  and  $Q$  were removed twice and must be added back once. That add-back,  $\\binom{4}{2}\\binom{4}{2}\\binom{4}{2}=216$ , is large, and forgetting it collapses the answer from  $300$  to a badly-undercounted  $84$ .",
+    "solutions": [
+      {
+        "name": "Inclusion-exclusion on the two blocked points",
+        "steps": [
+          "Total monotonic routes  $(0,0)\\to(6,6)$  use  $6$  rights and  $6$  ups:  $\\binom{12}{6}=924$ . Routes through a point split as (paths to it) $\\times$ (paths from it).",
+          "Through  $P=(2,2)$ :  $\\binom{4}{2}\\binom{8}{4}=6\\cdot 70=420$ . Through  $Q=(4,4)$ :  $\\binom{8}{4}\\binom{4}{2}=70\\cdot 6=420$ . Through both  $P$  and  $Q$  (in the only possible order,  $P$  before  $Q$ ):  $\\binom{4}{2}\\binom{4}{2}\\binom{4}{2}=6\\cdot 6\\cdot 6=216$ .",
+          "By inclusion–exclusion the routes avoiding both are  $924-420-420+216=\\boxed{300}$ ."
+        ]
+      },
+      {
+        "name": "Complementary union count",
+        "steps": [
+          "Let  $A$  be the routes through  $P$  and  $B$  the routes through  $Q$ . We need the total minus  $|A\\cup B|$ .",
+          " $|A\\cup B| = |A|+|B|-|A\\cap B| = 420+420-216 = 624$ , where  $|A\\cap B|=216$  counts routes hitting  $P$  then  $Q$  since  $Q$  is up-and-right of  $P$ .",
+          "Hence the avoiding routes number  $924 - 624 = \\boxed{300}$ , agreeing with the direct inclusion–exclusion."
+        ]
+      }
+    ],
+    "remark": "**Insight.** This welds geometric path-counting to inclusion–exclusion. The whole difficulty lives in the overlap term: because  $P$  and  $Q$  are comparable on the staircase (one is reachable from the other), a path can hit both, so the intersection is nonzero and the add-back is essential. Had the two potholes been incomparable (neither up-right of the other), the add-back would vanish — recognizing which case you are in is the conceptual hinge."
   }
 ];

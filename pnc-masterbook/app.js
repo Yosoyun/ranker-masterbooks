@@ -4,19 +4,19 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['fundamental','permutations','combinations','circular','distributions','inclusionexclusion','identities','recurrence','lattice','hybrid'];
+  const THEME_ORDER = ['fundamental','permutations','combinations','circular','distributions','inclusionexclusion','identities','geomcount','lattice','hybrid'];
   const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
   const THEME_META = {
     fundamental:       { glyph:'×+',    blurb:'Every count is a chain of choices (multiply) or a split into cases (add). The whole subject grows from these two rules and one good bijection.' },
     permutations:      { glyph:'ₙPᵣ',   blurb:'Order matters: arrange, seat and string objects in a row — with repetition, with identical items, and with positions forbidden.' },
     combinations:      { glyph:'ₙCᵣ',   blurb:'Order forgotten: choose a committee, a hand, a subset. The same selection counted two ways is the engine of every identity.' },
-    circular:          { glyph:'↻',     blurb:'Seat them round a table, thread a necklace — rotations and reflections that the naive count quietly over-reports.' },
+    circular:          { glyph:'↻',     blurb:'Seat them round a table — the (n−1)! circular count, with constraints, gaps and the clockwise/anticlockwise distinction.' },
     distributions:     { glyph:'★|',    blurb:'Drop balls into boxes, split a number into parts: stars and bars, integer solutions, onto-maps and partitions.' },
     inclusionexclusion:{ glyph:'∪∩',    blurb:'Count the forbidden and subtract it back, carefully — derangements, surjections and “at least one” problems all bow to inclusion–exclusion.' },
     identities:        { glyph:'ΣC',    blurb:'A combinatorial identity is one quantity counted two ways — Vandermonde, hockey-stick, committee–chair — proved without algebra.' },
-    recurrence:        { glyph:'aₙ',    blurb:'When the count of n leans on the count of n−1, set up the recurrence — and meet the Catalan numbers everywhere.' },
-    lattice:           { glyph:'↗',     blurb:'Monotone walks on a grid, the ballot problem, non-crossing paths — geometry turns counting into the reflection principle.' },
-    hybrid:            { glyph:'⊕',     blurb:'The capstones: bijection, inclusion–exclusion, recurrence and symmetry fused into one count that resists every single tool.' },
+    geomcount:         { glyph:'△ₙ',    blurb:'Counting on a configuration of points and lines — the lines, triangles, diagonals, regions and intersection points that n points in general position create.' },
+    lattice:           { glyph:'↗',     blurb:'Monotone up/right walks on a grid counted by a single binomial — paths forced through, or steered around, a chosen lattice point.' },
+    hybrid:            { glyph:'⊕',     blurb:'The capstones: arrangements, selections, inclusion–exclusion and geometric counting fused into one count that resists every single tool.' },
   };
 
   // ---- state ----
@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>n!<em>.</em></h2>'
-      + '<div class="tagline">Original counting problems where the obvious tally is an over-count — permutations, selections, circular symmetry, distributions, inclusion–exclusion, combinatorial identities, recurrences and lattice paths. Drawn from the rarest corners of Putnam combinatorics, each solved several ways.</div>'
+      + '<div class="tagline">Original counting problems where the obvious tally is an over-count — permutations, selections, circular permutations, distributions, inclusion–exclusion, combinatorial identities, geometric counting and lattice paths. Strictly within the JEE Advanced syllabus, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')
@@ -245,13 +245,13 @@
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/PNC-Problems.pdf" download>&#8595; Problems PDF</a>'
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/PNC-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
-      + '<p class="cover-manifesto">The two principles, permutations, combinations, circular and necklace arrangements, stars and bars, inclusion–exclusion, combinatorial identities by double counting, recurrences and the Catalan numbers, and lattice paths — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t memorise a formula; they learn to count the same thing twice and watch the answer fall out.</p>'
+      + '<p class="cover-manifesto">The two principles, permutations, combinations, circular permutations, stars and bars, inclusion–exclusion, combinatorial identities, geometric counting, and lattice paths — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t memorise a formula; they learn to count the same thing twice and watch the answer fall out.</p>'
       + '</div>';
 
     // legend of instruments
     html+='<div class="sec-head"><span class="sh-rom">i</span><h3>The Instruments</h3><span class="sh-line"></span></div>';
     html+='<div class="legend">';
-    const fam=[['fundamental','Two principles','×+'],['permutations','Permutations','ₙPᵣ'],['combinations','Combinations','ₙCᵣ'],['circular','Circular & necklace','↻'],['distributions','Stars & bars','★|'],['inclusionexclusion','Inclusion–exclusion','∪∩'],['identities','Identities','ΣC'],['recurrence','Recurrences','aₙ'],['lattice','Lattice paths','↗'],['hybrid','Hybrids','⊕']];
+    const fam=[['fundamental','Two principles','×+'],['permutations','Permutations','ₙPᵣ'],['combinations','Combinations','ₙCᵣ'],['circular','Circular permutations','↻'],['distributions','Stars & bars','★|'],['inclusionexclusion','Inclusion–exclusion','∪∩'],['identities','Identities','ΣC'],['geomcount','Geometric counting','△ₙ'],['lattice','Lattice paths','↗'],['hybrid','Hybrids','⊕']];
     fam.forEach(f=>{ const c=byChapter[f[0]]; const cnt=c?c.problems.length:0;
       html+='<div class="lg card"><div class="glyph">'+f[2]+'</div><div><div class="lgname">'+f[1]+'</div><div class="lgcount">'+cnt+' problems</div></div></div>'; });
     html+='</div>';
