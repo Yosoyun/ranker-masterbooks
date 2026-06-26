@@ -11,20 +11,20 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['conditional','telescope','roots','chebyshev','substitution','inequalities','extrema','equations','geometry','hybrid'];
+const THEME_ORDER = ['conditional','telescope','multiangle','transform','substitution','heights','extrema','equations','geometry','hybrid'];
 const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { conditional:'A+B+C', telescope:'Π', roots:'ζₙ', chebyshev:'Tₙ', substitution:'x=tanθ', inequalities:'≤', extrema:'R', equations:'=', geometry:'△', hybrid:'⊕' };
+const GLYPH = { conditional:'A+B+C', telescope:'Π', multiangle:'2A,3A', transform:'C↔P', substitution:'x=tanθ', heights:'∡h', extrema:'R', equations:'=', geometry:'△', hybrid:'⊕' };
 const BLURB = {
   conditional:'Constrained angles turn symmetric sums into identities.',
   telescope:'Product-to-sum and adjacent differences leave only endpoints.',
-  roots:'Finite sums and products answered by the unit circle.',
-  chebyshev:'Multiple-angle polynomials turn trigonometry into algebra.',
+  multiangle:'Double, triple & half angles — sin2A, cos3A, the half-angle tangent.',
+  transform:'Sum-to-product transformations that collapse sums of sines & cosines.',
   substitution:'The right parameter makes radicals and ranges linear.',
-  inequalities:'Concavity, tangent lines, Jensen and SOS bounds.',
+  heights:'Angles of elevation & depression — towers, hills, the unreachable.',
   extrema:'Phase shifts and envelopes find the range before calculus.',
   equations:'Periodicity and intervals separate true roots from impostors.',
   geometry:'Sine rule, cosine rule, area, R, r and s through angles.',
-  hybrid:'Cyclotomic sums, Chebyshev, substitution and inequalities fused.',
+  hybrid:'Identities, multiple angles, transformations & triangles fused.',
 };
 
 // order + index

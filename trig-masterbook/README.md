@@ -20,10 +20,10 @@ PDFs:
 |---|-----|---------|------------|
 | I | `conditional` | Conditional Angle Identities | constrained angles, symmetric sums |
 | II | `telescope` | Product-to-Sum Telescopes | collapsing sums and products |
-| III | `roots` | Unit Roots & Finite Trig Sums | roots of unity, filters, products |
-| IV | `chebyshev` | Chebyshev & Multiple Angles | polynomial recurrences, minimal equations |
+| III | `multiangle` | Multiple & Sub-Multiple Angles | sin2A, cos3A, half-angle tangent |
+| IV | `transform` | Sum-to-Product Transformations | collapsing sums of sines & cosines |
 | V | `substitution` | Trigonometric Substitution Engines | tangent half-angle, parametrisation |
-| VI | `inequalities` | Concavity, Tangents & Bounds | Jensen, tangent-line, SOS transforms |
+| VI | `heights` | Heights & Distances | elevation/depression, towers, hills |
 | VII | `extrema` | Phase, Range & Extremum Machines | R-method, envelopes, hidden ranges |
 | VIII | `equations` | Periodicity & Root-Counting | intervals, squaring traps, extraneous roots |
 | IX | `geometry` | Triangle Geometry Through Trig | sine/cosine laws, area, R/r/s |
@@ -63,27 +63,27 @@ Each line below is the instrument-level map used for the generated problem objec
 
 ### III. Unit Roots & Finite Trig Sums
 
-1. Evaluate a filtered cosine sum using `n`th roots of unity.
+1. Expand cos3A / sin3A and evaluate a multiple-angle expression.
 2. Compute a sine product from roots of `z^n-1`.
 3. Find a closed form for `\sum \cos^4(2\pi k/n)`.
 4. Evaluate a reciprocal sine-square sum.
 5. Prove a vanishing mixed sine-cosine sum with a congruence condition.
 6. Compute a product over odd residues modulo `n`.
-7. Solve a finite trig equation by converting to a polynomial in roots of unity.
+7. Solve a trig equation using multiple-angle identities.
 8. Evaluate a weighted sum `\sum k\sin(2\pi k/n)`.
 9. Find a determinant/circulant eigenvalue using cosine roots.
 10. Prove a divisibility-flavored identity from the unit-circle factorisation.
 
-### IV. Chebyshev & Multiple Angles
+### IV. Sum-to-Product Transformations
 
 1. Express a high-degree cosine equation through `T_n(x)`.
 2. Find the minimal polynomial of `2\cos(\pi/n)` for a small Olympiad-grade `n`.
-3. Evaluate a nested radical via a half-angle/Chebyshev relation.
+3. Evaluate a nested radical via a half-angle relation.
 4. Solve `\cos nx=\cos mx` on a restricted interval without overcounting.
 5. Prove a recurrence for a sine quotient.
 6. Evaluate a product over roots of `T_n(x)-a`.
 7. Find a closed form for `\cos 5x`-driven algebraic expression.
-8. Prove a sum identity using Chebyshev orthogonality.
+8. Prove a sum identity using sum-to-product transformations.
 9. Determine all rational values of a multiple-angle expression in a constraint.
 10. Convert a trigonometric inequality into a polynomial inequality in `\cos x`.
 
@@ -102,14 +102,14 @@ Each line below is the instrument-level map used for the generated problem objec
 
 ### VI. Concavity, Tangents & Bounds
 
-1. Prove a sharp Jensen inequality for sines under angle sum.
+1. Find the height of a tower from two angles of elevation.
 2. Use tangent-line bounds to trap a cosine expression.
 3. Prove `\tan x` dominates a rational expression on a given interval.
 4. Find the best constant in a sine-square inequality.
 5. Prove a cyclic triangle inequality with equality case.
 6. Convert a trig inequality into SOS in `\sin(x/2)`.
 7. Compare two products of sines using concavity of `\log\sin x`.
-8. Find a maximum under `x+y+z` fixed via Jensen and smoothing.
+8. Find a distance using the sine rule in a heights-and-distances setup.
 9. Prove a mixed `\sin,\tan` inequality with a quadrant restriction.
 10. Disprove a tempting global inequality by exposing the endpoint case.
 
@@ -154,11 +154,11 @@ Each line below is the instrument-level map used for the generated problem objec
 
 ### X. Grand Hybrids
 
-1. Unit roots plus Chebyshev: evaluate a filtered multiple-angle sum.
+1. Multiple angles plus transformations: collapse a sum of cosines.
 2. Conditional angles plus inequality: prove a sharp triangle bound.
 3. Telescope plus root-counting: solve a product equation exactly.
 4. Substitution plus extrema: find a range with a rationalised trig parameter.
-5. Geometry plus Chebyshev: classify a triangle via a multiple-angle relation.
+5. Geometry plus multiple angles: classify a triangle via a double-angle relation.
 6. Unit roots plus product-to-sum: evaluate a rare sine product.
 7. Inequality plus equations: determine parameters for exactly two roots.
 8. Conditional identities plus tangent half-angle: solve a constrained system.

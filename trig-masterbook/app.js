@@ -4,18 +4,18 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['conditional','telescope','roots','chebyshev','substitution','inequalities','extrema','equations','geometry','hybrid'];
+  const THEME_ORDER = ['conditional','telescope','multiangle','transform','substitution','heights','extrema','equations','geometry','hybrid'];
   const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
   const THEME_META = {
     conditional:  { glyph:'A+B+C', blurb:'When angles obey a hidden constraint, symmetric identities and tangent-sum laws do the heavy lifting.' },
     telescope:    { glyph:'Π',     blurb:'Product-to-sum and cotangent differences collapse long products and sums to two surviving terms.' },
-    roots:        { glyph:'ζₙ',    blurb:'The unit circle answers finite sine-cosine sums, products, and divisibility patterns in one stroke.' },
-    chebyshev:    { glyph:'Tₙ',    blurb:'Multiple-angle polynomials turn trigonometry into algebra, recurrences, and minimal equations.' },
+    multiangle:   { glyph:'2A,3A', blurb:'Double, triple and half angles — sin 2A, cos 3A, the half-angle tangent, and the identities that fold a multiple angle back to a single one.' },
+    transform:    { glyph:'C↔P',   blurb:'Turn sums into products and back — the transformation formulae that collapse sums of cosines and sines and unlock telescoping.' },
     substitution: { glyph:'t=tan θ/2', blurb:'The right trigonometric parameter makes radicals, rational curves, and constraints suddenly linear.' },
-    inequalities: { glyph:'≤',     blurb:'Concavity, tangent lines, Jensen, and sum-of-squares bounds for expressions that resist AM-GM.' },
+    heights:      { glyph:'∡h',    blurb:'Angles of elevation and depression — towers, hills and the trigonometry that measures the unreachable.' },
     extrema:      { glyph:'R',     blurb:'Phase-shifts, envelopes, and range machines find the maximum before calculus even arrives.' },
     equations:    { glyph:'=',     blurb:'Periodicity, squaring traps, and interval counting separate the true roots from the impostors.' },
-    geometry:     { glyph:'△',     blurb:'Law of sines and cosines, area, inradius, circumradius, and Ptolemy computed through angles.' },
+    geometry:     { glyph:'△',     blurb:'Law of sines and cosines, area, inradius, and circumradius computed through angles.' },
     hybrid:       { glyph:'⊕',     blurb:'The capstones: two or three earlier instruments fused into one unforgiving problem.' },
   };
 
@@ -243,13 +243,13 @@
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/TRIG-Problems.pdf" download>&#8595; Problems PDF</a>'
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/TRIG-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
-      + '<p class="cover-manifesto">Angle constraints, telescoping products, roots of unity, Chebyshev polynomials, substitutions, inequalities, extrema, equations and triangle geometry — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t memorise an identity; they learn the instrument.</p>'
+      + '<p class="cover-manifesto">Angle identities, telescoping sums, multiple & sub-multiple angles, sum-to-product transformations, substitutions, heights & distances, extrema, equations and triangle geometry — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t memorise an identity; they learn the instrument.</p>'
       + '</div>';
 
     // legend of instruments
     html+='<div class="sec-head"><span class="sh-rom">i</span><h3>The Instruments</h3><span class="sh-line"></span></div>';
     html+='<div class="legend">';
-    const fam=[['conditional','Angle constraints','A+B+C'],['telescope','Telescopes','Π'],['roots','Unit roots','ζₙ'],['chebyshev','Chebyshev','Tₙ'],['substitution','Substitution','t'],['inequalities','Inequalities','≤'],['extrema','Extrema','R'],['equations','Equations','='],['geometry','Geometry','△'],['hybrid','Hybrids','⊕']];
+    const fam=[['conditional','Angle constraints','A+B+C'],['telescope','Telescopes','Π'],['multiangle','Multiple angles','2A,3A'],['transform','Transformations','C↔P'],['substitution','Substitution','t'],['heights','Heights & distances','∡h'],['extrema','Extrema','R'],['equations','Equations','='],['geometry','Geometry','△'],['hybrid','Hybrids','⊕']];
     fam.forEach(f=>{ const c=byChapter[f[0]]; const cnt=c?c.problems.length:0;
       html+='<div class="lg card"><div class="glyph">'+f[2]+'</div><div><div class="lgname">'+f[1]+'</div><div class="lgcount">'+cnt+' problems</div></div></div>'; });
     html+='</div>';
