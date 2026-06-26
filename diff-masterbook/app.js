@@ -4,19 +4,19 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['firstprinciples','nondiff','mvt','darboux','functionaleqdiff','smoothness','tangent','monotonic','derivlimits','hybrid'];
+  const THEME_ORDER = ['firstprinciples','nondiff','mvt','impparam','functionaleqdiff','smoothness','tangent','monotonic','derivlimits','hybrid'];
   const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
   const THEME_META = {
     firstprinciples:  { glyph:'lim',    blurb:'The derivative from its definition — the difference quotient, left and right, before any rule is allowed.' },
     nondiff:          { glyph:'∠',      blurb:'Corners, cusps, vertical tangents and oscillation — every place the tangent refuses to exist, counted.' },
     mvt:              { glyph:'MVT',    blurb:'Between two points a differentiable curve must match its average slope. Existence first, then the inequalities.' },
-    darboux:          { glyph:'f′',     blurb:'A derivative skips nothing: Darboux gives it the intermediate-value property, so no derivative can ever jump.' },
+    impparam:         { glyph:'dy/dx',  blurb:'Differentiate when y is tangled with x — implicit relations, parametric curves x(t),y(t), inverse functions and logarithmic differentiation, with the chain rule doing the heavy lifting.' },
     functionaleqdiff: { glyph:'f(x+y)', blurb:'Differentiate the equation and the unknown function collapses to a line, an exponential, a logarithm.' },
     smoothness:       { glyph:'fⁿ',     blurb:'Differentiable once is not differentiable twice. x²sin(1/x) and the Leibniz rule live here.' },
     tangent:          { glyph:'∂',      blurb:'Tangents through an outside point, common tangents, angles of intersection — the line that grazes the curve.' },
     monotonic:        { glyph:'↑↓',     blurb:'The sign of f′ rules increase, decrease and the extrema; whole inequalities fall out of monotonicity.' },
     derivlimits:      { glyph:'0/0',    blurb:'Limits the derivative settles — Taylor cancellation, L’Hôpital’s fine print, the quotient as a limit.' },
-    hybrid:           { glyph:'⊕',      blurb:'The capstones: the Mean Value Theorem, Darboux, functional equations and smoothness fused into one.' },
+    hybrid:           { glyph:'⊕',      blurb:'The capstones: the Mean Value Theorem, implicit differentiation, functional equations and smoothness fused into one.' },
   };
 
   // ---- state ----
@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>f<em>′</em></h2>'
-      + '<div class="tagline">Original problems on differentiability — first principles, the points where the derivative dies, the Mean Value Theorem, Darboux, differentiable functional equations, smoothness, tangents and monotonicity. Where the tangent lives, and where it fails. Each solved several ways.</div>'
+      + '<div class="tagline">Original problems on differentiability — first principles, the points where the derivative dies, the Mean Value Theorem, implicit & parametric differentiation, differentiable functional equations, smoothness, tangents and monotonicity. Where the tangent lives, and where it fails. Each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')
@@ -245,13 +245,13 @@
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/DIFF-Problems.pdf" download>&#8595; Problems PDF</a>'
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/DIFF-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
-      + '<p class="cover-manifesto">First principles, the points of non-differentiability, the Mean Value Theorem, Darboux’s property, differentiable functional equations, higher-order smoothness, tangents, monotonicity and derivative-driven limits — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t memorise a rule; they learn where the tangent fails.</p>'
+      + '<p class="cover-manifesto">First principles, the points of non-differentiability, the Mean Value Theorem, implicit, parametric & inverse differentiation, differentiable functional equations, higher-order smoothness, tangents, monotonicity and derivative-driven limits — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t memorise a rule; they learn where the tangent fails.</p>'
       + '</div>';
 
     // legend of instruments
     html+='<div class="sec-head"><span class="sh-rom">i</span><h3>The Instruments</h3><span class="sh-line"></span></div>';
     html+='<div class="legend">';
-    const fam=[['firstprinciples','First principles','lim'],['nondiff','Non-differentiable','∠'],['mvt','Mean Value','MVT'],['darboux','Darboux IVP','f′'],['functionaleqdiff','Functional eqns','f(x+y)'],['smoothness','Smoothness','fⁿ'],['tangent','Tangents','∂'],['monotonic','Monotonicity','↑↓'],['derivlimits','Derivative limits','0/0'],['hybrid','Hybrids','⊕']];
+    const fam=[['firstprinciples','First principles','lim'],['nondiff','Non-differentiable','∠'],['mvt','Mean Value','MVT'],['impparam','Implicit & parametric','dy/dx'],['functionaleqdiff','Functional eqns','f(x+y)'],['smoothness','Smoothness','fⁿ'],['tangent','Tangents','∂'],['monotonic','Monotonicity','↑↓'],['derivlimits','Derivative limits','0/0'],['hybrid','Hybrids','⊕']];
     fam.forEach(f=>{ const c=byChapter[f[0]]; const cnt=c?c.problems.length:0;
       html+='<div class="lg card"><div class="glyph">'+f[2]+'</div><div><div class="lgname">'+f[1]+'</div><div class="lgcount">'+cnt+' problems</div></div></div>'; });
     html+='</div>';

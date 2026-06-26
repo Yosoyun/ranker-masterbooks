@@ -11,20 +11,20 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['firstprinciples','nondiff','mvt','darboux','functionaleqdiff','smoothness','tangent','monotonic','derivlimits','hybrid'];
+const THEME_ORDER = ['firstprinciples','nondiff','mvt','impparam','functionaleqdiff','smoothness','tangent','monotonic','derivlimits','hybrid'];
 const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { firstprinciples:'lim', nondiff:'∠', mvt:'MVT', darboux:'f′', functionaleqdiff:'f(x+y)', smoothness:'fⁿ', tangent:'∂', monotonic:'↑↓', derivlimits:'0/0', hybrid:'⊕' };
+const GLYPH = { firstprinciples:'lim', nondiff:'∠', mvt:'MVT', impparam:'dy/dx', functionaleqdiff:'f(x+y)', smoothness:'fⁿ', tangent:'∂', monotonic:'↑↓', derivlimits:'0/0', hybrid:'⊕' };
 const BLURB = {
   firstprinciples:'The derivative from its definition — the difference quotient, before any rule.',
   nondiff:'Corners, cusps, vertical tangents and oscillation — where the tangent dies.',
   mvt:'A differentiable curve must match its average slope; then the inequalities follow.',
-  darboux:'A derivative has the intermediate-value property — so it can never jump.',
+  impparam:'Implicit, parametric & inverse differentiation; logarithmic differentiation.',
   functionaleqdiff:'Differentiate the equation and f collapses to a line, an exp, a log.',
   smoothness:'Differentiable once is not twice — x²sin(1/x) and the Leibniz rule.',
   tangent:'Tangents through an outside point, common tangents, angles of intersection.',
   monotonic:'The sign of f′ rules increase, decrease, extrema and whole inequalities.',
   derivlimits:'Taylor cancellation, L’Hôpital’s fine print, the quotient as a limit.',
-  hybrid:'The Mean Value Theorem, Darboux, functional equations and smoothness, fused.',
+  hybrid:'The Mean Value Theorem, implicit differentiation, functional equations and smoothness, fused.',
 };
 
 // order + index
