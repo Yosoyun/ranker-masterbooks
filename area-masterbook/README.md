@@ -1,6 +1,6 @@
 # y=mx+c · Slopes, Distances & the Pencil of Lines
 
-**The Ranker's Masterbook — original, olympiad/JEE-Advanced problems on straight lines & coordinate geometry.**
+**The Ranker's Masterbook — original, JEE-Advanced problems on straight lines & coordinate geometry.**
 The twentieth volume in the series, same engine, **steel-blue** theme. Don't plot points — read the condition
 the algebra encodes. Each problem worked **several ways**.
 

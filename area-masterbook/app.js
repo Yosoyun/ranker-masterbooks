@@ -4,7 +4,7 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['areaxaxis','areayaxis','betweencurves','intersection','symmetry','parametricpolar','moduluspiece','variableparam','minimizearea','hybrid'];
+  const THEME_ORDER = ['areaxaxis','areayaxis','betweencurves','intersection','symmetry','stdcurves','moduluspiece','variableparam','minimizearea','hybrid'];
   const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
   const THEME_META = {
     areaxaxis:       { glyph:'∫f dx',  blurb:'The area bounded by y=f(x), the x-axis and two ordinates — written as a definite integral, splitting at sign-change roots so signed pieces never cancel.' },
@@ -12,11 +12,11 @@
     betweencurves:   { glyph:'∫(f−g)', blurb:'The area enclosed between two curves, ∫(upper−lower) — deciding which curve is on top on each sub-interval and catching every crossing.' },
     intersection:    { glyph:'f=g',    blurb:'Pinning down the limits of integration: solving where the boundaries meet, and discarding extraneous or out-of-range intersections.' },
     symmetry:        { glyph:'↔',      blurb:'Exploiting symmetry and even/odd structure to halve or simplify an area — and knowing when an apparent symmetry genuinely holds.' },
-    parametricpolar: { glyph:'½∫r²dθ', blurb:'Areas from parametric curves (∫y·x′ dt) and the polar sector ½∫r²dθ — with correct parameter limits and no double-counted loop.' },
+    stdcurves:       { glyph:'y²=4ax', blurb:'Areas bounded by the standard curves — the parabola, the circle, the ellipse and the lines that cut them — read straight off a Cartesian integral.' },
     moduluspiece:    { glyph:'|f|,⌊x⌋', blurb:'Areas of |f(x)|, greatest-integer ⌊x⌋, fractional-part and piecewise integrands — splitting at every kink, jump and breakpoint.' },
     variableparam:   { glyph:'A(t)',   blurb:'Area as a function of a moving boundary or a parameter — differentiating under the limit (Leibniz) and solving the resulting condition.' },
     minimizearea:    { glyph:'min A',  blurb:'Extremising an enclosed area under a constraint — choosing the right variable, and respecting feasibility and the endpoints.' },
-    hybrid:          { glyph:'⊕',      blurb:'The capstones: area fused with between-curves, parametric/polar, symmetry, a variable boundary and an optimisation into one multi-step problem.' },
+    hybrid:          { glyph:'⊕',      blurb:'The capstones: area fused with between-curves, the standard conics, symmetry, a variable boundary and an optimisation into one multi-step problem.' },
   };
 
   // ---- state ----
@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>∫f dx<em>.</em></h2>'
-      + '<div class="tagline">Original problems on the signed area under and between curves — the area against the x- and y-axes, the area enclosed between two curves, reading the limits of integration from the points of intersection, symmetry and even/odd shortcuts, parametric and polar areas, modulus, greatest-integer and piecewise integrands, variable boundaries and parameters, and optimising an area. Drawn from the rarest corners of advanced and JEE-Advanced integral calculus, each solved several ways.</div>'
+      + '<div class="tagline">Original problems on the signed area under and between curves — the area against the x- and y-axes, the area enclosed between two curves, reading the limits of integration from the points of intersection, symmetry and even/odd shortcuts, areas with the standard conics, modulus, greatest-integer and piecewise integrands, variable boundaries and parameters, and optimising an area. Strictly within the JEE Advanced syllabus, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')
@@ -245,13 +245,13 @@
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/AREA-Problems.pdf" download>&#8595; Problems PDF</a>'
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/AREA-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
-      + '<p class="cover-manifesto">The area swept under a curve and the sign it carries, the area read against the y-axis, the region trapped between two curves, the intersection points that fix the limits, the symmetry that halves the work, the parametric and polar sweep, the kinks of a modulus or a greatest-integer integrand, the boundary that moves with a parameter, and the area pushed to its extremum — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t just integrate; they read the region the integral measures.</p>'
+      + '<p class="cover-manifesto">The area swept under a curve and the sign it carries, the area read against the y-axis, the region trapped between two curves, the intersection points that fix the limits, the symmetry that halves the work, the standard conics and the regions they cut, the kinks of a modulus or a greatest-integer integrand, the boundary that moves with a parameter, and the area pushed to its extremum — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t just integrate; they read the region the integral measures.</p>'
       + '</div>';
 
     // legend of instruments
     html+='<div class="sec-head"><span class="sh-rom">i</span><h3>The Instruments</h3><span class="sh-line"></span></div>';
     html+='<div class="legend">';
-    const fam=[['areaxaxis','Area & the x-axis','∫f dx'],['areayaxis','Area & the y-axis','∫x dy'],['betweencurves','Between two curves','∫(f−g)'],['intersection','Points of intersection','f=g'],['symmetry','Symmetry shortcuts','↔'],['parametricpolar','Parametric & polar','½∫r²dθ'],['moduluspiece','Modulus & piecewise','|f|,⌊x⌋'],['variableparam','Variable boundaries','A(t)'],['minimizearea','Optimising an area','min A'],['hybrid','Hybrids','⊕']];
+    const fam=[['areaxaxis','Area & the x-axis','∫f dx'],['areayaxis','Area & the y-axis','∫x dy'],['betweencurves','Between two curves','∫(f−g)'],['intersection','Points of intersection','f=g'],['symmetry','Symmetry shortcuts','↔'],['stdcurves','Standard curves','y²=4ax'],['moduluspiece','Modulus & piecewise','|f|,⌊x⌋'],['variableparam','Variable boundaries','A(t)'],['minimizearea','Optimising an area','min A'],['hybrid','Hybrids','⊕']];
     fam.forEach(f=>{ const c=byChapter[f[0]]; const cnt=c?c.problems.length:0;
       html+='<div class="lg card"><div class="glyph">'+f[2]+'</div><div><div class="lgname">'+f[1]+'</div><div class="lgcount">'+cnt+' problems</div></div></div>'; });
     html+='</div>';
