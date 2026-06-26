@@ -1,6 +1,6 @@
 # ℂ · The Argand Plane
 
-**The Ranker's Masterbook — original, olympiad/JEE-Advanced problems on the complex numbers.** The
+**The Ranker's Masterbook — original, JEE-Advanced problems on the complex numbers.** The
 eighth volume in the series, same engine, **fuchsia** theme. One letter, two dimensions, every trick —
 each problem worked **several ways**.
 
@@ -9,7 +9,7 @@ The ten chapters are organised by the instrument that powers the problem:
 | # | Chapter | | # | Chapter |
 |---|---------|---|---|---------|
 | I | The Algebra of Complex Numbers | | VI | Loci in the Argand Plane |
-| II | Modulus & Argument | | VII | Mappings of the Plane |
+| II | Modulus & Argument | | VII | Rotation, Lines & Circles |
 | III | De Moivre & Powers | | VIII | Triangles & Polygons |
 | IV | Roots of Unity | | IX | Polynomial Equations |
 | V | Complex Numbers as Geometry | | X | The Grand Hybrids |

@@ -4,7 +4,7 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['algebra','modulusarg','demoivre','rootsofunity','geometry','loci','transformations','triangles','equations','hybrid'];
+  const THEME_ORDER = ['algebra','modulusarg','demoivre','rootsofunity','geometry','loci','complexgeo','triangles','equations','hybrid'];
   const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
   const THEME_META = {
     algebra:        { glyph:'a+bi',   blurb:'The arithmetic of a+bi — conjugates, modulus, and the square roots most people get only half-right.' },
@@ -13,7 +13,7 @@
     rootsofunity:   { glyph:'ω',      blurb:'The roots of unity sum to nothing and tile the circle — the sharpest tool in the complex kit.' },
     geometry:       { glyph:'△z',     blurb:'Points, vectors and rotations: the Argand plane is geometry written in a single variable.' },
     loci:           { glyph:'|z−a|',  blurb:'Circles, bisectors, Apollonius and arcs — one modulus or argument condition names the curve.' },
-    transformations:{ glyph:'w=1/z',  blurb:'Translate, rotate, invert, Möbius — and watch lines and circles trade places.' },
+    complexgeo:     { glyph:'e^{iθ}z',blurb:'Plane geometry in complex form — rotation by multiplying by e^{iθ}, the section formula, the equation of a line and a circle in z and \\bar z, and reflections.' },
     triangles:      { glyph:'⟁',      blurb:'Equilateral conditions, similar triangles and centroids, all from a single complex identity.' },
     equations:      { glyph:'P(z)',   blurb:'Polynomials over ℂ: conjugate roots, the fundamental theorem, and factoring through ω.' },
     hybrid:         { glyph:'⊕',      blurb:'The capstones: roots of unity, geometry, loci and De Moivre fused into one.' },
@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>ℂ<em>.</em></h2>'
-      + '<div class="tagline">Original problems on the complex numbers — the algebra of a+bi, modulus and argument, De Moivre, the roots of unity, the geometry of the Argand plane, loci, transformations, triangles and polynomial equations. One letter, two dimensions, every trick. Each solved several ways.</div>'
+      + '<div class="tagline">Original problems on the complex numbers — the algebra of a+bi, modulus and argument, De Moivre, the roots of unity, the geometry of the Argand plane, loci, rotation and circles in complex form, triangles and polynomial equations. One letter, two dimensions, every trick. Each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')
@@ -251,7 +251,7 @@
     // legend of instruments
     html+='<div class="sec-head"><span class="sh-rom">i</span><h3>The Instruments</h3><span class="sh-line"></span></div>';
     html+='<div class="legend">';
-    const fam=[['algebra','Algebra of a+bi','a+bi'],['modulusarg','Modulus & arg','|z|'],['demoivre','De Moivre','zⁿ'],['rootsofunity','Roots of unity','ω'],['geometry','Geometry','△z'],['loci','Loci','|z−a|'],['transformations','Mappings','w=1/z'],['triangles','Triangles','⟁'],['equations','Polynomials','P(z)'],['hybrid','Hybrids','⊕']];
+    const fam=[['algebra','Algebra of a+bi','a+bi'],['modulusarg','Modulus & arg','|z|'],['demoivre','De Moivre','zⁿ'],['rootsofunity','Roots of unity','ω'],['geometry','Geometry','△z'],['loci','Loci','|z−a|'],['complexgeo','Rotation & circles','e^{iθ}z'],['triangles','Triangles','⟁'],['equations','Polynomials','P(z)'],['hybrid','Hybrids','⊕']];
     fam.forEach(f=>{ const c=byChapter[f[0]]; const cnt=c?c.problems.length:0;
       html+='<div class="lg card"><div class="glyph">'+f[2]+'</div><div><div class="lgname">'+f[1]+'</div><div class="lgcount">'+cnt+' problems</div></div></div>'; });
     html+='</div>';

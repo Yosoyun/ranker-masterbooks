@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['algebra','modulusarg','demoivre','rootsofunity','geometry','loci','transformations','triangles','equations','hybrid'];
+const THEME_ORDER = ['algebra','modulusarg','demoivre','rootsofunity','geometry','loci','complexgeo','triangles','equations','hybrid'];
 const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { algebra:'a+bi', modulusarg:'|z|', demoivre:'zⁿ', rootsofunity:'ω', geometry:'△z', loci:'|z−a|', transformations:'w=1/z', triangles:'⟁', equations:'P(z)', hybrid:'⊕' };
+const GLYPH = { algebra:'a+bi', modulusarg:'|z|', demoivre:'zⁿ', rootsofunity:'ω', geometry:'△z', loci:'|z−a|', complexgeo:'e^{iθ}z', triangles:'⟁', equations:'P(z)', hybrid:'⊕' };
 const BLURB = {
   algebra:'The arithmetic of a+bi — conjugates, modulus and the half-right square roots.',
   modulusarg:'Modulus and argument turn multiplication into addition; then the triangle inequality.',
@@ -21,7 +21,7 @@ const BLURB = {
   rootsofunity:'The roots of unity sum to nothing and tile the circle — the sharpest tool.',
   geometry:'Points, vectors and rotations — geometry in a single variable.',
   loci:'Circles, bisectors, Apollonius and arcs from one modulus or argument condition.',
-  transformations:'Translate, rotate, invert, Möbius — lines and circles trade places.',
+  complexgeo:'Rotation by e^{iθ}, the section formula, lines & circles in z and z-bar.',
   triangles:'Equilateral conditions, similar triangles and centroids from one identity.',
   equations:'Polynomials over ℂ: conjugate roots, the fundamental theorem, factoring by ω.',
   hybrid:'Roots of unity, geometry, loci and De Moivre, fused.',
