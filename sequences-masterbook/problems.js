@@ -2329,7 +2329,7 @@ window.PROBLEMS = [
       "geometric series",
       "exact sum"
     ],
-    "statement": "Evaluate the convergent series\n\\[\\sum_{n=1}^{\\infty}\\frac{1}{(2n-1)(2n+1)}.\\]\nFirst justify convergence (which test, and why its hypotheses hold), then find the exact value.",
+    "statement": "Evaluate the convergent series\n\\[\\sum_{n=1}^{\\infty}\\frac{1}{(2n-1)(2n+1)}.\\]\nAfter noting the partial sums telescope to a finite limit, find the exact value.",
     "answer": "\\[\\boxed{\\dfrac{1}{2}}\\]",
     "trap": "Comparing the term to $\\frac{1}{4n^2}$ and reporting only that it converges, then stopping — or worse, declaring the sum is $\\frac{\\pi^2}{24}$ by analogy with $\\sum 1/n^2$. The comparison proves convergence but says nothing about the value; the term is $\\frac14$ of $\\frac{1}{(n-\\frac12)(n+\\frac12)}$, not of $\\frac{1}{n^2}$, and the sum telescopes to a rational, not a $\\pi^2$ value.",
     "solutions": [
@@ -2398,7 +2398,7 @@ window.PROBLEMS = [
       "cubic denominator",
       "exact sum"
     ],
-    "statement": "Evaluate\n\\[\\sum_{n=1}^{\\infty}\\frac{1}{n(n+1)(n+2)}.\\]\nState which convergence test guarantees the sum exists before computing it.",
+    "statement": "Evaluate\n\\[\\sum_{n=1}^{\\infty}\\frac{1}{n(n+1)(n+2)}.\\]\nFirst explain why the series converges (its terms telescope), then compute the exact value.",
     "answer": "\\[\\boxed{\\dfrac{1}{4}}\\]",
     "trap": "Splitting into $\\frac{1/2}{n}-\\frac{1}{n+1}+\\frac{1/2}{n+2}$ and then summing the three pieces separately as if each converged. Each of $\\sum\\frac{1}{2n}$, $\\sum\\frac{1}{n+1}$, $\\sum\\frac{1}{2(n+2)}$ is a harmonic-type series and diverges, so writing the answer as a difference of three (infinite) numbers is meaningless. The decomposition is only legitimate when regrouped into a telescoping difference of two convergent blocks, $\\frac12\\big(\\frac{1}{n(n+1)}-\\frac{1}{(n+1)(n+2)}\\big)$.",
     "solutions": [
