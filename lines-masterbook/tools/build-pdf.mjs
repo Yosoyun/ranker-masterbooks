@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['forms','distancesection','anglefamily','footimage','bisectors','pairlines','triangle','locus','transforms','hybrid'];
+const THEME_ORDER = ['forms','distancesection','anglefamily','footimage','bisectors','pairlines','triangle','locus','translation','hybrid'];
 const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { forms:'y=mx+c', distancesection:'m:n', anglefamily:'L₁+λL₂', footimage:'⊥', bisectors:'∠/2', pairlines:'ax²+2hxy', triangle:'△', locus:'P(h,k)', transforms:"(x′,y′)", hybrid:'⊕' };
+const GLYPH = { forms:'y=mx+c', distancesection:'m:n', anglefamily:'L₁+λL₂', footimage:'⊥', bisectors:'∠/2', pairlines:'ax²+2hxy', triangle:'△', locus:'P(h,k)', translation:'(x−h)', hybrid:'⊕' };
 const BLURB = {
   forms:'Slope and the forms of a line — point-slope, intercept, normal, parametric.',
   distancesection:'Distance, the section formula, area of a triangle, collinearity.',
@@ -21,9 +21,9 @@ const BLURB = {
   footimage:'Foot of perpendicular, image of a point, perpendicular distance.',
   bisectors:'Angle bisectors — which contains the origin / the acute angle.',
   pairlines:'ax²+2hxy+by²=0 as a pair of lines — angle, bisectors, degenerate conic.',
-  triangle:'Centroid, orthocentre, circumcentre & incentre; the Euler line.',
+  triangle:'Centroid, orthocentre, circumcentre & incentre; area & collinearity.',
   locus:'The locus of a point under a linear condition — eliminate the parameter.',
-  transforms:'Shifting the origin and rotating the axes; removing the xy term.',
+  translation:'Sliding the origin to a new point; killing the first-degree terms.',
   hybrid:'Forms, distance, the family & pair of lines, the centres & a locus, fused.',
 };
 

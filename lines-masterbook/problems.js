@@ -1,8 +1,8 @@
-/* problems.js — 100 original JEE Advanced straight-line problems for y=mx+c · Slopes, Distances & the Pencil of Lines. sympy-verified. */
+/* problems.js — DATA. 100 original straight-line & coordinate-geometry problems for y=mx+c · Slopes, Distances & the Pencil of Lines, strictly within the JEE Advanced syllabus: forms of a line, distance/section/area, angle & family of lines, foot/image & distance, angle bisectors, the pair of straight lines, triangle centres by coordinates, loci, and translation (shift of origin). No rotation of axes / conic reduction, trilinear/barycentric coordinates, the Euler line or nine-point circle as named results, cross-ratio, or projective/affine geometry. Verified in sympy. statement/answer are raw LaTeX (the app auto-detects prose+math); steps use $...$ and $$...$$. */
 window.PROBLEMS = [
   {
     "theme": "forms",
-    "themeLabel": "Slope & the Forms of a Line",
+    "themeLabel": "Forms of a Line",
     "title": "The Twin Lines of Equal Footing",
     "difficulty": 3,
     "task": "Find all",
@@ -40,7 +40,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "forms",
-    "themeLabel": "Slope & the Forms of a Line",
+    "themeLabel": "Forms of a Line",
     "title": "Intercepts in Tow",
     "difficulty": 3,
     "task": "Determine",
@@ -75,7 +75,43 @@ window.PROBLEMS = [
   },
   {
     "theme": "forms",
-    "themeLabel": "Slope & the Forms of a Line",
+    "themeLabel": "Forms of a Line",
+    "title": "Collinear by Gradient",
+    "difficulty": 3,
+    "task": "Find all",
+    "tags": [
+      "collinearity",
+      "equal-slopes",
+      "parameter"
+    ],
+    "statement": "For which value(s) of $k$ are the points $A(1,2),\\ B(3,k),\\ C(7,k+8)$ collinear?",
+    "answer": "\\[\\boxed{\\,k=6\\,}\\]",
+    "trap": "Trying to make $B$ and $C$ have the \"same height\" or expecting two solutions from a quadratic. Because $k$ enters every $y$-coordinate linearly and the $x$'s are distinct, the equal-slope condition is linear in $k$, giving a single value — no spurious second root, and no vertical-line escape (the $x$'s differ).",
+    "solutions": [
+      {
+        "name": "Equal slopes",
+        "steps": [
+          "Slope $AB=\\dfrac{k-2}{3-1}=\\dfrac{k-2}{2}$.",
+          "Slope $AC=\\dfrac{(k+8)-2}{7-1}=\\dfrac{k+6}{6}$.",
+          "Collinear $\\Rightarrow$ equal slopes: $\\dfrac{k-2}{2}=\\dfrac{k+6}{6}\\Rightarrow 3(k-2)=k+6$.",
+          "$3k-6=k+6\\Rightarrow 2k=12\\Rightarrow k=6$."
+        ]
+      },
+      {
+        "name": "Area determinant",
+        "steps": [
+          "Collinearity $\\Leftrightarrow$ $\\begin{vmatrix}1&2&1\\\\3&k&1\\\\7&k+8&1\\end{vmatrix}=0$.",
+          "Expand: $1(k-(k+8))-2(3-7)+1(3(k+8)-7k)=0$.",
+          "$-8+8+(3k+24-7k)=24-4k=0\\Rightarrow k=6$.",
+          "Hence $\\boxed{k=6}$."
+        ]
+      }
+    ],
+    "remark": "Insight: when an unknown sits linearly in coordinates with distinct abscissae, collinearity is linear — a single answer. Recognising the structure avoids hunting for phantom extra roots."
+  },
+  {
+    "theme": "forms",
+    "themeLabel": "Forms of a Line",
     "title": "The Sign of the Foot",
     "difficulty": 4,
     "task": "Find a,b",
@@ -111,7 +147,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "forms",
-    "themeLabel": "Slope & the Forms of a Line",
+    "themeLabel": "Forms of a Line",
     "title": "A Fixed Stand-Off",
     "difficulty": 4,
     "task": "Find all",
@@ -149,7 +185,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "forms",
-    "themeLabel": "Slope & the Forms of a Line",
+    "themeLabel": "Forms of a Line",
     "title": "The Severed Segment",
     "difficulty": 4,
     "task": "Determine",
@@ -184,7 +220,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "forms",
-    "themeLabel": "Slope & the Forms of a Line",
+    "themeLabel": "Forms of a Line",
     "title": "Range and Reach",
     "difficulty": 4,
     "task": "Evaluate",
@@ -224,43 +260,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "forms",
-    "themeLabel": "Slope & the Forms of a Line",
-    "title": "Collinear by Gradient",
-    "difficulty": 3,
-    "task": "Find all",
-    "tags": [
-      "collinearity",
-      "equal-slopes",
-      "parameter"
-    ],
-    "statement": "For which value(s) of $k$ are the points $A(1,2),\\ B(3,k),\\ C(7,k+8)$ collinear?",
-    "answer": "\\[\\boxed{\\,k=6\\,}\\]",
-    "trap": "Trying to make $B$ and $C$ have the \"same height\" or expecting two solutions from a quadratic. Because $k$ enters every $y$-coordinate linearly and the $x$'s are distinct, the equal-slope condition is linear in $k$, giving a single value — no spurious second root, and no vertical-line escape (the $x$'s differ).",
-    "solutions": [
-      {
-        "name": "Equal slopes",
-        "steps": [
-          "Slope $AB=\\dfrac{k-2}{3-1}=\\dfrac{k-2}{2}$.",
-          "Slope $AC=\\dfrac{(k+8)-2}{7-1}=\\dfrac{k+6}{6}$.",
-          "Collinear $\\Rightarrow$ equal slopes: $\\dfrac{k-2}{2}=\\dfrac{k+6}{6}\\Rightarrow 3(k-2)=k+6$.",
-          "$3k-6=k+6\\Rightarrow 2k=12\\Rightarrow k=6$."
-        ]
-      },
-      {
-        "name": "Area determinant",
-        "steps": [
-          "Collinearity $\\Leftrightarrow$ $\\begin{vmatrix}1&2&1\\\\3&k&1\\\\7&k+8&1\\end{vmatrix}=0$.",
-          "Expand: $1(k-(k+8))-2(3-7)+1(3(k+8)-7k)=0$.",
-          "$-8+8+(3k+24-7k)=24-4k=0\\Rightarrow k=6$.",
-          "Hence $\\boxed{k=6}$."
-        ]
-      }
-    ],
-    "remark": "Insight: when an unknown sits linearly in coordinates with distinct abscissae, collinearity is linear — a single answer. Recognising the structure avoids hunting for phantom extra roots."
-  },
-  {
-    "theme": "forms",
-    "themeLabel": "Slope & the Forms of a Line",
+    "themeLabel": "Forms of a Line",
     "title": "The Frugal Cut",
     "difficulty": 5,
     "task": "Find a,b",
@@ -306,7 +306,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "forms",
-    "themeLabel": "Slope & the Forms of a Line",
+    "themeLabel": "Forms of a Line",
     "title": "The Balanced Brace",
     "difficulty": 5,
     "task": "Find the minimum value",
@@ -343,7 +343,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "forms",
-    "themeLabel": "Slope & the Forms of a Line",
+    "themeLabel": "Forms of a Line",
     "title": "The Mirror at the Margin",
     "difficulty": 5,
     "task": "Find all",
@@ -379,6 +379,77 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: a sum-of-intercepts condition through a fixed point is symmetric in the ordered pair $(a,b)$, so it collapses to a single quadratic whose two roots split into two ordered pairs — and thus two genuine lines. The degenerate vertical line, lacking a finite $y$-intercept, can never meet a finite-sum requirement. Keep both roots; discard the undefined case."
+  },
+  {
+    "theme": "distancesection",
+    "themeLabel": "Distance, Section & Area",
+    "title": "Beyond the Far End",
+    "difficulty": 3,
+    "task": "Find the point",
+    "tags": [
+      "external division",
+      "section formula",
+      "ratio",
+      "distance"
+    ],
+    "statement": "A point $P$ lies on the line through $A(2,-1)$ and $B(8,5)$, on the far side of $B$ from $A$, with $AP:BP=5:2$. Find $P$.",
+    "answer": "\\[\\boxed{P=(12,\\,9)}\\]",
+    "trap": "Using the INTERNAL section formula $\\left(\\frac{5\\cdot8+2\\cdot2}{7},\\frac{5\\cdot5+2\\cdot(-1)}{7}\\right)=\\left(\\frac{44}{7},\\frac{23}{7}\\right)$ because the ratio $5:2$ 'looks' like a normal split. But that point sits strictly between $A$ and $B$, contradicting 'beyond $B$'. Since $P$ is past $B$, it divides $\\overline{AB}$ EXTERNALLY in $5:2$, requiring the minus sign: $\\left(\\frac{5\\cdot8-2\\cdot2}{5-2},\\frac{5\\cdot5-2\\cdot(-1)}{5-2}\\right)$.",
+    "solutions": [
+      {
+        "name": "External section formula",
+        "steps": [
+          "$P$ beyond $B$ with $AP:BP=5:2$ means external division of $\\overline{AB}$ in ratio $m:n=5:2$.",
+          "$P=\\left(\\dfrac{mB_x-nA_x}{m-n},\\dfrac{mB_y-nA_y}{m-n}\\right)=\\left(\\dfrac{5\\cdot8-2\\cdot2}{3},\\dfrac{5\\cdot5-2\\cdot(-1)}{3}\\right)=(12,9)$.",
+          "Check: $AP=\\sqrt{10^2+10^2}=10\\sqrt2$, $BP=\\sqrt{4^2+4^2}=4\\sqrt2$, ratio $=5:2$. \\(\\boxed{(12,9)}\\)"
+        ]
+      },
+      {
+        "name": "Direction vector",
+        "steps": [
+          "Direction $\\overrightarrow{AB}=(6,6)$, so the line is $A+t(B-A)$; $|AB|=6\\sqrt2$.",
+          "From $AP:BP=5:2$ with $P$ past $B$: $AP-BP=AB$, so $AP=\\tfrac{5}{3}AB$, i.e. $t=\\tfrac{5}{3}>1$.",
+          "$P=A+\\tfrac{5}{3}(B-A)=(2,-1)+\\tfrac{5}{3}(6,6)=(2+10,-1+10)=(12,9)$. \\(\\boxed{(12,9)}\\)"
+        ]
+      }
+    ],
+    "remark": "Insight: 'beyond the far endpoint' is the verbal flag for external division. The difference of the ratio terms $m-n$ in the denominator is what pushes the point off the segment; using $m+n$ would trap it inside."
+  },
+  {
+    "theme": "distancesection",
+    "themeLabel": "Distance, Section & Area",
+    "title": "The Median's Two-Thirds",
+    "difficulty": 3,
+    "task": "Determine",
+    "tags": [
+      "centroid",
+      "median",
+      "section formula",
+      "ratio"
+    ],
+    "statement": "Let $A(-3,2)$, $B(5,-4)$, $C(4,8)$ be a triangle with centroid $G$ and let $M$ be the midpoint of $\\overline{BC}$. Find $G$ and the ratio $AG:GM$ in which $G$ divides the median $AM$.",
+    "answer": "\\[\\boxed{G=(2,2),\\quad AG:GM=2:1}\\]",
+    "trap": "Computing $M$ and $G$ correctly but then asserting $AG:GM=1:2$ — reversing the order. The centroid divides each median from the VERTEX in ratio $2:1$, i.e. $AG:GM=2:1$ (the longer piece is on the vertex side), not $1:2$.",
+    "solutions": [
+      {
+        "name": "Centroid as mean, then verify ratio",
+        "steps": [
+          "$G=\\left(\\dfrac{-3+5+4}{3},\\dfrac{2-4+8}{3}\\right)=(2,2)$.",
+          "Midpoint of $BC$: $M=\\left(\\dfrac{5+4}{2},\\dfrac{-4+8}{2}\\right)=\\left(\\tfrac92,2\\right)$.",
+          "$AG=\\sqrt{(2-(-3))^2+(2-2)^2}=5$; $GM=\\sqrt{(\\tfrac92-2)^2+0}=\\tfrac52$.",
+          "$AG:GM=5:\\tfrac52=2:1$. \\(\\boxed{G=(2,2),\\ 2:1}\\)"
+        ]
+      },
+      {
+        "name": "Section-formula consistency",
+        "steps": [
+          "If $G$ divides $AM$ from $A$ in ratio $2:1$, then $G=\\dfrac{2M+1\\cdot A}{3}$.",
+          "$=\\dfrac{2(\\tfrac92,2)+(-3,2)}{3}=\\dfrac{(9,4)+(-3,2)}{3}=\\dfrac{(6,6)}{3}=(2,2)$, matching the centroid.",
+          "The construction confirms $AG:GM=2:1$. \\(\\boxed{2:1}\\)"
+        ]
+      }
+    ],
+    "remark": "Insight: the centroid is the $2:1$ point measured FROM the vertex. Order matters in a named ratio $AG:GM$; the bigger share hugs the vertex."
   },
   {
     "theme": "distancesection",
@@ -420,41 +491,6 @@ window.PROBLEMS = [
   {
     "theme": "distancesection",
     "themeLabel": "Distance, Section & Area",
-    "title": "Beyond the Far End",
-    "difficulty": 3,
-    "task": "Find the point",
-    "tags": [
-      "external division",
-      "section formula",
-      "ratio",
-      "distance"
-    ],
-    "statement": "A point $P$ lies on the line through $A(2,-1)$ and $B(8,5)$, on the far side of $B$ from $A$, with $AP:BP=5:2$. Find $P$.",
-    "answer": "\\[\\boxed{P=(12,\\,9)}\\]",
-    "trap": "Using the INTERNAL section formula $\\left(\\frac{5\\cdot8+2\\cdot2}{7},\\frac{5\\cdot5+2\\cdot(-1)}{7}\\right)=\\left(\\frac{44}{7},\\frac{23}{7}\\right)$ because the ratio $5:2$ 'looks' like a normal split. But that point sits strictly between $A$ and $B$, contradicting 'beyond $B$'. Since $P$ is past $B$, it divides $\\overline{AB}$ EXTERNALLY in $5:2$, requiring the minus sign: $\\left(\\frac{5\\cdot8-2\\cdot2}{5-2},\\frac{5\\cdot5-2\\cdot(-1)}{5-2}\\right)$.",
-    "solutions": [
-      {
-        "name": "External section formula",
-        "steps": [
-          "$P$ beyond $B$ with $AP:BP=5:2$ means external division of $\\overline{AB}$ in ratio $m:n=5:2$.",
-          "$P=\\left(\\dfrac{mB_x-nA_x}{m-n},\\dfrac{mB_y-nA_y}{m-n}\\right)=\\left(\\dfrac{5\\cdot8-2\\cdot2}{3},\\dfrac{5\\cdot5-2\\cdot(-1)}{3}\\right)=(12,9)$.",
-          "Check: $AP=\\sqrt{10^2+10^2}=10\\sqrt2$, $BP=\\sqrt{4^2+4^2}=4\\sqrt2$, ratio $=5:2$. \\(\\boxed{(12,9)}\\)"
-        ]
-      },
-      {
-        "name": "Direction vector",
-        "steps": [
-          "Direction $\\overrightarrow{AB}=(6,6)$, so the line is $A+t(B-A)$; $|AB|=6\\sqrt2$.",
-          "From $AP:BP=5:2$ with $P$ past $B$: $AP-BP=AB$, so $AP=\\tfrac{5}{3}AB$, i.e. $t=\\tfrac{5}{3}>1$.",
-          "$P=A+\\tfrac{5}{3}(B-A)=(2,-1)+\\tfrac{5}{3}(6,6)=(2+10,-1+10)=(12,9)$. \\(\\boxed{(12,9)}\\)"
-        ]
-      }
-    ],
-    "remark": "Insight: 'beyond the far endpoint' is the verbal flag for external division. The difference of the ratio terms $m-n$ in the denominator is what pushes the point off the segment; using $m+n$ would trap it inside."
-  },
-  {
-    "theme": "distancesection",
-    "themeLabel": "Distance, Section & Area",
     "title": "Two Homes for the Apex",
     "difficulty": 4,
     "task": "Find all values",
@@ -486,42 +522,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: an area equation is an absolute-value equation; the two solutions correspond to $C$ landing on either side of the opposite edge. Dropping the modulus silently discards one valid triangle."
-  },
-  {
-    "theme": "distancesection",
-    "themeLabel": "Distance, Section & Area",
-    "title": "The Median's Two-Thirds",
-    "difficulty": 3,
-    "task": "Determine",
-    "tags": [
-      "centroid",
-      "median",
-      "section formula",
-      "ratio"
-    ],
-    "statement": "Let $A(-3,2)$, $B(5,-4)$, $C(4,8)$ be a triangle with centroid $G$ and let $M$ be the midpoint of $\\overline{BC}$. Find $G$ and the ratio $AG:GM$ in which $G$ divides the median $AM$.",
-    "answer": "\\[\\boxed{G=(2,2),\\quad AG:GM=2:1}\\]",
-    "trap": "Computing $M$ and $G$ correctly but then asserting $AG:GM=1:2$ — reversing the order. The centroid divides each median from the VERTEX in ratio $2:1$, i.e. $AG:GM=2:1$ (the longer piece is on the vertex side), not $1:2$.",
-    "solutions": [
-      {
-        "name": "Centroid as mean, then verify ratio",
-        "steps": [
-          "$G=\\left(\\dfrac{-3+5+4}{3},\\dfrac{2-4+8}{3}\\right)=(2,2)$.",
-          "Midpoint of $BC$: $M=\\left(\\dfrac{5+4}{2},\\dfrac{-4+8}{2}\\right)=\\left(\\tfrac92,2\\right)$.",
-          "$AG=\\sqrt{(2-(-3))^2+(2-2)^2}=5$; $GM=\\sqrt{(\\tfrac92-2)^2+0}=\\tfrac52$.",
-          "$AG:GM=5:\\tfrac52=2:1$. \\(\\boxed{G=(2,2),\\ 2:1}\\)"
-        ]
-      },
-      {
-        "name": "Section-formula consistency",
-        "steps": [
-          "If $G$ divides $AM$ from $A$ in ratio $2:1$, then $G=\\dfrac{2M+1\\cdot A}{3}$.",
-          "$=\\dfrac{2(\\tfrac92,2)+(-3,2)}{3}=\\dfrac{(9,4)+(-3,2)}{3}=\\dfrac{(6,6)}{3}=(2,2)$, matching the centroid.",
-          "The construction confirms $AG:GM=2:1$. \\(\\boxed{2:1}\\)"
-        ]
-      }
-    ],
-    "remark": "Insight: the centroid is the $2:1$ point measured FROM the vertex. Order matters in a named ratio $AG:GM$; the bigger share hugs the vertex."
   },
   {
     "theme": "distancesection",
@@ -558,6 +558,42 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: equal signs of $L$ at the two endpoints $\\Rightarrow$ same side $\\Rightarrow$ the cut is external and the parameter $t$ falls outside $(0,1)$. The negative ratio is the algebra announcing 'I left the segment.'"
+  },
+  {
+    "theme": "distancesection",
+    "themeLabel": "Distance, Section & Area",
+    "title": "The Fair Crossing",
+    "difficulty": 4,
+    "task": "Find the ratio",
+    "tags": [
+      "distance",
+      "equidistant point",
+      "section formula",
+      "ratio"
+    ],
+    "statement": "On the segment from $O(0,0)$ to $T(12,0)$ there is a unique point $P$ that is equidistant from the towns $U(3,5)$ and $V(9,1)$. Find $P$ and the ratio $OP:PT$ in which it divides $\\overline{OT}$.",
+    "answer": "\\[\\boxed{P=(4,0),\\quad OP:PT=1:2}\\]",
+    "trap": "Finding $P$ by intersecting the perpendicular bisector of $UV$ with the $x$-axis is fine, but then reporting the ratio as $4:12$ or $4:8$ unsimplified, or worse, computing $OP:PT$ as $OP:OT=4:12=1:3$. The ratio is $OP:PT$ with $PT=12-4=8$, so $OP:PT=4:8=1:2$.",
+    "solutions": [
+      {
+        "name": "Equidistance on the axis",
+        "steps": [
+          "Let $P=(x,0)$. Equidistant: $(x-3)^2+5^2=(x-9)^2+1^2$.",
+          "Expand: $x^2-6x+9+25=x^2-18x+81+1\\Rightarrow -6x+34=-18x+82$.",
+          "$12x=48\\Rightarrow x=4$, so $P=(4,0)$ which lies in $[0,12]$.",
+          "$OP=4$, $PT=12-4=8$, so $OP:PT=4:8=1:2$. \\(\\boxed{P=(4,0),\\ 1:2}\\)"
+        ]
+      },
+      {
+        "name": "Perpendicular bisector of UV",
+        "steps": [
+          "Midpoint of $UV=(6,3)$; slope of $UV=\\dfrac{1-5}{9-3}=-\\tfrac23$, so bisector slope $=\\tfrac32$.",
+          "Bisector: $y-3=\\tfrac32(x-6)$. Set $y=0$: $-3=\\tfrac32(x-6)\\Rightarrow x-6=-2\\Rightarrow x=4$.",
+          "$P=(4,0)$; ratio $OP:PT=4:8=1:2$. \\(\\boxed{1:2}\\)"
+        ]
+      }
+    ],
+    "remark": "Insight: 'equidistant from two fixed points' is the perpendicular bisector; intersecting it with the carrier line both locates $P$ and fixes the division ratio. Keep $OP:PT$ (part:part), never $OP:OT$ (part:whole)."
   },
   {
     "theme": "distancesection",
@@ -633,78 +669,6 @@ window.PROBLEMS = [
   {
     "theme": "distancesection",
     "themeLabel": "Distance, Section & Area",
-    "title": "Slicing a Quarter Off the Triangle",
-    "difficulty": 5,
-    "task": "Find the ratio",
-    "tags": [
-      "area ratio",
-      "cevian",
-      "section formula",
-      "two cases"
-    ],
-    "statement": "In triangle $A(0,6)$, $B(-3,0)$, $C(6,0)$, a point $D$ lies on side $\\overline{BC}$ with $BD:DC=\\lambda:1$. Find all $\\lambda>0$ for which $[\\triangle ABD]=\\tfrac14[\\triangle ABC]$.",
-    "answer": "\\[\\boxed{\\lambda=\\tfrac13\\ \\ (BD:DC=1:3)}\\]",
-    "trap": "Assuming the area ratio $[\\triangle ABD]:[\\triangle ABC]=\\tfrac14$ forces $BD:BC=\\tfrac14$ directly, i.e. $\\lambda:(\\lambda+1)=1:4$ giving $\\lambda=\\tfrac13$ — correct here — BUT students often instead set $BD:DC=1:4$ (confusing 'part' with 'whole'). Since $A,B,D$ share the apex $A$ and bases lie on line $BC$, $[\\triangle ABD]/[\\triangle ABC]=BD/BC$, so $BD/BC=\\tfrac14\\Rightarrow BD:DC=1:3$, not $1:4$.",
-    "solutions": [
-      {
-        "name": "Equal-altitude area ratio",
-        "steps": [
-          "$\\triangle ABD$ and $\\triangle ABC$ share apex $A$; their bases $BD,BC$ lie on the same line $BC$, so they share the altitude from $A$.",
-          "Hence $\\dfrac{[\\triangle ABD]}{[\\triangle ABC]}=\\dfrac{BD}{BC}=\\dfrac14$, giving $BD:DC=1:(4-1)=1:3$.",
-          "With $BD:DC=\\lambda:1$, $\\lambda=\\dfrac{BD}{DC}=\\dfrac13$. \\(\\boxed{\\lambda=\\tfrac13}\\)"
-        ]
-      },
-      {
-        "name": "Coordinates of D via section formula",
-        "steps": [
-          "$D=\\dfrac{\\lambda C+B}{\\lambda+1}=\\left(\\dfrac{6\\lambda-3}{\\lambda+1},0\\right)$.",
-          "$[\\triangle ABD]=\\tfrac12\\big|0(0-0)+(-3)(0-6)+\\tfrac{6\\lambda-3}{\\lambda+1}(6-0)\\big|=\\tfrac12\\big|18+\\tfrac{6(6\\lambda-3)}{\\lambda+1}\\big|$.",
-          "$[\\triangle ABC]=\\tfrac12|{-3}(0-0)+6(6-0)+0|=\\tfrac12\\cdot 54=27$. Set $[\\triangle ABD]=\\tfrac{27}{4}$.",
-          "Solving $\\tfrac12\\big(18+\\tfrac{6(6\\lambda-3)}{\\lambda+1}\\big)=\\tfrac{27}{4}$ gives $\\lambda=\\tfrac13$. \\(\\boxed{\\lambda=\\tfrac13}\\)"
-        ]
-      }
-    ],
-    "remark": "Insight: triangles on the same base-line with a common apex have areas in the ratio of their bases. The fraction $\\tfrac14$ of total AREA is a fraction of the BASE $BC$, not of the complementary piece $DC$."
-  },
-  {
-    "theme": "distancesection",
-    "themeLabel": "Distance, Section & Area",
-    "title": "The Fair Crossing",
-    "difficulty": 4,
-    "task": "Find the ratio",
-    "tags": [
-      "distance",
-      "equidistant point",
-      "section formula",
-      "ratio"
-    ],
-    "statement": "On the segment from $O(0,0)$ to $T(12,0)$ there is a unique point $P$ that is equidistant from the towns $U(3,5)$ and $V(9,1)$. Find $P$ and the ratio $OP:PT$ in which it divides $\\overline{OT}$.",
-    "answer": "\\[\\boxed{P=(4,0),\\quad OP:PT=1:2}\\]",
-    "trap": "Finding $P$ by intersecting the perpendicular bisector of $UV$ with the $x$-axis is fine, but then reporting the ratio as $4:12$ or $4:8$ unsimplified, or worse, computing $OP:PT$ as $OP:OT=4:12=1:3$. The ratio is $OP:PT$ with $PT=12-4=8$, so $OP:PT=4:8=1:2$.",
-    "solutions": [
-      {
-        "name": "Equidistance on the axis",
-        "steps": [
-          "Let $P=(x,0)$. Equidistant: $(x-3)^2+5^2=(x-9)^2+1^2$.",
-          "Expand: $x^2-6x+9+25=x^2-18x+81+1\\Rightarrow -6x+34=-18x+82$.",
-          "$12x=48\\Rightarrow x=4$, so $P=(4,0)$ which lies in $[0,12]$.",
-          "$OP=4$, $PT=12-4=8$, so $OP:PT=4:8=1:2$. \\(\\boxed{P=(4,0),\\ 1:2}\\)"
-        ]
-      },
-      {
-        "name": "Perpendicular bisector of UV",
-        "steps": [
-          "Midpoint of $UV=(6,3)$; slope of $UV=\\dfrac{1-5}{9-3}=-\\tfrac23$, so bisector slope $=\\tfrac32$.",
-          "Bisector: $y-3=\\tfrac32(x-6)$. Set $y=0$: $-3=\\tfrac32(x-6)\\Rightarrow x-6=-2\\Rightarrow x=4$.",
-          "$P=(4,0)$; ratio $OP:PT=4:8=1:2$. \\(\\boxed{1:2}\\)"
-        ]
-      }
-    ],
-    "remark": "Insight: 'equidistant from two fixed points' is the perpendicular bisector; intersecting it with the carrier line both locates $P$ and fixes the division ratio. Keep $OP:PT$ (part:part), never $OP:OT$ (part:whole)."
-  },
-  {
-    "theme": "distancesection",
-    "themeLabel": "Distance, Section & Area",
     "title": "Triangle from Its Midpoints",
     "difficulty": 5,
     "task": "Find the area",
@@ -738,8 +702,48 @@ window.PROBLEMS = [
     "remark": "Insight: the midpoint (medial) triangle is a $\\tfrac12$-scale copy of the parent, so it carries $\\tfrac14$ of the area — the factor $4$ is the whole problem. The vertex-recovery formula $A=Q+R-P$ gives an independent cross-check that lands on the same $32$."
   },
   {
+    "theme": "distancesection",
+    "themeLabel": "Distance, Section & Area",
+    "title": "Splitting a Triangle Two to Three",
+    "difficulty": 5,
+    "task": "Line through vertex by area ratio",
+    "tags": [
+      "section formula",
+      "area of triangle",
+      "two-point form",
+      "area ratio",
+      "coordinate geometry"
+    ],
+    "statement": "Let  $A=(1,1)$ ,  $B=(9,3)$  and  $C=(3,7)$ . A line through the vertex  $A$  meets the opposite side  $BC$  at a point  $D$  and splits  $\\triangle ABC$  into two smaller triangles whose areas are in the ratio  $[\\triangle ABD]:[\\triangle ACD]=2:3$ , the first containing  $B$  and the second containing  $C$ . Find the equation of the line  $AD$ .",
+    "answer": " $$\\boxed{9x-14y+5=0}$$ ",
+    "trap": "Reading the ratio  $2:3$  as  $BD:DC=3:2$  (or applying it to the wrong adjacent triangle). Since both small triangles share the apex  $A$  and have bases along the same line  $BC$ , their areas are proportional to the bases:  $[\\triangle ABD]:[\\triangle ACD]=BD:DC$ . Mismatching which triangle gets the  $2$  places  $D$  at  $(\\tfrac{27}{5},\\tfrac{27}{5})$ , giving the wrong line  $x-y=0$ .",
+    "solutions": [
+      {
+        "name": "Bases share the apex: ratio gives  $BD:DC$ ",
+        "steps": [
+          "Both  $\\triangle ABD$  and  $\\triangle ACD$  have apex  $A$ , and their bases  $BD$ ,  $DC$  lie on the single line  $BC$ , so they share the same height from  $A$  to  $BC$ . Hence  $[\\triangle ABD]:[\\triangle ACD]=BD:DC$ .",
+          "The given area ratio  $2:3$  therefore forces  $BD:DC=2:3$ , so  $D$  divides  $BC$  internally from  $B$  in the ratio  $2:3$ .",
+          "Section formula:  $D=\\left(\\dfrac{2\\cdot 3+3\\cdot 9}{5},\\dfrac{2\\cdot 7+3\\cdot 3}{5}\\right)=\\left(\\dfrac{33}{5},\\dfrac{23}{5}\\right)$ .",
+          "Two-point form through  $A=(1,1)$  and  $D$ : the direction is  $\\left(\\tfrac{33}{5}-1,\\tfrac{23}{5}-1\\right)=\\left(\\tfrac{28}{5},\\tfrac{18}{5}\\right)$ , i.e. slope  $\\dfrac{18}{28}=\\dfrac{9}{14}$ .",
+          "Thus  $y-1=\\dfrac{9}{14}(x-1)$ , which clears to  $\\boxed{9x-14y+5=0}$ ."
+        ]
+      },
+      {
+        "name": "Direct area check via the coordinate formula",
+        "steps": [
+          "First  $[\\triangle ABC]=\\tfrac12\\bigl|(9-1)(7-1)-(3-1)(3-1)\\bigr|=\\tfrac12|48-4|=22$ . The split  $2:3$  means  $[\\triangle ABD]=\\tfrac{2}{5}\\cdot 22=\\tfrac{44}{5}$  and  $[\\triangle ACD]=\\tfrac{3}{5}\\cdot 22=\\tfrac{66}{5}$ .",
+          "Let  $D=(x_0,y_0)$  on  $BC$ . Parametrise  $D=B+t(C-B)=(9-6t,\\,3+4t)$  for  $t\\in[0,1]$ , where  $t=BD/BC$ .",
+          " $[\\triangle ABD]=\\tfrac12\\bigl|(B-A)\\times(D-A)\\bigr|$ . Since  $D-A=(B-A)+t(C-B)$ , the cross product is  $t\\,(B-A)\\times(C-B)$ , and  $(B-A)\\times(C-B)=(8)(4)-(2)(-6)=44$ , so  $[\\triangle ABD]=22t$ .",
+          "Setting  $22t=\\tfrac{44}{5}$  gives  $t=\\tfrac{2}{5}$ , hence  $D=(9-\\tfrac{12}{5},\\,3+\\tfrac{8}{5})=\\left(\\tfrac{33}{5},\\tfrac{23}{5}\\right)$ .",
+          "The line through  $A=(1,1)$  and  $D$  has slope  $\\dfrac{23/5-1}{33/5-1}=\\dfrac{18/5}{28/5}=\\dfrac{9}{14}$ , giving  $\\boxed{9x-14y+5=0}$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** When a line from a vertex cuts the opposite side, the two pieces share the same altitude from that vertex, so their area ratio is exactly the ratio in which the foot divides the opposite side. The whole problem then collapses to one section-formula computation — no perpendicular distances needed. The only place to slip is matching the named ratio to the correct sub-triangle."
+  },
+  {
     "theme": "anglefamily",
-    "themeLabel": "Angle, Concurrency & the Family L₁+λL₂",
+    "themeLabel": "Angle & Family of Lines",
     "title": "The Pencil's Hidden Member",
     "difficulty": 3,
     "task": "Find the equation",
@@ -783,7 +787,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "anglefamily",
-    "themeLabel": "Angle, Concurrency & the Family L₁+λL₂",
+    "themeLabel": "Angle & Family of Lines",
     "title": "Acute Among the Concurrent Three",
     "difficulty": 3,
     "task": "Find the acute angle",
@@ -818,7 +822,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "anglefamily",
-    "themeLabel": "Angle, Concurrency & the Family L₁+λL₂",
+    "themeLabel": "Angle & Family of Lines",
     "title": "The Point That Refuses to Move",
     "difficulty": 4,
     "task": "Find the fixed point",
@@ -854,7 +858,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "anglefamily",
-    "themeLabel": "Angle, Concurrency & the Family L₁+λL₂",
+    "themeLabel": "Angle & Family of Lines",
     "title": "Perpendicular Without the Crossroads",
     "difficulty": 4,
     "task": "Determine the equation",
@@ -891,7 +895,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "anglefamily",
-    "themeLabel": "Angle, Concurrency & the Family L₁+λL₂",
+    "themeLabel": "Angle & Family of Lines",
     "title": "Two Values, Both Genuine",
     "difficulty": 4,
     "task": "Find all values",
@@ -928,7 +932,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "anglefamily",
-    "themeLabel": "Angle, Concurrency & the Family L₁+λL₂",
+    "themeLabel": "Angle & Family of Lines",
     "title": "The Vertical Line the Slope Forgot",
     "difficulty": 5,
     "task": "Find all such lines",
@@ -965,7 +969,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "anglefamily",
-    "themeLabel": "Angle, Concurrency & the Family L₁+λL₂",
+    "themeLabel": "Angle & Family of Lines",
     "title": "Equal Intercepts, Two Honest Answers",
     "difficulty": 5,
     "task": "Find all members",
@@ -1001,7 +1005,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "anglefamily",
-    "themeLabel": "Angle, Concurrency & the Family L₁+λL₂",
+    "themeLabel": "Angle & Family of Lines",
     "title": "Forty-Five Degrees, Twice Over",
     "difficulty": 5,
     "task": "Find both lines",
@@ -1037,7 +1041,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "anglefamily",
-    "themeLabel": "Angle, Concurrency & the Family L₁+λL₂",
+    "themeLabel": "Angle & Family of Lines",
     "title": "As Far As the Pencil Allows",
     "difficulty": 5,
     "task": "Find the line and the distance",
@@ -1083,7 +1087,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "anglefamily",
-    "themeLabel": "Angle, Concurrency & the Family L₁+λL₂",
+    "themeLabel": "Angle & Family of Lines",
     "title": "The Determinant's Phantom Root",
     "difficulty": 5,
     "task": "Find all values",
@@ -1611,6 +1615,43 @@ window.PROBLEMS = [
   {
     "theme": "bisectors",
     "themeLabel": "Angle Bisectors",
+    "title": "Does the Origin See a Sharp Corner?",
+    "difficulty": 3,
+    "task": "Classify",
+    "tags": [
+      "origin-classification",
+      "ab-test",
+      "acute-obtuse",
+      "normalisation"
+    ],
+    "statement": "Two lines $L_1:7x-y+3=0$ and $L_2:x+y-3=0$ intersect. Classify whether the origin lies in the acute angle or the obtuse angle formed between them.",
+    "answer": "\\[\\boxed{\\text{The origin lies in the acute angle}}\\]",
+    "trap": "Trying to draw the lines and 'eyeball' which corner is sharp, or assuming the origin always lands in the obtuse region. The correct, foolproof route is to normalise both constants positive and read off $\\operatorname{sign}(a_1a_2+b_1b_2)$: the origin-containing ('+') bisector is acute exactly when this is negative.",
+    "solutions": [
+      {
+        "name": "Sign test on normalised constants",
+        "steps": [
+          "Make constants positive: $L_1:7x-y+3=0$ (already $+3$), $L_2:-x-y+3=0$.",
+          "Compute $a_1a_2+b_1b_2=(7)(-1)+(-1)(-1)=-7+1=-6<0$.",
+          "Rule: with constants positive, $a_1a_2+b_1b_2<0\\Rightarrow$ the '+' (origin-containing) bisector bisects the ACUTE angle, so the origin lies in the acute angle.",
+          "$\\boxed{\\text{acute}}$"
+        ]
+      },
+      {
+        "name": "Half-angle of the origin bisector",
+        "steps": [
+          "The origin-containing bisector is $\\dfrac{7x-y+3}{\\sqrt{50}}=\\dfrac{-x-y+3}{\\sqrt2}$.",
+          "The angle this bisector makes with each line is $26.57^\\circ$, while the full angle between $L_1,L_2$ is $53.13^\\circ$.",
+          "Since each half is $<45^\\circ$, the origin sits inside the acute angle.",
+          "$\\boxed{\\text{acute}}$"
+        ]
+      }
+    ],
+    "remark": "Insight: classification needs no picture. Normalise, then one dot-product sign decides everything — a $30$-second discriminator that also tells you which $\\pm$ branch gives the acute bisector."
+  },
+  {
+    "theme": "bisectors",
+    "themeLabel": "Angle Bisectors",
     "title": "The Point in the Other Room",
     "difficulty": 4,
     "task": "Find",
@@ -1686,6 +1727,59 @@ window.PROBLEMS = [
   {
     "theme": "bisectors",
     "themeLabel": "Angle Bisectors",
+    "title": "The Equidistant Road That Splits in Two",
+    "difficulty": 4,
+    "task": "Determine",
+    "tags": [
+      "angle bisectors",
+      "equidistant locus",
+      "acute vs obtuse",
+      "perpendicular bisectors",
+      "sign normalisation"
+    ],
+    "statement": "Two straight rails run along $L_1:3x-4y+1=0$ and $L_2:5x+12y-17=0$. An inspection robot must move so that it is always equidistant from both rails.\n\n(a) Show that the complete set of admissible positions is the union of two lines, find their equations, and prove these two lines are perpendicular.\n\n(b) Of the two bisectors, identify the one that bisects the acute angle between the rails, and the one that bisects the angular region (wedge) containing the origin. State clearly whether these are the same line or different lines.",
+    "answer": "\\[\\boxed{\\;\\text{Locus: }8x+y-9=0\\ \\text{and}\\ x-8y+7=0;\\quad \\text{acute bisector: }x-8y+7=0,\\quad \\text{origin-wedge (obtuse) bisector: }8x+y-9=0\\;}\\]",
+    "trap": "First trap: assuming \"equidistant from two lines\" describes a SINGLE line (the bisector) when it is the union of BOTH bisectors. Second trap: thinking the bisector of the origin's wedge is automatically the acute (\"internal\") one. After normalising both constants positive, $a_1a_2+b_1b_2=3(-5)+(-4)(-12)=33>0$, so the origin lies in the OBTUSE wedge; the origin-wedge bisector $8x+y-9=0$ is the OBTUSE one, NOT the acute $x-8y+7=0$. Third trap: misreading the question as \"the bisector passing through the origin\" — in fact NEITHER bisector passes through the origin, since $8(0)+0-9=-9\\neq0$ and $0-8(0)+7=7\\neq0$; the relevant property is which angular wedge the origin sits in, not incidence.",
+    "solutions": [
+      {
+        "name": "Equidistance and the $\\pm$ pair",
+        "steps": [
+          "A point $(x,y)$ is equidistant from the rails iff $\\dfrac{|3x-4y+1|}{\\sqrt{3^2+4^2}}=\\dfrac{|5x+12y-17|}{\\sqrt{5^2+12^2}}$, i.e. $\\dfrac{|3x-4y+1|}{5}=\\dfrac{|5x+12y-17|}{13}$.",
+          "Clearing moduli gives the two signed cases $13(3x-4y+1)=\\pm\\,5(5x+12y-17)$, whose union is the entire locus — two lines, not one.",
+          "Minus sign: $39x-52y+13=-25x-60y+85\\Rightarrow 64x+8y-72=0\\Rightarrow 8x+y-9=0$. Plus sign: $39x-52y+13=25x+60y-85\\Rightarrow 14x-112y+98=0\\Rightarrow x-8y+7=0$.",
+          "Their normal vectors $(8,1)$ and $(1,-8)$ satisfy $(8)(1)+(1)(-8)=0$, so the two bisectors are perpendicular.",
+          "To classify the wedges, normalise both constants positive: $L_1$ already shows $+1$ at the origin; rewrite $L_2$ as $-5x-12y+17=0$ (value $+17$ at the origin). Then $a_1a_2+b_1b_2=3(-5)+(-4)(-12)=33>0$, so the bisector taken with EQUAL signs of these normalised forms — namely $\\dfrac{3x-4y+1}{5}=\\dfrac{-5x-12y+17}{13}$, which reduces to $8x+y-9=0$ — bisects the OBTUSE angle, and that obtuse wedge is exactly where the origin lies.",
+          "Hence the acute bisector is $x-8y+7=0$, while $8x+y-9=0$ bisects the obtuse, origin-containing wedge. They are different lines, and neither passes through the origin since $-9\\neq0$ and $7\\neq0$. $\\boxed{8x+y-9=0,\\ x-8y+7=0}$"
+        ]
+      },
+      {
+        "name": "Half-angle / direct angle check",
+        "steps": [
+          "The rails meet where $3x-4y+1=0$ and $5x+12y-17=0$; solving gives the vertex $(1,1)$, through which both bisectors pass (check: $8(1)+1-9=0$ and $1-8(1)+7=0$).",
+          "A direction along $L_1$ is $(4,3)$, along $L_2$ is $(12,-5)$; the angle $\\theta$ between the rails has $\\cos\\theta=\\dfrac{|4\\cdot12+3\\cdot(-5)|}{5\\cdot13}=\\dfrac{33}{65}$, so $\\theta\\approx59.49^\\circ$ (acute) and the complementary opening is $\\approx120.51^\\circ$ (obtuse).",
+          "A direction along $8x+y-9=0$ is $(1,-8)$; its angle to $L_1$ is $\\arccos\\dfrac{|4-24|}{5\\sqrt{65}}=\\arccos\\dfrac{20}{5\\sqrt{65}}\\approx60.26^\\circ=\\tfrac12(120.51^\\circ)$, the half of the OBTUSE angle.",
+          "A direction along $x-8y+7=0$ is $(8,1)$; its angle to $L_1$ is $\\arccos\\dfrac{|32+3|}{5\\sqrt{65}}=\\arccos\\dfrac{35}{5\\sqrt{65}}\\approx29.74^\\circ=\\tfrac12(59.49^\\circ)$, the half of the ACUTE angle.",
+          "So $x-8y+7=0$ is the acute bisector. The direction from the vertex $(1,1)$ toward the origin is $(-1,-1)$; it falls inside the wedge bounded by the $-(4,3)$ ray of $L_1$ and the $(12,-5)$ ray of $L_2$, whose opening is the $120.51^\\circ$ obtuse one, and that wedge is bisected by $8x+y-9=0$.",
+          "Therefore the acute bisector and the origin-wedge bisector are DIFFERENT: $\\boxed{8x+y-9=0\\ (\\text{origin wedge, obtuse}),\\ x-8y+7=0\\ (\\text{acute})}$"
+        ]
+      },
+      {
+        "name": "Signed-distance / unit-normal addition",
+        "steps": [
+          "Write each line through the unit normal whose value is positive at the origin: $u_1=\\tfrac15(3,-4)$ (value $+1$ at $O$) and $u_2=\\tfrac1{13}(-5,-12)$ (value $+17$ at $O$).",
+          "The bisector of the origin's wedge is the locus of equal signed distances $\\dfrac{3x-4y+1}{5}=\\dfrac{-5x-12y+17}{13}$; clearing denominators gives $13(3x-4y+1)=5(-5x-12y+17)\\Rightarrow 64x+8y-72=0\\Rightarrow 8x+y-9=0$.",
+          "Its direction is along $u_1+u_2=\\left(\\tfrac{3}{5}-\\tfrac{5}{13},\\,-\\tfrac{4}{5}-\\tfrac{12}{13}\\right)=\\tfrac1{65}(14,-112)\\parallel(1,-8)$, consistent with $8x+y-9=0$.",
+          "Whether this wedge is acute or obtuse is settled by $u_1\\cdot u_2=\\tfrac{1}{65}\\big(3(-5)+(-4)(-12)\\big)=\\tfrac{33}{65}>0$: the positive sign means the inward normals subtend an acute angle, so the origin sits in the OBTUSE wedge and $8x+y-9=0$ is the obtuse bisector.",
+          "The remaining branch, from the opposite sign $\\dfrac{3x-4y+1}{5}=-\\dfrac{-5x-12y+17}{13}$, is $x-8y+7=0$, which therefore bisects the complementary acute wedge; and $(8)(1)+(1)(-8)=0$ confirms the pair is perpendicular.",
+          "Final: union $=\\{8x+y-9=0\\}\\cup\\{x-8y+7=0\\}$; acute bisector $=x-8y+7=0$; origin-wedge bisector $=8x+y-9=0$ (obtuse); they are different lines. $\\boxed{8x+y-9=0,\\ x-8y+7=0}$"
+        ]
+      }
+    ],
+    "remark": "Insight: the equidistant locus of two lines is intrinsically a PERPENDICULAR PAIR of bisectors, not a single line, and \"bisects the acute angle\" and \"lies in the wedge containing the origin\" are independent properties. Beware the literal reading \"passes through the origin\" — here neither bisector does. The sign test $a_1a_2+b_1b_2$ (after fixing both constant terms positive) decouples the two descriptions: a positive value means the origin sits in the obtuse wedge, so the acute bisector and the origin-wedge bisector are different lines."
+  },
+  {
+    "theme": "bisectors",
+    "themeLabel": "Angle Bisectors",
     "title": "The Incentre Hiding in the Sides",
     "difficulty": 5,
     "task": "Determine",
@@ -1728,43 +1822,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: the incentre is the unique interior point whose three signed distances to the sides are equal in magnitude AND consistent in interior sign. Picking signs that match an interior test point (here the centroid) removes the $\\pm$ ambiguity that otherwise sends you to an excentre. The clean $13$-$14$-$15$ triangle makes the incentre $(6,4)$ a lattice point with inradius exactly $4$; two of its three excentres, $I_A=(21,14)$ and $I_C=(8,-12)$, are also lattice points, while $I_B=\\left(-7,\\tfrac{21}{2}\\right)$ is not."
-  },
-  {
-    "theme": "bisectors",
-    "themeLabel": "Angle Bisectors",
-    "title": "Does the Origin See a Sharp Corner?",
-    "difficulty": 3,
-    "task": "Classify",
-    "tags": [
-      "origin-classification",
-      "ab-test",
-      "acute-obtuse",
-      "normalisation"
-    ],
-    "statement": "Two lines $L_1:7x-y+3=0$ and $L_2:x+y-3=0$ intersect. Classify whether the origin lies in the acute angle or the obtuse angle formed between them.",
-    "answer": "\\[\\boxed{\\text{The origin lies in the acute angle}}\\]",
-    "trap": "Trying to draw the lines and 'eyeball' which corner is sharp, or assuming the origin always lands in the obtuse region. The correct, foolproof route is to normalise both constants positive and read off $\\operatorname{sign}(a_1a_2+b_1b_2)$: the origin-containing ('+') bisector is acute exactly when this is negative.",
-    "solutions": [
-      {
-        "name": "Sign test on normalised constants",
-        "steps": [
-          "Make constants positive: $L_1:7x-y+3=0$ (already $+3$), $L_2:-x-y+3=0$.",
-          "Compute $a_1a_2+b_1b_2=(7)(-1)+(-1)(-1)=-7+1=-6<0$.",
-          "Rule: with constants positive, $a_1a_2+b_1b_2<0\\Rightarrow$ the '+' (origin-containing) bisector bisects the ACUTE angle, so the origin lies in the acute angle.",
-          "$\\boxed{\\text{acute}}$"
-        ]
-      },
-      {
-        "name": "Half-angle of the origin bisector",
-        "steps": [
-          "The origin-containing bisector is $\\dfrac{7x-y+3}{\\sqrt{50}}=\\dfrac{-x-y+3}{\\sqrt2}$.",
-          "The angle this bisector makes with each line is $26.57^\\circ$, while the full angle between $L_1,L_2$ is $53.13^\\circ$.",
-          "Since each half is $<45^\\circ$, the origin sits inside the acute angle.",
-          "$\\boxed{\\text{acute}}$"
-        ]
-      }
-    ],
-    "remark": "Insight: classification needs no picture. Normalise, then one dot-product sign decides everything — a $30$-second discriminator that also tells you which $\\pm$ branch gives the acute bisector."
   },
   {
     "theme": "bisectors",
@@ -1839,59 +1896,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: two independent routes (locus equidistance vs the section ratio) must agree. The ratio orientation $BD:DC=AB:AC$ — each segment matched to the adjacent side — is the classic slip; getting both the equation and $D$ confirms the correct internal branch. As a sanity check, $D$ sits at parameter $t=\\tfrac{14}{27}$ along $B\\to C$, safely inside the segment."
-  },
-  {
-    "theme": "bisectors",
-    "themeLabel": "Angle Bisectors",
-    "title": "The Equidistant Road That Splits in Two",
-    "difficulty": 4,
-    "task": "Determine",
-    "tags": [
-      "angle bisectors",
-      "equidistant locus",
-      "acute vs obtuse",
-      "perpendicular bisectors",
-      "sign normalisation"
-    ],
-    "statement": "Two straight rails run along $L_1:3x-4y+1=0$ and $L_2:5x+12y-17=0$. An inspection robot must move so that it is always equidistant from both rails.\n\n(a) Show that the complete set of admissible positions is the union of two lines, find their equations, and prove these two lines are perpendicular.\n\n(b) Of the two bisectors, identify the one that bisects the acute angle between the rails, and the one that bisects the angular region (wedge) containing the origin. State clearly whether these are the same line or different lines.",
-    "answer": "\\[\\boxed{\\;\\text{Locus: }8x+y-9=0\\ \\text{and}\\ x-8y+7=0;\\quad \\text{acute bisector: }x-8y+7=0,\\quad \\text{origin-wedge (obtuse) bisector: }8x+y-9=0\\;}\\]",
-    "trap": "First trap: assuming \"equidistant from two lines\" describes a SINGLE line (the bisector) when it is the union of BOTH bisectors. Second trap: thinking the bisector of the origin's wedge is automatically the acute (\"internal\") one. After normalising both constants positive, $a_1a_2+b_1b_2=3(-5)+(-4)(-12)=33>0$, so the origin lies in the OBTUSE wedge; the origin-wedge bisector $8x+y-9=0$ is the OBTUSE one, NOT the acute $x-8y+7=0$. Third trap: misreading the question as \"the bisector passing through the origin\" — in fact NEITHER bisector passes through the origin, since $8(0)+0-9=-9\\neq0$ and $0-8(0)+7=7\\neq0$; the relevant property is which angular wedge the origin sits in, not incidence.",
-    "solutions": [
-      {
-        "name": "Equidistance and the $\\pm$ pair",
-        "steps": [
-          "A point $(x,y)$ is equidistant from the rails iff $\\dfrac{|3x-4y+1|}{\\sqrt{3^2+4^2}}=\\dfrac{|5x+12y-17|}{\\sqrt{5^2+12^2}}$, i.e. $\\dfrac{|3x-4y+1|}{5}=\\dfrac{|5x+12y-17|}{13}$.",
-          "Clearing moduli gives the two signed cases $13(3x-4y+1)=\\pm\\,5(5x+12y-17)$, whose union is the entire locus — two lines, not one.",
-          "Minus sign: $39x-52y+13=-25x-60y+85\\Rightarrow 64x+8y-72=0\\Rightarrow 8x+y-9=0$. Plus sign: $39x-52y+13=25x+60y-85\\Rightarrow 14x-112y+98=0\\Rightarrow x-8y+7=0$.",
-          "Their normal vectors $(8,1)$ and $(1,-8)$ satisfy $(8)(1)+(1)(-8)=0$, so the two bisectors are perpendicular.",
-          "To classify the wedges, normalise both constants positive: $L_1$ already shows $+1$ at the origin; rewrite $L_2$ as $-5x-12y+17=0$ (value $+17$ at the origin). Then $a_1a_2+b_1b_2=3(-5)+(-4)(-12)=33>0$, so the bisector taken with EQUAL signs of these normalised forms — namely $\\dfrac{3x-4y+1}{5}=\\dfrac{-5x-12y+17}{13}$, which reduces to $8x+y-9=0$ — bisects the OBTUSE angle, and that obtuse wedge is exactly where the origin lies.",
-          "Hence the acute bisector is $x-8y+7=0$, while $8x+y-9=0$ bisects the obtuse, origin-containing wedge. They are different lines, and neither passes through the origin since $-9\\neq0$ and $7\\neq0$. $\\boxed{8x+y-9=0,\\ x-8y+7=0}$"
-        ]
-      },
-      {
-        "name": "Half-angle / direct angle check",
-        "steps": [
-          "The rails meet where $3x-4y+1=0$ and $5x+12y-17=0$; solving gives the vertex $(1,1)$, through which both bisectors pass (check: $8(1)+1-9=0$ and $1-8(1)+7=0$).",
-          "A direction along $L_1$ is $(4,3)$, along $L_2$ is $(12,-5)$; the angle $\\theta$ between the rails has $\\cos\\theta=\\dfrac{|4\\cdot12+3\\cdot(-5)|}{5\\cdot13}=\\dfrac{33}{65}$, so $\\theta\\approx59.49^\\circ$ (acute) and the complementary opening is $\\approx120.51^\\circ$ (obtuse).",
-          "A direction along $8x+y-9=0$ is $(1,-8)$; its angle to $L_1$ is $\\arccos\\dfrac{|4-24|}{5\\sqrt{65}}=\\arccos\\dfrac{20}{5\\sqrt{65}}\\approx60.26^\\circ=\\tfrac12(120.51^\\circ)$, the half of the OBTUSE angle.",
-          "A direction along $x-8y+7=0$ is $(8,1)$; its angle to $L_1$ is $\\arccos\\dfrac{|32+3|}{5\\sqrt{65}}=\\arccos\\dfrac{35}{5\\sqrt{65}}\\approx29.74^\\circ=\\tfrac12(59.49^\\circ)$, the half of the ACUTE angle.",
-          "So $x-8y+7=0$ is the acute bisector. The direction from the vertex $(1,1)$ toward the origin is $(-1,-1)$; it falls inside the wedge bounded by the $-(4,3)$ ray of $L_1$ and the $(12,-5)$ ray of $L_2$, whose opening is the $120.51^\\circ$ obtuse one, and that wedge is bisected by $8x+y-9=0$.",
-          "Therefore the acute bisector and the origin-wedge bisector are DIFFERENT: $\\boxed{8x+y-9=0\\ (\\text{origin wedge, obtuse}),\\ x-8y+7=0\\ (\\text{acute})}$"
-        ]
-      },
-      {
-        "name": "Signed-distance / unit-normal addition",
-        "steps": [
-          "Write each line through the unit normal whose value is positive at the origin: $u_1=\\tfrac15(3,-4)$ (value $+1$ at $O$) and $u_2=\\tfrac1{13}(-5,-12)$ (value $+17$ at $O$).",
-          "The bisector of the origin's wedge is the locus of equal signed distances $\\dfrac{3x-4y+1}{5}=\\dfrac{-5x-12y+17}{13}$; clearing denominators gives $13(3x-4y+1)=5(-5x-12y+17)\\Rightarrow 64x+8y-72=0\\Rightarrow 8x+y-9=0$.",
-          "Its direction is along $u_1+u_2=\\left(\\tfrac{3}{5}-\\tfrac{5}{13},\\,-\\tfrac{4}{5}-\\tfrac{12}{13}\\right)=\\tfrac1{65}(14,-112)\\parallel(1,-8)$, consistent with $8x+y-9=0$.",
-          "Whether this wedge is acute or obtuse is settled by $u_1\\cdot u_2=\\tfrac{1}{65}\\big(3(-5)+(-4)(-12)\\big)=\\tfrac{33}{65}>0$: the positive sign means the inward normals subtend an acute angle, so the origin sits in the OBTUSE wedge and $8x+y-9=0$ is the obtuse bisector.",
-          "The remaining branch, from the opposite sign $\\dfrac{3x-4y+1}{5}=-\\dfrac{-5x-12y+17}{13}$, is $x-8y+7=0$, which therefore bisects the complementary acute wedge; and $(8)(1)+(1)(-8)=0$ confirms the pair is perpendicular.",
-          "Final: union $=\\{8x+y-9=0\\}\\cup\\{x-8y+7=0\\}$; acute bisector $=x-8y+7=0$; origin-wedge bisector $=8x+y-9=0$ (obtuse); they are different lines. $\\boxed{8x+y-9=0,\\ x-8y+7=0}$"
-        ]
-      }
-    ],
-    "remark": "Insight: the equidistant locus of two lines is intrinsically a PERPENDICULAR PAIR of bisectors, not a single line, and \"bisects the acute angle\" and \"lies in the wedge containing the origin\" are independent properties. Beware the literal reading \"passes through the origin\" — here neither bisector does. The sign test $a_1a_2+b_1b_2$ (after fixing both constant terms positive) decouples the two descriptions: a positive value means the origin sits in the obtuse wedge, so the acute bisector and the origin-wedge bisector are different lines."
   },
   {
     "theme": "bisectors",
@@ -2457,84 +2461,6 @@ window.PROBLEMS = [
   {
     "theme": "triangle",
     "themeLabel": "Triangle Centres & Areas",
-    "title": "The Weighted Heart of 13-14-15",
-    "difficulty": 4,
-    "task": "Determine",
-    "tags": [
-      "incentre",
-      "side-length weights",
-      "heronian triangle",
-      "inradius"
-    ],
-    "statement": "A triangle has vertices $A(0,0)$, $B(14,0)$, $C(5,12)$. Determine the coordinates of its incentre.",
-    "answer": "$\\boxed{(6,4)}$",
-    "trap": "Treating the incentre like the centroid and averaging the vertices to get $\\left(\\tfrac{0+14+5}{3},\\tfrac{0+0+12}{3}\\right)=\\left(\\tfrac{19}{3},4\\right)$. The incentre is the side-length-weighted mean $\\dfrac{aA+bB+cC}{a+b+c}$ with $a=BC$, $b=CA$, $c=AB$ — and crucially $a$ is the side OPPOSITE $A$, so the weight on $A$ is $BC$, not $AB$. Here the $y$-coordinates of both points coincide at $4$, which conveniently hides the error in the $x$-coordinate.",
-    "solutions": [
-      {
-        "name": "Weighted-mean formula",
-        "steps": [
-          "Side lengths, each named for the vertex it is opposite: $a=BC=\\sqrt{(14-5)^2+(0-12)^2}=\\sqrt{9^2+12^2}=15$, $b=CA=\\sqrt{5^2+12^2}=13$, $c=AB=14$.",
-          "Incentre $=\\dfrac{aA+bB+cC}{a+b+c}=\\dfrac{15(0,0)+13(14,0)+14(5,12)}{42}=\\dfrac{(182+70,\\,168)}{42}=\\dfrac{(252,168)}{42}$.",
-          "$=\\boxed{(6,4)}$."
-        ]
-      },
-      {
-        "name": "Inradius and tangency",
-        "steps": [
-          "Area $K=\\tfrac12\\cdot AB\\cdot h=\\tfrac12\\cdot14\\cdot12=84$, semiperimeter $s=\\tfrac{15+13+14}{2}=21$, so inradius $r=K/s=84/21=4$.",
-          "Because base $AB$ lies along the $x$-axis, the incentre sits at height $r=4$ above it, fixing $y=4$.",
-          "The tangent length from $A$ along $AB$ equals $s-a=21-15=6$, so $x=6$, giving $\\boxed{(6,4)}$."
-        ]
-      },
-      {
-        "name": "Equidistance from the three sides",
-        "steps": [
-          "Side-lines: $AB:\\ y=0$; $AC:\\ 12x-5y=0$ (through $A$ and $C=(5,12)$); $BC:\\ 4x+3y-56=0$ (through $B(14,0)$ and $C(5,12)$).",
-          "Distances from an interior point $(x,y)$ are $|y|$, $\\dfrac{|12x-5y|}{13}$, and $\\dfrac{|4x+3y-56|}{5}$. The incentre makes all three equal: $y=\\dfrac{12x-5y}{13}=\\dfrac{56-4x-3y}{5}$.",
-          "Solving gives $x=6,\\ y=4$ with common distance $r=4$, so $\\boxed{(6,4)}$."
-        ]
-      }
-    ],
-    "remark": "Insight: the incentre's barycentric weights are the OPPOSITE side lengths $a:b:c$; mislabelling which side is $a$, or defaulting to equal weights (the centroid), is the single most common centre-formula error. The deliberately shared $y=4$ camouflages the slip in the $x$-coordinate."
-  },
-  {
-    "theme": "triangle",
-    "themeLabel": "Triangle Centres & Areas",
-    "title": "Walking the Euler Line",
-    "difficulty": 4,
-    "task": "Find a,b",
-    "tags": [
-      "circumcentre",
-      "orthocentre",
-      "euler line",
-      "centroid"
-    ],
-    "statement": "For the triangle $A(-2,3)$, $B(6,-1)$, $C(4,7)$, find the circumcentre $O$ and the orthocentre $H$, and verify that $O$ and $H$ straddle the centroid $G$ on the Euler line with $OG:GH=1:2$.",
-    "answer": "$\\boxed{O=\\left(\\tfrac{19}{7},\\tfrac{17}{7}\\right),\\quad H=\\left(\\tfrac{18}{7},\\tfrac{29}{7}\\right)}$",
-    "trap": "Getting $O$ right, then \"finding\" $H$ by intersecting two altitudes from scratch and slipping a sign in the perpendicular slope — writing it as $+\\tfrac{1}{m}$ instead of $-\\tfrac{1}{m}$. With $\\text{slope}(BC)=-4$ and $\\text{slope}(CA)=\\tfrac23$, the slipped slopes $-\\tfrac14$ and $\\tfrac32$ give the bogus point $\\left(\\tfrac{50}{7},\\tfrac57\\right)$, which is not even on the Euler line. The shortcut $\\vec{OH}=\\vec{OA}+\\vec{OB}+\\vec{OC}$, i.e. $H=3G-2O$, sidesteps the sign entirely — but only if you keep $O$, not $G$, as the pivot.",
-    "solutions": [
-      {
-        "name": "Perpendicular bisectors, then the Euler relation",
-        "steps": [
-          "Let $O=(x,y)$. Equidistance $|OA|^2=|OB|^2$ gives $16x-8y=24$, and $|OA|^2=|OC|^2$ gives $12x+8y=52$; adding, $28x=76$ so $x=\\tfrac{19}{7}$, and then $y=\\tfrac{17}{7}$. Hence $O=\\left(\\tfrac{19}{7},\\tfrac{17}{7}\\right)$.",
-          "Centroid $G=\\tfrac13(A+B+C)=\\left(\\tfrac83,3\\right)$.",
-          "Apply $H=3G-2O=\\left(8-\\tfrac{38}{7},\\,9-\\tfrac{34}{7}\\right)=\\left(\\tfrac{18}{7},\\tfrac{29}{7}\\right)$, giving $\\boxed{O=\\left(\\tfrac{19}{7},\\tfrac{17}{7}\\right),\\,H=\\left(\\tfrac{18}{7},\\tfrac{29}{7}\\right)}$."
-        ]
-      },
-      {
-        "name": "Altitudes for $H$, then recover the circumcentre",
-        "steps": [
-          "Altitude from $A\\perp BC$: since $\\text{slope}(BC)=\\tfrac{7-(-1)}{4-6}=-4$, the altitude has slope $\\tfrac14$, so $y-3=\\tfrac14(x+2)$.",
-          "Altitude from $B\\perp CA$: since $\\text{slope}(CA)=\\tfrac{7-3}{4-(-2)}=\\tfrac23$, the altitude has slope $-\\tfrac32$, so $y+1=-\\tfrac32(x-6)$; solving the two altitudes gives $H=\\left(\\tfrac{18}{7},\\tfrac{29}{7}\\right)$.",
-          "Then $O=\\tfrac12(3G-H)=\\tfrac12\\left(8-\\tfrac{18}{7},\\,9-\\tfrac{29}{7}\\right)=\\left(\\tfrac{19}{7},\\tfrac{17}{7}\\right)$, and $O,G,H$ are collinear with $\\vec{OG}=\\left(-\\tfrac1{21},\\tfrac47\\right)$, $\\vec{GH}=2\\,\\vec{OG}$, i.e. $OG:GH=1:2$. $\\boxed{O=\\left(\\tfrac{19}{7},\\tfrac{17}{7}\\right),\\,H=\\left(\\tfrac{18}{7},\\tfrac{29}{7}\\right)}$."
-        ]
-      }
-    ],
-    "remark": "Insight: $H=3G-2O$ turns a two-altitude intersection into one vector subtraction, and it bakes in the Euler-line ratio $OG:GH=1:2$ for free. The lone sign hiding in $-\\tfrac1m$ is exactly where the brute-force altitude route loses points."
-  },
-  {
-    "theme": "triangle",
-    "themeLabel": "Triangle Centres & Areas",
     "title": "Dropping the Plumb Line",
     "difficulty": 4,
     "task": "Determine",
@@ -2613,6 +2539,111 @@ window.PROBLEMS = [
   {
     "theme": "triangle",
     "themeLabel": "Triangle Centres & Areas",
+    "title": "Which Side Weights Which Vertex",
+    "difficulty": 4,
+    "task": "Find the incentre",
+    "tags": [
+      "incentre",
+      "side lengths",
+      "weighted average",
+      "section formula"
+    ],
+    "statement": "A triangle has vertices  $A(-3,-2)$ ,  $B(5,-2)$  and  $C(-3,4)$ . Using the incentre formula  $I=\\dfrac{a\\,A+b\\,B+c\\,C}{a+b+c}$ , where  $a,b,c$  are the lengths of the sides opposite  $A,B,C$  respectively, find the coordinates of the incentre  $I$ .",
+    "answer": " $\\boxed{I=(-1,\\,0)}$ ",
+    "trap": "The weight on each vertex is the length of the OPPOSITE side:  $a=|BC|$  multiplies  $A$ , not the side touching  $A$ . A student who instead weights  $A$  by an adjacent side (e.g. uses  $c\\,A+a\\,B+b\\,C$ ) gets  $\\left(\\tfrac13,-\\tfrac12\\right)$ , which is not even inside the triangle. Confusing the incentre with the centroid  $\\left(-\\tfrac13,0\\right)$  is a second pitfall.",
+    "solutions": [
+      {
+        "name": "Side lengths then weighted average",
+        "steps": [
+          "Opposite-side lengths:  $a=|BC|=\\sqrt{(5+3)^2+(-2-4)^2}=\\sqrt{64+36}=10$ ,  $b=|CA|=\\sqrt{0^2+6^2}=6$ ,  $c=|AB|=\\sqrt{8^2+0^2}=8$ .",
+          "So  $a+b+c=24$  and  $I_x=\\dfrac{10(-3)+6(5)+8(-3)}{24}=\\dfrac{-30+30-24}{24}=-1$ .",
+          " $I_y=\\dfrac{10(-2)+6(-2)+8(4)}{24}=\\dfrac{-20-12+32}{24}=0$ , giving  $\\boxed{I=(-1,0)}$ ."
+        ]
+      },
+      {
+        "name": "Right-angle shortcut via the inradius",
+        "steps": [
+          "Side  $AB$  is horizontal ( $y=-2$ ) and side  $CA$  is vertical ( $x=-3$ ); they meet at  $A$  at a right angle, with legs  $|AB|=8$ ,  $|CA|=6$  and hypotenuse  $|BC|=10$ .",
+          "The inradius of a right triangle is  $r=\\dfrac{\\text{leg}_1+\\text{leg}_2-\\text{hyp}}{2}=\\dfrac{8+6-10}{2}=2$ .",
+          "The incircle sits  $r$  inward from each leg, so  $I$  is  $2$  to the right of  $x=-3$  and  $2$  above  $y=-2$ :  $I=(-3+2,\\,-2+2)=\\boxed{(-1,0)}$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** In  $I=\\dfrac{aA+bB+cC}{a+b+c}$  the coefficient of a vertex is the length of the side facing it, never the side touching it; the right-angle check shows the same point landing exactly one inradius in from each leg."
+  },
+  {
+    "theme": "triangle",
+    "themeLabel": "Triangle Centres & Areas",
+    "title": "Where Two Altitudes Cross",
+    "difficulty": 4,
+    "task": "Find the orthocentre",
+    "tags": [
+      "orthocentre",
+      "altitudes",
+      "perpendicular slopes",
+      "intersection of lines"
+    ],
+    "statement": "The triangle  $ABC$  has vertices  $A(1,2)$ ,  $B(7,4)$  and  $C(3,8)$ . No side is parallel to either axis. Find the orthocentre  $H$ , the point where the three altitudes meet.",
+    "answer": " $\\boxed{H=(4,\\,5)}$ ",
+    "trap": "An altitude is perpendicular to the OPPOSITE side and passes through the vertex; it is not the perpendicular bisector. Using the slope of a side directly (instead of its negative reciprocal), or dropping the perpendicular onto the wrong side, derails the whole computation. Here the altitude from  $A$  is perpendicular to  $BC$  — not to  $AB$  or  $CA$ .",
+    "solutions": [
+      {
+        "name": "Intersect two altitudes",
+        "steps": [
+          "Slope of  $BC=\\dfrac{8-4}{3-7}=-1$ , so the altitude from  $A$  has slope  $1$ :  $\\;y-2=1(x-1)$ , i.e.  $y=x+1$ .",
+          "Slope of  $CA=\\dfrac{2-8}{1-3}=3$ , so the altitude from  $B$  has slope  $-\\tfrac13$ :  $\\;y-4=-\\tfrac13(x-7)$ .",
+          "Substitute  $y=x+1$ :  $\\;x+1-4=-\\tfrac13(x-7)\\Rightarrow 3(x-3)=-(x-7)\\Rightarrow 4x=16\\Rightarrow x=4,\\;y=5$ , so  $\\boxed{H=(4,5)}$ ."
+        ]
+      },
+      {
+        "name": "Perpendicularity (dot-product) conditions",
+        "steps": [
+          "Let  $H=(x,y)$ . Then  $\\overrightarrow{AH}\\perp\\overrightarrow{BC}$  gives  $(x-1)(3-7)+(y-2)(8-4)=0\\Rightarrow -4x+4y-4=0\\Rightarrow y=x+1$ .",
+          "And  $\\overrightarrow{BH}\\perp\\overrightarrow{CA}$  gives  $(x-7)(1-3)+(y-4)(2-8)=0\\Rightarrow -2x-6y+38=0\\Rightarrow x+3y=19$ .",
+          "Solve: from  $y=x+1$ ,  $x+3(x+1)=19\\Rightarrow 4x=16\\Rightarrow x=4,\\;y=5$ . A check with  $\\overrightarrow{CH}\\perp\\overrightarrow{AB}$  confirms  $\\boxed{H=(4,5)}$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Each altitude is fixed by two facts at once — it hugs a vertex and stares perpendicularly at the opposite side; encoding that as a single dot-product equation per vertex turns the orthocentre into a  $2\\times2$  linear solve with no slope bookkeeping."
+  },
+  {
+    "theme": "triangle",
+    "themeLabel": "Triangle Centres & Areas",
+    "title": "The Point Equidistant From Three",
+    "difficulty": 4,
+    "task": "Find centre and radius",
+    "tags": [
+      "circumcentre",
+      "perpendicular bisector",
+      "equidistant locus",
+      "circumradius"
+    ],
+    "statement": "For the triangle with vertices  $A(0,0)$ ,  $B(7,7)$  and  $C(-1,3)$ , find the circumcentre  $S$  (the point equidistant from all three vertices) and the circumradius  $R$ .",
+    "answer": " $$\\boxed{S=(4,3),\\qquad R=5}$$ ",
+    "trap": "The circumcentre lies on the perpendicular BISECTORS of the sides, not on the medians. Each bisector passes through a side's MIDPOINT with slope equal to the negative reciprocal of that side. Mixing up a midpoint, or using the side's own slope, sends  $S$  astray; and  $S$  is generally NOT the centroid  $\\left(2,\\tfrac{10}{3}\\right)$ , which lies on the medians instead.",
+    "solutions": [
+      {
+        "name": "Two perpendicular bisectors",
+        "steps": [
+          "Side  $AB$  has midpoint  $\\left(\\tfrac72,\\tfrac72\\right)$  and slope  $1$ , so its perpendicular bisector has slope  $-1$ :  $\\;y-\\tfrac72=-\\left(x-\\tfrac72\\right)$ , i.e.  $x+y=7$ .",
+          "Side  $CA$  has midpoint  $\\left(-\\tfrac12,\\tfrac32\\right)$  and slope  $-3$ , so its bisector has slope  $\\tfrac13$ :  $\\;y-\\tfrac32=\\tfrac13\\left(x+\\tfrac12\\right)$ , i.e.  $x-3y=-5$ .",
+          "Subtracting,  $4y=12\\Rightarrow y=3$ , then  $x=4$ , so  $S=(4,3)$  and  $R=|SA|=\\sqrt{4^2+3^2}=\\boxed{5}$ , confirming  $S=(4,3)$ ."
+        ]
+      },
+      {
+        "name": "Equidistance algebra",
+        "steps": [
+          "Let  $S=(x,y)$  with  $|SA|^2=|SB|^2$ :  $\\;x^2+y^2=(x-7)^2+(y-7)^2\\Rightarrow 14x+14y=98\\Rightarrow x+y=7$ .",
+          "And  $|SA|^2=|SC|^2$ :  $\\;x^2+y^2=(x+1)^2+(y-3)^2\\Rightarrow 0=2x-6y+10\\Rightarrow x-3y=-5$ .",
+          "Solving  $x+y=7$  and  $x-3y=-5$  gives  $x=4,\\,y=3$ ; then  $R=\\sqrt{4^2+3^2}=5$ , so  $\\boxed{S=(4,3),\\,R=5}$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The circumcentre is born from the single statement “equidistant from three points,” and each equality  $|SA|^2=|SB|^2$  collapses — the quadratic terms cancel — into one linear perpendicular-bisector equation, so two such statements pin the point exactly."
+  },
+  {
+    "theme": "triangle",
+    "themeLabel": "Triangle Centres & Areas",
     "title": "The Pivoting Third Side",
     "difficulty": 5,
     "task": "Find all",
@@ -2645,41 +2676,6 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: writing area as a rational function of a slope hides a piecewise modulus in its denominator. The honest solver splits into the $|m|<1$ and $|m|>1$ regimes and discards roots that violate their own assumption. Here the entire solution set lives in $|m|<1$, while the $|m|>1$ branch is genuinely empty (complex roots $6/5\\pm 2i/5$)."
-  },
-  {
-    "theme": "triangle",
-    "themeLabel": "Triangle Centres & Areas",
-    "title": "Two Centres Pin the Third",
-    "difficulty": 4,
-    "task": "Determine",
-    "tags": [
-      "euler line",
-      "centroid",
-      "orthocentre",
-      "circumcentre"
-    ],
-    "statement": "A triangle is known to have centroid $G(2,3)$ and orthocentre $H(4,9)$. Determine its circumcentre $O$, and state the ratio $OG:GH$.",
-    "answer": "$\\boxed{O=(1,0),\\quad OG:GH=1:2}$",
-    "trap": "Misremembering the Euler-line collinearity as $G$ being the midpoint of $OH$ (so $O=2G-H=(0,-3)$). In fact $G$ divides $OH$ in ratio $OG:GH=1:2$, giving $O=\\tfrac{3G-H}{2}$, not the midpoint.",
-    "solutions": [
-      {
-        "name": "Euler section formula",
-        "steps": [
-          "On the Euler line $G$ divides $OH$ with $OG:GH=1:2$, so $G=\\dfrac{2O+1\\cdot H}{3}$.",
-          "Solve: $O=\\dfrac{3G-H}{2}=\\dfrac{(6,9)-(4,9)}{2}=\\dfrac{(2,0)}{2}=(1,0)$.",
-          "Hence $\\boxed{O=(1,0),\\ OG:GH=1:2}$."
-        ]
-      },
-      {
-        "name": "Vector check",
-        "steps": [
-          "From $\\vec{OH}=3\\,\\vec{OG}$ (a restatement of the $1:2$ split): $H-O=3(G-O)\\Rightarrow 2O=3G-H$.",
-          "$2O=(6,9)-(4,9)=(2,0)\\Rightarrow O=(1,0)$.",
-          "Distances: $OG=\\sqrt{1+9}=\\sqrt{10}$, $GH=\\sqrt{4+36}=2\\sqrt{10}$, ratio $1:2$. $\\boxed{O=(1,0)}$."
-        ]
-      }
-    ],
-    "remark": "Insight: on the Euler line the centroid is a $1:2$ internal point, NOT the midpoint — the asymmetry $OG:GH=1:2$ is the whole content of the relation $H=3G-2O$."
   },
   {
     "theme": "triangle",
@@ -2757,7 +2753,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "locus",
-    "themeLabel": "Locus",
+    "themeLabel": "Locus of a Point",
     "title": "The Bisectors of an Unequal Pair",
     "difficulty": 3,
     "task": "Find the locus",
@@ -2796,7 +2792,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "locus",
-    "themeLabel": "Locus",
+    "themeLabel": "Locus of a Point",
     "title": "A Centroid Riding a Line",
     "difficulty": 3,
     "task": "Determine the locus",
@@ -2835,7 +2831,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "locus",
-    "themeLabel": "Locus",
+    "themeLabel": "Locus of a Point",
     "title": "Equal Angles, Twin Bisectors",
     "difficulty": 4,
     "task": "Find the locus",
@@ -2876,7 +2872,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "locus",
-    "themeLabel": "Locus",
+    "themeLabel": "Locus of a Point",
     "title": "Orthocentre on a Sliding Apex",
     "difficulty": 4,
     "task": "Find the locus",
@@ -2914,7 +2910,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "locus",
-    "themeLabel": "Locus",
+    "themeLabel": "Locus of a Point",
     "title": "Twice as Far, Two Ways",
     "difficulty": 4,
     "task": "Find the locus",
@@ -2952,168 +2948,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "locus",
-    "themeLabel": "Locus",
-    "title": "The Midpoint on the Crossing Lines",
-    "difficulty": 5,
-    "task": "Find the locus",
-    "tags": [
-      "midpoint",
-      "variable-line",
-      "fixed-point",
-      "rectangular-hyperbola"
-    ],
-    "statement": "A variable straight line passes through the fixed point $(2,1)$ and meets the line $y=x$ at $A$ and the line $y=-x$ at $B$. Find the locus of the midpoint $M$ of segment $AB$.",
-    "answer": "\\[\\boxed{x^{2}-y^{2}-2x+y=0}\\]",
-    "trap": "Eliminating the slope $m$ carelessly and stopping at $X=m\\,Y$ without using the full intercept relations — or assuming $M$ traces a line because both feet are on lines. The clean elimination $m=X/Y$ reveals a rectangular HYPERBOLA, and one must not drop solutions while clearing denominators.",
-    "solutions": [
-      {
-        "name": "Slope parameter and resultant",
-        "steps": [
-          "Line through $(2,1)$: $y-1=m(x-2)$.",
-          "Meet $y=x$: $x-1=m(x-2)\\Rightarrow x_A=\\dfrac{1-2m}{1-m}=y_A$.",
-          "Meet $y=-x$: $-x-1=m(x-2)\\Rightarrow x_B=\\dfrac{2m-1}{1+m}$, $y_B=-x_B$.",
-          "Midpoint: $X=\\dfrac{x_A+x_B}{2}=\\dfrac{m(2m-1)}{m^2-1}$, $Y=\\dfrac{y_A+y_B}{2}=\\dfrac{2m-1}{m^2-1}$.",
-          "Notice $X=mY\\Rightarrow m=X/Y$; substitute into $Y=\\dfrac{2m-1}{m^2-1}$ and clear: $X^2-Y^2=2X-Y$.",
-          "Locus: $\\boxed{x^{2}-y^{2}-2x+y=0}$."
-        ]
-      },
-      {
-        "name": "Use of the relation $X=mY$",
-        "steps": [
-          "From the two midpoint expressions, $\\dfrac{X}{Y}=m$ directly.",
-          "Then $Y(m^2-1)=2m-1$ becomes $Y\\!\\left(\\dfrac{X^2}{Y^2}-1\\right)=2\\dfrac{X}{Y}-1$.",
-          "Multiply by $Y$: $X^2-Y^2=2X-Y$.",
-          "Rearrange: $\\boxed{x^{2}-y^{2}-2x+y=0}$, a rectangular hyperbola (asymptotes parallel to $y=\\pm x$, consistent with the two base lines)."
-        ]
-      }
-    ],
-    "remark": "Insight: the midpoint of a chord cut by two perpendicular lines through the origin, as the chord pivots about a fixed point, sweeps a rectangular hyperbola whose asymptote directions match the two base lines. Check the degenerate pivots too: the vertical line $x=2$ gives $M=(2,0)$ and the horizontal line $y=1$ gives $M=(0,1)$, both of which satisfy the locus."
-  },
-  {
-    "theme": "locus",
-    "themeLabel": "Locus",
-    "title": "The Hidden Branch of the Bisector",
-    "difficulty": 5,
-    "task": "Find the locus",
-    "tags": [
-      "equal-angles",
-      "perpendicular-bisector",
-      "extraneous-branch",
-      "degenerate-triangle"
-    ],
-    "statement": "Points $A=(a,0)$ and $B=(-a,0)$ with $a>0$ are fixed. A point $P=(x,y)$ moves so that the lines $PA$ and $PB$ are equally inclined to the $y$-axis (each makes the same angle with the vertical). Find the locus of $P$, stating clearly which part, if any, must be excluded.",
-    "answer": "\\[\\boxed{x=0,\\ y\\neq 0}\\]",
-    "trap": "Reading 'equally inclined' as equal signed slopes and writing $\\dfrac{y}{x-a}=\\dfrac{y}{x+a}$ forces (after cancelling $y\\neq0$) $x+a=x-a$, i.e. $a=0$, a contradiction; one then wrongly declares 'no locus'. The correct equal-angle condition is on the magnitudes, $\\left|\\dfrac{y}{x-a}\\right|=\\left|\\dfrac{y}{x+a}\\right|$, equivalently the mirror form $\\dfrac{y}{x-a}=-\\dfrac{y}{x+a}$, giving $x=0$. The squared form $m_A^2=m_B^2$ also throws up the root $y=0$, which is EXTRANEOUS: then $P,A,B$ are collinear, both 'lines' coincide with the $x$-axis, and no genuine two-line equal-angle configuration exists.",
-    "solutions": [
-      {
-        "name": "Equal-angle (magnitude) condition",
-        "steps": [
-          "The acute angle a line of slope $m$ makes with the $y$-axis has tangent $\\left|1/m\\right|$, so 'equally inclined to the $y$-axis' means $\\left|m_A\\right|=\\left|m_B\\right|$, where $m_A=\\dfrac{y}{x-a}$ and $m_B=\\dfrac{y}{x+a}$.",
-          "Square to clear the modulus: $m_A^2=m_B^2\\Rightarrow \\dfrac{y^2}{(x-a)^2}=\\dfrac{y^2}{(x+a)^2}$.",
-          "Bring to one side: $\\dfrac{y^2}{(x-a)^2}-\\dfrac{y^2}{(x+a)^2}=\\dfrac{4axy^2}{(x-a)^2(x+a)^2}=0$, so the locus is governed by $4axy^2=0$.",
-          "Since $a>0$, this gives $x=0$ or $y=0$. The branch $y=0$ puts $P$ on line $AB$, where $PA,PB$ are the same horizontal line — a degenerate, non-genuine equal-angle configuration — so discard it.",
-          "Locus: $\\boxed{x=0,\\ y\\neq 0}$ (the $y$-axis with the origin removed)."
-        ]
-      },
-      {
-        "name": "Reflection / symmetry view",
-        "steps": [
-          "Equal inclination to the $y$-axis means the line $PA$ reflected in the vertical through $P$ has the same direction as $PB$.",
-          "Reflection in the vertical line through $P=(x,y)$ sends $A=(a,0)$ to $A'=(2x-a,0)$; the requirement is that $P,A',B$ be collinear with $A'$ aligned along $PB$.",
-          "For this to hold the configuration $\\{A,B\\}$ must be symmetric about the vertical through $P$, i.e. $P$ is equidistant in the horizontal sense from $A$ and $B$: $\\left|x-a\\right|=\\left|x+a\\right|$, giving $x=0$, the perpendicular bisector of $AB$.",
-          "At $y=0$ the point $P$ falls on $AB$ itself, the foot of the bisector, where the two lines collapse onto the $x$-axis and the equal-angle statement is vacuous — exclude it.",
-          "Locus: $\\boxed{x=0,\\ y\\neq 0}$."
-        ]
-      }
-    ],
-    "remark": "Insight: 'equally inclined to the vertical' is a condition on the magnitudes of the slopes, $\\left|m_A\\right|=\\left|m_B\\right|$, which collapses to the perpendicular bisector $x=0$. Naively dropping the modulus kills the locus; honestly squaring it produces the genuine branch $x=0$ together with a phantom branch $y=0$ that the geometry rejects because there the two lines merge into one."
-  },
-  {
-    "theme": "locus",
-    "themeLabel": "Locus",
-    "title": "Feet that Trace a Cubic",
-    "difficulty": 5,
-    "task": "Find the locus",
-    "tags": [
-      "foot-of-perpendicular",
-      "variable-line",
-      "constant-intercept-sum",
-      "cubic-locus"
-    ],
-    "statement": "A variable line has $x$-intercept $a$ and $y$-intercept $b$ subject to the linear constraint $a+b=c$ (a fixed nonzero constant). From the origin $O$ a perpendicular is dropped to each such line; let $N$ be its foot. Find the locus of $N$ as $a$ varies.",
-    "answer": "\\[\\boxed{(x+y)(x^{2}+y^{2})=c\\,xy}\\]",
-    "trap": "Confusing this family with the classic one: the feet of perpendiculars from $O$ to all lines through a fixed point $(a,b)$ trace the circle $x^{2}+y^{2}=ax+by$. Here, however, the line does NOT pass through a fixed point; instead its intercepts obey $a+b=c$, so $b=c-a$ is forced and only the single parameter $a$ is free. Eliminating that one parameter yields a genuine cubic, not the degree-2 circle. (Numerically the feet fail every conic fit, so the locus truly has degree $3$.)",
-    "solutions": [
-      {
-        "name": "Foot-of-perpendicular formula, then eliminate the parameter",
-        "steps": [
-          "The line with intercepts $a$ and $b=c-a$ is $\\dfrac{x}{a}+\\dfrac{y}{c-a}=1$, i.e. $(c-a)x+ay-a(c-a)=0$.",
-          "For a line $Ax+By+C=0$ the foot of the perpendicular from $O$ is $\\Big(\\dfrac{-AC}{A^{2}+B^{2}},\\dfrac{-BC}{A^{2}+B^{2}}\\Big)$. Here $A=c-a,\\;B=a,\\;C=-a(c-a)$.",
-          "Hence $X=\\dfrac{a(c-a)^{2}}{a^{2}+(c-a)^{2}}$ and $Y=\\dfrac{a^{2}(c-a)}{a^{2}+(c-a)^{2}}$.",
-          "Form the symmetric combinations $X+Y=\\dfrac{ac(c-a)}{a^{2}+(c-a)^{2}}$, $\\;X^{2}+Y^{2}=\\dfrac{a^{2}(c-a)^{2}}{a^{2}+(c-a)^{2}}$, and $XY=\\dfrac{a^{3}(c-a)^{3}}{[a^{2}+(c-a)^{2}]^{2}}$.",
-          "Then $(X+Y)(X^{2}+Y^{2})=\\dfrac{a^{3}c(c-a)^{3}}{[a^{2}+(c-a)^{2}]^{2}}=c\\,XY$, and the parameter $a$ cancels completely.",
-          "Therefore the locus is $\\boxed{(x+y)(x^{2}+y^{2})=c\\,xy}$, a cubic curve."
-        ]
-      },
-      {
-        "name": "Polar elimination",
-        "steps": [
-          "Let $N$ have polar coordinates $(r,\\theta)$, so $X=r\\cos\\theta,\\;Y=r\\sin\\theta$; since $ON\\perp$ line, $\\theta$ is the perpendicular direction and the line is $x\\cos\\theta+y\\sin\\theta=r$.",
-          "Its intercepts are $a=\\dfrac{r}{\\cos\\theta}$ (set $y=0$) and $b=\\dfrac{r}{\\sin\\theta}$ (set $x=0$).",
-          "Impose $a+b=c$: $\\dfrac{r}{\\cos\\theta}+\\dfrac{r}{\\sin\\theta}=c$, i.e. $r(\\sin\\theta+\\cos\\theta)=c\\sin\\theta\\cos\\theta$.",
-          "Multiply by $r^{2}$: $r^{2}\\,(r\\cos\\theta+r\\sin\\theta)=c\\,(r\\cos\\theta)(r\\sin\\theta)$, that is $r^{2}(X+Y)=c\\,XY$.",
-          "Since $r^{2}=X^{2}+Y^{2}$, this is $(X^{2}+Y^{2})(X+Y)=c\\,XY$.",
-          "Hence $\\boxed{(x+y)(x^{2}+y^{2})=c\\,xy}$."
-        ]
-      }
-    ],
-    "remark": "Insight: a constant intercept-sum is a single linear constraint on the two-parameter family of lines, so it leaves one free parameter; eliminating it pushes the degree up to $3$. Contrast the look-alike trap, where lines through a fixed point give the degree-$2$ circle $x^{2}+y^{2}=ax+by$. The polar route makes the elimination almost automatic because $X+Y$, $XY$, and $X^{2}+Y^{2}=r^{2}$ appear directly from the constraint."
-  },
-  {
-    "theme": "locus",
-    "themeLabel": "Locus",
-    "title": "The Centroid Forks",
-    "difficulty": 5,
-    "task": "Find the locus",
-    "tags": [
-      "centroid",
-      "constant-ratio",
-      "modulus",
-      "pair-of-lines",
-      "hybrid"
-    ],
-    "statement": "Triangle $ABC$ has fixed vertices $B=(-2,0)$ and $C=(4,0)$. The third vertex $A=(p,q)$ moves so that its distance from the $y$-axis is always twice its distance from the $x$-axis. Find the locus of the centroid $G$ of triangle $ABC$.",
-    "answer": "\\[\\boxed{(3x-2)^{2}=36y^{2}}\\]",
-    "trap": "Reading 'distance from the $y$-axis is twice the distance from the $x$-axis' as $p=2q$ alone (dropping the companion case $p=-2q$) loses half the locus; the true condition is $|p|=2|q|$. A second trap is forgetting to push the constraint THROUGH the centroid transform $p=3x-2,\\ q=3y$ and instead reporting the locus of $A$ rather than of $G$.",
-    "solutions": [
-      {
-        "name": "Transform the constraint to the centroid",
-        "steps": [
-          "Centroid: $x=\\dfrac{p+(-2)+4}{3}=\\dfrac{p+2}{3}$, $y=\\dfrac{q+0+0}{3}=\\dfrac{q}{3}$.",
-          "Invert these to express $A$ through $G$: $p=3x-2$ and $q=3y$.",
-          "Distance of $A$ from the $y$-axis is $|p|$ and from the $x$-axis is $|q|$, so the moving condition is $|p|=2|q|$.",
-          "Substitute the inverted coordinates: $|3x-2|=2|3y|=6|y|$.",
-          "Square both sides to capture both sign branches at once: $(3x-2)^2=36y^2$.",
-          "Locus: $\\boxed{(3x-2)^{2}=36y^{2}}$, i.e. the pair of lines $3x-6y=2$ and $3x+6y=2$."
-        ]
-      },
-      {
-        "name": "Split into both sign cases, then recombine",
-        "steps": [
-          "From $|p|=2|q|$ the constraint splits into $p=2q$ or $p=-2q$.",
-          "Case $p=2q$: substitute $p=3x-2,\\ q=3y$ to get $3x-2=2(3y)\\Rightarrow 3x-6y=2$.",
-          "Case $p=-2q$: similarly $3x-2=-2(3y)\\Rightarrow 3x+6y=2$.",
-          "Multiply the two line equations to get a single equation of the pair: $(3x-6y-2)(3x+6y-2)=0$.",
-          "Expand: $(3x-2)^2-(6y)^2=0\\Rightarrow (3x-2)^2-36y^2=0$.",
-          "Locus: $\\boxed{(3x-2)^{2}=36y^{2}}$."
-        ]
-      }
-    ],
-    "remark": "Insight: an absolute-value (modulus) constraint encodes a PAIR of lines, not one, and an affine map such as the centroid transform merely translates and scales that pair without changing its kind. So the locus of $G$ is two straight lines, symmetric about the $x$-axis and crossing it at their common point $\\left(\\tfrac23,0\\right)$ — never a single line, which is exactly what dropping one sign branch would give."
-  },
-  {
-    "theme": "locus",
-    "themeLabel": "Locus",
+    "themeLabel": "Locus of a Point",
     "title": "Midpoint of the Intercept Chord of a Pivoting Line",
     "difficulty": 4,
     "task": "Find the locus",
@@ -3157,411 +2992,517 @@ window.PROBLEMS = [
     "remark": "Insight: the family of lines is a pencil through one fixed point, so the natural invariant is the intercept relation $\\frac3a+\\frac2b=1$ — but the unknown is the midpoint, not the intercepts. The midpoint map halves both intercepts, and feeding $a=2x,\\ b=2y$ back into a reciprocal (non-linear) relation turns a straight pencil into a rectangular hyperbola. The reward for honesty is twofold: the correct $xy$-coefficient and the correct branch $x>\\tfrac32,\\ y>1$ carved out by the requirement that both intercepts stay positive."
   },
   {
-    "theme": "transforms",
-    "themeLabel": "Shift of Origin & Rotation of Axes",
-    "title": "The Off-Centre Ellipse",
-    "difficulty": 3,
-    "task": "Determine",
+    "theme": "locus",
+    "themeLabel": "Locus of a Point",
+    "title": "The Midpoint on the Crossing Lines",
+    "difficulty": 5,
+    "task": "Find the locus",
     "tags": [
-      "shift of origin",
-      "conic",
-      "completing the square",
-      "ellipse",
-      "eccentricity"
+      "midpoint",
+      "variable-line",
+      "fixed-point",
+      "rectangular-hyperbola"
     ],
-    "statement": "The conic $x^{2}+4y^{2}-2x+16y+13=0$ has no $xy$ term, so a pure translation of the origin to its centre $(h,k)$ removes both linear terms. Determine the eccentricity of the conic.",
-    "answer": "\\[\\boxed{\\dfrac{\\sqrt3}{2}}\\]",
-    "trap": "Reading off $a^2=1,\\ b^2=4$ from $X^2+4Y^2=4$ and computing $e=\\sqrt{1-1/4}$ with the WRONG axis as major. Dividing by $4$ gives $\\frac{X^2}{4}+\\frac{Y^2}{1}=1$: here $a^2=4$ is the LARGER denominator, so $e^2=1-\\frac{b^2}{a^2}=1-\\frac14$. Mislabelling which of $1,4$ is $a^2$ flips the formula to $e^2=1-\\frac41=-3$, an impossible (negative) value, betraying the error.",
+    "statement": "A variable straight line passes through the fixed point $(2,1)$ and meets the line $y=x$ at $A$ and the line $y=-x$ at $B$. Find the locus of the midpoint $M$ of segment $AB$.",
+    "answer": "\\[\\boxed{x^{2}-y^{2}-2x+y=0}\\]",
+    "trap": "Eliminating the slope $m$ carelessly and stopping at $X=m\\,Y$ without using the full intercept relations — or assuming $M$ traces a line because both feet are on lines. The clean elimination $m=X/Y$ reveals a rectangular HYPERBOLA, and one must not drop solutions while clearing denominators.",
+    "solutions": [
+      {
+        "name": "Slope parameter and resultant",
+        "steps": [
+          "Line through $(2,1)$: $y-1=m(x-2)$.",
+          "Meet $y=x$: $x-1=m(x-2)\\Rightarrow x_A=\\dfrac{1-2m}{1-m}=y_A$.",
+          "Meet $y=-x$: $-x-1=m(x-2)\\Rightarrow x_B=\\dfrac{2m-1}{1+m}$, $y_B=-x_B$.",
+          "Midpoint: $X=\\dfrac{x_A+x_B}{2}=\\dfrac{m(2m-1)}{m^2-1}$, $Y=\\dfrac{y_A+y_B}{2}=\\dfrac{2m-1}{m^2-1}$.",
+          "Notice $X=mY\\Rightarrow m=X/Y$; substitute into $Y=\\dfrac{2m-1}{m^2-1}$ and clear: $X^2-Y^2=2X-Y$.",
+          "Locus: $\\boxed{x^{2}-y^{2}-2x+y=0}$."
+        ]
+      },
+      {
+        "name": "Use of the relation $X=mY$",
+        "steps": [
+          "From the two midpoint expressions, $\\dfrac{X}{Y}=m$ directly.",
+          "Then $Y(m^2-1)=2m-1$ becomes $Y\\!\\left(\\dfrac{X^2}{Y^2}-1\\right)=2\\dfrac{X}{Y}-1$.",
+          "Multiply by $Y$: $X^2-Y^2=2X-Y$.",
+          "Rearrange: $\\boxed{x^{2}-y^{2}-2x+y=0}$, a rectangular hyperbola (asymptotes parallel to $y=\\pm x$, consistent with the two base lines)."
+        ]
+      }
+    ],
+    "remark": "Insight: the midpoint of a chord cut by two perpendicular lines through the origin, as the chord pivots about a fixed point, sweeps a rectangular hyperbola whose asymptote directions match the two base lines. Check the degenerate pivots too: the vertical line $x=2$ gives $M=(2,0)$ and the horizontal line $y=1$ gives $M=(0,1)$, both of which satisfy the locus."
+  },
+  {
+    "theme": "locus",
+    "themeLabel": "Locus of a Point",
+    "title": "The Hidden Branch of the Bisector",
+    "difficulty": 5,
+    "task": "Find the locus",
+    "tags": [
+      "equal-angles",
+      "perpendicular-bisector",
+      "extraneous-branch",
+      "degenerate-triangle"
+    ],
+    "statement": "Points $A=(a,0)$ and $B=(-a,0)$ with $a>0$ are fixed. A point $P=(x,y)$ moves so that the lines $PA$ and $PB$ are equally inclined to the $y$-axis (each makes the same angle with the vertical). Find the locus of $P$, stating clearly which part, if any, must be excluded.",
+    "answer": "\\[\\boxed{x=0,\\ y\\neq 0}\\]",
+    "trap": "Reading 'equally inclined' as equal signed slopes and writing $\\dfrac{y}{x-a}=\\dfrac{y}{x+a}$ forces (after cancelling $y\\neq0$) $x+a=x-a$, i.e. $a=0$, a contradiction; one then wrongly declares 'no locus'. The correct equal-angle condition is on the magnitudes, $\\left|\\dfrac{y}{x-a}\\right|=\\left|\\dfrac{y}{x+a}\\right|$, equivalently the mirror form $\\dfrac{y}{x-a}=-\\dfrac{y}{x+a}$, giving $x=0$. The squared form $m_A^2=m_B^2$ also throws up the root $y=0$, which is EXTRANEOUS: then $P,A,B$ are collinear, both 'lines' coincide with the $x$-axis, and no genuine two-line equal-angle configuration exists.",
+    "solutions": [
+      {
+        "name": "Equal-angle (magnitude) condition",
+        "steps": [
+          "The acute angle a line of slope $m$ makes with the $y$-axis has tangent $\\left|1/m\\right|$, so 'equally inclined to the $y$-axis' means $\\left|m_A\\right|=\\left|m_B\\right|$, where $m_A=\\dfrac{y}{x-a}$ and $m_B=\\dfrac{y}{x+a}$.",
+          "Square to clear the modulus: $m_A^2=m_B^2\\Rightarrow \\dfrac{y^2}{(x-a)^2}=\\dfrac{y^2}{(x+a)^2}$.",
+          "Bring to one side: $\\dfrac{y^2}{(x-a)^2}-\\dfrac{y^2}{(x+a)^2}=\\dfrac{4axy^2}{(x-a)^2(x+a)^2}=0$, so the locus is governed by $4axy^2=0$.",
+          "Since $a>0$, this gives $x=0$ or $y=0$. The branch $y=0$ puts $P$ on line $AB$, where $PA,PB$ are the same horizontal line — a degenerate, non-genuine equal-angle configuration — so discard it.",
+          "Locus: $\\boxed{x=0,\\ y\\neq 0}$ (the $y$-axis with the origin removed)."
+        ]
+      },
+      {
+        "name": "Reflection / symmetry view",
+        "steps": [
+          "Equal inclination to the $y$-axis means the line $PA$ reflected in the vertical through $P$ has the same direction as $PB$.",
+          "Reflection in the vertical line through $P=(x,y)$ sends $A=(a,0)$ to $A'=(2x-a,0)$; the requirement is that $P,A',B$ be collinear with $A'$ aligned along $PB$.",
+          "For this to hold the configuration $\\{A,B\\}$ must be symmetric about the vertical through $P$, i.e. $P$ is equidistant in the horizontal sense from $A$ and $B$: $\\left|x-a\\right|=\\left|x+a\\right|$, giving $x=0$, the perpendicular bisector of $AB$.",
+          "At $y=0$ the point $P$ falls on $AB$ itself, the foot of the bisector, where the two lines collapse onto the $x$-axis and the equal-angle statement is vacuous — exclude it.",
+          "Locus: $\\boxed{x=0,\\ y\\neq 0}$."
+        ]
+      }
+    ],
+    "remark": "Insight: 'equally inclined to the vertical' is a condition on the magnitudes of the slopes, $\\left|m_A\\right|=\\left|m_B\\right|$, which collapses to the perpendicular bisector $x=0$. Naively dropping the modulus kills the locus; honestly squaring it produces the genuine branch $x=0$ together with a phantom branch $y=0$ that the geometry rejects because there the two lines merge into one."
+  },
+  {
+    "theme": "locus",
+    "themeLabel": "Locus of a Point",
+    "title": "Feet that Trace a Cubic",
+    "difficulty": 5,
+    "task": "Find the locus",
+    "tags": [
+      "foot-of-perpendicular",
+      "variable-line",
+      "constant-intercept-sum",
+      "cubic-locus"
+    ],
+    "statement": "A variable line has $x$-intercept $a$ and $y$-intercept $b$ subject to the linear constraint $a+b=c$ (a fixed nonzero constant). From the origin $O$ a perpendicular is dropped to each such line; let $N$ be its foot. Find the locus of $N$ as $a$ varies.",
+    "answer": "\\[\\boxed{(x+y)(x^{2}+y^{2})=c\\,xy}\\]",
+    "trap": "Confusing this family with the classic one: the feet of perpendiculars from $O$ to all lines through a fixed point $(a,b)$ trace the circle $x^{2}+y^{2}=ax+by$. Here, however, the line does NOT pass through a fixed point; instead its intercepts obey $a+b=c$, so $b=c-a$ is forced and only the single parameter $a$ is free. Eliminating that one parameter yields a genuine cubic, not the degree-2 circle. (Numerically the feet fail every conic fit, so the locus truly has degree $3$.)",
+    "solutions": [
+      {
+        "name": "Foot-of-perpendicular formula, then eliminate the parameter",
+        "steps": [
+          "The line with intercepts $a$ and $b=c-a$ is $\\dfrac{x}{a}+\\dfrac{y}{c-a}=1$, i.e. $(c-a)x+ay-a(c-a)=0$.",
+          "For a line $Ax+By+C=0$ the foot of the perpendicular from $O$ is $\\Big(\\dfrac{-AC}{A^{2}+B^{2}},\\dfrac{-BC}{A^{2}+B^{2}}\\Big)$. Here $A=c-a,\\;B=a,\\;C=-a(c-a)$.",
+          "Hence $X=\\dfrac{a(c-a)^{2}}{a^{2}+(c-a)^{2}}$ and $Y=\\dfrac{a^{2}(c-a)}{a^{2}+(c-a)^{2}}$.",
+          "Form the symmetric combinations $X+Y=\\dfrac{ac(c-a)}{a^{2}+(c-a)^{2}}$, $\\;X^{2}+Y^{2}=\\dfrac{a^{2}(c-a)^{2}}{a^{2}+(c-a)^{2}}$, and $XY=\\dfrac{a^{3}(c-a)^{3}}{[a^{2}+(c-a)^{2}]^{2}}$.",
+          "Then $(X+Y)(X^{2}+Y^{2})=\\dfrac{a^{3}c(c-a)^{3}}{[a^{2}+(c-a)^{2}]^{2}}=c\\,XY$, and the parameter $a$ cancels completely.",
+          "Therefore the locus is $\\boxed{(x+y)(x^{2}+y^{2})=c\\,xy}$, a cubic curve."
+        ]
+      },
+      {
+        "name": "Polar elimination",
+        "steps": [
+          "Let $N$ have polar coordinates $(r,\\theta)$, so $X=r\\cos\\theta,\\;Y=r\\sin\\theta$; since $ON\\perp$ line, $\\theta$ is the perpendicular direction and the line is $x\\cos\\theta+y\\sin\\theta=r$.",
+          "Its intercepts are $a=\\dfrac{r}{\\cos\\theta}$ (set $y=0$) and $b=\\dfrac{r}{\\sin\\theta}$ (set $x=0$).",
+          "Impose $a+b=c$: $\\dfrac{r}{\\cos\\theta}+\\dfrac{r}{\\sin\\theta}=c$, i.e. $r(\\sin\\theta+\\cos\\theta)=c\\sin\\theta\\cos\\theta$.",
+          "Multiply by $r^{2}$: $r^{2}\\,(r\\cos\\theta+r\\sin\\theta)=c\\,(r\\cos\\theta)(r\\sin\\theta)$, that is $r^{2}(X+Y)=c\\,XY$.",
+          "Since $r^{2}=X^{2}+Y^{2}$, this is $(X^{2}+Y^{2})(X+Y)=c\\,XY$.",
+          "Hence $\\boxed{(x+y)(x^{2}+y^{2})=c\\,xy}$."
+        ]
+      }
+    ],
+    "remark": "Insight: a constant intercept-sum is a single linear constraint on the two-parameter family of lines, so it leaves one free parameter; eliminating it pushes the degree up to $3$. Contrast the look-alike trap, where lines through a fixed point give the degree-$2$ circle $x^{2}+y^{2}=ax+by$. The polar route makes the elimination almost automatic because $X+Y$, $XY$, and $X^{2}+Y^{2}=r^{2}$ appear directly from the constraint."
+  },
+  {
+    "theme": "locus",
+    "themeLabel": "Locus of a Point",
+    "title": "The Centroid Forks",
+    "difficulty": 5,
+    "task": "Find the locus",
+    "tags": [
+      "centroid",
+      "constant-ratio",
+      "modulus",
+      "pair-of-lines",
+      "hybrid"
+    ],
+    "statement": "Triangle $ABC$ has fixed vertices $B=(-2,0)$ and $C=(4,0)$. The third vertex $A=(p,q)$ moves so that its distance from the $y$-axis is always twice its distance from the $x$-axis. Find the locus of the centroid $G$ of triangle $ABC$.",
+    "answer": "\\[\\boxed{(3x-2)^{2}=36y^{2}}\\]",
+    "trap": "Reading 'distance from the $y$-axis is twice the distance from the $x$-axis' as $p=2q$ alone (dropping the companion case $p=-2q$) loses half the locus; the true condition is $|p|=2|q|$. A second trap is forgetting to push the constraint THROUGH the centroid transform $p=3x-2,\\ q=3y$ and instead reporting the locus of $A$ rather than of $G$.",
+    "solutions": [
+      {
+        "name": "Transform the constraint to the centroid",
+        "steps": [
+          "Centroid: $x=\\dfrac{p+(-2)+4}{3}=\\dfrac{p+2}{3}$, $y=\\dfrac{q+0+0}{3}=\\dfrac{q}{3}$.",
+          "Invert these to express $A$ through $G$: $p=3x-2$ and $q=3y$.",
+          "Distance of $A$ from the $y$-axis is $|p|$ and from the $x$-axis is $|q|$, so the moving condition is $|p|=2|q|$.",
+          "Substitute the inverted coordinates: $|3x-2|=2|3y|=6|y|$.",
+          "Square both sides to capture both sign branches at once: $(3x-2)^2=36y^2$.",
+          "Locus: $\\boxed{(3x-2)^{2}=36y^{2}}$, i.e. the pair of lines $3x-6y=2$ and $3x+6y=2$."
+        ]
+      },
+      {
+        "name": "Split into both sign cases, then recombine",
+        "steps": [
+          "From $|p|=2|q|$ the constraint splits into $p=2q$ or $p=-2q$.",
+          "Case $p=2q$: substitute $p=3x-2,\\ q=3y$ to get $3x-2=2(3y)\\Rightarrow 3x-6y=2$.",
+          "Case $p=-2q$: similarly $3x-2=-2(3y)\\Rightarrow 3x+6y=2$.",
+          "Multiply the two line equations to get a single equation of the pair: $(3x-6y-2)(3x+6y-2)=0$.",
+          "Expand: $(3x-2)^2-(6y)^2=0\\Rightarrow (3x-2)^2-36y^2=0$.",
+          "Locus: $\\boxed{(3x-2)^{2}=36y^{2}}$."
+        ]
+      }
+    ],
+    "remark": "Insight: an absolute-value (modulus) constraint encodes a PAIR of lines, not one, and an affine map such as the centroid transform merely translates and scales that pair without changing its kind. So the locus of $G$ is two straight lines, symmetric about the $x$-axis and crossing it at their common point $\\left(\\tfrac23,0\\right)$ — never a single line, which is exactly what dropping one sign branch would give."
+  },
+  {
+    "theme": "translation",
+    "themeLabel": "Translation & Shift of Origin",
+    "title": "A Line Seen From a New Origin",
+    "difficulty": 3,
+    "task": "New equation after shift",
+    "tags": [
+      "translation",
+      "shift of origin",
+      "straight line",
+      "coordinate transformation"
+    ],
+    "statement": "The origin is moved (without turning the axes) to the point  $(2,\\,-1)$ . Find the equation of the line  $3x-4y+7=0$  referred to the new axes  $OX,\\,OY$ .",
+    "answer": " $$\\boxed{3X-4Y+17=0}$$ ",
+    "trap": "Substituting  $x=X-2,\\ y=Y+1$  (shifting the wrong way) gives  $3X-4Y-3=0$ . The old coordinates equal the new ones plus the shift:  $x=X+2,\\ y=Y-1$ , not minus.",
+    "solutions": [
+      {
+        "name": "Direct substitution  $x=X+h,\\ y=Y+k$ ",
+        "steps": [
+          "When the origin goes to  $(h,k)=(2,-1)$ , a point keeps its old coordinates  $x=X+h=X+2$  and  $y=Y+k=Y-1$ .",
+          "Put these into  $3x-4y+7=0$ :  $\\;3(X+2)-4(Y-1)+7=0$ .",
+          "Expand:  $3X+6-4Y+4+7=0$ , i.e.  $\\;3X-4Y+17=0$ ."
+        ]
+      },
+      {
+        "name": "Track a single point",
+        "steps": [
+          "The point  $(1,1)$  lies on the line since  $3(1)-4(1)+7=6\\neq0$  — pick instead  $(-1,1)$ :  $3(-1)-4(1)+7=0$ , yes it lies on the line.",
+          "Its new coordinates are  $X=x-2=-3,\\ Y=y+1=2$ . A parallel test point  $(3,4)$ :  $3(3)-4(4)+7=0$  gives new  $(1,5)$ .",
+          "The slope is unchanged by a pure shift, so the new line is  $3X-4Y+c=0$ ; forcing  $(-3,2)$  on it gives  $c=17$ , hence  $3X-4Y+17=0$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A translation only changes the constant term of a linear equation — the coefficients of  $x$  and  $y$  (hence the slope and direction) are frozen. The whole content of the problem is getting the sign of the shift right: old  $=$  new  $+$  origin-position."
+  },
+  {
+    "theme": "translation",
+    "themeLabel": "Translation & Shift of Origin",
+    "title": "New Address of a Point",
+    "difficulty": 3,
+    "task": "Coordinates after origin shift",
+    "tags": [
+      "translation",
+      "shift of origin",
+      "coordinates",
+      "section formula"
+    ],
+    "statement": "Keeping the axes parallel, the origin is shifted to  $(2,\\,4)$ . Find the coordinates of the point  $P(5,\\,-3)$  with respect to the new origin, and verify that the distance of  $P$  from the new origin equals  $\\sqrt{(5-2)^2+(-3-4)^2}$ .",
+    "answer": " $$\\boxed{P\\equiv(3,\\,-7)\\ \\text{in new axes};\\quad OP=\\sqrt{58}}$$ ",
+    "trap": "Writing the new coordinates as  $(2-5,\\,4-(-3))=(-3,7)$  reverses the subtraction. The new coordinate is (old point)  $-$  (new origin):  $X=x-h,\\ Y=y-k$ .",
+    "solutions": [
+      {
+        "name": "Translation formula  $X=x-h,\\ Y=y-k$ ",
+        "steps": [
+          "Here  $(h,k)=(2,4)$ , so  $X=x-h=5-2=3$  and  $Y=y-k=-3-4=-7$ .",
+          "Thus  $P$  is  $(3,-7)$  relative to the new origin.",
+          "Distance from the new origin:  $\\sqrt{3^2+(-7)^2}=\\sqrt{9+49}=\\sqrt{58}$ , matching  $\\sqrt{(5-2)^2+(-3-4)^2}=\\sqrt{9+49}=\\sqrt{58}$ ."
+        ]
+      },
+      {
+        "name": "Vector displacement",
+        "steps": [
+          "The displacement vector from the new origin  $(2,4)$  to  $P(5,-3)$  is  $\\langle 5-2,\\,-3-4\\rangle=\\langle 3,-7\\rangle$ .",
+          "In the translated frame the new origin is the reference point, so  $P$  has coordinates exactly equal to this displacement:  $(3,-7)$ .",
+          "Its length  $\\lvert\\langle3,-7\\rangle\\rvert=\\sqrt{58}$  is the unchanged distance  $OP$ , since translations preserve distance."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A pure translation is just a re-labelling: every point's new coordinates are its position vector measured from the new origin. Distances and the shapes of figures are invariant — only the address changes."
+  },
+  {
+    "theme": "translation",
+    "themeLabel": "Translation & Shift of Origin",
+    "title": "Killing the Linear Terms of a Circle",
+    "difficulty": 4,
+    "task": "Shift to remove first-degree terms",
+    "tags": [
+      "translation",
+      "shift of origin",
+      "completing the square",
+      "centre"
+    ],
+    "statement": "Find the point to which the origin must be shifted so that the equation  $x^2+y^2-6x+4y-3=0$  has no first-degree terms, and state the transformed equation.",
+    "answer": " $$\\boxed{\\text{Shift to }(3,\\,-2);\\quad X^2+Y^2=16}$$ ",
+    "trap": "Reading the centre off the wrong signs as  $(-3,2)$  (taking the coefficients directly). For  $x^2-6x$  the completing value is  $+3$ , and for  $y^2+4y$  it is  $-2$ .",
     "solutions": [
       {
         "name": "Complete the square",
         "steps": [
-          "Group: $(x^{2}-2x)+4(y^{2}+4y)+13=0$.",
-          "$(x-1)^2-1+4\\big((y+2)^2-4\\big)+13=0\\Rightarrow (x-1)^2+4(y+2)^2=4$.",
-          "Shift $X=x-1,\\ Y=y+2$: $X^2+4Y^2=4$, i.e. $\\dfrac{X^2}{4}+\\dfrac{Y^2}{1}=1$.",
-          "Major semi-axis$^2=a^2=4$, minor$^2=b^2=1$, so $e=\\sqrt{1-\\tfrac{b^2}{a^2}}=\\sqrt{1-\\tfrac14}=\\dfrac{\\sqrt3}{2}$."
+          "Group:  $(x^2-6x)+(y^2+4y)=3$ , then  $(x-3)^2-9+(y+2)^2-4=3$ .",
+          "So  $(x-3)^2+(y+2)^2=16$ . Putting  $X=x-3,\\ Y=y+2$  (origin at  $(3,-2)$ ) gives  $X^2+Y^2=16$ , free of linear terms.",
+          "Hence the origin must move to  $(3,-2)$  and the new equation is  $X^2+Y^2=16$ ."
         ]
       },
       {
-        "name": "Solve for the centre directly",
+        "name": "Impose vanishing linear coefficients",
         "steps": [
-          "Centre kills linear terms: set $\\partial_x f=2x-2=0,\\ \\partial_y f=8y+16=0\\Rightarrow (h,k)=(1,-2)$.",
-          "Value at centre: $f(1,-2)=1+16-2-32+13=-4$, so the translated equation is $X^2+4Y^2-4=0$.",
-          "Hence $\\dfrac{X^2}{4}+\\dfrac{Y^2}{1}=1$; the larger denominator $4$ is $a^2$.",
-          "$e=\\sqrt{1-\\tfrac{1}{4}}=\\dfrac{\\sqrt3}{2}$."
+          "Substitute  $x=X+h,\\ y=Y+k$ :  $\\;(X+h)^2+(Y+k)^2-6(X+h)+4(Y+k)-3=0$ .",
+          "The first-degree part is  $(2h-6)X+(2k+4)Y$ . Setting  $2h-6=0$  and  $2k+4=0$  gives  $h=3,\\ k=-2$ .",
+          "The constant becomes  $h^2+k^2-6h+4k-3=9+4-18-8-3=-16$ , so  $X^2+Y^2-16=0$ , i.e.  $X^2+Y^2=16$ ."
         ]
       }
     ],
-    "remark": "Insight: a translation never changes the second-degree part, so it can only ever cancel linear terms — it cannot change the conic's shape or eccentricity. The only judgement call is which axis is major after dividing through."
+    "remark": "**Insight.** Removing the first-degree terms is the same as translating the origin to the curve's centre. The constant you are left with is the value of the original expression evaluated at that centre — here  $-16$  — a fast check on your arithmetic."
   },
   {
-    "theme": "transforms",
-    "themeLabel": "Shift of Origin & Rotation of Axes",
-    "title": "The Collapsing Conic",
-    "difficulty": 3,
-    "task": "Classify",
-    "tags": [
-      "rotation of axes",
-      "degenerate conic",
-      "perfect square",
-      "parallel lines",
-      "discriminant"
-    ],
-    "statement": "Rotate the axes through the acute angle that removes the $xy$ term from $3x^{2}+2\\sqrt3\\,xy+y^{2}-12=0$, and hence classify the curve.",
-    "answer": "\\[\\boxed{\\text{a pair of parallel straight lines } \\sqrt3\\,x+y=\\pm 2\\sqrt3}\\]",
-    "trap": "Assuming the second-degree part of a two-variable quadratic always describes an ellipse, hyperbola or parabola \"with two genuine axes,\" and reporting an ellipse or hyperbola. Here $3x^2+2\\sqrt3xy+y^2=(\\sqrt3x+y)^2$ is a perfect square (discriminant $h^2-ab=3-3=0$), so the rotated form has NO $Y^2$ term: it collapses to $X^2=\\text{const}$, a pair of parallel lines.",
-    "solutions": [
-      {
-        "name": "Rotate by the prescribed angle",
-        "steps": [
-          "With $a=3,\\ b=1,\\ 2h=2\\sqrt3$: $\\cot 2\\theta=\\dfrac{a-b}{2h}=\\dfrac{2}{2\\sqrt3}=\\dfrac{1}{\\sqrt3}\\Rightarrow 2\\theta=60^\\circ,\\ \\theta=30^\\circ.$",
-          "Substitute $x=X\\cos30^\\circ-Y\\sin30^\\circ,\\ y=X\\sin30^\\circ+Y\\cos30^\\circ$ into the quadratic.",
-          "The result is $4X^2-12=0$ (the $Y^2$ and $XY$ terms both vanish), i.e. $X^2=3$.",
-          "$X=\\pm\\sqrt3$ are two lines parallel to the new $Y$-axis: a degenerate conic, a pair of parallel lines."
-        ]
-      },
-      {
-        "name": "Factor first",
-        "steps": [
-          "Notice $3x^2+2\\sqrt3xy+y^2=(\\sqrt3\\,x+y)^2$.",
-          "So the equation is $(\\sqrt3x+y)^2=12\\Rightarrow \\sqrt3x+y=\\pm2\\sqrt3$.",
-          "These are two parallel lines; rotation merely makes this visible as $X^2=3$ (indeed $X=\\tfrac{\\sqrt3x+y}{2}$, so $X=\\pm\\sqrt3$ is exactly $\\sqrt3x+y=\\pm2\\sqrt3$).",
-          "Discriminant check $h^2-ab=3-3=0$ gives parabolic type, and the full $3\\times3$ determinant $\\Delta=0$ confirms degeneracy: the parallel-line case."
-        ]
-      }
-    ],
-    "remark": "Insight: $\\cot2\\theta=(a-b)/2h$ is only the first step. Whether the rotated conic is genuine or degenerate is decided by the invariants $h^2-ab$ and the full $3\\times3$ determinant $\\Delta$ — never by the rotation alone. Here $h^2-ab=0$ and $\\Delta=0$ force two parallel lines, $2\\sqrt3$ apart."
-  },
-  {
-    "theme": "transforms",
-    "themeLabel": "Shift of Origin & Rotation of Axes",
-    "title": "Centre, Then Spin",
+    "theme": "translation",
+    "themeLabel": "Translation & Shift of Origin",
+    "title": "Centre of an Unequal-Coefficient Curve",
     "difficulty": 4,
-    "task": "Evaluate",
+    "task": "Shift to remove linear terms",
     "tags": [
+      "translation",
       "shift of origin",
-      "rotation of axes",
-      "eigenvalues",
-      "ellipse",
-      "area"
+      "completing the square",
+      "second-degree curve"
     ],
-    "statement": "The conic $5x^{2}+4xy+2y^{2}-24x-12y+18=0$ requires BOTH a translation to its centre and a rotation to reach standard form. Evaluate the area enclosed by the curve.",
-    "answer": "\\[\\boxed{2\\sqrt6\\,\\pi}\\]",
-    "trap": "Trying to kill the linear terms by translation alone and then reading off the area as if the conic were already axis-aligned (ignoring the surviving $4XY$ term), OR rotating first while the linear terms are still present (which leaves stubborn linear terms after rotation). The clean route is: translate to the centre to get $5X^2+4XY+2Y^2=12$, THEN rotate. Ignoring the cross term gives the wrong area $\\tfrac{6\\sqrt{10}}{5}\\pi\\approx 11.9$ instead of $2\\sqrt6\\,\\pi\\approx 15.4$.",
+    "statement": "By a suitable shift of the origin (axes kept parallel), reduce  $2x^2+3y^2-8x+12y+5=0$  to a form with no first-degree terms. Give the new origin and the simplified equation.",
+    "answer": " $$\\boxed{\\text{Shift to }(2,\\,-2);\\quad 2X^2+3Y^2=15}$$ ",
+    "trap": "Forgetting that each square is multiplied by its leading coefficient: writing  $2(x-2)^2-4$  instead of  $2(x-2)^2-8$ . The constant pulled out is  $2\\cdot(-2)^2=8$ , not  $4$ .",
     "solutions": [
       {
-        "name": "Translate to centre, then diagonalise",
+        "name": "Complete the square with leading coefficients",
         "steps": [
-          "Centre from $\\partial_x f=10x+4y-24=0,\\ \\partial_y f=4x+4y-12=0\\Rightarrow (h,k)=(2,1)$.",
-          "Value at centre $f(2,1)=-12$, so the translated conic is $5X^2+4XY+2Y^2=12$.",
-          "Eigenvalues of $\\begin{pmatrix}5&2\\\\2&2\\end{pmatrix}$ are $6$ and $1$ (sum $7=a+b$, product $6=ab-h^2$), giving $6u^2+v^2=12$.",
-          "Standard form $\\dfrac{u^2}{2}+\\dfrac{v^2}{12}=1$; area $=\\pi\\sqrt2\\,\\sqrt{12}=2\\sqrt6\\,\\pi.$"
+          "Factor:  $2(x^2-4x)+3(y^2+4y)+5=0$ .",
+          "Complete:  $2[(x-2)^2-4]+3[(y+2)^2-4]+5=0\\Rightarrow 2(x-2)^2+3(y+2)^2-8-12+5=0$ .",
+          "So  $2(x-2)^2+3(y+2)^2=15$ . With  $X=x-2,\\ Y=y+2$  (origin at  $(2,-2)$ ):  $\\;2X^2+3Y^2=15$ ."
         ]
       },
       {
-        "name": "Area via the conic determinant",
+        "name": "Vanishing linear coefficients",
         "steps": [
-          "For $ax^2+2hxy+by^2+\\dots$, the centred form is $ax^2+2hxy+by^2=-\\Delta/(ab-h^2)$ where $\\Delta$ is the full discriminant; here this reduces to $5X^2+4XY+2Y^2=12$.",
-          "Area of $ax^2+2hxy+by^2=C$ is $\\dfrac{\\pi C}{\\sqrt{ab-h^2}}$ (for an ellipse, $ab-h^2>0$).",
-          "Here $a=5,\\ b=2,\\ h=2,\\ C=12$: $ab-h^2=10-4=6$.",
-          "Area $=\\dfrac{\\pi\\cdot12}{\\sqrt6}=\\dfrac{12\\pi}{\\sqrt6}=2\\sqrt6\\,\\pi.$"
+          "Put  $x=X+h,\\ y=Y+k$ ; the coefficient of  $X$  is  $4h-8$  and of  $Y$  is  $6k+12$ .",
+          "Setting both to zero:  $h=2,\\ k=-2$ .",
+          "Constant  $=2h^2+3k^2-8h+12k+5=8+12-16-24+5=-15$ , giving  $2X^2+3Y^2-15=0$ , i.e.  $2X^2+3Y^2=15$ ."
         ]
       }
     ],
-    "remark": "Insight: order matters. Translation removes linear terms regardless of the $xy$ term; rotation removes the $xy$ term regardless of linear terms — but only the sequence centre-then-rotate gives a clean two-step reduction. The area formula $\\pi C/\\sqrt{ab-h^2}$ packages both invariants, since $ab-h^2$ is the product of the eigenvalues and is invariant under rotation."
+    "remark": "**Insight.** When the squared terms carry coefficients  $a$  and  $b$ , the linear terms vanish at  $h=-\\tfrac{D}{2a},\\ k=-\\tfrac{E}{2b}$  where  $D,E$  are the linear coefficients. The leftover constant is again the curve evaluated at the new origin."
   },
   {
-    "theme": "transforms",
-    "themeLabel": "Shift of Origin & Rotation of Axes",
-    "title": "The Two Quantities Rotation Cannot Touch",
+    "theme": "translation",
+    "themeLabel": "Translation & Shift of Origin",
+    "title": "Where Must the Origin Sit on a Line",
     "difficulty": 4,
-    "task": "Prove that",
+    "task": "Shift making a line homogeneous",
     "tags": [
-      "rotation of axes",
-      "invariants",
-      "discriminant",
-      "trace",
-      "proof"
-    ],
-    "statement": "Under a rotation of axes through any angle $\\theta$, the quadratic form $ax^{2}+2hxy+by^{2}$ becomes $a'X^{2}+2h'XY+b'Y^{2}$. Prove that $a'+b'=a+b$ and $h'^{2}-a'b'=h^{2}-ab$, and explain why these force the classification (ellipse / parabola / hyperbola) to be rotation-independent.",
-    "answer": "\\[\\boxed{a'+b'=a+b,\\qquad h'^{2}-a'b'=h^{2}-ab\\ (\\text{proved})}\\]",
-    "trap": "\"Proving\" the invariants by checking one convenient angle (e.g. $\\theta=45^\\circ$) and declaring it general. A single angle proves nothing about all $\\theta$; the identities must hold as functions of $\\theta$. Also tempting: claiming $a'b'$ alone is invariant — it is not, only the combination $h^{2}-ab$ (equivalently the discriminant) is, and the $\\theta=45^\\circ$ value $a'b'=\\tfrac14\\big((a+b)^{2}-4h^{2}\\big)$ already differs from $ab$.",
-    "solutions": [
-      {
-        "name": "Direct substitution and trig identities",
-        "steps": [
-          "Substitute $x=X\\cos\\theta-Y\\sin\\theta,\\ y=X\\sin\\theta+Y\\cos\\theta$ and collect the new coefficients: $a'=a\\cos^{2}\\theta+2h\\sin\\theta\\cos\\theta+b\\sin^{2}\\theta$, $\\ b'=a\\sin^{2}\\theta-2h\\sin\\theta\\cos\\theta+b\\cos^{2}\\theta$, and $2h'=(b-a)\\sin2\\theta+2h\\cos2\\theta$.",
-          "Add the first two: $a'+b'=a(\\cos^{2}\\theta+\\sin^{2}\\theta)+b(\\cos^{2}\\theta+\\sin^{2}\\theta)=a+b$, because the $\\pm2h\\sin\\theta\\cos\\theta$ terms cancel. This is an identity in $\\theta$, not a check at one angle.",
-          "For the second invariant write everything in double angles: $a'=\\tfrac{a+b}{2}+\\tfrac{a-b}{2}\\cos2\\theta+h\\sin2\\theta$, $\\ b'=\\tfrac{a+b}{2}-\\tfrac{a-b}{2}\\cos2\\theta-h\\sin2\\theta$, $\\ h'=\\tfrac{b-a}{2}\\sin2\\theta+h\\cos2\\theta$.",
-          "Then $a'b'=\\big(\\tfrac{a+b}{2}\\big)^{2}-\\big(\\tfrac{a-b}{2}\\cos2\\theta+h\\sin2\\theta\\big)^{2}$ and $h'^{2}=\\big(\\tfrac{b-a}{2}\\sin2\\theta+h\\cos2\\theta\\big)^{2}$. Subtracting, the cross terms cancel and $\\sin^{2}2\\theta+\\cos^{2}2\\theta=1$ collapses the rest: $h'^{2}-a'b'=h^{2}+\\big(\\tfrac{a-b}{2}\\big)^{2}-\\big(\\tfrac{a+b}{2}\\big)^{2}=h^{2}-ab$, for every $\\theta$."
-        ]
-      },
-      {
-        "name": "Matrix trace and determinant",
-        "steps": [
-          "Write the form as $\\mathbf{v}^{\\top}M\\mathbf{v}$ with $M=\\begin{pmatrix}a&h\\\\h&b\\end{pmatrix}$ and $\\mathbf{v}=(x,y)^{\\top}$. A rotation is $\\mathbf{v}=R\\mathbf{w}$ with $R$ orthogonal ($R^{\\top}R=I$, $\\det R=1$), so the form becomes $\\mathbf{w}^{\\top}(R^{\\top}MR)\\mathbf{w}$ and $M'=R^{\\top}MR=\\begin{pmatrix}a'&h'\\\\h'&b'\\end{pmatrix}$.",
-          "Trace is invariant under similarity: $\\operatorname{tr}(M')=\\operatorname{tr}(R^{\\top}MR)=\\operatorname{tr}(MRR^{\\top})=\\operatorname{tr}(M)$, hence $a'+b'=a+b$.",
-          "Determinant is multiplicative: $\\det(M')=\\det(R^{\\top})\\det(M)\\det(R)=(\\det R)^{2}\\det M=\\det M$, hence $a'b'-h'^{2}=ab-h^{2}$, i.e. $h'^{2}-a'b'=h^{2}-ab$.",
-          "Both proofs are basis-free, so they hold for every rotation angle at once."
-        ]
-      },
-      {
-        "name": "Why the conic type cannot change",
-        "steps": [
-          "The type of the central conic $ax^{2}+2hxy+by^{2}+\\dots=0$ is decided by the sign of the discriminant $h^{2}-ab$ (equivalently $-\\det M$): negative gives an ellipse, zero a parabola, positive a hyperbola.",
-          "Since $h'^{2}-a'b'=h^{2}-ab$ exactly, the sign of the discriminant is identical in the rotated frame.",
-          "Therefore the classification ellipse / parabola / hyperbola is the same in every rotated coordinate system; rotation can align the axes but never convert one type into another."
-        ]
-      }
-    ],
-    "remark": "Insight: a rotation is an orthogonal change of basis, and trace and determinant are the only two basis-free numbers attached to a symmetric $2\\times2$ matrix. The eigenvalues themselves move with $\\theta$ (so $a'b'$ is not invariant), but their sum and product are pinned down — which is exactly why the geometric type of a central conic is rotation-proof."
-  },
-  {
-    "theme": "transforms",
-    "themeLabel": "Shift of Origin & Rotation of Axes",
-    "title": "Which Way Does the Frame Turn?",
-    "difficulty": 4,
-    "task": "Find all",
-    "tags": [
-      "rotation of axes",
-      "sign of angle",
-      "cot2theta",
-      "degenerate conic",
-      "direction trap"
-    ],
-    "statement": "Rotating the axes about the origin through an acute angle $\\theta$ is to remove the $xy$ term from $x^{2}+2\\sqrt3\\,xy+3y^{2}=0$. Find every $\\theta\\in(0^{\\circ},90^{\\circ})$ that achieves this, and identify what the locus actually is.",
-    "answer": "\\[\\boxed{\\theta=60^{\\circ}\\quad\\text{(unique acute angle);}\\quad\\text{the locus is the single line}\\ x+\\sqrt3\\,y=0.}\\]",
-    "trap": "Computing $\\cot 2\\theta=\\dfrac{a-b}{2h}=\\dfrac{1-3}{2\\sqrt3}=-\\dfrac{1}{\\sqrt3}$ and then carelessly reading off the angle whose cotangent is $+\\dfrac{1}{\\sqrt3}$, namely $2\\theta=60^\\circ$, gives the wrong $\\theta=30^\\circ$. The negative sign forces $2\\theta$ into the second quadrant, so $2\\theta=120^\\circ$ and $\\theta=60^\\circ$. At $\\theta=30^\\circ$ the new cross-term coefficient is $4\\sin(2\\theta+60^\\circ)=4\\sin120^\\circ=2\\sqrt3\\neq0$, so the $xy$ term is NOT removed.",
-    "solutions": [
-      {
-        "name": "Honour the sign of cot 2theta",
-        "steps": [
-          "Here $a=1,\\ b=3,\\ 2h=2\\sqrt3$, so $\\cot 2\\theta=\\dfrac{a-b}{2h}=\\dfrac{1-3}{2\\sqrt3}=-\\dfrac{1}{\\sqrt3}.$",
-          "A negative cotangent puts $2\\theta$ in the second quadrant: with $2\\theta\\in(0^\\circ,180^\\circ)$ the only value is $2\\theta=120^\\circ$, hence $\\theta=60^\\circ$ is the unique acute solution.",
-          "Rotating $x=X\\cos\\theta-Y\\sin\\theta,\\ y=X\\sin\\theta+Y\\cos\\theta$ at $\\theta=60^\\circ$ collapses the form to $4X^{2}=0$, i.e. $X=0$ — a single line (the new $Y$-axis).",
-          "The line $X=0$ consists of the points $\\bigl(-Y\\sin60^\\circ,\\ Y\\cos60^\\circ\\bigr)$; eliminating $Y$ gives $x+\\sqrt3\\,y=0$, one straight line through the origin."
-        ]
-      },
-      {
-        "name": "Factor first, then locate the axis",
-        "steps": [
-          "Since $x^{2}+2\\sqrt3\\,xy+3y^{2}=(x+\\sqrt3\\,y)^{2}$, the equation is $(x+\\sqrt3\\,y)^{2}=0$, so the locus is already the single line $x+\\sqrt3\\,y=0$.",
-          "Its slope is $-\\dfrac{1}{\\sqrt3}$, so it makes angle $-30^\\circ$ with the $x$-axis. Removing the $XY$ term means one rotated axis must lie along this line.",
-          "The new $Y$-axis points at $\\theta+90^\\circ$; setting $\\theta+90^\\circ\\equiv-30^\\circ\\ (\\mathrm{mod}\\ 180^\\circ)$ gives $\\theta=60^\\circ$, agreeing with the sign-correct $\\cot 2\\theta$ value.",
-          "Test the trap angle: the cross-term coefficient is $4\\sin(2\\theta+60^\\circ)$, which at $\\theta=30^\\circ$ equals $2\\sqrt3\\neq0$ but at $\\theta=60^\\circ$ equals $0$. Hence only $\\theta=60^\\circ$ works."
-        ]
-      }
-    ],
-    "remark": "Insight: $\\cot 2\\theta$ is a signed quantity, and its sign — not just its magnitude — fixes the quadrant of $2\\theta$. Dropping the sign rotates the frame by the perpendicular angle, which leaves (or even recreates) the cross term. The fact that the conic degenerates to one repeated line is a bonus warning that this was never a genuine conic to begin with."
-  },
-  {
-    "theme": "transforms",
-    "themeLabel": "Shift of Origin & Rotation of Axes",
-    "title": "Translate Before You Spin",
-    "difficulty": 4,
-    "task": "Determine",
-    "tags": [
+      "translation",
       "shift of origin",
-      "rotation of axes",
+      "straight line",
+      "distance from a line"
+    ],
+    "statement": "The line  $5x+12y-26=0$  is to be referred to new parallel axes. (a) Find its equation when the origin is shifted to  $(2,\\,-3)$ . (b) Find a point on the line to which, if the origin is shifted, the line passes through the new origin (constant term zero).",
+    "answer": " $$\\boxed{(a)\\ 5X+12Y-52=0;\\quad (b)\\ \\text{any point on }5x+12y=26,\\ \\text{e.g. }(-2,\\,3)}$$ ",
+    "trap": "In (b), choosing the foot of perpendicular from the old origin (which is  $\\left(\\tfrac{130}{169},\\tfrac{312}{169}\\right)$ ) thinking it is the only valid point. ANY point of the line makes the constant vanish, because the new origin then lies on the line.",
+    "solutions": [
+      {
+        "name": "Substitution for (a), zero-constant condition for (b)",
+        "steps": [
+          "(a) Origin at  $(2,-3)$ :  $x=X+2,\\ y=Y-3$ , so  $5(X+2)+12(Y-3)-26=5X+12Y+10-36-26=5X+12Y-52=0$ .",
+          "(b) Origin at  $(h,k)$ : constant becomes  $5h+12k-26$ . This is zero exactly when  $(h,k)$  lies on the original line.",
+          "For instance  $(-2,3)$ :  $5(-2)+12(3)-26=-10+36-26=0$ , so shifting to  $(-2,3)$  gives  $5X+12Y=0$ ."
+        ]
+      },
+      {
+        "name": "Interpret constant as scaled distance",
+        "steps": [
+          "After shifting to  $(h,k)$  the constant term is  $5h+12k-26$ ; dividing by  $\\sqrt{5^2+12^2}=13$  gives the signed distance of the new origin from the line.",
+          "(a) New origin  $(2,-3)$  has signed distance  $\\tfrac{5(2)+12(-3)-26}{13}=\\tfrac{-52}{13}=-4$ , so constant  $=-52$ , confirming  $5X+12Y-52=0$ .",
+          "(b) The constant vanishes iff that distance is  $0$ , i.e. the new origin lies on the line — e.g.  $(-2,3)$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** The constant term of a line in translated axes is  $\\sqrt{a^2+b^2}$  times the signed distance of the new origin from the line. It vanishes precisely when the new origin is on the line — a one-parameter family of valid shifts, not a single point."
+  },
+  {
+    "theme": "translation",
+    "themeLabel": "Translation & Shift of Origin",
+    "title": "An xy-Curve Made Simple",
+    "difficulty": 4,
+    "task": "Translate to clear linear terms",
+    "tags": [
+      "translation",
+      "shift of origin",
       "rectangular hyperbola",
-      "xy term",
-      "standard form"
+      "factoring"
     ],
-    "statement": "A curve has equation $xy-2x-3y+8=0$. Determine its standard form (and hence its type, centre, and the lengths of its semi-axes) by first translating the origin and then rotating the axes.",
-    "answer": "\\[\\boxed{\\dfrac{Y'^{2}}{4}-\\dfrac{X'^{2}}{4}=1\\ \\text{(rectangular hyperbola, centre }(3,2),\\ \\text{semi-axes }2)}\\]",
-    "trap": "Trying to rotate the $xy$-curve straight away. With linear terms present, an immediate $45^\\circ$ rotation produces a mess of surviving linear terms and no clean centre. The disciplined order is: translate to $(3,2)$ to obtain $XY=-2$, THEN rotate $45^\\circ$. Also tempting: rotating $-45^\\circ$ and getting $X'^2-Y'^2$ with the wrong sign for the transverse axis.",
+    "statement": "Find the shift of origin that reduces  $xy-2x-3y+5=0$  to a form free of first-degree terms, and write the simplified equation.",
+    "answer": " $$\\boxed{\\text{Shift to }(3,\\,2);\\quad XY=1}$$ ",
+    "trap": "Trying to complete a square — there is no  $x^2$  or  $y^2$  here. With an  $xy$  term you instead factor the linear parts: group  $x(y-2)-3(y-2)=(x-3)(y-2)$ . Reading the centre as  $(2,3)$  swaps the two shifts.",
     "solutions": [
       {
-        "name": "Shift to centre, then rotate 45°",
+        "name": "Factor by grouping",
         "steps": [
-          "Centre: $\\partial_x=y-2=0,\\ \\partial_y=x-3=0\\Rightarrow (3,2)$. Put $X=x-3,Y=y-2$.",
-          "The equation collapses to $XY+2=0$, i.e. $XY=-2$ (a rectangular hyperbola, $a'+b'=0$).",
-          "Rotate $45^\\circ$: $X=\\tfrac{1}{\\sqrt2}(X'-Y'),\\ Y=\\tfrac{1}{\\sqrt2}(X'+Y')$ gives $\\tfrac12(X'^2-Y'^2)=-2$.",
-          "So $Y'^2-X'^2=4\\Rightarrow \\dfrac{Y'^2}{4}-\\dfrac{X'^2}{4}=1$: rectangular hyperbola, centre $(3,2)$, semi-axes $2$."
+          "Group:  $xy-2x-3y+5=x(y-2)-3(y-2)-1=(x-3)(y-2)-1$ .",
+          "So  $(x-3)(y-2)=1$ . Putting  $X=x-3,\\ Y=y-2$  (origin at  $(3,2)$ ) gives  $XY=1$ .",
+          "This has no first-degree terms, so the required shift is to  $(3,2)$  and the equation is  $XY=1$ ."
         ]
       },
       {
-        "name": "Invariant sanity check",
+        "name": "Vanishing linear coefficients (centre of a general conic)",
         "steps": [
-          "Quadratic part $xy$ has $a=0,b=0,h=\\tfrac12$; invariants $a+b=0$, $h^2-ab=\\tfrac14>0$ — guaranteed hyperbola, and $a+b=0$ forces it rectangular.",
-          "Translation cannot change these, so after centring we still expect $XY=\\text{const}$; computing the constant from the centre value gives $XY=-2$.",
-          "A rectangular hyperbola has equal semi-axes; from $|XY|=2$ the semi-axis is $\\sqrt{2\\cdot2}=2$.",
-          "This matches $\\dfrac{Y'^2}{4}-\\dfrac{X'^2}{4}=1$."
+          "Write the curve as  $f(x,y)=xy-2x-3y+5$ . Its centre satisfies  $f_x=y-2=0$  and  $f_y=x-3=0$ , giving  $(x,y)=(3,2)$ .",
+          "Substitute  $x=X+3,\\ y=Y+2$ :  $(X+3)(Y+2)-2(X+3)-3(Y+2)+5=XY+2X+3Y+6-2X-6-3Y-6+5$ .",
+          "All linear terms cancel, leaving  $XY-1=0$ , i.e.  $XY=1$ ."
         ]
       }
     ],
-    "remark": "Insight: $a+b=0$ is the fingerprint of a rectangular hyperbola and is unaffected by translation, so you can predict the answer's shape before any rotation. The translation does the heavy lifting; the rotation is just cosmetic alignment."
+    "remark": "**Insight.** With a cross term and no squares, the linear terms are cleared by factoring, not completing a square. The centre still sits where both partial derivatives vanish — the  $xy$ -curve's centre is  $(3,2)$ , exactly the intersection of  $f_x=0$  and  $f_y=0$ ."
   },
   {
-    "theme": "transforms",
-    "themeLabel": "Shift of Origin & Rotation of Axes",
-    "title": "Axes From Invariants Alone",
+    "theme": "translation",
+    "themeLabel": "Translation & Shift of Origin",
+    "title": "A Triangle Viewed From Its Centroid",
     "difficulty": 5,
-    "task": "Find a,b",
+    "task": "Centroid shift and invariants",
     "tags": [
-      "rotation of axes",
-      "invariants",
-      "eigenvalues",
-      "semi-axes",
-      "ellipse"
-    ],
-    "statement": "For the ellipse $2x^{2}-4xy+5y^{2}=36$, find the lengths $a$ and $b$ of its semi-major and semi-minor axes WITHOUT ever computing the rotation angle — use only the rotation invariants.",
-    "answer": "\\[\\boxed{a=6,\\quad b=\\sqrt6}\\]",
-    "trap": "Believing you must first find $\\theta$ (via $\\cot2\\theta=\\frac{a-b}{2h}$), rotate the equation, and only then read off the axes. Worse, once rotated, pairing each eigenvalue with the wrong axis — forgetting that the SMALLER eigenvalue produces the LARGER semi-axis. The slick path: the rotated form is $\\lambda_1 X^2+\\lambda_2 Y^2=36$, where $\\lambda_{1,2}$ are the eigenvalues of the form's matrix, pinned entirely by the two invariants $\\lambda_1+\\lambda_2=\\operatorname{tr}M$ and $\\lambda_1\\lambda_2=\\det M$.",
-    "solutions": [
-      {
-        "name": "Eigenvalues from the two invariants",
-        "steps": [
-          "Write the quadratic part as $\\mathbf{x}^{\\top}M\\mathbf{x}$ with $M=\\begin{pmatrix}2&-2\\\\-2&5\\end{pmatrix}$ (off-diagonal $h=-2$ is half the $xy$-coefficient).",
-          "The two rotation invariants are $\\operatorname{tr}M=2+5=7$ and $\\det M=2\\cdot5-(-2)^2=6$.",
-          "Eigenvalues solve $\\lambda^2-(\\operatorname{tr}M)\\lambda+\\det M=0$, i.e. $\\lambda^2-7\\lambda+6=0\\Rightarrow\\lambda=1,\\,6$.",
-          "Rotation diagonalizes the form, so the equation becomes $1\\cdot X^2+6\\cdot Y^2=36$, i.e. $\\dfrac{X^2}{36}+\\dfrac{Y^2}{6}=1$.",
-          "Hence the squared semi-axes are $36$ and $6$, giving $a=\\sqrt{36}=6$ and $b=\\sqrt6$. The smaller $\\lambda=1$ yields the larger axis, so $a=6,\\ b=\\sqrt6$."
-        ]
-      },
-      {
-        "name": "Characteristic-equation shortcut",
-        "steps": [
-          "For $\\alpha x^2+2h xy+\\beta y^2=C$, the squared semi-axes are $C/\\lambda_i$, where $\\lambda_i$ are the roots of $\\lambda^2-(\\alpha+\\beta)\\lambda+(\\alpha\\beta-h^2)=0$.",
-          "Here $\\alpha=2,\\ \\beta=5,\\ h=-2,\\ C=36$: $\\lambda^2-7\\lambda+(10-4)=0\\Rightarrow\\lambda^2-7\\lambda+6=0\\Rightarrow\\lambda=1,\\,6$.",
-          "Squared semi-axes: $C/\\lambda = 36/1=36$ and $36/6=6$.",
-          "Lengths: $a=\\sqrt{36}=6$ from the smaller $\\lambda=1$, and $b=\\sqrt6$ from $\\lambda=6$. The smaller eigenvalue always gives the major axis."
-        ]
-      },
-      {
-        "name": "Extreme distance from the centre (verification)",
-        "steps": [
-          "The semi-axes are the maximum and minimum distances from the centre $(0,0)$ to the curve, so maximise and minimise $x^2+y^2$ subject to $2x^2-4xy+5y^2=36$.",
-          "By Lagrange multipliers, a stationary radius $r$ satisfies $M\\mathbf{x}=\\mu\\mathbf{x}$, so $\\mathbf{x}$ is an eigenvector and $\\mathbf{x}^{\\top}M\\mathbf{x}=\\mu\\,r^2=36$, giving $r^2=36/\\mu$.",
-          "With $\\mu\\in\\{1,6\\}$ the radii squared are $36$ and $6$, so $r_{\\max}=6$ and $r_{\\min}=\\sqrt6$.",
-          "Therefore $a=6$ and $b=\\sqrt6$, confirming the invariant computation without any rotation angle."
-        ]
-      }
-    ],
-    "remark": "The semi-axes depend only on the eigenvalues of the quadratic form, and those eigenvalues are nothing but the trace and determinant repackaged — exactly the two quantities preserved under rotation. The rotation angle is needed only if you also want the directions of the axes, never their lengths. A useful sanity check: the smaller eigenvalue corresponds to the larger semi-axis, since the squared semi-axis is $C/\\lambda$."
-  },
-  {
-    "theme": "transforms",
-    "themeLabel": "Shift of Origin & Rotation of Axes",
-    "title": "The Parabola in Disguise",
-    "difficulty": 5,
-    "task": "Determine",
-    "tags": [
-      "rotation of axes",
-      "parabola",
-      "degenerate discriminant",
-      "latus rectum",
-      "perfect square"
-    ],
-    "statement": "The curve $x^{2}+2xy+y^{2}+8x-8y=0$ has $h^{2}-ab=0$, so it has no centre and a translation alone can never standardise it. Determine its latus rectum.",
-    "answer": "\\[\\boxed{4\\sqrt2}\\]",
-    "trap": "Treating it like a central conic: solving $\\partial_x f=0,\\ \\partial_y f=0$ to 'find the centre.' Here those give $2x+2y+8=0$ and $2x+2y-8=0$, which are inconsistent (no centre exists) precisely because $h^2-ab=0$ — it is a parabola. One must rotate by $45^\\circ$ to align the axis, then translate along it. Also tempting: forgetting the $\\sqrt2$ scaling that the linear terms pick up under rotation, which would report the latus rectum as $4$ or $8$ instead of $4\\sqrt2$.",
-    "solutions": [
-      {
-        "name": "Rotate 45°, then read the parabola",
-        "steps": [
-          "The quadratic part $x^2+2xy+y^2=(x+y)^2$ has $a=b=1,\\ h=1$, so $\\cot2\\theta=\\frac{a-b}{2h}=0\\Rightarrow\\theta=45^\\circ$.",
-          "Substitute $x=\\tfrac1{\\sqrt2}(X-Y),\\ y=\\tfrac1{\\sqrt2}(X+Y)$: the quadratic becomes $2X^2$, while $8x-8y=8\\cdot\\tfrac1{\\sqrt2}(X-Y)-8\\cdot\\tfrac1{\\sqrt2}(X+Y)=-8\\sqrt2\\,Y$.",
-          "Equation: $2X^2-8\\sqrt2\\,Y=0\\Rightarrow X^2=4\\sqrt2\\,Y$.",
-          "Comparing with $X^2=4pY$ gives $4p=4\\sqrt2$, so the latus rectum is $4p=4\\sqrt2$."
-        ]
-      },
-      {
-        "name": "Verify it is genuinely a parabola, then use the eigen-axis",
-        "steps": [
-          "The discriminant $h^2-ab=1-1=0$ rules out ellipse and hyperbola; the full determinant $\\begin{vmatrix}1&1&4\\\\1&1&-4\\\\4&-4&0\\end{vmatrix}=-64\\neq0$, so it is a non-degenerate parabola (not a pair of parallel lines, since $(x+y)^2+8x-8y$ cannot factor).",
-          "The matrix $\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$ has eigenvalues $0$ and $\\lambda=a+b=2$, the latter along the new axis $X=\\tfrac1{\\sqrt2}(x+y)$; the zero eigenvalue forces a linear (parabolic) term and explains why no centre exists.",
-          "Projecting the linear part $8x-8y$ onto the flat direction gives $-8\\sqrt2\\,Y$, so $\\lambda X^2=8\\sqrt2\\,Y\\Rightarrow X^2=\\tfrac{8\\sqrt2}{2}Y=4\\sqrt2\\,Y$.",
-          "Hence $4p=4\\sqrt2$; a subsequent translation only moves the vertex and never changes the latus rectum, so the latus rectum is $4\\sqrt2$."
-        ]
-      }
-    ],
-    "remark": "Insight: $h^2-ab=0$ is the alarm bell for 'no centre.' When it rings, abandon the translate-to-centre reflex; the conic is a parabola and only a rotation (then a slide along the new axis) reduces it. The $\\sqrt2$ in the answer is the rotation's fingerprint on the linear terms — drop it and the latus rectum is silently wrong."
-  },
-  {
-    "theme": "transforms",
-    "themeLabel": "Shift of Origin & Rotation of Axes",
-    "title": "Eccentricity Without an Angle",
-    "difficulty": 5,
-    "task": "Find all",
-    "tags": [
-      "rotation of axes",
-      "invariants",
-      "eccentricity",
-      "ellipse",
-      "eigenvalues"
-    ],
-    "statement": "The conic $3x^{2}+2xy+3y^{2}=8$ is an ellipse tilted about the origin. Find all possible values of its eccentricity. (Be alert: the rotation may run either way.)",
-    "answer": "\\[\\boxed{\\dfrac{1}{\\sqrt2}}\\]",
-    "trap": "Reading the eccentricity straight off the eigenvalues as if they were the squared semi-axes. The squared semi-axes are $C/\\lambda$, so the LARGER eigenvalue gives the SMALLER axis. Writing $a^{2}=\\lambda_{\\max}=4,\\ b^{2}=\\lambda_{\\min}=2$ does land on the right number $1/\\sqrt2$ but pins it to the wrong major axis; flip the assignment to $a^{2}=2,\\ b^{2}=4$ and you get $e=\\sqrt{1-2}$, an imaginary 'eccentricity.' The reciprocal between an eigenvalue and its axis length is the whole game.",
-    "solutions": [
-      {
-        "name": "Eigenvalues, then correct axis order",
-        "steps": [
-          "The quadratic part has matrix $\\begin{pmatrix}3&1\\\\1&3\\end{pmatrix}$: trace $6$, determinant $8$, so $\\lambda^{2}-6\\lambda+8=0\\Rightarrow\\lambda=2,4$.",
-          "A rotation to principal axes diagonalises the form: $2u^{2}+4v^{2}=8\\Rightarrow\\dfrac{u^{2}}{4}+\\dfrac{v^{2}}{2}=1$.",
-          "Squared semi-axes are $C/\\lambda$, so the SMALLER eigenvalue $2$ yields the larger axis: $a^{2}=8/2=4$, $b^{2}=8/4=2$.",
-          "$e=\\sqrt{1-\\dfrac{b^{2}}{a^{2}}}=\\sqrt{1-\\dfrac{2}{4}}=\\dfrac{1}{\\sqrt2}$ — a single value; reversing the rotation only relabels $u,v$ and cannot change it."
-        ]
-      },
-      {
-        "name": "Eccentricity from the eigenvalue ratio",
-        "steps": [
-          "For $\\lambda_{1}u^{2}+\\lambda_{2}v^{2}=C$ with $0<\\lambda_{1}<\\lambda_{2}$, the squared axes are $C/\\lambda_{1}>C/\\lambda_{2}$, so $a^{2}=C/\\lambda_{1}$ and $b^{2}=C/\\lambda_{2}$.",
-          "Then $e^{2}=1-\\dfrac{b^{2}}{a^{2}}=1-\\dfrac{\\lambda_{1}}{\\lambda_{2}}$ — the constant $C$ and the rotation angle both cancel.",
-          "Here $\\lambda_{1}=2,\\ \\lambda_{2}=4$, giving $e^{2}=1-\\dfrac{2}{4}=\\dfrac{1}{2}$.",
-          "$e=\\dfrac{1}{\\sqrt2}$, independent of which way the axes were spun."
-        ]
-      },
-      {
-        "name": "Direct extremal-radius check",
-        "steps": [
-          "Along the ray at angle $\\theta$ the curve meets at radius $r(\\theta)$ with $r^{2}\\,(3\\cos^{2}\\theta+2\\cos\\theta\\sin\\theta+3\\sin^{2}\\theta)=8$, i.e. $r^{2}=\\dfrac{8}{3+\\sin 2\\theta}$.",
-          "Since $\\sin 2\\theta\\in[-1,1]$, the denominator ranges over $[2,4]$, so $r^{2}\\in[2,4]$.",
-          "Hence the semi-axes squared are $a^{2}=4$ (where $\\sin 2\\theta=-1$) and $b^{2}=2$ (where $\\sin 2\\theta=1$).",
-          "$e=\\sqrt{1-2/4}=\\dfrac{1}{\\sqrt2}$, confirming the eigenvalue computation without diagonalising."
-        ]
-      }
-    ],
-    "remark": "Insight: eccentricity is built from the ratio of eigenvalues, $e^{2}=1-\\lambda_{\\min}/\\lambda_{\\max}$, so it is doubly rotation-proof — neither the angle nor its sign matters. The only trap is the reciprocal relationship between an eigenvalue and its axis length: the larger eigenvalue squeezes the axis it controls."
-  },
-  {
-    "theme": "transforms",
-    "themeLabel": "Shift of Origin & Rotation of Axes",
-    "title": "The Full Reduction",
-    "difficulty": 5,
-    "task": "Classify",
-    "tags": [
+      "translation",
       "shift of origin",
-      "rotation of axes",
-      "invariants",
-      "ellipse",
-      "full reduction"
+      "centroid",
+      "area of triangle",
+      "locus"
     ],
-    "statement": "Reduce $8x^{2}-12xy+17y^{2}-16x+12y-12=0$ to standard form: find its centre, classify it, and give its semi-axes. (You must combine a translation, a rotation, and the rotation invariants — one operation alone will not suffice.)",
-    "answer": "\\[\\boxed{\\text{ellipse, centre }(1,0),\\ \\dfrac{X^{2}}{4}+\\dfrac{Y^{2}}{1}=1,\\ \\text{semi-axes }2\\text{ and }1}\\]",
-    "trap": "Two classic shortcuts both fail: (i) rotating first while linear terms persist — they will not all vanish, leaving a stubborn linear term in $X$ or $Y$; (ii) translating to the centre and then stopping, declaring it an ellipse with axes along $X,Y$ — but the surviving $XY$ term means those are NOT the principal axes, so any axis length read off before rotation is wrong.",
+    "statement": "A triangle has vertices  $A(1,\\,1),\\ B(5,\\,1),\\ C(3,\\,4)$ . The origin is shifted to the centroid  $G$  of the triangle. (a) Find the new coordinates of  $A,B,C$ . (b) Verify the area of the triangle is unchanged by the shift. (c) Show that in the new axes the centroid is the origin, i.e. the new coordinates of the vertices sum to  $(0,0)$ .",
+    "answer": " $$\\boxed{A'(-2,-1),\\ B'(2,-1),\\ C'(0,2);\\quad \\text{area}=6;\\quad \\textstyle\\sum=(0,0)}$$ ",
+    "trap": "Computing the centroid as the midpoint of just two vertices, or shifting by adding  $G$  to each vertex instead of subtracting. The new coordinate of a vertex is (vertex)  $-\\,G$ , and  $G=\\left(\\tfrac{1+5+3}{3},\\tfrac{1+1+4}{3}\\right)=(3,2)$ .",
     "solutions": [
       {
-        "name": "Centre, then eigenvalues",
+        "name": "Compute centroid, subtract, then area",
         "steps": [
-          "Centre: $\\partial_x f=16x-12y-16=0,\\ \\partial_y f=-12x+34y+12=0\\Rightarrow (1,0)$. Translate: $X=x-1,Y=y$.",
-          "Value at centre $f(1,0)=8-16-12=-20$, so translated equation is $8X^2-12XY+17Y^2=20$.",
-          "Matrix $\\begin{pmatrix}8&-6\\\\-6&17\\end{pmatrix}$: trace $25$, determinant $136-36=100$, so $\\lambda^2-25\\lambda+100=0\\Rightarrow\\lambda=5,20$.",
-          "Rotated form $5X'^2+20Y'^2=20\\Rightarrow \\dfrac{X'^2}{4}+\\dfrac{Y'^2}{1}=1$: ellipse, semi-axes $2$ and $1$, centre $(1,0)$."
+          "Centroid  $G=\\left(\\tfrac{1+5+3}{3},\\,\\tfrac{1+1+4}{3}\\right)=(3,2)$ . New coordinates:  $A'=(1-3,1-2)=(-2,-1),\\ B'=(5-3,1-2)=(2,-1),\\ C'=(3-3,4-2)=(0,2)$ .",
+          "(b) Area in new axes  $=\\tfrac12\\lvert -2(-1-2)+2(2-(-1))+0((-1)-(-1))\\rvert=\\tfrac12\\lvert 6+6+0\\rvert=6$ , equal to the original  $\\tfrac12\\lvert 1(1-4)+5(4-1)+3(1-1)\\rvert=\\tfrac12\\lvert-3+15+0\\rvert=6$ .",
+          "(c)  $A'+B'+C'=(-2+2+0,\\,-1-1+2)=(0,0)$ , so the new origin (the centroid) is indeed the average of the vertices."
         ]
       },
       {
-        "name": "Invariant classification then axes",
+        "name": "Invariance argument",
         "steps": [
-          "Translation-invariant type test: $h^2-ab=(-6)^2-8\\cdot17=36-136=-100<0\\Rightarrow$ ellipse (or imaginary), confirmed real since the centre value and $a$ have opposite signs.",
-          "Centre at $(1,0)$ gives constant $-20$; equation $8X^2-12XY+17Y^2=20$.",
-          "Squared semi-axes $=20/\\lambda_i$ with $\\lambda_i=5,20$: namely $4$ and $1$.",
-          "Semi-axes $2$ and $1$; the smaller $\\lambda=5$ yields the major axis (length $2$)."
+          "A translation  $X=x-3,\\ Y=y-2$  subtracts the same constant from every vertex, so all side vectors  $\\overrightarrow{AB},\\overrightarrow{BC},\\overrightarrow{CA}$  are unchanged; area depends only on these vectors, hence stays  $6$ .",
+          "The centroid transforms like any point:  $G'=(3-3,2-2)=(0,0)$ , the new origin.",
+          "Since the centroid equals the mean of the vertices and the mean transforms to  $(0,0)$ , the new vertex coordinates must sum to  $(0,0)$ , confirming  $A'+B'+C'=(0,0)$ ."
         ]
       }
     ],
-    "remark": "Insight: the grand reduction is a relay — translation clears linear terms (using the centre, which exists because $h^2-ab\\neq0$), then the eigenvalues (trace $=a+b$, determinant $=ab-h^2$) deliver the axis lengths without ever computing $\\theta$ explicitly. Each tool does exactly one job the others cannot."
+    "remark": "**Insight.** Placing the origin at the centroid centres the figure: the vertex coordinates become balanced about  $(0,0)$ . Lengths, angles and area are translation-invariant — only the labels move — which is why centroid coordinates simplify so many symmetry computations."
+  },
+  {
+    "theme": "translation",
+    "themeLabel": "Translation & Shift of Origin",
+    "title": "A Pair of Lines Brought Home",
+    "difficulty": 5,
+    "task": "Shift a pair to the origin",
+    "tags": [
+      "translation",
+      "shift of origin",
+      "pair of straight lines",
+      "factoring",
+      "second-degree equation"
+    ],
+    "statement": "The equation  $x^2-4y^2-2x+16y-15=0$  represents a pair of straight lines. Find the point of intersection of the pair, the shift of origin that turns the equation homogeneous, and the resulting homogeneous equation.",
+    "answer": " $$\\boxed{\\text{Intersection }(1,\\,2);\\quad\\text{shift to }(1,2);\\quad X^2-4Y^2=0}$$ ",
+    "trap": "Assuming the equation factors only after the shift. It already factors as  $(x-2y+3)(x+2y-5)=0$ ; the two lines meet where both factors vanish, and that meeting point is precisely the shift that makes the equation homogeneous.",
+    "solutions": [
+      {
+        "name": "Factor first, then translate",
+        "steps": [
+          "Factor:  $x^2-4y^2-2x+16y-15=(x-2y+3)(x+2y-5)$  — check the cross terms:  $2y\\cdot(-5)$  from one and  $(-2y)\\cdot x$ ... expanding confirms  $-2x+16y-15$ .",
+          "The component lines  $x-2y+3=0$  and  $x+2y-5=0$  intersect where  $2x-2=0$  and  $4y-8=0$ , i.e.  $(1,2)$ .",
+          "Shift origin to  $(1,2)$ :  $x=X+1,\\ y=Y+2$  turns the factors into  $(X-2Y)$  and  $(X+2Y)$ , so the equation becomes  $(X-2Y)(X+2Y)=X^2-4Y^2=0$ , which is homogeneous."
+        ]
+      },
+      {
+        "name": "Find the centre by partial derivatives",
+        "steps": [
+          "For a pair of lines the centre is the intersection. With  $f=x^2-4y^2-2x+16y-15$ , solve  $f_x=2x-2=0$  and  $f_y=-8y+16=0$ , giving  $x=1,\\ y=2$ .",
+          "Substitute  $x=X+1,\\ y=Y+2$ :  $(X+1)^2-4(Y+2)^2-2(X+1)+16(Y+2)-15$ , whose constant is  $f(1,2)=1-16-2+32-15=0$ .",
+          "All linear terms cancel, leaving  $X^2-4Y^2=0$ ; since the constant is  $0$ , the pair now passes through the new origin:  $X=\\pm2Y$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** A second-degree equation is a pair of lines exactly when, after translating the origin to its centre, the equation becomes homogeneous (constant  $=0$ ). The centre is the lines' point of intersection — the natural origin from which the pair looks like  $X=\\pm 2Y$ ."
+  },
+  {
+    "theme": "translation",
+    "themeLabel": "Translation & Shift of Origin",
+    "title": "A Locus Solved by Moving the Origin",
+    "difficulty": 5,
+    "task": "Locus via shift of origin",
+    "tags": [
+      "translation",
+      "shift of origin",
+      "locus",
+      "distance formula"
+    ],
+    "statement": "A point  $P$  moves so that the sum of the squares of its distances from  $A(1,\\,3)$  and  $B(5,\\,1)$  is  $40$ . Shifting the origin to the midpoint of  $AB$ , find the equation of the locus of  $P$  in the new axes, and identify it.",
+    "answer": " $$\\boxed{X^2+Y^2=15\\ \\text{(circle, centre at the midpoint of }AB,\\ \\text{radius }\\sqrt{15})}$$ ",
+    "trap": "Shifting the origin to  $A$  or to the centroid of some triangle instead of the midpoint of  $AB$ . The cross terms cancel cleanly only about the midpoint  $(3,2)$ , which is what makes the new equation purely  $X^2+Y^2=\\text{const}$ .",
+    "solutions": [
+      {
+        "name": "Translate to the midpoint first",
+        "steps": [
+          "Midpoint of  $AB$  is  $M=(3,2)$ . Shift origin to  $M$ : a point  $P$  is  $(X+3,\\,Y+2)$ , while  $A,B$  become  $(1-3,3-2)=(-2,1)$  and  $(5-3,1-2)=(2,-1)$  in the new frame.",
+          "Condition:  $PA^2+PB^2=(X+2)^2+(Y-1)^2+(X-2)^2+(Y+1)^2=2X^2+2Y^2+2(4)+2(1)=2X^2+2Y^2+10$ .",
+          "Set equal to  $40$ :  $2X^2+2Y^2+10=40\\Rightarrow X^2+Y^2=15$ , a circle of radius  $\\sqrt{15}$  centred at the new origin (the midpoint  $M$ )."
+        ]
+      },
+      {
+        "name": "Old axes then shift",
+        "steps": [
+          "In old axes,  $(x-1)^2+(y-3)^2+(x-5)^2+(y-1)^2=40$  expands to  $2x^2+2y^2-12x-8y+36=40$ , i.e.  $x^2+y^2-6x-4y-2=0$ .",
+          "Complete the square:  $(x-3)^2+(y-2)^2=15$ , so the centre is  $(3,2)$ , the midpoint of  $AB$ .",
+          "Shifting the origin to  $(3,2)$  with  $X=x-3,\\ Y=y-2$  gives  $X^2+Y^2=15$  — a circle of radius  $\\sqrt{15}$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Choosing the origin at the natural centre of symmetry — here the midpoint of  $AB$  — makes the mixed terms vanish and exposes the locus as a clean circle. The same algebra is far messier about any other origin."
+  },
+  {
+    "theme": "translation",
+    "themeLabel": "Translation & Shift of Origin",
+    "title": "Recovering the Original Equation",
+    "difficulty": 5,
+    "task": "Invert a known shift",
+    "tags": [
+      "translation",
+      "shift of origin",
+      "inverse transformation",
+      "circle"
+    ],
+    "statement": "After the origin was shifted to  $(-2,\\,3)$  a certain curve had the equation  $X^2+Y^2=25$  in the new axes. (a) Find its equation in the original axes. (b) The new axes equation of the line  $X-2Y=0$  — find its equation in the original axes and verify it passes through  $(-2,3)$ .",
+    "answer": " $$\\boxed{(a)\\ x^2+y^2+4x-6y-12=0;\\quad (b)\\ x-2y+8=0}$$ ",
+    "trap": "Using  $X=x+h,\\ Y=y+k$  here would be wrong-signed. With the origin AT  $(-2,3)$ , the new coordinates are  $X=x-(-2)=x+2$  and  $Y=y-3$ ; substitute these into the new-axes equation to recover the old one.",
+    "solutions": [
+      {
+        "name": "Substitute the new coordinates",
+        "steps": [
+          "Origin at  $(h,k)=(-2,3)$  gives  $X=x-h=x+2$  and  $Y=y-k=y-3$ .",
+          "(a) Put into  $X^2+Y^2=25$ :  $(x+2)^2+(y-3)^2=25\\Rightarrow x^2+4x+4+y^2-6y+9-25=0$ , i.e.  $x^2+y^2+4x-6y-12=0$ .",
+          "(b) Put into  $X-2Y=0$ :  $(x+2)-2(y-3)=0\\Rightarrow x-2y+8=0$ ; at  $(-2,3)$ :  $-2-6+8=0$ , so it passes through the new origin as expected."
+        ]
+      },
+      {
+        "name": "Geometric reading then expand",
+        "steps": [
+          " $X^2+Y^2=25$  is a circle of radius  $5$  centred at the new origin; in old axes its centre is  $(-2,3)$ , so its equation is  $(x+2)^2+(y-3)^2=25$ .",
+          "Expanding gives  $x^2+y^2+4x-6y-12=0$ .",
+          " $X-2Y=0$  is a line through the new origin with slope (in  $X,Y$ )  $\\tfrac12$ ; translation preserves slope, so in old axes it is the line of slope  $\\tfrac12$  through  $(-2,3)$ :  $y-3=\\tfrac12(x+2)$ , i.e.  $x-2y+8=0$ ."
+        ]
+      }
+    ],
+    "remark": "**Insight.** Going from new axes back to old is the same translation read the other way: replace  $X$  by  $x+2$  and  $Y$  by  $y-3$ . The circle keeps its radius and the line keeps its slope — only their positions (constant terms) are restored."
   },
   {
     "theme": "hybrid",
@@ -3648,51 +3589,6 @@ window.PROBLEMS = [
   {
     "theme": "hybrid",
     "themeLabel": "The Grand Hybrids",
-    "title": "The Shadow That Rides a Circle",
-    "difficulty": 5,
-    "task": "Find",
-    "tags": [
-      "locus",
-      "foot of perpendicular",
-      "variable line",
-      "circle on diameter"
-    ],
-    "statement": "From the fixed point $A(6,2)$ a perpendicular is dropped to every line that passes through the fixed point $B(2,4)$. Find the locus of the foot of that perpendicular (give its full equation and identify the one limiting line that must be checked separately).",
-    "answer": "\\[\\boxed{x^{2}+y^{2}-8x-6y+20=0}\\]",
-    "trap": "Parametrising every line through $B$ by its slope $m$ and eliminating $m$ produces the circle, but the slope chart never actually outputs the point $(2,2)$ for any finite $m$ (it is only the $m\\to\\infty$ limit), so a careless solver reports the locus as a circle with the single point $(2,2)$ punched out. The slope-less line $x=2$ through $B$ has its foot exactly at $(2,2)$, and $4+4-16-12+20=0$ shows $(2,2)$ is on the circle. That one limiting line fills the hole, so the locus is the COMPLETE circle, not a circle-minus-a-point.",
-    "solutions": [
-      {
-        "name": "The right-angle / Thales argument",
-        "steps": [
-          "Let $F$ be the foot of the perpendicular from $A$ to a line through $B$. Then $AF\\perp BF$, so $\\angle AFB=90^{\\circ}$.",
-          "The set of points $F$ that subtend a right angle on the fixed segment $AB$ is precisely the circle having $AB$ as diameter (Thales' theorem).",
-          "Equation: $(x-6)(x-2)+(y-2)(y-4)=0\\Rightarrow x^{2}+y^{2}-8x-6y+20=0$; centre $\\left(4,3\\right)$, radius $\\sqrt{5}$.",
-          "Surjectivity: taking the line $BA$ itself gives foot $F=A=(6,2)$, and the line through $B$ perpendicular to $AB$ gives foot $F=B=(2,4)$, so both diameter ends are reached; the vertical line $x=2$ gives foot $(2,2)$, which satisfies $4+4-16-12+20=0$. Every point of the circle is attained, so the locus is the full circle. $\\boxed{x^{2}+y^{2}-8x-6y+20=0}$"
-        ]
-      },
-      {
-        "name": "Parametric elimination (with the limit handled)",
-        "steps": [
-          "Line through $B(2,4)$ with slope $t$: $tx-y+(4-2t)=0$. The foot of the perpendicular from $A(6,2)$ is $F=\\left(6-t\\,d,\\,2+d\\right)$ with $d=\\dfrac{t\\cdot6-2+4-2t}{t^{2}+1}=\\dfrac{4t+2}{t^{2}+1}$.",
-          "This gives $F=\\left(\\dfrac{2(t^{2}-t+3)}{t^{2}+1},\\,\\dfrac{2(t^{2}+2t+2)}{t^{2}+1}\\right)$.",
-          "Substituting these coordinates into $x^{2}+y^{2}-8x-6y+20$ and simplifying yields $0$ identically in $t$, so every slope-defined foot lies on the circle.",
-          "As $t\\to\\infty$ the foot tends to $(2,2)$, yet no finite $t$ outputs $(2,2)$ (solving the $x$-equation forces $t=2$, which gives $(2,4)$, a contradiction), so the slope chart covers exactly the circle minus $(2,2)$. The missing point is recovered by the slope-less line $x=2$, whose foot is $(2,2)$. Together they give the whole circle. $\\boxed{x^{2}+y^{2}-8x-6y+20=0}$"
-        ]
-      },
-      {
-        "name": "Vector projection",
-        "steps": [
-          "Write a line through $B$ with unit direction $\\mathbf{u}$. The foot is $F=B+\\big((A-B)\\cdot\\mathbf{u}\\big)\\mathbf{u}$, so $F-B=\\big((A-B)\\cdot\\mathbf u\\big)\\mathbf u$ and $F-A=(F-B)-(A-B)$.",
-          "Then $(F-A)\\cdot(F-B)=\\big[(F-B)-(A-B)\\big]\\cdot(F-B)=|F-B|^{2}-(A-B)\\cdot(F-B)$; since $F-B=\\big((A-B)\\cdot\\mathbf u\\big)\\mathbf u$ with $\\mathbf u$ a unit vector, both terms equal $\\big((A-B)\\cdot\\mathbf u\\big)^{2}$, so $(F-A)\\cdot(F-B)=0$.",
-          "Hence $F$ lies on the circle with diameter $AB$ for every direction $\\mathbf u$ — and because $\\mathbf u$ ranges over all directions, including the vertical one (which the slope chart cannot encode), every point of that circle is reached. The locus is the complete circle $x^{2}+y^{2}-8x-6y+20=0$. $\\boxed{x^{2}+y^{2}-8x-6y+20=0}$"
-        ]
-      }
-    ],
-    "remark": "Insight: the right angle at the foot is the invariant, so the locus is forced to be the circle on $AB$ as diameter no matter which line through $B$ is chosen. The fused subtlety is that a rational slope-parametrisation of a conic always omits exactly one point — here $(2,2)$, corresponding to $t\\to\\infty$ — and that omitted point is supplied by the one degenerate slope-less line $x=2$. Checking it confirms the locus is whole, not punctured."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
     "title": "The Farthest Member of the Pencil",
     "difficulty": 4,
     "task": "Find",
@@ -3767,43 +3663,6 @@ window.PROBLEMS = [
   {
     "theme": "hybrid",
     "themeLabel": "The Grand Hybrids",
-    "title": "The Orthocentre Traces a Parabola",
-    "difficulty": 5,
-    "task": "Find",
-    "tags": [
-      "locus",
-      "orthocentre",
-      "moving vertex",
-      "triangle"
-    ],
-    "statement": "Two vertices of a triangle are fixed at $A(0,0)$ and $B(6,0)$, while the third vertex moves along the line $y=3$. Find the locus of the orthocentre of the triangle, and state which two points of that locus must be excluded.",
-    "answer": "\\[\\boxed{x^{2}-6x+3y=0}\\]",
-    "trap": "Computing the CENTROID instead of the orthocentre: the centroid is $\\left(\\tfrac{p}{3}+2,\\,1\\right)$, whose locus is the trivial horizontal line $y=1$. The orthocentre is far more sensitive to the moving vertex and traces a parabola. Confusing the two centres collapses a parabola into a line.",
-    "solutions": [
-      {
-        "name": "Altitudes with the moving vertex",
-        "steps": [
-          "Let the third vertex be $P=(p,3)$. The altitude from $P$ is perpendicular to $AB$ (the $x$-axis), so it is the vertical line $x=p$; hence the orthocentre has $x$-coordinate $p$.",
-          "The altitude from $A(0,0)$ is perpendicular to $BP$. Slope of $BP=\\dfrac{3-0}{p-6}=\\dfrac{3}{p-6}$, so this altitude has slope $-\\dfrac{p-6}{3}$ through the origin: $y=-\\dfrac{p-6}{3}\\,x$.",
-          "At $x=p$: $y=-\\dfrac{(p-6)p}{3}=\\dfrac{p(6-p)}{3}$. So the orthocentre is $H=\\left(p,\\ \\dfrac{p(6-p)}{3}\\right)$.",
-          "Eliminate $p$ via $x=p$: $y=\\dfrac{x(6-x)}{3}\\Rightarrow 3y=6x-x^{2}\\Rightarrow x^{2}-6x+3y=0$. Exclude $p=0$ and $p=6$ (where $P$ coincides with $A$ or $B$ and the triangle degenerates), i.e. the points $(0,0)$ and $(6,0)$. $\\boxed{x^{2}-6x+3y=0}$"
-        ]
-      },
-      {
-        "name": "Euler line via centroid and circumcentre",
-        "steps": [
-          "For a triangle with horizontal base $AB$, the foot of the altitude from $P=(p,3)$ lands at $(p,0)$, so the orthocentre lies on the vertical line $x=p$, fixing its abscissa as $p$.",
-          "The orthocentre, centroid and circumcentre are collinear on the Euler line with $H=3G-2O$. Here $G=\\left(\\dfrac{p+6}{3},\\,1\\right)$, and the circumcentre $O$ lies on the perpendicular bisector $x=3$ of $AB$; equating $OA^{2}=OP^{2}$ gives its ordinate, so $O=\\left(3,\\ \\dfrac{p^{2}-6p+9}{6}\\right)$.",
-          "Then $H_x=3\\cdot\\dfrac{p+6}{3}-2\\cdot 3=p$ and $H_y=3\\cdot 1-2\\cdot\\dfrac{p^{2}-6p+9}{6}=\\dfrac{6p-p^{2}}{3}=\\dfrac{p(6-p)}{3}$, matching the first method.",
-          "Setting $x=p$ and eliminating: $3y=6x-x^{2}$, the parabola $x^{2}-6x+3y=0$. The degenerate positions $P=A$ $(p=0)$ and $P=B$ $(p=6)$ give no triangle, so $(0,0)$ and $(6,0)$ are excluded. $\\boxed{x^{2}-6x+3y=0}$"
-        ]
-      }
-    ],
-    "remark": "Insight: with a fixed horizontal base, the altitude from the moving apex is always vertical, pinning the orthocentre's $x$ to the apex's $x$; the second altitude then makes $y$ quadratic in that abscissa. Fusing 'moving point on a line' with 'orthocentre' yields a parabola — and the contrast with the centroid's flat line $y=1$ is the lesson."
-  },
-  {
-    "theme": "hybrid",
-    "themeLabel": "The Grand Hybrids",
     "title": "The Ray, the Mirror, and the Wrong Image",
     "difficulty": 4,
     "task": "Find",
@@ -3837,6 +3696,51 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: reflection is linearised by replacing the source with its mirror image, so the bent path $A\\to M\\to B$ straightens into the line $A'B$. The whole trap is which point to reflect: image the source for the reflected ray, image the target for the incident ray."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "The Shadow That Rides a Circle",
+    "difficulty": 5,
+    "task": "Find",
+    "tags": [
+      "locus",
+      "foot of perpendicular",
+      "variable line",
+      "circle on diameter"
+    ],
+    "statement": "From the fixed point $A(6,2)$ a perpendicular is dropped to every line that passes through the fixed point $B(2,4)$. Find the locus of the foot of that perpendicular (give its full equation and identify the one limiting line that must be checked separately).",
+    "answer": "\\[\\boxed{x^{2}+y^{2}-8x-6y+20=0}\\]",
+    "trap": "Parametrising every line through $B$ by its slope $m$ and eliminating $m$ produces the circle, but the slope chart never actually outputs the point $(2,2)$ for any finite $m$ (it is only the $m\\to\\infty$ limit), so a careless solver reports the locus as a circle with the single point $(2,2)$ punched out. The slope-less line $x=2$ through $B$ has its foot exactly at $(2,2)$, and $4+4-16-12+20=0$ shows $(2,2)$ is on the circle. That one limiting line fills the hole, so the locus is the COMPLETE circle, not a circle-minus-a-point.",
+    "solutions": [
+      {
+        "name": "The right-angle / Thales argument",
+        "steps": [
+          "Let $F$ be the foot of the perpendicular from $A$ to a line through $B$. Then $AF\\perp BF$, so $\\angle AFB=90^{\\circ}$.",
+          "The set of points $F$ that subtend a right angle on the fixed segment $AB$ is precisely the circle having $AB$ as diameter (Thales' theorem).",
+          "Equation: $(x-6)(x-2)+(y-2)(y-4)=0\\Rightarrow x^{2}+y^{2}-8x-6y+20=0$; centre $\\left(4,3\\right)$, radius $\\sqrt{5}$.",
+          "Surjectivity: taking the line $BA$ itself gives foot $F=A=(6,2)$, and the line through $B$ perpendicular to $AB$ gives foot $F=B=(2,4)$, so both diameter ends are reached; the vertical line $x=2$ gives foot $(2,2)$, which satisfies $4+4-16-12+20=0$. Every point of the circle is attained, so the locus is the full circle. $\\boxed{x^{2}+y^{2}-8x-6y+20=0}$"
+        ]
+      },
+      {
+        "name": "Parametric elimination (with the limit handled)",
+        "steps": [
+          "Line through $B(2,4)$ with slope $t$: $tx-y+(4-2t)=0$. The foot of the perpendicular from $A(6,2)$ is $F=\\left(6-t\\,d,\\,2+d\\right)$ with $d=\\dfrac{t\\cdot6-2+4-2t}{t^{2}+1}=\\dfrac{4t+2}{t^{2}+1}$.",
+          "This gives $F=\\left(\\dfrac{2(t^{2}-t+3)}{t^{2}+1},\\,\\dfrac{2(t^{2}+2t+2)}{t^{2}+1}\\right)$.",
+          "Substituting these coordinates into $x^{2}+y^{2}-8x-6y+20$ and simplifying yields $0$ identically in $t$, so every slope-defined foot lies on the circle.",
+          "As $t\\to\\infty$ the foot tends to $(2,2)$, yet no finite $t$ outputs $(2,2)$ (solving the $x$-equation forces $t=2$, which gives $(2,4)$, a contradiction), so the slope chart covers exactly the circle minus $(2,2)$. The missing point is recovered by the slope-less line $x=2$, whose foot is $(2,2)$. Together they give the whole circle. $\\boxed{x^{2}+y^{2}-8x-6y+20=0}$"
+        ]
+      },
+      {
+        "name": "Vector projection",
+        "steps": [
+          "Write a line through $B$ with unit direction $\\mathbf{u}$. The foot is $F=B+\\big((A-B)\\cdot\\mathbf{u}\\big)\\mathbf{u}$, so $F-B=\\big((A-B)\\cdot\\mathbf u\\big)\\mathbf u$ and $F-A=(F-B)-(A-B)$.",
+          "Then $(F-A)\\cdot(F-B)=\\big[(F-B)-(A-B)\\big]\\cdot(F-B)=|F-B|^{2}-(A-B)\\cdot(F-B)$; since $F-B=\\big((A-B)\\cdot\\mathbf u\\big)\\mathbf u$ with $\\mathbf u$ a unit vector, both terms equal $\\big((A-B)\\cdot\\mathbf u\\big)^{2}$, so $(F-A)\\cdot(F-B)=0$.",
+          "Hence $F$ lies on the circle with diameter $AB$ for every direction $\\mathbf u$ — and because $\\mathbf u$ ranges over all directions, including the vertical one (which the slope chart cannot encode), every point of that circle is reached. The locus is the complete circle $x^{2}+y^{2}-8x-6y+20=0$. $\\boxed{x^{2}+y^{2}-8x-6y+20=0}$"
+        ]
+      }
+    ],
+    "remark": "Insight: the right angle at the foot is the invariant, so the locus is forced to be the circle on $AB$ as diameter no matter which line through $B$ is chosen. The fused subtlety is that a rational slope-parametrisation of a conic always omits exactly one point — here $(2,2)$, corresponding to $t\\to\\infty$ — and that omitted point is supplied by the one degenerate slope-less line $x=2$. Checking it confirms the locus is whole, not punctured."
   },
   {
     "theme": "hybrid",
@@ -3965,5 +3869,46 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: among lines through a fixed point, the area-minimising axis cut is the one for which the fixed point is the midpoint of the intercept segment — a fact recoverable equally by calculus or AM-GM. The trap is objective-substitution: minimising perimeter, hypotenuse, and area each pick out a different line, and only the area objective gives the elegant midpoint and the clean value $12$."
+  },
+  {
+    "theme": "hybrid",
+    "themeLabel": "The Grand Hybrids",
+    "title": "Where the Orthocentre Wanders",
+    "difficulty": 5,
+    "task": "Locus of a moving orthocentre",
+    "tags": [
+      "orthocentre",
+      "locus",
+      "elimination of parameter",
+      "altitude",
+      "slope",
+      "coordinate geometry"
+    ],
+    "statement": "A triangle  $ABC$  has a fixed base with  $B(-3,\\,0)$  and  $C(3,\\,0)$ . The third vertex  $A$  slides along the line  $y=x+6$ , so that  $A=(t,\\,t+6)$  for a real parameter  $t$  (with  $A$  kept off the base line,  $t\\neq -6$ ). As  $A$  moves, its orthocentre  $H$  traces a curve. Find the equation of the locus of  $H$ , eliminating the parameter  $t$  exactly.",
+    "answer": " $$\\boxed{\\,x^{2}+xy+6y-9=0\\,}$$ ",
+    "trap": "Because the base  $BC$  is horizontal, the altitude from  $A$  is the vertical line  $x=t$ , so  $H_x=t$  — that part is clean. The danger is the  $y$ -coordinate: the altitude from  $B$  gives  $H_y=\\dfrac{9-t^{2}}{t+6}$ , a rational function of  $t$ . A careless solver drops the denominator (or reads it as  $H_y=9-t^{2}$ ) and reports the parabola  $y=9-x^{2}$ . But  $H_x=t$  must be substituted into the FULL fraction; clearing  $t+6$  yields the second-degree curve  $x^{2}+xy+6y-9=0$ , not a parabola.",
+    "solutions": [
+      {
+        "name": "Altitudes, then eliminate the parameter",
+        "steps": [
+          "Base  $BC$  lies on the  $x$ -axis, so the altitude from  $A=(t,t+6)$  (perpendicular to  $BC$ ) is the vertical line  $x=t$ . Hence the orthocentre has  $H_x=t$ .",
+          "Altitude from  $B(-3,0)$ : it is perpendicular to  $AC$ . Slope of  $AC=\\dfrac{0-(t+6)}{3-t}=-\\dfrac{t+6}{3-t}$ , so the altitude from  $B$  has slope  $\\dfrac{3-t}{t+6}$  and equation  $y=\\dfrac{3-t}{t+6}\\,(x+3)$ .",
+          "Put  $x=t$  (the orthocentre lies on both altitudes):  $H_y=\\dfrac{3-t}{t+6}\\,(t+3)=\\dfrac{(3-t)(3+t)}{t+6}=\\dfrac{9-t^{2}}{t+6}$ .",
+          "Eliminate  $t$  using  $t=H_x=x$ : then  $y=\\dfrac{9-x^{2}}{x+6}$ . Multiply through by  $(x+6)$ :  $y(x+6)=9-x^{2}$ , i.e.  $x^{2}+xy+6y-9=0$ .",
+          "Check with  $t=1$ :  $A=(1,7)$  gives  $H=\\left(1,\\tfrac{8}{7}\\right)$ , and  $1+\\tfrac{8}{7}+6\\cdot\\tfrac{8}{7}-9=1+8-9=0$ . The point lies on the curve."
+        ]
+      },
+      {
+        "name": "Determinant/area-free check via two altitude feet",
+        "steps": [
+          "Let  $H=(x,y)$ . The condition  $\\overrightarrow{AH}\\perp\\overrightarrow{BC}$  gives  $(x-t,\\,y-(t+6))\\cdot(6,0)=0\\Rightarrow 6(x-t)=0\\Rightarrow t=x$ .",
+          "The condition  $\\overrightarrow{BH}\\perp\\overrightarrow{AC}$  gives  $(x+3,\\,y)\\cdot(3-t,\\,-(t+6))=0$ , i.e.  $(x+3)(3-t)-y(t+6)=0$ .",
+          "Substitute  $t=x$  from the first relation:  $(x+3)(3-x)-y(x+6)=0\\Rightarrow 9-x^{2}-y(x+6)=0$ .",
+          "Rearranging,  $x^{2}+xy+6y-9=0$ , the same locus. (The third altitude condition  $\\overrightarrow{CH}\\perp\\overrightarrow{AB}$  is automatically satisfied, since two altitudes already fix  $H$ .)",
+          "Verify another point,  $t=-4$ :  $A=(-4,2)$  gives  $H=(-4,-\\tfrac{7}{2})$ , and  $16+(-4)(-\\tfrac{7}{2})+6(-\\tfrac{7}{2})-9=16+14-21-9=0$ . Consistent."
+        ]
+      }
+    ],
+    "remark": "**Insight.** When a base is horizontal, one altitude is automatically vertical, so  $H_x$  equals the moving vertex's abscissa  $t$  — tempting you to think the elimination is over. The whole problem hides in  $H_y$ , which is rational in  $t$ ; the parameter must be cleared honestly. Forgetting the denominator collapses a genuine  $xy$ -bearing curve into a fake parabola — the single most common parameter-elimination slip."
   }
 ];

@@ -4,7 +4,7 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['forms','distancesection','anglefamily','footimage','bisectors','pairlines','triangle','locus','transforms','hybrid'];
+  const THEME_ORDER = ['forms','distancesection','anglefamily','footimage','bisectors','pairlines','triangle','locus','translation','hybrid'];
   const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
   const THEME_META = {
     forms:           { glyph:'y=mx+c',  blurb:'Slope and the forms of a line — point-slope, two-point, intercept, normal and parametric — and choosing the form that makes a condition fall out.' },
@@ -13,9 +13,9 @@
     footimage:       { glyph:'⊥',       blurb:'The foot of the perpendicular from a point to a line, the image (reflection) of a point in a line, and the perpendicular distance and its sign.' },
     bisectors:       { glyph:'∠/2',     blurb:'The pair of angle bisectors of two lines, deciding which bisector contains the origin or the acute angle, and the loci that bisector conditions trace.' },
     pairlines:       { glyph:'ax²+2hxy', blurb:'The homogeneous second-degree equation ax²+2hxy+by²=0 as a pair of lines through the origin — the angle between them, the bisectors, and the general degenerate conic.' },
-    triangle:        { glyph:'△',       blurb:'The centroid, orthocentre, circumcentre and incentre of a triangle from its sides or vertices — and the Euler line that ties three of them together.' },
+    triangle:        { glyph:'△',       blurb:'The centroid, orthocentre, circumcentre and incentre of a triangle from its sides or vertices, and the area and collinearity that follow.' },
     locus:           { glyph:'P(h,k)',  blurb:'The locus of a point that moves under a stated linear condition — eliminate the parameter and name the line or curve it sweeps.' },
-    transforms:      { glyph:"(x′,y′)",  blurb:'Shifting the origin and rotating the axes — how a line\'s equation transforms, and the rotation that removes the xy term or the linear part.' },
+    translation:     { glyph:'(x−h)',  blurb:'Slide the origin to a new point — how a line\'s or curve\'s equation transforms, the shift that kills the first-degree terms (the centre), and the new coordinates of a point.' },
     hybrid:          { glyph:'⊕',       blurb:'The capstones: forms, distance, the family of lines, the pair of lines, the triangle centres and a locus fused into one problem that resists every single tool.' },
   };
 
@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>y=mx+c<em>.</em></h2>'
-      + '<div class="tagline">Original straight-line problems where one clean condition pins the whole configuration — the forms of a line, distance and the section formula, the angle between lines and the family L₁+λL₂, the foot and image of a point, angle bisectors, the pair of straight lines ax²+2hxy+by²=0, the four triangle centres, loci, and the shift and rotation of axes. Drawn from the rarest corners of advanced and JEE-Advanced coordinate geometry, each solved several ways.</div>'
+      + '<div class="tagline">Original straight-line problems where one clean condition pins the whole configuration — the forms of a line, distance and the section formula, the angle between lines and the family L₁+λL₂, the foot and image of a point, angle bisectors, the pair of straight lines ax²+2hxy+by²=0, the four triangle centres, loci, and the translation that shifts the origin. Strictly within the JEE Advanced syllabus, each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')
@@ -245,13 +245,13 @@
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/LINE-Problems.pdf" download>&#8595; Problems PDF</a>'
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/LINE-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
-      + '<p class="cover-manifesto">The forms of a line and the slope that orients it, distance and the section formula, the angle between two lines and the family of lines through a point, the foot and the image of a point in a line, the angle bisectors, the pair of straight lines hidden in a second-degree equation, the centroid, orthocentre, circumcentre and incentre of a triangle, the locus a moving point traces, and the shift and rotation of axes — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t plot points; they read the condition the algebra encodes.</p>'
+      + '<p class="cover-manifesto">The forms of a line and the slope that orients it, distance and the section formula, the angle between two lines and the family of lines through a point, the foot and the image of a point in a line, the angle bisectors, the pair of straight lines hidden in a second-degree equation, the centroid, orthocentre, circumcentre and incentre of a triangle, the locus a moving point traces, and the translation that slides the origin — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t plot points; they read the condition the algebra encodes.</p>'
       + '</div>';
 
     // legend of instruments
     html+='<div class="sec-head"><span class="sh-rom">i</span><h3>The Instruments</h3><span class="sh-line"></span></div>';
     html+='<div class="legend">';
-    const fam=[['forms','Forms of a line','y=mx+c'],['distancesection','Distance & section','m:n'],['anglefamily','Angle & family','L₁+λL₂'],['footimage','Foot & image','⊥'],['bisectors','Angle bisectors','∠/2'],['pairlines','Pair of lines','ax²+2hxy'],['triangle','Triangle centres','△'],['locus','Locus','P(h,k)'],['transforms','Shift & rotation','(x′,y′)'],['hybrid','Hybrids','⊕']];
+    const fam=[['forms','Forms of a line','y=mx+c'],['distancesection','Distance & section','m:n'],['anglefamily','Angle & family','L₁+λL₂'],['footimage','Foot & image','⊥'],['bisectors','Angle bisectors','∠/2'],['pairlines','Pair of lines','ax²+2hxy'],['triangle','Triangle centres','△'],['locus','Locus','P(h,k)'],['translation','Shift of origin','(x−h)'],['hybrid','Hybrids','⊕']];
     fam.forEach(f=>{ const c=byChapter[f[0]]; const cnt=c?c.problems.length:0;
       html+='<div class="lg card"><div class="glyph">'+f[2]+'</div><div><div class="lgname">'+f[1]+'</div><div class="lgcount">'+cnt+' problems</div></div></div>'; });
     html+='</div>';
