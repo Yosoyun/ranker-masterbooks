@@ -4,19 +4,19 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['formation','separable','homogeneous','linear','exact','clairaut','geometry','orthogonal','applications','hybrid'];
+  const THEME_ORDER = ['formation','separable','redsep','homogeneous','redhom','linear','ivp','geometry','applications','hybrid'];
   const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
   const THEME_META = {
     formation:    { glyph:'dⁿy',     blurb:'Eliminate the arbitrary constants from a family of curves and a differential equation appears; read off its order and, when polynomial in the derivatives, its degree.' },
-    separable:    { glyph:'f·g',     blurb:'Gather every y on one side and every x on the other, then integrate — and learn the substitutions that bend a stubborn equation into separable form.' },
-    homogeneous:  { glyph:'y/x',     blurb:'When every term carries the same degree, the substitution y = vx turns the equation separable; the isobaric trick generalises the idea.' },
-    linear:       { glyph:'y′+Py',   blurb:'The first-order linear equation y′ + Py = Q solved by its integrating factor e^{∫P dx}, and the Bernoulli equation that linearises after one substitution.' },
-    exact:        { glyph:'M,N',     blurb:'When M dx + N dy is the exact differential of a function, integrate it directly; when it is not, hunt for the integrating factor that makes it so.' },
-    clairaut:     { glyph:'y=px+f',  blurb:'y = px + f(p): differentiate once and a general line-family and a singular envelope both fall out; the p-discriminant pins the singular solution.' },
-    geometry:     { glyph:'ψ',       blurb:'A condition on the tangent, normal, subtangent or subnormal of a curve becomes a differential equation; solve it to recover the curve itself.' },
-    orthogonal:   { glyph:'⊥',       blurb:'Replace y′ by −1/y′ and the family of solutions becomes the family that cuts it at right angles — the orthogonal trajectories.' },
+    separable:    { glyph:'f·g',     blurb:'Gather every y on one side and every x on the other, then integrate — the most direct of the first-order methods.' },
+    redsep:       { glyph:'ax+by',   blurb:'An equation of the form dy/dx = f(ax+by+c) is not separable as it stands, but the substitution v = ax+by makes it so; a family of clever substitutions does the rest.' },
+    homogeneous:  { glyph:'y/x',     blurb:'When every term carries the same degree, the substitution y = vx turns the equation separable and the curve reveals itself.' },
+    redhom:       { glyph:'X,Y',     blurb:'For dy/dx = (a₁x+b₁y+c₁)/(a₂x+b₂y+c₂), shift the origin to where the two lines meet and the equation becomes homogeneous — or, when the lines are parallel, separable.' },
+    linear:       { glyph:'y′+Py',   blurb:'The first-order linear equation y′ + Py = Q solved by its integrating factor e^{∫P dx} — including the linear form that surfaces when you treat x as a function of y.' },
+    ivp:          { glyph:'y(x₀)',   blurb:'A first-order equation with a prescribed condition: find the general solution, pin the arbitrary constant from y(x₀)=y₀, and read off the particular solution or the value it forces.' },
+    geometry:     { glyph:'ψ',       blurb:'A condition on the tangent, normal, subtangent or subnormal of a curve becomes a first-order differential equation; solve it to recover the curve itself.' },
     applications: { glyph:'dN/dt',   blurb:'Growth and decay, Newton’s law of cooling, mixing tanks and rates of change — the equation that models the world, and the initial condition that pins it.' },
-    hybrid:       { glyph:'⊕',       blurb:'The capstones: formation, integrating factors, substitutions and geometry fused with calculus and functional equations into one resistant problem.' },
+    hybrid:       { glyph:'⊕',       blurb:'The capstones: formation, the separable and homogeneous reductions, the integrating factor and curve-geometry fused into one resistant first-order problem.' },
   };
 
   // ---- state ----
@@ -234,7 +234,7 @@
     html+='<div class="cover">'
       + '<div class="kicker">The Ranker’s Masterbook</div>'
       + '<h2>dy/dx<em>.</em></h2>'
-      + '<div class="tagline">Original differential-equations problems where a hidden structure cracks the equation open — formation and order, variables separable, homogeneous and linear equations, exact forms and integrating factors, Clairaut and singular solutions, orthogonal trajectories, and the geometry of curves. Drawn from the rarest corners of advanced and JEE-Advanced calculus, each solved several ways.</div>'
+      + '<div class="tagline">Original differential-equations problems where a hidden structure cracks the equation open — formation and order, variables separable and the substitutions that reduce to it, homogeneous equations and their reductions, the linear equation and its integrating factor, initial-value problems, and the geometry of curves. Strictly within the JEE Advanced syllabus (first-order, first-degree), each solved several ways.</div>'
       + '<div class="cover-stats">'
         + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')
@@ -245,13 +245,13 @@
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/ODE-Problems.pdf" download>&#8595; Problems PDF</a>'
         + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/ODE-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
-      + '<p class="cover-manifesto">Forming an equation by killing its constants, separating the variables, the homogeneous and linear forms, exactness and integrating factors, Clairaut’s equation and its singular envelope, orthogonal trajectories, and the differential equations that geometry and the physical world impose — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t guess the integrating factor; they see why it must be what it is.</p>'
+      + '<p class="cover-manifesto">Forming an equation by killing its constants, separating the variables, the substitutions that reduce an equation to separable or homogeneous form, the linear equation and its integrating factor, the initial condition that pins the constant, and the differential equations that geometry and the physical world impose — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t guess the integrating factor; they see why it must be what it is.</p>'
       + '</div>';
 
     // legend of instruments
     html+='<div class="sec-head"><span class="sh-rom">i</span><h3>The Instruments</h3><span class="sh-line"></span></div>';
     html+='<div class="legend">';
-    const fam=[['formation','Formation & order','dⁿy'],['separable','Variables separable','f·g'],['homogeneous','Homogeneous','y/x'],['linear','Linear & Bernoulli','y′+Py'],['exact','Exact & I.F.','M,N'],['clairaut','Clairaut & singular','y=px+f'],['geometry','Geometric ODEs','ψ'],['orthogonal','Orthogonal trajectories','⊥'],['applications','Growth, decay & rates','dN/dt'],['hybrid','Hybrids','⊕']];
+    const fam=[['formation','Formation & order','dⁿy'],['separable','Variables separable','f·g'],['redsep','Reducible to separable','ax+by'],['homogeneous','Homogeneous','y/x'],['redhom','Reducible to homogeneous','X,Y'],['linear','Linear & I.F.','y′+Py'],['ivp','Initial-value problems','y(x₀)'],['geometry','Geometric ODEs','ψ'],['applications','Growth, decay & rates','dN/dt'],['hybrid','Hybrids','⊕']];
     fam.forEach(f=>{ const c=byChapter[f[0]]; const cnt=c?c.problems.length:0;
       html+='<div class="lg card"><div class="glyph">'+f[2]+'</div><div><div class="lgname">'+f[1]+'</div><div class="lgcount">'+cnt+' problems</div></div></div>'; });
     html+='</div>';

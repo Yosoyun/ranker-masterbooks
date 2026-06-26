@@ -11,21 +11,21 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['formation','separable','homogeneous','linear','exact','clairaut','geometry','orthogonal','applications','hybrid'];
+const THEME_ORDER = ['formation','separable','redsep','homogeneous','redhom','linear','ivp','geometry','applications','hybrid'];
 const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { formation:'dⁿy', separable:'f·g', homogeneous:'y/x', linear:'y′+Py', exact:'M,N', clairaut:'y=px+f', geometry:'ψ', orthogonal:'⊥', applications:'dN/dt', hybrid:'⊕' };
+const GLYPH = { formation:'dⁿy', separable:'f·g', redsep:'ax+by', homogeneous:'y/x', redhom:'X,Y', linear:'y′+Py', ivp:'y(x₀)', geometry:'ψ', applications:'dN/dt', hybrid:'⊕' };
 const BLURB = {
-  formation:'Eliminate the constants from a curve family; read off order & degree.',
-  separable:'Separate the variables and integrate; the right substitution helps.',
-  homogeneous:'Same-degree terms — the substitution y = vx makes it separable.',
-  linear:'y′ + Py = Q by the integrating factor; Bernoulli linearises in one step.',
-  exact:'Exact M dx + N dy integrated directly; else find the integrating factor.',
-  clairaut:'y = px + f(p): a line family plus a singular envelope (p-discriminant).',
-  geometry:'A tangent/normal/subtangent condition becomes a differential equation.',
-  orthogonal:'Replace y′ by −1/y′ to get the orthogonal trajectories of a family.',
-  applications:'Growth, decay, Newton cooling, mixing — the model and its data.',
-  hybrid:'Formation, factors, substitutions & geometry, fused with calculus.',
-};
+  formation:'Eliminate arbitrary constants to form the ODE; order and degree.',
+  separable:'Separate the variables and integrate — the most direct method.',
+  redsep:'dy/dx = f(ax+by+c) made separable by the substitution v = ax+by.',
+  homogeneous:'Same-degree terms; y = vx turns the equation separable.',
+  redhom:'(a₁x+b₁y+c₁)/(a₂x+b₂y+c₂): shift the origin to make it homogeneous.',
+  linear:'y′ + Py = Q via the integrating factor e^{∫P dx}; linear in x too.',
+  ivp:'General solution, then pin the constant from y(x₀)=y₀.',
+  geometry:'Tangent/normal/subtangent conditions become a first-order ODE.',
+  applications:'Growth, decay, cooling, mixing and rates of change.',
+  hybrid:'Several first-order ideas fused into one resistant problem.',
+}
 
 // order + index
 PROBLEMS.sort((a,b)=>THEME_ORDER.indexOf(a.theme)-THEME_ORDER.indexOf(b.theme));
