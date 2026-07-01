@@ -130,7 +130,7 @@
     const nav = document.getElementById('nav');
     let html = '<div class="navgroup">The Book</div>';
     html += '<ul class="nav"><li>'+navBtn('all','—','All Problems', PROBLEMS.length, true)+'</li></ul>';
-    html += '<div class="navgroup">Chapters</div><ul class="nav">';
+    html += '<div class="navgroup">Topics</div><ul class="nav">';
     CHAPTERS.forEach(c => { html += '<li>'+navBtn(c.key, c.rom, c.label, c.problems.length, false)+'</li>'; });
     html += '</ul>';
     nav.innerHTML = html;
@@ -236,7 +236,7 @@
       + '<h2>C<sup style="font-size:.5em;top:-.6em;position:relative">0</sup><em>.</em></h2>'
       + '<div class="tagline">Original problems on continuity — continuity at a point and piecewise gluing, classifying discontinuities, continuous functional equations, the IVT, the greatest-integer, fractional-part and modulus functions, composite continuity, the EVT and monotonicity. Where a single broken point changes everything. Each solved several ways.</div>'
       + '<div class="cover-stats">'
-        + stat(total,'Problems') + stat(CHAPTERS.length,'Chapters')
+        + stat(total,'Problems') + stat(CHAPTERS.filter(c=>c.key!=='pyq').length,'Topics')
         + stat(mind+'–'+maxd,'Difficulty') + stat(methods,'Worked Solutions')
       + '</div>'
       + '<div class="cover-cta">'
@@ -257,12 +257,12 @@
     html+='</div>';
 
     // chapter index
-    html+='<div class="sec-head"><span class="sh-rom">ii</span><h3>The Ten Chapters</h3><span class="sh-line"></span></div>';
+    html+='<div class="sec-head"><span class="sh-rom">ii</span><h3>Topics</h3><span class="sh-line"></span></div>';
     html+='<div class="chgrid">';
     CHAPTERS.forEach(c=>{ const done=chapterSolved(c),pct=Math.round(100*done/c.problems.length);
       html+='<div class="chcard card" data-ch="'+c.key+'">'
         + '<div class="ch-glyph">'+c.glyph+'</div>'
-        + '<div class="ch-rom">CHAPTER '+c.rom+'</div>'
+        + '<div class="ch-rom">'+(c.key==='pyq'?'PREVIOUS YEARS':'TOPIC '+c.rom)+'</div>'
         + '<h4>'+esc(c.label)+'</h4>'
         + '<p>'+esc(c.blurb)+'</p>'
         + '<div class="ch-foot"><span>'+c.problems.length+' problems</span>'
@@ -282,7 +282,7 @@
     const done=chapterSolved(c);
     let html='<div class="chap-hero card">'
       + '<div class="ch-glyph-lg">'+c.glyph+'</div>'
-      + '<div class="ch-rom">CHAPTER '+c.rom+'</div>'
+      + '<div class="ch-rom">'+(c.key==='pyq'?'PREVIOUS YEARS':'TOPIC '+c.rom)+'</div>'
       + '<h2>'+esc(c.label)+'</h2>'
       + '<div class="ch-desc">'+esc(c.blurb)+'</div>'
       + '<div class="ch-meta"><span>'+c.problems.length+' problems</span><span>&middot;</span><span>'+done+' solved</span><span>&middot;</span><span>'+diffRange(c.problems)+'</span></div>'
@@ -300,7 +300,7 @@
   function renderList(view, list, title, glyph){
     let html='<div class="chap-hero card"><div class="ch-glyph-lg">ƒ</div>'
       + '<div class="ch-rom">THE COMPLETE SET</div><h2>'+esc(title)+'</h2>'
-      + '<div class="ch-desc">Every trigonometry problem in the book, in chapter order. Filter by difficulty, or search from the bar above.</div>'
+      + '<div class="ch-desc">Every problem in this chapter, in topic order. Filter by difficulty, or search from the bar above.</div>'
       + '<div class="ch-meta"><span>'+list.length+' problems</span><span>&middot;</span><span>'+solvedCount()+' solved</span></div></div>';
     html+=filterBar();
     html+='<div id="qlist"></div>';
@@ -371,6 +371,7 @@
     // head
     const head=document.createElement('div'); head.className='q-head';
     head.innerHTML='<span class="qnum">№'+p._id+'</span>'
+      + (p.pyq?'<span class="pyq-badge" title="Official JEE Advanced past-year question">JEE Adv '+esc(String(p.pyq.year))+' · P'+esc(String(p.pyq.paper))+(p.pyq.qno?' · Q'+esc(String(p.pyq.qno)):'')+'</span>':'')
       + '<span class="qtitle">'+richStr(p.title||'Untitled')+'</span>'
       + '<span class="diff d'+(p.difficulty||3)+'" title="Difficulty '+(p.difficulty||3)+'/5">'
         + '<span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span>'
@@ -381,7 +382,7 @@
 
     // chapter tag line (only useful in all/search views)
     if(c){ const ctag=document.createElement('div'); ctag.className='q-tags';
-      ctag.innerHTML='<span class="tag" style="border-color:var(--line2)">Ch '+c.rom+' &middot; '+esc(c.label)+'</span>';
+      ctag.innerHTML='<span class="tag" style="border-color:var(--line2)">'+(p.pyq?'Previous Years':'Topic '+c.rom)+' &middot; '+esc(c.label)+'</span>';
       card.appendChild(ctag); }
 
     // statement
@@ -389,6 +390,7 @@
     st.innerHTML='<span class="stmt-label">Evaluate</span><div class="stmt-math"></div>';
     renderStmt(st.querySelector('.stmt-math'), p.statement||'');
     card.appendChild(st);
+    if(p.figure){ const fig=document.createElement('figure'); fig.className='q-figure'; fig.innerHTML=p.figure; card.appendChild(fig); }
 
     // tags
     if(p.tags && p.tags.length){ const tg=document.createElement('div'); tg.className='q-tags';
@@ -404,7 +406,7 @@
     // reveal: answer + trap
     const ansWrap=document.createElement('div'); ansWrap.className='reveal';
     const ansBox=document.createElement('div'); ansBox.className='answer-box';
-    ansBox.innerHTML='<span class="ans-label">Limit</span><span class="ans-val"></span>';
+    ansBox.innerHTML='<span class="ans-label">Answer</span><span class="ans-val"></span>';
     renderStmt(ansBox.querySelector('.ans-val'), p.answer||'');
     ansBox.querySelector('.ans-val').querySelectorAll('.katex-display').forEach(n=>n.style.margin='0');
     ansWrap.appendChild(ansBox);

@@ -1,12 +1,12 @@
 # The Ranker's Masterbooks
 
-Twenty-one static problem books for the very top of **JEE Advanced**.
+Twenty-one chapters for the very top of **JEE Advanced**.
 2116 original problems, organised by the *instrument* that powers each one, and every problem solved
 **more than one way**. No build step, no dependencies — just open `index.html`.
 
 🌐 **Live:** https://yosoyun.github.io/ranker-masterbooks/
 
-| Book | What | Problems |
+| Chapter | What | Problems |
 |------|------|----------|
 | **[∫f dx · The Signed Area Between Curves](area-masterbook/)** | Area under a curve & the x-axis, area w.r.t. the y-axis, area between two curves, finding the limits from points of intersection, symmetry & even/odd shortcuts, areas with the standard conics & lines, modulus/greatest-integer/piecewise areas, variable boundaries & parameters, optimising an area, grand hybrids | 100 |
 | **[y=mx+c · Slopes, Distances & the Pencil of Lines](lines-masterbook/)** | The forms of a line, distance & the section formula, the angle between lines & the family L₁+λL₂, the foot & image of a point, angle bisectors, the pair of straight lines, triangle centres & areas, loci, translation & shift of origin, grand hybrids | 100 |
