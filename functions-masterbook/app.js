@@ -243,8 +243,6 @@
       + '<div class="cover-cta">'
         + '<button class="btn gold" data-begin>Begin reading &rarr;</button>'
         + '<button class="btn ghost" data-go-all>Browse all problems</button>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/FUNC-Problems.pdf" download>&#8595; Problems PDF</a>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/FUNC-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
       + '<p class="cover-manifesto">Relations and the equivalence and order they impose, domain and range, the injective–surjective–bijective trichotomy and the counting of maps between finite sets, composition and its decomposition, inverses and involutions, functional equations, the symmetry of even, odd and periodic functions, the greatest-integer and fractional-part and signum family, and graphs and their transformations — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t plug in a value; they read the structure of the map.</p>'
       + '</div>';

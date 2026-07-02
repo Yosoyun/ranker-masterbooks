@@ -243,8 +243,6 @@
       + '<div class="cover-cta">'
         + '<button class="btn gold" data-begin>Begin reading &rarr;</button>'
         + '<button class="btn ghost" data-go-all>Browse all problems</button>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/LINE-Problems.pdf" download>&#8595; Problems PDF</a>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/LINE-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
       + '<p class="cover-manifesto">The forms of a line and the slope that orients it, distance and the section formula, the angle between two lines and the family of lines through a point, the foot and the image of a point in a line, the angle bisectors, the pair of straight lines hidden in a second-degree equation, the centroid, orthocentre, circumcentre and incentre of a triangle, the locus a moving point traces, and the translation that slides the origin — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t plot points; they read the condition the algebra encodes.</p>'
       + '</div>';

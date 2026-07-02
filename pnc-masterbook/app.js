@@ -243,8 +243,6 @@
       + '<div class="cover-cta">'
         + '<button class="btn gold" data-begin>Begin reading &rarr;</button>'
         + '<button class="btn ghost" data-go-all>Browse all problems</button>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/PNC-Problems.pdf" download>&#8595; Problems PDF</a>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/PNC-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
       + '<p class="cover-manifesto">The two principles, permutations, combinations, circular permutations, stars and bars, inclusion–exclusion, combinatorial identities, geometric counting, and lattice paths — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t memorise a formula; they learn to count the same thing twice and watch the answer fall out.</p>'
       + '</div>';

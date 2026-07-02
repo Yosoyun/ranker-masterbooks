@@ -243,8 +243,6 @@
       + '<div class="cover-cta">'
         + '<button class="btn gold" data-begin>Begin reading &rarr;</button>'
         + '<button class="btn ghost" data-go-all>Browse all problems</button>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/CONTINUITY-Problems.pdf" download>&#8595; Problems PDF</a>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/CONTINUITY-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
       + '<p class="cover-manifesto">Continuity at a point and the gluing of pieces, the classification of discontinuities, continuous functional equations, the Intermediate Value Theorem, the greatest-integer and fractional-part and modulus functions, composite continuity, the Extreme Value Theorem and monotonicity — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t memorise a rule; they learn where the function breaks.</p>'
       + '</div>';

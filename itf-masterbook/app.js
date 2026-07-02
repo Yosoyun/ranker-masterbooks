@@ -241,8 +241,6 @@
       + '<div class="cover-cta">'
         + '<button class="btn gold" data-begin>Begin reading &rarr;</button>'
         + '<button class="btn ghost" data-go-all>Browse all problems</button>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/ARC-Problems.pdf" download>&#8595; Problems PDF</a>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/ARC-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
       + '<p class="cover-manifesto">Principal branches, ±π corrections, telescoping arctangents, collapsing identities, equations, the trigonometry of inverse trigonometry, domains and derivatives — each a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t memorise an identity; they learn where the branch hides.</p>'
       + '</div>';

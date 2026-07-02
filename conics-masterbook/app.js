@@ -243,8 +243,6 @@
       + '<div class="cover-cta">'
         + '<button class="btn gold" data-begin>Begin reading &rarr;</button>'
         + '<button class="btn ghost" data-go-all>Browse all problems</button>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/CONIC-Problems.pdf" download>&#8595; Problems PDF</a>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/CONIC-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
       + '<p class="cover-manifesto">The circle and its radical axis, the parabola with its focal chords, the ellipse and hyperbola with their auxiliary and director circles, the unified tangent–chord–pole–polar machinery, the classification of the general second-degree equation, focus-directrix and eccentricity, and the loci a moving point sweeps — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t memorise the formula; they see the conic the property describes.</p>'
       + '</div>';

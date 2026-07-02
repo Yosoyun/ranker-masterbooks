@@ -243,8 +243,6 @@
       + '<div class="cover-cta">'
         + '<button class="btn gold" data-begin>Begin reading &rarr;</button>'
         + '<button class="btn ghost" data-go-all>Browse all problems</button>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/BINOM-Problems.pdf" download>&#8595; Problems PDF</a>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/BINOM-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
       + '<p class="cover-manifesto">The general term, the middle and greatest terms, coefficient extraction, binomial sums via differentiation and integration, the roots-of-unity filter, the multinomial theorem, divisibility and remainders, approximations and inequalities, and the Vandermonde, hockey-stick and Pascal identities — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t expand term by term; they read the coefficient straight off.</p>'
       + '</div>';

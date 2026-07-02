@@ -243,8 +243,6 @@
       + '<div class="cover-cta">'
         + '<button class="btn gold" data-begin>Begin reading &rarr;</button>'
         + '<button class="btn ghost" data-go-all>Browse all problems</button>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/AOD-Problems.pdf" download>&#8595; Problems PDF</a>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/AOD-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
       + '<p class="cover-manifesto">Tangents and normals, rates of change and related rates, monotonicity and the inequalities it proves, maxima and minima, Rolle’s theorem and the Mean Value Theorem, differentials and error estimation, concavity and points of inflection, curve sketching and counting the roots of an equation, and the applied optimisation of a geometric or physical quantity — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t just differentiate; they read the shape the derivative describes.</p>'
       + '</div>';

@@ -243,8 +243,6 @@
       + '<div class="cover-cta">'
         + '<button class="btn gold" data-begin>Begin reading &rarr;</button>'
         + '<button class="btn ghost" data-go-all>Browse all problems</button>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/INDEF-Problems.pdf" download>&#8595; Problems PDF</a>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/INDEF-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
       + '<p class="cover-manifesto">Standard forms and the algebra that exposes them, the substitution that linearises an integrand, integration by parts and the equation it loops back into, partial fractions, the trigonometric integrals and the half-angle substitution, irrational integrands and Euler’s substitutions, the special denominators a+b cos x and a sin²x+b cos²x, reduction formulae, and the exact derivative hiding in eˣ(f+f′) — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t hunt blindly; they recognise the derivative that is already there.</p>'
       + '</div>';

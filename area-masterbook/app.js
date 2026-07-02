@@ -243,8 +243,6 @@
       + '<div class="cover-cta">'
         + '<button class="btn gold" data-begin>Begin reading &rarr;</button>'
         + '<button class="btn ghost" data-go-all>Browse all problems</button>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/AREA-Problems.pdf" download>&#8595; Problems PDF</a>'
-        + '<a class="btn ghost" href="https://github.com/Yosoyun/ranker-masterbooks/releases/download/pdfs/AREA-Solutions.pdf" download>&#8595; Solutions PDF</a>'
       + '</div>'
       + '<p class="cover-manifesto">The area swept under a curve and the sign it carries, the area read against the y-axis, the region trapped between two curves, the intersection points that fix the limits, the symmetry that halves the work, the standard conics and the regions they cut, the kinks of a modulus or a greatest-integer integrand, the boundary that moves with a parameter, and the area pushed to its extremum — each one a doorway to a problem that punishes the careless. Every problem here is solved more than one way, because a ranker doesn’t just integrate; they read the region the integral measures.</p>'
       + '</div>';
