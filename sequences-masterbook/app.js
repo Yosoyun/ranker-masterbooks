@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['apgphp','agp','telescoping','powersfigurate','recurrences','apps','convergence','inequalities','misc','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['apgphp','agp','telescoping','powersfigurate','recurrences','apps','convergence','inequalities','misc','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     apgphp:         { glyph:'aₙ',     blurb:'Arithmetic, geometric and harmonic progressions — and the three means that interleave them, AM ≥ GM ≥ HM, never to be forgotten.' },
     agp:            { glyph:'Σkxᵏ',   blurb:'The arithmetico-geometric series and its cousins — multiply by the ratio, subtract, and a stubborn sum telescopes into closed form.' },
@@ -17,6 +17,7 @@
     inequalities:   { glyph:'≤',      blurb:'AM–GM, Cauchy–Schwarz and rearrangement on sequences — bound a sum, a product, or a term you cannot compute.' },
     misc:           { glyph:'⌊aₙ⌋',   blurb:'The greatest term, the integer part of a sum, and the estimate that pins a series between two values it never reaches.' },
     hybrid:         { glyph:'⊕',      blurb:'The capstones: progressions, telescoping, recurrences and convergence fused into one problem that resists every single tool.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

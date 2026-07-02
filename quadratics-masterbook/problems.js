@@ -4518,5 +4518,622 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: this is the capstone — symmetric power sums fix the candidate coefficients, the discriminant prunes the non-real branch, and location-of-roots prunes the negative-root branch. All three instruments are needed; drop any one and a spurious answer slips through."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Triangle Hidden Inside a Discriminant",
+    "difficulty": 3,
+    "task": "Determine the bound on $\\lambda$.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "6"
+    },
+    "tags": [
+      "real roots / discriminant",
+      "triangle inequality",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "Let $a,b,c$ be the sides of a triangle. No two of them are equal and $\\lambda\\in\\mathbb{R}$. If the roots of the equation $$x^2+2(a+b+c)\\,x+3\\lambda(ab+bc+ca)=0$$ are real, then which of the following holds?\n\n(A) $\\lambda<\\dfrac43$\n\n(B) $\\lambda>\\dfrac53$\n\n(C) $\\lambda\\in\\left(\\dfrac13,\\dfrac53\\right)$\n\n(D) $\\lambda\\in\\left(\\dfrac43,\\dfrac53\\right)$",
+    "answer": "$\\boxed{\\lambda<\\dfrac43}$ (A)",
+    "trap": "The discriminant condition alone gives $\\lambda\\le\\tfrac13\\cdot\\tfrac{a^2+b^2+c^2}{ab+bc+ca}+\\tfrac23$, which depends on $a,b,c$. Students freeze here, not realizing they must feed in the triangle inequality to turn a variable bound into a numerical one. The real question is: what is the supremum of $\\tfrac{a^2+b^2+c^2}{ab+bc+ca}$ over all triangles? A tempting error is to use the unconstrained bound $\\tfrac{a^2+b^2+c^2}{ab+bc+ca}\\ge1$ (which gives the wrong direction) instead of the triangle-forced upper bound $<2$.",
+    "solutions": [
+      {
+        "name": "Discriminant $+$ triangle inequality",
+        "steps": [
+          "For real roots the discriminant must be non-negative: $$4(a+b+c)^2-4\\cdot 3\\lambda(ab+bc+ca)\\ge 0.$$",
+          "Divide by $4$ and expand $(a+b+c)^2=a^2+b^2+c^2+2(ab+bc+ca)$: $$a^2+b^2+c^2+2(ab+bc+ca)\\ge 3\\lambda(ab+bc+ca).$$",
+          "Solve for $\\lambda$ (note $ab+bc+ca>0$): $$\\lambda\\le \\frac{a^2+b^2+c^2}{3(ab+bc+ca)}+\\frac23.$$",
+          "Now bound the ratio using the triangle inequalities. From $|a-b|<c$, $|b-c|<a$, $|c-a|<b$, square each: $a^2+b^2-2ab<c^2$, and cyclically. Adding the three: $$2(a^2+b^2+c^2)-2(ab+bc+ca)<a^2+b^2+c^2,$$ i.e. $a^2+b^2+c^2<2(ab+bc+ca)$, so $\\dfrac{a^2+b^2+c^2}{ab+bc+ca}<2$.",
+          "Therefore $\\lambda\\le\\dfrac{a^2+b^2+c^2}{3(ab+bc+ca)}+\\dfrac23<\\dfrac{2}{3}+\\dfrac23=\\dfrac43.$",
+          "Hence for the roots to be real we must have $\\lambda<\\dfrac43$, giving option (A)."
+        ]
+      },
+      {
+        "name": "Boundary/limiting-triangle check",
+        "steps": [
+          "The condition reduces to $\\lambda\\le \\dfrac{a^2+b^2+c^2}{3(ab+bc+ca)}+\\dfrac23$, so the answer is controlled by $\\displaystyle\\sup \\frac{a^2+b^2+c^2}{ab+bc+ca}$ over valid triangles.",
+          "Consider the degenerate limit where the triangle collapses, e.g. $a=b=1$, $c\\to 2^{-}$ (the extreme allowed by $c<a+b$). Then $a^2+b^2+c^2\\to 1+1+4=6$ and $ab+bc+ca\\to 1+2+2=5$, so the ratio $\\to \\tfrac{6}{5}$... but this is not the supremum.",
+          "Push toward a needle triangle: $a=b=1$, $c\\to 2^-$ gave $6/5$; instead take $a=1,\\ b\\to 0^+,\\ c\\to 1^-$ (a very thin sliver where $b$ is tiny and $a\\approx c$). Then $a^2+b^2+c^2\\to 2$ while $ab+bc+ca\\to 1$, so the ratio $\\to 2$. The supremum $2$ is approached but never attained by a genuine (non-degenerate) triangle.",
+          "Thus $\\dfrac{a^2+b^2+c^2}{ab+bc+ca}\\in[1,2)$ strictly below $2$, so $\\lambda<\\dfrac13\\cdot 2+\\dfrac23=\\dfrac43$, and the bound $\\dfrac43$ cannot be reached.",
+          "This confirms (A): $\\lambda<\\dfrac43$, and shows why $\\dfrac43$ is a strict (open) bound rather than $\\le$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q6. The quadratic is a decoy — the entire problem is really the triangle inequality $a^2+b^2+c^2<2(ab+bc+ca)$ dressed up as a discriminant condition."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Quadratics That Feed Each Other",
+    "difficulty": 4,
+    "task": "Find $a+b+c+d$.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "33"
+    },
+    "tags": [
+      "theory of equations",
+      "symmetric relations",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "If the roots of the equation $x^2-10cx-11d=0$ are $a,b$ and those of $x^2-10ax-11b=0$ are $c,d$, then find the value of $a+b+c+d$, where $a,b,c,d$ are distinct real numbers.",
+    "answer": "$\\boxed{1210}$",
+    "trap": "The symmetry between the two quadratics tempts students to guess $a=c$, $b=d$ — but the problem states all four are distinct, so that shortcut is forbidden. The correct move is to use each number's own defining equation ($a$ is a root of the first, $c$ is a root of the second) and subtract, which cleanly kills the quadratic terms. Forgetting to reject the spurious root $a+c=-22$ (it forces $a=c$, violating distinctness) is the second trap.",
+    "solutions": [
+      {
+        "name": "Vieta $+$ each number satisfies its own equation",
+        "steps": [
+          "By Vieta on $x^2-10cx-11d=0$ (roots $a,b$): $\\;a+b=10c$ and $ab=-11d$.",
+          "By Vieta on $x^2-10ax-11b=0$ (roots $c,d$): $\\;c+d=10a$ and $cd=-11b$.",
+          "Add the two sum-relations: $(a+b)+(c+d)=10c+10a$, so $b+d=9(a+c)$. $\\quad(\\ast)$",
+          "Now use that $a$ is a root of the first equation and $c$ is a root of the second: $$a^2-10ca-11d=0,\\qquad c^2-10ac-11b=0.$$",
+          "Subtract the second from the first: $$a^2-c^2-11d+11b=0\\;\\Rightarrow\\;(a-c)(a+c)=11(d-b).$$",
+          "From $(\\ast)$, $d-b$ is awkward; instead add the two 'own-equation' relations: $$a^2+c^2-10ca-10ac-11(d+b)=0\\;\\Rightarrow\\;a^2+c^2-20ac=11(b+d).$$",
+          "Substitute $b+d=9(a+c)$ from $(\\ast)$: $\\;a^2+c^2-20ac=99(a+c)$. Write $a^2+c^2=(a+c)^2-2ac$: $$(a+c)^2-22ac=99(a+c).\\quad(\\ast\\ast)$$",
+          "Get $ac$ from the subtracted equation: $(a-c)(a+c)=11(d-b)$. Also subtract $(\\ast)$-type: from $a+b=10c$ and $c+d=10a$, subtract to get $a+b-c-d=10c-10a$, i.e. $(a-c)+(b-d)=10(c-a)$, so $b-d=-11(a-c)$, i.e. $d-b=11(a-c)$. Then $(a-c)(a+c)=11\\cdot 11(a-c)$; since $a\\ne c$, divide: $a+c=121$.",
+          "(Consistency via $(\\ast\\ast)$: with $a+c=121$ one finds $ac=121$, and the rejected alternative root of the $(a+c)$ equation is $-22$, which forces $a=c$ and is discarded as $a,b,c,d$ are distinct.)",
+          "Finally, $a+b+c+d=(a+b)+(c+d)=10c+10a=10(a+c)=10\\cdot 121=\\boxed{1210}$."
+        ]
+      },
+      {
+        "name": "Direct elimination for $a+c$",
+        "steps": [
+          "Write the two 'own-number' equations: $a^2=10ca+11d$ and $c^2=10ac+11b$.",
+          "Subtract: $a^2-c^2=11(d-b)$, so $(a-c)(a+c)=11(d-b)$. $\\quad(1)$",
+          "From the Vieta sums $a+b=10c$ and $c+d=10a$, subtract them: $(a+b)-(c+d)=10c-10a\\Rightarrow (a-c)+(b-d)=-10(a-c)$, hence $b-d=-11(a-c)$, i.e. $d-b=11(a-c)$. $\\quad(2)$",
+          "Insert $(2)$ into $(1)$: $(a-c)(a+c)=11\\cdot 11\\,(a-c)=121(a-c)$.",
+          "Since the four numbers are distinct, $a\\ne c$, so we may cancel $(a-c)$: $\\;a+c=121$.",
+          "Add the Vieta sums: $(a+b)+(c+d)=10c+10a=10(a+c)$, and the left side is exactly $a+b+c+d$.",
+          "Therefore $a+b+c+d=10(a+c)=10\\times 121=1210$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q33. The elegant trick is that $a$ and $c$ each satisfy a *different* quadratic; subtracting those two scalar equations annihilates the quadratic terms and hands you $a+c$ in one line."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two quadratics sharing a constant: recover $r$",
+    "difficulty": 3,
+    "task": "Find the value of $r$.",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "50"
+    },
+    "tags": [
+      "roots of quadratic",
+      "sum and product of roots",
+      "relation between coefficients",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Let $\\alpha,\\beta$ be the roots of the equation $x^2-px+r=0$ and let $\\tfrac{\\alpha}{2},\\,2\\beta$ be the roots of the equation $x^2-qx+r=0$. Then the value of $r$ is\n\n(A) $\\tfrac{2}{9}(p-q)(2q-p)$\n\n(B) $\\tfrac{2}{9}(q-p)(2p-q)$\n\n(C) $\\tfrac{2}{9}(q-2p)(2q-p)$\n\n(D) $\\tfrac{2}{9}(2p-q)(2q-p)$",
+    "answer": "$\\boxed{r=\\dfrac{2}{9}(2p-q)(2q-p)}$ — option (D)",
+    "trap": "The two equations share the SAME constant term $r$, not the same linear term. A student who blindly writes $\\tfrac{\\alpha}{2}\\cdot 2\\beta = r$ gets $\\alpha\\beta=r$ — which is true and consistent, but gives no new information; the real leverage is that the two products being equal forces a relation, while the two sums ($\\alpha+\\beta=p$ and $\\tfrac{\\alpha}{2}+2\\beta=q$) are the equations that actually pin down $\\alpha$ and $\\beta$.",
+    "solutions": [
+      {
+        "name": "Solve the two sum-relations for $\\alpha,\\beta$",
+        "steps": [
+          "From $x^2-px+r=0$: sum $\\alpha+\\beta=p$ and product $\\alpha\\beta=r$.",
+          "From $x^2-qx+r=0$: sum $\\tfrac{\\alpha}{2}+2\\beta=q$ and product $\\tfrac{\\alpha}{2}\\cdot 2\\beta=\\alpha\\beta=r$ — consistent with the first product, so the products carry no extra data.",
+          "Use the two sums as simultaneous linear equations in $\\alpha,\\beta$: $\\alpha+\\beta=p$ and $\\tfrac{\\alpha}{2}+2\\beta=q$.",
+          "Multiply the second by $2$: $\\alpha+4\\beta=2q$. Subtract the first: $3\\beta=2q-p\\Rightarrow \\beta=\\dfrac{2q-p}{3}$.",
+          "Then $\\alpha=p-\\beta=p-\\dfrac{2q-p}{3}=\\dfrac{3p-2q+p}{3}=\\dfrac{2(2p-q)}{3}$.",
+          "Hence $r=\\alpha\\beta=\\dfrac{2(2p-q)}{3}\\cdot\\dfrac{2q-p}{3}=\\dfrac{2}{9}(2p-q)(2q-p)$, which is option (D)."
+        ]
+      },
+      {
+        "name": "Eliminate via the shared product $\\alpha\\beta=\\tfrac{\\alpha}{2}\\cdot 2\\beta$ and the sums",
+        "steps": [
+          "Write $S_1=\\alpha+\\beta=p$ for the first equation and $S_2=\\tfrac{\\alpha}{2}+2\\beta=q$ for the second.",
+          "Add a convenient combination: $2S_2-S_1=(\\alpha+4\\beta)-(\\alpha+\\beta)=3\\beta$, so $3\\beta=2q-p$ and $\\beta=\\dfrac{2q-p}{3}$.",
+          "Similarly $4S_1-2S_2=(4\\alpha+4\\beta)-(\\alpha+4\\beta)=3\\alpha$, so $3\\alpha=4p-2q$ and $\\alpha=\\dfrac{2(2p-q)}{3}$.",
+          "Both equations have the same constant term $r$; since $r=\\alpha\\beta$ from the first equation, substitute the values found: $r=\\dfrac{2(2p-q)}{3}\\cdot\\dfrac{2q-p}{3}$.",
+          "Simplify: $r=\\dfrac{2}{9}(2p-q)(2q-p)$. This matches option (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q50. The equal constant terms are a decoy — the genuine constraints are the two sum-of-roots relations, which form a $2\\times2$ linear system in $\\alpha,\\beta$; the product is then read off."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A shared root forces real roots: $(p^2-q)(b^2-ac)\\ge 0$",
+    "difficulty": 4,
+    "task": "Decide the truth of the two statements and pick the option.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "11"
+    },
+    "tags": [
+      "quadratic equations",
+      "roots",
+      "discriminant",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Let $a,b,c,p,q$ be real numbers. Suppose $\\alpha,\\beta$ are the roots of the equation $x^2+2px+q=0$ and $\\alpha,\\tfrac{1}{\\beta}$ are the roots of the equation $ax^2+2bx+c=0$, where $\\beta^2\\notin\\{-1,0,1\\}$.\n\nSTATEMENT-1: $(p^2-q)(b^2-ac)\\ge 0$.\n\nSTATEMENT-2: $b\\ne pa$ or $c\\ne qa$.\n\n(A) STATEMENT-1 is True, STATEMENT-2 is True; STATEMENT-2 is a correct explanation for STATEMENT-1\n\n(B) STATEMENT-1 is True, STATEMENT-2 is True; STATEMENT-2 is NOT a correct explanation for STATEMENT-1\n\n(C) STATEMENT-1 is True, STATEMENT-2 is False\n\n(D) STATEMENT-1 is False, STATEMENT-2 is True",
+    "answer": "(B)",
+    "trap": "The two quadratics share the root $\\alpha$. If both discriminants were negative, their (non-real) roots would come in conjugate pairs, and a shared root would force one equation to be a real multiple of the other — i.e. $b=pa$ and $c=qa$ — which then makes $\\tfrac{1}{\\beta}=\\beta$, contradicting $\\beta^2\\ne 1$. So at least one discriminant is $\\ge 0$; but a strong student may wrongly conclude Statement-2 therefore EXPLAINS Statement-1, when in fact both discriminants turn out non-negative, so Statement-2 is a true-but-not-causal companion fact.",
+    "solutions": [
+      {
+        "name": "Conjugate-root elimination of the imaginary case",
+        "steps": [
+          "$\\alpha$ is a common root of $x^2+2px+q=0$ and $ax^2+2bx+c=0$; here $p,q,a,b,c$ are all real.",
+          "Suppose, for contradiction, that $x^2+2px+q=0$ had non-real roots. Then $\\alpha,\\beta$ are complex conjugates, so $\\beta=\\bar\\alpha$ and $|\\alpha|^2=\\alpha\\beta=q$.",
+          "The second equation also has real coefficients, and shares the real-coefficient root $\\alpha$; its other root is $\\tfrac{1}{\\beta}$. For a real-coefficient quadratic a non-real root's partner must be its conjugate, so $\\tfrac{1}{\\beta}=\\bar\\alpha=\\beta$, giving $\\beta^2=1$.",
+          "But we are told $\\beta^2\\notin\\{-1,0,1\\}$, so $\\beta^2=1$ is impossible. Hence $x^2+2px+q=0$ has REAL roots, i.e. discriminant $\\ge 0$: $(2p)^2-4q\\ge 0\\Rightarrow p^2-q\\ge 0$.",
+          "Since $\\alpha$ is real, and $\\alpha,\\tfrac{1}{\\beta}$ are real, the second equation $ax^2+2bx+c=0$ also has real roots, so its discriminant $\\ge 0$: $(2b)^2-4ac\\ge 0\\Rightarrow b^2-ac\\ge 0$.",
+          "Both factors are $\\ge 0$, so $(p^2-q)(b^2-ac)\\ge 0$. STATEMENT-1 is TRUE.",
+          "STATEMENT-2 claims $b\\ne pa$ or $c\\ne qa$. If instead $b=pa$ AND $c=qa$, then $ax^2+2bx+c=a(x^2+2px+q)$, so the second equation has the SAME roots $\\alpha,\\beta$ as the first; its roots being $\\alpha,\\tfrac{1}{\\beta}$ then force $\\tfrac{1}{\\beta}=\\beta$, i.e. $\\beta^2=1$ — again excluded. So we cannot have both $b=pa$ and $c=qa$; STATEMENT-2 is TRUE.",
+          "STATEMENT-1 is proved directly from the two discriminants; it does not rely on the inequality in STATEMENT-2. So STATEMENT-2 is a true statement but NOT a correct explanation of STATEMENT-1. Answer: (B)."
+        ]
+      },
+      {
+        "name": "Vieta bookkeeping on the shared root",
+        "steps": [
+          "First equation: $\\alpha+\\beta=-2p$, $\\alpha\\beta=q$. Second equation: $\\alpha+\\tfrac{1}{\\beta}=-\\dfrac{2b}{a}$, $\\alpha\\cdot\\tfrac{1}{\\beta}=\\dfrac{c}{a}$ (assume $a\\ne 0$; the degenerate $a=0$ case is handled separately and does not change the conclusion).",
+          "Discriminant of the first (all coefficients real): $D_1=4p^2-4q=4(p^2-q)$. Discriminant of the second: $D_2=4b^2-4ac=4(b^2-ac)$. So $D_1D_2=16(p^2-q)(b^2-ac)$, and the sign of $(p^2-q)(b^2-ac)$ equals the sign of $D_1D_2$.",
+          "Key claim: $D_1$ and $D_2$ cannot both be negative. If $D_1<0$, the roots $\\alpha,\\beta$ are non-real conjugates; the second real-coefficient quadratic shares $\\alpha$, forcing its partner $\\tfrac1\\beta=\\bar\\alpha=\\beta$, i.e. $\\beta^2=1$ — excluded. So $D_1\\ge 0$.",
+          "With $D_1\\ge 0$, $\\alpha$ (and $\\beta$) are real, hence $\\tfrac{1}{\\beta}$ is real, hence the second quadratic has real roots and $D_2\\ge 0$.",
+          "Therefore $D_1\\ge 0$ and $D_2\\ge 0$, so $D_1D_2\\ge 0$ and $(p^2-q)(b^2-ac)\\ge 0$: STATEMENT-1 TRUE.",
+          "For STATEMENT-2, note $b=pa$ and $c=qa$ simultaneously would make the second quadratic a scalar multiple $a(x^2+2px+q)$ of the first, so both equations would have identical root sets $\\{\\alpha,\\beta\\}$. Matching with $\\{\\alpha,\\tfrac1\\beta\\}$ gives $\\tfrac1\\beta=\\beta\\Rightarrow\\beta^2=1$, contradicting the hypothesis. Hence NOT both equalities hold, so $b\\ne pa$ or $c\\ne qa$: STATEMENT-2 TRUE.",
+          "The proof of STATEMENT-1 used only the discriminant/conjugate argument, independent of STATEMENT-2's inequality. So STATEMENT-2 does not explain STATEMENT-1. Correct choice: (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q11. The heart is a reality argument: real coefficients plus a shared root make the imaginary case collapse to $\\beta^2=1$, which the exclusion $\\beta^2\\notin\\{-1,0,1\\}$ forbids — so both discriminants are non-negative and their product is $\\ge 0$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Both roots pinned past $x=4$",
+    "difficulty": 4,
+    "task": "Find the smallest such $k$.",
+    "pyq": {
+      "year": 2009,
+      "paper": "2",
+      "qno": "35"
+    },
+    "tags": [
+      "location of roots",
+      "discriminant",
+      "roots at least a given value",
+      "2009"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"170\" x2=\"300\" y2=\"170\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"40\" y1=\"20\" x2=\"40\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><text x=\"302\" y=\"174\" fill=\"var(--ink2)\">x</text><line x1=\"120\" y1=\"30\" x2=\"120\" y2=\"185\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><text x=\"108\" y=\"198\" fill=\"var(--ink2)\">x=4</text><path d=\"M60 40 Q 190 260 300 60\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><circle cx=\"150\" cy=\"170\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"258\" cy=\"170\" r=\"3\" fill=\"var(--gold)\"/><text x=\"140\" y=\"162\" fill=\"var(--ink2)\">x₁</text><text x=\"250\" y=\"162\" fill=\"var(--ink2)\">x₂</text><text x=\"132\" y=\"58\" fill=\"var(--ink2)\">f(4)≥0</text></svg>",
+    "statement": "The smallest value of $k$, for which both the roots of the equation $$x^2-8kx+16(k^2-k+1)=0$$ are real, distinct and have values at least $4$, is ______ .",
+    "answer": "$\\boxed{2}$",
+    "trap": "Students demand only the discriminant $>0$ (which gives $k>1$) and stop, or they force $f(4)>0$ with a strict sign and lose the boundary case $k=2$ where the smaller root equals exactly $4$. \"At least $4$\" is a closed condition, so the vertex/value inequalities must be non-strict — yet the roots being *distinct* is what stays strict.",
+    "solutions": [
+      {
+        "name": "Location of roots: sign of $f$, discriminant, vertex",
+        "steps": [
+          "Let $f(x)=x^2-8kx+16(k^2-k+1)$, an upward parabola. Both roots real and distinct means the discriminant is strictly positive.",
+          "Discriminant $= (8k)^2-4\\cdot16(k^2-k+1)=64k^2-64k^2+64k-64=64(k-1)>0\\Rightarrow k>1$.",
+          "\"Both roots $\\ge 4$\" needs three simultaneous conditions for an upward parabola: (i) discriminant $>0$, (ii) $f(4)\\ge 0$ (the point $4$ lies at or left of the smaller root), (iii) the vertex abscissa $x_v=\\tfrac{8k}{2}=4k>4$.",
+          "Compute $f(4)=16-32k+16(k^2-k+1)=16k^2-48k+32=16(k-1)(k-2)$. So $f(4)\\ge 0\\Rightarrow k\\le 1$ or $k\\ge 2$.",
+          "Condition (iii): $4k>4\\Rightarrow k>1$. Intersect all three: $k>1$ and ($k\\le1$ or $k\\ge2$) and $k>1$ $\\Rightarrow k\\ge 2$.",
+          "Hence the admissible set is $[2,\\infty)$ and the smallest value is $k=2$."
+        ]
+      },
+      {
+        "name": "Solve the roots explicitly and bound the smaller one",
+        "steps": [
+          "The roots are $x=\\dfrac{8k\\pm\\sqrt{64(k-1)}}{2}=4k\\pm 4\\sqrt{k-1}$, requiring $k>1$ for them to be real and distinct.",
+          "The smaller root is $x_{\\min}=4k-4\\sqrt{k-1}$. The requirement \"both roots $\\ge 4$\" reduces to $x_{\\min}\\ge 4$.",
+          "$4k-4\\sqrt{k-1}\\ge 4\\iff k-1\\ge\\sqrt{k-1}$. Put $u=\\sqrt{k-1}\\ge 0$: the inequality is $u^2\\ge u\\iff u(u-1)\\ge 0\\iff u\\ge 1$ (since $u\\ge0$).",
+          "$u\\ge 1\\iff \\sqrt{k-1}\\ge 1\\iff k-1\\ge 1\\iff k\\ge 2$.",
+          "At $k=2$: roots are $8\\pm4=4,12$, both $\\ge 4$ and distinct — valid. So the least $k$ is $2$.",
+          "For $1<k<2$ the smaller root $4k-4\\sqrt{k-1}<4$, confirming $k=2$ is the minimum."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2009, Paper 2, Q35. The whole difficulty lives in the *closed* boundary: at the extremal $k=2$ the smaller root sits exactly on the wall $x=4$, so $f(4)=0$ — using a strict inequality there silently deletes the answer."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The equation with roots $\\tfrac{\\alpha}{\\beta},\\tfrac{\\beta}{\\alpha}$",
+    "difficulty": 3,
+    "task": "Identify the quadratic equation.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "35"
+    },
+    "tags": [
+      "roots and coefficients",
+      "symmetric functions",
+      "complex numbers",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Let $p$ and $q$ be real numbers such that $p\\neq 0$, $p^3\\neq q$ and $p^3\\neq -q$. If $\\alpha$ and $\\beta$ are nonzero complex numbers satisfying $\\alpha+\\beta=-p$ and $\\alpha^3+\\beta^3=q$, then a quadratic equation having $\\dfrac{\\alpha}{\\beta}$ and $\\dfrac{\\beta}{\\alpha}$ as its roots is\n\n(A) $(p^3+q)x^2-(p^3+2q)x+(p^3+q)=0$\n\n(B) $(p^3+q)x^2-(p^3-2q)x+(p^3+q)=0$\n\n(C) $(p^3-q)x^2-(5p^3-2q)x+(p^3-q)=0$\n\n(D) $(p^3-q)x^2-(5p^3+2q)x+(p^3-q)=0$",
+    "answer": "(B)",
+    "trap": "The product of the new roots $\\dfrac{\\alpha}{\\beta}\\cdot\\dfrac{\\beta}{\\alpha}=1$ is *forced* — it is exactly $1$, not $\\dfrac{p^3+q}{p^3+q}$. Many candidates never notice that equating the constant and leading coefficients is precisely the statement \"product $=1$\", so they mis-scale the equation or pick (A)/(D) whose middle terms come from a wrong $\\alpha\\beta$.",
+    "solutions": [
+      {
+        "name": "Extract $\\alpha\\beta$ from the cube identity, then build the equation",
+        "steps": [
+          "Use $\\alpha^3+\\beta^3=(\\alpha+\\beta)^3-3\\alpha\\beta(\\alpha+\\beta)$. With $\\alpha+\\beta=-p$: $q=(-p)^3-3\\alpha\\beta(-p)=-p^3+3p\\,\\alpha\\beta$.",
+          "Solve for the product: $3p\\,\\alpha\\beta=p^3+q\\Rightarrow \\alpha\\beta=\\dfrac{p^3+q}{3p}$ (well-defined since $p\\neq 0$).",
+          "For the new roots $r_1=\\tfrac{\\alpha}{\\beta},\\,r_2=\\tfrac{\\beta}{\\alpha}$: product $r_1r_2=\\dfrac{\\alpha}{\\beta}\\cdot\\dfrac{\\beta}{\\alpha}=1$.",
+          "Sum $r_1+r_2=\\dfrac{\\alpha^2+\\beta^2}{\\alpha\\beta}=\\dfrac{(\\alpha+\\beta)^2-2\\alpha\\beta}{\\alpha\\beta}=\\dfrac{p^2-2\\cdot\\frac{p^3+q}{3p}}{\\frac{p^3+q}{3p}}$.",
+          "Multiply numerator and denominator by $3p$: $=\\dfrac{3p^3-2(p^3+q)}{p^3+q}=\\dfrac{p^3-2q}{p^3+q}$.",
+          "A quadratic with these roots is $x^2-(r_1+r_2)x+r_1r_2=0$, i.e. $x^2-\\dfrac{p^3-2q}{p^3+q}\\,x+1=0$. Clear the denominator (allowed since $p^3+q\\neq0$): $(p^3+q)x^2-(p^3-2q)x+(p^3+q)=0$ — option (B)."
+        ]
+      },
+      {
+        "name": "Reciprocal-root symmetry pins the palindromic form",
+        "steps": [
+          "Since $r_2=1/r_1$, the two new roots are reciprocals of each other, so the required quadratic is *palindromic*: its constant and leading coefficients must be equal. This alone eliminates (C) and (D)? No — check: (C),(D) also have equal end coefficients $p^3-q$, so keep all four and use the sum.",
+          "The middle coefficient equals $-(r_1+r_2)$ times the (equal) end coefficient. So we only need the sum $r_1+r_2=\\dfrac{\\alpha}{\\beta}+\\dfrac{\\beta}{\\alpha}$ and to know which end coefficient, $p^3+q$ or $p^3-q$, is correct.",
+          "From $q=-p^3+3p\\,\\alpha\\beta$ we get $\\alpha\\beta=\\dfrac{p^3+q}{3p}$, so the natural denominator that clears everything is $p^3+q$, singling out family (A)/(B) over (C)/(D).",
+          "Now $r_1+r_2=\\dfrac{(\\alpha+\\beta)^2}{\\alpha\\beta}-2=\\dfrac{p^2}{\\frac{p^3+q}{3p}}-2=\\dfrac{3p^3}{p^3+q}-2=\\dfrac{3p^3-2(p^3+q)}{p^3+q}=\\dfrac{p^3-2q}{p^3+q}$.",
+          "Thus the middle coefficient is $-(p^3+q)\\cdot\\dfrac{p^3-2q}{p^3+q}=-(p^3-2q)$, giving $(p^3+q)x^2-(p^3-2q)x+(p^3+q)=0$.",
+          "This is option (B); the guarding conditions $p^3\\neq\\pm q$ keep both the leading coefficient and $\\alpha\\beta$ nonzero, so no root is lost."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2010, Paper 1, Q35. Reciprocal roots force a palindromic (self-reversing) quadratic — spot that the product is a clean $1$ and the entire problem collapses to computing one symmetric sum."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Counting the real roots of $x^4-4x^3+12x^2+x-1$",
+    "difficulty": 3,
+    "task": "Find the number of distinct real roots.",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "36"
+    },
+    "tags": [
+      "number of real roots",
+      "Rolle's theorem",
+      "theory of equations",
+      "2011"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"150\" x2=\"300\" y2=\"150\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"150\" y1=\"20\" x2=\"150\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"302\" y=\"146\" fill=\"var(--ink2)\">x</text><text x=\"156\" y=\"28\" fill=\"var(--ink2)\">y</text><path d=\"M 78 40 C 105 120 130 170 150 165 C 178 158 205 100 240 40\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><circle cx=\"120\" cy=\"150\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"163\" cy=\"150\" r=\"3\" fill=\"var(--gold)\"/><text x=\"104\" y=\"168\" fill=\"var(--ink2)\">r₁&lt;0</text><text x=\"160\" y=\"168\" fill=\"var(--ink2)\">r₂&gt;0</text><text x=\"152\" y=\"163\" fill=\"var(--ink2)\">O</text><text x=\"40\" y=\"120\" fill=\"var(--ink2)\">f(0)=−1</text></svg>",
+    "statement": "Find the number of distinct real roots of the equation $$x^4-4x^3+12x^2+x-1=0.$$",
+    "answer": "$\\boxed{2}$",
+    "trap": "A degree-4 equation invites you to hunt for four roots or to factor blindly. The subtle move is not to solve it at all: bounding the number of turning points through convexity ($f''>0$) caps the real roots at two before you ever look for their values.",
+    "solutions": [
+      {
+        "name": "Convexity cap via $f''>0$ (Rolle bound)",
+        "steps": [
+          "Let $f(x)=x^4-4x^3+12x^2+x-1$.",
+          "Differentiate twice: $f'(x)=4x^3-12x^2+24x+1$ and $f''(x)=12x^2-24x+24=12(x^2-2x+2)$.",
+          "Complete the square: $f''(x)=12\\big[(x-1)^2+1\\big]>0$ for every real $x$.",
+          "Since $f''>0$ everywhere, $f'$ is strictly increasing, so $f'$ has exactly one real zero; hence $f$ has at most one turning point (a single minimum).",
+          "A differentiable function with at most one critical point can cross any horizontal line at most twice — by Rolle's theorem, between two roots of $f$ there must lie a root of $f'$, and $f'$ offers only one such point. So $f$ has at most $2$ real roots.",
+          "Now show there are at least $2$. Evaluate $f(0)=-1<0$, while $f(x)\\to+\\infty$ as $x\\to+\\infty$ and as $x\\to-\\infty$ (leading term $x^4$).",
+          "By the Intermediate Value Theorem there is a root in $(-\\infty,0)$ and another in $(0,\\infty)$.",
+          "At least $2$ and at most $2$ real roots force exactly $\\boxed{2}$ distinct real roots."
+        ]
+      },
+      {
+        "name": "Sum-of-squares decomposition",
+        "steps": [
+          "Try to write $f$ as a sum of a perfect square and a low-degree remainder that pins down the sign.",
+          "Group $x^4-4x^3+12x^2 = (x^2-2x)^2 + 8x^2$, since $(x^2-2x)^2=x^4-4x^3+4x^2$ and we need $12x^2$, leaving $+8x^2$.",
+          "Thus $f(x)=(x^2-2x)^2+8x^2+x-1$.",
+          "The tail $8x^2+x-1$ has discriminant $1+32=33>0$, so it is negative only on a short interval $\\big(\\tfrac{-1-\\sqrt{33}}{16},\\tfrac{-1+\\sqrt{33}}{16}\\big)\\approx(-0.42,0.30)$; elsewhere $f\\ge 0$ is guaranteed away from roots.",
+          "So every real root must lie inside that short interval near the origin, where $(x^2-2x)^2$ is small — confirming the roots straddle $0$ (one just below, one just above), consistent with $f(0)=-1<0$.",
+          "Since $f$ is strictly convex (from $f''=12[(x-1)^2+1]>0$), it dips below zero on exactly one interval and returns, crossing the axis exactly twice.",
+          "Hence the equation has exactly $\\boxed{2}$ distinct real roots."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2011, Paper 2, Q36. The whole problem collapses once you notice $f''>0$ globally — a quartic that is strictly convex behaves like an upward parabola and can meet the axis at most twice, so you never need to compute a single root."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Where $\\alpha x^2-x+\\alpha=0$ has close roots: $|x_1-x_2|<1$",
+    "difficulty": 3,
+    "task": "Identify which intervals lie inside $S$.",
+    "pyq": {
+      "year": 2015,
+      "paper": "2",
+      "qno": "50"
+    },
+    "tags": [
+      "discriminant",
+      "difference of roots",
+      "inequalities on roots",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "Let $S$ be the set of all non-zero real numbers $\\alpha$ such that the quadratic equation $\\alpha x^2-x+\\alpha=0$ has two distinct real roots $x_1$ and $x_2$ satisfying the inequality $|x_1-x_2|<1$. Which of the following intervals is (are) a subset(s) of $S$?\n\n(A) $\\left(-\\dfrac12,\\,-\\dfrac{1}{\\sqrt5}\\right)$\n\n(B) $\\left(-\\dfrac{1}{\\sqrt5},\\,0\\right)$\n\n(C) $\\left(0,\\,\\dfrac{1}{\\sqrt5}\\right)$\n\n(D) $\\left(\\dfrac{1}{\\sqrt5},\\,\\dfrac12\\right)$",
+    "answer": "(A), (D)",
+    "trap": "Two conditions pull in opposite directions and a strong student often enforces only one. The distinct-roots condition demands $|\\alpha|<\\tfrac12$ (small $|\\alpha|$), while the closeness condition $|x_1-x_2|<1$ demands $|\\alpha|>\\tfrac1{\\sqrt5}$ (not-too-small $|\\alpha|$). Keeping only the discriminant, or forgetting to take the absolute value of $\\alpha$, sweeps in the wrong intervals (B) and (C).",
+    "solutions": [
+      {
+        "name": "$(x_1-x_2)^2$ via sum and product of roots",
+        "steps": [
+          "For $\\alpha x^2-x+\\alpha=0$ (with $\\alpha\\neq0$), the roots satisfy $x_1+x_2=\\dfrac{1}{\\alpha}$ and $x_1x_2=\\dfrac{\\alpha}{\\alpha}=1$.",
+          "Distinct real roots require discriminant $>0$: $(-1)^2-4\\alpha\\cdot\\alpha>0\\Rightarrow 1-4\\alpha^2>0\\Rightarrow |\\alpha|<\\tfrac12$.",
+          "Compute the squared gap: $(x_1-x_2)^2=(x_1+x_2)^2-4x_1x_2=\\dfrac{1}{\\alpha^2}-4=\\dfrac{1-4\\alpha^2}{\\alpha^2}$.",
+          "Impose $|x_1-x_2|<1$, i.e. $(x_1-x_2)^2<1$: $\\dfrac{1-4\\alpha^2}{\\alpha^2}<1$.",
+          "Since $\\alpha^2>0$, multiply through: $1-4\\alpha^2<\\alpha^2\\Rightarrow 1<5\\alpha^2\\Rightarrow \\alpha^2>\\tfrac15\\Rightarrow |\\alpha|>\\tfrac1{\\sqrt5}$.",
+          "Combine both conditions: $\\dfrac1{\\sqrt5}<|\\alpha|<\\dfrac12$, i.e. $\\alpha\\in\\left(-\\tfrac12,-\\tfrac1{\\sqrt5}\\right)\\cup\\left(\\tfrac1{\\sqrt5},\\tfrac12\\right)$.",
+          "This is exactly $S$. Intervals (A) and (D) are subsets of $S$; (B) and (C) lie in the forbidden band $|\\alpha|<\\tfrac1{\\sqrt5}$ (where roots are too far apart), so they are not.",
+          "Hence the answer is (A), (D)."
+        ]
+      },
+      {
+        "name": "Direct root formula",
+        "steps": [
+          "Solve explicitly: $x=\\dfrac{1\\pm\\sqrt{1-4\\alpha^2}}{2\\alpha}$, valid and real-distinct only when $1-4\\alpha^2>0\\Rightarrow|\\alpha|<\\tfrac12$.",
+          "The two roots differ by $x_1-x_2=\\dfrac{2\\sqrt{1-4\\alpha^2}}{2\\alpha}=\\dfrac{\\sqrt{1-4\\alpha^2}}{\\alpha}$.",
+          "Therefore $|x_1-x_2|=\\dfrac{\\sqrt{1-4\\alpha^2}}{|\\alpha|}$.",
+          "Require $|x_1-x_2|<1$: $\\dfrac{\\sqrt{1-4\\alpha^2}}{|\\alpha|}<1\\Rightarrow \\sqrt{1-4\\alpha^2}<|\\alpha|$.",
+          "Both sides positive, so square: $1-4\\alpha^2<\\alpha^2\\Rightarrow 5\\alpha^2>1\\Rightarrow |\\alpha|>\\tfrac1{\\sqrt5}$.",
+          "Intersecting with the distinctness band $|\\alpha|<\\tfrac12$ gives $\\tfrac1{\\sqrt5}<|\\alpha|<\\tfrac12$.",
+          "So $S=\\left(-\\tfrac12,-\\tfrac1{\\sqrt5}\\right)\\cup\\left(\\tfrac1{\\sqrt5},\\tfrac12\\right)$, and the intervals contained in $S$ are (A) and (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2015, Paper 2, Q50. The product of roots is pinned to $1$ regardless of $\\alpha$, so the entire problem reduces to squeezing $|\\alpha|$ between the discriminant bound $\\tfrac12$ and the gap bound $\\tfrac1{\\sqrt5}$ — a clean two-sided inequality on $|\\alpha|$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Twin Quadratics with $\\sec\\theta$ and $\\tan\\theta$",
+    "difficulty": 3,
+    "task": "Find the value of $\\alpha_1+\\beta_2$.",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "37"
+    },
+    "tags": [
+      "nature and roots of quadratics",
+      "trigonometric coefficients",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $-\\dfrac{\\pi}{6} < \\theta < -\\dfrac{\\pi}{12}$. Suppose $\\alpha_1$ and $\\beta_1$ are the roots of the equation $x^2 - 2x\\sec\\theta + 1 = 0$, and $\\alpha_2$ and $\\beta_2$ are the roots of the equation $x^2 + 2x\\tan\\theta - 1 = 0$. If $\\alpha_1 > \\beta_1$ and $\\alpha_2 > \\beta_2$, then $\\alpha_1 + \\beta_2$ equals\n\n(A) $2(\\sec\\theta - \\tan\\theta)$\n(B) $2\\sec\\theta$\n(C) $-2\\tan\\theta$\n(D) $0$",
+    "answer": "$\\boxed{-2\\tan\\theta}$ — option (C)",
+    "trap": "The quadratic formula hands you $\\alpha,\\beta = \\sec\\theta \\pm |\\tan\\theta|$ and $-\\tan\\theta \\pm |\\sec\\theta|$ — but which sign is the *larger* root depends entirely on the signs of $\\sec\\theta$ and $\\tan\\theta$. On $-\\tfrac{\\pi}{6}<\\theta<-\\tfrac{\\pi}{12}$ (a slice of the fourth quadrant) we have $\\tan\\theta<0$ and $\\sec\\theta>0$, so ordering $\\alpha_1>\\beta_1$ flips $\\pm$ from the naive reading. A student who forgets to test the sign of $\\tan\\theta$ picks the wrong root and lands on $+2\\tan\\theta$.",
+    "solutions": [
+      {
+        "name": "Direct roots via the quadratic formula",
+        "steps": [
+          "For $x^2 - 2x\\sec\\theta + 1 = 0$, the discriminant is $4\\sec^2\\theta - 4 = 4\\tan^2\\theta$, so the roots are $x = \\sec\\theta \\pm \\sqrt{\\tan^2\\theta} = \\sec\\theta \\pm |\\tan\\theta|$.",
+          "On the interval $-\\tfrac{\\pi}{6}<\\theta<-\\tfrac{\\pi}{12}$ (fourth-quadrant angles) we have $\\cos\\theta>0$ so $\\sec\\theta>0$, and $\\sin\\theta<0$ so $\\tan\\theta<0$; hence $|\\tan\\theta| = -\\tan\\theta$.",
+          "Thus the roots are $\\sec\\theta - \\tan\\theta$ and $\\sec\\theta + \\tan\\theta$. Since $-\\tan\\theta>0$, the larger root is $\\alpha_1 = \\sec\\theta - \\tan\\theta$.",
+          "For $x^2 + 2x\\tan\\theta - 1 = 0$, the discriminant is $4\\tan^2\\theta + 4 = 4\\sec^2\\theta$, so the roots are $x = -\\tan\\theta \\pm |\\sec\\theta| = -\\tan\\theta \\pm \\sec\\theta$ (using $\\sec\\theta>0$).",
+          "The two roots are $-\\tan\\theta + \\sec\\theta$ and $-\\tan\\theta - \\sec\\theta$; since $\\sec\\theta>0$, the smaller root is $\\beta_2 = -\\tan\\theta - \\sec\\theta$.",
+          "Add: $\\alpha_1 + \\beta_2 = (\\sec\\theta - \\tan\\theta) + (-\\tan\\theta - \\sec\\theta) = -2\\tan\\theta.$"
+        ]
+      },
+      {
+        "name": "Sum-of-roots bookkeeping (Vieta)",
+        "steps": [
+          "By Vieta, $\\alpha_1+\\beta_1 = 2\\sec\\theta$ and $\\alpha_2+\\beta_2 = -2\\tan\\theta$. The target $\\alpha_1+\\beta_2$ is the *larger* root of the first plus the *smaller* root of the second, so we must peel off the half that is not wanted from each sum.",
+          "For the first equation, $\\alpha_1 = \\tfrac{(\\alpha_1+\\beta_1)}{2} + \\tfrac{(\\alpha_1-\\beta_1)}{2} = \\sec\\theta + \\tfrac12\\sqrt{4\\tan^2\\theta}= \\sec\\theta + |\\tan\\theta| = \\sec\\theta - \\tan\\theta$, since $\\tan\\theta<0$ on the given interval.",
+          "For the second equation, $\\beta_2 = \\tfrac{(\\alpha_2+\\beta_2)}{2} - \\tfrac{(\\alpha_2-\\beta_2)}{2} = -\\tan\\theta - \\tfrac12\\sqrt{4\\sec^2\\theta} = -\\tan\\theta - |\\sec\\theta| = -\\tan\\theta - \\sec\\theta$, since $\\sec\\theta>0$.",
+          "Adding the two: $\\alpha_1 + \\beta_2 = (\\sec\\theta - \\tan\\theta) + (-\\tan\\theta - \\sec\\theta) = -2\\tan\\theta.$",
+          "The $\\sec\\theta$ terms cancel while the $\\tan\\theta$ terms reinforce, giving $-2\\tan\\theta$, i.e. option (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2016, Paper 1, Q37. The whole difficulty is bookkeeping the *sign* of $\\sec\\theta$ and $\\tan\\theta$ on the quadrant $-\\tfrac{\\pi}{6}<\\theta<-\\tfrac{\\pi}{12}$ — the algebra of the roots is trivial once $|\\tan\\theta|=-\\tan\\theta$ and $|\\sec\\theta|=\\sec\\theta$ are fixed."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Golden Recurrence: $a_n=p\\alpha^n+q\\beta^n$",
+    "difficulty": 3,
+    "task": "Express $a_{12}$ in terms of earlier terms.",
+    "pyq": {
+      "year": 2017,
+      "paper": "2",
+      "qno": "53"
+    },
+    "tags": [
+      "roots recurrence",
+      "theory of equations",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "Let $p,q$ be integers and let $\\alpha,\\beta$ be the roots of the equation $x^2 - x - 1 = 0$, where $\\alpha \\neq \\beta$. For $n = 0, 1, 2, \\dots$, let $a_n = p\\alpha^n + q\\beta^n$. (FACT: if $a$ and $b$ are rational numbers and $a + b\\sqrt{5} = 0$, then $a = 0 = b$.)\n\nThen $a_{12}$ equals\n\n(A) $a_{11} - a_{10}$\n(B) $a_{11} + a_{10}$\n(C) $2a_{11} + a_{10}$\n(D) $a_{11} + 2a_{10}$",
+    "answer": "$\\boxed{a_{11} + a_{10}}$ — option (B)",
+    "trap": "It is tempting to reach for the FACT and expand $\\alpha^{12},\\beta^{12}$ explicitly, drowning in $\\sqrt5$ arithmetic. The point is structural: because $\\alpha$ and $\\beta$*individually* satisfy $x^2=x+1$, the sequence $a_n$ inherits the Fibonacci recurrence regardless of the constants $p,q$. A student who treats $p,q$ as an obstacle rather than passengers riding the recurrence overcomplicates a one-line problem.",
+    "solutions": [
+      {
+        "name": "Roots satisfy the defining equation (recurrence)",
+        "steps": [
+          "Since $\\alpha$ is a root of $x^2 - x - 1 = 0$, we have $\\alpha^2 = \\alpha + 1$, and multiplying by $\\alpha^{n-2}$ gives $\\alpha^n = \\alpha^{n-1} + \\alpha^{n-2}$ for every $n\\ge 2$.",
+          "Identically $\\beta$ is a root, so $\\beta^n = \\beta^{n-1} + \\beta^{n-2}$.",
+          "Multiply the $\\alpha$ relation by $p$ and the $\\beta$ relation by $q$, then add: $p\\alpha^n + q\\beta^n = (p\\alpha^{n-1}+q\\beta^{n-1}) + (p\\alpha^{n-2}+q\\beta^{n-2})$.",
+          "By the definition $a_n = p\\alpha^n + q\\beta^n$, this reads $a_n = a_{n-1} + a_{n-2}$ for all $n\\ge 2$ — the Fibonacci-type recurrence, holding for any $p,q$.",
+          "Setting $n = 12$: $a_{12} = a_{11} + a_{10}$, which is option (B)."
+        ]
+      },
+      {
+        "name": "Newton's identity / power-sum recurrence",
+        "steps": [
+          "For a monic quadratic $x^2 - sx + t = 0$ with roots $\\alpha,\\beta$, the power sums $S_n = \\alpha^n + \\beta^n$ obey $S_n = s\\,S_{n-1} - t\\,S_{n-2}$ (Newton's identity). Here $s = \\alpha+\\beta = 1$ and $t = \\alpha\\beta = -1$.",
+          "So $S_n = 1\\cdot S_{n-1} - (-1)S_{n-2} = S_{n-1} + S_{n-2}$; the pure power sums already satisfy the Fibonacci recurrence.",
+          "The given sequence is a linear combination $a_n = p\\alpha^n + q\\beta^n$. Any linear combination of two solutions of a linear recurrence is again a solution, because the recurrence operator is linear.",
+          "Hence $a_n$ satisfies the same relation $a_n = a_{n-1} + a_{n-2}$; the weights $p,q$ are just the initial data $a_0 = p+q$, $a_1 = p\\alpha+q\\beta$.",
+          "Therefore $a_{12} = a_{11} + a_{10}$ — option (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2017, Paper 2, Q53 (Paragraph 2). Key insight: a sequence built from powers of the roots of $x^2-x-1=0$ automatically obeys the Fibonacci recurrence — the constants $p,q$ only fix the seeds, never the propagation rule."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Pinning $p$ and $q$ from a single term $a_4=28$",
+    "difficulty": 3,
+    "task": "Find the value of $p+2q$.",
+    "pyq": {
+      "year": 2017,
+      "paper": "2",
+      "qno": "54"
+    },
+    "tags": [
+      "roots of quadratic",
+      "recurrence",
+      "integer solution",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "Let $p,q$ be integers and let $\\alpha,\\beta$ be the roots of the equation $x^2-x-1=0$, where $\\alpha\\neq\\beta$. For $n=0,1,2,\\dots$, define $a_n=p\\alpha^n+q\\beta^n$. (You may use the FACT: if $a,b$ are rational and $a+b\\sqrt5=0$, then $a=b=0$.) If $a_4=28$, then $p+2q$ equals\n\n(A) $21$\n(B) $14$\n(C) $7$\n(D) $12$",
+    "answer": "(D) $12$",
+    "trap": "The equation $a_4=28$ alone looks like one equation in two unknowns $p,q$ — seemingly under-determined. The resolution is that $a_4$ is a *rational* number, but $\\alpha^4,\\beta^4$ carry $\\sqrt5$; forcing the irrational part to vanish (the given FACT) is the hidden second equation that fixes both $p$ and $q$.",
+    "solutions": [
+      {
+        "name": "Use the recurrence to reduce $a_4$ to $a_0,a_1$",
+        "steps": [
+          "As in the paired problem, $\\alpha^2=\\alpha+1$ and $\\beta^2=\\beta+1$ give the recurrence $a_{n+2}=a_{n+1}+a_{n}$.",
+          "Write $a_0=p+q$ and $a_1=p\\alpha+q\\beta$. Then $a_2=a_1+a_0$, $a_3=a_2+a_1=2a_1+a_0$, and $a_4=a_3+a_2=3a_1+2a_0$.",
+          "So $28=a_4=3a_1+2a_0=3(p\\alpha+q\\beta)+2(p+q)$.",
+          "Substitute $\\alpha=\\tfrac{1+\\sqrt5}{2}$, $\\beta=\\tfrac{1-\\sqrt5}{2}$: $p\\alpha+q\\beta=\\tfrac{p+q}{2}+\\tfrac{p-q}{2}\\sqrt5$.",
+          "Thus $28=3\\!\\left(\\tfrac{p+q}{2}+\\tfrac{p-q}{2}\\sqrt5\\right)+2(p+q)=\\tfrac{7(p+q)}{2}+\\tfrac{3(p-q)}{2}\\sqrt5$.",
+          "Since $28$ is rational, the FACT forces the $\\sqrt5$-coefficient to vanish: $p-q=0$, i.e. $p=q$.",
+          "Then $28=\\tfrac{7(p+q)}{2}=7p$, so $p=q=4$.",
+          "Hence $p+2q=4+2\\cdot4=12$ — option (D)."
+        ]
+      },
+      {
+        "name": "Split $a_4$ into rational and irrational parts directly",
+        "steps": [
+          "Compute the powers using $\\alpha=\\tfrac{1+\\sqrt5}{2}$, $\\beta=\\tfrac{1-\\sqrt5}{2}$. From $\\alpha^2=\\alpha+1$: $\\alpha^2=\\tfrac{3+\\sqrt5}{2}$, then $\\alpha^4=(\\alpha^2)^2=\\tfrac{(3+\\sqrt5)^2}{4}=\\tfrac{14+6\\sqrt5}{4}=\\tfrac{7+3\\sqrt5}{2}$.",
+          "Symmetrically $\\beta^4=\\tfrac{7-3\\sqrt5}{2}$.",
+          "So $a_4=p\\alpha^4+q\\beta^4=\\tfrac{7(p+q)}{2}+\\tfrac{3(p-q)}{2}\\sqrt5$.",
+          "Setting $a_4=28$ (rational) and applying the FACT: the $\\sqrt5$ part gives $p-q=0$, and the rational part gives $\\tfrac{7(p+q)}{2}=28\\Rightarrow p+q=8$.",
+          "Solving $p=q$ with $p+q=8$ yields $p=q=4$ (both integers, as required).",
+          "Therefore $p+2q=4+8=12$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2017, Paper 2, Q54. One numeric condition determines two integers because rationality of $a_4$ secretly supplies a second equation — the coefficient of $\\sqrt5$ must vanish, forcing $p=q$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Modulus Splits the Parabola",
+    "difficulty": 3,
+    "task": "Count the real roots.",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "17"
+    },
+    "tags": [
+      "equations with modulus",
+      "case analysis",
+      "number of real roots",
+      "2021"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"170\" x2=\"300\" y2=\"170\" stroke=\"var(--ink3)\"/><line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"302\" y=\"174\" fill=\"var(--ink2)\">x</text><text x=\"164\" y=\"18\" fill=\"var(--ink2)\">y</text><line x1=\"90\" y1=\"20\" x2=\"90\" y2=\"200\" stroke=\"var(--ink2)\" stroke-dasharray=\"3 3\"/><line x1=\"230\" y1=\"20\" x2=\"230\" y2=\"200\" stroke=\"var(--ink2)\" stroke-dasharray=\"3 3\"/><text x=\"78\" y=\"192\" fill=\"var(--ink2)\">-1</text><text x=\"226\" y=\"192\" fill=\"var(--ink2)\">1</text><path d=\"M40 40 Q90 150 90 150\" fill=\"none\" stroke=\"var(--ink2)\"/><path d=\"M90 150 Q160 90 230 150\" fill=\"none\" stroke=\"var(--ink2)\"/><path d=\"M230 150 Q280 90 300 40\" fill=\"none\" stroke=\"var(--ink2)\"/><circle cx=\"63\" cy=\"170\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"110\" cy=\"170\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"200\" cy=\"170\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"270\" cy=\"170\" r=\"3\" fill=\"var(--gold)\"/><text x=\"120\" y=\"36\" fill=\"var(--ink2)\">|x|&lt;1 vs |x|&#8805;1</text></svg>",
+    "statement": "For $x\\in\\mathbb{R}$, find the number of real roots of the equation $$3x^2-4\\lvert x^2-1\\rvert+x-1=0.$$",
+    "answer": "$\\boxed{4}$",
+    "trap": "After solving each quadratic you must discard the roots that fall outside the interval that defined that case. A root of the $\\lvert x\\rvert<1$ quadratic which actually lies in $\\lvert x\\rvert\\ge 1$ is spurious — students who count all four algebraic roots plus all two from the other branch (or forget to filter) get the wrong total.",
+    "solutions": [
+      {
+        "name": "Case split on the sign of $x^2-1$",
+        "steps": [
+          "The modulus flips at $x^2=1$, i.e. at $x=\\pm 1$. Split the real line accordingly.",
+          "Case 1: $\\lvert x\\rvert\\ge 1$. Then $\\lvert x^2-1\\rvert=x^2-1$, so the equation becomes $3x^2-4(x^2-1)+x-1=0$, i.e. $-x^2+x+3=0$, or $x^2-x-3=0$.",
+          "Its roots are $x=\\dfrac{1\\pm\\sqrt{13}}{2}\\approx 2.30$ and $\\approx -1.30$. Both satisfy $\\lvert x\\rvert\\ge 1$, so both are valid — that is $2$ roots.",
+          "Case 2: $\\lvert x\\rvert<1$. Then $\\lvert x^2-1\\rvert=1-x^2$, so $3x^2-4(1-x^2)+x-1=0$, i.e. $7x^2+x-5=0$.",
+          "Its roots are $x=\\dfrac{-1\\pm\\sqrt{1+140}}{14}=\\dfrac{-1\\pm\\sqrt{141}}{14}\\approx 0.78$ and $\\approx -0.92$. Both lie in $(-1,1)$, so both are valid — that is $2$ more roots.",
+          "No root sits exactly at $x=\\pm 1$ (check: at $x=1$, $3-0+1-1=3\\ne 0$; at $x=-1$, $3-0-1-1=1\\ne 0$), so there is no boundary double-count.",
+          "Total valid real roots $=2+2=4$."
+        ]
+      },
+      {
+        "name": "Graphical: intersect $y=3x^2+x-1$ with $y=4\\lvert x^2-1\\rvert$",
+        "steps": [
+          "Rewrite the equation as $3x^2+x-1=4\\lvert x^2-1\\rvert$ and count intersections of the two graphs.",
+          "The left side $L(x)=3x^2+x-1$ is a single upward parabola.",
+          "The right side $R(x)=4\\lvert x^2-1\\rvert$ is a W-shaped curve: it equals $4(x^2-1)$ outside $[-1,1]$ and $4(1-x^2)$ inside, touching $0$ at $x=\\pm 1$.",
+          "For $\\lvert x\\rvert\\ge 1$: solving $L=R$ gives $x^2-x-3=0$, whose two roots $\\dfrac{1\\pm\\sqrt{13}}{2}$ both lie in $\\lvert x\\rvert\\ge 1$ — two crossings on the outer arms.",
+          "For $\\lvert x\\rvert<1$: solving $L=R$ gives $7x^2+x-5=0$, whose two roots $\\dfrac{-1\\pm\\sqrt{141}}{14}$ both lie in $(-1,1)$ — two crossings on the inner hump.",
+          "The upward parabola therefore meets the W in exactly $4$ points, so the equation has $4$ real roots."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE/JEE Advanced 2021, Paper 1, Q17. The whole difficulty is bookkeeping: each branch supplies a quadratic, but a root only counts if it lives in the very interval that produced that branch's form of the modulus."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Log Substitution Hides a Biquadratic",
+    "difficulty": 3,
+    "task": "Find the product.",
+    "pyq": {
+      "year": 2022,
+      "paper": "2",
+      "qno": "4"
+    },
+    "tags": [
+      "logarithmic equations",
+      "biquadratic equation",
+      "product of roots",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "The product of all positive real values of $x$ satisfying the equation $$x^{\\left(16(\\log_5 x)^3-68\\log_5 x\\right)}=5^{-16}$$ is __________ .",
+    "answer": "$\\boxed{1}$",
+    "trap": "Do not compute the four $x$-values numerically and multiply — the point is that the product of the $x$'s equals $5$ raised to the SUM of the exponents $t=\\log_5 x$. Since the biquadratic $4t^4-17t^2+4=0$ is even in $t$, its roots pair off as $\\pm t$ and the sum of all $t$'s is $0$, forcing the product of the $x$'s to be $5^0=1$. Missing that the equation is even (or overlooking a negative $t$, i.e. an $x\\in(0,1)$) breaks the argument.",
+    "solutions": [
+      {
+        "name": "Substitute $t=\\log_5 x$ and reduce to a biquadratic",
+        "steps": [
+          "Let $t=\\log_5 x$, so $x=5^t$ (any positive real $x$ gives a real $t$).",
+          "Take $\\log_5$ of both sides. The exponent on the left multiplies $\\log_5 x=t$: $$t\\big(16t^3-68t\\big)=\\log_5\\!\\big(5^{-16}\\big)=-16.$$",
+          "This expands to $16t^4-68t^2+16=0$; divide by $4$ to get $4t^4-17t^2+4=0$.",
+          "Treat it as a quadratic in $u=t^2$: $4u^2-17u+4=0\\Rightarrow u=\\dfrac{17\\pm\\sqrt{289-64}}{8}=\\dfrac{17\\pm 15}{8}$, so $u=4$ or $u=\\tfrac14$.",
+          "Hence $t^2=4$ or $t^2=\\tfrac14$, giving $t\\in\\{2,-2,\\tfrac12,-\\tfrac12\\}$ — four positive real values of $x$.",
+          "The product of the $x$'s is $\\prod 5^{t}=5^{\\sum t}=5^{\\,2+(-2)+\\frac12+(-\\frac12)}=5^{0}=1.$"
+        ]
+      },
+      {
+        "name": "Vieta on the sum of exponents",
+        "steps": [
+          "As above, with $t=\\log_5 x$ the equation becomes $4t^4-17t^2+4=0$, a quartic in $t$ with no odd-degree terms.",
+          "Writing it as $4t^4+0\\cdot t^3-17t^2+0\\cdot t+4=0$, Vieta's formula gives the sum of the four roots as $-\\dfrac{\\text{coeff of }t^3}{\\text{coeff of }t^4}=-\\dfrac{0}{4}=0.$",
+          "The required product of the $x$-values is $x_1x_2x_3x_4=5^{t_1}5^{t_2}5^{t_3}5^{t_4}=5^{\\,t_1+t_2+t_3+t_4}=5^{0}=1.$",
+          "So the product equals $1$ without ever solving for the individual roots — the vanishing $t^3$ coefficient is all that is needed."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE/JEE Advanced 2022, Paper 2, Q4. Converting a product of $x$'s into $5$ to the SUM of the log-roots turns the whole problem into reading one Vieta coefficient — and the equation being even in $t$ guarantees that sum is zero."
   }
 ];

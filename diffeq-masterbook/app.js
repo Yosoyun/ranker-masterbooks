@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['formation','separable','redsep','homogeneous','redhom','linear','ivp','geometry','applications','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['formation','separable','redsep','homogeneous','redhom','linear','ivp','geometry','applications','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     formation:    { glyph:'dⁿy',     blurb:'Eliminate the arbitrary constants from a family of curves and a differential equation appears; read off its order and, when polynomial in the derivatives, its degree.' },
     separable:    { glyph:'f·g',     blurb:'Gather every y on one side and every x on the other, then integrate — the most direct of the first-order methods.' },
@@ -17,6 +17,7 @@
     geometry:     { glyph:'ψ',       blurb:'A condition on the tangent, normal, subtangent or subnormal of a curve becomes a first-order differential equation; solve it to recover the curve itself.' },
     applications: { glyph:'dN/dt',   blurb:'Growth and decay, Newton’s law of cooling, mixing tanks and rates of change — the equation that models the world, and the initial condition that pins it.' },
     hybrid:       { glyph:'⊕',       blurb:'The capstones: formation, the separable and homogeneous reductions, the integrating factor and curve-geometry fused into one resistant first-order problem.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

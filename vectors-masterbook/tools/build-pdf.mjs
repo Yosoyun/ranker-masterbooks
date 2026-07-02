@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['dotproduct','crossproduct','tripleproduct','lineardep','position','lines3d','planes','distances','loci','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { dotproduct:'a·b', crossproduct:'a×b', tripleproduct:'[abc]', lineardep:'λa+μb', position:'r⃗', lines3d:'ℓ', planes:'Π', distances:'⊥', loci:'|r−a|', hybrid:'⊕' };
+const THEME_ORDER = ['dotproduct','crossproduct','tripleproduct','lineardep','position','lines3d','planes','distances','loci','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { dotproduct:'a·b', crossproduct:'a×b', tripleproduct:'[abc]', lineardep:'λa+μb', position:'r⃗', lines3d:'ℓ', planes:'Π', distances:'⊥', loci:'|r−a|', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   dotproduct:'The scalar product — angles, projections, components, and work.',
   crossproduct:'The vector product — areas, perpendiculars, and the moment of a force.',
@@ -25,6 +25,7 @@ const BLURB = {
   distances:'Distances point–line, point–plane, and between two skew lines.',
   loci:'Vector equations of loci and spheres from dot- and cross-products.',
   hybrid:'Dot, cross, triple product and 3D geometry, fused into one.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

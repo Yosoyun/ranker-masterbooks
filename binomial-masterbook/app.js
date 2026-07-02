@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['genterm','middlegreatest','coefficients','sumsdiff','rootsofunity','multinomial','divisibility','approximation','vandermonde','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['genterm','middlegreatest','coefficients','sumsdiff','rootsofunity','multinomial','divisibility','approximation','vandermonde','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     genterm:        { glyph:'Tᵣ₊₁', blurb:'Every expansion is one formula read at the right index — the general term, and the art of choosing r to land on the power you want.' },
     middlegreatest: { glyph:'Tₘₐₓ',  blurb:'The middle term, and the term whose coefficient or value is the largest — where the binomial peaks, and why.' },
@@ -17,6 +17,7 @@
     approximation:  { glyph:'≈',     blurb:'When x is small, (1+x)ⁿ is almost linear; Bernoulli and the binomial inequalities turn the expansion into sharp bounds.' },
     vandermonde:    { glyph:'ΣCₖ',  blurb:'Vandermonde’s convolution, the hockey-stick, Pascal’s rule and the square sum ΣCₖ² — combinatorial identities proved by counting two ways.' },
     hybrid:         { glyph:'⊕',     blurb:'The capstones: the general term, roots-of-unity filters, calculus sums and number theory fused into one expansion.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

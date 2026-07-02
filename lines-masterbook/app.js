@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['forms','distancesection','anglefamily','footimage','bisectors','pairlines','triangle','locus','translation','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['forms','distancesection','anglefamily','footimage','bisectors','pairlines','triangle','locus','translation','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     forms:           { glyph:'y=mx+c',  blurb:'Slope and the forms of a line — point-slope, two-point, intercept, normal and parametric — and choosing the form that makes a condition fall out.' },
     distancesection: { glyph:'m:n',     blurb:'The distance between two points, the section formula for internal and external division, the area of a triangle from its vertices, and the collinearity test.' },
@@ -17,6 +17,7 @@
     locus:           { glyph:'P(h,k)',  blurb:'The locus of a point that moves under a stated linear condition — eliminate the parameter and name the line or curve it sweeps.' },
     translation:     { glyph:'(x−h)',  blurb:'Slide the origin to a new point — how a line\'s or curve\'s equation transforms, the shift that kills the first-degree terms (the centre), and the new coordinates of a point.' },
     hybrid:          { glyph:'⊕',       blurb:'The capstones: forms, distance, the family of lines, the pair of lines, the triangle centres and a locus fused into one problem that resists every single tool.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

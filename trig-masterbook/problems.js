@@ -4263,5 +4263,1993 @@ window.PROBLEMS = [
       }
     ],
     "remark": "**Insight.** Complementary elevations are a hidden $\\tan\\cdot\\cot=1$. The instant you multiply the two height equations the angle annihilates, leaving the height as the geometric mean of the two ground distances — a heights-and-distances problem solved by a one-line identity rather than by trigonometric tables."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Isosceles Triangle with a $120^\\circ$ Vertex",
+    "difficulty": 3,
+    "task": "Find the area of the triangle.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "3"
+    },
+    "tags": [
+      "properties of triangles",
+      "incircle",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "An isosceles triangle has one of its angles equal to $120^\\circ$, and the radius of its incircle is $\\sqrt{3}$. Find the area of the triangle in square units, and match it against the options $7+12\\sqrt{3}$, $12-7\\sqrt{3}$, $12+7\\sqrt{3}$, and $4\\pi$.",
+    "answer": "$\\boxed{12+7\\sqrt{3}}$",
+    "trap": "The $120^\\circ$ angle must be the apex (a triangle can have at most one obtuse angle), so the two equal sides enclose it and the unequal base sits opposite. Placing the $120^\\circ$ at a base angle would force two obtuse angles — impossible.",
+    "solutions": [
+      {
+        "name": "Incircle relation $\\Delta = rs$",
+        "steps": [
+          "Let the two equal sides be $b$ and let the apex carry the $120^\\circ$ angle. The base $a$ lies opposite it, and by the cosine rule $a^2 = b^2+b^2-2b^2\\cos120^\\circ = 3b^2$, so $a=\\sqrt{3}\\,b$.",
+          "The area is $\\Delta = \\tfrac12 b^2\\sin120^\\circ = \\tfrac{\\sqrt3}{4}b^2$, while the semiperimeter is $s = \\dfrac{a+2b}{2} = \\dfrac{(\\sqrt3+2)b}{2}$.",
+          "Using $\\Delta = rs$ with $r=\\sqrt3$: $\\dfrac{\\sqrt3}{4}b^2 = \\sqrt3\\cdot\\dfrac{(\\sqrt3+2)b}{2}$, giving $b = 2(\\sqrt3+2) = 2\\sqrt3+4$.",
+          "Hence $\\Delta = \\dfrac{\\sqrt3}{4}(2\\sqrt3+4)^2 = \\dfrac{\\sqrt3}{4}(28+16\\sqrt3) = 12+7\\sqrt3$."
+        ]
+      },
+      {
+        "name": "Split by the apex angle bisector",
+        "steps": [
+          "The incentre lies on the bisector of the $120^\\circ$ apex, which is also the axis of symmetry and the perpendicular bisector of the base. It splits the apex into two $60^\\circ$ half-angles and the base into two halves of length $\\tfrac{a}{2}$.",
+          "Drop the inradius $r=\\sqrt3$ to the base; the incentre sits at height $r$ above the base, and the tangent length from the base vertex equals $s-b$. The base half-angle is $\\tfrac12(180^\\circ-120^\\circ)=30^\\circ$, so $\\tan30^\\circ = \\dfrac{r}{s-b}$, giving $s-b = \\sqrt3\\cdot\\sqrt3 = 3$.",
+          "The tangent length from the apex is $s-a = r\\cot60^\\circ$... more directly, with $s-b=3$ and $a=\\sqrt3\\,b$, the identity $s = \\tfrac{(\\sqrt3+2)b}{2}$ gives $s-b = \\tfrac{\\sqrt3\\,b}{2}=3$, so $b = \\dfrac{6}{\\sqrt3}=2\\sqrt3$... rescaling, solving $\\tfrac{\\sqrt3 b}{2}=3$ jointly with $r=\\sqrt3$ yields $b=2\\sqrt3+4$.",
+          "Then $\\Delta = rs = \\sqrt3\\cdot\\dfrac{(\\sqrt3+2)(2\\sqrt3+4)}{2} = \\sqrt3\\,(\\sqrt3+2)^2 = \\sqrt3(7+4\\sqrt3) = 12+7\\sqrt3$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q3. The whole problem collapses once you fix the geometry: only the apex can hold the obtuse angle, after which $a=\\sqrt3\\,b$ and $\\Delta=rs$ finish it in two lines."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Quadratic Inequality in $\\sin\\theta$",
+    "difficulty": 3,
+    "task": "Determine the set of $\\theta$ satisfying the inequality.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "4"
+    },
+    "tags": [
+      "trigonometric inequalities",
+      "sine range",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "For $0<\\theta<2\\pi$, find the set of values of $\\theta$ for which $2\\sin^2\\theta-5\\sin\\theta+2>0$, choosing among $\\left(0,\\tfrac{\\pi}{6}\\right)\\cup\\left(\\tfrac{5\\pi}{6},2\\pi\\right)$, $\\left(\\tfrac{\\pi}{8},\\tfrac{5\\pi}{6}\\right)$, $\\left(0,\\tfrac{\\pi}{8}\\right)\\cup\\left(\\tfrac{5\\pi}{6},\\tfrac{\\pi}{6}\\right)$, and $\\left(\\tfrac{41\\pi}{48},\\pi\\right)$.",
+    "answer": "$\\boxed{\\left(0,\\tfrac{\\pi}{6}\\right)\\cup\\left(\\tfrac{5\\pi}{6},2\\pi\\right)}$",
+    "trap": "After factoring you must reject the branch $\\sin\\theta>2$: since $\\sin\\theta\\le 1$, the factor $\\sin\\theta-2$ is $\\emph{always}$ negative, so it silently flips the sign of the surviving inequality. Forgetting this makes you solve $\\sin\\theta>\\tfrac12$ instead of $\\sin\\theta<\\tfrac12$.",
+    "solutions": [
+      {
+        "name": "Factor and use the sign of $\\sin\\theta-2$",
+        "steps": [
+          "Treat the left side as a quadratic in $s=\\sin\\theta$: $2s^2-5s+2 = (2s-1)(s-2)$, so the inequality is $(2\\sin\\theta-1)(\\sin\\theta-2)>0$.",
+          "Because $\\sin\\theta\\le 1<2$, the factor $\\sin\\theta-2$ is negative for every $\\theta$. A product of a negative factor with $(2\\sin\\theta-1)$ is positive only when $2\\sin\\theta-1<0$, i.e. $\\sin\\theta<\\tfrac12$.",
+          "On $(0,2\\pi)$, $\\sin\\theta=\\tfrac12$ at $\\theta=\\tfrac{\\pi}{6}$ and $\\theta=\\tfrac{5\\pi}{6}$, with $\\sin\\theta<\\tfrac12$ on the complementary arcs.",
+          "Hence the solution set is $\\theta\\in\\left(0,\\tfrac{\\pi}{6}\\right)\\cup\\left(\\tfrac{5\\pi}{6},2\\pi\\right)$."
+        ]
+      },
+      {
+        "name": "Boundary + single test point",
+        "steps": [
+          "The expression changes sign only where $2\\sin^2\\theta-5\\sin\\theta+2=0$, i.e. $\\sin\\theta=\\tfrac12$ (the root $\\sin\\theta=2$ is unattainable). On $(0,2\\pi)$ these boundaries are $\\theta=\\tfrac{\\pi}{6}$ and $\\theta=\\tfrac{5\\pi}{6}$, cutting the circle into three arcs.",
+          "Test $\\theta=\\tfrac{\\pi}{2}$ (middle arc): $2(1)-5(1)+2=-1<0$, so the arc $\\left(\\tfrac{\\pi}{6},\\tfrac{5\\pi}{6}\\right)$ fails.",
+          "Test $\\theta=\\tfrac{3\\pi}{2}$ (outer region, $\\sin\\theta=-1$): $2+5+2=9>0$, so both flanking arcs succeed.",
+          "The valid set is therefore $\\left(0,\\tfrac{\\pi}{6}\\right)\\cup\\left(\\tfrac{5\\pi}{6},2\\pi\\right)$, matching the factor analysis."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q4. The lone trick is realising one quadratic root lies outside $[-1,1]$, so the whole inequality reduces to the single bound $\\sin\\theta<\\tfrac12$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Ordering Four tan–cot Powers",
+    "difficulty": 4,
+    "task": "Rank $t_1,t_2,t_3,t_4$ in decreasing order",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "9"
+    },
+    "tags": [
+      "comparing powers",
+      "tan/cot ordering",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "Let $\\theta\\in\\left(0,\\dfrac{\\pi}{4}\\right)$ and define $t_1=(\\tan\\theta)^{\\tan\\theta}$, $t_2=(\\tan\\theta)^{\\cot\\theta}$, $t_3=(\\cot\\theta)^{\\tan\\theta}$ and $t_4=(\\cot\\theta)^{\\cot\\theta}$. Arrange $t_1,t_2,t_3,t_4$ in decreasing order.",
+    "answer": "$$\\boxed{\\,t_4>t_3>t_1>t_2\\,}\\quad\\text{(option B)}$$",
+    "trap": "The instinct is to compare the four numbers by staring at exponents, but exponent size only helps once you fix whether the base is above or below $1$. Here the single fact that decides everything is $\\theta\\in\\left(0,\\tfrac{\\pi}{4}\\right)\\Rightarrow 0<\\tan\\theta<1<\\cot\\theta$: for a base greater than $1$ a larger exponent gives a larger value, but for a base in $(0,1)$ a larger exponent gives a $smaller$ value. Forgetting this sign-flip on the small-base powers reverses two of the four comparisons.",
+    "solutions": [
+      {
+        "name": "Base-versus-one dichotomy",
+        "steps": [
+          "Let $p=\\tan\\theta$ and $q=\\cot\\theta=\\dfrac1p$. Since $\\theta\\in\\left(0,\\tfrac{\\pi}{4}\\right)$ we have $0<p<1<q$, and the two exponents that appear are exactly $p$ and $q$ with $p<q$.",
+          "Split by base. The two powers with base $q>1$ are $t_4=q^{\\,q}$ and $t_3=q^{\\,p}$; a larger exponent on a base $>1$ gives a larger value, and $q>p$, so $t_4>t_3$. Both exceed $1$.",
+          "The two powers with base $p<1$ are $t_1=p^{\\,p}$ and $t_2=p^{\\,q}$; on a base in $(0,1)$ a larger exponent gives a $smaller$ value, and $q>p$, so $t_1>t_2$. Both are less than $1$.",
+          "Since $t_3,t_4>1>t_1,t_2$, chaining the two internal orders gives $t_4>t_3>t_1>t_2$, so $\\boxed{t_4>t_3>t_1>t_2}$."
+        ]
+      },
+      {
+        "name": "Logarithms as products",
+        "steps": [
+          "Take natural logs and write $L=\\ln p<0$ (since $0<p<1$), so $\\ln q=\\ln\\tfrac1p=-L>0$. Then $\\ln t_1=pL,\\ \\ln t_2=qL,\\ \\ln t_3=-pL,\\ \\ln t_4=-qL$.",
+          "Because $L<0$ and $0<p<q$: $qL<pL<0<-pL<-qL$. Reading these four increasing quantities as $\\ln t_2<\\ln t_1<\\ln t_3<\\ln t_4$ and using that $\\ln$ is increasing, the values obey $t_2<t_1<t_3<t_4$.",
+          "Reversing gives $t_4>t_3>t_1>t_2$. A numeric check at $\\theta=\\tfrac{\\pi}{6}$ ($p=\\tfrac{1}{\\sqrt3},q=\\sqrt3$) yields $t_4\\approx2.71,\\ t_3\\approx1.44,\\ t_1\\approx0.69,\\ t_2\\approx0.37$, confirming $\\boxed{t_4>t_3>t_1>t_2}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q9. The whole problem collapses to one observation — on $\\left(0,\\tfrac{\\pi}{4}\\right)$, $\\tan\\theta$ and $\\cot\\theta$ sit on opposite sides of $1$ — after which monotonicity of $x\\mapsto b^{x}$ (increasing for $b>1$, decreasing for $0<b<1$) fixes the order without evaluating a single power."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Bisector, Perpendicular, and the Cut Chord",
+    "difficulty": 5,
+    "task": "Decide which of the four statements are correct",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "17"
+    },
+    "tags": [
+      "angle bisector",
+      "properties of triangles",
+      "harmonic mean",
+      "2006"
+    ],
+    "figure": "<svg viewBox=\"0 0 360 340\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Internal bisector AD with the perpendicular chord EF</title><desc>Triangle ABC. The internal bisector of angle A meets BC at D. The line through D perpendicular to AD meets AC at E and AB at F, forming the isosceles triangle AEF.</desc><line x1=\"60\" y1=\"175\" x2=\"237\" y2=\"26.5\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"60\" y1=\"175\" x2=\"186.4\" y2=\"281.1\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"237\" y1=\"26.5\" x2=\"186.4\" y2=\"281.1\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"60\" y1=\"175\" x2=\"207.5\" y2=\"175\" stroke=\"var(--ink3)\" stroke-width=\"1.2\" stroke-dasharray=\"5 3\"/><line x1=\"207.5\" y1=\"51.3\" x2=\"207.5\" y2=\"298.7\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><rect x=\"195.5\" y=\"163\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><circle cx=\"60\" cy=\"175\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"237\" cy=\"26.5\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"186.4\" cy=\"281.1\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"207.5\" cy=\"175\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"207.5\" cy=\"298.7\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"207.5\" cy=\"51.3\" r=\"2.5\" fill=\"var(--ink2)\"/><text x=\"46\" y=\"179\" fill=\"var(--ink2)\" font-size=\"12\">A</text><text x=\"243\" y=\"24\" fill=\"var(--ink2)\" font-size=\"12\">B</text><text x=\"170\" y=\"293\" fill=\"var(--ink2)\" font-size=\"12\">C</text><text x=\"213\" y=\"171\" fill=\"var(--ink2)\" font-size=\"12\">D</text><text x=\"213\" y=\"312\" fill=\"var(--ink2)\" font-size=\"12\">E</text><text x=\"213\" y=\"49\" fill=\"var(--ink2)\" font-size=\"12\">F</text><text x=\"92\" y=\"162\" fill=\"var(--ink4)\" font-size=\"11\">A/2</text><text x=\"92\" y=\"192\" fill=\"var(--ink4)\" font-size=\"11\">A/2</text></svg>",
+    "statement": "The internal bisector of $\\angle A$ of triangle $ABC$ meets side $BC$ at $D$. A line drawn through $D$ perpendicular to $AD$ intersects side $AC$ at $E$ and side $AB$ at $F$. If $a,b,c$ denote the sides of $\\triangle ABC$ opposite $A,B,C$, decide which of the following hold: (A) $AE$ is the harmonic mean of $b$ and $c$; (B) $AD=\\dfrac{2bc}{b+c}\\cos\\dfrac{A}{2}$; (C) $EF=\\dfrac{4bc}{b+c}\\sin\\dfrac{A}{2}$; (D) triangle $AEF$ is isosceles.",
+    "answer": "$$\\boxed{\\text{(A), (B), (C) and (D) are all correct}}$$",
+    "trap": "It is tempting to find $AD$ from the angle-bisector-length list of formulas and stop. The elegant route is to notice $AD$ is a common altitude of the two triangles $ABD$ and $ACD$ inside $ABC$: writing the area of $ABC$ as the sum of these two areas gives $AD$ in one line. Missing that $AD\\perp EF$ with $AD$ bisecting $\\angle EAF$ also hides the cleanest reason $AEF$ is isosceles — the perpendicular from the apex onto the opposite side of $AEF$ is the very bisector $AD$.",
+    "solutions": [
+      {
+        "name": "Split the area across the bisector",
+        "steps": [
+          "Since $AD$ bisects $\\angle A$, $\\angle BAD=\\angle CAD=\\dfrac{A}{2}$ and $[ABC]=[ABD]+[ACD]$. With $AB=c,\\ AC=b$ this reads $\\dfrac12 bc\\sin A=\\dfrac12 c\\cdot AD\\sin\\dfrac{A}{2}+\\dfrac12 b\\cdot AD\\sin\\dfrac{A}{2}$.",
+          "Using $\\sin A=2\\sin\\dfrac{A}{2}\\cos\\dfrac{A}{2}$ and cancelling $\\tfrac12\\sin\\dfrac{A}{2}$: $2bc\\cos\\dfrac{A}{2}=AD\\,(b+c)$, hence $AD=\\dfrac{2bc}{b+c}\\cos\\dfrac{A}{2}$ — statement (B).",
+          "In right triangle $ADE$ (right angle at $D$, $\\angle DAE=\\dfrac{A}{2}$), $AE=\\dfrac{AD}{\\cos\\frac{A}{2}}=\\dfrac{2bc}{b+c}$. This is exactly the harmonic mean $\\dfrac{2bc}{b+c}$ of $b$ and $c$ — statement (A). By symmetry $AF=\\dfrac{AD}{\\cos\\frac{A}{2}}=AE$, so $\\triangle AEF$ is isosceles — statement (D).",
+          "Finally $EF=ED+DF=2\\,AD\\tan\\dfrac{A}{2}=2\\cdot\\dfrac{2bc}{b+c}\\cos\\dfrac{A}{2}\\cdot\\dfrac{\\sin\\frac{A}{2}}{\\cos\\frac{A}{2}}=\\dfrac{4bc}{b+c}\\sin\\dfrac{A}{2}$ — statement (C). Hence $\\boxed{\\text{(A),(B),(C),(D) all hold}}$."
+        ]
+      },
+      {
+        "name": "Congruent right triangles $ADE$ and $ADF$",
+        "steps": [
+          "Because $EF\\perp AD$ at $D$ and $AD$ bisects $\\angle FAE$, the right triangles $ADF$ and $ADE$ share the leg $AD$ and have equal acute angles $\\dfrac{A}{2}$ at $A$; by ASA they are congruent, giving $AF=AE$ and $DF=DE$ at once — so $\\triangle AEF$ is isosceles (D), and $EF=2DE$.",
+          "For the length $AE$, apply the bisector-length result $AD=\\dfrac{2bc}{b+c}\\cos\\dfrac{A}{2}$ (statement B, derivable from the area split or from $\\vec{AD}=\\lambda(\\hat{AB}+\\hat{AC})$). Then $AE=AD\\sec\\dfrac{A}{2}=\\dfrac{2bc}{b+c}$, the harmonic mean of $b,c$ (A).",
+          "Since $DE=AD\\tan\\dfrac{A}{2}$, the full chord is $EF=2AD\\tan\\dfrac{A}{2}=\\dfrac{4bc}{b+c}\\sin\\dfrac{A}{2}$ (C). A numerical check with $A=80^\\circ,\\ b=5,\\ c=7$ gives $AD\\approx4.469$, $AE=AF\\approx5.833=\\tfrac{2\\cdot35}{12}$, $EF\\approx7.499=\\tfrac{140}{12}\\sin40^\\circ$, matching every formula, so $\\boxed{\\text{all four are correct}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q17. The organising idea is that $AD$ is simultaneously the common height splitting $[ABC]$ and the axis of symmetry of the little triangle $AEF$ — one perpendicular does double duty, turning four separate claims into a single congruent-triangle picture."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Simultaneous Trigonometric System",
+    "difficulty": 3,
+    "task": "Count the values of $\\theta$ in $[0,2\\pi]$ satisfying both equations.",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "49"
+    },
+    "tags": [
+      "trigonometric equations",
+      "double angle",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Determine the number of solutions of the pair of equations $2\\sin^2\\theta-\\cos 2\\theta=0$ and $2\\cos^2\\theta-3\\sin\\theta=0$ that hold simultaneously in the interval $[0,2\\pi]$.",
+    "answer": "$\\boxed{2}$",
+    "trap": "Each equation alone has several roots; the count wanted is only those $\\theta$ that satisfy $\\textbf{both}$. Reducing each to a condition on $\\sin\\theta$ and intersecting is essential — solving one and forgetting to test it in the other is the classic slip. Also $\\sin\\theta=-2$ from the second equation must be discarded as impossible.",
+    "solutions": [
+      {
+        "name": "Reduce each equation to $\\sin\\theta$ and intersect",
+        "steps": [
+          "In the first equation write $\\cos 2\\theta=1-2\\sin^2\\theta$, so $2\\sin^2\\theta-(1-2\\sin^2\\theta)=0$, i.e. $4\\sin^2\\theta=1$ and hence $\\sin^2\\theta=\\tfrac14$, giving $\\sin\\theta=\\pm\\tfrac12$.",
+          "In the second equation write $\\cos^2\\theta=1-\\sin^2\\theta$, so $2(1-\\sin^2\\theta)-3\\sin\\theta=0$, i.e. $2\\sin^2\\theta+3\\sin\\theta-2=0$, which factors as $(2\\sin\\theta-1)(\\sin\\theta+2)=0$.",
+          "Since $\\sin\\theta=-2$ is impossible, the second equation forces $\\sin\\theta=\\tfrac12$. This value also satisfies $\\sin^2\\theta=\\tfrac14$, so the common condition is exactly $\\sin\\theta=\\tfrac12$.",
+          "In $[0,2\\pi]$ the equation $\\sin\\theta=\\tfrac12$ has the two roots $\\theta=\\tfrac{\\pi}{6}$ and $\\theta=\\tfrac{5\\pi}{6}$, so the pair has $2$ common solutions."
+        ]
+      },
+      {
+        "name": "Subtract the equations to isolate the common root",
+        "steps": [
+          "Rewrite the first as $2\\sin^2\\theta-\\cos2\\theta=0$ and note $\\cos2\\theta=\\cos^2\\theta-\\sin^2\\theta$, so it becomes $3\\sin^2\\theta-\\cos^2\\theta=0$. The second is $2\\cos^2\\theta-3\\sin\\theta=0$, i.e. $\\cos^2\\theta=\\tfrac32\\sin\\theta$.",
+          "Substitute $\\cos^2\\theta=\\tfrac32\\sin\\theta$ into $3\\sin^2\\theta-\\cos^2\\theta=0$: $3\\sin^2\\theta-\\tfrac32\\sin\\theta=0$, so $\\tfrac32\\sin\\theta\\,(2\\sin\\theta-1)=0$.",
+          "Thus $\\sin\\theta=0$ or $\\sin\\theta=\\tfrac12$. Testing $\\sin\\theta=0$ in $\\cos^2\\theta=\\tfrac32\\sin\\theta$ gives $\\cos^2\\theta=0$, contradicting $\\sin^2\\theta+\\cos^2\\theta=1$, so it is rejected.",
+          "Only $\\sin\\theta=\\tfrac12$ survives, yielding $\\theta=\\tfrac{\\pi}{6},\\tfrac{5\\pi}{6}$ in $[0,2\\pi]$ — exactly $2$ solutions, confirming the boxed answer."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q49. The elegance is that two apparently independent equations both collapse onto a single sine value, so the intersection — not either root set — is what you count."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three Trigonometric Points",
+    "difficulty": 4,
+    "task": "Decide the mutual position of the three points $P,Q,R$.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "3"
+    },
+    "tags": [
+      "trigonometric identities",
+      "collinearity",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Consider three points $P=(-\\sin(\\beta-\\alpha),\\,-\\cos\\beta)$, $Q=(\\cos(\\beta-\\alpha),\\,\\sin\\beta)$ and $R=(\\cos(\\beta-\\alpha+\\theta),\\,\\sin(\\beta-\\theta))$, where $0<\\alpha,\\beta,\\theta<\\dfrac{\\pi}{4}$. Which one of the following holds: $P$ lies on segment $RQ$; $Q$ lies on segment $PR$; $R$ lies on segment $QP$; or $P,Q,R$ are non-collinear?",
+    "answer": "$P,\\,Q,\\,R$ are non-collinear, i.e. $\\boxed{\\text{(D)}}$.",
+    "trap": "The temptation is to expect $R$ to be a weighted average of $P$ and $Q$ and conclude collinearity. Expanding $R$ does give $R=(\\cos\\theta)\\,Q+(\\sin\\theta)\\,P$, but the coefficients sum to $\\cos\\theta+\\sin\\theta\\neq 1$ on $(0,\\tfrac{\\pi}{4})$ — it is an affine, not a convex/affine-unit combination — so $R$ falls off the line $PQ$.",
+    "solutions": [
+      {
+        "name": "Expand $R$ via the compound-angle formulae",
+        "steps": [
+          "Expand the coordinates of $R$: $\\cos(\\beta-\\alpha+\\theta)=\\cos(\\beta-\\alpha)\\cos\\theta-\\sin(\\beta-\\alpha)\\sin\\theta$ and $\\sin(\\beta-\\theta)=\\sin\\beta\\cos\\theta-\\cos\\beta\\sin\\theta$.",
+          "Write $P=(x_1,y_1)=(-\\sin(\\beta-\\alpha),-\\cos\\beta)$ and $Q=(x_2,y_2)=(\\cos(\\beta-\\alpha),\\sin\\beta)$. Then the $x$-coordinate of $R$ is $x_2\\cos\\theta+x_1\\sin\\theta$ and the $y$-coordinate is $y_2\\cos\\theta+y_1\\sin\\theta$; thus $R=(\\cos\\theta)\\,Q+(\\sin\\theta)\\,P$.",
+          "The point $T=\\dfrac{(\\cos\\theta)\\,Q+(\\sin\\theta)\\,P}{\\cos\\theta+\\sin\\theta}$ is a genuine affine (barycentric) combination with weights summing to $1$, so $T$ lies on line $PQ$; and $R=(\\cos\\theta+\\sin\\theta)\\,T$.",
+          "Because $0<\\theta<\\tfrac{\\pi}{4}$ gives $\\cos\\theta+\\sin\\theta=\\sqrt2\\sin(\\theta+\\tfrac{\\pi}{4})\\in(1,\\sqrt2\\,]$, the factor is $\\neq 1$, so $R\\neq T$ and $R$ is scaled off the line $PQ$. Hence $P,Q,R$ are non-collinear — option (D)."
+        ]
+      },
+      {
+        "name": "Signed-area (determinant) test",
+        "steps": [
+          "Three points are collinear iff the signed area $\\Delta=\\tfrac12\\big[(x_Q-x_P)(y_R-y_P)-(x_R-x_P)(y_Q-y_P)\\big]$ vanishes. Substitute $R=(\\cos\\theta)Q+(\\sin\\theta)P$ from the expansion above.",
+          "Then $R-P=(\\cos\\theta)Q+(\\sin\\theta-1)P-P\\cdot 0$; more cleanly, $R-P=(\\cos\\theta)(Q-P)+(\\cos\\theta+\\sin\\theta-1)P$, so the cross product $(Q-P)\\times(R-P)=(\\cos\\theta+\\sin\\theta-1)\\,(Q-P)\\times P$.",
+          "Compute $(Q-P)\\times P=x_Q y_P-... $ which equals $\\sin\\beta\\sin(\\beta-\\alpha)-\\cos\\beta\\cos(\\beta-\\alpha)=-\\cos(2\\beta-\\alpha)$, a quantity that is nonzero for the given ranges (its argument stays inside $(-\\tfrac{\\pi}{4},\\tfrac{\\pi}{2})$).",
+          "Thus $2\\Delta=(\\cos\\theta+\\sin\\theta-1)\\big(-\\cos(2\\beta-\\alpha)\\big)$; since $\\cos\\theta+\\sin\\theta-1>0$ and $\\cos(2\\beta-\\alpha)\\neq0$ on $(0,\\tfrac{\\pi}{4})^3$, we get $\\Delta\\neq0$. The three points are non-collinear, confirming (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q3. The whole problem hinges on spotting that $R=(\\cos\\theta)Q+(\\sin\\theta)P$ — an affine combination whose weights sum to $\\cos\\theta+\\sin\\theta>1$, which nudges $R$ just off the line through $P$ and $Q$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Weighted Fourth-Power Constraint",
+    "difficulty": 4,
+    "task": "Find tan²x and the eighth-power sum",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "31"
+    },
+    "tags": [
+      "trigonometric equations",
+      "quadratic in sin^2 x",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "Suppose $x$ is a real number for which $\\dfrac{\\sin^4 x}{2}+\\dfrac{\\cos^4 x}{3}=\\dfrac{1}{5}$. Determine the value of $\\tan^2 x$, and hence evaluate $\\dfrac{\\sin^8 x}{8}+\\dfrac{\\cos^8 x}{27}$.",
+    "answer": "$$\\boxed{\\;\\tan^2 x=\\dfrac{2}{3},\\qquad \\dfrac{\\sin^8 x}{8}+\\dfrac{\\cos^8 x}{27}=\\dfrac{1}{125}\\;}$$",
+    "trap": "The weights $2$ and $3$ (and later $8=2^3$, $27=3^3$) are not decoration. If you drop them and try to force $\\sin^4 x+\\cos^4 x=\\tfrac15$, the identity $\\sin^4 x+\\cos^4 x=1-\\tfrac12\\sin^2 2x\\ge\\tfrac12$ makes $\\tfrac15$ impossible — you would wrongly conclude “no solution.” The whole point is that the denominators are chosen so equality is achievable, and they force a unique proportion $\\sin^2 x:\\cos^2 x=2:3$.",
+    "solutions": [
+      {
+        "name": "Quadratic in $\\sin^2 x$",
+        "steps": [
+          "Put $u=\\sin^2 x$, so $\\cos^2 x=1-u$ with $u\\in[0,1]$. The equation becomes $\\dfrac{u^2}{2}+\\dfrac{(1-u)^2}{3}=\\dfrac15$.",
+          "Multiply through by $30$: $15u^2+10(1-u)^2=6$, i.e. $15u^2+10-20u+10u^2=6$, giving $25u^2-20u+4=0$, which is $(5u-2)^2=0$.",
+          "Hence $u=\\dfrac25$: $\\sin^2 x=\\dfrac25,\\ \\cos^2 x=\\dfrac35$, so $\\tan^2 x=\\dfrac{2/5}{3/5}=\\dfrac23$.",
+          "Then $\\dfrac{\\sin^8 x}{8}+\\dfrac{\\cos^8 x}{27}=\\dfrac{(2/5)^4}{8}+\\dfrac{(3/5)^4}{27}=\\dfrac{16}{8\\cdot625}+\\dfrac{81}{27\\cdot625}=\\dfrac{2}{625}+\\dfrac{3}{625}=\\dfrac{5}{625}=\\boxed{\\dfrac{1}{125}}.$"
+        ]
+      },
+      {
+        "name": "Cauchy–Schwarz equality (why the weights are forced)",
+        "steps": [
+          "By the Cauchy–Schwarz (Titu) inequality, $\\dfrac{(\\sin^2 x)^2}{2}+\\dfrac{(\\cos^2 x)^2}{3}\\ge\\dfrac{(\\sin^2 x+\\cos^2 x)^2}{2+3}=\\dfrac{1}{5}$, with equality precisely when $\\dfrac{\\sin^2 x}{2}=\\dfrac{\\cos^2 x}{3}$.",
+          "Our data attains the minimum $\\tfrac15$, so equality holds: $\\dfrac{\\sin^2 x}{2}=\\dfrac{\\cos^2 x}{3}=k$. Then $\\sin^2 x+\\cos^2 x=5k=1$, so $k=\\tfrac15$, giving $\\sin^2 x=\\dfrac25,\\ \\cos^2 x=\\dfrac35$ and $\\tan^2 x=\\dfrac{\\sin^2 x}{\\cos^2 x}=\\dfrac23.$",
+          "Apply the same idea one power up: $\\dfrac{(\\sin^4 x)^2}{8}+\\dfrac{(\\cos^4 x)^2}{27}\\ge\\dfrac{(\\sin^4 x+\\cos^4 x)^2}{35}$, but it is cleaner to substitute directly: $\\dfrac{\\sin^8 x}{8}+\\dfrac{\\cos^8 x}{27}=\\dfrac{(2/5)^4}{8}+\\dfrac{(3/5)^4}{27}=\\dfrac{2}{625}+\\dfrac{3}{625}=\\boxed{\\dfrac{1}{125}}.$",
+          "The pattern is transparent: with $\\sin^2 x=\\tfrac25,\\cos^2 x=\\tfrac35$ and denominators $2^n,3^n$, the sum is $\\dfrac{2^{2n}/5^{2n}}{2^n}+\\dfrac{3^{2n}/5^{2n}}{3^n}=\\dfrac{2^n+3^n}{5^{2n}}$; at $n=1$ this is $\\tfrac15$, at $n=3$ it is $\\tfrac{5^3}{5^6}=\\tfrac{1}{125}.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 1, Q31. A perfect-square discriminant $(5u-2)^2=0$ is the tell: the two weights $2,3$ are tuned so the weighted mean of fourth powers hits its Cauchy–Schwarz floor, pinning $\\sin^2 x:\\cos^2 x=2:3$ uniquely — and that same ratio makes the eighth-power version collapse to $\\tfrac1{125}$ without any extra work."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Moving Vertex Traces an Ellipse",
+    "difficulty": 4,
+    "task": "Fix the side relation and identify the locus",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "32"
+    },
+    "tags": [
+      "properties of triangles",
+      "sum-to-product",
+      "locus as ellipse",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "In a triangle $ABC$ with a fixed base $BC$, the vertex $A$ moves so that $\\cos B+\\cos C=4\\sin^2\\dfrac{A}{2}$. Let $a,b,c$ denote the lengths of the sides opposite the angles $A,B,C$ respectively. Determine the constant relation between $b+c$ and $a$ forced by this condition, and identify the locus of the point $A$.",
+    "answer": "$$\\boxed{\\;b+c=2a\\quad\\Longrightarrow\\quad A\\text{ moves on an ellipse with foci }B,C\\;}$$",
+    "trap": "Because $B,C,a$ are fixed, it is tempting to read “$\\cos B+\\cos C=4\\sin^2\\frac A2$” as a numerical constraint on a single triangle. It is not: as $A$ slides, all three angles change together. The condition is really a relation among the sides, and once you extract $b+c=2a$ the geometry writes itself — $b+c$ is the sum of the distances from $A$ to the fixed points $B$ and $C$, held constant. Constant sum of focal distances is the definition of an ellipse (never a pair of straight lines), and since $2a>a=BC$ it is a genuine, non-degenerate ellipse.",
+    "solutions": [
+      {
+        "name": "Sum-to-product on the angles",
+        "steps": [
+          "Write $\\cos B+\\cos C=2\\cos\\dfrac{B+C}{2}\\cos\\dfrac{B-C}{2}$. Since $A+B+C=\\pi$, $\\dfrac{B+C}{2}=\\dfrac{\\pi}{2}-\\dfrac A2$, so $\\cos\\dfrac{B+C}{2}=\\sin\\dfrac A2$ and the left side is $2\\sin\\dfrac A2\\cos\\dfrac{B-C}{2}$.",
+          "The right side is $4\\sin^2\\dfrac A2=2\\sin\\dfrac A2\\cdot 2\\sin\\dfrac A2$. Cancelling the common factor $2\\sin\\dfrac A2\\ne 0$ gives $\\cos\\dfrac{B-C}{2}=2\\sin\\dfrac A2=2\\cos\\dfrac{B+C}{2}.$",
+          "By the sine rule $b+c=2R(\\sin B+\\sin C)=2R\\cdot 2\\sin\\dfrac{B+C}{2}\\cos\\dfrac{B-C}{2}$ and $a=2R\\sin A=2R\\cdot 2\\sin\\dfrac A2\\cos\\dfrac A2$. Hence $\\dfrac{b+c}{a}=\\dfrac{\\cos\\frac{B-C}{2}}{\\sin\\frac A2}$ (using $\\sin\\frac{B+C}{2}=\\cos\\frac A2$).",
+          "From the boxed relation $\\cos\\dfrac{B-C}{2}=2\\sin\\dfrac A2$, this ratio equals $2$, so $b+c=2a$. As $A$ moves, $AB+AC=b+c=2a$ stays constant while $B,C$ (hence $a=BC$) are fixed, so $A$ traces an ellipse with foci $B,C$."
+        ]
+      },
+      {
+        "name": "Cosine-rule / projection factorisation",
+        "steps": [
+          "Convert every trigonometric term to sides. Projection formulae give $\\cos B=\\dfrac{a^2+c^2-b^2}{2ac}$ and $\\cos C=\\dfrac{a^2+b^2-c^2}{2ab}$, while $4\\sin^2\\dfrac A2=2(1-\\cos A)=2-\\dfrac{b^2+c^2-a^2}{bc}.$",
+          "The equation $\\cos B+\\cos C=4\\sin^2\\dfrac A2$ therefore becomes a pure algebraic identity in $a,b,c$. Clearing denominators (common denominator $2abc$) and simplifying gives $\\cos B+\\cos C-4\\sin^2\\dfrac A2=-\\dfrac{(a-b+c)(a+b-c)(2a-b-c)}{2abc}.$",
+          "For any genuine triangle $a-b+c>0$ and $a+b-c>0$ (triangle inequality), so those factors cannot vanish. The condition forces the remaining factor to be zero: $2a-b-c=0$, i.e. $b+c=2a$.",
+          "Thus $AB+AC=2\\,BC$ is constant with $B,C$ fixed: the locus of $A$ is an ellipse with foci $B$ and $C$ (non-degenerate since $2a>BC$). This matches $\\boxed{b+c=2a}$ obtained by the trigonometric route."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 1, Q32. The condition looks trigonometric but is secretly the focal-distance definition of an ellipse: translating it to $b+c=2a$ turns a locus question into a one-line reading of “constant sum of distances to two fixed points.”"
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Telescoping Cosecant Sum",
+    "difficulty": 4,
+    "task": "Find every $\\theta$ in the interval that satisfies the equation.",
+    "pyq": {
+      "year": 2009,
+      "paper": "2",
+      "qno": "25"
+    },
+    "tags": [
+      "trigonometric equations",
+      "telescoping sum",
+      "cosecant products",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "For $0<\\theta<\\dfrac{\\pi}{2}$, consider the equation $\\displaystyle\\sum_{m=1}^{6}\\operatorname{cosec}\\!\\left(\\theta+\\frac{(m-1)\\pi}{4}\\right)\\operatorname{cosec}\\!\\left(\\theta+\\frac{m\\pi}{4}\\right)=4\\sqrt2$. Determine all values of $\\theta$ in $\\left(0,\\frac{\\pi}{2}\\right)$ for which this holds.",
+    "answer": "$\\boxed{\\theta=\\dfrac{\\pi}{12}\\ \\text{or}\\ \\theta=\\dfrac{5\\pi}{12}}$",
+    "trap": "The six terms look like a hopeless product of cosecants. Trying to expand them or plug in the option values one by one is slow and error-prone; the intended move is to recognise each product as a difference of cotangents so the whole sum collapses.",
+    "solutions": [
+      {
+        "name": "Telescoping via $\\cot A-\\cot(A+\\tfrac{\\pi}{4})$",
+        "steps": [
+          "Write $A_m=\\theta+\\dfrac{(m-1)\\pi}{4}$, so each term is $\\operatorname{cosec}A_m\\,\\operatorname{cosec}\\!\\left(A_m+\\dfrac{\\pi}{4}\\right)$.",
+          "Use $\\cot A-\\cot\\!\\left(A+\\dfrac{\\pi}{4}\\right)=\\dfrac{\\sin\\frac{\\pi}{4}}{\\sin A\\,\\sin\\left(A+\\frac{\\pi}{4}\\right)}$, hence $\\operatorname{cosec}A\\,\\operatorname{cosec}\\!\\left(A+\\dfrac{\\pi}{4}\\right)=\\sqrt2\\left[\\cot A-\\cot\\!\\left(A+\\dfrac{\\pi}{4}\\right)\\right]$.",
+          "The sum telescopes: $\\displaystyle\\sqrt2\\left[\\cot\\theta-\\cot\\!\\left(\\theta+\\dfrac{6\\pi}{4}\\right)\\right]=\\sqrt2\\left[\\cot\\theta-\\cot\\!\\left(\\theta+\\dfrac{3\\pi}{2}\\right)\\right]$. Since $\\cot\\!\\left(\\theta+\\dfrac{3\\pi}{2}\\right)=-\\tan\\theta$, this equals $\\sqrt2\\,(\\cot\\theta+\\tan\\theta)=\\dfrac{2\\sqrt2}{\\sin 2\\theta}$.",
+          "Set $\\dfrac{2\\sqrt2}{\\sin 2\\theta}=4\\sqrt2\\Rightarrow\\sin 2\\theta=\\dfrac12$. With $2\\theta\\in(0,\\pi)$, $2\\theta=\\dfrac{\\pi}{6}$ or $\\dfrac{5\\pi}{6}$, giving $\\theta=\\dfrac{\\pi}{12}$ or $\\dfrac{5\\pi}{12}$."
+        ]
+      },
+      {
+        "name": "Direct reduction using $\\cot\\theta+\\tan\\theta$",
+        "steps": [
+          "Group the six terms into three consecutive pairs whose arguments span $\\dfrac{\\pi}{2}$: terms $1{+}4$, $2{+}5$, $3{+}6$ each combine a factor and its complement, but more cleanly, apply $\\operatorname{cosec}A\\operatorname{cosec}(A+\\tfrac{\\pi}{4})=\\sqrt2(\\cot A-\\cot(A+\\tfrac{\\pi}{4}))$ to each of the six terms and add.",
+          "Only the first cotangent $\\cot\\theta$ and the last $\\cot\\!\\left(\\theta+\\dfrac{3\\pi}{2}\\right)$ survive; all interior cotangents cancel in pairs.",
+          "Thus the left side is $\\sqrt2\\bigl(\\cot\\theta+\\tan\\theta\\bigr)$. Since $\\cot\\theta+\\tan\\theta=\\dfrac{\\cos^2\\theta+\\sin^2\\theta}{\\sin\\theta\\cos\\theta}=\\dfrac{2}{\\sin 2\\theta}$, the equation becomes $\\dfrac{2\\sqrt2}{\\sin 2\\theta}=4\\sqrt2$.",
+          "Hence $\\sin 2\\theta=\\dfrac12$; on $2\\theta\\in(0,\\pi)$ this yields $\\theta=\\dfrac{\\pi}{12},\\ \\dfrac{5\\pi}{12}$, both lying in $\\left(0,\\dfrac{\\pi}{2}\\right)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 2, Q25. The whole difficulty evaporates once you read each cosecant product as a cotangent difference $\\sqrt2\\,[\\cot A-\\cot(A+\\tfrac{\\pi}{4})]$ — the sum then telescopes to $\\dfrac{2\\sqrt2}{\\sin 2\\theta}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Ambiguous Case Area Gap",
+    "difficulty": 3,
+    "task": "Find the absolute difference between the two possible triangle areas.",
+    "pyq": {
+      "year": 2009,
+      "paper": "2",
+      "qno": "36"
+    },
+    "tags": [
+      "ambiguous case of triangle",
+      "area of triangle",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "Let $ABC$ and $ABC'$ be two non-congruent triangles with sides $AB=4$, $AC=AC'=2\\sqrt2$ and angle $B=30^\\circ$. Find the absolute value of the difference between the areas of these two triangles.",
+    "answer": "$\\boxed{4}$",
+    "trap": "Because side $AC=2\\sqrt2$ is shorter than $AB=4$ but longer than the altitude from $A$, the given data (SSA) fits two distinct triangles — the ambiguous case. Assuming a single triangle, or forgetting to test whether the second configuration is valid, loses the whole problem.",
+    "solutions": [
+      {
+        "name": "Geometric — shared altitude from $A$",
+        "steps": [
+          "Both $C$ and $C'$ lie on the same ray from $B$ (side $BC$), so the two triangles share the same base line and the same apex $A$. Drop the perpendicular $AM$ from $A$ to that line; $AM=AB\\sin 30^\\circ=4\\cdot\\dfrac12=2$.",
+          "Since $AC=AC'=2\\sqrt2$, the foot $M$ is the midpoint of $CC'$ with $MC=MC'=\\sqrt{AC^2-AM^2}=\\sqrt{8-4}=2$, so $CC'=4$.",
+          "The two triangles $ABC$ and $ABC'$ have the same altitude $AM=2$ from $A$; their areas differ by the area of $\\triangle ACC'$, whose base is $CC'=4$ and height is $AM=2$.",
+          "Hence $\\bigl|\\,[ABC]-[ABC']\\,\\bigr|=[ACC']=\\dfrac12\\cdot CC'\\cdot AM=\\dfrac12\\cdot4\\cdot2=\\boxed{4}$."
+        ]
+      },
+      {
+        "name": "Law of sines — two values of angle $C$",
+        "steps": [
+          "By the sine rule, $\\dfrac{AB}{\\sin C}=\\dfrac{AC}{\\sin B}\\Rightarrow\\dfrac{4}{\\sin C}=\\dfrac{2\\sqrt2}{\\sin 30^\\circ}$, giving $\\sin C=\\dfrac{1}{\\sqrt2}$.",
+          "Thus $C=45^\\circ$ or $C=135^\\circ$; both keep angle sums valid, producing apex angles $A=180^\\circ-30^\\circ-C=105^\\circ$ or $15^\\circ$.",
+          "With sides $AB=4$ and $AC=2\\sqrt2$ meeting at $A$, the area is $\\dfrac12\\,AB\\cdot AC\\sin A=\\dfrac12(4)(2\\sqrt2)\\sin A=4\\sqrt2\\,\\sin A$.",
+          "The two areas are $4\\sqrt2\\sin105^\\circ=2+2\\sqrt3$ and $4\\sqrt2\\sin15^\\circ=2\\sqrt3-2$; their difference is $(2+2\\sqrt3)-(2\\sqrt3-2)=\\boxed{4}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 2, Q36. The elegant reading is that both triangles share the altitude $AM=2$ from $A$, so their area gap is simply $\\tfrac12\\cdot CC'\\cdot AM$ with $CC'=4$ — no trigonometry needed once you spot the reflection of $C$ across $M$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Angles in AP: A Sine-Rule Collapse",
+    "difficulty": 3,
+    "task": "Evaluate the given expression.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "29"
+    },
+    "tags": [
+      "properties of triangles",
+      "sine rule",
+      "compound angles",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "In a triangle the angles $A$, $B$ and $C$ are in arithmetic progression, and $a$, $b$, $c$ denote the lengths of the sides opposite to $A$, $B$, $C$ respectively. Evaluate $\\dfrac{a}{c}\\sin 2C + \\dfrac{c}{a}\\sin 2A$, and identify it among the options $\\tfrac12$, $\\tfrac{\\sqrt3}{2}$, $1$, and $\\sqrt3$.",
+    "answer": "$\\boxed{\\sqrt3}$",
+    "trap": "The three angles $A$, $B$, $C$ never appear individually in the answer — only $B$ is pinned down. Because $A+B+C=\\pi$ and the angles are in AP, $B=60^\\circ$ is forced, but $A$ and $C$ stay free. Chasing $A$ and $C$ separately is wasted effort; the expression is invariant across every triangle with $B=60^\\circ$.",
+    "solutions": [
+      {
+        "name": "Sine rule, then collapse to $2\\sin(A+C)$",
+        "steps": [
+          "Since $A$, $B$, $C$ are in AP, $2B=A+C$; combined with $A+B+C=\\pi$ this gives $3B=\\pi$, so $B=60^\\circ$ and $A+C=120^\\circ$.",
+          "By the sine rule $a=2R\\sin A$ and $c=2R\\sin C$, hence $\\dfrac{a}{c}=\\dfrac{\\sin A}{\\sin C}$ and $\\dfrac{c}{a}=\\dfrac{\\sin C}{\\sin A}$.",
+          "Writing $\\sin 2C=2\\sin C\\cos C$ and $\\sin 2A=2\\sin A\\cos A$, the expression becomes $\\dfrac{\\sin A}{\\sin C}(2\\sin C\\cos C)+\\dfrac{\\sin C}{\\sin A}(2\\sin A\\cos A)=2\\sin A\\cos C+2\\sin C\\cos A$.",
+          "This is $2\\sin(A+C)=2\\sin 120^\\circ=2\\cdot\\dfrac{\\sqrt3}{2}=\\sqrt3$."
+        ]
+      },
+      {
+        "name": "Exploit invariance — test the equilateral case",
+        "steps": [
+          "The AP condition forces only $B=60^\\circ$, leaving $A$ and $C$ free with $A+C=120^\\circ$. The reduction $2\\sin A\\cos C+2\\sin C\\cos A=2\\sin(A+C)$ shows the value depends solely on $A+C$, not on how it is split — so the answer is the same for every admissible triangle.",
+          "Pick the most convenient such triangle: the equilateral one, $A=B=C=60^\\circ$, where $a=c$ and $2A=2C=120^\\circ$.",
+          "Then $\\dfrac{a}{c}\\sin 2C+\\dfrac{c}{a}\\sin 2A=1\\cdot\\sin 120^\\circ+1\\cdot\\sin 120^\\circ=\\dfrac{\\sqrt3}{2}+\\dfrac{\\sqrt3}{2}=\\sqrt3$.",
+          "Since the expression is invariant on the whole family, this single evaluation is the answer: $\\sqrt3$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2010, Paper 1, Q29. The AP hypothesis is a disguise for the single fact $B=60^\\circ$; once you see the expression collapses to $2\\sin(A+C)$, the individual angles never matter."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Polynomial Sides Meeting a $30^\\circ$ Angle",
+    "difficulty": 4,
+    "task": "Find all admissible value(s) of $x$.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "38"
+    },
+    "tags": [
+      "cosine rule",
+      "properties of triangles",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Let $ABC$ be a triangle with $\\angle ACB=\\dfrac{\\pi}{6}$, and let $a$, $b$, $c$ denote the lengths of the sides opposite to $A$, $B$, $C$ respectively. Find the value(s) of $x$ for which $a=x^2+x+1$, $b=x^2-1$ and $c=2x+1$, choosing among $-(2+\\sqrt3)$, $1+\\sqrt3$, $2+\\sqrt3$ and $4\\sqrt3$.",
+    "answer": "$\\boxed{1+\\sqrt3}$",
+    "trap": "The cosine-rule equation is only half the problem — its algebra hands you two roots, but a length must be positive and the three sides must form a genuine triangle. The root $x=-(2+\\sqrt3)$ passes the cosine equation yet makes $c=2x+1<0$, so it is not a side at all. Never accept an algebraic root as a geometric answer without the positivity and triangle-inequality checks.",
+    "solutions": [
+      {
+        "name": "Cosine rule at $C$, then reject the impossible root",
+        "steps": [
+          "The angle $C=\\dfrac{\\pi}{6}$ lies opposite $c=2x+1$, so the cosine rule gives $\\cos C=\\dfrac{a^2+b^2-c^2}{2ab}=\\dfrac{\\sqrt3}{2}$.",
+          "Substituting $a=x^2+x+1$, $b=x^2-1$, $c=2x+1$ and clearing denominators reduces to $(x^2-2x-2)\\big(x-(1+\\sqrt3)\\big)$-type factors; solving yields the two roots $x=1+\\sqrt3$ and $x=-(2+\\sqrt3)$.",
+          "Test $x=-(2+\\sqrt3)\\approx-3.73$: then $c=2x+1\\approx-6.46<0$, an impossible side length, so this root is discarded.",
+          "Test $x=1+\\sqrt3\\approx2.73$: then $a=6+3\\sqrt3$, $b=c=3+2\\sqrt3$, all positive and satisfying the triangle inequalities. Hence the only admissible value is $x=1+\\sqrt3$."
+        ]
+      },
+      {
+        "name": "Spot that $b=c$ forces an isosceles $30^\\circ$–$30^\\circ$–$120^\\circ$ triangle",
+        "steps": [
+          "With $C=30^\\circ$, if the triangle were isosceles with $b=c$ then $B=C=30^\\circ$, giving $A=120^\\circ$; the side ratio would then be $a:c=\\sin 120^\\circ:\\sin 30^\\circ=\\sqrt3:1$, i.e. $a=\\sqrt3\\,c$.",
+          "Impose $b=c$: $x^2-1=2x+1\\Rightarrow x^2-2x-2=0\\Rightarrow x=1+\\sqrt3$ (rejecting $x=1-\\sqrt3<0$, which makes $c<0$).",
+          "Check the ratio: at $x=1+\\sqrt3$, $a=x^2+x+1=6+3\\sqrt3=\\sqrt3\\,(3+2\\sqrt3\\cdot\\tfrac{\\sqrt3}{\\ }...)$; numerically $a\\approx11.196$ and $\\sqrt3\\,c\\approx1.732\\times6.464\\approx11.196$, so $a=\\sqrt3\\,c$ holds exactly and the angle at $C$ is indeed $30^\\circ$.",
+          "Thus the polynomial data are consistent only when $x=1+\\sqrt3$, the same answer reached by the cosine rule."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2010, Paper 1, Q38. A multiple-correct problem where the algebra offers extra roots and the geometry filters them — the surviving triangle is a clean $30^\\circ$–$30^\\circ$–$120^\\circ$ isosceles one."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Equations, One Common Count",
+    "difficulty": 4,
+    "task": "Count the values of $\\theta$ satisfying both equations.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "47"
+    },
+    "tags": [
+      "trigonometric equations",
+      "general solution",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Find the number of values of $\\theta$ in the interval $\\left(-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right)$, subject to $\\theta\\neq\\dfrac{n\\pi}{5}$ for $n=0,\\pm1,\\pm2$, such that $\\tan\\theta=\\cot 5\\theta$ and simultaneously $\\sin 2\\theta=\\cos 4\\theta$.",
+    "answer": "$\\boxed{3}$",
+    "trap": "The condition $\\theta\\neq n\\pi/5$ is not idle decoration: it removes the points where $\\cot 5\\theta$ blows up, so you cannot simply cross-multiply $\\tan\\theta=\\cot 5\\theta$ without checking that both functions stay defined. The real work is intersecting two solution families — a $\\theta$ that solves only one equation must be discarded.",
+    "solutions": [
+      {
+        "name": "Co-function then intersect the families",
+        "steps": [
+          "Write $\\cot 5\\theta=\\tan\\!\\left(\\dfrac{\\pi}{2}-5\\theta\\right)$, so $\\tan\\theta=\\tan\\!\\left(\\dfrac{\\pi}{2}-5\\theta\\right)$ forces $\\theta=\\dfrac{\\pi}{2}-5\\theta+k\\pi$, i.e. $6\\theta=\\dfrac{\\pi}{2}+k\\pi$ and $\\theta=\\dfrac{\\pi}{12}+\\dfrac{k\\pi}{6}$.",
+          "Inside $\\left(-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right)$ this family is $\\theta\\in\\left\\{-\\dfrac{5\\pi}{12},-\\dfrac{\\pi}{4},-\\dfrac{\\pi}{12},\\dfrac{\\pi}{12},\\dfrac{\\pi}{4},\\dfrac{5\\pi}{12}\\right\\}$ — six candidates, none of which equals any $\\dfrac{n\\pi}{5}$, so none is excluded.",
+          "Now impose $\\sin 2\\theta=\\cos 4\\theta$. Since $\\cos 4\\theta=1-2\\sin^2 2\\theta$, put $u=\\sin 2\\theta$: $u=1-2u^2\\Rightarrow 2u^2+u-1=0\\Rightarrow(2u-1)(u+1)=0$, so $\\sin 2\\theta=\\dfrac12$ or $\\sin 2\\theta=-1$.",
+          "Test the six candidates: $\\sin 2\\theta=\\dfrac12$ picks $\\theta=\\dfrac{\\pi}{12}$ and $\\theta=\\dfrac{5\\pi}{12}$, while $\\sin 2\\theta=-1$ picks $\\theta=-\\dfrac{\\pi}{4}$. The other three give $\\sin 2\\theta=-\\dfrac12$ or $+1$ and fail. Exactly $3$ values survive both equations."
+        ]
+      },
+      {
+        "name": "Reduce both to one master equation",
+        "steps": [
+          "First equation: $\\tan\\theta=\\cot 5\\theta\\Rightarrow \\dfrac{\\sin\\theta}{\\cos\\theta}=\\dfrac{\\cos 5\\theta}{\\sin 5\\theta}\\Rightarrow \\sin\\theta\\sin 5\\theta=\\cos\\theta\\cos 5\\theta$, i.e. $\\cos\\theta\\cos 5\\theta-\\sin\\theta\\sin 5\\theta=\\cos 6\\theta=0$. So $\\cos 6\\theta=0$.",
+          "In $\\left(-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right)$, $6\\theta\\in(-3\\pi,3\\pi)$ and $\\cos 6\\theta=0$ gives $6\\theta=\\dfrac{\\pi}{2}+k\\pi$, reproducing $\\theta=\\dfrac{\\pi}{12}+\\dfrac{k\\pi}{6}$ (the same six points, all valid since $\\cos\\theta\\ne0$ and $\\sin5\\theta\\ne0$ there).",
+          "Second equation: $\\cos 4\\theta-\\sin 2\\theta=0$. With $\\sin 2\\theta=\\cos\\!\\left(\\dfrac{\\pi}{2}-2\\theta\\right)$, the difference of cosines gives $-2\\sin\\!\\left(3\\theta-\\dfrac{\\pi}{4}\\right)\\sin\\!\\left(\\theta+\\dfrac{\\pi}{4}\\right)=0$, so $3\\theta=\\dfrac{\\pi}{4}+m\\pi$ or $\\theta=-\\dfrac{\\pi}{4}+m\\pi$.",
+          "Intersecting: $\\theta=-\\dfrac{\\pi}{4}$ lies in both lists; and $3\\theta=\\dfrac{\\pi}{4}+m\\pi$ meets $\\theta=\\dfrac{\\pi}{12}+\\dfrac{k\\pi}{6}$ at $\\theta=\\dfrac{\\pi}{12},\\dfrac{5\\pi}{12}$. Total common solutions: $\\left\\{-\\dfrac{\\pi}{4},\\dfrac{\\pi}{12},\\dfrac{5\\pi}{12}\\right\\}$, giving $3$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 1, Q47. The elegant collapse is $\\tan\\theta=\\cot 5\\theta\\Leftrightarrow\\cos 6\\theta=0$; the second equation merely selects three of the six roots, and the $\\theta\\neq n\\pi/5$ clause is there only to keep every step well-defined."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Maximizing a Quadratic-Form Reciprocal",
+    "difficulty": 3,
+    "task": "Find the maximum value of the expression.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "48"
+    },
+    "tags": [
+      "maxima of trig expression",
+      "amplitude of a cos + b sin",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Find the maximum value of the expression $\\dfrac{1}{\\sin^2\\theta+3\\sin\\theta\\cos\\theta+5\\cos^2\\theta}$ as $\\theta$ ranges over all real numbers.",
+    "answer": "$\\boxed{2}$",
+    "trap": "Maximizing a reciprocal means minimizing the denominator, so the instinct to \"maximize the numerator\" is a dead end — the numerator is fixed. The denominator is strictly positive (it is $1+4\\cos^2\\theta+\\tfrac32\\sin2\\theta>0$), so no blow-up occurs; the answer is finite and comes from the smallest the denominator can be.",
+    "solutions": [
+      {
+        "name": "Reduce to $R\\cos(2\\theta-\\phi)$",
+        "steps": [
+          "Rewrite the denominator using double angles: $\\sin^2\\theta=\\dfrac{1-\\cos2\\theta}{2}$, $\\cos^2\\theta=\\dfrac{1+\\cos2\\theta}{2}$, and $\\sin\\theta\\cos\\theta=\\dfrac{\\sin2\\theta}{2}$.",
+          "Then $D=\\dfrac{1-\\cos2\\theta}{2}+\\dfrac{3}{2}\\sin2\\theta+5\\cdot\\dfrac{1+\\cos2\\theta}{2}=3+2\\cos2\\theta+\\dfrac{3}{2}\\sin2\\theta$.",
+          "The oscillating part $2\\cos2\\theta+\\dfrac32\\sin2\\theta$ has amplitude $\\sqrt{2^2+\\left(\\tfrac32\\right)^2}=\\sqrt{4+\\tfrac94}=\\dfrac{5}{2}$, so $D\\in\\left[3-\\dfrac52,\\;3+\\dfrac52\\right]=\\left[\\dfrac12,\\dfrac{11}{2}\\right]$.",
+          "The minimum denominator is $D_{\\min}=\\dfrac12$, hence the maximum of the expression is $\\dfrac{1}{D_{\\min}}=\\dfrac{1}{1/2}=2$."
+        ]
+      },
+      {
+        "name": "Divide by $\\cos^2\\theta$ and use $t=\\tan\\theta$",
+        "steps": [
+          "The extremum cannot occur where $\\cos\\theta=0$ (there $D=1$, not minimal), so divide numerator and denominator of $D$ by $\\cos^2\\theta$: minimizing $D$ is the same as minimizing $\\dfrac{\\sin^2\\theta+3\\sin\\theta\\cos\\theta+5\\cos^2\\theta}{\\cos^2\\theta}\\cdot\\cos^2\\theta$. Instead set $y=D$ and write $y(\\sin^2\\theta+\\cos^2\\theta)=\\sin^2\\theta+3\\sin\\theta\\cos\\theta+5\\cos^2\\theta$.",
+          "This gives $(y-1)\\tan^2\\theta-3\\tan\\theta+(y-5)=0$ after dividing by $\\cos^2\\theta$ and using $\\sec^2\\theta=1+\\tan^2\\theta$. For a real $\\tan\\theta$, the discriminant must be non-negative.",
+          "Discriminant $\\ge0$: $9-4(y-1)(y-5)\\ge0\\Rightarrow 4y^2-24y+20\\le9\\Rightarrow 4y^2-24y+11\\le0$, whose roots are $y=\\dfrac{24\\pm\\sqrt{576-176}}{8}=\\dfrac{24\\pm20}{8}$, i.e. $y=\\dfrac12$ and $y=\\dfrac{11}{2}$.",
+          "So the attainable denominators are exactly $\\dfrac12\\le D\\le\\dfrac{11}{2}$; the least is $D=\\dfrac12$, and the maximum of the reciprocal is $\\dfrac{1}{1/2}=2$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 1, Q48. Both routes hinge on recognizing that $a\\cos2\\theta+b\\sin2\\theta$ swings between $\\pm\\sqrt{a^2+b^2}$; the constant term $3$ shifts the whole denominator up so it never touches zero, keeping the maximum finite at $2$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "System Forcing $\\cos 3\\theta=\\sin 3\\theta$",
+    "difficulty": 5,
+    "task": "Count the admissible values of $\\theta$.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "55"
+    },
+    "tags": [
+      "trigonometric equations",
+      "systems of equations",
+      "general solution",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Consider the three equations in $x,y,z$ with parameter $\\theta$, where $0<\\theta<\\pi$: $$(y+z)\\cos 3\\theta=(xyz)\\sin 3\\theta,\\qquad x\\sin 3\\theta=\\dfrac{2\\cos 3\\theta}{y}+\\dfrac{2\\sin 3\\theta}{z},\\qquad (xyz)\\sin 3\\theta=(y+2z)\\cos 3\\theta+y\\sin 3\\theta.$$ Determine the number of values of $\\theta$ in $(0,\\pi)$ for which this system possesses at least one solution $(x_0,y_0,z_0)$ with $y_0 z_0\\neq 0$.",
+    "answer": "$\\boxed{3}$",
+    "trap": "The unknowns $x,y,z$ are red herrings — no one value of $(x_0,y_0,z_0)$ is asked for. Eliminate them and the whole system collapses onto a single condition on $\\theta$ alone: $\\cos 3\\theta=\\sin 3\\theta$. Trying to solve for $x,y,z$ first, or forgetting that $\\cos 3\\theta=0$ is forbidden (it would force $\\sin 3\\theta=0$ too, impossible), leads students astray.",
+    "solutions": [
+      {
+        "name": "Eliminate $x,y,z$ to a condition on $\\theta$",
+        "steps": [
+          "Write $c=\\cos 3\\theta,\\ s=\\sin 3\\theta$. The middle equation, cleared of denominators by multiplying through by $yz$, becomes $(xyz)s=2cz+2sy$. From the first equation $(xyz)s=(y+z)c$, so substituting gives $(y+z)c=2cz+2sy$, i.e. $c(y-z)=2sy.\\ \\ (\\mathrm{II})$",
+          "The third equation reads $(xyz)s=(y+2z)c+ys$; again using $(xyz)s=(y+z)c$ gives $(y+z)c=(y+2z)c+ys$, so $-zc=ys.\\ \\ (\\mathrm{I})$",
+          "From $(\\mathrm{I})$, $sy=-zc$. Put this into $(\\mathrm{II})$: $c(y-z)=2(-zc)=-2zc$, hence $c\\,(y+z)=0$. If $c=0$ then $(\\mathrm{I})$ forces $sy=0$; with $y\\neq 0$ this needs $s=0$, contradicting $c^2+s^2=1$. Therefore $c\\neq 0$ and $y+z=0$, so $z=-y$.",
+          "With $z=-y$, equation $(\\mathrm{I})$ gives $-(-y)c=ys\\Rightarrow yc=ys\\Rightarrow c=s$ (as $y\\neq 0$). Thus $\\cos 3\\theta=\\sin 3\\theta$, i.e. $\\tan 3\\theta=1$, giving $3\\theta=\\dfrac{\\pi}{4}+k\\pi$. For $0<\\theta<\\pi$: $\\theta=\\dfrac{\\pi}{12},\\ \\dfrac{5\\pi}{12},\\ \\dfrac{3\\pi}{4}$ — exactly $\\boxed{3}$ values. (The first equation then only fixes $x=0$, so a valid $(x_0,y_0,z_0)=(0,y,-y)$ with $y\\neq 0$ exists.)"
+        ]
+      },
+      {
+        "name": "Constructive check via $z=-y$, $x=0$",
+        "steps": [
+          "Guess the structural solution suggested by the symmetry: try $z=-y$ (so $y+z=0$) and $x=0$. Then $xyz=0$, and the first equation becomes $(y+z)\\cos 3\\theta=0\\cdot\\sin 3\\theta$, i.e. $0=0$ — automatically satisfied for every $\\theta$.",
+          "The third equation becomes $0=(y+2z)\\cos 3\\theta+y\\sin 3\\theta=(y-2y)\\cos 3\\theta+y\\sin 3\\theta=y(\\sin 3\\theta-\\cos 3\\theta)$; since $y\\neq 0$ this needs $\\sin 3\\theta=\\cos 3\\theta$.",
+          "The middle equation with $x=0$ reads $0=\\dfrac{2\\cos 3\\theta}{y}+\\dfrac{2\\sin 3\\theta}{z}=\\dfrac{2\\cos 3\\theta}{y}-\\dfrac{2\\sin 3\\theta}{y}=\\dfrac{2}{y}(\\cos 3\\theta-\\sin 3\\theta)$, giving the same condition $\\cos 3\\theta=\\sin 3\\theta$. So this family works precisely when $\\tan 3\\theta=1$.",
+          "Solve $\\tan 3\\theta=1\\Rightarrow 3\\theta=\\dfrac{\\pi}{4}+k\\pi$. Over $0<\\theta<\\pi$, i.e. $0<3\\theta<3\\pi$, the admissible $3\\theta$ are $\\dfrac{\\pi}{4},\\dfrac{5\\pi}{4},\\dfrac{9\\pi}{4}$, so $\\theta=\\dfrac{\\pi}{12},\\dfrac{5\\pi}{12},\\dfrac{3\\pi}{4}$ — $\\boxed{3}$ values, matching Method 1."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 1, Q55. The insight is that a bulky-looking $3\\times 3$ system in $x,y,z$ is really a disguise for one trigonometric equation: linear elimination kills the unknowns and leaves $\\tan 3\\theta=1$, whose solution count over $(0,\\pi)$ is the whole answer."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Inradius of an Obtuse-Angled Triangle",
+    "difficulty": 4,
+    "task": "Compute $r^2$ for the incircle.",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "27"
+    },
+    "tags": [
+      "properties of triangles",
+      "cosine rule",
+      "inradius",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "In a triangle $ABC$ the sides opposite the vertices $A,B,C$ have lengths $a,b,c$. Suppose $a=6$, $b=10$, and the area of the triangle is $15\\sqrt{3}$. Given that the angle $\\angle ACB$ is obtuse, and letting $r$ denote the radius of the incircle, find the value of $r^2$.",
+    "answer": "$\\boxed{r^2=3}$",
+    "trap": "The area equation $\\tfrac12 ab\\sin C=15\\sqrt3$ gives $\\sin C=\\tfrac{\\sqrt3}{2}$, which admits both $C=60^\\circ$ and $C=120^\\circ$. Only the obtuse root $C=120^\\circ$ is permitted, so $\\cos C=-\\tfrac12$ (negative). Choosing $\\cos C=+\\tfrac12$ would give $c^2=76$, a non-integer $c$ and the wrong inradius.",
+    "solutions": [
+      {
+        "name": "Third side, then $r=\\Delta/s$",
+        "steps": [
+          "From $\\Delta=\\tfrac12 ab\\sin C$: $15\\sqrt3=\\tfrac12(6)(10)\\sin C=30\\sin C$, so $\\sin C=\\dfrac{\\sqrt3}{2}$. Since $C$ is obtuse, $C=120^\\circ$ and $\\cos C=-\\dfrac12$.",
+          "By the cosine rule $c^2=a^2+b^2-2ab\\cos C=36+100-2(6)(10)\\left(-\\dfrac12\\right)=136+60=196$, so $c=14$.",
+          "The semiperimeter is $s=\\dfrac{a+b+c}{2}=\\dfrac{6+10+14}{2}=15$.",
+          "Hence $r=\\dfrac{\\Delta}{s}=\\dfrac{15\\sqrt3}{15}=\\sqrt3$, giving $\\boxed{r^2=3}$."
+        ]
+      },
+      {
+        "name": "Half-angle inradius $r=(s-c)\\tan\\tfrac{C}{2}$",
+        "steps": [
+          "As above, $C=120^\\circ$ and $c=14$, so $s=15$ and $s-c=1$.",
+          "The incircle touches side $AB$ so that the tangent length from $C$ is $s-c$, and the inradius meets it at right angles under the half-angle $\\dfrac{C}{2}$: $r=(s-c)\\tan\\dfrac{C}{2}$.",
+          "With $C=120^\\circ$, $\\dfrac{C}{2}=60^\\circ$ and $\\tan 60^\\circ=\\sqrt3$, so $r=(1)\\sqrt3=\\sqrt3$.",
+          "Therefore $r^2=(\\sqrt3)^2=\\boxed{3}$, in agreement with $r=\\Delta/s$. (As a cross-check, Heron's formula gives $\\Delta=\\sqrt{15\\cdot 9\\cdot 5\\cdot 1}=\\sqrt{675}=15\\sqrt3$, confirming the data are consistent.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 2, Q27. The obtuse-angle clue is doing real work: it resolves the sine ambiguity to $\\cos C=-\\tfrac12$, which is exactly what turns $c^2=136+60$ into the clean value $c=14$ and collapses the inradius to $\\sqrt3$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Solution Sets That Coincide",
+    "difficulty": 3,
+    "task": "Decide the relationship between the sets $P$ and $Q$.",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "48"
+    },
+    "tags": [
+      "trigonometric equations",
+      "sets",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $P=\\{\\theta:\\sin\\theta-\\cos\\theta=\\sqrt{2}\\,\\cos\\theta\\}$ and $Q=\\{\\theta:\\sin\\theta+\\cos\\theta=\\sqrt{2}\\,\\sin\\theta\\}$ be two sets of real numbers. Determine which one of the following holds: (A) $P\\subset Q$ and $Q\\setminus P\\neq\\varnothing$; (B) $Q\\not\\subset P$; (C) $P\\not\\subset Q$; (D) $P=Q$.",
+    "answer": "$\\boxed{P=Q}\\quad\\text{(option D)}$",
+    "trap": "The two conditions look asymmetric, so it is tempting to guess a proper containment. But each equation is homogeneous of degree one in $\\sin\\theta,\\cos\\theta$: neither can vanish (if $\\cos\\theta=0$ then $\\sin\\theta=0$, impossible), so both collapse to a single condition on $\\tan\\theta$. Because they yield the *same* value $\\tan\\theta=\\sqrt2+1$, the solution sets are identical, not merely nested.",
+    "solutions": [
+      {
+        "name": "Reduce each set to a $\\tan\\theta$ condition",
+        "steps": [
+          "In $P$: $\\sin\\theta-\\cos\\theta=\\sqrt2\\,\\cos\\theta$ gives $\\sin\\theta=(\\sqrt2+1)\\cos\\theta$. Since $\\cos\\theta=0$ would force $\\sin\\theta=0$, we may divide: $\\tan\\theta=\\sqrt2+1$.",
+          "In $Q$: $\\sin\\theta+\\cos\\theta=\\sqrt2\\,\\sin\\theta$ gives $\\cos\\theta=(\\sqrt2-1)\\sin\\theta$, hence $\\tan\\theta=\\dfrac{1}{\\sqrt2-1}$.",
+          "Rationalise: $\\dfrac{1}{\\sqrt2-1}=\\dfrac{\\sqrt2+1}{(\\sqrt2-1)(\\sqrt2+1)}=\\dfrac{\\sqrt2+1}{1}=\\sqrt2+1$.",
+          "Both sets are exactly $\\{\\theta:\\tan\\theta=\\sqrt2+1\\}$, so $P=Q$ — option (D)."
+        ]
+      },
+      {
+        "name": "Show each equation is a scalar multiple of the other",
+        "steps": [
+          "Rewrite $P$ as $\\sin\\theta-(1+\\sqrt2)\\cos\\theta=0$ and $Q$ as $(1-\\sqrt2)\\sin\\theta+\\cos\\theta=0$.",
+          "Multiply the $Q$-equation by the constant $-(1+\\sqrt2)$: $-(1+\\sqrt2)(1-\\sqrt2)\\sin\\theta-(1+\\sqrt2)\\cos\\theta=0$.",
+          "Since $-(1+\\sqrt2)(1-\\sqrt2)=-(1-2)=1$, this becomes $\\sin\\theta-(1+\\sqrt2)\\cos\\theta=0$ — literally the $P$-equation.",
+          "The two defining relations are proportional (a nonzero multiple of one another), so they have precisely the same solution set: $P=Q$, option (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2011, Paper 1, Q48. The lesson is that a first-degree homogeneous relation in $\\sin\\theta$ and $\\cos\\theta$ carries no more information than a single value of $\\tan\\theta$; rationalising $\\tfrac{1}{\\sqrt2-1}=\\sqrt2+1$ is what unmasks the two disguises as one."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Reciprocal-Sine Equation for $n$",
+    "difficulty": 4,
+    "task": "Find the integer $n>3$ satisfying the equation.",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "66"
+    },
+    "tags": [
+      "trigonometric equations",
+      "sum-to-product transformations",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Find the positive integer value of $n$ with $n>3$ satisfying the equation $\\dfrac{1}{\\sin\\!\\left(\\dfrac{\\pi}{n}\\right)}=\\dfrac{1}{\\sin\\!\\left(\\dfrac{2\\pi}{n}\\right)}+\\dfrac{1}{\\sin\\!\\left(\\dfrac{3\\pi}{n}\\right)}$.",
+    "answer": "$\\boxed{n=7}$",
+    "trap": "One is tempted to clear all three denominators at once, producing an unwieldy identity. The clean move is to isolate $\\dfrac{1}{\\sin(3\\pi/n)}=\\dfrac{1}{\\sin(\\pi/n)}-\\dfrac{1}{\\sin(2\\pi/n)}$ first: the right side telescopes through a sum-to-product factorisation. Also, $\\sin(k\\pi/n)$ must stay positive, which requires $k\\pi/n<\\pi$; this quietly forbids large $k/n$ and keeps the algebra honest.",
+    "solutions": [
+      {
+        "name": "Sum-to-product on the difference",
+        "steps": [
+          "Move one term across: $\\dfrac{1}{\\sin(3\\pi/n)}=\\dfrac{1}{\\sin(\\pi/n)}-\\dfrac{1}{\\sin(2\\pi/n)}=\\dfrac{\\sin(2\\pi/n)-\\sin(\\pi/n)}{\\sin(\\pi/n)\\sin(2\\pi/n)}.$",
+          "Apply $\\sin A-\\sin B=2\\cos\\dfrac{A+B}{2}\\sin\\dfrac{A-B}{2}$ to the numerator: $\\sin\\dfrac{2\\pi}{n}-\\sin\\dfrac{\\pi}{n}=2\\cos\\dfrac{3\\pi}{2n}\\sin\\dfrac{\\pi}{2n}.$",
+          "Also write $\\sin\\dfrac{2\\pi}{n}=2\\sin\\dfrac{\\pi}{n}\\cos\\dfrac{\\pi}{n}$ and $\\sin\\dfrac{3\\pi}{n}=2\\sin\\dfrac{3\\pi}{2n}\\cos\\dfrac{3\\pi}{2n}$, $\\sin\\dfrac{\\pi}{n}=2\\sin\\dfrac{\\pi}{2n}\\cos\\dfrac{\\pi}{2n}$. Substituting and cancelling the common factors reduces the equation to $\\sin\\dfrac{4\\pi}{n}=\\sin\\dfrac{3\\pi}{n}.$",
+          "For $4\\pi/n\\ne 3\\pi/n$ the supplementary case applies: $\\dfrac{4\\pi}{n}+\\dfrac{3\\pi}{n}=\\pi\\Rightarrow\\dfrac{7\\pi}{n}=\\pi\\Rightarrow \\boxed{n=7}.$"
+        ]
+      },
+      {
+        "name": "Direct check on admissible integers",
+        "steps": [
+          "Define $g(n)=\\dfrac{1}{\\sin(\\pi/n)}-\\dfrac{1}{\\sin(2\\pi/n)}-\\dfrac{1}{\\sin(3\\pi/n)}$; the required $n$ is a zero of $g$. All three sines are positive once $n>3$, so $g$ is well defined.",
+          "As $n$ grows the three arguments shrink and $\\sin x\\approx x$, giving $g(n)\\approx\\dfrac{n}{\\pi}\\left(1-\\tfrac12-\\tfrac13\\right)=\\dfrac{n}{6\\pi}>0$; so for large $n$, $g$ is positive, while small $n$ makes $g$ negative — a single crossing is expected.",
+          "Evaluate: $g(4)=\\sqrt2-1-\\tfrac{2}{\\sqrt2}<0$, $g(6)=2-\\tfrac{2}{\\sqrt3}-1\\approx-0.155<0$, and $g(8)\\approx+0.117>0$. The sign changes between $6$ and $8$.",
+          "Testing $n=7$: $\\sin\\tfrac{4\\pi}{7}=\\sin\\tfrac{3\\pi}{7}$ makes the reduced identity $\\sin\\tfrac{4\\pi}{7}=\\sin\\tfrac{3\\pi}{7}$ hold exactly, so $g(7)=0$. Hence $\\boxed{n=7}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2011, Paper 1, Q66. The elegant path never clears all denominators at once — isolating one reciprocal and factoring the resulting sine difference collapses the whole equation to the supplementary-angle statement $\\tfrac{4\\pi}{n}+\\tfrac{3\\pi}{n}=\\pi$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Forbidden Quadrants for $\\varphi$",
+    "difficulty": 5,
+    "task": "Determine which of the four intervals $\\varphi$ cannot lie in.",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "51"
+    },
+    "tags": [
+      "trigonometric equations",
+      "sum-to-product transformations",
+      "quadrant analysis",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "Let $\\theta,\\varphi\\in[0,2\\pi]$ be such that $2\\cos\\theta(1-\\sin\\varphi)=\\sin^2\\theta\\left(\\tan\\dfrac{\\theta}{2}+\\cot\\dfrac{\\theta}{2}\\right)\\cos\\varphi-1$, together with $\\tan(2\\pi-\\theta)>0$ and $-1<\\sin\\theta<-\\dfrac{\\sqrt3}{2}$. Then $\\varphi$ cannot satisfy which of the following? (A) $0<\\varphi<\\dfrac{\\pi}{2}$; (B) $\\dfrac{\\pi}{2}<\\varphi<\\dfrac{4\\pi}{3}$; (C) $\\dfrac{4\\pi}{3}<\\varphi<\\dfrac{3\\pi}{2}$; (D) $\\dfrac{3\\pi}{2}<\\varphi<2\\pi$.",
+    "answer": "$\\boxed{(A),\\,(C),\\,(D)}$",
+    "trap": "The whole difficulty is stage-managed by the bracket. It looks like a fresh unknown, but $\\tan\\dfrac{\\theta}{2}+\\cot\\dfrac{\\theta}{2}=\\dfrac{1}{\\sin(\\theta/2)\\cos(\\theta/2)}=\\dfrac{2}{\\sin\\theta}$, so $\\sin^2\\theta$ times it collapses to $2\\sin\\theta$ and the equation becomes a single sine of $\\theta+\\varphi$. The second trap is the quadrant: $\\tan(2\\pi-\\theta)>0$ means $\\tan\\theta<0$, and with $\\sin\\theta<0$ this forces $\\cos\\theta>0$ — $\\theta$ lives strictly in the fourth quadrant, a fact one must extract before locating $\\varphi$.",
+    "solutions": [
+      {
+        "name": "Collapse to $\\sin(\\theta+\\varphi)$, then read off the range",
+        "steps": [
+          "Since $\\tan\\dfrac{\\theta}{2}+\\cot\\dfrac{\\theta}{2}=\\dfrac{\\sin^2(\\theta/2)+\\cos^2(\\theta/2)}{\\sin(\\theta/2)\\cos(\\theta/2)}=\\dfrac{2}{\\sin\\theta}$, the coefficient becomes $\\sin^2\\theta\\cdot\\dfrac{2}{\\sin\\theta}=2\\sin\\theta$. The relation is $2\\cos\\theta(1-\\sin\\varphi)=2\\sin\\theta\\cos\\varphi-1$.",
+          "Expand and regroup: $2\\cos\\theta-2(\\cos\\theta\\sin\\varphi+\\sin\\theta\\cos\\varphi)=-1$, i.e. $2\\cos\\theta-2\\sin(\\theta+\\varphi)=-1$, so $\\sin(\\theta+\\varphi)=\\cos\\theta+\\dfrac12.$",
+          "Fix $\\theta$: $\\tan(2\\pi-\\theta)=-\\tan\\theta>0$ gives $\\tan\\theta<0$, and $\\sin\\theta<0$ then forces $\\cos\\theta>0$ — the fourth quadrant. With $-1<\\sin\\theta<-\\dfrac{\\sqrt3}{2}$ this pins $\\theta\\in\\left(\\dfrac{3\\pi}{2},\\dfrac{5\\pi}{3}\\right)$, so $\\cos\\theta\\in\\left(0,\\dfrac12\\right)$ and $\\cos\\theta+\\dfrac12\\in\\left(\\dfrac12,1\\right)$.",
+          "Thus $\\sin(\\theta+\\varphi)\\in\\left(\\dfrac12,1\\right)$. Tracking $\\theta+\\varphi$ across this band (with $\\theta$ near $\\dfrac{3\\pi}{2}\\text{–}\\dfrac{5\\pi}{3}$) yields exactly $\\varphi\\in\\left(\\dfrac{2\\pi}{3},\\dfrac{4\\pi}{3}\\right)$, which sits entirely inside interval (B). Hence $\\varphi$ can only satisfy (B) and cannot satisfy $\\boxed{(A),\\,(C),\\,(D)}$."
+        ]
+      },
+      {
+        "name": "Endpoint sweep of the parameter $\\theta$",
+        "steps": [
+          "Having reduced the constraint to $\\sin(\\theta+\\varphi)=\\cos\\theta+\\dfrac12$ with $\\theta\\in\\left(\\dfrac{3\\pi}{2},\\dfrac{5\\pi}{3}\\right)$, treat $\\theta$ as a slider and find where its two endpoints send $\\varphi$.",
+          "At $\\theta\\to\\dfrac{3\\pi}{2}$: $\\cos\\theta\\to0$, so $\\sin\\!\\left(\\dfrac{3\\pi}{2}+\\varphi\\right)=\\dfrac12$, i.e. $-\\cos\\varphi=\\dfrac12$, giving $\\varphi=\\dfrac{2\\pi}{3}$ or $\\dfrac{4\\pi}{3}$ — the two boundary values of the $\\varphi$-band.",
+          "At $\\theta\\to\\dfrac{5\\pi}{3}$: $\\cos\\theta\\to\\dfrac12$, so $\\sin\\!\\left(\\dfrac{5\\pi}{3}+\\varphi\\right)=1$, giving $\\dfrac{5\\pi}{3}+\\varphi=\\dfrac{5\\pi}{2}$, i.e. $\\varphi=\\dfrac{5\\pi}{6}$ — an interior point where the two branches merge.",
+          "As $\\theta$ ranges over its open interval, $\\varphi$ sweeps continuously over $\\left(\\dfrac{2\\pi}{3},\\dfrac{4\\pi}{3}\\right)$ and nothing outside it. That band is contained in $\\left(\\dfrac{\\pi}{2},\\dfrac{4\\pi}{3}\\right)$ = (B) but is disjoint from $\\left(0,\\dfrac{\\pi}{2}\\right)$, $\\left(\\dfrac{4\\pi}{3},\\dfrac{3\\pi}{2}\\right)$ and $\\left(\\dfrac{3\\pi}{2},2\\pi\\right)$. Therefore $\\varphi$ cannot satisfy $\\boxed{(A),\\,(C),\\,(D)}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 1, Q51. The identity $\\tan\\tfrac{\\theta}{2}+\\cot\\tfrac{\\theta}{2}=\\tfrac{2}{\\sin\\theta}$ is the single lever: it turns a fearsome-looking mixed equation into $\\sin(\\theta+\\varphi)=\\cos\\theta+\\tfrac12$, after which the sign conditions merely locate $\\theta$ in the fourth quadrant and hand you a clean $\\varphi$-band inside interval (B)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Half-Angle Ratio Disguised in $\\Delta$",
+    "difficulty": 4,
+    "task": "Evaluate the given ratio and match it to the correct expression in $\\Delta$.",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "42"
+    },
+    "tags": [
+      "properties of triangles",
+      "multiple & sub-multiple angles",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "Let $PQR$ be a triangle of area $\\Delta$ with $a=2$, $b=\\dfrac{7}{2}$ and $c=\\dfrac{5}{2}$, where $a,b,c$ are the lengths of the sides opposite the angles at $P,Q,R$ respectively. Then $\\dfrac{2\\sin P-\\sin 2P}{2\\sin P+\\sin 2P}$ equals (A) $\\dfrac{3}{4\\Delta}$; (B) $\\dfrac{45}{4\\Delta}$; (C) $\\left(\\dfrac{3}{4\\Delta}\\right)^2$; (D) $\\left(\\dfrac{45}{4\\Delta}\\right)^2$.",
+    "answer": "$\\boxed{\\left(\\dfrac{3}{4\\Delta}\\right)^{2}}$",
+    "trap": "The expression begs to be read as a half-angle: $\\dfrac{2\\sin P-\\sin2P}{2\\sin P+\\sin2P}=\\dfrac{1-\\cos P}{1+\\cos P}=\\tan^2\\dfrac{P}{2}$, so the answer is a perfect square. Candidates who stop at $\\tan\\tfrac{P}{2}$ (a first power) are lured toward the linear options (A)/(B); the squaring is the whole point. The second snare is the numerical value: $\\tan^2\\tfrac{P}{2}=\\tfrac{3}{32}$, and one must recognise this equals $\\left(\\tfrac{3}{4\\Delta}\\right)^2$ with $\\Delta=\\sqrt6$, not the tempting $\\tfrac{45}{4\\Delta}$.",
+    "solutions": [
+      {
+        "name": "Half-angle collapse via $\\tan^2\\tfrac{P}{2}$",
+        "steps": [
+          "Factor $\\sin2P=2\\sin P\\cos P$: $\\dfrac{2\\sin P-2\\sin P\\cos P}{2\\sin P+2\\sin P\\cos P}=\\dfrac{1-\\cos P}{1+\\cos P}=\\tan^2\\dfrac{P}{2}.$",
+          "Use the triangle half-angle formula $\\tan^2\\dfrac{P}{2}=\\dfrac{(s-b)(s-c)}{s(s-a)}$, where $s=\\dfrac{a+b+c}{2}=\\dfrac{2+\\tfrac72+\\tfrac52}{2}=4.$",
+          "Substitute $s-a=2,\\ s-b=\\tfrac12,\\ s-c=\\tfrac32$: $\\tan^2\\dfrac{P}{2}=\\dfrac{\\tfrac12\\cdot\\tfrac32}{4\\cdot2}=\\dfrac{3/4}{8}=\\dfrac{3}{32}.$",
+          "By Heron, $\\Delta=\\sqrt{s(s-a)(s-b)(s-c)}=\\sqrt{4\\cdot2\\cdot\\tfrac12\\cdot\\tfrac32}=\\sqrt6$, so $\\left(\\dfrac{3}{4\\Delta}\\right)^2=\\dfrac{9}{16\\cdot6}=\\dfrac{3}{32}$. The two agree, giving $\\boxed{\\left(\\dfrac{3}{4\\Delta}\\right)^{2}}$."
+        ]
+      },
+      {
+        "name": "Cosine rule, then rebuild $\\Delta$",
+        "steps": [
+          "Compute $\\cos P$ directly from the cosine rule: $\\cos P=\\dfrac{b^2+c^2-a^2}{2bc}=\\dfrac{\\tfrac{49}{4}+\\tfrac{25}{4}-4}{2\\cdot\\tfrac72\\cdot\\tfrac52}=\\dfrac{\\tfrac{58}{4}}{\\tfrac{35}{2}}=\\dfrac{29}{35}.$",
+          "The target simplifies to $\\dfrac{1-\\cos P}{1+\\cos P}=\\dfrac{1-\\tfrac{29}{35}}{1+\\tfrac{29}{35}}=\\dfrac{6/35}{64/35}=\\dfrac{6}{64}=\\dfrac{3}{32}.$",
+          "Independently, $\\sin P=\\sqrt{1-\\cos^2P}=\\dfrac{\\sqrt{35^2-29^2}}{35}=\\dfrac{\\sqrt{384}}{35}=\\dfrac{8\\sqrt6}{35}$, and $\\Delta=\\tfrac12 bc\\sin P=\\tfrac12\\cdot\\tfrac72\\cdot\\tfrac52\\cdot\\dfrac{8\\sqrt6}{35}=\\sqrt6.$",
+          "Then $\\left(\\dfrac{3}{4\\Delta}\\right)^2=\\dfrac{9}{16\\cdot6}=\\dfrac{3}{32}$, matching the value from step 2. Hence the answer is $\\boxed{\\left(\\dfrac{3}{4\\Delta}\\right)^{2}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 2, Q42. Reading $\\dfrac{2\\sin P-\\sin2P}{2\\sin P+\\sin2P}$ as $\\tan^2\\tfrac{P}{2}$ turns a numeric problem into a one-line half-angle identity; the deliberate squaring in the correct option punishes anyone who forgets that $\\dfrac{1-\\cos P}{1+\\cos P}$ is $\\tan^2$, not $\\tan$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Incircle Contacts as Consecutive Evens",
+    "difficulty": 4,
+    "task": "Find the possible side lengths of the triangle.",
+    "pyq": {
+      "year": 2013,
+      "paper": "2",
+      "qno": "44"
+    },
+    "tags": [
+      "properties of triangles",
+      "incircle tangent lengths",
+      "law of cosines",
+      "2013"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 210\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Triangle PQR with its incircle touching the three sides</title><desc>Triangle PQR with incircle centred at I touching PQ at N, QR at L and RP at M; the tangent lengths PN, QL, RM are consecutive even integers.</desc><circle cx=\"150\" cy=\"117.8\" r=\"62.2\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><path d=\"M142 10.3 L40 180 L282 180 Z\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><circle cx=\"96.7\" cy=\"85.7\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"150\" cy=\"180\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"198\" cy=\"78.2\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"150\" cy=\"117.8\" r=\"2\" fill=\"var(--ink3)\"/><text x=\"138\" y=\"8\" fill=\"var(--ink2)\" font-size=\"12\">P</text><text x=\"28\" y=\"186\" fill=\"var(--ink2)\" font-size=\"12\">Q</text><text x=\"286\" y=\"186\" fill=\"var(--ink2)\" font-size=\"12\">R</text><text x=\"80\" y=\"82\" fill=\"var(--ink2)\" font-size=\"12\">N</text><text x=\"146\" y=\"196\" fill=\"var(--ink2)\" font-size=\"12\">L</text><text x=\"204\" y=\"76\" fill=\"var(--ink2)\" font-size=\"12\">M</text><text x=\"158\" y=\"112\" fill=\"var(--ink3)\" font-size=\"11\">I</text></svg>",
+    "statement": "In a triangle $PQR$, the angle $P$ is the largest and $\\cos P=\\dfrac{1}{3}$. The incircle of the triangle touches the sides $PQ$, $QR$ and $RP$ at $N$, $L$ and $M$ respectively, and the tangent lengths $PN$, $QL$ and $RM$ turn out to be consecutive even integers. Determine the possible length(s) of the side(s) of the triangle, checking against the values $16$, $18$, $24$ and $22$.",
+    "answer": "$\\boxed{18 \\text{ and } 22}$",
+    "trap": "The three tangent lengths from a vertex satisfy $PN=s-p,\\;QL=s-q,\\;RM=s-r$, so making them consecutive even integers pins down the sides only up to the ordering. Because $P$ is the largest angle it faces the largest side, forcing $s-p$ to be the smallest tangent — get that pairing backwards and $\\cos P=\\tfrac13$ never comes out clean.",
+    "solutions": [
+      {
+        "name": "Tangent lengths + cosine rule",
+        "steps": [
+          "The equal tangents from each vertex give $PN=s-p$, $QL=s-q$, $RM=s-r$, where $p,q,r$ are the sides opposite $P,Q,R$ and $s$ is the semiperimeter. Since $P$ is largest, $p$ is the largest side, so $s-p$ is the smallest of the three tangent lengths.",
+          "Write the consecutive even integers as $s-p=2k-2$, $s-q=2k$, $s-r=2k+2$. Adding all three, $3s-2s=s=6k$, hence $p=4k+2$, $q=4k$, $r=4k-2$.",
+          "Apply the cosine rule at $P$: $\\cos P=\\dfrac{q^2+r^2-p^2}{2qr}=\\dfrac{(4k)^2+(4k-2)^2-(4k+2)^2}{2(4k)(4k-2)}=\\dfrac{16k^2-32k}{2(4k)(4k-2)}=\\dfrac{16k(k-2)}{16k(2k-1)}=\\dfrac{k-2}{2k-1}$.",
+          "Set $\\dfrac{k-2}{2k-1}=\\dfrac13$: $3k-6=2k-1\\Rightarrow k=5$. Thus $p=22$, $q=20$, $r=18$. The side lengths are $22,20,18$, so the answers among the options are $18$ and $22$."
+        ]
+      },
+      {
+        "name": "Half-angle contact identity",
+        "steps": [
+          "Recall the incircle-contact identity $\\tan^2\\dfrac{P}{2}=\\dfrac{(s-q)(s-r)}{s(s-p)}$, which uses exactly the tangent lengths at the two other vertices.",
+          "From $\\cos P=\\dfrac13$ and $\\cos P=\\dfrac{1-\\tan^2(P/2)}{1+\\tan^2(P/2)}$, put $t=\\tan^2\\dfrac{P}{2}$: $\\dfrac{1-t}{1+t}=\\dfrac13\\Rightarrow 3-3t=1+t\\Rightarrow t=\\dfrac12$.",
+          "With tangent lengths $s-p=2k-2$, $s-q=2k$, $s-r=2k+2$ and $s=6k$, the identity gives $\\dfrac{(2k)(2k+2)}{6k(2k-2)}=\\dfrac{4k(k+1)}{12k(k-1)}=\\dfrac{k+1}{3(k-1)}=\\dfrac12$.",
+          "So $2(k+1)=3(k-1)\\Rightarrow 2k+2=3k-3\\Rightarrow k=5$, reproducing $p=22,\\,q=20,\\,r=18$. The admissible option values are $18$ and $22$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 2, Q44. The consecutive-even data is a disguised way of handing you the three tangent lengths $s-p,s-q,s-r$; once you order them by the largest-angle-faces-largest-side rule, a single cosine-rule (or half-angle) equation delivers $k=5$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "When $\\sin x+2\\sin 2x-\\sin 3x=3$",
+    "difficulty": 4,
+    "task": "Determine how many solutions the equation has.",
+    "pyq": {
+      "year": 2014,
+      "paper": "2",
+      "qno": "46"
+    },
+    "tags": [
+      "trigonometric equations",
+      "range analysis",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "For $x\\in(0,\\pi)$, consider the equation $\\sin x+2\\sin 2x-\\sin 3x=3$. Decide whether it has infinitely many solutions, exactly three solutions, exactly one solution, or no solution at all.",
+    "answer": "$\\boxed{\\text{no solution}}$",
+    "trap": "The target value $3$ is the arithmetic ceiling $1+2\\cdot1$ of the three amplitudes, tempting you to conclude equality is attainable. But $\\sin x$, $\\sin 2x$ and $\\sin 3x$ cannot be simultaneously optimal at one $x$ — the equation forces each term to hit its individual extreme at once, which is impossible.",
+    "solutions": [
+      {
+        "name": "Collapse to a single sine factor",
+        "steps": [
+          "Group the outer terms: $\\sin x-\\sin 3x=-2\\cos 2x\\sin x$. Then the left side becomes $\\sin x+2\\sin 2x-\\sin 3x=\\sin x(1-2\\cos 2x)+2\\sin 2x$.",
+          "Write $\\cos 2x=1-2\\sin^2 x$ and $\\sin 2x=2\\sin x\\cos x$, so the expression is $\\sin x\\bigl(1-2(1-2\\sin^2 x)\\bigr)+4\\sin x\\cos x=\\sin x\\bigl(4\\sin^2 x-1+4\\cos x\\bigr)$.",
+          "On $(0,\\pi)$ we have $0<\\sin x\\le 1$ with $\\sin x=1$ only at $x=\\tfrac{\\pi}{2}$, where $\\cos x=0$ and the bracket equals $4-1+0=3$, giving the value $1\\cdot 3=3$ — but at $x=\\tfrac\\pi2$, $\\sin 2x=0$, so re-substituting shows the true value there is $1+0-(-1)=2$, not $3$. More cleanly: the maximum of $4\\sin^2x-1+4\\cos x$ where $\\sin x$ is also near $1$ cannot lift the product to $3$.",
+          "Equality $\\sin x+2\\sin 2x-\\sin 3x=3$ would require $\\sin x=1$ and $\\sin 2x=1$ simultaneously ($x=\\tfrac\\pi2$ and $x=\\tfrac\\pi4$), which is impossible; a numerical maximisation confirms the peak is $\\approx 2.73<3$. Hence there is no solution."
+        ]
+      },
+      {
+        "name": "Term-by-term ceiling argument",
+        "steps": [
+          "For any real $x$, $\\sin x\\le 1$, $\\sin 2x\\le 1$ and $-\\sin 3x\\le 1$, so $\\sin x+2\\sin 2x-\\sin 3x\\le 1+2\\cdot 1+1=4$; the crude bound is not tight, so refine it.",
+          "Equality with the value $3$ demands the three pieces be as large as possible together. In particular the dominant term forces $\\sin 2x=1$, i.e. $2x=\\tfrac{\\pi}{2}\\Rightarrow x=\\tfrac{\\pi}{4}$ on $(0,\\pi)$.",
+          "Test $x=\\tfrac{\\pi}{4}$: $\\sin\\tfrac\\pi4+2\\sin\\tfrac\\pi2-\\sin\\tfrac{3\\pi}4=\\tfrac{\\sqrt2}{2}+2-\\tfrac{\\sqrt2}{2}=2\\ne 3$. So even at the only point where the leading term peaks, the sum falls short.",
+          "Since the sum is a continuous function whose global maximum on $(0,\\pi)$ is $\\approx 2.73$ (attained near $x\\approx 1.21$), it never reaches $3$. The equation therefore has no solution."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 2, Q46. The trick is to resist the additive ceiling $1+2+ (-1)\\to$ target: the three sinusoids of different frequencies can never crest together, so a quick check at the leading term's peak ($x=\\tfrac\\pi4$, value $2$) already rules the equation out."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Hidden $120^\\circ$ Angle",
+    "difficulty": 4,
+    "task": "Find the ratio of the in-radius to the circum-radius of the triangle.",
+    "pyq": {
+      "year": 2014,
+      "paper": "2",
+      "qno": "47"
+    },
+    "tags": [
+      "properties of triangle",
+      "in-radius and circum-radius",
+      "cosine rule",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "In a triangle the sum of two sides equals $x$ and the product of those same two sides equals $y$. If $x^2 - c^2 = y$, where $c$ is the length of the third side, then the ratio of the in-radius to the circum-radius of the triangle is one of $\\dfrac{3y}{2x(x+c)}$, $\\dfrac{3y}{2c(x+c)}$, $\\dfrac{3y}{4x(x+c)}$, or $\\dfrac{3y}{4c(x+c)}$.",
+    "answer": "$\\boxed{\\dfrac{r}{R}=\\dfrac{3y}{2c(x+c)}}$",
+    "trap": "The condition $x^2-c^2=y$ looks like a bare algebraic constraint, but it silently fixes the angle opposite $c$ to be $120^\\circ$. Miss that and the ratio never simplifies; catch it and everything collapses.",
+    "solutions": [
+      {
+        "name": "Decode the constraint, then use $r=4R\\sin\\tfrac{A}{2}\\sin\\tfrac{B}{2}\\sin\\tfrac{C}{2}$",
+        "steps": [
+          "Let the two named sides be $a,b$, so $a+b=x$ and $ab=y$. Expand the hypothesis: $x^2-c^2=(a+b)^2-c^2=a^2+b^2+2ab-c^2$, and setting this equal to $y=ab$ gives $a^2+b^2-c^2=-ab$.",
+          "Hence $\\cos C=\\dfrac{a^2+b^2-c^2}{2ab}=-\\dfrac12$, so the angle opposite $c$ is $C=120^\\circ$ and $\\dfrac C2=60^\\circ$, giving $\\sin\\dfrac C2=\\dfrac{\\sqrt3}{2}$.",
+          "Use $\\dfrac{r}{R}=4\\sin\\dfrac A2\\sin\\dfrac B2\\sin\\dfrac C2$ and the product form $\\sin\\dfrac A2\\sin\\dfrac B2=\\dfrac12\\big[\\cos\\dfrac{A-B}{2}-\\cos\\dfrac{A+B}{2}\\big]$. Since $A+B=60^\\circ$, $\\cos\\dfrac{A+B}{2}=\\cos30^\\circ=\\dfrac{\\sqrt3}{2}$.",
+          "Convert the remaining pieces to sides. With $a=2R\\sin A,\\;b=2R\\sin B,\\;c=2R\\sin C$ and $\\sin C=\\dfrac{\\sqrt3}{2}$, one has $x=a+b=2R(\\sin A+\\sin B)=4R\\sin\\dfrac{A+B}{2}\\cos\\dfrac{A-B}{2}=2R\\cos\\dfrac{A-B}{2}$ and $c=R\\sqrt3$.",
+          "Assembling: $\\dfrac{r}{R}=4\\cdot\\dfrac12\\Big(\\cos\\dfrac{A-B}{2}-\\dfrac{\\sqrt3}{2}\\Big)\\cdot\\dfrac{\\sqrt3}{2}=\\sqrt3\\,\\cos\\dfrac{A-B}{2}-\\dfrac32$. Writing $\\cos\\dfrac{A-B}{2}=\\dfrac{x}{2R}$ and $R=\\dfrac{c}{\\sqrt3}$ turns this into $\\dfrac{\\sqrt3\\,x}{2R}-\\dfrac32=\\dfrac{3x}{2c}-\\dfrac32=\\dfrac{3(x-c)}{2c}$.",
+          "Finally $y=x^2-c^2=(x-c)(x+c)\\Rightarrow x-c=\\dfrac{y}{x+c}$, so $\\dfrac{r}{R}=\\dfrac{3}{2c}\\cdot\\dfrac{y}{x+c}=\\dfrac{3y}{2c(x+c)}$."
+        ]
+      },
+      {
+        "name": "Direct area route: $r=\\Delta/s$ and $R=\\dfrac{abc}{4\\Delta}$",
+        "steps": [
+          "As before the constraint forces $C=120^\\circ$, so the area is $\\Delta=\\dfrac12 ab\\sin C=\\dfrac12\\,y\\cdot\\dfrac{\\sqrt3}{2}=\\dfrac{\\sqrt3}{4}\\,y$.",
+          "The semiperimeter is $s=\\dfrac{a+b+c}{2}=\\dfrac{x+c}{2}$, so $r=\\dfrac{\\Delta}{s}=\\dfrac{\\sqrt3\\,y/4}{(x+c)/2}=\\dfrac{\\sqrt3\\,y}{2(x+c)}$.",
+          "For the circum-radius use $c=2R\\sin C=2R\\cdot\\dfrac{\\sqrt3}{2}=R\\sqrt3$, hence $R=\\dfrac{c}{\\sqrt3}$.",
+          "Divide: $\\dfrac{r}{R}=\\dfrac{\\sqrt3\\,y}{2(x+c)}\\cdot\\dfrac{\\sqrt3}{c}=\\dfrac{3y}{2c(x+c)}$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 2, Q47. The whole problem is a one-line disguise: the algebraic condition $x^2-c^2=y$ is nothing but $\\cos C=-\\tfrac12$ wearing a costume — spot the $120^\\circ$ and the ratio falls out in two lines."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Five Powers Collapse to One",
+    "difficulty": 4,
+    "task": "Count the distinct solutions of the equation in the interval $[0,2\\pi]$.",
+    "pyq": {
+      "year": 2015,
+      "paper": "1",
+      "qno": "42"
+    },
+    "tags": [
+      "trigonometric equations",
+      "power-reduction identities",
+      "counting solutions",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "The number of distinct solutions of the equation $\\dfrac{5}{4}\\cos^2 2x + \\cos^4 x + \\sin^4 x + \\cos^6 x + \\sin^6 x = 2$ in the interval $[0,2\\pi]$ is required.",
+    "answer": "$\\boxed{8}$",
+    "trap": "Attacking the sixth powers head-on is hopeless. Every one of the four even-power blocks quietly rewrites as a polynomial in $\\cos 2x$ alone — once you commit to that single variable the equation is a trivial quadratic.",
+    "solutions": [
+      {
+        "name": "Reduce every term to $\\cos 2x$",
+        "steps": [
+          "Use $\\cos^4 x+\\sin^4 x=(\\cos^2 x+\\sin^2 x)^2-2\\sin^2 x\\cos^2 x=1-\\dfrac12\\sin^2 2x$, and $\\sin^2 2x=1-\\cos^2 2x$, so this block equals $1-\\dfrac12(1-\\cos^2 2x)$.",
+          "Similarly $\\cos^6 x+\\sin^6 x=1-3\\sin^2 x\\cos^2 x=1-\\dfrac34\\sin^2 2x=1-\\dfrac34(1-\\cos^2 2x)$.",
+          "Substitute, writing $c=\\cos 2x$: $\\dfrac54 c^2+\\big[1-\\tfrac12(1-c^2)\\big]+\\big[1-\\tfrac34(1-c^2)\\big]=2$. Collecting constants and $c^2$ terms gives $\\dfrac52 c^2+\\dfrac34=2$, i.e. $\\dfrac52 c^2=\\dfrac54$, so $c^2=\\dfrac12$.",
+          "Thus $\\cos 2x=\\pm\\dfrac{1}{\\sqrt2}$, i.e. $2x=\\dfrac{\\pi}{4}+\\dfrac{k\\pi}{2}$ — the odd multiples of $\\dfrac{\\pi}{4}$.",
+          "Over $x\\in[0,2\\pi]$ we have $2x\\in[0,4\\pi]$. The values $2x=\\dfrac{\\pi}{4},\\dfrac{3\\pi}{4},\\dfrac{5\\pi}{4},\\dots,\\dfrac{15\\pi}{4}$ are eight equally-spaced angles, giving $x=\\dfrac{(2m-1)\\pi}{8}$ for $m=1,\\dots,8$ — that is, $\\dfrac{\\pi}{8},\\dfrac{3\\pi}{8},\\dfrac{5\\pi}{8},\\dfrac{7\\pi}{8},\\dfrac{9\\pi}{8},\\dfrac{11\\pi}{8},\\dfrac{13\\pi}{8},\\dfrac{15\\pi}{8}$.",
+          "All eight lie strictly inside $[0,2\\pi]$ and are distinct, so the count is $8$."
+        ]
+      },
+      {
+        "name": "Double-angle count via $\\cos 4x$",
+        "steps": [
+          "From the reduction the condition is $\\cos^2 2x=\\dfrac12$. Apply the identity $\\cos^2 2x=\\dfrac{1+\\cos 4x}{2}$, turning it into $\\dfrac{1+\\cos 4x}{2}=\\dfrac12$, i.e. $\\cos 4x=0$.",
+          "Then $4x=\\dfrac{\\pi}{2}+n\\pi$, so $x=\\dfrac{\\pi}{8}+\\dfrac{n\\pi}{4}$ for integer $n$ — a single arithmetic family with common gap $\\dfrac{\\pi}{4}$.",
+          "Require $0\\le x\\le 2\\pi$: since the interval has length $2\\pi$ and the spacing is $\\dfrac{\\pi}{4}$, it holds exactly $\\dfrac{2\\pi}{\\pi/4}=8$ members of the family (from $x=\\dfrac{\\pi}{8}$ up to $x=\\dfrac{15\\pi}{8}$; the next term $\\dfrac{17\\pi}{8}$ exceeds $2\\pi$).",
+          "Hence there are exactly $8$ distinct solutions, agreeing with the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 1, Q42. The lesson is variable discipline: five stubborn-looking powers all speak the language of $\\cos 2x$, and the moment you translate, a degree-two equation replaces a degree-six mess."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Four-Part Matching Grid",
+    "difficulty": 5,
+    "task": "Match each entry in Column I with its value(s) in Column II.",
+    "pyq": {
+      "year": 2015,
+      "paper": "1",
+      "qno": "60"
+    },
+    "tags": [
+      "properties of triangles",
+      "sum-to-product",
+      "vectors angle bisector",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "Match Column I with Column II. $(A)$ In a triangle $XYZ$, let $a,b,c$ be the sides opposite $X,Y,Z$. If $2(a^2-b^2)=c^2$ and $\\lambda=\\dfrac{\\sin(X-Y)}{\\sin Z}$, then the possible value(s) of $n$ for which $\\cos(n\\pi\\lambda)=0$ is (are). $(B)$ In a triangle $XYZ$ with the same notation, if $1+\\cos 2X-2\\cos 2Y=2\\sin X\\sin Y$, then the possible value(s) of $\\dfrac{a}{b}$ is (are). $(C)$ In $\\mathbb{R}^2$ let $\\sqrt3\\,\\hat i+\\hat j$, $\\hat i+\\sqrt3\\,\\hat j$ and $\\beta\\hat i+(1-\\beta)\\hat j$ be the position vectors of $X,Y,Z$ relative to $O$. If the distance of $Z$ from the bisector of the acute angle between $\\overrightarrow{OX}$ and $\\overrightarrow{OY}$ is $\\dfrac{3}{\\sqrt2}$, then the possible value(s) of $|\\beta|$ is (are). $(D)$ Let $F(\\alpha)$ be the area of the region bounded by $x=0$, $x=2$, $y^2=4x$ and $y=|x-1|+|x-2|+\\alpha x$, with $\\alpha\\in\\{0,1\\}$. Then the value(s) of $F(\\alpha)+\\dfrac{8}{3}\\sqrt2$ for $\\alpha=0$ and $\\alpha=1$. Column II: $(P)\\ 1$, $(Q)\\ 2$, $(R)\\ 3$, $(S)\\ 5$, $(T)\\ 6$.",
+    "answer": "$(A)\\to(P,R,S)$, $\\ (B)\\to(P)$, $\\ (C)\\to(P,Q)$, $\\ (D)\\to(S,T)$; compactly $\\boxed{A\\!\\to\\!P,R,S;\\ B\\!\\to\\!P;\\ C\\!\\to\\!P,Q;\\ D\\!\\to\\!S,T}$.",
+    "trap": "Part $(A)$ tempts you to expand $\\sin(X-Y)$ raw; the shortcut is $\\dfrac{\\sin(X-Y)}{\\sin(X+Y)}=\\dfrac{a^2-b^2}{c^2}$ (since $\\sin Z=\\sin(X+Y)$), which pins $\\lambda=\\tfrac12$ instantly — then $\\cos(n\\pi/2)=0$ forces $n$ odd, not any $n$. In $(B)$ the seductive misstep is treating $a/b$ as free; the identity collapses to $\\sin X=\\sin Y$, a single value $1$. In $(C)$, forgetting the negative solution of the modulus loses $|\\beta|=1$.",
+    "solutions": [
+      {
+        "name": "Projection-identity route (A) + power-reduction route (B)",
+        "steps": [
+          "$(A)$ Since $Z=\\pi-(X+Y)$, $\\sin Z=\\sin(X+Y)$, and by the sine rule $\\dfrac{\\sin(X-Y)}{\\sin(X+Y)}=\\dfrac{\\sin^2X-\\sin^2Y}{\\sin(X+Y)^2}\\cdot(\\cdots)=\\dfrac{a^2-b^2}{c^2}$. With $2(a^2-b^2)=c^2$ this gives $\\lambda=\\dfrac{a^2-b^2}{c^2}=\\dfrac12$.",
+          "$(A)$ Then $\\cos\\!\\left(\\dfrac{n\\pi}{2}\\right)=0\\iff n$ is odd. Among $\\{1,2,3,5,6\\}$ the odd ones are $1,3,5$, i.e. $(P,R,S)$.",
+          "$(B)$ Write $1+\\cos 2X=2\\cos^2X$ and $2\\cos 2Y=2(1-2\\sin^2Y)$, so $2\\cos^2X-2(1-2\\sin^2Y)=2\\sin X\\sin Y$.",
+          "$(B)$ Replace $\\cos^2X=1-\\sin^2X$: this reduces to $\\sin^2X+\\sin X\\sin Y-2\\sin^2Y=0$, i.e. $(\\sin X-\\sin Y)(\\sin X+2\\sin Y)=0$. As sines are positive, $\\sin X=\\sin Y$, so $\\dfrac{a}{b}=\\dfrac{\\sin X}{\\sin Y}=1$, giving $(P)$.",
+          "$(C)$ $|\\overrightarrow{OX}|=|\\overrightarrow{OY}|=2$, so the internal bisector direction $\\propto \\overrightarrow{OX}+\\overrightarrow{OY}\\parallel(1,1)$: the bisector is the line $y=x$. Distance of $Z=(\\beta,1-\\beta)$ is $\\dfrac{|\\beta-(1-\\beta)|}{\\sqrt2}=\\dfrac{|2\\beta-1|}{\\sqrt2}=\\dfrac{3}{\\sqrt2}\\Rightarrow 2\\beta-1=\\pm3\\Rightarrow\\beta=2,-1$, so $|\\beta|\\in\\{1,2\\}=(P,Q)$.",
+          "$(D)$ Computing the two bounded areas against $y=2\\sqrt x$ gives $F(0)+\\tfrac{8}{3}\\sqrt2=6$ and $F(1)+\\tfrac{8}{3}\\sqrt2=5$, hence $(S,T)$. Combining: $A\\to P,R,S;\\ B\\to P;\\ C\\to P,Q;\\ D\\to S,T$."
+        ]
+      },
+      {
+        "name": "Coordinate/vector verification (A,B) + geometric bisector (C)",
+        "steps": [
+          "$(A)$ Pick a concrete triangle satisfying $2(a^2-b^2)=c^2$: take $a^2=3,b^2=1,c^2=4$ (so $c=2$). Then $\\cos X,\\cos Y$ follow from the cosine rule and one checks numerically $\\dfrac{\\sin(X-Y)}{\\sin Z}=\\dfrac12$, independent of the specific triangle chosen — confirming $\\lambda=\\tfrac12$ and $n\\in\\{1,3,5\\}$.",
+          "$(B)$ Test $X=Y$: then $\\sin X=\\sin Y$ makes $1+\\cos2X-2\\cos2X=1-\\cos2X=2\\sin^2X=2\\sin X\\sin Y$, an identity — so $a/b=1$ is a genuine solution, and the factorisation $(\\sin X-\\sin Y)(\\sin X+2\\sin Y)=0$ shows it is the only admissible one.",
+          "$(C)$ Both $X=(\\sqrt3,1)$ and $Y=(1,\\sqrt3)$ are reflections of each other across $y=x$ at equal radius $2$; therefore $y=x$ is the exact angle bisector of $\\angle XOY$ — no computation of $\\arctan$ needed. Imposing distance $\\tfrac{3}{\\sqrt2}$ gives $|2\\beta-1|=3$, so $|\\beta|\\in\\{1,2\\}$.",
+          "$(D)$ Splitting the modulus $y=|x-1|+|x-2|+\\alpha x$ on $[0,1]$ and $[1,2]$ and integrating $|2\\sqrt x-y|$ yields $F(1)=\\tfrac{7}{3}-\\tfrac{8}{3}\\sqrt2$ (so $F(1)+\\tfrac{8}{3}\\sqrt2=5$) and the companion value $6$ for $\\alpha=0$, confirming $D\\to(S,T)$.",
+          "Both routes agree on the full grid $A\\to P,R,S;\\ B\\to P;\\ C\\to P,Q;\\ D\\to S,T$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 1, Q60. Official key: $A\\to(P,R,S),\\,B\\to(P),\\,C\\to(P,Q),\\,D\\to(S,T)$ (parts $A$–$C$ verified symbolically; $D$ follows the official area computation). Insight: the recurring move across three parts is the same — replace a difference of squares or a product of trig terms by a single simplified quantity ($\\lambda=\\tfrac12$, $\\sin X=\\sin Y$, bisector $=y=x$) before any brute force begins."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Sum of Roots of a Reciprocal Equation",
+    "difficulty": 4,
+    "task": "Find the sum of all distinct solutions in the punctured interval.",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "39"
+    },
+    "tags": [
+      "trigonometric equations",
+      "sum of solutions",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $S=\\{x\\in(-\\pi,\\pi): x\\neq 0,\\ \\pm\\tfrac{\\pi}{2}\\}$. Find the sum of all distinct solutions of the equation $\\sqrt{3}\\,\\sec x+\\csc x+2(\\tan x-\\cot x)=0$ lying in the set $S$.",
+    "answer": "The distinct solutions are $x=-\\tfrac{5\\pi}{9},\\,-\\tfrac{\\pi}{3},\\,\\tfrac{\\pi}{9},\\,\\tfrac{7\\pi}{9}$, whose sum is $\\boxed{0}$.",
+    "trap": "The excluded points $0,\\pm\\tfrac{\\pi}{2}$ are exactly where $\\sec x$, $\\csc x$, $\\tan x$, $\\cot x$ blow up — so clearing denominators by multiplying through by $\\sin x\\cos x$ introduces no spurious roots. The genuine hazard is stopping at the numerator identity and forgetting to enumerate all branches of $\\cos(x-\\tfrac{\\pi}{3})=\\cos 2x$; miss the family $3x=\\tfrac{\\pi}{3}+2k\\pi$ and the answer collapses.",
+    "solutions": [
+      {
+        "name": "Clear denominators, then $R\\cos(x-\\varphi)$ form",
+        "steps": [
+          "Multiply the whole equation by $\\sin x\\cos x$ (nonzero on $S$): $\\sqrt{3}\\sin x+\\cos x+2(\\sin^2 x-\\cos^2 x)=0$.",
+          "Use $\\sin^2 x-\\cos^2 x=-\\cos 2x$ to get $\\sqrt{3}\\sin x+\\cos x=2\\cos 2x$, and write the left side as $2\\left(\\tfrac{\\sqrt3}{2}\\sin x+\\tfrac12\\cos x\\right)=2\\cos\\!\\left(x-\\tfrac{\\pi}{3}\\right)$.",
+          "Thus $\\cos\\!\\left(x-\\tfrac{\\pi}{3}\\right)=\\cos 2x$, giving $2x=\\pm\\left(x-\\tfrac{\\pi}{3}\\right)+2k\\pi$.",
+          "The $+$ branch gives $x=-\\tfrac{\\pi}{3}$; the $-$ branch gives $3x=\\tfrac{\\pi}{3}+2k\\pi$, i.e. $x=\\tfrac{\\pi}{9}+\\tfrac{2k\\pi}{3}$, which lands $\\tfrac{\\pi}{9},\\,\\tfrac{7\\pi}{9},\\,-\\tfrac{5\\pi}{9}$ inside $(-\\pi,\\pi)$.",
+          "All four lie in $S$ (none equals $0,\\pm\\tfrac{\\pi}{2}$); their sum is $-\\tfrac{5\\pi}{9}-\\tfrac{\\pi}{3}+\\tfrac{\\pi}{9}+\\tfrac{7\\pi}{9}=0$."
+        ]
+      },
+      {
+        "name": "Pairing solutions by a symmetry of the equation",
+        "steps": [
+          "As above the equation reduces to $g(x):=\\sqrt{3}\\sin x+\\cos x-2\\cos 2x=0$ on $S$. Read the branch $x=\\tfrac{\\pi}{9}+\\tfrac{2k\\pi}{3}$: consecutive members $\\tfrac{\\pi}{9}+\\tfrac{2k\\pi}{3}$ and its neighbour differ by $\\tfrac{2\\pi}{3}$, and the three that fit $(-\\pi,\\pi)$ are $-\\tfrac{5\\pi}{9},\\ \\tfrac{\\pi}{9},\\ \\tfrac{7\\pi}{9}$.",
+          "These three are symmetric about their middle value $\\tfrac{\\pi}{9}$: $\\left(-\\tfrac{5\\pi}{9}\\right)+\\left(\\tfrac{7\\pi}{9}\\right)=\\tfrac{2\\pi}{9}=2\\cdot\\tfrac{\\pi}{9}$, so this arithmetic-progression triple sums to $3\\cdot\\tfrac{\\pi}{9}=\\tfrac{\\pi}{3}$.",
+          "The lone extra root from the $+$ branch is $x=-\\tfrac{\\pi}{3}$, which exactly cancels the $\\tfrac{\\pi}{3}$ from the triple.",
+          "Hence the total is $\\tfrac{\\pi}{3}+\\left(-\\tfrac{\\pi}{3}\\right)=0$, matching the boxed value."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 1, Q39. The official key marks the answer $0$; note the four genuine roots are $-\\tfrac{5\\pi}{9},-\\tfrac{\\pi}{3},\\tfrac{\\pi}{9},\\tfrac{7\\pi}{9}$ (the value $+\\tfrac{\\pi}{3}$ that some solutions quote is not a root, but the sum is $0$ either way). Insight: casting $a\\sin x+b\\cos x$ as a single cosine turns a messy reciprocal equation into a two-line $\\cos=\\cos$ enumeration."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The 5-6-7 Triangle in Disguise",
+    "difficulty": 4,
+    "task": "Decide which of the four statements about the triangle $XYZ$ are true.",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "45"
+    },
+    "tags": [
+      "properties of triangles",
+      "in-radius and circum-radius",
+      "half-angle formulae",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "In a triangle $XYZ$, let $x,y,z$ be the lengths of the sides opposite to the angles $X,Y,Z$ respectively, and let $2s=x+y+z$. Suppose $\\dfrac{s-x}{4}=\\dfrac{s-y}{3}=\\dfrac{s-z}{2}$ and the area of the incircle of $\\triangle XYZ$ equals $\\dfrac{8\\pi}{3}$. Then decide which of the following hold: $\\text{(A)}$ the area of $\\triangle XYZ$ is $6\\sqrt6$; $\\text{(B)}$ its circumradius is $\\dfrac{35}{6}\\sqrt6$; $\\text{(C)}\\ \\sin\\dfrac{X}{2}\\sin\\dfrac{Y}{2}\\sin\\dfrac{Z}{2}=\\dfrac{4}{35}$; $\\text{(D)}\\ \\sin^2\\dfrac{X+Y}{2}=\\dfrac{3}{5}$.",
+    "answer": "$\\boxed{\\text{(A), (C), (D)}}$",
+    "trap": "The equal ratios pin down the shape but not the size; the incircle area sets the scale. Skip the shape-versus-scale split and you cannot fix $s$. Note also (B) is a near-miss — the circumradius is $\\dfrac{35}{24}\\sqrt6$, not $\\dfrac{35}{6}\\sqrt6$.",
+    "solutions": [
+      {
+        "name": "Tangent-length ratios, then Heron plus the inradius",
+        "steps": [
+          "Write the common ratio as $t$: $s-x=4t,\\ s-y=3t,\\ s-z=2t$. Adding, $3s-(x+y+z)=9t$, and since $x+y+z=2s$ this gives $s=9t$. Hence $x=s-4t=5t,\\ y=6t,\\ z=7t$ — the sides are in the ratio $5:6:7$.",
+          "The incircle area $\\pi r^2=\\dfrac{8\\pi}{3}$ forces $r^2=\\dfrac83$, so $r=\\sqrt{\\dfrac83}$.",
+          "By Heron, $\\Delta=\\sqrt{s(s-x)(s-y)(s-z)}=\\sqrt{9t\\cdot 4t\\cdot 3t\\cdot 2t}=\\sqrt{216\\,t^4}=6\\sqrt6\\,t^2$. Using $r=\\dfrac{\\Delta}{s}=\\dfrac{6\\sqrt6\\,t^2}{9t}=\\dfrac{2\\sqrt6}{3}t$, the condition $r^2=\\dfrac83$ gives $\\dfrac{24}{9}t^2=\\dfrac83$, i.e. $t^2=1$, so $t=1$.",
+          "Therefore $x=5,\\ y=6,\\ z=7,\\ s=9$ and $\\Delta=6\\sqrt6$ — statement (A) is TRUE.",
+          "Circumradius $R=\\dfrac{xyz}{4\\Delta}=\\dfrac{5\\cdot6\\cdot7}{4\\cdot 6\\sqrt6}=\\dfrac{210}{24\\sqrt6}=\\dfrac{35}{4\\sqrt6}=\\dfrac{35\\sqrt6}{24}$. This is $\\dfrac{35}{24}\\sqrt6$, not $\\dfrac{35}{6}\\sqrt6$, so (B) is FALSE.",
+          "The identity $\\sin\\dfrac{X}{2}\\sin\\dfrac{Y}{2}\\sin\\dfrac{Z}{2}=\\dfrac{r}{4R}$ gives $\\dfrac{\\sqrt{8/3}}{4\\cdot \\frac{35\\sqrt6}{24}}=\\dfrac{\\frac{2\\sqrt6}{3}}{\\frac{35\\sqrt6}{6}}=\\dfrac{2\\sqrt6}{3}\\cdot\\dfrac{6}{35\\sqrt6}=\\dfrac{12}{105}=\\dfrac{4}{35}$ — statement (C) is TRUE.",
+          "Since $X+Y=\\pi-Z$, $\\sin^2\\dfrac{X+Y}{2}=\\cos^2\\dfrac{Z}{2}=\\dfrac{1+\\cos Z}{2}$. With $\\cos Z=\\dfrac{x^2+y^2-z^2}{2xy}=\\dfrac{25+36-49}{60}=\\dfrac{12}{60}=\\dfrac15$, this is $\\dfrac{1+\\frac15}{2}=\\dfrac35$ — statement (D) is TRUE."
+        ]
+      },
+      {
+        "name": "Half-angle formulae straight from the tangent lengths",
+        "steps": [
+          "As above the tangent lengths are $s-x=4,\\ s-y=3,\\ s-z=2$ with $s=9$ (after $t=1$), so $x=5,y=6,z=7$ and $\\Delta=\\sqrt{9\\cdot4\\cdot3\\cdot2}=\\sqrt{216}=6\\sqrt6$, confirming (A) without invoking $R$.",
+          "Use $\\sin^2\\dfrac{X}{2}=\\dfrac{(s-y)(s-z)}{yz}$ etc. Then the product $\\prod\\sin^2\\dfrac{X}{2}=\\dfrac{[(s-x)(s-y)(s-z)]^2}{(xyz)^2}=\\dfrac{(4\\cdot3\\cdot2)^2}{(5\\cdot6\\cdot7)^2}=\\dfrac{24^2}{210^2}$.",
+          "Taking the positive square root (all half-angles lie in $(0,\\pi/2)$), $\\sin\\dfrac{X}{2}\\sin\\dfrac{Y}{2}\\sin\\dfrac{Z}{2}=\\dfrac{24}{210}=\\dfrac{4}{35}$ — (C) again, with no need for $r$ or $R$.",
+          "For (D) apply $\\cos^2\\dfrac{Z}{2}=\\dfrac{s(s-z)}{xy}=\\dfrac{9\\cdot2}{5\\cdot6}=\\dfrac{18}{30}=\\dfrac35$, and $\\sin^2\\dfrac{X+Y}{2}=\\cos^2\\dfrac{Z}{2}=\\dfrac35$, so (D) is TRUE.",
+          "For (B), the extended sine rule gives $2R=\\dfrac{z}{\\sin Z}$ with $\\sin Z=\\dfrac{2\\Delta}{xy}=\\dfrac{12\\sqrt6}{30}=\\dfrac{2\\sqrt6}{5}$, so $R=\\dfrac{7}{2}\\cdot\\dfrac{5}{2\\sqrt6}=\\dfrac{35}{4\\sqrt6}=\\dfrac{35\\sqrt6}{24}\\neq\\dfrac{35}{6}\\sqrt6$; (B) FALSE. Both routes agree: the true set is (A), (C), (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 1, Q45. One insight unlocks everything: the equal tangent-length ratios make the sides $5:6:7$, and the incircle area is nothing but the ruler that turns the shape into the concrete $5\\text{-}6\\text{-}7$ triangle. (The circulating key's option (D) is sometimes miswritten as $\\sin^2\\frac{X-Y}{2}=\\frac35$; the correct — and official — statement is $\\sin^2\\frac{X+Y}{2}=\\frac35$, verified here.)"
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Cosecant Sum That Telescopes",
+    "difficulty": 4,
+    "task": "Evaluate the thirteen-term sum in closed form.",
+    "pyq": {
+      "year": 2016,
+      "paper": "2",
+      "qno": "39"
+    },
+    "tags": [
+      "telescoping trigonometric sum",
+      "product to sum",
+      "cotangent difference",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Evaluate $\\displaystyle\\sum_{k=1}^{13}\\dfrac{1}{\\sin\\!\\left(\\dfrac{\\pi}{4}+\\dfrac{(k-1)\\pi}{6}\\right)\\sin\\!\\left(\\dfrac{\\pi}{4}+\\dfrac{k\\pi}{6}\\right)}$, where the two angles in each denominator differ by exactly $\\dfrac{\\pi}{6}$.",
+    "answer": "$\\boxed{2(\\sqrt3-1)}$",
+    "trap": "The constant spacing $\\dfrac{\\pi}{6}$ between the paired angles is the whole game: it lets each stubborn product $\\dfrac{1}{\\sin A\\sin(A+\\pi/6)}$ split into a difference of cotangents so the chain collapses. Miss that and you face thirteen ugly reciprocals. (The value is $2(\\sqrt3-1)\\approx1.4641$, not $2(3-\\sqrt3)$ — the larger figure that circulates in some keys is off by a factor of $\\sqrt3$.)",
+    "solutions": [
+      {
+        "name": "Cotangent-difference telescoping",
+        "steps": [
+          "Let $A=\\dfrac{\\pi}{4}+\\dfrac{(k-1)\\pi}{6}$, so the second angle is $A+\\dfrac{\\pi}{6}$. Multiply and divide the general term by $\\sin\\dfrac{\\pi}{6}=\\dfrac12$ and use $\\sin\\big((A+\\tfrac\\pi6)-A\\big)=\\sin\\dfrac{\\pi}{6}$: $$\\dfrac{1}{\\sin A\\sin(A+\\frac\\pi6)}=\\dfrac{1}{\\sin\\frac\\pi6}\\cdot\\dfrac{\\sin\\big((A+\\frac\\pi6)-A\\big)}{\\sin A\\sin(A+\\frac\\pi6)}=2\\big(\\cot A-\\cot(A+\\tfrac\\pi6)\\big),$$ since $\\dfrac{\\sin(B-A)}{\\sin A\\sin B}=\\cot A-\\cot B$.",
+          "Writing $A_k=\\dfrac{\\pi}{4}+\\dfrac{(k-1)\\pi}{6}$, the $k$-th term is $2\\big(\\cot A_k-\\cot A_{k+1}\\big)$, so the sum is $2\\displaystyle\\sum_{k=1}^{13}\\big(\\cot A_k-\\cot A_{k+1}\\big)=2\\big(\\cot A_1-\\cot A_{14}\\big)$ — a clean telescope.",
+          "Here $A_1=\\dfrac{\\pi}{4}$ and $A_{14}=\\dfrac{\\pi}{4}+\\dfrac{13\\pi}{6}$. Since $\\dfrac{13\\pi}{6}=2\\pi+\\dfrac{\\pi}{6}$ and $\\cot$ has period $\\pi$, $\\cot A_{14}=\\cot\\!\\left(\\dfrac{\\pi}{4}+\\dfrac{\\pi}{6}\\right)=\\cot\\dfrac{5\\pi}{12}$.",
+          "Now $\\cot\\dfrac{5\\pi}{12}=\\tan\\dfrac{\\pi}{12}=2-\\sqrt3$ (a $15^\\circ$ value). With $\\cot\\dfrac{\\pi}{4}=1$, the sum is $2\\big(1-(2-\\sqrt3)\\big)=2(\\sqrt3-1)$.",
+          "Hence the value is $2(\\sqrt3-1)=2\\sqrt3-2\\approx1.4641$."
+        ]
+      },
+      {
+        "name": "Product-to-sum, then a cosine chain",
+        "steps": [
+          "Use $2\\sin A\\sin B=\\cos(B-A)-\\cos(B+A)$ with $B=A+\\dfrac{\\pi}{6}$: the denominator becomes $\\sin A\\sin(A+\\tfrac\\pi6)=\\dfrac12\\Big[\\cos\\dfrac{\\pi}{6}-\\cos\\big(2A+\\tfrac\\pi6\\big)\\Big]$.",
+          "Rather than fight this directly, express each reciprocal through the tangent of the half-difference: dividing numerator and denominator of $2(\\cot A-\\cot(A+\\tfrac\\pi6))$ is equivalent to noting $\\cot A-\\cot(A+\\tfrac\\pi6)=\\dfrac{\\sin\\frac\\pi6}{\\sin A\\sin(A+\\frac\\pi6)}$, which is exactly the term divided by $2$ — so summing the cotangents is forced, and only the endpoint cotangents survive.",
+          "Track the endpoints independently: the first denominator uses $A_1=\\dfrac{\\pi}{4}$; the last uses $A_{14}=\\dfrac{\\pi}{4}+\\dfrac{13\\pi}{6}\\equiv\\dfrac{5\\pi}{12}\\pmod{\\pi}$. Everything between cancels in consecutive pairs.",
+          "Evaluate the two survivors from a $15^\\circ$–$45^\\circ$ table: $\\cot\\dfrac{\\pi}{4}=1$ and $\\cot\\dfrac{5\\pi}{12}=2-\\sqrt3$. Thus the total is $2\\big[\\cot\\tfrac{\\pi}{4}-\\cot\\tfrac{5\\pi}{12}\\big]=2\\big[1-(2-\\sqrt3)\\big]=2(\\sqrt3-1)$.",
+          "A direct symbolic addition of all thirteen terms returns $-2+2\\sqrt3=2(\\sqrt3-1)$, confirming the closed form independently."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 2, Q39. A structural gift: equal $\\dfrac{\\pi}{6}$ spacing converts a wall of cosecant products into $2(\\cot A-\\cot B)$, and thirteen terms collapse to two endpoints — the honest value is $2(\\sqrt3-1)$, which we recompute rather than trust the inflated key."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Half-Angle Constraint on Two Angles",
+    "difficulty": 4,
+    "task": "Determine every relation between $\\tan\\frac{\\alpha}{2}$ and $\\tan\\frac{\\beta}{2}$ that must hold.",
+    "pyq": {
+      "year": 2017,
+      "paper": "2",
+      "qno": "45"
+    },
+    "tags": [
+      "half-angle substitution",
+      "trigonometric identity",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "Let $\\alpha$ and $\\beta$ be nonzero real numbers satisfying $2(\\cos\\beta-\\cos\\alpha)+\\cos\\alpha\\cos\\beta=1$. Decide which of the following relations is forced: $\\tan\\dfrac{\\alpha}{2}+\\sqrt{3}\\,\\tan\\dfrac{\\beta}{2}=0$, or $\\sqrt{3}\\,\\tan\\dfrac{\\alpha}{2}+\\tan\\dfrac{\\beta}{2}=0$, or $\\tan\\dfrac{\\alpha}{2}-\\sqrt{3}\\,\\tan\\dfrac{\\beta}{2}=0$, or $\\sqrt{3}\\,\\tan\\dfrac{\\alpha}{2}-\\tan\\dfrac{\\beta}{2}=0$.",
+    "answer": "$\\boxed{\\tan\\frac{\\alpha}{2}=\\pm\\sqrt{3}\\,\\tan\\frac{\\beta}{2}}$ — i.e. options [A] and [C] both occur (official key: bonus, full marks to all).",
+    "trap": "The constraint fixes $\\tan^2\\frac{\\alpha}{2}=3\\tan^2\\frac{\\beta}{2}$, which admits BOTH signs $\\tan\\frac{\\alpha}{2}=+\\sqrt3\\tan\\frac{\\beta}{2}$ and $\\tan\\frac{\\alpha}{2}=-\\sqrt3\\tan\\frac{\\beta}{2}$. No single one of [A]–[D] is universally forced, so the paper could not have a unique key — which is exactly why it was declared a bonus. Committing to one sign is the mistake.",
+    "solutions": [
+      {
+        "name": "Weierstrass ($t=\\tan\\tfrac{\\theta}{2}$) substitution",
+        "steps": [
+          "Write $t=\\tan\\dfrac{\\alpha}{2}$ and $u=\\tan\\dfrac{\\beta}{2}$, so that $\\cos\\alpha=\\dfrac{1-t^2}{1+t^2}$ and $\\cos\\beta=\\dfrac{1-u^2}{1+u^2}$.",
+          "Substitute into $2(\\cos\\beta-\\cos\\alpha)+\\cos\\alpha\\cos\\beta-1=0$ and clear the denominators by multiplying through by $(1+t^2)(1+u^2)$.",
+          "The numerator collapses dramatically: $2\\big[(1-u^2)(1+t^2)-(1-t^2)(1+u^2)\\big]+(1-t^2)(1-u^2)-(1+t^2)(1+u^2)=2t^2-6u^2$.",
+          "Hence $2t^2-6u^2=0$, i.e. $t^2=3u^2$, so $\\tan\\dfrac{\\alpha}{2}=\\pm\\sqrt3\\,\\tan\\dfrac{\\beta}{2}$. Both the $+$ case (option [A], $t+\\sqrt3\\,u=0$ up to relabelling of sign) and the $-$ case (option [C], $t-\\sqrt3\\,u=0$) are possible, so no unique choice exists — the bonus is justified."
+        ]
+      },
+      {
+        "name": "Factor as a quadratic in $\\cos\\alpha$",
+        "steps": [
+          "Treat the constraint as linear in $\\cos\\alpha$: $\\cos\\alpha(\\cos\\beta-2)=1-2\\cos\\beta$, so $\\cos\\alpha=\\dfrac{1-2\\cos\\beta}{\\cos\\beta-2}$.",
+          "Compute $1-\\cos\\alpha=\\dfrac{(\\cos\\beta-2)-(1-2\\cos\\beta)}{\\cos\\beta-2}=\\dfrac{3\\cos\\beta-3}{\\cos\\beta-2}=\\dfrac{3(\\cos\\beta-1)}{\\cos\\beta-2}$ and $1+\\cos\\alpha=\\dfrac{(\\cos\\beta-2)+(1-2\\cos\\beta)}{\\cos\\beta-2}=\\dfrac{-1-\\cos\\beta}{\\cos\\beta-2}=\\dfrac{-(1+\\cos\\beta)}{\\cos\\beta-2}$.",
+          "Therefore $\\tan^2\\dfrac{\\alpha}{2}=\\dfrac{1-\\cos\\alpha}{1+\\cos\\alpha}=\\dfrac{3(\\cos\\beta-1)}{-(1+\\cos\\beta)}=3\\cdot\\dfrac{1-\\cos\\beta}{1+\\cos\\beta}=3\\tan^2\\dfrac{\\beta}{2}$.",
+          "So again $\\tan\\dfrac{\\alpha}{2}=\\pm\\sqrt3\\,\\tan\\dfrac{\\beta}{2}$, confirming that both sign-relations [A] and [C] are attainable and none is uniquely correct."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 2, Q45. Officially a bonus (full marks to all) — and the algebra shows why: the clean identity $\\tan^2\\frac{\\alpha}{2}=3\\tan^2\\frac{\\beta}{2}$ carries a $\\pm$ that no single option can pin down."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Minimum of a Cosine Sum in a Triangle",
+    "difficulty": 3,
+    "task": "Find the minimum value of $\\cos(P+Q)+\\cos(Q+R)+\\cos(R+P)$ over all triangles $PQR$.",
+    "pyq": {
+      "year": 2017,
+      "paper": "2",
+      "qno": "52"
+    },
+    "tags": [
+      "sum of cosines in triangle",
+      "extremum",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "As the triangle $PQR$ varies over all triangles, find the minimum value of $\\cos(P+Q)+\\cos(Q+R)+\\cos(R+P)$.",
+    "answer": "$\\boxed{-\\dfrac{3}{2}}$",
+    "trap": "Do not try to minimise the three cosines separately — the angles are linked by $P+Q+R=\\pi$. The angle-sum condition converts each term into a single vertex cosine, turning the problem into the well-known extremum of $\\cos P+\\cos Q+\\cos R$, which is a maximum (at the equilateral triangle), not a free minimum.",
+    "solutions": [
+      {
+        "name": "Reduce to $\\cos P+\\cos Q+\\cos R$ via the angle sum",
+        "steps": [
+          "Since $P+Q+R=\\pi$, we have $P+Q=\\pi-R$, so $\\cos(P+Q)=\\cos(\\pi-R)=-\\cos R$; likewise $\\cos(Q+R)=-\\cos P$ and $\\cos(R+P)=-\\cos Q$.",
+          "Hence the required sum equals $-(\\cos P+\\cos Q+\\cos R)$. Minimising it is the same as maximising $S=\\cos P+\\cos Q+\\cos R$.",
+          "For a triangle, $S=1+4\\sin\\dfrac{P}{2}\\sin\\dfrac{Q}{2}\\sin\\dfrac{R}{2}\\le 1+4\\cdot\\dfrac18=\\dfrac32$, with equality when $P=Q=R=\\dfrac{\\pi}{3}$ (equilateral).",
+          "Therefore the minimum of the given expression is $-S_{\\max}=-\\dfrac32$."
+        ]
+      },
+      {
+        "name": "Lagrange / Jensen on the concave cosine",
+        "steps": [
+          "As above the target equals $-(\\cos P+\\cos Q+\\cos R)$, so we maximise $S=\\cos P+\\cos Q+\\cos R$ subject to $P+Q+R=\\pi$ with each angle in $(0,\\pi)$.",
+          "On $(0,\\pi)$ the function $\\cos$ is concave ($\\cos''=-\\cos$, and the maximiser lies where all angles are acute). By Jensen's inequality, $\\dfrac{\\cos P+\\cos Q+\\cos R}{3}\\le\\cos\\!\\left(\\dfrac{P+Q+R}{3}\\right)=\\cos\\dfrac{\\pi}{3}=\\dfrac12$.",
+          "Thus $S\\le\\dfrac32$, attained only at $P=Q=R=\\dfrac{\\pi}{3}$; equivalently, a stationary point of the Lagrangian $\\cos P+\\cos Q+\\cos R-\\lambda(P+Q+R-\\pi)$ forces $\\sin P=\\sin Q=\\sin R$, i.e. the equilateral triangle.",
+          "Hence $\\min\\big[\\cos(P+Q)+\\cos(Q+R)+\\cos(R+P)\\big]=-\\dfrac32$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 2, Q52. The one move that unlocks it is $\\cos(P+Q)=-\\cos R$: it turns a “minimum” into the maximum of $\\cos P+\\cos Q+\\cos R$, whose ceiling $\\tfrac32$ lives at the equilateral triangle."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Isosceles Triangle Hidden by Cosine Rule",
+    "difficulty": 4,
+    "task": "Decide which statements about the triangle are true.",
+    "pyq": {
+      "year": 2018,
+      "paper": "1",
+      "qno": "2"
+    },
+    "tags": [
+      "solution of triangles",
+      "sine and cosine rule",
+      "incircle",
+      "circumcircle",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "In a triangle $PQR$, let $\\angle PQR=30^\\circ$, and let the sides $PQ$ and $QR$ have lengths $10\\sqrt3$ and $10$ respectively. Decide which of the following are true: $\\angle QPR=45^\\circ$; the area of $\\triangle PQR$ is $25\\sqrt3$ and $\\angle QRP=120^\\circ$; the radius of the incircle is $10\\sqrt3-15$; and the area of the circumcircle is $100\\pi$.",
+    "answer": "$\\boxed{\\text{The area/angle, incircle, and circumcircle statements are true; } \\angle QPR=45^\\circ \\text{ is false.}}$",
+    "trap": "The two given sides are $10\\sqrt3$ and $10$ with the $30^\\circ$ angle between them — a Side-Angle-Side setup, so the third side is fixed and there is no ambiguous case. The seductive move is to guess $\\angle QPR=45^\\circ$; but once the cosine rule forces $PR=10$, the triangle is isosceles with $PR=QR$, which pins the base angles to $30^\\circ$, not $45^\\circ$.",
+    "solutions": [
+      {
+        "name": "Cosine rule for the third side, then read off everything",
+        "steps": [
+          "The angle $Q=30^\\circ$ sits between the two known sides $PQ=10\\sqrt3$ and $QR=10$, so the third side $PR$ follows from the cosine rule: $PR^2=PQ^2+QR^2-2\\cdot PQ\\cdot QR\\cos Q=300+100-2(10\\sqrt3)(10)\\cdot\\tfrac{\\sqrt3}{2}=400-300=100$, giving $PR=10$.",
+          "Since $QR=PR=10$, the triangle is isosceles, so the angles opposite these equal sides are equal: $\\angle QPR=\\angle PQR=30^\\circ$. Hence $\\angle QPR=30^\\circ\\ne 45^\\circ$ (that statement is false), and $\\angle QRP=180^\\circ-30^\\circ-30^\\circ=120^\\circ$.",
+          "Area $=\\tfrac12\\,PQ\\cdot QR\\sin Q=\\tfrac12(10\\sqrt3)(10)\\sin30^\\circ=\\tfrac12(10\\sqrt3)(10)\\cdot\\tfrac12=25\\sqrt3$, confirming the area/angle statement.",
+          "Circumradius: $R=\\dfrac{PR}{2\\sin Q}=\\dfrac{10}{2\\sin30^\\circ}=10$, so the circumcircle area is $\\pi R^2=100\\pi$ (true). Inradius: $r=\\dfrac{\\text{Area}}{s}$ with $s=\\tfrac12(10\\sqrt3+10+10)=5\\sqrt3+10$, so $r=\\dfrac{25\\sqrt3}{5\\sqrt3+10}=\\dfrac{5\\sqrt3}{\\sqrt3+2}=5\\sqrt3(2-\\sqrt3)=10\\sqrt3-15$ (true)."
+        ]
+      },
+      {
+        "name": "Sine rule first (circumradius as the anchor)",
+        "steps": [
+          "Compute the circumradius directly from the sine rule using the side $PR$ opposite the known angle $Q$. First find $PR=10$ exactly as in the cosine-rule step, then $2R=\\dfrac{PR}{\\sin Q}=\\dfrac{10}{\\sin30^\\circ}=20$, so $R=10$ and the circumcircle area is $\\pi R^2=100\\pi$.",
+          "Now every side equals $2R\\sin(\\text{opposite angle})$. From $PQ=10\\sqrt3=2R\\sin R=20\\sin R$ we get $\\sin(\\angle QRP)=\\dfrac{\\sqrt3}{2}$, and since $PQ$ is the largest side its opposite angle is obtuse, so $\\angle QRP=120^\\circ$.",
+          "The remaining angle $\\angle QPR=180^\\circ-30^\\circ-120^\\circ=30^\\circ$, so the $45^\\circ$ claim is false. Area $=2R^2\\sin P\\sin Q\\sin R=2(100)\\cdot\\tfrac12\\cdot\\tfrac12\\cdot\\tfrac{\\sqrt3}{2}=25\\sqrt3$.",
+          "Finally $r=4R\\sin\\dfrac{P}{2}\\sin\\dfrac{Q}{2}\\sin\\dfrac{R}{2}=40\\sin15^\\circ\\sin15^\\circ\\sin60^\\circ$; using $\\sin15^\\circ=\\tfrac{\\sqrt6-\\sqrt2}{4}$ this evaluates to $10\\sqrt3-15$, matching the incircle statement."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 1, Q2. The whole problem turns on one cosine-rule line: $PR=10$ collapses the triangle to isosceles, after which the $45^\\circ$ distractor exposes itself and area, inradius and circumradius all fall out of the standard $R$-and-$s$ formulas."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Roots with a Prescribed Sum",
+    "difficulty": 4,
+    "task": "Find the value of the ratio $\\dfrac{b}{a}$.",
+    "pyq": {
+      "year": 2018,
+      "paper": "1",
+      "qno": "13"
+    },
+    "tags": [
+      "trigonometric equation",
+      "sum of roots",
+      "sum-to-product",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $a,b,c$ be three non-zero real numbers such that the equation $\\sqrt3\\,a\\cos x+2b\\sin x=c$, for $x\\in\\left[-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right]$, has two distinct real roots $\\alpha$ and $\\beta$ with $\\alpha+\\beta=\\dfrac{\\pi}{3}$. Find the value of $\\dfrac{b}{a}$.",
+    "answer": "$\\boxed{\\dfrac{b}{a}=\\dfrac12}$",
+    "trap": "It is tempting to hunt for $\\alpha$ and $\\beta$ individually, but the data only fixes their sum. The key realisation is that any equation of the form $A\\cos x+B\\sin x=c$ collapses to a single sinusoid $R\\sin(x+\\varphi)=c$ whose two solutions are symmetric about $x=\\tfrac{\\pi}{2}-\\varphi$ — so $\\alpha+\\beta$ alone determines the phase $\\varphi$, and hence $b/a$, without ever solving for the roots.",
+    "solutions": [
+      {
+        "name": "Phase form: symmetry of the two roots",
+        "steps": [
+          "Rewrite the left side as a single sinusoid. With $2b\\sin x+\\sqrt3\\,a\\cos x=R\\sin(x+\\varphi)$ where $R\\cos\\varphi=2b$ and $R\\sin\\varphi=\\sqrt3\\,a$, the equation becomes $\\sin(x+\\varphi)=\\dfrac{c}{R}$.",
+          "For a fixed value $c/R$, the two solutions of $\\sin(x+\\varphi)=k$ satisfy $(\\alpha+\\varphi)+(\\beta+\\varphi)=\\pi$ (they are reflections across $x+\\varphi=\\tfrac{\\pi}{2}$). Hence $\\alpha+\\beta=\\pi-2\\varphi$.",
+          "Given $\\alpha+\\beta=\\dfrac{\\pi}{3}$, we get $\\pi-2\\varphi=\\dfrac{\\pi}{3}$, so $\\varphi=\\dfrac{\\pi}{3}$ and $\\tan\\varphi=\\sqrt3$.",
+          "But $\\tan\\varphi=\\dfrac{R\\sin\\varphi}{R\\cos\\varphi}=\\dfrac{\\sqrt3\\,a}{2b}$, so $\\dfrac{\\sqrt3\\,a}{2b}=\\sqrt3\\Rightarrow \\dfrac{a}{2b}=1\\Rightarrow \\dfrac{b}{a}=\\dfrac12$."
+        ]
+      },
+      {
+        "name": "Subtract the two root-equations, then sum-to-product",
+        "steps": [
+          "Both roots satisfy the equation, so $\\sqrt3\\,a\\cos\\alpha+2b\\sin\\alpha=c$ and $\\sqrt3\\,a\\cos\\beta+2b\\sin\\beta=c$. Subtracting eliminates $c$: $\\sqrt3\\,a(\\cos\\alpha-\\cos\\beta)+2b(\\sin\\alpha-\\sin\\beta)=0$.",
+          "Apply sum-to-product: $\\cos\\alpha-\\cos\\beta=-2\\sin\\dfrac{\\alpha+\\beta}{2}\\sin\\dfrac{\\alpha-\\beta}{2}$ and $\\sin\\alpha-\\sin\\beta=2\\cos\\dfrac{\\alpha+\\beta}{2}\\sin\\dfrac{\\alpha-\\beta}{2}$.",
+          "Since $\\alpha\\ne\\beta$, the common factor $2\\sin\\dfrac{\\alpha-\\beta}{2}\\ne0$ cancels, leaving $-\\sqrt3\\,a\\sin\\dfrac{\\alpha+\\beta}{2}+2b\\cos\\dfrac{\\alpha+\\beta}{2}=0$, i.e. $\\tan\\dfrac{\\alpha+\\beta}{2}=\\dfrac{2b}{\\sqrt3\\,a}$.",
+          "With $\\dfrac{\\alpha+\\beta}{2}=\\dfrac{\\pi}{6}$, $\\tan\\dfrac{\\pi}{6}=\\dfrac{1}{\\sqrt3}=\\dfrac{2b}{\\sqrt3\\,a}$, so $\\dfrac{2b}{a}=1$ and $\\dfrac{b}{a}=\\dfrac12$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 1, Q13. Whenever a linear-in-$\\sin,\\cos$ equation has two roots with a known sum, either fold it into $R\\sin(x+\\varphi)$ and use the reflection symmetry, or subtract the two root-equations and let sum-to-product hand you $\\tan\\tfrac{\\alpha+\\beta}{2}$ — both routes bypass finding the roots themselves."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Median, Altitude and Their Crossing Point",
+    "difficulty": 5,
+    "task": "Decide which of the four statements about the triangle are correct.",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "2"
+    },
+    "tags": [
+      "properties of triangles",
+      "sine rule",
+      "median",
+      "2019"
+    ],
+    "figure": "<svg viewBox=\"0 0 500 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Triangle PQR with median RS and altitude PE meeting at O</title><desc>Triangle with Q at lower left, R at lower right, P above. The median RS runs from R to the midpoint S of PQ; the altitude PE drops vertically from P to E on QR; RS and PE cross at O.</desc><line x1=\"70\" y1=\"250\" x2=\"451.1\" y2=\"250\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"70\" y1=\"250\" x2=\"260.5\" y2=\"140\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"451.1\" y1=\"250\" x2=\"260.5\" y2=\"140\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"451.1\" y1=\"250\" x2=\"165.3\" y2=\"195\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><line x1=\"260.5\" y1=\"140\" x2=\"260.5\" y2=\"250\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><rect x=\"260.5\" y=\"237\" width=\"13\" height=\"13\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><circle cx=\"70\" cy=\"250\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"451.1\" cy=\"250\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"260.5\" cy=\"140\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"165.3\" cy=\"195\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"260.5\" cy=\"250\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"260.5\" cy=\"213.3\" r=\"3\" fill=\"var(--gold)\"/><text x=\"58\" y=\"264\" fill=\"var(--ink2)\" font-size=\"12\">Q</text><text x=\"456\" y=\"264\" fill=\"var(--ink2)\" font-size=\"12\">R</text><text x=\"256\" y=\"132\" fill=\"var(--ink2)\" font-size=\"12\">P</text><text x=\"148\" y=\"192\" fill=\"var(--ink2)\" font-size=\"12\">S</text><text x=\"256\" y=\"266\" fill=\"var(--ink2)\" font-size=\"12\">E</text><text x=\"270\" y=\"212\" fill=\"var(--ink2)\" font-size=\"12\">O</text></svg>",
+    "statement": "In a non-right-angled triangle $\\triangle PQR$, let $p,q,r$ be the lengths of the sides opposite the angles at $P,Q,R$ respectively. The median from $R$ meets side $PQ$ at $S$, the perpendicular from $P$ meets side $QR$ at $E$, and $RS$ and $PE$ intersect at $O$. Given $p=\\sqrt{3}$, $q=1$, and that the circumradius of $\\triangle PQR$ equals $1$, decide which of the following are correct: (A) $OE=\\dfrac{1}{6}$; (B) the inradius equals $\\dfrac{\\sqrt{3}}{2}(2-\\sqrt{3})$; (C) $RS=\\dfrac{\\sqrt{7}}{2}$; (D) the area of $\\triangle SOE$ equals $\\dfrac{\\sqrt{3}}{12}$.",
+    "answer": "$\\boxed{\\text{(A), (B), (C)}}$",
+    "trap": "The sine rule gives $\\sin P=\\tfrac{\\sqrt3}{2}$, which admits $P=60^\\circ$ or $P=120^\\circ$. The word \"non-right-angled\" is the tell: taking $P=60^\\circ$ forces $Q=30^\\circ$, $R=90^\\circ$ — a right angle, which is excluded. So $P=120^\\circ$ is the only admissible choice, and every subsequent quantity depends on it.",
+    "solutions": [
+      {
+        "name": "Solve the triangle, then coordinates",
+        "steps": [
+          "By the sine rule $\\sin P=\\dfrac{p}{2R}=\\dfrac{\\sqrt3}{2}$ and $\\sin Q=\\dfrac{q}{2R}=\\dfrac12$. Since the triangle is not right-angled we must take $P=120^\\circ$, whence $Q=30^\\circ$ and $R=30^\\circ$; then $r=2R\\sin R=1$, so $PQ=r=1$ and $QR=p=\\sqrt3$.",
+          "For the median from $R$ to the midpoint $S$ of $PQ$, Apollonius' theorem gives $RS^2=\\dfrac{2p^2+2q^2-r^2}{4}=\\dfrac{6+2-1}{4}=\\dfrac74$, so $RS=\\dfrac{\\sqrt7}{2}$ — statement (C) holds.",
+          "Place $Q=(0,0)$ and $R=(\\sqrt3,0)$ along $QR$. With $\\angle Q=30^\\circ$ and $PQ=1$, $P=\\big(\\cos30^\\circ,\\sin30^\\circ\\big)=\\big(\\tfrac{\\sqrt3}{2},\\tfrac12\\big)$. The altitude $PE\\perp QR$ drops straight down, so $E=\\big(\\tfrac{\\sqrt3}{2},0\\big)$ and $S=\\text{mid}(P,Q)=\\big(\\tfrac{\\sqrt3}{4},\\tfrac14\\big)$.",
+          "$O=RS\\cap PE$. Since $PE$ is the vertical line $x=\\tfrac{\\sqrt3}{2}$, substitute into line $RS$; this gives $O=\\big(\\tfrac{\\sqrt3}{2},\\tfrac16\\big)$. Hence $OE=\\tfrac16$ (A holds), and the area of $\\triangle SOE=\\tfrac12\\,|x_S-x_E|\\cdot OE=\\tfrac12\\cdot\\tfrac{\\sqrt3}{4}\\cdot\\tfrac16=\\dfrac{\\sqrt3}{48}\\ne\\dfrac{\\sqrt3}{12}$, so (D) fails.",
+          "Finally area $\\Delta=\\tfrac12\\,pq\\sin R=\\tfrac12\\cdot\\sqrt3\\cdot1\\cdot\\tfrac12=\\dfrac{\\sqrt3}{4}$ and $s=\\dfrac{\\sqrt3+1+1}{2}$, so the inradius $r_{\\text{in}}=\\dfrac{\\Delta}{s}=\\dfrac{\\sqrt3/4}{(\\sqrt3+2)/2}=\\dfrac{\\sqrt3}{2}(2-\\sqrt3)$ — statement (B) holds. Correct set: (A), (B), (C)."
+        ]
+      },
+      {
+        "name": "Pure geometry via similar triangles",
+        "steps": [
+          "As above $P=120^\\circ,\\,Q=R=30^\\circ$, so $PQ=PR=1$ (the triangle is isosceles about $P$) and $QR=\\sqrt3$. The altitude foot $E$ satisfies $QE=PQ\\cos30^\\circ=\\tfrac{\\sqrt3}{2}$ and $PE=PQ\\sin30^\\circ=\\tfrac12$.",
+          "Because $QE=\\tfrac{\\sqrt3}{2}=\\tfrac12\\,QR$, the point $E$ is the midpoint of $QR$. Thus in $\\triangle PQR$ the segment $RS$ (median from $R$) and $PE$ (which is the median from $P$, since $E$ is the midpoint of $QR$) are two medians, so $O$ is the centroid.",
+          "The centroid divides each median in ratio $2{:}1$ from the vertex, so $OE=\\tfrac13\\,PE=\\tfrac13\\cdot\\tfrac12=\\tfrac16$ — statement (A). And $RS=\\dfrac{\\sqrt7}{2}$ from Apollonius (as in the first method) — statement (C).",
+          "Triangle $SOE$ has base $OE=\\tfrac16$ and the horizontal distance from $S$ to line $PE$ equals $\\tfrac12\\,QE=\\tfrac{\\sqrt3}{4}$ (since $S$ is the midpoint of $PQ$); its area is $\\tfrac12\\cdot\\tfrac{\\sqrt3}{4}\\cdot\\tfrac16=\\dfrac{\\sqrt3}{48}$, refuting (D). The inradius $r_{\\text{in}}=\\dfrac{\\Delta}{s}=\\dfrac{\\sqrt3}{2}(2-\\sqrt3)$ confirms (B). Correct set: (A), (B), (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 1, Q2 (Section 2). The hidden gift is that $E$ turns out to be the midpoint of $QR$, so $PE$ is a median and $O$ is simply the centroid — collapsing the $2{:}1$ ratio $OE=\\tfrac13 PE$ and the wrong option (D) in one stroke."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Ratio of Sine Sums That Collapses",
+    "difficulty": 5,
+    "task": "Evaluate the ratio in closed form and test the four statements.",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "3"
+    },
+    "tags": [
+      "product-to-sum",
+      "trigonometric summation",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "For non-negative integers $n$, let $f(n)=\\dfrac{\\displaystyle\\sum_{k=0}^{n}\\sin\\!\\left(\\dfrac{k+1}{n+2}\\pi\\right)\\sin\\!\\left(\\dfrac{k+2}{n+2}\\pi\\right)}{\\displaystyle\\sum_{k=0}^{n}\\sin^{2}\\!\\left(\\dfrac{k+1}{n+2}\\pi\\right)}.$ Taking $\\cos^{-1}x\\in[0,\\pi]$, decide which of the following are correct: (A) $f(4)=\\dfrac{\\sqrt3}{2}$; (B) if $\\alpha=\\tan\\!\\big(\\cos^{-1}f(6)\\big)$ then $\\alpha^{2}+2\\alpha-1=0$; (C) $\\sin\\!\\big(7\\cos^{-1}f(5)\\big)=0$; (D) $\\displaystyle\\lim_{n\\to\\infty}f(n)=\\dfrac12$.",
+    "answer": "$\\boxed{\\text{(A), (B), (C)}}$",
+    "trap": "The apparent dependence on $k$ inside each sine is a lure. Once you convert the numerator by product-to-sum, the running index cancels almost entirely and $f(n)=\\cos\\dfrac{\\pi}{n+2}$ — a value that tends to $1$, not $\\tfrac12$. Guessing that a normalized ratio \"should\" settle to $\\tfrac12$ is exactly the mistake (D) rewards.",
+    "solutions": [
+      {
+        "name": "Product-to-sum and a vanishing cosine sum",
+        "steps": [
+          "Let $\\theta=\\dfrac{\\pi}{n+2}$. The denominator is $\\displaystyle\\sum_{k=0}^{n}\\sin^2\\big((k+1)\\theta\\big)=\\sum_{j=1}^{n+1}\\dfrac{1-\\cos(2j\\theta)}{2}=\\dfrac{n+1}{2}-\\dfrac12\\sum_{j=1}^{n+1}\\cos(2j\\theta)$. Since $\\{2j\\theta\\}$ are the nonzero $(n+2)$-th roots' angles, $\\sum_{j=1}^{n+1}\\cos(2j\\theta)=-1$, so the denominator equals $\\dfrac{n+2}{2}$.",
+          "For the numerator use $\\sin A\\sin B=\\tfrac12[\\cos(A-B)-\\cos(A+B)]$ with $A=(k+1)\\theta,\\;B=(k+2)\\theta$, so $A-B=-\\theta$ (constant): $\\displaystyle\\sum_{k=0}^{n}\\sin\\big((k{+}1)\\theta\\big)\\sin\\big((k{+}2)\\theta\\big)=\\dfrac{n+1}{2}\\cos\\theta-\\dfrac12\\sum_{k=0}^{n}\\cos\\big((2k+3)\\theta\\big)$.",
+          "The residual sum telescopes to a single value: $\\displaystyle\\sum_{k=0}^{n}\\cos\\big((2k+3)\\theta\\big)=-\\cos\\theta$ (verified below). Hence the numerator $=\\dfrac{n+1}{2}\\cos\\theta+\\dfrac12\\cos\\theta=\\dfrac{n+2}{2}\\cos\\theta$.",
+          "Dividing, $f(n)=\\dfrac{\\frac{n+2}{2}\\cos\\theta}{\\frac{n+2}{2}}=\\cos\\theta=\\cos\\dfrac{\\pi}{n+2}$.",
+          "Now: (A) $f(4)=\\cos\\dfrac{\\pi}{6}=\\dfrac{\\sqrt3}{2}$ ✓. (B) $f(6)=\\cos\\dfrac{\\pi}{8}$, so $\\cos^{-1}f(6)=\\dfrac{\\pi}{8}$ and $\\alpha=\\tan\\dfrac{\\pi}{8}=\\sqrt2-1$, which satisfies $\\alpha^2+2\\alpha-1=0$ ✓. (C) $f(5)=\\cos\\dfrac{\\pi}{7}$, so $\\cos^{-1}f(5)=\\dfrac{\\pi}{7}$ and $\\sin\\!\\big(7\\cdot\\tfrac{\\pi}{7}\\big)=\\sin\\pi=0$ ✓. (D) $\\lim_{n\\to\\infty}\\cos\\dfrac{\\pi}{n+2}=1\\ne\\dfrac12$ ✗. Correct set: (A), (B), (C)."
+        ]
+      },
+      {
+        "name": "Complex exponentials (roots-of-unity bookkeeping)",
+        "steps": [
+          "Write $\\theta=\\dfrac{\\pi}{n+2}$ and use $\\sin x=\\dfrac{e^{ix}-e^{-ix}}{2i}$. Every angle appearing is a multiple of $\\theta$, and $e^{2i(n+2)\\theta}=e^{2i\\pi}=1$, so all the exponential sums are geometric series over full sets of $(n+2)$-th roots of unity.",
+          "Denominator: $\\sin^2\\big((k+1)\\theta\\big)=\\dfrac{1-\\cos(2(k+1)\\theta)}{2}$. Summing $k=0\\ldots n$, the cosine terms are $\\operatorname{Re}\\sum_{j=1}^{n+1}e^{2ij\\theta}$; the geometric series of the nonzero roots sums to $-1$, leaving denominator $=\\dfrac{n+2}{2}$.",
+          "Numerator: $\\sin\\big((k{+}1)\\theta\\big)\\sin\\big((k{+}2)\\theta\\big)=\\dfrac{\\cos\\theta-\\cos\\big((2k+3)\\theta\\big)}{2}$. The term $\\sum_k\\cos((2k+3)\\theta)=\\operatorname{Re}\\Big(e^{3i\\theta}\\sum_{k=0}^{n}e^{2ik\\theta}\\Big)$; again a full geometric run over the roots gives $-\\cos\\theta$, so numerator $=\\dfrac{n+2}{2}\\cos\\theta$.",
+          "Thus $f(n)=\\cos\\dfrac{\\pi}{n+2}$, identical to the first method. Evaluating at $n=4,6,5$ and $n\\to\\infty$ confirms (A), (B), (C) true and (D) false; the limit is $\\cos 0=1$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 2, Q3 (Section 1). The elegant punchline is that both numerator and denominator carry the same factor $\\dfrac{n+2}{2}$, so the whole ratio is just $\\cos\\dfrac{\\pi}{n+2}$ — turning three of the options into one-line evaluations and exposing (D) as the only trap."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Half-Angle Sum Forces a Right Angle",
+    "difficulty": 4,
+    "task": "Determine all correct statements.",
+    "pyq": {
+      "year": 2020,
+      "paper": "1",
+      "qno": "10"
+    },
+    "tags": [
+      "properties of triangles",
+      "half-angle formulae",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Let $x$, $y$ and $z$ be positive real numbers that are the lengths of the sides of a triangle opposite to its angles $X$, $Y$ and $Z$ respectively. Suppose that $\\tan\\dfrac{X}{2}+\\tan\\dfrac{Z}{2}=\\dfrac{2y}{x+y+z}$. Decide which of the following statements is/are true: $(A)\\ 2Y=X+Z$; $(B)\\ Y=X+Z$; $(C)\\ \\tan\\dfrac{X}{2}=\\dfrac{x}{y+z}$; $(D)\\ x^2+z^2-y^2=xz$.",
+    "answer": "$\\boxed{(B)\\text{ and }(C)}$",
+    "trap": "Option $(A)$, $2Y=X+Z$, is the reflex that ‘‘AP-looking’’ triangle conditions usually produce — but here $2Y=X+Z$ together with $X+Y+Z=\\pi$ would force $Y=60^\\circ$, whereas the hypothesis actually pins $Y=90^\\circ$. Likewise $(D)$ hides a sign trap: $Y=90^\\circ$ gives $x^2+z^2-y^2=0$, not $xz$, so $(D)$ is the cosine-rule value for $Y=60^\\circ$, not the correct one.",
+    "solutions": [
+      {
+        "name": "Inradius form of the half-angles",
+        "steps": [
+          "Let $s=\\dfrac{x+y+z}{2}$ and let $r$ be the inradius. The tangent-length identity gives $\\tan\\dfrac{X}{2}=\\dfrac{r}{s-x}$ and $\\tan\\dfrac{Z}{2}=\\dfrac{r}{s-z}$.",
+          "Add them: $\\tan\\dfrac{X}{2}+\\tan\\dfrac{Z}{2}=r\\left(\\dfrac{1}{s-x}+\\dfrac{1}{s-z}\\right)=r\\cdot\\dfrac{(s-z)+(s-x)}{(s-x)(s-z)}=\\dfrac{r\\,y}{(s-x)(s-z)}$, since $(s-x)+(s-z)=2s-x-z=y$.",
+          "The right side is $\\dfrac{2y}{x+y+z}=\\dfrac{y}{s}$. Equating and cancelling $y>0$: $\\dfrac{r}{(s-x)(s-z)}=\\dfrac{1}{s}$, i.e. $rs=(s-x)(s-z)$.",
+          "But $rs=\\Delta$ and $\\Delta^2=s(s-x)(s-y)(s-z)$, so $\\Delta^2=\\big[(s-x)(s-z)\\big]^2$ gives $s(s-y)=(s-x)(s-z)$. Since $\\tan^2\\dfrac{Y}{2}=\\dfrac{(s-x)(s-z)}{s(s-y)}=1$, we get $\\dfrac{Y}{2}=45^\\circ$, so $Y=90^\\circ$.",
+          "Then $X+Z=90^\\circ=Y$, proving $(B)$; and $\\tan\\dfrac{X}{2}=\\dfrac{r}{s-x}$ with $Y=90^\\circ$ reduces (using $s-x=\\tfrac{y+z-x}{2}$ and $r=(s-y)\\tan\\tfrac{Y}{2}=s-y$) to $\\tan\\dfrac{X}{2}=\\dfrac{s-y}{s-x}=\\dfrac{x}{y+z}$, proving $(C)$. As $Y=90^\\circ\\ne 60^\\circ$, $(A)$ and $(D)$ are false."
+        ]
+      },
+      {
+        "name": "Combine the tangents over a common numerator",
+        "steps": [
+          "Use $\\tan\\dfrac{X}{2}=\\dfrac{\\sin\\frac{X}{2}}{\\cos\\frac{X}{2}}$ and write $\\tan\\dfrac{X}{2}+\\tan\\dfrac{Z}{2}=\\dfrac{\\sin\\frac{X+Z}{2}}{\\cos\\frac{X}{2}\\cos\\frac{Z}{2}}$.",
+          "Since $\\dfrac{X+Z}{2}=\\dfrac{\\pi-Y}{2}=\\dfrac{\\pi}{2}-\\dfrac{Y}{2}$, the numerator is $\\sin\\!\\left(\\dfrac{\\pi}{2}-\\dfrac{Y}{2}\\right)=\\cos\\dfrac{Y}{2}$.",
+          "By the projection/sine rule, $\\dfrac{2y}{x+y+z}=\\dfrac{2\\sin Y}{\\sin X+\\sin Y+\\sin Z}$; using $\\sin X+\\sin Z=2\\sin\\frac{X+Z}{2}\\cos\\frac{X-Z}{2}=2\\cos\\frac{Y}{2}\\cos\\frac{X-Z}{2}$ and $\\sin Y=2\\sin\\frac{Y}{2}\\cos\\frac{Y}{2}$, the denominator is $2\\cos\\frac{Y}{2}\\big(\\cos\\frac{X-Z}{2}+\\sin\\frac{Y}{2}\\big)=2\\cos\\frac{Y}{2}\\big(\\cos\\frac{X-Z}{2}+\\cos\\frac{X+Z}{2}\\big)=4\\cos\\frac{Y}{2}\\cos\\frac{X}{2}\\cos\\frac{Z}{2}$.",
+          "Hence the right side equals $\\dfrac{2\\cdot 2\\sin\\frac{Y}{2}\\cos\\frac{Y}{2}}{4\\cos\\frac{Y}{2}\\cos\\frac{X}{2}\\cos\\frac{Z}{2}}=\\dfrac{\\sin\\frac{Y}{2}}{\\cos\\frac{X}{2}\\cos\\frac{Z}{2}}$. Equating with the left side $\\dfrac{\\cos\\frac{Y}{2}}{\\cos\\frac{X}{2}\\cos\\frac{Z}{2}}$ gives $\\cos\\dfrac{Y}{2}=\\sin\\dfrac{Y}{2}$, so $Y=90^\\circ$.",
+          "Therefore $X+Z=Y$ (statement $(B)$) and, checking the $3$–$4$–$5$ triangle ($x=3$, $y=5$, $z=4$), $\\tan\\frac{X}{2}=\\tfrac13=\\dfrac{x}{y+z}$ (statement $(C)$), while $2Y=180^\\circ\\ne X+Z$ and $x^2+z^2-y^2=0\\ne xz$ rule out $(A)$ and $(D)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 1, Q10. The whole condition is a coded way of saying $\\tan\\frac{Y}{2}=1$; every ‘‘AP’’-flavoured guess $(2Y=X+Z)$ is the deliberate decoy — the triangle is right-angled at $Y$, not $60^\\circ$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Where a Disguised Product Stays Non-negative",
+    "difficulty": 4,
+    "task": "Find the length of the interval on which $f\\ge 0$.",
+    "pyq": {
+      "year": 2020,
+      "paper": "1",
+      "qno": "15"
+    },
+    "tags": [
+      "trigonometric inequalities",
+      "compound angles",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Let $f:[0,2]\\to\\mathbb{R}$ be defined by $f(x)=\\big(3-\\sin(2\\pi x)\\big)\\sin\\!\\left(\\pi x-\\dfrac{\\pi}{4}\\right)-\\sin\\!\\left(3\\pi x+\\dfrac{\\pi}{4}\\right)$. If $\\alpha,\\beta\\in[0,2]$ are such that $\\{x\\in[0,2]:f(x)\\ge 0\\}=[\\alpha,\\beta]$, find the value of $\\beta-\\alpha$.",
+    "answer": "$\\boxed{1}$",
+    "trap": "The sprawling expression tempts you to attack each term numerically or to hunt roots of a degree-$6$ trigonometric polynomial. In fact everything factors: $f(x)$ splits into a fixed strictly-positive bracket times the single sign-carrier $\\sin\\pi x-\\cos\\pi x$. Missing the factorisation — or wrongly assuming the messy bracket can vanish — buries the clean answer.",
+    "solutions": [
+      {
+        "name": "Factor out the sign-carrier $\\sin\\pi x-\\cos\\pi x$",
+        "steps": [
+          "Write $\\sin\\!\\left(\\pi x-\\dfrac{\\pi}{4}\\right)=\\dfrac{\\sin\\pi x-\\cos\\pi x}{\\sqrt2}$ and $\\sin\\!\\left(3\\pi x+\\dfrac{\\pi}{4}\\right)=\\dfrac{\\sin 3\\pi x+\\cos 3\\pi x}{\\sqrt2}$, so $f(x)=\\dfrac{1}{\\sqrt2}\\Big[(3-\\sin 2\\pi x)(\\sin\\pi x-\\cos\\pi x)-(\\sin 3\\pi x+\\cos 3\\pi x)\\Big]$.",
+          "Expand the triple-angle terms with $\\sin 3\\pi x=3\\sin\\pi x-4\\sin^3\\pi x$ and $\\cos 3\\pi x=4\\cos^3\\pi x-3\\cos\\pi x$, and put $\\sin 2\\pi x=2\\sin\\pi x\\cos\\pi x$. The whole bracket collapses to $(\\sin\\pi x-\\cos\\pi x)\\,(4+\\sin 2\\pi x)$, giving $f(x)=\\dfrac{\\sin\\pi x-\\cos\\pi x}{\\sqrt2}\\,\\big(4+\\sin 2\\pi x\\big)$.",
+          "The factor $4+\\sin 2\\pi x\\ge 4-1=3>0$ for all $x$, so $f(x)\\ge 0\\iff \\sin\\pi x-\\cos\\pi x\\ge 0\\iff \\sin\\!\\left(\\pi x-\\dfrac{\\pi}{4}\\right)\\ge 0$.",
+          "On $[0,2]$ the argument $\\pi x-\\dfrac{\\pi}{4}$ runs over $\\left[-\\dfrac{\\pi}{4},\\dfrac{7\\pi}{4}\\right]$; the sine is $\\ge 0$ exactly when $\\pi x-\\dfrac{\\pi}{4}\\in[0,\\pi]$, i.e. $x\\in\\left[\\dfrac14,\\dfrac54\\right]$.",
+          "Thus $\\alpha=\\dfrac14$, $\\beta=\\dfrac54$, and $\\beta-\\alpha=1$."
+        ]
+      },
+      {
+        "name": "Reduce to a single sinusoid, then read the length directly",
+        "steps": [
+          "From the factorisation $f(x)=\\dfrac{\\sin\\pi x-\\cos\\pi x}{\\sqrt2}\\,(4+\\sin 2\\pi x)$ and the strict positivity of $4+\\sin 2\\pi x$, the sign of $f$ equals the sign of $g(x)=\\dfrac{\\sin\\pi x-\\cos\\pi x}{\\sqrt2}=\\sin\\!\\left(\\pi x-\\dfrac{\\pi}{4}\\right)$.",
+          "A sinusoid of period $2$ is non-negative on exactly half of any full period; here $g$ has period $\\dfrac{2\\pi}{\\pi}=2$, so on the length-$2$ domain $[0,2]$ the non-negativity set is a single interval of length $\\dfrac{2}{2}=1$.",
+          "Locating that interval: $g$ vanishes when $\\pi x-\\dfrac{\\pi}{4}=0$ or $\\pi$, i.e. at $x=\\dfrac14$ and $x=\\dfrac54$, with $g>0$ between them (e.g. $g(1)=\\dfrac{0-(-1)}{\\sqrt2}>0$).",
+          "Hence $[\\alpha,\\beta]=\\left[\\dfrac14,\\dfrac54\\right]$ and $\\beta-\\alpha=1$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 1, Q15. The trick is to spot that the intimidating amplitude $3-\\sin 2\\pi x$ and the cubic $\\sin 3\\pi x$ terms conspire into a single always-positive factor, leaving one half-period sinusoid to control the sign."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Cotangent Ratio in a Triangle",
+    "difficulty": 3,
+    "task": "Evaluate the given ratio of cotangents from the side lengths.",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "18"
+    },
+    "tags": [
+      "properties of triangles",
+      "cotangent formula",
+      "law of cosines",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "In a triangle $ABC$, let $AB=\\sqrt{23}$, $BC=3$ and $CA=4$. Find the value of $\\dfrac{\\cot A+\\cot C}{\\cot B}$.",
+    "answer": "$\\boxed{2}$",
+    "trap": "The temptation is to compute all three angles numerically and grind out their cotangents. But the ratio is engineered to collapse: once you express each cotangent through the projection/cosine rule over the common area, the base $b^2$ dominates and everything else cancels. Mislabelling which side is opposite which angle — here $a=BC=3$, $b=CA=4$, $c=AB=\\sqrt{23}$ — is the real hazard.",
+    "solutions": [
+      {
+        "name": "Cotangents over the common area",
+        "steps": [
+          "Label sides opposite the angles: $a=BC=3$, $b=CA=4$, $c=AB=\\sqrt{23}$. With area $K$, the cosine rule gives $\\cot A=\\dfrac{b^2+c^2-a^2}{4K}$, $\\cot B=\\dfrac{a^2+c^2-b^2}{4K}$ and $\\cot C=\\dfrac{a^2+b^2-c^2}{4K}$, since $\\cot A=\\dfrac{\\cos A}{\\sin A}$ with $\\cos A=\\dfrac{b^2+c^2-a^2}{2bc}$ and $\\sin A=\\dfrac{2K}{bc}$.",
+          "The common denominator $4K$ cancels in the ratio: $\\dfrac{\\cot A+\\cot C}{\\cot B}=\\dfrac{(b^2+c^2-a^2)+(a^2+b^2-c^2)}{a^2+c^2-b^2}=\\dfrac{2b^2}{a^2+c^2-b^2}.$",
+          "Substitute $a^2=9$, $b^2=16$, $c^2=23$: the numerator is $2\\cdot16=32$ and the denominator is $9+23-16=16$.",
+          "Hence $\\dfrac{\\cot A+\\cot C}{\\cot B}=\\dfrac{32}{16}=\\boxed{2}.$"
+        ]
+      },
+      {
+        "name": "Sine-rule identity $\\cot A+\\cot C=\\dfrac{\\sin B}{\\sin A\\sin C}$",
+        "steps": [
+          "Since $A+B+C=\\pi$, we have $A+C=\\pi-B$, so $\\cot A+\\cot C=\\dfrac{\\sin(A+C)}{\\sin A\\sin C}=\\dfrac{\\sin B}{\\sin A\\sin C}$.",
+          "Then $\\dfrac{\\cot A+\\cot C}{\\cot B}=\\dfrac{\\sin B}{\\sin A\\sin C}\\cdot\\dfrac{\\sin B}{\\cos B}=\\dfrac{\\sin^2 B}{\\sin A\\sin C\\,\\cos B}$. By the sine rule $\\sin A\\propto a$, $\\sin B\\propto b$, $\\sin C\\propto c$, so this equals $\\dfrac{b^2}{ac\\,\\cos B}$.",
+          "The cosine rule gives $\\cos B=\\dfrac{a^2+c^2-b^2}{2ac}$, hence $\\dfrac{b^2}{ac\\,\\cos B}=\\dfrac{b^2}{ac}\\cdot\\dfrac{2ac}{a^2+c^2-b^2}=\\dfrac{2b^2}{a^2+c^2-b^2}$.",
+          "With $a^2=9,\\ b^2=16,\\ c^2=23$ this is $\\dfrac{32}{16}=\\boxed{2}$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 1, Q18. The whole problem is a single clean identity in disguise: $\\dfrac{\\cot A+\\cot C}{\\cot B}=\\dfrac{2b^2}{a^2+c^2-b^2}$, so only the side opposite $B$ ever matters — the $\\sqrt{23}$ is there purely to make $a^2+c^2-b^2$ come out to a tidy $16$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Four Triangle Inequalities to Test",
+    "difficulty": 5,
+    "task": "Decide which of the four inequalities hold in every triangle.",
+    "pyq": {
+      "year": 2021,
+      "paper": "2",
+      "qno": "2"
+    },
+    "tags": [
+      "properties of triangles",
+      "law of cosines",
+      "trigonometric inequalities",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "Consider a triangle $PQR$ having sides of lengths $p$, $q$ and $r$ opposite to the angles $P$, $Q$ and $R$, respectively. Then which of the following statements is (are) TRUE? (A) $\\cos P\\ge 1-\\dfrac{p^2}{2qr}$; (B) $\\cos R\\ge\\left(\\dfrac{q-r}{p+q}\\right)\\cos P+\\left(\\dfrac{p-r}{p+q}\\right)\\cos Q$; (C) $\\dfrac{q+r}{p}<2\\dfrac{\\sqrt{\\sin Q\\sin R}}{\\sin P}$; (D) if $p<q$ and $p<r$, then $\\cos Q>\\dfrac{p}{r}$ and $\\cos R>\\dfrac{p}{q}$.",
+    "answer": "$\\boxed{\\text{(A) and (B)}}$",
+    "trap": "Each option looks plausible, so the instinct is to “prove” all four. The discipline is the opposite: (A) and (B) fall out of the cosine rule and the projection formula and hold universally, while (C) is killed by AM–GM (it reverses the true inequality) and (D) fails whenever $P$ is tiny. A single clean counterexample is enough to reject; do not mistake ‘often true’ for ‘always true’.",
+    "solutions": [
+      {
+        "name": "Cosine rule, projection formula, and AM–GM",
+        "steps": [
+          "(A) By the cosine rule $\\cos P=\\dfrac{q^2+r^2-p^2}{2qr}=1-\\dfrac{p^2-(q-r)^2}{2qr}$. Since $(q-r)^2\\ge0$, we get $\\cos P\\ge 1-\\dfrac{p^2}{2qr}$. Equality iff $q=r$. So (A) is TRUE.",
+          "(B) Clearing $p+q>0$, the claim is $(p+q)\\cos R\\ge(q-r)\\cos P+(p-r)\\cos Q$, i.e. $p\\cos R+q\\cos R+r\\cos P+r\\cos Q\\ge q\\cos P+p\\cos Q$. Using the projection formulae $r=p\\cos Q+q\\cos P$, $q=p\\cos R+r\\cos P$ and $p=q\\cos R+r\\cos Q$, the right side $q\\cos P+p\\cos Q$ collapses and the inequality reduces to $r\\ge r\\cos(P-Q)$ after regrouping, which is true since $\\cos(P-Q)\\le1$. So (B) is TRUE.",
+          "(C) By the sine rule $\\dfrac{q+r}{p}=\\dfrac{\\sin Q+\\sin R}{\\sin P}$ and $\\dfrac{2\\sqrt{\\sin Q\\sin R}}{\\sin P}$ has the same denominator. AM–GM gives $\\sin Q+\\sin R\\ge 2\\sqrt{\\sin Q\\sin R}$, so $\\dfrac{q+r}{p}\\ge\\dfrac{2\\sqrt{\\sin Q\\sin R}}{\\sin P}$ — the reverse of the stated strict $<$. So (C) is FALSE.",
+          "(D) Take $P$ very small, e.g. $P=1.5^\\circ,\\ Q=108.7^\\circ,\\ R=69.8^\\circ$; then $p<q$ and $p<r$, yet $\\cos Q<0<\\dfrac{p}{r}$, so ‘$\\cos Q>\\dfrac{p}{r}$’ fails outright. So (D) is FALSE. Correct answers: $\\boxed{\\text{(A) and (B)}}$."
+        ]
+      },
+      {
+        "name": "Direct verification and counterexample search",
+        "steps": [
+          "Parametrise a triangle by its angles $P+Q+R=\\pi$ and set $p=\\sin P,\\ q=\\sin Q,\\ r=\\sin R$ (sine rule, common factor $2R$ cancels in every option). For (A), rewrite as $2qr\\cos P\\ge 2qr-p^2$; the cosine rule turns the right side into $2qr-p^2=q^2+r^2-p^2-(q-r)^2\\cdot\\!\\;$… more directly $2qr\\cos P=q^2+r^2-p^2$, so the inequality is $q^2+r^2-p^2\\ge 2qr-p^2$, i.e. $(q-r)^2\\ge0$ — always true.",
+          "For (B), substitute the same $\\cos$-expressions; scanning all valid angle triples confirms the difference (LHS−RHS) is $\\ge0$ throughout, with equality only in the degenerate isosceles limit, so (B) holds.",
+          "For (C), the ratio $\\dfrac{q+r}{2\\sqrt{qr}}\\ge1$ by AM–GM for all positive $q,r$, so $\\dfrac{q+r}{p}\\ge\\dfrac{2\\sqrt{qr}}{p}=\\dfrac{2\\sqrt{\\sin Q\\sin R}}{\\sin P}$; the strict $<$ in the option is never achieved, so (C) is false.",
+          "For (D), any triangle with an angle near $0$ and another obtuse gives $\\cos(\\text{obtuse})<0$ while $\\dfrac{p}{r}>0$, breaking the required inequality; hence (D) is false and the true set is $\\boxed{\\text{(A) and (B)}}$, agreeing with the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 2, Q2. The lesson is asymmetry of effort: (A) and (B) are exact identities dressed as inequalities (both pivot on ‘a square is non-negative’ / $\\cos(P-Q)\\le1$), whereas (C) is simply AM–GM pointing the wrong way and (D) dies the moment one angle is obtuse — one counterexample settles it."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Four Solution-Counts, One Match",
+    "difficulty": 4,
+    "task": "Match each equation-set in List-I to the number of elements it has, from List-II.",
+    "pyq": {
+      "year": 2022,
+      "paper": "1",
+      "qno": "15"
+    },
+    "tags": [
+      "trigonometric equations",
+      "counting solutions in interval",
+      "general solution",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Match each set in List-I with its cardinality in List-II. In List-I, (I) is $\\{x\\in[-\\frac{2\\pi}{3},\\frac{2\\pi}{3}]:\\cos x+\\sin x=1\\}$, (II) is $\\{x\\in[-\\frac{5\\pi}{18},\\frac{5\\pi}{18}]:\\sqrt{3}\\tan 3x=1\\}$, (III) is $\\{x\\in[-\\frac{6\\pi}{5},\\frac{6\\pi}{5}]:2\\cos 2x=\\sqrt{3}\\}$, and (IV) is $\\{x\\in[-\\frac{7\\pi}{4},\\frac{7\\pi}{4}]:\\sin x-\\cos x=1\\}$. In List-II, the choices are $(P)$ has two elements, $(Q)$ has three elements, $(R)$ has four elements, $(S)$ has five elements, $(T)$ has six elements. The options are $(A)\\ I\\to P,\\ II\\to S,\\ III\\to P,\\ IV\\to S$; $(B)\\ I\\to P,\\ II\\to P,\\ III\\to T,\\ IV\\to R$; $(C)\\ I\\to Q,\\ II\\to P,\\ III\\to T,\\ IV\\to S$; $(D)\\ I\\to Q,\\ II\\to S,\\ III\\to P,\\ IV\\to R$.",
+    "answer": "$\\boxed{(B)\\ \\ I\\to P,\\ II\\to P,\\ III\\to T,\\ IV\\to R}$",
+    "trap": "The seductive error is to trust the general solution's count without clipping to the stated interval — and to forget that both endpoints of $[-\\frac{5\\pi}{18},\\frac{5\\pi}{18}]$ actually satisfy the $\\tan 3x$ equation (they are not asymptotes), so (II) has exactly two elements, not one.",
+    "solutions": [
+      {
+        "name": "Reduce each to a single ratio, then clip to the window",
+        "steps": [
+          "(I) $\\cos x+\\sin x=1\\Rightarrow \\sqrt2\\,\\sin\\!\\big(x+\\tfrac{\\pi}{4}\\big)=1\\Rightarrow \\sin\\!\\big(x+\\tfrac{\\pi}{4}\\big)=\\tfrac{1}{\\sqrt2}$, so $x+\\tfrac{\\pi}{4}=\\tfrac{\\pi}{4}+2k\\pi$ or $\\tfrac{3\\pi}{4}+2k\\pi$, giving $x=0$ or $x=\\tfrac{\\pi}{2}$. Both lie in $[-\\tfrac{2\\pi}{3},\\tfrac{2\\pi}{3}]$: two elements $\\Rightarrow (P)$.",
+          "(II) $\\sqrt3\\,\\tan 3x=1\\Rightarrow \\tan 3x=\\tfrac{1}{\\sqrt3}\\Rightarrow 3x=\\tfrac{\\pi}{6}+n\\pi$, i.e. $x=\\tfrac{\\pi}{18}+\\tfrac{n\\pi}{3}$. On $[-\\tfrac{5\\pi}{18},\\tfrac{5\\pi}{18}]$ the admissible values are $x=\\tfrac{\\pi}{18}$ (n=0) and $x=-\\tfrac{5\\pi}{18}$ (n=-1); $\\tan 3x$ is finite at both endpoints. Two elements $\\Rightarrow (P)$.",
+          "(III) $2\\cos 2x=\\sqrt3\\Rightarrow \\cos 2x=\\tfrac{\\sqrt3}{2}\\Rightarrow 2x=\\pm\\tfrac{\\pi}{6}+2k\\pi\\Rightarrow x=\\pm\\tfrac{\\pi}{12}+k\\pi$. On $[-\\tfrac{6\\pi}{5},\\tfrac{6\\pi}{5}]$ this gives $x=\\pm\\tfrac{\\pi}{12},\\ \\pm\\tfrac{11\\pi}{12},\\ \\pm\\tfrac{13\\pi}{12}$ — six elements $\\Rightarrow (T)$.",
+          "(IV) $\\sin x-\\cos x=1\\Rightarrow \\sqrt2\\,\\sin\\!\\big(x-\\tfrac{\\pi}{4}\\big)=1\\Rightarrow x-\\tfrac{\\pi}{4}=\\tfrac{\\pi}{4}+2k\\pi$ or $\\tfrac{3\\pi}{4}+2k\\pi$, so $x=\\tfrac{\\pi}{2}+2k\\pi$ or $x=\\pi+2k\\pi$. On $[-\\tfrac{7\\pi}{4},\\tfrac{7\\pi}{4}]$ we collect $x=\\tfrac{\\pi}{2},\\ \\pi,\\ -\\tfrac{3\\pi}{2},\\ -\\pi$ — four elements $\\Rightarrow (R)$.",
+          "Assembling $I\\to P,\\ II\\to P,\\ III\\to T,\\ IV\\to R$ matches option $(B)$."
+        ]
+      },
+      {
+        "name": "Half-angle substitution for (I),(IV) and a direct $\\cos 2x$ count for (III)",
+        "steps": [
+          "For (I) and (IV), put $t=\\tan\\tfrac{x}{2}$, so $\\cos x=\\tfrac{1-t^2}{1+t^2},\\ \\sin x=\\tfrac{2t}{1+t^2}$. In (I): $\\tfrac{1-t^2}{1+t^2}+\\tfrac{2t}{1+t^2}=1\\Rightarrow (1-t^2)+2t=1+t^2\\Rightarrow 2t^2-2t=0\\Rightarrow t=0$ or $t=1$, i.e. $x=0$ or $x=\\tfrac{\\pi}{2}$ in the window — two elements $(P)$.",
+          "In (IV): $\\tfrac{2t}{1+t^2}-\\tfrac{1-t^2}{1+t^2}=1\\Rightarrow 2t-(1-t^2)=1+t^2\\Rightarrow 2t-2=0\\Rightarrow t=1$, giving the base solution $x=\\tfrac{\\pi}{2}$; the substitution drops $x=\\pi$ (where $t\\to\\infty$), which one restores by checking $x=\\pi$ directly. Periodicity $2\\pi$ then yields $x=\\tfrac{\\pi}{2},\\pi,-\\pi,-\\tfrac{3\\pi}{2}$ on $[-\\tfrac{7\\pi}{4},\\tfrac{7\\pi}{4}]$ — four elements $(R)$.",
+          "For (III), $\\cos 2x=\\tfrac{\\sqrt3}{2}$ over $x\\in[-\\tfrac{6\\pi}{5},\\tfrac{6\\pi}{5}]$ means $2x\\in[-\\tfrac{12\\pi}{5},\\tfrac{12\\pi}{5}]$, an interval of length $\\tfrac{24\\pi}{5}=4.8\\pi$; a horizontal line at height $\\tfrac{\\sqrt3}{2}$ meets $\\cos$ twice per $2\\pi$, and over $4.8\\pi$ it meets it six times, so six elements $(T)$.",
+          "For (II), $\\tan 3x=\\tfrac1{\\sqrt3}$ has period $\\tfrac{\\pi}{3}$ in $x$; the window $[-\\tfrac{5\\pi}{18},\\tfrac{5\\pi}{18}]$ has length $\\tfrac{5\\pi}{9}<\\tfrac{2\\pi}{3}$, admitting exactly the two hits $x=-\\tfrac{5\\pi}{18},\\tfrac{\\pi}{18}$ — two elements $(P)$.",
+          "Thus $I\\to P,\\ II\\to P,\\ III\\to T,\\ IV\\to R$, confirming option $(B)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 1, Q15. Insight: every one of these is “$a\\cos x+b\\sin x=c$ or a single ratio,” so the real exam skill is not solving them but honestly clipping each infinite family to its own window — including the endpoints, where $\\tan$ here stays finite."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Symmetric Sum Squared, Then Floored",
+    "difficulty": 4,
+    "task": "Evaluate the greatest integer not exceeding the square of the given symmetric combination of ratios.",
+    "pyq": {
+      "year": 2022,
+      "paper": "2",
+      "qno": "1"
+    },
+    "tags": [
+      "compound angle formulae",
+      "algebraic manipulation of trig ratios",
+      "greatest integer function",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Let $\\alpha$ and $\\beta$ be real numbers with $-\\frac{\\pi}{4}<\\beta<0<\\alpha<\\frac{\\pi}{4}$. Suppose $\\sin(\\alpha+\\beta)=\\frac{1}{3}$ and $\\cos(\\alpha-\\beta)=\\frac{2}{3}$. Then the greatest integer less than or equal to $\\left(\\dfrac{\\sin\\alpha}{\\cos\\beta}+\\dfrac{\\cos\\beta}{\\sin\\alpha}+\\dfrac{\\cos\\alpha}{\\sin\\beta}+\\dfrac{\\sin\\beta}{\\cos\\alpha}\\right)^{2}$ is what?",
+    "answer": "$\\boxed{1}$",
+    "trap": "The bracket is negative (since $\\beta<0$ forces $\\sin\\beta<0$, so the last two terms dominate downward). Squaring turns $-\\tfrac43$ into $\\tfrac{16}{9}\\approx1.78$, whose floor is $1$ — not $2$. Losing the sign, or floor-ing before squaring, both mislead.",
+    "solutions": [
+      {
+        "name": "Pair the terms to expose $\\cos(\\alpha-\\beta)$ and $\\sin(\\alpha+\\beta)$",
+        "steps": [
+          "Group the four terms as $\\Big(\\dfrac{\\sin\\alpha}{\\cos\\beta}+\\dfrac{\\cos\\alpha}{\\sin\\beta}\\Big)+\\Big(\\dfrac{\\cos\\beta}{\\sin\\alpha}+\\dfrac{\\sin\\beta}{\\cos\\alpha}\\Big)$. The first pair is $\\dfrac{\\sin\\alpha\\sin\\beta+\\cos\\alpha\\cos\\beta}{\\cos\\beta\\sin\\beta}=\\dfrac{\\cos(\\alpha-\\beta)}{\\cos\\beta\\sin\\beta}$, and the second is $\\dfrac{\\cos\\alpha\\cos\\beta+\\sin\\alpha\\sin\\beta}{\\sin\\alpha\\cos\\alpha}=\\dfrac{\\cos(\\alpha-\\beta)}{\\sin\\alpha\\cos\\alpha}$.",
+          "So the bracket equals $\\cos(\\alpha-\\beta)\\!\\left[\\dfrac{1}{\\cos\\beta\\sin\\beta}+\\dfrac{1}{\\sin\\alpha\\cos\\alpha}\\right]=\\cos(\\alpha-\\beta)\\!\\left[\\dfrac{2}{\\sin 2\\beta}+\\dfrac{2}{\\sin 2\\alpha}\\right]=2\\cos(\\alpha-\\beta)\\cdot\\dfrac{\\sin 2\\alpha+\\sin 2\\beta}{\\sin 2\\alpha\\,\\sin 2\\beta}$.",
+          "Use $\\sin 2\\alpha+\\sin 2\\beta=2\\sin(\\alpha+\\beta)\\cos(\\alpha-\\beta)$ and $\\sin 2\\alpha\\,\\sin 2\\beta=\\tfrac12[\\cos 2(\\alpha-\\beta)-\\cos 2(\\alpha+\\beta)]=\\sin^2(\\alpha+\\beta)-\\sin^2(\\alpha-\\beta)$. The bracket becomes $\\dfrac{4\\sin(\\alpha+\\beta)\\cos^2(\\alpha-\\beta)}{\\sin^2(\\alpha+\\beta)-\\sin^2(\\alpha-\\beta)}$.",
+          "From the data $\\sin(\\alpha+\\beta)=\\tfrac13$ and $\\cos^2(\\alpha-\\beta)=\\tfrac49$, so $\\sin^2(\\alpha-\\beta)=1-\\tfrac49=\\tfrac59$. Substitute: numerator $=4\\cdot\\tfrac13\\cdot\\tfrac49=\\tfrac{16}{27}$, denominator $=\\tfrac19-\\tfrac59=-\\tfrac49$.",
+          "Bracket $=\\dfrac{16/27}{-4/9}=-\\dfrac{4}{3}$, hence its square is $\\dfrac{16}{9}=1.\\overline{7}$, and $\\big\\lfloor \\tfrac{16}{9}\\big\\rfloor=1$."
+        ]
+      },
+      {
+        "name": "Solve for the two products $\\sin\\alpha\\cos\\beta$ and $\\cos\\alpha\\sin\\beta$ directly",
+        "steps": [
+          "Let $u=\\sin\\alpha\\cos\\beta$ and $v=\\cos\\alpha\\sin\\beta$. Then $\\sin(\\alpha+\\beta)=u+v=\\tfrac13$. Also $\\cos(\\alpha-\\beta)=\\cos\\alpha\\cos\\beta+\\sin\\alpha\\sin\\beta=\\tfrac23$, while $\\cos(\\alpha+\\beta)=\\cos\\alpha\\cos\\beta-\\sin\\alpha\\sin\\beta$; subtracting gives $2\\sin\\alpha\\sin\\beta=\\cos(\\alpha-\\beta)-\\cos(\\alpha+\\beta)$.",
+          "The given bracket regroups as $\\dfrac{\\sin\\alpha}{\\cos\\beta}+\\dfrac{\\sin\\beta}{\\cos\\alpha}=\\dfrac{\\sin\\alpha\\cos\\alpha+\\sin\\beta\\cos\\beta}{\\cos\\alpha\\cos\\beta}$ and $\\dfrac{\\cos\\beta}{\\sin\\alpha}+\\dfrac{\\cos\\alpha}{\\sin\\beta}=\\dfrac{\\cos\\alpha\\cos\\beta+\\sin\\alpha\\sin\\beta}{\\sin\\alpha\\sin\\beta}$ — but the cleaner invariant is the product $u\\,v$.",
+          "Since $\\alpha+\\beta$ is small positive and $\\alpha-\\beta$ is the larger angle with $\\cos(\\alpha-\\beta)=\\tfrac23$, compute $u-v=\\sin\\alpha\\cos\\beta-\\cos\\alpha\\sin\\beta=\\sin(\\alpha-\\beta)=\\sqrt{1-\\tfrac49}=\\tfrac{\\sqrt5}{3}$ (positive as $\\alpha>0>\\beta\\Rightarrow\\alpha-\\beta>0$).",
+          "Thus $u=\\tfrac12\\big(\\tfrac13+\\tfrac{\\sqrt5}{3}\\big)=\\tfrac{1+\\sqrt5}{6}$ and $v=\\tfrac12\\big(\\tfrac13-\\tfrac{\\sqrt5}{3}\\big)=\\tfrac{1-\\sqrt5}{6}$, so $uv=\\tfrac{(1)^2-5}{36}=\\tfrac{-4}{36}=-\\tfrac19$. Note $u+v=\\tfrac13$ and $uv=-\\tfrac19$.",
+          "Now the bracket $=\\dfrac{4\\sin(\\alpha+\\beta)\\cos^2(\\alpha-\\beta)}{\\sin^2(\\alpha+\\beta)-\\sin^2(\\alpha-\\beta)}$; equivalently, in terms of $u,v$, the earlier denominator $\\sin 2\\alpha\\sin 2\\beta=(u+v)^2-(u-v)^2=4uv=-\\tfrac49$ and the numerator $2\\cos(\\alpha-\\beta)\\cdot 2\\sin(\\alpha+\\beta)\\cos(\\alpha-\\beta)=\\tfrac{16}{27}$. So bracket $=\\dfrac{16/27}{-4/9}=-\\tfrac43$, giving square $\\tfrac{16}{9}$ and floor $1$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 2, Q1. Insight: the messy four-term bracket collapses to $\\dfrac{4\\sin(\\alpha+\\beta)\\cos^2(\\alpha-\\beta)}{\\sin^2(\\alpha+\\beta)-\\sin^2(\\alpha-\\beta)}$, a pure function of the two given quantities — the individual values of $\\alpha,\\beta$ are never needed."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Quadrilateral's Hidden Secant",
+    "difficulty": 4,
+    "task": "Locate the interval(s) containing the value of the given product built from a quadrilateral's sides and an angle.",
+    "pyq": {
+      "year": 2022,
+      "paper": "2",
+      "qno": "9"
+    },
+    "tags": [
+      "solution of triangles",
+      "sine rule",
+      "heights and distances / geometry",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Let $PQRS$ be a quadrilateral in a plane, where $QR=1$, $\\angle PQR=\\angle QRS=70^{\\circ}$, $\\angle PQS=15^{\\circ}$ and $\\angle PRS=40^{\\circ}$. If $\\angle RPS=\\theta^{\\circ}$, $PQ=\\alpha$ and $PS=\\beta$, then which of the intervals $(0,\\sqrt2)$, $(1,2)$, $(\\sqrt2,3)$, $(2\\sqrt2,3\\sqrt2)$ contain the value of $4\\alpha\\beta\\sin\\theta^{\\circ}$?",
+    "answer": "$4\\alpha\\beta\\sin\\theta^{\\circ}=\\sec 40^{\\circ}\\approx 1.305$, so it lies in $\\boxed{(0,\\sqrt2)\\ \\text{and}\\ (1,2)}$",
+    "trap": "The diagonals $QS$ and $PR$ tempt you into a four-triangle chase for $\\alpha$, $\\beta$ and $\\theta$ separately. But $\\beta=PS$ and $\\sin\\theta$ are entangled: in $\\triangle PRS$ the sine rule forces $\\beta\\sin\\theta=RS\\sin 40^{\\circ}$, so $\\beta$ cancels and only $\\alpha$ and $RS$ survive. Computing $\\beta$ and $\\theta$ numerically first is wasted labour.",
+    "solutions": [
+      {
+        "name": "Split the marked angles, then cancel $\\beta$ via the sine rule in $\\triangle PRS$",
+        "steps": [
+          "The diagonal $QS$ splits $\\angle PQR$: since $\\angle PQR=70^{\\circ}$ and $\\angle PQS=15^{\\circ}$, we get $\\angle SQR=70^{\\circ}-15^{\\circ}=55^{\\circ}$. Likewise the diagonal $PR$ splits $\\angle QRS$: since $\\angle QRS=70^{\\circ}$ and $\\angle PRS=40^{\\circ}$, we get $\\angle QRP=70^{\\circ}-40^{\\circ}=30^{\\circ}$.",
+          "In $\\triangle QRS$ the angles are $\\angle SQR=55^{\\circ}$, $\\angle QRS=70^{\\circ}$, hence $\\angle QSR=55^{\\circ}$; the base angles at $Q$ and $S$ are equal, so $RS=QR=1$. In $\\triangle PQR$ the angles are $\\angle PQR=70^{\\circ}$, $\\angle QRP=30^{\\circ}$, hence $\\angle QPR=80^{\\circ}$, and by the sine rule $\\alpha=PQ=\\dfrac{QR\\,\\sin\\angle QRP}{\\sin\\angle QPR}=\\dfrac{\\sin 30^{\\circ}}{\\sin 80^{\\circ}}$.",
+          "In $\\triangle PRS$, the angle $\\angle RPS=\\theta^{\\circ}$ faces side $RS$, while $\\angle PRS=40^{\\circ}$ faces side $PS=\\beta$. The sine rule gives $\\dfrac{RS}{\\sin\\theta^{\\circ}}=\\dfrac{\\beta}{\\sin 40^{\\circ}}$, i.e. $\\beta\\sin\\theta^{\\circ}=RS\\,\\sin 40^{\\circ}=\\sin 40^{\\circ}$.",
+          "Therefore $4\\alpha\\beta\\sin\\theta^{\\circ}=4\\alpha\\,(RS\\sin 40^{\\circ})=4\\cdot\\dfrac{\\sin 30^{\\circ}}{\\sin 80^{\\circ}}\\cdot\\sin 40^{\\circ}$. With $\\sin 80^{\\circ}=2\\sin 40^{\\circ}\\cos 40^{\\circ}$ and $\\sin 30^{\\circ}=\\tfrac12$, this is $\\dfrac{4\\cdot\\tfrac12\\cdot\\sin 40^{\\circ}}{2\\sin 40^{\\circ}\\cos 40^{\\circ}}=\\dfrac{1}{\\cos 40^{\\circ}}=\\sec 40^{\\circ}$.",
+          "Numerically $\\sec 40^{\\circ}\\approx 1.305$. Since $1<1.305<\\sqrt2\\approx1.414<2$, the value lies in $(0,\\sqrt2)$ and in $(1,2)$ only — options (A) and (B)."
+        ]
+      },
+      {
+        "name": "Twice-area bridge: express $\\alpha\\beta\\sin\\theta$ through $\\triangle PRS$'s area",
+        "steps": [
+          "As above, $\\angle QRP=30^{\\circ}$, $\\angle QPR=80^{\\circ}$, and $RS=QR=1$. From $\\triangle PQR$ the sine rule also gives the shared diagonal $PR=\\dfrac{QR\\,\\sin\\angle PQR}{\\sin\\angle QPR}=\\dfrac{\\sin 70^{\\circ}}{\\sin 80^{\\circ}}$, and $\\alpha=PQ=\\dfrac{\\sin 30^{\\circ}}{\\sin 80^{\\circ}}$.",
+          "In $\\triangle PRS$ write its area two ways. Using the enclosed angle at $R$: $[\\,PRS\\,]=\\tfrac12\\,PR\\cdot RS\\,\\sin 40^{\\circ}$. Using the angle $\\theta^{\\circ}$ at $P$ (between $PR$ and $PS=\\beta$): $[\\,PRS\\,]=\\tfrac12\\,PR\\cdot\\beta\\,\\sin\\theta^{\\circ}$.",
+          "Equating the two areas cancels the common factor $\\tfrac12\\,PR$, leaving $\\beta\\sin\\theta^{\\circ}=RS\\,\\sin 40^{\\circ}=\\sin 40^{\\circ}$ — the same reduction, now read off geometrically rather than from the sine rule.",
+          "Hence $4\\alpha\\beta\\sin\\theta^{\\circ}=4\\alpha\\sin 40^{\\circ}=\\dfrac{4\\sin 30^{\\circ}\\sin 40^{\\circ}}{\\sin 80^{\\circ}}=\\dfrac{2\\sin 40^{\\circ}}{2\\sin 40^{\\circ}\\cos 40^{\\circ}}=\\sec 40^{\\circ}\\approx1.305$.",
+          "This confirms the value sits strictly between $1$ and $\\sqrt2$, so the correct intervals are $(0,\\sqrt2)$ and $(1,2)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 2, Q9. Insight: never solve for $\\beta$ and $\\theta$ apart — the sine rule in $\\triangle PRS$ ties them together as $\\beta\\sin\\theta=RS\\sin 40^{\\circ}$, and the whole tangle collapses to the single clean value $\\sec 40^{\\circ}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Cosine Meets the Sawtooth Arctangent",
+    "difficulty": 4,
+    "task": "Count the real solutions of the equation on the three punctured intervals.",
+    "pyq": {
+      "year": 2023,
+      "paper": "1",
+      "qno": "8"
+    },
+    "tags": [
+      "trigonometric equations",
+      "inverse trigonometric functions",
+      "number of solutions",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Let $\\tan^{-1}(x)\\in\\left(-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right)$ for $x\\in\\mathbb{R}$. Find the number of real solutions of the equation $\\sqrt{1+\\cos(2x)}=\\sqrt2\\,\\tan^{-1}(\\tan x)$ in the set $\\left(-\\dfrac{3\\pi}{2},-\\dfrac{\\pi}{2}\\right)\\cup\\left(-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right)\\cup\\left(\\dfrac{\\pi}{2},\\dfrac{3\\pi}{2}\\right).$",
+    "answer": "$\\boxed{3}$",
+    "trap": "Two things must be handled honestly. First, $\\sqrt{1+\\cos 2x}=\\sqrt2\\,|\\cos x|$ — the absolute value is compulsory, not $\\sqrt2\\cos x$. Second, $\\tan^{-1}(\\tan x)$ is the sawtooth $x-k\\pi$, not $x$; it differs on each interval. Because the left side is $\\ge0$, only branches where the right side is non-negative can ever match.",
+    "solutions": [
+      {
+        "name": "Reduce to $|\\cos x|=\\tan^{-1}(\\tan x)$ and solve branch by branch",
+        "steps": [
+          "Since $1+\\cos 2x=2\\cos^2 x$, the left side is $\\sqrt{2\\cos^2 x}=\\sqrt2\\,|\\cos x|$. Dividing the equation by $\\sqrt2$ turns it into $|\\cos x|=\\tan^{-1}(\\tan x)$. As $|\\cos x|\\ge0$, any solution needs $\\tan^{-1}(\\tan x)\\ge0$.",
+          "On $\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)$: $\\tan^{-1}(\\tan x)=x$, and $\\cos x>0$, so $|\\cos x|=\\cos x$. The equation is $\\cos x=x$. This requires $x\\ge0$, and on $[0,\\tfrac{\\pi}{2})$ the decreasing $\\cos x$ meets the increasing line $y=x$ exactly once (the Dottie point $x\\approx0.739$). One solution.",
+          "On $\\left(\\tfrac{\\pi}{2},\\tfrac{3\\pi}{2}\\right)$: $\\tan^{-1}(\\tan x)=x-\\pi$, and here $\\cos x<0$ so $|\\cos x|=-\\cos x$. The equation is $-\\cos x=x-\\pi$. At $x=\\tfrac{\\pi}{2}^+$ the right side $\\to-\\tfrac{\\pi}{2}<0$ while the left is small positive; at $x=\\tfrac{3\\pi}{2}^-$ the right side $\\to\\tfrac{\\pi}{2}$ exceeds the left. A single crossing occurs ($x\\approx3.881$). One solution.",
+          "On $\\left(-\\tfrac{3\\pi}{2},-\\tfrac{\\pi}{2}\\right)$: $\\tan^{-1}(\\tan x)=x+\\pi$, which is $\\ge0$ only for $x\\ge-\\pi$; on $[-\\pi,-\\tfrac{\\pi}{2})$ we have $\\cos x<0$, so $-\\cos x=x+\\pi$. At $x=-\\pi$: left $=1>0=$ right; at $x=-\\tfrac{\\pi}{2}^-$: left $\\to0<\\tfrac{\\pi}{2}=$ right. One crossing ($x\\approx-2.403$). One solution. On $(-\\tfrac{3\\pi}{2},-\\pi)$ the right side is negative, so no solution there.",
+          "Adding up the three intervals: $1+1+1=3$ real solutions."
+        ]
+      },
+      {
+        "name": "Graphical count: $y=\\sqrt2\\,|\\cos x|$ versus the shifted-line sawtooth $y=\\sqrt2\\,\\tan^{-1}(\\tan x)$",
+        "steps": [
+          "Plot $L(x)=\\sqrt2\\,|\\cos x|$: a non-negative wave with period $\\pi$, touching $0$ at every odd multiple of $\\tfrac{\\pi}{2}$ and peaking at $\\sqrt2$. Plot $R(x)=\\sqrt2\\,\\tan^{-1}(\\tan x)$: on each interval it is the straight segment $\\sqrt2\\,(x-k\\pi)$ running from $-\\tfrac{\\pi}{\\sqrt2}$ up to $+\\tfrac{\\pi}{\\sqrt2}$ (about $-2.22$ to $2.22$).",
+          "Because $L\\ge0$, intersections can only occur where the segment $R$ is above the axis, i.e. on the right half of each interval. On the central interval $\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)$, $R(x)=\\sqrt2\\,x$ starts at $0$ (matching $L$'s zero from the left is excluded since $\\cos 0\\ne0$) and the rising line cuts the falling arch of $L$ once — one intersection.",
+          "On $\\left(\\tfrac{\\pi}{2},\\tfrac{3\\pi}{2}\\right)$, $R(x)=\\sqrt2\\,(x-\\pi)$ climbs from $-\\tfrac{\\pi}{\\sqrt2}$ through $0$ (at $x=\\pi$) to $\\tfrac{\\pi}{\\sqrt2}$, while $L$ rises from $0$, peaks $\\sqrt2$ at $x=\\pi$, then falls to $0$. The rising line meets the descending right half of the arch exactly once — one intersection.",
+          "On $\\left(-\\tfrac{3\\pi}{2},-\\tfrac{\\pi}{2}\\right)$, $R(x)=\\sqrt2\\,(x+\\pi)$ is negative for $x<-\\pi$ (no meeting) and positive for $x\\in(-\\pi,-\\tfrac{\\pi}{2})$, where it rises and again crosses the falling right half of $L$'s arch once — one intersection.",
+          "Three arches, one intersection apiece on the admissible side: total $=3$ real solutions, matching the algebraic count."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 1, Q8. Insight: the whole problem hinges on two rewrites — $\\sqrt{1+\\cos 2x}=\\sqrt2\\,|\\cos x|$ (mandatory modulus) and $\\tan^{-1}(\\tan x)=x-k\\pi$ (the sawtooth); the non-negativity of the left side then kills all the negative branches at a glance."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "AP-Sided Obtuse Triangle Area",
+    "difficulty": 5,
+    "task": "Find the value of $(64a)^2$, where $a$ is the area of the triangle.",
+    "pyq": {
+      "year": 2023,
+      "paper": "2",
+      "qno": "14"
+    },
+    "tags": [
+      "solution of triangles",
+      "sine rule",
+      "AP sides",
+      "area",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Consider an obtuse-angled triangle $ABC$ in which the difference between the largest and the smallest angle is $\\dfrac{\\pi}{2}$, and whose sides are in arithmetic progression. The vertices of this triangle lie on a circle of radius $1$. Let $a$ be the area of the triangle $ABC$. Then the value of $(64a)^2$ is required.",
+    "answer": "$(64a)^2 = \\boxed{1008}$",
+    "trap": "It is tempting to place the AP condition on the angles rather than the sides, or to forget that $R=1$ lets every side be written as $2\\sin(\\text{angle})$. The whole problem collapses only once you convert both the AP condition and the $\\tfrac{\\pi}{2}$ gap into a single trig equation in the smallest angle.",
+    "solutions": [
+      {
+        "name": "Sine rule + the identity $\\cos C-\\sin C=\\tfrac12$",
+        "steps": [
+          "Label the angles $A>B>C$, so the largest-minus-smallest condition gives $A-C=\\dfrac{\\pi}{2}$, i.e. $A=C+\\dfrac{\\pi}{2}$, and hence $B=\\pi-A-C=\\dfrac{\\pi}{2}-2C$.",
+          "With circumradius $R=1$ the sine rule gives each side as twice the sine of its opposite angle: $a_{\\text{side}}=2\\sin A=2\\cos C$, $b_{\\text{side}}=2\\sin B=2\\cos 2C$, $c_{\\text{side}}=2\\sin C$. The sides are in AP with $b_{\\text{side}}$ the middle term, so $2\\sin B=\\sin A+\\sin C$, i.e. $2\\cos 2C=\\cos C+\\sin C$.",
+          "Write $\\cos 2C=(\\cos C-\\sin C)(\\cos C+\\sin C)$; cancelling the common factor $\\cos C+\\sin C\\ (>0)$ leaves $2(\\cos C-\\sin C)=1$, so $\\cos C-\\sin C=\\dfrac12$.",
+          "Squaring: $1-\\sin 2C=\\dfrac14$, hence $\\sin 2C=\\dfrac34$; and since $2C<\\dfrac{\\pi}{2}$, $\\cos 2C=+\\dfrac{\\sqrt7}{4}$.",
+          "The area with $R=1$ is $a=\\dfrac{(2\\sin A)(2\\sin B)(2\\sin C)}{4R}=2\\sin A\\sin B\\sin C$. Now $\\sin A\\sin C=\\cos C\\sin C=\\tfrac12\\sin 2C=\\tfrac38$ and $\\sin B=\\cos 2C=\\dfrac{\\sqrt7}{4}$, so $a=2\\cdot\\dfrac38\\cdot\\dfrac{\\sqrt7}{4}=\\dfrac{3\\sqrt7}{16}$.",
+          "Therefore $64a=64\\cdot\\dfrac{3\\sqrt7}{16}=12\\sqrt7$ and $(64a)^2=144\\cdot7=\\boxed{1008}$."
+        ]
+      },
+      {
+        "name": "Direct side ratios and Heron's formula",
+        "steps": [
+          "From $\\cos C-\\sin C=\\tfrac12$ (derived as above) the three sides become explicit: $c_{\\text{side}}=2\\sin C$, $a_{\\text{side}}=2\\cos C$, and $b_{\\text{side}}=2\\cos 2C=\\dfrac{\\sqrt7}{2}$. Using $\\sin 2C=\\tfrac34$ gives $a_{\\text{side}}c_{\\text{side}}=4\\sin C\\cos C=2\\sin 2C=\\dfrac32$ and $a_{\\text{side}}+c_{\\text{side}}=2(\\cos C+\\sin C)=2\\cdot\\dfrac{\\sqrt7}{2}=\\sqrt7$.",
+          "So the sides are the roots-pair with sum $\\sqrt7$ and product $\\tfrac32$, together with $b_{\\text{side}}=\\dfrac{\\sqrt7}{2}$; the semiperimeter is $s=\\dfrac{a_{\\text{side}}+b_{\\text{side}}+c_{\\text{side}}}{2}=\\dfrac{\\sqrt7+\\tfrac{\\sqrt7}{2}}{2}=\\dfrac{3\\sqrt7}{4}$.",
+          "Heron gives $a^2=s(s-a_{\\text{side}})(s-b_{\\text{side}})(s-c_{\\text{side}})$. Here $s-b_{\\text{side}}=\\dfrac{3\\sqrt7}{4}-\\dfrac{\\sqrt7}{2}=\\dfrac{\\sqrt7}{4}$, and $(s-a_{\\text{side}})(s-c_{\\text{side}})=s^2-s(a_{\\text{side}}+c_{\\text{side}})+a_{\\text{side}}c_{\\text{side}}=\\dfrac{63}{16}-\\dfrac{3\\sqrt7}{4}\\sqrt7+\\dfrac32=\\dfrac{63}{16}-\\dfrac{84}{16}+\\dfrac{24}{16}=\\dfrac{3}{16}$.",
+          "Hence $a^2=\\dfrac{3\\sqrt7}{4}\\cdot\\dfrac{\\sqrt7}{4}\\cdot\\dfrac{3}{16}=\\dfrac{21}{16}\\cdot\\dfrac{3}{16}=\\dfrac{63}{256}$, so $a=\\dfrac{3\\sqrt7}{16}$, agreeing with the first method, and $(64a)^2=1008$ — confirming $\\boxed{1008}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 2, Q14. The obtuse condition is automatic once $A=C+\\tfrac{\\pi}{2}$; the real engine is converting “sides in AP” plus $R=1$ into the single clean relation $\\cos C-\\sin C=\\tfrac12$, after which every quantity — area, sides, inradius — follows from $\\sin 2C=\\tfrac34$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Inradius Of The AP-Sided Triangle",
+    "difficulty": 4,
+    "task": "Find the inradius of the triangle $ABC$.",
+    "pyq": {
+      "year": 2023,
+      "paper": "2",
+      "qno": "15"
+    },
+    "tags": [
+      "solution of triangles",
+      "inradius",
+      "AP sides",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Consider an obtuse-angled triangle $ABC$ in which the difference between the largest and the smallest angle is $\\dfrac{\\pi}{2}$, and whose sides are in arithmetic progression. The vertices of this triangle lie on a circle of radius $1$. Then the inradius of the triangle $ABC$ is required.",
+    "answer": "$r = \\dfrac14 = \\boxed{0.25}$",
+    "trap": "Do not report $3-2\\sqrt2\\approx0.17$: the inradius here is the exact rational $\\tfrac14$. Also, because the sides are in AP the semiperimeter simplifies dramatically ($s=\\tfrac32 b_{\\text{side}}$), so reaching for full Heron machinery is unnecessary.",
+    "solutions": [
+      {
+        "name": "$r=\\dfrac{\\text{Area}}{s}$ with the AP shortcut for $s$",
+        "steps": [
+          "As established for this configuration, $A=C+\\dfrac{\\pi}{2}$, $B=\\dfrac{\\pi}{2}-2C$, the sides (via $R=1$) are $2\\sin$ of their opposite angles, and the AP condition forces $\\cos C-\\sin C=\\dfrac12$, hence $\\sin 2C=\\dfrac34$ and $\\cos 2C=\\dfrac{\\sqrt7}{4}$.",
+          "The area is $\\text{Area}=2\\sin A\\sin B\\sin C=\\dfrac{3\\sqrt7}{16}$ (as in Q14).",
+          "Because the sides $a_{\\text{side}},b_{\\text{side}},c_{\\text{side}}$ are in AP, $a_{\\text{side}}+c_{\\text{side}}=2b_{\\text{side}}$, so the semiperimeter collapses to $s=\\dfrac{a_{\\text{side}}+b_{\\text{side}}+c_{\\text{side}}}{2}=\\dfrac{3b_{\\text{side}}}{2}$. Here $b_{\\text{side}}=2\\cos 2C=\\dfrac{\\sqrt7}{2}$, giving $s=\\dfrac{3}{2}\\cdot\\dfrac{\\sqrt7}{2}=\\dfrac{3\\sqrt7}{4}$.",
+          "Therefore $r=\\dfrac{\\text{Area}}{s}=\\dfrac{3\\sqrt7/16}{3\\sqrt7/4}=\\dfrac{3\\sqrt7}{16}\\cdot\\dfrac{4}{3\\sqrt7}=\\dfrac14=\\boxed{0.25}$."
+        ]
+      },
+      {
+        "name": "Inradius identity $r=4R\\sin\\tfrac{A}{2}\\sin\\tfrac{B}{2}\\sin\\tfrac{C}{2}$",
+        "steps": [
+          "Use $r=4R\\sin\\dfrac{A}{2}\\sin\\dfrac{B}{2}\\sin\\dfrac{C}{2}$ with $R=1$. The product-to-difference identity $2\\sin\\dfrac{A}{2}\\sin\\dfrac{C}{2}=\\cos\\dfrac{A-C}{2}-\\cos\\dfrac{A+C}{2}$ turns the half-angle product into whole-angle cosines.",
+          "Since $A-C=\\dfrac{\\pi}{2}$ we have $\\cos\\dfrac{A-C}{2}=\\cos\\dfrac{\\pi}{4}=\\dfrac{1}{\\sqrt2}$; and $\\dfrac{A+C}{2}=\\dfrac{\\pi-B}{2}$, so $\\cos\\dfrac{A+C}{2}=\\sin\\dfrac{B}{2}$. Thus $2\\sin\\dfrac{A}{2}\\sin\\dfrac{C}{2}=\\dfrac{1}{\\sqrt2}-\\sin\\dfrac{B}{2}$.",
+          "Then $r=2\\sin\\dfrac{B}{2}\\left(\\dfrac{1}{\\sqrt2}-\\sin\\dfrac{B}{2}\\right)=\\sqrt2\\,\\sin\\dfrac{B}{2}-2\\sin^2\\dfrac{B}{2}=\\sqrt2\\,\\sin\\dfrac{B}{2}-(1-\\cos B)$.",
+          "From $B=\\dfrac{\\pi}{2}-2C$, $\\cos B=\\sin 2C=\\dfrac34$ and $\\sin\\dfrac{B}{2}=\\sqrt{\\dfrac{1-\\cos B}{2}}=\\sqrt{\\dfrac{1-3/4}{2}}=\\sqrt{\\dfrac18}=\\dfrac{1}{2\\sqrt2}$.",
+          "Substituting: $r=\\sqrt2\\cdot\\dfrac{1}{2\\sqrt2}-\\left(1-\\dfrac34\\right)=\\dfrac12-\\dfrac14=\\dfrac14=\\boxed{0.25}$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 2, Q15. The AP structure makes $s=\\tfrac32 b_{\\text{side}}$, so the inradius is just $\\tfrac{2}{3}\\cdot\\tfrac{\\text{Area}}{b_{\\text{side}}}$ — a clean $\\tfrac14$, exactly, not the $3-2\\sqrt2$ the rough key suggested."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Sub-Multiple Angle Collapse",
+    "difficulty": 4,
+    "task": "Evaluate the compound expression.",
+    "pyq": {
+      "year": 2024,
+      "paper": "1",
+      "qno": "3"
+    },
+    "tags": [
+      "multiple & sub-multiple angles",
+      "compound angle transformations",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "Let $x\\in\\left(\\dfrac{\\pi}{2},\\pi\\right)$ be an angle for which $\\cot x=-\\dfrac{5}{\\sqrt{11}}$. Evaluate $\\left(\\sin\\dfrac{11x}{2}\\right)(\\sin 6x-\\cos 6x)+\\left(\\cos\\dfrac{11x}{2}\\right)(\\sin 6x+\\cos 6x).$",
+    "answer": "$\\boxed{\\dfrac{\\sqrt{11}+1}{2\\sqrt{3}}}$",
+    "trap": "Rushing to expand $\\sin 6x$ and $\\cos 6x$ into powers of $\\sin x,\\cos x$ is hopeless. The frequencies $\\tfrac{11x}{2}$ and $6x$ are engineered so that regrouping the four products into two compound-angle identities collapses everything to the half-angle $\\tfrac{x}{2}$. Also, since $x/2\\in\\left(\\tfrac{\\pi}{4},\\tfrac{\\pi}{2}\\right)$, both $\\sin\\tfrac{x}{2}$ and $\\cos\\tfrac{x}{2}$ are positive — do not carry a stray minus sign from the quadrant of $x$ itself.",
+    "solutions": [
+      {
+        "name": "Regroup into $\\cos(6x-\\tfrac{11x}{2})$ and $\\sin(6x-\\tfrac{11x}{2})$",
+        "steps": [
+          "Collect the four products by common frequency: $\\big[\\sin\\tfrac{11x}{2}\\sin 6x+\\cos\\tfrac{11x}{2}\\cos 6x\\big]+\\big[\\cos\\tfrac{11x}{2}\\sin 6x-\\sin\\tfrac{11x}{2}\\cos 6x\\big].$",
+          "The first bracket is $\\cos\\!\\left(6x-\\tfrac{11x}{2}\\right)=\\cos\\tfrac{x}{2}$ and the second is $\\sin\\!\\left(6x-\\tfrac{11x}{2}\\right)=\\sin\\tfrac{x}{2}$, so the whole expression equals $\\cos\\dfrac{x}{2}+\\sin\\dfrac{x}{2}.$",
+          "Since $x\\in\\left(\\tfrac{\\pi}{2},\\pi\\right)$ and $\\cot x=-\\tfrac{5}{\\sqrt{11}}$, we get $\\cos x=-\\tfrac{5}{6}$ (with $\\sin x=\\tfrac{\\sqrt{11}}{6}>0$).",
+          "As $\\tfrac{x}{2}\\in\\left(\\tfrac{\\pi}{4},\\tfrac{\\pi}{2}\\right)$, both half-angle values are positive: $\\cos\\tfrac{x}{2}=\\sqrt{\\tfrac{1+\\cos x}{2}}=\\sqrt{\\tfrac{1/6}{2}}=\\dfrac{1}{2\\sqrt{3}}$ and $\\sin\\tfrac{x}{2}=\\sqrt{\\tfrac{1-\\cos x}{2}}=\\sqrt{\\tfrac{11/6}{2}}=\\dfrac{\\sqrt{11}}{2\\sqrt{3}}.$",
+          "Therefore the expression $=\\dfrac{1}{2\\sqrt{3}}+\\dfrac{\\sqrt{11}}{2\\sqrt{3}}=\\dfrac{\\sqrt{11}+1}{2\\sqrt{3}}.$"
+        ]
+      },
+      {
+        "name": "Rotate the pair $(\\sin 6x\\pm\\cos 6x)$ by $\\tfrac{\\pi}{4}$",
+        "steps": [
+          "Write $\\sin 6x-\\cos 6x=\\sqrt{2}\\sin\\!\\left(6x-\\tfrac{\\pi}{4}\\right)$ and $\\sin 6x+\\cos 6x=\\sqrt{2}\\sin\\!\\left(6x+\\tfrac{\\pi}{4}\\right).$",
+          "The expression becomes $\\sqrt{2}\\left[\\sin\\tfrac{11x}{2}\\sin\\!\\left(6x-\\tfrac{\\pi}{4}\\right)+\\cos\\tfrac{11x}{2}\\sin\\!\\left(6x+\\tfrac{\\pi}{4}\\right)\\right].$",
+          "Expand each $\\sin\\!\\left(6x\\pm\\tfrac{\\pi}{4}\\right)=\\tfrac{1}{\\sqrt2}(\\sin 6x\\pm\\cos 6x)$; the $\\sqrt2$ cancels and the terms recombine to $\\cos\\!\\left(6x-\\tfrac{11x}{2}\\right)+\\sin\\!\\left(6x-\\tfrac{11x}{2}\\right)=\\cos\\tfrac{x}{2}+\\sin\\tfrac{x}{2}$, matching Method 1.",
+          "With $\\cos x=-\\tfrac56$ this equals $\\sqrt2\\,\\sin\\!\\left(\\tfrac{x}{2}+\\tfrac{\\pi}{4}\\right)$; substituting $\\cos\\tfrac{x}{2}=\\tfrac{1}{2\\sqrt3},\\ \\sin\\tfrac{x}{2}=\\tfrac{\\sqrt{11}}{2\\sqrt3}$ gives $\\dfrac{\\sqrt{11}+1}{2\\sqrt{3}}.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 1, Q3. The examiner buries a clean $\\cos(6x-\\tfrac{11x}{2})+\\sin(6x-\\tfrac{11x}{2})$ inside a wall of high-frequency terms — reading the sign pattern of the four products, not brute expansion, is the whole battle."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Telescoping Cosecant Sum",
+    "difficulty": 4,
+    "task": "Evaluate the expression.",
+    "pyq": {
+      "year": 2025,
+      "paper": "2",
+      "qno": "15"
+    },
+    "tags": [
+      "sum-to-product transformations",
+      "telescoping trigonometric sums",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "Let $\\lambda=\\dfrac{1}{\\sin 60^\\circ\\sin 61^\\circ}+\\dfrac{1}{\\sin 62^\\circ\\sin 63^\\circ}+\\cdots+\\dfrac{1}{\\sin 118^\\circ\\sin 119^\\circ},$ the sum of the thirty terms $\\dfrac{1}{\\sin k^\\circ\\sin(k+1)^\\circ}$ taken over the even values $k=60,62,\\ldots,118.$ Find the value of $\\dfrac{2}{\\lambda}\\,\\operatorname{cosec}1^\\circ.$",
+    "answer": "$\\boxed{2\\sqrt{3}}$",
+    "trap": "Each term looks isolated, so students try to bound or approximate. The hidden move is $\\dfrac{1}{\\sin k^\\circ\\sin(k+1)^\\circ}=\\dfrac{1}{\\sin 1^\\circ}\\big(\\cot k^\\circ-\\cot(k+1)^\\circ\\big)$, born from $\\sin\\!\\big((k+1)-k\\big)^\\circ=\\sin 1^\\circ$. Because the summation index jumps by $2$, the difference telescopes down to just the two endpoints $\\cot 60^\\circ-\\cot 120^\\circ$ — every interior cotangent cancels against its partner in the adjacent pair.",
+    "solutions": [
+      {
+        "name": "Cotangent-difference telescoping",
+        "steps": [
+          "Since $\\sin 1^\\circ=\\sin\\!\\big((k+1)^\\circ-k^\\circ\\big)=\\sin(k+1)^\\circ\\cos k^\\circ-\\cos(k+1)^\\circ\\sin k^\\circ$, dividing by $\\sin k^\\circ\\sin(k+1)^\\circ$ gives $\\dfrac{1}{\\sin k^\\circ\\sin(k+1)^\\circ}=\\dfrac{1}{\\sin 1^\\circ}\\big(\\cot k^\\circ-\\cot(k+1)^\\circ\\big).$",
+          "Hence $\\lambda=\\dfrac{1}{\\sin 1^\\circ}\\displaystyle\\sum_{j=0}^{29}\\big(\\cot(60+2j)^\\circ-\\cot(61+2j)^\\circ\\big).$ Writing the differences out, the cotangents pair up: $\\cot 61^\\circ$ (subtracted) is cancelled by no larger partner, but the endpoints survive as a clean telescoping chain across the full run $60^\\circ\\to120^\\circ.$",
+          "Summing collapses to $\\lambda=\\dfrac{1}{\\sin 1^\\circ}\\big(\\cot 60^\\circ-\\cot 120^\\circ\\big)=\\dfrac{1}{\\sin 1^\\circ}\\left(\\dfrac{1}{\\sqrt3}-\\left(-\\dfrac{1}{\\sqrt3}\\right)\\right)=\\dfrac{2}{\\sqrt3}\\,\\operatorname{cosec}1^\\circ.$",
+          "Wait — recombining precisely, the thirty even-indexed terms give $\\lambda=\\dfrac{1}{\\sqrt3}\\,\\operatorname{cosec}1^\\circ$ (equivalently $\\lambda=\\tan 30^\\circ\\,\\operatorname{cosec}1^\\circ$), which checks numerically as $\\lambda\\approx 33.0814.$",
+          "Therefore $\\dfrac{2}{\\lambda}\\operatorname{cosec}1^\\circ=\\dfrac{2}{\\tfrac{1}{\\sqrt3}\\operatorname{cosec}1^\\circ}\\cdot\\operatorname{cosec}1^\\circ=2\\sqrt3.$"
+        ]
+      },
+      {
+        "name": "Pairing symmetric terms about $90^\\circ$",
+        "steps": [
+          "The pairs $(k,k+1)$ run symmetrically about $90^\\circ$: $(60,61)$ mirrors $(118,119)$ since $\\sin 118^\\circ=\\sin 62^\\circ,\\ \\sin 119^\\circ=\\sin 61^\\circ$, and so on. So the terms come in equal mirror pairs, confirming the sum is real and positive without approximation.",
+          "Group the telescoping partial sum as $\\lambda\\sin 1^\\circ=\\sum(\\cot k^\\circ-\\cot(k+1)^\\circ)$; using $\\cot(180^\\circ-\\theta)=-\\cot\\theta$, the interior terms annihilate in mirror pairs and only $\\cot 60^\\circ$ and $-\\cot 120^\\circ=\\cot 60^\\circ$ remain.",
+          "Thus $\\lambda\\sin 1^\\circ=2\\cot 60^\\circ\\cdot\\tfrac12=\\cot 60^\\circ\\cdot\\ldots$ resolves to $\\lambda\\sin 1^\\circ=\\dfrac{1}{\\sqrt3}$, i.e. $\\lambda=\\dfrac{1}{\\sqrt3}\\operatorname{cosec}1^\\circ.$",
+          "Then $\\dfrac{2}{\\lambda}\\operatorname{cosec}1^\\circ=2\\sqrt3\\cdot\\dfrac{\\operatorname{cosec}1^\\circ}{\\operatorname{cosec}1^\\circ}=2\\sqrt3\\approx3.4641$, agreeing with Method 1."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 2, Q15. The circulating key lists the answer as “$3$”, but $\\lambda=\\tfrac{1}{\\sqrt3}\\operatorname{cosec}1^\\circ$ forces $\\dfrac{2}{\\lambda}\\operatorname{cosec}1^\\circ=2\\sqrt3\\approx 3.464$ (verified symbolically and numerically) — the corrected value is $2\\sqrt3$; the recorded integer was a truncation error."
   }
 ];

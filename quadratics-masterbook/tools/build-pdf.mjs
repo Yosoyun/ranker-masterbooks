@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['vieta','discriminant','location','commonroots','rangefraction','maxmin','disguise','parameter','inequalities','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { vieta:'α+β', discriminant:'Δ', location:'f(k)', commonroots:'∩', rangefraction:'y=', maxmin:'⌣', disguise:'t=x²', parameter:'k', inequalities:'>0', hybrid:'⊕' };
+const THEME_ORDER = ['vieta','discriminant','location','commonroots','rangefraction','maxmin','disguise','parameter','inequalities','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { vieta:'α+β', discriminant:'Δ', location:'f(k)', commonroots:'∩', rangefraction:'y=', maxmin:'⌣', disguise:'t=x²', parameter:'k', inequalities:'>0', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   vieta:'Sum and product of the roots run the show — everything bends to Vieta.',
   discriminant:'One sign decides all: real, equal or complex. The quadratic’s verdict.',
@@ -25,6 +25,7 @@ const BLURB = {
   parameter:'Sweep a parameter; watch the roots appear, vanish, change sign — count when.',
   inequalities:'Where is a quadratic positive, and when for every x? Sign and definiteness.',
   hybrid:'Vieta, location, parameters and disguises fused into one.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

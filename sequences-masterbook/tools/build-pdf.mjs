@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['apgphp','agp','telescoping','powersfigurate','recurrences','apps','convergence','inequalities','misc','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { apgphp:'aₙ', agp:'Σkxᵏ', telescoping:'Vₙ', powersfigurate:'Σk³', recurrences:'aₙ₊₁', apps:'r,d', convergence:'Σ∞', inequalities:'≤', misc:'⌊aₙ⌋', hybrid:'⊕' };
+const THEME_ORDER = ['apgphp','agp','telescoping','powersfigurate','recurrences','apps','convergence','inequalities','misc','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { apgphp:'aₙ', agp:'Σkxᵏ', telescoping:'Vₙ', powersfigurate:'Σk³', recurrences:'aₙ₊₁', apps:'r,d', convergence:'Σ∞', inequalities:'≤', misc:'⌊aₙ⌋', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   apgphp:'Arithmetic, geometric, harmonic progressions — and AM ≥ GM ≥ HM.',
   agp:'The arithmetico-geometric series — multiply by the ratio and subtract.',
@@ -25,6 +25,7 @@ const BLURB = {
   inequalities:'AM–GM, Cauchy–Schwarz and rearrangement, applied to sequences.',
   misc:'The greatest term, the integer part of a sum, and sharp estimates.',
   hybrid:'Progressions, telescoping, recurrences and convergence, fused.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

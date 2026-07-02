@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['relations','domainrange','classification','composition','inverse','functionaleq','symmetry','special','graphs','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { relations:'R', domainrange:'dom f', classification:'1–1', composition:'f∘g', inverse:'f⁻¹', functionaleq:'f(x+y)', symmetry:'f(−x)', special:'⌊x⌋', graphs:'y=f(x)', hybrid:'⊕' };
+const THEME_ORDER = ['relations','domainrange','classification','composition','inverse','functionaleq','symmetry','special','graphs','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { relations:'R', domainrange:'dom f', classification:'1–1', composition:'f∘g', inverse:'f⁻¹', functionaleq:'f(x+y)', symmetry:'f(−x)', special:'⌊x⌋', graphs:'y=f(x)', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   relations:'Reflexive/symmetric/transitive, equivalence & order; counting relations.',
   domainrange:'The largest valid domain and the exact range a formula sweeps.',
@@ -25,6 +25,7 @@ const BLURB = {
   special:'Greatest integer, fractional part, signum & absolute value.',
   graphs:'Shifts, stretches, reflections, |·| transforms; reading a graph.',
   hybrid:'Relations, classification, composition, inverses & functional equations, fused.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

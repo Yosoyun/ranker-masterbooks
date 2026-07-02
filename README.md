@@ -1,7 +1,7 @@
 # The Ranker's Masterbooks
 
 Twenty-one chapters for the very top of **JEE Advanced**.
-2116 original problems, organised by the *instrument* that powers each one, and every problem solved
+2116 original problems (plus 654 official IIT-JEE / JEE Advanced past-year questions, 2006–2025), organised by the *instrument* that powers each one, and every problem solved
 **more than one way**. No build step, no dependencies — just open `index.html`.
 
 🌐 **Live:** https://yosoyun.github.io/ranker-masterbooks/

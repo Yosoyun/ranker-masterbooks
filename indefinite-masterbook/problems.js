@@ -3699,5 +3699,246 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight —the grand fusion: pick the LCM power of the radical orders to rationalise simultaneously, reduce the improper rational by long division, then finish with a single logarithm. Choosing $t^2$ or $t^3$ alone is the trap; only $t^6$ clears both radicals. A quick sanity check: differentiating the answer returns $1/(\\sqrt{x}+\\sqrt[3]{x})$ exactly."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The disguised perfect square under $\\sqrt{2x^4-2x^2+1}$",
+    "difficulty": 3,
+    "task": "Evaluate the integral and pick the correct antiderivative.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "2"
+    },
+    "tags": [
+      "substitution",
+      "algebraic integrals",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "The integral $$\\int \\frac{x^2-1}{x^3\\sqrt{2x^4-2x^2+1}}\\,dx$$ is equal to\n\n(A) $\\dfrac{\\sqrt{2x^4-2x^2+1}}{x^2}+c$\n\n(B) $\\dfrac{\\sqrt{2x^4-2x^2+1}}{x^3}+c$\n\n(C) $\\dfrac{\\sqrt{2x^4-2x^2+1}}{x}+c$\n\n(D) $\\dfrac{\\sqrt{2x^4-2x^2+1}}{2x^2}+c$",
+    "answer": "$\\boxed{\\text{(D)}\\ \\dfrac{\\sqrt{2x^4-2x^2+1}}{2x^2}+c}$",
+    "trap": "The instinct is to substitute for the radicand $2x^4-2x^2+1$ directly, but its derivative $8x^3-4x$ does not match the numerator $x^2-1$. The whole trick is to first divide numerator and denominator by the largest power $x^4$ (equivalently pull $x^2$ out of the root), which converts the radicand into a polynomial in $1/x^2$ whose derivative DOES appear on top. Skipping that normalisation makes the substitution fail.",
+    "solutions": [
+      {
+        "name": "Pull $x^2$ out of the root, substitute $z=2-\\tfrac{2}{x^2}+\\tfrac{1}{x^4}$",
+        "steps": [
+          "Since $x^3=x\\cdot x^2$ and $\\sqrt{2x^4-2x^2+1}=x^2\\sqrt{2-\\tfrac{2}{x^2}+\\tfrac{1}{x^4}}$ (for $x>0$), factor $x^2$ out of the denominator: $x^3\\sqrt{2x^4-2x^2+1}=x^3\\cdot x^2\\sqrt{2-\\tfrac{2}{x^2}+\\tfrac{1}{x^4}}=x^5\\sqrt{2-\\tfrac{2}{x^2}+\\tfrac{1}{x^4}}$.",
+          "So the integrand becomes $\\dfrac{x^2-1}{x^5\\sqrt{2-\\tfrac{2}{x^2}+\\tfrac{1}{x^4}}}=\\dfrac{\\tfrac{1}{x^3}-\\tfrac{1}{x^5}}{\\sqrt{2-\\tfrac{2}{x^2}+\\tfrac{1}{x^4}}}$ after dividing top and bottom by $x^2$.",
+          "Let $z=2-\\dfrac{2}{x^2}+\\dfrac{1}{x^4}$. Then $\\dfrac{dz}{dx}=\\dfrac{4}{x^3}-\\dfrac{4}{x^5}=4\\left(\\tfrac{1}{x^3}-\\tfrac{1}{x^5}\\right)$, so $\\left(\\tfrac{1}{x^3}-\\tfrac{1}{x^5}\\right)dx=\\tfrac14\\,dz$.",
+          "The integral is $\\displaystyle\\frac14\\int z^{-1/2}\\,dz=\\frac14\\cdot 2\\sqrt{z}+c=\\frac12\\sqrt{z}+c$.",
+          "Back-substitute $z=2-\\tfrac{2}{x^2}+\\tfrac{1}{x^4}=\\dfrac{2x^4-2x^2+1}{x^4}$, so $\\sqrt{z}=\\dfrac{\\sqrt{2x^4-2x^2+1}}{x^2}$.",
+          "Therefore the answer is $\\dfrac{1}{2}\\cdot\\dfrac{\\sqrt{2x^4-2x^2+1}}{x^2}+c=\\dfrac{\\sqrt{2x^4-2x^2+1}}{2x^2}+c$, which is option (D)."
+        ]
+      },
+      {
+        "name": "Verify by differentiating the options (reverse engineering)",
+        "steps": [
+          "Test option (D): let $y=\\dfrac{\\sqrt{2x^4-2x^2+1}}{2x^2}$ and differentiate. Write $y=\\tfrac12 x^{-2}(2x^4-2x^2+1)^{1/2}$.",
+          "By the product rule, $y'=\\tfrac12\\Big[(-2)x^{-3}(2x^4-2x^2+1)^{1/2}+x^{-2}\\cdot\\tfrac12(2x^4-2x^2+1)^{-1/2}(8x^3-4x)\\Big]$.",
+          "Simplify the second term: $x^{-2}\\cdot\\tfrac12(8x^3-4x)=\\dfrac{8x^3-4x}{2x^2}=\\dfrac{4x^2-2}{x}$, so $y'=\\tfrac12\\Big[\\dfrac{-2(2x^4-2x^2+1)}{x^3\\sqrt{\\cdots}}+\\dfrac{4x^2-2}{x\\sqrt{\\cdots}}\\Big]$ where $\\sqrt{\\cdots}=\\sqrt{2x^4-2x^2+1}$.",
+          "Put over the common denominator $x^3\\sqrt{\\cdots}$: numerator $=-2(2x^4-2x^2+1)+(4x^2-2)x^2=-4x^4+4x^2-2+4x^4-2x^2=2x^2-2$.",
+          "Hence $y'=\\tfrac12\\cdot\\dfrac{2x^2-2}{x^3\\sqrt{2x^4-2x^2+1}}=\\dfrac{x^2-1}{x^3\\sqrt{2x^4-2x^2+1}}$, exactly the integrand.",
+          "Since differentiating (D) reproduces the integrand and the other options differ by a wrong power of $x$ (differentiating them fails to cancel), option (D) is confirmed."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q2. The signature move — dividing by the top power of $x$ so the radicand becomes a polynomial in $1/x^2$ whose derivative sits in the numerator — is the standard escape for $\\int\\frac{P(x)}{x^k\\sqrt{Q(x)}}dx$ integrals."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Does an antiderivative of $\\sin^2 x$ inherit its period?",
+    "difficulty": 3,
+    "task": "Decide the truth of both statements and pick the option.",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "55"
+    },
+    "tags": [
+      "indefinite integration",
+      "periodic functions",
+      "trigonometric integrals",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"20\" y1=\"170\" x2=\"305\" y2=\"170\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <line x1=\"30\" y1=\"20\" x2=\"30\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <text x=\"298\" y=\"185\" fill=\"var(--ink2)\">x</text>\n  <text x=\"12\" y=\"26\" fill=\"var(--ink2)\">y</text>\n  <path d=\"M30,170 Q52,140 74,145 Q96,150 118,120 Q140,90 162,95 Q184,100 206,70 Q228,40 250,45 Q272,50 294,20\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/>\n  <text x=\"196\" y=\"210\" fill=\"var(--gold)\">F(x)=\\tfrac12 x-\\tfrac14\\sin 2x</text>\n  <path d=\"M30,170 q11,-14 22,0 q11,14 22,0 q11,-14 22,0 q11,14 22,0 q11,-14 22,0 q11,14 22,0\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/>\n  <text x=\"150\" y=\"195\" fill=\"var(--ink2)\">sin^2 x (period π)</text>\n  <line x1=\"162\" y1=\"20\" x2=\"162\" y2=\"200\" stroke=\"var(--ink2)\" stroke-width=\"0.7\" stroke-dasharray=\"2 3\"/>\n  <text x=\"156\" y=\"16\" fill=\"var(--ink2)\">π</text>\n</svg>",
+    "statement": "Let $F(x)$ be an indefinite integral of $\\sin^2 x$.\n\n**STATEMENT-1:** The function $F(x)$ satisfies $F(x+\\pi)=F(x)$ for all real $x$.\n\n*because*\n\n**STATEMENT-2:** $\\sin^2(x+\\pi)=\\sin^2 x$ for all real $x$.\n\n(A) Statement-1 True, Statement-2 True; Statement-2 is a correct explanation for Statement-1\n\n(B) Statement-1 True, Statement-2 True; Statement-2 is NOT a correct explanation for Statement-1\n\n(C) Statement-1 True, Statement-2 False\n\n(D) Statement-1 False, Statement-2 True",
+    "answer": "$\\boxed{\\text{(D)}}$ — Statement-1 is False, Statement-2 is True.",
+    "trap": "The seductive (wrong) inference is: 'the integrand is $\\pi$-periodic, so its integral must be $\\pi$-periodic too.' But integrating a periodic function only preserves the period when the mean value over one period is zero. Here $\\sin^2 x$ has average $\\tfrac12>0$, so its antiderivative carries a linear drift $\\tfrac12 x$ and cannot repeat. Statement-2 is a true fact that simply does NOT imply Statement-1.",
+    "solutions": [
+      {
+        "name": "Compute $F(x)$ explicitly",
+        "steps": [
+          "Use the power-reduction identity $\\sin^2 x=\\dfrac{1-\\cos 2x}{2}$.",
+          "Integrate: $F(x)=\\displaystyle\\int\\sin^2 x\\,dx=\\frac12\\int(1-\\cos 2x)\\,dx=\\frac12\\left(x-\\frac{\\sin 2x}{2}\\right)+c=\\frac{x}{2}-\\frac{\\sin 2x}{4}+c$.",
+          "Now evaluate the shift: $F(x+\\pi)=\\dfrac{x+\\pi}{2}-\\dfrac{\\sin(2x+2\\pi)}{4}+c=\\dfrac{x}{2}+\\dfrac{\\pi}{2}-\\dfrac{\\sin 2x}{4}+c$, using $\\sin(2x+2\\pi)=\\sin 2x$.",
+          "Subtract: $F(x+\\pi)-F(x)=\\dfrac{\\pi}{2}\\neq 0$. So $F(x+\\pi)\\neq F(x)$ — Statement-1 is FALSE.",
+          "Statement-2: $\\sin^2(x+\\pi)=(\\sin(x+\\pi))^2=(-\\sin x)^2=\\sin^2 x$ — TRUE.",
+          "A true Statement-2 with a false Statement-1 is exactly option (D)."
+        ]
+      },
+      {
+        "name": "Mean-value / area argument (why periodicity of the integrand fails to transfer)",
+        "steps": [
+          "For any $x$, the Fundamental Theorem gives $F(x+\\pi)-F(x)=\\displaystyle\\int_{x}^{x+\\pi}\\sin^2 t\\,dt$.",
+          "Because $\\sin^2 t$ has period $\\pi$, the integral over ANY interval of length $\\pi$ is the same constant, namely $\\displaystyle\\int_{0}^{\\pi}\\sin^2 t\\,dt$.",
+          "Evaluate that constant: $\\displaystyle\\int_{0}^{\\pi}\\frac{1-\\cos 2t}{2}\\,dt=\\frac12\\Big[t-\\frac{\\sin 2t}{2}\\Big]_0^{\\pi}=\\frac{\\pi}{2}$.",
+          "So $F(x+\\pi)-F(x)=\\dfrac{\\pi}{2}$ for every $x$ — a fixed nonzero jump, never zero. Statement-1 is FALSE.",
+          "The lesson: $\\int f$ is periodic $\\iff$ $f$ is periodic AND $\\int_0^{T} f=0$ over one period. Here that mean is $\\tfrac{\\pi}{2}\\neq 0$, so the $\\pi$-periodicity of $\\sin^2 x$ (Statement-2, true) does not force Statement-1.",
+          "Hence Statement-2 true, Statement-1 false: option (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q55 (Assertion–Reason). Antiderivatives preserve a periodic integrand's period only when its average over one period vanishes — the nonzero mean $\\tfrac12$ of $\\sin^2 x$ injects a linear term $\\tfrac{x}{2}$ that breaks periodicity."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The $n$-fold composition $f\\circ f\\circ\\cdots\\circ f$",
+    "difficulty": 4,
+    "task": "Evaluate the integral.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "46"
+    },
+    "tags": [
+      "composition of functions",
+      "substitution",
+      "indefinite integration",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Let $f(x)=\\dfrac{x}{(1+x^n)^{1/n}}$ for $n\\ge 2$ and let $g(x)=\\underbrace{(f\\circ f\\circ\\cdots\\circ f)}_{f\\text{ occurs }n\\text{ times}}(x)$. Then $\\displaystyle\\int x^{n-2}\\,g(x)\\,dx$ equals\n\n(A) $\\dfrac{1}{n(n-1)}\\left(1+nx^n\\right)^{1-\\frac1n}+K$\n\n(B) $\\dfrac{1}{n-1}\\left(1+nx^n\\right)^{1-\\frac1n}+K$\n\n(C) $\\dfrac{1}{n(n+1)}\\left(1+nx^n\\right)^{1+\\frac1n}+K$\n\n(D) $\\dfrac{1}{n+1}\\left(1+nx^n\\right)^{1+\\frac1n}+K$",
+    "answer": "$\\boxed{\\text{(A)}}\\quad \\dfrac{1}{n(n-1)}\\left(1+nx^n\\right)^{1-\\frac1n}+K$",
+    "trap": "Students try to integrate $g$ before finding it in closed form, or they miscount the composition and use $(1+(n-1)x^n)$ or $(1+(n+1)x^n)$. The composition is applied $n$ times, so the additive count under the root is exactly $n$: $g(x)=x/(1+nx^n)^{1/n}$ — not $n-1$ or $n+1$.",
+    "solutions": [
+      {
+        "name": "Closed form of $g$ by induction, then substitution",
+        "steps": [
+          "First find the $k$-fold composition $f^{(k)}$. Claim: $f^{(k)}(x)=\\dfrac{x}{(1+k x^n)^{1/n}}$.",
+          "Base case $k=1$: $f^{(1)}(x)=f(x)=\\dfrac{x}{(1+x^n)^{1/n}}$, which matches with $k=1$.",
+          "Inductive step: assume $f^{(k)}(x)=\\dfrac{x}{(1+kx^n)^{1/n}}$. Then $f^{(k+1)}(x)=f\\!\\left(f^{(k)}(x)\\right)=\\dfrac{f^{(k)}}{\\left(1+\\left(f^{(k)}\\right)^n\\right)^{1/n}}$.",
+          "Compute $\\left(f^{(k)}\\right)^n=\\dfrac{x^n}{1+kx^n}$, so $1+\\left(f^{(k)}\\right)^n=\\dfrac{1+(k+1)x^n}{1+kx^n}$.",
+          "Hence $f^{(k+1)}(x)=\\dfrac{x/(1+kx^n)^{1/n}}{\\left(\\frac{1+(k+1)x^n}{1+kx^n}\\right)^{1/n}}=\\dfrac{x}{\\left(1+(k+1)x^n\\right)^{1/n}}$, completing the induction.",
+          "With $k=n$: $g(x)=f^{(n)}(x)=\\dfrac{x}{(1+nx^n)^{1/n}}$.",
+          "Now $\\displaystyle\\int x^{n-2}g(x)\\,dx=\\int\\dfrac{x^{n-2}\\cdot x}{(1+nx^n)^{1/n}}\\,dx=\\int\\dfrac{x^{n-1}}{(1+nx^n)^{1/n}}\\,dx$.",
+          "Substitute $u=1+nx^n$, so $du=n^2 x^{n-1}\\,dx$, i.e. $x^{n-1}\\,dx=\\dfrac{du}{n^2}$.",
+          "The integral becomes $\\dfrac{1}{n^2}\\displaystyle\\int u^{-1/n}\\,du=\\dfrac{1}{n^2}\\cdot\\dfrac{u^{1-1/n}}{1-\\frac1n}=\\dfrac{1}{n^2}\\cdot\\dfrac{n}{n-1}\\,u^{1-1/n}$.",
+          "Simplify: $=\\dfrac{1}{n(n-1)}\\left(1+nx^n\\right)^{1-\\frac1n}+K$, which is option (A)."
+        ]
+      },
+      {
+        "name": "Verify by differentiating each option (elimination)",
+        "steps": [
+          "Once $g(x)=\\dfrac{x}{(1+nx^n)^{1/n}}$ is known, the integrand is $h(x)=\\dfrac{x^{n-1}}{(1+nx^n)^{1/n}}$; the antiderivative must differentiate back to $h$.",
+          "Take the exponent shape $(1+nx^n)^{1-1/n}$ (options A, B). Differentiate: $\\dfrac{d}{dx}(1+nx^n)^{1-1/n}=\\left(1-\\tfrac1n\\right)(1+nx^n)^{-1/n}\\cdot n^2 x^{n-1}$.",
+          "That equals $\\dfrac{n-1}{n}\\cdot n^2\\,x^{n-1}(1+nx^n)^{-1/n}=n(n-1)\\,x^{n-1}(1+nx^n)^{-1/n}$.",
+          "To recover exactly $h(x)=x^{n-1}(1+nx^n)^{-1/n}$ we must multiply by $\\dfrac{1}{n(n-1)}$ — this is precisely option (A); option (B)'s coefficient $\\frac1{n-1}$ overshoots by a factor $n$.",
+          "The exponent $1+\\frac1n$ in options (C), (D) is wrong: differentiating $(1+nx^n)^{1+1/n}$ produces $(1+nx^n)^{+1/n}$, whose power of $(1+nx^n)$ is positive, so it can never reproduce the $(1+nx^n)^{-1/n}$ in $h$. Reject (C) and (D).",
+          "A quick sanity check with $n=2$: $g(x)=x/\\sqrt{1+2x^2}$, $\\int x^0 g\\,dx=\\int \\frac{x}{\\sqrt{1+2x^2}}dx=\\frac12\\sqrt{1+2x^2}$. Option (A) with $n=2$ gives $\\frac{1}{2\\cdot1}(1+2x^2)^{1/2}=\\frac12\\sqrt{1+2x^2}$ — exact match, confirming (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q46. The whole difficulty is disguised composition: the $n$-fold self-composition telescopes to a single clean formula, after which the integral is a one-line power substitution."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The difference $J-I$ of two exponential integrals",
+    "difficulty": 3,
+    "task": "Evaluate the difference of the two integrals.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "4"
+    },
+    "tags": [
+      "indefinite integration",
+      "substitution",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Let $I=\\displaystyle\\int\\frac{e^x}{e^{4x}+e^{2x}+1}\\,dx$ and $J=\\displaystyle\\int\\frac{e^{-x}}{e^{-4x}+e^{-2x}+1}\\,dx$. Then, for an arbitrary constant $C$, the value of $J-I$ equals\n\n(A) $\\dfrac{1}{2}\\log\\dfrac{e^{4x}-e^{2x}+1}{e^{4x}+e^{2x}+1}+C$\n\n(B) $\\dfrac{1}{2}\\log\\dfrac{e^{2x}+e^{x}+1}{e^{2x}-e^{x}+1}+C$\n\n(C) $\\dfrac{1}{2}\\log\\dfrac{e^{2x}-e^{x}+1}{e^{2x}+e^{x}+1}+C$\n\n(D) $\\dfrac{1}{2}\\log\\dfrac{e^{4x}+e^{2x}+1}{e^{4x}-e^{2x}+1}+C$",
+    "answer": "$\\boxed{\\text{(C)}}\\quad \\dfrac{1}{2}\\log\\dfrac{e^{2x}-e^{x}+1}{e^{2x}+e^{x}+1}+C$",
+    "trap": "Do NOT integrate $I$ and $J$ separately — each alone is genuinely messy. The elegance is that $J$'s integrand, after multiplying numerator and denominator by $e^{4x}$, has the SAME denominator as $I$, so $J-I$ collapses to one integrable expression. Also, the surviving quartic $z^4+z^2+1$ must be factored as $(z^2-z+1)(z^2+z+1)$ (not treated as irreducible), or the $z-1/z$ trick will be missed.",
+    "solutions": [
+      {
+        "name": "Common denominator, then the $z-\\tfrac1z$ substitution",
+        "steps": [
+          "Rewrite $J$ by multiplying numerator and denominator by $e^{4x}$: $J=\\displaystyle\\int\\frac{e^{-x}\\cdot e^{4x}}{(e^{-4x}+e^{-2x}+1)e^{4x}}\\,dx=\\int\\frac{e^{3x}}{1+e^{2x}+e^{4x}}\\,dx$.",
+          "Now both integrals share the denominator $e^{4x}+e^{2x}+1$, so $J-I=\\displaystyle\\int\\frac{e^{3x}-e^{x}}{e^{4x}+e^{2x}+1}\\,dx=\\int\\frac{e^{x}(e^{2x}-1)}{e^{4x}+e^{2x}+1}\\,dx$.",
+          "Substitute $z=e^{x}$, $dz=e^{x}\\,dx$: $J-I=\\displaystyle\\int\\frac{z^{2}-1}{z^{4}+z^{2}+1}\\,dz$.",
+          "Divide numerator and denominator by $z^2$: $\\displaystyle\\int\\frac{1-\\tfrac1{z^2}}{z^{2}+1+\\tfrac1{z^2}}\\,dz=\\int\\frac{1-\\tfrac1{z^2}}{\\left(z+\\tfrac1z\\right)^{2}-1}\\,dz$, since $z^2+\\tfrac1{z^2}=\\left(z+\\tfrac1z\\right)^2-2$.",
+          "Put $t=z+\\dfrac1z$, so $dt=\\left(1-\\tfrac1{z^2}\\right)dz$ — exactly the numerator. The integral becomes $\\displaystyle\\int\\frac{dt}{t^{2}-1}$.",
+          "Standard form: $\\displaystyle\\int\\frac{dt}{t^2-1}=\\frac12\\log\\left|\\frac{t-1}{t+1}\\right|+C$.",
+          "Back-substitute $t=z+\\tfrac1z=\\dfrac{z^2+1}{z}$: $\\dfrac{t-1}{t+1}=\\dfrac{z^2-z+1}{z^2+z+1}$.",
+          "Therefore $J-I=\\dfrac{1}{2}\\log\\dfrac{z^2-z+1}{z^2+z+1}+C=\\dfrac{1}{2}\\log\\dfrac{e^{2x}-e^{x}+1}{e^{2x}+e^{x}+1}+C$ — option (C)."
+        ]
+      },
+      {
+        "name": "Partial fractions after factoring the quartic",
+        "steps": [
+          "As above, reduce to $J-I=\\displaystyle\\int\\frac{z^2-1}{z^4+z^2+1}\\,dz$ with $z=e^x$.",
+          "Factor the denominator: $z^4+z^2+1=(z^2+1)^2-z^2=(z^2-z+1)(z^2+z+1)$.",
+          "Split the numerator to match: $z^2-1=\\tfrac12\\big[(z^2+z+1)-(z^2-z+1)\\big]\\cdot\\dfrac{?}{}$ — more cleanly, write $\\dfrac{z^2-1}{(z^2-z+1)(z^2+z+1)}=\\dfrac{Az+B}{z^2-z+1}+\\dfrac{Cz+D}{z^2+z+1}$.",
+          "Clearing denominators and matching coefficients gives $A=-\\tfrac12,\\;B=0,\\;C=\\tfrac12,\\;D=0$, so the integrand is $\\dfrac12\\left[\\dfrac{z}{z^2+z+1}-\\dfrac{z}{z^2-z+1}\\right]$.",
+          "For each piece write $z=\\tfrac12(2z\\pm1)\\mp\\tfrac12$; the derivative parts integrate to logs and the constant parts give $\\arctan$ terms that are equal in the two pieces and cancel in the difference.",
+          "Collecting the surviving logarithmic parts yields $\\dfrac14\\log\\dfrac{z^2+z+1}{z^2-z+1}\\cdot(-1)+\\dots=\\dfrac12\\log\\dfrac{z^2-z+1}{z^2+z+1}+C$.",
+          "Restoring $z=e^x$: $J-I=\\dfrac{1}{2}\\log\\dfrac{e^{2x}-e^{x}+1}{e^{2x}+e^{x}+1}+C$, confirming option (C).",
+          "Quick check that the sign/branch is right: the argument $\\dfrac{z^2-z+1}{z^2+z+1}<1$ for $z>0$, so the log is negative and $J-I$ decreases in $x$ near $x=0$, consistent with a direct numerical probe of the original integrands."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q4. The trick is structural, not computational: forming $J-I$ makes the denominators coincide, and the resulting $\\frac{z^2-1}{z^4+z^2+1}$ is the canonical $z-\\tfrac1z$ integral."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The $(\\sec x+\\tan x)$ Ladder",
+    "difficulty": 4,
+    "task": "Evaluate the integral and match the correct option.",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "48"
+    },
+    "tags": [
+      "substitution",
+      "trigonometric integrals",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "The integral $$\\int\\frac{\\sec^2 x}{(\\sec x+\\tan x)^{9/2}}\\,dx$$ equals (for some arbitrary constant $K$)\n\n(A) $-\\dfrac{1}{(\\sec x+\\tan x)^{11/2}}\\left\\{\\dfrac{1}{11}-\\dfrac{1}{7}(\\sec x+\\tan x)^2\\right\\}+K$\n\n(B) $\\dfrac{1}{(\\sec x+\\tan x)^{11/2}}\\left\\{\\dfrac{1}{11}-\\dfrac{1}{7}(\\sec x+\\tan x)^2\\right\\}+K$\n\n(C) $-\\dfrac{1}{(\\sec x+\\tan x)^{11/2}}\\left\\{\\dfrac{1}{11}+\\dfrac{1}{7}(\\sec x+\\tan x)^2\\right\\}+K$\n\n(D) $\\dfrac{1}{(\\sec x+\\tan x)^{11/2}}\\left\\{\\dfrac{1}{11}+\\dfrac{1}{7}(\\sec x+\\tan x)^2\\right\\}+K$",
+    "answer": "(C)",
+    "trap": "The natural instinct is to substitute $t=\\sec x+\\tan x$ and stop — but then you must re-express the *leftover* $\\sec x$ in the numerator purely in terms of $t$. Many students forget the clean identity $\\sec x=\\tfrac{1}{2}\\!\\left(t+\\tfrac1t\\right)$ (which follows from $(\\sec x-\\tan x)(\\sec x+\\tan x)=1$, i.e. $\\sec x-\\tan x=1/t$). Skip it and you cannot close the integral in one variable; a sign slip on the two split powers then flips you into option (A) or (D).",
+    "solutions": [
+      {
+        "name": "Substitution $t=\\sec x+\\tan x$",
+        "steps": [
+          "Let $t=\\sec x+\\tan x$. Then $dt=(\\sec x\\tan x+\\sec^2 x)\\,dx=\\sec x\\,(\\tan x+\\sec x)\\,dx=\\sec x\\cdot t\\,dx$, so $\\sec x\\,dx=\\dfrac{dt}{t}$.",
+          "Write the numerator as $\\sec^2 x\\,dx=\\sec x\\cdot(\\sec x\\,dx)=\\sec x\\cdot\\dfrac{dt}{t}$.",
+          "Use the conjugate identity: since $(\\sec x+\\tan x)(\\sec x-\\tan x)=\\sec^2 x-\\tan^2 x=1$, we get $\\sec x-\\tan x=\\dfrac1t$. Adding $\\sec x+\\tan x=t$ gives $2\\sec x=t+\\dfrac1t$, hence $\\sec x=\\dfrac{t^2+1}{2t}$.",
+          "Substitute everything: $$\\int\\frac{\\sec^2 x}{(\\sec x+\\tan x)^{9/2}}\\,dx=\\int\\frac{1}{t^{9/2}}\\cdot\\frac{t^2+1}{2t}\\cdot\\frac{dt}{t}=\\frac12\\int (t^2+1)\\,t^{-13/2}\\,dt.$$",
+          "Split and integrate: $\\dfrac12\\int\\!\\left(t^{-9/2}+t^{-13/2}\\right)dt=\\dfrac12\\!\\left(\\dfrac{t^{-7/2}}{-7/2}+\\dfrac{t^{-11/2}}{-11/2}\\right)+K=-\\dfrac{1}{7}t^{-7/2}-\\dfrac{1}{11}t^{-11/2}+K.$",
+          "Factor out $t^{-11/2}$: $\\;=-t^{-11/2}\\!\\left\\{\\dfrac{1}{11}+\\dfrac{1}{7}t^{2}\\right\\}+K=-\\dfrac{1}{(\\sec x+\\tan x)^{11/2}}\\left\\{\\dfrac{1}{11}+\\dfrac{1}{7}(\\sec x+\\tan x)^2\\right\\}+K.$",
+          "This is exactly option (C)."
+        ]
+      },
+      {
+        "name": "Verification by differentiating the options",
+        "steps": [
+          "Instead of integrating, differentiate the candidate answer and check it returns the integrand. Let $t=\\sec x+\\tan x$, so $\\dfrac{dt}{dx}=\\sec x\\,(\\sec x+\\tan x)=t\\sec x$.",
+          "Take (C): $F=-t^{-11/2}\\left(\\tfrac{1}{11}+\\tfrac17 t^2\\right)=-\\tfrac{1}{11}t^{-11/2}-\\tfrac17 t^{-7/2}$.",
+          "Differentiate w.r.t. $t$: $\\dfrac{dF}{dt}=-\\tfrac{1}{11}\\!\\left(-\\tfrac{11}{2}\\right)t^{-13/2}-\\tfrac17\\!\\left(-\\tfrac72\\right)t^{-9/2}=\\tfrac12 t^{-13/2}+\\tfrac12 t^{-9/2}=\\tfrac12 t^{-13/2}(1+t^2).$",
+          "Chain rule: $\\dfrac{dF}{dx}=\\dfrac{dF}{dt}\\cdot\\dfrac{dt}{dx}=\\tfrac12 t^{-13/2}(1+t^2)\\cdot t\\sec x=\\tfrac12 t^{-11/2}(1+t^2)\\sec x.$",
+          "Now $\\tfrac12(1+t^2)/t=\\tfrac12\\!\\left(t^{-1}+t\\right)\\cdot t/t\\cdots$ — more directly, recall $\\sec x=\\dfrac{t^2+1}{2t}$, so $\\tfrac12(1+t^2)=t\\sec x$. Substituting, $\\dfrac{dF}{dx}=t^{-11/2}\\cdot t\\sec x\\cdot\\sec x=t^{-9/2}\\sec^2 x=\\dfrac{\\sec^2 x}{(\\sec x+\\tan x)^{9/2}}.$",
+          "This reproduces the integrand exactly, confirming (C). (Options (A),(D) carry the wrong overall sign, and (B),(D) the wrong inner sign — differentiating any of them fails to return the integrand.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2012, Paper 1, Q48. The whole problem hinges on the identity $\\sec x=\\tfrac12\\!\\big((\\sec x+\\tan x)+\\tfrac{1}{\\sec x+\\tan x}\\big)$ — once the leftover $\\sec x$ is rewritten through the conjugate, the integral collapses into two clean power rules."
   }
 ];

@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['circle','parabola','ellipse','hyperbola','tangents','polepolar','generalconic','eccentricity','locus','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['circle','parabola','ellipse','hyperbola','tangents','polepolar','generalconic','eccentricity','locus','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     circle:       { glyph:'x²+y²', blurb:'The circle — its equation from centre and radius or three points, tangents and normals, the chord of contact, the family through two intersections, and the radical axis of two circles.' },
     parabola:     { glyph:'y²=4ax', blurb:'The parabola — the focal distance and focal chord, parametric points (at², 2at), tangents and normals, the reflection property, and the locus problems its definition forces.' },
@@ -17,6 +17,7 @@
     eccentricity: { glyph:'e', blurb:'The focus–directrix definition and eccentricity that unify the conics — focal distances, the latus rectum, directrices, and the e that decides which curve you have.' },
     locus:        { glyph:'P(t)', blurb:'Loci and parametric problems — the curve traced by a point built from a moving point on a conic, midpoints of chords, feet of perpendiculars, and optimisation.' },
     hybrid:       { glyph:'⊕', blurb:'The capstones: the four conics, the tangent–pole–polar machinery and the general equation fused into one problem that resists every single tool.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

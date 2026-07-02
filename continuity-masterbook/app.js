@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['pointcont','types','functionaleq','ivt','stepmod','sequential','parametric','evt','monotone','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['pointcont','types','functionaleq','ivt','stepmod','sequential','parametric','evt','monotone','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     pointcont:    { glyph:'f(a)',   blurb:'Continuity at a point, settled by the two-sided limit: f is continuous at a exactly when lim_{x→a} f(x) = f(a). Match the pieces of a function and locate every removable or essential break.' },
     types:        { glyph:'↯',      blurb:'Removable, jump, or essential? Every break has a name, and the two-sided limit is what decides it.' },
@@ -17,6 +17,7 @@
     evt:          { glyph:'max',    blurb:'On a closed interval a continuous function is bounded and reaches its peak. Open the interval and the guarantee dies.' },
     monotone:     { glyph:'↗',      blurb:'A monotone function can only jump, and only countably often; reverse a continuous bijection and continuity survives.' },
     hybrid:       { glyph:'⊕',      blurb:'The capstones: functional equations, the IVT and EVT, step functions and composites, fused into one resistant problem.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

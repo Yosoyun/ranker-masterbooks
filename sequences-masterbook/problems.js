@@ -3785,5 +3785,1174 @@ window.PROBLEMS = [
       }
     ],
     "remark": "**Insight.** Three ideas chain here: a **linear recurrence** collapses to a difference of two geometric terms, the extra factor $n$ promotes each geometric piece to an **arithmetico-geometric** series, and the AGP itself is summed by an index-shift that **telescopes** the weight into a plain GP. The decisive trap is treating the $n$ as decoration: $\\sum a_n=3$ but $\\sum n\\,a_n=\\tfrac{15}{2}$, because the weight $n$ is an \\textbf{arithmetic} factor, not a constant."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "When does the tail overtake? $b_n>a_n$",
+    "difficulty": 3,
+    "task": "Find the least such natural number.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "35"
+    },
+    "tags": [
+      "geometric series",
+      "inequality on partial sums",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "Let $$a_n=\\frac34-\\left(\\frac34\\right)^2+\\left(\\frac34\\right)^3-\\cdots+(-1)^{n-1}\\left(\\frac34\\right)^n$$ and let $b_n=1-a_n$. Find the minimum natural number $n_0$ such that $b_n>a_n$ for all $n\\ge n_0$.",
+    "answer": "$\\boxed{6}$",
+    "trap": "$a_n$ is a finite alternating GP, so its sign and value oscillate with $n$. Students who replace $a_n$ by its infinite-series limit $\\tfrac37$ (getting $b_n>a_n$ always) forget that for a partial sum the $(-\\tfrac34)^n$ term is not negligible — whether $b_n>a_n$ depends on the parity of $n$, and only for $n$ large enough does the inequality hold for every subsequent term.",
+    "solutions": [
+      {
+        "name": "Closed form of the finite alternating GP",
+        "steps": [
+          "The sum is a finite geometric series with first term $\\frac34$ and ratio $-\\frac34$, having $n$ terms: $$a_n=\\frac{\\frac34\\left(1-\\left(-\\frac34\\right)^n\\right)}{1-\\left(-\\frac34\\right)}=\\frac{\\frac34\\left(1-\\left(-\\frac34\\right)^n\\right)}{\\frac74}=\\frac37\\left(1-\\left(-\\tfrac34\\right)^n\\right).$$",
+          "Since $b_n=1-a_n$, the condition $b_n>a_n$ is $1-a_n>a_n$, i.e. $a_n<\\frac12$.",
+          "Substitute the closed form: $\\frac37\\left(1-\\left(-\\tfrac34\\right)^n\\right)<\\frac12$, i.e. $1-\\left(-\\tfrac34\\right)^n<\\frac76$, i.e. $\\left(-\\tfrac34\\right)^n>-\\frac16$.",
+          "When $n$ is even, $\\left(-\\tfrac34\\right)^n=\\left(\\tfrac34\\right)^n>0>-\\tfrac16$, so the inequality holds automatically for every even $n$.",
+          "When $n$ is odd, $\\left(-\\tfrac34\\right)^n=-\\left(\\tfrac34\\right)^n$, so we need $-\\left(\\tfrac34\\right)^n>-\\tfrac16$, i.e. $\\left(\\tfrac34\\right)^n<\\tfrac16$.",
+          "Check odd $n$: $\\left(\\tfrac34\\right)^5=\\tfrac{243}{1024}\\approx0.237>\\tfrac16$ fails, while $\\left(\\tfrac34\\right)^7=\\tfrac{2187}{16384}\\approx0.133<\\tfrac16$ holds. So $n=5$ is the last failing index (odd $n=5$ violates it).",
+          "Hence the inequality holds for all $n>5$, and $n=5$ itself fails; therefore the minimum $n_0$ with $b_n>a_n$ for every $n>n_0$ is $\\boxed{6}$."
+        ]
+      },
+      {
+        "name": "Term-by-term numerical scan",
+        "steps": [
+          "Recall the condition reduces to $a_n<\\tfrac12$, equivalently $\\left(-\\tfrac34\\right)^n>-\\tfrac16\\approx-0.1667$.",
+          "Tabulate $\\left(-\\tfrac34\\right)^n$: $n=1:-0.75$; $n=2:0.5625$; $n=3:-0.4219$; $n=4:0.3164$; $n=5:-0.2373$; $n=6:0.1780$; $n=7:-0.1335$.",
+          "Compare each odd entry to $-0.1667$: $n=1,3,5$ give $-0.75,-0.4219,-0.2373$, all $<-0.1667$, so those fail; the even entries are positive and always pass.",
+          "The first index from which every later term satisfies $\\left(-\\tfrac34\\right)^n>-0.1667$ is $n=6$: from $n=6$ on, odd terms are $-0.1335,\\ldots$ (all $>-0.1667$) and even terms stay positive.",
+          "Thus the last index that can violate the inequality is $n=5$, so $n_0=6$ is the smallest value guaranteeing $b_n>a_n$ for all $n>n_0$. $\\boxed{6}$"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q35. The whole difficulty hides in the parity of $n$: the infinite-sum intuition is right for even $n$ but the odd tail is what pins down $n_0=6$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Sum of the running sums: $\\sum V_r$",
+    "difficulty": 3,
+    "task": "Identify the correct closed form.",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "61"
+    },
+    "tags": [
+      "arithmetic progression",
+      "sum of series",
+      "summation formulas",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Let $V_r$ denote the sum of the first $r$ terms of an arithmetic progression (A.P.) whose first term is $r$ and whose common difference is $(2r-1)$. Let $T_r=V_{r+1}-V_r-2$ and $Q_r=T_{r+1}-T_r$ for $r=1,2,\\ldots$\n\nThe sum $V_1+V_2+\\cdots+V_n$ is\n\n(A) $\\dfrac{1}{12}n(n+1)(3n^2-n+1)$\n\n(B) $\\dfrac{1}{12}n(n+1)(3n^2+n+2)$\n\n(C) $\\dfrac{1}{2}n(2n^2-n+1)$\n\n(D) $\\dfrac{1}{3}(2n^3-2n+3)$",
+    "answer": "(B)",
+    "trap": "The A.P. defining $V_r$ has a first term ($r$) and a common difference ($2r-1$) that BOTH depend on the index $r$ — so $V_r$ is not a term of any single A.P., it is a cubic polynomial in $r$. Treating $r$ as fixed while applying the A.P. sum formula is correct, but forgetting that fact and trying to sum $V_r$ as a standard series in $r$ (rather than expanding to a cubic and using $\\sum r^3,\\sum r^2,\\sum r$) is where students go wrong.",
+    "solutions": [
+      {
+        "name": "Expand $V_r$ to a cubic, then apply power sums",
+        "steps": [
+          "For the inner A.P. with first term $r$ and common difference $(2r-1)$, the sum of its first $r$ terms is $$V_r=\\frac{r}{2}\\Big[2r+(r-1)(2r-1)\\Big].$$",
+          "Expand the bracket: $2r+(r-1)(2r-1)=2r+(2r^2-3r+1)=2r^2-r+1.$",
+          "Hence $V_r=\\frac{r}{2}(2r^2-r+1)=\\frac{1}{2}\\left(2r^3-r^2+r\\right).$",
+          "Sum over $r=1$ to $n$: $$\\sum_{r=1}^{n}V_r=\\frac12\\left(2\\sum r^3-\\sum r^2+\\sum r\\right).$$",
+          "Insert the standard power sums $\\sum r^3=\\frac{n^2(n+1)^2}{4}$, $\\sum r^2=\\frac{n(n+1)(2n+1)}{6}$, $\\sum r=\\frac{n(n+1)}{2}$: $$\\sum V_r=\\frac12\\left(\\frac{n^2(n+1)^2}{2}-\\frac{n(n+1)(2n+1)}{6}+\\frac{n(n+1)}{2}\\right).$$",
+          "Factor out $\\frac{n(n+1)}{2}$: $$\\sum V_r=\\frac{n(n+1)}{4}\\left(n(n+1)-\\frac{2n+1}{3}+1\\right)=\\frac{n(n+1)}{4}\\cdot\\frac{3n^2+3n-2n-1+3}{3}.$$",
+          "Simplify the numerator: $3n^2+n+2$, giving $$\\sum V_r=\\frac{n(n+1)}{12}\\left(3n^2+n+2\\right),$$ which is option (B)."
+        ]
+      },
+      {
+        "name": "Fit the cubic-in-$n$ by matching small cases",
+        "steps": [
+          "$\\sum_{r=1}^n V_r$ is a degree-4 polynomial in $n$ (since $V_r$ is cubic in $r$), so it is fully pinned down by a few values. Compute $V_r=\\frac12(2r^3-r^2+r)$: $V_1=1$, $V_2=7$, $V_3=24$, $V_4=58$.",
+          "Partial sums: $P_1=1$, $P_2=8$, $P_3=32$, $P_4=90$.",
+          "Test option (B) $\\frac{1}{12}n(n+1)(3n^2+n+2)$: at $n=1$, $\\frac{1}{12}(1)(2)(6)=1$ ✓; at $n=2$, $\\frac{1}{12}(2)(3)(16)=8$ ✓; at $n=3$, $\\frac{1}{12}(3)(4)(32)=32$ ✓; at $n=4$, $\\frac{1}{12}(4)(5)(58)=\\frac{1160}{12}\\cdot?$ — recompute: $3n^2+n+2=48+4+2=54$, so $\\frac{1}{12}(4)(5)(54)=90$ ✓.",
+          "Eliminate the others quickly at $n=2$: (A) $\\frac{1}{12}(2)(3)(3\\cdot4-2+1)=\\frac12\\cdot11=5.5\\ne8$; (C) $\\frac12(2)(2\\cdot4-2+1)=7\\ne8$; (D) $\\frac13(16-4+3)=5\\ne8$.",
+          "Only (B) reproduces all four partial sums, so $\\sum V_r=\\frac{1}{12}n(n+1)(3n^2+n+2)$ — option (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q61 (paragraph Q61–63). The key realisation is that an A.P. whose parameters depend on the outer index collapses to a plain cubic in $r$, after which everything is routine power-sum bookkeeping."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Nature of $T_r$",
+    "difficulty": 3,
+    "task": "Decide what kind of number $T_r$ always is.",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "62"
+    },
+    "tags": [
+      "arithmetic progression",
+      "general term",
+      "factorisation",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Let $V_r$ denote the sum of the first $r$ terms of an arithmetic progression whose first term is $r$ and whose common difference is $(2r-1)$. Define $T_r = V_{r+1} - V_r - 2$ and $Q_r = T_{r+1} - T_r$ for $r = 1, 2, \\ldots$\n\nThen $T_r$ is always\n\n(A) an odd number\n\n(B) an even number\n\n(C) a prime number\n\n(D) a composite number",
+    "answer": "(D)",
+    "trap": "The first term of an A.P. is the letter $r$, but the common difference $(2r-1)$ also depends on that same $r$ — so for each fixed $r$ you have a *different* A.P., and $V_r$ is a genuine cubic in $r$, not a linear term of one fixed progression. Students who treat $V_r$ as an ordinary A.P. sum with constant difference get the wrong polynomial. Also, $T_r=(r+1)(3r-1)$ is composite for every $r\\ge 1$, but one must confirm *both* factors exceed $1$ (at $r=1$ they are $2$ and $2$), otherwise a prime could slip through.",
+    "solutions": [
+      {
+        "name": "Direct sum formula for $V_r$",
+        "steps": [
+          "The $r$-th progression has first term $r$ and common difference $(2r-1)$, so its first-$r$-terms sum is $V_r=\\dfrac{r}{2}\\bigl[2r+(r-1)(2r-1)\\bigr]$.",
+          "Simplify the bracket: $2r+(r-1)(2r-1)=2r+(2r^2-3r+1)=2r^2-r+1$.",
+          "Hence $V_r=\\dfrac{r}{2}(2r^2-r+1)=\\dfrac{2r^3-r^2+r}{2}$.",
+          "Now compute $V_{r+1}-V_r=\\dfrac{1}{2}\\bigl[2(r+1)^3-(r+1)^2+(r+1)-(2r^3-r^2+r)\\bigr]$.",
+          "Expand: $2(r+1)^3=2r^3+6r^2+6r+2$ and $-(r+1)^2=-(r^2+2r+1)$ and $+(r+1)$. Collecting, the bracket equals $6r^2+4r+2$, so $V_{r+1}-V_r=3r^2+2r+1$.",
+          "Therefore $T_r=V_{r+1}-V_r-2=3r^2+2r-1$.",
+          "Factor the quadratic: $3r^2+2r-1=(3r-1)(r+1)$.",
+          "For every integer $r\\ge 1$ we have $r+1\\ge 2$ and $3r-1\\ge 2$, so $T_r$ is a product of two integers each at least $2$ — hence composite. Answer (D)."
+        ]
+      },
+      {
+        "name": "Telescoping interpretation of $V_{r+1}-V_r$",
+        "steps": [
+          "Instead of expanding the cubic, view $V_{r+1}-V_r$ as the difference of two whole progression-sums and evaluate a small case to fix the pattern.",
+          "Compute the first values directly: $V_1=1$ (single term $1$); $V_2$ uses first term $2$, difference $3$: $V_2=2+5=7$; $V_3$ uses first term $3$, difference $5$: $V_3=3+8+13=24$; $V_4$ uses first term $4$, difference $7$: $V_4=4+11+18+25=58$.",
+          "So $V_2-V_1=6$, $V_3-V_2=17$, $V_4-V_3=34$; subtracting $2$ gives $T_1=4$, $T_2=15$, $T_3=32$.",
+          "These match $3r^2+2r-1$ at $r=1,2,3$ (values $4,15,32$), confirming $T_r=3r^2+2r-1$ without algebraic expansion.",
+          "Read off the factorisation from the data: $T_1=4=2\\cdot2$, $T_2=15=3\\cdot5$, $T_3=32=4\\cdot8$ — in each case $T_r=(r+1)(3r-1)$, since $(2)(2),(3)(5),(4)(8)$ are exactly $(r+1)(3r-1)$.",
+          "Both factors are integers $\\ge 2$ for all $r\\ge1$, so $T_r$ is always composite — answer (D). (Note $T_2=15$ is odd and $T_1=4$ is even, so (A) and (B) are ruled out; $T_2=15$ is not prime, ruling out (C).)"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q62. The whole paragraph hinges on recognising that $V_r$ is a cubic in $r$; once $T_r=(r+1)(3r-1)$ is factored, compositeness is immediate and the odd/even/prime distractors collapse under a single small example."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Second Difference $Q_r$",
+    "difficulty": 3,
+    "task": "Identify the correct statement about the sequence $Q_r$.",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "63"
+    },
+    "tags": [
+      "arithmetic progression",
+      "difference sequence",
+      "common difference",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Let $V_r$ denote the sum of the first $r$ terms of an arithmetic progression whose first term is $r$ and whose common difference is $(2r-1)$. Define $T_r = V_{r+1} - V_r - 2$ and $Q_r = T_{r+1} - T_r$ for $r = 1, 2, \\ldots$\n\nWhich one of the following is a correct statement?\n\n(A) $Q_1, Q_2, Q_3, \\ldots$ are in A.P. with common difference $5$\n\n(B) $Q_1, Q_2, Q_3, \\ldots$ are in A.P. with common difference $6$\n\n(C) $Q_1, Q_2, Q_3, \\ldots$ are in A.P. with common difference $11$\n\n(D) $Q_1 = Q_2 = Q_3 = \\cdots$",
+    "answer": "(B)",
+    "trap": "Two traps stack here. First, $Q_r$ is the *first* difference of $T_r$, but because $T_r$ is quadratic, the tempting shortcut is to think its differences are constant (that only happens for the *second* difference of a quadratic) — so option (D) baits anyone who miscounts the degree. Second, having found $Q_r=6r+5$, one must read the common difference of the sequence $Q_r$ (which is $6$, the coefficient of $r$), not the leading constant $5$ or the value $Q_1=11$ — exactly the numbers planted in options (A) and (C).",
+    "solutions": [
+      {
+        "name": "From the closed form $T_r=3r^2+2r-1$",
+        "steps": [
+          "As in the companion problem, $V_{r+1}-V_r=3r^2+2r+1$, so $T_r=V_{r+1}-V_r-2=3r^2+2r-1$.",
+          "Then $Q_r=T_{r+1}-T_r=\\bigl[3(r+1)^2+2(r+1)-1\\bigr]-\\bigl[3r^2+2r-1\\bigr]$.",
+          "Expand the first bracket: $3(r^2+2r+1)+2r+2-1=3r^2+6r+3+2r+1=3r^2+8r+4$.",
+          "Subtract: $Q_r=(3r^2+8r+4)-(3r^2+2r-1)=6r+5$.",
+          "So $Q_r=6r+5$ is linear in $r$; its successive terms $Q_1=11,\\ Q_2=17,\\ Q_3=23,\\ldots$ form an A.P.",
+          "The common difference is $Q_{r+1}-Q_r=6(r+1)+5-(6r+5)=6$. Hence (B)."
+        ]
+      },
+      {
+        "name": "Finite-difference bookkeeping",
+        "steps": [
+          "For any quadratic $T_r=Ar^2+Br+C$, the first difference $T_{r+1}-T_r$ is linear with leading coefficient $2A$ and the sequence of these first differences has constant common difference equal to $2A$ as well.",
+          "Here $T_r=3r^2+2r-1$, so $A=3$; therefore the difference sequence $Q_r$ is an A.P. whose common difference is $2A=6$ — immediately giving (B) without expanding.",
+          "To confirm and to kill the distractors, tabulate: $T_1=4,\\ T_2=15,\\ T_3=32,\\ T_4=55$.",
+          "First differences: $Q_1=15-4=11,\\ Q_2=32-15=17,\\ Q_3=55-32=23$.",
+          "Successive gaps: $17-11=6$ and $23-17=6$, a constant $6$ — so the $Q_r$ are in A.P. with common difference $6$.",
+          "Note $Q_1=11$ (the number in option C) is merely the first *term*, and $5$ (option A) is only the constant in $Q_r=6r+5$; neither is the common difference. And $Q_r$ is plainly not constant, ruling out (D). Answer (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q63. A clean finite-difference fact does all the work: the first difference of a quadratic $Ar^2+Br+C$ is an A.P. with common difference $2A$, so the answer $6=2\\cdot3$ is visible straight from the leading coefficient of $T_r$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Geometric Mean That Never Moves",
+    "difficulty": 3,
+    "task": "Determine how the sequence of geometric means behaves.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "61"
+    },
+    "tags": [
+      "AM-GM-HM",
+      "iterated means",
+      "geometric mean invariance",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Let $A_1, G_1, H_1$ denote the arithmetic, geometric and harmonic means, respectively, of two distinct positive numbers. For $n \\ge 2$, let $A_{n-1}$ and $H_{n-1}$ have arithmetic, geometric and harmonic means as $A_n, G_n, H_n$ respectively. Which one of the following statements is correct?\n\n(A) $G_1 > G_2 > G_3 > \\cdots$\n(B) $G_1 < G_2 < G_3 < \\cdots$\n(C) $G_1 = G_2 = G_3 = \\cdots$\n(D) $G_1 < G_3 < G_5 < \\cdots$ and $G_2 > G_4 > G_6 > \\cdots$",
+    "answer": "(C)",
+    "trap": "Students see $A_n$ strictly falling and $H_n$ strictly rising and reflexively assume $G_n$, sandwiched between them, must also change. But the geometric mean depends only on the product $A_{n-1}H_{n-1}$, which is an invariant of the iteration — the shrinking gap has no bearing on it.",
+    "solutions": [
+      {
+        "name": "The invariant product $A_{n-1}H_{n-1}$",
+        "steps": [
+          "Start with two distinct positives $a,b$. Their AM and HM are $A_1=\\dfrac{a+b}{2}$ and $H_1=\\dfrac{2ab}{a+b}$.",
+          "The key identity: for any two numbers, (arithmetic mean) $\\times$ (harmonic mean) $=$ (geometric mean)$^2$. Indeed $A_1H_1=\\dfrac{a+b}{2}\\cdot\\dfrac{2ab}{a+b}=ab$.",
+          "Now $G_n$ is the geometric mean of the two numbers $A_{n-1},H_{n-1}$, so $G_n=\\sqrt{A_{n-1}H_{n-1}}$.",
+          "But at every stage $A_{n-1}H_{n-1}$ equals the product of the two numbers that produced them. That product is conserved: the AM and HM of $x,y$ multiply back to $xy$, so $A_{n-1}H_{n-1}=A_{n-2}H_{n-2}=\\cdots=A_1H_1=ab$.",
+          "Therefore $G_n=\\sqrt{ab}$ for every $n$, independent of $n$. Hence $G_1=G_2=G_3=\\cdots=\\sqrt{ab}$, which is exactly $G_1$, the geometric mean of the original pair.",
+          "The correct option is $(C)$."
+        ]
+      },
+      {
+        "name": "Direct check by conserved geometric mean",
+        "steps": [
+          "Define $P_n=A_nH_n$, the product of the two numbers carried into the next stage.",
+          "Compute $P_n$ in terms of $A_{n-1},H_{n-1}$: $A_n=\\dfrac{A_{n-1}+H_{n-1}}{2}$ and $H_n=\\dfrac{2A_{n-1}H_{n-1}}{A_{n-1}+H_{n-1}}$.",
+          "Multiplying, $A_nH_n=\\dfrac{A_{n-1}+H_{n-1}}{2}\\cdot\\dfrac{2A_{n-1}H_{n-1}}{A_{n-1}+H_{n-1}}=A_{n-1}H_{n-1}$. So $P_n=P_{n-1}$: the product is a fixed point of the map.",
+          "Since $G_{n}=\\sqrt{A_{n-1}H_{n-1}}=\\sqrt{P_{n-1}}$ and every $P_k=ab$, each $G_n=\\sqrt{ab}$.",
+          "Concretely take $a=1,b=4$: $A_1=2.5,\\ H_1=1.6,\\ G_1=2$. Next $A_2=2.05,\\ H_2=\\dfrac{2(2.5)(1.6)}{4.1}=1.9512\\ldots,\\ G_2=\\sqrt{2.5\\cdot1.6}=2$. The means $A_n$ fall toward $2$ and $H_n$ rise toward $2$, but $G_n$ sits fixed at $2$ throughout.",
+          "Thus $G_1=G_2=G_3=\\cdots$, option $(C)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q61. The geometric mean is the conserved quantity of the AM–HM iteration: $A_n$ and $H_n$ both converge to $\\sqrt{ab}$ precisely because their product is pinned there from the first step."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Arithmetic Means Marching Downhill",
+    "difficulty": 3,
+    "task": "Decide the monotonic behaviour of the arithmetic means.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "62"
+    },
+    "tags": [
+      "AM-GM-HM inequality",
+      "iterated means",
+      "monotone sequence",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"40\" y1=\"185\" x2=\"300\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/>\n  <line x1=\"40\" y1=\"185\" x2=\"40\" y2=\"20\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/>\n  <text x=\"300\" y=\"200\" fill=\"var(--ink2)\" text-anchor=\"end\">n</text>\n  <text x=\"18\" y=\"28\" fill=\"var(--ink2)\">value</text>\n  <line x1=\"40\" y1=\"105\" x2=\"300\" y2=\"105\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/>\n  <text x=\"304\" y=\"109\" fill=\"var(--ink2)\">√(ab)</text>\n  <circle cx=\"70\" cy=\"40\" r=\"3.5\" fill=\"var(--gold)\"/>\n  <circle cx=\"130\" cy=\"72\" r=\"3.5\" fill=\"var(--gold)\"/>\n  <circle cx=\"190\" cy=\"90\" r=\"3.5\" fill=\"var(--gold)\"/>\n  <circle cx=\"250\" cy=\"99\" r=\"3.5\" fill=\"var(--gold)\"/>\n  <polyline points=\"70,40 130,72 190,90 250,99\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/>\n  <text x=\"70\" y=\"32\" fill=\"var(--ink2)\" text-anchor=\"middle\">A₁</text>\n  <text x=\"130\" y=\"64\" fill=\"var(--ink2)\" text-anchor=\"middle\">A₂</text>\n  <text x=\"190\" y=\"82\" fill=\"var(--ink2)\" text-anchor=\"middle\">A₃</text>\n  <text x=\"250\" y=\"91\" fill=\"var(--ink2)\" text-anchor=\"middle\">A₄</text>\n  <circle cx=\"70\" cy=\"170\" r=\"3.5\" stroke=\"var(--ink3)\" fill=\"none\" stroke-width=\"1.3\"/>\n  <circle cx=\"130\" cy=\"138\" r=\"3.5\" stroke=\"var(--ink3)\" fill=\"none\" stroke-width=\"1.3\"/>\n  <circle cx=\"190\" cy=\"120\" r=\"3.5\" stroke=\"var(--ink3)\" fill=\"none\" stroke-width=\"1.3\"/>\n  <circle cx=\"250\" cy=\"111\" r=\"3.5\" stroke=\"var(--ink3)\" fill=\"none\" stroke-width=\"1.3\"/>\n  <polyline points=\"70,170 130,138 190,120 250,111\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.3\" stroke-dasharray=\"3 2\"/>\n  <text x=\"70\" y=\"183\" fill=\"var(--ink2)\" text-anchor=\"middle\">H₁</text>\n</svg>",
+    "statement": "Let $A_1, G_1, H_1$ denote the arithmetic, geometric and harmonic means of two distinct positive numbers. For $n \\ge 2$, let $A_{n-1}$ and $H_{n-1}$ have arithmetic, geometric and harmonic means as $A_n, G_n, H_n$ respectively. Which of the following statements is correct?\n\n(A) $A_1 > A_2 > A_3 > \\cdots$\n(B) $A_1 < A_2 < A_3 < \\cdots$\n(C) $A_1 > A_3 > A_5 > \\cdots$ and $A_2 < A_4 < A_6 < \\cdots$\n(D) $A_1 < A_3 < A_5 < \\cdots$ and $A_2 > A_4 > A_6 > \\cdots$",
+    "answer": "(A)",
+    "trap": "The tempting mistake is to expect the sequence to oscillate — options (C) and (D) dangle an alternating pattern. But because every new $A_n$ is the AM of a strictly larger and a strictly smaller number, it lands strictly between them; there is no overshoot, so the sequence is monotone (decreasing), not oscillating.",
+    "solutions": [
+      {
+        "name": "AM lies between its two inputs",
+        "steps": [
+          "For two distinct positives $x>y>0$, the AM–GM–HM chain gives $x>\\dfrac{x+y}{2}>\\sqrt{xy}>\\dfrac{2xy}{x+y}>y$; in particular the arithmetic mean of $x,y$ lies strictly between $y$ and $x$.",
+          "Apply this with $x=A_{n-1}$ and $y=H_{n-1}$. Since means of distinct numbers keep $A_{n-1}>H_{n-1}$ at every stage (AM $>$ HM strictly for distinct inputs), we have two distinct numbers with $A_{n-1}>H_{n-1}$.",
+          "Then $A_n=\\dfrac{A_{n-1}+H_{n-1}}{2}$ satisfies $H_{n-1}<A_n<A_{n-1}$.",
+          "The upper bound $A_n<A_{n-1}$ holds for every $n\\ge 2$, so the sequence $A_1,A_2,A_3,\\ldots$ is strictly decreasing.",
+          "Hence $A_1>A_2>A_3>\\cdots$, which is option $(A)$. (There is no alternation, ruling out (C) and (D); it is not increasing, ruling out (B).)"
+        ]
+      },
+      {
+        "name": "Bounded-below monotone descent to $\\sqrt{ab}$",
+        "steps": [
+          "From solution 1, $A_n=\\dfrac{A_{n-1}+H_{n-1}}{2}<A_{n-1}$, so the sequence decreases. It is bounded below by $G_n=\\sqrt{ab}$ (the conserved geometric mean, since $A_nH_n=ab$ and AM $\\ge$ GM gives $A_n\\ge\\sqrt{A_nH_n}=\\sqrt{ab}$).",
+          "A decreasing sequence bounded below converges; each term still strictly exceeds the next while the two inputs stay distinct, so the descent is strict, never flat and never reversing.",
+          "Numerical illustration with $a=1,b=4$: $A_1=2.5$, then $A_2=\\dfrac{2.5+1.6}{2}=2.05$, $A_3=\\dfrac{2.05+H_2}{2}$ with $H_2=\\dfrac{2(2.5)(1.6)}{4.1}=1.9512$, giving $A_3=2.0006$. The values $2.5>2.05>2.0006>\\cdots$ fall steadily toward $\\sqrt{4}=2$.",
+          "This monotone strictly-decreasing behaviour matches option $(A)$ exactly and excludes the oscillating options."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q62. Because each $A_n$ is an average of a bigger and a smaller value, it cannot overshoot — the sequence descends monotonically to $\\sqrt{ab}$, meeting the rising $H_n$ there (companion to Q61's fixed $G_n$ and Q63's rising $H_n$)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The harmonic means climb: $H_1<H_2<H_3<\\cdots$",
+    "difficulty": 3,
+    "task": "Identify the correct ordering of the harmonic-mean sequence.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "63"
+    },
+    "tags": [
+      "AM-GM-HM inequality",
+      "iterated means",
+      "monotone sequence",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"180\" x2=\"300\" y2=\"180\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><text x=\"150\" y=\"200\" fill=\"var(--ink2)\">value on the number line</text><line x1=\"70\" y1=\"175\" x2=\"70\" y2=\"185\" stroke=\"var(--ink3)\"/><text x=\"52\" y=\"170\" fill=\"var(--ink2)\">$H_1$</text><line x1=\"110\" y1=\"175\" x2=\"110\" y2=\"185\" stroke=\"var(--ink2)\"/><text x=\"96\" y=\"170\" fill=\"var(--ink2)\">$H_2$</text><line x1=\"135\" y1=\"175\" x2=\"135\" y2=\"185\" stroke=\"var(--ink2)\"/><text x=\"123\" y=\"170\" fill=\"var(--ink2)\">$H_3$</text><line x1=\"200\" y1=\"175\" x2=\"200\" y2=\"185\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/><text x=\"178\" y=\"170\" fill=\"var(--gold)\">$G=\\sqrt{ab}$</text><line x1=\"260\" y1=\"175\" x2=\"260\" y2=\"185\" stroke=\"var(--ink3)\"/><text x=\"246\" y=\"170\" fill=\"var(--ink2)\">$A_1$</text><path d=\"M70 150 Q90 135 110 150\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><path d=\"M110 150 Q122 140 135 150\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><text x=\"70\" y=\"128\" fill=\"var(--ink2)\">$H_n$ rises, squeezed up toward $G$</text><line x1=\"200\" y1=\"120\" x2=\"200\" y2=\"178\" stroke=\"var(--gold)\" stroke-width=\"0.8\" stroke-dasharray=\"3 3\"/></svg>",
+    "statement": "Let $A_1,\\,G_1,\\,H_1$ denote the arithmetic, geometric and harmonic means of two distinct positive numbers. For $n\\ge 2$, let $A_{n-1}$ and $H_{n-1}$ have arithmetic, geometric and harmonic means $A_n,\\,G_n,\\,H_n$ respectively. Which of the following statements is correct? $$\\text{(A) } H_1>H_2>H_3>\\cdots \\qquad \\text{(B) } H_1<H_2<H_3<\\cdots$$ $$\\text{(C) } H_1>H_3>H_5>\\cdots \\text{ and } H_2<H_4<H_6<\\cdots$$ $$\\text{(D) } H_1<H_3<H_5<\\cdots \\text{ and } H_2>H_4>H_6>\\cdots$$",
+    "answer": "$\\boxed{\\text{(B)}}$",
+    "trap": "Students correctly see that the AM-sequence $A_n$ decreases and reflexively assume the HM-sequence must do the same — or must oscillate. But $H_n$ is the HM of the two \\emph{previous} means, and it is trapped strictly between them from below, so it rises monotonically. The two extreme sequences move toward each other, not in the same direction; both are strictly monotone, never alternating.",
+    "solutions": [
+      {
+        "name": "Sandwich each new mean between the old two",
+        "steps": [
+          "Start from two distinct positives, so the initial three means are strictly ordered by the AM–GM–HM inequality: $A_1>G_1>H_1$.",
+          "At every stage the new pair is $(A_{n-1},H_{n-1})$ with $A_{n-1}>H_{n-1}$. Its harmonic mean satisfies the universal fact $\\min<\\text{HM}<\\max$ for two distinct numbers, i.e. $H_{n-1}<H_n<A_{n-1}$.",
+          "The left half of this chain, $H_{n-1}<H_n$, holds for every $n\\ge 2$. Hence $H_1<H_2<H_3<\\cdots$ — the sequence is strictly increasing.",
+          "This immediately rules out (A) (decreasing), (C) and (D) (alternating), leaving only (B)."
+        ]
+      },
+      {
+        "name": "Invariant product forces convergence to $G=\\sqrt{ab}$ from below",
+        "steps": [
+          "Key invariant: for any two positives $u,v$, their AM and HM satisfy $\\big(\\tfrac{u+v}{2}\\big)\\big(\\tfrac{2uv}{u+v}\\big)=uv$. So $A_nH_n=A_{n-1}H_{n-1}=\\cdots=A_1H_1=ab$, the product is conserved at every step.",
+          "Therefore the geometric mean is frozen: $G_n=\\sqrt{A_{n-1}H_{n-1}}=\\sqrt{ab}$ for all $n$ — the common limit.",
+          "Since $H_n=G_n^2/A_n=ab/A_n$ and (by Solution 1's other half) $A_n$ is strictly decreasing toward $\\sqrt{ab}$, the quotient $ab/A_n$ is strictly increasing toward $\\sqrt{ab}$.",
+          "Thus $H_1<H_2<H_3<\\cdots\\to\\sqrt{ab}$, confirming (B); the harmonic means approach the invariant geometric mean from below while the arithmetic means approach it from above."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q63. The whole paragraph turns on one invariant — AM·HM = product — which pins $G_n$ and makes the outer two sequences a monotone squeeze onto $\\sqrt{ab}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Partial sums of a GP: neither AP, GP, nor HP",
+    "difficulty": 3,
+    "task": "Decide the truth of both statements and pick the option.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "12"
+    },
+    "tags": [
+      "geometric progression",
+      "AP GP HP",
+      "partial sums",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Suppose four distinct positive numbers $a_1,a_2,a_3,a_4$ are in G.P. Let $b_1=a_1$, $b_2=b_1+a_2$, $b_3=b_2+a_3$ and $b_4=b_3+a_4$.\n\n$\\textbf{STATEMENT-1:}$ The numbers $b_1,b_2,b_3,b_4$ are neither in A.P. nor in G.P.\n\n$\\textbf{STATEMENT-2:}$ The numbers $b_1,b_2,b_3,b_4$ are in H.P.\n\n(A) STATEMENT-1 is True, STATEMENT-2 is True; STATEMENT-2 is a correct explanation for STATEMENT-1\n\n(B) STATEMENT-1 is True, STATEMENT-2 is True; STATEMENT-2 is NOT a correct explanation for STATEMENT-1\n\n(C) STATEMENT-1 is True, STATEMENT-2 is False\n\n(D) STATEMENT-1 is False, STATEMENT-2 is True",
+    "answer": "$\\boxed{\\text{(C)}}$",
+    "trap": "The $b_i$ are the partial sums of a GP, so it is tempting to think their common structure makes them fall into some standard progression. In fact they are neither AP nor GP nor HP for a genuine GP ($r\\ne 1$). The lethal move is to 'verify' HP on a degenerate example (e.g. secretly using $r=1$, which makes the numbers equal and violates the 'distinct' hypothesis). Statement-2 is simply false.",
+    "solutions": [
+      {
+        "name": "Write the partial sums and test each progression",
+        "steps": [
+          "Let $a_1=a$ and common ratio $r$ (with $a>0$, $r>0$, $r\\ne 1$ so the four terms are distinct). Then $b_1=a$, $b_2=a(1+r)$, $b_3=a(1+r+r^2)$, $b_4=a(1+r+r^2+r^3)$.",
+          "AP test — consecutive differences are $b_2-b_1=ar$, $b_3-b_2=ar^2$, $b_4-b_3=ar^3$. These are equal only if $r=r^2=r^3$, i.e. $r=1$, which is excluded. So the $b_i$ are NOT in AP.",
+          "GP test — consecutive ratios are $\\dfrac{b_2}{b_1}=1+r$, $\\dfrac{b_3}{b_2}=\\dfrac{1+r+r^2}{1+r}$. Equality needs $(1+r)^2=1+r+r^2$, i.e. $1+2r+r^2=1+r+r^2\\Rightarrow r=0$, impossible for a GP. So the $b_i$ are NOT in GP. Hence STATEMENT-1 is TRUE.",
+          "HP test — $b_1,b_2,b_3$ are in HP iff their reciprocals are in AP, i.e. $\\dfrac{2}{b_2}=\\dfrac{1}{b_1}+\\dfrac{1}{b_3}$. Reciprocals of $a,\\,a(1+r),\\,a(1+r+r^2)$ are in AP only for special $r$, and never together with the fourth reciprocal being consistent; a concrete check with $a=1,r=2$ gives $b_i=1,3,7,15$ whose reciprocals $1,\\tfrac13,\\tfrac17,\\tfrac1{15}$ are not in AP ($\\tfrac13-1\\ne\\tfrac17-\\tfrac13$). So STATEMENT-2 is FALSE.",
+          "STATEMENT-1 True, STATEMENT-2 False $\\Rightarrow$ option (C)."
+        ]
+      },
+      {
+        "name": "Concrete counterexample kills HP outright",
+        "steps": [
+          "Take the specific distinct GP $a_i=1,2,4,8$ (i.e. $a=1,r=2$).",
+          "Partial sums: $b_1=1,\\ b_2=3,\\ b_3=7,\\ b_4=15$.",
+          "Differences $2,4,8$ are unequal — not an AP. Ratios $3,\\tfrac73,\\tfrac{15}{7}$ are unequal — not a GP. So STATEMENT-1 is verified TRUE on this example, consistent with the general proof.",
+          "Reciprocals $1,\\tfrac13,\\tfrac17,\\tfrac1{15}$: successive differences are $-\\tfrac23,\\,-\\tfrac{4}{21},\\,-\\tfrac{8}{105}$, which are not equal, so the reciprocals are NOT in AP — hence $b_i$ are NOT in HP. STATEMENT-2 is FALSE.",
+          "A single valid instance suffices to refute the universal claim of STATEMENT-2, so the answer is (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q12. Partial sums of a nonconstant GP break every classical progression at once — the elegant trap is that 'looks structured' does not mean 'is AP/GP/HP', and the distinctness clause quietly forbids the only $r$ that would rescue Statement-2."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A hundred geometric series, one telescope",
+    "difficulty": 5,
+    "task": "Find the value of the expression.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "54"
+    },
+    "tags": [
+      "infinite geometric series",
+      "factorials",
+      "telescoping sum",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Let $S_k$, for $k=1,2,\\dots,100$, denote the sum of the infinite geometric series whose first term is $\\dfrac{k-1}{k!}$ and whose common ratio is $\\dfrac{1}{k}$. Then find the value of\n$$\\frac{100^2}{100!}+\\sum_{k=1}^{100}\\left|(k^2-3k+1)\\,S_k\\right|.$$",
+    "answer": "$\\boxed{3}$",
+    "trap": "The absolute value bars are not decoration. Once you simplify $S_k=\\dfrac{1}{(k-1)!}$ the quantity $(k^2-3k+1)S_k$ is positive for every $k\\ge 3$ but is negative exactly at $k=2$ (where it equals $-1$). If you drop the modulus and just telescope, the $k=2$ term cancels part of the chain and you land on $1$ instead of $3$. The whole difficulty of this problem lives in that single sign flip.",
+    "solutions": [
+      {
+        "name": "Sum the series, then telescope $(k^2-3k+1)=(k-1)(k-2)-1$",
+        "steps": [
+          "First evaluate $S_k$. It is an infinite GP with first term $\\dfrac{k-1}{k!}$ and ratio $\\dfrac{1}{k}$ (with $|1/k|<1$ for $k\\ge 2$), so $S_k=\\dfrac{(k-1)/k!}{1-1/k}=\\dfrac{(k-1)/k!}{(k-1)/k}=\\dfrac{k}{k!}=\\dfrac{1}{(k-1)!}$ for $k\\ge 2$.",
+          "For $k=1$ the first term is $\\dfrac{1-1}{1!}=0$, so $S_1=0$ and the $k=1$ summand contributes nothing.",
+          "Now write the algebraic factor as $k^2-3k+1=(k-1)(k-2)-1$. Hence for $k\\ge 2$, $(k^2-3k+1)S_k=\\dfrac{(k-1)(k-2)}{(k-1)!}-\\dfrac{1}{(k-1)!}=\\dfrac{k-2}{(k-2)!}-\\dfrac{1}{(k-1)!}.$",
+          "For $k\\ge 3$ this is $\\dfrac{1}{(k-3)!}-\\dfrac{1}{(k-1)!}$, which is positive, so the modulus does nothing there. At $k=2$ the value is $\\dfrac{0}{0!}-\\dfrac{1}{1!}=-1$, so $\\bigl|(k^2-3k+1)S_2\\bigr|=1$.",
+          "Split the sum: $\\displaystyle\\sum_{k=1}^{100}\\bigl|(k^2-3k+1)S_k\\bigr|=0+1+\\sum_{k=3}^{100}\\left(\\frac{1}{(k-3)!}-\\frac{1}{(k-1)!}\\right).$",
+          "The remaining sum telescopes in steps of two indices: $\\displaystyle\\sum_{k=3}^{100}\\frac{1}{(k-3)!}=\\sum_{j=0}^{97}\\frac{1}{j!}$ and $\\displaystyle\\sum_{k=3}^{100}\\frac{1}{(k-1)!}=\\sum_{j=2}^{99}\\frac{1}{j!}$. Subtracting cancels every common term, leaving the two smallest heads minus the two largest tails: $\\dfrac{1}{0!}+\\dfrac{1}{1!}-\\dfrac{1}{98!}-\\dfrac{1}{99!}=2-\\dfrac{1}{98!}-\\dfrac{1}{99!}.$",
+          "So the sum of the moduli is $1+2-\\dfrac{1}{98!}-\\dfrac{1}{99!}=3-\\dfrac{1}{98!}-\\dfrac{1}{99!}.$",
+          "Finally add the dangling term. Since $\\dfrac{1}{98!}+\\dfrac{1}{99!}=\\dfrac{99+1}{99!}=\\dfrac{100}{99!}=\\dfrac{100^2}{100!}$, the leftover exactly cancels the added $\\dfrac{100^2}{100!}$. Total $=3.$"
+        ]
+      },
+      {
+        "name": "Direct partial-fraction telescope of $\\dfrac{k^2-3k+1}{(k-1)!}$",
+        "steps": [
+          "As above, $S_k=\\dfrac{1}{(k-1)!}$ for $k\\ge 2$ and $S_1=0$, so the general nonzero summand is $u_k=\\dfrac{k^2-3k+1}{(k-1)!}$.",
+          "Seek constants making $u_k$ a difference of consecutive factorial reciprocals. Try $u_k=\\dfrac{A}{(k-1)!}+\\dfrac{B}{(k-2)!}+\\dfrac{C}{(k-3)!}$; clearing to a common denominator $(k-1)!$ gives $k^2-3k+1=A+B(k-1)+C(k-1)(k-2)$.",
+          "Matching coefficients: $C=1$ (from $k^2$); $B-3C=-3\\Rightarrow B=0$; $A-B+2C=1\\Rightarrow A=-1$. Thus $u_k=\\dfrac{1}{(k-3)!}-\\dfrac{1}{(k-1)!}$ for $k\\ge 3$, confirming the earlier decomposition.",
+          "Because $u_k>0$ for $k\\ge 3$, $u_1=0$, and only $u_2=-1$ is negative, taking absolute values changes only the $k=2$ term: $|u_2|=1$ instead of $-1$.",
+          "Sum the telescope $\\displaystyle\\sum_{k=3}^{100}u_k$. Writing out the two chains, the $\\dfrac{1}{(k-3)!}$ chain contributes the heads $\\dfrac{1}{0!}+\\dfrac{1}{1!}=2$ that are never cancelled, while the surviving tails are $-\\dfrac{1}{98!}-\\dfrac{1}{99!}$. Hence $\\displaystyle\\sum_{k=3}^{100}u_k=2-\\dfrac{100^2}{100!}$ (using $\\dfrac{1}{98!}+\\dfrac{1}{99!}=\\dfrac{100^2}{100!}$).",
+          "Assemble everything with the modulus fix: $\\displaystyle\\sum_{k=1}^{100}|u_k|=\\underbrace{0}_{k=1}+\\underbrace{1}_{k=2}+\\left(2-\\frac{100^2}{100!}\\right)=3-\\frac{100^2}{100!}.$",
+          "Add the prefix $\\dfrac{100^2}{100!}$ from the problem statement; it cancels the tail exactly, giving the final value $3.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2010, Paper 1, Q54. The examiner engineered the leading $\\tfrac{100^2}{100!}$ precisely to cancel the telescoping tail — and hid the entire trap in the lone negative term at $k=2$ that the absolute value rescues."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A recurrence in disguise, and the middle term",
+    "difficulty": 4,
+    "task": "Find the value of the mean.",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "29"
+    },
+    "tags": [
+      "arithmetic progression",
+      "sum of squares",
+      "mean of AP",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Let $a_1,a_2,a_3,\\dots,a_{11}$ be real numbers satisfying $a_1=15$, $\\;27-2a_2>0$, and $a_k=2a_{k-1}-a_{k-2}$ for $k=3,4,\\dots,11$. If\n$$\\frac{a_1^2+a_2^2+\\cdots+a_{11}^2}{11}=90,$$\nthen find the value of $\\dfrac{a_1+a_2+\\cdots+a_{11}}{11}.$",
+    "answer": "$\\boxed{0}$",
+    "trap": "Two traps stacked. First, the recurrence $a_k=2a_{k-1}-a_{k-2}$ is easy to misread as geometric or as something exotic; rearranged it says $a_k-a_{k-1}=a_{k-1}-a_{k-2}$ — constant differences — so it is simply an AP. Second, the mean-of-squares equation is quadratic in the common difference $d$ and yields two roots, $d=-3$ and $d=-\\tfrac{9}{7}$. Only the constraint $27-2a_2>0$ (i.e. $a_2<13.5$, so $d<-1.5$) picks $d=-3$; a solver who ignores that inequality cannot pin down the answer.",
+    "solutions": [
+      {
+        "name": "Recognise the AP, solve for $d$, use the middle-term mean",
+        "steps": [
+          "Rewrite the recurrence: $a_k=2a_{k-1}-a_{k-2}\\iff a_k-a_{k-1}=a_{k-1}-a_{k-2}$. The successive differences are all equal, so $(a_k)$ is an arithmetic progression. With $a_1=15$ and common difference $d$, we have $a_k=15+(k-1)d$.",
+          "Impose the mean-of-squares condition: $\\displaystyle\\sum_{k=1}^{11}a_k^2=11\\cdot 90=990$.",
+          "Compute $\\displaystyle\\sum_{k=1}^{11}\\bigl(15+(k-1)d\\bigr)^2=\\sum_{j=0}^{10}(15+jd)^2=11\\cdot 225+2\\cdot 15\\,d\\sum_{j=0}^{10}j+d^2\\sum_{j=0}^{10}j^2.$",
+          "Using $\\sum_{j=0}^{10}j=55$ and $\\sum_{j=0}^{10}j^2=385$: the sum $=2475+1650\\,d+385\\,d^2$. Set equal to $990$: $385d^2+1650d+1485=0$, i.e. dividing by $55$, $7d^2+30d+27=0$.",
+          "Solve: $d=\\dfrac{-30\\pm\\sqrt{900-756}}{14}=\\dfrac{-30\\pm 12}{14}$, giving $d=-\\dfrac{9}{7}$ or $d=-3$.",
+          "Apply the constraint $27-2a_2>0$. Since $a_2=15+d$, this reads $27-2(15+d)>0\\Rightarrow -3-2d>0\\Rightarrow d<-\\tfrac{3}{2}$. Of the two roots only $d=-3$ satisfies it (as $-\\tfrac{9}{7}\\approx-1.29>-1.5$). So $d=-3$.",
+          "For an AP with an odd number of terms, the arithmetic mean equals the middle term $a_6$. Here $a_6=15+5(-3)=0$. Hence $\\dfrac{a_1+\\cdots+a_{11}}{11}=a_6=0.$"
+        ]
+      },
+      {
+        "name": "Statistics viewpoint: variance links the two means",
+        "steps": [
+          "As shown, $(a_k)$ is an AP: $a_k=15+(k-1)d$. Let $\\bar a=\\dfrac{1}{11}\\sum a_k$ be the mean we want and note the mean of an $11$-term AP is $\\bar a=a_1+5d=15+5d$ (the middle term).",
+          "Use the identity $\\dfrac{1}{11}\\sum a_k^2=\\bar a^2+\\text{Var}$, where $\\text{Var}=\\dfrac{1}{11}\\sum (a_k-\\bar a)^2$ is the population variance of the AP.",
+          "For an AP the deviations from the middle term are $\\{-5d,-4d,\\dots,4d,5d\\}$, so $\\text{Var}=\\dfrac{d^2}{11}\\sum_{j=-5}^{5}j^2=\\dfrac{d^2}{11}\\cdot 110=10d^2.$",
+          "The given mean of squares is $90$, so $\\bar a^2+10d^2=90$, i.e. $(15+5d)^2+10d^2=90.$",
+          "Expand: $225+150d+25d^2+10d^2=90\\Rightarrow 35d^2+150d+135=0\\Rightarrow 7d^2+30d+27=0$, the same quadratic, with roots $d=-3$ and $d=-\\tfrac{9}{7}$.",
+          "The constraint $27-2a_2>0\\Rightarrow d<-\\tfrac{3}{2}$ selects $d=-3$. Then $\\bar a=15+5(-3)=0$, so the required mean is $0.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2010, Paper 2, Q29. A textbook lesson that $a_k=2a_{k-1}-a_{k-2}$ is the fingerprint of an AP, and that a lone stray inequality often exists solely to break the tie between two algebraic roots."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The recurrence hidden in $x^2-6x-2=0$",
+    "difficulty": 3,
+    "task": "Evaluate the ratio.",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "52"
+    },
+    "tags": [
+      "recurrence relations",
+      "roots of quadratic",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $\\alpha$ and $\\beta$ be the roots of $x^{2}-6x-2=0$, with $\\alpha>\\beta$. If $a_n=\\alpha^{n}-\\beta^{n}$ for $n\\ge 1$, then the value of $\\dfrac{a_{10}-2a_{8}}{2a_{9}}$ is\n\n(A) $1$\n\n(B) $2$\n\n(C) $3$\n\n(D) $4$",
+    "answer": "$\\boxed{3}$ (C)",
+    "trap": "Students rush to compute $\\alpha,\\beta=3\\pm\\sqrt{11}$ and try to evaluate the tenth powers numerically. The whole point is that you never need the roots individually: because each root satisfies $x^2=6x+2$, the sequence $a_n$ obeys a linear recurrence that collapses the expression instantly.",
+    "solutions": [
+      {
+        "name": "Second-order recurrence from the defining quadratic",
+        "steps": [
+          "Since $\\alpha$ is a root, $\\alpha^2=6\\alpha+2$. Multiply by $\\alpha^{n-2}$: $\\alpha^{n}=6\\alpha^{n-1}+2\\alpha^{n-2}$.",
+          "Identically for $\\beta$: $\\beta^{n}=6\\beta^{n-1}+2\\beta^{n-2}$.",
+          "Subtracting, $\\alpha^{n}-\\beta^{n}=6(\\alpha^{n-1}-\\beta^{n-1})+2(\\alpha^{n-2}-\\beta^{n-2})$, i.e. $a_n=6a_{n-1}+2a_{n-2}$ for all $n\\ge 3$.",
+          "Put $n=10$: $a_{10}=6a_{9}+2a_{8}$, so $a_{10}-2a_{8}=6a_{9}$.",
+          "Therefore $\\dfrac{a_{10}-2a_{8}}{2a_{9}}=\\dfrac{6a_{9}}{2a_{9}}=3$."
+        ]
+      },
+      {
+        "name": "Direct algebraic reduction using $x^2=6x+2$",
+        "steps": [
+          "Write $a_{10}-2a_{8}=(\\alpha^{10}-\\beta^{10})-2(\\alpha^{8}-\\beta^{8})=\\alpha^{8}(\\alpha^{2}-2)-\\beta^{8}(\\beta^{2}-2)$.",
+          "From $x^{2}-6x-2=0$ we have $x^{2}-2=6x$ for each root, so $\\alpha^{2}-2=6\\alpha$ and $\\beta^{2}-2=6\\beta$.",
+          "Substituting: $a_{10}-2a_{8}=\\alpha^{8}(6\\alpha)-\\beta^{8}(6\\beta)=6(\\alpha^{9}-\\beta^{9})=6a_{9}$.",
+          "Hence $\\dfrac{a_{10}-2a_{8}}{2a_{9}}=\\dfrac{6a_{9}}{2a_{9}}=3$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE/JEE Advanced 2011, Paper 1, Q52. The trick is universal: for $x^2=px+q$, the power-difference sequence $\\alpha^n-\\beta^n$ satisfies $a_n=p\\,a_{n-1}+q\\,a_{n-2}$, turning a tenth-power question into one line."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Geometric Series of Reciprocal Roots",
+    "difficulty": 3,
+    "task": "Evaluate the infinite series.",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "62"
+    },
+    "tags": [
+      "infinite geometric series",
+      "roots of quadratic",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "In a comprehension based on a quadratic $ax^2+bx+c=0$ (call it equation (E)), take $b=6$ with $a$ and $c$ the values forced by (E), namely $a=1$ and $c=-7$. If $\\alpha$ and $\\beta$ are the roots of $ax^2+bx+c=0$, then the value of $$\\sum_{n=0}^{\\infty}\\left(\\frac{1}{\\alpha}+\\frac{1}{\\beta}\\right)^{n}$$ is\n\n(A) $6$ (B) $7$ (C) $\\dfrac{6}{7}$ (D) $\\infty$",
+    "answer": "(B) $7$",
+    "trap": "Students race to sum the geometric series but forget to check that the ratio $r=\\frac1\\alpha+\\frac1\\beta$ actually satisfies $|r|<1$. Here $r=\\frac67$, so the series converges and equals $\\frac{1}{1-r}$. Had $r$ come out $\\ge 1$ (as it might for a careless sign on $c$), the honest answer would be $\\infty$ — option (D) is a deliberate trap for anyone who plugs into $\\frac{1}{1-r}$ blindly without the convergence check, or who miscomputes $\\frac1\\alpha+\\frac1\\beta$ as $\\frac{-b}{c}=\\frac{6}{-7}$ with the wrong sign.",
+    "solutions": [
+      {
+        "name": "Vieta on the reciprocal-root sum",
+        "steps": [
+          "With $b=6$ the paragraph fixes $a=1,\\;c=-7$, so the quadratic is $x^2+6x-7=0$.",
+          "By Vieta's formulas, $\\alpha+\\beta=-\\dfrac{b}{a}=-6$ and $\\alpha\\beta=\\dfrac{c}{a}=-7$.",
+          "The common ratio of the series is $r=\\dfrac{1}{\\alpha}+\\dfrac{1}{\\beta}=\\dfrac{\\alpha+\\beta}{\\alpha\\beta}=\\dfrac{-6}{-7}=\\dfrac{6}{7}.$",
+          "Since $|r|=\\dfrac67<1$, the geometric series converges: $\\displaystyle\\sum_{n=0}^{\\infty}r^{n}=\\dfrac{1}{1-r}=\\dfrac{1}{1-\\frac67}=\\dfrac{1}{\\frac17}=7.$",
+          "Hence the sum is $7$, option (B)."
+        ]
+      },
+      {
+        "name": "Explicit factoring of the roots",
+        "steps": [
+          "Factor $x^2+6x-7=(x-1)(x+7)=0$, so the roots are $\\alpha=1$ and $\\beta=-7$ (order immaterial).",
+          "Then $\\dfrac1\\alpha+\\dfrac1\\beta=1+\\left(-\\dfrac17\\right)=\\dfrac67$, matching the Vieta value.",
+          "The series is $\\displaystyle\\sum_{n=0}^{\\infty}\\left(\\tfrac67\\right)^n$, a geometric series with first term $1$ and ratio $\\tfrac67<1$.",
+          "Its sum is $\\dfrac{1}{1-\\frac67}=7$, confirming (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE/JEE Advanced 2011, Paper 1, Q62. The reciprocal-root sum $\\frac1\\alpha+\\frac1\\beta=\\frac{\\alpha+\\beta}{\\alpha\\beta}$ is pure Vieta, but the marks live in the convergence check $|r|<1$ that legitimises $\\frac{1}{1-r}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "When $S_{5n}/S_n$ Forgets About $n$",
+    "difficulty": 3,
+    "task": "Find the second term.",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "67"
+    },
+    "tags": [
+      "arithmetic progression",
+      "sum of AP",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $a_1,a_2,a_3,\\ldots,a_{100}$ be an arithmetic progression with $a_1=3$ and $S_p=\\displaystyle\\sum_{i=1}^{p}a_i$ for $1\\le p\\le 100$. For any integer $n$ with $1\\le n\\le 20$, let $m=5n$. If $\\dfrac{S_m}{S_n}$ does not depend on $n$, then $a_2$ equals ____.",
+    "answer": "$\\boxed{9}$",
+    "trap": "The phrase 'does not depend on $n$' does not mean 'set two convenient values of $n$ equal and hope' — it means the ratio must be a constant as a function of $n$ for the whole allowed range. The clean way is to write $\\frac{S_{5n}}{S_n}$ as a ratio of two linear-in-$n$ expressions and force the ratio to be $n$-independent, which happens exactly when the two linear forms are proportional. A student who instead solves $\\frac{S_{10}}{S_2}=\\frac{S_{15}}{S_3}$ (only two data points) can stumble onto the right $d$ but has not actually proven the ratio is constant.",
+    "solutions": [
+      {
+        "name": "Force the ratio of two linear forms to be constant",
+        "steps": [
+          "For an AP, $S_p=\\dfrac{p}{2}\\big(2a_1+(p-1)d\\big)=\\dfrac{p}{2}\\big(6+(p-1)d\\big)$ since $a_1=3$.",
+          "So $\\dfrac{S_{5n}}{S_n}=\\dfrac{\\frac{5n}{2}\\big(6+(5n-1)d\\big)}{\\frac{n}{2}\\big(6+(n-1)d\\big)}=5\\cdot\\dfrac{6+(5n-1)d}{6+(n-1)d}.$",
+          "Write numerator and denominator as linear functions of $n$: $\\;6+(5n-1)d=(6-d)+5dn$ and $6+(n-1)d=(6-d)+dn$.",
+          "The ratio $\\dfrac{(6-d)+5dn}{(6-d)+dn}$ is independent of $n$ iff the two linear polynomials are proportional, i.e. their constant terms and $n$-coefficients share the same ratio: $\\dfrac{6-d}{6-d}=\\dfrac{5d}{d}$. This forces the constant term to vanish: $6-d=0$.",
+          "Hence $d=6$ (if $d=0$ the AP is constant and $S_{5n}/S_n=5$ trivially, but then $a_2=a_1=3$ contradicts the intended non-trivial reading; the vanishing-constant condition gives the genuine solution).",
+          "Therefore $a_2=a_1+d=3+6=9$."
+        ]
+      },
+      {
+        "name": "Substitution / test-value elimination",
+        "steps": [
+          "Constancy over the whole range in particular forces $\\dfrac{S_{5}}{S_1}=\\dfrac{S_{10}}{S_2}$ (take $n=1$ and $n=2$).",
+          "Compute with $a_1=3$: $S_1=3$, $S_5=\\tfrac52(6+4d)=15+10d$, $S_2=6+d$, $S_{10}=5(6+9d)=30+45d$.",
+          "So $\\dfrac{15+10d}{3}=\\dfrac{30+45d}{6+d}$. Cross-multiplying: $(15+10d)(6+d)=3(30+45d)$.",
+          "Left side $=90+15d+60d+10d^2=10d^2+75d+90$; right side $=90+135d$.",
+          "Thus $10d^2+75d+90=135d\\Rightarrow 10d^2-60d=0\\Rightarrow 10d(d-6)=0$, giving $d=6$ (rejecting the trivial $d=0$).",
+          "Substituting $d=6$ back verifies $\\dfrac{S_{5n}}{S_n}=5$ for every $n$, confirming true independence. Then $a_2=3+6=9$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE/JEE Advanced 2011, Paper 1, Q67. 'Independent of $n$' is a proportionality condition on two linear forms — the constant term must die, which pins $d=6$ and hence $a_2=9$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Splitting for the Perfect $\\text{AM-GM}$",
+    "difficulty": 3,
+    "task": "Find the minimum value.",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "69"
+    },
+    "tags": [
+      "AM-GM inequality",
+      "minimization",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "For $a>0$, find the minimum value of the sum of the real numbers $a^{-5}$, $a^{-4}$, $3a^{-3}$, $1$, $a^{8}$ and $a^{10}$.",
+    "answer": "$\\boxed{8}$",
+    "trap": "A student may apply AM-GM directly to the six listed terms; then the exponents sum to $-5-4-3+8+10=6$ (the constant $1$ contributes $a^0$), so the geometric mean is $\\sqrt[6]{a^{6}}=a$, which still depends on $a$ and gives no fixed bound. The trick is to split the coefficient-$3$ term $3a^{-3}=a^{-3}+a^{-3}+a^{-3}$ so that AM-GM is applied to eight terms whose exponents cancel to $0$.",
+    "solutions": [
+      {
+        "name": "AM-GM after splitting into eight terms",
+        "steps": [
+          "Rewrite $3a^{-3}$ as three equal terms: $3a^{-3}=a^{-3}+a^{-3}+a^{-3}$. The sum becomes the eight positive terms $a^{-5},\\,a^{-4},\\,a^{-3},\\,a^{-3},\\,a^{-3},\\,a^{8},\\,a^{10},\\,1$.",
+          "The exponents of these eight terms sum to $-5-4-3-3-3+8+10+0=0$, so their product is $a^{0}=1$ regardless of $a$. This is exactly why the split into eight terms works.",
+          "By the AM-GM inequality on eight positive reals, $\\dfrac{a^{-5}+a^{-4}+3a^{-3}+a^{8}+a^{10}+1}{8}\\ge\\sqrt[8]{a^{-5}\\cdot a^{-4}\\cdot a^{-3}\\cdot a^{-3}\\cdot a^{-3}\\cdot a^{8}\\cdot a^{10}\\cdot 1}=\\sqrt[8]{a^{0}}=1.$",
+          "Hence the sum $\\ge 8$. Equality in AM-GM requires all eight terms equal, and $a=1$ makes every term equal to $1$, so the bound is achieved.",
+          "Minimum value $=8$."
+        ]
+      },
+      {
+        "name": "Calculus check via the derivative",
+        "steps": [
+          "Let $f(a)=a^{-5}+a^{-4}+3a^{-3}+1+a^{8}+a^{10}$ for $a>0$.",
+          "Differentiate: $f'(a)=-5a^{-6}-4a^{-5}-9a^{-4}+8a^{7}+10a^{9}.$",
+          "At $a=1$: $f'(1)=-5-4-9+8+10=0$, so $a=1$ is a critical point.",
+          "For $a<1$ the negative powers dominate and $f'(a)<0$; for $a>1$ the positive powers dominate and $f'(a)>0$. Thus $a=1$ is a global minimum on $(0,\\infty)$.",
+          "$f(1)=1+1+3+1+1+1=8$, confirming the minimum value is $8$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2011, Paper 1, Q69. The engineered coefficients ($3$ on $a^{-3}$) are a deliberate signal: split until the weighted exponents cancel, turning AM-GM into a constant lower bound independent of $a$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Self-Similar Radical Meets a Log",
+    "difficulty": 3,
+    "task": "Evaluate the expression.",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "57"
+    },
+    "tags": [
+      "nested radicals",
+      "logarithms",
+      "infinite recursion",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "Find the value of $$6+\\log_{3/2}\\!\\left(\\frac{1}{3\\sqrt{2}}\\sqrt{4-\\frac{1}{3\\sqrt{2}}\\sqrt{4-\\frac{1}{3\\sqrt{2}}\\sqrt{4-\\frac{1}{3\\sqrt{2}}\\cdots}}}\\right).$$",
+    "answer": "$\\boxed{4}$",
+    "trap": "The infinitely nested radical is self-similar, so the whole inner expression $y$ reappears under its own square root. Students who try to expand the radicals term by term get lost; the key is to name the entire nested quantity $y$ and exploit that the same $y$ sits inside. A second subtlety: the fixed-point equation is quadratic, so one must discard the negative (extraneous) root before taking the logarithm.",
+    "solutions": [
+      {
+        "name": "Fixed-point substitution for the nested radical",
+        "steps": [
+          "Let $y=\\dfrac{1}{3\\sqrt{2}}\\sqrt{4-\\dfrac{1}{3\\sqrt{2}}\\sqrt{4-\\cdots}}$ be the entire nested expression. By self-similarity, the quantity under the outermost radical (after the $4-$) is again $y$, so $y=\\dfrac{1}{3\\sqrt{2}}\\sqrt{4-y}.$",
+          "Square both sides: $y^{2}=\\dfrac{1}{18}(4-y)$, since $(3\\sqrt2)^2=18$. Hence $18y^{2}=4-y$, i.e. $18y^{2}+y-4=0.$",
+          "Solve the quadratic: $y=\\dfrac{-1\\pm\\sqrt{1+288}}{36}=\\dfrac{-1\\pm 17}{36}.$ The roots are $y=\\dfrac{16}{36}=\\dfrac{4}{9}$ and $y=-\\dfrac{1}{2}.$",
+          "Since $y$ is a product of positive quantities it must be positive, so $y=\\dfrac{4}{9}$ (the negative root is rejected).",
+          "Now $\\log_{3/2}\\!\\left(\\dfrac{4}{9}\\right)=\\log_{3/2}\\!\\left(\\left(\\dfrac{3}{2}\\right)^{-2}\\right)=-2,$ because $\\left(\\dfrac{3}{2}\\right)^{2}=\\dfrac{9}{4}$ so $\\left(\\dfrac{3}{2}\\right)^{-2}=\\dfrac{4}{9}.$",
+          "Therefore the value is $6+(-2)=4.$"
+        ]
+      },
+      {
+        "name": "Iteration / convergence to the attracting fixed point",
+        "steps": [
+          "Define the map $g(y)=\\dfrac{1}{3\\sqrt2}\\sqrt{4-y}$; the infinite nested radical is the limit of the iteration $y_{n+1}=g(y_n)$ started from any admissible seed in $[0,4]$.",
+          "A limit $L$ must satisfy $L=g(L)$, giving the same equation $18L^2+L-4=0$ with positive root $L=\\dfrac49$.",
+          "Check it is attracting: $g'(y)=-\\dfrac{1}{6\\sqrt2\\,\\sqrt{4-y}}$, and at $y=\\dfrac49$, $\\sqrt{4-\\frac49}=\\sqrt{\\frac{32}{9}}=\\dfrac{4\\sqrt2}{3}$, so $|g'(4/9)|=\\dfrac{1}{6\\sqrt2}\\cdot\\dfrac{3}{4\\sqrt2}=\\dfrac{3}{48}=\\dfrac{1}{16}<1.$ The iteration converges, confirming the nested radical equals $\\dfrac49$.",
+          "Take the logarithm base $\\tfrac32$: since $\\dfrac49=\\left(\\dfrac32\\right)^{-2}$, we get $\\log_{3/2}\\!\\left(\\dfrac49\\right)=-2.$",
+          "Add $6$: the required value is $6-2=4.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2012, Paper 1, Q57. An infinite nested radical is a disguised fixed point: name the whole tail once, form the quadratic, and keep only the positive root before feeding it to the logarithm."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Sign Pattern $(-1)^{k(k+1)/2}$",
+    "difficulty": 4,
+    "task": "Find all values the sum can take.",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "53"
+    },
+    "tags": [
+      "series with alternating signs",
+      "sum of squares",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "Let $$S_n=\\sum_{k=1}^{4n}(-1)^{\\frac{k(k+1)}{2}}\\,k^2.$$ Then $S_n$ can take value(s)\n\n(A) $1056$\n\n(B) $1088$\n\n(C) $1120$\n\n(D) $1332$",
+    "answer": "(A), (D)",
+    "trap": "The exponent $\\frac{k(k+1)}{2}$ is not simply alternating: the sign sequence is $-,-,+,+,-,-,+,+,\\dots$ with period $4$, not $+,-,+,-$. A student who reads $(-1)^{k(k+1)/2}$ as $(-1)^k$ gets the wrong grouping and a wrong closed form.",
+    "solutions": [
+      {
+        "name": "Grouping in blocks of four",
+        "steps": [
+          "First decode the sign. Since $\\frac{k(k+1)}{2}$ is an integer, look at its parity. For $k\\equiv 1,2\\pmod4$ the triangular number $\\frac{k(k+1)}{2}$ is odd (sign $-1$), and for $k\\equiv 3,0\\pmod4$ it is even (sign $+1$). So the signs repeat with period $4$ as $-,-,+,+$.",
+          "Group the $4n$ terms into $n$ consecutive blocks of four. The block starting at $k=4r+1$ (for $r=0,1,\\dots,n-1$) contributes $$-(4r+1)^2-(4r+2)^2+(4r+3)^2+(4r+4)^2.$$",
+          "Simplify the block. Pairing $[(4r+3)^2-(4r+1)^2]+[(4r+4)^2-(4r+2)^2]$ and using $a^2-b^2=(a-b)(a+b)$ with difference $2$ in each pair: $2(8r+4)+2(8r+6)=32r+20$.",
+          "Sum the blocks: $$S_n=\\sum_{r=0}^{n-1}(32r+20)=32\\cdot\\frac{(n-1)n}{2}+20n=16n(n-1)+20n=16n^2+4n=4n(4n+1).$$",
+          "Now test the options against $4n(4n+1)$. For $n=8$: $4\\cdot8\\cdot33=1056$, matching (A). For $n=9$: $4\\cdot9\\cdot37=1332$, matching (D).",
+          "Check (B) and (C): $4n(4n+1)=1088\\Rightarrow16n^2+4n-1088=0$ has no positive integer root; likewise $1120$ gives no integer $n$. So only (A) and (D) are attainable."
+        ]
+      },
+      {
+        "name": "Telescoping the running partial sum",
+        "steps": [
+          "Define the cumulative sum $S_n$ and compute the increment $S_n-S_{n-1}$, which is exactly the $n$-th block of four terms (the terms $k=4n-3,\\dots,4n$).",
+          "With signs $-,-,+,+$, that increment is $-(4n-3)^2-(4n-2)^2+(4n-1)^2+(4n)^2$.",
+          "Expand: $(4n-1)^2-(4n-3)^2=(2)(8n-4)=16n-8$ and $(4n)^2-(4n-2)^2=(2)(8n-2)=16n-4$, so the increment equals $32n-12$.",
+          "Since $S_0=0$, sum the increments: $$S_n=\\sum_{m=1}^{n}(32m-12)=32\\cdot\\frac{n(n+1)}{2}-12n=16n^2+16n-12n=16n^2+4n=4n(4n+1),$$ the same closed form.",
+          "Evaluate: $S_8=4\\cdot8\\cdot33=1056$ and $S_9=4\\cdot9\\cdot37=1332$; the intermediate targets $1088,1120$ are skipped because consecutive values jump by $S_9-S_8=276$. Hence (A) and (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2013, Paper 1, Q53. The whole difficulty lives in reading the exponent correctly — once the sign pattern is seen to have period four, the sum collapses to the clean quadratic $4n(4n+1)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Missing Cards",
+    "difficulty": 3,
+    "task": "Find $k-20$.",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "59"
+    },
+    "tags": [
+      "arithmetic series sum",
+      "consecutive integers",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "A pack contains $n$ cards numbered from $1$ to $n$. Two cards bearing consecutive numbers are removed from the pack, and the sum of the numbers on the remaining cards is $1224$. If the smaller of the numbers on the two removed cards is $k$, then find the value of $k-20$.",
+    "answer": "$\\boxed{5}$",
+    "trap": "There are two unknowns ($n$ and $k$) but only one equation, so a student may think the problem is underdetermined. The hidden second constraint is that the removed pair $\\{k,k+1\\}$ must actually lie inside $\\{1,\\dots,n\\}$, which pins $n$ down by bounding $\\frac{n(n+1)}{2}$ tightly around $1224$.",
+    "solutions": [
+      {
+        "name": "Bound $n$, then solve for $k$",
+        "steps": [
+          "The full sum of the pack is $\\dfrac{n(n+1)}{2}$. Removing $k$ and $k+1$ leaves $$\\frac{n(n+1)}{2}-(2k+1)=1224.$$",
+          "The removed amount $2k+1$ ranges over its extremes as the pair slides. Smallest removal is the pair $\\{1,2\\}$ (remove $3$); largest is $\\{n-1,n\\}$ (remove $2n-1$). So $$1224+3\\le\\frac{n(n+1)}{2}\\le 1224+(2n-1).$$",
+          "The left inequality $\\frac{n(n+1)}{2}\\ge 1227$ needs $n\\ge 50$ (since $\\frac{49\\cdot50}{2}=1225<1227\\le\\frac{50\\cdot51}{2}=1275$).",
+          "The right inequality $\\frac{n(n+1)}{2}\\le 1223+2n$ i.e. $n^2-3n-2446\\le0$ needs $n\\le 50$ (since $n=51$ gives $51^2-153-2446=2=$ just over). So $n=50$ is forced.",
+          "Substitute $n=50$: $\\dfrac{50\\cdot51}{2}-(2k+1)=1275-(2k+1)=1224\\Rightarrow 2k+1=51\\Rightarrow k=25.$",
+          "Therefore $k-20=25-20=5.$"
+        ]
+      },
+      {
+        "name": "Near-average estimate for $n$",
+        "steps": [
+          "If no cards were removed, the sum would be $\\frac{n(n+1)}{2}$; removing two of the $n$ cards drops the total by only a little, so $\\frac{n(n+1)}{2}$ is just slightly above $1224$.",
+          "Solve $\\frac{n(n+1)}{2}\\approx 1224\\Rightarrow n^2+n-2448\\approx0\\Rightarrow n\\approx\\frac{-1+\\sqrt{1+9792}}{2}=\\frac{-1+98.96}{2}\\approx 48.98.$ So try $n$ near $49$–$50$.",
+          "Test $n=49$: full sum $=1225$, so we'd need to remove $1225-1224=1$; but the minimum removable pair-sum is $1+2=3>1$. Impossible.",
+          "Test $n=50$: full sum $=1275$, so removal $=1275-1224=51=k+(k+1)=2k+1$, giving $k=25$, a valid pair $\\{25,26\\}\\subset\\{1,\\dots,50\\}$. Test $n=51$: full sum $=1326$, removal $=102=2k+1$ forces $k=50.5$, not an integer. So $n=50,k=25$ uniquely.",
+          "Hence $k-20=5.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2013, Paper 1, Q59. One equation with two unknowns is closed only because the removed pair-sum $2k+1$ is squeezed between $3$ and $2n-1$ — an inequality sandwich forces $n=50$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The right triangle whose sides are in A.P.",
+    "difficulty": 2,
+    "task": "Find the length of the smallest side.",
+    "pyq": {
+      "year": 2017,
+      "paper": "1",
+      "qno": "48"
+    },
+    "tags": [
+      "arithmetic progression",
+      "right triangle 3-4-5",
+      "2017"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"13\"><polygon points=\"50,180 250,180 50,30\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.6\"/><rect x=\"50\" y=\"162\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><line x1=\"50\" y1=\"180\" x2=\"250\" y2=\"180\" stroke=\"var(--gold)\" stroke-width=\"2.4\"/><text x=\"150\" y=\"200\" fill=\"var(--gold)\" text-anchor=\"middle\">base $4k=8$</text><text x=\"30\" y=\"108\" fill=\"var(--ink2)\" text-anchor=\"middle\">$3k=6$</text><text x=\"165\" y=\"98\" fill=\"var(--ink2)\" text-anchor=\"middle\">$5k=10$</text><text x=\"150\" y=\"20\" fill=\"var(--ink2)\" text-anchor=\"middle\">Area $=24$</text></svg>",
+    "statement": "The sides of a right-angled triangle are in arithmetic progression. If the triangle has area $24$, then what is the length of its smallest side?",
+    "answer": "$\\boxed{6}$",
+    "trap": "Assuming the three sides are simply $a-d,\\,a,\\,a+d$ and grinding through the Pythagorean equation is fine — but a strong student who jumps to “any AP right triangle” must still remember that the AP condition forces the ratio $3:4:5$ exactly. Skipping the proof and just asserting $3:4:5$ (or worse, mis-assigning which side is the hypotenuse) is where marks are lost. The hypotenuse must be the largest term $a+d$, not $a$.",
+    "solutions": [
+      {
+        "name": "Symmetric AP parametrisation $a-d,\\,a,\\,a+d$",
+        "steps": [
+          "Let the sides in increasing order be $a-d,\\;a,\\;a+d$ with $d>0$, so the hypotenuse is the largest side $a+d$.",
+          "Pythagoras: $(a-d)^2+a^2=(a+d)^2$.",
+          "Expand: $a^2-2ad+d^2+a^2=a^2+2ad+d^2$, which simplifies to $a^2-2ad=2ad$, i.e. $a^2=4ad$.",
+          "Since $a\\neq0$, divide by $a$: $a=4d$. Thus the sides are $3d,\\;4d,\\;5d$ — the AP condition alone forces the $3:4:5$ ratio.",
+          "Area $=\\tfrac12(3d)(4d)=6d^2=24$, so $d^2=4$ and $d=2$.",
+          "Smallest side $=3d=6$."
+        ]
+      },
+      {
+        "name": "Recognise the primitive $3:4:5$ scaling directly",
+        "steps": [
+          "Any right triangle with sides in AP is similar to the $3,4,5$ triangle, since $3,4,5$ is itself an AP (common difference $1$) satisfying $3^2+4^2=5^2$.",
+          "So write the sides as $3k,\\;4k,\\;5k$ for some scale $k>0$.",
+          "The legs are $3k$ and $4k$, so the area is $\\tfrac12(3k)(4k)=6k^2$.",
+          "Set $6k^2=24\\Rightarrow k^2=4\\Rightarrow k=2$.",
+          "Smallest side $=3k=6$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 1, Q48. The whole problem collapses the moment you prove that “right triangle with sides in AP” is a rigid condition — it pins the shape to $3:4:5$ and leaves only the scale free."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two APs, one union: $|X\\cup Y|$",
+    "difficulty": 3,
+    "task": "Find the number of elements in the union.",
+    "pyq": {
+      "year": 2018,
+      "paper": "1",
+      "qno": "9"
+    },
+    "tags": [
+      "arithmetic progression",
+      "common terms",
+      "sets union",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $X$ be the set consisting of the first $2018$ terms of the arithmetic progression $1,\\,6,\\,11,\\dots$, and $Y$ be the set consisting of the first $2018$ terms of the arithmetic progression $9,\\,16,\\,23,\\dots$. Then the number of elements in the set $X\\cup Y$ is ______.",
+    "answer": "$\\boxed{3748}$",
+    "trap": "Everyone gets $|X\\cup Y|=|X|+|Y|-|X\\cap Y|=4036-|X\\cap Y|$. The trap is $|X\\cap Y|$: the common terms form an AP with common difference $\\operatorname{lcm}(5,7)=35$, but you must NOT count all such terms — only those that actually appear in BOTH finite lists. You have to bound by the smaller of the two last terms ($X$ ends at $10086$, $Y$ ends at $14128$), so the ceiling for common terms is $10086$, not $14128$. Using the wrong upper bound is the classic error.",
+    "solutions": [
+      {
+        "name": "Congruences + count common terms in range",
+        "steps": [
+          "$X$: first term $1$, common difference $5$, so $X=\\{5m+1: m=0,\\dots,2017\\}$ — the terms are exactly the integers $\\equiv1\\pmod5$ from $1$ up to $1+5\\cdot2017=10086$.",
+          "$Y$: first term $9$, common difference $7$, so $Y=\\{7n+9: n=0,\\dots,2017\\}$ — the terms are $\\equiv2\\pmod7$ from $9$ up to $9+7\\cdot2017=14128$.",
+          "A common term $t$ satisfies $t\\equiv1\\pmod5$ and $t\\equiv2\\pmod7$. By CRT this is a single residue mod $35$: testing, $t\\equiv16\\pmod{35}$ (indeed $16\\equiv1\\pmod5$ and $16\\equiv2\\pmod7$).",
+          "So the common terms are $16,\\,51,\\,86,\\dots$, an AP with common difference $35$ and first term $16$.",
+          "A value counts only if it lies in BOTH finite lists, i.e. $t\\le\\min(10086,14128)=10086$ (and $t\\ge16$).",
+          "Count: $16+35(j-1)\\le10086\\Rightarrow 35(j-1)\\le10070\\Rightarrow j-1\\le287.71\\Rightarrow j\\le288$. So $|X\\cap Y|=288$.",
+          "Therefore $|X\\cup Y|=2018+2018-288=3748$."
+        ]
+      },
+      {
+        "name": "Match indices directly (no modular arithmetic)",
+        "steps": [
+          "Write a general term of each list: $x_m=1+5m$ ($0\\le m\\le2017$) and $y_n=9+7n$ ($0\\le n\\le2017$).",
+          "Common terms need $1+5m=9+7n$, i.e. $5m-7n=8$.",
+          "One particular solution: $m=3,\\,n=1$ (gives $16$). The general solution is $m=3+7t,\\;n=1+5t$ for integer $t\\ge0$.",
+          "Index constraints: $m=3+7t\\le2017\\Rightarrow t\\le287.71$ and $n=1+5t\\le2017\\Rightarrow t\\le403.2$. The binding one is $t\\le287$.",
+          "So $t=0,1,\\dots,287$ gives $288$ common terms — note the $X$-index ($m$) runs out first, which is exactly why $10086$ is the cutoff.",
+          "Hence $|X\\cup Y|=2018+2018-288=3748$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 1, Q9. Inclusion–exclusion is trivial; the exam is really testing whether you cap the common-term AP by the *smaller* of the two finite last terms rather than by the naive lcm-run."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Golden Recurrence: $a_n=\\dfrac{\\alpha^n-\\beta^n}{\\alpha-\\beta}$",
+    "difficulty": 4,
+    "task": "Decide which options are correct.",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "1"
+    },
+    "tags": [
+      "recurrence",
+      "Fibonacci-type sequence",
+      "geometric series",
+      "generating function",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "Let $\\alpha$ and $\\beta$ be the roots of $x^2-x-1=0$, with $\\alpha>\\beta$. For all positive integers $n$, define\n$$a_n=\\frac{\\alpha^n-\\beta^n}{\\alpha-\\beta},\\quad n\\ge 1,\\qquad b_1=1,\\qquad b_n=a_{n-1}+a_{n+1},\\ n\\ge 2.$$\nThen which of the following options is/are correct?\n\n(A) $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{b_n}{10^n}=\\frac{8}{89}$\n\n(B) $b_n=\\alpha^n+\\beta^n$ for all $n\\ge 1$\n\n(C) $a_1+a_2+a_3+\\cdots+a_n=a_{n+2}-1$ for all $n\\ge 1$\n\n(D) $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{a_n}{10^n}=\\frac{10}{89}$",
+    "answer": "(B), (C), (D)",
+    "trap": "The sequence $a_n$ is exactly the Fibonacci sequence $1,1,2,3,5,\\dots$, and $b_n$ is the Lucas sequence $1,3,4,7,11,\\dots$. The seductive move is to trust the given $b_1=1$ and blindly test (A) with the Lucas generating function $\\frac{x(2-x)}{1-x-x^2}$ — which correctly gives $\\frac{19}{89}$, NOT $\\frac{8}{89}$. Students who mis-derive the numerator (e.g. forgetting the $b_1$ term is already $1$, or using $\\frac{x}{1-x-x^2}$ for both series) can accidentally 'confirm' the wrong (A) or reject the right (D).",
+    "solutions": [
+      {
+        "name": "Direct Binet manipulation",
+        "steps": [
+          "Since $\\alpha,\\beta$ are the roots of $x^2-x-1=0$, we have $\\alpha+\\beta=1$, $\\alpha\\beta=-1$, and each satisfies $x^2=x+1$. Also $\\alpha-\\beta=\\sqrt{(\\alpha+\\beta)^2-4\\alpha\\beta}=\\sqrt{1+4}=\\sqrt5$.",
+          "**Option (B).** For $n\\ge 2$, $b_n=a_{n-1}+a_{n+1}=\\dfrac{(\\alpha^{n-1}-\\beta^{n-1})+(\\alpha^{n+1}-\\beta^{n+1})}{\\alpha-\\beta}=\\dfrac{\\alpha^{n-1}(1+\\alpha^2)-\\beta^{n-1}(1+\\beta^2)}{\\alpha-\\beta}$.",
+          "Now $1+\\alpha^2=1+(\\alpha+1)=\\alpha+2$; but more useful is $1+\\alpha^2=\\alpha^2+1$. Use instead $\\alpha^{n+1}=\\alpha^{n-1}\\cdot\\alpha^2=\\alpha^{n-1}(\\alpha+1)$, so $\\alpha^{n-1}+\\alpha^{n+1}=\\alpha^{n-1}(2+\\alpha)$. Hmm — cleaner: factor $\\alpha^n$: $\\alpha^{n-1}+\\alpha^{n+1}=\\alpha^n(\\alpha^{-1}+\\alpha)$.",
+          "Since $\\alpha\\beta=-1$, $\\alpha^{-1}=-\\beta$, so $\\alpha^{-1}+\\alpha=\\alpha-\\beta=\\sqrt5$. Thus $\\alpha^{n-1}+\\alpha^{n+1}=\\sqrt5\\,\\alpha^n$. Similarly $\\beta^{-1}=-\\alpha$, giving $\\beta^{-1}+\\beta=\\beta-\\alpha=-\\sqrt5$, so $\\beta^{n-1}+\\beta^{n+1}=-\\sqrt5\\,\\beta^n$.",
+          "Therefore $b_n=\\dfrac{\\sqrt5\\,\\alpha^n-(-\\sqrt5\\,\\beta^n)}{\\sqrt5}=\\alpha^n+\\beta^n$ for $n\\ge 2$. For $n=1$: $\\alpha+\\beta=1=b_1$, so the formula holds for all $n\\ge 1$. **(B) is TRUE.**",
+          "**Option (C).** Sum the Binet form: $\\sum_{r=1}^n a_r=\\dfrac{1}{\\sqrt5}\\Big(\\sum_{r=1}^n\\alpha^r-\\sum_{r=1}^n\\beta^r\\Big)=\\dfrac{1}{\\sqrt5}\\Big(\\dfrac{\\alpha(\\alpha^n-1)}{\\alpha-1}-\\dfrac{\\beta(\\beta^n-1)}{\\beta-1}\\Big)$.",
+          "Because $x^2=x+1$, we have $x-1=x^2-x-\\text{?}$; more directly $\\dfrac{x}{x-1}$: note $\\alpha-1=\\alpha^2-\\alpha-1+\\alpha=\\alpha^2-1$... use the clean identity instead: since $\\alpha^2=\\alpha+1\\Rightarrow \\alpha^2-\\alpha=1\\Rightarrow \\alpha(\\alpha-1)=1$, so $\\dfrac{\\alpha}{\\alpha-1}=\\alpha^2$. Likewise $\\dfrac{\\beta}{\\beta-1}=\\beta^2$.",
+          "Hence $\\sum_{r=1}^n a_r=\\dfrac{1}{\\sqrt5}\\big(\\alpha^2(\\alpha^n-1)-\\beta^2(\\beta^n-1)\\big)=\\dfrac{(\\alpha^{n+2}-\\beta^{n+2})-(\\alpha^2-\\beta^2)}{\\sqrt5}=a_{n+2}-a_2$.",
+          "Since $a_2=\\dfrac{\\alpha^2-\\beta^2}{\\sqrt5}=\\dfrac{(\\alpha+\\beta)(\\alpha-\\beta)}{\\sqrt5}=\\dfrac{1\\cdot\\sqrt5}{\\sqrt5}=1$, we get $\\sum_{r=1}^n a_r=a_{n+2}-1$. **(C) is TRUE.**",
+          "**Option (D).** Let $F(x)=\\sum_{n\\ge1}a_n x^n=\\dfrac{1}{\\sqrt5}\\Big(\\dfrac{\\alpha x}{1-\\alpha x}-\\dfrac{\\beta x}{1-\\beta x}\\Big)$. Combining over a common denominator, the numerator is $\\dfrac{x(\\alpha-\\beta)}{\\sqrt5}=x$ and the denominator is $(1-\\alpha x)(1-\\beta x)=1-(\\alpha+\\beta)x+\\alpha\\beta x^2=1-x-x^2$. So $F(x)=\\dfrac{x}{1-x-x^2}$.",
+          "At $x=\\tfrac1{10}$: $F(\\tfrac1{10})=\\dfrac{1/10}{1-1/10-1/100}=\\dfrac{1/10}{89/100}=\\dfrac{10}{89}$. **(D) is TRUE.**",
+          "**Option (A).** With $b_n=\\alpha^n+\\beta^n$, $G(x)=\\sum_{n\\ge1}b_n x^n=\\dfrac{\\alpha x}{1-\\alpha x}+\\dfrac{\\beta x}{1-\\beta x}=\\dfrac{x(\\alpha+\\beta)-2\\alpha\\beta x^2}{1-x-x^2}=\\dfrac{x+2x^2}{1-x-x^2}$.",
+          "At $x=\\tfrac1{10}$: $G(\\tfrac1{10})=\\dfrac{1/10+2/100}{89/100}=\\dfrac{12/100}{89/100}=\\dfrac{12}{89}\\ne\\dfrac{8}{89}$. (Equivalently, in the $\\alpha^{-1}=-\\beta$ form $G(x)=\\frac{x(2-x)}{1-x-x^2}=\\frac{19/100}{89/100}=\\frac{19}{89}$ if one uses the two-sided relation; either way it is not $\\tfrac{8}{89}$.) **(A) is FALSE.**",
+          "Answer: **(B), (C), (D)**."
+        ]
+      },
+      {
+        "name": "Fibonacci/Lucas identities (integer route)",
+        "steps": [
+          "Recognise the recurrence: from $x^2=x+1$, both $\\alpha^n$ and $\\beta^n$ satisfy $t_{n+1}=t_n+t_{n-1}$, so $a_n$ obeys $a_{n+1}=a_n+a_{n-1}$ with $a_1=1$, $a_2=1$. Thus $a_n=F_n$, the Fibonacci numbers $1,1,2,3,5,8,13,\\dots$.",
+          "**(B).** $b_n=a_{n-1}+a_{n+1}=F_{n-1}+F_{n+1}=L_n$, the Lucas numbers $1,3,4,7,11,\\dots$, and indeed $L_n=\\alpha^n+\\beta^n$ is the standard closed form; $b_1=1=L_1$ matches. TRUE.",
+          "**(C).** The Fibonacci partial-sum identity $F_1+F_2+\\cdots+F_n=F_{n+2}-1$ is classical (telescoping $F_k=F_{k+2}-F_{k+1}$). Since $a_k=F_k$ and $a_{n+2}=F_{n+2}$, this reads $a_1+\\cdots+a_n=a_{n+2}-1$. TRUE.",
+          "**(D).** Evaluate numerically: $\\sum \\frac{F_n}{10^n}=\\frac{1}{10}+\\frac{1}{100}+\\frac{2}{1000}+\\frac{3}{10^4}+\\cdots=0.11235955\\ldots=\\frac{10}{89}$ (the well-known Fibonacci decimal $0.\\overline{011235955\\ldots}$ scaled). TRUE.",
+          "**(A).** The Lucas analogue is $\\sum\\frac{L_n}{10^n}=\\frac{1}{10}+\\frac{3}{100}+\\frac{4}{1000}+\\frac{7}{10^4}+\\cdots$. Using $L_n=F_{n-1}+F_{n+1}$ and the generating function $\\frac{x+2x^2}{1-x-x^2}$ at $x=\\frac1{10}$ gives $\\frac{12}{89}$ (or $\\frac{19}{89}$ under the alternate convention), never $\\frac{8}{89}$. FALSE.",
+          "Answer: **(B), (C), (D)**."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 1, QS2-Q1. Hidden Fibonacci/Lucas problem: spotting that $a_n=F_n$ and $b_n=L_n$ collapses three of the four options to textbook identities — the generating-function value $\\frac{10}{89}$ is the famous Fibonacci decimal in disguise."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three APs meet: $\\mathrm{AP}(1;3)\\cap\\mathrm{AP}(2;5)\\cap\\mathrm{AP}(3;7)$",
+    "difficulty": 4,
+    "task": "Find the value of $a+d$.",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "5"
+    },
+    "tags": [
+      "arithmetic progression",
+      "Chinese Remainder Theorem",
+      "congruences",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "Let $\\mathrm{AP}(a;d)$ denote the set of all the terms of an infinite arithmetic progression with first term $a$ and common difference $d>0$. If $$\\mathrm{AP}(1;3)\\cap\\mathrm{AP}(2;5)\\cap\\mathrm{AP}(3;7)=\\mathrm{AP}(a;d),$$ then $a+d$ equals ____.",
+    "answer": "$\\boxed{157}$",
+    "trap": "The three progressions all count from term index $1$, so the residues are $x\\equiv 1\\pmod 3$, $x\\equiv 2\\pmod 5$, $x\\equiv 3\\pmod 7$ — NOT $x\\equiv 0$. Students who casually read off $x\\equiv a\\pmod d$ but then hunt for the smallest value satisfying only two of the three congruences, or who take $a$ as the least residue class rather than the least positive term actually in all three sets, get the wrong first term. The common difference is easy ($\\mathrm{lcm}=105$); the first term is where it breaks.",
+    "solutions": [
+      {
+        "name": "Chinese Remainder Theorem (residue bookkeeping)",
+        "steps": [
+          "A number $x$ lies in $\\mathrm{AP}(1;3)$ iff $x\\equiv 1\\pmod 3$; in $\\mathrm{AP}(2;5)$ iff $x\\equiv 2\\pmod 5$; in $\\mathrm{AP}(3;7)$ iff $x\\equiv 3\\pmod 7$.",
+          "The moduli $3,5,7$ are pairwise coprime, so by CRT the three congruences have a unique solution modulo $\\mathrm{lcm}(3,5,7)=105$. Hence the intersection is itself an AP with common difference $d=105$.",
+          "Solve step by step. From $x\\equiv 1\\pmod 3$ and $x\\equiv 2\\pmod 5$: write $x=5k+2$; then $5k+2\\equiv 1\\pmod 3\\Rightarrow 2k\\equiv -1\\equiv 2\\pmod 3\\Rightarrow k\\equiv 1\\pmod 3$. So $k=3m+1$ and $x=15m+7$, i.e. $x\\equiv 7\\pmod{15}$.",
+          "Now impose $x\\equiv 3\\pmod 7$: $15m+7\\equiv 3\\pmod 7\\Rightarrow m\\equiv -4\\equiv 3\\pmod 7$ (since $15\\equiv 1\\pmod 7$ and $7\\equiv 0$). So $m=7t+3$ and $x=15(7t+3)+7=105t+52$.",
+          "Thus $x\\equiv 52\\pmod{105}$; the smallest positive common term is $a=52$ (check: $52=3\\cdot 17+1$, $52=5\\cdot 10+2$, $52=7\\cdot 7+3$ ✓).",
+          "Therefore $a=52$, $d=105$, and $a+d=52+105=157$."
+        ]
+      },
+      {
+        "name": "Merge two APs, then the third",
+        "steps": [
+          "First intersect $\\mathrm{AP}(1;3)=\\{1,4,7,10,13,\\dots\\}$ with $\\mathrm{AP}(2;5)=\\{2,7,12,17,22,\\dots\\}$. Scanning for the first common value: $7$ appears in both.",
+          "Two APs with coprime differences $3$ and $5$ intersect in an AP with difference $\\mathrm{lcm}(3,5)=15$. So the intersection is $\\{7,22,37,52,\\dots\\}=\\mathrm{AP}(7;15)$.",
+          "Now intersect $\\mathrm{AP}(7;15)=\\{7,22,37,52,67,\\dots\\}$ with $\\mathrm{AP}(3;7)=\\{3,10,17,24,31,38,45,52,\\dots\\}$.",
+          "Test the terms $7,22,37,52,\\dots$ for membership in $\\mathrm{AP}(3;7)$ (i.e. $\\equiv 3\\pmod 7$): $7\\equiv 0$, $22\\equiv 1$, $37\\equiv 2$, $52\\equiv 3$ ✓. The first common term is $52$.",
+          "The new common difference is $\\mathrm{lcm}(15,7)=105$, so the intersection is $\\mathrm{AP}(52;105)$, giving $a=52$, $d=105$.",
+          "Hence $a+d=52+105=157$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2019, Paper 1, QS3-Q5. The intersection of finitely many APs with pairwise-coprime differences is again a single AP — its difference is the lcm and its first term is the CRT residue, so the whole answer is 'read off' once you translate the sets into congruences."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A min and a max, wrapped in logs",
+    "difficulty": 3,
+    "task": "Find the value of $\\log_2(m^3)+\\log_3(M^2)$.",
+    "pyq": {
+      "year": 2020,
+      "paper": "1",
+      "qno": "13"
+    },
+    "tags": [
+      "AM-GM inequality",
+      "logarithms",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Let $m$ be the minimum possible value of $\\log_3\\!\\left(3^{y_1}+3^{y_2}+3^{y_3}\\right)$, where $y_1,y_2,y_3$ are real numbers for which $y_1+y_2+y_3=9$. Let $M$ be the maximum possible value of $\\left(\\log_3 x_1+\\log_3 x_2+\\log_3 x_3\\right)$, where $x_1,x_2,x_3$ are positive real numbers for which $x_1+x_2+x_3=9$. Then the value of $$\\log_2\\!\\left(m^3\\right)+\\log_3\\!\\left(M^2\\right)$$ is ______.",
+    "answer": "$\\boxed{8}$",
+    "trap": "The two halves optimise in opposite directions and it is tempting to blur them. For $m$ the quantities $3^{y_i}$ are the free positive variables whose SUM must be minimised, but the constraint is on the sum of the exponents $y_i$ — AM–GM on the $3^{y_i}$ pins their product, not their sum, so the minimising configuration is $y_1=y_2=y_3=3$. For $M$ the $x_i$ are the free variables with fixed sum, and it is their PRODUCT (hence $\\sum\\log_3 x_i$) that is maximised, again at equality $x_i=3$. Confusing which quantity is fixed and which is optimised — or forgetting that $\\log_3$ is increasing so 'minimise $3^{y_1}+3^{y_2}+3^{y_3}$' is equivalent to 'minimise $m$' — is the classic slip.",
+    "solutions": [
+      {
+        "name": "AM–GM on each part",
+        "steps": [
+          "Finding $m$: the three numbers $3^{y_1},3^{y_2},3^{y_3}$ are positive with fixed product $3^{y_1}\\cdot 3^{y_2}\\cdot 3^{y_3}=3^{y_1+y_2+y_3}=3^{9}$.",
+          "By AM–GM, $3^{y_1}+3^{y_2}+3^{y_3}\\ge 3\\sqrt[3]{3^{y_1+y_2+y_3}}=3\\sqrt[3]{3^{9}}=3\\cdot 3^{3}=3^{4}=81$, with equality when $3^{y_1}=3^{y_2}=3^{y_3}$, i.e. $y_1=y_2=y_3=3$.",
+          "Since $\\log_3$ is increasing, the minimum of $\\log_3(3^{y_1}+3^{y_2}+3^{y_3})$ is $\\log_3 81=\\log_3 3^{4}=4$. So $m=4$.",
+          "Finding $M$: the $x_i>0$ have fixed sum $x_1+x_2+x_3=9$. By AM–GM, $\\dfrac{x_1+x_2+x_3}{3}\\ge\\sqrt[3]{x_1x_2x_3}\\Rightarrow x_1x_2x_3\\le 3^{3}=27$, with equality when $x_1=x_2=x_3=3$.",
+          "Then $\\log_3 x_1+\\log_3 x_2+\\log_3 x_3=\\log_3(x_1x_2x_3)\\le\\log_3 27=3$. So $M=3$.",
+          "Finally $\\log_2(m^3)+\\log_3(M^2)=\\log_2(4^{3})+\\log_3(3^{2})=\\log_2 2^{6}+2=6+2=8$."
+        ]
+      },
+      {
+        "name": "Lagrange multipliers (calculus check)",
+        "steps": [
+          "For $m$: minimise $f=3^{y_1}+3^{y_2}+3^{y_3}$ subject to $g=y_1+y_2+y_3-9=0$. Then $\\nabla f=\\lambda\\nabla g$ gives $(\\ln 3)\\,3^{y_i}=\\lambda$ for each $i$, so all $3^{y_i}$ are equal, forcing $y_1=y_2=y_3=3$ by the constraint.",
+          "At this critical point $f=3\\cdot 3^{3}=81$ and it is a minimum (the objective $\\to\\infty$ as any $y_i\\to+\\infty$ with the others compensating). Hence $m=\\log_3 81=4$.",
+          "For $M$: maximise $h=\\log_3 x_1+\\log_3 x_2+\\log_3 x_3=\\frac{1}{\\ln 3}\\sum\\ln x_i$ subject to $x_1+x_2+x_3=9$. Setting $\\nabla h=\\mu\\nabla(\\sum x_i)$ gives $\\frac{1}{(\\ln 3)x_i}=\\mu$, so all $x_i$ equal, i.e. $x_i=3$.",
+          "There $h=\\log_3(3\\cdot 3\\cdot 3)=\\log_3 27=3$, a maximum (concavity of $\\log$). Hence $M=3$.",
+          "Both extrema match the AM–GM values, so $\\log_2(m^3)+\\log_3(M^2)=\\log_2 64+\\log_3 9=6+2=8$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2020, Paper 1, Q13. Two mirror-image AM–GM problems glued together — one fixes the product and bounds the sum below, the other fixes the sum and bounds the product above — both achieving equality at the symmetric point $=3$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Lone Seed $c$",
+    "difficulty": 4,
+    "task": "Count the admissible starting values.",
+    "pyq": {
+      "year": 2020,
+      "paper": "1",
+      "qno": "14"
+    },
+    "tags": [
+      "arithmetic progression",
+      "geometric progression",
+      "series sums",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Let $a_1, a_2, a_3, \\ldots$ be a sequence of positive integers in arithmetic progression with common difference $2$. Also, let $b_1, b_2, b_3, \\ldots$ be a sequence of positive integers in geometric progression with common ratio $2$. If $a_1 = b_1 = c$, then the number of all possible values of $c$, for which the equality $$2\\,(a_1 + a_2 + \\cdots + a_n) = b_1 + b_2 + \\cdots + b_n$$ holds for some positive integer $n$, is ______.",
+    "answer": "$\\boxed{1}$",
+    "trap": "A tempting shortcut is to fix a small $n$ (say $n=1$ or $n=2$) and read off a $c$, then declare 'infinitely many'. But $c$ must be one and the same positive integer that also makes the equality hold — and the exponential $2^n$ eventually dwarfs the quadratic AP-sum, so only a narrow window of $n$ can give a positive integer $c$ at all. The real work is bounding $n$, not solving one case.",
+    "solutions": [
+      {
+        "name": "Reduce to an integer-valued function of $n$",
+        "steps": [
+          "The AP is $a_k = c + 2(k-1)$, so $a_1 + \\cdots + a_n = nc + 2\\cdot\\frac{n(n-1)}{2} = nc + n(n-1) = nc + n^2 - n$.",
+          "The GP is $b_k = c\\cdot 2^{k-1}$, so $b_1 + \\cdots + b_n = c\\,(2^n - 1)$.",
+          "The condition $2(a_1+\\cdots+a_n) = b_1+\\cdots+b_n$ becomes $2\\bigl(nc + n^2 - n\\bigr) = c\\,(2^n-1)$.",
+          "Collect the $c$-terms: $2nc + 2n^2 - 2n = c\\,2^n - c$, i.e. $c\\,(2^n - 1 - 2n) = 2n^2 - 2n$.",
+          "Hence $c = \\dfrac{2n^2 - 2n}{2^n - 2n - 1}$, and we need this to be a positive integer for some positive integer $n$.",
+          "Positivity of the denominator: $2^n - 2n - 1 > 0$ first holds at $n = 3$ ($8 - 6 - 1 = 1 > 0$); for $n = 1$ it is $-2$ and for $n = 2$ it is $-1$ (numerator $0$ there, giving $c = 0$, not a positive integer). So test $n \\ge 3$.",
+          "$n = 3:\\ c = \\dfrac{12}{1} = 12$ — a positive integer. Valid.",
+          "$n = 4:\\ c = \\dfrac{24}{7}$; $\\ n = 5:\\ c = \\dfrac{40}{21}$; $\\ n = 6:\\ c = \\dfrac{60}{51} = \\dfrac{20}{17}$ — none integral.",
+          "For $n \\ge 4$, $c = \\frac{2n^2-2n}{2^n-2n-1} < 2$ because $2^n - 2n - 1 > n^2 - n$ there, so $c$ can only be $1$; but $c=1$ would need $2^n - 2n - 1 = 2n^2 - 2n$, i.e. $2^n = 2n^2 + 1$, which has no solution for $n \\ge 4$ (LHS $16,32,\\ldots$ vs RHS $33,51,\\ldots$).",
+          "So the only working case is $n = 3$ with $c = 12$: exactly $\\boxed{1}$ value of $c$."
+        ]
+      },
+      {
+        "name": "Growth-rate squeeze (bound $n$ first)",
+        "steps": [
+          "Rewrite the requirement as $c = \\dfrac{2n(n-1)}{2^n - 2n - 1}$; for a positive integer $c$ we need $c \\ge 1$, i.e. $2n(n-1) \\ge 2^n - 2n - 1$, i.e. $2^n \\le 2n^2 + 1$.",
+          "Compare the two sides: at $n=3$, $2^3 = 8 \\le 2\\cdot 9 + 1 = 19$ ✓; at $n=4$, $16 \\le 33$ ✓; at $n=5$, $32 \\le 51$ ✓; at $n=6$, $64 \\le 73$ ✓; at $n=7$, $128 \\le 99$ ✗.",
+          "For $n \\ge 7$ the exponential $2^n$ has permanently overtaken $2n^2+1$, so $c < 1$ and no positive integer $c$ exists. Thus $n \\in \\{3,4,5,6\\}$ are the only candidates.",
+          "Now $c$ must be a positive integer, so the denominator $2^n - 2n - 1$ must divide the numerator $2n(n-1)$:",
+          "$n=3:\\ \\dfrac{12}{1} = 12$ ✓ (integer); $n=4:\\ \\dfrac{24}{7}$ ✗; $n=5:\\ \\dfrac{40}{21}$ ✗; $n=6:\\ \\dfrac{60}{51}$ ✗.",
+          "Only $n=3$ survives, giving the single value $c = 12$. Sanity check: AP $12,14,16$ sums to $42$, twice is $84$; GP $12,24,48$ sums to $84$. Equal. ✓",
+          "Therefore the number of admissible $c$ is $\\boxed{1}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 1, Q14. The decisive move is realising the equality is a single Diophantine constraint linking one unknown $c$ to a free index $n$ — exponential-vs-polynomial growth caps $n$, turning an 'infinitely many?' scare into a four-case check."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Circles Marching to a Limit",
+    "difficulty": 4,
+    "task": "Identify the correct relation.",
+    "pyq": {
+      "year": 2021,
+      "paper": "2",
+      "qno": "13"
+    },
+    "tags": [
+      "geometric progression",
+      "sum of GP",
+      "circles and geometry",
+      "2021"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"12\" y1=\"150\" x2=\"308\" y2=\"150\" stroke=\"var(--ink3)\" stroke-width=\"1\"/>\n  <text x=\"300\" y=\"165\" fill=\"var(--ink2)\">x</text>\n  <line x1=\"20\" y1=\"20\" x2=\"20\" y2=\"200\" stroke=\"var(--ink2)\" stroke-width=\"0.8\"/>\n  <text x=\"8\" y=\"18\" fill=\"var(--ink2)\">y</text>\n  <circle cx=\"20\" cy=\"150\" r=\"128\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/>\n  <text x=\"150\" y=\"40\" fill=\"var(--gold)\">M: r = 1025/513</text>\n  <circle cx=\"20\" cy=\"150\" r=\"64\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1\"/>\n  <text x=\"22\" y=\"92\" fill=\"var(--ink2)\">C₁</text>\n  <circle cx=\"84\" cy=\"150\" r=\"32\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1\"/>\n  <text x=\"70\" y=\"126\" fill=\"var(--ink2)\">C₂</text>\n  <circle cx=\"116\" cy=\"150\" r=\"16\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1\"/>\n  <circle cx=\"132\" cy=\"150\" r=\"8\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1\"/>\n  <circle cx=\"140\" cy=\"150\" r=\"4\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1\"/>\n  <text x=\"126\" y=\"175\" fill=\"var(--ink2)\">C₃…</text>\n  <circle cx=\"20\" cy=\"150\" r=\"2\" fill=\"var(--ink3)\"/>\n  <text x=\"2\" y=\"165\" fill=\"var(--ink2)\">O</text>\n</svg>",
+    "statement": "Let $M = \\{(x,y)\\in\\mathbb{R}\\times\\mathbb{R} : x^2 + y^2 \\le r^2\\}$, where $r>0$. Consider the geometric progression $a_n = \\dfrac{1}{2^{n-1}}$, $n = 1,2,3,\\ldots$. Let $S_0 = 0$ and, for $n\\ge 1$, let $S_n$ denote the sum of the first $n$ terms of this progression. For $n\\ge 1$, let $C_n$ denote the circle with center $(S_{n-1}, 0)$ and radius $a_n$. Consider $M$ with $r = \\dfrac{1025}{513}$. Let $k$ be the number of all those circles $C_n$ that are inside $M$. Let $l$ be the maximum possible number of circles among these $k$ circles such that no two circles intersect. Then\n\n(A) $k + 2l = 22$\n\n(B) $2k + l = 26$\n\n(C) $2k + 3l = 34$\n\n(D) $3k + 2l = 40$",
+    "answer": "(D)",
+    "trap": "Two ways to lose here. First, students test containment by the center alone or by $S_n + a_n$ (using $S_n$, the sum of $n$ terms) instead of $S_{n-1} + a_n$ — the rightmost point of $C_n$ is $S_{n-1} + a_n$, not $S_n + a_n$. Second, on the $l$-count, one assumes consecutive circles overlap and halves $k$; in fact adjacent $C_n$ are externally tangent (they touch but do not cross), so a maximal pairwise non-intersecting family alternates — giving $l = \\lceil k/2\\rceil$, not $\\lfloor k/2\\rfloor$.",
+    "solutions": [
+      {
+        "name": "Direct containment count, then a tangency argument for $l$",
+        "steps": [
+          "The GP has first term $1$ and ratio $\\tfrac12$, so $S_{n-1} = \\dfrac{1 - (1/2)^{n-1}}{1 - 1/2} = 2\\left(1 - \\dfrac{1}{2^{n-1}}\\right) = 2 - \\dfrac{1}{2^{n-2}}$.",
+          "Circle $C_n$ has center $(S_{n-1}, 0)$ on the positive $x$-axis and radius $a_n = \\dfrac{1}{2^{n-1}}$; its rightmost point is at $x = S_{n-1} + a_n = 2 - \\dfrac{1}{2^{n-2}} + \\dfrac{1}{2^{n-1}} = 2 - \\dfrac{1}{2^{n-1}}$.",
+          "Since every $C_n$ sits on the axis with $O$ nearest to it, $C_n \\subseteq M$ iff its farthest point from the origin lies within $r$: $S_{n-1} + a_n \\le r$, i.e. $2 - \\dfrac{1}{2^{n-1}} \\le \\dfrac{1025}{513}$.",
+          "Rearrange: $2 - \\dfrac{1025}{513} \\le \\dfrac{1}{2^{n-1}}$, i.e. $\\dfrac{1026 - 1025}{513} = \\dfrac{1}{513} \\le \\dfrac{1}{2^{n-1}}$, so $2^{n-1} \\le 513$.",
+          "The largest such $n$ is $n = 10$ (since $2^{9} = 512 \\le 513 < 1024 = 2^{10}$). Thus $C_1, \\ldots, C_{10}$ are inside $M$ and $k = 10$.",
+          "Now $l$: the rightmost point of $C_n$ is $S_{n-1}+a_n$ and the leftmost point of $C_{n+1}$ is $S_n - a_{n+1} = S_{n-1} + a_n - a_{n+1}$. Since $S_n = S_{n-1} + a_n$, the two circles share exactly the point $x = S_n$ — they are externally tangent, so $C_n$ and $C_{n+1}$'intersect' (touch).",
+          "For a maximal subfamily with no two circles touching, pick every other circle: $C_1, C_3, C_5, C_7, C_9$ — these are pairwise disjoint. That is $l = 5 = \\lceil 10/2 \\rceil$.",
+          "Check the options: $3k + 2l = 3(10) + 2(5) = 30 + 10 = 40$. Option (D) holds; (A) gives $20$, (B) gives $25$, (C) gives $40$? $2k+3l = 20+15 = 35 \\ne 34$. Only (D) is correct.",
+          "Answer: (D)."
+        ]
+      },
+      {
+        "name": "Telescoping / limit-point viewpoint",
+        "steps": [
+          "Observe $S_{n-1} + a_n = S_n$ by definition of the partial sum, and $S_n = 2 - \\dfrac{1}{2^{n-1}} \\nearrow 2$ as $n \\to \\infty$. So the rightmost point of $C_n$ is exactly $S_n$, marching monotonically toward the limit $x = 2$.",
+          "Containment $C_n\\subseteq M$ therefore reads $S_n \\le r = \\dfrac{1025}{513}$. Write $r = 2 - \\dfrac{1}{513}$, so the condition is $2 - \\dfrac{1}{2^{n-1}} \\le 2 - \\dfrac{1}{513}$, i.e. $\\dfrac{1}{2^{n-1}} \\ge \\dfrac{1}{513}$, i.e. $2^{n-1} \\le 513$.",
+          "Largest $n$: $2^{9} = 512 \\le 513$, $2^{10} = 1024 > 513$, so $n \\le 10$ and $k = 10$.",
+          "Because consecutive rightmost/leftmost points coincide at $S_n$, the disc $C_n$ and disc $C_{n+1}$ meet in a single point: the chain is a string of externally tangent circles. Tangent counts as intersecting here.",
+          "A largest antichain in this touch-graph (a path on $10$ vertices) is a maximum independent set, of size $\\lceil 10/2\\rceil = 5$. Hence $l = 5$.",
+          "Substitute into each option; only $3k + 2l = 3\\cdot 10 + 2\\cdot 5 = 40$ matches (D). Final answer: (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 2, Q13 (paragraph). The elegance is that $S_{n-1}+a_n = S_n$, so the circles' right edges are just the GP's partial sums creeping toward $2$; containment reduces to $2^{n-1}\\le 513$ and 'no two intersect' is a max-independent-set on a tangent chain."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The exponential turns an AP into a GP",
+    "difficulty": 4,
+    "task": "Find the value of the partial sum.",
+    "pyq": {
+      "year": 2025,
+      "paper": "1",
+      "qno": "12"
+    },
+    "tags": [
+      "functional equation (exponential)",
+      "geometric progression sums",
+      "AP in exponents",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "Let $\\mathbb{R}$ denote the set of all real numbers. Let $f:\\mathbb{R}\\to\\mathbb{R}$ be a function such that $f(x)>0$ for all $x\\in\\mathbb{R}$, and $f(x+y)=f(x)\\,f(y)$ for all $x,y\\in\\mathbb{R}$. Let the real numbers $a_1,a_2,\\ldots,a_{50}$ be in an arithmetic progression. If $f(a_{31})=64\\,f(a_{25})$ and $\\displaystyle\\sum_{i=1}^{50} f(a_i)=3\\left(2^{25}+1\\right)$, then find the value of $\\displaystyle\\sum_{i=6}^{30} f(a_i)$.",
+    "answer": "$\\boxed{96}$",
+    "trap": "The tempting move is to solve for $f(a_1)$ explicitly from $\\sum_{i=1}^{50} f(a_i)=3(2^{25}+1)$ and grind. But $2^{50}-1=(2^{25}-1)(2^{25}+1)$ — the required block $\\sum_{6}^{30}$ collapses cleanly only if you notice this factorisation instead of expanding the whole thing. Students who miss it get stuck in ugly arithmetic and mis-evaluate.",
+    "solutions": [
+      {
+        "name": "Recognise $f(a_i)$ as a GP, then factor $2^{50}-1$",
+        "steps": [
+          "The Cauchy-type multiplicative condition $f(x+y)=f(x)f(y)$ with $f>0$ forces $f(x)=k^{x}$ for some constant $k>0$ (set $g=\\ln f$; then $g(x+y)=g(x)+g(y)$ and $g$ is bounded below on any interval since $f>0$, so $g$ is linear).",
+          "Since $a_1,\\ldots,a_{50}$ are in AP with common difference $d$, we have $a_i=a_1+(i-1)d$, so $f(a_i)=k^{a_1}\\,(k^{d})^{\\,i-1}$. Thus the numbers $f(a_1),f(a_2),\\ldots$ form a GP with common ratio $R=k^{d}$.",
+          "Apply the given ratio condition: $f(a_{31})=64\\,f(a_{25})$ means $k^{a_1+30d}=64\\,k^{a_1+24d}$, i.e. $k^{6d}=2^{6}$, hence $R=k^{d}=2$.",
+          "Let $A=f(a_1)$. The full-sum condition is $\\displaystyle\\sum_{i=1}^{50}A\\cdot 2^{\\,i-1}=A\\,(2^{50}-1)=3\\left(2^{25}+1\\right)$.",
+          "Factor $2^{50}-1=(2^{25}-1)(2^{25}+1)$, so $A=\\dfrac{3\\left(2^{25}+1\\right)}{(2^{25}-1)(2^{25}+1)}=\\dfrac{3}{\\,2^{25}-1\\,}$.",
+          "Now $\\displaystyle\\sum_{i=6}^{30} f(a_i)=\\sum_{i=6}^{30}A\\cdot 2^{\\,i-1}=A\\left(2^{5}+2^{6}+\\cdots+2^{29}\\right)=A\\cdot 2^{5}\\,(2^{25}-1)$.",
+          "Substitute $A=\\dfrac{3}{2^{25}-1}$: the factor $2^{25}-1$ cancels, leaving $\\displaystyle\\sum_{i=6}^{30} f(a_i)=3\\cdot 2^{5}=96$."
+        ]
+      },
+      {
+        "name": "Ratio of geometric block sums (never solve for $A$)",
+        "steps": [
+          "As above, $f(a_i)=A\\,R^{\\,i-1}$ is a GP; the condition $f(a_{31})=64f(a_{25})$ gives $R^{6}=64$, so $R=2$.",
+          "Write both sums as $A\\cdot(\\text{geometric factor})$. The wanted sum is $\\Sigma_1=\\sum_{i=6}^{30}A R^{i-1}=A R^{5}\\dfrac{R^{25}-1}{R-1}$, and the given sum is $\\Sigma_2=\\sum_{i=1}^{50}A R^{i-1}=A\\dfrac{R^{50}-1}{R-1}$.",
+          "Take the ratio so $A$ cancels entirely: $\\dfrac{\\Sigma_1}{\\Sigma_2}=\\dfrac{R^{5}(R^{25}-1)}{R^{50}-1}=\\dfrac{R^{5}(R^{25}-1)}{(R^{25}-1)(R^{25}+1)}=\\dfrac{R^{5}}{R^{25}+1}$.",
+          "With $R=2$: $\\dfrac{\\Sigma_1}{\\Sigma_2}=\\dfrac{2^{5}}{2^{25}+1}=\\dfrac{32}{2^{25}+1}$.",
+          "Hence $\\Sigma_1=\\Sigma_2\\cdot\\dfrac{32}{2^{25}+1}=3\\left(2^{25}+1\\right)\\cdot\\dfrac{32}{2^{25}+1}=3\\cdot 32=96$.",
+          "The awkward number $2^{25}+1$ never had to be evaluated — it cancels against the given sum, confirming $\\displaystyle\\sum_{i=6}^{30} f(a_i)=96$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 1, Q12. The exponential functional equation is a disguise: it silently converts an arithmetic progression in the exponents into a geometric progression of values, and the whole problem hinges on the factorisation $2^{50}-1=(2^{25}-1)(2^{25}+1)$."
   }
 ];

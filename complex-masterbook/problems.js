@@ -4222,5 +4222,1710 @@ window.PROBLEMS = [
       }
     ],
     "remark": "**Insight.** The bridge  $2-2\\cos\\theta=|1-e^{i\\theta}|^{2}$  converts a reciprocal-cosine sum into a sum over chord lengths of the nonagon, which the factorization of  $z^{n}-1$  controls. The clean closed form is  $\\sum_{k=1}^{n-1}\\frac{1}{|1-\\omega^{k}|^{2}}=\\frac{n^{2}-1}{12}$  — the same  $\\frac{n^2-1}{12}$  that governs the variance of a uniform spread. The trap is reaching for the linear sum  $\\frac{n-1}{2}$ , which answers a different question entirely."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "When $\\dfrac{w-\\bar w z}{1-z}$ turns real",
+    "difficulty": 3,
+    "task": "Identify the correct set of values of $z$.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "5"
+    },
+    "tags": [
+      "purely real condition",
+      "modulus",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "If $w=\\alpha+i\\beta$, where $\\beta\\neq0$ and $z\\neq1$, satisfies the condition that $\\dfrac{w-\\bar w z}{1-z}$ is purely real, then the set of values of $z$ is\n\n(A) $\\{z:|z|=1\\}$\n\n(B) $\\{z:z=\\bar z\\}$\n\n(C) $\\{z:z\\neq1\\}$\n\n(D) $\\{z:|z|=1,\\ z\\neq1\\}$",
+    "answer": "(D) $\\{z:|z|=1,\\ z\\neq1\\}$",
+    "trap": "It is tempting to conclude only $|z|=1$ and forget that $z=1$ was excluded from the start (it makes the denominator zero). The clean algebra also hides a second factor $w-\\bar w$; forgetting that $\\beta\\neq0$ forces $w\\neq\\bar w$ makes students wrongly keep the $z=\\bar z$ branch.",
+    "solutions": [
+      {
+        "name": "A number equals its own conjugate",
+        "steps": [
+          "A complex number is purely real exactly when it equals its conjugate. So set $\\dfrac{w-\\bar w z}{1-z}=\\overline{\\left(\\dfrac{w-\\bar w z}{1-z}\\right)}=\\dfrac{\\bar w-w\\bar z}{1-\\bar z}$.",
+          "Cross-multiply: $(w-\\bar w z)(1-\\bar z)=(\\bar w-w\\bar z)(1-z)$.",
+          "Expand the left side: $w-w\\bar z-\\bar w z+\\bar w z\\bar z$. Expand the right side: $\\bar w-\\bar w z-w\\bar z+w z\\bar z$.",
+          "Subtract. The terms $-w\\bar z$ and $-\\bar w z$ cancel on both sides, leaving $w+\\bar w z\\bar z=\\bar w+w z\\bar z$.",
+          "Rearrange: $w-\\bar w = wz\\bar z-\\bar w z\\bar z=(w-\\bar w)\\,z\\bar z$, i.e. $(w-\\bar w)(z\\bar z-1)=0$.",
+          "Since $\\beta\\neq0$, $w=\\alpha+i\\beta\\neq\\alpha-i\\beta=\\bar w$, so $w-\\bar w=2i\\beta\\neq0$. Hence $z\\bar z-1=0$, that is $|z|^2=1$, so $|z|=1$.",
+          "The hypothesis already excludes $z=1$. Therefore the set is $\\{z:|z|=1,\\ z\\neq1\\}$ — option (D)."
+        ]
+      },
+      {
+        "name": "Split $w$ into real and imaginary parts",
+        "steps": [
+          "Write $w=\\alpha+i\\beta$ and $\\bar w=\\alpha-i\\beta$. Then the numerator is $w-\\bar w z=\\alpha(1-z)+i\\beta(1+z)$.",
+          "Divide by $(1-z)$: $\\dfrac{w-\\bar w z}{1-z}=\\alpha+i\\beta\\cdot\\dfrac{1+z}{1-z}$.",
+          "This is purely real precisely when the added term $i\\beta\\cdot\\dfrac{1+z}{1-z}$ is real. Since $\\beta\\neq0$ is a nonzero real, we need $\\dfrac{1+z}{1-z}$ to be purely imaginary.",
+          "Recall the standard fact: $\\dfrac{1+z}{1-z}$ is purely imaginary $\\iff$ $z$ lies on the unit circle $|z|=1$ (excluding $z=1$). Quick check: with $z=e^{i\\theta}$, $\\dfrac{1+e^{i\\theta}}{1-e^{i\\theta}}=\\dfrac{e^{-i\\theta/2}+e^{i\\theta/2}}{e^{-i\\theta/2}-e^{i\\theta/2}}=\\dfrac{2\\cos(\\theta/2)}{-2i\\sin(\\theta/2)}=i\\cot(\\theta/2)$, which is purely imaginary.",
+          "So the condition is $|z|=1$ with $z\\neq1$ (the point $\\theta=0$ is excluded). This is option (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q5. The one-line trick $\\overline{(\\text{real})}=(\\text{real})$ dissolves the fraction instantly; the real lesson is that $\\dfrac{1+z}{1-z}$ being purely imaginary is a hidden encoding of the unit circle."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A walk across the Argand plane",
+    "difficulty": 2,
+    "task": "Locate the point $P$ in the Argand plane.",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "47"
+    },
+    "tags": [
+      "Argand plane",
+      "rotation",
+      "geometry of complex numbers",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><line x1=\"20\" y1=\"185\" x2=\"300\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"110\" y1=\"205\" x2=\"110\" y2=\"20\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><text x=\"296\" y=\"199\" fill=\"var(--ink2)\">Re</text><text x=\"116\" y=\"28\" fill=\"var(--ink2)\">Im</text><text x=\"98\" y=\"199\" fill=\"var(--ink2)\">O</text><line x1=\"110\" y1=\"185\" x2=\"170\" y2=\"125\" stroke=\"var(--ink2)\" stroke-width=\"1.6\"/><line x1=\"170\" y1=\"125\" x2=\"110\" y2=\"65\" stroke=\"var(--gold)\" stroke-width=\"2\"/><line x1=\"110\" y1=\"185\" x2=\"110\" y2=\"65\" stroke=\"var(--ink3)\" stroke-width=\"1.2\" stroke-dasharray=\"4 3\"/><circle cx=\"170\" cy=\"125\" r=\"3\" fill=\"var(--ink2)\"/><circle cx=\"110\" cy=\"65\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"176\" y=\"122\" fill=\"var(--ink2)\">A</text><text x=\"84\" y=\"62\" fill=\"var(--gold)\">P</text><text x=\"130\" y=\"162\" fill=\"var(--ink2)\">3</text><text x=\"128\" y=\"88\" fill=\"var(--gold)\">4</text><path d=\"M 110 165 A 20 20 0 0 0 124 171\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><text x=\"126\" y=\"178\" fill=\"var(--ink2)\">45°</text></svg>",
+    "statement": "A man walks a distance of $3$ units from the origin towards the north-east ($\\text{N }45^\\circ\\text{ E}$) direction. From there, he walks a distance of $4$ units towards the north-west ($\\text{N }45^\\circ\\text{ W}$) direction to reach a point $P$. Then the position of $P$ in the Argand plane is\n\n(A) $3e^{i\\pi/4}+4i$\n\n(B) $(3-4i)e^{i\\pi/4}$\n\n(C) $(4+3i)e^{i\\pi/4}$\n\n(D) $(3+4i)e^{i\\pi/4}$",
+    "answer": "(D) $(3+4i)e^{i\\pi/4}$",
+    "trap": "The turn from N45°E to N45°W is a $90^\\circ$ turn to the left, so the second leg is the first direction rotated by $+\\pi/2$ (multiply by $i$), not a fixed $+4i$ added in the world frame. Option (A) commits exactly that error by tacking on $4i$ as if north-west meant straight up.",
+    "solutions": [
+      {
+        "name": "Rotation by $i$ from the first heading",
+        "steps": [
+          "Put east along the positive real axis and north along the positive imaginary axis. The direction $\\text{N }45^\\circ\\text{ E}$ makes an angle $45^\\circ=\\pi/4$ with the east axis, so the first leg is $A=3e^{i\\pi/4}$.",
+          "The direction $\\text{N }45^\\circ\\text{ W}$ makes an angle $135^\\circ=3\\pi/4$ with the east axis. Note $3\\pi/4=\\pi/4+\\pi/2$: it is the first heading rotated a further $90^\\circ$ anticlockwise.",
+          "So the second displacement of $4$ units is $4e^{i\\,3\\pi/4}=4e^{i\\pi/4}\\cdot e^{i\\pi/2}=4i\\,e^{i\\pi/4}$.",
+          "Add the two legs: $P=A+4i\\,e^{i\\pi/4}=3e^{i\\pi/4}+4i\\,e^{i\\pi/4}=(3+4i)e^{i\\pi/4}$.",
+          "This is option (D)."
+        ]
+      },
+      {
+        "name": "Cartesian components then re-factor",
+        "steps": [
+          "First leg: $3$ units at $45^\\circ$ gives components $\\left(3\\cdot\\tfrac{1}{\\sqrt2},\\,3\\cdot\\tfrac{1}{\\sqrt2}\\right)=\\left(\\tfrac{3}{\\sqrt2},\\tfrac{3}{\\sqrt2}\\right)$, so $A=\\tfrac{3}{\\sqrt2}(1+i)$.",
+          "Second leg: $4$ units at $135^\\circ$ points north-west, giving components $\\left(4\\cos135^\\circ,4\\sin135^\\circ\\right)=\\left(-\\tfrac{4}{\\sqrt2},\\tfrac{4}{\\sqrt2}\\right)$, so the displacement is $\\tfrac{4}{\\sqrt2}(-1+i)$.",
+          "Add: $P=\\tfrac{1}{\\sqrt2}\\big[(3-4)+i(3+4)\\big]=\\tfrac{1}{\\sqrt2}(-1+7i)$.",
+          "To match the options, factor out $e^{i\\pi/4}=\\tfrac{1}{\\sqrt2}(1+i)$. Compute $(3+4i)e^{i\\pi/4}=(3+4i)\\cdot\\tfrac{1}{\\sqrt2}(1+i)=\\tfrac{1}{\\sqrt2}(3+3i+4i+4i^2)=\\tfrac{1}{\\sqrt2}(3+7i-4)=\\tfrac{1}{\\sqrt2}(-1+7i)$.",
+          "This equals $P$, confirming option (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q47. Reading a compass turn as multiplication by $i$ (a $90^\\circ$ rotation) is the whole point — the polar form $e^{i\\pi/4}$ factors cleanly and beats grinding through the coordinates."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The locus of $\\dfrac{z}{1-z^2}$ on the unit circle",
+    "difficulty": 3,
+    "task": "Identify the locus.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "49"
+    },
+    "tags": [
+      "modulus one",
+      "locus in complex plane",
+      "imaginary axis",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><line x1=\"20\" y1=\"110\" x2=\"300\" y2=\"110\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"160\" y1=\"18\" x2=\"160\" y2=\"205\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"293\" y=\"124\" fill=\"var(--ink2)\">Re</text><text x=\"166\" y=\"28\" fill=\"var(--ink2)\">Im</text><circle cx=\"160\" cy=\"110\" r=\"72\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.2\"/><text x=\"236\" y=\"84\" fill=\"var(--ink2)\">$|z|=1$</text><line x1=\"160\" y1=\"18\" x2=\"160\" y2=\"205\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><text x=\"120\" y=\"46\" fill=\"var(--gold)\">image axis</text><circle cx=\"212\" cy=\"60\" r=\"3\" fill=\"var(--ink2)\"/><text x=\"216\" y=\"56\" fill=\"var(--ink2)\">$z$</text><circle cx=\"160\" cy=\"74\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"126\" y=\"72\" fill=\"var(--gold)\">$\\frac{z}{1-z^2}$</text><circle cx=\"232\" cy=\"110\" r=\"3\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.2\"/><text x=\"228\" y=\"126\" fill=\"var(--ink2)\">$1$</text><circle cx=\"88\" cy=\"110\" r=\"3\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.2\"/><text x=\"74\" y=\"126\" fill=\"var(--ink2)\">$-1$</text></svg>",
+    "statement": "If $|z| = 1$ and $z \\neq \\pm 1$, then all the values of $\\dfrac{z}{1 - z^2}$ lie on\n\n(A) a line not passing through the origin\n(B) $|z| = \\sqrt{2}$\n(C) the $x$-axis\n(D) the $y$-axis",
+    "answer": "(D) the $y$-axis",
+    "trap": "It is tempting to test a single value such as $z=i$ (giving $\\frac{i}{2}$, imaginary) and stop — but a single point does not prove a locus. The clean move is to exploit $|z|=1\\iff \\bar z = 1/z$, which collapses the whole expression to something manifestly purely imaginary. Students who instead expand $z=x+iy$ and grind through real/imaginary parts usually mishandle the denominator $1-z^2$ and never see why the real part is forced to zero.",
+    "solutions": [
+      {
+        "name": "Conjugate trick using $\\bar z = 1/z$",
+        "steps": [
+          "Since $|z|=1$ we have $z\\bar z = 1$, i.e. $\\bar z = \\dfrac{1}{z}$.",
+          "Let $w = \\dfrac{z}{1-z^2}$. Factor the denominator by pulling out $z$: $1-z^2 = z\\left(\\dfrac{1}{z}-z\\right) = z(\\bar z - z)$.",
+          "Hence $w = \\dfrac{z}{z(\\bar z - z)} = \\dfrac{1}{\\bar z - z}$.",
+          "Now $\\bar z - z = -2i\\,\\operatorname{Im}(z)$ is purely imaginary, so $w = \\dfrac{1}{-2i\\,\\operatorname{Im} z} = \\dfrac{i}{2\\operatorname{Im} z}$.",
+          "Because $z\\neq\\pm1$, $\\operatorname{Im}(z)\\neq 0$, so $w$ is a nonzero purely imaginary number. Every such $w$ lies on the imaginary axis, i.e. the $y$-axis. Answer (D)."
+        ]
+      },
+      {
+        "name": "Polar form $z=e^{i\\theta}$",
+        "steps": [
+          "Write $z=\\cos\\theta + i\\sin\\theta = e^{i\\theta}$, valid because $|z|=1$; $z\\neq\\pm1$ means $\\theta\\neq 0,\\pi$, so $\\sin\\theta\\neq 0$.",
+          "Then $z^2 = e^{2i\\theta}$ and $1 - z^2 = 1 - e^{2i\\theta} = -e^{i\\theta}\\left(e^{i\\theta}-e^{-i\\theta}\\right) = -e^{i\\theta}\\cdot 2i\\sin\\theta$.",
+          "Therefore $\\dfrac{z}{1-z^2} = \\dfrac{e^{i\\theta}}{-2i\\sin\\theta\\,e^{i\\theta}} = \\dfrac{1}{-2i\\sin\\theta} = \\dfrac{i}{2\\sin\\theta}$.",
+          "This is purely imaginary for every admissible $\\theta$, so the point lies on the $y$-axis. Answer (D).",
+          "Remark: as $\\theta$ ranges over $(0,\\pi)\\cup(\\pi,2\\pi)$, $\\dfrac{1}{2\\sin\\theta}$ sweeps all of $\\mathbb{R}\\setminus(-\\tfrac12,\\tfrac12)$, confirming the values genuinely fill (most of) the imaginary axis rather than a single point."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q49. The identity $\\bar z = 1/z$ on the unit circle is the master key: it turns a messy rational function of $z$ into a plainly purely-imaginary quantity in one line."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "How many points in $A\\cap B\\cap C$?",
+    "difficulty": 4,
+    "task": "Count the common points.",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "21"
+    },
+    "tags": [
+      "complex numbers",
+      "loci in Argand plane",
+      "intersection of sets",
+      "2008"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><line x1=\"14\" y1=\"170\" x2=\"306\" y2=\"170\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"40\" y1=\"12\" x2=\"40\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"298\" y=\"184\" fill=\"var(--ink2)\">Re</text><text x=\"46\" y=\"22\" fill=\"var(--ink2)\">Im</text><line x1=\"14\" y1=\"140\" x2=\"306\" y2=\"140\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"5 4\"/><text x=\"250\" y=\"134\" fill=\"var(--ink2)\">$y=1$ (region $A$: above)</text><circle cx=\"120\" cy=\"140\" r=\"60\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.3\"/><text x=\"128\" y=\"150\" fill=\"var(--ink2)\">$B$</text><circle cx=\"120\" cy=\"140\" r=\"2.5\" fill=\"var(--ink2)\"/><text x=\"96\" y=\"156\" fill=\"var(--ink2)\">$(2,1)$</text><line x1=\"20\" y1=\"81\" x2=\"250\" y2=\"196\" stroke=\"var(--gold)\" stroke-width=\"2\"/><text x=\"200\" y=\"206\" fill=\"var(--gold)\">$C:\\;x+y=\\sqrt2$</text><circle cx=\"78\" cy=\"140\" r=\"4.5\" fill=\"var(--gold)\"/><text x=\"40\" y=\"128\" fill=\"var(--gold)\">unique point</text></svg>",
+    "statement": "Let $A, B, C$ be three sets of complex numbers defined by\n$$A = \\{z : \\operatorname{Im} z \\ge 1\\},\\quad B = \\{z : |z - 2 - i| = 3\\},\\quad C = \\{z : \\operatorname{Re}((1-i)z) = \\sqrt{2}\\}.$$\nThe number of elements in the set $A \\cap B \\cap C$ is\n\n(A) $0$\n(B) $1$\n(C) $2$\n(D) $\\infty$",
+    "answer": "(B) $1$",
+    "trap": "The seductive shortcut is to say the line $C$ generically cuts the circle $B$ in two points and answer $2$. The constraint $A$ ($\\operatorname{Im} z\\ge 1$) quietly discards one of those intersections: the line $x+y=\\sqrt2$ meets the circle at two points, but only one of them has $y\\ge 1$. Miss the interaction of all three sets and you land on (C) instead of (B).",
+    "solutions": [
+      {
+        "name": "Translate each set to Cartesian and intersect",
+        "steps": [
+          "Write $z = x+iy$. Set $A$ is the closed half-plane $y\\ge 1$.",
+          "Set $B$: $|z-(2+i)|=3$ is the circle centred at $(2,1)$ of radius $3$, i.e. $(x-2)^2+(y-1)^2 = 9$.",
+          "Set $C$: $(1-i)z = (1-i)(x+iy) = (x+y) + i(y-x)$, so $\\operatorname{Re}((1-i)z) = x+y$. The condition is the line $x+y=\\sqrt2$.",
+          "Impose $A$ on $C$: on the line, $x = \\sqrt2 - y$, and $y\\ge 1$ forces $x = \\sqrt2 - y \\le \\sqrt2 - 1 < 1$. So any admissible point has $y\\ge 1 > x$.",
+          "Substitute $x=\\sqrt2 - y$ into the circle: $(\\sqrt2 - y - 2)^2 + (y-1)^2 = 9$. Expand: $\\big(y-(\\sqrt2-2)\\big)^2 + (y-1)^2 = 9$, giving $2y^2 - 2(\\sqrt2 -1)y + (\\sqrt2-2)^2 + 1 - 9 = 0$.",
+          "This quadratic in $y$ has two real roots (the line is a genuine chord of the circle), but the two intersection points are symmetric about the line's midpoint; computing them shows exactly one root satisfies $y\\ge 1$ while the other gives $y<1$.",
+          "Concretely, the chord's midpoint has $y = \\tfrac{\\sqrt2-1}{2}\\approx 0.21$, and the half-chord in the $y$-direction is small, so only the upper endpoint clears $y=1$. Hence $A\\cap B\\cap C$ contains exactly one point. Answer (B)."
+        ]
+      },
+      {
+        "name": "Distance-from-centre geometry",
+        "steps": [
+          "As above, $B$ is the circle centre $P=(2,1)$, radius $3$; $C$ is the line $x+y=\\sqrt2$; $A$ is $y\\ge 1$.",
+          "Distance from $P=(2,1)$ to the line $x+y-\\sqrt2=0$ is $d = \\dfrac{|2+1-\\sqrt2|}{\\sqrt2} = \\dfrac{3-\\sqrt2}{\\sqrt2} = \\dfrac{3\\sqrt2 - 2}{2}\\approx 1.12 < 3$.",
+          "Since $d<3$, the line meets the circle in two distinct points — so $B\\cap C$ has two elements.",
+          "Now apply $A$. The centre $P$ lies on the boundary line $y=1$ of the half-plane, and the chord $B\\cap C$ lies almost entirely below $y=1$ because the line $x+y=\\sqrt2$ passes low (its highest point with the circle still barely exceeds $y=1$).",
+          "Check the two chord endpoints against $y\\ge 1$: solving as in Method 1, the larger root gives $y = \\tfrac{\\sqrt2-1}{2} + (\\text{half-chord}) > 1$ while the smaller gives $y<1$. Exactly one endpoint survives.",
+          "Therefore precisely one point lies in all three sets: $A\\cap B\\cap C$ has $1$ element. Answer (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q21 (comprehension). The whole difficulty is the half-plane $A$ trimming a two-point chord down to one — decode $\\operatorname{Re}((1-i)z)=x+y$ first, then it is pure coordinate geometry."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A sum that never moves off the diameter",
+    "difficulty": 3,
+    "task": "Choose the correct interval.",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "22"
+    },
+    "tags": [
+      "complex numbers",
+      "circle geometry",
+      "Thales/diameter",
+      "2008"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"150\" x2=\"300\" y2=\"150\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><line x1=\"70\" y1=\"200\" x2=\"70\" y2=\"20\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><text x=\"302\" y=\"163\" fill=\"var(--ink2)\">x</text><text x=\"58\" y=\"20\" fill=\"var(--ink2)\">y</text><circle cx=\"150\" cy=\"120\" r=\"75\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"75\" y1=\"120\" x2=\"225\" y2=\"120\" stroke=\"var(--gold)\" stroke-width=\"2\"/><circle cx=\"75\" cy=\"120\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"225\" cy=\"120\" r=\"3\" fill=\"var(--gold)\"/><text x=\"40\" y=\"116\" fill=\"var(--ink2)\">(-1,1)</text><text x=\"228\" y=\"116\" fill=\"var(--ink2)\">(5,1)</text><line x1=\"20\" y1=\"120\" x2=\"300\" y2=\"120\" stroke=\"var(--ink2)\" stroke-width=\"0.7\" stroke-dasharray=\"4 3\"/><text x=\"250\" y=\"114\" fill=\"var(--ink2)\">y=1</text><circle cx=\"205\" cy=\"55\" r=\"3\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.3\"/><text x=\"210\" y=\"52\" fill=\"var(--ink2)\">z</text><line x1=\"75\" y1=\"120\" x2=\"205\" y2=\"55\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"225\" y1=\"120\" x2=\"205\" y2=\"55\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"120\" y=\"85\" fill=\"var(--ink2)\">a</text><text x=\"222\" y=\"90\" fill=\"var(--ink2)\">b</text><path d=\"M 198 68 A 12 12 0 0 0 210 64\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1\"/></svg>",
+    "statement": "Let $A,B,C$ be the sets of complex numbers $A=\\{z:\\operatorname{Im}z\\ge 1\\}$, $B=\\{z:|z-2-i|=3\\}$, $C=\\{z:\\operatorname{Re}((1-i)z)=\\sqrt2\\}$. Let $z$ be any point in $A\\cap B\\cap C$. Then $|z+1-i|^2+|z-5-i|^2$ lies between\n\n(A) $25$ and $29$\n\n(B) $30$ and $34$\n\n(C) $35$ and $39$\n\n(D) $40$ and $44$",
+    "answer": "$\\boxed{\\text{(C) between }35\\text{ and }39}$",
+    "trap": "The phrase \"lies between\" tempts you to hunt for a range and start optimising $z$ over the sector $A\\cap B\\cap C$. But the two anchor points $-1+i$ and $5+i$ are the ends of a diameter of the circle $B$, so for every $z$ on that circle the sum is the constant $36$. The quantity does not vary at all — there is nothing to maximise, and the fact that $z\\in A\\cap C$ (which pins $z$ to a single point) is a red herring for this particular value.",
+    "solutions": [
+      {
+        "name": "Thales — angle in a semicircle",
+        "steps": [
+          "The circle $B$ is $|z-2-i|=3$, i.e. centre $M=2+i$ and radius $3$.",
+          "The two fixed points are $P=-1+i$ (since $|z+1-i|=|z-(-1+i)|$) and $Q=5+i$ (since $|z-5-i|=|z-(5+i)|$).",
+          "Their midpoint is $\\tfrac{(-1+i)+(5+i)}{2}=2+i=M$, and each is at distance $|{-1+i}-(2+i)|=3$ from $M$. So $P$ and $Q$ are diametrically opposite points of the circle $B$; $PQ$ is a diameter of length $6$.",
+          "For any $z$ on the circle, $\\angle PzQ$ is the angle in a semicircle, hence $\\angle PzQ=90^\\circ$. Thus triangle $PzQ$ is right-angled at $z$.",
+          "By Pythagoras, $|z-P|^2+|z-Q|^2=|PQ|^2=6^2=36$.",
+          "Therefore $|z+1-i|^2+|z-5-i|^2=36$ for every admissible $z$, which lies between $35$ and $39$. Answer (C)."
+        ]
+      },
+      {
+        "name": "Median (parallelogram) identity",
+        "steps": [
+          "For any point $z$ and any two points $P,Q$ with midpoint $M$, the parallelogram law gives $|z-P|^2+|z-Q|^2=2|z-M|^2+\\tfrac12|P-Q|^2.$",
+          "Here $P=-1+i$, $Q=5+i$, so $M=2+i$ and $|P-Q|=|{-6}|=6$, hence $\\tfrac12|P-Q|^2=18$.",
+          "But $z$ lies on circle $B$, whose centre is exactly $M=2+i$ with radius $3$, so $|z-M|^2=9$ and $2|z-M|^2=18$.",
+          "Adding: $|z-P|^2+|z-Q|^2=18+18=36$, independent of which point $z$ we take on the circle.",
+          "So the required expression equals $36\\in(35,39)$; the answer is (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE/JEE Advanced 2008, Paper 1, Q22. The comprehension buries a clean fact: $-1+i$ and $5+i$ are the endpoints of a diameter of $B$, so the sum of squared distances is the constant $\\text{(diameter)}^2=36$ — recognise the diameter and the whole optimisation evaporates."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "One point on the rim, one inside",
+    "difficulty": 3,
+    "task": "Pick the correct bounding interval.",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "23"
+    },
+    "tags": [
+      "complex numbers",
+      "modulus inequalities",
+      "triangle inequality",
+      "2008"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"170\" x2=\"300\" y2=\"170\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><line x1=\"55\" y1=\"205\" x2=\"55\" y2=\"20\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><text x=\"302\" y=\"183\" fill=\"var(--ink2)\">x</text><text x=\"44\" y=\"22\" fill=\"var(--ink2)\">y</text><circle cx=\"170\" cy=\"110\" r=\"70\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><circle cx=\"170\" cy=\"110\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"176\" y=\"108\" fill=\"var(--ink2)\">C(2,1)</text><circle cx=\"224\" cy=\"65\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"228\" y=\"60\" fill=\"var(--ink2)\">z (on circle)</text><circle cx=\"150\" cy=\"135\" r=\"3.5\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/><text x=\"120\" y=\"152\" fill=\"var(--ink2)\">w (inside)</text><line x1=\"224\" y1=\"65\" x2=\"150\" y2=\"135\" stroke=\"var(--gold)\" stroke-width=\"1.5\" stroke-dasharray=\"5 3\"/><text x=\"175\" y=\"95\" fill=\"var(--ink2)\">|z-w|&lt;6</text></svg>",
+    "statement": "Let $A,B,C$ be the sets $A=\\{z:\\operatorname{Im}z\\ge 1\\}$, $B=\\{z:|z-2-i|=3\\}$, $C=\\{z:\\operatorname{Re}((1-i)z)=\\sqrt2\\}$. Let $z$ be any point in $A\\cap B\\cap C$ and let $w$ be any point satisfying $|w-2-i|<3$. Then $|z|-|w|+3$ lies between\n\n(A) $-6$ and $3$\n\n(B) $-3$ and $6$\n\n(C) $-6$ and $6$\n\n(D) $-3$ and $9$",
+    "answer": "$\\boxed{\\text{(D) between }-3\\text{ and }9}$",
+    "trap": "Two traps hide here. First, $z$ is on the circle $B$ while $w$ is strictly inside it, so the largest possible separation $|z-w|$ approaches the diameter $6$ but never reaches it — the bound is strict, $|z-w|<6$, not $\\le 6$. Second, students bound $|z|-|w|$ using the origin's distance to the circle and get a needlessly tight (wrong) interval; the clean route is the reverse triangle inequality $\\big||z|-|w|\\big|\\le |z-w|$, which does not care where the origin sits.",
+    "solutions": [
+      {
+        "name": "Reverse triangle inequality via the diameter",
+        "steps": [
+          "$z$ lies on the circle $|z-2-i|=3$ (centre $C=2+i$, radius $3$); $w$ lies strictly inside the same circle, $|w-2-i|<3$.",
+          "Bound the separation. By the triangle inequality, $|z-w|\\le |z-C|+|C-w| < 3+3 = 6$, since $|z-C|=3$ and $|C-w|<3$. Hence $|z-w|<6$.",
+          "Apply the reverse triangle inequality: $\\big||z|-|w|\\big|\\le |z-w| < 6$, so $-6 < |z|-|w| < 6$.",
+          "Add $3$ throughout: $-3 < |z|-|w|+3 < 9$.",
+          "Thus $|z|-|w|+3$ lies between $-3$ and $9$. Answer (D)."
+        ]
+      },
+      {
+        "name": "Bounding $|z|$ and $|w|$ separately from the centre",
+        "steps": [
+          "The origin is at distance $|C|=|2+i|=\\sqrt5$ from the centre. For any point $p$ with $|p-C|=\\rho$, the triangle inequality gives $\\big||C|-\\rho\\big|\\le |p|\\le |C|+\\rho$.",
+          "For $z$ on the circle ($\\rho=3$): $|z|\\in[\\,|\\sqrt5-3|,\\ \\sqrt5+3\\,]=[\\,3-\\sqrt5,\\ \\sqrt5+3\\,]$.",
+          "For $w$ inside the circle ($\\rho<3$): $|w|\\in[0,\\ \\sqrt5+3)$; in particular $|w|\\ge 0$ and $|w|<\\sqrt5+3$.",
+          "Hence the largest $|z|-|w|$ can approach is $(\\sqrt5+3)-0=\\sqrt5+3\\approx 5.24 < 6$, and the smallest it can approach is $(3-\\sqrt5)-(\\sqrt5+3)=-2\\sqrt5\\approx -4.47 > -6$.",
+          "So $-6<|z|-|w|<6$, matching the previous bound, and adding $3$ gives $-3<|z|-|w|+3<9$ — again interval (D). (The crude bounds $\\pm 6$ from the diameter already suffice to select (D) uniquely.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE/JEE Advanced 2008, Paper 1, Q23. The intended solution is one line — reverse triangle inequality plus \"one point on the circle, one inside gives separation below the diameter\" — the whole $A\\cap C$ apparatus is scenery."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Particle's Walk in the Argand Plane",
+    "difficulty": 3,
+    "task": "Find the final position $z_2$.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "9"
+    },
+    "tags": [
+      "complex numbers",
+      "rotation",
+      "geometric transformations",
+      "2008"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><line x1=\"20\" y1=\"180\" x2=\"305\" y2=\"180\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"40\" y1=\"205\" x2=\"40\" y2=\"15\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"298\" y=\"195\" fill=\"var(--ink2)\">Re</text><text x=\"46\" y=\"22\" fill=\"var(--ink2)\">Im</text><circle cx=\"90\" cy=\"160\" r=\"3\" fill=\"var(--ink2)\"/><text x=\"70\" y=\"172\" fill=\"var(--ink2)\">$z_0(1,2)$</text><circle cx=\"215\" cy=\"130\" r=\"3\" fill=\"var(--ink2)\"/><text x=\"222\" y=\"128\" fill=\"var(--ink2)\">$z_1(6,5)$</text><circle cx=\"240\" cy=\"120\" r=\"3\" fill=\"var(--ink2)\"/><text x=\"246\" y=\"114\" fill=\"var(--ink2)\">$(7,6)$</text><circle cx=\"110\" cy=\"110\" r=\"4\" fill=\"var(--gold)\"/><text x=\"78\" y=\"104\" fill=\"var(--gold)\">$z_2(-6,7)$</text><line x1=\"90\" y1=\"160\" x2=\"215\" y2=\"160\" stroke=\"var(--ink2)\" stroke-width=\"1.2\" stroke-dasharray=\"4 3\"/><line x1=\"215\" y1=\"160\" x2=\"215\" y2=\"130\" stroke=\"var(--ink2)\" stroke-width=\"1.2\" stroke-dasharray=\"4 3\"/><line x1=\"215\" y1=\"130\" x2=\"240\" y2=\"120\" stroke=\"var(--ink2)\" stroke-width=\"1.4\"/><path d=\"M 240 120 A 90 90 0 0 1 110 110\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><line x1=\"40\" y1=\"180\" x2=\"240\" y2=\"120\" stroke=\"var(--ink2)\" stroke-width=\"0.7\" stroke-dasharray=\"2 3\"/><line x1=\"40\" y1=\"180\" x2=\"110\" y2=\"110\" stroke=\"var(--ink2)\" stroke-width=\"0.7\" stroke-dasharray=\"2 3\"/></svg>",
+    "statement": "A particle $P$ starts from the point $z_0 = 1 + 2i$, where $i=\\sqrt{-1}$. It moves first horizontally away from origin by $5$ units and then vertically away from origin by $3$ units to reach a point $z_1$. From $z_1$ the particle moves $\\sqrt2$ units in the direction of the vector $\\hat{i}+\\hat{j}$ and then it moves through an angle $\\dfrac{\\pi}{2}$ in anticlockwise direction on a circle with centre at origin, to reach a point $z_2$. The point $z_2$ is given by\n\n(A) $6 + 7i$\n(B) $-7 + 6i$\n(C) $7 + 6i$\n(D) $-6 + 7i$",
+    "answer": "(D) $-6 + 7i$",
+    "trap": "The final move is a rotation of $z_2$'s predecessor about the ORIGIN (multiply by $i$), not a translation. Students who add $\\sqrt2\\,e^{i\\pi/2}$ (a shift) instead of multiplying by $e^{i\\pi/2}$ get $7+7i$ or worse. Also, 'away from origin' fixes the sign of each straight move: since $z_0$ is in the first quadrant, both the horizontal and vertical moves are in the $+$ direction.",
+    "solutions": [
+      {
+        "name": "Step-by-step in coordinates",
+        "steps": [
+          "Start at $z_0 = 1 + 2i$, i.e. the point $(1,2)$.",
+          "Move horizontally away from the origin by $5$: since the point is at $x=1>0$, 'away' means $+x$, giving $x = 1+5 = 6$. Now at $(6,2)$.",
+          "Move vertically away from the origin by $3$: since $y=2>0$, 'away' means $+y$, giving $y = 2+3 = 5$. So $z_1 = 6 + 5i$.",
+          "Move $\\sqrt2$ units in the direction of $\\hat{i}+\\hat{j}$. The unit vector is $\\dfrac{\\hat i+\\hat j}{\\sqrt2}$, so the displacement is $\\sqrt2\\cdot\\dfrac{1+i}{\\sqrt2} = 1+i$. New point: $(6+1) + (5+1)i = 7 + 6i$.",
+          "Rotate this point by $\\dfrac{\\pi}{2}$ anticlockwise about the origin: multiply by $e^{i\\pi/2} = i$. Thus $z_2 = i(7+6i) = 7i + 6i^2 = -6 + 7i$.",
+          "Hence $z_2 = -6 + 7i$, option (D)."
+        ]
+      },
+      {
+        "name": "Rotation of the whole position vector",
+        "steps": [
+          "A rotation by angle $\\alpha$ about the origin sends any complex number $w$ to $w\\,e^{i\\alpha}$; this is exactly what 'move through an angle on a circle with centre at origin' means.",
+          "First accumulate the three straight moves as complex displacements added to $z_0$: horizontal $+5$, vertical $+3i$, and diagonal $+(1+i)$.",
+          "So the point just before rotation is $w = z_0 + 5 + 3i + (1+i) = (1+2i) + 5 + 3i + 1 + i = 7 + 6i$.",
+          "Confirm $|w| = \\sqrt{7^2+6^2} = \\sqrt{85}$; rotation preserves modulus, so $|z_2| = \\sqrt{85}$ too — a quick consistency check on the options ($|-6+7i| = \\sqrt{36+49} = \\sqrt{85}$ ✓, while $|6+7i|=\\sqrt{85}$ also passes but fails the direction test).",
+          "Apply the anticlockwise quarter turn: $z_2 = w\\,e^{i\\pi/2} = (7+6i)\\,i = -6 + 7i$.",
+          "The direction check settles it: multiplying by $i$ rotates $\\arg(7+6i)\\approx 40.6^\\circ$ to $\\approx 130.6^\\circ$, placing $z_2$ in the second quadrant — only $-6+7i$ qualifies. Answer (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q9. The one idea that unlocks it: translations *add* a complex number while rotations about the origin *multiply* by $e^{i\\theta}$ — mixing the two is the classic slip."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Sum of Odd-Power Imaginary Parts",
+    "difficulty": 4,
+    "task": "Evaluate the sum at $\\theta = 2^\\circ$.",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "21"
+    },
+    "tags": [
+      "De Moivre's theorem",
+      "geometric progression of complex numbers",
+      "imaginary part",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "Let $z = \\cos\\theta + i\\sin\\theta$. Then the value of $\\displaystyle\\sum_{m=1}^{15} \\operatorname{Im}\\!\\left(z^{2m-1}\\right)$ at $\\theta = 2^\\circ$ is\n\n(A) $\\dfrac{1}{\\sin 2^\\circ}$\n(B) $\\dfrac{1}{3\\sin 2^\\circ}$\n(C) $\\dfrac{1}{2\\sin 2^\\circ}$\n(D) $\\dfrac{1}{4\\sin 2^\\circ}$",
+    "answer": "(D) $\\dfrac{1}{4\\sin 2^\\circ}$",
+    "trap": "Because $z=\\cos\\theta+i\\sin\\theta$ has modulus $1$, it is tempting to treat the geometric series as if $|r|<1$ and drop terms — but here $r=z^2$ lies ON the unit circle, so the finite-GP formula must be used exactly and the $\\dfrac{e^{iA}-e^{iB}}{\\dots}$ pieces converted to sines via $e^{iA}-e^{iB}=2i\\sin\\!\\frac{A-B}{2}\\,e^{i(A+B)/2}$. Approximating or truncating loses the clean $\\dfrac{1}{4\\sin 2^\\circ}$.",
+    "solutions": [
+      {
+        "name": "Imaginary part of a finite geometric series",
+        "steps": [
+          "By De Moivre, $z^{2m-1} = \\cos((2m-1)\\theta) + i\\sin((2m-1)\\theta)$, so $\\operatorname{Im}(z^{2m-1}) = \\sin((2m-1)\\theta)$.",
+          "The required sum is $S = \\operatorname{Im}\\!\\left(\\displaystyle\\sum_{m=1}^{15} z^{2m-1}\\right) = \\operatorname{Im}\\!\\left(z + z^3 + z^5 + \\cdots + z^{29}\\right)$.",
+          "This is a geometric series with first term $z$, common ratio $z^2$, and $15$ terms: $\\displaystyle\\sum_{m=1}^{15} z^{2m-1} = z\\cdot\\frac{(z^2)^{15}-1}{z^2-1} = \\frac{z^{31}-z}{z^2-1}$.",
+          "Factor a symmetric power from numerator and denominator: $\\dfrac{z^{31}-z}{z^2-1} = z^{15}\\cdot\\dfrac{z^{16}-z^{-14}}{\\,\\cdots\\,}$ — more cleanly, use $z^{31}-z = z^{16}(z^{15}-z^{-15})$ and $z^2-1 = z(z-z^{-1})$.",
+          "Hence the sum $= \\dfrac{z^{16}(z^{15}-z^{-15})}{z(z-z^{-1})} = z^{15}\\cdot\\dfrac{z^{15}-z^{-15}}{z-z^{-1}}$.",
+          "Now $z^{15}-z^{-15} = 2i\\sin(15\\theta)$ and $z-z^{-1} = 2i\\sin\\theta$, so the ratio is $\\dfrac{\\sin(15\\theta)}{\\sin\\theta}$, which is real.",
+          "Therefore $\\displaystyle\\sum_{m=1}^{15} z^{2m-1} = \\big(\\cos(15\\theta)+i\\sin(15\\theta)\\big)\\cdot\\dfrac{\\sin(15\\theta)}{\\sin\\theta}$.",
+          "Taking the imaginary part: $S = \\dfrac{\\sin^2(15\\theta)}{\\sin\\theta}$.",
+          "At $\\theta = 2^\\circ$: $15\\theta = 30^\\circ$, and $\\sin 30^\\circ = \\tfrac12$, so $\\sin^2 30^\\circ = \\tfrac14$. Thus $S = \\dfrac{1/4}{\\sin 2^\\circ} = \\dfrac{1}{4\\sin 2^\\circ}$.",
+          "This is option (D)."
+        ]
+      },
+      {
+        "name": "Sum of sines of an arithmetic progression of angles",
+        "steps": [
+          "Directly, $S = \\displaystyle\\sum_{m=1}^{15}\\sin\\big((2m-1)\\theta\\big) = \\sin\\theta + \\sin 3\\theta + \\sin 5\\theta + \\cdots + \\sin 29\\theta$.",
+          "These are sines of angles in arithmetic progression: first angle $\\theta$, common difference $2\\theta$, count $n=15$.",
+          "Use the standard telescoping trick: multiply each term by $2\\sin\\theta$ and apply $2\\sin A\\sin\\theta = \\cos(A-\\theta) - \\cos(A+\\theta)$.",
+          "Then $2\\sin\\theta\\cdot\\sin((2m-1)\\theta) = \\cos((2m-2)\\theta) - \\cos(2m\\theta)$, a telescoping difference.",
+          "Summing $m=1$ to $15$: $2\\sin\\theta\\cdot S = \\cos 0 - \\cos(30\\theta) = 1 - \\cos(30\\theta)$.",
+          "So $S = \\dfrac{1-\\cos(30\\theta)}{2\\sin\\theta}$. Using $1-\\cos(30\\theta) = 2\\sin^2(15\\theta)$ gives $S = \\dfrac{\\sin^2(15\\theta)}{\\sin\\theta}$, matching the first method.",
+          "At $\\theta = 2^\\circ$: $30\\theta = 60^\\circ$, so $1-\\cos 60^\\circ = 1-\\tfrac12 = \\tfrac12$, and $S = \\dfrac{1/2}{2\\sin 2^\\circ} = \\dfrac{1}{4\\sin 2^\\circ}$.",
+          "Answer (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 1, Q21. The elegant route is to sum the complex GP first and extract the imaginary part at the end — the algebra collapses to $\\dfrac{\\sin^2(15\\theta)}{\\sin\\theta}$, and $15\\theta=30^\\circ$ does the rest."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Point on the Segment $z_1z_2$",
+    "difficulty": 3,
+    "task": "Select every statement that must hold.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "39"
+    },
+    "tags": [
+      "section formula",
+      "argument",
+      "collinearity",
+      "2010"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"13\"><line x1=\"20\" y1=\"200\" x2=\"300\" y2=\"200\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><line x1=\"40\" y1=\"210\" x2=\"40\" y2=\"20\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><text x=\"302\" y=\"197\" fill=\"var(--ink2)\">Re</text><text x=\"30\" y=\"18\" fill=\"var(--ink2)\">Im</text><line x1=\"70\" y1=\"170\" x2=\"260\" y2=\"60\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"166\" y1=\"114\" x2=\"260\" y2=\"60\" stroke=\"var(--gold)\" stroke-width=\"3\"/><circle cx=\"70\" cy=\"170\" r=\"3.5\" fill=\"var(--ink3)\"/><circle cx=\"260\" cy=\"60\" r=\"3.5\" fill=\"var(--ink3)\"/><circle cx=\"166\" cy=\"114\" r=\"4\" fill=\"var(--gold)\"/><text x=\"52\" y=\"185\" fill=\"var(--ink2)\">$z_1$</text><text x=\"266\" y=\"57\" fill=\"var(--ink2)\">$z_2$</text><text x=\"150\" y=\"132\" fill=\"var(--gold)\">$z$</text></svg>",
+    "statement": "Let $z_1$ and $z_2$ be two distinct complex numbers and let $z=(1-t)z_1+tz_2$ for some real number $t$ with $0<t<1$. If $\\operatorname{Arg}(w)$ denotes the principal argument of a nonzero complex number $w$, then\n(A) $|z-z_1|+|z-z_2|=|z_1-z_2|$\n(B) $\\operatorname{Arg}(z-z_1)=\\operatorname{Arg}(z-z_2)$\n(C) $\\begin{vmatrix} z-z_1 & \\bar z-\\bar z_1 \\\\ z_2-z_1 & \\bar z_2-\\bar z_1 \\end{vmatrix}=0$\n(D) $\\operatorname{Arg}(z-z_1)=\\operatorname{Arg}(z_2-z_1)$",
+    "answer": "(A), (C), (D)",
+    "trap": "The point $z$ sits strictly between $z_1$ and $z_2$, so the vectors $z-z_1$ and $z-z_2$ point in $\\textbf{opposite}$ directions — their arguments differ by $\\pi$, not $0$. Students who only register 'all three points are collinear' tick (B) as well, forgetting that collinearity fixes the arguments only up to a possible $\\pi$.",
+    "solutions": [
+      {
+        "name": "Vector reading of the section formula",
+        "steps": [
+          "The relation $z=(1-t)z_1+tz_2$ is the section formula: $z$ divides the segment from $z_1$ to $z_2$ internally in the ratio $t:(1-t)$. Since $0<t<1$, the point $z$ lies strictly between $z_1$ and $z_2$.",
+          "Rearrange: $z-z_1=t(z_2-z_1)$ and $z-z_2=(1-t)z_1+tz_2-z_2=-(1-t)(z_2-z_1)$.",
+          "$\\textbf{(A)}$ Because $z$ is on the segment, the two sub-distances add to the whole: $|z-z_1|+|z-z_2|=t|z_2-z_1|+(1-t)|z_2-z_1|=|z_2-z_1|$. TRUE.",
+          "$\\textbf{(D)}$ From $z-z_1=t(z_2-z_1)$ with $t>0$, the vector $z-z_1$ is a $\\textit{positive}$ real multiple of $z_2-z_1$, so they have the same direction: $\\operatorname{Arg}(z-z_1)=\\operatorname{Arg}(z_2-z_1)$. TRUE.",
+          "$\\textbf{(B)}$ From $z-z_2=-(1-t)(z_2-z_1)$ with $-(1-t)<0$, the vector $z-z_2$ is a $\\textit{negative}$ real multiple of $z_2-z_1$, hence points opposite to $z-z_1$. So $\\operatorname{Arg}(z-z_1)$ and $\\operatorname{Arg}(z-z_2)$ differ by $\\pi$ — they are NOT equal. FALSE.",
+          "$\\textbf{(C)}$ The determinant $\\begin{vmatrix} z-z_1 & \\bar z-\\bar z_1 \\\\ z_2-z_1 & \\bar z_2-\\bar z_1 \\end{vmatrix}$ is the standard collinearity test for $z_1,z_2,z$. Since $z-z_1=t(z_2-z_1)$, the top row is $t$ times the bottom row, so the rows are proportional and the determinant is $0$. TRUE.",
+          "Hence the correct statements are (A), (C), (D)."
+        ]
+      },
+      {
+        "name": "Direct collinearity determinant",
+        "steps": [
+          "For three points $z_1,z_2,z$ to be collinear, the condition is $\\begin{vmatrix} z & \\bar z & 1 \\\\ z_1 & \\bar z_1 & 1 \\\\ z_2 & \\bar z_2 & 1 \\end{vmatrix}=0$. Subtracting row 2 from row 1 and row 2 from row 3 reduces this to $\\begin{vmatrix} z-z_1 & \\bar z-\\bar z_1 \\\\ z_2-z_1 & \\bar z_2-\\bar z_1 \\end{vmatrix}=0$, which is exactly statement (C).",
+          "Since $z$ is a real affine combination $(1-t)z_1+tz_2$, it is automatically collinear with $z_1,z_2$, so (C) holds identically.",
+          "For the argument statements, set $u=z_2-z_1\\ne 0$. Then $z-z_1=tu$ and $z-z_2=-(1-t)u$.",
+          "$\\operatorname{Arg}(tu)=\\operatorname{Arg}(u)$ because $t>0$ scales without rotating: this gives (D).",
+          "$\\operatorname{Arg}(-(1-t)u)=\\operatorname{Arg}(u)\\pm\\pi$ because the factor $-(1-t)$ is negative: so $\\operatorname{Arg}(z-z_2)\\ne\\operatorname{Arg}(z-z_1)$, killing (B).",
+          "Finally $|z-z_1|+|z-z_2|=|tu|+|(1-t)u|=(t+1-t)|u|=|u|=|z_1-z_2|$, confirming (A). Correct set: (A), (C), (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE/JEE Advanced 2010, Paper 1, Q39. The one-line insight: an internal division point is collinear with the endpoints (so (A),(C),(D) all encode 'same line'), but 'between' flips the sign of one direction vector, which is precisely why the argument-equality (B) fails by exactly $\\pi$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Four Loci, One Match — $|z-i|z||$, Ellipses & $w\\pm\\tfrac1w$",
+    "difficulty": 4,
+    "task": "Match each locus in Column I to every description it satisfies in Column II.",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "37"
+    },
+    "tags": [
+      "locus in complex plane",
+      "ellipse",
+      "modulus conditions",
+      "2010"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"110\" x2=\"300\" y2=\"110\" stroke=\"var(--ink3)\"/><line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"302\" y=\"114\" fill=\"var(--ink2)\">Re</text><text x=\"164\" y=\"28\" fill=\"var(--ink2)\">Im</text><ellipse cx=\"160\" cy=\"110\" rx=\"110\" ry=\"66\" fill=\"none\" stroke=\"var(--ink2)\"/><text x=\"210\" y=\"56\" fill=\"var(--ink2)\">B: $a{=}5,\\ e{=}\\tfrac45$</text><line x1=\"50\" y1=\"110\" x2=\"270\" y2=\"110\" stroke=\"var(--gold)\" stroke-width=\"3\"/><circle cx=\"50\" cy=\"110\" r=\"2.5\" fill=\"var(--gold)\"/><circle cx=\"270\" cy=\"110\" r=\"2.5\" fill=\"var(--gold)\"/><text x=\"96\" y=\"128\" fill=\"var(--gold)\">D: $z{=}2\\cos\\theta$ on real axis</text><text x=\"40\" y=\"196\" fill=\"var(--ink2)\">A collapses to Im$z{=}0$ (real axis)</text></svg>",
+    "statement": "Match the statements in Column I with those in Column II. Here $z$ ranges over the complex plane, and $\\operatorname{Im}z$, $\\operatorname{Re}z$ denote the imaginary and real parts of $z$.\n\n$$\\textbf{Column I}$$\n\n(A) The set of points $z$ satisfying $|z-i|z||=|z+i|z||$ is contained in or equal to\n\n(B) The set of points $z$ satisfying $|z+4|+|z-4|=10$ is contained in or equal to\n\n(C) If $|w|=2$, then the set of points $z=w-\\dfrac{1}{w}$ is contained in or equal to\n\n(D) If $|w|=1$, then the set of points $z=w+\\dfrac{1}{w}$ is contained in or equal to\n\n$$\\textbf{Column II}$$\n\n(p) an ellipse with eccentricity $\\dfrac{4}{5}$\n\n(q) the set of points $z$ satisfying $\\operatorname{Im}z=0$\n\n(r) the set of points $z$ satisfying $|\\operatorname{Im}z|\\le 1$\n\n(s) the set of points $z$ satisfying $|\\operatorname{Re}z|\\le 2$\n\n(t) the set of points $z$ satisfying $|z|\\le 3$",
+    "answer": "A $\\to$ (q, r); B $\\to$ (p); C $\\to$ (p, s, t); D $\\to$ (q, r, s, t)",
+    "trap": "In (A) many students square $|z-i|z||=|z+i|z||$ and expect a circle. But $|z|$ is a real scalar, so $i|z|$ is a fixed point $(0,|z|)$ on the imaginary axis: the equation says $z$ is equidistant from $(0,|z|)$ and $(0,-|z|)$, which forces $\\operatorname{Im}z=0$, not a circle. And in (D) the temptation is to call $w+\\tfrac1w$ an ellipse (as in C); but when $|w|=1$ it degenerates to the real segment $[-2,2]$, so it also satisfies (q) — the very option people reserve only for A.",
+    "solutions": [
+      {
+        "name": "Direct simplification of each locus",
+        "steps": [
+          "(A) Let $|z|=\\rho$ (a fixed non-negative real for a given $z$). Then $i|z|=(0,\\rho)$ and $-i|z|=(0,-\\rho)$. The condition $|z-i|z||=|z+i|z||$ says $z$ is equidistant from $(0,\\rho)$ and $(0,-\\rho)$, i.e. it lies on the perpendicular bisector of that vertical segment — the real axis. Hence $\\operatorname{Im}z=0$. This satisfies (q) directly, and since $\\operatorname{Im}z=0\\Rightarrow|\\operatorname{Im}z|\\le1$, it also satisfies (r). So $A\\to(q,r)$.",
+          "(B) $|z-4|+|z+4|=10$ is the classic focal definition of an ellipse with foci $(\\pm4,0)$, so $2a=10\\Rightarrow a=5$ and $c=4$. Then $e=c/a=4/5$. So $B\\to(p)$.",
+          "(C) Put $w=2e^{i\\theta}$, so $z=w-\\dfrac1w=2e^{i\\theta}-\\dfrac12 e^{-i\\theta}$. Then $x=\\operatorname{Re}z=\\bigl(2-\\tfrac12\\bigr)\\cos\\theta=\\tfrac32\\cos\\theta$ and $y=\\operatorname{Im}z=\\bigl(2+\\tfrac12\\bigr)\\sin\\theta=\\tfrac52\\sin\\theta$. Eliminating $\\theta$: $\\dfrac{x^2}{(3/2)^2}+\\dfrac{y^2}{(5/2)^2}=1$, an ellipse with $a=\\tfrac52,\\ b=\\tfrac32$, so $c^2=a^2-b^2=\\tfrac{25}{4}-\\tfrac94=4$, $c=2$, $e=c/a=\\tfrac{2}{5/2}=\\tfrac45$ — matching (p). Its extents: $|x|\\le\\tfrac32\\le2$ so (s) holds; $|z|\\le a=\\tfrac52\\le3$ so (t) holds. So $C\\to(p,s,t)$.",
+          "(D) Put $w=e^{i\\theta}$ (since $|w|=1$, $\\tfrac1w=\\bar w=e^{-i\\theta}$), so $z=w+\\dfrac1w=e^{i\\theta}+e^{-i\\theta}=2\\cos\\theta$, a real number in $[-2,2]$. Thus $\\operatorname{Im}z=0$ (so q and r), $|\\operatorname{Re}z|=|2\\cos\\theta|\\le2$ (so s), and $|z|\\le2\\le3$ (so t). So $D\\to(q,r,s,t)$."
+        ]
+      },
+      {
+        "name": "Parametric/geometric reading (rotation & ellipse axes)",
+        "steps": [
+          "General fact: for $w=Re^{i\\theta}$, the map $z=w+\\tfrac{k}{w}=Re^{i\\theta}+\\tfrac{k}{R}e^{-i\\theta}$ traces an ellipse (a Joukowski-type image) with semi-axes $|R+\\tfrac{k}{R}|$ and $|R-\\tfrac{k}{R}|$ along the real and imaginary axes.",
+          "(C) Here $R=2,\\ k=-1$: axes along Re are $|2-\\tfrac12|=\\tfrac32$, along Im are $|2+\\tfrac12|=\\tfrac52$. So the ellipse has semi-axes $\\tfrac32$ (horizontal) and $\\tfrac52$ (vertical). Largest $|z|$ is $\\tfrac52<3$ (t), largest $|\\operatorname{Re}z|$ is $\\tfrac32<2$ (s), and $e=\\sqrt{1-(3/5)^2}=\\tfrac45$ (p). Confirms $C\\to(p,s,t)$.",
+          "(D) Here $R=1,\\ k=1$: the imaginary semi-axis is $|1-1|=0$, so the ellipse collapses to a segment along the real axis of half-length $|1+1|=2$, i.e. $z\\in[-2,2]$. A degenerate ellipse is a segment: $\\operatorname{Im}z=0$ (q, r), $|\\operatorname{Re}z|\\le2$ (s), $|z|\\le2\\le3$ (t). Confirms $D\\to(q,r,s,t)$.",
+          "(A) Geometric reading: $i|z|$ and $-i|z|$ are reflections of each other across the real axis, and equidistance from a point and its reflection across a line means lying on that line — the real axis. Hence $A\\to(q,r)$.",
+          "(B) Sum-of-distances-to-two-foci $=$ constant is, by definition, an ellipse; with $2a=10,\\ 2c=8$ we get $e=\\tfrac45$, giving $B\\to(p)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2010, Paper 2, Q37. The elegance is that a single \"$w\\pm\\tfrac1w$\" template covers (C) and (D): keep the radius $\\ne1$ and you get an ellipse, drop it to $|w|=1$ and the ellipse degenerates onto the real axis — so (D) inherits (q) exactly as (A) does."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "$\\dfrac{3}{\\omega^{a}}+\\dfrac{1}{\\omega^{b}}+\\dfrac{3}{\\omega^{c}}$ — Cube Roots Meet a Linear System",
+    "difficulty": 3,
+    "task": "Evaluate the given cube-root-of-unity expression.",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "61"
+    },
+    "tags": [
+      "cube roots of unity",
+      "linear systems",
+      "2011"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><circle cx=\"160\" cy=\"110\" r=\"80\" fill=\"none\" stroke=\"var(--ink2)\"/><line x1=\"60\" y1=\"110\" x2=\"300\" y2=\"110\" stroke=\"var(--ink3)\"/><line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"302\" y=\"114\" fill=\"var(--ink2)\">Re</text><text x=\"164\" y=\"28\" fill=\"var(--ink2)\">Im</text><circle cx=\"240\" cy=\"110\" r=\"3\" fill=\"var(--ink2)\"/><text x=\"244\" y=\"106\" fill=\"var(--ink2)\">$1$</text><circle cx=\"120\" cy=\"40.7\" r=\"3\" fill=\"var(--gold)\"/><text x=\"96\" y=\"36\" fill=\"var(--gold)\">$\\omega$</text><circle cx=\"120\" cy=\"179.3\" r=\"3\" fill=\"var(--gold)\"/><text x=\"96\" y=\"192\" fill=\"var(--gold)\">$\\omega^2$</text><line x1=\"160\" y1=\"110\" x2=\"240\" y2=\"110\" stroke=\"var(--ink2)\"/><line x1=\"160\" y1=\"110\" x2=\"120\" y2=\"40.7\" stroke=\"var(--gold)\"/><line x1=\"160\" y1=\"110\" x2=\"120\" y2=\"179.3\" stroke=\"var(--gold)\"/><text x=\"150\" y=\"214\" fill=\"var(--ink2)\">$1+\\omega+\\omega^2=0$</text></svg>",
+    "statement": "$\\textbf{Paragraph (Q60–Q62).}$ Let $a,b,c$ be three real numbers satisfying\n$$\\begin{bmatrix} a & b & c \\end{bmatrix}\\begin{bmatrix} 1 & 9 & 7 \\\\ 8 & 2 & 7 \\\\ 7 & 3 & 7 \\end{bmatrix}=\\begin{bmatrix} 0 & 0 & 0 \\end{bmatrix}.\\qquad(\\text{E})$$\nSolving $(\\text{E})$ gives the family $b=6a,\\ c=-7a$.\n\n$\\textbf{Q61.}$ Let $\\omega$ be a solution of $x^{3}-1=0$ with $\\operatorname{Im}(\\omega)>0$. If $a=2$, with $b$ and $c$ satisfying $(\\text{E})$, then the value of\n$$\\frac{3}{\\omega^{a}}+\\frac{1}{\\omega^{b}}+\\frac{3}{\\omega^{c}}$$\nis equal to\n\n(A) $-2$  (B) $2$  (C) $3$  (D) $-3$",
+    "answer": "(A) $-2$",
+    "trap": "The exponents $b=12$ and $c=-14$ tempt students to expand $\\omega^{12}$ and $\\omega^{-14}$ carelessly. The safe move is to reduce every exponent mod $3$ first: $\\omega^{12}=\\omega^{0}=1$ and $\\omega^{-14}=\\omega^{-14+15}=\\omega^{1}$ (add multiples of $3$ until the exponent is in $\\{0,1,2\\}$). A sign slip on the negative exponent $-14$ is the usual way a strong student lands on $-3$ instead of $-2$.",
+    "solutions": [
+      {
+        "name": "Reduce exponents mod 3, then use $\\omega+\\omega^2=-1$",
+        "steps": [
+          "From $(\\text{E})$ with $a=2$: $b=6a=12$ and $c=-7a=-14$.",
+          "Since $\\omega^3=1$, reduce each exponent mod $3$: $\\omega^{a}=\\omega^{2}$; $\\;\\omega^{b}=\\omega^{12}=(\\omega^3)^4=1$; $\\;\\omega^{c}=\\omega^{-14}=\\omega^{-14+15}=\\omega^{1}=\\omega$.",
+          "So the expression is $\\dfrac{3}{\\omega^{2}}+\\dfrac{1}{1}+\\dfrac{3}{\\omega}$.",
+          "Use $\\dfrac{1}{\\omega}=\\omega^{-1}=\\omega^{2}$ and $\\dfrac{1}{\\omega^{2}}=\\omega^{-2}=\\omega$. Then the sum $=3\\omega+1+3\\omega^{2}=1+3(\\omega+\\omega^{2})$.",
+          "Since $1+\\omega+\\omega^{2}=0$, we have $\\omega+\\omega^{2}=-1$, giving $1+3(-1)=-2$.",
+          "Hence the value is $-2$, option (A)."
+        ]
+      },
+      {
+        "name": "Substitute $\\omega=e^{2\\pi i/3}$ and compute numerically",
+        "steps": [
+          "The root with $\\operatorname{Im}(\\omega)>0$ is $\\omega=e^{2\\pi i/3}=-\\tfrac12+\\tfrac{\\sqrt3}{2}i$, and $\\omega^{2}=e^{4\\pi i/3}=-\\tfrac12-\\tfrac{\\sqrt3}{2}i$.",
+          "With $a=2,\\ b=12,\\ c=-14$, note $\\dfrac{3}{\\omega^{a}}=3\\omega^{-2}=3\\,e^{-4\\pi i/3}=3\\,e^{2\\pi i/3}=3\\omega$.",
+          "$\\dfrac{1}{\\omega^{b}}=\\omega^{-12}=e^{-8\\pi i}=1$.",
+          "$\\dfrac{3}{\\omega^{c}}=3\\omega^{14}=3\\,e^{28\\pi i/3}=3\\,e^{(28-27)\\pi i/3}=3\\,e^{\\pi i/3}$? Re-reduce via mod: $\\omega^{14}=\\omega^{14-12}=\\omega^{2}$, so $\\dfrac{3}{\\omega^{c}}=3\\omega^{2}$.",
+          "Summing the real parts: $3\\omega+1+3\\omega^{2}=3\\bigl(-\\tfrac12+\\tfrac{\\sqrt3}{2}i\\bigr)+1+3\\bigl(-\\tfrac12-\\tfrac{\\sqrt3}{2}i\\bigr)=\\bigl(-\\tfrac32-\\tfrac32+1\\bigr)+\\bigl(\\tfrac{3\\sqrt3}{2}-\\tfrac{3\\sqrt3}{2}\\bigr)i=-2+0i$.",
+          "The imaginary parts cancel (as they must for a real answer), leaving $-2$, option (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2011, Paper 1, Q61 (paragraph Q60–Q62). The linear system $(\\text{E})$ is a decoy: all it does is fix the exponents $a{=}2,b{=}12,c{=}-14$; the real work is disciplined reduction of exponents modulo $3$ followed by the identity $1+\\omega+\\omega^2=0$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The $\\omega$-Fourier Trio",
+    "difficulty": 4,
+    "task": "Evaluate the constant ratio.",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "41"
+    },
+    "tags": [
+      "cube roots of unity",
+      "DFT-type matrix",
+      "modulus",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $\\omega = e^{i2\\pi/3}$ and let $a, b, c, x, y, z$ be non-zero complex numbers such that\n$$a + b + c = x,\\qquad a + b\\omega + c\\omega^2 = y,\\qquad a + b\\omega^2 + c\\omega = z.$$\nThen the value of $\\dfrac{|x|^2 + |y|^2 + |z|^2}{|a|^2 + |b|^2 + |c|^2}$ is",
+    "answer": "$\\boxed{3}$",
+    "trap": "The paper prints $\\omega = e^{i\\pi/3}$, a primitive $6$th root, for which the ratio is NOT constant — the whole method silently relies on $\\omega$ being a genuine cube root of unity ($1 + \\omega + \\omega^2 = 0$). The keyed value $3$ is the intended answer with $\\omega = e^{2\\pi i/3}$; a student who blindly plugs $e^{i\\pi/3}$ finds no fixed number and panics. Recognise the intended object is the $3\\times3$ Fourier (DFT) matrix.",
+    "solutions": [
+      {
+        "name": "Unitary Fourier matrix ($A^\\ast A = 3I$)",
+        "steps": [
+          "Take $\\omega$ to be a primitive cube root of unity, so $\\omega^3 = 1$ and $1 + \\omega + \\omega^2 = 0$ (this is the object the problem intends; see the trap).",
+          "Write the three relations as a single matrix equation $\\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix} = A \\begin{bmatrix} a \\\\ b \\\\ c \\end{bmatrix}$ with $A = \\begin{bmatrix} 1 & 1 & 1 \\\\ 1 & \\omega & \\omega^2 \\\\ 1 & \\omega^2 & \\omega \\end{bmatrix}$.",
+          "The conjugate transpose is $A^\\ast = \\begin{bmatrix} 1 & 1 & 1 \\\\ 1 & \\bar\\omega & \\bar{\\omega^2} \\\\ 1 & \\bar{\\omega^2} & \\bar\\omega \\end{bmatrix}$. Since $|\\omega| = 1$, $\\bar\\omega = \\omega^{-1} = \\omega^2$ and $\\bar{\\omega^2} = \\omega$, so $A^\\ast = \\begin{bmatrix} 1 & 1 & 1 \\\\ 1 & \\omega^2 & \\omega \\\\ 1 & \\omega & \\omega^2 \\end{bmatrix}$.",
+          "Compute $A^\\ast A$. Each diagonal entry is $1 + |\\omega|^2 + |\\omega^2|^2 = 3$. Each off-diagonal entry is a sum of the form $1 + \\omega^k + \\omega^{2k}$ for $k \\in \\{1,2\\}$, and $1 + \\omega + \\omega^2 = 0$. Hence $A^\\ast A = 3I$.",
+          "Therefore $|x|^2 + |y|^2 + |z|^2 = \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix}^\\ast \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix} = \\begin{bmatrix} a \\\\ b \\\\ c \\end{bmatrix}^\\ast A^\\ast A \\begin{bmatrix} a \\\\ b \\\\ c \\end{bmatrix} = 3\\left(|a|^2 + |b|^2 + |c|^2\\right).$",
+          "Divide: the ratio equals $3$, independent of $a, b, c$."
+        ]
+      },
+      {
+        "name": "Direct expansion with $\\sum \\omega^k = 0$",
+        "steps": [
+          "Again let $\\omega$ be a primitive cube root of unity. Use $|w|^2 = w\\bar w$ on each of $x, y, z$.",
+          "$|x|^2 = (a+b+c)\\overline{(a+b+c)} = |a|^2+|b|^2+|c|^2 + (a\\bar b + b\\bar a) + (b\\bar c + c\\bar b) + (a\\bar c + c\\bar a).$",
+          "$|y|^2 = (a+b\\omega+c\\omega^2)\\overline{(a+b\\omega+c\\omega^2)}$. Using $\\bar\\omega = \\omega^2,\\ \\bar{\\omega^2}=\\omega$, the cross terms carry factors $\\omega^2, \\omega, \\omega^{-1}=\\omega^2, \\ldots$; collecting, $|y|^2 = |a|^2+|b|^2+|c|^2 + \\omega^2 a\\bar b + \\omega b\\bar a + \\omega c\\bar b + \\omega^2 b\\bar c + \\omega a\\bar c + \\omega^2 c\\bar a$ (each mixed pair weighted by a power of $\\omega$).",
+          "$|z|^2 = (a+b\\omega^2+c\\omega)\\overline{(a+b\\omega^2+c\\omega)}$ gives the same mixed pairs but with the conjugate powers of $\\omega$.",
+          "Add $|x|^2+|y|^2+|z|^2$. The three pure-square terms give $3\\left(|a|^2+|b|^2+|c|^2\\right)$. Every mixed pair such as $a\\bar b$ appears with total coefficient $1 + \\omega + \\omega^2 = 0$, so all cross terms cancel.",
+          "Hence $|x|^2+|y|^2+|z|^2 = 3\\left(|a|^2+|b|^2+|c|^2\\right)$ and the ratio is $3$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2011, Paper 2, Q41. This is exactly Parseval's theorem for the $3$-point discrete Fourier transform: the DFT matrix (rescaled by $1/\\sqrt3$) is unitary, so it preserves the sum of squared moduli — hence the ratio is forced to be $3$ regardless of the inputs. (Note the official paper misprinted $\\omega=e^{i\\pi/3}$; the keyed answer $3$ requires $\\omega=e^{2\\pi i/3}$.)"
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Forbidden Value of $z^2+z+1$",
+    "difficulty": 3,
+    "task": "Find the value $a$ cannot take.",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "45"
+    },
+    "tags": [
+      "complex numbers",
+      "real part conditions",
+      "range",
+      "2012"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"110\" x2=\"300\" y2=\"110\" stroke=\"var(--ink3)\"/><line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"302\" y=\"114\" fill=\"var(--ink2)\">Re</text><text x=\"164\" y=\"18\" fill=\"var(--ink2)\">Im</text><line x1=\"100\" y1=\"20\" x2=\"100\" y2=\"200\" stroke=\"var(--gold)\" stroke-dasharray=\"5 4\"/><text x=\"70\" y=\"212\" fill=\"var(--gold)\">Re $z=-\\tfrac12$</text><circle cx=\"100\" cy=\"60\" r=\"3.5\" fill=\"var(--gold)\"/><circle cx=\"100\" cy=\"160\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"108\" y=\"58\" fill=\"var(--ink2)\">$z$</text><text x=\"108\" y=\"168\" fill=\"var(--ink2)\">$\\bar z$</text><text x=\"163\" y=\"104\" fill=\"var(--ink2)\">O</text></svg>",
+    "statement": "Let $z$ be a complex number such that the imaginary part of $z$ is nonzero and $a=z^2+z+1$ is real. Then $a$ cannot take the value\n\n(A) $-1$\n\n(B) $\\dfrac{1}{3}$\n\n(C) $\\dfrac{1}{2}$\n\n(D) $\\dfrac{3}{4}$",
+    "answer": "$\\boxed{\\text{(D)}\\ \\dfrac{3}{4}}$",
+    "trap": "It is tempting to reach for the discriminant of $z^2+z+(1-a)=0$ and demand it be negative (non-real roots). That condition alone gives $a>\\tfrac34$, which flags (A), (B), (C) as fine — but it silently drops the requirement that BOTH conjugate roots have nonzero imaginary part in a matched way, and it obscures that $a=\\tfrac34$ is exactly the boundary (real repeated root $z=-\\tfrac12$), where $\\operatorname{Im}z=0$ is forced. Students who only track 'roots non-real' still stumble on whether the endpoint $\\tfrac34$ is attainable.",
+    "solutions": [
+      {
+        "name": "Force $\\operatorname{Im}=0$ directly ($z=x+iy$)",
+        "steps": [
+          "Write $z=x+iy$ with $y\\neq0$. Then $z^2=x^2-y^2+2xyi$, so $z^2+z+1=(x^2-y^2+x+1)+(2xy+y)\\,i$.",
+          "For $a$ to be real, the imaginary part must vanish: $2xy+y=y(2x+1)=0$.",
+          "Since $y\\neq0$, we need $2x+1=0$, i.e. $x=-\\tfrac12$.",
+          "Substitute back: $a=x^2-y^2+x+1=\\tfrac14-y^2-\\tfrac12+1=\\tfrac34-y^2$.",
+          "Because $y\\neq0$ we have $y^2>0$, hence $a=\\tfrac34-y^2<\\tfrac34$ strictly, and $a$ ranges over all reals $<\\tfrac34$ (as $y$ ranges over nonzero reals).",
+          "So $a$ can equal $-1,\\ \\tfrac13,\\ \\tfrac12$ (all $<\\tfrac34$) but never $\\tfrac34$. Answer: (D)."
+        ]
+      },
+      {
+        "name": "Conjugate-root / quadratic viewpoint",
+        "steps": [
+          "$a$ real means $z$ satisfies $z^2+z+(1-a)=0$, a quadratic with real coefficients.",
+          "Since $\\operatorname{Im}z\\neq0$, $z$ is non-real, so its conjugate $\\bar z$ is the other root and the two roots are genuinely complex (not equal).",
+          "The roots are non-real distinct $\\iff$ discriminant $<0$: $1-4(1-a)<0\\Rightarrow 4a-3<0\\Rightarrow a<\\tfrac34$.",
+          "At $a=\\tfrac34$ the discriminant is $0$, giving the repeated real root $z=-\\tfrac12$, which has $\\operatorname{Im}z=0$ — excluded by hypothesis.",
+          "Thus every $a<\\tfrac34$ is achievable and $a=\\tfrac34$ is not. Answer: (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2012, Paper 1, Q45. The reality condition collapses $z$ onto the single vertical line $\\operatorname{Re}z=-\\tfrac12$, turning a two-variable problem into a one-line inequality $a=\\tfrac34-y^2<\\tfrac34$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Reflected Across the Circle: $\\alpha$ and $1/\\bar\\alpha$",
+    "difficulty": 4,
+    "task": "Find $|\\alpha|$.",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "45"
+    },
+    "tags": [
+      "modulus",
+      "locus on a circle",
+      "2013"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"170\" x2=\"300\" y2=\"170\" stroke=\"var(--ink3)\"/><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"302\" y=\"174\" fill=\"var(--ink2)\">Re</text><text x=\"54\" y=\"18\" fill=\"var(--ink2)\">Im</text><circle cx=\"170\" cy=\"95\" r=\"34\" fill=\"none\" stroke=\"var(--ink2)\"/><circle cx=\"170\" cy=\"95\" r=\"68\" fill=\"none\" stroke=\"var(--ink3)\"/><circle cx=\"170\" cy=\"95\" r=\"2.5\" fill=\"var(--ink2)\"/><text x=\"176\" y=\"92\" fill=\"var(--ink2)\">$z_0$</text><text x=\"195\" y=\"130\" fill=\"var(--ink2)\">$r$</text><text x=\"228\" y=\"70\" fill=\"var(--ink3)\">$2r$</text><circle cx=\"196\" cy=\"73\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"200\" y=\"66\" fill=\"var(--gold)\">$\\alpha$</text><circle cx=\"224\" cy=\"52\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"228\" y=\"46\" fill=\"var(--gold)\">$1/\\bar\\alpha$</text></svg>",
+    "statement": "Let complex numbers $\\alpha$ and $\\dfrac{1}{\\bar\\alpha}$ lie on the circles $(x-x_0)^2+(y-y_0)^2=r^2$ and $(x-x_0)^2+(y-y_0)^2=4r^2$, respectively. If $z_0=x_0+iy_0$ satisfies the equation $2|z_0|^2=r^2+2$, then $|\\alpha|=$\n\n(A) $\\dfrac{1}{2}$\n\n(B) $\\dfrac{1}{\\sqrt{2}}$\n\n(C) $\\dfrac{1}{\\sqrt{7}}$\n\n(D) $\\dfrac{1}{3}$",
+    "answer": "$\\boxed{\\text{(C)}\\ \\dfrac{1}{\\sqrt{7}}}$",
+    "trap": "The two circles are concentric at $z_0$, so it is tempting to think $\\alpha$ and $1/\\bar\\alpha$ are just 'twice as far out' along the same ray — but $1/\\bar\\alpha$ is NOT a radial scaling of $\\alpha$ about $z_0$; it is the inversion of $\\alpha$ in the unit circle centred at the origin. The clean escape is to translate both 'lies on a circle' facts into $|w-z_0|^2=|w|^2-w\\bar z_0-\\bar w z_0+|z_0|^2$ and let the cross terms cancel — chasing coordinates instead buries you in algebra.",
+    "solutions": [
+      {
+        "name": "Expand $|w-z_0|^2$ for both circles and subtract",
+        "steps": [
+          "'$\\alpha$ on the first circle' means $|\\alpha-z_0|^2=r^2$, i.e. $|\\alpha|^2-(\\alpha\\bar z_0+\\bar\\alpha z_0)+|z_0|^2=r^2.\\quad(1)$",
+          "'$\\dfrac{1}{\\bar\\alpha}$ on the second circle' means $\\left|\\dfrac{1}{\\bar\\alpha}-z_0\\right|^2=4r^2$. Expand: $\\dfrac{1}{|\\alpha|^2}-\\left(\\dfrac{z_0}{\\bar\\alpha}+\\dfrac{\\bar z_0}{\\alpha}\\right)+|z_0|^2=4r^2.\\quad(2)$",
+          "Note $\\dfrac{z_0}{\\bar\\alpha}+\\dfrac{\\bar z_0}{\\alpha}=\\dfrac{\\alpha z_0+\\bar\\alpha\\bar z_0}{|\\alpha|^2}=\\dfrac{\\alpha\\bar z_0+\\bar\\alpha z_0}{|\\alpha|^2}$ once we set $S:=\\alpha\\bar z_0+\\bar\\alpha z_0$ (real). So $(1)$ is $|\\alpha|^2-S+|z_0|^2=r^2$ and $(2)$ is $\\dfrac{1}{|\\alpha|^2}-\\dfrac{S}{|\\alpha|^2}+|z_0|^2=4r^2$.",
+          "Let $m=|\\alpha|^2$. From $(1)$: $S=m+|z_0|^2-r^2$. Multiply $(2)$ by $m$: $1-S+m|z_0|^2=4mr^2$.",
+          "Substitute $S$: $1-(m+|z_0|^2-r^2)+m|z_0|^2=4mr^2$, i.e. $1-m-|z_0|^2+r^2+m|z_0|^2=4mr^2$.",
+          "Now use the given $2|z_0|^2=r^2+2\\Rightarrow |z_0|^2=\\dfrac{r^2+2}{2}$. Substitute: the $r^2,|z_0|^2$ constants combine and the equation reduces to $7m=1$.",
+          "Hence $m=|\\alpha|^2=\\dfrac17$, so $|\\alpha|=\\dfrac{1}{\\sqrt7}$. Answer: (C)."
+        ]
+      },
+      {
+        "name": "Inversion insight $+$ substitution check",
+        "steps": [
+          "Recognise $\\dfrac{1}{\\bar\\alpha}$ is the inverse point of $\\alpha$ with respect to the unit circle $|z|=1$ (same argument, modulus reciprocated): if $|\\alpha|=\\rho$ then $\\left|\\dfrac{1}{\\bar\\alpha}\\right|=\\dfrac1\\rho$ and they lie on the same ray from $O$.",
+          "Write the two circle conditions as (1) $\\rho^2-S+|z_0|^2=r^2$ and (2) $\\dfrac{1}{\\rho^2}-\\dfrac{S}{\\rho^2}+|z_0|^2=4r^2$, with $S=\\alpha\\bar z_0+\\bar\\alpha z_0$ the common (real) cross term.",
+          "Test the candidate $\\rho^2=\\tfrac17$. From (1): $S=\\tfrac17+|z_0|^2-r^2$. Plug into (2)$\\times\\rho^2=\\tfrac17$: $1-S+\\tfrac17|z_0|^2=\\tfrac47 r^2$.",
+          "So $1-\\tfrac17-|z_0|^2+r^2+\\tfrac17|z_0|^2=\\tfrac47 r^2\\Rightarrow \\tfrac67-\\tfrac67|z_0|^2+r^2-\\tfrac47r^2=0\\Rightarrow \\tfrac67(1-|z_0|^2)+\\tfrac37 r^2=0.$",
+          "Multiply by $\\tfrac73$: $2(1-|z_0|^2)+r^2=0\\Rightarrow 2|z_0|^2=r^2+2$ — exactly the given constraint.",
+          "The candidate is consistent precisely with the hypothesis, confirming $|\\alpha|=\\dfrac{1}{\\sqrt7}$. Answer: (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2013, Paper 1, Q45. The engine is that $|w-z_0|^2$ expands so the awkward cross term $\\alpha\\bar z_0+\\bar\\alpha z_0$ is shared by both circle conditions and cancels on elimination; the given relation $2|z_0|^2=r^2+2$ is the exact glue that makes $7|\\alpha|^2=1$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Shortest reach into a $60^\\circ$ sector",
+    "difficulty": 4,
+    "task": "Find the minimum distance.",
+    "pyq": {
+      "year": 2013,
+      "paper": "2",
+      "qno": "54"
+    },
+    "tags": [
+      "distance from point to region",
+      "line distance",
+      "2013"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><defs><clipPath id=\"disk\"><circle cx=\"120\" cy=\"120\" r=\"88\"/></clipPath></defs><line x1=\"20\" y1=\"120\" x2=\"300\" y2=\"120\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><line x1=\"120\" y1=\"210\" x2=\"120\" y2=\"18\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><circle cx=\"120\" cy=\"120\" r=\"88\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.3\"/><path d=\"M120 120 L208 120 A88 88 0 0 0 164 44 Z\" fill=\"var(--gold)\" fill-opacity=\"0.18\" stroke=\"none\" clip-path=\"url(#disk)\"/><line x1=\"120\" y1=\"120\" x2=\"216\" y2=\"64.6\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"/><text x=\"228\" y=\"58\" fill=\"var(--ink2)\">$y=\\sqrt3\\,x$</text><line x1=\"48\" y1=\"120\" x2=\"192\" y2=\"120\" stroke=\"var(--ink3)\" stroke-width=\"0\"/><line x1=\"120\" y1=\"120\" x2=\"24\" y2=\"175.4\" stroke=\"var(--ink2)\" stroke-width=\"1.2\" stroke-dasharray=\"4 3\"/><text x=\"6\" y=\"188\" fill=\"var(--ink2)\">$y=-\\sqrt3\\,x$</text><circle cx=\"120\" cy=\"180\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"126\" y=\"196\" fill=\"var(--ink2)\">$1-3i$ ~ $(1,-3)$</text><circle cx=\"156\" cy=\"156\" r=\"3.2\" fill=\"var(--gold)\"/><line x1=\"120\" y1=\"180\" x2=\"156\" y2=\"156\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><text x=\"200\" y=\"108\" fill=\"var(--ink2)\">$60^\\circ$ sector $S$</text></svg>",
+    "statement": "Let $S=S_1\\cap S_2\\cap S_3$, where $S_1=\\{z\\in\\mathbb{C}:|z|<4\\}$, $S_2=\\left\\{z\\in\\mathbb{C}:\\operatorname{Im}\\dfrac{z-1+\\sqrt{3}\\,i}{1-\\sqrt{3}\\,i}>0\\right\\}$ and $S_3=\\{z\\in\\mathbb{C}:\\operatorname{Re}z>0\\}$. Find $\\displaystyle\\min_{z\\in S}\\,|\\,1-3i-z\\,|$.\n\n(A) $\\dfrac{2-\\sqrt{3}}{2}$   (B) $\\dfrac{2+\\sqrt{3}}{2}$   (C) $\\dfrac{3-\\sqrt{3}}{2}$   (D) $\\dfrac{3+\\sqrt{3}}{2}$",
+    "answer": "(C) $\\dfrac{3-\\sqrt{3}}{2}$",
+    "trap": "The quotient $\\dfrac{z-1+\\sqrt3 i}{1-\\sqrt3 i}$ tempts you to reach for the numerator's line $y=\\sqrt3\\,x$; but dividing by $1-\\sqrt3 i$ rotates everything, and the real edge of $S$ is $\\sqrt3\\,x+y=0$. The point $1-3i$ sits below the real axis, so the nearest boundary is that lower edge — not the disc, not the imaginary axis. Grabbing the wrong line lands you on the decoy (D) $\\frac{3+\\sqrt3}{2}$.",
+    "solutions": [
+      {
+        "name": "Identify $S$, then drop a perpendicular",
+        "steps": [
+          "Reduce $S_2$: with $z=x+iy$, $\\dfrac{z-1+\\sqrt3 i}{1-\\sqrt3 i}=\\dfrac{(x-1)+i(y+\\sqrt3)}{1-\\sqrt3 i}$. Multiply top and bottom by $1+\\sqrt3 i$; the denominator becomes $|1-\\sqrt3 i|^2=4$, and $\\operatorname{Im}$ of the result is $\\tfrac14(\\sqrt3\\,x+y)$ (the constant $-\\sqrt3+\\sqrt3=0$ from the shift cancels).",
+          "So $S_2:\\ \\sqrt3\\,x+y>0$, the open half-plane above the line $\\sqrt3\\,x+y=0$ (i.e. $y=-\\sqrt3\\,x$, slope $-\\sqrt3$, which makes angle $120^\\circ$ with the positive $x$-axis).",
+          "Combine with $S_3:\\ x>0$ and $S_1:\\ |z|<4$. Thus $S$ is the open circular sector of the disc of radius $4$ lying between the ray $\\theta=90^\\circ$ (the positive imaginary axis, from $x>0$) and the ray $\\theta=-60^\\circ$ (the line $\\sqrt3 x+y=0$ in the fourth quadrant) — a $60^\\circ$ wedge.",
+          "The fixed point is $1-3i=(1,-3)$. It lies below the real axis and below the lower edge $\\sqrt3 x+y=0$ (there $\\sqrt3(1)+(-3)=\\sqrt3-3<0$), so it is outside $S$; the closest edge is that lower line.",
+          "Distance from $(1,-3)$ to $\\sqrt3\\,x+y=0$ is $\\dfrac{|\\sqrt3(1)+(-3)|}{\\sqrt{(\\sqrt3)^2+1^2}}=\\dfrac{|\\sqrt3-3|}{2}=\\dfrac{3-\\sqrt3}{2}$.",
+          "The foot of the perpendicular is $\\left(1-\\tfrac{\\sqrt3(\\sqrt3-3)}{4},\\,-3-\\tfrac{\\sqrt3-3}{4}\\right)\\approx(1.55,-2.68)$, which has $x>0$ and modulus $<4$, so it lies on the boundary of $S$ — the minimum is attained. Hence $\\displaystyle\\min_{z\\in S}|1-3i-z|=\\dfrac{3-\\sqrt3}{2}$."
+        ]
+      },
+      {
+        "name": "Rotate the wedge to the standard position",
+        "steps": [
+          "The lower edge $\\sqrt3 x+y=0$ is the ray at angle $-60^\\circ$. Multiply every point by $e^{i\\pi/3}$ (rotate $S$ by $+60^\\circ$): this edge maps onto the positive real axis, and the fixed point maps to $w_0=(1-3i)e^{i\\pi/3}$.",
+          "Under a rotation, distances are preserved, so $\\min_{z\\in S}|1-3i-z|=\\min_{w\\in S'}|w_0-w|$, where $S'$ is a wedge with one edge along the positive real axis.",
+          "Compute $w_0=(1-3i)\\left(\\tfrac12+\\tfrac{\\sqrt3}{2}i\\right)=\\tfrac{1+3\\sqrt3}{2}+i\\,\\tfrac{\\sqrt3-3}{2}$. Its imaginary part is $\\tfrac{\\sqrt3-3}{2}<0$, and its real part is positive, so $w_0$ sits just below the positive real-axis edge of $S'$.",
+          "The nearest point of $S'$ is then the vertical projection onto that edge (the real axis), whose distance is exactly $|\\operatorname{Im} w_0|=\\left|\\dfrac{\\sqrt3-3}{2}\\right|=\\dfrac{3-\\sqrt3}{2}$.",
+          "Because the projection has positive real part and small modulus, it lies inside the edge of $S'$, confirming the minimum is $\\dfrac{3-\\sqrt3}{2}$ — answer (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2013, Paper 2, Q54. The whole problem hinges on correctly reducing $S_2$ to the half-plane $\\sqrt3 x+y>0$; once $S$ is seen as a clean $60^\\circ$ sector, the answer is just a point-to-line distance."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "When $p(p(x))=0$ escapes both axes",
+    "difficulty": 3,
+    "task": "Identify the nature of the roots.",
+    "pyq": {
+      "year": 2014,
+      "paper": "2",
+      "qno": "50"
+    },
+    "tags": [
+      "quadratic with imaginary roots",
+      "composition",
+      "nature of roots",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "The quadratic equation $p(x)=0$ with real coefficients has purely imaginary roots. Then the equation $p(p(x))=0$ has\n\n(A) only purely imaginary roots\n(B) all real roots\n(C) two real and two purely imaginary roots\n(D) neither real nor purely imaginary roots",
+    "answer": "(D)",
+    "trap": "Because $p$ itself has purely imaginary roots, it is tempting to guess that its self-composition inherits the same flavour (A). But $p(p(x))=0$ forces $p(x)$ to equal a purely imaginary target $\\pm ik$, and feeding a purely imaginary value into a real-coefficient quadratic throws $x^2$ off the real axis entirely — so $x$ can be neither real nor purely imaginary.",
+    "solutions": [
+      {
+        "name": "Solve the composition explicitly",
+        "steps": [
+          "A real-coefficient quadratic with purely imaginary roots $\\pm ik$ ($k\\in\\mathbb{R}$, $k\\ne0$) must be $p(x)=a\\,(x-ik)(x+ik)=a\\,(x^2+k^2)$ for some real $a\\ne0$ (the roots are a conjugate pair, forcing the middle coefficient to vanish).",
+          "Then $p(p(x))=0\\iff p(x)$ is a root of $p$, i.e. $p(x)=+ik$ or $p(x)=-ik$.",
+          "Take $p(x)=\\pm ik$: $a(x^2+k^2)=\\pm ik\\ \\Rightarrow\\ x^2=-k^2\\pm\\dfrac{ik}{a}$.",
+          "The right-hand side has real part $-k^2\\ne0$ and imaginary part $\\pm\\tfrac{k}{a}\\ne0$, so $x^2$ is a genuinely non-real complex number (neither real nor purely imaginary).",
+          "If $x$ were real, $x^2$ would be a non-negative real; if $x$ were purely imaginary, $x^2$ would be a non-positive real. Neither is possible since $x^2$ is non-real. Hence every root $x$ of $p(p(x))=0$ is neither real nor purely imaginary — answer (D)."
+        ]
+      },
+      {
+        "name": "Argument / geometry of $\\sqrt{\\;}$ on $x^2$",
+        "steps": [
+          "As above, $p(x)=a(x^2+k^2)$ and the four roots satisfy $x^2=-k^2\\pm\\dfrac{ik}{a}$.",
+          "Write $x^2=Re^{i\\phi}$ with $R=\\sqrt{k^4+k^2/a^2}>0$. Since the real part $-k^2<0$ and the imaginary part $\\pm k/a\\ne0$, the argument $\\phi$ lies strictly in the second or third quadrant: $\\phi\\ne0,\\pi$ (else real) and $\\phi\\ne\\pm\\tfrac{\\pi}{2}$ (else purely imaginary).",
+          "The square roots have argument $\\tfrac{\\phi}{2}$ (and $\\tfrac{\\phi}{2}+\\pi$). For a root $x$ to be real we would need $\\tfrac{\\phi}{2}\\equiv0\\ (\\mathrm{mod}\\ \\pi)$; for $x$ purely imaginary, $\\tfrac{\\phi}{2}\\equiv\\tfrac{\\pi}{2}\\ (\\mathrm{mod}\\ \\pi)$ — i.e. $\\phi\\equiv0$ or $\\phi\\equiv\\pi$, both excluded.",
+          "Therefore none of the four square roots is real or purely imaginary: the roots of $p(p(x))=0$ populate the open quadrants of the plane, confirming (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2014, Paper 2, Q50. Key idea: real coefficients + purely imaginary roots pin $p$ down to $a(x^2+k^2)$, and then $p(x)=\\pm ik$ pushes $x^2$ off both axes — a clean lesson that composition does not preserve 'type' of root."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Nine Nontrivial $10^{\\text{th}}$ Roots",
+    "difficulty": 3,
+    "task": "Match each List-I statement to its List-II value.",
+    "pyq": {
+      "year": 2014,
+      "paper": "2",
+      "qno": "57"
+    },
+    "tags": [
+      "roots of unity",
+      "product of roots",
+      "sum of cosines",
+      "2014"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"110\" x2=\"290\" y2=\"110\" stroke=\"var(--ink3)\"/><line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"293\" y=\"114\" fill=\"var(--ink2)\">Re</text><text x=\"164\" y=\"18\" fill=\"var(--ink2)\">Im</text><circle cx=\"160\" cy=\"110\" r=\"78\" fill=\"none\" stroke=\"var(--ink2)\"/><g fill=\"var(--gold)\"><circle cx=\"238\" cy=\"110\" r=\"3.5\"/><circle cx=\"223\" cy=\"64\" r=\"3.5\"/><circle cx=\"184\" cy=\"36\" r=\"3.5\"/><circle cx=\"136\" cy=\"36\" r=\"3.5\"/><circle cx=\"97\" cy=\"64\" r=\"3.5\"/><circle cx=\"82\" cy=\"110\" r=\"3.5\"/><circle cx=\"97\" cy=\"156\" r=\"3.5\"/><circle cx=\"136\" cy=\"184\" r=\"3.5\"/><circle cx=\"184\" cy=\"184\" r=\"3.5\"/><circle cx=\"223\" cy=\"156\" r=\"3.5\"/></g><circle cx=\"238\" cy=\"110\" r=\"4.5\" fill=\"none\" stroke=\"var(--ink3)\"/><text x=\"243\" y=\"108\" fill=\"var(--ink2)\">$z_{10}\\!=\\!1$</text><text x=\"184\" y=\"30\" fill=\"var(--ink2)\" text-anchor=\"middle\">$z_1$</text><text x=\"120\" y=\"163\" fill=\"var(--ink2)\">$z_k=e^{2k\\pi i/10}$</text></svg>",
+    "statement": "Let $z_k=\\cos\\!\\left(\\dfrac{2k\\pi}{10}\\right)+i\\sin\\!\\left(\\dfrac{2k\\pi}{10}\\right)$ for $k=1,2,\\ldots,9$. Match each statement in List-I with its value in List-II.\n\n$$\\textbf{List-I}$$\n(P) For each $z_k$ there exists a $z_j$ such that $z_k\\cdot z_j=1$.\n(Q) There exists a $k\\in\\{1,\\ldots,9\\}$ such that $z_1\\cdot z=z_k$ has no solution $z$ in $\\mathbb{C}$.\n(R) $\\dfrac{|1-z_1|\\,|1-z_2|\\cdots|1-z_9|}{10}$ equals.\n(S) $1-\\displaystyle\\sum_{k=1}^{9}\\cos\\!\\left(\\dfrac{2k\\pi}{10}\\right)$ equals.\n\n$$\\textbf{List-II}$$\n(1) True $\\quad$ (2) False $\\quad$ (3) $1$ $\\quad$ (4) $2$\n\n(A) P-1, Q-2, R-4, S-3 $\\qquad$ (B) P-2, Q-1, R-3, S-4\n(C) P-1, Q-2, R-3, S-4 $\\qquad$ (D) P-2, Q-1, R-4, S-3",
+    "answer": "$\\boxed{\\text{(C)}}$ — P-1, Q-2, R-3, S-4",
+    "trap": "In (R) students plug $x=1$ into $x^{10}-1$ (getting $0$) instead of into the reduced factor $\\frac{x^{10}-1}{x-1}=1+x+\\cdots+x^9$; the root $z_{10}=1$ is deliberately excluded from the product, so the correct value is $10$, not $0$. In (S) the sum runs from $k=1$ (not $k=0$), so the full-circle sum $0$ must have its $k=0$ term $\\cos 0=1$ removed, leaving $-1$.",
+    "solutions": [
+      {
+        "name": "Roots of unity + the polynomial $\\frac{x^{10}-1}{x-1}$",
+        "steps": [
+          "The numbers $z_0=1,z_1,\\ldots,z_9$ are exactly the ten $10^{\\text{th}}$ roots of unity, equally spaced on the unit circle; the given set omits $z_0=1$.",
+          "(P) $z_k=e^{2k\\pi i/10}$, and its inverse is $z_k^{-1}=e^{-2k\\pi i/10}=e^{2(10-k)\\pi i/10}=z_{10-k}$, which for $k\\in\\{1,\\ldots,9\\}$ is again one of $z_1,\\ldots,z_9$. So a partner $z_j$ with $z_kz_j=1$ always exists: statement TRUE $\\to$ (1).",
+          "(Q) Since $z_1\\ne0$, the equation $z_1 z=z_k$ has the unique solution $z=z_k/z_1$ for every $k$. Hence there is NO $k$ for which it fails: the existence claim is FALSE $\\to$ (2).",
+          "(R) For the polynomial $x^{10}-1=\\prod_{k=0}^{9}(x-z_k)=(x-1)\\prod_{k=1}^{9}(x-z_k)$, divide out $(x-1)$: $\\prod_{k=1}^{9}(x-z_k)=1+x+x^2+\\cdots+x^9$.",
+          "Put $x=1$: $\\prod_{k=1}^{9}(1-z_k)=1+1+\\cdots+1=10$. Taking modulus, $\\prod_{k=1}^{9}|1-z_k|=|10|=10$. Dividing by $10$ gives $1\\to$ (3).",
+          "(S) The full sum over one period vanishes: $\\sum_{k=0}^{9}\\cos\\frac{2k\\pi}{10}=\\operatorname{Re}\\sum_{k=0}^{9}z_k=\\operatorname{Re}(0)=0$. Removing the $k=0$ term ($\\cos0=1$) gives $\\sum_{k=1}^{9}\\cos\\frac{2k\\pi}{10}=-1$, so $1-(-1)=2\\to$ (4).",
+          "Thus P-1, Q-2, R-3, S-4, which is option (C)."
+        ]
+      },
+      {
+        "name": "Symmetry / geometric reading",
+        "steps": [
+          "(P) Complex conjugation reflects the circle across the real axis: $\\overline{z_k}=z_{10-k}$, and since $|z_k|=1$ we have $z_k\\overline{z_k}=1$. The conjugate partner lies in the set, so (P) is TRUE $\\to$ (1).",
+          "(Q) Multiplication by the fixed unit $z_1=e^{i\\pi/5}$ is a rotation by $36^\\circ$, a bijection of $\\mathbb{C}$; every target $z_k$ has a preimage. So no such 'unsolvable' $k$ exists: FALSE $\\to$ (2).",
+          "(R) Geometrically $|1-z_k|$ is the chord length from the vertex $1$ to vertex $z_k$ of the regular decagon inscribed in the unit circle. A classical identity states the product of all chords from one vertex of a regular $n$-gon on the unit circle equals $n$; here $n=10$, so $\\prod_{k=1}^{9}|1-z_k|=10$ and the quotient is $1\\to$ (3).",
+          "(S) The nine vectors $z_1,\\ldots,z_9$ together with $z_0=1$ are symmetrically placed and sum to the centroid $0$. Their real parts therefore sum to $0$; dropping $\\operatorname{Re}(z_0)=1$ leaves $-1$, and $1-(-1)=2\\to$ (4).",
+          "Matching gives P-1, Q-2, R-3, S-4 $=$ option (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2014, Paper 2, Q57. The single identity $\\prod_{k=1}^{n-1}(x-\\omega^k)=1+x+\\cdots+x^{n-1}$ (from cyclotomic factorisation) simultaneously delivers the chord-product in (R) and, via its real part, the cosine sum in (S)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Equal Chords on the Unit Circle",
+    "difficulty": 2,
+    "task": "Evaluate the ratio.",
+    "pyq": {
+      "year": 2015,
+      "paper": "2",
+      "qno": "42"
+    },
+    "tags": [
+      "complex numbers on unit circle",
+      "modulus of differences",
+      "roots of unity",
+      "2015"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"110\" x2=\"290\" y2=\"110\" stroke=\"var(--ink3)\"/><line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"293\" y=\"114\" fill=\"var(--ink2)\">Re</text><text x=\"164\" y=\"18\" fill=\"var(--ink2)\">Im</text><circle cx=\"160\" cy=\"110\" r=\"80\" fill=\"none\" stroke=\"var(--ink2)\"/><g fill=\"var(--ink3)\"><circle cx=\"240\" cy=\"110\" r=\"3\"/><circle cx=\"232\" cy=\"75\" r=\"3\"/><circle cx=\"210\" cy=\"48\" r=\"3\"/><circle cx=\"178\" cy=\"34\" r=\"3\"/><circle cx=\"142\" cy=\"34\" r=\"3\"/><circle cx=\"110\" cy=\"48\" r=\"3\"/><circle cx=\"88\" cy=\"75\" r=\"3\"/><circle cx=\"80\" cy=\"110\" r=\"3\"/></g><path d=\"M240,110 L232,75\" stroke=\"var(--gold)\" stroke-width=\"2\"/><path d=\"M232,75 L210,48\" stroke=\"var(--gold)\" stroke-width=\"2\"/><path d=\"M210,48 L178,34\" stroke=\"var(--gold)\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"110\" r=\"3.5\" fill=\"var(--gold)\"/><circle cx=\"232\" cy=\"75\" r=\"3.5\" fill=\"var(--gold)\"/><circle cx=\"210\" cy=\"48\" r=\"3.5\" fill=\"var(--gold)\"/><circle cx=\"178\" cy=\"34\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"244\" y=\"108\" fill=\"var(--ink2)\">$\\alpha_0$</text><text x=\"236\" y=\"70\" fill=\"var(--ink2)\">$\\alpha_1$</text><text x=\"116\" y=\"170\" fill=\"var(--ink2)\">gap $=\\dfrac{\\pi}{7}$, chord $=2\\sin\\dfrac{\\pi}{14}$</text></svg>",
+    "statement": "For any integer $k$, let $\\alpha_k=\\cos\\!\\left(\\dfrac{k\\pi}{7}\\right)+i\\sin\\!\\left(\\dfrac{k\\pi}{7}\\right)$, where $i=\\sqrt{-1}$. Find the value of the expression\n$$\\frac{\\displaystyle\\sum_{k=1}^{12}\\bigl|\\alpha_{k+1}-\\alpha_k\\bigr|}{\\displaystyle\\sum_{k=1}^{3}\\bigl|\\alpha_{4k-1}-\\alpha_{4k-2}\\bigr|}.$$",
+    "answer": "$\\boxed{4}$",
+    "trap": "The problem looks like it needs the messy sums $\\sum\\cos\\frac{k\\pi}{7}$ and De Moivre bookkeeping. The hidden fact is that every listed difference is a chord between two points ONE step ($\\pi/7$) apart, so all terms are the identical constant $2\\sin\\frac{\\pi}{14}$ — it cancels completely and only the counts $12$ and $3$ survive. Students who try to expand real/imaginary parts drown; those who spot the constant chord finish in one line.",
+    "solutions": [
+      {
+        "name": "Constant chord length (factor out $\\alpha_k$)",
+        "steps": [
+          "Each $\\alpha_k=e^{ik\\pi/7}$ lies on the unit circle, and $\\alpha_{k+1}=\\alpha_k\\,e^{i\\pi/7}$.",
+          "Hence $|\\alpha_{k+1}-\\alpha_k|=|\\alpha_k|\\,|e^{i\\pi/7}-1|=1\\cdot|e^{i\\pi/7}-1|$, independent of $k$.",
+          "Using $|e^{i\\phi}-1|=2\\left|\\sin\\dfrac{\\phi}{2}\\right|$ with $\\phi=\\pi/7$: every one-step difference equals $2\\sin\\dfrac{\\pi}{14}$.",
+          "Numerator: all $12$ terms $\\alpha_{k+1}-\\alpha_k$ ($k=1,\\ldots,12$) are one-step differences, so it is $12\\cdot 2\\sin\\dfrac{\\pi}{14}$.",
+          "Denominator: each $\\alpha_{4k-1}-\\alpha_{4k-2}$ is also a one-step difference (indices differ by $1$), so for $k=1,2,3$ it is $3\\cdot 2\\sin\\dfrac{\\pi}{14}$.",
+          "The common factor $2\\sin\\dfrac{\\pi}{14}$ cancels: ratio $=\\dfrac{12}{3}=4$."
+        ]
+      },
+      {
+        "name": "Chord formula via the sine rule of the isosceles triangle",
+        "steps": [
+          "Points $\\alpha_{k}$ and $\\alpha_{k+1}$ subtend an angle $\\dfrac{(k+1)\\pi}{7}-\\dfrac{k\\pi}{7}=\\dfrac{\\pi}{7}$ at the centre $O$ of the unit circle.",
+          "Triangle $O\\alpha_k\\alpha_{k+1}$ is isosceles with the two equal sides $=1$ (radii) and apex angle $\\dfrac{\\pi}{7}$; the base (chord) is $c=2\\cdot 1\\cdot\\sin\\dfrac{\\pi}{14}$.",
+          "Because the central angle is the same $\\dfrac{\\pi}{7}$ for every consecutive pair, all chords equal this same $c$ — no chord depends on $k$.",
+          "In the numerator there are $12$ such consecutive chords; in the denominator there are $3$ (the pairs $(\\alpha_1,\\alpha_2),(\\alpha_5,\\alpha_6),(\\alpha_9,\\alpha_{10})$, each again one step apart).",
+          "Ratio $=\\dfrac{12c}{3c}=4$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2015, Paper 2, Q42. A pure counting problem in disguise: recognising that $|\\alpha_{k+1}-\\alpha_k|=2\\sin\\frac{\\pi}{14}$ is a $k$-free constant reduces the whole expression to the ratio of the number of terms, $12:3$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A $2\\times2$ Matrix of Cube Roots",
+    "difficulty": 4,
+    "task": "Count the ordered pairs.",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "54"
+    },
+    "tags": [
+      "cube roots of unity",
+      "matrix of complex entries",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $z=\\dfrac{-1+\\sqrt{3}\\,i}{2}$, where $i=\\sqrt{-1}$, and $r,s\\in\\{1,2,3\\}$. Let $P=\\begin{bmatrix} (-z)^r & z^{2s} \\\\ z^{2s} & z^r \\end{bmatrix}$ and $I$ be the identity matrix of order $2$. Then the total number of ordered pairs $(r,s)$ for which $P^2=-I$ is",
+    "answer": "$\\boxed{1}$",
+    "trap": "Students recognise $z=\\omega$ but forget that $(-z)^r=(-1)^r z^r$, so the top-left entry carries an extra sign $(-1)^r$ that is $-1$ only when $r$ is odd. Treating $(-z)^r$ as $z^r$ (or as $\\omega^r$) collapses the diagonal and produces spurious solutions; the whole problem hinges on that stray minus sign.",
+    "solutions": [
+      {
+        "name": "Direct computation of $P^2$",
+        "steps": [
+          "First identify $z$: $z=\\dfrac{-1+\\sqrt3\\,i}{2}=\\omega$, the primitive cube root of unity, so $\\omega^3=1$ and $1+\\omega+\\omega^2=0$.",
+          "Write $P=\\begin{bmatrix} a & b \\\\ b & c\\end{bmatrix}$ with $a=(-z)^r=(-1)^r\\omega^r$, $b=z^{2s}=\\omega^{2s}$, $c=z^r=\\omega^r$.",
+          "Then $P^2=\\begin{bmatrix} a^2+b^2 & b(a+c) \\\\ b(a+c) & b^2+c^2\\end{bmatrix}$. For $P^2=-I$ we need the off-diagonal to vanish and both diagonal entries $=-1$.",
+          "Off-diagonal $=0$: since $b=\\omega^{2s}\\neq0$, we need $a+c=0$, i.e. $(-1)^r\\omega^r+\\omega^r=\\omega^r\\big((-1)^r+1\\big)=0$. As $\\omega^r\\neq0$, this forces $(-1)^r=-1$, so $r$ must be ODD: $r\\in\\{1,3\\}$.",
+          "With $r$ odd, $a=-\\omega^r=-c$, so $a^2=c^2=\\omega^{2r}$ and the two diagonal entries are equal: $a^2+b^2=\\omega^{2r}+\\omega^{4s}$. We need $\\omega^{2r}+\\omega^{4s}=-1$.",
+          "Reduce exponents mod $3$. For $r=1$: $\\omega^{2r}=\\omega^2$. For $r=3$: $\\omega^{2r}=\\omega^6=1$. For $s=1,2,3$: $\\omega^{4s}=\\omega^{s}$ (since $4s\\equiv s$), giving $\\omega^{4\\cdot1}=\\omega$, $\\omega^{4\\cdot2}=\\omega^2$, $\\omega^{4\\cdot3}=1$.",
+          "Case $r=1$ ($\\omega^{2r}=\\omega^2$): need $\\omega^2+\\omega^{4s}=-1$. Since $\\omega^2+\\omega=-1$, this holds iff $\\omega^{4s}=\\omega$, i.e. $s=1$. Valid pair $(1,1)$.",
+          "Case $r=3$ ($\\omega^{2r}=1$): need $1+\\omega^{4s}=-1$, i.e. $\\omega^{4s}=-2$. But $\\omega^{4s}\\in\\{1,\\omega,\\omega^2\\}$, all of modulus $1$, never $-2$. No solution.",
+          "Exactly one ordered pair works: $(r,s)=(1,1)$. Total $=1$."
+        ]
+      },
+      {
+        "name": "Trace–determinant characterisation of $P^2=-I$",
+        "steps": [
+          "$P$ is symmetric with equal-looking structure; use the Cayley–Hamilton relation $P^2=(\\operatorname{tr}P)\\,P-(\\det P)\\,I$. For a $2\\times2$ matrix, $P^2=-I$ is equivalent to $(\\operatorname{tr}P)\\,P=(\\det P-1)I$.",
+          "If $\\operatorname{tr}P\\neq0$, then $P$ would be a scalar multiple of $I$, forcing $b=z^{2s}=0$ — impossible. Hence we must have $\\operatorname{tr}P=0$ AND $\\det P=-1$.",
+          "$\\operatorname{tr}P=(-z)^r+z^r=\\omega^r\\big((-1)^r+1\\big)=0\\iff r$ odd, so $r\\in\\{1,3\\}$ (same conclusion, reached via the trace).",
+          "$\\det P=(-z)^r z^r-(z^{2s})^2=(-1)^r\\omega^{2r}-\\omega^{4s}$. With $r$ odd, $(-1)^r=-1$, so $\\det P=-\\omega^{2r}-\\omega^{4s}$.",
+          "Set $\\det P=-1$: $-\\omega^{2r}-\\omega^{4s}=-1\\Rightarrow \\omega^{2r}+\\omega^{4s}=1$? Recheck the sign: we need $\\det P=-1$, giving $\\omega^{2r}+\\omega^{4s}=1$ — but note $P^2=-I$ also needs the diagonal $=-1$, and with $\\operatorname{tr}P=0$ the relation $P^2=(\\det P)(-I)\\cdot(-1)$… so cleanly $P^2=-\\det P\\,I$; hence $P^2=-I\\iff\\det P=1$.",
+          "So require $\\det P=(-1)^r\\omega^{2r}-\\omega^{4s}=1$ with $r$ odd: $-\\omega^{2r}-\\omega^{4s}=1$, i.e. $\\omega^{2r}+\\omega^{4s}=-1$ — matching Method 1 exactly.",
+          "$r=1$: $\\omega^2+\\omega^{4s}=-1\\Rightarrow\\omega^{4s}=\\omega\\Rightarrow s=1$. $r=3$: $1+\\omega^{4s}=-1$ impossible. Only $(1,1)$; count $=1$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 1, Q54. The entire count turns on one sign: because a symmetric $2\\times2$ matrix satisfies $P^2=-I$ iff $\\operatorname{tr}P=0$ and $\\det P=1$, the trace condition instantly forces $r$ odd, and only $(r,s)=(1,1)$ survives."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Locus of $\\dfrac{1}{a+ibt}$",
+    "difficulty": 4,
+    "task": "Identify every curve the point lies on.",
+    "pyq": {
+      "year": 2016,
+      "paper": "2",
+      "qno": "48"
+    },
+    "tags": [
+      "locus of a complex expression",
+      "circle from complex condition",
+      "2016"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><line x1=\"20\" y1=\"120\" x2=\"300\" y2=\"120\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"70\" y1=\"20\" x2=\"70\" y2=\"210\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><text x=\"293\" y=\"134\" fill=\"var(--ink2)\">Re $z$</text><text x=\"76\" y=\"28\" fill=\"var(--ink2)\">Im $z$</text><text x=\"60\" y=\"134\" fill=\"var(--ink2)\">O</text><circle cx=\"150\" cy=\"120\" r=\"80\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><circle cx=\"150\" cy=\"120\" r=\"2.5\" fill=\"var(--ink2)\"/><text x=\"128\" y=\"112\" fill=\"var(--ink2)\">$(\\tfrac{1}{2a},0)$</text><line x1=\"70\" y1=\"120\" x2=\"230\" y2=\"120\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><circle cx=\"70\" cy=\"120\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"58\" y=\"148\" fill=\"var(--ink2)\">origin on circle</text><circle cx=\"230\" cy=\"120\" r=\"3\" fill=\"var(--gold)\"/><text x=\"200\" y=\"172\" fill=\"var(--ink2)\">diam. $\\tfrac{1}{a}$</text></svg>",
+    "statement": "Let $a,b\\in\\mathbb{R}$ and $a^2+b^2\\neq0$. Suppose $S=\\left\\{z\\in\\mathbb{C}:z=\\dfrac{1}{a+ibt},\\ t\\in\\mathbb{R},\\ t\\neq0\\right\\}$, where $i=\\sqrt{-1}$. If $z=x+iy$ and $z\\in S$, then $(x,y)$ lies on\n\n(A) the circle with radius $\\dfrac{1}{2a}$ and centre $\\left(\\dfrac{1}{2a},0\\right)$ for $a>0,\\ b\\neq0$\n\n(B) the circle with radius $-\\dfrac{1}{2a}$ and centre $\\left(-\\dfrac{1}{2a},0\\right)$ for $a<0,\\ b\\neq0$\n\n(C) the $x$-axis for $a\\neq0,\\ b=0$\n\n(D) the $y$-axis for $a=0,\\ b\\neq0$",
+    "answer": "(A), (C), (D)",
+    "trap": "The tempting error is on (B). Students correctly derive the circle $x^2+y^2-\\dfrac{x}{a}=0$ and say 'so a circle of radius $\\tfrac{1}{2|a|}$ centred at $\\big(\\tfrac{1}{2a},0\\big)$', then rubber-stamp (B) as the $a<0$ twin of (A). But (B) states the centre as $\\big(-\\tfrac{1}{2a},0\\big)$ — for $a<0$ that is a POSITIVE $x$-coordinate, whereas the true centre $\\tfrac{1}{2a}$ is negative. The centre in (B) is on the wrong side, so (B) is false even though its radius value is numerically right.",
+    "solutions": [
+      {
+        "name": "Rationalise and eliminate $t$",
+        "steps": [
+          "Take $a\\neq0$ and $b\\neq0$ first. Multiply top and bottom by the conjugate: $z=\\dfrac{1}{a+ibt}=\\dfrac{a-ibt}{a^2+b^2t^2}$.",
+          "Read off real and imaginary parts: $x=\\dfrac{a}{a^2+b^2t^2}$ and $y=\\dfrac{-bt}{a^2+b^2t^2}$.",
+          "Notice $\\dfrac{x}{a}=\\dfrac{1}{a^2+b^2t^2}=x^2+y^2$, because $x^2+y^2=|z|^2=\\dfrac{1}{|a+ibt|^2}=\\dfrac{1}{a^2+b^2t^2}$.",
+          "Hence $x^2+y^2=\\dfrac{x}{a}$, i.e. $x^2+y^2-\\dfrac{x}{a}=0$, or $\\left(x-\\dfrac{1}{2a}\\right)^2+y^2=\\left(\\dfrac{1}{2a}\\right)^2$.",
+          "This is a circle with centre $\\left(\\dfrac{1}{2a},0\\right)$ and radius $\\dfrac{1}{2|a|}$, passing through the origin (which is a punctured point, since $z\\neq0$).",
+          "For $a>0$: radius $=\\dfrac{1}{2a}$ and centre $\\left(\\dfrac{1}{2a},0\\right)$ — this is exactly (A). TRUE.",
+          "For $a<0$: the true centre is $\\left(\\dfrac{1}{2a},0\\right)$ with $\\tfrac{1}{2a}<0$, and radius $\\dfrac{1}{2|a|}=-\\dfrac{1}{2a}$. Option (B) instead claims the centre $\\left(-\\dfrac{1}{2a},0\\right)$, whose $x$-coordinate $-\\tfrac{1}{2a}>0$ — the wrong sign. So (B) is FALSE.",
+          "Case $b=0,\\ a\\neq0$: then $z=\\dfrac{1}{a}$, a real number, so $y=0$: the point lies on the $x$-axis. (C) TRUE.",
+          "Case $a=0,\\ b\\neq0$: then $z=\\dfrac{1}{ibt}=\\dfrac{-i}{bt}$, purely imaginary, so $x=0$: the point lies on the $y$-axis. (D) TRUE.",
+          "Correct options: (A), (C), (D)."
+        ]
+      },
+      {
+        "name": "Geometry via the reciprocal map $w\\mapsto 1/w$",
+        "steps": [
+          "Let $w=a+ibt$. As $t$ ranges over $\\mathbb{R}$ with $b\\neq0$ (and $a$ fixed), $w$ traces the vertical line $\\operatorname{Re}w=a$ in the $w$-plane.",
+          "The map $z=1/w$ is an inversion-type Möbius transformation, which sends lines and circles to lines and circles. A straight line NOT through the origin maps to a circle THROUGH the origin.",
+          "The vertical line $\\operatorname{Re}w=a$ (with $a\\neq0$) does not pass through $w=0$, so its image is a circle through $z=0$.",
+          "To pin the circle down, image the line's key points. The foot of perpendicular from $O$ to the line is $w=a$, mapping to $z=\\dfrac{1}{a}$. As $t\\to\\pm\\infty$, $w\\to\\infty$ so $z\\to0$. Thus the diameter of the image circle runs from $0$ to $\\dfrac{1}{a}$ along the real axis.",
+          "A circle with a diameter from $0$ to $\\dfrac{1}{a}$ has centre $\\left(\\dfrac{1}{2a},0\\right)$ and radius $\\dfrac{1}{2|a|}$ — matching (A) for $a>0$ and refuting the mis-signed centre of (B) for $a<0$.",
+          "Degenerate cases: if $b=0$ the 'line' collapses — $w=a$ is a single real point, $z=1/a$ real, giving the $x$-axis (C). If $a=0,\\ b\\neq0$, the line is $\\operatorname{Re}w=0$ (the imaginary axis, through $O$); a line through the origin inverts to another line through the origin, here the imaginary axis, giving the $y$-axis (D).",
+          "Hence (A), (C), (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 2, Q48. The clean way to see it is that $t\\mapsto a+ibt$ is a vertical line and $z=1/w$ inverts a line-not-through-$O$ into a circle-through-$O$; the trap in (B) is a pure sign error in the centre's $x$-coordinate for $a<0$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Möbius map with a real anchor",
+    "difficulty": 3,
+    "task": "Find all possible values of $x$.",
+    "pyq": {
+      "year": 2017,
+      "paper": "1",
+      "qno": "42"
+    },
+    "tags": [
+      "imaginary part",
+      "modulus locus",
+      "2017"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><line x1=\"20\" y1=\"120\" x2=\"300\" y2=\"120\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"150\" y1=\"20\" x2=\"150\" y2=\"210\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"292\" y=\"134\" fill=\"var(--ink2)\">Re</text><text x=\"156\" y=\"30\" fill=\"var(--ink2)\">Im</text><circle cx=\"110\" cy=\"120\" r=\"70\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><circle cx=\"110\" cy=\"120\" r=\"2.5\" fill=\"var(--ink3)\"/><text x=\"96\" y=\"138\" fill=\"var(--ink2)\">(-1,0)</text><circle cx=\"180\" cy=\"120\" r=\"3\" fill=\"var(--gold)\"/><text x=\"166\" y=\"138\" fill=\"var(--ink2)\">A</text><circle cx=\"40\" cy=\"120\" r=\"3\" fill=\"var(--gold)\"/><text x=\"26\" y=\"138\" fill=\"var(--ink2)\">B</text><text x=\"120\" y=\"60\" fill=\"var(--ink2)\">$(x{+}1)^2{+}y^2=1$</text></svg>",
+    "statement": "Let $a,b,x$ and $y$ be real numbers such that $a-b=1$ and $y\\neq0$. If the complex number $z=x+iy$ satisfies $\\operatorname{Im}\\!\\left(\\dfrac{az+b}{z+1}\\right)=y$, then which of the following is (are) possible value(s) of $x$?\n\n(A) $-1+\\sqrt{1-y^2}$\n(B) $-1-\\sqrt{1-y^2}$\n(C) $1+\\sqrt{1+y^2}$\n(D) $1-\\sqrt{1+y^2}$",
+    "answer": "(A), (B)",
+    "trap": "It is tempting to expand the full real and imaginary parts of the messy quotient. The elegant move is to notice $\\dfrac{az+b}{z+1}=a-\\dfrac{a-b}{z+1}=a-\\dfrac{1}{z+1}$, so only the $\\dfrac{1}{z+1}$ term carries any imaginary part. Students who miss this collapse either drown in algebra or forget that $y\\neq0$ lets them cancel $y$ — and then wrongly keep $x=-1$ (which needs $y=0$) as a solution.",
+    "solutions": [
+      {
+        "name": "Collapse the map with $a-b=1$",
+        "steps": [
+          "Since $a-b=1$, write $az+b=a(z+1)-(a-b)=a(z+1)-1$, so $\\dfrac{az+b}{z+1}=a-\\dfrac{1}{z+1}$.",
+          "As $a$ is real, $\\operatorname{Im}\\!\\left(\\dfrac{az+b}{z+1}\\right)=-\\operatorname{Im}\\!\\left(\\dfrac{1}{z+1}\\right)$.",
+          "With $z+1=(x+1)+iy$, we have $\\dfrac{1}{z+1}=\\dfrac{(x+1)-iy}{(x+1)^2+y^2}$, so $\\operatorname{Im}\\!\\left(\\dfrac{1}{z+1}\\right)=\\dfrac{-y}{(x+1)^2+y^2}$.",
+          "Hence $\\operatorname{Im}\\!\\left(\\dfrac{az+b}{z+1}\\right)=\\dfrac{y}{(x+1)^2+y^2}$.",
+          "Set this equal to $y$: $\\dfrac{y}{(x+1)^2+y^2}=y$. Since $y\\neq0$, cancel $y$: $(x+1)^2+y^2=1$.",
+          "Solve for $x$: $(x+1)^2=1-y^2$, so $x=-1\\pm\\sqrt{1-y^2}$. These are options (A) and (B)."
+        ]
+      },
+      {
+        "name": "Brute real-imaginary separation",
+        "steps": [
+          "Put $z=x+iy$ and $b=a-1$. Then $\\dfrac{az+b}{z+1}=\\dfrac{a(x+iy)+a-1}{(x+1)+iy}=\\dfrac{(ax+a-1)+iay}{(x+1)+iy}$.",
+          "Multiply numerator and denominator by the conjugate $(x+1)-iy$; the denominator becomes $(x+1)^2+y^2$.",
+          "The imaginary part of the numerator is $ay(x+1)-(ax+a-1)\\,y=y\\big[a(x+1)-ax-a+1\\big]=y\\big[a-a+1\\big]=y$.",
+          "So $\\operatorname{Im}\\!\\left(\\dfrac{az+b}{z+1}\\right)=\\dfrac{y}{(x+1)^2+y^2}$ — note $a$ has vanished, confirming the answer cannot depend on $a$.",
+          "Equating to $y$ and cancelling $y\\neq0$ gives the circle $(x+1)^2+y^2=1$, whence $x=-1\\pm\\sqrt{1-y^2}$: options (A), (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 1, Q42. The whole problem is engineered so the parameter $a$ cancels — the condition $a-b=1$ turns the bilinear map into $a-\\frac{1}{z+1}$, and the locus is the unit circle centred at $-1$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Four claims about the principal argument",
+    "difficulty": 4,
+    "task": "Identify all the FALSE statements.",
+    "pyq": {
+      "year": 2018,
+      "paper": "1",
+      "qno": "1"
+    },
+    "tags": [
+      "principal argument",
+      "locus",
+      "continuity of arg",
+      "2018"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><line x1=\"20\" y1=\"110\" x2=\"300\" y2=\"110\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"120\" y1=\"15\" x2=\"120\" y2=\"205\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"292\" y=\"124\" fill=\"var(--ink2)\">Re</text><text x=\"126\" y=\"25\" fill=\"var(--ink2)\">Im</text><circle cx=\"70\" cy=\"110\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"52\" y=\"126\" fill=\"var(--ink2)\">-1</text><path d=\"M70 110 L70 40\" stroke=\"var(--ink2)\" stroke-dasharray=\"3 3\" stroke-width=\"1\"/><path d=\"M70 110 L70 180\" stroke=\"var(--ink2)\" stroke-dasharray=\"3 3\" stroke-width=\"1\"/><circle cx=\"70\" cy=\"55\" r=\"3\" fill=\"var(--gold)\"/><text x=\"78\" y=\"52\" fill=\"var(--ink2)\">$-1+it,\\ t>0$</text><circle cx=\"70\" cy=\"165\" r=\"3\" fill=\"var(--gold)\"/><text x=\"78\" y=\"172\" fill=\"var(--ink2)\">$-1+it,\\ t<0$</text><path d=\"M85 110 A 15 15 0 0 1 74 96\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/><text x=\"86\" y=\"100\" fill=\"var(--ink2)\">arg→π⁻ / -π⁺</text></svg>",
+    "statement": "For a non-zero complex number $z$, let $\\arg(z)$ denote the principal argument with $-\\pi<\\arg(z)\\le\\pi$. Then, which of the following statement(s) is (are) FALSE?\n\n(A) $\\arg(-1-i)=\\dfrac{\\pi}{4}$, where $i=\\sqrt{-1}$\n(B) The function $f:\\mathbb{R}\\to(-\\pi,\\pi]$, defined by $f(t)=\\arg(-1+it)$ for all $t\\in\\mathbb{R}$, is continuous at all points of $\\mathbb{R}$\n(C) For any two non-zero complex numbers $z_1$ and $z_2$, $\\arg\\!\\left(\\dfrac{z_1}{z_2}\\right)-\\arg(z_1)+\\arg(z_2)$ is an integer multiple of $2\\pi$\n(D) For any three given distinct complex numbers $z_1,z_2$ and $z_3$, the locus of the point $z$ satisfying the condition $\\arg\\!\\left(\\dfrac{(z-z_1)(z_2-z_3)}{(z-z_3)(z_2-z_1)}\\right)=\\pi$, lies on a straight line",
+    "answer": "(A), (B), (D)",
+    "trap": "The word is FALSE, not TRUE — a checklist question where the honest danger is (C). The identity $\\arg(z_1/z_2)=\\arg z_1-\\arg z_2$ holds only modulo $2\\pi$, so the given combination is always a multiple of $2\\pi$ and (C) is TRUE — a student who 'knows' arg isn't additive may wrongly flag it. Meanwhile (D)'s cross-ratio being real and negative screams 'straight line' to the careless, but $\\arg=\\pi$ (not $0$ or $\\pi$) pins $z$ to one arc of a circle, not the whole line.",
+    "solutions": [
+      {
+        "name": "Test each statement directly",
+        "steps": [
+          "(A): $-1-i$ lies in the third quadrant, so its principal argument is $-\\pi+\\arctan\\!\\frac{-1}{-1}=-\\pi+\\frac{\\pi}{4}=-\\dfrac{3\\pi}{4}$, not $\\dfrac{\\pi}{4}$. So (A) is FALSE.",
+          "(B): For $t>0$, $-1+it$ is in the second quadrant with $\\arg\\to\\pi$ as $t\\to0^+$; for $t<0$, $-1+it$ is in the third quadrant with $\\arg\\to-\\pi$ as $t\\to0^-$. The value jumps from $-\\pi$ to $\\pi$ across $t=0$, so $f$ is discontinuous there. Hence (B) is FALSE.",
+          "(C): For non-zero $z_1,z_2$, $\\arg\\!\\left(\\frac{z_1}{z_2}\\right)$ and $\\arg z_1-\\arg z_2$ differ only by an integer multiple of $2\\pi$ (the principal value wraps into $(-\\pi,\\pi]$). Thus $\\arg\\!\\left(\\frac{z_1}{z_2}\\right)-\\arg z_1+\\arg z_2=\\arg\\!\\left(\\frac{z_1}{z_2}\\right)-(\\arg z_1-\\arg z_2)$ is a multiple of $2\\pi$. So (C) is TRUE.",
+          "(D): $\\arg\\!\\left(\\frac{(z-z_1)(z_2-z_3)}{(z-z_3)(z_2-z_1)}\\right)=\\pi$ means the cross-ratio is a negative real number. This is the equation of a circle (or line) through $z_1$ and $z_3$; the strict value $\\pi$ (not $0$) selects the arc on which $z_1,z_3$ separate $z$ from $z_2$ — a circular arc, not a straight line. So (D) is FALSE.",
+          "The FALSE statements are (A), (B), (D)."
+        ]
+      },
+      {
+        "name": "Geometric / inscribed-angle view of (D)",
+        "steps": [
+          "Set $\\theta_1=\\arg(z-z_1)-\\arg(z-z_3)$, the angle subtended at $z$ by the segment $z_1z_3$, and $\\theta_2=\\arg(z_2-z_1)-\\arg(z_2-z_3)$, the angle subtended at $z_2$ by the same segment.",
+          "Then $\\arg\\!\\left(\\frac{(z-z_1)(z_2-z_3)}{(z-z_3)(z_2-z_1)}\\right)=\\theta_1-\\theta_2$ (mod $2\\pi$). The condition $=\\pi$ says $\\theta_1=\\theta_2+\\pi$.",
+          "By the inscribed-angle theorem, points $z$ from which $z_1z_3$ subtends a fixed angle form a circular arc through $z_1$ and $z_3$; the offset of $\\pi$ places $z$ on the arc opposite to $z_2$.",
+          "A straight line would require the subtended angle to be $0$ or $\\pi$ (i.e. $z$ collinear with $z_1,z_3$); here the angle equals $\\theta_2+\\pi$ for a generic $z_2$, which is not $0$ or $\\pi$. So the locus is a genuine arc, confirming (D) is FALSE.",
+          "This confirms the FALSE set $\\{$(A),(B),(D)$\\}$ from an independent geometric route."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 1, Q1. A pure 'branch-cut awareness' problem: (A) tests quadrant convention, (B) the $-\\pi\\to\\pi$ jump across the negative real axis, (C) the mod-$2\\pi$ nature of $\\arg$, and (D) the difference between $\\arg=\\pi$ (an arc) and a straight line."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "When does $sz+t\\bar z+r=0$ become a line?",
+    "difficulty": 4,
+    "task": "Decide which statements are true.",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "5"
+    },
+    "tags": [
+      "equation of line in complex form",
+      "conjugate",
+      "geometry",
+      "2018"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><line x1=\"20\" y1=\"170\" x2=\"300\" y2=\"170\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"60\" y1=\"20\" x2=\"60\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"296\" y=\"184\" fill=\"var(--ink2)\">Re</text><text x=\"46\" y=\"28\" fill=\"var(--ink2)\">Im</text><circle cx=\"180\" cy=\"120\" r=\"62\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.3\"/><text x=\"186\" y=\"116\" fill=\"var(--ink2)\">|z-1+i|=5</text><line x1=\"40\" y1=\"200\" x2=\"300\" y2=\"48\" stroke=\"var(--gold)\" stroke-width=\"2\"/><text x=\"250\" y=\"58\" fill=\"var(--gold)\">L (a line)</text><circle cx=\"131\" cy=\"149\" r=\"3.5\" fill=\"var(--gold)\"/><circle cx=\"221\" cy=\"96\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"108\" y=\"163\" fill=\"var(--ink2)\">P₁</text><text x=\"226\" y=\"92\" fill=\"var(--ink2)\">P₂</text></svg>",
+    "statement": "Let $s,t,r$ be non-zero complex numbers and let $L$ be the set of solutions $z=x+iy$ (with $x,y\\in\\mathbb{R}$, $i=\\sqrt{-1}$) of the equation $$sz+t\\bar z+r=0,\\qquad \\bar z=x-iy.$$ Then, which of the following statement(s) is (are) TRUE?\n\n(A) If $L$ has exactly one element, then $|s|\\neq|t|$\n\n(B) If $|s|=|t|$, then $L$ has infinitely many elements\n\n(C) The number of elements in $L\\cap\\{z:|z-1+i|=5\\}$ is at most $2$\n\n(D) If $L$ has more than one element, then $L$ has infinitely many elements",
+    "answer": "$\\boxed{\\text{(A), (C), (D)}}$",
+    "trap": "Option (B) reads like the obvious converse of (A), so students tick it reflexively. But $|s|=|t|$ only removes the *unique*-solution mechanism — the resulting line can still be empty (no solutions) if the constant term is inconsistent, e.g. $z+\\bar z+i=0$ reads $2x+i=0$, impossible. 'Infinitely many' is not guaranteed, so (B) is FALSE while its near-twin (D) is TRUE.",
+    "solutions": [
+      {
+        "name": "Eliminate $\\bar z$ via the conjugate equation",
+        "steps": [
+          "Take the conjugate of $sz+t\\bar z+r=0$ to get a second equation $\\bar s\\,\\bar z+\\bar t\\,z+\\bar r=0$.",
+          "Treat these as two linear equations in the unknowns $z$ and $\\bar z$. Multiply the first by $\\bar s$ and the second by $t$: $\\bar s s\\,z+\\bar s t\\,\\bar z+\\bar s r=0$ and $t\\bar t\\,z+t\\bar s\\,\\bar z+t\\bar r=0$.",
+          "Subtract to knock out $\\bar z$ (the $\\bar z$–coefficients $\\bar s t$ and $t\\bar s$ are equal): $(|s|^2-|t|^2)\\,z=t\\bar r-\\bar s r.$",
+          "Case $|s|\\neq|t|$: the coefficient $|s|^2-|t|^2\\neq0$, so $z=\\dfrac{t\\bar r-\\bar s r}{|s|^2-|t|^2}$ is forced — exactly one solution. Hence 'exactly one element' $\\Rightarrow|s|\\neq|t|$, which is (A). TRUE.",
+          "Case $|s|=|t|$: the left side is $0$. If also $t\\bar r-\\bar s r=0$ the equation is satisfied automatically and $L$ is a whole line (infinitely many $z$); if $t\\bar r-\\bar s r\\neq0$ we get $0=\\text{nonzero}$, so $L$ is empty.",
+          "Therefore $L$ is always a single point, a line, or empty. This means: if $L$ has more than one element it must be the line case, hence infinitely many — (D) is TRUE.",
+          "But 'infinitely many' can fail when $|s|=|t|$ (the empty case), so (B) is FALSE.",
+          "For (C): $L$ is a point or a line (never a curve), and a point or a line meets the circle $|z-1+i|=5$ in at most $2$ points. So (C) is TRUE.",
+          "Correct options: (A), (C), (D)."
+        ]
+      },
+      {
+        "name": "Real–imaginary form: it is literally a straight line",
+        "steps": [
+          "Write $s=s_1+is_2,\\ t=t_1+it_2,\\ r=r_1+ir_2$ and $z=x+iy$. Then $sz=(s_1x-s_2y)+i(s_1y+s_2x)$ and $t\\bar z=(t_1x+t_2y)+i(t_1y-t_2x)$.",
+          "Real part of $sz+t\\bar z+r=0$: $(s_1+t_1)x+(t_2-s_2)y+r_1=0.$",
+          "Imaginary part: $(s_2-t_2)x+(s_1-t_1)y+r_2=0.$",
+          "These are two straight lines in the $xy$–plane; $L$ is their intersection. Two lines meet in one point, or coincide (a whole line), or are parallel-and-distinct (empty).",
+          "Unique point requires the coefficient determinant $\\neq0$: $(s_1+t_1)(s_1-t_1)-(t_2-s_2)(s_2-t_2)=s_1^2-t_1^2+s_2^2-t_2^2=|s|^2-|t|^2\\neq0$, i.e. $|s|\\neq|t|$. This re-proves (A) and, by negation, that more-than-one-point forces $|s|=|t|$ giving a full line, i.e. (D).",
+          "The 'coincide' case gives an entire line (infinitely many); the 'parallel-distinct' case is empty — so $|s|=|t|$ need not give infinitely many, killing (B).",
+          "Being a point or a straight line, $L$ cuts any circle in $\\le2$ points, confirming (C).",
+          "Hence (A), (C), (D) are true."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 2, Q5. The whole item hinges on one fact — $sz+t\\bar z+r=0$ is the *general equation of a line* in the Argand plane, and $|s|=|t|$ is exactly the degeneracy that turns 'the point where two lines cross' into 'a line' or 'nothing at all'."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Maximising $\\dfrac{1}{|z-1|}$ on the outside of a disk",
+    "difficulty": 4,
+    "task": "Find the principal argument.",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "3"
+    },
+    "tags": [
+      "modulus locus",
+      "argument",
+      "circle",
+      "2019"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><line x1=\"20\" y1=\"110\" x2=\"300\" y2=\"110\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"70\" y1=\"20\" x2=\"70\" y2=\"205\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"296\" y=\"124\" fill=\"var(--ink2)\">Re</text><text x=\"56\" y=\"28\" fill=\"var(--ink2)\">Im</text><circle cx=\"170\" cy=\"140\" r=\"60\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.3\"/><text x=\"176\" y=\"205\" fill=\"var(--ink2)\">|z-2+i|=√5</text><circle cx=\"170\" cy=\"140\" r=\"2.5\" fill=\"var(--ink2)\"/><text x=\"176\" y=\"138\" fill=\"var(--ink2)\">C(2,-1)</text><circle cx=\"110\" cy=\"110\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"98\" y=\"102\" fill=\"var(--ink2)\">1</text><line x1=\"110\" y1=\"110\" x2=\"170\" y2=\"140\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><circle cx=\"122\" cy=\"84\" r=\"4\" fill=\"var(--gold)\"/><text x=\"128\" y=\"80\" fill=\"var(--gold)\">z₀</text><line x1=\"110\" y1=\"110\" x2=\"122\" y2=\"84\" stroke=\"var(--gold)\" stroke-width=\"2\"/></svg>",
+    "statement": "Let $S$ be the set of all complex numbers $z$ satisfying $$|z-2+i|\\ge\\sqrt5.$$ If the complex number $z_0$ is such that $\\dfrac{1}{|z_0-1|}$ is the maximum of the set $\\left\\{\\dfrac{1}{|z-1|}:z\\in S\\right\\}$, then the principal argument of $$\\frac{4-z_0-\\bar z_0}{z_0-\\bar z_0+2i}$$ is\n\n(A) $\\dfrac{\\pi}{4}$ (B) $\\dfrac{3\\pi}{4}$ (C) $-\\dfrac{\\pi}{2}$ (D) $\\dfrac{\\pi}{2}$",
+    "answer": "$\\boxed{-\\dfrac{\\pi}{2}}$ (option C)",
+    "trap": "Maximising $\\tfrac1{|z-1|}$ tempts you to push $z$ far away — but that *minimises* the fraction. You must *minimise* $|z-1|$. The point $1$ lies inside the forbidden disk, so the closest admissible $z_0$ sits on the near boundary, on the segment from the centre to $1$. Miss that and you place $z_0$ on the wrong arc and lose the sign of the argument.",
+    "solutions": [
+      {
+        "name": "Locate $z_0$ geometrically, then read off the ratio",
+        "steps": [
+          "$S=\\{z:|z-(2-i)|\\ge\\sqrt5\\}$ is the closed exterior of the circle with centre $C(2,-1)$ and radius $\\sqrt5$.",
+          "Maximising $\\dfrac1{|z-1|}$ over $z\\in S$ means minimising $|z-1|$, i.e. finding the point of $S$ nearest the fixed point $A(1,0)$.",
+          "Check where $A$ sits: $|A-C|=|(1,0)-(2,-1)|=\\sqrt{1+1}=\\sqrt2<\\sqrt5$, so $A$ is *inside* the disk. The nearest exterior point is on the boundary circle, along the ray from $C$ through $A$ (extended to the near side of $A$).",
+          "Unit vector from $C$ to $A$: $\\dfrac{A-C}{|A-C|}=\\dfrac{(-1,1)}{\\sqrt2}$. Nearest boundary point: $z_0=C+\\sqrt5\\cdot\\dfrac{(-1,1)}{\\sqrt2}=\\Big(2-\\tfrac{\\sqrt5}{\\sqrt2},\\,-1+\\tfrac{\\sqrt5}{\\sqrt2}\\Big).$",
+          "So $x_0=2-\\sqrt{5/2}\\approx0.419$ and $y_0=-1+\\sqrt{5/2}\\approx0.581$. Note $x_0<1$ and $y_0>0$.",
+          "Numerator: $4-z_0-\\bar z_0=4-2\\,\\mathrm{Re}(z_0)=4-2x_0\\approx4-0.838=3.16>0$ — a positive real number.",
+          "Denominator: $z_0-\\bar z_0+2i=2i\\,\\mathrm{Im}(z_0)+2i=2i(y_0+1)\\approx2i(1.581)=3.16\\,i$ — a positive multiple of $i$.",
+          "Hence the ratio $=\\dfrac{\\text{positive real}}{(\\text{positive})\\,i}=\\dfrac{k}{i}=-ki$ with $k>0$, a *negative* multiple of $i$. Its principal argument is $-\\dfrac{\\pi}{2}$.",
+          "(Numerically the ratio is exactly $-i$, whose argument is $-\\tfrac\\pi2$.) Answer: (C)."
+        ]
+      },
+      {
+        "name": "Parametrise the boundary, minimise, then simplify",
+        "steps": [
+          "The optimum $z_0$ lies on the boundary $|z-(2-i)|=\\sqrt5$, so write $z_0=2-i+\\sqrt5\\,e^{i\\phi}=(2+\\sqrt5\\cos\\phi)+i(-1+\\sqrt5\\sin\\phi).$",
+          "Minimise $|z_0-1|^2=(1+\\sqrt5\\cos\\phi)^2+(-1+\\sqrt5\\sin\\phi)^2=7+2\\sqrt5(\\cos\\phi-\\sin\\phi).$",
+          "This is smallest when $\\cos\\phi-\\sin\\phi=\\sqrt2\\cos(\\phi+\\tfrac\\pi4)$ is most negative, i.e. $\\phi+\\tfrac\\pi4=\\pi\\Rightarrow\\phi=\\tfrac{3\\pi}{4}$.",
+          "Then $\\cos\\phi=-\\tfrac1{\\sqrt2},\\ \\sin\\phi=\\tfrac1{\\sqrt2}$, giving $x_0=2-\\sqrt{5/2}$ and $y_0=-1+\\sqrt{5/2}$ — the same point as before.",
+          "Now $4-z_0-\\bar z_0=4-2x_0=4-2\\big(2-\\sqrt{5/2}\\big)=2\\sqrt{5/2}=\\sqrt{10}>0.$",
+          "And $z_0-\\bar z_0+2i=2i\\,y_0+2i=2i(y_0+1)=2i\\sqrt{5/2}=i\\sqrt{10}.$",
+          "Therefore $\\dfrac{4-z_0-\\bar z_0}{z_0-\\bar z_0+2i}=\\dfrac{\\sqrt{10}}{i\\sqrt{10}}=\\dfrac1i=-i$, whose principal argument is $-\\dfrac{\\pi}{2}$.",
+          "Answer: (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 1, S1-Q3. A clean lesson in reading an optimisation the right way round — the reciprocal flips 'max' into 'min distance', and the numerator/denominator collapse to a pure real over a pure imaginary, so only the *signs* of $4-2x_0$ and $y_0+1$ decide the argument."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Smallest Norm of $a+b\\omega+c\\omega^2$",
+    "difficulty": 4,
+    "task": "Find the minimum value.",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "1"
+    },
+    "tags": [
+      "cube roots of unity",
+      "minimization",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "Let $\\omega \\ne 1$ be a cube root of unity. Then the minimum of the set $\\{\\,|a+b\\omega+c\\omega^2|^2 : a,b,c \\text{ distinct non-zero integers}\\,\\}$ equals ____.",
+    "answer": "$\\boxed{3}$",
+    "trap": "Students try to make $|a+b\\omega+c\\omega^2|$ small by taking $a,b,c$ close to a common value, forgetting the constraint that the three integers must be $\\textbf{distinct and non-zero}$. Choosing $a=b=c$ (which would give $0$) is forbidden, and $\\{1,2,3\\}$ is legal but people wrongly reject it because it contains no $0$ — zero is exactly what is banned.",
+    "solutions": [
+      {
+        "name": "Conjugate-product $\\to$ symmetric quadratic form",
+        "steps": [
+          "Since $\\omega$ is a non-real cube root of unity, $\\bar\\omega=\\omega^2$ and $\\omega^3=1$, with $1+\\omega+\\omega^2=0$.",
+          "For real integers $a,b,c$ the conjugate of $a+b\\omega+c\\omega^2$ is $a+b\\bar\\omega+c\\bar{\\omega}^2=a+b\\omega^2+c\\omega$.",
+          "Hence $|a+b\\omega+c\\omega^2|^2=(a+b\\omega+c\\omega^2)(a+b\\omega^2+c\\omega)$.",
+          "Expand and collect: the $a^2,b^2,c^2$ terms each carry a factor $\\omega^0=1$, while every cross term $ab,bc,ca$ carries the factor $\\omega+\\omega^2=-1$. So the product $=a^2+b^2+c^2-ab-bc-ca$.",
+          "Rewrite this symmetric form as a sum of squares: $a^2+b^2+c^2-ab-bc-ca=\\tfrac12\\big[(a-b)^2+(b-c)^2+(c-a)^2\\big]$.",
+          "We now minimize $\\tfrac12\\big[(a-b)^2+(b-c)^2+(c-a)^2\\big]$ over distinct non-zero integers $a,b,c$.",
+          "The value depends only on the pairwise gaps, and distinctness forces all three of $|a-b|,|b-c|,|c-a|$ to be $\\ge 1$. The smallest achievable multiset of gaps is $\\{1,1,2\\}$ — exactly what three consecutive integers give (e.g. $1,2,3$, which are distinct and non-zero).",
+          "Then $\\tfrac12(1^2+1^2+2^2)=\\tfrac12(1+1+4)=3$.",
+          "No configuration can beat this, so the minimum is $3$."
+        ]
+      },
+      {
+        "name": "Reduce to a two-variable lattice search",
+        "steps": [
+          "The form $Q=a^2+b^2+c^2-ab-bc-ca$ is translation-invariant: replacing $(a,b,c)$ by $(a+t,b+t,c+t)$ leaves every difference unchanged, so $Q$ depends only on $p=a-b$ and $q=b-c$ (then $a-c=p+q$).",
+          "Substituting, $Q=\\tfrac12\\big[p^2+q^2+(p+q)^2\\big]=p^2+q^2+pq$.",
+          "Distinctness of $a,b,c$ means $p\\ne0$, $q\\ne0$ and $p+q\\ne0$, with $p,q\\in\\mathbb{Z}$.",
+          "Minimize $p^2+pq+q^2$ over such integer pairs. Trying the smallest magnitudes: $(p,q)=(1,1)$ gives $1+1+1=3$; $(1,-1)$ is banned since $p+q=0$; $(1,-2)$ gives $1-2+4=3$; $(2,-1)$ gives $4-2+1=3$.",
+          "Every admissible pair yields at least $3$, and $(1,1)$ attains it — corresponding to consecutive integers such as $(a,b,c)=(3,2,1)$.",
+          "The non-zero-integer constraint is automatically satisfiable (pick $1,2,3$), so it does not push the minimum higher. Minimum $=3$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 1, QS3-Q1. The modulus-squared of an integer combination of cube roots collapses to the classic symmetric form $\\tfrac12\\sum(a-b)^2$ — recognizing that identity turns a complex-number question into a one-line lattice minimization."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Locus $|z^2+z+1|=1$",
+    "difficulty": 4,
+    "task": "Identify all true statements.",
+    "pyq": {
+      "year": 2020,
+      "paper": "1",
+      "qno": "9"
+    },
+    "tags": [
+      "modulus and locus",
+      "inequalities in complex plane",
+      "2020"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"20\" y1=\"120\" x2=\"300\" y2=\"120\" stroke=\"var(--ink3)\" stroke-width=\"1\"/>\n  <line x1=\"150\" y1=\"20\" x2=\"150\" y2=\"210\" stroke=\"var(--ink3)\" stroke-width=\"1\"/>\n  <text x=\"293\" y=\"134\" fill=\"var(--ink2)\">Re</text>\n  <text x=\"156\" y=\"30\" fill=\"var(--ink2)\">Im</text>\n  <!-- center w = z+1/2 maps origin; here draw z-plane region as closed curve around z=0 and z=-1 -->\n  <path d=\"M 175 120 C 178 70, 122 70, 118 120 C 122 170, 178 170, 175 120 Z\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/>\n  <!-- disk |z|<=2 reference circle: scale 26 px per unit -->\n  <circle cx=\"150\" cy=\"120\" r=\"52\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/>\n  <!-- point z=0 -->\n  <circle cx=\"150\" cy=\"120\" r=\"2.5\" fill=\"var(--ink3)\"/>\n  <text x=\"154\" y=\"116\" fill=\"var(--ink2)\">0</text>\n  <!-- point z=-1 at 13px left -->\n  <circle cx=\"124\" cy=\"120\" r=\"2.5\" fill=\"var(--ink3)\"/>\n  <text x=\"112\" y=\"116\" fill=\"var(--ink2)\">-1</text>\n  <!-- center of the |z+1/2| circle -->\n  <circle cx=\"137\" cy=\"120\" r=\"1.8\" fill=\"var(--ink2)\"/>\n  <text x=\"120\" y=\"148\" fill=\"var(--gold)\">|z^2+z+1|=1</text>\n  <text x=\"196\" y=\"92\" fill=\"var(--ink2)\">|z|=2</text>\n</svg>",
+    "statement": "Let $S$ be the set of all complex numbers $z$ satisfying $|z^2+z+1|=1$. Then which of the following statements is/are TRUE?\n(A) $\\left|z+\\tfrac12\\right|\\le\\tfrac12$ for all $z\\in S$\n(B) $|z|\\le 2$ for all $z\\in S$\n(C) $\\left|z+\\tfrac12\\right|\\ge\\tfrac12$ for all $z\\in S$\n(D) The set $S$ has exactly four elements",
+    "answer": "(B), (C)",
+    "trap": "Substituting $w=z+\\tfrac12$ turns the curve into $\\big|w^2+\\tfrac34\\big|=1$, which is a lemniscate-like closed curve, $\\textbf{not}$ a circle. Students see $|z+\\tfrac12|$ and assume $|z+\\tfrac12|$ is constant (choice A), or they treat $|z^2+z+1|=1$ as a polynomial equation with finitely many roots (choice D) — but it is one real equation on the plane, so its solution set is a whole curve, not four points.",
+    "solutions": [
+      {
+        "name": "Shift to $w=z+\\tfrac12$ and bound $|w|$ from below (gives C) and $|z|$ from above (gives B)",
+        "steps": [
+          "Complete the square: $z^2+z+1=\\left(z+\\tfrac12\\right)^2+\\tfrac34$. Put $w=z+\\tfrac12$, so the condition is $\\left|w^2+\\tfrac34\\right|=1$.",
+          "(C): By the triangle inequality, $|w|^2=\\left|w^2\\right|=\\left|\\left(w^2+\\tfrac34\\right)-\\tfrac34\\right|\\le\\left|w^2+\\tfrac34\\right|+\\tfrac34=1+\\tfrac34=\\tfrac74$. That bounds $|w|$ from above, not below — so use the reverse inequality instead: $1=\\left|w^2+\\tfrac34\\right|\\le|w|^2+\\tfrac34$, giving $|w|^2\\ge\\tfrac14$, i.e. $|w|=\\left|z+\\tfrac12\\right|\\ge\\tfrac12$. So (C) is TRUE, and (A) (the opposite inequality) is FALSE.",
+          "To confirm (A) fails, exhibit a point with $|z+\\tfrac12|>\\tfrac12$: take $z=i$. Then $z^2+z+1=-1+i+1=i$, so $|z^2+z+1|=1$ and $z\\in S$; but $\\left|i+\\tfrac12\\right|=\\sqrt{\\tfrac14+1}=\\tfrac{\\sqrt5}{2}>\\tfrac12$. So (A) is definitively FALSE.",
+          "(B): From the upper bound above, $|w|^2\\le\\tfrac74$, so $|w|\\le\\tfrac{\\sqrt7}{2}\\approx1.32$. Then $|z|=\\left|w-\\tfrac12\\right|\\le|w|+\\tfrac12\\le\\tfrac{\\sqrt7}{2}+\\tfrac12\\approx1.82<2$. Hence $|z|\\le 2$ for all $z\\in S$: (B) is TRUE.",
+          "(D): The condition $|z^2+z+1|=1$ is a single real equation in the two real coordinates $(x,y)$ of $z$, so its solution set is a curve (a one-dimensional locus), containing infinitely many points — e.g. $z=0,\\,z=-1,\\,z=i,\\,z=-i$ all satisfy it. So $S$ is not a four-element set: (D) is FALSE.",
+          "Therefore the true statements are (B) and (C)."
+        ]
+      },
+      {
+        "name": "Factor via cube roots of unity, then bound each modulus",
+        "steps": [
+          "Since $z^2+z+1=\\dfrac{z^3-1}{z-1}$ (for $z\\ne1$), and $z^2+z+1=(z-\\omega)(z-\\omega^2)$ where $\\omega=e^{2\\pi i/3}$, the condition becomes $|z-\\omega|\\,|z-\\omega^2|=1$: the product of distances from $z$ to the two non-real cube roots of unity is $1$ (a Cassini-type oval).",
+          "(C): Let $u=z+\\tfrac12$. Because $\\omega$ and $\\omega^2$ are symmetric about $-\\tfrac12$ on the real axis ($\\omega+\\omega^2=-1$), write $\\omega=-\\tfrac12+\\tfrac{\\sqrt3}{2}i$, so $z-\\omega=u-\\tfrac{\\sqrt3}{2}i$ and $z-\\omega^2=u+\\tfrac{\\sqrt3}{2}i$. Their product is $u^2+\\tfrac34$, matching Method 1. Then $1=\\left|u^2+\\tfrac34\\right|\\le|u|^2+\\tfrac34\\Rightarrow|u|\\ge\\tfrac12$. (C) TRUE; (A) FALSE.",
+          "(B): The foci $\\omega,\\omega^2$ lie on the unit circle, at distance $\\sqrt3$ apart. A Cassini oval with $|PF_1||PF_2|=1<\\left(\\tfrac{\\text{focal distance}}{2}\\right)^2\\cdot? $ stays bounded; concretely, any $z\\in S$ satisfies $|z|\\le\\tfrac{\\sqrt7}{2}+\\tfrac12<2$ as computed in Method 1, so (B) TRUE.",
+          "(D): A Cassini oval is a continuous closed curve (here a single loop, since $1$ exceeds $\\left(\\tfrac{\\sqrt3}{2}\\right)^2=\\tfrac34$, so the two lobes merge), containing infinitely many points. Sample members $0,-1,\\pm i$ all lie on it. So (D) FALSE.",
+          "Answer: (B) and (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 1, Q9. The move $z\\mapsto z+\\tfrac12$ converts $z^2+z+1$ into $w^2+\\tfrac34$, after which a single application of $\\big|\\,|w|^2-\\tfrac34\\,\\big|\\le|w^2+\\tfrac34|\\le|w|^2+\\tfrac34$ delivers both the lower bound on $|z+\\tfrac12|$ and the upper bound on $|z|$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The hyperbola hidden in $z^4-|z|^4=4iz^2$",
+    "difficulty": 4,
+    "task": "Find the minimum value.",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "1"
+    },
+    "tags": [
+      "locus of complex numbers",
+      "rectangular hyperbola",
+      "2020"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><line x1=\"20\" y1=\"110\" x2=\"300\" y2=\"110\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"160\" y1=\"15\" x2=\"160\" y2=\"205\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"303\" y=\"114\" fill=\"var(--ink2)\">x</text><text x=\"164\" y=\"22\" fill=\"var(--ink2)\">y</text><path d=\"M 175 30 Q 200 55 220 70 T 285 96\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.6\"/><path d=\"M 145 190 Q 120 165 100 150 T 35 124\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.6\"/><line x1=\"185\" y1=\"85\" x2=\"135\" y2=\"135\" stroke=\"var(--gold)\" stroke-width=\"1.6\" stroke-dasharray=\"4 3\"/><circle cx=\"185\" cy=\"85\" r=\"3.5\" fill=\"var(--gold)\"/><circle cx=\"135\" cy=\"135\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"191\" y=\"81\" fill=\"var(--ink2)\">$(1,1)$</text><text x=\"88\" y=\"152\" fill=\"var(--ink2)\">$(-1,-1)$</text><text x=\"228\" y=\"58\" fill=\"var(--ink2)\">$xy=1$</text></svg>",
+    "statement": "For a complex number $z$, let $\\operatorname{Re}(z)$ denote the real part of $z$. Let $S$ be the set of all complex numbers $z$ satisfying $$z^4-|z|^4=4iz^2,$$ where $i=\\sqrt{-1}$. Then the minimum possible value of $|z_1-z_2|^2$, where $z_1,z_2\\in S$ with $\\operatorname{Re}(z_1)>0$ and $\\operatorname{Re}(z_2)<0$, is _____",
+    "answer": "$\\boxed{8}$",
+    "trap": "The set $S$ is NOT the whole rectangular hyperbola $xy=\\pm1$. Reducing the equation forces $\\operatorname{Im}(z^2)=2$, i.e. $2xy=2$, so only the branch $xy=+1$ survives; the points $(1,-1),(-1,1)$ (which sit on $xy=-1$) are tempting but do not lie in $S$. Miss this and you may pick a wrong nearest pair.",
+    "solutions": [
+      {
+        "name": "Substitute $w=z^2$ and read off $\\operatorname{Im}(w)$",
+        "steps": [
+          "Put $w=z^2$. Then $z^4=w^2$ and $|z|^4=(|z|^2)^2=|z^2|^2=|w|^2=w\\bar w$.",
+          "The equation becomes $w^2-w\\bar w=4iw$, i.e. $w\\,(w-\\bar w)=4iw$.",
+          "The stray solution $w=0$ gives $z=0$, whose real part is $0$ — excluded by the conditions $\\operatorname{Re}(z_1)>0,\\ \\operatorname{Re}(z_2)<0$. So take $w\\neq0$ and cancel: $w-\\bar w=4i$.",
+          "But $w-\\bar w=2i\\,\\operatorname{Im}(w)$, hence $2i\\,\\operatorname{Im}(w)=4i$, giving $\\operatorname{Im}(w)=2$, i.e. $\\operatorname{Im}(z^2)=2$.",
+          "Write $z=x+iy$; then $z^2=(x^2-y^2)+2xy\\,i$, so $\\operatorname{Im}(z^2)=2xy=2$, i.e. $xy=1$. The locus $S$ is exactly the rectangular hyperbola $xy=1$.",
+          "The branch $\\operatorname{Re}(z)=x>0$ is the first-quadrant arm; $\\operatorname{Re}(z)=x<0$ is the third-quadrant arm. By symmetry the closest pair of opposite-branch points are the two vertices $z_1=1+i$ and $z_2=-1-i$.",
+          "Then $|z_1-z_2|^2=|2+2i|^2=2^2+2^2=8.$"
+        ]
+      },
+      {
+        "name": "Minimise the squared distance with Lagrange/AM–GM",
+        "steps": [
+          "From the reduction above, $z_1=(a,\\tfrac1a)$ with $a>0$ and $z_2=(b,\\tfrac1b)$ with $b<0$, both on $xy=1$.",
+          "Then $D=|z_1-z_2|^2=(a-b)^2+\\left(\\tfrac1a-\\tfrac1b\\right)^2=(a-b)^2+\\dfrac{(b-a)^2}{a^2b^2}=(a-b)^2\\left(1+\\dfrac{1}{a^2b^2}\\right).$",
+          "Let $p=-ab>0$ (since $a>0,b<0$). By AM–GM, $(a-b)^2=(a+(-b))^2\\ge 4a(-b)=4p$, with equality when $a=-b$.",
+          "Also $\\dfrac{1}{a^2b^2}=\\dfrac{1}{p^2}$, so $D\\ge 4p\\left(1+\\dfrac{1}{p^2}\\right)=4\\left(p+\\dfrac1p\\right).$",
+          "By AM–GM again, $p+\\dfrac1p\\ge 2$, with equality at $p=1$. Hence $D\\ge 8$.",
+          "Both equalities hold simultaneously when $a=-b$ and $-ab=1$, i.e. $a=1,\\ b=-1$: the vertices $1+i$ and $-1-i$. Minimum $|z_1-z_2|^2=8.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 2, Q1. The whole difficulty is the modelling step $|z|^4=|z^2|^2$ — once you set $w=z^2$, the quartic collapses to a single linear condition $\\operatorname{Im}(w)=2$, and the extremum is just the vertex-to-vertex distance."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Chords never beat arcs: a walk of ten $e^{i\\theta_k}$",
+    "difficulty": 4,
+    "task": "Decide which statements are true.",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "4"
+    },
+    "tags": [
+      "modulus",
+      "unit circle",
+      "chord vs arc inequality",
+      "2021"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><circle cx=\"150\" cy=\"110\" r=\"85\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"/><line x1=\"50\" y1=\"110\" x2=\"250\" y2=\"110\" stroke=\"var(--ink2)\" stroke-width=\"0.8\"/><line x1=\"150\" y1=\"20\" x2=\"150\" y2=\"200\" stroke=\"var(--ink2)\" stroke-width=\"0.8\"/><path d=\"M 235 110 A 85 85 0 0 0 202 49\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"3\"/><line x1=\"235\" y1=\"110\" x2=\"202\" y2=\"49\" stroke=\"var(--gold)\" stroke-width=\"1.4\" stroke-dasharray=\"4 3\"/><circle cx=\"235\" cy=\"110\" r=\"3.2\" fill=\"var(--gold)\"/><circle cx=\"202\" cy=\"49\" r=\"3.2\" fill=\"var(--gold)\"/><text x=\"239\" y=\"108\" fill=\"var(--ink2)\">$z_{k-1}$</text><text x=\"196\" y=\"44\" fill=\"var(--ink2)\">$z_k$</text><text x=\"212\" y=\"66\" fill=\"var(--ink2)\">chord</text><text x=\"238\" y=\"78\" fill=\"var(--ink2)\">arc $\\theta_k$</text><text x=\"58\" y=\"150\" fill=\"var(--ink2)\">unit circle</text></svg>",
+    "statement": "Let $\\theta_1,\\theta_2,\\ldots,\\theta_{10}$ be positive valued angles (in radians) such that $\\theta_1+\\theta_2+\\cdots+\\theta_{10}=2\\pi$. Define the complex numbers $z_1=e^{i\\theta_1}$ and $z_k=z_{k-1}e^{i\\theta_k}$ for $k=2,3,\\ldots,10$, where $i=\\sqrt{-1}$. Consider the statements $P$ and $Q$ given below:\n$$P:\\ |z_2-z_1|+|z_3-z_2|+\\cdots+|z_{10}-z_9|+|z_1-z_{10}|\\le 2\\pi,$$\n$$Q:\\ |z_2^2-z_1^2|+|z_3^2-z_2^2|+\\cdots+|z_{10}^2-z_9^2|+|z_1^2-z_{10}^2|\\le 4\\pi.$$\nThen,\n(A) $P$ is TRUE and $Q$ is FALSE\n(B) $Q$ is TRUE and $P$ is FALSE\n(C) both $P$ and $Q$ are TRUE\n(D) both $P$ and $Q$ are FALSE",
+    "answer": "(C)",
+    "trap": "The wrap-around term $|z_1-z_{10}|$ (and $|z_1^2-z_{10}^2|$) closes the polygon. Because $z_{10}=e^{i(\\theta_1+\\cdots+\\theta_{10})}=e^{2\\pi i}=1$, the last hop $z_{10}\\to z_1$ spans the arc $\\theta_1$, so every arc $\\theta_1,\\ldots,\\theta_{10}$ is used exactly once and the arcs sum to $2\\pi$. Forgetting that the closing chord also subtends a genuine arc $\\theta_1$ makes the bound look off by a term.",
+    "solutions": [
+      {
+        "name": "Chord $\\le$ arc on the unit circle",
+        "steps": [
+          "Set $\\phi_k=\\theta_1+\\cdots+\\theta_k$, so $z_k=e^{i\\phi_k}$ and every $z_k$ lies on the unit circle. Consecutive points $z_{k-1},z_k$ are separated by the central angle $\\theta_k$ (and $z_1,z_{10}$ by $\\theta_1$, since $z_{10}=e^{2\\pi i}=1$ and $z_1=e^{i\\theta_1}$).",
+          "For two unit-circle points separated by angle $\\alpha\\in(0,2\\pi)$, the chord length is $2\\sin\\tfrac{\\alpha}{2}$ while the subtended arc has length $\\alpha$. Since $\\sin t\\le t$ for $t\\ge0$, we get $2\\sin\\tfrac{\\alpha}{2}\\le \\alpha$: the straight chord never exceeds the arc.",
+          "Apply this to each hop: $|z_k-z_{k-1}|=2\\sin\\tfrac{\\theta_k}{2}\\le\\theta_k$, and the closing hop $|z_1-z_{10}|=2\\sin\\tfrac{\\theta_1}{2}\\le\\theta_1$.",
+          "Summing over all ten hops, the left side of $P$ is $\\le \\theta_1+\\theta_2+\\cdots+\\theta_{10}=2\\pi$. So $P$ is TRUE.",
+          "For $Q$, note $z_k^2=e^{2i\\phi_k}$ are again on the unit circle, and consecutive squares are separated by the doubled angle $2\\theta_k$ (with the closing gap $2\\theta_1$).",
+          "Hence $|z_k^2-z_{k-1}^2|=2\\sin\\theta_k\\le 2\\theta_k$, and the sum in $Q$ is $\\le 2(\\theta_1+\\cdots+\\theta_{10})=2(2\\pi)=4\\pi$. So $Q$ is TRUE.",
+          "Both $P$ and $Q$ hold: the answer is (C)."
+        ]
+      },
+      {
+        "name": "Perimeter of an inscribed polygon $\\le$ circumference (geometric)",
+        "steps": [
+          "The ten points $z_1,\\ldots,z_{10}$ are vertices of a (convex, in cyclic order) polygon inscribed in the unit circle, and the sum in $P$ is exactly its perimeter — the sum of all its side chords, including the closing side $z_{10}z_1$.",
+          "A convex polygon inscribed in a circle has perimeter at most the circumference of that circle: each side, being a straight chord, is shorter than the arc it cuts off, and the arcs tile the whole circle once. The unit circle has circumference $2\\pi$.",
+          "Therefore the $P$-sum $\\le 2\\pi$, so $P$ is TRUE.",
+          "For $Q$, the map $z\\mapsto z^2$ sends the unit circle to itself while doubling every central angle. The squared points $z_1^2,\\ldots,z_{10}^2$ trace the circle twice (total swept angle $2\\cdot2\\pi=4\\pi$), and the $Q$-sum is the total length of the chords of that double traversal.",
+          "Chord $\\le$ arc again bounds each term by its (doubled) arc, and the doubled arcs sum to $4\\pi$; hence the $Q$-sum $\\le 4\\pi$, so $Q$ is TRUE.",
+          "Both statements are TRUE, giving (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 1, Q4. One elementary inequality — chord $\\le$ arc, i.e. $2\\sin\\tfrac{\\alpha}{2}\\le\\alpha$ — settles both parts at once; squaring merely doubles every angle, converting the bound $2\\pi$ into $4\\pi$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The $45^\\circ$ Arc That Became a Circle",
+    "difficulty": 4,
+    "task": "Identify the true statements about $\\alpha$ and $\\beta$.",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "16"
+    },
+    "tags": [
+      "argument locus",
+      "circle through two points",
+      "arg of ratio",
+      "2021"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"150\" x2=\"300\" y2=\"150\" stroke=\"var(--ink3)\"/><line x1=\"95\" y1=\"20\" x2=\"95\" y2=\"200\" stroke=\"var(--ink2)\" stroke-width=\"0.7\"/><text x=\"302\" y=\"146\" fill=\"var(--ink2)\">Re</text><text x=\"84\" y=\"18\" fill=\"var(--ink2)\">Im</text><circle cx=\"157\" cy=\"105\" r=\"58\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><circle cx=\"122\" cy=\"150\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"110\" y=\"165\" fill=\"var(--ink2)\">$-1$</text><circle cx=\"206\" cy=\"150\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"200\" y=\"165\" fill=\"var(--ink2)\">$-4$</text><path d=\"M122 150 L206 150\" stroke=\"var(--ink2)\" stroke-width=\"0.6\" stroke-dasharray=\"3 3\"/><circle cx=\"195\" cy=\"63\" r=\"3\" fill=\"var(--gold)\"/><text x=\"200\" y=\"58\" fill=\"var(--ink2)\">$z$</text><path d=\"M132 150 A26 26 0 0 1 148 128\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"0.8\"/><text x=\"145\" y=\"143\" fill=\"var(--ink2)\">$\\tfrac{\\pi}{4}$</text><line x1=\"122\" y1=\"150\" x2=\"195\" y2=\"63\" stroke=\"var(--ink2)\" stroke-width=\"0.6\"/><line x1=\"206\" y1=\"150\" x2=\"195\" y2=\"63\" stroke=\"var(--ink2)\" stroke-width=\"0.6\"/><text x=\"150\" y=\"95\" fill=\"var(--ink2)\">$C:x^2+y^2+5x-3y+4=0$</text></svg>",
+    "statement": "For any complex number $w=c+id$, let $\\arg(w)\\in(-\\pi,\\pi]$, where $i=\\sqrt{-1}$. Let $\\alpha$ and $\\beta$ be real numbers such that for all complex numbers $z=x+iy$ satisfying $\\arg\\!\\left(\\dfrac{z+\\alpha}{z+\\beta}\\right)=\\dfrac{\\pi}{4}$, the ordered pair $(x,y)$ lies on the circle $x^2+y^2+5x-3y+4=0$. Then which of the following statements is (are) TRUE? (A) $\\alpha=-1$; (B) $\\alpha\\beta=4$; (C) $\\alpha\\beta=-4$; (D) $\\beta=4$.",
+    "answer": "(B), (D)",
+    "trap": "Students read the locus as the full circle. The equation $\\arg\\!\\big(\\tfrac{z+\\alpha}{z+\\beta}\\big)=\\tfrac{\\pi}{4}$ is only a single arc of that circle (the constant-angle arc), yet the two endpoints $z=-\\alpha$ and $z=-\\beta$ are exactly where the circle crosses the real axis. That is the key that unlocks $\\alpha,\\beta$ — not the centre or radius.",
+    "solutions": [
+      {
+        "name": "Inscribed-angle / arc-of-a-circle geometry",
+        "steps": [
+          "The equation $\\arg\\!\\big(\\tfrac{z+\\alpha}{z+\\beta}\\big)=\\tfrac{\\pi}{4}$ says the directed angle subtended at $z$ by the two fixed points $-\\alpha$ and $-\\beta$ (both real) is a constant $\\tfrac{\\pi}{4}$.",
+          "By the inscribed-angle (constant-angle) theorem the locus of such $z$ is an arc of a circle passing through the two fixed points $-\\alpha$ and $-\\beta$, which lie on the real axis.",
+          "So the given circle must pass through $(-\\alpha,0)$ and $(-\\beta,0)$: its real-axis intercepts are the values of $-\\alpha$ and $-\\beta$.",
+          "Put $y=0$ in $x^2+y^2+5x-3y+4=0$: $x^2+5x+4=0\\Rightarrow (x+1)(x+4)=0\\Rightarrow x=-1$ or $x=-4$.",
+          "Hence $\\{-\\alpha,-\\beta\\}=\\{-1,-4\\}$, i.e. $\\{\\alpha,\\beta\\}=\\{1,4\\}$.",
+          "For the arc to be the *upper* arc (giving angle $+\\tfrac{\\pi}{4}$, matching a circle with positive $y$-part, centre $(-\\tfrac52,\\tfrac32)$ above the axis) one needs $-\\alpha>-\\beta$, i.e. $\\alpha<\\beta$, forcing $\\alpha=1,\\ \\beta=4$.",
+          "Therefore $\\alpha=1$ (so (A) is false), $\\alpha\\beta=4$ (so (B) true, (C) false) and $\\beta=4$ (so (D) true). Answer: (B), (D)."
+        ]
+      },
+      {
+        "name": "Algebraic $\\tan$ of the argument",
+        "steps": [
+          "Write $z+\\alpha=(x+\\alpha)+iy$ and $z+\\beta=(x+\\beta)+iy$. Then $\\arg\\!\\big(\\tfrac{z+\\alpha}{z+\\beta}\\big)=\\arg(z+\\alpha)-\\arg(z+\\beta)$.",
+          "Taking $\\tan$ of both sides with the value $\\tfrac{\\pi}{4}$: $\\tan\\!\\big(\\arg(z+\\alpha)-\\arg(z+\\beta)\\big)=1$.",
+          "Using $\\tan(A-B)=\\dfrac{\\tan A-\\tan B}{1+\\tan A\\tan B}$ with $\\tan A=\\dfrac{y}{x+\\alpha}$, $\\tan B=\\dfrac{y}{x+\\beta}$: $\\dfrac{\\tfrac{y}{x+\\alpha}-\\tfrac{y}{x+\\beta}}{1+\\tfrac{y^2}{(x+\\alpha)(x+\\beta)}}=1.$",
+          "Clearing denominators: $y\\big[(x+\\beta)-(x+\\alpha)\\big]=(x+\\alpha)(x+\\beta)+y^2$, i.e. $y(\\beta-\\alpha)=x^2+(\\alpha+\\beta)x+\\alpha\\beta+y^2$.",
+          "Rearrange to $x^2+y^2+(\\alpha+\\beta)x-(\\beta-\\alpha)y+\\alpha\\beta=0$.",
+          "Compare coefficients with $x^2+y^2+5x-3y+4=0$: $\\alpha+\\beta=5,\\ \\ \\beta-\\alpha=3,\\ \\ \\alpha\\beta=4.$",
+          "Solving the first two: $\\alpha=1,\\ \\beta=4$ (consistent with $\\alpha\\beta=4$). So (A) $\\alpha=-1$ is false; (B) $\\alpha\\beta=4$ true; (C) false; (D) $\\beta=4$ true. Answer: (B), (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 1, Q16. The clean coefficient-matching route recovers all three data ($\\alpha+\\beta,\\ \\beta-\\alpha,\\ \\alpha\\beta$) at once — the constant-angle picture only tells you *which* arc, but that is exactly what breaks the $\\alpha\\leftrightarrow\\beta$ symmetry."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Real Fraction Pins Down $|z|$",
+    "difficulty": 3,
+    "task": "Find the value of $|z|^2$.",
+    "pyq": {
+      "year": 2022,
+      "paper": "1",
+      "qno": "4"
+    },
+    "tags": [
+      "real/imaginary part conditions",
+      "modulus of complex number",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Let $z$ be a complex number with non-zero imaginary part. If $\\dfrac{2+3z+4z^2}{2-3z+4z^2}$ is a real number, then the value of $|z|^2$ is __________ .",
+    "answer": "$\\boxed{0.50}$",
+    "trap": "The tempting move is to substitute $z=x+iy$ and grind through a real/imaginary split of a quartic-over-quartic fraction — a long, error-prone slog. The elegant condition is that a number is real iff it equals its own conjugate; applied to the *whole* fraction, the algebra collapses because the shared $4z^2$ part is what makes $|z|^2$ (not $x$ or $y$ separately) the only surviving unknown. Cancelling the common factor $z-\\bar z$ requires $\\operatorname{Im}(z)\\neq0$ — the hypothesis you must not forget to use.",
+    "solutions": [
+      {
+        "name": "Equal to its own conjugate",
+        "steps": [
+          "A complex number is real $\\iff$ it equals its conjugate. So set $\\dfrac{2+3z+4z^2}{2-3z+4z^2}=\\dfrac{2+3\\bar z+4\\bar z^2}{2-3\\bar z+4\\bar z^2}.$",
+          "Cross-multiply: $(2+3z+4z^2)(2-3\\bar z+4\\bar z^2)=(2-3z+4z^2)(2+3\\bar z+4\\bar z^2).$",
+          "Expand both sides and subtract. All symmetric terms cancel; the surviving terms are the ones odd in the sign of the $3$-coefficient. Collecting them gives $6(z-\\bar z)\\big[\\,2 + 4z\\bar z\\, \\big]\\cdot(\\text{sign bookkeeping}) = 0$, which simplifies to $12(\\bar z - z) + 48\\,z\\bar z(\\bar z - z)\\cdot\\tfrac12 =0$; concretely the difference reduces to $(z-\\bar z)\\big(16|z|^2-8\\big)=0.$",
+          "Since $z$ has non-zero imaginary part, $z-\\bar z=2i\\,\\operatorname{Im}(z)\\neq0$, so we may cancel it.",
+          "Thus $16|z|^2-8=0\\Rightarrow |z|^2=\\dfrac12=0.50.$"
+        ]
+      },
+      {
+        "name": "Componendo (split off the imaginary structure)",
+        "steps": [
+          "Let $N=2+4z^2$ and $M=3z$, so the fraction is $\\dfrac{N+M}{N-M}$.",
+          "For a fraction $\\dfrac{N+M}{N-M}$ to be real, apply componendo–dividendo: $\\dfrac{N+M}{N-M}=\\lambda\\ (\\lambda\\in\\mathbb{R})\\Rightarrow \\dfrac{N}{M}=\\dfrac{\\lambda+1}{\\lambda-1}$ is real. Hence $\\dfrac{N}{M}=\\dfrac{2+4z^2}{3z}$ must be real.",
+          "So $\\dfrac{2+4z^2}{3z}$ real $\\iff \\dfrac{2}{3z}+\\dfrac{4z}{3}$ real $\\iff \\dfrac{2}{3z}+\\dfrac{4}{3}z=\\overline{\\left(\\dfrac{2}{3z}+\\dfrac{4}{3}z\\right)}=\\dfrac{2}{3\\bar z}+\\dfrac{4}{3}\\bar z.$",
+          "Multiply through by $3$: $\\dfrac{2}{z}+4z=\\dfrac{2}{\\bar z}+4\\bar z\\ \\Rightarrow\\ 2\\!\\left(\\dfrac1z-\\dfrac1{\\bar z}\\right)+4(z-\\bar z)=0.$",
+          "Now $\\dfrac1z-\\dfrac1{\\bar z}=\\dfrac{\\bar z-z}{z\\bar z}=\\dfrac{-(z-\\bar z)}{|z|^2}.$ Substituting: $-\\dfrac{2(z-\\bar z)}{|z|^2}+4(z-\\bar z)=0.$",
+          "Factor out $z-\\bar z\\neq0$ (imaginary part non-zero): $4-\\dfrac{2}{|z|^2}=0\\Rightarrow |z|^2=\\dfrac{2}{4}=\\dfrac12=0.50.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 1, Q4. The whole quartic fraction is a red herring — reducing it to the single expression $\\tfrac{2}{z}+4z$ being real shows only $|z|$ (never $\\arg z$) is constrained, which is why a *value* of $|z|^2$ can be pinned down at all."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Lone Integer in a Trigonometric Family",
+    "difficulty": 4,
+    "task": "Find the single positive integer in the set.",
+    "pyq": {
+      "year": 2023,
+      "paper": "1",
+      "qno": "11"
+    },
+    "tags": [
+      "complex number as integer",
+      "rationalization",
+      "trigonometric parameter",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Let $A=\\left\\{\\dfrac{1967+1686\\,i\\sin\\theta}{7-3\\,i\\cos\\theta}\\;:\\;\\theta\\in\\mathbb{R}\\right\\}$. If $A$ contains exactly one positive integer $n$, then find the value of $n$.",
+    "answer": "$\\boxed{281}$",
+    "trap": "A member of $A$ is a positive integer only if it is $\\textbf{real}$ first — but demanding $\\operatorname{Im}=0$ is not enough. Students set the imaginary part to zero, get $\\tan\\theta=-\\tfrac12$, and then panic that this gives $\\textbf{two}$ values of $\\theta$ in $[0,2\\pi)$. The subtlety is that $\\sin 2\\theta=2\\sin\\theta\\cos\\theta$ is the $\\textit{same}$ for both branches, so the two $\\theta$ collapse to a single real value — hence 'exactly one' integer, not two.",
+    "solutions": [
+      {
+        "name": "Rationalize, then kill the imaginary part",
+        "steps": [
+          "Multiply top and bottom by the conjugate of the denominator $7-3i\\cos\\theta$, namely $7+3i\\cos\\theta$. The denominator becomes $|7-3i\\cos\\theta|^2=49+9\\cos^2\\theta$, a positive real number.",
+          "Numerator: $(1967+1686\\,i\\sin\\theta)(7+3i\\cos\\theta)=13769+5901\\,i\\cos\\theta+11802\\,i\\sin\\theta+5058\\,i^2\\sin\\theta\\cos\\theta$.",
+          "Collect real and imaginary parts using $i^2=-1$ and $2\\sin\\theta\\cos\\theta=\\sin 2\\theta$: real part $=13769-5058\\sin\\theta\\cos\\theta=13769-2529\\sin 2\\theta$; imaginary part $=5901\\cos\\theta+11802\\sin\\theta$.",
+          "For the value to be a (real) integer, the imaginary part must vanish: $5901\\cos\\theta+11802\\sin\\theta=0$. Since $5901\\cdot 2=11802$, this is $5901(\\cos\\theta+2\\sin\\theta)=0$, i.e. $\\tan\\theta=-\\dfrac12$.",
+          "With $\\tan\\theta=-\\tfrac12$ we have $\\sin\\theta\\cos\\theta=\\dfrac{\\tan\\theta}{1+\\tan^2\\theta}=\\dfrac{-1/2}{1+1/4}=-\\dfrac{2}{5}$, so $\\sin 2\\theta=2\\sin\\theta\\cos\\theta=-\\dfrac{4}{5}$ (identical for both branches of $\\theta$).",
+          "Also $\\cos^2\\theta=\\dfrac{1}{1+\\tan^2\\theta}=\\dfrac{1}{1+1/4}=\\dfrac{4}{5}$, so the denominator is $49+9\\cdot\\tfrac45=49+\\tfrac{36}{5}=\\dfrac{281}{5}$.",
+          "The value is $\\dfrac{13769-2529\\sin 2\\theta}{49+9\\cos^2\\theta}=\\dfrac{13769-2529\\cdot(-\\tfrac45)}{281/5}=\\dfrac{13769+2023.2}{56.2}=\\dfrac{15792.2}{56.2}=281.$",
+          "Both admissible $\\theta$ give the same real value, so $A$ contains exactly one positive integer $n=281$."
+        ]
+      },
+      {
+        "name": "Weierstrass substitution $t=\\tan\\theta$ on the reality condition",
+        "steps": [
+          "A quotient $w=\\dfrac{p}{q}$ of complex numbers is real iff $w=\\bar w$, i.e. $p\\bar q=\\bar p q$, i.e. $\\operatorname{Im}(p\\bar q)=0$. Here $p=1967+1686\\,i\\sin\\theta$, $q=7-3\\,i\\cos\\theta$.",
+          "Compute $p\\bar q=(1967+1686\\,i\\sin\\theta)(7+3i\\cos\\theta)$; its imaginary part is $1967\\cdot 3\\cos\\theta+1686\\cdot 7\\sin\\theta=5901\\cos\\theta+11802\\sin\\theta$. Setting it to $0$ gives $\\cos\\theta+2\\sin\\theta=0$.",
+          "Divide by $\\cos\\theta$: $1+2\\tan\\theta=0\\Rightarrow \\tan\\theta=-\\dfrac12$. (Note $\\cos\\theta=0$ is impossible here, since it would force $\\sin\\theta=0$ too.)",
+          "Now write the whole expression as a function of $t=\\tan\\theta$ using $\\sin\\theta=\\dfrac{t}{\\sqrt{1+t^2}}$, $\\cos\\theta=\\dfrac{1}{\\sqrt{1+t^2}}$ — but cleaner is to plug the found $\\sin\\theta\\cos\\theta=-\\tfrac25$ and $\\cos^2\\theta=\\tfrac45$ directly.",
+          "Numerator real part $=13769-5058\\sin\\theta\\cos\\theta=13769-5058\\cdot(-\\tfrac25)=13769+\\dfrac{10116}{5}=\\dfrac{68845+10116}{5}=\\dfrac{78961}{5}$.",
+          "Denominator $=49+9\\cos^2\\theta=49+\\dfrac{36}{5}=\\dfrac{281}{5}$.",
+          "The value $=\\dfrac{78961/5}{281/5}=\\dfrac{78961}{281}=281$, since $281^2=78961$. So the unique positive integer is $n=281$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE/JEE Advanced 2023, Paper 1, Q11. Insight: forcing the imaginary part to zero pins $\\tan\\theta=-\\tfrac12$, and the two resulting angles share the same $\\sin 2\\theta$ and $\\cos^2\\theta$, so the family produces a single value $281=281^2/281$ — that is why the set contains exactly one integer."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Splitting $|z|^3+2z^2+4\\bar z-8=0$",
+    "difficulty": 3,
+    "task": "Match each List-I entry to List-II.",
+    "pyq": {
+      "year": 2023,
+      "paper": "1",
+      "qno": "17"
+    },
+    "tags": [
+      "complex equation",
+      "modulus and conjugate",
+      "real-imaginary separation",
+      "2023"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"110\" x2=\"300\" y2=\"110\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><line x1=\"120\" y1=\"210\" x2=\"120\" y2=\"12\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><text x=\"302\" y=\"107\" fill=\"var(--ink2)\">Re</text><text x=\"108\" y=\"20\" fill=\"var(--ink2)\">Im</text><text x=\"113\" y=\"124\" fill=\"var(--ink2)\">$O$</text><line x1=\"170\" y1=\"12\" x2=\"170\" y2=\"210\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><text x=\"174\" y=\"205\" fill=\"var(--ink2)\">$\\operatorname{Re}z=1$</text><line x1=\"120\" y1=\"110\" x2=\"170\" y2=\"38\" stroke=\"var(--gold)\" stroke-width=\"2\"/><line x1=\"120\" y1=\"110\" x2=\"170\" y2=\"182\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><circle cx=\"170\" cy=\"38\" r=\"4\" fill=\"var(--gold)\"/><circle cx=\"170\" cy=\"182\" r=\"4\" fill=\"var(--ink3)\"/><text x=\"176\" y=\"36\" fill=\"var(--gold)\">$z=1+\\sqrt3\\,i$</text><text x=\"176\" y=\"186\" fill=\"var(--ink3)\">$\\bar z=1-\\sqrt3\\,i$</text></svg>",
+    "statement": "Let $z$ be a complex number satisfying $|z|^3+2z^2+4\\bar z-8=0$, where $\\bar z$ denotes the complex conjugate of $z$, and suppose the imaginary part of $z$ is nonzero. Match each entry in List-I to the correct entry in List-II.\n\nList-I: (P) $|z|^2$ equals; (Q) $|z-\\bar z|^2$ equals; (R) $|z|^2+|z+\\bar z|^2$ equals; (S) $|z+1|^2$ equals.\n\nList-II: (1) $12$; (2) $4$; (3) $8$; (4) $10$; (5) $7$.\n\n(A) $P\\to1,\\ Q\\to3,\\ R\\to5,\\ S\\to4$\n(B) $P\\to2,\\ Q\\to1,\\ R\\to3,\\ S\\to5$\n(C) $P\\to2,\\ Q\\to4,\\ R\\to5,\\ S\\to1$\n(D) $P\\to2,\\ Q\\to3,\\ R\\to5,\\ S\\to4$",
+    "answer": "(B)",
+    "trap": "The tempting move is to substitute $z=x+iy$ into $2z^2+4\\bar z$ and try to grind — but $|z|^3$ is not a polynomial in $x,y$, it carries a stray square root. The clean split is to separate the equation into real and imaginary parts: the imaginary part alone forces $x=1$, and only then does $|z|^3$ collapse to a solvable equation in $y$. Miss the $y\\ne 0$ clause and you also admit the spurious real root, corrupting the match.",
+    "solutions": [
+      {
+        "name": "Separate real and imaginary parts",
+        "steps": [
+          "Write $z=x+iy$ with $y\\ne 0$, and let $r=|z|=\\sqrt{x^2+y^2}$. Then $z^2=(x^2-y^2)+2ixy$ and $\\bar z=x-iy$.",
+          "Substitute into $|z|^3+2z^2+4\\bar z-8=0$ and separate. Imaginary part: $2\\cdot 2xy+4\\cdot(-y)=4y(x-1)=0$.",
+          "Since $y\\ne 0$, we must have $x=1$. So $z$ lies on the vertical line $\\operatorname{Re}z=1$.",
+          "Real part: $r^3+2(x^2-y^2)+4x-8=0$. With $x=1$: $r^3+2(1-y^2)+4-8=0$, i.e. $r^3-2y^2-2=0$.",
+          "But $r^2=x^2+y^2=1+y^2$, so $y^2=r^2-1$. Substitute: $r^3-2(r^2-1)-2=0\\Rightarrow r^3-2r^2=0\\Rightarrow r^2(r-2)=0$.",
+          "Since $r=|z|>0$, we get $r=2$, hence $|z|^2=r^2=4$. So $y^2=r^2-1=3$, giving $z=1\\pm i\\sqrt3$.",
+          "$\\textbf{(P)}$ $|z|^2=4\\to(2)$. $\\textbf{(Q)}$ $z-\\bar z=2iy$, so $|z-\\bar z|^2=4y^2=12\\to(1)$.",
+          "$\\textbf{(R)}$ $z+\\bar z=2x=2$, so $|z+\\bar z|^2=4$, and $|z|^2+|z+\\bar z|^2=4+4=8\\to(3)$.",
+          "$\\textbf{(S)}$ $|z+1|^2=(x+1)^2+y^2=(1+1)^2+3=4+3=7\\to(5)$.",
+          "Thus $P\\to2,\\ Q\\to1,\\ R\\to3,\\ S\\to5$, which is option (B)."
+        ]
+      },
+      {
+        "name": "Conjugate the equation and subtract",
+        "steps": [
+          "Take the conjugate of the whole equation. Since $|z|$ is real, $\\overline{|z|^3}=|z|^3$, and $\\overline{2z^2}=2\\bar z^2$, $\\overline{4\\bar z}=4z$. So the conjugate equation is $|z|^3+2\\bar z^2+4z-8=0$.",
+          "Subtract the two equations: $\\big(2z^2+4\\bar z\\big)-\\big(2\\bar z^2+4z\\big)=0\\Rightarrow 2(z^2-\\bar z^2)-4(z-\\bar z)=0$.",
+          "Factor $z^2-\\bar z^2=(z-\\bar z)(z+\\bar z)$: $\\ 2(z-\\bar z)(z+\\bar z)-4(z-\\bar z)=0\\Rightarrow 2(z-\\bar z)\\big[(z+\\bar z)-2\\big]=0$.",
+          "Because $\\operatorname{Im}z\\ne 0$, $z\\ne\\bar z$, so $z+\\bar z=2$, i.e. $2\\operatorname{Re}z=2$ and $\\operatorname{Re}z=1$.",
+          "Add the two equations instead: $2|z|^3+2(z^2+\\bar z^2)+4(z+\\bar z)-16=0$. Here $z+\\bar z=2$ and $z^2+\\bar z^2=(z+\\bar z)^2-2|z|^2=4-2|z|^2$.",
+          "So $2|z|^3+2(4-2|z|^2)+8-16=0\\Rightarrow 2|z|^3-4|z|^2=0\\Rightarrow |z|^2(|z|-2)=0$, giving $|z|=2$ and $|z|^2=4$.",
+          "Now $\\operatorname{Re}z=1$ and $|z|^2=4$ give $y^2=|z|^2-x^2=4-1=3$. From here the four quantities read off as $P:4\\to(2)$, $Q:4y^2=12\\to(1)$, $R:4+(2x)^2=4+4=8\\to(3)$, $S:(x+1)^2+y^2=4+3=7\\to(5)$.",
+          "Answer: option (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE/JEE Advanced 2023, Paper 1, Q17. Insight: conjugating an equation that mixes $z$, $z^2$ and $\\bar z$ and then subtracting isolates the real-axis constraint $z+\\bar z=2$ for free, after which adding the pair reduces the modulus term to a clean cubic $|z|^2(|z|-2)=0$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Octagon's Greatest Product $PA_1\\cdots PA_8$",
+    "difficulty": 4,
+    "task": "Find the maximum value of the product.",
+    "pyq": {
+      "year": 2023,
+      "paper": "2",
+      "qno": "11"
+    },
+    "tags": [
+      "roots of unity",
+      "product of distances",
+      "regular polygon",
+      "2023"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><circle cx=\"150\" cy=\"110\" r=\"85\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><circle cx=\"150\" cy=\"110\" r=\"2.5\" fill=\"var(--ink2)\"/><text x=\"138\" y=\"124\" fill=\"var(--ink2)\">O</text><line x1=\"150\" y1=\"110\" x2=\"235\" y2=\"110\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><text x=\"180\" y=\"104\" fill=\"var(--ink2)\">$2$</text><circle cx=\"235\" cy=\"110\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"229\" y=\"100\" fill=\"var(--ink2)\">$A_1$</text><circle cx=\"210\" cy=\"50\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"215\" y=\"46\" fill=\"var(--ink2)\">$A_2$</text><circle cx=\"150\" cy=\"25\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"146\" y=\"20\" fill=\"var(--ink2)\">$A_3$</text><circle cx=\"90\" cy=\"50\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"70\" y=\"46\" fill=\"var(--ink2)\">$A_4$</text><circle cx=\"65\" cy=\"110\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"50\" y=\"114\" fill=\"var(--ink2)\">$A_5$</text><circle cx=\"90\" cy=\"170\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"70\" y=\"180\" fill=\"var(--ink2)\">$A_6$</text><circle cx=\"150\" cy=\"195\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"146\" y=\"210\" fill=\"var(--ink2)\">$A_7$</text><circle cx=\"210\" cy=\"170\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"215\" y=\"180\" fill=\"var(--ink2)\">$A_8$</text><circle cx=\"188\" cy=\"162\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"192\" y=\"156\" fill=\"var(--gold)\">$P$</text><line x1=\"188\" y1=\"162\" x2=\"235\" y2=\"110\" stroke=\"var(--gold)\" stroke-width=\"1\"/><line x1=\"188\" y1=\"162\" x2=\"150\" y2=\"25\" stroke=\"var(--gold)\" stroke-width=\"0.8\"/></svg>",
+    "statement": "Let $A_1,A_2,A_3,\\ldots,A_8$ be the vertices of a regular octagon that lie on a circle of radius $2$. Let $P$ be a point on the circle and let $PA_i$ denote the distance between the points $P$ and $A_i$ for $i=1,2,\\ldots,8$. If $P$ varies over the circle, then the maximum value of the product $PA_1\\cdot PA_2\\cdots PA_8$ is",
+    "answer": "$\\boxed{512}$",
+    "trap": "Symmetry lures you into guessing the product is largest when $P$ coincides with a vertex — but there $PA_i=0$ for that vertex and the whole product collapses to $0$. It is actually smallest (zero) at a vertex and largest at the mid-arc points. The other trap is fumbling the identity $\\prod_k(z-2\\zeta^k)=z^8-2^8$: forgetting the $2^8$ (writing $z^8-1$) throws the scale off by a factor of $256$.",
+    "solutions": [
+      {
+        "name": "Roots of unity: $\\prod(z-A_k)=z^8-r^8$",
+        "steps": [
+          "Put the circle at the origin. The eight vertices of a regular octagon on a circle of radius $2$ are $A_k=2\\zeta^k$ for $k=1,\\ldots,8$, where $\\zeta=e^{2\\pi i/8}$ is a primitive $8$th root of unity. As a set $\\{2\\zeta^k\\}$ these are precisely the eight solutions of $w^8=2^8$.",
+          "Therefore $\\displaystyle\\prod_{k=1}^{8}(z-A_k)=z^8-2^8=z^8-256$, since a monic degree-$8$ polynomial with those roots is exactly $z^8-256$.",
+          "Let $P=2e^{i\\theta}$ be any point on the circle, so $|P|=2$ and $P^8=2^8e^{8i\\theta}=256\\,e^{8i\\theta}$.",
+          "The product of distances is $\\displaystyle\\prod_{k=1}^{8}PA_k=\\prod_{k=1}^{8}|P-A_k|=\\Big|\\prod_{k=1}^{8}(P-A_k)\\Big|=|P^8-256|=|256\\,e^{8i\\theta}-256|.$",
+          "Factor: $|256\\,e^{8i\\theta}-256|=256\\,|e^{8i\\theta}-1|=256\\cdot 2\\left|\\sin 4\\theta\\right|=512\\,|\\sin 4\\theta|$, using $|e^{i\\phi}-1|=2|\\sin(\\phi/2)|$.",
+          "As $P$ varies, $|\\sin 4\\theta|$ ranges over $[0,1]$; its maximum is $1$ (attained when $4\\theta=\\tfrac\\pi2+m\\pi$, i.e. $P$ sits at the midpoint of an arc between two adjacent vertices).",
+          "Hence the maximum product is $512\\cdot 1=512$."
+        ]
+      },
+      {
+        "name": "Pairing opposite/symmetric chords by the chord-length formula",
+        "steps": [
+          "Let the vertices sit at angles $\\alpha_k=\\tfrac{2\\pi k}{8}=\\tfrac{\\pi k}{4}$ and let $P$ be at angle $\\phi$. The chord between two points at angles $u,v$ on a circle of radius $2$ has length $2\\cdot 2\\left|\\sin\\tfrac{u-v}{2}\\right|=4\\left|\\sin\\tfrac{u-v}{2}\\right|$.",
+          "So $PA_k=4\\left|\\sin\\dfrac{\\phi-\\alpha_k}{2}\\right|$, and the product is $\\displaystyle\\prod_{k=1}^{8}PA_k=4^8\\prod_{k=1}^{8}\\left|\\sin\\dfrac{\\phi-\\alpha_k}{2}\\right|.$",
+          "By rotational symmetry the product depends only on $P$'s position relative to the vertices, so take $P$ at the mid-arc point, angle $\\phi=\\tfrac{\\pi}{8}$ (halfway between $A_1$ at $0$... $\\tfrac{\\pi}{4}$). Then the eight offsets $\\dfrac{\\phi-\\alpha_k}{2}$ are $\\pm\\tfrac{\\pi}{16},\\pm\\tfrac{3\\pi}{16},\\pm\\tfrac{5\\pi}{16},\\pm\\tfrac{7\\pi}{16}$ (mod $\\pi$), giving sines whose absolute values are $\\sin\\tfrac{\\pi}{16},\\sin\\tfrac{3\\pi}{16},\\sin\\tfrac{5\\pi}{16},\\sin\\tfrac{7\\pi}{16}$, each appearing twice.",
+          "Thus the product $=4^8\\left(\\sin\\tfrac{\\pi}{16}\\sin\\tfrac{3\\pi}{16}\\sin\\tfrac{5\\pi}{16}\\sin\\tfrac{7\\pi}{16}\\right)^2.$",
+          "Use the known product $\\displaystyle\\prod_{j=1}^{n-1}\\sin\\dfrac{j\\pi}{2n}=\\dfrac{\\sqrt{n}}{2^{n-1}}$-type identity; here the four sines multiply to $\\dfrac{\\sqrt2}{2^{4}}=\\dfrac{\\sqrt2}{16}$ (the four odd-multiple sines of $\\pi/16$). Their square is $\\dfrac{2}{256}=\\dfrac{1}{128}$.",
+          "Hence the product $=4^8\\cdot\\dfrac{1}{128}=\\dfrac{65536}{128}=512$, confirming the maximum equals $512$; any other $\\phi$ gives a factor $|\\sin4\\theta|<1$ and a smaller value."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 2, Q11. The whole problem melts once you see the vertices as the roots of $z^8=2^8$: the product of distances is the modulus of a single polynomial value $|P^8-2^8|$, and the maximum $512=2\\cdot 2^8$ is just twice the radius-to-the-eighth."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Derivative's Imaginary Root Fixes the Quartic",
+    "difficulty": 3,
+    "task": "Find the sum of the squared moduli of the roots.",
+    "pyq": {
+      "year": 2024,
+      "paper": "1",
+      "qno": "9"
+    },
+    "tags": [
+      "polynomial roots",
+      "complex roots",
+      "modulus",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "Let $f(x)=x^4+ax^3+bx^2+c$ be a polynomial with real coefficients such that $f(1)=-9$. Suppose that $i\\sqrt3$ is a root of the equation $4x^3+3ax^2+2bx=0$, where $i=\\sqrt{-1}$. If $\\alpha_1,\\alpha_2,\\alpha_3$ and $\\alpha_4$ are all the roots of the equation $f(x)=0$, then $|\\alpha_1|^2+|\\alpha_2|^2+|\\alpha_3|^2+|\\alpha_4|^2$ is equal to _____.",
+    "answer": "$\\boxed{20}$",
+    "trap": "Two silent snares. First, $4x^3+3ax^2+2bx$ is exactly $f'(x)$ (the constant $c$ has vanished), so $i\\sqrt3$ is a root of the DERIVATIVE, not of $f$ — students who plug $i\\sqrt3$ into $f$ get nonsense. Second, once you have the roots $\\pm\\sqrt2$ and $\\pm2\\sqrt2\\,i$, the temptation is to add the roots (which gives $0$) or their squares (which gives $2+2-8-8=-12$). The question asks for $\\sum|\\alpha_k|^2$, and $|2\\sqrt2\\,i|^2=8$ is $+8$, not $-8$ — modulus kills the sign.",
+    "solutions": [
+      {
+        "name": "Recognise $f'(x)$, force the real coefficients",
+        "steps": [
+          "Differentiate: $f'(x)=4x^3+3ax^2+2bx$. So the given cubic is precisely $f'(x)$, and we are told $i\\sqrt3$ is a root of $f'(x)=0$.",
+          "Factor out $x$: $f'(x)=x\\left(4x^2+3ax+2b\\right)$. Since $x=i\\sqrt3\\neq0$, it must be a root of the quadratic $4x^2+3ax+2b=0$.",
+          "The coefficients $a,b$ are real, so complex roots occur in conjugate pairs: $-i\\sqrt3$ is also a root of $4x^2+3ax+2b=0$.",
+          "Sum of roots $=i\\sqrt3+(-i\\sqrt3)=0=-\\dfrac{3a}{4}\\Rightarrow a=0$. Product of roots $=(i\\sqrt3)(-i\\sqrt3)=3=\\dfrac{2b}{4}=\\dfrac{b}{2}\\Rightarrow b=6$.",
+          "So $f(x)=x^4+6x^2+c$. Apply $f(1)=-9$: $1+6+c=-9\\Rightarrow c=-16$.",
+          "Thus $f(x)=x^4+6x^2-16$. Treat as a quadratic in $x^2$: $x^2=\\dfrac{-6\\pm\\sqrt{36+64}}{2}=\\dfrac{-6\\pm10}{2}$, giving $x^2=2$ or $x^2=-8$.",
+          "Hence the four roots are $\\alpha=\\pm\\sqrt2$ (real) and $\\alpha=\\pm2\\sqrt2\\,i$ (purely imaginary).",
+          "Sum of squared moduli: $|\\sqrt2|^2+|-\\sqrt2|^2+|2\\sqrt2\\,i|^2+|-2\\sqrt2\\,i|^2=2+2+8+8=20.$"
+        ]
+      },
+      {
+        "name": "Symmetric functions without solving explicitly",
+        "steps": [
+          "As above, $f'(x)=x(4x^2+3ax+2b)$ has $i\\sqrt3$ as a root; real coefficients give $a=0$ and $2b/4=3$ so $b=6$, and $f(1)=-9$ gives $c=-16$. So $f(x)=x^4+6x^2-16$.",
+          "The polynomial is even ($a=0$ and no odd-degree terms survive), so its roots come in $\\pm$ pairs $\\{\\pm r_1,\\pm r_2\\}$ where $r_1^2,r_2^2$ are the roots of $t^2+6t-16=0$ with $t=x^2$.",
+          "By Vieta on $t^2+6t-16=0$: $r_1^2+r_2^2=-6$ and $r_1^2 r_2^2=-16$.",
+          "Now $\\displaystyle\\sum_{k=1}^{4}|\\alpha_k|^2=|r_1|^2+|-r_1|^2+|r_2|^2+|-r_2|^2=2\\left(|r_1|^2+|r_2|^2\\right)=2\\left(|r_1^2|+|r_2^2|\\right).$",
+          "The two values of $t=x^2$ are $\\dfrac{-6\\pm\\sqrt{36+64}}{2}=2$ and $-8$; their absolute values are $2$ and $8$. (Note: because one $t$ is negative, we cannot use the raw sum $r_1^2+r_2^2=-6$; modulus forces $|2|+|-8|=10$.)",
+          "Therefore $\\sum|\\alpha_k|^2=2(2+8)=20.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 1, Q9. The elegance is in spotting that the given cubic is $f'(x)$ and that the even quartic splits as a quadratic in $x^2$; the modulus in $\\sum|\\alpha_k|^2$ is what makes the negative root $x^2=-8$ contribute $+8$ apiece rather than cancelling."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The $|z-z_1|=2|z-z_2|$ Apollonius Circle",
+    "difficulty": 3,
+    "task": "Identify the true statements about the locus.",
+    "pyq": {
+      "year": 2025,
+      "paper": "1",
+      "qno": "7"
+    },
+    "tags": [
+      "locus from modulus condition",
+      "Apollonius circle",
+      "complex numbers to coordinate geometry",
+      "2025"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"195\" x2=\"305\" y2=\"195\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"110\" y1=\"15\" x2=\"110\" y2=\"210\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"298\" y=\"189\" fill=\"var(--ink2)\">x</text><text x=\"115\" y=\"24\" fill=\"var(--ink2)\">y</text><text x=\"99\" y=\"208\" fill=\"var(--ink2)\">O</text><circle cx=\"98\" cy=\"73\" r=\"52\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><circle cx=\"98\" cy=\"73\" r=\"2.4\" fill=\"var(--gold)\"/><text x=\"52\" y=\"70\" fill=\"var(--gold)\">C(-1/3, 10/3)</text><circle cx=\"134\" cy=\"123\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"140\" y=\"127\" fill=\"var(--ink2)\">z₁=1+2i</text><circle cx=\"110\" cy=\"105\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"56\" y=\"104\" fill=\"var(--ink2)\">z₂=3i</text><line x1=\"98\" y1=\"73\" x2=\"150\" y2=\"73\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><text x=\"118\" y=\"67\" fill=\"var(--ink2)\">r=2√2/3</text></svg>",
+    "statement": "Let $\\mathbb{R}$ denote the set of all real numbers. Let $z_1 = 1+2i$ and $z_2 = 3i$ be two complex numbers, where $i=\\sqrt{-1}$. Let $S = \\{(x,y)\\in\\mathbb{R}\\times\\mathbb{R} : |x+iy-z_1| = 2\\,|x+iy-z_2|\\}$. Then which of the following statements is (are) TRUE?\n\n(A) $S$ is a circle with centre $\\left(\\dfrac13,\\ \\dfrac{10}{3}\\right)$\n\n(B) $S$ is a circle with centre $\\left(-\\dfrac13,\\ \\dfrac83\\right)$\n\n(C) $S$ is a circle with radius $\\dfrac{2}{3}$\n\n(D) $S$ is a circle with radius $\\dfrac{2\\sqrt2}{3}$",
+    "answer": "$\\boxed{(D)}$",
+    "trap": "Two decoys sit next to the truth. The centre is $\\left(-\\tfrac13,\\tfrac{10}{3}\\right)$: option (A) flips the sign of $x$, and option (B) keeps the right $x$ but swaps in $y=\\tfrac83$ — which is actually the internal division point $P$, not the centre. Since no centre option is correct, only the radius statement (D) survives. Also remember $2|z-z_2|$ squares to $4|z-z_2|^2$.",
+    "solutions": [
+      {
+        "name": "Square, expand, complete the square",
+        "steps": [
+          "Put $z=x+iy$. With $z_1=1+2i,\\ z_2=3i$ the condition $|z-z_1|=2|z-z_2|$ is $|(x-1)+i(y-2)|=2\\,|x+i(y-3)|$.",
+          "Square (moduli are non-negative, so no spurious roots): $(x-1)^2+(y-2)^2=4\\big[x^2+(y-3)^2\\big]$.",
+          "Expand: $x^2-2x+1+y^2-4y+4=4x^2+4y^2-24y+36$, i.e. $3x^2+3y^2+2x-20y+31=0$, or $x^2+y^2+\\tfrac23x-\\tfrac{20}{3}y+\\tfrac{31}{3}=0$.",
+          "Centre $=\\left(-\\tfrac13,\\ \\tfrac{10}{3}\\right)$. Compare the centre options: (A) gives $\\left(\\tfrac13,\\tfrac{10}{3}\\right)$ — wrong sign on $x$; (B) gives $\\left(-\\tfrac13,\\tfrac{8}{3}\\right)$ — wrong $y$ ($\\tfrac83$ instead of $\\tfrac{10}{3}$). So NEITHER centre option is true.",
+          "Radius$^2=\\left(\\tfrac13\\right)^2+\\left(\\tfrac{10}{3}\\right)^2-\\tfrac{31}{3}=\\tfrac{1+100-93}{9}=\\tfrac{8}{9}$, so $r=\\tfrac{2\\sqrt2}{3}$ — this is option (D). Hence the only TRUE statement is (D)."
+        ]
+      },
+      {
+        "name": "Apollonius diameter endpoints",
+        "steps": [
+          "The locus $\\tfrac{|z-z_1|}{|z-z_2|}=k$ ($k=2$) is a circle whose diameter endpoints divide $z_1z_2$ internally and externally in ratio $k:1$.",
+          "Internal point ($z_1\\to z_2$ in $2:1$): $P=\\tfrac{z_1+2z_2}{3}=\\tfrac{(1+2i)+6i}{3}=\\left(\\tfrac13,\\tfrac83\\right)$. External point: $Q=-z_1+2z_2=-1+4i=(-1,4)$.",
+          "Centre $=$ midpoint $PQ=\\left(-\\tfrac13,\\ \\tfrac{10}{3}\\right)$ — matching no centre option; note (B)'s $\\left(-\\tfrac13,\\tfrac83\\right)$ is the internal point $P$, not the centre.",
+          "Radius $=\\tfrac12|PQ|$ with $PQ=-\\tfrac43+\\tfrac43 i$, so $|PQ|=\\tfrac43\\sqrt2$ and $r=\\tfrac{2\\sqrt2}{3}$. Both methods agree: only (D) is true."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 1, Q7. The Apollonius circle has centre $\\left(-\\tfrac13,\\tfrac{10}{3}\\right)$ and radius $\\tfrac{2\\sqrt2}{3}$; among the four statements only the radius option (D) is TRUE (both centre options are off by a sign or a coordinate)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Argument of $\\sum_{n=1}^{2025}(-\\omega)^n$",
+    "difficulty": 3,
+    "task": "Find the value of the expression.",
+    "pyq": {
+      "year": 2025,
+      "paper": "2",
+      "qno": "13"
+    },
+    "tags": [
+      "cube roots of unity",
+      "geometric series of complex numbers",
+      "principal argument",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "For a non-zero complex number $z$, let $\\arg(z)$ denote the principal argument of $z$, with $-\\pi < \\arg(z) \\le \\pi$. Let $\\omega$ be the cube root of unity for which $0 < \\arg(\\omega) < \\pi$. Let $\\alpha = \\arg\\!\\left(\\displaystyle\\sum_{n=1}^{2025} (-\\omega)^n\\right)$. Then the value of $\\dfrac{3\\alpha}{\\pi}$ is __________.",
+    "answer": "$\\boxed{-2}$",
+    "trap": "Two sign traps sit in series. First, the base is $-\\omega$, not $\\omega$: since $(-\\omega)^3=-\\omega^3=-1$, the ratio $-\\omega$ has order $6$, not $3$ — so you cannot reduce $2025 \\bmod 3$. Second, in the closed form $\\dfrac{r(r^{2025}-1)}{r-1}$ with $r=-\\omega$, the denominator is $-\\omega-1$; a dropped minus sign turns the true answer $S=2\\omega^2=-1-\\sqrt3 i$ (argument $-\\tfrac{2\\pi}{3}$) into $-2\\omega^2=1+\\sqrt3 i$ (argument $+\\tfrac{\\pi}{3}$), and the principal argument must respect $-\\pi<\\arg\\le\\pi$, so the sign of $\\alpha$ is decisive.",
+    "solutions": [
+      {
+        "name": "Order-6 block collapse",
+        "steps": [
+          "Take $\\omega=e^{2\\pi i/3}$ (the cube root with $0<\\arg\\omega<\\pi$). Let $r=-\\omega$. Then $r^3=-\\omega^3=-1$, so $r^6=1$: the powers of $r$ repeat with period $6$.",
+          "Over one full period the powers sum to zero: $\\sum_{n=1}^{6} r^n = r\\dfrac{r^6-1}{r-1}=0.$",
+          "Write $2025=6\\cdot 337+3$. The first $6\\cdot337=2022$ terms cancel in blocks of six, leaving only the last three terms $r^{2023}+r^{2024}+r^{2025}=r^{1}+r^{2}+r^{3}$ (since exponents reduce mod $6$ to $1,2,3$).",
+          "So $S=r+r^2+r^3=(-\\omega)+(-\\omega)^2+(-\\omega)^3=-\\omega+\\omega^2-1.$",
+          "Use $1+\\omega+\\omega^2=0\\Rightarrow \\omega^2=-1-\\omega$: $S=-\\omega+(-1-\\omega)-1=-2-2\\omega=-2(1+\\omega)=-2(-\\omega^2)=2\\omega^2.$",
+          "Now $\\omega^2=e^{4\\pi i/3}=-\\tfrac12-\\tfrac{\\sqrt3}{2}i$, so $S=2\\omega^2=-1-\\sqrt3\\,i.$ This lies in the third quadrant, hence $\\alpha=\\arg S=-\\dfrac{2\\pi}{3}$ (principal value in $(-\\pi,\\pi]$).",
+          "Therefore $\\dfrac{3\\alpha}{\\pi}=\\dfrac{3}{\\pi}\\cdot\\left(-\\dfrac{2\\pi}{3}\\right)=-2.$"
+        ]
+      },
+      {
+        "name": "Closed-form geometric sum",
+        "steps": [
+          "With $r=-\\omega$, $\\displaystyle\\sum_{n=1}^{2025} r^n = r\\,\\dfrac{r^{2025}-1}{r-1}.$",
+          "Since $r^3=-1$, we have $r^{2025}=(r^3)^{675}=(-1)^{675}=-1.$ Thus the numerator factor $r^{2025}-1=-2.$",
+          "$S=\\dfrac{r(-2)}{r-1}=\\dfrac{-2(-\\omega)}{-\\omega-1}=\\dfrac{2\\omega}{-(\\omega+1)}=\\dfrac{-2\\omega}{\\omega+1}.$ (Keep the minus in the denominator — this is exactly where sign errors creep in.)",
+          "Since $1+\\omega+\\omega^2=0$, $\\omega+1=-\\omega^2$, so $S=\\dfrac{-2\\omega}{-\\omega^2}=\\dfrac{2\\omega}{\\omega^2}=2\\omega^{-1}=2\\omega^2$ (using $\\omega^3=1\\Rightarrow\\omega^{-1}=\\omega^2$).",
+          "Hence $S=2\\omega^2=-1-\\sqrt3\\,i$, with $|S|=2$ and $\\arg S=-\\dfrac{2\\pi}{3}$.",
+          "So $\\alpha=-\\dfrac{2\\pi}{3}$ and $\\dfrac{3\\alpha}{\\pi}=-2.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 2, Q13. The heart of the problem is spotting that $-\\omega$ is a primitive $6$th root of unity, not a cube root: reduce the exponent $2025$ modulo $6$ (giving remainder $3$), never modulo $3$."
   }
 ];

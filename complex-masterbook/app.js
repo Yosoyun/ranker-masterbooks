@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['algebra','modulusarg','demoivre','rootsofunity','geometry','loci','complexgeo','triangles','equations','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['algebra','modulusarg','demoivre','rootsofunity','geometry','loci','complexgeo','triangles','equations','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     algebra:        { glyph:'a+bi',   blurb:'The arithmetic of a+bi — conjugates, modulus, and the square roots most people get only half-right.' },
     modulusarg:     { glyph:'|z|',    blurb:'Modulus and argument turn multiplication into addition; the triangle inequality draws everything else.' },
@@ -17,6 +17,7 @@
     triangles:      { glyph:'⟁',      blurb:'Equilateral conditions, similar triangles and centroids, all from a single complex identity.' },
     equations:      { glyph:'P(z)',   blurb:'Polynomials over ℂ: conjugate roots, the fundamental theorem, and factoring through ω.' },
     hybrid:         { glyph:'⊕',      blurb:'The capstones: roots of unity, geometry, loci and De Moivre fused into one.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

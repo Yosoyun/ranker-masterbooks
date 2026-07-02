@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['tangentnormal','ratemeasure','monotonicity','maxmin','rollelmvt','approxerror','concavity','curvesketch','optimization','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['tangentnormal','ratemeasure','monotonicity','maxmin','rollelmvt','approxerror','concavity','curvesketch','optimization','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     tangentnormal: { glyph:'m=f′',  blurb:'The tangent and normal to a curve — their equations, the angle of intersection of two curves, orthogonality, and the lengths of the tangent, normal, subtangent and subnormal.' },
     ratemeasure:   { glyph:'dy/dt', blurb:'Rates of change and related rates — how fast one quantity moves when another does, through the chain rule, in geometry, mechanics and mixing problems.' },
@@ -17,6 +17,7 @@
     curvesketch:   { glyph:'y=f(x)',blurb:'Assembling domain, asymptotes, monotonicity and concavity into a sketch — and reading off the number of real roots of an equation from it.' },
     optimization:  { glyph:'min S', blurb:'Applied optimisation — the largest area, the least material, the shortest path: translate the words into one variable and extremise.' },
     hybrid:        { glyph:'⊕',     blurb:'The capstones: tangents, monotonicity, extrema, the mean value theorem and curve shape fused into one problem that resists every single tool.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

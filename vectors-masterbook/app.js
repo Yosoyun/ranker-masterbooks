@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['dotproduct','crossproduct','tripleproduct','lineardep','position','lines3d','planes','distances','loci','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['dotproduct','crossproduct','tripleproduct','lineardep','position','lines3d','planes','distances','loci','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     dotproduct:    { glyph:'a·b',    blurb:'The scalar product — angles between vectors, projections and components, the work a force does, and the algebra that turns geometry into arithmetic.' },
     crossproduct:  { glyph:'a×b',    blurb:'The vector product — areas of triangles and parallelograms, a vector perpendicular to two others, the sine of the angle, and the moment of a force.' },
@@ -17,6 +17,7 @@
     distances:     { glyph:'⊥',      blurb:'Point to line, point to plane, and the shortest distance between two skew lines — the common perpendicular and the volume trick that finds it.' },
     loci:          { glyph:'|r−a|',  blurb:'A condition on a moving position vector traces a curve or a surface — the sphere, the plane, and the loci hidden inside dot- and cross-product equations.' },
     hybrid:        { glyph:'⊕',      blurb:'The capstones: dot, cross, triple product and 3D geometry fused into one problem that resists every single tool taken alone.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

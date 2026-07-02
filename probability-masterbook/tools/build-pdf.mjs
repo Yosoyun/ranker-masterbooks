@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['classical','conditional','bayes','counting','binomial','binomdist','expectation','inclusionexcl','paradox','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { classical:'Ω', conditional:'A|B', bayes:'Bayes', counting:'ⁿCᵣ', binomial:'ⁿCₖpᵏ', binomdist:'np', expectation:'E[X]', inclusionexcl:'∪∩', paradox:'?!', hybrid:'⊕' };
+const THEME_ORDER = ['classical','conditional','bayes','counting','binomial','binomdist','expectation','inclusionexcl','paradox','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { classical:'Ω', conditional:'A|B', bayes:'Bayes', counting:'ⁿCᵣ', binomial:'ⁿCₖpᵏ', binomdist:'np', expectation:'E[X]', inclusionexcl:'∪∩', paradox:'?!', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   classical:'Favourable over total — the classical law, sharpened by permutations and combinations.',
   conditional:'New information reshapes the space; independence is over-claimed.',

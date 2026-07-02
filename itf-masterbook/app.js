@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['branch','corrections','telescope','identity','equations','triginv','domain','calculus','advanced','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['branch','corrections','telescope','identity','equations','triginv','domain','calculus','advanced','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     branch:      { glyph:'sin⁻¹', blurb:'Outside the principal range, arcsin∘sin is a sawtooth — the value you forget is the mark you lose.' },
     corrections: { glyph:'±π',    blurb:'Add two arctangents and the formula quietly leaks a π. Learn exactly where the quadrant hides it.' },
@@ -17,6 +17,7 @@
     calculus:    { glyph:'d/dx',  blurb:'Differentiate arctan(2x/(1−x²)) and the chain rule lies by a sign. The branch decides the derivative.' },
     advanced:    { glyph:'π',     blurb:"Machin's π, Gaussian-integer arctangents, three angles that sum to π — the competition canon." },
     hybrid:      { glyph:'⊕',     blurb:'The capstones: branch correction, telescoping, equations and calculus fused into one pitiless problem.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['genterm','middlegreatest','coefficients','sumsdiff','rootsofunity','multinomial','divisibility','approximation','vandermonde','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { genterm:'Tᵣ₊₁', middlegreatest:'Tₘₐₓ', coefficients:'[xᵏ]', sumsdiff:'ΣkⁿCₖ', rootsofunity:'ω', multinomial:'(Σ)ⁿ', divisibility:'mod', approximation:'≈', vandermonde:'ΣCₖ', hybrid:'⊕' };
+const THEME_ORDER = ['genterm','middlegreatest','coefficients','sumsdiff','rootsofunity','multinomial','divisibility','approximation','vandermonde','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { genterm:'Tᵣ₊₁', middlegreatest:'Tₘₐₓ', coefficients:'[xᵏ]', sumsdiff:'ΣkⁿCₖ', rootsofunity:'ω', multinomial:'(Σ)ⁿ', divisibility:'mod', approximation:'≈', vandermonde:'ΣCₖ', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   genterm:'One formula read at the right index — choose r to land on the power you want.',
   middlegreatest:'The middle term, and where the binomial’s coefficient or value peaks.',
@@ -25,6 +25,7 @@ const BLURB = {
   approximation:'Small-x linearisation, Bernoulli, and the binomial inequalities as bounds.',
   vandermonde:'Vandermonde, hockey-stick and Pascal identities — counting two ways.',
   hybrid:'General term, roots-of-unity filters, calculus sums and number theory, fused.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

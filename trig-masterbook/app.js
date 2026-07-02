@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['conditional','telescope','multiangle','transform','substitution','heights','extrema','equations','geometry','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['conditional','telescope','multiangle','transform','substitution','heights','extrema','equations','geometry','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     conditional:  { glyph:'A+B+C', blurb:'When angles obey a hidden constraint, symmetric identities and tangent-sum laws do the heavy lifting.' },
     telescope:    { glyph:'Π',     blurb:'Product-to-sum and cotangent differences collapse long products and sums to two surviving terms.' },
@@ -17,6 +17,7 @@
     equations:    { glyph:'=',     blurb:'Periodicity, squaring traps, and interval counting separate the true roots from the impostors.' },
     geometry:     { glyph:'△',     blurb:'Law of sines and cosines, area, inradius, and circumradius computed through angles.' },
     hybrid:       { glyph:'⊕',     blurb:'The capstones: two or three earlier instruments fused into one unforgiving problem.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

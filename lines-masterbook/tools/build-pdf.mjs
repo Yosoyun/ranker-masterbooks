@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['forms','distancesection','anglefamily','footimage','bisectors','pairlines','triangle','locus','translation','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { forms:'y=mx+c', distancesection:'m:n', anglefamily:'L₁+λL₂', footimage:'⊥', bisectors:'∠/2', pairlines:'ax²+2hxy', triangle:'△', locus:'P(h,k)', translation:'(x−h)', hybrid:'⊕' };
+const THEME_ORDER = ['forms','distancesection','anglefamily','footimage','bisectors','pairlines','triangle','locus','translation','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { forms:'y=mx+c', distancesection:'m:n', anglefamily:'L₁+λL₂', footimage:'⊥', bisectors:'∠/2', pairlines:'ax²+2hxy', triangle:'△', locus:'P(h,k)', translation:'(x−h)', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   forms:'Slope and the forms of a line — point-slope, intercept, normal, parametric.',
   distancesection:'Distance, the section formula, area of a triangle, collinearity.',
@@ -25,6 +25,7 @@ const BLURB = {
   locus:'The locus of a point under a linear condition — eliminate the parameter.',
   translation:'Sliding the origin to a new point; killing the first-degree terms.',
   hybrid:'Forms, distance, the family & pair of lines, the centres & a locus, fused.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['properties','kingrule','riemann','reduction','leibniz','estimation','periodicfloor','famous','improper','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { properties:'∫ₐᵇ', kingrule:'a↔b', riemann:'Σ→∫', reduction:'Iₙ', leibniz:'F′', estimation:'≤', periodicfloor:'⌊x⌋', famous:'lnsin', improper:'∞', hybrid:'⊕' };
+const THEME_ORDER = ['properties','kingrule','riemann','reduction','leibniz','estimation','periodicfloor','famous','improper','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { properties:'∫ₐᵇ', kingrule:'a↔b', riemann:'Σ→∫', reduction:'Iₙ', leibniz:'F′', estimation:'≤', periodicfloor:'⌊x⌋', famous:'lnsin', improper:'∞', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   properties:'Symmetry, parity and periodicity settle an integral before any antiderivative.',
   kingrule:'Reflect the integral, add it to itself, and the stubborn half cancels.',
@@ -25,6 +25,7 @@ const BLURB = {
   famous:'ln(sin x), ln(1+tan x), x·f(sin x) — the famous integrals symmetry cracks.',
   improper:'Infinite range or a singularity — convergence first, value second.',
   hybrid:'Reflection, reduction, Leibniz and the limit of sums, fused.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

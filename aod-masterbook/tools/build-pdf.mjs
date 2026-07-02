@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['tangentnormal','ratemeasure','monotonicity','maxmin','rollelmvt','approxerror','concavity','curvesketch','optimization','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { tangentnormal:'m=f′', ratemeasure:'dy/dt', monotonicity:'f′>0', maxmin:'f′=0', rollelmvt:'f′(c)', approxerror:'df', concavity:'f″', curvesketch:'y=f(x)', optimization:'min S', hybrid:'⊕' };
+const THEME_ORDER = ['tangentnormal','ratemeasure','monotonicity','maxmin','rollelmvt','approxerror','concavity','curvesketch','optimization','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { tangentnormal:'m=f′', ratemeasure:'dy/dt', monotonicity:'f′>0', maxmin:'f′=0', rollelmvt:'f′(c)', approxerror:'df', concavity:'f″', curvesketch:'y=f(x)', optimization:'min S', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   tangentnormal:'Tangent & normal, angle between curves, subtangent & subnormal.',
   ratemeasure:'Rates of change & related rates via the chain rule.',
@@ -25,6 +25,7 @@ const BLURB = {
   curvesketch:'Domain, asymptotes, monotonicity & concavity → a sketch; root counts.',
   optimization:'Applied optimisation — largest area, least material, shortest path.',
   hybrid:'Tangents, monotonicity, extrema, the MVT & curve shape, fused.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

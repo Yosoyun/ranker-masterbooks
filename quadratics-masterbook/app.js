@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['vieta','discriminant','location','commonroots','rangefraction','maxmin','disguise','parameter','inequalities','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['vieta','discriminant','location','commonroots','rangefraction','maxmin','disguise','parameter','inequalities','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     vieta:         { glyph:'α+β',    blurb:'Sum and product of the roots run the whole show — every symmetric expression bends to Vieta.' },
     discriminant:  { glyph:'Δ',      blurb:'One sign decides everything: real, equal or complex. The discriminant is the quadratic’s verdict.' },
@@ -17,6 +17,7 @@
     parameter:     { glyph:'k',      blurb:'Sweep a parameter and watch the roots appear, vanish or change sign — then count exactly when.' },
     inequalities:  { glyph:'>0',     blurb:'Where is a quadratic positive? When is it positive for every x? Sign, discriminant and definiteness.' },
     hybrid:        { glyph:'⊕',      blurb:'The capstones: Vieta, location, parameters and disguises fused into one.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['standard','substitution','byparts','partialfractions','trigintegrals','irrational','specialdenoms','reduction','exactderiv','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['standard','substitution','byparts','partialfractions','trigintegrals','irrational','specialdenoms','reduction','exactderiv','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     standard:        { glyph:'∫xⁿ',       blurb:'The standard forms and the algebra that reveals them — splitting, completing the square, and rewriting an integrand until it matches a table entry.' },
     substitution:    { glyph:'∫f(g)g′',   blurb:'The substitution that turns a tangle into a standard form — algebraic, trigonometric and the d(g)=g′dx recognition that makes the whole thing collapse.' },
@@ -17,6 +17,7 @@
     reduction:       { glyph:'Iₙ',        blurb:'Reduction formulae — express Iₙ in terms of Iₙ₋₁ or Iₙ₋₂ by parts, and run the recursion down to a base case.' },
     exactderiv:      { glyph:'eˣ(f+f′)',  blurb:'Recognising an exact derivative already present — ∫eˣ(f+f′)dx=eˣf, the d(f/g) and d(uv) patterns, and the integrand that is secretly a derivative.' },
     hybrid:          { glyph:'⊕',         blurb:'The capstones: substitution, parts, partial fractions, the special denominators and the exact-derivative trick fused into one integral that resists every single method.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

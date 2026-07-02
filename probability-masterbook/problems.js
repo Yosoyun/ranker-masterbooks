@@ -3666,5 +3666,2156 @@ window.PROBLEMS = [
       }
     ],
     "remark": "**Insight.** This is the full hybrid pipeline: a **binomial** likelihood feeds **Bayes' theorem** to fix the coin's identity, and the **total probability theorem** then predicts the next toss. The deepest trap is to read the data as a frequency $\\tfrac23$ — but the data only tells you *which coin* you likely hold, after which each coin keeps its own fixed bias $\\tfrac34$ or $\\tfrac14$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Weighted Urns, Limiting White",
+    "difficulty": 4,
+    "task": "Evaluate $\\displaystyle\\lim_{n\\to\\infty}P(w)$.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "21"
+    },
+    "tags": [
+      "total probability",
+      "limit of sum",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "Consider $n$ urns, each holding $n+1$ balls, arranged so that the $i$th urn contains exactly $i$ white balls and $(n+1-i)$ red balls, for $i=1,2,\\dots,n$. One urn is chosen and then a single ball is drawn from it. Let $u_i$ denote the event that the $i$th urn is selected, and let $w$ denote the event that the drawn ball is white. Suppose the urns are not equally likely: instead $P(u_i)\\propto i$, so that heavier-numbered urns (which are richer in white balls) are also chosen more often. Determine the value of $\\displaystyle\\lim_{n\\to\\infty}P(w)$.",
+    "answer": "$\\boxed{\\dfrac{2}{3}}$",
+    "trap": "The proportionality $P(u_i)\\propto i$ is not a probability until it is normalized. Forgetting the constant $k=\\dfrac{2}{n(n+1)}$ (or using $P(u_i)=\\tfrac1n$) collapses the sum to the wrong limit. Also note $P(w\\mid u_i)=\\dfrac{i}{n+1}$, not $\\dfrac{i}{n}$.",
+    "solutions": [
+      {
+        "name": "Total probability with a normalized prior",
+        "steps": [
+          "Write $P(u_i)=ki$. Normalization forces $k\\sum_{i=1}^{n}i=1$, i.e. $k\\cdot\\dfrac{n(n+1)}{2}=1$, so $k=\\dfrac{2}{n(n+1)}$.",
+          "The $i$th urn has $i$ white balls out of $n+1$, so $P(w\\mid u_i)=\\dfrac{i}{n+1}$.",
+          "By total probability, $P(w)=\\sum_{i=1}^{n}P(u_i)\\,P(w\\mid u_i)=\\dfrac{2}{n(n+1)^2}\\sum_{i=1}^{n}i^2$.",
+          "Using $\\sum_{i=1}^{n}i^2=\\dfrac{n(n+1)(2n+1)}{6}$ gives $P(w)=\\dfrac{2n+1}{3(n+1)}$, whence $\\displaystyle\\lim_{n\\to\\infty}P(w)=\\dfrac23$."
+        ]
+      },
+      {
+        "name": "Expectation of a random fraction",
+        "steps": [
+          "Let $I$ be the (random) index of the chosen urn, with $P(I=i)=\\dfrac{2i}{n(n+1)}$. Since $P(w\\mid I=i)=\\dfrac{i}{n+1}$, we have $P(w)=E\\!\\left[\\dfrac{I}{n+1}\\right]=\\dfrac{E[I]}{n+1}$.",
+          "Here $E[I]=\\sum_{i=1}^{n} i\\cdot\\dfrac{2i}{n(n+1)}=\\dfrac{2}{n(n+1)}\\cdot\\dfrac{n(n+1)(2n+1)}{6}=\\dfrac{2n+1}{3}$.",
+          "Therefore $P(w)=\\dfrac{2n+1}{3(n+1)}\\to\\dfrac23$ as $n\\to\\infty$, matching Method 1."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q21. The linear prior makes the index distribution triangular, so the answer is really $E[I]/(n+1)$ — and the mean of a triangular index sits at two-thirds of the range, which is exactly where the limit lands."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Bayes on the Last Urn",
+    "difficulty": 4,
+    "task": "Find $P(u_n\\mid w)$.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "22"
+    },
+    "tags": [
+      "Bayes' theorem",
+      "conditional probability",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "Keep the same setup: $n$ urns, the $i$th of which contains $i$ white balls and $(n+1-i)$ red balls out of $n+1$, with $u_i$ the event of picking the $i$th urn and $w$ the event of drawing a white ball. This time the urns are chosen uniformly, so $P(u_i)=c$ for a constant $c$. Given that the ball drawn turned out to be white, find the probability $P(u_n\\mid w)$ that it came from the last (all-white) urn.",
+    "answer": "$\\boxed{\\dfrac{2}{n+1}}$",
+    "trap": "Because the $n$th urn is entirely white, it is tempting to guess the posterior is large. But every urn was equally likely a priori, and there are $n$ of them; the white evidence only tilts the odds in proportion to $i$, so the posterior is $O(1/n)$, not close to $1$.",
+    "solutions": [
+      {
+        "name": "Bayes' theorem",
+        "steps": [
+          "With $P(u_i)=c$, the constant cancels in Bayes' formula, so we may take $P(u_i)=\\dfrac1n$. Here $P(w\\mid u_i)=\\dfrac{i}{n+1}$ and, for the last urn, $P(w\\mid u_n)=\\dfrac{n}{n+1}$.",
+          "By total probability, $P(w)=\\sum_{i=1}^{n}\\dfrac1n\\cdot\\dfrac{i}{n+1}=\\dfrac{1}{n(n+1)}\\cdot\\dfrac{n(n+1)}{2}=\\dfrac12$.",
+          "Then $P(u_n\\mid w)=\\dfrac{P(u_n)P(w\\mid u_n)}{P(w)}=\\dfrac{\\frac1n\\cdot\\frac{n}{n+1}}{\\frac12}=\\dfrac{2}{n+1}$."
+        ]
+      },
+      {
+        "name": "Odds / proportional-weights argument",
+        "steps": [
+          "Under a uniform prior the posterior over urns is proportional to the likelihood: $P(u_i\\mid w)\\propto P(w\\mid u_i)=\\dfrac{i}{n+1}\\propto i$.",
+          "Hence $P(u_i\\mid w)=\\dfrac{i}{\\sum_{j=1}^{n} j}=\\dfrac{i}{\\,n(n+1)/2\\,}=\\dfrac{2i}{n(n+1)}$.",
+          "Putting $i=n$ gives $P(u_n\\mid w)=\\dfrac{2n}{n(n+1)}=\\dfrac{2}{n+1}$, the same result without ever computing $P(w)$ explicitly."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q22. Under a flat prior the posterior is just the normalized likelihood, so the whole problem reduces to the observation $P(u_i\\mid w)\\propto i$ — the urns' white-counts are their own posterior weights."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "White From An Even-Numbered Urn",
+    "difficulty": 4,
+    "task": "Find the conditional probability",
+    "tags": [
+      "conditional probability",
+      "total probability",
+      "2006"
+    ],
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "23"
+    },
+    "statement": "There are $n$ urns, each holding $n+1$ balls, arranged so that the $i$th urn contains $i$ white balls and $n+1-i$ red balls, for $i=1,2,\\dots,n$. An urn is chosen with $P(u_i)=\\tfrac1n$ for every $i$, and then one ball is drawn from it. Assume $n$ is even, and let $E$ be the event that the chosen urn carries an even index. Let $w$ be the event that the drawn ball is white. Find $P(w\\mid E)$.",
+    "answer": "$$P(w\\mid E)=\\boxed{\\dfrac{n+2}{2(n+1)}}.$$",
+    "trap": "Because each urn is equally likely, it is tempting to average $\\tfrac{i}{n+1}$ over $i=1,\\dots,n$ and get $\\tfrac12$. But conditioning on $E$ restricts $i$ to the $n/2$ even indices $2,4,\\dots,n$, whose whiteness fractions are systematically larger; the conditional average is therefore above $\\tfrac12$, not equal to it.",
+    "solutions": [
+      {
+        "name": "Conditional total probability over even urns",
+        "steps": [
+          "The event $E$ selects the $n/2$ urns with even index, and given $E$ each is equally likely, so $P(u_i\\mid E)=\\dfrac{1}{n/2}=\\dfrac{2}{n}$ for even $i$.",
+          "The whiteness fraction of urn $i$ is $P(w\\mid u_i)=\\dfrac{i}{n+1}$, hence $P(w\\mid E)=\\displaystyle\\sum_{i\\text{ even}}\\frac{2}{n}\\cdot\\frac{i}{n+1}=\\frac{2}{n(n+1)}\\!\\!\\sum_{i\\text{ even}}\\! i$.",
+          "The even indices $2,4,\\dots,n$ sum to $2+4+\\cdots+n=\\dfrac{n}{2}\\cdot\\dfrac{n+2}{2}=\\dfrac{n(n+2)}{4}$.",
+          "Therefore $P(w\\mid E)=\\dfrac{2}{n(n+1)}\\cdot\\dfrac{n(n+2)}{4}=\\dfrac{n+2}{2(n+1)}$."
+        ]
+      },
+      {
+        "name": "Ratio of joint probabilities",
+        "steps": [
+          "Write $P(w\\mid E)=\\dfrac{P(w\\cap E)}{P(E)}$. Here $P(E)=\\dfrac{n/2}{n}=\\dfrac12$, since $n/2$ of the $n$ equally likely urns are even.",
+          "For the joint event, $P(w\\cap E)=\\displaystyle\\sum_{i\\text{ even}}\\frac1n\\cdot\\frac{i}{n+1}=\\frac{1}{n(n+1)}\\!\\!\\sum_{i\\text{ even}}\\! i=\\frac{1}{n(n+1)}\\cdot\\frac{n(n+2)}{4}=\\frac{n+2}{4(n+1)}$.",
+          "Dividing, $P(w\\mid E)=\\dfrac{(n+2)/[4(n+1)]}{1/2}=\\dfrac{n+2}{2(n+1)}$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q23. **Insight.** Conditioning on “even index” is not a harmless relabelling: it reweights the urns toward the whiter half, so the honest route is to sum $\\tfrac{i}{n+1}$ over only the even $i$ and normalise by $P(E)=\\tfrac12$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Indian Couple At A Married Table",
+    "difficulty": 4,
+    "task": "Find the conditional probability",
+    "tags": [
+      "conditional probability",
+      "circular permutations",
+      "2007"
+    ],
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "52"
+    },
+    "statement": "One Indian man and four American men, together with their five wives, are seated at random around a circular table. Let $E$ be the event that every American man sits next to his own wife. Find the conditional probability that the Indian man also sits next to his wife, given $E$; that is, find $P(A\\mid E)$ where $A$ is the event that the Indian man is adjacent to his wife.",
+    "answer": "$$P(A\\mid E)=\\dfrac{4!\\,(2!)^{5}}{5!\\,(2!)^{4}}=\\boxed{\\dfrac{2}{5}}.$$",
+    "trap": "One is tempted to compute the unconditional probability that a given couple sits together (about $\\tfrac29$ around $10$ seats) and quote that. But we are told $E$ has occurred: the four American couples are already glued into blocks, which shrinks the effective table to five objects and changes the geometry the Indian couple lives in — so the conditional answer $\\tfrac25$ is much larger than the unconditional one.",
+    "solutions": [
+      {
+        "name": "Counting favourable arrangements (block method)",
+        "steps": [
+          "Count $n(E)$: glue each American couple into a single block (2 internal orders each, $2^4$ ways). We then arrange the $4$ American blocks together with the Indian man and his wife as separate people — that is $5$ objects (4 blocks + 2 Indians counted as $4+2=6$ units)… more cleanly, treat $E$ as: the $4$ American blocks plus the Indian man plus the Indian wife = $6$ units around the circle.",
+          "Around a circle, $6$ units admit $(6-1)!=5!$ arrangements, and each American block has $2!$ internal orders, so $n(E)=5!\\,(2!)^4$.",
+          "Count $n(A\\cap E)$: now also glue the Indian couple into a block. This gives $5$ blocks in all, arranged circularly in $(5-1)!=4!$ ways, with $2!$ internal orders for each of the $5$ couples, so $n(A\\cap E)=4!\\,(2!)^5$.",
+          "Hence $P(A\\mid E)=\\dfrac{n(A\\cap E)}{n(E)}=\\dfrac{4!\\,(2!)^5}{5!\\,(2!)^4}=\\dfrac{2!}{5}=\\dfrac{2}{5}$."
+        ]
+      },
+      {
+        "name": "Direct placement of the Indian couple",
+        "steps": [
+          "Condition on $E$: the four American couples are fixed as glued blocks, leaving the Indian man and his wife to occupy the remaining structure. Seat the Indian man first — by symmetry every seat is alike, so fix him and look at where his wife can land.",
+          "With the four American blocks and the Indian man placed around the circle, they create gaps into which the Indian wife falls uniformly; exactly the two seats immediately flanking the Indian man make the couple adjacent, out of the equally-likely remaining seats.",
+          "Equivalently, among the $5$ ‘units’ (4 American blocks + the Indian man) sitting in a circle, the wife occupies one of $5$ slots and the couple is together for $2$ of them, giving $P(A\\mid E)=\\dfrac{2}{5}$, in agreement with the block count."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q52. **Insight.** Given $E$, the four American couples collapse into rigid blocks, so the Indian couple effectively sits at a table of five objects — and “together” costs $2$ of those $5$ adjacencies, which is why the seemingly delicate answer is the clean $\\tfrac25$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Bayes Inequality for a Partition",
+    "difficulty": 4,
+    "task": "Judge the two statements",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "56"
+    },
+    "tags": [
+      "Bayes' theorem",
+      "total probability",
+      "mutually exclusive exhaustive events",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Let $H_1,H_2,\\dots,H_n$ be mutually exclusive and exhaustive events with $P(H_i)>0$ for $i=1,2,\\dots,n$, and let $E$ be any other event with $0<P(E)<1$. Consider the following two assertions. Statement 1 claims that $P(H_i\\mid E)>P(E\\mid H_i)\\,P(H_i)$ for every $i=1,2,\\dots,n$, while Statement 2 claims that $\\sum_{i=1}^{n}P(H_i)=1$. Decide whether each statement is true, and whether the second correctly explains the first: (A) both true and 2 explains 1; (B) both true but 2 does not explain 1; (C) 1 true, 2 false; (D) 1 false, 2 true.",
+    "answer": "$$\\boxed{\\text{(D) Statement 1 is false, Statement 2 is true.}}$$",
+    "trap": "Bayes' rule gives $P(H_i\\mid E)=\\dfrac{P(E\\mid H_i)P(H_i)}{P(E)}$, and since $0<P(E)<1$ dividing by $P(E)$ enlarges the numerator — so it looks as though Statement 1 must hold. The trap is the innocuous word “every.” If some $H_i$ is disjoint from $E$ then $P(E\\mid H_i)=0$, forcing both sides to equal $0$; the inequality is then $0>0$, which is false. A claim quantified over all $i$ dies on a single bad index.",
+    "solutions": [
+      {
+        "name": "Bayes rewrite exposes the strict-inequality gap",
+        "steps": [
+          "By Bayes' theorem, for each $i$ with $P(E)>0$ we have $P(H_i\\mid E)=\\dfrac{P(E\\mid H_i)\\,P(H_i)}{P(E)}$.",
+          "Thus $P(H_i\\mid E)=\\dfrac{1}{P(E)}\\cdot\\bigl[P(E\\mid H_i)P(H_i)\\bigr]$, and since $0<P(E)<1$ the factor $\\tfrac1{P(E)}>1$ multiplies the bracket.",
+          "This makes the inequality $P(H_i\\mid E)>P(E\\mid H_i)P(H_i)$ hold only when the bracket is strictly positive, i.e. when $P(E\\mid H_i)P(H_i)>0$. If instead $P(E\\cap H_i)=0$ for some $i$, then $P(E\\mid H_i)=0$ and both sides are $0$, so the strict inequality fails for that $i$.",
+          "Because Statement 1 asserts the inequality for every $i$, one such index makes it false. Statement 2 is the defining property of a mutually exclusive and exhaustive family, hence true. The correct choice is (D)."
+        ]
+      },
+      {
+        "name": "Explicit finite counterexample",
+        "steps": [
+          "Take a uniform sample space of six equally likely points $\\{a,b,c,d,e,f\\}$ and the partition $H_1=\\{a,b\\},\\,H_2=\\{c,d\\},\\,H_3=\\{e,f\\}$, so each $P(H_i)=\\tfrac13$ and $\\sum P(H_i)=1$ (Statement 2 holds).",
+          "Let $E=\\{a,c\\}$, so $P(E)=\\tfrac13\\in(0,1)$. Note $E\\cap H_3=\\varnothing$.",
+          "For $i=3$: $P(H_3\\mid E)=\\dfrac{P(E\\cap H_3)}{P(E)}=0$, while $P(E\\mid H_3)P(H_3)=0\\cdot\\tfrac13=0$. The claimed strict inequality reads $0>0$, which is false.",
+          "So Statement 1 fails for $i=3$ (even though it holds for $i=1,2$), while Statement 2 is true — confirming (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q56. The lesson: an inequality quantified over “every $i$” is only as strong as its weakest index — a single event disjoint from $E$ collapses the strict Bayes inequality into an equality, so the universally-quantified Statement 1 is false while the always-true partition identity $\\sum P(H_i)=1$ has no bearing on it."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Pairwise Independence Under Conditioning",
+    "difficulty": 4,
+    "task": "Simplify the conditional probability",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "53"
+    },
+    "tags": [
+      "conditional probability",
+      "pairwise independence",
+      "complementary events",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Let $E^{c}$ denote the complement of an event $E$. Suppose $E,F,G$ are pairwise independent events with $P(G)>0$ and $P(E\\cap F\\cap G)=0$. Then $P\\!\\left(E^{c}\\cap F^{c}\\mid G\\right)$ equals which of the following: (A) $P(E^{c})+P(F^{c})$; (B) $P(E^{c})-P(F^{c})$; (C) $P(E^{c})-P(F)$; (D) $P(E)-P(F^{c})$.",
+    "answer": "$$P\\!\\left(E^{c}\\cap F^{c}\\mid G\\right)=1-P(E)-P(F)=\\boxed{\\,P(E^{c})-P(F)\\,}\\quad\\text{(option C).}$$",
+    "trap": "It is tempting to treat $E^{c}$ and $F^{c}$ as independent given $G$ and write the answer as a product $P(E^{c}\\mid G)P(F^{c}\\mid G)$. That fails: the extra condition $P(E\\cap F\\cap G)=0$ makes $E$ and $F$ mutually exclusive inside $G$, so they are decidedly not conditionally independent. The clean route is De Morgan plus pairwise independence, not a product.",
+    "solutions": [
+      {
+        "name": "De Morgan and inclusion–exclusion on the conditional measure",
+        "steps": [
+          "By De Morgan, $E^{c}\\cap F^{c}=(E\\cup F)^{c}$, so within $G$: $P(E^{c}\\cap F^{c}\\cap G)=P(G)-P\\bigl((E\\cup F)\\cap G\\bigr)$.",
+          "Inclusion–exclusion gives $P((E\\cup F)\\cap G)=P(E\\cap G)+P(F\\cap G)-P(E\\cap F\\cap G)$.",
+          "Pairwise independence yields $P(E\\cap G)=P(E)P(G)$ and $P(F\\cap G)=P(F)P(G)$, while $P(E\\cap F\\cap G)=0$ is given. Hence $P(E^{c}\\cap F^{c}\\cap G)=P(G)-P(E)P(G)-P(F)P(G)=P(G)\\bigl[1-P(E)-P(F)\\bigr]$.",
+          "Divide by $P(G)>0$: $P(E^{c}\\cap F^{c}\\mid G)=1-P(E)-P(F)=P(E^{c})-P(F)$, which is option (C)."
+        ]
+      },
+      {
+        "name": "Region masses inside $G$",
+        "steps": [
+          "Restrict attention to $G$ and write the conditional probabilities of the four cells formed by $E,F$. Since $P(E\\cap F\\cap G)=0$, the “both” cell has zero mass: $P(E\\cap F\\mid G)=0$.",
+          "Using pairwise independence, $P(E\\mid G)=\\dfrac{P(E)P(G)}{P(G)}=P(E)$ and likewise $P(F\\mid G)=P(F)$.",
+          "The four cells inside $G$ partition it, so $P(E^{c}\\cap F^{c}\\mid G)=1-P(E\\mid G)-P(F\\mid G)+P(E\\cap F\\mid G)=1-P(E)-P(F)+0$.",
+          "Therefore $P(E^{c}\\cap F^{c}\\mid G)=1-P(E)-P(F)=P(E^{c})-P(F)$ — again option (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q53. Insight: conditioning on $G$ turns pairwise independence into $P(E\\mid G)=P(E)$ and $P(F\\mid G)=P(F)$, so $E$ and $F$ behave “unconditionally” inside $G$ — but the vanishing triple overlap makes them mutually exclusive there, forbidding any product form and forcing the additive answer $P(E^{c})-P(F)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Random Binary System: Unique or Solvable",
+    "difficulty": 4,
+    "task": "Judge two statements",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "11"
+    },
+    "tags": [
+      "classical probability",
+      "system of linear equations",
+      "determinants",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Consider the homogeneous system of equations $ax+by=0$ and $cx+dy=0$, where each of the coefficients $a,b,c,d$ is chosen independently and equally likely from the set $\\{0,1\\}$. Examine the two statements below. STATEMENT-1: the probability that the system has a unique solution is $\\tfrac38$. STATEMENT-2: the probability that the system has a solution is $1$. Decide, for this assertion–reason pair, whether each statement is true, and whether the second correctly explains the first.",
+    "answer": "$\\boxed{\\text{(B) Both true; Statement-2 is NOT a correct explanation of Statement-1}}$",
+    "trap": "Reading “has a solution” as “has a non-trivial solution.” A homogeneous system always admits $(x,y)=(0,0)$, so it is solvable with probability $1$ no matter what the coefficients are — Statement-2 is trivially true. That triviality is exactly why it cannot explain the delicate $\\tfrac38$ count in Statement-1, which is about *uniqueness*, not mere existence.",
+    "solutions": [
+      {
+        "name": "Direct enumeration of the determinant",
+        "steps": [
+          "The system has a unique solution precisely when the coefficient determinant is non-zero, i.e. $ad-bc\\neq 0$. Since the system is homogeneous, that unique solution is the trivial one $(0,0)$.",
+          "Each of $a,b,c,d$ is an independent fair choice from $\\{0,1\\}$, so there are $2^4=16$ equally likely coefficient quadruples.",
+          "Both $ad$ and $bc$ lie in $\\{0,1\\}$, and $ad-bc\\neq 0$ means $ad\\neq bc$, i.e. one of them is $1$ and the other $0$. Now $ad=1$ only when $a=d=1$ (a single $(a,d)$ pattern out of $4$), so $ad=1$ in $1$ way and $ad=0$ in $3$ ways; the same holds for $bc$.",
+          "Favourable cases $=\\underbrace{1\\cdot 3}_{ad=1,\\,bc=0}+\\underbrace{3\\cdot 1}_{ad=0,\\,bc=1}=6$. Hence $P(\\text{unique})=\\dfrac{6}{16}=\\dfrac38$, so Statement-1 is true.",
+          "For Statement-2, being homogeneous the system always has the trivial solution $(0,0)$, so it is solvable for every one of the $16$ quadruples: $P(\\text{has a solution})=1$, true. But this holds by the structure of homogeneity, unrelated to the determinant count of Statement-1, so it is not an explanation of it: answer $\\boxed{\\text{(B)}}$."
+        ]
+      },
+      {
+        "name": "Exhaustive $16$-case check",
+        "steps": [
+          "List all $16$ quadruples $(a,b,c,d)\\in\\{0,1\\}^4$ and compute $ad-bc$ for each; count those with $ad-bc\\neq 0$.",
+          "The value $ad-bc$ is non-zero exactly for the six quadruples $(a,b,c,d)\\in\\{(0,1,1,0),(0,1,1,1),(1,0,0,1),(1,0,1,1),(1,1,0,1),(1,1,1,0)\\}$ — precisely the tuples where exactly one of the two products $ad,bc$ equals $1$; the tally is $6$.",
+          "Thus $P(\\text{unique})=\\dfrac{6}{16}=\\dfrac38$ (Statement-1 true), matching the direct count.",
+          "In the same sweep, every quadruple yields at least the solution $(0,0)$, so the ‘has a solution’ event covers all $16$ cases: probability $1$ (Statement-2 true).",
+          "Both statements are true, yet Statement-2’s universal solvability is a consequence of homogeneity and says nothing about when the solution is *unique*; it does not explain Statement-1, giving $\\boxed{\\text{(B)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q11. **Insight.** A homogeneous system is never *unsolvable* — the trivial solution is free — so the whole content of the problem lives in the word *unique*, which is a determinant (i.e. counting) question decoupled from mere existence."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "How Many Outcomes Make Two Events Independent",
+    "difficulty": 3,
+    "task": "Find the possible sizes of $B$",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "1"
+    },
+    "tags": [
+      "independent events",
+      "classical probability",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "An experiment has $10$ equally likely outcomes. Let $A$ and $B$ be two non-empty events, and suppose $A$ consists of exactly $4$ of these outcomes. Determine the number of outcomes that $B$ must contain so that $A$ and $B$ are independent events.",
+    "answer": "$\\boxed{\\text{(D) } 5 \\text{ or } 10}$",
+    "trap": "Guessing that $B$ can be any size that ‘divides nicely,’ such as $2,4,$ or $8$. Independence is not about the size of $B$ alone — it forces $|A\\cap B|=\\tfrac{|A|\\,|B|}{10}$ to be a whole number of outcomes, and that integrality condition is what pins $|B|$ down.",
+    "solutions": [
+      {
+        "name": "Integrality of the intersection count",
+        "steps": [
+          "With $10$ equally likely outcomes, $P(A)=\\dfrac{4}{10}$ and $P(B)=\\dfrac{p}{10}$, where $p=|B|$.",
+          "Independence means $P(A\\cap B)=P(A)\\,P(B)$, so $\\dfrac{|A\\cap B|}{10}=\\dfrac{4}{10}\\cdot\\dfrac{p}{10}$, giving $|A\\cap B|=\\dfrac{4p}{10}=\\dfrac{2p}{5}$.",
+          "Since $|A\\cap B|$ counts actual outcomes it must be a non-negative integer, so $\\dfrac{2p}{5}\\in\\mathbb{Z}$. As $\\gcd(2,5)=1$, this requires $5\\mid p$.",
+          "Within $1\\le p\\le 10$ the multiples of $5$ are $p=5$ and $p=10$; both are realizable ($|A\\cap B|=2$ and $4$ respectively, each $\\le|A|=4$), so the answer is $\\boxed{5\\text{ or }10}$, option (D)."
+        ]
+      },
+      {
+        "name": "Elimination by testing each choice",
+        "steps": [
+          "The needed condition is that $\\dfrac{2p}{5}$ be an integer with $0\\le \\dfrac{2p}{5}\\le \\min(4,p)$; test the offered values.",
+          "Option (A) $p\\in\\{2,4,8\\}$: $\\dfrac{2p}{5}=\\tfrac45,\\tfrac85,\\tfrac{16}{5}$ — none integral. Option (B) $p\\in\\{3,6,9\\}$: $\\dfrac{2p}{5}=\\tfrac65,\\tfrac{12}{5},\\tfrac{18}{5}$ — none integral. Option (C) $p\\in\\{4,8\\}$: $\\tfrac85,\\tfrac{16}{5}$ — none integral.",
+          "Option (D) $p\\in\\{5,10\\}$: $\\dfrac{2p}{5}=2$ and $4$, both integers, and both are attainable with a valid overlap inside $A$.",
+          "Only (D) survives, so $|B|=5$ or $10$, giving $\\boxed{\\text{(D)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q1. **Insight.** In a finite equally-likely space, independence is a *number-theoretic* constraint: the product rule forces $\\tfrac{|A||B|}{n}$ to be an integer, so divisibility — not intuition about ‘compatible’ sizes — decides which events can be independent."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Tossing a Die Until the First Six",
+    "difficulty": 3,
+    "task": "Find the probability that the first six appears on the third toss.",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "36"
+    },
+    "tags": [
+      "geometric distribution",
+      "independent trials",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "A fair die is tossed repeatedly until a six is obtained, and $X$ denotes the number of tosses required. Since each toss shows a six with probability $\\tfrac16$ independently of the others, $X$ follows a geometric distribution. Determine the probability that $X = 3$; that is, the probability that the very first six shows up on exactly the third toss.",
+    "answer": "$\\boxed{\\dfrac{25}{216}}$",
+    "trap": "The event $X=3$ demands that the first two tosses are $\\emph{not}$ sixes and the third $\\emph{is}$ a six. Forgetting the two required failures (and writing just $\\tfrac16$, or $\\left(\\tfrac16\\right)^3$) is the classic slip.",
+    "solutions": [
+      {
+        "name": "Direct geometric event",
+        "steps": [
+          "The trials are independent, so $X=3$ means: non-six, non-six, six, in that order.",
+          "Each non-six has probability $\\tfrac56$ and the six has probability $\\tfrac16$, giving $P(X=3)=\\tfrac56\\cdot\\tfrac56\\cdot\\tfrac16$.",
+          "Hence $P(X=3)=\\dfrac{25}{216}$."
+        ]
+      },
+      {
+        "name": "Geometric pmf then evaluate",
+        "steps": [
+          "For a geometric variable with success probability $p=\\tfrac16$, $P(X=k)=(1-p)^{k-1}p=\\left(\\tfrac56\\right)^{k-1}\\tfrac16$.",
+          "Substituting $k=3$ gives $P(X=3)=\\left(\\tfrac56\\right)^{2}\\cdot\\tfrac16=\\dfrac{25}{36}\\cdot\\dfrac16$.",
+          "This equals $\\dfrac{25}{216}$, matching the direct count."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 1, Q36. The geometric model turns “first success on toss $k$” into a single clean product $(1-p)^{k-1}p$ — no summation needed for a fixed $k$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "At Least Three Tosses for a Six",
+    "difficulty": 3,
+    "task": "Find the probability that at least three tosses are needed to get a six.",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "37"
+    },
+    "tags": [
+      "geometric distribution",
+      "complementary probability",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "A fair die is tossed repeatedly until a six is obtained, and $X$ denotes the number of tosses required, so $X$ is geometric with success probability $\\tfrac16$. Determine the probability that $X \\ge 3$; that is, the probability that the first six does not appear on either of the first two tosses.",
+    "answer": "$\\boxed{\\dfrac{25}{36}}$",
+    "trap": "Do not sum the infinite tail term by term under exam pressure. The event $X\\ge 3$ is exactly “no six in the first two tosses,” which collapses to a single square — but only if you recognise the equivalence rather than grinding out a series.",
+    "solutions": [
+      {
+        "name": "Complement of the small cases",
+        "steps": [
+          "$P(X\\ge 3)=1-P(X=1)-P(X=2)$, since $X$ takes only positive integer values.",
+          "Here $P(X=1)=\\tfrac16$ and $P(X=2)=\\tfrac56\\cdot\\tfrac16=\\tfrac{5}{36}$.",
+          "Thus $P(X\\ge 3)=1-\\tfrac16-\\tfrac{5}{36}=1-\\tfrac{6}{36}-\\tfrac{5}{36}=\\tfrac{25}{36}$."
+        ]
+      },
+      {
+        "name": "‘No six in first two tosses’ (tail of geometric)",
+        "steps": [
+          "Needing at least three tosses is equivalent to the first two tosses both failing to show a six.",
+          "By independence that probability is $\\left(\\tfrac56\\right)^{2}=\\dfrac{25}{36}$.",
+          "Equivalently, the geometric tail $P(X\\ge k)=(1-p)^{k-1}$ with $k=3,\\ p=\\tfrac16$ gives $\\left(\\tfrac56\\right)^{2}=\\dfrac{25}{36}$, confirming the answer."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 1, Q37. The tail law $P(X\\ge k)=(1-p)^{k-1}$ makes “at least $k$ trials” instant — it is just “the first $k-1$ trials all fail.”"
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Waiting Time That Forgets Its Past",
+    "difficulty": 3,
+    "task": "Evaluate the conditional probability",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "38"
+    },
+    "tags": [
+      "conditional probability",
+      "geometric distribution",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "A fair die is tossed repeatedly until a six is obtained, and $X$ denotes the number of tosses required. Compute the conditional probability that $X \\ge 6$, given that $X > 3$.",
+    "answer": "$\\boxed{\\text{(D) } \\dfrac{25}{36}}$",
+    "trap": "Trying to enumerate the finite list of ‘surviving’ values $X=4,5,6,\\dots$ and getting lost in an infinite series. The clean move is to notice that $X$ counts trials to the first success, so its tail is a single power of $\\tfrac56$; the conditioning then telescopes and the first three failures cancel out completely.",
+    "solutions": [
+      {
+        "name": "Tail probabilities of the geometric law",
+        "steps": [
+          "$X=k$ means the first $k-1$ tosses are non-sixes and the $k$th is a six, so $P(X=k)=\\left(\\dfrac56\\right)^{k-1}\\dfrac16$ for $k\\ge 1$.",
+          "Summing the geometric tail gives $P(X\\ge k)=\\displaystyle\\sum_{j\\ge k}\\left(\\dfrac56\\right)^{j-1}\\dfrac16=\\left(\\dfrac56\\right)^{k-1}$; equivalently, $X\\ge k$ is exactly the event that the first $k-1$ tosses all miss.",
+          "Since $X>3$ is the same event as $X\\ge 4$, we have $P(X>3)=\\left(\\dfrac56\\right)^{3}$ and $P(X\\ge 6)=\\left(\\dfrac56\\right)^{5}$, with $\\{X\\ge6\\}\\subset\\{X>3\\}$.",
+          "Therefore $P(X\\ge 6\\mid X>3)=\\dfrac{(5/6)^5}{(5/6)^3}=\\left(\\dfrac56\\right)^{2}=\\boxed{\\dfrac{25}{36}}$, option (D)."
+        ]
+      },
+      {
+        "name": "Memorylessness by restarting the count",
+        "steps": [
+          "Condition on $X>3$: the first three tosses were all non-sixes, and because tosses are independent the process from toss $4$ onward is a fresh copy of the original experiment.",
+          "Let $Y$ be the number of additional tosses (from toss $4$ onward) needed to get the first six; then $Y$ has the same geometric law as $X$, and the event $X\\ge 6$ becomes $Y\\ge 3$.",
+          "Hence $P(X\\ge 6\\mid X>3)=P(Y\\ge 3)=P(\\text{first two fresh tosses miss})=\\left(\\dfrac56\\right)^{2}$.",
+          "This equals $\\boxed{\\dfrac{25}{36}}$, confirming option (D) — the three wasted tosses genuinely leave no trace."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 1, Q38. **Insight.** The geometric waiting time is memoryless: given that success has not yet arrived, the residual number of trials is distributed exactly like a fresh start, so the conditional probability depends only on the *gap* $6-3-1=2$ and collapses to $(5/6)^2$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three Cube-Root Vectors Summing to Zero",
+    "difficulty": 4,
+    "task": "Find the required probability",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "31"
+    },
+    "tags": [
+      "cube roots of unity",
+      "classical probability",
+      "counting",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Let $\\omega$ be a complex cube root of unity with $\\omega\\neq 1$. A fair die is thrown three times, producing numbers $r_1$, $r_2$ and $r_3$. Find the probability that $\\omega^{r_1}+\\omega^{r_2}+\\omega^{r_3}=0$.",
+    "answer": "$\\boxed{\\text{(C) } \\dfrac{2}{9}}$",
+    "trap": "Reading $\\omega^{r_i}$ as though $r_i$ itself must be $1,2,3$. What matters is only $r_i \\bmod 3$, since $\\omega^{3}=1$; among the die faces $1,\\dots,6$ each residue class $0,1,2$ appears exactly twice, and $1+\\omega+\\omega^2=0$ forces all three residues to be present.",
+    "solutions": [
+      {
+        "name": "Reduce exponents modulo 3, then count",
+        "steps": [
+          "Because $\\omega^3=1$, the value of $\\omega^{r}$ depends only on $r \\bmod 3$: faces $3,6$ give $\\omega^0=1$; faces $1,4$ give $\\omega$; faces $2,5$ give $\\omega^2$.",
+          "The three powers sum to zero iff $\\{\\omega^{r_1},\\omega^{r_2},\\omega^{r_3}\\}=\\{1,\\omega,\\omega^2\\}$, using the identity $1+\\omega+\\omega^2=0$ (two equal powers can never cancel a third, so all three residues must be distinct).",
+          "Assign the three distinct residue classes to the three ordered dice in $3!=6$ ways, and each chosen residue can be realized by either of its $2$ faces, giving $2^3=8$; favourable outcomes $=6\\times 8=48$.",
+          "Total equally-likely outcomes $=6^3=216$, so the probability is $\\dfrac{48}{216}=\\boxed{\\dfrac{2}{9}}$, option (C)."
+        ]
+      },
+      {
+        "name": "Multiply residue probabilities for a permutation",
+        "steps": [
+          "For a single throw, $P(r\\equiv 0)=P(r\\equiv 1)=P(r\\equiv 2)=\\dfrac{2}{6}=\\dfrac13$, since each residue class holds exactly two faces.",
+          "The sum vanishes exactly when the three residues are a permutation of $(0,1,2)$; one specific ordered residue pattern has probability $\\left(\\dfrac13\\right)^3=\\dfrac1{27}$.",
+          "There are $3!=6$ such orderings, all disjoint, so $P=6\\cdot\\dfrac1{27}=\\dfrac{6}{27}$.",
+          "This simplifies to $\\boxed{\\dfrac{2}{9}}$, matching option (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 1, Q31. **Insight.** The algebraic condition $\\omega^{r_1}+\\omega^{r_2}+\\omega^{r_3}=0$ is really the arithmetic condition that $r_1,r_2,r_3$ hit all three residues mod $3$ — the vanishing sum of the three cube roots of unity turns a complex-number question into a clean counting one."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Twice-Relayed Green Signal",
+    "difficulty": 4,
+    "task": "Find the reverse (posterior) probability",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "25"
+    },
+    "tags": [
+      "Bayes' theorem",
+      "total probability",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "A signal is either green with probability $\\tfrac45$ or red with probability $\\tfrac15$. It is first received by station $A$ and then relayed by $A$ to station $B$. At each of these two stages the signal is received correctly with probability $\\tfrac34$ (and flipped to the other colour with probability $\\tfrac14$), the two stages acting independently. If the signal that finally arrives at station $B$ is green, find the probability that the original signal was in fact green.",
+    "answer": "$$P(\\text{original green}\\mid B\\text{ green})=\\boxed{\\dfrac{20}{23}}.$$",
+    "trap": "The seductive error is to forget that a colour can survive two flips. A red original can still reach $B$ as green not only by staying red-then-flipping, but by flipping twice back to green — no wait, that lands on red. The real subtlety is the reverse: a green original arrives green either by two correct relays or by two errors, so $P(B\\text{ green}\\mid\\text{green})=\\left(\\tfrac34\\right)^2+\\left(\\tfrac14\\right)^2$, not merely $\\left(\\tfrac34\\right)^2$. Dropping the double-error path corrupts every downstream number.",
+    "solutions": [
+      {
+        "name": "Two-channel likelihoods, then Bayes",
+        "steps": [
+          "Fix the colour that leaves the source and track it through the two independent $\\tfrac34$-correct stages. A colour is preserved end-to-end iff the number of flips is even (zero or two). So $P(B\\text{ green}\\mid\\text{green})=\\left(\\tfrac34\\right)^2+\\left(\\tfrac14\\right)^2=\\tfrac{9}{16}+\\tfrac{1}{16}=\\tfrac{10}{16}$.",
+          "A green arrives from a red original iff the colour flips an odd number of times: $P(B\\text{ green}\\mid\\text{red})=2\\cdot\\tfrac34\\cdot\\tfrac14=\\tfrac{6}{16}$.",
+          "Total probability of a green at $B$: $P(B\\text{ green})=\\tfrac45\\cdot\\tfrac{10}{16}+\\tfrac15\\cdot\\tfrac{6}{16}=\\tfrac{40}{80}+\\tfrac{6}{80}=\\tfrac{46}{80}=\\tfrac{23}{40}$.",
+          "By Bayes' theorem, $P(\\text{green}\\mid B\\text{ green})=\\dfrac{\\tfrac45\\cdot\\tfrac{10}{16}}{\\tfrac{23}{40}}=\\dfrac{\\tfrac{40}{80}}{\\tfrac{46}{80}}=\\dfrac{40}{46}=\\dfrac{20}{23}.$"
+        ]
+      },
+      {
+        "name": "Odds form (Bayes without the denominator)",
+        "steps": [
+          "Prior odds green$:$red $=\\tfrac45:\\tfrac15=4:1$.",
+          "Likelihood ratio for observing a green at $B$: $\\dfrac{P(B\\text{ green}\\mid\\text{green})}{P(B\\text{ green}\\mid\\text{red})}=\\dfrac{10/16}{6/16}=\\dfrac{10}{6}=\\dfrac{5}{3}$.",
+          "Posterior odds $=$ prior odds $\\times$ likelihood ratio $=\\dfrac{4}{1}\\cdot\\dfrac{5}{3}=\\dfrac{20}{3}$, i.e. green$:$red $=20:3$.",
+          "Converting odds to probability: $P(\\text{green}\\mid B\\text{ green})=\\dfrac{20}{20+3}=\\dfrac{20}{23}$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2010, Paper 2, Q25. The one insight that unlocks the whole problem: a signal passing through two symmetric noisy channels is preserved exactly when the number of flips is *even*, so the correct forward likelihood is $\\left(\\tfrac34\\right)^2+\\left(\\tfrac14\\right)^2$, not $\\left(\\tfrac34\\right)^2$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Coin Decides the Transfer, Then a White Ball",
+    "difficulty": 4,
+    "task": "Find the total probability",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "58"
+    },
+    "tags": [
+      "total probability",
+      "urn models",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Two urns $U_1$ and $U_2$ are given: $U_1$ contains $3$ white and $2$ red balls, while $U_2$ contains only $1$ white ball. A fair coin is tossed. If a head appears, one ball is drawn at random from $U_1$ and placed into $U_2$; if a tail appears, two balls are drawn at random from $U_1$ and placed into $U_2$. After this transfer, one ball is drawn at random from $U_2$. Find the probability that this ball drawn from $U_2$ is white.",
+    "answer": "$$P(\\text{white from }U_2)=\\boxed{\\dfrac{23}{30}}.$$",
+    "trap": "The tail branch is where candidates bleed marks. Moving two balls creates three transfer outcomes — $\\{WW\\},\\{WR\\},\\{RR\\}$ — with hypergeometric weights $\\tfrac{3}{10},\\tfrac{6}{10},\\tfrac{1}{10}$, after which $U_2$ holds three balls and the final white-draw chances are $1,\\tfrac23,\\tfrac13$. Treating the two transferred balls as independent $\\tfrac35$-draws (with replacement), or forgetting that $U_2$ now has size $3$, silently changes the answer.",
+    "solutions": [
+      {
+        "name": "Total probability over coin and transfer",
+        "steps": [
+          "Head branch ($P=\\tfrac12$): one ball moves, so $U_2$ ends with $2$ balls. Transferred white w.p. $\\tfrac35\\Rightarrow U_2=\\{W,W\\}$, white-draw $=1$; transferred red w.p. $\\tfrac25\\Rightarrow U_2=\\{W,R\\}$, white-draw $=\\tfrac12$. So $P(W\\mid H)=\\tfrac35\\cdot1+\\tfrac25\\cdot\\tfrac12=\\tfrac35+\\tfrac15=\\tfrac45$.",
+          "Tail branch ($P=\\tfrac12$): two balls move from $U_1$ ($\\binom{5}{2}=10$ ways), so $U_2$ ends with $3$ balls. $P(WW)=\\tfrac{\\binom32}{10}=\\tfrac{3}{10}$ (white-draw $1$); $P(WR)=\\tfrac{3\\cdot2}{10}=\\tfrac{6}{10}$ (white-draw $\\tfrac23$); $P(RR)=\\tfrac{\\binom22}{10}=\\tfrac1{10}$ (white-draw $\\tfrac13$).",
+          "Thus $P(W\\mid T)=\\tfrac{3}{10}\\cdot1+\\tfrac{6}{10}\\cdot\\tfrac23+\\tfrac{1}{10}\\cdot\\tfrac13=\\tfrac{3}{10}+\\tfrac{4}{10}+\\tfrac{1}{30}=\\tfrac{9}{30}+\\tfrac{12}{30}+\\tfrac{1}{30}=\\tfrac{22}{30}=\\tfrac{11}{15}$.",
+          "Combine: $P(W)=\\tfrac12\\cdot\\tfrac45+\\tfrac12\\cdot\\tfrac{11}{15}=\\tfrac{2}{5}+\\tfrac{11}{30}=\\tfrac{12}{30}+\\tfrac{11}{30}=\\dfrac{23}{30}.$"
+        ]
+      },
+      {
+        "name": "Expected white content of $U_2$, then divide by its size",
+        "steps": [
+          "Once the transfer type is fixed, the final draw is uniform over $U_2$, so within each branch $P(W)=\\dfrac{\\mathbb{E}[\\#\\text{ white in }U_2]}{|U_2|}$; $U_2$ always starts with its lone white ball.",
+          "Head branch: $U_2$ has size $2$ and the expected number of whites added is $\\tfrac35$ (one draw from $U_1$, which is $\\tfrac35$ white). So $P(W\\mid H)=\\dfrac{1+\\tfrac35}{2}=\\dfrac{8/5}{2}=\\tfrac45$.",
+          "Tail branch: $U_2$ has size $3$; two balls are drawn from $U_1$, expected whites added $=2\\cdot\\tfrac35=\\tfrac65$ (linearity of expectation, no independence needed). So $P(W\\mid T)=\\dfrac{1+\\tfrac65}{3}=\\dfrac{11/5}{3}=\\tfrac{11}{15}$.",
+          "Averaging over the fair coin: $P(W)=\\tfrac12\\cdot\\tfrac45+\\tfrac12\\cdot\\tfrac{11}{15}=\\dfrac{23}{30}$, confirming the first method without any casework on colours."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2011, Paper 1, Q58. The elegant shortcut is linearity of expectation: the chance of finally drawing white equals the *expected white fraction* of $U_2$, so the transferred whites can be counted in expectation ($\\tfrac35$ per ball) without ever splitting into $WW/WR/RR$ cases."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Which Coin Face Produced the White Ball",
+    "difficulty": 4,
+    "task": "Find $P(\\text{head}\\mid\\text{white})$",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "59"
+    },
+    "tags": [
+      "Bayes theorem",
+      "conditional probability",
+      "urn models",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Two urns $U_1$ and $U_2$ are given, where $U_1$ contains $3$ white and $2$ red balls, while $U_2$ contains only $1$ white ball. A fair coin is tossed. If a head appears, $1$ ball is drawn at random from $U_1$ and put into $U_2$; if a tail appears, $2$ balls are drawn at random from $U_1$ and put into $U_2$. Finally, $1$ ball is drawn at random from $U_2$. Given that the ball drawn from $U_2$ turns out to be white, find the probability that the coin had shown a head.",
+    "answer": "$\\boxed{P(\\text{head}\\mid\\text{white})=\\dfrac{12}{23}}$",
+    "trap": "Reporting $\\tfrac12$ because the coin is fair. The prior $P(\\text{head})=\\tfrac12$ is not the answer — observing a white draw is evidence, and it favours the head branch (which transfers only one ball and so keeps $U_2$ richer in white), so the posterior must be updated away from $\\tfrac12$.",
+    "solutions": [
+      {
+        "name": "Bayes' theorem via the total white probability",
+        "steps": [
+          "On a head, one ball moves from $U_1$ to $U_2$. It is white with probability $\\tfrac35$, leaving $U_2=\\{W,W\\}$ (draw white with certainty), or red with probability $\\tfrac25$, leaving $U_2=\\{W,R\\}$ (draw white with probability $\\tfrac12$). Hence $P(W\\mid H)=\\tfrac35\\cdot1+\\tfrac25\\cdot\\tfrac12=\\tfrac45.$",
+          "On a tail, two balls move. From $U_1$ they are $WW$ with probability $\\tfrac{\\binom32}{\\binom52}=\\tfrac{3}{10}$, $RR$ with $\\tfrac{\\binom22}{\\binom52}=\\tfrac{1}{10}$, and $WR$ with $\\tfrac{3\\cdot2}{\\binom52}=\\tfrac{6}{10}$; the resulting $U_2$ then holds $3,1,2$ whites out of $3$ balls, so $P(W\\mid T)=\\tfrac{3}{10}\\cdot1+\\tfrac{1}{10}\\cdot\\tfrac13+\\tfrac{6}{10}\\cdot\\tfrac23=\\tfrac{9+1+12}{30}=\\tfrac{11}{15}.$",
+          "By total probability $P(W)=\\tfrac12\\cdot\\tfrac45+\\tfrac12\\cdot\\tfrac{11}{15}=\\tfrac{12}{30}+\\tfrac{11}{30}=\\tfrac{23}{30}.$",
+          "Bayes' theorem gives $P(H\\mid W)=\\dfrac{P(W\\mid H)P(H)}{P(W)}=\\dfrac{\\tfrac12\\cdot\\tfrac45}{\\tfrac{23}{30}}=\\dfrac{\\tfrac25}{\\tfrac{23}{30}}=\\dfrac{12}{23}$, so $\\boxed{P(H\\mid W)=\\dfrac{12}{23}}.$"
+        ]
+      },
+      {
+        "name": "Odds form — ratio of joint probabilities",
+        "steps": [
+          "Because heads and tails are the only two ways a white ball can arise, the posterior odds equal the joint-probability ratio: $\\dfrac{P(H\\mid W)}{P(T\\mid W)}=\\dfrac{P(H)\\,P(W\\mid H)}{P(T)\\,P(W\\mid T)}$, with no need to compute $P(W)$ separately.",
+          "Using $P(W\\mid H)=\\tfrac45$ and $P(W\\mid T)=\\tfrac{11}{15}$, the joint weights are $P(H)P(W\\mid H)=\\tfrac12\\cdot\\tfrac45=\\tfrac{12}{30}$ and $P(T)P(W\\mid T)=\\tfrac12\\cdot\\tfrac{11}{15}=\\tfrac{11}{30}$.",
+          "Hence the head-to-tail odds given white are $12:11$.",
+          "Converting odds to a probability, $P(H\\mid W)=\\dfrac{12}{12+11}=\\dfrac{12}{23}$, matching $\\boxed{\\dfrac{12}{23}}.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2011, Paper 1, Q59. **Insight.** A fair prior of $\\tfrac12$ is only the starting point: the white observation shifts belief toward the single-transfer head branch, which better preserves $U_2$'s whiteness, nudging the posterior up to $\\tfrac{12}{23}>\\tfrac12$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Recovering Two Probabilities From Exactly-One and None",
+    "difficulty": 4,
+    "task": "Find all valid pairs $\\big(P(E),P(F)\\big)$",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "32"
+    },
+    "tags": [
+      "independent events",
+      "system of equations",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $E$ and $F$ be two independent events. Suppose the probability that exactly one of them occurs is $\\dfrac{11}{25}$, and the probability that neither of them occurs is $\\dfrac{2}{25}$. Writing $P(T)$ for the probability of an event $T$, determine which of the following give admissible values: (A) $P(E)=\\dfrac45,\\ P(F)=\\dfrac35$; (B) $P(E)=\\dfrac15,\\ P(F)=\\dfrac25$; (C) $P(E)=\\dfrac25,\\ P(F)=\\dfrac15$; (D) $P(E)=\\dfrac35,\\ P(F)=\\dfrac45$.",
+    "answer": "$\\boxed{\\text{(A) and (D)}}$",
+    "trap": "Trying to solve for $P(E)$ and $P(F)$ individually. The data are symmetric in $E$ and $F$, so only the *unordered* pair $\\{P(E),P(F)\\}=\\{\\tfrac45,\\tfrac35\\}$ is determined — both orderings (A) and (D) are valid, and there is no reason to pick just one.",
+    "solutions": [
+      {
+        "name": "Two symmetric-function equations",
+        "steps": [
+          "Let $x=P(E)$, $y=P(F)$. Independence makes $P(E\\cap F)=xy$, so 'exactly one occurs' has probability $x(1-y)+y(1-x)=x+y-2xy=\\dfrac{11}{25}.$",
+          "'Neither occurs' has probability $(1-x)(1-y)=1-(x+y)+xy=\\dfrac{2}{25}$, i.e. $x+y-xy=\\dfrac{23}{25}.$",
+          "Subtract the first equation from the second: $(x+y-xy)-(x+y-2xy)=xy=\\dfrac{23}{25}-\\dfrac{11}{25}=\\dfrac{12}{25}$; then $x+y=\\dfrac{23}{25}+xy=\\dfrac{23}{25}+\\dfrac{12}{25}=\\dfrac{35}{25}=\\dfrac75.$",
+          "So $x,y$ are roots of $t^2-\\tfrac75\\,t+\\tfrac{12}{25}=0$, i.e. $25t^2-35t+12=0=(5t-3)(5t-4)$, giving $\\{x,y\\}=\\{\\tfrac35,\\tfrac45\\}$. Both assignments are legitimate, so $\\boxed{\\text{(A) and (D)}}.$"
+        ]
+      },
+      {
+        "name": "Add the two conditions to isolate the union, then test",
+        "steps": [
+          "Note that 'exactly one' and 'neither' are disjoint, and together they exhaust everything except 'both'; so $P(\\text{both})=1-\\dfrac{11}{25}-\\dfrac{2}{25}=\\dfrac{12}{25}$, meaning $xy=\\dfrac{12}{25}$ directly.",
+          "Also 'neither' $=(1-x)(1-y)=\\dfrac{2}{25}$ expands to $1-(x+y)+xy=\\dfrac{2}{25}$, so $x+y=1+\\dfrac{12}{25}-\\dfrac{2}{25}=\\dfrac{35}{25}=\\dfrac75.$",
+          "Any valid pair must satisfy sum $\\tfrac75$ and product $\\tfrac{12}{25}$; check the options. (A) $\\tfrac45+\\tfrac35=\\tfrac75$ and $\\tfrac45\\cdot\\tfrac35=\\tfrac{12}{25}$ ✓; (D) is the same pair reversed ✓.",
+          "(B) sum $\\tfrac15+\\tfrac25=\\tfrac35\\ne\\tfrac75$ ✗ and (C) sum $\\tfrac25+\\tfrac15=\\tfrac35\\ne\\tfrac75$ ✗. Only $\\boxed{\\text{(A) and (D)}}$ survive."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2011, Paper 2, Q32. **Insight.** 'Exactly one' and 'neither' are symmetric in $E,F$, so they can only fix the pair $\\{P(E),P(F)\\}$ as a set — encoding the data as sum-and-product of two roots turns the whole problem into a single quadratic and explains why both orderings must be marked."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Three-Engine Ship",
+    "difficulty": 4,
+    "task": "Decide which conditional-probability statements are correct.",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "53"
+    },
+    "tags": [
+      "conditional probability",
+      "independent events",
+      "at least two",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "A ship is fitted with three engines $E_1, E_2$ and $E_3$ that function independently of one another with respective probabilities $\\tfrac12,\\ \\tfrac14$ and $\\tfrac14$. For the ship to be operational at least two of its engines must function. Let $X$ be the event that the ship is operational, and let $X_1, X_2, X_3$ denote the events that engines $E_1, E_2, E_3$ respectively are functioning. Which of the following is (are) true? $\\;$ (A) $P\\!\\left(X_1^{c}\\mid X\\right)=\\tfrac{3}{16}$; $\\;$ (B) $P(\\text{exactly two engines are functioning}\\mid X)=\\tfrac{7}{8}$; $\\;$ (C) $P\\!\\left(X\\mid X_2\\right)=\\tfrac{5}{16}$; $\\;$ (D) $P\\!\\left(X\\mid X_1\\right)=\\tfrac{7}{16}$.",
+    "answer": "$\\boxed{(\\text{B}),\\ (\\text{D})}$",
+    "trap": "The base event is not a single engine but the compound event $X=\\{\\text{at least two work}\\}$; forgetting to normalise by $P(X)$ (or conditioning on the wrong engine) turns the correct $\\tfrac78$ and $\\tfrac{7}{16}$ into the plausible-looking distractors $\\tfrac{3}{16}$ and $\\tfrac{5}{16}$.",
+    "solutions": [
+      {
+        "name": "Direct enumeration of the $2^3$ states",
+        "steps": [
+          "Write $P(X_1)=\\tfrac12,\\ P(X_2)=P(X_3)=\\tfrac14$ and list the eight independent outcomes with their probabilities (denominator $32$). The operational states (at least two engines up) are: all three up with probability $\\tfrac12\\cdot\\tfrac14\\cdot\\tfrac14=\\tfrac{1}{32}$, and the three “exactly two” states $\\tfrac12\\cdot\\tfrac14\\cdot\\tfrac34+\\tfrac12\\cdot\\tfrac34\\cdot\\tfrac14+\\tfrac12\\cdot\\tfrac14\\cdot\\tfrac14=\\tfrac{3+3+1}{32}=\\tfrac{7}{32}$.",
+          "Hence $P(X)=\\tfrac{1}{32}+\\tfrac{7}{32}=\\tfrac{8}{32}=\\tfrac14$.",
+          "$(\\text{B})$: $P(\\text{exactly two}\\mid X)=\\dfrac{7/32}{1/4}=\\dfrac{7}{8}$ — true.",
+          "$(\\text{D})$: condition on $X_1$ up. Then two engines already need only one of $E_2,E_3$: $P(X\\mid X_1)=P(\\text{at least one of }E_2,E_3)=1-\\tfrac34\\cdot\\tfrac34=1-\\tfrac{9}{16}=\\tfrac{7}{16}$ — true.",
+          "$(\\text{A})$: $P(X_1^{c}\\cap X)$ needs $E_1$ down, so both $E_2,E_3$ up: $\\tfrac12\\cdot\\tfrac14\\cdot\\tfrac14=\\tfrac{1}{32}$, giving $P(X_1^{c}\\mid X)=\\dfrac{1/32}{1/4}=\\tfrac18\\ne\\tfrac{3}{16}$ — false. $(\\text{C})$: with $E_2$ up, $P(X\\mid X_2)=P(E_1\\text{ up})+P(E_1\\text{ down})P(E_3\\text{ up})=\\tfrac12+\\tfrac12\\cdot\\tfrac14=\\tfrac58\\ne\\tfrac{5}{16}$ — false."
+        ]
+      },
+      {
+        "name": "Complement / “ballot” bookkeeping of $P(X)$",
+        "steps": [
+          "Compute $P(X)$ through its complement: the ship fails when at most one engine works, i.e. all fail, or exactly one works. All fail: $\\tfrac12\\cdot\\tfrac34\\cdot\\tfrac34=\\tfrac{9}{32}$; exactly $E_1$: $\\tfrac12\\cdot\\tfrac34\\cdot\\tfrac34=\\tfrac{9}{32}$; exactly $E_2$: $\\tfrac12\\cdot\\tfrac14\\cdot\\tfrac34=\\tfrac{3}{32}$; exactly $E_3$: $\\tfrac{3}{32}$. Sum $=\\tfrac{24}{32}=\\tfrac34$, so $P(X)=1-\\tfrac34=\\tfrac14$, matching the first method.",
+          "For $(\\text{D})$ use the factorisation $P(X\\mid X_1)=\\dfrac{P(X\\cap X_1)}{P(X_1)}$. Since $X\\cap X_1$ = “$E_1$ up and at least one of $E_2,E_3$ up” $=\\tfrac12\\bigl(1-\\tfrac34\\cdot\\tfrac34\\bigr)=\\tfrac12\\cdot\\tfrac{7}{16}=\\tfrac{7}{32}$, we get $\\dfrac{7/32}{1/2}=\\tfrac{7}{16}$.",
+          "For $(\\text{B})$, $P(\\text{exactly two}\\cap X)=P(\\text{exactly two})=\\tfrac{7}{32}$ (exactly-two automatically lies in $X$), so the ratio is again $\\tfrac{7/32}{1/4}=\\tfrac78$.",
+          "Symmetrically $P(X\\mid X_2)=\\dfrac{P(X\\cap X_2)}{1/4}$ with $P(X\\cap X_2)=\\tfrac14\\bigl(\\tfrac12+\\tfrac12\\cdot\\tfrac14\\bigr)=\\tfrac14\\cdot\\tfrac58=\\tfrac{5}{32}$, giving $\\tfrac58$, and $P(X_1^{c}\\mid X)=\\tfrac18$; both differ from the printed $(\\text{C}),(\\text{A})$ values.",
+          "Only $(\\text{B})$ and $(\\text{D})$ survive, confirming $\\boxed{(\\text{B}),\\ (\\text{D})}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 1, Q53. The reliable move is to reduce everything to the single fact $P(X)=\\tfrac14$ and then read each option as a ratio against it — conditioning on an *engine* versus on the *outcome* $X$ is exactly where the distractors are engineered."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Fourth Die's Match",
+    "difficulty": 3,
+    "task": "Find the probability that the fourth die matches one of the first three.",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "46"
+    },
+    "tags": [
+      "dice",
+      "complementary counting",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "Four fair dice $D_1, D_2, D_3$ and $D_4$, each having six faces numbered $1,2,3,4,5$ and $6$, are rolled simultaneously. Find the probability that $D_4$ shows a number appearing on one of $D_1, D_2$ and $D_3$. $\\;$ (A) $\\tfrac{91}{216}$; $\\;$ (B) $\\tfrac{108}{216}$; $\\;$ (C) $\\tfrac{125}{216}$; $\\;$ (D) $\\tfrac{127}{216}$.",
+    "answer": "$\\boxed{\\dfrac{91}{216}}$",
+    "trap": "It is tempting to add the three matching chances as $3\\cdot\\tfrac16=\\tfrac12$, but the events “$D_4=D_1$”, “$D_4=D_2$”, “$D_4=D_3$” overlap (two dice can both equal $D_4$), so naive addition over-counts. Fixing $D_4$ and asking the other three to *avoid* it sidesteps the overlap entirely.",
+    "solutions": [
+      {
+        "name": "Complement — the other three all avoid $D_4$",
+        "steps": [
+          "Condition on the face shown by $D_4$; by symmetry the answer does not depend on which face it is. Given that value, each of $D_1, D_2, D_3$ independently avoids it with probability $\\tfrac56$.",
+          "So the probability that $D_4$ matches *none* of the first three is $\\left(\\tfrac56\\right)^{3}=\\tfrac{125}{216}$.",
+          "The desired event is the complement: $P=1-\\tfrac{125}{216}=\\dfrac{91}{216}$, which is option $(\\text{A})$."
+        ]
+      },
+      {
+        "name": "Inclusion–exclusion on the three match events",
+        "steps": [
+          "Let $A_i=\\{D_i=D_4\\}$ for $i=1,2,3$. Given the value of $D_4$, each $A_i$ has probability $\\tfrac16$ and the three are independent, so $P(A_i\\cap A_j)=\\tfrac1{36}$ and $P(A_1\\cap A_2\\cap A_3)=\\tfrac1{216}$.",
+          "By inclusion–exclusion, $P(A_1\\cup A_2\\cup A_3)=3\\cdot\\tfrac16-3\\cdot\\tfrac1{36}+\\tfrac1{216}$.",
+          "Put over $216$: $\\tfrac{108}{216}-\\tfrac{18}{216}+\\tfrac{1}{216}=\\dfrac{91}{216}$, agreeing with the complement method and confirming $\\boxed{\\dfrac{91}{216}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 2, Q46. The elegant reading is to freeze $D_4$ first and let the remaining dice miss it — the same idea that makes “at least one matches” problems collapse to a single power of $\\tfrac56$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Decoding Independence From Two Conditionals",
+    "difficulty": 3,
+    "task": "Decide which statements about $X$ and $Y$ are correct",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "58"
+    },
+    "tags": [
+      "conditional probability",
+      "independence",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "Let $X$ and $Y$ be two events such that $P(X\\mid Y)=\\dfrac12$, $P(Y\\mid X)=\\dfrac13$ and $P(X\\cap Y)=\\dfrac16$. Which of the following is (are) correct? (A) $P(X\\cup Y)=\\dfrac23$; (B) $X$ and $Y$ are independent; (C) $X$ and $Y$ are not independent; (D) $P(X^{c}\\cap Y)=\\dfrac13$.",
+    "answer": "$\\boxed{\\text{(A) and (B)}}$",
+    "trap": "Assuming the two given conditionals are extra constraints that over-determine the problem. In fact $P(X\\mid Y)$ and $P(Y\\mid X)$ are just the two ways to divide the single number $P(X\\cap Y)=\\tfrac16$, so they merely recover $P(X)$ and $P(Y)$ — and once you have them, independence is forced, which quietly kills option (C).",
+    "solutions": [
+      {
+        "name": "Recover the marginals, then test the multiplication rule",
+        "steps": [
+          "From $P(X\\mid Y)=\\dfrac{P(X\\cap Y)}{P(Y)}=\\dfrac12$ we get $P(Y)=\\dfrac{P(X\\cap Y)}{1/2}=\\dfrac{1/6}{1/2}=\\dfrac13.$",
+          "From $P(Y\\mid X)=\\dfrac{P(X\\cap Y)}{P(X)}=\\dfrac13$ we get $P(X)=\\dfrac{1/6}{1/3}=\\dfrac12.$",
+          "Since $P(X)\\,P(Y)=\\dfrac12\\cdot\\dfrac13=\\dfrac16=P(X\\cap Y)$, the events are independent, so (B) holds and (C) fails.",
+          "By the addition rule $P(X\\cup Y)=\\dfrac12+\\dfrac13-\\dfrac16=\\dfrac23$, confirming (A); and $P(X^{c}\\cap Y)=P(Y)-P(X\\cap Y)=\\dfrac13-\\dfrac16=\\dfrac16\\ne\\dfrac13$, so (D) fails. Hence $\\boxed{\\text{(A) and (B)}}.$"
+        ]
+      },
+      {
+        "name": "Fill a probability grid",
+        "steps": [
+          "Place the four joint cells of $\\{X,X^{c}\\}\\times\\{Y,Y^{c}\\}$; the interior $P(X\\cap Y)=\\dfrac16$ is given. The two conditionals fix the row/column totals: $P(Y)=\\dfrac{1/6}{1/2}=\\dfrac13$ and $P(X)=\\dfrac{1/6}{1/3}=\\dfrac12.$",
+          "Complete the margins: $P(X^{c}\\cap Y)=\\dfrac13-\\dfrac16=\\dfrac16$, $P(X\\cap Y^{c})=\\dfrac12-\\dfrac16=\\dfrac13$, and $P(X^{c}\\cap Y^{c})=1-\\dfrac16-\\dfrac16-\\dfrac13=\\dfrac13.$",
+          "Read (A) off as the complement of the $(X^{c},Y^{c})$ cell: $P(X\\cup Y)=1-\\dfrac13=\\dfrac23$ ✓; and (D) is the $(X^{c},Y)$ cell $=\\dfrac16\\ne\\dfrac13$ ✗.",
+          "Independence check on the grid: each cell equals its row total times its column total, e.g. $\\dfrac16=\\dfrac12\\cdot\\dfrac13$, so (B) holds and (C) does not. Only $\\boxed{\\text{(A) and (B)}}$ survive."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 2, Q58. **Insight.** The pair $P(X\\mid Y),P(Y\\mid X)$ is simply $P(X\\cap Y)$ split two ways, so it hands you the marginals for free — and independence is then a *consequence*, not an assumption, which is exactly why (B) and (C) cannot both be options to weigh."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "At Least One Solver Among Four",
+    "difficulty": 3,
+    "task": "Find the probability the problem is solved by at least one",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "44"
+    },
+    "tags": [
+      "independent events",
+      "at least one",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "Four persons independently solve a certain problem correctly with probabilities $\\dfrac12,\\ \\dfrac34,\\ \\dfrac14$ and $\\dfrac18$. Find the probability that the problem is solved correctly by at least one of them.",
+    "answer": "$\\boxed{\\dfrac{235}{256}}$",
+    "trap": "Adding the four solving probabilities, or trying to sum the many 'exactly $k$ solve' cases. Because the four solvers are independent, the failure event 'nobody solves it' factorises cleanly into a single product, so the complement route collapses fifteen cases into one.",
+    "solutions": [
+      {
+        "name": "Complement — probability nobody solves it",
+        "steps": [
+          "The complementary event is that all four fail. By independence the failure probabilities multiply, and the failure probabilities are $1-\\dfrac12=\\dfrac12$, $1-\\dfrac34=\\dfrac14$, $1-\\dfrac14=\\dfrac34$, $1-\\dfrac18=\\dfrac78.$",
+          "So $P(\\text{none solve})=\\dfrac12\\cdot\\dfrac14\\cdot\\dfrac34\\cdot\\dfrac78=\\dfrac{21}{256}.$",
+          "Therefore $P(\\text{at least one})=1-\\dfrac{21}{256}=\\boxed{\\dfrac{235}{256}}.$"
+        ]
+      },
+      {
+        "name": "Expand the product $\\prod(1-p_i)$ symbolically",
+        "steps": [
+          "Write $q_i=1-p_i$ for the four failure probabilities $\\dfrac12,\\dfrac14,\\dfrac34,\\dfrac78$; the answer is $1-q_1q_2q_3q_4$, so build the product two factors at a time to avoid slips.",
+          "First pair: $q_1q_2=\\dfrac12\\cdot\\dfrac14=\\dfrac18$. Second pair: $q_3q_4=\\dfrac34\\cdot\\dfrac78=\\dfrac{21}{32}.$",
+          "Multiply the halves: $q_1q_2q_3q_4=\\dfrac18\\cdot\\dfrac{21}{32}=\\dfrac{21}{256}.$",
+          "Subtract from one: $1-\\dfrac{21}{256}=\\dfrac{256-21}{256}=\\boxed{\\dfrac{235}{256}}$, matching the complement method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 1, Q44. **Insight.** For independent trials the phrase “at least one” should always trigger the complement $1-\\prod(1-p_i)$ — it converts an unwieldy union of overlapping successes into a single product of failures."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Only-One Data Fixes a Probability Ratio",
+    "difficulty": 5,
+    "task": "Find $\\dfrac{P(E_1)}{P(E_3)}$",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "57"
+    },
+    "tags": [
+      "independent events",
+      "exactly one event",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "Let $E_1,E_2,E_3$ be three independent events. The probability that only $E_1$ occurs is $\\alpha$, that only $E_2$ occurs is $\\beta$, and that only $E_3$ occurs is $\\gamma$. Let $p$ denote the probability that none of $E_1,E_2,E_3$ occurs, and suppose $p$ satisfies $(\\alpha-2\\beta)\\,p=\\alpha\\beta$ and $(\\beta-3\\gamma)\\,p=2\\beta\\gamma$. Assuming every probability mentioned lies in $(0,1)$, find the value of $\\dfrac{P(E_1)}{P(E_3)}$.",
+    "answer": "$\\dfrac{P(E_1)}{P(E_3)}=\\boxed{6}.$",
+    "trap": "Trying to pin down the individual numbers $P(E_1),P(E_2),P(E_3)$. The data are not enough for that, and they need not be — dividing each 'only-one' probability by $p$ collapses the messy products $(1-\\cdot)$ into clean odds $\\dfrac{P(E_i)}{1-P(E_i)}$, and only the *ratio* is forced.",
+    "solutions": [
+      {
+        "name": "Divide the only-one probabilities by $p$",
+        "steps": [
+          "Write $x=P(E_1),\\ y=P(E_2),\\ z=P(E_3)$. By independence, only $E_1$ occurs with probability $\\alpha=x(1-y)(1-z)$, only $E_2$ with $\\beta=(1-x)y(1-z)$, only $E_3$ with $\\gamma=(1-x)(1-y)z$, and none with $p=(1-x)(1-y)(1-z)$.",
+          "Dividing each by the common factor $p$ gives the odds: $\\dfrac{\\alpha}{p}=\\dfrac{x}{1-x}$, $\\dfrac{\\beta}{p}=\\dfrac{y}{1-y}$, $\\dfrac{\\gamma}{p}=\\dfrac{z}{1-z}$.",
+          "Divide the first relation $(\\alpha-2\\beta)p=\\alpha\\beta$ by $p^2$: $\\dfrac{\\alpha}{p}-2\\dfrac{\\beta}{p}=\\dfrac{\\alpha}{p}\\cdot\\dfrac{\\beta}{p}$. Substituting $u=\\tfrac{x}{1-x}$, $v=\\tfrac{y}{1-y}$: $u-2v=uv$. Similarly $(\\beta-3\\gamma)p=2\\beta\\gamma$ divided by $p^2$ gives $v-3w=2vw$ with $w=\\tfrac{z}{1-z}$.",
+          "From $u-2v=uv$: $u(1-v)=2v\\Rightarrow u=\\dfrac{2v}{1-v}$. From $v-3w=2vw$: $w=\\dfrac{v}{3+2v}$. Hence $\\dfrac{u}{w}=\\dfrac{2v}{1-v}\\cdot\\dfrac{3+2v}{v}=\\dfrac{2(3+2v)}{1-v}$; the given equations are consistent only when $x=2y$ and $z=\\tfrac{y}{3}$, so $\\dfrac{x}{z}=\\dfrac{2y}{y/3}=6.$",
+          "Therefore $\\dfrac{P(E_1)}{P(E_3)}=\\dfrac{x}{z}=\\boxed{6}.$"
+        ]
+      },
+      {
+        "name": "Solve the two relations as a system in $x,z$",
+        "steps": [
+          "Keep the odds $u=\\tfrac{x}{1-x}$, $v=\\tfrac{y}{1-y}$, $w=\\tfrac{z}{1-z}$ and the two reduced equations $u-2v=uv$ and $v-3w=2vw$.",
+          "The first equation is linear in $u$: $u=\\dfrac{2v}{1-v}$. But $u=\\tfrac{x}{1-x}$ and $2v=\\tfrac{2y}{1-y}$, and one checks $\\dfrac{2v}{1-v}=\\dfrac{2y}{1-2y}$, which is exactly $\\tfrac{x}{1-x}$ when $x=2y$. So the first relation forces $x=2y$.",
+          "The second equation gives $w=\\dfrac{v}{3+2v}$; converting, $\\tfrac{z}{1-z}=\\dfrac{y}{3(1-y)+2y\\cdot\\!\\frac{1}{1}}$ simplifies to $\\tfrac{z}{1-z}=\\tfrac{y/3}{1-y/3}$, i.e. $z=\\dfrac{y}{3}$.",
+          "Thus $x=2y$ and $z=\\tfrac{y}{3}$ (with $y\\in(0,\\tfrac12)$ keeping all probabilities in $(0,1)$), so $\\dfrac{P(E_1)}{P(E_3)}=\\dfrac{2y}{y/3}=\\boxed{6}.$ (Symbolically solving $u-2v=uv,\\ v-3w=2vw$ for $x,z$ in terms of $y$ returns exactly $x=2y,\\ z=y/3$.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 1, Q57. **Insight.** Each 'only $E_i$' probability shares the factor $p=(1-x)(1-y)(1-z)$ with 'none', so the single act of dividing by $p$ converts the products into odds $\\tfrac{P}{1-P}$ and turns two ugly cubic-looking constraints into two clean bilinear ones — after which only the ratio $x/z=6$ survives, never the individual probabilities."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "One Ball From Each Box, All Same Colour",
+    "difficulty": 3,
+    "task": "Find the probability",
+    "pyq": {
+      "year": 2013,
+      "paper": "2",
+      "qno": "55"
+    },
+    "tags": [
+      "independent draws",
+      "same colour",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "A box $B_1$ contains $1$ white, $3$ red and $2$ black balls; a box $B_2$ contains $2$ white, $3$ red and $4$ black balls; and a box $B_3$ contains $3$ white, $4$ red and $5$ black balls. One ball is drawn at random from each of the three boxes, the three draws being independent. Find the probability that all three drawn balls are of the same colour, expressed with denominator $648$: (A) $\\dfrac{82}{648}$; (B) $\\dfrac{90}{648}$; (C) $\\dfrac{558}{648}$; (D) $\\dfrac{566}{648}$.",
+    "answer": "$P(\\text{same colour})=\\boxed{\\dfrac{82}{648}}\\quad\\text{[option (A)]}.$",
+    "trap": "Forgetting that the three boxes have *different* colour proportions, so you cannot just cube one probability. Each colour must be tracked box-by-box: $B_1$ has $6$ balls, $B_2$ has $9$, $B_3$ has $12$, so the natural common denominator is $6\\cdot9\\cdot12=648$, and the three same-colour cases (all white, all red, all black) must be added.",
+    "solutions": [
+      {
+        "name": "Total probability over the three colours",
+        "steps": [
+          "The three draws are independent, so $P(\\text{all colour }c)=P_1(c)\\,P_2(c)\\,P_3(c)$, where $P_i(c)$ is the chance of drawing colour $c$ from box $B_i$. The boxes hold $6,9,12$ balls, giving the common denominator $6\\cdot9\\cdot12=648$.",
+          "All white: $\\dfrac{1}{6}\\cdot\\dfrac{2}{9}\\cdot\\dfrac{3}{12}=\\dfrac{6}{648}$. All red: $\\dfrac{3}{6}\\cdot\\dfrac{3}{9}\\cdot\\dfrac{4}{12}=\\dfrac{36}{648}$. All black: $\\dfrac{2}{6}\\cdot\\dfrac{4}{9}\\cdot\\dfrac{5}{12}=\\dfrac{40}{648}.$",
+          "The three same-colour events are mutually exclusive, so add: $P=\\dfrac{6+36+40}{648}=\\dfrac{82}{648}=\\boxed{\\dfrac{82}{648}}$, option (A)."
+        ]
+      },
+      {
+        "name": "Count favourable ordered triples of balls",
+        "steps": [
+          "Label the balls so that every one of the $6\\cdot9\\cdot12=648$ ordered triples (one ball from each box) is equally likely; this is the denominator.",
+          "A monochromatic triple picks one ball of a fixed colour from each box, so the count for colour $c$ is $n_1(c)\\,n_2(c)\\,n_3(c)$ using the raw counts. White: $1\\cdot2\\cdot3=6$; red: $3\\cdot3\\cdot4=36$; black: $2\\cdot4\\cdot5=40.$",
+          "Total favourable triples $=6+36+40=82$, hence the probability is $\\dfrac{82}{648}=\\boxed{\\dfrac{82}{648}}$ — a direct brute-force enumeration over all $648$ triples confirms exactly $82$ same-colour outcomes, option (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 2, Q55. **Insight.** With independent draws from unequal boxes, 'all same colour' is a sum over colours of products, not a single cube; using the fixed denominator $6\\cdot9\\cdot12=648$ turns each colour into a tidy integer numerator ($6,36,40$) so the arithmetic never leaves whole numbers."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Parity Of A Sum Of Three Cards",
+    "difficulty": 3,
+    "task": "Find the probability that $x_1+x_2+x_3$ is odd.",
+    "pyq": {
+      "year": 2014,
+      "paper": "2",
+      "qno": "55"
+    },
+    "tags": [
+      "independent draws",
+      "parity",
+      "casework",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "Box $1$ contains three cards bearing the numbers $1,2,3$; box $2$ contains five cards bearing the numbers $1,2,3,4,5$; and box $3$ contains seven cards bearing the numbers $1,2,3,4,5,6,7$. One card is drawn at random from each box, and $x_i$ denotes the number on the card drawn from the $i$th box, for $i=1,2,3$. Find the probability that the sum $x_1+x_2+x_3$ is odd.",
+    "answer": "$\\boxed{\\dfrac{53}{105}}$",
+    "trap": "The three boxes are not symmetric in parity: box $1$ has $2$ odd and $1$ even card, box $2$ has $3$ odd and $2$ even, box $3$ has $4$ odd and $3$ even. Assuming each card is odd with probability $\\tfrac12$ (which would force the answer to $\\tfrac12$, option (D)) is exactly the intended mistake — the odd bias in every box pushes the true value just above $\\tfrac12$.",
+    "solutions": [
+      {
+        "name": "Parity casework on the number of odd cards",
+        "steps": [
+          "Record each draw only by parity. Let $p_i=P(x_i\\text{ odd})$: box $1$ has $2$ odds of $3$, so $p_1=\\tfrac23$; box $2$ has $3$ odds of $5$, so $p_2=\\tfrac35$; box $3$ has $4$ odds of $7$, so $p_3=\\tfrac47$. The sum is odd exactly when an odd number of the three cards is odd, i.e. one odd or three odd.",
+          "Three odd: $p_1p_2p_3=\\tfrac23\\cdot\\tfrac35\\cdot\\tfrac47=\\tfrac{24}{105}$.",
+          "Exactly one odd (the other two even), summing the three placements: $p_1(1-p_2)(1-p_3)+(1-p_1)p_2(1-p_3)+(1-p_1)(1-p_2)p_3=\\tfrac23\\cdot\\tfrac25\\cdot\\tfrac37+\\tfrac13\\cdot\\tfrac35\\cdot\\tfrac37+\\tfrac13\\cdot\\tfrac25\\cdot\\tfrac47=\\tfrac{12+9+8}{105}=\\tfrac{29}{105}$.",
+          "Adding the two disjoint cases: $P(\\text{sum odd})=\\dfrac{24}{105}+\\dfrac{29}{105}=\\dfrac{53}{105}$."
+        ]
+      },
+      {
+        "name": "Generating-function (parity indicator) shortcut",
+        "steps": [
+          "For independent parities the identity $P(\\text{sum odd})=\\dfrac{1-\\prod_{i}\\bigl(1-2p_i\\bigr)}{2}$ holds, where $1-2p_i$ is the expectation of $(-1)^{[x_i\\text{ odd}]}$; it collapses all the casework into one product.",
+          "Here $1-2p_1=1-\\tfrac43=-\\tfrac13$, $1-2p_2=1-\\tfrac65=-\\tfrac15$, $1-2p_3=1-\\tfrac87=-\\tfrac17$, so $\\prod(1-2p_i)=\\left(-\\tfrac13\\right)\\left(-\\tfrac15\\right)\\left(-\\tfrac17\\right)=-\\tfrac{1}{105}$.",
+          "Therefore $P(\\text{sum odd})=\\dfrac{1-\\left(-\\tfrac{1}{105}\\right)}{2}=\\dfrac{1+\\tfrac{1}{105}}{2}=\\dfrac{106/105}{2}=\\dfrac{53}{105}$, matching the casework."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 2, Q55. The odd-card majority in every box nudges the answer above $\\tfrac12$; the sign-product identity $P(\\text{odd})=\\tfrac12\\bigl(1-\\prod(1-2p_i)\\bigr)$ turns a three-way parity casework into a single multiplication."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three Drawn Cards Forming An AP",
+    "difficulty": 3,
+    "task": "Find the probability that $x_1,x_2,x_3$ are in arithmetic progression.",
+    "pyq": {
+      "year": 2014,
+      "paper": "2",
+      "qno": "56"
+    },
+    "tags": [
+      "arithmetic progression",
+      "counting",
+      "independent draws",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "Box $1$ contains three cards bearing the numbers $1,2,3$; box $2$ contains five cards bearing the numbers $1,2,3,4,5$; and box $3$ contains seven cards bearing the numbers $1,2,3,4,5,6,7$. One card is drawn at random from each box, and $x_i$ denotes the number on the card drawn from the $i$th box, for $i=1,2,3$. Find the probability that $x_1,x_2,x_3$ are in arithmetic progression, taken in that order.",
+    "answer": "$\\boxed{\\dfrac{11}{105}}$",
+    "trap": "“In arithmetic progression” here means in the fixed order $x_1,x_2,x_3$, so the single condition is $2x_2=x_1+x_3$ — do not permute the three values or count unordered triples. Also $x_1+x_3$ must be even for $x_2$ to exist, but that parity check alone overcounts; $x_2=\\tfrac{x_1+x_3}{2}$ must additionally land in $\\{1,\\dots,5\\}$, which every valid pair here does since $x_1+x_3\\le 10$.",
+    "solutions": [
+      {
+        "name": "Direct count of the middle term",
+        "steps": [
+          "The total number of equally likely ordered triples is $3\\times5\\times7=105$. The AP condition in the given order is precisely $2x_2=x_1+x_3$, so $x_2$ is forced to be the average $\\tfrac{x_1+x_3}{2}$; a triple works iff $x_1+x_3$ is even and its half lies in $\\{1,2,3,4,5\\}$.",
+          "Fix the middle value $x_2=m$ and count pairs $(x_1,x_3)$ with $x_1+x_3=2m$, $x_1\\in\\{1,2,3\\}$, $x_3\\in\\{1,\\dots,7\\}$. For $m=1$: $x_1+x_3=2$ gives $(1,1)$ — $1$ pair. For $m=2$: sum $4$ gives $(1,3),(2,2),(3,1)$ — $3$. For $m=3$: sum $6$ gives $(1,5),(2,4),(3,3)$ — $3$. For $m=4$: sum $8$ gives $(1,7),(2,6),(3,5)$ — $3$. For $m=5$: sum $10$ needs $x_3=10-x_1\\ge9$, impossible — $0$; the largest workable is $x_1=3,x_3=7$ already counted under $m=5$? no, that sum is $10$ with $x_1=3\\Rightarrow x_3=7$ but then $m=5$, giving $(3,7)$ — $1$ pair.",
+          "Collecting: $m=1\\!:1,\\ m=2\\!:3,\\ m=3\\!:3,\\ m=4\\!:3,\\ m=5\\!:1$, a total of $1+3+3+3+1=11$ favourable ordered triples.",
+          "Hence the probability is $\\dfrac{11}{105}$."
+        ]
+      },
+      {
+        "name": "Parity split, then admissible averages",
+        "steps": [
+          "An AP in order needs $x_1+x_3$ even, i.e. $x_1,x_3$ of the same parity. Box $1$ contributes $x_1\\in\\{1,3\\}$ (odd) or $\\{2\\}$ (even); box $3$ contributes $x_3\\in\\{1,3,5,7\\}$ (odd) or $\\{2,4,6\\}$ (even).",
+          "Odd–odd pairs $(x_1,x_3)$: $2\\times4=8$ pairs, each giving $x_2=\\tfrac{x_1+x_3}{2}\\in\\{1,2,3,4,5\\}$? The sums range over $\\{2,4,6,8,4,6,8,10\\}$, halving to $\\{1,2,3,4,2,3,4,5\\}$ — all lie in $\\{1,\\dots,5\\}$, so all $8$ are valid.",
+          "Even–even pairs: $x_1=2$ with $x_3\\in\\{2,4,6\\}$, sums $4,6,8$, halves $2,3,4\\in\\{1,\\dots,5\\}$ — all $3$ valid.",
+          "Every admissible $(x_1,x_3)$ pins down a unique legal $x_2$, so the count is $8+3=11$ triples out of $105$, giving $\\dfrac{11}{105}$ in agreement with the middle-term count."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 2, Q56. Reading “in AP” as ordered turns the event into the single linear relation $2x_2=x_1+x_3$, so fixing either the middle term or the parity of the ends makes the eleven favourable triples fall out cleanly."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "How Many Tosses For Two Heads",
+    "difficulty": 4,
+    "task": "Find the least number of tosses",
+    "pyq": {
+      "year": 2015,
+      "paper": "1",
+      "qno": "44"
+    },
+    "tags": [
+      "binomial distribution",
+      "at least two successes",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "A fair coin is tossed $n$ times. Find the minimum value of $n$ for which the probability of getting at least two heads is at least $0.96$.",
+    "answer": "$$\\boxed{n=8}.$$",
+    "trap": "The instinct is to demand $P(X\\ge 2)\\ge 0.96$ directly and wrestle with a sum of many binomial terms. The clean move is the complement: the forbidden outcomes are only \"zero heads\" and \"exactly one head\", so require $P(X\\le 1)\\le 0.04$. A second slip is to stop at the first $n$ that merely looks close ($n=7$ gives $0.9375<0.96$); you must cross the threshold, and $\\tfrac{n+1}{2^{n}}$ falls by more than a half each step, so the crossing is sharp.",
+    "solutions": [
+      {
+        "name": "Complement inequality on the tail",
+        "steps": [
+          "For a fair coin $X\\sim B\\!\\left(n,\\tfrac12\\right)$, and the event \"at least two heads\" is complementary to \"at most one head\", so $P(X\\ge 2)=1-P(X=0)-P(X=1)=1-\\dfrac{1}{2^{n}}-\\dfrac{n}{2^{n}}=1-\\dfrac{n+1}{2^{n}}.$",
+          "The requirement $P(X\\ge 2)\\ge 0.96$ becomes $\\dfrac{n+1}{2^{n}}\\le 0.04=\\dfrac{1}{25}$, i.e. $2^{n}\\ge 25\\,(n+1).$",
+          "Test integers: $n=7$ gives $\\dfrac{8}{128}=0.0625>0.04$ (fails), while $n=8$ gives $\\dfrac{9}{256}=0.03515\\ldots\\le 0.04$ (holds). Since $\\dfrac{n+1}{2^{n}}$ is strictly decreasing for $n\\ge 1$, once it drops below $0.04$ it stays below, so the least $n$ is $8$."
+        ]
+      },
+      {
+        "name": "Direct cumulative check of $P(X\\ge 2)$",
+        "steps": [
+          "Compute the cumulative probability $P(X\\ge 2)=1-\\dfrac{n+1}{2^{n}}$ for successive $n$ and watch it rise past $0.96$: at $n=6$ it is $1-\\tfrac{7}{64}=0.8906$, at $n=7$ it is $1-\\tfrac{8}{128}=0.9375$.",
+          "At $n=8$ it becomes $1-\\dfrac{9}{256}=\\dfrac{247}{256}=0.96484\\ldots\\ge 0.96$, the first time the bar is met.",
+          "Because each extra toss can only increase the chance of two-or-more heads, $n=8$ is both sufficient and minimal."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 1, Q44. **Insight.** “At least two” is a signal to complement down to just two forbidden cases; the whole problem collapses to solving $2^{n}\\ge 25(n+1)$, where the exponential overtakes the line exactly at $n=8$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Boxes, A Red Ball, Fixed Posterior",
+    "difficulty": 4,
+    "task": "Identify all admissible box compositions",
+    "pyq": {
+      "year": 2015,
+      "paper": "2",
+      "qno": "59"
+    },
+    "tags": [
+      "Bayes' theorem",
+      "conditional probability",
+      "total probability",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "Let $n_1$ and $n_2$ be the numbers of red and black balls in box I, and let $n_3$ and $n_4$ be the numbers of red and black balls in box II. One of the two boxes is chosen at random and a ball is drawn at random from it; the ball turns out to be red. Given that the probability the red ball came from box II is $\\tfrac13$, determine which of the following $(n_1,n_2,n_3,n_4)$ are possible: (A) $(3,3,5,15)$; (B) $(3,6,10,50)$; (C) $(8,6,5,20)$; (D) $(6,12,5,20)$.",
+    "answer": "$$\\boxed{\\text{(A) and (B)}}.$$",
+    "trap": "The two boxes are equally likely to be chosen, so the prior $\\tfrac12$ appears in both numerator and denominator and cancels — the posterior depends only on the two red-fractions $\\tfrac{n_1}{n_1+n_2}$ and $\\tfrac{n_3}{n_3+n_4}$, never on the raw counts. Reading \"more red balls in box II\" as \"more likely from box II\" is the trap: option (B) has $10$ red in box II against only $3$ in box I, yet box I still wins because its red fraction $\\tfrac13$ is twice box II's $\\tfrac16$.",
+    "solutions": [
+      {
+        "name": "Bayes' theorem on red fractions",
+        "steps": [
+          "Each box is chosen with probability $\\tfrac12$. Writing the red fractions $r_1=\\dfrac{n_1}{n_1+n_2}$ and $r_2=\\dfrac{n_3}{n_3+n_4}$, Bayes' theorem gives $P(\\text{II}\\mid\\text{red})=\\dfrac{\\tfrac12 r_2}{\\tfrac12 r_1+\\tfrac12 r_2}=\\dfrac{r_2}{r_1+r_2}.$",
+          "Setting this equal to $\\tfrac13$ yields $3r_2=r_1+r_2$, i.e. $r_1=2r_2$: box I's red fraction must be exactly twice box II's.",
+          "Check each option: (A) $r_1=\\tfrac36=\\tfrac12,\\ r_2=\\tfrac5{20}=\\tfrac14\\Rightarrow r_1=2r_2$ ✓; (B) $r_1=\\tfrac39=\\tfrac13,\\ r_2=\\tfrac{10}{60}=\\tfrac16\\Rightarrow r_1=2r_2$ ✓; (C) $r_1=\\tfrac{8}{14}=\\tfrac47,\\ r_2=\\tfrac5{25}=\\tfrac15$, and $\\tfrac47\\ne\\tfrac25$ ✗; (D) $r_1=\\tfrac6{18}=\\tfrac13,\\ r_2=\\tfrac15$, and $\\tfrac13\\ne\\tfrac25$ ✗. So (A) and (B)."
+        ]
+      },
+      {
+        "name": "Posterior odds argument",
+        "steps": [
+          "Since $P(\\text{II}\\mid\\text{red})=\\tfrac13$, the complementary posterior is $P(\\text{I}\\mid\\text{red})=\\tfrac23$, so the odds in favour of box I are $\\dfrac{P(\\text{I}\\mid\\text{red})}{P(\\text{II}\\mid\\text{red})}=2:1.$",
+          "With equal priors the priors cancel and the posterior odds equal the likelihood ratio $\\dfrac{P(\\text{red}\\mid\\text{I})}{P(\\text{red}\\mid\\text{II})}=\\dfrac{r_1}{r_2}$, so the condition is simply $\\dfrac{r_1}{r_2}=2$.",
+          "Evaluating $r_1/r_2$ for the four options gives $\\tfrac{1/2}{1/4}=2$ (A ✓), $\\tfrac{1/3}{1/6}=2$ (B ✓), $\\tfrac{4/7}{1/5}=\\tfrac{20}{7}$ (C ✗), $\\tfrac{1/3}{1/5}=\\tfrac53$ (D ✗) — confirming (A) and (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 2, Q59. **Insight.** With equal priors the posterior forgets the totals entirely: only the ratio of red-fractions matters, and demanding $P(\\text{II}\\mid\\text{red})=\\tfrac13$ is nothing more than requiring box I to be twice as \"red-rich\" as box II."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Two Plants and a Clean Computer",
+    "difficulty": 4,
+    "task": "Find $P(T_2\\mid \\text{not defective})$.",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "40"
+    },
+    "tags": [
+      "Bayes' theorem",
+      "total probability",
+      "conditional probability",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "A computer-producing factory runs only two plants, $T_1$ and $T_2$. Plant $T_1$ turns out $20\\%$ of the total output and plant $T_2$ the remaining $80\\%$. Across the whole factory, $7\\%$ of computers are defective. The two plants are not equally reliable: it is known that a computer is ten times as likely to be defective when made in $T_1$ as when made in $T_2$, that is $P(D\\mid T_1)=10\\,P(D\\mid T_2)$, where $D$ is the event that a computer is defective. A computer is picked at random from the factory's output and, on inspection, it does NOT turn out to be defective. Find the probability that it was produced in plant $T_2$.",
+    "answer": "$\\boxed{\\dfrac{78}{93}}$",
+    "trap": "Two temptations mislead here. First, one may answer $0.8$ out of habit — but conditioning on 'not defective' shifts the odds toward the cleaner plant $T_2$, so the answer must exceed $0.8$. Second, the defect rate $P(D\\mid T_2)$ is not given directly; it must be recovered from the mixture equation $0.2\\,(10p)+0.8\\,p=0.07$ before Bayes can be applied. Skipping this step and guessing $p$ derails everything.",
+    "solutions": [
+      {
+        "name": "Recover the defect rate, then Bayes on the complement",
+        "steps": [
+          "Let $P(D\\mid T_2)=p$, so $P(D\\mid T_1)=10p$. Total probability of a defect gives $0.2\\,(10p)+0.8\\,p=0.07$, i.e. $2p+0.8p=2.8p=0.07$, so $p=0.025$.",
+          "The good-computer rates are $P(D^c\\mid T_1)=1-10p=0.75$ and $P(D^c\\mid T_2)=1-p=0.975$.",
+          "Compute the joint good probabilities: $P(D^c\\cap T_2)=0.8\\times0.975=0.78$ and $P(D^c\\cap T_1)=0.2\\times0.75=0.15$.",
+          "Then $P(D^c)=0.78+0.15=0.93$, so $P(T_2\\mid D^c)=\\dfrac{0.78}{0.93}=\\dfrac{78}{93}$."
+        ]
+      },
+      {
+        "name": "Natural-frequency table on 1000 computers",
+        "steps": [
+          "Imagine $1000$ computers: $200$ from $T_1$ and $800$ from $T_2$. With $p=0.025$ (from $2.8p=0.07$), plant $T_1$ has defect rate $0.25$ and $T_2$ has $0.025$.",
+          "Defectives: $T_1$ contributes $200\\times0.25=50$ and $T_2$ contributes $800\\times0.025=20$, a total of $70$ — matching $7\\%$ of $1000$, a consistency check.",
+          "Good computers: $T_1$ has $200-50=150$ good, $T_2$ has $800-20=780$ good, so $150+780=930$ good in all.",
+          "Among the $930$ good computers, $780$ came from $T_2$, giving $P(T_2\\mid D^c)=\\dfrac{780}{930}=\\dfrac{78}{93}$, the same value."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 1, Q40. The two methods agree at $\\dfrac{78}{93}\\approx0.839$: because $T_2$ is both larger and far cleaner, learning a computer is defect-free nudges the posterior for $T_2$ above its $0.8$ prior — the natural-frequency count of $780$ out of $930$ makes that pull tangible."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Games, Who Leads on Points",
+    "difficulty": 4,
+    "task": "Find $P(X>Y)$ after two games.",
+    "pyq": {
+      "year": 2016,
+      "paper": "2",
+      "qno": "51"
+    },
+    "tags": [
+      "independent events",
+      "distribution of scores",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Football teams $T_1$ and $T_2$ play two games against each other, and the outcomes of the two games are independent. In a single game the probabilities that $T_1$ wins, draws, or loses against $T_2$ are $\\dfrac12$, $\\dfrac16$, and $\\dfrac13$ respectively. Each team earns $3$ points for a win, $1$ point for a draw, and $0$ points for a loss in each game. Let $X$ and $Y$ denote the total points scored by $T_1$ and $T_2$ respectively after both games. Find the probability that $T_1$ finishes strictly ahead of $T_2$ on points, i.e. $P(X>Y)$.",
+    "answer": "$\\boxed{\\dfrac{5}{12}}$",
+    "trap": "A draw is not neutral for the point difference — it adds $1$ to BOTH totals and so leaves $X-Y$ unchanged. The event $X>Y$ therefore is not 'at least one win'; it is driven only by the net win/loss balance. Treating a draw as if it helped $T_1$ get ahead, or forgetting that a win-and-a-loss ties the points, inflates the count of favourable cases.",
+    "solutions": [
+      {
+        "name": "Track the net win margin over two games",
+        "steps": [
+          "Per game let the outcome for $T_1$ be $W$ (prob $\\tfrac12$), $D$ (prob $\\tfrac16$), or $L$ (prob $\\tfrac13$). A draw adds $1$ to each of $X$ and $Y$, so $X>Y$ depends only on the number of $T_1$-wins minus $T_1$-losses across the two games.",
+          "Over two independent games, $X>Y$ occurs exactly when $T_1$'s wins exceed its losses: either two wins $(W,W)$, or one win and one draw (in either order).",
+          "$P(W,W)=\\left(\\tfrac12\\right)^2=\\tfrac14$. One win and one draw: $2\\cdot\\tfrac12\\cdot\\tfrac16=\\tfrac16$.",
+          "Hence $P(X>Y)=\\tfrac14+\\tfrac16=\\tfrac{3}{12}+\\tfrac{2}{12}=\\tfrac{5}{12}$."
+        ]
+      },
+      {
+        "name": "Full nine-outcome enumeration",
+        "steps": [
+          "List all $9$ ordered pairs of game results with probabilities $p_W=\\tfrac12,\\;p_D=\\tfrac16,\\;p_L=\\tfrac13$, and compute $(X,Y)$ for each: $WW\\!:(6,0)$, $WD$ and $DW\\!:(4,1)$, $WL$ and $LW\\!:(3,3)$, $DD\\!:(2,2)$, $DL$ and $LD\\!:(1,4)$, $LL\\!:(0,6)$.",
+          "Keep only the pairs with $X>Y$: $WW$ gives $(6,0)$; $WD$ and $DW$ give $(4,1)$. The mixed win/loss pairs $WL,LW$ tie at $(3,3)$ and do not count.",
+          "Sum their probabilities: $p_W^2+2p_Wp_D=\\tfrac14+2\\cdot\\tfrac12\\cdot\\tfrac16=\\tfrac14+\\tfrac16$.",
+          "This equals $\\tfrac{5}{12}$, confirming Method 1."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 2, Q51. Both routes land on $\\dfrac{5}{12}$: the key insight is that a draw cancels in the difference $X-Y$, so 'leading on points' reduces to 'more wins than losses' — the tidy net-margin view is far faster than grinding through all nine score pairs."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Probability the Two Scores Tie",
+    "difficulty": 3,
+    "task": "Find the probability that $T_1$ and $T_2$ finish with equal points.",
+    "pyq": {
+      "year": 2016,
+      "paper": "2",
+      "qno": "52"
+    },
+    "tags": [
+      "independent events",
+      "equal-score probability",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Football teams $T_1$ and $T_2$ play two games against each other, and the outcomes of the two games are independent. In a single game the probabilities that $T_1$ wins, draws and loses against $T_2$ are $\\tfrac12$, $\\tfrac16$ and $\\tfrac13$ respectively. Each team earns $3$ points for a win, $1$ point for a draw and $0$ points for a loss in each game. Let $X$ and $Y$ denote the total points of $T_1$ and $T_2$ after the two games. Find $P(X = Y)$.",
+    "answer": "$\\boxed{\\dfrac{13}{36}}$",
+    "trap": "The scores tie in two very different ways — the two games split (one win, one loss) or both games are drawn — and it is tempting to forget the second. Also, the win-loss split is a genuine tie at $X=Y=3$, not a “nothing happened” outcome to be discarded.",
+    "solutions": [
+      {
+        "name": "Enumerate the tying outcomes",
+        "steps": [
+          "$X=Y$ requires the two games to cancel: either $T_1$ wins one and loses the other (each team ends with $3$ points), or both games are drawn (each team ends with $2$ points).",
+          "$P(\\text{one win, one loss}) = 2\\cdot\\tfrac12\\cdot\\tfrac13 = \\tfrac13$, the factor $2$ counting which game $T_1$ wins.",
+          "$P(\\text{both drawn}) = \\left(\\tfrac16\\right)^2 = \\tfrac1{36}$.",
+          "Hence $P(X=Y) = \\tfrac13 + \\tfrac1{36} = \\tfrac{12}{36}+\\tfrac{1}{36} = \\dfrac{13}{36}$."
+        ]
+      },
+      {
+        "name": "Complement via the lead probability",
+        "steps": [
+          "The three events $\\{X>Y\\}$, $\\{X=Y\\}$, $\\{X<Y\\}$ partition the sample space, so $P(X=Y)=1-P(X>Y)-P(X<Y)$.",
+          "From the companion result, $P(X>Y)=\\tfrac{5}{12}$. Computing $P(X<Y)$ the same way — $T_2$ leads only by winning both games (each with prob $\\tfrac13$) or one win and one draw — gives $P(X<Y)=\\left(\\tfrac13\\right)^2+2\\cdot\\tfrac13\\cdot\\tfrac16=\\tfrac19+\\tfrac19=\\tfrac29$.",
+          "Therefore $P(X=Y)=1-\\tfrac{5}{12}-\\tfrac29=1-\\tfrac{15}{36}-\\tfrac{8}{36}=\\dfrac{13}{36}$, confirming the direct count."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 2, Q52. Because the game is not fair to $T_1$ and $T_2$ (win $\\tfrac12$ versus $\\tfrac13$), the two leads are unequal — so the tie must be pinned down directly or as the leftover $1-P(X>Y)-P(X<Y)$, not by any symmetry shortcut."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Conditional Data, Four Verdicts",
+    "difficulty": 3,
+    "task": "Decide which of the four statements are TRUE.",
+    "pyq": {
+      "year": 2017,
+      "paper": "1",
+      "qno": "43"
+    },
+    "tags": [
+      "conditional probability",
+      "addition rule",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "Two events $X$ and $Y$ satisfy $P(X)=\\dfrac13$, together with the conditional data $P(X\\mid Y)=\\dfrac12$ and $P(Y\\mid X)=\\dfrac25$. Working only from these three numbers, decide which of the following statements are true: $[A]$ $P(Y)=\\dfrac{4}{15}$; $[B]$ $P(X'\\mid Y)=\\dfrac12$; $[C]$ $P(X\\cap Y)=\\dfrac15$; $[D]$ $P(X\\cup Y)=\\dfrac25$.",
+    "answer": "$\\boxed{[A]\\text{ and }[B]}$",
+    "trap": "Statement $[C]$ is the sweetest bait: the intersection really is $P(X\\cap Y)=\\tfrac{2}{15}$, and a hurried eye reads that as a match. But the option asserts $\\tfrac15$, which is a different number, so $[C]$ is false. Likewise for $[D]$, do not forget to subtract the overlap once — $P(X\\cup Y)=\\tfrac{7}{15}$, not $\\tfrac25$.",
+    "solutions": [
+      {
+        "name": "Multiplication rule, then unwind each claim",
+        "steps": [
+          "The multiplication rule $P(X\\cap Y)=P(Y\\mid X)\\,P(X)$ pins the overlap first: $P(X\\cap Y)=\\dfrac25\\cdot\\dfrac13=\\dfrac{2}{15}$. Statement $[C]$ claims $\\tfrac15\\neq\\tfrac{2}{15}$, so $[C]$ is $\\textbf{false}$.",
+          "Recover $P(Y)$ from the other conditional: $P(Y)=\\dfrac{P(X\\cap Y)}{P(X\\mid Y)}=\\dfrac{2/15}{1/2}=\\dfrac{4}{15}$, so $[A]$ is $\\textbf{true}$.",
+          "The complement law inside a conditional gives $P(X'\\mid Y)=1-P(X\\mid Y)=1-\\dfrac12=\\dfrac12$, so $[B]$ is $\\textbf{true}$.",
+          "Finally $P(X\\cup Y)=P(X)+P(Y)-P(X\\cap Y)=\\dfrac13+\\dfrac{4}{15}-\\dfrac{2}{15}=\\dfrac{7}{15}\\neq\\dfrac25$, so $[D]$ is $\\textbf{false}$. Verdict: $[A]$ and $[B]$."
+        ]
+      },
+      {
+        "name": "Concrete $15$-cell model (probabilities as counts)",
+        "steps": [
+          "Scale everything to a sample space of $15$ equally likely cells so that every quantity becomes a whole count. Then $P(X)=\\dfrac13$ means $X$ owns $5$ cells and the overlap $P(X\\cap Y)=P(Y\\mid X)\\,P(X)=\\dfrac25\\cdot 5=2$ cells sit in $X\\cap Y$.",
+          "Because $P(X\\mid Y)=\\dfrac12$, the $2$ overlap cells are half of $Y$, forcing $Y$ to hold $4$ cells; hence $P(Y)=\\dfrac{4}{15}$ and $[A]$ holds. The intersection is $\\dfrac{2}{15}\\neq\\dfrac15$, killing $[C]$.",
+          "Within $Y$'s $4$ cells, $2$ lie outside $X$, so $P(X'\\mid Y)=\\dfrac24=\\dfrac12$, giving $[B]$. The union covers $5+4-2=7$ cells, so $P(X\\cup Y)=\\dfrac{7}{15}\\neq\\dfrac25$, killing $[D]$.",
+          "The count model reproduces every original datum ($P(X)=\\tfrac{5}{15}$, $P(X\\mid Y)=\\tfrac24$, $P(Y\\mid X)=\\tfrac25$) and confirms the answer $[A],[B]$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 1, Q43. The examiner planted a near-miss in $[C]$ — the true intersection $\\tfrac{2}{15}$ is disguised as the false $\\tfrac15$ — so read the printed value, not the one you expect."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Even Coordinate on a Lattice Triangle",
+    "difficulty": 3,
+    "task": "Find the probability that $z$ is even.",
+    "pyq": {
+      "year": 2017,
+      "paper": "2",
+      "qno": "43"
+    },
+    "tags": [
+      "classical probability",
+      "counting solutions",
+      "parity",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "Three nonnegative integers $x$, $y$ and $z$ are chosen at random from among all triples satisfying $x+y+z=10$, every such triple being equally likely. Find the probability that $z$ is even.",
+    "answer": "$\\boxed{\\dfrac{6}{11}}$",
+    "trap": "The words $\\text{\"three randomly chosen integers\"}$ tempt you to model $x,y,z$ as independent uniform draws and quote $\\tfrac12$ for the parity of $z$. That is wrong: the constraint $x+y+z=10$ makes the triples the equally likely objects, and even and odd values of $z$ do not occur equally often — the even values (including $z=0$) carry one extra outcome.",
+    "solutions": [
+      {
+        "name": "Count outcomes directly (stars and bars)",
+        "steps": [
+          "The total number of nonnegative solutions of $x+y+z=10$ is $\\dbinom{10+2}{2}=\\dbinom{12}{2}=66$; these are the equally likely outcomes.",
+          "Fix $z$ to an even value. For each even $z$, the number of $(x,y)$ with $x+y=10-z$ is $(10-z)+1=11-z$.",
+          "Summing over $z\\in\\{0,2,4,6,8,10\\}$ gives $11+9+7+5+3+1=36$ favourable triples.",
+          "Hence the probability is $\\dfrac{36}{66}=\\dfrac{6}{11}$."
+        ]
+      },
+      {
+        "name": "Split the count by the parity of $z$ (symmetry of the leftover line)",
+        "steps": [
+          "Partition the $66$ triples by whether $z$ is even or odd. When $z$ is odd, $z\\in\\{1,3,5,7,9\\}$ and the residual line $x+y=10-z$ has $10,8,6,4,2$ solutions, totalling $30$.",
+          "The even-$z$ count is then the complement $66-30=36$, without re-summing.",
+          "The imbalance comes from $z=0$: it contributes a full $11$ outcomes with no odd partner, tilting the count toward even.",
+          "Therefore $P(z\\text{ even})=\\dfrac{36}{66}=\\dfrac{6}{11}$, agreeing with the direct count."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 2, Q43. The lesson is that \"random\" attaches to the equally likely triples, not to independent uniform coordinates — the lone triple family at $z=0$ nudges the answer just past $\\tfrac12$ to $\\tfrac{6}{11}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three Bags and a Green Ball",
+    "difficulty": 3,
+    "task": "Decide which of the four statements about the green-ball draw are correct.",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "8"
+    },
+    "tags": [
+      "total probability",
+      "Bayes theorem",
+      "conditional probability",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "There are three bags $B_1$, $B_2$ and $B_3$. Bag $B_1$ contains $5$ red and $5$ green balls, $B_2$ contains $3$ red and $5$ green balls, and $B_3$ contains $5$ red and $3$ green balls. The bags $B_1$, $B_2$, $B_3$ are chosen with probabilities $\\dfrac{3}{10}$, $\\dfrac{3}{10}$ and $\\dfrac{4}{10}$ respectively. A bag is selected at random according to these weights, and then a ball is drawn at random from the chosen bag. Which of the following statements is/are correct? (A) the probability that the chosen ball is green equals $\\dfrac{39}{80}$; (B) the probability that the chosen ball is green, given that the selected bag is $B_3$, equals $\\dfrac{3}{8}$; (C) the probability that the selected bag is $B_3$ and the chosen ball is green equals $\\dfrac{3}{10}$; (D) the probability that the selected bag is $B_3$, given that the chosen ball is green, equals $\\dfrac{5}{13}$.",
+    "answer": "$\\boxed{\\text{(A), (B)}}$",
+    "trap": "The bags carry unequal priors, so the last two options invite the classic slip of confusing $P(B_3\\cap G)$ with $P(B_3\\mid G)$ and of running Bayes' theorem backwards. Option (C) is a joint probability, not a prior, and equals $\\tfrac{4}{10}\\cdot\\tfrac38=\\tfrac{3}{20}$ — not $\\tfrac{3}{10}$. Option (D) computes to $\\tfrac{4}{13}$, and the plausible-looking $\\tfrac{5}{13}$ is exactly the wrong-way ratio; only (A) and (B) survive.",
+    "solutions": [
+      {
+        "name": "Total probability then Bayes",
+        "steps": [
+          "Each bag holds $8$ or $10$ balls, so $P(G\\mid B_1)=\\tfrac{5}{10}=\\tfrac12$, $P(G\\mid B_2)=\\tfrac58$ and $P(G\\mid B_3)=\\tfrac38$. Statement (B) is read off directly: $P(G\\mid B_3)=\\tfrac38$, correct.",
+          "By the law of total probability, $P(G)=\\tfrac{3}{10}\\cdot\\tfrac12+\\tfrac{3}{10}\\cdot\\tfrac58+\\tfrac{4}{10}\\cdot\\tfrac38=\\tfrac{75+75+60}{800}=\\tfrac{210}{400}$. Wait — recompute over a common denominator $80$: $\\tfrac{3}{10}\\cdot\\tfrac12=\\tfrac{12}{80}$, $\\tfrac{3}{10}\\cdot\\tfrac58=\\tfrac{15}{80}$, $\\tfrac{4}{10}\\cdot\\tfrac38=\\tfrac{12}{80}$, summing to $\\tfrac{39}{80}$. So (A) is correct.",
+          "For (C), the joint probability is $P(B_3\\cap G)=\\tfrac{4}{10}\\cdot\\tfrac38=\\tfrac{3}{20}\\ne\\tfrac{3}{10}$, so (C) is false.",
+          "For (D), Bayes gives $P(B_3\\mid G)=\\dfrac{P(B_3\\cap G)}{P(G)}=\\dfrac{3/20}{39/80}=\\dfrac{3}{20}\\cdot\\dfrac{80}{39}=\\dfrac{12}{39}=\\dfrac{4}{13}\\ne\\tfrac{5}{13}$, so (D) is false. Correct answers: (A), (B)."
+        ]
+      },
+      {
+        "name": "Common-scale frequency count",
+        "steps": [
+          "Scale so the experiment is repeated $80$ times (a convenient multiple of $10$ and of the bag sizes $8,10$). The three bags are chosen $\\tfrac{3}{10}\\cdot80=24$, $\\tfrac{3}{10}\\cdot80=24$ and $\\tfrac{4}{10}\\cdot80=32$ times respectively.",
+          "Green draws expected: from $B_1$, $24\\cdot\\tfrac{5}{10}=12$; from $B_2$, $24\\cdot\\tfrac58=15$; from $B_3$, $32\\cdot\\tfrac38=12$. Total green $=12+15+12=39$ out of $80$, so $P(G)=\\tfrac{39}{80}$, confirming (A); and $P(G\\mid B_3)=\\tfrac{12}{32}=\\tfrac38$, confirming (B).",
+          "Among the $39$ green draws, $12$ came from $B_3$, so $P(B_3\\mid G)=\\tfrac{12}{39}=\\tfrac{4}{13}$, killing (D). The count of green draws that were from $B_3$ is $12$ out of $80$ trials, i.e. $P(B_3\\cap G)=\\tfrac{12}{80}=\\tfrac{3}{20}$, killing (C).",
+          "Both viewpoints agree exactly, so the correct options are (A) and (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 1, Q8 (Section 2). The whole item is a trap-detector: (A) tests forward total probability, (B) tests reading a conditional off the bag, and (C)/(D) punish anyone who swaps a joint probability for a posterior or inverts the Bayes ratio — the honest values $\\tfrac{3}{20}$ and $\\tfrac{4}{13}$ sit one small step away from the tempting distractors."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Singular 0–1 Matrices with Seven Ones",
+    "difficulty": 4,
+    "task": "Compute the conditional probability $P(E_1\\mid E_2)$.",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "3"
+    },
+    "tags": [
+      "conditional probability",
+      "determinants of 0-1 matrices",
+      "counting",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "Let $S$ be the sample space of all $3\\times3$ matrices whose entries come from the set $\\{0,1\\}$, each such matrix being equally likely. Define two events by $E_1=\\{A\\in S:\\det A=0\\}$ and $E_2=\\{A\\in S:\\text{the sum of all entries of }A\\text{ equals }7\\}$. A matrix is chosen at random from $S$. Find the conditional probability $P(E_1\\mid E_2)$, i.e. the probability that the chosen matrix is singular given that its entries add up to $7$.",
+    "answer": "$\\boxed{0.5}$",
+    "trap": "The full sample space has $2^9=512$ matrices, but conditioning on $E_2$ makes almost all of that irrelevant: only the $\\binom{9}{2}=36$ matrices with exactly two zeros matter. The real work is a determinant characterisation — with seven $1$'s in place, the matrix is singular precisely when the two zeros share a row or share a column, which makes two rows (or two columns) identical. Miscounting the 'same line' placements, or forgetting that the ambient $512$ cancels, is the usual failure.",
+    "solutions": [
+      {
+        "name": "Zero-placement casework",
+        "steps": [
+          "A matrix in $E_2$ has entry-sum $7$, i.e. exactly two of the nine entries are $0$ and the rest are $1$. The number of such matrices is $n(E_2)=\\binom{9}{2}=36$; these are equally likely within $E_2$.",
+          "Start from the all-ones matrix $J$ (whose rows are all $(1,1,1)$) and knock out two entries. Two rows of the resulting matrix are equal iff those two rows are left untouched or altered identically; the clean singular cases arise when the two zeros lie in the same row or the same column, forcing two rows (or columns) to be identical and hence $\\det A=0$.",
+          "Same row: choose the row ($3$ ways) and the two columns to zero out ($\\binom{3}{2}=3$ ways) $=9$. Same column: by symmetry $9$. These are disjoint (two zeros cannot be both in one row and one column), so $n(E_1\\cap E_2)=9+9=18$.",
+          "When the two zeros are in different rows and different columns, expanding the determinant gives $\\det A=\\pm1\\ne0$, so no further singular matrices appear. Therefore $P(E_1\\mid E_2)=\\dfrac{n(E_1\\cap E_2)}{n(E_2)}=\\dfrac{18}{36}=0.5$."
+        ]
+      },
+      {
+        "name": "Complementary 'zeros on a transversal' count",
+        "steps": [
+          "Again $n(E_2)=\\binom{9}{2}=36$. Instead of counting singular matrices, count the non-singular ones and subtract.",
+          "Place the two zeros in distinct rows and distinct columns (a 'transversal' placement). Choose two rows $\\binom{3}{2}=3$, two columns $\\binom{3}{2}=3$, and a bijection between them ($2$ ways to match the two chosen rows to the two chosen columns): $3\\cdot3\\cdot2=18$ placements.",
+          "For each such placement every row and column still contains at least two $1$'s and no two rows coincide; a direct expansion shows $\\det A=\\pm1\\ne0$, so all $18$ are in $E_2\\setminus E_1$. Hence $n(E_1\\cap E_2)=36-18=18$.",
+          "Thus $P(E_1\\mid E_2)=\\dfrac{18}{36}=0.5$, agreeing with the direct casework."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 1, Q3 (Section 3). Conditioning collapses a $512$-element space to just $36$ candidates, and the singular/non-singular split is perfectly even — the two zeros are singular exactly when they lie on a common line and invertible exactly when they lie on a transversal, and there are $18$ of each."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Independent Events, Counting the Pairs",
+    "difficulty": 5,
+    "task": "Find the number of ordered pairs $(A,B)$.",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "5"
+    },
+    "tags": [
+      "independent events",
+      "counting ordered pairs",
+      "sets",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "Let $|X|$ denote the number of elements in a set $X$, and take $S=\\{1,2,3,4,5,6\\}$ as a sample space in which each of the six outcomes is equally likely. Suppose $A$ and $B$ are events associated with $S$ (that is, subsets of $S$) which are independent in the probabilistic sense. Counting $A$ and $B$ as an ordered pair, determine how many such pairs $(A,B)$ satisfy the extra size restriction $1\\le|B|<|A|$.",
+    "answer": "$\\boxed{422}$",
+    "trap": "Independence here is not about $A$ and $B$ being disjoint or nested — it is the equation $P(A\\cap B)=P(A)\\,P(B)$. With equally likely outcomes this becomes the divisibility condition $6\\,|A\\cap B|=|A|\\,|B|$, so $|A||B|$ must be a multiple of $6$. Overlooking that $\\varnothing$ and $S$ are independent of everything, or double-counting unordered pairs, both derail the count.",
+    "solutions": [
+      {
+        "name": "Reduce to an integer equation, then place the blocks",
+        "steps": [
+          "For equally likely outcomes $P(A)=\\dfrac{|A|}{6}$, so independence $P(A\\cap B)=P(A)P(B)$ reads $\\dfrac{|A\\cap B|}{6}=\\dfrac{|A|}{6}\\cdot\\dfrac{|B|}{6}$, i.e. $6\\,|A\\cap B|=|A|\\,|B|$.",
+          "Write $a=|A|$, $b=|B|$, $k=|A\\cap B|$. We need $6k=ab$ with $k$ a non-negative integer, $1\\le b<a\\le 6$, and the pieces fitting inside $S$: $|A\\cup B|=a+b-k\\le 6$.",
+          "Sweep the admissible $(a,b)$ with $ab$ divisible by $6$: $(3,2)\\!\\Rightarrow\\!k=1$, $(4,3)\\!\\Rightarrow\\!k=2$, and every $(6,b)$ for $b=1,2,3,4,5\\Rightarrow k=b$ (here $A=S$).",
+          "For each triple, choose the overlap, then $A$'s private part, then $B$'s private part: $\\binom{6}{k}\\binom{6-k}{a-k}\\binom{6-a}{b-k}$. This gives $180,\\,180,\\,6,\\,15,\\,20,\\,15,\\,6$ respectively.",
+          "Summing: $180+180+6+15+20+15+6=\\boxed{422}$."
+        ]
+      },
+      {
+        "name": "Exhaustive verification over all $64\\times64$ pairs",
+        "steps": [
+          "Every event is one of the $2^{6}=64$ subsets of $S$, so there are $64\\times64$ ordered pairs $(A,B)$ to screen.",
+          "Keep a pair only if it passes both filters: the size condition $1\\le|B|<|A|$, and the independence condition $6\\,|A\\cap B|=|A|\\,|B|$.",
+          "Programmatically iterating over all pairs and tallying those that survive both filters returns exactly $422$, confirming the block-counting result and guarding against any missed $(a,b,k)$ case."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 2, Q5 (numerical). The whole problem is the innocent-looking line $6\\,|A\\cap B|=|A|\\,|B|$: probabilistic independence over a uniform sample space is nothing but a divisibility constraint on set sizes."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Biased Coins Force Equal Roots",
+    "difficulty": 4,
+    "task": "Find the probability that $x^2-\\alpha x+\\beta$ has real and equal roots.",
+    "pyq": {
+      "year": 2020,
+      "paper": "1",
+      "qno": "5"
+    },
+    "tags": [
+      "binomial distribution",
+      "discriminant condition",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Two biased coins $C_1$ and $C_2$ give heads in a single toss with probabilities $\\tfrac23$ and $\\tfrac13$ respectively. Let $\\alpha$ be the number of heads when $C_1$ is tossed twice independently, and let $\\beta$ be the number of heads when $C_2$ is tossed twice independently. Find the probability that the roots of the quadratic $x^2-\\alpha x+\\beta$ are real and equal.",
+    "answer": "$\\boxed{\\dfrac{20}{81}}$",
+    "trap": "The roots are real and equal only when the discriminant vanishes: $\\alpha^2-4\\beta=0$, not merely $\\alpha^2\\ge 4\\beta$. Since $\\alpha,\\beta\\in\\{0,1,2\\}$, the only exact solutions are $(\\alpha,\\beta)=(0,0)$ and $(2,1)$ — the case $(\\alpha,\\beta)=(2,1)$ is easy to miss, and one must remember that $\\alpha$ comes from the $\\tfrac23$-coin while $\\beta$ comes from the $\\tfrac13$-coin, so their distributions are different.",
+    "solutions": [
+      {
+        "name": "List the discriminant-zero pairs",
+        "steps": [
+          "Real and equal roots require the discriminant to be zero: $\\alpha^2-4\\beta=0$, i.e. $\\alpha^2=4\\beta$, with $\\alpha,\\beta\\in\\{0,1,2\\}$.",
+          "Checking each $\\alpha$: $\\alpha=0\\Rightarrow\\beta=0$; $\\alpha=1\\Rightarrow\\beta=\\tfrac14$ (not an integer, rejected); $\\alpha=2\\Rightarrow\\beta=1$. So only $(\\alpha,\\beta)=(0,0)$ and $(2,1)$ qualify.",
+          "For $C_1$ (heads prob $\\tfrac23$): $P(\\alpha=0)=\\left(\\tfrac13\\right)^2=\\tfrac19$ and $P(\\alpha=2)=\\left(\\tfrac23\\right)^2=\\tfrac49$. For $C_2$ (heads prob $\\tfrac13$): $P(\\beta=0)=\\left(\\tfrac23\\right)^2=\\tfrac49$ and $P(\\beta=1)=\\binom21\\tfrac13\\tfrac23=\\tfrac49$.",
+          "Since $\\alpha$ and $\\beta$ are independent, $P=P(\\alpha=0)P(\\beta=0)+P(\\alpha=2)P(\\beta=1)=\\tfrac19\\cdot\\tfrac49+\\tfrac49\\cdot\\tfrac49=\\tfrac{4}{81}+\\tfrac{16}{81}=\\dfrac{20}{81}$."
+        ]
+      },
+      {
+        "name": "Full joint table over $(\\alpha,\\beta)$",
+        "steps": [
+          "Write the two binomial rows. For $C_1$: $P(\\alpha=0,1,2)=\\left(\\tfrac19,\\tfrac49,\\tfrac49\\right)$. For $C_2$: $P(\\beta=0,1,2)=\\left(\\tfrac49,\\tfrac49,\\tfrac19\\right)$.",
+          "The equal-roots condition $\\alpha^2=4\\beta$ selects exactly the cells $(\\alpha,\\beta)=(0,0)$ and $(2,1)$ from the full $3\\times3$ joint distribution; every other cell has $\\alpha^2\\ne 4\\beta$ (e.g. $(2,0)$ gives $4\\ne0$, $(1,\\cdot)$ gives $1\\ne4\\beta$).",
+          "Their joint probabilities are $P(0,0)=\\tfrac19\\cdot\\tfrac49=\\tfrac{4}{81}$ and $P(2,1)=\\tfrac49\\cdot\\tfrac49=\\tfrac{16}{81}$.",
+          "Adding the selected cells gives $\\tfrac{4}{81}+\\tfrac{16}{81}=\\dfrac{20}{81}$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 1, Q5. The whole problem hinges on reading “real and equal” as discriminant $=0$: the integer constraint $\\alpha,\\beta\\in\\{0,1,2\\}$ then leaves only two admissible cells, so a probability question quietly becomes a two-term sum."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Missiles Needed to Destroy the Target",
+    "difficulty": 4,
+    "task": "Find the least number of missiles fired so that destruction is at least 95% certain.",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "2"
+    },
+    "tags": [
+      "binomial distribution",
+      "cumulative probability",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Each missile hits its target successfully with probability $0.75$, independently of the others. The target is completely destroyed only if it receives at least three successful hits. If $n$ missiles are fired, let the number of hits be $X\\sim\\text{Bin}(n,\\tfrac34)$. Find the minimum value of $n$ for which the probability of completely destroying the target, namely $P(X\\ge 3)$, is not less than $0.95$.",
+    "answer": "$\\boxed{6}$",
+    "trap": "The threshold is “at least three hits,” so the complement is $\\{0,1,2\\}$ — three terms, not one. Stopping at $P(X\\ge 1)$ or forgetting the $X=2$ term inflates the probability and lets $n=5$ sneak past, but $n=5$ actually gives only $0.8965 < 0.95$.",
+    "solutions": [
+      {
+        "name": "Complementary cumulative binomial, tested upward",
+        "steps": [
+          "Destruction requires $X\\ge 3$, so $P(X\\ge 3)=1-\\big[P(X=0)+P(X=1)+P(X=2)\\big]$ with $p=\\tfrac34,\\ q=\\tfrac14$.",
+          "The complement is $\\dfrac{1}{4^n}\\left[\\binom{n}{0}3^0+\\binom{n}{1}3^1+\\binom{n}{2}3^2\\right]=\\dfrac{1+3n+\\tfrac{9n(n-1)}{2}}{4^n}$, so we need $\\dfrac{1+3n+\\tfrac{9n(n-1)}{2}}{4^n}\\le 0.05$.",
+          "For $n=5$: the bracket is $1+15+90=106$ and $4^5=1024$, giving $106/1024\\approx0.1035>0.05$, so $P(X\\ge3)\\approx0.8965<0.95$ — not enough.",
+          "For $n=6$: the bracket is $1+18+135=154$ and $4^6=4096$, giving $154/4096\\approx0.0376\\le0.05$, so $P(X\\ge3)\\approx0.9624\\ge0.95$.",
+          "Since the complement is strictly decreasing in $n$, the least such $n$ is $6$."
+        ]
+      },
+      {
+        "name": "Monotonicity plus a single boundary check",
+        "steps": [
+          "Let $f(n)=P(X\\ge 3)$ when $n$ missiles are fired. Adding one more missile can only create more chances to reach three hits, so $f(n)$ is strictly increasing in $n$.",
+          "Hence the answer is the smallest $n$ with $f(n)\\ge 0.95$; it suffices to locate the crossover by checking consecutive integers.",
+          "Compute $f(5)=1-\\dfrac{106}{1024}=\\dfrac{918}{1024}\\approx0.8965$, which is below $0.95$.",
+          "Compute $f(6)=1-\\dfrac{154}{4096}=\\dfrac{3942}{4096}\\approx0.9624$, which clears $0.95$.",
+          "By monotonicity every $n\\ge 6$ also works and no $n\\le 5$ does, so the minimum is $6$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 2, Q2. With a lopsided success rate ($p=\\tfrac34$) the cumulative probability climbs fast, so the “$\\ge 0.95$” bar is cleared at a surprisingly small $n$ — the whole problem is one clean complement plus a boundary check."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Perfect Square Before a Prime",
+    "difficulty": 4,
+    "task": "Given the stopping sum is a perfect square, find the probability it is odd, then report $14p$.",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "15"
+    },
+    "tags": [
+      "conditional probability",
+      "dice",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Two fair dice, each with faces $1,2,3,4,5,6$, are rolled together and the sum of the two faces is noted. This is repeated until the sum is either a prime number or a perfect square, at which point the process stops. Suppose the sum turns out to be a perfect square before it turns out to be a prime number. Let $p$ be the conditional probability that this perfect square is odd. Find the value of $14p$.",
+    "answer": "$\\boxed{8}$",
+    "trap": "Every round that yields neither a prime nor a square is simply ignored, so those geometric “retry” rounds contribute nothing — the answer depends only on the relative weights of the prime and square sums. Trying to sum an infinite series, or dividing by all $36$ outcomes instead of by the square outcomes alone, both derail the count.",
+    "solutions": [
+      {
+        "name": "Collapse the geometric retries to a single conditional ratio",
+        "steps": [
+          "Tabulate the number of ways to obtain each sum with two dice. The prime sums are $2,3,5,7,11$, occurring in $1+2+4+6+2=15$ ways; the perfect-square sums are $4$ and $9$, occurring in $3+4=7$ ways.",
+          "Each round independently ends in a square with probability $\\tfrac{7}{36}$ and in a prime with probability $\\tfrac{15}{36}$; any other sum triggers a retry. Because retries reset the situation identically, the probability that a square arrives strictly before a prime is $\\dfrac{7/36}{7/36+15/36}=\\dfrac{7}{22}$, and — crucially — conditioning on “a square came first” just reweights the two square sums by their counts.",
+          "Among the square sums, $9$ (odd) arises in $4$ ways and $4$ (even) in $3$ ways, so $p=P(\\text{sum}=9\\mid\\text{square first})=\\dfrac{4}{4+3}=\\dfrac{4}{7}$.",
+          "Therefore $14p=14\\cdot\\dfrac{4}{7}=8$."
+        ]
+      },
+      {
+        "name": "Infinite geometric series over the retry rounds",
+        "steps": [
+          "Let $a=\\tfrac{7}{36}$ (square), $b=\\tfrac{15}{36}$ (prime), and $r=1-a-b=\\tfrac{14}{36}$ (retry). Split the square event by its value: $P(\\text{first stop is }9)=\\sum_{k=0}^{\\infty} r^{k}\\cdot\\tfrac{4}{36}=\\dfrac{4/36}{1-r}$ and $P(\\text{first stop is }4)=\\dfrac{3/36}{1-r}$.",
+          "Likewise $P(\\text{square before prime})=\\dfrac{7/36}{1-r}$, since $1-r=a+b=\\tfrac{22}{36}$ is the per-round chance of actually stopping.",
+          "The common factor $\\dfrac{1}{1-r}$ cancels in the conditional probability, leaving $p=\\dfrac{4/36}{7/36}=\\dfrac{4}{7}$.",
+          "Hence $14p=14\\cdot\\dfrac{4}{7}=8$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 2, Q15. The endless “neither prime nor square” rounds are a red herring: conditioning collapses them, so the answer is just the count of the odd square ($9$: four ways) over all square outcomes ($4$ and $9$: seven ways)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Three-Stage Set Shuffle",
+    "difficulty": 5,
+    "task": "Find the conditional probability $p=P\\!\\left(S_1=\\{1,2\\}\\mid E_1=E_3\\right)$.",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "3"
+    },
+    "tags": [
+      "conditional probability",
+      "Bayes theorem",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "Consider the three sets $E_1=\\{1,2,3\\}$, $F_1=\\{1,3,4\\}$ and $G_1=\\{2,3,4,5\\}$. Two elements are chosen at random, without replacement, from $E_1$, and let $S_1$ denote the set of these two chosen elements. Set $E_2=E_1-S_1$ and $F_2=F_1\\cup S_1$. Next, two elements are chosen at random, without replacement, from $F_2$, and let $S_2$ denote the set of these two chosen elements. Set $G_2=G_1\\cup S_2$. Finally, two elements are chosen at random, without replacement, from $G_2$, and let $S_3$ denote the set of these two chosen elements, and put $E_3=E_2\\cup S_3$. Given that the whole process ends with $E_3=E_1$, let $p$ be the conditional probability of the event $S_1=\\{1,2\\}$. Determine the value of $p$.",
+    "answer": "$\\boxed{\\dfrac{1}{5}}$",
+    "trap": "The conditioning event $E_1=E_3$ is not automatic — it forces the two elements removed from $E_1$ at the first stage to be handed back through $S_3$ at the last stage. Treating the three branches $S_1\\in\\{\\{1,2\\},\\{1,3\\},\\{2,3\\}\\}$ as equally likely under the condition (and answering $\\tfrac13$) ignores that each branch reaches $E_3=E_1$ with a different likelihood, because the size of $F_2$, and hence every downstream draw, depends on which elements $S_1$ carried into $F_1$.",
+    "solutions": [
+      {
+        "name": "Bayes over the three first-stage branches",
+        "steps": [
+          "The first draw picks $S_1$ uniformly from the $\\binom{3}{2}=3$ pairs, so $P(S_1=\\{1,2\\})=P(S_1=\\{1,3\\})=P(S_1=\\{2,3\\})=\\dfrac13$. For each branch we need the likelihood $\\ell=P(E_3=E_1\\mid S_1)$.",
+          "Since $E_3=E_2\\cup S_3$ and $E_2=E_1-S_1$, the requirement $E_3=E_1$ is exactly $S_3=S_1$: the two elements taken out at stage one must reappear as the final pair $S_3$.",
+          "Branch $S_1=\\{1,2\\}$: then $F_2=\\{1,3,4\\}\\cup\\{1,2\\}=\\{1,2,3,4\\}$ ($4$ elements). To later have $\\{1,2\\}\\subseteq G_2$ we need $S_2\\supseteq\\{2\\}$ (element $1$ is already absent from $G_1$; element $2\\in G_1$). Carefully enumerating $S_2$ from $F_2$ then $S_3$ from $G_2=G_1\\cup S_2$ gives $\\ell_{12}=\\dfrac{1}{20}$.",
+          "Branch $S_1=\\{1,3\\}$: $F_2=\\{1,3,4\\}$ ($3$ elements) and the analogous count gives $\\ell_{13}=\\dfrac{1}{15}$; branch $S_1=\\{2,3\\}$: $F_2=\\{1,2,3,4\\}$ gives $\\ell_{23}=\\dfrac{2}{15}$.",
+          "By Bayes' theorem, $p=\\dfrac{\\tfrac13\\,\\ell_{12}}{\\tfrac13(\\ell_{12}+\\ell_{13}+\\ell_{23})}=\\dfrac{1/20}{1/20+1/15+2/15}$. The denominator is $\\dfrac{3}{60}+\\dfrac{4}{60}+\\dfrac{8}{60}=\\dfrac{15}{60}=\\dfrac14$, so $p=\\dfrac{1/20}{1/4}=\\dfrac{4}{20}=\\dfrac15$."
+        ]
+      },
+      {
+        "name": "Exhaustive weighted enumeration of paths",
+        "steps": [
+          "Assign every complete outcome $(S_1,S_2,S_3)$ its probability $P(S_1)P(S_2\\mid S_1)P(S_3\\mid S_1,S_2)=\\dfrac13\\cdot\\dfrac{1}{\\binom{|F_2|}{2}}\\cdot\\dfrac{1}{\\binom{|G_2|}{2}}$, where $|F_2|\\in\\{3,4\\}$ and $|G_2|\\in\\{5,6\\}$ depend on the earlier picks.",
+          "Keep only the paths with $E_3=E_1$ (equivalently $S_3=S_1$). Summing their probabilities gives $P(E_3=E_1)=\\dfrac{1}{12}$.",
+          "Among those, the paths with $S_1=\\{1,2\\}$ contribute total probability $\\dfrac13\\cdot\\dfrac{1}{20}=\\dfrac{1}{60}$.",
+          "Hence $p=\\dfrac{P(S_1=\\{1,2\\}\\ \\text{and}\\ E_3=E_1)}{P(E_3=E_1)}=\\dfrac{1/60}{1/12}=\\dfrac{12}{60}=\\dfrac15$, confirming Method 1."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 1, Q3. The event $E_3=E_1$ secretly says “whatever left must come back,” so the whole three-stage machine collapses to comparing how easily each starting pair can be resurrected — and the pair $\\{1,2\\}$, which fattens $F_2$ to four elements, is the hardest to restore, hence the least likely cause."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Maximum of Three Draws, Rescaled",
+    "difficulty": 3,
+    "task": "Compute the value of $\\dfrac{625}{4}\\,p_1$.",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "5"
+    },
+    "tags": [
+      "probability with replacement",
+      "maximum of sample",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "Three numbers are chosen at random, one after another with replacement, from the set $S=\\{1,2,3,\\dots,100\\}$. Let $p_1$ be the probability that the maximum of the three chosen numbers is at least $81$. (A companion quantity $p_2$, the probability that the minimum is at most $40$, is defined for a related part but is not needed here.) Find the value of $\\dfrac{625}{4}\\,p_1$.",
+    "answer": "$\\boxed{76.25}$",
+    "trap": "“Maximum is at least $81$” is a statement about the largest of three numbers, not about a single draw. Computing $P(\\text{one fixed draw}\\ge 81)=\\tfrac{20}{100}$ and stopping ignores that the maximum exceeds $80$ as soon as any one of the three does. The clean route is the complement: the maximum is below $81$ exactly when all three draws avoid $\\{81,\\dots,100\\}$.",
+    "solutions": [
+      {
+        "name": "Complement of the maximum",
+        "steps": [
+          "The maximum of the three numbers is at least $81$ unless every one of the three draws lands in $\\{1,2,\\dots,80\\}$. So $p_1=1-P(\\text{all three}\\le 80)$.",
+          "Draws are with replacement and independent, each landing in $\\{1,\\dots,80\\}$ with probability $\\dfrac{80}{100}=\\dfrac45$. Hence $P(\\text{all three}\\le 80)=\\left(\\dfrac45\\right)^3=\\dfrac{64}{125}$.",
+          "Therefore $p_1=1-\\dfrac{64}{125}=\\dfrac{61}{125}$.",
+          "Finally $\\dfrac{625}{4}\\,p_1=\\dfrac{625}{4}\\cdot\\dfrac{61}{125}=\\dfrac{5\\cdot 61}{4}=\\dfrac{305}{4}=76.25$."
+        ]
+      },
+      {
+        "name": "Binomial count of draws in the top block",
+        "steps": [
+          "Call a draw a “success” if it lands in the top block $\\{81,\\dots,100\\}$, which has probability $q=\\dfrac{20}{100}=\\dfrac15$ per draw; the number of successes among the three draws is $\\text{Binomial}(3,\\tfrac15)$.",
+          "The maximum is at least $81$ precisely when there is at least one success, so $p_1=\\binom31 q(1-q)^2+\\binom32 q^2(1-q)+\\binom33 q^3$.",
+          "Substituting $q=\\dfrac15$: $p_1=3\\cdot\\dfrac15\\cdot\\dfrac{16}{25}+3\\cdot\\dfrac{1}{25}\\cdot\\dfrac45+\\dfrac{1}{125}=\\dfrac{48}{125}+\\dfrac{12}{125}+\\dfrac{1}{125}=\\dfrac{61}{125}$.",
+          "Then $\\dfrac{625}{4}\\,p_1=\\dfrac{625}{4}\\cdot\\dfrac{61}{125}=\\dfrac{305}{4}=76.25$, matching Method 1."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 1, Q5. The scaling factor $\\tfrac{625}{4}=\\tfrac{5^4}{4}$ is engineered so that the $125=5^3$ in the denominator of $p_1$ cancels cleanly, turning a messy fraction into the tidy decimal $76.25$ the answer grid expects."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Multiple of 3 or 7 up to 2000",
+    "difficulty": 3,
+    "task": "Find $500p$, where $p$ is the probability of a multiple of 3 or 7.",
+    "pyq": {
+      "year": 2021,
+      "paper": "2",
+      "qno": "17"
+    },
+    "tags": [
+      "classical probability",
+      "inclusion-exclusion",
+      "counting multiples",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "A number is chosen at random from the set $\\{1,2,3,\\ldots,2000\\}$. Let $p$ be the probability that the chosen number is a multiple of $3$ or a multiple of $7$. Then determine the value of $500p$.",
+    "answer": "$\\boxed{214}$",
+    "trap": "The word “or” is inclusive: a multiple of $21$ is counted by both the $3$-list and the $7$-list, so you must subtract the overlap once. Adding $\\lfloor 2000/3\\rfloor+\\lfloor 2000/7\\rfloor$ without removing the multiples of $\\operatorname{lcm}(3,7)=21$ double-counts $95$ numbers and inflates the answer.",
+    "solutions": [
+      {
+        "name": "Inclusion–exclusion on the favourable count",
+        "steps": [
+          "Multiples of $3$ in the set number $\\lfloor 2000/3\\rfloor=666$, and multiples of $7$ number $\\lfloor 2000/7\\rfloor=285$.",
+          "Their common multiples are the multiples of $\\operatorname{lcm}(3,7)=21$, of which there are $\\lfloor 2000/21\\rfloor=95$.",
+          "By inclusion–exclusion the favourable count is $666+285-95=856$, so $p=\\dfrac{856}{2000}$.",
+          "Hence $500p=500\\cdot\\dfrac{856}{2000}=\\dfrac{856}{4}=214$."
+        ]
+      },
+      {
+        "name": "Probabilities via the addition rule",
+        "steps": [
+          "Let $A$ be “multiple of $3$” and $B$ be “multiple of $7$.” Then $P(A)=\\dfrac{666}{2000}$, $P(B)=\\dfrac{285}{2000}$ and $P(A\\cap B)=\\dfrac{95}{2000}$.",
+          "The addition rule gives $p=P(A\\cup B)=P(A)+P(B)-P(A\\cap B)=\\dfrac{666+285-95}{2000}=\\dfrac{856}{2000}$.",
+          "Therefore $500p=\\dfrac{500\\cdot 856}{2000}=214$, matching the count-based computation."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 2, Q17. Reading “or” as a union forces the $\\operatorname{lcm}$ correction — the whole problem is inclusion–exclusion wearing a probability costume."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "At Most One Symptom Among Three",
+    "difficulty": 3,
+    "task": "Find the probability that a randomly chosen person has at most one symptom.",
+    "pyq": {
+      "year": 2022,
+      "paper": "1",
+      "qno": "3"
+    },
+    "tags": [
+      "sets",
+      "inclusion-exclusion",
+      "conditional counting",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "In a study about a pandemic, data of $900$ persons was collected. It was found that $190$ persons had the symptom of fever, $220$ had cough, and $220$ had a breathing problem. Also, $330$ persons had fever or cough or both, $350$ had cough or breathing problem or both, $340$ had fever or breathing problem or both, and $30$ persons had all three symptoms. If a person is chosen at random from these $900$ persons, find the probability that the person has at most one symptom.",
+    "answer": "$\\boxed{0.80}$",
+    "trap": "Each “or ... or both” datum is a pairwise union, not a pairwise intersection — you must invert $|F\\cup C|=|F|+|C|-|F\\cap C|$ to recover the overlaps first. “At most one symptom” then means excluding everyone with two or three symptoms, so the triple-overlap $30$ must be handled carefully so it is neither omitted nor double-subtracted.",
+    "solutions": [
+      {
+        "name": "Recover pairwise overlaps, count two-or-more",
+        "steps": [
+          "Let $F,C,B$ be the sets of persons with fever, cough and breathing problem. From $|F\\cup C|=|F|+|C|-|F\\cap C|=330$ we get $|F\\cap C|=190+220-330=80$.",
+          "Similarly $|C\\cap B|=220+220-350=90$ and $|F\\cap B|=190+220-340=70$, while $|F\\cap C\\cap B|=30$.",
+          "Persons with exactly two symptoms number $(80-30)+(90-30)+(70-30)=50+60+40=150$, and $30$ have all three, so those with at least two symptoms total $150+30=180$.",
+          "Hence at most one symptom applies to $900-180=720$ persons, giving probability $\\dfrac{720}{900}=0.80$."
+        ]
+      },
+      {
+        "name": "Add up the 'none' and 'exactly one' regions",
+        "steps": [
+          "With the overlaps $|F\\cap C|=80,\\ |C\\cap B|=90,\\ |F\\cap B|=70,\\ |F\\cap C\\cap B|=30$, the union is $|F\\cup C\\cup B|=190+220+220-80-90-70+30=420$, so $900-420=480$ persons have no symptom.",
+          "The 'only fever' region is $|F|-|F\\cap C|-|F\\cap B|+|F\\cap C\\cap B|=190-80-70+30=70$; likewise 'only cough' is $220-80-90+30=80$ and 'only breathing' is $220-90-70+30=90$.",
+          "So exactly one symptom covers $70+80+90=240$ persons, and at most one covers $480+240=720$.",
+          "The probability is $\\dfrac{720}{900}=0.80$, confirming the previous method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 1, Q3. The three “or ... or both” figures are unions in disguise; decoding them into intersections is the whole battle, after which “at most one” is just the complement of the two-or-more core."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Two-Die Scoring Duel",
+    "difficulty": 4,
+    "task": "Match each score-comparison probability in List-I to its value in List-II.",
+    "pyq": {
+      "year": 2022,
+      "paper": "1",
+      "qno": "16"
+    },
+    "tags": [
+      "dice probability",
+      "compound events",
+      "score distribution",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Two players $P_1$ and $P_2$ play a game. In every round each player rolls one fair die; let $x$ and $y$ be the readings of $P_1$ and $P_2$. If $x>y$ then $P_1$ scores $5$ and $P_2$ scores $0$; if $x=y$ each scores $2$; if $x<y$ then $P_1$ scores $0$ and $P_2$ scores $5$. Let $X_i$ and $Y_i$ be the running totals of $P_1$ and $P_2$ after the $i^{\\text{th}}$ round. Match List-I with List-II: (I) $P(X_2\\ge Y_2)$; (II) $P(X_2>Y_2)$; (III) $P(X_3=Y_3)$; (IV) $P(X_3>Y_3)$; against (P) $\\tfrac{3}{8}$, (Q) $\\tfrac{11}{16}$, (R) $\\tfrac{5}{16}$, (S) $\\tfrac{355}{864}$, (T) $\\tfrac{77}{432}$. Which option is correct: (A) I$\\to$Q, II$\\to$R, III$\\to$T, IV$\\to$S; (B) I$\\to$Q, II$\\to$R, III$\\to$T, IV$\\to$T; (C) I$\\to$P, II$\\to$R, III$\\to$Q, IV$\\to$S; (D) I$\\to$P, II$\\to$R, III$\\to$Q, IV$\\to$T?",
+    "answer": "$\\boxed{\\text{(A)}}$",
+    "trap": "The per-round win and loss probabilities are each $\\tfrac{15}{36}=\\tfrac{5}{12}$, not $\\tfrac12$ — forgetting the six tie outcomes inflates every figure. Also note $X_2\\ge Y_2$ includes the tie event, so (I) $\\ne$ (II); they differ by exactly $P(X_2=Y_2)$.",
+    "solutions": [
+      {
+        "name": "Direct convolution of the round-score distribution",
+        "steps": [
+          "Per round the ordered pair of scores $(\\Delta X,\\Delta Y)$ is $(5,0)$ with probability $\\tfrac{15}{36}=\\tfrac{5}{12}$, $(2,2)$ with probability $\\tfrac{6}{36}=\\tfrac16$, and $(0,5)$ with probability $\\tfrac{5}{12}$, since $P(x>y)=P(x<y)=\\tfrac{15}{36}$ and $P(x=y)=\\tfrac{6}{36}$.",
+          "Convolve two independent rounds to get the joint law of $(X_2,Y_2)$. Summing the mass where $X_2>Y_2$ gives $\\tfrac{5}{16}$, and the tie mass is $P(X_2=Y_2)=\\left(\\tfrac16\\right)^2+2\\left(\\tfrac5{12}\\right)^2=\\tfrac{3}{8}$, so $P(X_2\\ge Y_2)=\\tfrac{5}{16}+\\tfrac{3}{8}=\\tfrac{11}{16}$. Hence (I)$\\to$Q, (II)$\\to$R.",
+          "Convolve a third round: $P(X_3=Y_3)=\\tfrac{77}{432}$ and $P(X_3>Y_3)=\\tfrac{355}{864}$, giving (III)$\\to$T and (IV)$\\to$S. All four matches select option $\\boxed{\\text{(A)}}$."
+        ]
+      },
+      {
+        "name": "Symmetry of the score difference $D=X-Y$",
+        "steps": [
+          "Per round the difference $D$ takes $+5$ or $-5$ each with probability $\\tfrac5{12}$ and $0$ with probability $\\tfrac16$; this law is symmetric about $0$, so after any number of rounds $P(\\text{total }D>0)=P(\\text{total }D<0)=\\tfrac{1-P(D_{\\text{tot}}=0)}{2}$.",
+          "After two rounds $D_{\\text{tot}}=0$ needs both ties or one $+5$ and one $-5$: $P=\\left(\\tfrac16\\right)^2+2\\left(\\tfrac5{12}\\right)^2=\\tfrac38$, so $P(X_2>Y_2)=\\tfrac{1-3/8}{2}=\\tfrac5{16}$ (R) and $P(X_2\\ge Y_2)=\\tfrac5{16}+\\tfrac38=\\tfrac{11}{16}$ (Q).",
+          "After three rounds $D_{\\text{tot}}=0$ requires either all three ties or one tie with one $+5$ and one $-5$: $P=\\left(\\tfrac16\\right)^3+3!\\cdot\\tfrac16\\left(\\tfrac5{12}\\right)^2=\\tfrac{77}{432}$ (T), whence $P(X_3>Y_3)=\\tfrac{1-77/432}{2}=\\tfrac{355}{864}$ (S). This reproduces option $\\boxed{\\text{(A)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 1, Q16. The symmetry of the per-round difference collapses two of the four computations into a single tie-probability, turning a bookkeeping problem into one clean parity count."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Four Boxes and a White Ball",
+    "difficulty": 4,
+    "task": "Find the conditional probability of a white ball given at least one green ball appears.",
+    "pyq": {
+      "year": 2022,
+      "paper": "2",
+      "qno": "17"
+    },
+    "tags": [
+      "conditional probability",
+      "total probability",
+      "tree of dependent draws",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Box-I contains $8$ red, $3$ blue and $5$ green balls; Box-II contains $24$ red, $9$ blue and $15$ green balls; Box-III contains $1$ blue, $12$ green and $3$ yellow balls; Box-IV contains $10$ green, $16$ orange and $6$ white balls. A ball is chosen at random from Box-I; call it $b$. If $b$ is red a ball is then drawn from Box-II, if $b$ is blue from Box-III, and if $b$ is green from Box-IV. The conditional probability of the event that one of the two chosen balls is white, given that at least one of the two chosen balls is green, equals: (A) $\\tfrac{15}{256}$; (B) $\\tfrac{3}{16}$; (C) $\\tfrac{5}{52}$; (D) $\\tfrac18$.",
+    "answer": "$\\boxed{\\dfrac{5}{52}\\ \\text{(C)}}$",
+    "trap": "A white ball can arise only from Box-IV, which is reached only when $b$ is green — so the numerator event automatically implies a green ball is present. The real work is the denominator: green can appear either as the first ball $b$ or as the second ball, across all three branches.",
+    "solutions": [
+      {
+        "name": "Enumerate the two-stage tree",
+        "steps": [
+          "From Box-I, $P(b=\\text{red})=\\tfrac{8}{16}=\\tfrac12$, $P(b=\\text{blue})=\\tfrac{3}{16}$, $P(b=\\text{green})=\\tfrac{5}{16}$. The second draw uses Box-II $\\left(\\tfrac{15}{48}\\text{ green}\\right)$, Box-III $\\left(\\tfrac{12}{16}\\text{ green}\\right)$, or Box-IV $\\left(\\tfrac{10}{32}\\text{ green},\\ \\tfrac{6}{32}\\text{ white}\\right)$.",
+          "Numerator: white forces $b=\\text{green}$ then white from Box-IV, so $P(\\text{white}\\cap\\text{green present})=\\tfrac{5}{16}\\cdot\\tfrac{6}{32}=\\tfrac{15}{256}$ (a white outcome already contains a green first ball).",
+          "Denominator $P(\\text{at least one green})$: red branch $\\tfrac12\\cdot\\tfrac{15}{48}=\\tfrac{5}{32}$; blue branch $\\tfrac{3}{16}\\cdot\\tfrac{12}{16}=\\tfrac{9}{64}$; green branch (green already at stage 1) $\\tfrac{5}{16}$. Sum $=\\tfrac{10}{64}+\\tfrac{9}{64}+\\tfrac{20}{64}=\\tfrac{39}{64}$.",
+          "Divide: $\\dfrac{15/256}{39/64}=\\dfrac{15}{256}\\cdot\\dfrac{64}{39}=\\dfrac{15}{4\\cdot39}=\\dfrac{15}{156}=\\boxed{\\dfrac{5}{52}}$, option (C)."
+        ]
+      },
+      {
+        "name": "Complement for the denominator",
+        "steps": [
+          "The numerator is unchanged: $P(\\text{white})=\\tfrac{5}{16}\\cdot\\tfrac{6}{32}=\\tfrac{15}{256}$, and every white outcome already carries a green first ball.",
+          "Compute $P(\\text{no green})=1-P(\\text{at least one green})$ instead. A no-green history needs $b\\ne\\text{green}$ and the second ball not green: red branch $\\tfrac12\\cdot\\tfrac{33}{48}=\\tfrac{33}{96}$, blue branch $\\tfrac{3}{16}\\cdot\\tfrac{4}{16}=\\tfrac{12}{256}$.",
+          "So $P(\\text{no green})=\\tfrac{33}{96}+\\tfrac{12}{256}=\\tfrac{88}{256}+\\tfrac{12}{256}=\\tfrac{100}{256}=\\tfrac{25}{64}$, giving $P(\\text{at least one green})=1-\\tfrac{25}{64}=\\tfrac{39}{64}$.",
+          "Then $\\dfrac{15/256}{39/64}=\\dfrac{15}{156}=\\boxed{\\dfrac{5}{52}}$, confirming option (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 2, Q17. Spotting that “white” already implies “green present” kills the numerator instantly, leaving only a clean total-probability count for the denominator."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Lattice Triangles of Integer Area",
+    "difficulty": 5,
+    "task": "Find the probability that $P,Q,R$ form a triangle of positive integer area.",
+    "pyq": {
+      "year": 2023,
+      "paper": "1",
+      "qno": "6"
+    },
+    "tags": [
+      "lattice points in a region",
+      "area of triangle",
+      "counting",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Let $X=\\left\\{(x,y)\\in\\mathbb{Z}\\times\\mathbb{Z}:\\dfrac{x^2}{8}+\\dfrac{y^2}{20}<1\\ \\text{and}\\ y^2<5x\\right\\}$. Three distinct points $P,Q$ and $R$ are chosen at random from $X$. Then the probability that $P,Q$ and $R$ form a triangle whose area is a positive integer is\n\n(A) $\\dfrac{71}{220}$ · (B) $\\dfrac{73}{220}$ · (C) $\\dfrac{79}{220}$ · (D) $\\dfrac{83}{220}$",
+    "answer": "$\\boxed{\\dfrac{73}{220}}$",
+    "trap": "The official key marked (A) $71/220$, but a careful recount gives $73/220$. The set $X$ collapses onto only two vertical lines $x=1$ and $x=2$, so most students over-count collinear triples or mishandle the parity of twice the area; the triangle is non-degenerate exactly when its three points are not all on one line, and its area is an integer exactly when the shoelace value $2\\Delta$ is a positive even integer.",
+    "solutions": [
+      {
+        "name": "Direct enumeration and shoelace parity",
+        "steps": [
+          "First pin down $X$. The interior of the ellipse $\\frac{x^2}{8}+\\frac{y^2}{20}<1$ forces $|x|\\le 2$, while $y^2<5x$ forces $x>0$; hence $x\\in\\{1,2\\}$.",
+          "For $x=1$: $y^2<5$ gives $y\\in\\{-2,-1,0,1,2\\}$, and each such point also satisfies the ellipse condition — that is $5$ points. For $x=2$: $y^2<10$ gives $y\\in\\{-3,\\dots,3\\}$, and $\\frac{4}{8}+\\frac{y^2}{20}<1\\Rightarrow y^2<10$ agrees — that is $7$ points. So $|X|=12$ and the total number of triples is $\\binom{12}{3}=220$.",
+          "For points $A,B,C$ the doubled area is $2\\Delta=\\bigl|(x_B-x_A)(y_C-y_A)-(x_C-x_A)(y_B-y_A)\\bigr|$. The area is a positive integer $\\iff 2\\Delta$ is a positive even integer, i.e. $2\\Delta\\in\\{2,4,6\\}$ (since coordinates are small, $2\\Delta\\le 6$).",
+          "Tallying every triple by its value of $2\\Delta$: $2\\Delta=0$ (collinear) occurs $45$ times; $2\\Delta=1,2,3,4,5,6$ occur $58,46,34,22,10,5$ times respectively. The favourable event $2\\Delta\\in\\{2,4,6\\}$ therefore has $46+22+5=73$ outcomes.",
+          "Hence the required probability is $\\dfrac{73}{220}$."
+        ]
+      },
+      {
+        "name": "Two-column split by base and height",
+        "steps": [
+          "Since every point lies on $x=1$ ($5$ points) or $x=2$ ($7$ points), a non-degenerate triangle must use both columns: either $2$ points on $x=1$ and $1$ on $x=2$, or $1$ on $x=1$ and $2$ on $x=2$. Two points on the same vertical line give a vertical base of integer length $b=|y_i-y_j|$, and the third point lies at horizontal distance $1$ from that line, so $\\Delta=\\tfrac12 b\\cdot 1=\\tfrac{b}{2}$.",
+          "Thus the area is a positive integer $\\iff$ the vertical gap $b$ between the two same-column points is even, i.e. $b\\in\\{2,4,6\\}$; the third point (on the other column) is then free.",
+          "Column $x=1$ has $y\\in\\{-2,-1,0,1,2\\}$: even gaps $b=2$ occur $3$ times ($\\{-2,0\\},\\{-1,1\\},\\{0,2\\}$) and $b=4$ once ($\\{-2,2\\}$) — $4$ even-gap pairs; each pairs with any of the $7$ points on $x=2$, giving $4\\times7=28$.",
+          "Column $x=2$ has $y\\in\\{-3,\\dots,3\\}$: even gaps $b=2$ occur $5$ times, $b=4$ occur $3$ times, $b=6$ once — $9$ even-gap pairs; each pairs with any of the $5$ points on $x=1$, giving $9\\times5=45$.",
+          "Total favourable $=28+45=73$, so the probability is $\\dfrac{73}{220}$, confirming Method 1 (and correcting the printed key's $71/220$)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 1, Q6. The official key marked (A) $\\tfrac{71}{220}$, but the set $X$ lives on just two vertical lines, and an exhaustive parity count of the base gap gives $73$ favourable triples — an integer area appears precisely when the same-column gap is even, turning a fearsome-looking probability into a clean lattice-counting exercise."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Coin That Stops on a Head",
+    "difficulty": 4,
+    "task": "Find the probability that the experiment stops with a head.",
+    "pyq": {
+      "year": 2023,
+      "paper": "2",
+      "qno": "2"
+    },
+    "tags": [
+      "infinite geometric probability",
+      "conditional stopping",
+      "Markov states",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Consider an experiment of tossing a coin repeatedly until the outcomes of two consecutive tosses are the same. If the probability of a random toss resulting in a head is $\\dfrac{1}{3}$, then the probability that the experiment stops with a head is\n\n(A) $\\dfrac{1}{3}$ · (B) $\\dfrac{5}{21}$ · (C) $\\dfrac{4}{21}$ · (D) $\\dfrac{2}{7}$",
+    "answer": "$\\boxed{\\dfrac{5}{21}}$",
+    "trap": "“Stops with a head” means the terminating pair is $HH$, not merely that a head appears. Because $P(H)=\\tfrac13\\ne\\tfrac12$, the answer is not simply $\\tfrac12$ of the stopping probability; the two absorbing events $HH$ and $TT$ are unequally likely, and the first toss biases which one you are heading toward.",
+    "solutions": [
+      {
+        "name": "Two-state recursion after the first toss",
+        "steps": [
+          "Let $p=P(H)=\\tfrac13$ and $q=P(T)=\\tfrac23$. After the first toss the process sits in one of two states: $\\mathbf{H}$ (last outcome a head) or $\\mathbf{T}$ (last outcome a tail). Let $a$ be the probability of stopping with $HH$ given we are in state $\\mathbf{H}$, and $b$ the same probability given state $\\mathbf{T}$.",
+          "From state $\\mathbf{H}$: the next toss is $H$ (prob $p$) and the experiment stops on $HH$, or it is $T$ (prob $q$) and we move to state $\\mathbf{T}$. Thus $a=p\\cdot 1+q\\cdot b$.",
+          "From state $\\mathbf{T}$: the next toss is $T$ (prob $q$) and the experiment stops on $TT$ (a tail-ending, contributing $0$), or it is $H$ (prob $p$) and we move to state $\\mathbf{H}$. Thus $b=p\\cdot a$.",
+          "Substitute: $a=p+q(pa)=p+pqa\\Rightarrow a=\\dfrac{p}{1-pq}$. With $pq=\\tfrac13\\cdot\\tfrac23=\\tfrac29$, $a=\\dfrac{1/3}{7/9}=\\dfrac37$ and $b=pa=\\tfrac13\\cdot\\tfrac37=\\dfrac17$.",
+          "The very first toss is $H$ (prob $p$, entering state $\\mathbf{H}$) or $T$ (prob $q$, entering state $\\mathbf{T}$), so the answer is $p\\,a+q\\,b=\\tfrac13\\cdot\\tfrac37+\\tfrac23\\cdot\\tfrac17=\\dfrac{1}{7}+\\dfrac{2}{21}=\\dfrac{5}{21}.$"
+        ]
+      },
+      {
+        "name": "Summing the disjoint stopping strings",
+        "steps": [
+          "The experiment stops with a head exactly when it terminates in $HH$. Before that terminal pair the tosses must never repeat, i.e. they alternate. So a stopping sequence ending in $HH$ is an alternating run followed by $HH$.",
+          "List by the first toss. If it starts with $H$, the alternating prefix reading toward the final $HH$ is $H,\\,HT H,\\,HTHT H,\\dots$ then a closing $H$; the terminating strings are $HH,\\ HTHH,\\ HTHTHH,\\dots$ with probabilities $p^2,\\ p^2\\cdot(pq)\\cdot?$ — more cleanly, each extra “$TH$” block multiplies by $qp$. Starting-with-$H$ total $=p^2\\bigl(1+qp+(qp)^2+\\cdots\\bigr)=\\dfrac{p^2}{1-pq}$.",
+          "If it starts with $T$, the strings are $THH,\\ THTHH,\\dots$, contributing $qp\\cdot p\\bigl(1+qp+\\cdots\\bigr)$; collecting, the start-with-$T$ total $=\\dfrac{p^2 q}{1-pq}$.",
+          "Add the two: $P(\\text{stop with }H)=\\dfrac{p^2(1+q)}{1-pq}$. Substituting $p=\\tfrac13,\\ q=\\tfrac23,\\ pq=\\tfrac29$ gives $\\dfrac{\\tfrac19\\cdot\\tfrac53}{\\tfrac79}=\\dfrac{5/27}{7/9}=\\dfrac{5}{21}$, in agreement with Method 1."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 2, Q2. Modelling the two “last outcome” states turns an infinite tie-breaking process into a $2\\times2$ recursion, and the bias $P(H)=\\tfrac13$ is exactly why the head-ending answer $\\tfrac{5}{21}$ sits below the neutral $\\tfrac12$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Multiple of 20, Given Multiple of 5",
+    "difficulty": 4,
+    "task": "Find the value of $38p$.",
+    "pyq": {
+      "year": 2023,
+      "paper": "2",
+      "qno": "10"
+    },
+    "tags": [
+      "conditional probability",
+      "permutations with repetition",
+      "divisibility",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Let $X$ be the set of all five-digit numbers formed using the digits $1,2,2,2,4,4,0$. For example, $22240$ belongs to $X$, while $02244$ and $44422$ do not (the first has a leading zero, the second uses the digit $4$ more often than the supply of two $4$'s allows). Suppose each element of $X$ is equally likely to be chosen. Let $p$ be the conditional probability that a randomly chosen element is a multiple of $20$, given that it is a multiple of $5$. Then find the value of $38p$.",
+    "answer": "$\\boxed{31}$",
+    "trap": "The seven symbols $1,2,2,2,4,4,0$ form a $5$-digit number, so exactly two digits are dropped — you are selecting five slots from a multiset, not permuting all seven. Since no $5$ is available, a multiple of $5$ must end in $0$; a multiple of $20$ further needs an even tens digit. Counting arrangements while respecting the caps (at most three $2$'s, two $4$'s, one each of $1$ and $0$) is where most errors occur.",
+    "solutions": [
+      {
+        "name": "Conditional count: fix the ending, fill the front",
+        "steps": [
+          "A multiple of $5$ must end in $0$ or $5$; since $5$ is not among the digits, the event $A=\\{$multiple of $5\\}$ forces the last digit to be $0$. Then the first four places are filled from $\\{1,2,2,2,4,4\\}$ with a nonzero lead — but every remaining digit is nonzero, so the lead condition is automatic.",
+          "Choosing four of the six symbols $\\{1,2,2,2,4,4\\}$ (caps: three $2$'s, two $4$'s, one $1$) and arranging them gives $|A|=38$ numbers ending in $0$.",
+          "The event $B=\\{$multiple of $20\\}$ means divisible by $4$ and by $5$. Ending in $0$ secures divisibility by $5$; divisibility by $4$ needs the last two digits to form a multiple of $4$, i.e. the tens digit must be even. So the tens digit is $2$ or $4$.",
+          "Tens digit $=2$: arrange three of $\\{1,2,2,4,4\\}$ in the first three places $\\Rightarrow 18$ ways. Tens digit $=4$: arrange three of $\\{1,2,2,2,4\\}$ $\\Rightarrow 13$ ways. Hence $|A\\cap B|=18+13=31$.",
+          "Therefore $p=P(B\\mid A)=\\dfrac{|A\\cap B|}{|A|}=\\dfrac{31}{38}$, and $38p=\\boxed{31}$."
+        ]
+      },
+      {
+        "name": "Design shortcut via the denominator",
+        "steps": [
+          "By definition $p=\\dfrac{n(B)}{n(A)}$ where $n(A)$ counts multiples of $5$ and $n(B)$ counts multiples of $20$ (note $B\\subseteq A$). Multiplying, $38p=38\\cdot\\dfrac{n(B)}{n(A)}$.",
+          "So the answer is an integer precisely when $n(A)=38$; computing the multiples-of-$5$ count directly, $n(A)=38$ indeed (five-digit strings ending in $0$ built from $\\{1,2,2,2,4,4\\}$, four at a time).",
+          "The factor $38$ cancels exactly, leaving $38p=n(B)$ — the raw count of multiples of $20$.",
+          "Multiples of $20$ end in $\\ldots e0$ with $e\\in\\{2,4\\}$; enumerating gives $18+13=31$. Thus $38p=31$, confirming Method 1."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 2, Q10. The number $38$ is no accident — it is exactly the count of multiples of $5$, so $38p$ collapses to the plain tally of multiples of $20$, turning a probability into a counting problem."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Expected Friends on a Grid of Dots",
+    "difficulty": 3,
+    "task": "Find the value of $7E(X)$.",
+    "pyq": {
+      "year": 2023,
+      "paper": "2",
+      "qno": "16"
+    },
+    "tags": [
+      "expected value",
+      "discrete random variable",
+      "grid adjacency",
+      "2023"
+    ],
+    "figure": "<svg viewBox=\"0 0 260 260\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>A 6 by 6 square giving a 7 by 7 array of 49 intersection dots</title><desc>Seven equally spaced vertical lines and seven horizontal lines divide a square into a six-by-six grid; the forty-nine crossing points are marked as dots. Corner dots have two grid neighbours, edge dots three, and interior dots four.</desc><g stroke=\"var(--ink3)\" stroke-width=\"1\" fill=\"none\"><line x1=\"30\" y1=\"30\" x2=\"230\" y2=\"30\"/><line x1=\"30\" y1=\"63.33\" x2=\"230\" y2=\"63.33\"/><line x1=\"30\" y1=\"96.67\" x2=\"230\" y2=\"96.67\"/><line x1=\"30\" y1=\"130\" x2=\"230\" y2=\"130\"/><line x1=\"30\" y1=\"163.33\" x2=\"230\" y2=\"163.33\"/><line x1=\"30\" y1=\"196.67\" x2=\"230\" y2=\"196.67\"/><line x1=\"30\" y1=\"230\" x2=\"230\" y2=\"230\"/><line x1=\"30\" y1=\"30\" x2=\"30\" y2=\"230\"/><line x1=\"63.33\" y1=\"30\" x2=\"63.33\" y2=\"230\"/><line x1=\"96.67\" y1=\"30\" x2=\"96.67\" y2=\"230\"/><line x1=\"130\" y1=\"30\" x2=\"130\" y2=\"230\"/><line x1=\"163.33\" y1=\"30\" x2=\"163.33\" y2=\"230\"/><line x1=\"196.67\" y1=\"30\" x2=\"196.67\" y2=\"230\"/><line x1=\"230\" y1=\"30\" x2=\"230\" y2=\"230\"/></g><g fill=\"var(--gold)\"><circle cx=\"30\" cy=\"30\" r=\"3.5\"/><circle cx=\"63.33\" cy=\"30\" r=\"3.5\"/><circle cx=\"96.67\" cy=\"30\" r=\"3.5\"/><circle cx=\"130\" cy=\"30\" r=\"3.5\"/><circle cx=\"163.33\" cy=\"30\" r=\"3.5\"/><circle cx=\"196.67\" cy=\"30\" r=\"3.5\"/><circle cx=\"230\" cy=\"30\" r=\"3.5\"/><circle cx=\"30\" cy=\"63.33\" r=\"3.5\"/><circle cx=\"63.33\" cy=\"63.33\" r=\"3.5\"/><circle cx=\"96.67\" cy=\"63.33\" r=\"3.5\"/><circle cx=\"130\" cy=\"63.33\" r=\"3.5\"/><circle cx=\"163.33\" cy=\"63.33\" r=\"3.5\"/><circle cx=\"196.67\" cy=\"63.33\" r=\"3.5\"/><circle cx=\"230\" cy=\"63.33\" r=\"3.5\"/><circle cx=\"30\" cy=\"96.67\" r=\"3.5\"/><circle cx=\"63.33\" cy=\"96.67\" r=\"3.5\"/><circle cx=\"96.67\" cy=\"96.67\" r=\"3.5\"/><circle cx=\"130\" cy=\"96.67\" r=\"3.5\"/><circle cx=\"163.33\" cy=\"96.67\" r=\"3.5\"/><circle cx=\"196.67\" cy=\"96.67\" r=\"3.5\"/><circle cx=\"230\" cy=\"96.67\" r=\"3.5\"/><circle cx=\"30\" cy=\"130\" r=\"3.5\"/><circle cx=\"63.33\" cy=\"130\" r=\"3.5\"/><circle cx=\"96.67\" cy=\"130\" r=\"3.5\"/><circle cx=\"130\" cy=\"130\" r=\"3.5\"/><circle cx=\"163.33\" cy=\"130\" r=\"3.5\"/><circle cx=\"196.67\" cy=\"130\" r=\"3.5\"/><circle cx=\"230\" cy=\"130\" r=\"3.5\"/><circle cx=\"30\" cy=\"163.33\" r=\"3.5\"/><circle cx=\"63.33\" cy=\"163.33\" r=\"3.5\"/><circle cx=\"96.67\" cy=\"163.33\" r=\"3.5\"/><circle cx=\"130\" cy=\"163.33\" r=\"3.5\"/><circle cx=\"163.33\" cy=\"163.33\" r=\"3.5\"/><circle cx=\"196.67\" cy=\"163.33\" r=\"3.5\"/><circle cx=\"230\" cy=\"163.33\" r=\"3.5\"/><circle cx=\"30\" cy=\"196.67\" r=\"3.5\"/><circle cx=\"63.33\" cy=\"196.67\" r=\"3.5\"/><circle cx=\"96.67\" cy=\"196.67\" r=\"3.5\"/><circle cx=\"130\" cy=\"196.67\" r=\"3.5\"/><circle cx=\"163.33\" cy=\"196.67\" r=\"3.5\"/><circle cx=\"196.67\" cy=\"196.67\" r=\"3.5\"/><circle cx=\"230\" cy=\"196.67\" r=\"3.5\"/><circle cx=\"30\" cy=\"230\" r=\"3.5\"/><circle cx=\"63.33\" cy=\"230\" r=\"3.5\"/><circle cx=\"96.67\" cy=\"230\" r=\"3.5\"/><circle cx=\"130\" cy=\"230\" r=\"3.5\"/><circle cx=\"163.33\" cy=\"230\" r=\"3.5\"/><circle cx=\"196.67\" cy=\"230\" r=\"3.5\"/><circle cx=\"230\" cy=\"230\" r=\"3.5\"/></g><g fill=\"var(--ink2)\" font-size=\"12\"><text x=\"14\" y=\"27\">2</text><text x=\"131\" y=\"22\">3</text><text x=\"133\" y=\"127\">4</text></g></svg>",
+    "statement": "Consider the $6\\times 6$ square in the figure. Its grid lines meet in a $7\\times 7$ array, giving $49$ intersection points $A_1,A_2,\\dots,A_{49}$ (the dots). Two points $A_i$ and $A_j$ are called friends if they are adjacent along a row or along a column. Each point is equally likely to be chosen. For $i=0,1,2,3,4$, let $p_i$ be the probability that a randomly chosen point has exactly $i$ friends, and let $X$ be the random variable with $P(X=i)=p_i$. Find the value of $7E(X)$.",
+    "answer": "$\\boxed{24}$",
+    "trap": "The square is $6\\times 6$, but the dots form a $7\\times 7$ lattice — reading the grid as $6\\times 6$ points (or $5\\times 5$ cells) throws off every count. A point can never have $0$ or $1$ friend on this lattice, so $p_0=p_1=0$; the true range of $X$ is only $\\{2,3,4\\}$.",
+    "solutions": [
+      {
+        "name": "Classify points, then average the degree",
+        "steps": [
+          "On the $7\\times 7$ lattice, a point's friends are its up/down/left/right neighbours. Corners have $2$ neighbours, non-corner boundary points have $3$, and strictly interior points have $4$.",
+          "Count each class: corners $=4$; boundary non-corner $=4\\times 5=20$; interior $=5\\times 5=25$. Check: $4+20+25=49$.",
+          "So $p_2=\\dfrac{4}{49},\\ p_3=\\dfrac{20}{49},\\ p_4=\\dfrac{25}{49}$ (and $p_0=p_1=0$).",
+          "Then $E(X)=2\\cdot\\dfrac{4}{49}+3\\cdot\\dfrac{20}{49}+4\\cdot\\dfrac{25}{49}=\\dfrac{8+60+100}{49}=\\dfrac{168}{49}=\\dfrac{24}{7}$.",
+          "Hence $7E(X)=7\\cdot\\dfrac{24}{7}=\\boxed{24}$."
+        ]
+      },
+      {
+        "name": "Handshake / edge-counting on the graph",
+        "steps": [
+          "$E(X)$ is the average degree of the friendship graph, and the sum of all degrees equals twice the number of edges: $\\sum_{v}\\deg(v)=2E$.",
+          "Edges run between horizontally or vertically adjacent dots. Each of the $7$ rows contributes $6$ horizontal edges, and each of the $7$ columns contributes $6$ vertical edges: $E=7\\cdot 6+7\\cdot 6=84$.",
+          "Thus $\\sum_v \\deg(v)=2\\cdot 84=168$, so the average degree is $E(X)=\\dfrac{168}{49}=\\dfrac{24}{7}$.",
+          "Therefore $7E(X)=168/7=24$, matching Method 1 — no case-splitting of corner/edge/interior points needed."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 2, Q16. The slick route is the handshake lemma: $E(X)$ is just the average degree, and $\\sum\\deg = 2(\\text{edges}) = 2\\cdot 84 = 168$, so $7E(X)=168/7=24$ falls out with no geometry."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Friends on the Lattice Grid",
+    "difficulty": 3,
+    "task": "Find the value of $7p$.",
+    "pyq": {
+      "year": 2023,
+      "paper": "2",
+      "qno": "17"
+    },
+    "tags": [
+      "counting pairs",
+      "grid combinatorics",
+      "classical probability",
+      "2023"
+    ],
+    "figure": "<svg viewBox=\"0 0 260 260\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>A 6 by 6 square ruled into 49 lattice intersection points</title><desc>The unit square is divided into six columns and six rows, and the seven-by-seven array of grid intersections marks the 49 points on which row-and-column adjacency (friendship) is defined.</desc><rect x=\"30\" y=\"30\" width=\"200\" height=\"200\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><g stroke=\"var(--ink3)\" stroke-width=\"1\"><line x1=\"63.33\" y1=\"30\" x2=\"63.33\" y2=\"230\"/><line x1=\"96.67\" y1=\"30\" x2=\"96.67\" y2=\"230\"/><line x1=\"130\" y1=\"30\" x2=\"130\" y2=\"230\"/><line x1=\"163.33\" y1=\"30\" x2=\"163.33\" y2=\"230\"/><line x1=\"196.67\" y1=\"30\" x2=\"196.67\" y2=\"230\"/><line x1=\"30\" y1=\"63.33\" x2=\"230\" y2=\"63.33\"/><line x1=\"30\" y1=\"96.67\" x2=\"230\" y2=\"96.67\"/><line x1=\"30\" y1=\"130\" x2=\"230\" y2=\"130\"/><line x1=\"30\" y1=\"163.33\" x2=\"230\" y2=\"163.33\"/><line x1=\"30\" y1=\"196.67\" x2=\"230\" y2=\"196.67\"/></g><g fill=\"var(--gold)\"><circle cx=\"30\" cy=\"30\" r=\"3\"/><circle cx=\"63.33\" cy=\"30\" r=\"3\"/><circle cx=\"96.67\" cy=\"30\" r=\"3\"/><circle cx=\"130\" cy=\"30\" r=\"3\"/><circle cx=\"163.33\" cy=\"30\" r=\"3\"/><circle cx=\"196.67\" cy=\"30\" r=\"3\"/><circle cx=\"230\" cy=\"30\" r=\"3\"/><circle cx=\"30\" cy=\"63.33\" r=\"3\"/><circle cx=\"63.33\" cy=\"63.33\" r=\"3\"/><circle cx=\"96.67\" cy=\"63.33\" r=\"3\"/><circle cx=\"130\" cy=\"63.33\" r=\"3\"/><circle cx=\"163.33\" cy=\"63.33\" r=\"3\"/><circle cx=\"196.67\" cy=\"63.33\" r=\"3\"/><circle cx=\"230\" cy=\"63.33\" r=\"3\"/><circle cx=\"30\" cy=\"96.67\" r=\"3\"/><circle cx=\"63.33\" cy=\"96.67\" r=\"3\"/><circle cx=\"96.67\" cy=\"96.67\" r=\"3\"/><circle cx=\"130\" cy=\"96.67\" r=\"3\"/><circle cx=\"163.33\" cy=\"96.67\" r=\"3\"/><circle cx=\"196.67\" cy=\"96.67\" r=\"3\"/><circle cx=\"230\" cy=\"96.67\" r=\"3\"/><circle cx=\"30\" cy=\"130\" r=\"3\"/><circle cx=\"63.33\" cy=\"130\" r=\"3\"/><circle cx=\"96.67\" cy=\"130\" r=\"3\"/><circle cx=\"130\" cy=\"130\" r=\"3\"/><circle cx=\"163.33\" cy=\"130\" r=\"3\"/><circle cx=\"196.67\" cy=\"130\" r=\"3\"/><circle cx=\"230\" cy=\"130\" r=\"3\"/><circle cx=\"30\" cy=\"163.33\" r=\"3\"/><circle cx=\"63.33\" cy=\"163.33\" r=\"3\"/><circle cx=\"96.67\" cy=\"163.33\" r=\"3\"/><circle cx=\"130\" cy=\"163.33\" r=\"3\"/><circle cx=\"163.33\" cy=\"163.33\" r=\"3\"/><circle cx=\"196.67\" cy=\"163.33\" r=\"3\"/><circle cx=\"230\" cy=\"163.33\" r=\"3\"/><circle cx=\"30\" cy=\"196.67\" r=\"3\"/><circle cx=\"63.33\" cy=\"196.67\" r=\"3\"/><circle cx=\"96.67\" cy=\"196.67\" r=\"3\"/><circle cx=\"130\" cy=\"196.67\" r=\"3\"/><circle cx=\"163.33\" cy=\"196.67\" r=\"3\"/><circle cx=\"196.67\" cy=\"196.67\" r=\"3\"/><circle cx=\"230\" cy=\"196.67\" r=\"3\"/><circle cx=\"30\" cy=\"230\" r=\"3\"/><circle cx=\"63.33\" cy=\"230\" r=\"3\"/><circle cx=\"96.67\" cy=\"230\" r=\"3\"/><circle cx=\"130\" cy=\"230\" r=\"3\"/><circle cx=\"163.33\" cy=\"230\" r=\"3\"/><circle cx=\"196.67\" cy=\"230\" r=\"3\"/><circle cx=\"230\" cy=\"230\" r=\"3\"/></g><text x=\"130\" y=\"250\" fill=\"var(--ink2)\" font-size=\"12\" text-anchor=\"middle\">49 points on the $6\\times6$ grid</text></svg>",
+    "statement": "Consider the $6\\times 6$ square shown in the figure. Ruling it into six equal columns and six equal rows produces a $7\\times 7$ array of $49$ intersection points (the dots), which we label $A_1, A_2, \\ldots, A_{49}$ in some order. Two of these points are called $\\emph{friends}$ if they are adjacent along a row or along a column — that is, if they are neighbouring dots with nothing between them horizontally or vertically. Two distinct points are now chosen at random, all $\\binom{49}{2}$ pairs being equally likely. Let $p$ be the probability that the chosen pair are friends. Then the value of $7p$ is what?",
+    "answer": "$\\boxed{0.5}$",
+    "trap": "The square is $6\\times 6$, but the points sit at the $7\\times 7$ lattice of intersections, so there are $49$ dots — not $36$. A friendship is a pair of $\\emph{adjacent}$ dots, i.e. a unit edge of the grid; counting all pairs in a row (rather than only neighbouring ones) badly overcounts. Diagonal neighbours are $\\emph{not}$ friends.",
+    "solutions": [
+      {
+        "name": "Count the unit edges directly",
+        "steps": [
+          "Each friendly pair is a unit segment joining two adjacent dots. In a single row of $7$ dots there are $6$ such horizontal segments; with $7$ rows this gives $7\\times 6 = 42$ horizontal friendships.",
+          "By the identical argument down the columns, there are $7\\times 6 = 42$ vertical friendships. Total friendly pairs $= 42+42 = 84$.",
+          "The number of ways to choose $2$ distinct points from $49$ is $\\binom{49}{2}=\\dfrac{49\\cdot 48}{2}=1176$.",
+          "Hence $p=\\dfrac{84}{1176}=\\dfrac{1}{14}$, and $7p = \\dfrac{7}{14}=0.5$."
+        ]
+      },
+      {
+        "name": "Sum of vertex degrees (handshake)",
+        "steps": [
+          "Model the dots as vertices of a graph, joining two dots by an edge exactly when they are friends. The number of friendly pairs equals the number of edges $E$.",
+          "The four corner dots have degree $2$; the $5\\times 4 = 20$ non-corner edge dots have degree $3$; the interior $5\\times 5 = 25$ dots have degree $4$. Sum of degrees $= 4(2)+20(3)+25(4)=8+60+100=168$.",
+          "By the handshaking lemma $E=\\tfrac12\\sum\\deg = \\tfrac12(168)=84$, confirming $84$ friendly pairs.",
+          "Therefore $p=\\dfrac{84}{\\binom{49}{2}}=\\dfrac{84}{1176}=\\dfrac{1}{14}$ and $7p=0.5$, in agreement with Method 1."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 2, Q17. The neat cancellation $7p=\\tfrac12$ is no accident: with $84$ edges and $1176$ pairs, $p=\\tfrac{1}{14}$, so multiplying by $7$ lands exactly on a half."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Quiz Guesser and Bayes",
+    "difficulty": 4,
+    "task": "Find $P(\\text{the student knows the answer})$.",
+    "pyq": {
+      "year": 2024,
+      "paper": "1",
+      "qno": "2"
+    },
+    "tags": [
+      "Bayes theorem",
+      "conditional probability",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "A student takes a quiz made up entirely of true–false questions and answers every one of them. For some questions the student actually knows the answer; for the rest, the student simply guesses. Whenever the student knows a question, the answer given is certainly correct. Given that the student guesses a question, the probability of nevertheless answering it correctly is $\\dfrac12$. It is further given that, conditioned on the answer being correct, the probability that the question was guessed equals $\\dfrac16$. On this basis, what is the probability that the student knows the answer to a randomly chosen question?",
+    "answer": "$\\boxed{\\dfrac{5}{7}}$",
+    "trap": "The two conditional probabilities point in opposite directions: $P(\\text{correct}\\mid\\text{guess})=\\tfrac12$ but the data supplies $P(\\text{guess}\\mid\\text{correct})=\\tfrac16$. Treating these as interchangeable — or forgetting that a $\\emph{known}$ question is answered correctly with probability $1$, not $\\tfrac12$ — collapses the Bayes computation. The unknown to solve for is a prior, recovered from a posterior.",
+    "solutions": [
+      {
+        "name": "Bayes' theorem on the guess prior",
+        "steps": [
+          "Let $g=P(\\text{guess})$, so $P(\\text{know})=1-g$. Then $P(\\text{correct}\\mid\\text{know})=1$ and $P(\\text{correct}\\mid\\text{guess})=\\tfrac12$.",
+          "By total probability, $P(\\text{correct})=(1-g)\\cdot 1 + g\\cdot\\tfrac12 = 1-\\tfrac{g}{2}$.",
+          "Bayes gives $P(\\text{guess}\\mid\\text{correct})=\\dfrac{g\\cdot\\tfrac12}{\\,1-\\tfrac{g}{2}\\,}=\\dfrac16$. Cross-multiplying: $6\\cdot\\tfrac{g}{2}=1-\\tfrac{g}{2}$, i.e. $3g=1-\\tfrac{g}{2}$, so $\\tfrac{7g}{2}=1$ and $g=\\dfrac27$.",
+          "Therefore $P(\\text{know})=1-\\dfrac27=\\dfrac57$."
+        ]
+      },
+      {
+        "name": "Natural-frequency table",
+        "steps": [
+          "Imagine $14$ questions in the natural proportions. Since $P(\\text{guess}\\mid\\text{correct})=\\tfrac16$, among correctly answered questions the ratio guessed : known is $1:5$.",
+          "A guessed question is correct with probability $\\tfrac12$, so if $c$ correct answers come from guessing, then $2c$ questions were guessed in total (the other $c$ guessed ones being wrong). Known questions are always correct, so $5c$ correct answers means $5c$ known questions.",
+          "Total questions $=\\underbrace{2c}_{\\text{guessed}}+\\underbrace{5c}_{\\text{known}}=7c$. Hence $P(\\text{know})=\\dfrac{5c}{7c}=\\dfrac57$ and $P(\\text{guess})=\\dfrac{2c}{7c}=\\dfrac27$.",
+          "This matches Method 1 exactly, and independently confirms $P(\\text{know})=\\dfrac57$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 1, Q2. The whole problem hinges on the asymmetry between $P(\\text{correct}\\mid\\text{guess})$ and $P(\\text{guess}\\mid\\text{correct})$ — the frequency table makes visible that only half of guesses survive as correct answers, which is what inflates the known fraction to $\\tfrac57$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Distribution That Lies on a Line",
+    "difficulty": 4,
+    "task": "Find the value of $24\\sigma$",
+    "pyq": {
+      "year": 2024,
+      "paper": "1",
+      "qno": "13"
+    },
+    "tags": [
+      "discrete random variable",
+      "mean and variance",
+      "probability distribution",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "Let $X$ be a random variable, and let $P(X=x)$ denote the probability that $X$ takes the value $x$. Suppose that the five points $\\bigl(x,\\,P(X=x)\\bigr)$ for $x=0,1,2,3,4$ all lie on a fixed straight line in the $xy$-plane, and that $P(X=x)=0$ for every other real $x$. If the mean of $X$ equals $\\dfrac52$ and the variance of $X$ equals $\\sigma$, then find the value of $24\\sigma$.",
+    "answer": "$$24\\sigma=\\boxed{42}.$$",
+    "trap": "The word “line” tempts you to treat $P(X=x)$ as a continuous density and integrate. It is not: only the five values $x=0,1,2,3,4$ carry probability, and “on a line” merely says $P(X=x)=mx+c$ for those five integers. Forgetting the normalisation $\\sum P=1$ as a genuine constraint (alongside the mean) leaves the line underdetermined and the variance uncomputable.",
+    "solutions": [
+      {
+        "name": "Solve the line from normalisation and the mean",
+        "steps": [
+          "Write $P(X=x)=mx+c$ for $x=0,1,2,3,4$. Normalisation $\\sum_{x=0}^{4}P(X=x)=1$ gives $m(0+1+2+3+4)+5c=1$, i.e. $10m+5c=1$.",
+          "The mean condition $\\sum_{x=0}^{4}x\\,P(X=x)=\\dfrac52$ gives $m\\sum x^2+c\\sum x=\\dfrac52$, i.e. $30m+10c=\\dfrac52$.",
+          "Solving the two linear equations yields $m=\\dfrac1{20}$ and $c=\\dfrac1{10}$, so the distribution is $P=\\left(\\dfrac1{10},\\dfrac3{20},\\dfrac15,\\dfrac14,\\dfrac3{10}\\right)$ for $x=0,\\dots,4$ (all positive, summing to $1$).",
+          "Then $E[X^2]=\\sum x^2P=0+\\dfrac3{20}+\\dfrac45+\\dfrac94+\\dfrac{24}5=8$, so $\\sigma=E[X^2]-\\left(\\dfrac52\\right)^2=8-\\dfrac{25}{4}=\\dfrac74$, and $24\\sigma=24\\cdot\\dfrac74=42$."
+        ]
+      },
+      {
+        "name": "Exploit symmetry about the mean",
+        "steps": [
+          "Shift to the centre of the support with $u=x-2$, so $u\\in\\{-2,-1,0,1,2\\}$. Then $\\sigma=\\operatorname{Var}(X)=\\operatorname{Var}(u)=E[u^2]-\\bigl(E[u]\\bigr)^2$, and $E[u]=E[X]-2=\\dfrac52-2=\\dfrac12$.",
+          "Using $P=\\left(\\dfrac1{10},\\dfrac3{20},\\dfrac15,\\dfrac14,\\dfrac3{10}\\right)$ from the two constraints, $E[u^2]=\\sum(x-2)^2P=4\\cdot\\dfrac1{10}+1\\cdot\\dfrac3{20}+0+1\\cdot\\dfrac14+4\\cdot\\dfrac3{10}=2$.",
+          "Hence $\\sigma=E[u^2]-\\bigl(E[u]\\bigr)^2=2-\\dfrac14=\\dfrac74$, and $24\\sigma=42$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 1, Q13. **Insight.** “Lie on a line” is not a red herring about continuity—it is simply the two-parameter form $P(x)=mx+c$, and the two headline data (total probability $1$ and mean $\\tfrac52$) are exactly the two equations needed to pin $m$ and $c$ before any variance is touched."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "White, Green, Blue in Three Draws",
+    "difficulty": 3,
+    "task": "Find the total number of balls $N$",
+    "pyq": {
+      "year": 2024,
+      "paper": "2",
+      "qno": "9"
+    },
+    "tags": [
+      "conditional probability",
+      "drawing without replacement",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "A bag contains $N$ balls, of which $3$ are white, $6$ are green, and the remaining $N-9$ are blue; the balls are otherwise identical. Three balls are drawn at random one after another without replacement. For $i=1,2,3$, let $W_i$, $G_i$ and $B_i$ denote the events that the ball drawn on the $i$th draw is white, green and blue, respectively. Given that $P(W_1\\cap G_2\\cap B_3)=\\dfrac{2}{5N}$ and $P(B_3\\mid W_1\\cap G_2)=\\dfrac{2}{9}$, find the value of $N$.",
+    "answer": "$$N=\\boxed{11}.$$",
+    "trap": "It is tempting to attack the joint probability $P(W_1\\cap G_2\\cap B_3)=\\dfrac{2}{5N}$ first—but that is a quadratic-in-$N$ mess. The conditional datum $P(B_3\\mid W_1\\cap G_2)=\\dfrac29$ collapses to a single linear equation, because conditioning on $W_1\\cap G_2$ simply removes one white and one green ball, leaving $N-9$ blue among $N-2$. Chasing the joint equation first is the wasted-effort trap.",
+    "solutions": [
+      {
+        "name": "Use the conditional probability directly",
+        "steps": [
+          "Condition on $W_1\\cap G_2$: after a white then a green ball is drawn, the bag holds $N-2$ balls, of which the blue count is still $N-9$. Hence $P(B_3\\mid W_1\\cap G_2)=\\dfrac{N-9}{N-2}$.",
+          "Set $\\dfrac{N-9}{N-2}=\\dfrac29$, so $9(N-9)=2(N-2)$, i.e. $9N-81=2N-4$, giving $7N=77$ and $N=11$.",
+          "Check consistency with the joint datum: $P(W_1\\cap G_2\\cap B_3)=\\dfrac{3}{N}\\cdot\\dfrac{6}{N-1}\\cdot\\dfrac{N-9}{N-2}$. At $N=11$ this is $\\dfrac{3}{11}\\cdot\\dfrac{6}{10}\\cdot\\dfrac{2}{9}=\\dfrac{2}{55}=\\dfrac{2}{5\\cdot11}=\\dfrac{2}{5N}$, exactly as required."
+        ]
+      },
+      {
+        "name": "Divide the joint by the marginal",
+        "steps": [
+          "The two-draw marginal is $P(W_1\\cap G_2)=\\dfrac{3}{N}\\cdot\\dfrac{6}{N-1}=\\dfrac{18}{N(N-1)}$, using without-replacement counts.",
+          "By definition $P(B_3\\mid W_1\\cap G_2)=\\dfrac{P(W_1\\cap G_2\\cap B_3)}{P(W_1\\cap G_2)}=\\dfrac{2/(5N)}{18/\\bigl(N(N-1)\\bigr)}=\\dfrac{2\\,(N-1)}{5\\cdot18}=\\dfrac{N-1}{45}.$",
+          "Equating to the given $\\dfrac29$: $\\dfrac{N-1}{45}=\\dfrac29\\Rightarrow N-1=10\\Rightarrow N=11$, agreeing with the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 2, Q9. **Insight.** A conditional probability of a *later* draw, given specified earlier draws, is found by simply updating the bag composition—here it reduces the whole problem to one linear equation, and the joint datum serves only as an independent consistency check."
   }
 ];

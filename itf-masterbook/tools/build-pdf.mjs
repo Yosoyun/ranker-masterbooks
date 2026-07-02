@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['branch','corrections','telescope','identity','equations','triginv','domain','calculus','advanced','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { branch:'sin⁻¹', corrections:'±π', telescope:'Σ', identity:'≡', equations:'=', triginv:'△', domain:'f∘g', calculus:'d/dx', advanced:'π', hybrid:'⊕' };
+const THEME_ORDER = ['branch','corrections','telescope','identity','equations','triginv','domain','calculus','advanced','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { branch:'sin⁻¹', corrections:'±π', telescope:'Σ', identity:'≡', equations:'=', triginv:'△', domain:'f∘g', calculus:'d/dx', advanced:'π', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   branch:'Outside the principal range, arcsin∘sin is a sawtooth.',
   corrections:'Add two arctangents and the formula quietly leaks a π.',
@@ -25,6 +25,7 @@ const BLURB = {
   calculus:'Differentiate across a branch point and the chain rule lies by a sign.',
   advanced:'Machin’s π, Gaussian-integer arctangents, the competition canon.',
   hybrid:'Branch correction, telescoping, equations and calculus, fused.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

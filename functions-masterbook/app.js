@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['relations','domainrange','classification','composition','inverse','functionaleq','symmetry','special','graphs','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['relations','domainrange','classification','composition','inverse','functionaleq','symmetry','special','graphs','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     relations:     { glyph:'R',      blurb:'Relations as sets of ordered pairs — reflexive, symmetric, transitive; the equivalence relation and its partition into classes; partial and total orders; counting the relations of a given type on a finite set.' },
     domainrange:   { glyph:'dom f',  blurb:'The largest domain on which a formula makes sense, and the exact range it sweeps — square roots, logs, reciprocals and their combinations, where the trap is a hidden restriction.' },
@@ -17,6 +17,7 @@
     special:       { glyph:'⌊x⌋',    blurb:'The greatest-integer, fractional-part, signum and absolute-value functions — their identities, equations and the integer-vs-real case splits they hide.' },
     graphs:        { glyph:'y=f(x)', blurb:'Reading and building graphs — shifts, stretches, reflections and |·| transformations, and recovering a function from its graph or a mapping diagram.' },
     hybrid:        { glyph:'⊕',      blurb:'The capstones: relations, classification, composition, inverses, functional equations and the special functions fused into one problem that resists every single tool.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

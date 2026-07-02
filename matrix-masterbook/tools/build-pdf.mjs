@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['matalgebra','specialmat','transpose','detprops','detspecial','adjinv','elemtrans','linsys','parammat','chareqn','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI'];
-const GLYPH = { matalgebra:'AB', specialmat:'A²=A', transpose:'Aᵀ', detprops:'|A|', detspecial:'△', adjinv:'A⁻¹', elemtrans:'R↔', linsys:'AX=B', parammat:'λ', chareqn:'A−λI', hybrid:'⊕' };
+const THEME_ORDER = ['matalgebra','specialmat','transpose','detprops','detspecial','adjinv','elemtrans','linsys','parammat','chareqn','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { matalgebra:'AB', specialmat:'A²=A', transpose:'Aᵀ', detprops:'|A|', detspecial:'△', adjinv:'A⁻¹', elemtrans:'R↔', linsys:'AX=B', parammat:'λ', chareqn:'A−λI', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   matalgebra:'Add, scale, multiply; powers and polynomials in a matrix; AB vs BA.',
   specialmat:'Symmetric, skew, diagonal, idempotent, nilpotent, involutory, orthogonal.',
@@ -26,6 +26,7 @@ const BLURB = {
   parammat:'Parameter values for singular/consistent; matrix equations AX=B.',
   chareqn:'The characteristic equation det(A−λI)=0; trace and det as root-sum and product; power sums tr(Aⁿ); the order-2 identity A²=(tr A)A−(det A)I for Aⁿ and A⁻¹.',
   hybrid:'Several in-syllabus ideas fused into one multi-step problem.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

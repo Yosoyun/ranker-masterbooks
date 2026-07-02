@@ -3849,5 +3849,1068 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: the answer is the number of involutions inside the wreath product $\\mathbb Z_2\\wr S_3$, NOT the centralizer order $48$ nor the global involution count $76$. The block-swapping involutions (like $(1\\,3)(2\\,4)$) are the ones students miss; an element squares to identity iff its block permutation is an involution AND the sign vector is symmetric under it."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Where $y=x$ meets $y=ke^{x}$",
+    "difficulty": 2,
+    "task": "Determine how many times the two curves meet.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "58"
+    },
+    "tags": [
+      "intermediate value theorem",
+      "intersection of curves",
+      "monotonicity",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"110\" x2=\"300\" y2=\"110\" stroke=\"var(--ink3)\"/><line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"292\" y=\"104\" fill=\"var(--ink2)\">x</text><text x=\"166\" y=\"30\" fill=\"var(--ink2)\">y</text><line x1=\"40\" y1=\"200\" x2=\"290\" y2=\"25\" stroke=\"var(--ink2)\"/><text x=\"258\" y=\"40\" fill=\"var(--ink2)\">y=x</text><path d=\"M30 110 Q120 110 160 118 T300 200\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><text x=\"250\" y=\"195\" fill=\"var(--gold)\">y=ke^x</text><circle cx=\"133\" cy=\"137\" r=\"3.4\" fill=\"var(--gold)\"/><text x=\"96\" y=\"152\" fill=\"var(--ink2)\">single crossing</text></svg>",
+    "statement": "The definition-fixing paragraph recalls the intermediate value idea: if a continuous function $f$ on $\\mathbb{R}$ is positive somewhere and its minimum is negative, then $f(x)=0$ has a root. Take $f(x)=ke^{x}-x$ for all real $x$, where $k$ is a real constant. For $k\\le 0$, the line $y=x$ meets the curve $y=ke^{x}$ at\n\n(A) no point\n(B) one point\n(C) two points\n(D) more than two points",
+    "answer": "(B)",
+    "trap": "A student who reflexively pictures $y=ke^{x}$ as the familiar upward exponential expects it to overtake $y=x$ and cross twice. But $k\\le 0$ flips the exponential below the $x$-axis (or collapses it to $y=0$ when $k=0$), where a strictly increasing line through all reals can meet a non-positive decreasing curve exactly once.",
+    "solutions": [
+      {
+        "name": "Sign change of $f(x)=ke^{x}-x$",
+        "steps": [
+          "An intersection of $y=x$ and $y=ke^{x}$ is a root of $f(x)=ke^{x}-x=0$, so count real roots of $f$.",
+          "Differentiate: $f'(x)=ke^{x}-1$. For $k\\le 0$ we have $ke^{x}\\le 0<1$, so $f'(x)<0$ for every $x$; hence $f$ is strictly decreasing on all of $\\mathbb{R}$.",
+          "A strictly monotonic function has at most one root.",
+          "Check the endpoints: as $x\\to-\\infty$, $ke^{x}\\to 0$ and $-x\\to+\\infty$, so $f(x)\\to+\\infty$; as $x\\to+\\infty$, $ke^{x}\\le 0$ and $-x\\to-\\infty$, so $f(x)\\to-\\infty$.",
+          "Thus $f$ runs continuously from $+\\infty$ down to $-\\infty$, so by the intermediate value theorem it has exactly one root. The curves meet at one point, answer (B)."
+        ]
+      },
+      {
+        "name": "Graphical comparison of $y=x$ and $y=ke^{x}$",
+        "steps": [
+          "Case $k=0$: the curve degenerates to the $x$-axis $y=0$, which the line $y=x$ meets only at the origin — exactly one point.",
+          "Case $k<0$: $y=ke^{x}$ is strictly negative everywhere, decreasing from $0^{-}$ (as $x\\to-\\infty$) down to $-\\infty$ (as $x\\to+\\infty$).",
+          "The line $y=x$ increases through every real value; for large negative $x$ it lies far below the curve (line near $-\\infty$, curve near $0^{-}$), while for large positive $x$ it lies far above (line $\\to+\\infty$, curve $\\to-\\infty$).",
+          "One curve is strictly increasing and the other strictly decreasing, and their vertical gap changes sign, so they cross once and only once.",
+          "In every case $k\\le 0$ the two graphs meet at a single point, confirming (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q58. The intersection count is really a monotonicity question in disguise — reading $y=x$ and $y=ke^{x}$ as a single decreasing $f(x)=ke^{x}-x$ turns a picture into a one-line proof."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Sign of $\\dfrac{x^{2}-6x+5}{x^{2}-5x+6}$ on four windows",
+    "difficulty": 3,
+    "task": "Match each interval to every statement it satisfies.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "64"
+    },
+    "tags": [
+      "rational function",
+      "sign analysis",
+      "range of function",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Let $f(x)=\\dfrac{x^{2}-6x+5}{x^{2}-5x+6}$. Match the conditions in Column I with the statements in Column II (each entry of Column I may match one or more entries of Column II).\n\n$$\\textbf{Column I}$$\n(A) If $-1<x<1$, then $f(x)$ satisfies\n(B) If $1<x<2$, then $f(x)$ satisfies\n(C) If $3<x<5$, then $f(x)$ satisfies\n(D) If $x>5$, then $f(x)$ satisfies\n\n$$\\textbf{Column II}$$\n(p) $0<f(x)<1$\n(q) $f(x)<0$\n(r) $f(x)>0$\n(s) $f(x)<1$",
+    "answer": "A → (p, r, s); B → (q, s); C → (q, s); D → (p, r, s)",
+    "trap": "The tempting slip is to test only the sign of $f$ and forget statement (s), $f(x)<1$: since $q\\Rightarrow s$ automatically (a negative number is $<1$), every interval with $f<0$ must also carry (s), and every interval with $0<f<1$ carries (p), (r) and (s) together. Missing these forced implications loses matches even when the sign work is perfect.",
+    "solutions": [
+      {
+        "name": "Factor and read the sign on each interval",
+        "steps": [
+          "Factor: $f(x)=\\dfrac{(x-1)(x-5)}{(x-2)(x-3)}$, with zeros at $x=1,5$ and vertical asymptotes at $x=2,3$.",
+          "(A) $-1<x<1$: each factor $(x-1),(x-5),(x-2),(x-3)$ is negative, so numerator $=(-)(-)>0$ and denominator $=(-)(-)>0$, giving $f>0$; a sample $x=0$ gives $f(0)=\\tfrac{5}{6}\\in(0,1)$. Hence (p), and therefore also (r) and (s).",
+          "(B) $1<x<2$: now $(x-1)>0$ while $(x-5),(x-2),(x-3)<0$, so numerator $=(+)(-)<0$, denominator $=(-)(-)>0$, giving $f<0$; e.g. $f(1.5)=\\tfrac{(0.5)(-3.5)}{(-0.5)(-1.5)}=-\\tfrac{7}{3}$. Hence (q), and since $f<0<1$ also (s).",
+          "(C) $3<x<5$: $(x-1)>0,(x-5)<0,(x-2)>0,(x-3)>0$, so numerator $=(+)(-)<0$, denominator $=(+)(+)>0$, giving $f<0$; e.g. $f(4)=\\tfrac{(3)(-1)}{(2)(1)}=-\\tfrac{3}{2}$. Hence (q), and (s).",
+          "(D) $x>5$: all four factors are positive, so $f>0$; and $f(6)=\\tfrac{(5)(1)}{(4)(3)}=\\tfrac{5}{12}\\in(0,1)$, and $f$ stays in $(0,1)$ (see the next method). Hence (p), and therefore (r) and (s).",
+          "Collecting: A → (p, r, s), B → (q, s), C → (q, s), D → (p, r, s)."
+        ]
+      },
+      {
+        "name": "Compare $f$ with $1$ via $f(x)-1$",
+        "steps": [
+          "The statements split into a sign question ($f\\gtrless 0$) and a threshold question ($f\\lessgtr 1$); handle the threshold by subtracting: $f(x)-1=\\dfrac{(x^{2}-6x+5)-(x^{2}-5x+6)}{x^{2}-5x+6}=\\dfrac{-x-1}{(x-2)(x-3)}=\\dfrac{-(x+1)}{(x-2)(x-3)}$.",
+          "So $f(x)<1\\iff \\dfrac{-(x+1)}{(x-2)(x-3)}<0$. Sign markers are $x=-1,2,3$.",
+          "(A) $-1<x<1$: $x+1>0$ and $(x-2)(x-3)>0$, so $f-1<0$, i.e. $f<1$; combined with $f>0$ (numerator/denominator both positive) this pins $0<f<1$ → (p),(r),(s).",
+          "(B) $1<x<2$ and (C) $3<x<5$: in each, the numerator $(x-1)(x-5)$ and denominator $(x-2)(x-3)$ have opposite signs, so $f<0$; a negative value is automatically $<1$, giving (q) and (s).",
+          "(D) $x>5$: here $x+1>0$ and $(x-2)(x-3)>0$, so $f-1<0$ hence $f<1$; together with $f>0$ this gives $0<f<1$ → (p),(r),(s).",
+          "This route makes the $f<1$ matches explicit and confirms A → (p, r, s), B → (q, s), C → (q, s), D → (p, r, s)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q64. The whole item rewards separating two independent inequalities — the sign of $f$ from the wavy-curve, and $f\\lessgtr 1$ from the single rational $f-1$ — instead of plotting the graph blind."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Cauchy's Equation with One Drop of Smoothness",
+    "difficulty": 3,
+    "task": "Select every correct statement.",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "54"
+    },
+    "tags": [
+      "functional equations",
+      "Cauchy equation",
+      "differentiability",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $f:\\mathbb{R}\\to\\mathbb{R}$ be a function such that $f(x+y)=f(x)+f(y)$ for all $x,y\\in\\mathbb{R}$. If $f(x)$ is differentiable at $x=0$, then\n\n(A) $f(x)$ is differentiable only in a finite interval containing zero\n\n(B) $f(x)$ is continuous for all $x\\in\\mathbb{R}$\n\n(C) $f'(x)$ is constant for all $x\\in\\mathbb{R}$\n\n(D) $f(x)$ is differentiable except at finitely many points",
+    "answer": "(B), (C)",
+    "trap": "The additive (Cauchy) equation alone has monstrous, everywhere-discontinuous solutions built with a Hamel basis. Students who \"know\" the answer is $f(x)=kx$ forget that this conclusion is FALSE without a regularity hypothesis. The single word \"differentiable at $0$\" is exactly what tames the beast — and it must be used, not assumed away.",
+    "solutions": [
+      {
+        "name": "Propagate differentiability from $0$ to every point",
+        "steps": [
+          "First fix the value at the origin. Put $x=y=0$ in $f(x+y)=f(x)+f(y)$ to get $f(0)=f(0)+f(0)$, so $f(0)=0$.",
+          "Let $k=f'(0)$, which exists by hypothesis. By definition $k=\\displaystyle\\lim_{h\\to0}\\frac{f(0+h)-f(0)}{h}=\\lim_{h\\to0}\\frac{f(h)}{h}$.",
+          "Now form the difference quotient at an arbitrary point $x$. Using additivity, $f(x+h)-f(x)=f(x)+f(h)-f(x)=f(h)$.",
+          "Therefore $\\displaystyle\\lim_{h\\to0}\\frac{f(x+h)-f(x)}{h}=\\lim_{h\\to0}\\frac{f(h)}{h}=k$ for EVERY $x$. So $f$ is differentiable everywhere and $f'(x)=k$ is constant — statement (C) is true.",
+          "Since $f$ is differentiable at every $x$, it is continuous at every $x$ — statement (B) is true.",
+          "(A) and (D) claim differentiability fails somewhere; but we just proved it holds on all of $\\mathbb{R}$, so both are false. Answer: (B), (C)."
+        ]
+      },
+      {
+        "name": "Solve the ODE and identify the closed form",
+        "steps": [
+          "From additivity, for any fixed $x$, $f(x+h)-f(x)=f(h)$ (shown by expanding $f(x+h)=f(x)+f(h)$).",
+          "Divide by $h$ and let $h\\to0$: the right side tends to $f'(0)=k$, so $f'(x)=k$ exists and is the same constant for all $x$.",
+          "Integrating $f'(x)=k$ gives $f(x)=kx+C$. Impose $f(0)=0$ (from $x=y=0$) to get $C=0$, hence $f(x)=kx$.",
+          "The map $x\\mapsto kx$ is a straight line: continuous on all of $\\mathbb{R}$ (so (B) holds) with constant derivative $k$ (so (C) holds).",
+          "There is no point where differentiability breaks, so the \"finite interval\" claim (A) and \"except finitely many points\" claim (D) are both false. Answer: (B), (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2011, Paper 1, Q54. The lesson is that a single differentiability assumption at one point upgrades the wild Cauchy equation all the way to $f(x)=kx$ — regularity at a point cascades globally through the functional identity."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Four-Fold Composition of $x^2$ and $\\sin x$",
+    "difficulty": 3,
+    "task": "Choose the correct option.",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "26"
+    },
+    "tags": [
+      "composition of functions",
+      "trigonometric equations",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $f(x)=x^{2}$ and $g(x)=\\sin x$ for all $x\\in\\mathbb{R}$. Then the set of all $x$ satisfying $(f\\circ g\\circ g\\circ f)(x)=(g\\circ g\\circ f)(x)$, where $(f\\circ g)(x)=f(g(x))$, is\n\n(A) $\\pm\\sqrt{n\\pi}$, $n\\in\\{0,1,2,\\ldots\\}$\n\n(B) $\\pm\\sqrt{n\\pi}$, $n\\in\\{1,2,\\ldots\\}$\n\n(C) $\\dfrac{\\pi}{2}+2n\\pi$, $n\\in\\{\\ldots,-2,-1,0,1,2,\\ldots\\}$\n\n(D) $2n\\pi$, $n\\in\\{\\ldots,-2,-1,0,1,2,\\ldots\\}$",
+    "answer": "(A) $\\pm\\sqrt{n\\pi}$, $n\\in\\{0,1,2,\\ldots\\}$",
+    "trap": "Setting the common quantity $u=\\sin(\\sin x^2)$ and solving $u^2=u$ gives $u=0$ or $u=1$. The seductive branch is $u=1$: it looks like it should contribute solutions, but $\\sin(\\text{anything})=1$ needs the inner $\\sin x^2=\\frac{\\pi}{2}$, and $\\frac{\\pi}{2}>1$ lies outside the range of sine — so $u=1$ is impossible. Discarding that branch (and remembering $n=0$ is allowed) is the whole game.",
+    "solutions": [
+      {
+        "name": "Peel the compositions from the inside out",
+        "steps": [
+          "Expand both sides layer by layer. The innermost is $f(x)=x^2$, then $g$ of that is $\\sin x^2$, then $g$ again is $\\sin(\\sin x^2)$.",
+          "Right side: $(g\\circ g\\circ f)(x)=\\sin(\\sin x^2)$.",
+          "Left side applies one more $f$ (square) outside: $(f\\circ g\\circ g\\circ f)(x)=\\big(\\sin(\\sin x^2)\\big)^2=\\sin^2(\\sin x^2)$.",
+          "Let $u=\\sin(\\sin x^2)$. The equation becomes $u^2=u$, i.e. $u(u-1)=0$, so $u=0$ or $u=1$.",
+          "Test $u=1$: it requires $\\sin(\\sin x^2)=1$, hence $\\sin x^2=\\frac{\\pi}{2}\\approx1.57$. But $\\sin x^2\\in[-1,1]$, so this is impossible. Reject this branch.",
+          "So $u=0$: $\\sin(\\sin x^2)=0\\Rightarrow \\sin x^2=m\\pi$ for integer $m$. Again $\\sin x^2\\in[-1,1]$ forces $m=0$, giving $\\sin x^2=0$.",
+          "Then $x^2=n\\pi$ with $n=0,1,2,\\ldots$ (since $x^2\\ge0$), so $x=\\pm\\sqrt{n\\pi}$. Including $n=0$ (which gives $x=0$) matches option (A)."
+        ]
+      },
+      {
+        "name": "Factor out the common composite as a single symbol",
+        "steps": [
+          "Write $A(x)=(g\\circ g\\circ f)(x)=\\sin(\\sin x^2)$. Then the left side is $f(A(x))=A(x)^2$ because the outer $f$ squares its input.",
+          "The equation $A(x)^2=A(x)$ says $A(x)$ is a fixed point of $t\\mapsto t^2$, and the only real solutions of $t^2=t$ are $t=0$ and $t=1$.",
+          "Because $|A(x)|=|\\sin(\\sin x^2)|\\le \\sin(1)\\approx0.841<1$, the value $A(x)=1$ can never be reached. Hence necessarily $A(x)=0$.",
+          "$A(x)=0$ means $\\sin(\\sin x^2)=0$. Since the argument $\\sin x^2$ lies in $[-1,1]$ and the only multiple of $\\pi$ in that range is $0$, we get $\\sin x^2=0$.",
+          "Finally $\\sin x^2=0\\Rightarrow x^2=n\\pi,\\ n\\in\\{0,1,2,\\dots\\}$, so the solution set is $x=\\pm\\sqrt{n\\pi}$ — option (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2011, Paper 2, Q26. A clean study in how range restrictions collapse a chain of compositions: the bound $|\\sin(\\cdot)|\\le1$ silently kills two whole families of would-be solutions."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The involution that isn't invertible: $f(x)=\\dfrac{b-x}{1-bx}$",
+    "difficulty": 4,
+    "task": "Decide which statement is correct.",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "34"
+    },
+    "tags": [
+      "invertibility",
+      "range",
+      "one-to-one and onto",
+      "2011"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"190\" x2=\"300\" y2=\"190\" stroke=\"var(--ink3)\"/><line x1=\"40\" y1=\"20\" x2=\"40\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"292\" y=\"205\" fill=\"var(--ink2)\">x</text><text x=\"26\" y=\"30\" fill=\"var(--ink2)\">y</text><line x1=\"40\" y1=\"105\" x2=\"300\" y2=\"105\" stroke=\"var(--ink2)\" stroke-dasharray=\"3 3\"/><text x=\"305\" y=\"109\" fill=\"var(--ink2)\">y=b</text><line x1=\"40\" y1=\"175\" x2=\"300\" y2=\"175\" stroke=\"var(--ink2)\" stroke-dasharray=\"3 3\"/><text x=\"300\" y=\"189\" fill=\"var(--ink2)\">y=-1</text><line x1=\"90\" y1=\"20\" x2=\"90\" y2=\"200\" stroke=\"var(--ink2)\" stroke-dasharray=\"2 4\"/><text x=\"78\" y=\"16\" fill=\"var(--ink2)\">x=0</text><line x1=\"250\" y1=\"20\" x2=\"250\" y2=\"200\" stroke=\"var(--ink2)\" stroke-dasharray=\"2 4\"/><text x=\"242\" y=\"16\" fill=\"var(--ink2)\">x=1</text><path d=\"M90,105 C140,120 200,150 250,175\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><circle cx=\"90\" cy=\"105\" r=\"3\" fill=\"var(--bg)\" stroke=\"var(--gold)\"/><circle cx=\"250\" cy=\"175\" r=\"3\" fill=\"var(--bg)\" stroke=\"var(--gold)\"/><text x=\"150\" y=\"90\" fill=\"var(--ink2)\">f on (0,1): range (-1,b)</text></svg>",
+    "statement": "Let $f:(0,1)\\to\\mathbb{R}$ be defined by $f(x)=\\dfrac{b-x}{1-bx}$, where $b$ is a constant such that $0<b<1$. Then\n\n(A) $f$ is not invertible on $(0,1)$\n\n(B) $f\\neq f^{-1}$ on $(0,1)$ and $f'(b)=\\dfrac{1}{f'(0)}$\n\n(C) $f=f^{-1}$ on $(0,1)$ and $f'(b)=\\dfrac{1}{f'(0)}$\n\n(D) $f^{-1}$ is differentiable on $(0,1)$",
+    "answer": "(A)",
+    "trap": "The map $x\\mapsto\\dfrac{b-x}{1-bx}$ is an algebraic involution — $f(f(x))=x$ identically — so a strong student instantly circles (C) or (D). But invertibility of a function $(0,1)\\to\\mathbb{R}$ demands ONTO the stated codomain $\\mathbb{R}$, and the actual image is only the tiny interval $(-1,b)$. The self-inverse algebra is on the whole line; restricted to the given domain-and-codomain, $f$ is not a bijection, so it is not invertible. Codomain, not just injectivity, decides invertibility.",
+    "solutions": [
+      {
+        "name": "Codomain check via monotonicity and image",
+        "steps": [
+          "Differentiate: $f(x)=\\dfrac{b-x}{1-bx}$ gives $f'(x)=\\dfrac{-(1-bx)-(b-x)(-b)}{(1-bx)^2}=\\dfrac{-(1-bx)+b(b-x)}{(1-bx)^2}=\\dfrac{b^2-1}{(1-bx)^2}$.",
+          "Since $0<b<1$, the numerator $b^2-1<0$ and the denominator is positive on $(0,1)$ (as $bx<b<1$), so $f'(x)<0$ throughout: $f$ is strictly decreasing, hence injective on $(0,1)$.",
+          "Compute the endpoint limits: $f(0^+)=\\dfrac{b}{1}=b$ and $f(1^-)=\\dfrac{b-1}{1-b}=-1$.",
+          "By continuity and strict monotonicity the image is the open interval $(-1,b)$.",
+          "The declared codomain is all of $\\mathbb{R}$, and $(-1,b)\\subsetneq\\mathbb{R}$, so $f$ is NOT onto $\\mathbb{R}$.",
+          "A function that is not onto its stated codomain is not a bijection onto that codomain, hence has no inverse $\\mathbb{R}\\to(0,1)$. Therefore $f$ is not invertible on $(0,1)$: statement (A) is correct.",
+          "This also kills (B), (C), (D): they all presuppose an inverse function exists on $(0,1)$, which it does not (the range is a strict subset of the codomain)."
+        ]
+      },
+      {
+        "name": "Why the involution algebra doesn't rescue it",
+        "steps": [
+          "Verify the tempting involution: let $y=\\dfrac{b-x}{1-bx}$. Solving, $y(1-bx)=b-x\\Rightarrow y-byx=b-x\\Rightarrow x(1-by)=b-y\\Rightarrow x=\\dfrac{b-y}{1-by}$.",
+          "So the inverse relation is $x=f(y)$ — the SAME formula — confirming $f(f(x))=x$ as a formal identity on the real line wherever defined.",
+          "But this identity lives on $\\mathbb{R}\\setminus\\{1/b\\}$, not on the prescribed pair (domain $(0,1)$, codomain $\\mathbb{R}$).",
+          "For $f=f^{-1}$ to be a legitimate statement about the given function, $f^{-1}:\\mathbb{R}\\to(0,1)$ would have to be defined on all of $\\mathbb{R}$. Feed it $y=5$ (outside $(-1,b)$): $f(5)=\\dfrac{b-5}{1-5b}$, which need not lie in $(0,1)$, so $f$ cannot be a two-sided inverse on the stated codomain.",
+          "Hence (C) is false as a statement about THIS function, and since no inverse function on $(0,1)$ exists, (B) and (D) are false as well.",
+          "Only (A) survives: the algebraic self-inverse is a distractor; the failure of surjectivity onto $\\mathbb{R}$ is decisive."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2011, Paper 2, Q34. Invertibility is a property of the triple (domain, rule, codomain): a formula can be self-inverse yet fail to be an invertible function because its image is a strict subset of the declared codomain."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two existence claims for $f(x)=(1-x)^2\\sin^2x+x^2$",
+    "difficulty": 4,
+    "task": "Judge the truth of statements P and Q.",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "52"
+    },
+    "tags": [
+      "existence of roots",
+      "IVT",
+      "inequalities",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "Let $f(x)=(1-x)^2\\sin^2x+x^2$ for all $x\\in\\mathbb{R}$, and let $g(x)=\\displaystyle\\int_1^x\\left(\\dfrac{2(t-1)}{t+1}-\\ln t\\right)f(t)\\,dt$ for all $x\\in(1,\\infty)$.\n\nConsider the statements:\n\nP: There exists some $x\\in\\mathbb{R}$ such that $f(x)+2x=2(1+x^2)$.\n\nQ: There exists some $x\\in\\mathbb{R}$ such that $2f(x)+1=2x(1+x)$.\n\nThen\n\n(A) both P and Q are true\n\n(B) P is true and Q is false\n\n(C) P is false and Q is true\n\n(D) both P and Q are false",
+    "answer": "(C)",
+    "trap": "Both P and Q look symmetric, so the instinct is 'both true' or 'both false'. The trap is treating them the same way: P collapses to an equation whose left side is $\\le 0$ and right side is $\\ge 1$, so it is IMPOSSIBLE — no continuity argument can save it. Q, by contrast, defines a continuous function that changes sign, so the Intermediate Value Theorem GUARANTEES a root even though you cannot solve it in closed form. One must be killed by an inequality, the other proved by IVT.",
+    "solutions": [
+      {
+        "name": "P by an impossible inequality, Q by the Intermediate Value Theorem",
+        "steps": [
+          "Statement P: substitute $f(x)=(1-x)^2\\sin^2x+x^2$ into $f(x)+2x=2(1+x^2)$.",
+          "Left side $=(1-x)^2\\sin^2x+x^2+2x$; right side $=2+2x^2$. Subtract: $(1-x)^2\\sin^2x+x^2+2x-2-2x^2=0$, i.e. $(1-x)^2\\sin^2x-x^2+2x-2=0$.",
+          "Note $-x^2+2x-2=-(x^2-2x+2)=-((x-1)^2+1)=-(1-x)^2-1$. So the equation is $(1-x)^2\\sin^2x-(1-x)^2-1=0$, i.e. $(1-x)^2(\\sin^2x-1)=1$.",
+          "But $(1-x)^2\\ge0$ and $\\sin^2x-1\\le0$, so the left side $(1-x)^2(\\sin^2x-1)\\le0$ for every real $x$, and can never equal $+1$. Hence P is FALSE.",
+          "Statement Q: substitute into $2f(x)+1=2x(1+x)=2x+2x^2$.",
+          "Define $h(x)=2f(x)+1-2x-2x^2=2[(1-x)^2\\sin^2x+x^2]+1-2x-2x^2=2(1-x)^2\\sin^2x-2x+1$.",
+          "Evaluate at $x=0$: $h(0)=2\\cdot1\\cdot0-0+1=1>0$.",
+          "Evaluate at $x=1$: $h(1)=2\\cdot0\\cdot\\sin^21-2+1=-1<0$.",
+          "$h$ is continuous on $[0,1]$ (sums and products of continuous functions), and $h(0)>0>h(1)$, so by the Intermediate Value Theorem there is some $x\\in(0,1)$ with $h(x)=0$. Hence Q is TRUE.",
+          "P false and Q true gives answer (C)."
+        ]
+      },
+      {
+        "name": "Both statements recast against $g$ / via a single reduced function",
+        "steps": [
+          "Rewrite both statements in terms of $\\phi(x)=(1-x)^2\\sin^2x$, the non-polynomial part of $f$, since $f(x)=\\phi(x)+x^2$ with $0\\le\\phi(x)\\le(1-x)^2$.",
+          "P becomes $\\phi(x)+x^2+2x=2+2x^2\\Rightarrow \\phi(x)=x^2-2x+2=(1-x)^2+1$.",
+          "Because $\\phi(x)=(1-x)^2\\sin^2x\\le(1-x)^2$ (as $\\sin^2x\\le1$), we would need $(1-x)^2\\ge(1-x)^2+1$, i.e. $0\\ge1$ — contradiction. So P has no solution: FALSE.",
+          "Q becomes $2\\phi(x)+2x^2+1=2x+2x^2\\Rightarrow 2\\phi(x)=2x-1\\Rightarrow \\phi(x)=x-\\tfrac12$.",
+          "Set $\\psi(x)=\\phi(x)-(x-\\tfrac12)=(1-x)^2\\sin^2x-x+\\tfrac12$, continuous on $\\mathbb{R}$.",
+          "At $x=\\tfrac12$: $\\psi(\\tfrac12)=(\\tfrac12)^2\\sin^2\\tfrac12-0=\\tfrac14\\sin^2\\tfrac12>0$. At $x=1$: $\\psi(1)=0-1+\\tfrac12=-\\tfrac12<0$.",
+          "By IVT on $[\\tfrac12,1]$ there is a root, so Q is TRUE.",
+          "Therefore exactly P is false and Q is true — option (C). (Note the integral $g$ in the paragraph feeds the companion question Q51 on monotonicity; here only $f$ and the two existence claims are needed.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2012, Paper 2, Q52 (paragraph for Q51–52). The paired statements test whether you distinguish 'impossible by a bounded-term inequality' from 'guaranteed by a sign change (IVT)' — an existence question is not always settled the same way."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Function You Never See Directly",
+    "difficulty": 4,
+    "task": "Find all possible values of $f(1/3)$.",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "60"
+    },
+    "tags": [
+      "functional definition",
+      "trigonometric substitution",
+      "double angle",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "Let $f:(-1,1)\\to\\mathbb{R}$ be such that $$f(\\cos 4\\theta)=\\frac{2}{2-\\sec^2\\theta}$$ for $\\theta\\in\\left(0,\\dfrac{\\pi}{4}\\right)\\cup\\left(\\dfrac{\\pi}{4},\\dfrac{\\pi}{2}\\right)$. Then the value(s) of $f\\left(\\dfrac{1}{3}\\right)$ is (are)\n\n(A) $1-\\sqrt{\\dfrac{3}{2}}$ · (B) $1+\\sqrt{\\dfrac{3}{2}}$ · (C) $1-\\sqrt{\\dfrac{2}{3}}$ · (D) $1+\\sqrt{\\dfrac{2}{3}}$",
+    "answer": "$f\\left(\\dfrac{1}{3}\\right)=1\\pm\\sqrt{\\dfrac{3}{2}}$, i.e. options $\\textbf{(A), (B)}$.",
+    "trap": "The function is defined only through the composite $f(\\cos 4\\theta)$, so you must re-express the right-hand side as a function of the argument $\\cos 4\\theta$ — not of $\\theta$. A student who solves $\\cos 4\\theta=\\tfrac13$ for one $\\theta$ and substitutes back gets a single value and misses that $\\cos 2\\theta$ carries TWO signs. The deeper trap is arithmetic: after $\\cos 2\\theta=\\pm\\sqrt{2/3}$ the answer is $1+\\tfrac{1}{\\cos 2\\theta}=1\\pm\\sqrt{3/2}$ — reciprocating $\\sqrt{2/3}$ flips it to $\\sqrt{3/2}$, so options (C)/(D) with $\\sqrt{2/3}$ are the decoys.",
+    "solutions": [
+      {
+        "name": "Reduce the RHS to a function of the argument $\\cos 4\\theta$",
+        "steps": [
+          "Multiply numerator and denominator of the right-hand side by $\\cos^2\\theta$: $$\\frac{2}{2-\\sec^2\\theta}=\\frac{2\\cos^2\\theta}{2\\cos^2\\theta-1}.$$",
+          "Apply the double-angle identities $2\\cos^2\\theta-1=\\cos 2\\theta$ and $2\\cos^2\\theta=1+\\cos 2\\theta$: $$f(\\cos 4\\theta)=\\frac{1+\\cos 2\\theta}{\\cos 2\\theta}=1+\\frac{1}{\\cos 2\\theta}.$$",
+          "Now write the argument $\\cos 4\\theta$ through $\\cos 2\\theta$ using $\\cos 4\\theta=2\\cos^2 2\\theta-1$. If we let the argument equal $\\tfrac13$, then $2\\cos^2 2\\theta-1=\\tfrac13$, so $\\cos^2 2\\theta=\\tfrac23$ and $$\\cos 2\\theta=\\pm\\sqrt{\\tfrac23}.$$",
+          "Substitute into the reduced form: $$f\\!\\left(\\tfrac13\\right)=1+\\frac{1}{\\cos 2\\theta}=1+\\frac{1}{\\pm\\sqrt{2/3}}=1\\pm\\sqrt{\\tfrac32}.$$",
+          "Both signs are genuinely realised: for $\\theta\\in(0,\\tfrac\\pi4)$ we have $2\\theta\\in(0,\\tfrac\\pi2)$ so $\\cos 2\\theta>0$; for $\\theta\\in(\\tfrac\\pi4,\\tfrac\\pi2)$ we have $2\\theta\\in(\\tfrac\\pi2,\\pi)$ so $\\cos 2\\theta<0$. Hence $f(1/3)$ legitimately takes both values — options (A) and (B)."
+        ]
+      },
+      {
+        "name": "Solve for $\\theta$ directly, then evaluate $\\sec^2\\theta$",
+        "steps": [
+          "Impose the argument condition $\\cos 4\\theta=\\dfrac13$ and compute $\\cos 2\\theta=\\pm\\sqrt{\\dfrac{1+\\cos 4\\theta}{2}}=\\pm\\sqrt{\\dfrac{1+1/3}{2}}=\\pm\\sqrt{\\dfrac23}.$",
+          "From $\\cos 2\\theta=2\\cos^2\\theta-1$ get $\\cos^2\\theta=\\dfrac{1+\\cos 2\\theta}{2}$, so $\\sec^2\\theta=\\dfrac{2}{1+\\cos 2\\theta}$.",
+          "Plug into the definition: $$f\\!\\left(\\tfrac13\\right)=\\frac{2}{\\,2-\\dfrac{2}{1+\\cos 2\\theta}\\,}=\\frac{2(1+\\cos 2\\theta)}{2(1+\\cos 2\\theta)-2}=\\frac{1+\\cos 2\\theta}{\\cos 2\\theta}.$$",
+          "With $\\cos 2\\theta=+\\sqrt{2/3}$: $f=\\dfrac{1+\\sqrt{2/3}}{\\sqrt{2/3}}=1+\\dfrac{1}{\\sqrt{2/3}}=1+\\sqrt{\\tfrac32}$ (option B).",
+          "With $\\cos 2\\theta=-\\sqrt{2/3}$: $f=\\dfrac{1-\\sqrt{2/3}}{-\\sqrt{2/3}}=1-\\dfrac{1}{\\sqrt{2/3}}=1-\\sqrt{\\tfrac32}$ (option A).",
+          "Numerical check: $\\sqrt{3/2}\\approx1.225$, so the two values are $\\approx-0.225$ and $\\approx2.225$; both lie in $\\mathbb{R}$ as required. Thus the answer set is $\\{\\,1-\\sqrt{3/2},\\,1+\\sqrt{3/2}\\,\\}$ = (A), (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2012, Paper 2, Q60. A function given only through a composite $f(\\cos 4\\theta)$ must be pulled back to its argument; the two signs of $\\cos 2\\theta$ make the answer set-valued, and the reciprocal step $1/\\sqrt{2/3}=\\sqrt{3/2}$ is exactly what separates the correct options (A), (B) from the $\\sqrt{2/3}$ decoys (C), (D)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "One Root, Many Disguises",
+    "difficulty": 3,
+    "task": "Identify every expression that equals $x$.",
+    "pyq": {
+      "year": 2013,
+      "paper": "2",
+      "qno": "46"
+    },
+    "tags": [
+      "logarithms",
+      "exponential equation",
+      "change of base",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "If $3^{x}=4^{x-1}$, then $x=$\n\n(A) $\\dfrac{2\\log_3 2}{2\\log_3 2-1}$ · (B) $\\dfrac{2}{2-\\log_2 3}$ · (C) $\\dfrac{1}{1-\\log_4 3}$ · (D) $\\dfrac{2\\log_2 3}{2\\log_2 3-1}$",
+    "answer": "(A), (B), (C)",
+    "trap": "There is only ONE real solution — the trap is that four algebraically different-looking surds can all denote the same number. Testing just one base (say $\\log_2$) yields one form and tempts you to mark a single option; the real task is to prove which of the four are equivalent to that one value, so the impostor (D) must be actively ruled out, not merely ignored.",
+    "solutions": [
+      {
+        "name": "Take $\\log_2$ of both sides",
+        "steps": [
+          "Apply $\\log_2$ to $3^x=4^{x-1}$: $$x\\log_2 3=(x-1)\\log_2 4=2(x-1).$$",
+          "Rearrange: $x\\log_2 3=2x-2\\Rightarrow 2x-x\\log_2 3=2\\Rightarrow x(2-\\log_2 3)=2.$",
+          "Hence $$x=\\frac{2}{2-\\log_2 3},$$ which is exactly option (B).",
+          "Convert to option (C): divide numerator and denominator by $2$: $x=\\dfrac{1}{1-\\tfrac12\\log_2 3}$. Since $\\tfrac12\\log_2 3=\\log_4 3$ (because $\\log_4 3=\\tfrac{\\log_2 3}{\\log_2 4}=\\tfrac{\\log_2 3}{2}$), we get $x=\\dfrac{1}{1-\\log_4 3}$ — option (C).",
+          "Convert to option (A): write $\\log_2 3=\\dfrac{1}{\\log_3 2}$. Then $2-\\log_2 3=2-\\dfrac{1}{\\log_3 2}=\\dfrac{2\\log_3 2-1}{\\log_3 2}$, so $x=\\dfrac{2\\log_3 2}{2\\log_3 2-1}$ — option (A).",
+          "Reject (D): $x=\\dfrac{2\\log_2 3}{2\\log_2 3-1}$ is a different number. Numerically $\\log_2 3\\approx1.585$, so the true root is $x=\\dfrac{2}{2-1.585}\\approx4.82$, whereas (D) gives $\\dfrac{3.17}{2.17}\\approx1.46$. Not equal, so (D) is false."
+        ]
+      },
+      {
+        "name": "Natural logs, then algebraic identity check",
+        "steps": [
+          "Take $\\ln$ of both sides: $x\\ln 3=(x-1)\\ln 4$, so $x(\\ln 3-\\ln 4)=-\\ln 4$, giving $$x=\\frac{\\ln 4}{\\ln 4-\\ln 3}=\\frac{2\\ln 2}{2\\ln 2-\\ln 3}.$$",
+          "Divide top and bottom by $\\ln 3$: $x=\\dfrac{2\\log_3 2}{2\\log_3 2-1}$ — option (A) drops out immediately.",
+          "Divide the boxed form instead by $\\ln 2$: $x=\\dfrac{2}{2-\\log_2 3}$ — option (B).",
+          "Divide the boxed form by $\\ln 4=2\\ln2$: $x=\\dfrac{1}{1-\\ln3/\\ln4}=\\dfrac{1}{1-\\log_4 3}$ — option (C).",
+          "For (D), note $\\dfrac{2\\log_2 3}{2\\log_2 3-1}$ would require the numerator $\\ln 3$-based, but our numerator carries $\\ln 4=2\\ln 2$; the base-change turning (A) into $\\log_2$ form flips $\\log_3 2\\to\\log_2 3$ in the denominator only, never producing $2\\log_2 3$ on top. So (D) is a distractor built by swapping the log base in the wrong place — it does not equal $x$.",
+          "Sanity value: $x=\\dfrac{2\\ln 2}{2\\ln 2-\\ln 3}=\\dfrac{1.386}{1.386-1.099}\\approx4.82$, confirming (A)=(B)=(C) and (D)$\\ne x$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2013, Paper 2, Q46. A single logarithmic root wearing four surd costumes: the whole exercise is disciplined change-of-base ($\\log_4 3=\\tfrac12\\log_2 3$, $\\log_2 3=1/\\log_3 2$), and the one option that resists every legitimate rearrangement is the impostor."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The cube of $\\log(\\sec x+\\tan x)$",
+    "difficulty": 3,
+    "task": "Decide which properties the function has.",
+    "pyq": {
+      "year": 2014,
+      "paper": "1",
+      "qno": "46"
+    },
+    "tags": [
+      "odd function",
+      "one-one",
+      "onto",
+      "logarithmic function",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "Let $f:\\left(-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right)\\to\\mathbb{R}$ be given by $f(x)=\\big(\\log(\\sec x+\\tan x)\\big)^3$. Then\n\n(A) $f(x)$ is an odd function\n\n(B) $f(x)$ is a one-one function\n\n(C) $f(x)$ is an onto function\n\n(D) $f(x)$ is an even function",
+    "answer": "(A), (B), (C)",
+    "trap": "The tempting shortcut is to test only a couple of numerical values and guess parity. The clean route is to recognise the inner map $u(x)=\\log(\\sec x+\\tan x)$ is exactly $\\sinh^{-1}(\\tan x)$ — an odd bijection of $\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)$ onto $\\mathbb{R}$. Students who cube first and lose track of monotonicity wrongly fear that the cube might destroy injectivity; it doesn't, because $t\\mapsto t^3$ is itself a strictly increasing bijection of $\\mathbb{R}$.",
+    "solutions": [
+      {
+        "name": "Reduce to the inner map $u(x)=\\log(\\sec x+\\tan x)$",
+        "steps": [
+          "Write $f(x)=u(x)^3$ where $u(x)=\\log(\\sec x+\\tan x)$, defined on $\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)$ (there $\\sec x+\\tan x=\\dfrac{1+\\sin x}{\\cos x}>0$, so the log is legitimate).",
+          "Parity of $u$: replace $x$ by $-x$. Then $u(-x)=\\log(\\sec x-\\tan x)$. Since $(\\sec x+\\tan x)(\\sec x-\\tan x)=\\sec^2x-\\tan^2x=1$, we get $\\sec x-\\tan x=\\dfrac{1}{\\sec x+\\tan x}$, hence $u(-x)=-\\log(\\sec x+\\tan x)=-u(x)$. So $u$ is odd.",
+          "Then $f(-x)=u(-x)^3=(-u(x))^3=-u(x)^3=-f(x)$, so $f$ is odd — (A) is TRUE and (D) is FALSE.",
+          "Monotonicity of $u$: $u'(x)=\\dfrac{\\sec x\\tan x+\\sec^2x}{\\sec x+\\tan x}=\\dfrac{\\sec x(\\tan x+\\sec x)}{\\sec x+\\tan x}=\\sec x>0$ on the interval. So $u$ is strictly increasing, hence one-one.",
+          "Range of $u$: as $x\\to\\left(\\tfrac{\\pi}{2}\\right)^-$, $\\sec x+\\tan x\\to+\\infty$ so $u\\to+\\infty$; as $x\\to\\left(-\\tfrac{\\pi}{2}\\right)^+$, $\\sec x+\\tan x\\to0^+$ so $u\\to-\\infty$. Being continuous and increasing, $u$ maps the interval onto all of $\\mathbb{R}$.",
+          "Now $f=(\\ \\cdot\\ )^3\\circ u$. Both $u:\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)\\to\\mathbb{R}$ and $t\\mapsto t^3:\\mathbb{R}\\to\\mathbb{R}$ are strictly increasing bijections, so their composite $f$ is a strictly increasing bijection onto $\\mathbb{R}$ — (B) one-one TRUE and (C) onto TRUE.",
+          "Hence the correct options are (A), (B), (C)."
+        ]
+      },
+      {
+        "name": "Direct derivative and limit test on $f$",
+        "steps": [
+          "Compute $f'(x)$ directly: $f(x)=u(x)^3\\Rightarrow f'(x)=3u(x)^2\\,u'(x)$ with $u'(x)=\\sec x$ (shown above).",
+          "Since $u'(x)=\\sec x>0$ and $3u(x)^2\\ge0$, we have $f'(x)\\ge0$, and $f'(x)=0$ only where $u(x)=0$, i.e. at the single point $x=0$ (an inflection, not a turning point). A function with $f'\\ge0$ that vanishes only at isolated points is strictly increasing, hence one-one — (B) TRUE.",
+          "For ontoness evaluate the end behaviour of $f$ itself: as $x\\to\\left(\\tfrac{\\pi}{2}\\right)^-$, $u\\to+\\infty$ so $f=u^3\\to+\\infty$; as $x\\to\\left(-\\tfrac{\\pi}{2}\\right)^+$, $u\\to-\\infty$ so $f\\to-\\infty$. By the Intermediate Value Theorem $f$ hits every real value — (C) onto TRUE.",
+          "Parity: from $f'(x)=3u(x)^2\\sec x$, note $u^2$ is even (square of an odd function) and $\\sec x$ is even, so $f'$ is even; an antiderivative with $f(0)=0$ of an even function is odd. Indeed $f(0)=(\\log 1)^3=0$, so $f$ is odd — (A) TRUE, (D) FALSE.",
+          "Therefore (A), (B), (C) are the true statements."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2014, Paper 1, Q46. The whole problem collapses the moment you spot that $\\log(\\sec x+\\tan x)=\\sinh^{-1}(\\tan x)$ is an odd, strictly increasing bijection onto $\\mathbb{R}$ — cubing a bijection of $\\mathbb{R}$ preserves odd/one-one/onto all at once."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Four maps, four verdicts",
+    "difficulty": 4,
+    "task": "Match each function to its correct description.",
+    "pyq": {
+      "year": 2014,
+      "paper": "2",
+      "qno": "60"
+    },
+    "tags": [
+      "composition of functions",
+      "one-one",
+      "onto",
+      "continuity",
+      "differentiability",
+      "2014"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"20\" y1=\"120\" x2=\"300\" y2=\"120\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"210\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <text x=\"292\" y=\"115\" fill=\"var(--ink2)\">x</text>\n  <text x=\"166\" y=\"30\" fill=\"var(--ink2)\">y</text>\n  <text x=\"22\" y=\"36\" fill=\"var(--ink2)\">$(f_2\\\\!\\\\circ\\\\! f_1)(x)$</text>\n  <path d=\"M 40 40 Q 100 118 160 120\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.6\"/>\n  <text x=\"78\" y=\"70\" fill=\"var(--ink2)\">$x^2$</text>\n  <path d=\"M 160 120 Q 210 118 232 96 Q 268 62 300 24\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/>\n  <text x=\"242\" y=\"70\" fill=\"var(--gold)\">$e^{2x}$</text>\n  <circle cx=\"160\" cy=\"120\" r=\"3\" fill=\"var(--gold)\"/>\n  <text x=\"146\" y=\"136\" fill=\"var(--ink2)\">O</text>\n</svg>",
+    "statement": "Let $f_1:\\mathbb{R}\\to\\mathbb{R}$, $f_2:[0,\\infty)\\to\\mathbb{R}$, $f_3:\\mathbb{R}\\to\\mathbb{R}$ and $f_4:\\mathbb{R}\\to[0,\\infty)$ be defined by\n\n$$f_1(x)=\\begin{cases}|x|,&x<0\\\\e^{x},&x\\ge0\\end{cases}\\qquad f_2(x)=x^2\\qquad f_3(x)=\\begin{cases}\\sin x,&x<0\\\\x,&x\\ge0\\end{cases}\\qquad f_4(x)=\\begin{cases}f_2\\big(f_1(x)\\big),&x<0\\\\f_2\\big(f_1(x)\\big)-1,&x\\ge0\\end{cases}$$\n\nMatch List-I with List-II.\n\n**List-I:** (P) $f_4$ is; (Q) $f_3$ is; (R) $f_2\\circ f_1$ is; (S) $f_2$ is.\n\n**List-II:** (1) onto but not one-one; (2) neither continuous nor one-one; (3) differentiable but not one-one; (4) continuous and one-one.\n\n(A) P-3, Q-1, R-4, S-2 (B) P-1, Q-3, R-4, S-2 (C) P-3, Q-1, R-2, S-4 (D) P-1, Q-3, R-2, S-4",
+    "answer": "(D)",
+    "trap": "The lethal step is $f_4$ at the junction $x=0$. From the left, $f_4(0^-)=\\lim_{x\\to0^-}x^2=0$; from the right, $f_4(0)=e^0-1=0$ — so $f_4$ is actually continuous at $0$, contrary to the knee-jerk 'piecewise means discontinuous.' The $-1$ shift was engineered precisely to glue the two pieces, then bend the right branch down to hit negative values, making $f_4$ onto $[0,\\infty)$? No — onto is delivered by the left branch covering $[0,\\infty)$ while the right branch dips to $-1$; the overlap kills injectivity.",
+    "solutions": [
+      {
+        "name": "Analyse each map piece by piece",
+        "steps": [
+          "$f_2\\circ f_1$: for $x<0$, $f_1(x)=|x|=-x>0$, so $f_2(f_1(x))=(-x)^2=x^2$; for $x\\ge0$, $f_1(x)=e^x$, so $f_2(f_1(x))=e^{2x}$. Thus $(f_2\\circ f_1)(x)=x^2$ on $(-\\infty,0)$ and $e^{2x}$ on $[0,\\infty)$.",
+          "At $x=0$: left value $\\to0^2=0$? No — as $x\\to0^-$, $x^2\\to0$, while the right value is $e^{0}=1$. The two branches give $0$ and $1$, so $f_2\\circ f_1$ is NOT continuous at $0$. Also both branches take the value... on $(-\\infty,0)$ it decreases from $+\\infty$ to $0$ and on $[0,\\infty)$ it increases from $1$ to $+\\infty$, so large values are attained twice — NOT one-one. Hence $R\\to(2)$ neither continuous nor one-one.",
+          "$f_2$ on $[0,\\infty)$: $f_2(x)=x^2$ restricted to $x\\ge0$ is strictly increasing, hence one-one, and it is a polynomial, hence continuous. So $S\\to(4)$ continuous and one-one.",
+          "$f_3$: equals $\\sin x$ for $x<0$ and $x$ for $x\\ge0$. At $x=0$ both give $0$ and the derivatives match ($\\cos 0=1$ and slope $1$), so $f_3$ is differentiable everywhere. But on $x<0$, $\\sin x$ is bounded in $[-1,0)$ and oscillates, taking the same value at many points (e.g. $\\sin(-\\pi)=\\sin(-2\\pi)=0$), so $f_3$ is NOT one-one. Hence $Q\\to(3)$ differentiable but not one-one.",
+          "$f_4$: for $x<0$, $f_4(x)=f_2(f_1(x))=x^2$ (from step 1); for $x\\ge0$, $f_4(x)=f_2(f_1(x))-1=e^{2x}-1$. Left branch $x^2$ covers $(0,\\infty)$ as $x$ runs over $(-\\infty,0)$; right branch $e^{2x}-1$ covers $[0,\\infty)$ as $x$ runs over $[0,\\infty)$. Together the range is $[0,\\infty)$, the full codomain, so $f_4$ is ONTO. But the value $1$, say, is hit by $x=-1$ (left, $1$) and by some $x>0$ with $e^{2x}-1=1$, so $f_4$ is NOT one-one. Hence $P\\to(1)$ onto but not one-one.",
+          "Assembling: P-1, Q-3, R-2, S-4 — option (D)."
+        ]
+      },
+      {
+        "name": "Elimination via one decisive fact each",
+        "steps": [
+          "Key fact for $R$: $f_2\\circ f_1$ jumps from limit $0$ (left) to value $1$ (right) at $x=0$, so it cannot be 'continuous and one-one' (4). This forces $R\\to(2)$, immediately eliminating options (A) and (B), which both pair R with (4).",
+          "Between the survivors (C) and (D), they differ only in the P/Q assignments: (C) says P-3, Q-1; (D) says P-1, Q-3.",
+          "Test $f_3$ (that is Q): it is differentiable everywhere (branches $\\sin x$ and $x$ agree in value and slope $1$ at $0$) but repeats values on $x<0$, so $Q$ must be 'differentiable but not one-one' = (3), not (1). Only option (D) has Q-3.",
+          "Confirm P for completeness: $f_4$ has range exactly $[0,\\infty)$ (onto) yet repeats values, so $P\\to(1)$'onto but not one-one', consistent with (D).",
+          "Therefore the answer is (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2014, Paper 2, Q60. Every branch here is a trap about the junction point $x=0$: $f_2\\circ f_1$ silently jumps ($0\\to1$) while $f_4$ and $f_3$ are secretly glued continuously — always test the seam before declaring continuity or differentiability."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three nested sines, one squeezed range",
+    "difficulty": 4,
+    "task": "Decide which statements about the nested-sine functions are true.",
+    "pyq": {
+      "year": 2015,
+      "paper": "1",
+      "qno": "58"
+    },
+    "tags": [
+      "range of nested functions",
+      "composition",
+      "limits of trig functions",
+      "2015"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"110\" x2=\"300\" y2=\"110\" stroke=\"var(--ink3)\"/><line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"302\" y=\"114\" fill=\"var(--ink2)\">x</text><text x=\"164\" y=\"18\" fill=\"var(--ink2)\">y</text><line x1=\"20\" y1=\"75\" x2=\"300\" y2=\"75\" stroke=\"var(--ink2)\" stroke-dasharray=\"4 3\"/><line x1=\"20\" y1=\"145\" x2=\"300\" y2=\"145\" stroke=\"var(--ink2)\" stroke-dasharray=\"4 3\"/><text x=\"22\" y=\"71\" fill=\"var(--ink2)\">y=1/2</text><text x=\"22\" y=\"158\" fill=\"var(--ink2)\">y=-1/2</text><path d=\"M20,110 Q55,75 90,110 Q125,145 160,110 Q195,75 230,110 Q265,145 300,110\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><text x=\"228\" y=\"64\" fill=\"var(--gold)\">y=f(x)</text></svg>",
+    "statement": "Let $f(x)=\\sin\\!\\left(\\dfrac{\\pi}{6}\\sin\\!\\left(\\dfrac{\\pi}{2}\\sin x\\right)\\right)$ for all $x\\in\\mathbb{R}$ and $g(x)=\\dfrac{\\pi}{2}\\sin x$ for all $x\\in\\mathbb{R}$. Let $(f\\circ g)(x)$ denote $f(g(x))$ and $(g\\circ f)(x)$ denote $g(f(x))$. Then which of the following is (are) TRUE? (A) Range of $f$ is $\\left[-\\tfrac12,\\tfrac12\\right]$; (B) Range of $f\\circ g$ is $\\left[-\\tfrac12,\\tfrac12\\right]$; (C) $\\displaystyle\\lim_{x\\to0}\\dfrac{f(x)}{g(x)}=\\dfrac{\\pi}{6}$; (D) There is an $x\\in\\mathbb{R}$ such that $(g\\circ f)(x)=1$.",
+    "answer": "(A), (B), (C)",
+    "trap": "Because three sines are stacked, students panic and assume the range collapses to something tiny or that the endpoints $\\pm\\tfrac12$ are never actually reached. The saving grace is that $\\sin x$ is genuinely onto $[-1,1]$, so every inner argument sweeps its full interval and each outer $\\sin$ hits its extreme value — the range is exactly $[-\\tfrac12,\\tfrac12]$, a closed interval, endpoints attained. For (D) the trap is symmetric: you must notice $(g\\circ f)(x)=1$ demands $\\sin(f(x))=\\tfrac{2}{\\pi}>\\sin(\\tfrac12)$, impossible since $|f(x)|\\le\\tfrac12$.",
+    "solutions": [
+      {
+        "name": "Peel the layers from the inside out",
+        "steps": [
+          "Let $t=\\sin x$. As $x$ ranges over $\\mathbb{R}$, $t$ ranges over the full interval $[-1,1]$ (sine is onto its range).",
+          "Innermost layer: $\\dfrac{\\pi}{2}t\\in\\left[-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right]$, so $u=\\sin\\!\\left(\\dfrac{\\pi}{2}t\\right)$ ranges over $[-1,1]$ (and hits both ends since $\\pm\\tfrac{\\pi}{2}$ are attained).",
+          "Middle layer: $\\dfrac{\\pi}{6}u\\in\\left[-\\dfrac{\\pi}{6},\\dfrac{\\pi}{6}\\right]$, so $v=\\sin\\!\\left(\\dfrac{\\pi}{6}u\\right)$ ranges over $\\left[\\sin(-\\tfrac{\\pi}{6}),\\sin(\\tfrac{\\pi}{6})\\right]=\\left[-\\dfrac12,\\dfrac12\\right]$.",
+          "Since $\\dfrac{\\pi}{6}u$ never leaves $\\left[-\\dfrac{\\pi}{6},\\dfrac{\\pi}{6}\\right]\\subset\\left[-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right]$, the outer sine is increasing there, so the range of $f$ is exactly $\\left[-\\dfrac12,\\dfrac12\\right]$ with both endpoints attained. Statement (A) is TRUE.",
+          "For $f\\circ g$: replacing $x$ by $g(x)=\\dfrac{\\pi}{2}\\sin x$ only reshuffles the inner argument, but $\\sin(g(x))=\\sin\\!\\left(\\dfrac{\\pi}{2}\\sin x\\right)$ still sweeps all of $[-1,1]$. So the same peeling gives range $\\left[-\\dfrac12,\\dfrac12\\right]$. Statement (B) is TRUE.",
+          "For the limit, use $\\sin\\theta\\approx\\theta$ as $\\theta\\to0$: near $0$, $\\sin x\\to0$, so the innermost $\\dfrac{\\pi}{2}\\sin x\\to0$ and $\\sin\\!\\left(\\dfrac{\\pi}{2}\\sin x\\right)\\approx\\dfrac{\\pi}{2}\\sin x$; then $\\dfrac{\\pi}{6}\\cdot(\\cdots)\\to0$ so $f(x)\\approx\\dfrac{\\pi}{6}\\cdot\\dfrac{\\pi}{2}\\sin x$.",
+          "Hence $\\dfrac{f(x)}{g(x)}=\\dfrac{f(x)}{\\frac{\\pi}{2}\\sin x}\\to\\dfrac{\\frac{\\pi}{6}\\cdot\\frac{\\pi}{2}\\sin x}{\\frac{\\pi}{2}\\sin x}=\\dfrac{\\pi}{6}$. Statement (C) is TRUE.",
+          "For (D): $(g\\circ f)(x)=\\dfrac{\\pi}{2}\\sin(f(x))=1$ requires $\\sin(f(x))=\\dfrac{2}{\\pi}\\approx0.637$, i.e. $f(x)\\ge\\sin^{-1}\\!\\left(\\dfrac{2}{\\pi}\\right)\\approx0.69$. But $|f(x)|\\le\\dfrac12<0.69$, so this is impossible. Statement (D) is FALSE.",
+          "Therefore the true statements are (A), (B), (C)."
+        ]
+      },
+      {
+        "name": "Chain-rule derivative at $0$ for the limit",
+        "steps": [
+          "This route independently confirms (C) without small-angle approximations, by recognizing the limit as a derivative.",
+          "Note $f(0)=\\sin\\!\\left(\\dfrac{\\pi}{6}\\sin\\!\\left(\\dfrac{\\pi}{2}\\cdot0\\right)\\right)=\\sin(0)=0$ and $g(0)=\\dfrac{\\pi}{2}\\sin 0=0$, so $\\dfrac{f(x)}{g(x)}$ is a $\\tfrac00$ form.",
+          "Write $\\dfrac{f(x)}{g(x)}=\\dfrac{f(x)-f(0)}{x-0}\\Big/\\dfrac{g(x)-g(0)}{x-0}\\to\\dfrac{f'(0)}{g'(0)}$ (both derivatives exist and $g'(0)\\ne0$).",
+          "Compute $g'(x)=\\dfrac{\\pi}{2}\\cos x$, so $g'(0)=\\dfrac{\\pi}{2}$.",
+          "Compute $f'(x)$ by the chain rule: $f'(x)=\\cos\\!\\left(\\dfrac{\\pi}{6}\\sin\\!\\left(\\dfrac{\\pi}{2}\\sin x\\right)\\right)\\cdot\\dfrac{\\pi}{6}\\cos\\!\\left(\\dfrac{\\pi}{2}\\sin x\\right)\\cdot\\dfrac{\\pi}{2}\\cos x$.",
+          "At $x=0$: $\\cos(0)\\cdot\\dfrac{\\pi}{6}\\cdot\\cos(0)\\cdot\\dfrac{\\pi}{2}\\cdot\\cos(0)=\\dfrac{\\pi}{6}\\cdot\\dfrac{\\pi}{2}=\\dfrac{\\pi^2}{12}$.",
+          "Thus $\\lim_{x\\to0}\\dfrac{f(x)}{g(x)}=\\dfrac{f'(0)}{g'(0)}=\\dfrac{\\pi^2/12}{\\pi/2}=\\dfrac{\\pi}{6}$, confirming (C).",
+          "The range claims (A), (B) and the impossibility in (D) follow exactly as in the first method (the inner sines are onto $[-1,1]$, so the outer extremes $\\pm\\tfrac12$ are attained, while $\\sin(f(x))=\\tfrac{2}{\\pi}$ is out of reach)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 1, Q58. The key realization is that each inner $\\sin$ is onto $[-1,1]$, so the nested composition attains its full closed range $[-\\tfrac12,\\tfrac12]$ — nesting shrinks the interval but never opens its endpoints."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The inverse's slope and a hidden $f\\circ f$",
+    "difficulty": 4,
+    "task": "Determine which of the four statements about $g$ and $h$ are correct.",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "47"
+    },
+    "tags": [
+      "inverse functions",
+      "composition",
+      "differentiation of composite functions",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $f:\\mathbb{R}\\to\\mathbb{R}$, $g:\\mathbb{R}\\to\\mathbb{R}$ and $h:\\mathbb{R}\\to\\mathbb{R}$ be differentiable functions such that $f(x)=x^3+3x+2$, $\\;g(f(x))=x$ and $h(g(g(x)))=x$ for all $x\\in\\mathbb{R}$. Then (A) $g'(2)=\\dfrac{1}{15}$; (B) $h'(1)=666$; (C) $h(0)=16$; (D) $h(g(3))=36$.",
+    "answer": "(B), (C)",
+    "trap": "Two traps stacked. First, $g(f(x))=x$ makes $g=f^{-1}$, so its derivative is $g'(y)=\\dfrac{1}{f'(f^{-1}(y))}$ — students who write $g'(2)=\\dfrac{1}{f'(2)}$ forget to invert the argument (you need $x$ with $f(x)=2$, namely $x=0$, so $g'(2)=\\dfrac{1}{f'(0)}=\\dfrac13$, NOT $\\tfrac1{15}$). Second, $h(g(g(x)))=x$ tempts you to guess $h=g^{-1}\\circ g^{-1}$ abstractly; the clean move is $g^{-1}=f$, so $h=f\\circ f$. Miss either and every part goes wrong.",
+    "solutions": [
+      {
+        "name": "Identify $g=f^{-1}$ and $h=f\\circ f$, then differentiate",
+        "steps": [
+          "From $g(f(x))=x$ for all $x$, $g$ is the inverse of $f$: $g=f^{-1}$. (This is legitimate because $f(x)=x^3+3x+2$ has $f'(x)=3x^2+3>0$, so $f$ is a strictly increasing bijection.)",
+          "The relation $h(g(g(x)))=x$ says $h\\circ(g\\circ g)$ is the identity, so $h=(g\\circ g)^{-1}=g^{-1}\\circ g^{-1}=f\\circ f$. Thus $h(x)=f(f(x))$.",
+          "Check (A): differentiate $g(f(x))=x$ to get $g'(f(x))\\,f'(x)=1$, so $g'(f(x))=\\dfrac{1}{f'(x)}$. To evaluate $g'(2)$ find $x$ with $f(x)=2$: $x^3+3x+2=2\\Rightarrow x^3+3x=0\\Rightarrow x=0$.",
+          "Then $g'(2)=\\dfrac{1}{f'(0)}=\\dfrac{1}{3\\cdot0^2+3}=\\dfrac13$. So (A) claims $\\tfrac1{15}$, which is FALSE.",
+          "Check (C): $h(0)=f(f(0))$. Now $f(0)=0+0+2=2$, and $f(2)=8+6+2=16$. So $h(0)=16$. Statement (C) is TRUE.",
+          "Check (B): $h'(x)=f'(f(x))\\,f'(x)$ by the chain rule. At $x=1$: $f(1)=1+3+2=6$, so $h'(1)=f'(6)\\,f'(1)$.",
+          "Compute $f'(6)=3\\cdot36+3=111$ and $f'(1)=3+3=6$, giving $h'(1)=111\\cdot6=666$. Statement (B) is TRUE.",
+          "Check (D): $h(g(3))=f\\big(f(g(3))\\big)$. Since $g=f^{-1}$, $f(g(3))=3$, so $h(g(3))=f(3)=27+9+2=38\\ne36$. Statement (D) is FALSE.",
+          "Correct statements: (B) and (C)."
+        ]
+      },
+      {
+        "name": "Work purely with the defining identities (no explicit inverse)",
+        "steps": [
+          "This route never names $f^{-1}$; it manipulates the given relations directly, which guards against inversion slips.",
+          "For (A): differentiate $g(f(x))=x$ to get $g'(f(x))f'(x)=1$. We want the input $2$ to $g'$, so set $f(x)=2$. Solving $x^3+3x+2=2$ gives $x=0$, so $g'(2)=g'(f(0))=\\dfrac{1}{f'(0)}=\\dfrac13\\ne\\dfrac1{15}$. (A) FALSE.",
+          "For $h$, apply $g$ twice to peel the composition. From $g(f(t))=t$, feeding $t=g(x)$ gives $g(f(g(x)))=g(x)$; and feeding $t=x$ into $f\\big(g(x)\\big)$: since $g$ is a two-sided inverse of the bijection $f$, $f(g(x))=x$ as well.",
+          "Now $x=h(g(g(x)))$. Put $x=f(f(u))$ and use $f(g(\\cdot))=(\\cdot)$ twice: $g(g(f(f(u))))=g(f(u))=u$, so $h(g(g(f(f(u)))))=h(u)$. But the outer relation says this equals $f(f(u))$. Hence $h(u)=f(f(u))$ for all $u$.",
+          "For (C): $h(0)=f(f(0))=f(2)=16$. TRUE.",
+          "For (B): $h'(1)=\\dfrac{d}{dx}f(f(x))\\Big|_{1}=f'(f(1))f'(1)=f'(6)\\cdot f'(1)=111\\cdot6=666$. TRUE.",
+          "For (D): $h(g(3))=f(f(g(3)))=f(3)$ because $f(g(3))=3$. Then $f(3)=38\\ne36$. FALSE.",
+          "So again only (B) and (C) hold."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2016, Paper 1, Q47. The whole problem hinges on two identifications — $g=f^{-1}$ and $h=f\\circ f$ — after which every part is a one-line chain-rule or substitution; the inverse-derivative rule $g'(y)=1/f'(f^{-1}(y))$ is where careless solvers lose the mark."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The self-referential $f(x+y)=f(x)f'(y)+f'(x)f(y)$",
+    "difficulty": 4,
+    "task": "Find the value of $\\log_e(f(4))$.",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "11"
+    },
+    "tags": [
+      "functional equation",
+      "differentiation",
+      "exponential function",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $f:\\mathbb{R}\\to\\mathbb{R}$ be a differentiable function with $f(0)=1$ and satisfying the equation $$f(x+y)=f(x)\\,f'(y)+f'(x)\\,f(y)\\quad\\text{for all }x,y\\in\\mathbb{R}.$$ Then the value of $\\log_e\\big(f(4)\\big)$ is _____ .",
+    "answer": "$\\boxed{2}$",
+    "trap": "The relation mixes $f$ and $f'$ symmetrically, so it is tempting to guess $f(x)=e^{cx}$ and match constants blindly. The subtlety is that plugging $x=y=0$ first pins $f'(0)=\\tfrac12$ (not $1$), and only then does differentiating in $y$ close the loop to give $f'=\\tfrac12 f$. Students who assume $f'(0)=f(0)=1$ get $f(x)=e^{x}$ and the wrong answer $4$.",
+    "solutions": [
+      {
+        "name": "Seed the constant, then form the ODE",
+        "steps": [
+          "Set $x=y=0$ in $f(x+y)=f(x)f'(y)+f'(x)f(y)$: $f(0)=f(0)f'(0)+f'(0)f(0)=2f(0)f'(0)$.",
+          "Since $f(0)=1$, this gives $1=2f'(0)$, so $f'(0)=\\tfrac12$.",
+          "Now differentiate the functional equation with respect to $y$, holding $x$ fixed: $f'(x+y)=f(x)f''(y)+f'(x)f'(y)$.",
+          "Instead, differentiate with respect to $x$ and set $x=0$: $\\frac{\\partial}{\\partial x}f(x+y)\\big|_{x=0}=f'(0)f'(y)+f''(0)f(y)$, i.e. $f'(y)=f'(0)f'(y)+f''(0)f(y)$.",
+          "A cleaner route: differentiate the original relation in $x$ then put $x=0$. With $f(0)=1,\\;f'(0)=\\tfrac12$ one obtains $f'(y)=\\tfrac12\\,f(y)+\\big(f''(0)\\big)f(y)$-type balance; the consistent first-order reduction is $\\dfrac{f'(y)}{f(y)}=\\tfrac12$.",
+          "Integrate: $\\ln f(y)=\\tfrac12 y+C$. Using $f(0)=1$ gives $C=0$, so $f(y)=e^{y/2}$.",
+          "Therefore $f(4)=e^{2}$ and $\\log_e f(4)=\\log_e e^{2}=2$."
+        ]
+      },
+      {
+        "name": "Ansatz $f(x)=e^{\\lambda x}$ done correctly",
+        "steps": [
+          "Try $f(x)=e^{\\lambda x}$, so $f'(x)=\\lambda e^{\\lambda x}$; note $f(0)=1$ is automatic for any $\\lambda$.",
+          "Substitute into the relation: LHS $=e^{\\lambda(x+y)}$; RHS $=e^{\\lambda x}\\cdot\\lambda e^{\\lambda y}+\\lambda e^{\\lambda x}\\cdot e^{\\lambda y}=2\\lambda\\,e^{\\lambda(x+y)}$.",
+          "Matching gives $1=2\\lambda$, so $\\lambda=\\tfrac12$ and $f(x)=e^{x/2}$.",
+          "Check differentiability and the seed value: $f'(0)=\\tfrac12$, consistent with $f(0)=2f(0)f'(0)$.",
+          "Hence $f(4)=e^{2}$ and $\\log_e f(4)=2$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 2, Q11. The symmetric $f\\,f'$ form is a disguised linear ODE $f'=\\tfrac12 f$ — the whole problem hinges on extracting $f'(0)=\\tfrac12$ before guessing the exponential."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Domain & range of $\\log_e\\!\\frac{x}{x-1}$ and its $\\sin^{-1}$ shell",
+    "difficulty": 4,
+    "task": "Match each entry of List-I to the correct entry of List-II.",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "15"
+    },
+    "tags": [
+      "domain and range",
+      "composition",
+      "logarithm",
+      "inverse trig",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $E_1=\\left\\{x\\in\\mathbb{R}:x\\ne 1\\text{ and }\\dfrac{x}{x-1}>0\\right\\}$ and $E_2=\\left\\{x\\in E_1:\\sin^{-1}\\!\\left(\\log_e\\!\\left(\\dfrac{x}{x-1}\\right)\\right)\\text{ is a real number}\\right\\}.$ (Here $\\sin^{-1}$ takes values in $\\left[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right]$.) Let $f:E_1\\to\\mathbb{R}$ be $f(x)=\\log_e\\!\\left(\\dfrac{x}{x-1}\\right)$ and $g:E_2\\to\\mathbb{R}$ be $g(x)=\\sin^{-1}\\!\\left(\\log_e\\!\\left(\\dfrac{x}{x-1}\\right)\\right).$\n\nLIST-I: (P) The range of $f$ is; (Q) The range of $g$ contains; (R) The domain of $f$ contains; (S) The domain of $g$ is.\n\nLIST-II: (1) $\\left(-\\infty,\\dfrac{1}{1-e}\\right]\\cup\\left[\\dfrac{e}{e-1},\\infty\\right)$; (2) $(0,1)$; (3) $\\left[-\\dfrac{1}{2},\\dfrac{1}{2}\\right]$; (4) $(-\\infty,0)\\cup(0,\\infty)$; (5) $\\left(-\\infty,\\dfrac{e}{e-1}\\right]$; (6) $(-\\infty,0)\\cup\\left[\\dfrac{1}{2},\\dfrac{e}{e-1}\\right]$.\n\nOptions:\n(A) P$\\to$4; Q$\\to$2; R$\\to$1; S$\\to$1\n(B) P$\\to$3; Q$\\to$3; R$\\to$6; S$\\to$5\n(C) P$\\to$4; Q$\\to$2; R$\\to$1; S$\\to$6\n(D) P$\\to$4; Q$\\to$3; R$\\to$6; S$\\to$5",
+    "answer": "(A)",
+    "trap": "The map $t=\\tfrac{x}{x-1}$ never equals $1$ (it is $1+\\tfrac{1}{x-1}$), so $\\log_e t$ never equals $0$ — the range of $f$ is $\\mathbb{R}\\setminus\\{0\\}$, not all of $\\mathbb{R}$. That missing single point $0$ propagates: it also punctures the range of $g$ and forces the $\\sin^{-1}$-domain constraint $|\\log_e t|\\le 1$ to translate into $t\\in[e^{-1},e]$ intersected with $E_1$, which is exactly the closed-endpoint set (1). Forgetting the puncture makes P look like $(4)$ vs $\\mathbb{R}$ and mismatches S.",
+    "solutions": [
+      {
+        "name": "Track the substitution $t=\\frac{x}{x-1}$ set-by-set",
+        "steps": [
+          "$E_1$: solve $\\dfrac{x}{x-1}>0$. This holds when numerator and denominator share sign: $x<0$ or $x>1$. So $E_1=(-\\infty,0)\\cup(1,\\infty)$.",
+          "Write $t=\\dfrac{x}{x-1}=1+\\dfrac{1}{x-1}$. On $x>1$, $t\\in(1,\\infty)$; on $x<0$, $\\tfrac{1}{x-1}\\in(-1,0)$ so $t\\in(0,1)$. Thus $t$ ranges over $(0,1)\\cup(1,\\infty)$ — every positive value except $t=1$.",
+          "**(P) Range of $f$:** $f=\\log_e t$ with $t\\in(0,1)\\cup(1,\\infty)$ gives $\\log_e t\\in(-\\infty,0)\\cup(0,\\infty)$. That is set (4). So P$\\to$4.",
+          "**(Q) Range of $g$:** $g=\\sin^{-1}(\\log_e t)$. For $g$ real we need $\\log_e t\\in[-1,1]$, i.e. $t\\in[e^{-1},e]$; excluding $t=1$ gives $\\log_e t\\in[-1,0)\\cup(0,1]$, so $g\\in[\\sin^{-1}(-1),0)\\cup(0,\\sin^{-1}1]=[-\\tfrac{\\pi}{2},0)\\cup(0,\\tfrac{\\pi}{2}]$. This interval contains $(0,1)$, i.e. set (2). So Q$\\to$2.",
+          "**(R) Domain of $f$:** it is $E_1=(-\\infty,0)\\cup(1,\\infty)$. Set (1) $=(-\\infty,\\tfrac{1}{1-e}]\\cup[\\tfrac{e}{e-1},\\infty)$; since $\\tfrac{1}{1-e}<0$ and $\\tfrac{e}{e-1}>1$, set (1) is contained in $E_1$, so $E_1$ contains set (1). R$\\to$1.",
+          "**(S) Domain of $g$:** need $t\\in[e^{-1},e]$ within $E_1$. Solve $\\dfrac{x}{x-1}\\le e$ and $\\dfrac{x}{x-1}\\ge e^{-1}$ on each branch. For $x>1$: $\\tfrac{x}{x-1}\\le e\\Rightarrow x\\ge\\tfrac{e}{e-1}$; the lower bound $\\ge e^{-1}$ is automatic. For $x<0$: $\\tfrac{x}{x-1}\\ge e^{-1}\\Rightarrow x\\le\\tfrac{1}{1-e}$. So $E_2=(-\\infty,\\tfrac{1}{1-e}]\\cup[\\tfrac{e}{e-1},\\infty)$, exactly set (1). S$\\to$1.",
+          "Combining P$\\to$4, Q$\\to$2, R$\\to$1, S$\\to$1 gives option (A)."
+        ]
+      },
+      {
+        "name": "Solve each threshold as an inequality in $x$",
+        "steps": [
+          "**Domain of $g$ directly.** Require $-1\\le\\log_e\\!\\frac{x}{x-1}\\le 1$, i.e. $\\frac1e\\le\\frac{x}{x-1}\\le e$.",
+          "Right inequality $\\frac{x}{x-1}\\le e$: $\\frac{x-e(x-1)}{x-1}\\le0\\Rightarrow\\frac{e-(e-1)x}{x-1}\\le0$. Sign chart with roots $x=\\frac{e}{e-1}$ and $x=1$ gives $x<1$ or $x\\ge\\frac{e}{e-1}$.",
+          "Left inequality $\\frac{x}{x-1}\\ge\\frac1e$: $\\frac{ex-(x-1)}{e(x-1)}\\ge0\\Rightarrow\\frac{(e-1)x+1}{x-1}\\ge0$. Roots $x=\\frac{-1}{e-1}=\\frac{1}{1-e}$ and $x=1$ give $x\\le\\frac{1}{1-e}$ or $x>1$.",
+          "Intersect the two solution sets with $E_1=(-\\infty,0)\\cup(1,\\infty)$: the overlap is $x\\le\\frac{1}{1-e}$ (from the $x<0$ side) and $x\\ge\\frac{e}{e-1}$ (from the $x>1$ side).",
+          "So $E_2=\\left(-\\infty,\\frac{1}{1-e}\\right]\\cup\\left[\\frac{e}{e-1},\\infty\\right)=$ set (1): S$\\to$1.",
+          "For **range of $f$**, note $\\frac{x}{x-1}$ is a Möbius map onto $(0,1)\\cup(1,\\infty)$, whose $\\log$ is $\\mathbb{R}\\setminus\\{0\\}=$ set (4): P$\\to$4. **Range of $g$** is $[-\\tfrac{\\pi}{2},0)\\cup(0,\\tfrac{\\pi}{2}]\\supset(0,1)=$ set (2): Q$\\to$2. **Domain of $f$** is $E_1\\supset$ set (1): R$\\to$1.",
+          "Hence P$\\to$4, Q$\\to$2, R$\\to$1, S$\\to$1 — option (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 2, Q15. A single omitted value ($t\\ne1\\Rightarrow\\log_e t\\ne0$) threads through domain and range of both $f$ and its $\\sin^{-1}$ composite — the whole match turns on that puncture."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Zeros of $\\sin(\\pi\\cos x)$ and its derivative",
+    "difficulty": 4,
+    "task": "Identify the only correct combination.",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "1"
+    },
+    "tags": [
+      "zeros of trig functions",
+      "critical points",
+      "arithmetic progression",
+      "matching",
+      "2019"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"20\" y1=\"120\" x2=\"310\" y2=\"120\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <line x1=\"30\" y1=\"20\" x2=\"30\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <text x=\"300\" y=\"135\" fill=\"var(--ink2)\">x</text>\n  <text x=\"12\" y=\"26\" fill=\"var(--ink2)\">y</text>\n  <path d=\"M30,120 C 55,60 80,60 105,120 C 130,180 155,180 180,120 C 205,60 230,60 255,120 C 280,180 300,180 305,120\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.6\"/>\n  <text x=\"90\" y=\"48\" fill=\"var(--ink2)\">$f(x)=\\sin(\\pi\\cos x)$</text>\n  <circle cx=\"67\" cy=\"120\" r=\"3.2\" fill=\"var(--gold)\"/>\n  <circle cx=\"105\" cy=\"120\" r=\"3.2\" fill=\"var(--gold)\"/>\n  <circle cx=\"142\" cy=\"120\" r=\"3.2\" fill=\"var(--gold)\"/>\n  <circle cx=\"180\" cy=\"120\" r=\"3.2\" fill=\"var(--gold)\"/>\n  <circle cx=\"217\" cy=\"120\" r=\"3.2\" fill=\"var(--gold)\"/>\n  <circle cx=\"255\" cy=\"120\" r=\"3.2\" fill=\"var(--gold)\"/>\n  <text x=\"58\" y=\"210\" fill=\"var(--ink2)\">$\\tfrac{\\pi}{2}$</text>\n  <text x=\"100\" y=\"210\" fill=\"var(--ink2)\">$\\pi$</text>\n  <text x=\"133\" y=\"210\" fill=\"var(--ink2)\">$\\tfrac{3\\pi}{2}$</text>\n  <text x=\"174\" y=\"210\" fill=\"var(--ink2)\">$2\\pi$</text>\n  <text x=\"60\" y=\"150\" fill=\"var(--gold)\">zeros: an AP</text>\n</svg>",
+    "statement": "For $x>0$ let $f(x)=\\sin(\\pi\\cos x)$ and $g(x)=\\cos(2\\pi\\sin x)$. Define, with elements listed in increasing order,\n$$X=\\{x:f(x)=0\\},\\quad Y=\\{x:f'(x)=0\\},\\quad Z=\\{x:g(x)=0\\},\\quad W=\\{x:g'(x)=0\\}.$$\nList-I contains $X,Y,Z,W$ (entries (I) $X$, (II) $Y$, (III) $Z$, (IV) $W$). List-II contains the properties:\n(P) $\\supseteq\\left\\{\\tfrac{\\pi}{2},\\tfrac{3\\pi}{2},4\\pi,7\\pi\\right\\}$; (Q) is an arithmetic progression; (R) is NOT an arithmetic progression; (S) $\\supseteq\\left\\{\\tfrac{\\pi}{6},\\tfrac{7\\pi}{6},\\tfrac{13\\pi}{6}\\right\\}$; (T) $\\supseteq\\left\\{\\tfrac{\\pi}{3},\\tfrac{2\\pi}{3},\\pi\\right\\}$; (U) $\\supseteq\\left\\{\\tfrac{\\pi}{6},\\tfrac{3\\pi}{4}\\right\\}$.\nWhich of the following is the only CORRECT combination?\n(A) (II), (R), (S)\n(B) (I), (Q), (U)\n(C) (II), (Q), (T)\n(D) (I), (P), (R)",
+    "answer": "(C)",
+    "trap": "The tempting move is to read '$f(x)=0$' as '$\\cos x=0$'. But $\\sin(\\pi\\cos x)=0$ means $\\pi\\cos x=n\\pi$, i.e. $\\cos x=n$ — and since $\\cos x\\in[-1,1]$ the only usable integers are $n=-1,0,1$. So $X$ is driven by $\\cos x\\in\\{-1,0,1\\}$ (giving $x=\\tfrac{n\\pi}{2}$), not by $\\cos x=0$ alone. Confusing which set the combination refers to — (II) is $Y$, the derivative's zeros, not $X$ — is the second trap.",
+    "solutions": [
+      {
+        "name": "Direct root-hunting for $Y=\\{f'(x)=0\\}$",
+        "steps": [
+          "Differentiate: $f(x)=\\sin(\\pi\\cos x)\\Rightarrow f'(x)=\\cos(\\pi\\cos x)\\cdot(-\\pi\\sin x)$.",
+          "So $f'(x)=0$ requires $\\sin x=0$ or $\\cos(\\pi\\cos x)=0$.",
+          "Case $\\sin x=0$: $x=\\pi,2\\pi,3\\pi,\\dots$ (for $x>0$).",
+          "Case $\\cos(\\pi\\cos x)=0$: $\\pi\\cos x=\\tfrac{\\pi}{2}+k\\pi\\Rightarrow \\cos x=\\pm\\tfrac12$ (only $k$ giving a value in $[-1,1]$). Then $x=\\tfrac{\\pi}{3},\\tfrac{2\\pi}{3},\\tfrac{4\\pi}{3},\\tfrac{5\\pi}{3},\\dots$",
+          "Merge and sort the two families: $Y=\\left\\{\\tfrac{\\pi}{3},\\tfrac{2\\pi}{3},\\pi,\\tfrac{4\\pi}{3},\\tfrac{5\\pi}{3},2\\pi,\\dots\\right\\}$ — consecutive terms differ by $\\tfrac{\\pi}{3}$.",
+          "Hence $Y$ is an arithmetic progression with common difference $\\tfrac{\\pi}{3}$, so $Y$ satisfies (Q).",
+          "It clearly contains $\\left\\{\\tfrac{\\pi}{3},\\tfrac{2\\pi}{3},\\pi\\right\\}$, so $Y$ also satisfies (T).",
+          "Therefore the correct combination pairs List-I entry (II) $=Y$ with (Q) and (T): option (C)."
+        ]
+      },
+      {
+        "name": "Elimination via the structure of $X$",
+        "steps": [
+          "First pin down $X=\\{x>0:\\sin(\\pi\\cos x)=0\\}$: this needs $\\cos x\\in\\mathbb{Z}\\cap[-1,1]=\\{-1,0,1\\}$, i.e. $x=\\tfrac{n\\pi}{2}$ for $n=1,2,3,\\dots$",
+          "So $X=\\left\\{\\tfrac{\\pi}{2},\\pi,\\tfrac{3\\pi}{2},2\\pi,\\dots\\right\\}$ — an AP with common difference $\\tfrac{\\pi}{2}$; it satisfies (P) and (Q) but NOT (R), (S), (T), (U).",
+          "Option (B) claims (I) $X$ with (U): but $\\tfrac{3\\pi}{4}\\notin X$ since $\\cos\\tfrac{3\\pi}{4}=-\\tfrac{1}{\\sqrt2}\\notin\\{-1,0,1\\}$. Reject (B).",
+          "Option (D) claims (I) $X$ with (R) 'NOT an AP': false, $X$ IS an AP. Reject (D).",
+          "Option (A) claims (II) $Y$ with (S) $\\supseteq\\{\\tfrac{\\pi}{6},\\dots\\}$: but $\\tfrac{\\pi}{6}$ has $\\sin\\tfrac{\\pi}{6}=\\tfrac12\\ne0$ and $\\cos\\tfrac{\\pi}{6}=\\tfrac{\\sqrt3}{2}\\ne\\pm\\tfrac12$, so $\\tfrac{\\pi}{6}\\notin Y$. Reject (A).",
+          "Only (C) survives, and it is confirmed valid by the direct computation of $Y$ above."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE/JEE Advanced 2019, Paper 2, QS3-Q1. The whole trap is that '$\\sin(\\pi\\cos x)=0$' collapses to '$\\cos x$ is an integer', which on $[-1,1]$ leaves only three values — turning a scary nested-trig condition into a tidy arithmetic progression."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Zeros of $\\cos(2\\pi\\sin x)$ and its derivative",
+    "difficulty": 4,
+    "task": "Identify the only correct combination.",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "2"
+    },
+    "tags": [
+      "zeros of trig functions",
+      "critical points",
+      "arithmetic progression",
+      "matching",
+      "2019"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"20\" y1=\"120\" x2=\"310\" y2=\"120\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <line x1=\"30\" y1=\"20\" x2=\"30\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <text x=\"300\" y=\"135\" fill=\"var(--ink2)\">x</text>\n  <text x=\"12\" y=\"26\" fill=\"var(--ink2)\">y</text>\n  <path d=\"M30,60 C 50,150 70,150 90,60 C 110,-10 130,-10 150,60 C 170,150 190,150 210,60 C 230,-10 250,-10 270,60 C 285,110 295,110 305,80\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.6\"/>\n  <text x=\"120\" y=\"200\" fill=\"var(--ink2)\">$g(x)=\\cos(2\\pi\\sin x)$</text>\n  <circle cx=\"46\" cy=\"120\" r=\"3.2\" fill=\"var(--gold)\"/>\n  <circle cx=\"74\" cy=\"120\" r=\"3.2\" fill=\"var(--gold)\"/>\n  <circle cx=\"106\" cy=\"120\" r=\"3.2\" fill=\"var(--gold)\"/>\n  <circle cx=\"134\" cy=\"120\" r=\"3.2\" fill=\"var(--gold)\"/>\n  <circle cx=\"166\" cy=\"120\" r=\"3.2\" fill=\"var(--gold)\"/>\n  <circle cx=\"194\" cy=\"120\" r=\"3.2\" fill=\"var(--gold)\"/>\n  <text x=\"40\" y=\"40\" fill=\"var(--gold)\">zeros: NOT an AP</text>\n  <text x=\"38\" y=\"152\" fill=\"var(--ink2)\">$\\sin x=\\pm\\tfrac14,\\pm\\tfrac34$</text>\n</svg>",
+    "statement": "(Same paragraph.) For $x>0$ let $f(x)=\\sin(\\pi\\cos x)$ and $g(x)=\\cos(2\\pi\\sin x)$, and define, with elements in increasing order,\n$$X=\\{x:f(x)=0\\},\\quad Y=\\{x:f'(x)=0\\},\\quad Z=\\{x:g(x)=0\\},\\quad W=\\{x:g'(x)=0\\}.$$\nList-I entries are (I) $X$, (II) $Y$, (III) $Z$, (IV) $W$. List-II properties:\n(P) $\\supseteq\\left\\{\\tfrac{\\pi}{2},\\tfrac{3\\pi}{2},4\\pi,7\\pi\\right\\}$; (Q) is an arithmetic progression; (R) is NOT an arithmetic progression; (S) $\\supseteq\\left\\{\\tfrac{\\pi}{6},\\tfrac{7\\pi}{6},\\tfrac{13\\pi}{6}\\right\\}$; (T) $\\supseteq\\left\\{\\tfrac{\\pi}{3},\\tfrac{2\\pi}{3},\\pi\\right\\}$; (U) $\\supseteq\\left\\{\\tfrac{\\pi}{6},\\tfrac{3\\pi}{4}\\right\\}$.\nWhich of the following is the only CORRECT combination?\n(A) (IV), (P), (R), (S)\n(B) (III), (P), (Q), (U)\n(C) (IV), (Q), (T)\n(D) (III), (R), (U)",
+    "answer": "(A)",
+    "trap": "Students assume that because $X$ and $Y$ from the sibling problem were arithmetic progressions, $Z$ and $W$ must be too. But solving $\\cos(2\\pi\\sin x)=0$ forces $\\sin x=\\pm\\tfrac14,\\pm\\tfrac34$, whose arcsines are NOT equally spaced — so $Z$ (and $W$) are deliberately NOT arithmetic progressions. Expecting the pattern to repeat is exactly the mistake the paper-setter planted.",
+    "solutions": [
+      {
+        "name": "Compute $W=\\{g'(x)=0\\}$ directly",
+        "steps": [
+          "Differentiate: $g(x)=\\cos(2\\pi\\sin x)\\Rightarrow g'(x)=-\\sin(2\\pi\\sin x)\\cdot(2\\pi\\cos x)$.",
+          "So $g'(x)=0$ requires $\\cos x=0$ or $\\sin(2\\pi\\sin x)=0$.",
+          "Case $\\cos x=0$: $x=\\tfrac{\\pi}{2},\\tfrac{3\\pi}{2},\\tfrac{5\\pi}{2},\\dots$ — this already gives the $\\tfrac{\\pi}{2},\\tfrac{3\\pi}{2}$ in property (P).",
+          "Case $\\sin(2\\pi\\sin x)=0$: $2\\pi\\sin x=m\\pi\\Rightarrow \\sin x=\\tfrac{m}{2}$, and with $\\sin x\\in[-1,1]$ this allows $\\sin x\\in\\{-1,-\\tfrac12,0,\\tfrac12,1\\}$.",
+          "$\\sin x=0$ gives $x=\\pi,2\\pi,3\\pi,4\\pi,\\dots$; in particular $4\\pi$ and $7\\pi$ lie here, confirming the rest of (P).",
+          "$\\sin x=\\tfrac12$ gives $x=\\tfrac{\\pi}{6},\\tfrac{5\\pi}{6},\\tfrac{13\\pi}{6},\\dots$; $\\sin x=-\\tfrac12$ gives $x=\\tfrac{7\\pi}{6},\\tfrac{11\\pi}{6},\\dots$ — so $\\left\\{\\tfrac{\\pi}{6},\\tfrac{7\\pi}{6},\\tfrac{13\\pi}{6}\\right\\}\\subseteq W$, confirming (S).",
+          "The gaps between successive elements of $W$ are unequal (e.g. $\\tfrac{\\pi}{2}-\\tfrac{\\pi}{6}=\\tfrac{\\pi}{3}$ but $\\tfrac{5\\pi}{6}-\\tfrac{\\pi}{2}=\\tfrac{\\pi}{3}$ then $\\pi-\\tfrac{5\\pi}{6}=\\tfrac{\\pi}{6}$), so $W$ is NOT an AP — property (R).",
+          "Thus (IV) $=W$ satisfies (P), (R) and (S) simultaneously: option (A)."
+        ]
+      },
+      {
+        "name": "Elimination using $Z=\\{g(x)=0\\}$",
+        "steps": [
+          "For contrast, solve $Z$: $\\cos(2\\pi\\sin x)=0\\Rightarrow 2\\pi\\sin x=\\tfrac{\\pi}{2}+k\\pi\\Rightarrow \\sin x=\\tfrac{2k+1}{4}$, so $\\sin x\\in\\{\\pm\\tfrac14,\\pm\\tfrac34\\}$.",
+          "The corresponding $x$-values $\\arcsin(\\tfrac14),\\arcsin(\\tfrac34),\\dots$ are not evenly spaced, so $Z$ is NOT an AP $\\Rightarrow$ any option pairing (III) $Z$ with (Q) 'is an AP' is wrong. This kills option (B).",
+          "Option (D) claims (III) $Z$ with (U) $\\supseteq\\{\\tfrac{\\pi}{6},\\tfrac{3\\pi}{4}\\}$: but $\\sin\\tfrac{\\pi}{6}=\\tfrac12\\notin\\{\\pm\\tfrac14,\\pm\\tfrac34\\}$, so $\\tfrac{\\pi}{6}\\notin Z$. Reject (D).",
+          "Option (C) claims (IV) $W$ with (Q) 'is an AP': shown false in the first method ($W$ is not an AP). Reject (C).",
+          "Only (A) remains, matching (IV) $W$ with (P), (R), (S) — consistent with the direct computation."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE/JEE Advanced 2019, Paper 2, QS3-Q2. The setter pairs this with its sibling to punish pattern-matching: swapping $\\sin(\\pi\\cos x)$ for $\\cos(2\\pi\\sin x)$ forces half-integer sine values whose arcsines break the arithmetic spacing, so $Z$ and $W$ are deliberately NON-arithmetic."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The $f(x{+}y)=f(x)+f(y)+f(x)f(y)$ trap",
+    "difficulty": 4,
+    "task": "Decide which statements are true.",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "9"
+    },
+    "tags": [
+      "functional equations",
+      "differentiability",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Let $f:\\mathbb{R}\\to\\mathbb{R}$ and $g:\\mathbb{R}\\to\\mathbb{R}$ be functions satisfying $f(x+y)=f(x)+f(y)+f(x)f(y)$ and $f(x)=x\\,g(x)$ for all $x,y\\in\\mathbb{R}$. If $\\displaystyle\\lim_{x\\to0}g(x)=1$, then which of the following statements is/are TRUE?\n\n(A) $f$ is differentiable at every $x\\in\\mathbb{R}$\n\n(B) If $g(0)=1$, then $g$ is differentiable at every $x\\in\\mathbb{R}$\n\n(C) The derivative $f'(1)$ is equal to $1$\n\n(D) The derivative $f'(0)$ is equal to $1$",
+    "answer": "(A), (B), (D)",
+    "trap": "Students set $x=y=0$, get $f(0)=2f(0)+f(0)^2$ so $f(0)\\in\\{0,-2\\}$, and then keep both roots. But $f(x)=x\\,g(x)$ forces $f(0)=0$, killing the $f(0)=-2$ branch. Missing this either leaves a spurious solution or blocks the derivative computation entirely. The other trap on (C): once $f(x)=e^x-1$, $f'(1)=e\\neq1$, so (C) is false even though the tempting 'linearized' guess $f'\\approx1$ near $0$ is only true at $0$.",
+    "solutions": [
+      {
+        "name": "Convert the additive-multiplicative law into an ODE",
+        "steps": [
+          "Since $f(x)=x\\,g(x)$, at $x=0$ we get $f(0)=0\\cdot g(0)=0$; so among the two algebraic roots of $f(0)=2f(0)+f(0)^2$, only $f(0)=0$ survives.",
+          "Compute $f'(0)$ from the definition using $f(x)=x\\,g(x)$: $\\displaystyle f'(0)=\\lim_{x\\to0}\\frac{f(x)-f(0)}{x}=\\lim_{x\\to0}\\frac{x\\,g(x)}{x}=\\lim_{x\\to0}g(x)=1.$ This is exactly statement (D), so (D) is TRUE.",
+          "Now differentiate the functional equation in $y$ at $y=0$, holding $x$ fixed: $\\displaystyle\\frac{d}{dy}f(x+y)\\Big|_{y=0}=f'(0)+f(x)f'(0).$",
+          "The left side is $f'(x)$ (chain rule), and $f'(0)=1$, so $f'(x)=1+f(x)$ for every $x\\in\\mathbb{R}$. In particular the right side is finite for all $x$, so $f$ is differentiable everywhere — statement (A) is TRUE.",
+          "Solve $f'(x)=1+f(x)$ with $f(0)=0$: writing $u=1+f$, $u'=u$, $u=Ce^{x}$; $u(0)=1+f(0)=1$ gives $C=1$, so $1+f(x)=e^{x}$, i.e. $f(x)=e^{x}-1$.",
+          "Then $f'(x)=e^{x}$, so $f'(1)=e\\neq1$; statement (C) is FALSE.",
+          "For (B): $g(x)=\\dfrac{f(x)}{x}=\\dfrac{e^{x}-1}{x}$ for $x\\neq0$, and with $g(0)=1$ this is the standard entire function $\\sum_{n\\ge0}\\frac{x^{n}}{(n+1)!}$, differentiable on all of $\\mathbb{R}$; so (B) is TRUE.",
+          "Hence the true statements are (A), (B), (D)."
+        ]
+      },
+      {
+        "name": "Substitution $F=1+f$ turns it into a Cauchy exponential",
+        "steps": [
+          "Add $1$ to both sides of $f(x+y)=f(x)+f(y)+f(x)f(y)$: $1+f(x+y)=1+f(x)+f(y)+f(x)f(y)=(1+f(x))(1+f(y)).$",
+          "So $F(x):=1+f(x)$ satisfies $F(x+y)=F(x)F(y)$ — the multiplicative Cauchy equation.",
+          "From $f(x)=x\\,g(x)$ we have $f(0)=0$, hence $F(0)=1$, and $F$ is continuous at $0$ because $\\lim_{x\\to0}f(x)=\\lim_{x\\to0}x\\,g(x)=0\\cdot1=0=f(0)$.",
+          "A multiplicative Cauchy function continuous at a point (and not identically $0$, since $F(0)=1$) is $F(x)=a^{x}$ for some $a>0$. Thus $f(x)=a^{x}-1$.",
+          "Fix $a$ using $f'(0)=1$: $\\dfrac{f(x)}{x}=\\dfrac{a^{x}-1}{x}\\to\\ln a$ as $x\\to0$, but this limit is $\\lim_{x\\to0}g(x)=1$, so $\\ln a=1$, i.e. $a=e$ and $f(x)=e^{x}-1$. This also confirms $f'(0)=1$, so (D) is TRUE.",
+          "$f(x)=e^{x}-1$ is differentiable everywhere (A TRUE) with $f'(x)=e^{x}$, giving $f'(1)=e\\neq1$ (C FALSE).",
+          "$g(x)=(e^{x}-1)/x$ extended by $g(0)=1$ is smooth on $\\mathbb{R}$ (B TRUE). Answer: (A), (B), (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 2, Q9. The move that unlocks everything is $F=1+f$: it silently converts an additive-plus-cross-term law into the pure multiplicative Cauchy equation, and the side condition $f(x)=x\\,g(x)$ is doing double duty — it pins $f(0)=0$ and it hands you $f'(0)$ for free."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The reflection $f(x)+f(1-x)=1$",
+    "difficulty": 3,
+    "task": "Evaluate the given sum.",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "16"
+    },
+    "tags": [
+      "functional symmetry f(x)+f(1-x)=1",
+      "summation",
+      "2020"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <!-- axes -->\n  <line x1=\"40\" y1=\"180\" x2=\"300\" y2=\"180\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/>\n  <line x1=\"40\" y1=\"200\" x2=\"40\" y2=\"30\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/>\n  <text x=\"300\" y=\"195\" fill=\"var(--ink2)\">x</text>\n  <text x=\"20\" y=\"36\" fill=\"var(--ink2)\">y</text>\n  <!-- reference lines y=0,1 and x=1/2 -->\n  <line x1=\"40\" y1=\"40\" x2=\"280\" y2=\"40\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"3 3\"/>\n  <text x=\"14\" y=\"44\" fill=\"var(--ink2)\">1</text>\n  <line x1=\"160\" y1=\"180\" x2=\"160\" y2=\"30\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"3 3\"/>\n  <text x=\"150\" y=\"195\" fill=\"var(--ink2)\">1/2</text>\n  <text x=\"270\" y=\"195\" fill=\"var(--ink2)\">1</text>\n  <line x1=\"280\" y1=\"180\" x2=\"280\" y2=\"30\" stroke=\"var(--ink2)\" stroke-width=\"0.6\" stroke-dasharray=\"2 3\"/>\n  <!-- curve f(x)=4^x/(4^x+2): rises from 1/3 at 0 to 2/3 at 1, half-value 1/2 at x=1/2 -->\n  <path d=\"M40,140 C90,128 130,112 160,110 C190,108 235,94 280,80\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/>\n  <!-- symmetry centre (1/2, 1/2) -->\n  <circle cx=\"160\" cy=\"110\" r=\"3.5\" fill=\"var(--gold)\"/>\n  <text x=\"166\" y=\"106\" fill=\"var(--ink2)\">(1/2, 1/2)</text>\n  <!-- a symmetric pair x and 1-x -->\n  <circle cx=\"100\" cy=\"124\" r=\"2.5\" fill=\"var(--ink3)\"/>\n  <circle cx=\"220\" cy=\"96\" r=\"2.5\" fill=\"var(--ink3)\"/>\n  <text x=\"70\" y=\"120\" fill=\"var(--ink2)\">f(x)</text>\n  <text x=\"224\" y=\"92\" fill=\"var(--ink2)\">f(1−x)</text>\n  <text x=\"120\" y=\"212\" fill=\"var(--ink2)\">f(x)+f(1−x)=1</text>\n</svg>",
+    "statement": "Let the function $f:[0,1]\\to\\mathbb{R}$ be defined by $\\displaystyle f(x)=\\frac{4^{x}}{4^{x}+2}$. Then find the value of\n$$f\\!\\left(\\tfrac{1}{40}\\right)+f\\!\\left(\\tfrac{2}{40}\\right)+f\\!\\left(\\tfrac{3}{40}\\right)+\\cdots+f\\!\\left(\\tfrac{39}{40}\\right)-f\\!\\left(\\tfrac{1}{2}\\right).$$",
+    "answer": "$\\boxed{19}$",
+    "trap": "The sum runs over $k=1,\\dots,39$, an odd number of terms whose exact middle is $k=20$, i.e. $x=\\tfrac{20}{40}=\\tfrac12$. Pairing $x$ with $1-x$ leaves that middle term unpaired — and the problem deliberately subtracts $f(\\tfrac12)$ to cancel exactly that leftover. Students who forget the middle term is unpaired (or who pair it with itself) miscount the number of paired ones and land on $19\\tfrac12$ or $20$ instead of $19$.",
+    "solutions": [
+      {
+        "name": "Reflection identity $f(x)+f(1-x)=1$",
+        "steps": [
+          "Compute $f(1-x)=\\dfrac{4^{1-x}}{4^{1-x}+2}$. Multiply numerator and denominator by $4^{x}$: $f(1-x)=\\dfrac{4}{4+2\\cdot4^{x}}=\\dfrac{2}{2+4^{x}}.$",
+          "Add: $f(x)+f(1-x)=\\dfrac{4^{x}}{4^{x}+2}+\\dfrac{2}{4^{x}+2}=\\dfrac{4^{x}+2}{4^{x}+2}=1.$ So $f$ is symmetric about the point $(\\tfrac12,\\tfrac12)$.",
+          "Let $S=\\sum_{k=1}^{39} f\\!\\left(\\tfrac{k}{40}\\right)$. Pair the term $k$ with the term $40-k$: since $\\tfrac{k}{40}+\\tfrac{40-k}{40}=1$, each pair sums to $1$.",
+          "The indices $k=1,\\dots,39$ split into the $19$ pairs $\\{1,39\\},\\{2,38\\},\\dots,\\{19,21\\}$ plus the single middle index $k=20$.",
+          "So $S=19\\cdot1 + f\\!\\left(\\tfrac{20}{40}\\right)=19+f\\!\\left(\\tfrac12\\right).$",
+          "The requested quantity is $S-f\\!\\left(\\tfrac12\\right)=19+f\\!\\left(\\tfrac12\\right)-f\\!\\left(\\tfrac12\\right)=19.$"
+        ]
+      },
+      {
+        "name": "Reverse-and-add (Gauss pairing of the whole sum)",
+        "steps": [
+          "Write $S=\\sum_{k=1}^{39} f\\!\\left(\\tfrac{k}{40}\\right)$ and also write it backwards: $S=\\sum_{k=1}^{39} f\\!\\left(\\tfrac{40-k}{40}\\right)$ (just relabel $k\\mapsto 40-k$).",
+          "Add the two expressions term by term: $2S=\\sum_{k=1}^{39}\\left[f\\!\\left(\\tfrac{k}{40}\\right)+f\\!\\left(1-\\tfrac{k}{40}\\right)\\right].$",
+          "By the identity $f(x)+f(1-x)=1$ (verified as $\\tfrac{4^{x}}{4^{x}+2}+\\tfrac{2}{4^{x}+2}=1$), every bracket equals $1$.",
+          "There are $39$ brackets, so $2S=39$, giving $S=\\dfrac{39}{2}=19.5$.",
+          "Finally subtract the middle value: $f\\!\\left(\\tfrac12\\right)=\\dfrac{4^{1/2}}{4^{1/2}+2}=\\dfrac{2}{2+2}=\\dfrac12.$",
+          "Therefore $S-f\\!\\left(\\tfrac12\\right)=19.5-0.5=19.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 2, Q16. Any $f$ built as $\\tfrac{a^{x}}{a^{x}+c}$ with $c=\\sqrt{a}$ (here $a=4,c=2$) satisfies $f(x)+f(1-x)=1$ and $f(\\tfrac12)=\\tfrac12$ — the $-f(\\tfrac12)$ tail is engineered precisely to erase the unpaired centre of an odd-length sum."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The lone root hiding behind three positives",
+    "difficulty": 3,
+    "task": "Find the number of real solutions.",
+    "pyq": {
+      "year": 2024,
+      "paper": "2",
+      "qno": "10"
+    },
+    "tags": [
+      "number of real roots",
+      "monotonic polynomial",
+      "sign analysis",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "Let the function $f:\\mathbb{R}\\to\\mathbb{R}$ be defined by $$f(x)=\\left(\\frac{\\sin x+2}{e^{x}}\\right)\\left(\\frac{x^{2023}+2024x+2025}{x^{2}-x+3}\\right).$$ Then the number of solutions of $f(x)=0$ in $\\mathbb{R}$ is _____.",
+    "answer": "$\\boxed{1}$",
+    "trap": "The high degree $2023$ tempts you to fear many roots. The real work is proving that three of the four factors NEVER vanish, so the only zeros come from the cubic-like numerator $x^{2023}+2024x+2025$ — and a strong student must still justify that this odd-degree polynomial with everywhere-positive derivative has exactly one real root, not merely 'at least one'.",
+    "solutions": [
+      {
+        "name": "Factor-by-factor sign analysis",
+        "steps": [
+          "A product is zero iff some factor is zero and no factor is undefined. Examine each piece of $f$.",
+          "$\\sin x+2$: since $\\sin x\\ge-1$, we have $\\sin x+2\\ge1>0$ for every $x$. It never vanishes.",
+          "$e^{x}>0$ for all $x$, so the denominator $e^{x}$ is never zero and the factor $1/e^{x}$ is well defined and positive.",
+          "$x^{2}-x+3$ has discriminant $1-12=-11<0$ and positive leading coefficient, so $x^{2}-x+3>0$ for all $x$; the second denominator never vanishes.",
+          "Hence $f(x)=0$ if and only if the numerator $P(x)=x^{2023}+2024x+2025=0$.",
+          "$P'(x)=2023\\,x^{2022}+2024$. Since $x^{2022}\\ge0$, we get $P'(x)\\ge2024>0$ for all $x$, so $P$ is strictly increasing on $\\mathbb{R}$.",
+          "A strictly increasing continuous function crosses $0$ at most once; and as $P(x)\\to-\\infty$ as $x\\to-\\infty$ and $P(x)\\to+\\infty$ as $x\\to+\\infty$, it crosses exactly once (IVT).",
+          "Therefore $f(x)=0$ has exactly $1$ real solution."
+        ]
+      },
+      {
+        "name": "Reduction to $g(x)=0$ via a strictly monotone bijection",
+        "steps": [
+          "As shown, all factors except $P(x)=x^{2023}+2024x+2025$ are strictly positive and finite everywhere, so $f$ has the same zero set as $P$.",
+          "View $P:\\mathbb{R}\\to\\mathbb{R}$. Because $P'(x)=2023x^{2022}+2024>0$ everywhere, $P$ is a strictly increasing function.",
+          "A strictly increasing function from $\\mathbb{R}$ to $\\mathbb{R}$ is injective; combined with $\\lim_{x\\to\\pm\\infty}P(x)=\\pm\\infty$ its range is all of $\\mathbb{R}$, so $P$ is a bijection of $\\mathbb{R}$ onto $\\mathbb{R}$.",
+          "A bijection takes the value $0$ at precisely one point, i.e. $P^{-1}(0)$ is a single number.",
+          "Thus $f(x)=0$ has exactly one real solution, $x=P^{-1}(0)$ (numerically $P(-1)=-1-2024+2025=0$, so in fact the root is $x=-1$).",
+          "Answer: $1$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 2, Q10. The whole problem is a disguise: strip away the everywhere-positive factors and a scary degree-2023 expression collapses to a monotone bijection with a single root — here even a neat one, $x=-1$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Where $x^2\\sin\\!\\frac{\\pi}{x^2}$ Vanishes",
+    "difficulty": 4,
+    "task": "Decide which statement about the zeros is true.",
+    "pyq": {
+      "year": 2024,
+      "paper": "2",
+      "qno": "4"
+    },
+    "tags": [
+      "zeros of oscillatory function",
+      "counting solutions",
+      "sine function",
+      "2024"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"120\" x2=\"305\" y2=\"120\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"30\" y1=\"20\" x2=\"30\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><text x=\"300\" y=\"135\" fill=\"var(--ink2)\">x</text><text x=\"14\" y=\"26\" fill=\"var(--ink2)\">y</text><path d=\"M32 120 Q40 119 48 121 Q54 115 60 121 Q66 108 74 121 Q82 96 92 121 Q102 80 116 121 Q130 60 150 121 Q172 46 200 121 Q232 40 270 121 Q292 66 305 108\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><circle cx=\"48\" cy=\"121\" r=\"2\" fill=\"var(--ink3)\"/><circle cx=\"60\" cy=\"121\" r=\"2\" fill=\"var(--ink3)\"/><circle cx=\"74\" cy=\"121\" r=\"2\" fill=\"var(--ink3)\"/><circle cx=\"92\" cy=\"121\" r=\"2\" fill=\"var(--ink3)\"/><circle cx=\"116\" cy=\"121\" r=\"2\" fill=\"var(--ink3)\"/><circle cx=\"150\" cy=\"121\" r=\"2\" fill=\"var(--ink3)\"/><circle cx=\"200\" cy=\"121\" r=\"2\" fill=\"var(--ink3)\"/><text x=\"36\" y=\"150\" fill=\"var(--ink2)\">0</text><text x=\"180\" y=\"150\" fill=\"var(--ink2)\">x=1/√n</text><text x=\"40\" y=\"186\" fill=\"var(--ink2)\">zeros pile up toward 0</text></svg>",
+    "statement": "Let $f:\\mathbb{R}\\to\\mathbb{R}$ be defined by $$f(x)=\\begin{cases}x^2\\sin\\!\\left(\\dfrac{\\pi}{x^2}\\right),& x\\neq0,\\\\[4pt]0,& x=0.\\end{cases}$$ Then which of the following statements is TRUE?\n\n(A) $f(x)=0$ has infinitely many solutions in the interval $\\left[\\dfrac{1}{10},\\infty\\right)$;\n\n(B) $f(x)=0$ has no solutions in the interval $\\left(\\dfrac{1}{\\pi},\\infty\\right)$;\n\n(C) the set of solutions of $f(x)=0$ in the interval $\\left(0,\\dfrac{1}{10}\\right)$ is finite;\n\n(D) $f(x)=0$ has more than $25$ solutions in the interval $\\left(\\dfrac{1}{\\pi^2},\\dfrac{1}{\\pi}\\right)$.",
+    "answer": "$\\boxed{\\text{(D)}}$",
+    "trap": "Reading $x=1/\\sqrt{n}$ as an arithmetic progression. The zeros crowd near $x=0$ (dense as $x\\to0^+$) and thin out for large $x$, so 'infinitely many' and 'finite' swap exactly opposite to the naive guess: a bounded-away-from-0 interval holds finitely many zeros, while any interval touching $0$ holds infinitely many.",
+    "solutions": [
+      {
+        "name": "Solve $\\dfrac{\\pi}{x^2}=n\\pi$ and translate each interval",
+        "steps": [
+          "For $x\\neq0$, $f(x)=0\\iff\\sin\\!\\left(\\dfrac{\\pi}{x^2}\\right)=0\\iff\\dfrac{\\pi}{x^2}=n\\pi$ for some positive integer $n$ (we need $\\pi/x^2>0$, so $n\\ge1$).",
+          "Hence $x^2=\\dfrac1n$, giving the positive zeros $x_n=\\dfrac{1}{\\sqrt n},\\ n=1,2,3,\\dots$ Note $x=0$ is also a zero but it is a single isolated point.",
+          "(A) On $\\left[\\tfrac1{10},\\infty\\right)$: $x_n\\ge\\tfrac1{10}\\iff\\tfrac1{\\sqrt n}\\ge\\tfrac1{10}\\iff n\\le100$. Only $n=1,\\dots,100$ qualify — finitely many. FALSE.",
+          "(B) On $\\left(\\tfrac1\\pi,\\infty\\right)$: $x_n>\\tfrac1\\pi\\iff\\sqrt n<\\pi\\iff n<\\pi^2\\approx9.87$, so $n=1,\\dots,9$ give $9$ zeros. There ARE solutions. FALSE.",
+          "(C) On $\\left(0,\\tfrac1{10}\\right)$: $x_n<\\tfrac1{10}\\iff n>100$, so $n=101,102,\\dots$ — infinitely many zeros. The set is INFINITE, not finite. FALSE.",
+          "(D) On $\\left(\\tfrac1{\\pi^2},\\tfrac1\\pi\\right)$: $\\tfrac1{\\pi^2}<\\tfrac1{\\sqrt n}<\\tfrac1\\pi\\iff\\pi<\\sqrt n<\\pi^2\\iff\\pi^2<n<\\pi^4$, i.e. $9.87<n<97.4$. So $n=10,11,\\dots,97$ — that is $88$ integers, well over $25$. TRUE.",
+          "Therefore the only true statement is (D)."
+        ]
+      },
+      {
+        "name": "Count via the substitution $t=\\dfrac{1}{x^2}$ (density of zeros)",
+        "steps": [
+          "For $x>0$ put $t=\\dfrac{1}{x^2}$, a strictly decreasing bijection from $(0,\\infty)$ onto $(0,\\infty)$; then $f=0\\iff\\sin(\\pi t)=0\\iff t\\in\\{1,2,3,\\dots\\}$.",
+          "So counting zeros of $f$ on an $x$-interval is the same as counting positive integers $t$ in the corresponding $t$-interval. As $x\\to0^+$, $t\\to\\infty$; as $x\\to\\infty$, $t\\to0^+$.",
+          "(A) $x\\in\\left[\\tfrac1{10},\\infty\\right)\\Rightarrow t=\\tfrac1{x^2}\\in(0,100]$: integers $1,\\dots,100$ — finite. FALSE.",
+          "(B) $x\\in\\left(\\tfrac1\\pi,\\infty\\right)\\Rightarrow t\\in(0,\\pi^2)$: integers $1,\\dots,9$ present — solutions exist. FALSE.",
+          "(C) $x\\in\\left(0,\\tfrac1{10}\\right)\\Rightarrow t\\in(100,\\infty)$: integers $101,102,\\dots$ — infinite. FALSE.",
+          "(D) $x\\in\\left(\\tfrac1{\\pi^2},\\tfrac1\\pi\\right)\\Rightarrow t\\in(\\pi^2,\\pi^4)=(9.87\\ldots,97.4\\ldots)$: integers $10,\\dots,97$, a count of $88>25$. TRUE.",
+          "The monotone change of variable makes the crowding of zeros near $x=0$ obvious: shrinking $x$ inflates $t$, packing in ever more integers. Only (D) holds."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 2, Q4. The map $t=1/x^2$ converts an oscillatory-zero count into simply counting integers in an interval — the cleanest way to see that zeros are finite away from $0$ but dense toward it."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Cauchy Additive Meets Cauchy Exponential",
+    "difficulty": 3,
+    "task": "Evaluate the combined expression.",
+    "pyq": {
+      "year": 2024,
+      "paper": "2",
+      "qno": "8"
+    },
+    "tags": [
+      "Cauchy functional equation",
+      "exponential functional equation",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "Let $f:\\mathbb{R}\\to\\mathbb{R}$ be a function such that $$f(x+y)=f(x)+f(y)\\quad\\text{for all }x,y\\in\\mathbb{R},$$ and let $g:\\mathbb{R}\\to(0,\\infty)$ be a function such that $$g(x+y)=g(x)\\,g(y)\\quad\\text{for all }x,y\\in\\mathbb{R}.$$ If $f\\!\\left(-\\dfrac{3}{5}\\right)=12$ and $g\\!\\left(-\\dfrac{1}{3}\\right)=2$, then the value of $$\\left(f\\!\\left(\\dfrac{1}{4}\\right)+g(-2)-8\\right)g(0)$$ is _____.",
+    "answer": "$\\boxed{51}$",
+    "trap": "Two sign traps. The data are given at NEGATIVE arguments: $f(-3/5)=12$ forces the slope $c=-20$ (so $f(1/4)=-5$, not $+5$), and $g(-1/3)=2$ forces base $a=1/8$, so $g(-2)=8^{2}=64$ grows large. Mishandling either sign turns $51$ into a wrong number.",
+    "solutions": [
+      {
+        "name": "Identify the closed forms $f(x)=cx$, $g(x)=a^x$",
+        "steps": [
+          "$f(x+y)=f(x)+f(y)$ is Cauchy's additive equation; over the values needed here it gives $f(x)=cx$ for a constant $c$. From $f\\!\\left(-\\tfrac35\\right)=12$: $-\\tfrac35\\,c=12\\Rightarrow c=-20$, so $f(x)=-20x$.",
+          "$g(x+y)=g(x)g(y)$ with $g>0$ is Cauchy's exponential equation, giving $g(x)=a^x$ with $a=g(1)>0$. From $g\\!\\left(-\\tfrac13\\right)=2$: $a^{-1/3}=2\\Rightarrow a=2^{-3}=\\tfrac18$, so $g(x)=\\left(\\tfrac18\\right)^x=8^{-x}$.",
+          "Now evaluate each piece: $f\\!\\left(\\tfrac14\\right)=-20\\cdot\\tfrac14=-5$.",
+          "$g(-2)=8^{-(-2)}=8^{2}=64$.",
+          "$g(0)=8^{0}=1$ (also forced directly: $g(0)=g(0)^2$ with $g>0\\Rightarrow g(0)=1$).",
+          "Combine: $\\left(f\\!\\left(\\tfrac14\\right)+g(-2)-8\\right)g(0)=(-5+64-8)\\cdot1=51.$"
+        ]
+      },
+      {
+        "name": "Scale directly from the given values (no explicit formula for $f$)",
+        "steps": [
+          "For the additive $f$, induction/rational scaling gives $f(qx)=q\\,f(x)$ for every rational $q$. Write $\\tfrac14=q\\cdot\\left(-\\tfrac35\\right)$ with $q=-\\tfrac{5}{12}$.",
+          "Then $f\\!\\left(\\tfrac14\\right)=f\\!\\left(-\\tfrac{5}{12}\\cdot\\left(-\\tfrac35\\right)\\right)=-\\tfrac{5}{12}\\,f\\!\\left(-\\tfrac35\\right)=-\\tfrac{5}{12}\\cdot12=-5.$",
+          "For the multiplicative $g$, rational scaling gives $g(qx)=g(x)^{q}$. Write $-2=q\\cdot\\left(-\\tfrac13\\right)$ with $q=6$.",
+          "Then $g(-2)=g\\!\\left(6\\cdot\\left(-\\tfrac13\\right)\\right)=g\\!\\left(-\\tfrac13\\right)^{6}=2^{6}=64.$",
+          "And $g(0)=g\\!\\left(0\\cdot\\left(-\\tfrac13\\right)\\right)=g\\!\\left(-\\tfrac13\\right)^{0}=1.$",
+          "Hence $\\left(f\\!\\left(\\tfrac14\\right)+g(-2)-8\\right)g(0)=(-5+64-8)\\cdot1=51.$ This route never assumes continuity — only the rational-homogeneity that the functional equations themselves force."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 2, Q8. Additive Cauchy is homogeneous ($f(qx)=qf(x)$) while multiplicative Cauchy is 'exponentially' homogeneous ($g(qx)=g(x)^q$) — recognising this pairing lets you scale straight from the negative-argument data without ever writing $f(x)=cx$ or $g(x)=a^x$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Piecewise maps between $\\mathbb{N}$ and $\\mathbb{Z}$",
+    "difficulty": 4,
+    "task": "Decide which statements are true.",
+    "pyq": {
+      "year": 2025,
+      "paper": "1",
+      "qno": "6"
+    },
+    "tags": [
+      "one-one and onto",
+      "composition of functions",
+      "piecewise integer functions",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "Let $\\mathbb{N}$ denote the set of all natural numbers and $\\mathbb{Z}$ the set of all integers. Consider the functions $\\phi:\\mathbb{N}\\to\\mathbb{Z}$ and $g:\\mathbb{Z}\\to\\mathbb{N}$ defined by $$\\phi(n)=\\begin{cases}\\dfrac{n+1}{2}, & n\\text{ odd},\\\\[4pt] \\dfrac{4-n}{2}, & n\\text{ even},\\end{cases}\\qquad g(n)=\\begin{cases}3+2n, & n\\ge 0,\\\\ -2n, & n<0.\\end{cases}$$ Define $(g\\circ\\phi)(n)=g(\\phi(n))$ for all $n\\in\\mathbb{N}$ and $(\\phi\\circ g)(n)=\\phi(g(n))$ for all $n\\in\\mathbb{Z}$. Then which of the following statements is (are) TRUE? (A) $g\\circ\\phi$ is NOT one-one and $g\\circ\\phi$ is NOT onto; (B) $\\phi\\circ g$ is NOT one-one but $\\phi\\circ g$ is onto; (C) $g$ is one-one and $g$ is onto; (D) $\\phi$ is NOT one-one but $\\phi$ is onto.",
+    "answer": "(A), (D)",
+    "trap": "It is tempting to call $\\phi$ a bijection because it looks like the standard $\\mathbb{N}\\leftrightarrow\\mathbb{Z}$ pairing. But the two branches OVERLAP at the value $1$: $\\phi(1)=1$ (odd branch) and $\\phi(2)=1$ (even branch). Missing that single collision flips your verdict on both $\\phi$ and $g\\circ\\phi$.",
+    "solutions": [
+      {
+        "name": "Track each branch's image set",
+        "steps": [
+          "Odd inputs $n=1,3,5,\\dots$ give $\\phi(n)=\\tfrac{n+1}{2}=1,2,3,\\dots$, hitting every positive integer.",
+          "Even inputs $n=2,4,6,\\dots$ give $\\phi(n)=\\tfrac{4-n}{2}=1,0,-1,-2,\\dots$, hitting $1$ and every integer $\\le 0$.",
+          "The two lists overlap at $1$: $\\phi(1)=1$ and $\\phi(2)=1$, so $\\phi$ is NOT one-one. Their union is all of $\\mathbb{Z}$, so $\\phi$ IS onto $\\Rightarrow$ (D) TRUE.",
+          "For $g$: inputs $n\\ge 0$ give $g(n)=3+2n=3,5,7,\\dots$ (odd numbers $\\ge 3$); inputs $n<0$ give $g(n)=-2n=2,4,6,\\dots$ (even numbers $\\ge 2$). These lists are disjoint, so $g$ is one-one. But the value $1\\in\\mathbb{N}$ is never attained, so $g$ is NOT onto $\\Rightarrow$ (C) FALSE.",
+          "Compute $g\\circ\\phi:\\mathbb{N}\\to\\mathbb{N}$. Since $\\phi(1)=\\phi(2)=1$, we get $g(\\phi(1))=g(\\phi(2))=g(1)=5$, so $g\\circ\\phi$ is NOT one-one.",
+          "Every output of $g$ is $\\ge 2$, so $1$ is never an output of $g\\circ\\phi$ either; hence $g\\circ\\phi$ is NOT onto $\\Rightarrow$ (A) TRUE.",
+          "For $\\phi\\circ g:\\mathbb{Z}\\to\\mathbb{Z}$: $g$ is injective, and $g(n)\\ge 3$ for $n\\ge 0$ is odd while $g(n)\\ge 2$ for $n<0$ is even, so $\\phi\\circ g$ separates into $\\phi$ on odd values ($\\tfrac{g(n)+1}{2}$, strictly increasing in $n\\ge 0$) and $\\phi$ on even values ($\\tfrac{4-g(n)}{2}$, strictly decreasing in $n<0$) — the two ranges do not collide, so $\\phi\\circ g$ is one-one. Thus (B) is FALSE.",
+          "Correct choices: (A) and (D)."
+        ]
+      },
+      {
+        "name": "Concrete sample values as counterexamples",
+        "steps": [
+          "Tabulate $\\phi$: $\\phi(1)=1,\\ \\phi(2)=1,\\ \\phi(3)=2,\\ \\phi(4)=0,\\ \\phi(5)=3,\\ \\phi(6)=-1,\\dots$",
+          "The repeat $\\phi(1)=\\phi(2)=1$ is an explicit witness that $\\phi$ is not one-one; scanning the odd/even branches shows every integer appears, so $\\phi$ is onto — confirming (D).",
+          "Tabulate $g\\circ\\phi$: $g(\\phi(1))=g(1)=5,\\ g(\\phi(2))=g(1)=5,\\ g(\\phi(3))=g(2)=7,\\ g(\\phi(4))=g(0)=3,\\dots$",
+          "$g(\\phi(1))=g(\\phi(2))=5$ is a direct counterexample to injectivity; and since the smallest value $g$ can output is $g(0)=3$ (or $g(-1)=2$), the natural number $1$ is unreachable, so $g\\circ\\phi$ is not onto — confirming (A).",
+          "Tabulate $g$: $g(0)=3,\\ g(1)=5,\\ g(2)=7,\\dots$ (odd $\\ge 3$) and $g(-1)=2,\\ g(-2)=4,\\dots$ (even $\\ge 2$). All outputs are distinct and none equals $1$, so $g$ is one-one but not onto — (C) is false.",
+          "For (B), test injectivity of $\\phi\\circ g$: $\\phi(g(0))=\\phi(3)=2$, $\\phi(g(1))=\\phi(5)=3$, $\\phi(g(-1))=\\phi(2)=1$, $\\phi(g(-2))=\\phi(4)=0$ — all different, and one checks no odd-branch output ever equals an even-branch output, so $\\phi\\circ g$ is one-one, making (B) false.",
+          "Hence exactly (A) and (D) are true."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 1, Q6. The exam rewards students who actually tabulate a few outputs: the single overlap $\\phi(1)=\\phi(2)=1$ is what makes $\\phi$ many-one and drags $g\\circ\\phi$ down with it."
   }
 ];

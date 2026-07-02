@@ -3965,5 +3965,1058 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: the tangency of $y=a^{x}$ with $y=x$ and the root-count threshold of $a^{x}=x$ coincide at the maximum of $\\dfrac{\\ln x}{x}$. The constant $e^{1/e}\\approx1.4447$ is the largest base $a$ for which $a^{x}=x$ still has a real solution — equivalently, the boundary of convergence behaviour for the infinite power tower."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Extrema of $g(x)=\\int_0^x f$ for a broken $f$",
+    "difficulty": 4,
+    "task": "Identify all correct statements about $g$.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "20"
+    },
+    "tags": [
+      "extrema of integral function",
+      "piecewise function",
+      "2006"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"150\" x2=\"305\" y2=\"150\" stroke=\"var(--ink3)\"/><line x1=\"30\" y1=\"20\" x2=\"30\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"297\" y=\"165\" fill=\"var(--ink2)\">x</text><text x=\"36\" y=\"30\" fill=\"var(--ink2)\">f</text><text x=\"20\" y=\"153\" fill=\"var(--ink2)\">0</text><path d=\"M30 120 Q 70 90 110 40\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"2\"/><path d=\"M110 20 Q 140 90 175 100\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"2\"/><path d=\"M175 150 L 265 130\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"2\"/><circle cx=\"110\" cy=\"40\" r=\"3\" fill=\"var(--ink2)\"/><circle cx=\"110\" cy=\"20\" r=\"3\" fill=\"none\" stroke=\"var(--ink2)\"/><circle cx=\"175\" cy=\"100\" r=\"3\" fill=\"var(--ink2)\"/><circle cx=\"175\" cy=\"150\" r=\"3\" fill=\"none\" stroke=\"var(--ink2)\"/><line x1=\"110\" y1=\"150\" x2=\"110\" y2=\"154\" stroke=\"var(--ink3)\"/><text x=\"106\" y=\"166\" fill=\"var(--ink2)\">1</text><line x1=\"175\" y1=\"150\" x2=\"175\" y2=\"154\" stroke=\"var(--ink3)\"/><text x=\"171\" y=\"166\" fill=\"var(--ink2)\">2</text><line x1=\"265\" y1=\"150\" x2=\"265\" y2=\"154\" stroke=\"var(--ink3)\"/><text x=\"261\" y=\"166\" fill=\"var(--ink2)\">3</text><circle cx=\"148\" cy=\"150\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"120\" y=\"143\" fill=\"var(--gold)\">1+ln2</text><circle cx=\"242\" cy=\"150\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"224\" y=\"143\" fill=\"var(--gold)\">e</text></svg>",
+    "statement": "Let\n$$f(x)=\\begin{cases} e^{x}, & 0\\le x\\le1,\\\\[2pt] 2-e^{\\,x-1}, & 1<x\\le2,\\\\[2pt] x-e, & 2<x\\le3,\\end{cases}\\qquad g(x)=\\int_0^x f(t)\\,dt,\\ \\ x\\in[1,3].$$\nThen $g(x)$ has\n\n(A) a local maximum at $x=1+\\ln2$ and a local minimum at $x=e$;\n\n(B) a local maximum at $x=1$ and a local minimum at $x=2$;\n\n(C) no local maximum;\n\n(D) no local minimum.",
+    "answer": "$\\boxed{(A)}$",
+    "trap": "The tempting error is to treat the join $x=1$ (where $f$ jumps from $e$ down to $1$) as a \"corner extremum.\" But a jump in $g'=f$ creates an extremum ONLY if the sign flips across it; here $f$ stays positive on both sides of $x=1$, so $g$ just keeps increasing. And at $x=2$ the two branches give the same value $2-e$, so $f$ is actually continuous and stays negative — again no extremum. Only the two interior zeros $x=1+\\ln2$ and $x=e$, where $f$ truly changes sign, qualify.",
+    "solutions": [
+      {
+        "name": "First-derivative sign test on $g'=f$",
+        "steps": [
+          "By the Fundamental Theorem of Calculus $g'(x)=f(x)$, so an extremum of $g$ occurs exactly where $f$ changes sign.",
+          "Interior zeros of $f$: on $(1,2)$, $2-e^{x-1}=0\\Rightarrow x=1+\\ln2\\approx1.69$; on $(2,3)$, $x-e=0\\Rightarrow x=e\\approx2.72$.",
+          "Near $x=1+\\ln2$: for $x$ slightly smaller $e^{x-1}<2$ so $f>0$, for $x$ slightly larger $f<0$. Thus $g'$ goes $+\\to-$: a local MAXIMUM at $x=1+\\ln2$.",
+          "Near $x=e$: for $x<e$, $f=x-e<0$; for $x>e$, $f>0$. Thus $g'$ goes $-\\to+$: a local MINIMUM at $x=e$. This proves (A).",
+          "Now test the two special points. At $x=1$: $f(1^-)=e^{1}=e>0$ and $f(1^+)=2-e^{0}=1>0$. Both sides positive — $g$ is strictly increasing through $x=1$, so it is NOT an extremum. Hence \"local maximum at $x=1$\" in (B) is false.",
+          "At $x=2$: $f(2^-)=2-e^{1}=2-e\\approx-0.72$ and $f(2^+)=2-e\\approx-0.72$ (the two branches agree, so $f$ is in fact continuous at $x=2$). Both sides negative — $g$ is strictly decreasing through $x=2$, so it is NOT an extremum. Hence \"local minimum at $x=2$\" in (B) is false.",
+          "So $g$ increases on $[1,1+\\ln2]$, decreases on $[1+\\ln2,e]$, increases on $[e,3]$: exactly one interior max and one interior min. The correct choice is (A) only."
+        ]
+      },
+      {
+        "name": "Evaluate $g$ in closed form and use $g''$",
+        "steps": [
+          "For $x\\in(1,2]$: $g(x)=g(1)+\\int_1^x(2-e^{t-1})\\,dt=2x-e^{x-1}+e-2$, so $g'(x)=2-e^{x-1}$ and $g''(x)=-e^{x-1}<0$; the stationary point $x=1+\\ln2$ is a local MAXIMUM.",
+          "For $x\\in(2,3]$: $g(x)=g(2)+\\int_2^x(t-e)\\,dt$, so $g'(x)=x-e$ and $g''(x)=1>0$; the stationary point $x=e$ is a local MINIMUM. Together these give (A).",
+          "Slopes at the joins: $g'(1^-)=e,\\ g'(1^+)=1$ (positive on both sides — a downward kink but still increasing, no extremum); $g'(2^-)=g'(2^+)=2-e<0$ ($f$ continuous, still decreasing, no extremum). So $x=1,2$ are not extrema and (B) fails.",
+          "Since $g$ has both a genuine local maximum and a genuine local minimum, (C) and (D) are false as well. Final answer: (A) only."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q20. The rigorous answer is (A) only: $g'=f$ changes sign solely at $x=1+\\ln2$ (max) and $x=e$ (min). Option (B) is the classic distractor — some circulating keys wrongly included it, but $f$ keeps a constant sign across both $x=1$ and $x=2$, so neither is an extremum."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The cubic pinned by four clues",
+    "difficulty": 3,
+    "task": "Decide which statements about the cubic are correct.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "18"
+    },
+    "tags": [
+      "cubic extrema",
+      "monotonicity",
+      "2006"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"120\" x2=\"300\" y2=\"120\" stroke=\"var(--ink3)\"/><line x1=\"120\" y1=\"20\" x2=\"120\" y2=\"210\" stroke=\"var(--ink3)\"/><text x=\"302\" y=\"116\" fill=\"var(--ink2)\">x</text><text x=\"126\" y=\"28\" fill=\"var(--ink2)\">y</text><path d=\"M40 40 C 70 118, 95 150, 120 155 C 145 160, 168 148, 200 90 C 224 47, 250 30, 275 25\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.6\"/><circle cx=\"70\" cy=\"46\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"46\" y=\"44\" fill=\"var(--ink2)\">max (-1, 18)</text><circle cx=\"170\" cy=\"155\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"176\" y=\"172\" fill=\"var(--ink2)\">min (1, -1)</text><circle cx=\"120\" cy=\"98\" r=\"2.5\" fill=\"var(--ink2)\"/><text x=\"126\" y=\"94\" fill=\"var(--ink2)\">f(0)=17/2</text></svg>",
+    "statement": "$f(x)$ is a cubic polynomial which has a local maximum at $x=-1$. If $f(2)=18$, $f(1)=-1$ and $f'(x)$ has a local minimum at $x=0$, then\n\n(A) the distance between $(-1,2)$ and $(a,f(a))$, where $x=a$ is the point of local minima, is $2\\sqrt5$;\n\n(B) $f(x)$ is increasing for $x\\in[1,2\\sqrt5]$;\n\n(C) $f(x)$ has a local minima at $x=1$;\n\n(D) the value of $f(0)=5$.",
+    "answer": "(B), (C)",
+    "trap": "Everyone chases $f'(x)$, but the phrase \"$f'$ has a local minimum at $x=0$\" is a condition on $f''$, not $f'$: it forces $f''(0)=0$, which kills the $x^2$ term. Miss that and you cannot pin the cubic — and then option (A) is a further trap, since the reference point is $(-1,2)$, not the local-max point $(-1,18)$, so the honest distance is $\\sqrt{13}$, not $2\\sqrt5$.",
+    "solutions": [
+      {
+        "name": "Reconstruct the polynomial from the four conditions",
+        "steps": [
+          "Write $f(x)=ax^3+bx^2+cx+d$, so $f'(x)=3ax^2+2bx+c$ and $f''(x)=6ax+2b$.",
+          "\"$f'$ has a local minimum at $x=0$\" means the parabola $f'$ turns at $x=0$, i.e. $f''(0)=0\\Rightarrow 2b=0\\Rightarrow b=0$.",
+          "Local maximum at $x=-1$ gives $f'(-1)=0$: $3a-2b+c=0\\Rightarrow 3a+c=0$.",
+          "Use the data points $f(2)=18$: $8a+4b+2c+d=18$, and $f(1)=-1$: $a+b+c+d=-1$.",
+          "Solving with $b=0$: from $3a+c=0$ take $c=-3a$; subtracting the two value-equations gives $7a+c=19\\Rightarrow 7a-3a=19\\Rightarrow a=\\tfrac{19}{4}$, hence $c=-\\tfrac{57}{4}$ and $d=\\tfrac{17}{2}$.",
+          "Thus $f(x)=\\dfrac{19x^3-57x+34}{4}$, and $f'(x)=\\dfrac{57}{4}(x-1)(x+1)$.",
+          "Critical points $x=\\pm1$: $f''(-1)<0$ (max at $-1$), $f''(1)>0$ (min at $1$) — so (C) is TRUE.",
+          "Since $f'(x)>0$ for all $x>1$, $f$ is increasing on $[1,2\\sqrt5]$ — (B) is TRUE.",
+          "The local minimum point is $(1,f(1))=(1,-1)$; distance to $(-1,2)$ is $\\sqrt{(-1-1)^2+(2-(-1))^2}=\\sqrt{4+9}=\\sqrt{13}\\ne 2\\sqrt5$ — (A) FALSE.",
+          "$f(0)=\\tfrac{34}{4}=\\tfrac{17}{2}\\ne5$ — (D) FALSE. Correct options: (B), (C)."
+        ]
+      },
+      {
+        "name": "Skip the polynomial: reason from $f'$ alone",
+        "steps": [
+          "$f$ is a cubic with a local max at $x=-1$, so $f'$ is an upward parabola with roots at $x=-1$ and one other point $x=r$; write $f'(x)=k(x+1)(x-r)$.",
+          "The vertex of this parabola sits midway between its roots at $x=\\tfrac{-1+r}{2}$; \"$f'$ has its minimum at $x=0$\" forces $\\tfrac{-1+r}{2}=0\\Rightarrow r=1$.",
+          "So the second critical point is $x=1$, and there $f'$ goes $-\\to+$: $f$ has a local minimum at $x=1$ — (C) is TRUE without any arithmetic.",
+          "For $x>1$ both factors of $f'(x)=k(x+1)(x-1)$ are positive (and $k>0$ since the cubic's leading coefficient is positive), so $f'>0$ and $f$ increases throughout $[1,2\\sqrt5]$ — (B) TRUE.",
+          "The local-minimum point is $(1,f(1))=(1,-1)$ from the given data, so its distance to $(-1,2)$ is $\\sqrt{2^2+3^2}=\\sqrt{13}$, not $2\\sqrt5$ — (A) FALSE.",
+          "Only $f(0)$ needs the constant term; a quick fit (or the first method) gives $f(0)=\\tfrac{17}{2}\\ne5$ — (D) FALSE. Hence (B), (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q18. The load-bearing clue is linguistic, not algebraic: \"local minimum of $f'$\" is a statement about $f''$, and reading it correctly is what turns four scattered facts into a single determined cubic."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Where the tangent to $y=e^x$ meets its chord",
+    "difficulty": 3,
+    "task": "Decide where the tangent crosses the chord.",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "46"
+    },
+    "tags": [
+      "tangent to a curve",
+      "convexity",
+      "exponential function",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"190\" x2=\"300\" y2=\"190\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"45\" y1=\"205\" x2=\"45\" y2=\"20\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><text x=\"302\" y=\"194\" fill=\"var(--ink2)\">x</text><text x=\"36\" y=\"22\" fill=\"var(--ink2)\">y</text><path d=\"M55 185 C 120 178, 165 150, 200 110 C 235 70, 260 40, 285 25\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.6\"/><text x=\"265\" y=\"45\" fill=\"var(--ink2)\">$y=e^x$</text><line x1=\"120\" y1=\"165\" x2=\"270\" y2=\"55\" stroke=\"var(--ink2)\" stroke-width=\"1.2\" stroke-dasharray=\"5 3\"/><text x=\"140\" y=\"150\" fill=\"var(--ink2)\">chord</text><line x1=\"150\" y1=\"185\" x2=\"245\" y2=\"70\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><text x=\"190\" y=\"78\" fill=\"var(--gold)\">tangent</text><circle cx=\"200\" cy=\"110\" r=\"3.2\" fill=\"var(--gold)\"/><text x=\"205\" y=\"122\" fill=\"var(--ink2)\">$(c,e^c)$</text><line x1=\"120\" y1=\"190\" x2=\"120\" y2=\"165\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"2 2\"/><text x=\"105\" y=\"202\" fill=\"var(--ink2)\">$c-1$</text><line x1=\"200\" y1=\"190\" x2=\"200\" y2=\"110\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"2 2\"/><text x=\"192\" y=\"202\" fill=\"var(--ink2)\">$c$</text><line x1=\"270\" y1=\"190\" x2=\"270\" y2=\"55\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"2 2\"/><text x=\"258\" y=\"202\" fill=\"var(--ink2)\">$c+1$</text><circle cx=\"163\" cy=\"148\" r=\"3\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.4\"/><text x=\"150\" y=\"140\" fill=\"var(--gold)\">meet</text></svg>",
+    "statement": "The tangent to the curve $y = e^x$ drawn at the point $(c, e^c)$ intersects the line joining the points $(c-1, e^{c-1})$ and $(c+1, e^{c+1})$\n\n(A) on the left of $x = c$\n\n(B) on the right of $x = c$\n\n(C) at no point\n\n(D) at all points",
+    "answer": "$\\boxed{\\text{(A)}}$",
+    "trap": "It is tempting to guess the tangent meets the chord right under the point of tangency, i.e. at $x=c$. But the chord's slope is $\\tfrac{e^{c+1}-e^{c-1}}{2}=e^c\\cdot\\tfrac{e-e^{-1}}{2}>e^c$, strictly steeper than the tangent. Because $e^x$ is convex the tangent lies entirely below the curve, so a chord steeper than the tangent must cross it before $x=c$ — the intersection is always to the LEFT of $x=c$, never at $x=c$.",
+    "solutions": [
+      {
+        "name": "Solve the two lines explicitly",
+        "steps": [
+          "Tangent at $(c,e^c)$: slope $=e^c$, so $y_T=e^c+e^c(x-c)=e^c\\bigl(1+(x-c)\\bigr).$",
+          "Chord through $(c-1,e^{c-1})$ and $(c+1,e^{c+1})$: slope $m=\\dfrac{e^{c+1}-e^{c-1}}{(c+1)-(c-1)}=e^c\\cdot\\dfrac{e-e^{-1}}{2}.$ Write $m=e^c\\lambda$ with $\\lambda=\\dfrac{e-e^{-1}}{2}.$",
+          "Its equation through $(c+1,e^{c+1})$: $y_C=e^{c+1}+e^c\\lambda\\,(x-c-1).$",
+          "Set $y_T=y_C$: $e^c\\bigl(1+(x-c)\\bigr)=e^{c+1}+e^c\\lambda(x-c-1).$ Cancel $e^c>0$ and put $u=x-c$: $1+u=e+\\lambda(u-1).$",
+          "Rearrange: $u(1-\\lambda)=e-1-\\lambda\\;\\Rightarrow\\;u=\\dfrac{e-1-\\lambda}{1-\\lambda}.$",
+          "Numerically $\\lambda=\\tfrac{e-e^{-1}}{2}\\approx\\tfrac{2.718-0.368}{2}=1.175.$ Then numerator $=e-1-\\lambda\\approx2.718-1-1.175=0.543>0$ and denominator $=1-\\lambda\\approx-0.175<0$, so $u<0.$",
+          "Hence $x-c=u<0$, i.e. $x<c$: the meeting point lies to the LEFT of $x=c$. Answer (A)."
+        ]
+      },
+      {
+        "name": "Convexity / Jensen comparison",
+        "steps": [
+          "$e^x$ is strictly convex ($\\dfrac{d^2}{dx^2}e^x=e^x>0$), so its graph lies strictly above every tangent line and strictly below every chord.",
+          "Compare slopes at $x=c$. Tangent slope $=e^c$. Chord slope $=e^c\\cdot\\dfrac{e-e^{-1}}{2}$; since $\\dfrac{e-e^{-1}}{2}=\\sinh 1\\approx1.175>1$, the chord is strictly steeper than the tangent.",
+          "At $x=c$ compare heights. On the tangent $y_T(c)=e^c$. On the chord, by convexity the curve value $e^c$ lies strictly below the chord, so $y_C(c)>e^c=y_T(c)$: at $x=c$ the chord is already ABOVE the tangent.",
+          "Two straight lines with the chord steeper AND higher at $x=c$ must have crossed at some $x<c$ (for $x>c$ the steeper, already-higher chord only pulls further above).",
+          "Therefore the unique intersection occurs to the LEFT of $x=c$. Answer (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q46. A pure convexity fact in disguise: a chord is always steeper than the tangent at any interior sample point, forcing the crossing to the side of the smaller abscissa."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Roots of $ke^x=x$",
+    "difficulty": 3,
+    "task": "Find the set of $k>0$ giving two distinct roots.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "60"
+    },
+    "tags": [
+      "number of roots",
+      "maxima-minima",
+      "range of parameter",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"180\" x2=\"300\" y2=\"180\" stroke=\"var(--ink3)\"/><line x1=\"60\" y1=\"20\" x2=\"60\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"296\" y=\"196\" fill=\"var(--ink2)\">x</text><text x=\"44\" y=\"28\" fill=\"var(--ink2)\">y</text><path d=\"M20 176 Q120 172 180 120 T300 20\" fill=\"none\" stroke=\"var(--ink2)\"/><text x=\"250\" y=\"48\" fill=\"var(--ink2)\">y=x</text><path d=\"M20 178 C 120 172 180 120 300 30\" fill=\"none\" stroke=\"var(--ink2)\" stroke-dasharray=\"3 3\"/><path d=\"M20 155 C 120 130 200 70 300 15\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><text x=\"210\" y=\"92\" fill=\"var(--gold)\">y=ke^x</text><circle cx=\"98\" cy=\"162\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"196\" cy=\"113\" r=\"3\" fill=\"var(--gold)\"/><text x=\"70\" y=\"210\" fill=\"var(--ink2)\">two intersections when k&lt;1/e</text></svg>",
+    "statement": "This continues the paragraph: a continuous $f$ on $\\mathbb{R}$ that takes both positive and negative values must have a root, and $f(x)=ke^x-x$ with $k$ a real constant. For $k>0$, the set of all values of $k$ for which $ke^x-x=0$ has two distinct roots is\n(A) $\\left(0,\\dfrac1e\\right)$\n(B) $\\left(\\dfrac1e,1\\right)$\n(C) $\\left(\\dfrac1e,\\infty\\right)$\n(D) $(0,1)$",
+    "answer": "$\\boxed{(A)\\ \\left(0,\\tfrac1e\\right)}$",
+    "trap": "Students memorise \"$k=1/e$ gives one root\" and then guess the two-root set is $(1/e,\\infty)$ — but larger $k$ lifts the curve $ke^x$ above the line $y=x$, killing all intersections. Two roots need a *smaller* $k$ so the minimum of $f$ dips below zero.",
+    "solutions": [
+      {
+        "name": "Minimum value of $f$",
+        "steps": [
+          "Let $f(x)=ke^x-x$ with $k>0$. Then $f'(x)=ke^x-1=0$ gives $x=-\\ln k$.",
+          "Since $f''(x)=ke^x>0$ everywhere, this critical point is the global minimum.",
+          "The minimum value is $f(-\\ln k)=k\\cdot e^{-\\ln k}-(-\\ln k)=k\\cdot\\tfrac1k+\\ln k=1+\\ln k$.",
+          "As $x\\to\\pm\\infty$, $f\\to+\\infty$. A smooth convex curve with $f\\to+\\infty$ on both ends crosses zero twice exactly when its single minimum is strictly below zero.",
+          "So we need $1+\\ln k<0\\Rightarrow\\ln k<-1\\Rightarrow k<\\tfrac1e$. Combined with $k>0$, the answer is $k\\in\\left(0,\\tfrac1e\\right)$, option (A)."
+        ]
+      },
+      {
+        "name": "Separating the parameter: $k=xe^{-x}$",
+        "steps": [
+          "Rewrite $ke^x=x$ as $k=xe^{-x}$; the number of roots equals the number of intersections of the horizontal line $y=k$ with $g(x)=xe^{-x}$.",
+          "$g'(x)=e^{-x}(1-x)=0$ at $x=1$, a maximum, with $g(1)=e^{-1}=\\tfrac1e$. Also $g(0)=0$, $g\\to0^-$ as $x\\to-\\infty$ (through negatives) and $g\\to0^+$ as $x\\to+\\infty$.",
+          "For $x>0$, $g$ rises from $0$ to the peak $\\tfrac1e$ at $x=1$, then decreases back toward $0$. Hence a horizontal line $y=k$ with $0<k<\\tfrac1e$ meets this positive hump twice.",
+          "At $k=\\tfrac1e$ the line is tangent at the peak (one root); for $k>\\tfrac1e$ it lies above the hump (no positive root, and none for $x\\le0$ since there $g\\le0<k$).",
+          "Therefore two distinct roots occur precisely for $k\\in\\left(0,\\tfrac1e\\right)$ — option (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q60. The convexity of $f$ makes its lone minimum the sole gatekeeper: below zero means two crossings, at zero means tangency (one), above zero means none."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The $k$ that makes $ke^x=x$ tangent",
+    "difficulty": 3,
+    "task": "Find the positive $k$ giving a single root.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "59"
+    },
+    "tags": [
+      "maxima-minima",
+      "number of roots",
+      "monotonicity",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"25\" y1=\"150\" x2=\"305\" y2=\"150\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"120\" y1=\"200\" x2=\"120\" y2=\"20\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><text x=\"305\" y=\"163\" fill=\"var(--ink2)\">x</text><text x=\"126\" y=\"26\" fill=\"var(--ink2)\">y</text><line x1=\"40\" y1=\"200\" x2=\"260\" y2=\"20\" stroke=\"var(--ink2)\" stroke-width=\"1.4\"/><text x=\"235\" y=\"38\" fill=\"var(--ink2)\">$y=x$</text><path d=\"M40 148 C 90 145, 150 132, 190 100 C 225 72, 250 45, 268 25\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><text x=\"200\" y=\"96\" fill=\"var(--gold)\">$y=\\tfrac1e e^x$</text><circle cx=\"192\" cy=\"98\" r=\"3.4\" fill=\"var(--gold)\"/><text x=\"196\" y=\"114\" fill=\"var(--ink2)\">tangent at $x=1$</text><line x1=\"192\" y1=\"150\" x2=\"192\" y2=\"98\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"2 2\"/><text x=\"188\" y=\"163\" fill=\"var(--ink2)\">$1$</text></svg>",
+    "statement": "If a continuous function $f$ defined on $\\mathbb{R}$ assumes positive and negative values, then $f(x)=0$ has a root in $\\mathbb{R}$. Consider $f(x)=ke^{x}-x$ for all real $x$, where $k$ is a real constant.\n\nThe positive value of $k$ for which $ke^{x}-x=0$ has only one root is\n\n(A) $\\dfrac{1}{e}$\n\n(B) $1$\n\n(C) $e$\n\n(D) $\\log_e 2$",
+    "answer": "$\\boxed{\\text{(A)}\\ \\dfrac{1}{e}}$",
+    "trap": "One might think 'one root' is generic and just test the options at $x=0$. The real condition is geometric: for $k>0$ the graph of $f(x)=ke^x-x$ is convex with a single minimum, and it meets the axis exactly once only when that minimum value is precisely $0$ (tangency). Missing that the borderline case — not a strict inequality — is what pins down $k$ leads to the wrong branch.",
+    "solutions": [
+      {
+        "name": "Minimise $f$ and set the minimum to zero",
+        "steps": [
+          "For $k>0$, $f(x)=ke^x-x$ is smooth with $f'(x)=ke^x-1.$",
+          "$f'(x)=0\\Rightarrow e^x=\\dfrac1k\\Rightarrow x^*=-\\ln k=\\ln\\dfrac1k.$",
+          "$f''(x)=ke^x>0$ everywhere, so $x^*$ is the unique global minimum and $f$ is convex.",
+          "Minimum value: $f(x^*)=k\\cdot e^{-\\ln k}-(-\\ln k)=k\\cdot\\dfrac1k+\\ln k=1+\\ln k.$",
+          "Since $f\\to+\\infty$ as $x\\to\\pm\\infty$ (for $x\\to-\\infty$, $ke^x\\to0$ and $-x\\to+\\infty$; for $x\\to+\\infty$, $ke^x$ dominates), a convex curve touches the axis in exactly one point iff its minimum equals $0$.",
+          "$1+\\ln k=0\\Rightarrow \\ln k=-1\\Rightarrow k=e^{-1}=\\dfrac1e.$ Answer (A)."
+        ]
+      },
+      {
+        "name": "Tangency of $y=x$ and $y=ke^x$",
+        "steps": [
+          "Rewrite $ke^x-x=0$ as $ke^x=x$: the roots are intersections of the line $y=x$ with the exponential $y=ke^x.$",
+          "Because $ke^x$ is convex, the line can cut it in $0$, $1$, or $2$ points; the single-root case is exactly tangency.",
+          "Tangency requires equal values and equal slopes: $ke^{x}=x$ and $\\dfrac{d}{dx}(ke^x)=ke^x=1$ (slope of $y=x$ is $1$).",
+          "From $ke^x=1$ we get, comparing with $ke^x=x$, that $x=1.$ Substituting $x=1$ into $ke^{x}=1$: $ke=1\\Rightarrow k=\\dfrac1e.$",
+          "So the unique root occurs at $x=1$ when $k=\\dfrac1e.$ Answer (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q59 (paragraph Q58–60). The clean lens is tangency of $y=x$ with $y=ke^x$; the same minimum $1+\\ln k$ drives the whole comprehension — two roots when it is negative ($0<k<1/e$), one when it is zero."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Cusp Meets Cube: Counting Extrema",
+    "difficulty": 2,
+    "task": "Count the local maxima and minima.",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "2"
+    },
+    "tags": [
+      "local maxima and minima",
+      "piecewise functions",
+      "2008"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"150\" x2=\"300\" y2=\"150\" stroke=\"var(--ink3)\"/><line x1=\"150\" y1=\"20\" x2=\"150\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"296\" y=\"166\" fill=\"var(--ink2)\">x</text><text x=\"156\" y=\"28\" fill=\"var(--ink2)\">y</text><path d=\"M40 190 C 70 120 100 90 120 82\" fill=\"none\" stroke=\"var(--ink2)\"/><path d=\"M120 82 C 128 110 138 138 150 150\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><path d=\"M150 150 C 170 130 210 108 250 96\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><circle cx=\"120\" cy=\"82\" r=\"3\" fill=\"var(--gold)\"/><text x=\"88\" y=\"74\" fill=\"var(--gold)\">max at x=-1</text><circle cx=\"150\" cy=\"150\" r=\"3\" fill=\"var(--gold)\"/><text x=\"158\" y=\"170\" fill=\"var(--gold)\">min at x=0</text><text x=\"58\" y=\"120\" fill=\"var(--ink2)\">(2+x)^3</text><text x=\"210\" y=\"120\" fill=\"var(--ink2)\">x^(2/3)</text></svg>",
+    "statement": "The total number of local maxima and local minima of the function\n$$f(x)=\\begin{cases}(2+x)^3, & -3<x\\le-1\\\\[4pt] x^{2/3}, & -1<x<2\\end{cases}$$\nis\n(A) $0$\n(B) $1$\n(C) $2$\n(D) $3$",
+    "answer": "$\\boxed{(C)\\ 2}$",
+    "trap": "The minimum sits at $x=0$, where $f'$ does not exist (the cusp of $x^{2/3}$). A student who only solves $f'(x)=0$ finds nothing there and misses it — extrema can live at non-differentiable points too. Meanwhile the junction $x=-1$ is a genuine local max even though the two pieces are glued from different formulas.",
+    "solutions": [
+      {
+        "name": "Piecewise sign of $f'$",
+        "steps": [
+          "On $(-3,-1)$: $f(x)=(2+x)^3$, so $f'(x)=3(2+x)^2\\ge0$ — $f$ is increasing, rising to $f(-1)=(2-1)^3=1$.",
+          "On $(-1,2)$: $f(x)=x^{2/3}$, so $f'(x)=\\tfrac23x^{-1/3}$, negative for $x<0$ and positive for $x>0$; $f$ decreases on $(-1,0)$ and increases on $(0,2)$.",
+          "At $x=-1$: to its left $f$ is increasing, to its right (start of $x^{2/3}$ branch, decreasing) $f$ turns down — and the value jumps from $f(-1)=1$ down to $\\lim_{x\\to-1^+}x^{2/3}=1$ (they meet at $1$). So $f$ rises to $1$ then falls: a local maximum at $x=-1$.",
+          "At $x=0$: $f$ changes from decreasing to increasing, with $f(0)=0$ the lowest nearby value — a local minimum (occurring at a cusp, where $f'$ is undefined).",
+          "No other turning points exist on the open pieces. Total extrema $=2$: one max ($x=-1$), one min ($x=0$). Answer (C)."
+        ]
+      },
+      {
+        "name": "Graph-shape reasoning",
+        "steps": [
+          "Sketch each branch. $(2+x)^3$ on $(-3,-1)$ is a cubic-shift, strictly increasing, ending at the point $(-1,1)$.",
+          "$x^{2/3}$ on $(-1,2)$ is the classic even-root cusp curve: a downward wedge into the origin from the left, then upward — symmetric-looking about the $y$-axis, with its sharp low point at $(0,0)$.",
+          "Placing them side by side: the graph climbs up to $(-1,1)$, then the $x^{2/3}$ piece heads back down into the cusp at the origin, then climbs again toward $(2,2^{2/3})$.",
+          "A peak appears where climbing switches to descending — that is $x=-1$. A valley appears at the cusp where descending switches to climbing — that is $x=0$.",
+          "Exactly one peak and one valley are visible, so the total number of local maxima and minima is $2$ (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q2. A reminder that local extrema occur at critical points of *both* kinds — where $f'=0$ and where $f'$ fails to exist (here, the $x^{2/3}$ cusp)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Symmetric Rational $\\dfrac{x^2-ax+1}{x^2+ax+1}$",
+    "difficulty": 3,
+    "task": "Identify the correct relation among the derivatives.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "14"
+    },
+    "tags": [
+      "differentiation",
+      "second derivative",
+      "rational functions",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Consider the function $f:(-\\infty,\\infty)\\to(-\\infty,\\infty)$ defined by $$f(x)=\\frac{x^2-ax+1}{x^2+ax+1},\\qquad 0<a<2.$$ Which of the following is true?\n\n(A) $(2+a)^2\\,f''(1)+(2-a)^2\\,f''(-1)=0$\n\n(B) $(2-a)^2\\,f''(1)-(2+a)^2\\,f''(-1)=0$\n\n(C) $f'(1)\\,f'(-1)=(2-a)^2$\n\n(D) $f'(1)\\,f'(-1)=-(2+a)^2$",
+    "answer": "$\\boxed{\\text{(A)}}$",
+    "trap": "The reflex is to slog through the full quotient-rule second derivative and hope the algebra cancels. The hidden gift is the symmetry $f(-x)=1/f(x)$ (equivalently $f(x)f(-x)=1$), plus the fact that $x=\\pm1$ are exactly the stationary points — so $f'(1)=f'(-1)=0$. Missing that instantly kills options (C) and (D) (both would force a nonzero product) and makes $f''(\\pm1)$ trivial to evaluate.",
+    "solutions": [
+      {
+        "name": "Direct evaluation of $f'$ and $f''$ at $x=\\pm1$",
+        "steps": [
+          "Write $f=\\dfrac{N}{D}$ with $N=x^2-ax+1$, $D=x^2+ax+1$, so $N'=2x-a$, $D'=2x+a$.",
+          "Quotient rule: $f'(x)=\\dfrac{N'D-ND'}{D^2}$. Compute the numerator $N'D-ND'=(2x-a)(x^2+ax+1)-(x^2-ax+1)(2x+a)$.",
+          "Expanding and cancelling gives $N'D-ND'=2a(x^2-1)$, hence $f'(x)=\\dfrac{2a(x^2-1)}{(x^2+ax+1)^2}$.",
+          "Therefore $f'(1)=0$ and $f'(-1)=0$: both $x=\\pm1$ are stationary points. This makes $f'(1)f'(-1)=0\\ne(2-a)^2$ and $\\ne-(2+a)^2$, so (C) and (D) are false.",
+          "Since $f'(x)=2a(x^2-1)D^{-2}$, differentiate: $f''(x)=2a\\big[2x\\,D^{-2}+(x^2-1)(-2)D^{-3}D'\\big]$.",
+          "At $x=1$ the $(x^2-1)$ term vanishes, so $f''(1)=2a\\cdot\\dfrac{2(1)}{D(1)^2}=\\dfrac{4a}{(a+2)^2}$, since $D(1)=2+a$.",
+          "At $x=-1$ likewise $f''(-1)=2a\\cdot\\dfrac{2(-1)}{D(-1)^2}=\\dfrac{-4a}{(2-a)^2}$, since $D(-1)=2-a$.",
+          "Now test (A): $(2+a)^2f''(1)+(2-a)^2f''(-1)=(2+a)^2\\cdot\\dfrac{4a}{(2+a)^2}+(2-a)^2\\cdot\\dfrac{-4a}{(2-a)^2}=4a-4a=0.$ Hence (A) is true.",
+          "For (B): $(2-a)^2f''(1)-(2+a)^2f''(-1)=\\dfrac{4a(2-a)^2}{(2+a)^2}+\\dfrac{4a(2+a)^2}{(2-a)^2}\\ne0$ for $0<a<2$, so (B) is false. Answer: (A)."
+        ]
+      },
+      {
+        "name": "Exploiting the symmetry $f(x)\\,f(-x)=1$",
+        "steps": [
+          "Replacing $x$ by $-x$ swaps $N$ and $D$: $f(-x)=\\dfrac{x^2+ax+1}{x^2-ax+1}=\\dfrac{1}{f(x)}$, so $f(x)f(-x)=1$ identically.",
+          "Differentiate: $f'(x)f(-x)-f(x)f'(-x)=0$. At $x=1$ this reads $f'(1)f(-1)=f(1)f'(-1)$.",
+          "Compute $f(1)=\\dfrac{2-a}{2+a}$ and $f(-1)=\\dfrac{2+a}{2-a}$ (reciprocals, consistent with the symmetry). Neither is $0$, and the stationarity below shows $f'(\\pm1)=0$, so (C),(D) fail.",
+          "Differentiate the identity $f(x)f(-x)=1$ twice. Using $\\frac{d}{dx}f(-x)=-f'(-x)$ and $\\frac{d^2}{dx^2}f(-x)=f''(-x)$: $$f''(x)f(-x)-2f'(x)f'(-x)+f(x)f''(-x)=0.$$",
+          "Evaluate at $x=1$. Since $f'(1)=f'(-1)=0$ (from $f'(x)=2a(x^2-1)/D^2$), the middle term drops: $f''(1)f(-1)+f(1)f''(-1)=0.$",
+          "Substitute $f(-1)=\\dfrac{2+a}{2-a}$ and $f(1)=\\dfrac{2-a}{2+a}$: $$f''(1)\\cdot\\frac{2+a}{2-a}+f''(-1)\\cdot\\frac{2-a}{2+a}=0.$$",
+          "Multiply through by $(2-a)(2+a)$: $(2+a)^2f''(1)+(2-a)^2f''(-1)=0$ — exactly statement (A), obtained without ever computing $f''$ explicitly.",
+          "Answer: (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q14. The relation $f(x)f(-x)=1$ is the whole problem: differentiating that identity twice hands you (A) for free, while the vanishing of $f'(\\pm1)$ silently disqualifies the two 'product' options."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Monotonicity of $\\dfrac{x^2-ax+1}{x^2+ax+1}$ on $(-1,1)$",
+    "difficulty": 3,
+    "task": "Decide monotonicity and the nature of $x=1$.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "15"
+    },
+    "tags": [
+      "monotonicity",
+      "local minimum",
+      "derivatives",
+      "2008"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"120\" x2=\"300\" y2=\"120\" stroke=\"var(--ink3)\"/><line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"292\" y=\"135\" fill=\"var(--ink2)\">x</text><text x=\"166\" y=\"30\" fill=\"var(--ink2)\">y</text><path d=\"M 30 55 C 70 62 95 78 110 92 C 122 104 130 112 160 112 C 190 112 198 104 210 92 C 225 78 250 62 290 55\" fill=\"none\" stroke=\"var(--ink2)\"/><path d=\"M 110 92 C 122 104 130 112 160 112 C 190 112 198 104 210 92\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><circle cx=\"110\" cy=\"92\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"210\" cy=\"92\" r=\"3\" fill=\"var(--gold)\"/><line x1=\"110\" y1=\"120\" x2=\"110\" y2=\"116\" stroke=\"var(--ink3)\"/><line x1=\"210\" y1=\"120\" x2=\"210\" y2=\"116\" stroke=\"var(--ink3)\"/><text x=\"98\" y=\"136\" fill=\"var(--ink2)\">-1</text><text x=\"206\" y=\"136\" fill=\"var(--ink2)\">1</text><circle cx=\"210\" cy=\"92\" r=\"5\" fill=\"none\" stroke=\"var(--gold)\"/><text x=\"216\" y=\"88\" fill=\"var(--ink2)\">min</text><text x=\"200\" y=\"186\" fill=\"var(--ink2)\">f decreasing on (-1,1)</text></svg>",
+    "statement": "Consider $$f(x)=\\frac{x^2-ax+1}{x^2+ax+1},\\qquad 0<a<2.$$ Which of the following is true?\n\n(A) $f(x)$ is decreasing on $(-1,1)$ and has a local minimum at $x=1$\n\n(B) $f(x)$ is increasing on $(-1,1)$ and has a local maximum at $x=1$\n\n(C) $f(x)$ is increasing on $(-1,1)$ but has neither a local maximum nor a local minimum at $x=1$\n\n(D) $f(x)$ is decreasing on $(-1,1)$ but has neither a local maximum nor a local minimum at $x=1$",
+    "answer": "$\\boxed{\\text{(A)}}$",
+    "trap": "Two independent traps. First, the denominator $x^2+ax+1$ has discriminant $a^2-4<0$ for $0<a<2$, so it never vanishes — $f$ is smooth on all of $(-1,1)$ and the sign of $f'$ is decided purely by its numerator, not by any pole. Second, a decreasing-then-increasing turn at $x=1$ is a local MINIMUM, not a maximum; students who see 'decreasing on the left' too quickly pair it with (B).",
+    "solutions": [
+      {
+        "name": "Sign of $f'(x)$ via the quotient rule",
+        "steps": [
+          "With $N=x^2-ax+1$, $D=x^2+ax+1$, the numerator of $f'$ is $N'D-ND'=(2x-a)(x^2+ax+1)-(x^2-ax+1)(2x+a)$.",
+          "Expand: the $x^3$, constant, and cross terms cancel, leaving $N'D-ND'=2a(x^2-1)$.",
+          "So $f'(x)=\\dfrac{2a\\,(x^2-1)}{(x^2+ax+1)^2}$. The denominator is a positive square and never zero (since $a^2-4<0$ keeps $D>0$), so $\\operatorname{sign}f'=\\operatorname{sign}\\big(2a(x^2-1)\\big)$.",
+          "Because $a>0$, the sign of $f'$ is the sign of $x^2-1$. On $(-1,1)$ we have $x^2-1<0$, hence $f'(x)<0$: $f$ is decreasing on $(-1,1)$. This rules out (B) and (C).",
+          "At $x=1$: for $x$ slightly less than $1$, $x^2-1<0$ so $f'<0$; for $x$ slightly more than $1$, $x^2-1>0$ so $f'>0$. The derivative changes from negative to positive.",
+          "A sign change $-\\to+$ is a local minimum, so $f$ has a local minimum at $x=1$. This eliminates (D) (which denies any extremum). Answer: (A)."
+        ]
+      },
+      {
+        "name": "Rewrite $f$ to isolate the varying part",
+        "steps": [
+          "Divide numerator and denominator by the common $x^2+1$: $f(x)=\\dfrac{(x^2+1)-ax}{(x^2+1)+ax}$. Put $u(x)=\\dfrac{ax}{x^2+1}$, so $f=\\dfrac{1-u}{1+u}$.",
+          "The map $u\\mapsto\\dfrac{1-u}{1+u}$ is strictly decreasing in $u$ (its derivative is $-2/(1+u)^2<0$). So $f$ increases exactly where $u$ decreases and vice versa.",
+          "Now $u(x)=\\dfrac{ax}{x^2+1}$ has $u'(x)=\\dfrac{a(1-x^2)}{(x^2+1)^2}$, which is positive on $(-1,1)$: so $u$ is increasing there.",
+          "Since $f$ is a decreasing function of an increasing $u$, $f$ is decreasing on $(-1,1)$.",
+          "At $x=1$, $u'$ switches from $+$ to $-$, so $u$ has a local maximum at $x=1$; through the decreasing map $u\\mapsto f$, a maximum of $u$ becomes a local minimum of $f$.",
+          "Thus $f$ decreases on $(-1,1)$ and has a local minimum at $x=1$ — statement (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q15. Once you strip $f$ to $\\tfrac{1-u}{1+u}$ with $u=ax/(x^2+1)$, the whole behaviour is governed by the single hump of $u$, and the extremum at $x=1$ flips type because the outer map reverses order."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Maximum on a hidden interval",
+    "difficulty": 3,
+    "task": "Find the maximum value.",
+    "pyq": {
+      "year": 2009,
+      "paper": "2",
+      "qno": "37"
+    },
+    "tags": [
+      "maxima on a closed set",
+      "monotonicity",
+      "quadratic inequality",
+      "2009"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"185\" x2=\"305\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"40\" y1=\"205\" x2=\"40\" y2=\"20\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><text x=\"300\" y=\"200\" fill=\"var(--ink2)\">x</text><path d=\"M45 150 C 90 40, 150 40, 180 120 C 210 175, 250 120, 295 30\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.75\"/><rect x=\"205\" y=\"20\" width=\"55\" height=\"165\" fill=\"var(--gold)\" opacity=\"0.14\"/><line x1=\"205\" y1=\"185\" x2=\"205\" y2=\"180\" stroke=\"var(--ink3)\"/><line x1=\"260\" y1=\"185\" x2=\"260\" y2=\"180\" stroke=\"var(--ink3)\"/><text x=\"197\" y=\"200\" fill=\"var(--ink2)\">4</text><text x=\"253\" y=\"200\" fill=\"var(--ink2)\">5</text><circle cx=\"260\" cy=\"62\" r=\"4\" fill=\"var(--gold)\"/><text x=\"235\" y=\"52\" fill=\"var(--gold)\">max = 7</text><text x=\"210\" y=\"120\" fill=\"var(--ink2)\">A=[4,5]</text><path d=\"M205 175 L 260 90\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/></svg>",
+    "statement": "Find the maximum value of the function $f(x) = 2x^3 - 15x^2 + 36x - 48$ on the set $A = \\{\\,x \\mid x^2 + 20 \\le 9x\\,\\}$.",
+    "answer": "$\\boxed{7}$",
+    "trap": "Students rush to solve $f'(x)=0$ (getting $x=2,3$) and evaluate $f$ there — but neither critical point lies in the feasible set $A=[4,5]$. The extremum of a continuous function on a closed interval is attained at a critical point OR an endpoint; here only the endpoints matter, and one must first decode the constraint $x^2+20\\le9x$ into an interval before touching the calculus.",
+    "solutions": [
+      {
+        "name": "Decode the constraint, then check monotonicity",
+        "steps": [
+          "First identify the domain $A$. The inequality $x^2 + 20 \\le 9x$ rearranges to $x^2 - 9x + 20 \\le 0$, i.e. $(x-4)(x-5) \\le 0$, so $A = [4,5]$.",
+          "Differentiate: $f'(x) = 6x^2 - 30x + 36 = 6(x^2 - 5x + 6) = 6(x-2)(x-3)$.",
+          "On $[4,5]$ both factors $(x-2)$ and $(x-3)$ are positive, so $f'(x) > 0$ throughout: $f$ is strictly increasing on $A$.",
+          "An increasing function on $[4,5]$ attains its maximum at the right endpoint $x=5$.",
+          "Evaluate: $f(5) = 2(125) - 15(25) + 36(5) - 48 = 250 - 375 + 180 - 48 = 7$.",
+          "Hence the maximum value on $A$ is $7$ (and, for contrast, the minimum is $f(4) = 128 - 240 + 144 - 48 = -16$)."
+        ]
+      },
+      {
+        "name": "Closed-interval (endpoint vs. critical-point) test",
+        "steps": [
+          "As above, $A = [4,5]$ and the critical points of $f$ solve $f'(x) = 6(x-2)(x-3) = 0$, giving $x = 2$ and $x = 3$.",
+          "Neither critical point lies inside $[4,5]$, so by the Closed Interval Method the absolute maximum must occur at an endpoint.",
+          "Compute both endpoints: $f(4) = 2(64) - 15(16) + 144 - 48 = 128 - 240 + 144 - 48 = -16$ and $f(5) = 250 - 375 + 180 - 48 = 7$.",
+          "Compare the candidate values $\\{f(4), f(5)\\} = \\{-16,\\ 7\\}$; the largest is $7$.",
+          "Therefore the maximum value of $f$ on $A$ is $7$, attained at $x=5$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2009, Paper 2, Q37. The whole difficulty is disguised: the constraint set is a quadratic inequality, and once it collapses to $[4,5]$ the calculus becomes a one-line monotonicity check — a reminder to always locate the feasible region before optimizing."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three functions, one summit",
+    "difficulty": 3,
+    "task": "Identify the correct relation among the three absolute maxima.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "36"
+    },
+    "tags": [
+      "absolute maximum",
+      "monotonicity",
+      "exponential functions",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Let $f$, $g$ and $h$ be real-valued functions defined on the interval $[0,1]$ by $$f(x)=e^{x^2}+e^{-x^2},\\qquad g(x)=x\\,e^{x^2}+e^{-x^2},\\qquad h(x)=x^2 e^{x^2}+e^{-x^2}.$$ If $a$, $b$ and $c$ denote, respectively, the absolute maximum of $f$, $g$ and $h$ on $[0,1]$, then\n\n(A) $a=b$ and $c\\neq b$\n\n(B) $a=c$ and $a\\neq b$\n\n(C) $a\\neq b$ and $c\\neq b$\n\n(D) $a=b=c$",
+    "answer": "(D)",
+    "trap": "Because $x < x^2$ is false on $(0,1)$ (in fact $x^2 < x < 1$ there), the three functions are genuinely different and $f(x) > g(x) > h(x)$ for every interior point — so a student is tempted to conclude the maxima differ. The catch: an *absolute maximum on a closed interval* is a single value attained at the endpoint $x=1$, where the coefficients $1,\\,x,\\,x^2$ all equal $1$ and the three functions coincide. The pointwise ordering in the interior is a red herring.",
+    "solutions": [
+      {
+        "name": "Show each function is increasing, then evaluate at $x=1$",
+        "steps": [
+          "Write each function as $\\phi(x) = k(x)e^{x^2} + e^{-x^2}$ with $k(x)=1,\\,x,\\,x^2$ respectively; on $[0,1]$ each $k(x)\\ge0$.",
+          "For $f$: $f'(x) = 2x\\,e^{x^2} - 2x\\,e^{-x^2} = 2x\\big(e^{x^2}-e^{-x^2}\\big) \\ge 0$ on $[0,1]$ since $e^{x^2}\\ge e^{-x^2}$. So $f$ is increasing.",
+          "For $g$: $g'(x) = e^{x^2}(1+2x^2) - 2x\\,e^{-x^2}$. On $[0,1]$, $e^{x^2}\\ge e^{-x^2}$ and $1+2x^2 \\ge 2x$ (because $2x^2-2x+1=2(x-\\tfrac12)^2+\\tfrac12>0$), hence $g'(x)\\ge e^{-x^2}(1+2x^2-2x)>0$. So $g$ is increasing.",
+          "For $h$: $h'(x) = 2x\\,e^{x^2}(1+x^2) - 2x\\,e^{-x^2} = 2x\\big[e^{x^2}(1+x^2)-e^{-x^2}\\big] \\ge 0$ on $[0,1]$, since $e^{x^2}(1+x^2)\\ge e^{-x^2}$. So $h$ is increasing.",
+          "An increasing function on $[0,1]$ attains its absolute maximum at the right endpoint $x=1$. Thus $a=f(1)$, $b=g(1)$, $c=h(1)$.",
+          "At $x=1$ the coefficients $1,\\,x,\\,x^2$ are all $1$, so $f(1)=g(1)=h(1)=e^{1}+e^{-1}=e+\\tfrac1e$. Therefore $a=b=c$ — option (D)."
+        ]
+      },
+      {
+        "name": "Endpoint bound via the interior ordering",
+        "steps": [
+          "On the open interval $(0,1)$ we have $x^2 < x < 1$, so multiplying the positive factor $e^{x^2}$ gives $h(x) < g(x) < f(x)$ for every interior $x$; the three graphs are distinct.",
+          "Each function is bounded above on $[0,1]$ by its value at $x=1$: since $k(x)e^{x^2}\\le k(1)e^{1}=e$ requires knowing the sup, instead observe every function is continuous on the closed interval, so each absolute maximum exists and is attained somewhere in $[0,1]$.",
+          "The common upper envelope is $f$, and $f(x)=e^{x^2}+e^{-x^2}$ is an even, increasing-on-$[0,1]$ function whose largest value is $f(1)=e+e^{-1}$; so $a=e+e^{-1}$.",
+          "Because $g(1)=1\\cdot e^{1}+e^{-1}=e+e^{-1}$ and $h(1)=1\\cdot e^{1}+e^{-1}=e+e^{-1}$ also equal that same envelope value, and $g,h\\le f\\le e+e^{-1}$ with equality reached at $x=1$, the maxima $b$ and $c$ likewise equal $e+e^{-1}$.",
+          "Hence all three absolute maxima coincide: $a=b=c=e+e^{-1}$, which is option (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2010, Paper 1, Q36. A clean lesson that the absolute maximum lives at the boundary here — the strict interior ordering $h<g<f$ is deliberate bait, since at the shared endpoint $x=1$ the multipliers $1,x,x^2$ all collapse to $1$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The multiplicity gauntlet: where does $g=e^{f}$ peak?",
+    "difficulty": 4,
+    "task": "Count the local maxima.",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "28"
+    },
+    "tags": [
+      "local maxima",
+      "sign of derivative",
+      "multiplicity of roots",
+      "2010"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"20\" y1=\"120\" x2=\"310\" y2=\"120\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <text x=\"300\" y=\"135\" fill=\"var(--ink2)\">$x$</text>\n  <text x=\"14\" y=\"112\" fill=\"var(--ink2)\">$f'$</text>\n  <!-- sign of f': + on (-inf,2009), - on (2009,2010), - on (2010,2011), + on (2011,2012), + on (2012,inf) -->\n  <line x1=\"70\" y1=\"120\" x2=\"70\" y2=\"124\" stroke=\"var(--ink3)\"/>\n  <line x1=\"140\" y1=\"120\" x2=\"140\" y2=\"124\" stroke=\"var(--ink3)\"/>\n  <line x1=\"210\" y1=\"120\" x2=\"210\" y2=\"124\" stroke=\"var(--ink3)\"/>\n  <line x1=\"280\" y1=\"120\" x2=\"280\" y2=\"124\" stroke=\"var(--ink3)\"/>\n  <text x=\"58\" y=\"140\" fill=\"var(--ink2)\">2009</text>\n  <text x=\"128\" y=\"140\" fill=\"var(--ink2)\">2010</text>\n  <text x=\"198\" y=\"140\" fill=\"var(--ink2)\">2011</text>\n  <text x=\"268\" y=\"140\" fill=\"var(--ink2)\">2012</text>\n  <!-- multiplicities -->\n  <text x=\"58\" y=\"156\" fill=\"var(--ink2)\">m=1</text>\n  <text x=\"128\" y=\"156\" fill=\"var(--ink2)\">m=2</text>\n  <text x=\"198\" y=\"156\" fill=\"var(--ink2)\">m=3</text>\n  <text x=\"268\" y=\"156\" fill=\"var(--ink2)\">m=4</text>\n  <!-- sign labels -->\n  <text x=\"38\" y=\"105\" fill=\"var(--ink2)\">+</text>\n  <text x=\"102\" y=\"105\" fill=\"var(--ink2)\">−</text>\n  <text x=\"172\" y=\"105\" fill=\"var(--ink2)\">−</text>\n  <text x=\"242\" y=\"105\" fill=\"var(--ink2)\">+</text>\n  <text x=\"296\" y=\"105\" fill=\"var(--ink2)\">+</text>\n  <!-- highlight the single + to - flip at 2009 (local max of f and g) -->\n  <circle cx=\"70\" cy=\"120\" r=\"5\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/>\n  <text x=\"46\" y=\"180\" fill=\"var(--gold)\">local max</text>\n  <text x=\"52\" y=\"195\" fill=\"var(--gold)\">at $x=2009$</text>\n</svg>",
+    "statement": "Let $f$ be a function defined on $\\mathbb{R}$ such that $$f'(x)=2010\\,(x-2009)(x-2010)^2(x-2011)^3(x-2012)^4$$ for all $x\\in\\mathbb{R}$. If $g$ is a function defined on $\\mathbb{R}$ with values in $(0,\\infty)$ such that $f(x)=\\ln\\big(g(x)\\big)$ for all $x\\in\\mathbb{R}$, then find the number of points in $\\mathbb{R}$ at which $g$ has a local maximum.",
+    "answer": "$\\boxed{1}$",
+    "trap": "Students count every root of $f'$ as an extremum. But a root of $f'$ produces an extremum of $f$ only when $f'$ actually changes sign there — i.e. only at roots of ODD multiplicity. Roots of even multiplicity ($x=2010$, $x=2012$) are stationary points where $f'$ merely touches zero and keeps its sign, so no extremum. Of the two odd-multiplicity roots, only one gives a $+\\to-$ flip (a maximum).",
+    "solutions": [
+      {
+        "name": "Reduce $g$ to $f$, then a sign table",
+        "steps": [
+          "Since $g(x)>0$ and $f(x)=\\ln g(x)$, we have $g(x)=e^{f(x)}$. Because $t\\mapsto e^{t}$ is strictly increasing, $g$ has a local maximum exactly where $f$ has a local maximum.",
+          "A local maximum of $f$ occurs where $f'$ changes sign from $+$ to $-$. So analyse the sign of $f'(x)=2010(x-2009)(x-2010)^2(x-2011)^3(x-2012)^4$.",
+          "The factors $(x-2010)^2$ and $(x-2012)^4$ have even exponents, so they are $\\ge 0$ everywhere and never change the sign of $f'$; they only force $f'=0$ at those points (stationary, not extremal).",
+          "So the sign of $f'$ is governed by $2010\\,(x-2009)(x-2011)^3$, and since $(x-2011)^3$ has the same sign as $(x-2011)$, effectively by $(x-2009)(x-2011)$.",
+          "Sign of $(x-2009)(x-2011)$: for $x<2009$ it is $(-)(-)=+$; for $2009<x<2011$ it is $(+)(-)=-$; for $x>2011$ it is $(+)(+)=+$.",
+          "Hence $f'>0 \\to f'<0$ at $x=2009$ (a $+\\to-$ flip: local MAX of $f$), and $f'<0 \\to f'>0$ at $x=2011$ (a $-\\to+$ flip: local MIN of $f$).",
+          "Therefore $f$ — and so $g$ — has exactly ONE local maximum, at $x=2009$."
+        ]
+      },
+      {
+        "name": "Parity-of-multiplicity rule",
+        "steps": [
+          "$g=e^{f}$ is a monotone-increasing transform of $f$, so extrema of $g$ coincide with extrema of $f$ (same type). Study $f'$.",
+          "General rule: at a root $r$ of $f'$ with multiplicity $m$, $f'$ changes sign iff $m$ is odd; if it changes from $+$ to $-$ it is a local max of $f$, if from $-$ to $+$ a local min.",
+          "List the roots with multiplicities: $x=2009$ ($m=1$, odd), $x=2010$ ($m=2$, even), $x=2011$ ($m=3$, odd), $x=2012$ ($m=4$, even).",
+          "Even-multiplicity roots $2010,2012$: no sign change $\\Rightarrow$ no extremum there.",
+          "Take a test value far right, say $x=2013$: every factor is positive and $2010>0$, so $f'(2013)>0$. Walking leftward, $f'$ keeps its sign through the even roots and flips only at odd roots.",
+          "Crossing $x=2011$ (odd) going right-to-left: $+ \\to -$ becomes, reading left-to-right, a $-\\to+$ change $\\Rightarrow$ local min. Crossing $x=2009$ (odd): sign returns to $+$, so left-to-right it is $+\\to-$ $\\Rightarrow$ local max.",
+          "Exactly one local maximum, at $x=2009$. Answer $=1$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE/JEE Advanced 2010, Paper 2, Q28. The whole problem is a disguise: the $g=e^{f}$ wrapper is a red herring because $e^{t}$ is monotone, and the real content is that only odd-multiplicity roots of $f'$ create extrema — count the $+\\to-$ flips, not the roots."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Trapping the root of $f(x)=1+2x+3x^2+4x^3$",
+    "difficulty": 3,
+    "task": "Locate the interval.",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "31"
+    },
+    "tags": [
+      "real roots",
+      "monotonic function",
+      "location of root",
+      "2010"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <!-- axes -->\n  <line x1=\"30\" y1=\"110\" x2=\"310\" y2=\"110\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <line x1=\"170\" y1=\"20\" x2=\"170\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <text x=\"300\" y=\"124\" fill=\"var(--ink2)\">$x$</text>\n  <text x=\"176\" y=\"30\" fill=\"var(--ink2)\">$y$</text>\n  <!-- strictly increasing cubic f(x)=1+2x+3x^2+4x^3, single crossing near x=-0.6 -->\n  <path d=\"M 60 200 C 110 175, 130 140, 148 118 C 156 108, 162 100, 170 92 C 190 72, 220 45, 270 25\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.8\"/>\n  <text x=\"250\" y=\"40\" fill=\"var(--ink2)\">$y=f(x)$</text>\n  <!-- interval (-3/4,-1/2) shaded on axis: map x=0 -> 170, scale ~46 px per unit -->\n  <line x1=\"135\" y1=\"110\" x2=\"147\" y2=\"110\" stroke=\"var(--gold)\" stroke-width=\"4\"/>\n  <line x1=\"135\" y1=\"106\" x2=\"135\" y2=\"114\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/>\n  <line x1=\"147\" y1=\"106\" x2=\"147\" y2=\"114\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/>\n  <text x=\"104\" y=\"150\" fill=\"var(--gold)\">$-\\tfrac34$</text>\n  <text x=\"150\" y=\"150\" fill=\"var(--gold)\">$-\\tfrac12$</text>\n  <!-- the root -->\n  <circle cx=\"141\" cy=\"110\" r=\"3.5\" fill=\"var(--gold)\"/>\n  <text x=\"118\" y=\"96\" fill=\"var(--gold)\">$s$</text>\n</svg>",
+    "statement": "Consider the polynomial $f(x)=1+2x+3x^2+4x^3$. Let $s$ be the sum of all distinct real roots of $f(x)$, and let $t=|s|$. The real number $s$ lies in the interval\n\n(A) $\\left(-\\dfrac14,\\,0\\right)$\n(B) $\\left(-11,\\,-\\dfrac34\\right)$\n(C) $\\left(-\\dfrac34,\\,-\\dfrac12\\right)$\n(D) $\\left(0,\\,\\dfrac14\\right)$",
+    "answer": "(C)",
+    "trap": "The phrase \"sum of all distinct real roots\" tempts students toward Vieta ($\\text{sum}=-\\tfrac{3}{4}\\cdot\\tfrac{1}{1}$-style algebra over all three roots). But two of the three roots are complex, so Vieta's sum-of-all-roots is irrelevant here. First establish that there is exactly ONE real root — then $s$ is just that single root, and you locate it by a sign check.",
+    "solutions": [
+      {
+        "name": "Monotonicity $\\Rightarrow$ one real root, then Bolzano sign-check",
+        "steps": [
+          "Differentiate: $f'(x)=2+6x+12x^2$. Its discriminant is $6^2-4\\cdot12\\cdot2=36-96=-60<0$, and the leading coefficient $12>0$, so $f'(x)>0$ for all $x$.",
+          "Thus $f$ is strictly increasing on $\\mathbb{R}$, so it has exactly one real root. Therefore $s$ equals that single root (the two other roots are a complex-conjugate pair and do not contribute).",
+          "Now bracket the root by signs. Compute $f\\!\\left(-\\tfrac34\\right)=1+2\\left(-\\tfrac34\\right)+3\\left(\\tfrac{9}{16}\\right)+4\\left(-\\tfrac{27}{64}\\right)=1-\\tfrac32+\\tfrac{27}{16}-\\tfrac{27}{16}=1-\\tfrac32=-\\tfrac12<0.$",
+          "Compute $f\\!\\left(-\\tfrac12\\right)=1+2\\left(-\\tfrac12\\right)+3\\left(\\tfrac14\\right)+4\\left(-\\tfrac18\\right)=1-1+\\tfrac34-\\tfrac12=\\tfrac14>0.$",
+          "Since $f$ is continuous and changes sign between $-\\tfrac34$ and $-\\tfrac12$, its unique root $s$ lies in $\\left(-\\tfrac34,-\\tfrac12\\right)$.",
+          "Hence the answer is (C)."
+        ]
+      },
+      {
+        "name": "Eliminate the other options directly",
+        "steps": [
+          "As above, $f'(x)=12x^2+6x+2>0$ everywhere, so $f$ is strictly increasing with exactly one real root $s$; a strictly increasing function's sign at the endpoints pins down where that root is.",
+          "Test the candidate boundaries. $f(0)=1>0$, so the root lies to the LEFT of $0$. This immediately kills (A) $\\left(-\\tfrac14,0\\right)$ and (D) $\\left(0,\\tfrac14\\right)$, since on those intervals $f>0$ throughout (no crossing).",
+          "$f\\!\\left(-\\tfrac12\\right)=\\tfrac14>0$, so the root is further left than $-\\tfrac12$; and $f\\!\\left(-\\tfrac34\\right)=-\\tfrac12<0$, so the root is to the right of $-\\tfrac34$.",
+          "That confines $s$ to $\\left(-\\tfrac34,-\\tfrac12\\right)$, which is option (C). Option (B) $\\left(-11,-\\tfrac34\\right)$ is far too wide/left: e.g. $f(-1)=1-2+3-4=-2<0$ and $f(-\\tfrac34)<0$ both share a sign, so no crossing occurs strictly between them near $-\\tfrac34$, and the actual root sits just above $-\\tfrac34$.",
+          "Therefore (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE/JEE Advanced 2010, Paper 2, Q31 (first of the $f(x)=1+2x+3x^2+4x^3$ paragraph). Monotonicity ($f'$ has negative discriminant) collapses \"sum of distinct real roots\" to a single number, after which two clean rational evaluations bracket it — no cubic-solving needed."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "How many times does $x^2$ meet $x\\sin x+\\cos x$?",
+    "difficulty": 3,
+    "task": "Count the real roots.",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "46"
+    },
+    "tags": [
+      "monotonicity",
+      "number of roots",
+      "2013"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"150\" x2=\"300\" y2=\"150\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"303\" y=\"146\" fill=\"var(--ink2)\">x</text><text x=\"164\" y=\"28\" fill=\"var(--ink2)\">y</text><path d=\"M 40 40 Q 100 172 160 172 Q 220 172 280 40\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><line x1=\"20\" y1=\"172\" x2=\"300\" y2=\"172\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><text x=\"116\" y=\"188\" fill=\"var(--ink2)\">y=-1</text><circle cx=\"108\" cy=\"150\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"212\" cy=\"150\" r=\"3\" fill=\"var(--gold)\"/><text x=\"90\" y=\"140\" fill=\"var(--ink2)\">root</text><text x=\"200\" y=\"140\" fill=\"var(--ink2)\">root</text><text x=\"150\" y=\"210\" fill=\"var(--ink2)\">min f(0)=-1</text></svg>",
+    "statement": "Find the number of points in $(-\\infty,\\infty)$ for which $x^2-x\\sin x-\\cos x=0$.\n\n(A) $6$\n(B) $4$\n(C) $2$\n(D) $0$",
+    "answer": "$\\boxed{2}$ — option (C)",
+    "trap": "The mix of a polynomial and two oscillating trig terms tempts you to expect many intersections (like $x^2=\\sin x$ style pictures with infinitely many crossings). But once you differentiate, the oscillation collapses: $f'(x)=x(2-\\cos x)$ has the sign of $x$ alone, so $f$ is strictly monotone on each side of $0$ and can cross zero at most twice.",
+    "solutions": [
+      {
+        "name": "Monotonicity from the derivative",
+        "steps": [
+          "Let $f(x)=x^2-x\\sin x-\\cos x$.",
+          "Differentiate: $f'(x)=2x-(\\sin x+x\\cos x)+\\sin x=2x-x\\cos x=x(2-\\cos x)$.",
+          "Since $-1\\le\\cos x\\le1$, we have $2-\\cos x\\ge1>0$ for every $x$, so $\\operatorname{sign}f'(x)=\\operatorname{sign}(x)$.",
+          "Hence $f$ is strictly decreasing on $(-\\infty,0)$ and strictly increasing on $(0,\\infty)$, so $x=0$ is the only extremum — the global minimum.",
+          "Evaluate the minimum: $f(0)=0-0-\\cos 0=-1<0$.",
+          "As $x\\to\\pm\\infty$, $x^2$ dominates the bounded terms $x\\sin x$ (grows slower) and $\\cos x$, giving $f(x)\\to+\\infty$ on both sides.",
+          "A function that falls from $+\\infty$ to a negative minimum and then rises back to $+\\infty$ crosses zero exactly once on each side of $0$. Total: $\\boxed{2}$ roots. Option (C)."
+        ]
+      },
+      {
+        "name": "Even symmetry + one-sided count",
+        "steps": [
+          "$f(-x)=x^2+x\\sin x-\\cos x$? Check: $(-x)\\sin(-x)=x\\sin x$, so $-(-x)\\sin(-x)=-x\\sin x$; thus $f(-x)=x^2-x\\sin x-\\cos x=f(x)$. So $f$ is even.",
+          "Because $f$ is even, its roots come in $\\pm$ pairs and $x=0$ is a root only if $f(0)=0$; here $f(0)=-1\\neq0$.",
+          "Restrict to $x>0$. There $f'(x)=x(2-\\cos x)>0$, so $f$ is strictly increasing on $(0,\\infty)$.",
+          "At the left end $f(0^+)\\to f(0)=-1<0$ and $f(x)\\to+\\infty$ as $x\\to\\infty$; a strictly increasing function changing sign once has exactly one positive root.",
+          "By evenness that single positive root is mirrored by exactly one negative root, and $0$ is not a root.",
+          "Therefore the equation has exactly $2$ real solutions. Option (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2013, Paper 1, Q46. The lesson: don't count crossings from the tangled original expression — differentiate first, because $f'(x)=x(2-\\cos x)$ instantly reveals a single-well shape and caps the root count at two."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Where does $\\big(x\\sin\\pi x\\big)'$ vanish inside each unit cell?",
+    "difficulty": 3,
+    "task": "Locate the stationary point.",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "52"
+    },
+    "tags": [
+      "Rolle-type root location",
+      "derivative zeros",
+      "monotonicity",
+      "2013"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"120\" x2=\"300\" y2=\"120\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"303\" y=\"116\" fill=\"var(--ink2)\">x</text><line x1=\"60\" y1=\"30\" x2=\"60\" y2=\"200\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><line x1=\"180\" y1=\"30\" x2=\"180\" y2=\"200\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><line x1=\"300\" y1=\"30\" x2=\"300\" y2=\"200\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><text x=\"56\" y=\"214\" fill=\"var(--ink2)\">n</text><text x=\"166\" y=\"214\" fill=\"var(--ink2)\">n+½</text><text x=\"290\" y=\"214\" fill=\"var(--ink2)\">n+1</text><path d=\"M 60 120 Q 120 40 165 55 Q 230 78 300 200\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><path d=\"M 60 60 Q 130 -20 200 90 Q 250 165 300 175\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><circle cx=\"243\" cy=\"120\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"210\" y=\"110\" fill=\"var(--ink2)\">f'=0 here</text><text x=\"120\" y=\"48\" fill=\"var(--ink2)\">f</text><text x=\"250\" y=\"55\" fill=\"var(--gold)\">f'</text></svg>",
+    "statement": "Let $f(x)=x\\sin\\pi x$, $x>0$. Then for all natural numbers $n$, $f'(x)$ vanishes at\n\n(A) a unique point in the interval $\\left(n,\\,n+\\dfrac12\\right)$\n(B) a unique point in the interval $\\left(n+\\dfrac12,\\,n+1\\right)$\n(C) a unique point in the interval $(n,\\,n+1)$\n(D) two points in the interval $(n,\\,n+1)$",
+    "answer": "(B), (C)",
+    "trap": "You correctly reduce to $\\tan\\pi x=-\\pi x$ and see one intersection per period, so you tick (C) — but you must also pin down which half of the cell it lands in. On $\\big(n,n+\\tfrac12\\big)$ the tangent branch is positive while $-\\pi x$ is negative, so no root can sit there; the crossing is forced into $\\big(n+\\tfrac12,n+1\\big)$. Missing this kills option (B) and also wrongly lets (A) look plausible.",
+    "solutions": [
+      {
+        "name": "Reduce to $\\tan\\pi x=-\\pi x$ and read the branch",
+        "steps": [
+          "Differentiate: $f'(x)=\\sin\\pi x+\\pi x\\cos\\pi x$.",
+          "Set $f'(x)=0$. On any interval where $\\cos\\pi x\\neq0$, divide by $\\cos\\pi x$: $\\tan\\pi x+\\pi x=0$, i.e. $\\tan\\pi x=-\\pi x$.",
+          "Fix a natural number $n$ and look on $(n,n+1)$. Here $\\pi x>0$, so the right side $-\\pi x$ is a fixed negative number.",
+          "On $\\left(n,n+\\tfrac12\\right)$: $\\pi x\\in(n\\pi,n\\pi+\\tfrac\\pi2)$, where $\\tan\\pi x\\ge0$ (it runs from $0$ up to $+\\infty$). A non-negative left side can never equal the negative right side, so there is no root in this half.",
+          "On $\\left(n+\\tfrac12,n+1\\right)$: $\\tan\\pi x$ sweeps continuously from $-\\infty$ (just past the asymptote at $n+\\tfrac12$) up to $0$ (at $n+1$). The straight line $-\\pi x$ is a single negative value in this range, so the two graphs meet exactly once.",
+          "Hence $f'$ has a unique zero in $(n,n+1)$, and it lies in $\\left(n+\\tfrac12,n+1\\right)$. That makes (B) and (C) true; (A) and (D) false."
+        ]
+      },
+      {
+        "name": "Monotonicity of $g(x)=\\tan\\pi x+\\pi x$ on the branch",
+        "steps": [
+          "Rewrite the stationary condition as $g(x)=0$ where $g(x)=\\tan\\pi x+\\pi x$ (valid away from the asymptotes $x=k+\\tfrac12$).",
+          "Then $g'(x)=\\pi\\sec^2\\pi x+\\pi>0$ everywhere it is defined, so $g$ is strictly increasing on each open branch between consecutive asymptotes — hence at most one zero per branch.",
+          "Take the branch $\\left(n+\\tfrac12,n+1\\right)$. As $x\\to\\left(n+\\tfrac12\\right)^+$, $\\tan\\pi x\\to-\\infty$ so $g\\to-\\infty$; at $x=n+1$, $\\tan\\pi x=0$ so $g(n+1)=\\pi(n+1)>0$.",
+          "By the Intermediate Value Theorem plus strict monotonicity, $g$ has exactly one zero in $\\left(n+\\tfrac12,n+1\\right)$.",
+          "On the adjacent branch $\\left(n,n+\\tfrac12\\right)$, $g$ runs from $g(n)=\\pi n>0$ up to $+\\infty$, staying strictly positive — no zero there.",
+          "So the only stationary point of $f$ in $(n,n+1)$ sits in $\\left(n+\\tfrac12,n+1\\right)$: options (B) and (C) hold."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2013, Paper 1, Q52. Insight: after $\\tan\\pi x=-\\pi x$, the sign of the tangent branch — positive on the first half-cell, negative on the second — decides the location, so the root is quarantined into $\\big(n+\\tfrac12,n+1\\big)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Open Box of Maximum Volume",
+    "difficulty": 4,
+    "task": "Find the side lengths of the sheet.",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "55"
+    },
+    "tags": [
+      "maxima-minima",
+      "optimization",
+      "open box volume",
+      "2013"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><rect x=\"40\" y=\"45\" width=\"240\" height=\"128\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><rect x=\"40\" y=\"45\" width=\"26\" height=\"26\" fill=\"var(--gold)\" fill-opacity=\"0.35\" stroke=\"var(--gold)\"/><rect x=\"254\" y=\"45\" width=\"26\" height=\"26\" fill=\"var(--gold)\" fill-opacity=\"0.35\" stroke=\"var(--gold)\"/><rect x=\"40\" y=\"147\" width=\"26\" height=\"26\" fill=\"var(--gold)\" fill-opacity=\"0.35\" stroke=\"var(--gold)\"/><rect x=\"254\" y=\"147\" width=\"26\" height=\"26\" fill=\"var(--gold)\" fill-opacity=\"0.35\" stroke=\"var(--gold)\"/><line x1=\"40\" y1=\"33\" x2=\"280\" y2=\"33\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><line x1=\"40\" y1=\"29\" x2=\"40\" y2=\"37\" stroke=\"var(--ink2)\"/><line x1=\"280\" y1=\"29\" x2=\"280\" y2=\"37\" stroke=\"var(--ink2)\"/><text x=\"160\" y=\"27\" fill=\"var(--ink2)\" text-anchor=\"middle\">15k</text><line x1=\"28\" y1=\"45\" x2=\"28\" y2=\"173\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><line x1=\"24\" y1=\"45\" x2=\"32\" y2=\"45\" stroke=\"var(--ink2)\"/><line x1=\"24\" y1=\"173\" x2=\"32\" y2=\"173\" stroke=\"var(--ink2)\"/><text x=\"14\" y=\"112\" fill=\"var(--ink2)\" text-anchor=\"middle\">8k</text><text x=\"53\" y=\"62\" fill=\"var(--ink2)\" text-anchor=\"middle\" font-size=\"10\">x</text><text x=\"160\" y=\"115\" fill=\"var(--ink2)\" text-anchor=\"middle\" font-size=\"11\">fold up flaps</text><text x=\"160\" y=\"205\" fill=\"var(--ink2)\" text-anchor=\"middle\">cut squares of side x from each corner</text></svg>",
+    "statement": "A rectangular sheet of fixed perimeter with sides having their lengths in the ratio $8:15$ is converted into an open rectangular box by folding after removing squares of equal area from all four corners. If the total area of removed squares is $100$, the resulting box has maximum volume. Then the lengths of the sides of the rectangular sheet are\n\n(A) $24$\n(B) $32$\n(C) $45$\n(D) $60$",
+    "answer": "(A), (C)",
+    "trap": "The phrase \"total area of removed squares is $100$\" refers to all four corner squares, so $4x^2=100$ gives $x=5$ — not $x^2=100$. Students who set $x=10$ get a wrong equation in $k$. The other trap is treating this as \"minimize/maximize over $k$\": here $x=5$ is the *maximizing cut* for the true sheet, so the condition is $\\left.\\dfrac{dV}{dx}\\right|_{x=5}=0$, which pins down $k$. One also must reject the spurious root $k=\\tfrac56$ that makes a side negative.",
+    "solutions": [
+      {
+        "name": "Volume as a function of the cut $x$, stationary at $x=5$",
+        "steps": [
+          "Let the sides be $15k$ and $8k$. Cutting a square of side $x$ from each corner and folding gives base $(15k-2x)\\times(8k-2x)$ and height $x$, so $$V(x)=(15k-2x)(8k-2x)\\,x.$$",
+          "Total removed area is four squares: $4x^2=100\\Rightarrow x^2=25\\Rightarrow x=5$.",
+          "The box has maximum volume at this cut, so $x=5$ is a stationary point of $V$: $$V'(x)=12x^2-92kx+120k^2=0.$$",
+          "Put $x=5$: $12(25)-92k(5)+120k^2=0\\Rightarrow 120k^2-460k+300=0\\Rightarrow 6k^2-23k+15=0.$",
+          "Factor: $(k-3)(6k-5)=0$, so $k=3$ or $k=\\tfrac56$.",
+          "Reject $k=\\tfrac56$: then $8k=\\tfrac{20}{3}<2x=10$, giving a negative base dimension — impossible. Hence $k=3$.",
+          "Sides are $15k=45$ and $8k=24$. Answer: (A) and (C)."
+        ]
+      },
+      {
+        "name": "Second-derivative confirmation that $x=5$ is the maximum",
+        "steps": [
+          "With $k=3$, $V(x)=(45-2x)(24-2x)x$ and $V'(x)=12x^2-276x+1080=12(x^2-23x+90)=12(x-5)(x-18).$",
+          "So the stationary points are $x=5$ and $x=18$; only $x=5$ is feasible (need $x<\\tfrac{8k}{2}=12$).",
+          "$V''(x)=24x-276$, and $V''(5)=120-276=-156<0$, confirming $x=5$ is a local *maximum* of the volume — consistent with the problem's statement.",
+          "Thus the ratio-$8{:}15$ sheet whose optimal corner cut is $x=5$ has $k=3$, giving sides $45$ and $24$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2013, Paper 1, Q55. The elegance is inversion: instead of optimising the box for a *given* sheet, you are told the optimum ($x=5$) and must recover the sheet — so the stationarity condition becomes an equation in the sheet parameter $k$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Extrema Hidden Inside a Nest of Moduli",
+    "difficulty": 4,
+    "task": "Identify all points of local extremum.",
+    "pyq": {
+      "year": 2013,
+      "paper": "2",
+      "qno": "48"
+    },
+    "tags": [
+      "local extrema of modulus functions",
+      "min of two functions",
+      "piecewise linear",
+      "2013"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><line x1=\"20\" y1=\"175\" x2=\"305\" y2=\"175\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"150\" y1=\"20\" x2=\"150\" y2=\"195\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><text x=\"300\" y=\"190\" fill=\"var(--ink2)\">x</text><text x=\"158\" y=\"30\" fill=\"var(--ink2)\">y</text><polyline points=\"55,55 90,175 150,55 217,175 258,79\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><polyline points=\"40,175 90,175 118,119 150,175 217,175 285,40\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><circle cx=\"90\" cy=\"175\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"118\" cy=\"119\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"150\" cy=\"175\" r=\"3\" fill=\"var(--gold)\"/><line x1=\"90\" y1=\"175\" x2=\"90\" y2=\"181\" stroke=\"var(--ink2)\"/><text x=\"90\" y=\"193\" fill=\"var(--ink2)\" text-anchor=\"middle\" font-size=\"11\">-2</text><line x1=\"118\" y1=\"175\" x2=\"118\" y2=\"181\" stroke=\"var(--ink2)\"/><text x=\"114\" y=\"193\" fill=\"var(--ink2)\" text-anchor=\"end\" font-size=\"11\">-2/3</text><text x=\"156\" y=\"193\" fill=\"var(--ink2)\" text-anchor=\"start\" font-size=\"11\">0</text><text x=\"128\" y=\"110\" fill=\"var(--gold)\" font-size=\"11\">max</text><text x=\"78\" y=\"170\" fill=\"var(--ink2)\" font-size=\"10\" text-anchor=\"end\">min</text><text x=\"250\" y=\"60\" fill=\"var(--gold)\" font-size=\"11\">f</text></svg>",
+    "statement": "The function $$f(x)=2|x|+|x+2|-\\big||x+2|-2|x|\\big|$$ has a local minimum or a local maximum at $x=$\n\n(A) $-2$\n(B) $-\\dfrac{2}{3}$\n(C) $2$\n(D) $\\dfrac{2}{3}$",
+    "answer": "(A), (B)",
+    "trap": "The nested modulus screams \"expand into cases\", which is error-prone. The clean move is the identity $a+b-|a-b|=2\\min(a,b)$: with $a=|x+2|$, $b=2|x|$, the whole expression collapses to $f(x)=2\\min\\big(|x+2|,\\,2|x|\\big)$. The trap then is symmetry bias — assuming $\\pm\\tfrac23$ and $\\pm2$ both qualify. They do not: the two V-graphs are not symmetric, so extrema occur only at $x=-2$, $x=-\\tfrac23$, $x=0$; the points $x=2$ and $x=+\\tfrac23$ are not extrema at all.",
+    "solutions": [
+      {
+        "name": "Collapse via $a+b-|a-b|=2\\min(a,b)$",
+        "steps": [
+          "Regroup: $f(x)=2|x|+|x+2|-\\big||x+2|-2|x|\\big|$. With $a=|x+2|$ and $b=2|x|$ this is $b+a-|a-b|.$",
+          "Use the identity $a+b-|a-b|=2\\min(a,b)$. Hence $$f(x)=2\\min\\big(|x+2|,\\,2|x|\\big).$$",
+          "So $f$ is twice the lower of two V-shaped graphs: $y=|x+2|$ (vertex at $(-2,0)$) and $y=2|x|$ (vertex at $(0,0)$, steeper).",
+          "Find where the two V's cross for $x<0$: $|x+2|=2|x|$. For $-2\\le x\\le0$: $x+2=-2x\\Rightarrow x=-\\tfrac23$. For $x<-2$: $-(x+2)=-2x\\Rightarrow x=2$ (rejected, not $<-2$). So the only crossing that matters is $x=-\\tfrac23$.",
+          "Corner (non-differentiable) points of $f$ are the vertices of whichever branch is active and the crossing: $x=-2$ (vertex of $|x+2|$, active there), $x=0$ (vertex of $2|x|$, active there), and $x=-\\tfrac23$ (the switch).",
+          "Local behaviour: at $x=-2$, $f=0$ is a valley (local **minimum**); at $x=-\\tfrac23$, $f=2\\cdot\\tfrac43=\\tfrac83$ is a peak where $f$ switches from the rising $|x+2|$ branch to the falling $2|x|$ branch (local **maximum**); at $x=0$, $f=0$ is again a valley (local minimum).",
+          "Among the options, extrema occur at $x=-2$ and $x=-\\tfrac23$. Answer: (A), (B). Note $x=2$ and $x=\\tfrac23$ are ordinary points (there $f=2|x+2|$ is a smooth straight line — no extremum)."
+        ]
+      },
+      {
+        "name": "Direct piecewise/graphical analysis",
+        "steps": [
+          "Compare $|x+2|$ and $2|x|$ region by region to see which is smaller (that one, doubled, is $f$).",
+          "For $x\\ge0$: $2|x|=2x$ and $|x+2|=x+2$; $2x\\le x+2\\iff x\\le2$. So $\\min=2x$ on $[0,2]$ and $\\min=x+2$ on $[2,\\infty)$. Thus $f=4x$ then $f=2x+4$ — both increasing, and at $x=2$ the slope goes $4\\to2$ but stays positive, so **no extremum** at $x=2$ (rules out (C)), and none at $x=\\tfrac23$ (rules out (D)).",
+          "For $-2\\le x\\le0$: $2|x|=-2x$ and $|x+2|=x+2$; the smaller switches at $-2x=x+2\\Rightarrow x=-\\tfrac23$. On $[-2,-\\tfrac23]$, $\\min=x+2$ (rising), so $f=2x+4$ increasing; on $[-\\tfrac23,0]$, $\\min=-2x$ (falling), so $f=-4x$ decreasing. Rising-then-falling at $x=-\\tfrac23\\Rightarrow$ local **maximum** (confirms (B)).",
+          "For $x\\le-2$: $|x+2|=-(x+2)$ and $2|x|=-2x$; $-(x+2)\\le-2x\\iff x\\le2$, always true here, so $\\min=-(x+2)$ and $f=-2x-4$, which **decreases** as $x$ increases toward $-2$.",
+          "Across $x=-2$: coming from the left $f=-2x-4$ decreasing to $0$, and just to the right $f=2x+4$ increasing from $0$. Falling-then-rising $\\Rightarrow$ local **minimum** at $x=-2$ (confirms (A)).",
+          "Collecting: local min at $x=-2$, local max at $x=-\\tfrac23$, local min at $x=0$. The listed extrema are (A) and (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2013, Paper 2, Q48. The identity $a+b-|a-b|=2\\min(a,b)$ turns a frightening nested modulus into $2\\min(|x+2|,2|x|)$ — after that the extrema are just the vertices and the single crossing of two straight-line V's."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The smallest $\\alpha$ that keeps $4\\alpha x^2+\\tfrac1x$ above $1$",
+    "difficulty": 3,
+    "task": "Find the least value of the parameter.",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "41"
+    },
+    "tags": [
+      "maxima and minima",
+      "AM-GM inequality",
+      "2016"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"190\" x2=\"305\" y2=\"190\" stroke=\"var(--ink3)\"/><line x1=\"40\" y1=\"200\" x2=\"40\" y2=\"20\" stroke=\"var(--ink3)\"/><text x=\"300\" y=\"205\" fill=\"var(--ink2)\">x</text><text x=\"20\" y=\"28\" fill=\"var(--ink2)\">y</text><path d=\"M52 22 C70 120 95 150 120 150 C160 150 210 130 300 60\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.5\"/><text x=\"150\" y=\"120\" fill=\"var(--ink2)\">$g(x)=4\\alpha x^2+\\tfrac1x$</text><line x1=\"40\" y1=\"150\" x2=\"305\" y2=\"150\" stroke=\"var(--gold)\" stroke-dasharray=\"4 3\"/><text x=\"245\" y=\"165\" fill=\"var(--gold)\">$y=1$</text><circle cx=\"120\" cy=\"150\" r=\"3.5\" fill=\"var(--gold)\"/><line x1=\"120\" y1=\"150\" x2=\"120\" y2=\"190\" stroke=\"var(--ink3)\" stroke-dasharray=\"3 3\"/><text x=\"98\" y=\"205\" fill=\"var(--ink2)\">$x_*$</text><text x=\"128\" y=\"146\" fill=\"var(--gold)\">min $=1$</text></svg>",
+    "statement": "Find the least value of $\\alpha\\in\\mathbb{R}$ for which $$4\\alpha x^2+\\frac{1}{x}\\ge 1\\quad\\text{for all }x>0.$$ Options: (A) $\\dfrac{1}{64}$, (B) $\\dfrac{1}{32}$, (C) $\\dfrac{1}{27}$, (D) $\\dfrac{1}{25}$.",
+    "answer": "$\\boxed{\\dfrac{1}{27}}\\quad\\text{(C)}$",
+    "trap": "Students rush to AM-GM but split $\\tfrac1x$ into $\\tfrac{1}{2x}+\\tfrac{1}{2x}$ so the powers of $x$ cancel with $x^2$; forgetting to check that equality is attainable at a positive $x$ makes the bound useless. Also, the requirement is 'for all $x>0$', so you must minimise the left side and force that minimum $\\ge1$ — not merely find one $x$ where it holds.",
+    "solutions": [
+      {
+        "name": "Calculus — minimise $g(x)=4\\alpha x^2+\\tfrac1x$",
+        "steps": [
+          "For a fixed $\\alpha>0$, the inequality holds for all $x>0$ iff the minimum of $g(x)=4\\alpha x^2+\\dfrac1x$ over $x>0$ is at least $1$.",
+          "Differentiate: $g'(x)=8\\alpha x-\\dfrac{1}{x^2}$. Setting $g'(x)=0$ gives $8\\alpha x^3=1$, i.e. $x_*=\\left(\\dfrac{1}{8\\alpha}\\right)^{1/3}$.",
+          "Since $g''(x)=8\\alpha+\\dfrac{2}{x^3}>0$, this critical point is the global minimum.",
+          "Evaluate: $g(x_*)=4\\alpha x_*^2+\\dfrac{1}{x_*}$. Using $8\\alpha x_*^3=1$, we get $4\\alpha x_*^2=\\dfrac{4\\alpha x_*^3}{x_*}=\\dfrac{1}{2x_*}$, so $g(x_*)=\\dfrac{1}{2x_*}+\\dfrac{1}{x_*}=\\dfrac{3}{2x_*}$.",
+          "With $x_*=(8\\alpha)^{-1/3}$, $\\dfrac{1}{x_*}=(8\\alpha)^{1/3}=2\\alpha^{1/3}$, so $g(x_*)=\\dfrac{3}{2}\\cdot 2\\alpha^{1/3}=3\\alpha^{1/3}$.",
+          "The condition $g(x_*)\\ge1$ becomes $3\\alpha^{1/3}\\ge1\\Rightarrow \\alpha^{1/3}\\ge\\dfrac13\\Rightarrow \\alpha\\ge\\dfrac{1}{27}$.",
+          "Hence the least admissible value is $\\alpha=\\dfrac{1}{27}$, option (C)."
+        ]
+      },
+      {
+        "name": "AM–GM on three terms",
+        "steps": [
+          "Split the middle term evenly: write $4\\alpha x^2+\\dfrac1x=4\\alpha x^2+\\dfrac{1}{2x}+\\dfrac{1}{2x}$ (three positive terms for $x>0$).",
+          "By AM–GM, $4\\alpha x^2+\\dfrac{1}{2x}+\\dfrac{1}{2x}\\ge 3\\sqrt[3]{4\\alpha x^2\\cdot\\dfrac{1}{2x}\\cdot\\dfrac{1}{2x}}$.",
+          "The product inside the cube root is $4\\alpha x^2\\cdot\\dfrac{1}{4x^2}=\\alpha$, so the bound is $3\\alpha^{1/3}$, independent of $x$.",
+          "This minimum is actually attained: equality in AM–GM needs $4\\alpha x^2=\\dfrac{1}{2x}$, i.e. $8\\alpha x^3=1$, which has a positive solution — so $3\\alpha^{1/3}$ is the true infimum.",
+          "For the inequality to hold for every $x>0$ we need $3\\alpha^{1/3}\\ge1$, giving $\\alpha\\ge\\dfrac{1}{27}$.",
+          "The least value is $\\alpha=\\dfrac{1}{27}$, option (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2016, Paper 1, Q41. The clean split $\\tfrac1x=\\tfrac{1}{2x}+\\tfrac{1}{2x}$ is engineered so the $x$-powers cancel ($x^2\\cdot x^{-1}\\cdot x^{-1}=x^0$), turning a 'for all $x$' problem into a single AM–GM constant — the hallmark of a well-posed extremum PYQ."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A $0/0$ limit that pins down $f(2)=f''(2)$",
+    "difficulty": 4,
+    "task": "Select every correct statement.",
+    "pyq": {
+      "year": 2016,
+      "paper": "2",
+      "qno": "45"
+    },
+    "tags": [
+      "local extrema via second derivative",
+      "limits and L'Hopital",
+      "IVT",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $f:\\mathbb{R}\\to(0,\\infty)$ and $g:\\mathbb{R}\\to\\mathbb{R}$ be twice differentiable functions such that $f''$ and $g''$ are continuous on $\\mathbb{R}$. Suppose $f'(2)=g(2)=0$, $f''(2)\\neq 0$ and $g'(2)\\neq 0$. If $$\\lim_{x\\to 2}\\frac{f(x)\\,g(x)}{f'(x)\\,g'(x)}=1,$$ then which of the following is/are TRUE?\n(A) $f$ has a local minimum at $x=2$;\n(B) $f$ has a local maximum at $x=2$;\n(C) $f(2)>f''(2)$;\n(D) $f(x)-f''(x)=0$ for some $x\\in\\mathbb{R}$.",
+    "answer": "(A), (D)",
+    "trap": "The expression looks like a ready-made L'Hôpital form, but the numerator does NOT tend to $0$: $f(2)>0$, so $f(x)g(x)\\to0$ only because $g(2)=0$, and the denominator $\\to0$ only because $f'(2)=0$. Blindly differentiating top and bottom (treating it as $0/0$ of the whole quotient) is wrong — you must factor the quotient into a finite piece and a genuine $0/0$ piece before applying the limit.",
+    "solutions": [
+      {
+        "name": "Factor the quotient, then one L'Hôpital",
+        "steps": [
+          "Split the fraction: $\\dfrac{f(x)g(x)}{f'(x)g'(x)}=\\dfrac{f(x)}{g'(x)}\\cdot\\dfrac{g(x)}{f'(x)}$.",
+          "The first factor is continuous at $x=2$ and tends to $\\dfrac{f(2)}{g'(2)}$ (a finite nonzero number, since $g'(2)\\neq0$).",
+          "The second factor $\\dfrac{g(x)}{f'(x)}$ is a genuine $\\dfrac00$ form, because $g(2)=0$ and $f'(2)=0$. By L'Hôpital (both numerator and denominator differentiable, $f''(2)\\neq0$): $\\displaystyle\\lim_{x\\to2}\\dfrac{g(x)}{f'(x)}=\\dfrac{g'(2)}{f''(2)}$.",
+          "Multiply the two limits: $\\displaystyle\\lim_{x\\to2}\\dfrac{f(x)g(x)}{f'(x)g'(x)}=\\dfrac{f(2)}{g'(2)}\\cdot\\dfrac{g'(2)}{f''(2)}=\\dfrac{f(2)}{f''(2)}$.",
+          "Setting this equal to $1$ gives $f(2)=f''(2)$.",
+          "Since the codomain is $(0,\\infty)$, $f(2)>0$, hence $f''(2)=f(2)>0$. With $f'(2)=0$ and $f''(2)>0$, the second-derivative test gives a local minimum at $x=2$ — so (A) is TRUE and (B) is FALSE.",
+          "Because $f(2)=f''(2)$ exactly, (C) $f(2)>f''(2)$ is FALSE.",
+          "Consider $h(x)=f(x)-f''(x)$. At $x=2$, $h(2)=f(2)-f''(2)=0$. Thus $h$ vanishes at $x=2$, so $f(x)-f''(x)=0$ for some real $x$ — (D) is TRUE.",
+          "Correct options: (A) and (D)."
+        ]
+      },
+      {
+        "name": "Local Taylor expansion about $x=2$",
+        "steps": [
+          "Write the second-order expansions near $x=2$, using $f'(2)=0$ and $g(2)=0$: $f(x)=f(2)+\\tfrac12 f''(2)(x-2)^2+o((x-2)^2)$, and $g(x)=g'(2)(x-2)+o((x-2))$.",
+          "Differentiate the expansions: $f'(x)=f''(2)(x-2)+o((x-2))$ and $g'(x)=g'(2)+o(1)$.",
+          "Form the quotient near $x=2$: numerator $f(x)g(x)\\approx f(2)\\,g'(2)(x-2)$; denominator $f'(x)g'(x)\\approx f''(2)(x-2)\\cdot g'(2)$.",
+          "The common factors $g'(2)(x-2)$ cancel, leaving $\\dfrac{f(x)g(x)}{f'(x)g'(x)}\\to\\dfrac{f(2)}{f''(2)}$ as $x\\to2$.",
+          "Equating to the given limit $1$: $f(2)=f''(2)>0$, so $f'(2)=0$ with $f''(2)>0$ forces a local minimum at $x=2$ (A true, B false), and $f(2)=f''(2)$ makes (C) false.",
+          "The equality $f(2)-f''(2)=0$ exhibits a real point where $f(x)-f''(x)=0$, so (D) is true.",
+          "Hence (A) and (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2016, Paper 2, Q45. The whole problem hinges on refusing to L'Hôpital the entire quotient: only the $g/f'$ block is $0/0$, and separating it first is what converts the limit into the crisp identity $f(2)=f''(2)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The critical points of $\\dfrac{\\sin\\pi x}{x^2}$",
+    "difficulty": 5,
+    "task": "Decide which statements about the extrema are correct.",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "5"
+    },
+    "tags": [
+      "local extrema",
+      "trigonometric equations",
+      "monotonic analysis",
+      "2019"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"120\" x2=\"310\" y2=\"120\" stroke=\"var(--ink3)\"/><line x1=\"30\" y1=\"20\" x2=\"30\" y2=\"210\" stroke=\"var(--ink3)\"/><text x=\"312\" y=\"124\" fill=\"var(--ink2)\" text-anchor=\"end\">x</text><path d=\"M30 40 C 70 -10, 90 130, 110 120\" fill=\"none\" stroke=\"var(--ink2)\" transform=\"translate(0,0)\"/><path d=\"M30 110 C 55 30, 72 55, 92 118 C 112 175, 135 165, 155 120 C 178 70, 195 88, 215 120 C 238 158, 255 150, 275 122\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><circle cx=\"63\" cy=\"46\" r=\"2.6\" fill=\"var(--gold)\"/><text x=\"63\" y=\"38\" fill=\"var(--ink2)\" text-anchor=\"middle\">max</text><circle cx=\"92\" cy=\"118\" r=\"2.6\" fill=\"var(--ink3)\"/><text x=\"92\" y=\"134\" fill=\"var(--ink2)\" text-anchor=\"middle\">$y_1$</text><circle cx=\"185\" cy=\"79\" r=\"2.6\" fill=\"var(--gold)\"/><text x=\"185\" y=\"71\" fill=\"var(--ink2)\" text-anchor=\"middle\">$x_1$</text><line x1=\"92\" y1=\"120\" x2=\"92\" y2=\"124\" stroke=\"var(--ink3)\"/><text x=\"92\" y=\"146\" fill=\"var(--ink2)\" text-anchor=\"middle\">1</text><line x1=\"185\" y1=\"120\" x2=\"185\" y2=\"124\" stroke=\"var(--ink3)\"/><text x=\"185\" y=\"146\" fill=\"var(--ink2)\" text-anchor=\"middle\">2</text><text x=\"250\" y=\"40\" fill=\"var(--ink2)\">$f(x)=\\dfrac{\\sin\\pi x}{x^2}$</text></svg>",
+    "statement": "Let $f(x)=\\dfrac{\\sin\\pi x}{x^2}$, $x>0$. Let $x_1<x_2<x_3<\\cdots<x_n<\\cdots$ be all the points of local maximum of $f$ and $y_1<y_2<y_3<\\cdots<y_n<\\cdots$ be all the points of local minimum of $f$. Then which of the following options is/are correct?\n\n(A) $x_1<y_1$\n\n(B) $|x_n-y_n|>1$ for every $n$\n\n(C) $x_n\\in\\left(2n,\\,2n+\\tfrac12\\right)$ for every $n$\n\n(D) $x_{n+1}-x_n>2$ for every $n$",
+    "answer": "(B), (C), (D)",
+    "trap": "It is tempting to guess that the first extremum near the origin is a maximum, giving $x_1<y_1$. But $\\sin\\pi x>0$ on $(0,1)$ and $<0$ on $(1,2)$, so the positive hump on $(0,1)$ carries the FIRST local maximum, while the first local MINIMUM $y_1$ sits in the negative dip near $x\\approx 1.4$ — yet the *labelled* sequences interleave so that $y_1<x_1$ once you track sign correctly. Blindly solving $f'(x)=0$ also produces $x$ where $\\cos\\pi x=0$ style spurious roots; you must keep only the roots of $\\pi x\\cos\\pi x=2\\sin\\pi x$ that are genuine sign changes.",
+    "solutions": [
+      {
+        "name": "Direct critical-point equation via quotient rule",
+        "steps": [
+          "Differentiate: $f'(x)=\\dfrac{\\pi x^2\\cos\\pi x-2x\\sin\\pi x}{x^4}=\\dfrac{\\pi x\\cos\\pi x-2\\sin\\pi x}{x^3}$.",
+          "For $x>0$ the denominator is positive, so critical points solve $\\pi x\\cos\\pi x=2\\sin\\pi x$, i.e. $\\dfrac{\\pi x}{2}=\\tan\\pi x$ (excluding points where $\\cos\\pi x=0$, which are not roots).",
+          "The line $y=\\tfrac{\\pi x}{2}$ (steep, since its slope $\\tfrac\\pi2>1$) meets one branch of $\\tan\\pi x$ in each unit interval $(k,k+1)$ near the vertical asymptote at $x=k+\\tfrac12$.",
+          "Because $\\tan\\pi x$ runs from $0$ up to $+\\infty$ on $(k,k+\\tfrac12)$ and from $-\\infty$ up to $0$ on $(k+\\tfrac12,k+1)$, the intersection with the increasing line falls just to the LEFT of the asymptote: the root lies in $(k,k+\\tfrac12)$.",
+          "Track the sign of $f'$. On the positive humps ($x\\in(2n,2n+1)$ where $\\sin\\pi x>0$) the critical point $x_n\\in(2n,2n+\\tfrac12)$ is a local MAXIMUM. This proves (C).",
+          "On the negative humps ($x\\in(2n-1,2n)$ where $\\sin\\pi x<0$) the critical point $y_n\\in(2n-1,2n-\\tfrac12)$ is a local MINIMUM.",
+          "Compare: $x_n\\in(2n,2n+\\tfrac12)$ and $y_n\\in(2n-1,2n-\\tfrac12)$, so $x_n-y_n>2n-(2n-\\tfrac12)=\\tfrac12$ from below and $x_n-y_n<(2n+\\tfrac12)-(2n-1)=\\tfrac32$; more sharply the two lie in adjacent unit windows so $|x_n-y_n|>1$. This gives (B).",
+          "Consecutive maxima: $x_n\\in(2n,2n+\\tfrac12)$ and $x_{n+1}\\in(2n+2,2n+\\tfrac52)$, so $x_{n+1}-x_n>(2n+2)-(2n+\\tfrac12)=\\tfrac32$... refine: since $x_n<2n+\\tfrac12$ and $x_{n+1}>2n+2$, the gap exceeds $2$. This gives (D).",
+          "Finally $x_1\\in(2,2.5)$ while the first minimum $y_1\\in(1,1.5)$, so $x_1>y_1$: statement (A) is FALSE.",
+          "Correct options: (B), (C), (D)."
+        ]
+      },
+      {
+        "name": "Envelope / graphical reasoning on $\\dfrac{\\sin\\pi x}{x^2}$",
+        "steps": [
+          "Write $f(x)=\\dfrac{\\sin\\pi x}{x^2}$ as the sine wave $\\sin\\pi x$ (period $2$) damped by the decreasing envelope $\\pm\\dfrac1{x^2}$.",
+          "Between two consecutive zeros of $\\sin\\pi x$ (which occur at every integer), $f$ has exactly one turning point, and its sign matches the sign of $\\sin\\pi x$ there.",
+          "Positive humps live on $(2n,2n+1)$; each carries one local maximum $x_n$. Negative dips live on $(2n-1,2n)$; each carries one local minimum $y_n$. So maxima and minima strictly alternate, one per unit interval.",
+          "Because the envelope $1/x^2$ decreases, the turning point in each hump is pulled toward the START of the interval (the amplitude is larger where $x$ is smaller): thus $x_n$ sits in the first half $(2n,2n+\\tfrac12)$ — statement (C).",
+          "The minimum $y_n$ likewise sits in the first half of its dip, $(2n-1,2n-\\tfrac12)$; comparing with $x_n\\in(2n,2n+\\tfrac12)$ shows a full unit separation, so $|x_n-y_n|>1$ — statement (B).",
+          "Maxima recur once per period $2$, and each is nudged left within its interval, so successive maxima differ by more than $2$: $x_{n+1}-x_n>2$ — statement (D).",
+          "The very first extremum on $(0,\\infty)$ is the negative-dip minimum $y_1\\approx1.4$, occurring before the first positive-hump maximum $x_1\\approx2.4$; hence $y_1<x_1$ and (A) fails.",
+          "Correct options: (B), (C), (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 2, QS1-Q5. The decisive move is reducing $f'=0$ to $\\tfrac{\\pi x}{2}=\\tan\\pi x$ and reading off that every genuine root lands in the *first half* of its unit interval — the decaying $1/x^2$ envelope, not the sine, dictates which half."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "$F(x)=\\displaystyle\\int_0^x (t-1)(t-2)(t-5)\\,dt$",
+    "difficulty": 4,
+    "task": "Decide which statements about $F$ are correct.",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "6"
+    },
+    "tags": [
+      "fundamental theorem of calculus",
+      "local extrema",
+      "sign of integral",
+      "2019"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"120\" x2=\"310\" y2=\"120\" stroke=\"var(--ink3)\"/><line x1=\"32\" y1=\"20\" x2=\"32\" y2=\"210\" stroke=\"var(--ink3)\"/><text x=\"300\" y=\"135\" fill=\"var(--ink2)\">$x$</text><text x=\"14\" y=\"28\" fill=\"var(--ink2)\">$y$</text><path d=\"M32,120 C60,168 84,158 100,140 C120,116 140,150 176,168 C210,184 232,150 250,120 C266,94 286,70 300,52\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/><text x=\"250\" y=\"70\" fill=\"var(--gold)\">$y=F(x)$</text><circle cx=\"100\" cy=\"140\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"92\" y=\"157\" fill=\"var(--ink2)\">min $x{=}1$</text><circle cx=\"140\" cy=\"133\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"128\" y=\"127\" fill=\"var(--ink2)\">max $x{=}2$</text><circle cx=\"250\" cy=\"120\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"236\" y=\"113\" fill=\"var(--ink2)\">min $x{=}5$</text><text x=\"34\" y=\"114\" fill=\"var(--ink2)\">$0$</text></svg>",
+    "statement": "Let $f:\\mathbb{R}\\to\\mathbb{R}$ be given by $f(x)=(x-1)(x-2)(x-5)$. Define $F(x)=\\displaystyle\\int_0^x f(t)\\,dt$, $x>0$. Then which of the following options is/are correct?\n\n(A) $F(x)\\neq0$ for all $x\\in(0,5)$\n(B) $F$ has a local minimum at $x=1$\n(C) $F$ has a local maximum at $x=2$\n(D) $F$ has two local maxima and one local minimum in $(0,\\infty)$",
+    "answer": "$\\boxed{\\text{(A), (B), (C)}}$",
+    "trap": "The trap is (A). Since $f$ takes both signs on $(0,5)$, a hasty student assumes the running integral $F$ must cross zero somewhere in the middle. But $F(0)=0$ and $F$ immediately goes negative, and — crucially — the negative area accumulated on $(2,5)$ swamps the positive area on $(1,2)$, so $F$ stays strictly below zero all the way until it climbs back to $0$ only at some $x>5$. Never revisiting zero on $(0,5)$ is exactly statement (A), and it is TRUE — but only if you actually compare the two areas rather than guessing.",
+    "solutions": [
+      {
+        "name": "Sign chart of $F'=f$ for the extrema, area comparison for (A)",
+        "steps": [
+          "By the Fundamental Theorem of Calculus, $F'(x)=f(x)=(x-1)(x-2)(x-5)$.",
+          "Sign of $f$ on $(0,\\infty)$: on $(0,1)$, $(-)(-)(-)=-$; on $(1,2)$, $(+)(-)(-)=+$; on $(2,5)$, $(+)(+)(-)=-$; on $(5,\\infty)$, $(+)(+)(+)=+$.",
+          "At $x=1$, $F'$ goes $-\\to+$: local MINIMUM — (B) TRUE.",
+          "At $x=2$, $F'$ goes $+\\to-$: local MAXIMUM — (C) TRUE.",
+          "At $x=5$, $F'$ goes $-\\to+$: local MINIMUM. So on $(0,\\infty)$, $F$ has two local minima ($x=1,5$) and one local maximum ($x=2$); statement (D) claims the reverse count, so (D) is FALSE.",
+          "For (A), track the value of $F$. $F(0)=0$; on $(0,1)$, $F'<0$ so $F$ decreases below $0$. It rises on $(1,2)$ but only by the positive area $\\int_1^2 f\\,dt$, then falls again on $(2,5)$.",
+          "Compare areas: $\\int_1^2 f\\,dt$ (positive lobe) versus $\\int_2^5 f\\,dt$ (negative lobe). Compute $\\int_1^2(t-1)(t-2)(t-5)\\,dt$. Expanding $f(t)=t^3-8t^2+17t-10$, an antiderivative is $G(t)=\\tfrac{t^4}{4}-\\tfrac{8t^3}{3}+\\tfrac{17t^2}{2}-10t$.",
+          "$G(1)=\\tfrac14-\\tfrac83+\\tfrac{17}{2}-10=-\\tfrac{47}{12}$, $G(2)=4-\\tfrac{64}{3}+34-20=-\\tfrac{10}{3}=-\\tfrac{40}{12}$; so the rise on $(1,2)$ is $G(2)-G(1)=\\tfrac{7}{12}$, giving $F(2)=F(1)+\\tfrac{7}{12}$.",
+          "$F(1)=G(1)-G(0)=-\\tfrac{47}{12}$ (since $G(0)=0$). Hence $F(2)=-\\tfrac{47}{12}+\\tfrac{7}{12}=-\\tfrac{40}{12}=-\\tfrac{10}{3}<0$: even the highest interior point $F(2)$ is still negative.",
+          "Because $F(2)<0$ is the local MAXIMUM on $(0,5)$, and $F$ only decreases afterward on $(2,5)$, $F(x)<0$ for all $x\\in(0,5]$. Thus $F$ never equals $0$ on $(0,5)$ — (A) TRUE.",
+          "Correct options: (A), (B), (C)."
+        ]
+      },
+      {
+        "name": "Graph-shape argument from the accumulation of signed area",
+        "steps": [
+          "$F$ is an antiderivative of the cubic $f$, so $F$ is a smooth quartic-shaped curve with $F(0)=0$ and leading behaviour $+\\infty$ as $x\\to\\infty$ (positive leading coefficient).",
+          "Turning points of $F$ occur exactly at the roots $1,2,5$ of $f$. Reading the sign pattern $-,+,-,+$ of $f$ across these roots, $F$ falls, rises, falls, rises — a min at $1$, a max at $2$, a min at $5$. That immediately gives (B), (C) and refutes (D) (which miscounts as two maxima/one minimum).",
+          "Now the zero question. Starting at the origin $F(0)=0$, the curve drops into a valley bottoming at $x=1$. The only chance to return to the axis on $(0,5)$ is the little rise up to the local max at $x=2$.",
+          "The height of that rise is the area of the single positive lobe of $f$ on $(1,2)$; the depth already accumulated is the (larger) area of the negative lobe on $(0,1)$. Geometrically the thin positive bump between $1$ and $2$ is far too small to lift $F$ back to $0$ — the local max at $x=2$ still sits below the axis.",
+          "After $x=2$, $f<0$ again on $(2,5)$, so $F$ sinks further to its deepest point at $x=5$; it climbs back to $0$ only for some $x>5$.",
+          "Hence the graph of $F$ stays strictly below the $x$-axis throughout $(0,5)$: $F(x)\\neq0$ there — (A) TRUE — while $F$ shows exactly one maximum and two minima on $(0,\\infty)$, so (D) is FALSE.",
+          "Answer: (A), (B), (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 2, QS1-Q6. The extrema fall straight out of the FTC sign chart; the real work is (A), where you must show the lone positive lobe on $(1,2)$ is too small to lift $F$ back to zero — a signed-area comparison, not a sign count."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A $50$th-degree polynomial's lone valley",
+    "difficulty": 3,
+    "task": "Compute the required combination.",
+    "pyq": {
+      "year": 2021,
+      "paper": "2",
+      "qno": "10"
+    },
+    "tags": [
+      "local maxima minima",
+      "derivative sign analysis",
+      "even multiplicity",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "Let $f_2:(0,\\infty)\\to\\mathbb{R}$ be defined by $$f_2(x)=98(x-1)^{50}-600(x-1)^{49}+2450,\\qquad x>0.$$ Let $m_2$ and $n_2$ denote, respectively, the number of points of local minima and the number of points of local maxima of $f_2$ in the interval $(0,\\infty)$. Find the value of $6m_2+4n_2+8m_2n_2$.",
+    "answer": "$\\boxed{6}$",
+    "trap": "The two roots of $f_2'$ tempt you to declare two extrema. But $(x-1)^{48}$ has EVEN multiplicity, so $f_2'$ does not change sign there — that point is neither a maximum nor a minimum. Only the odd-order sign change at $x=7$ counts.",
+    "solutions": [
+      {
+        "name": "Factor $f_2'$ and read multiplicities",
+        "steps": [
+          "Set $u=x-1$, so $f_2=98u^{50}-600u^{49}+2450$.",
+          "Differentiate: $f_2'(x)=98\\cdot50\\,u^{49}-600\\cdot49\\,u^{48}=4900\\,u^{49}-29400\\,u^{48}$.",
+          "Factor out the lowest power: $f_2'(x)=4900\\,u^{48}\\,(u-6)=4900\\,(x-1)^{48}\\,(x-7)$.",
+          "The factor $(x-1)^{48}$ has even exponent, so $f_2'$ keeps the SAME sign on both sides of $x=1$: no extremum at $x=1$.",
+          "Across $x=7$ the factor $(x-7)$ flips sign while $(x-1)^{48}>0$, so $f_2'$ goes $-\\to+$: a local MINIMUM at $x=7$.",
+          "Hence in $(0,\\infty)$: $m_2=1$ local minimum, $n_2=0$ local maxima.",
+          "Therefore $6m_2+4n_2+8m_2n_2=6(1)+4(0)+8(1)(0)=6.$"
+        ]
+      },
+      {
+        "name": "Sign chart of $f_2'$ on $(0,\\infty)$",
+        "steps": [
+          "From $f_2'(x)=4900\\,(x-1)^{48}(x-7)$, note $(x-1)^{48}\\ge0$ everywhere and $=0$ only at $x=1$.",
+          "For $0<x<1$: $(x-1)^{48}>0$ and $(x-7)<0\\Rightarrow f_2'<0$ (decreasing).",
+          "For $1<x<7$: still $(x-1)^{48}>0$ and $(x-7)<0\\Rightarrow f_2'<0$ (still decreasing — no turn at $x=1$).",
+          "For $x>7$: $(x-1)^{48}>0$ and $(x-7)>0\\Rightarrow f_2'>0$ (increasing).",
+          "So $f_2$ decreases on $(0,7)$ and increases on $(7,\\infty)$: exactly one turning point, a minimum at $x=7$.",
+          "Thus $m_2=1$, $n_2=0$, giving $6(1)+4(0)+8(1)(0)=6.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 2, Q10. The whole question hinges on parity of exponents: a repeated root of even order is a resting point of $f'$, not a sign change, so it produces no extremum."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "How often can a convex curve meet $y=x$?",
+    "difficulty": 4,
+    "task": "Decide which statements are true.",
+    "pyq": {
+      "year": 2023,
+      "paper": "2",
+      "qno": "7"
+    },
+    "tags": [
+      "convexity",
+      "second derivative test",
+      "number of roots",
+      "fixed points",
+      "2023"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"195\" x2=\"300\" y2=\"195\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"45\" y1=\"205\" x2=\"45\" y2=\"20\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><text x=\"300\" y=\"210\" fill=\"var(--ink2)\">x</text><text x=\"32\" y=\"18\" fill=\"var(--ink2)\">y</text><line x1=\"45\" y1=\"200\" x2=\"280\" y2=\"35\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><text x=\"250\" y=\"55\" fill=\"var(--ink2)\">y=x</text><path d=\"M 55 40 Q 165 210 285 70\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><text x=\"90\" y=\"45\" fill=\"var(--gold)\">y=f(x), f''&gt;0</text><circle cx=\"92\" cy=\"133\" r=\"3.2\" fill=\"var(--gold)\"/><circle cx=\"243\" cy=\"92\" r=\"3.2\" fill=\"var(--gold)\"/><text x=\"88\" y=\"152\" fill=\"var(--ink2)\">two crossings</text></svg>",
+    "statement": "Let $S$ be the set of all twice-differentiable functions $f:\\mathbb{R}\\to\\mathbb{R}$ such that $\\dfrac{d^2f}{dx^2}(x)>0$ for all $x\\in(-1,1)$. For $f\\in S$, let $X_f$ be the number of points $x\\in(-1,1)$ at which $f(x)=x$. Then which of the following statements is (are) TRUE?\n(A) There exists a function $f\\in S$ such that $X_f=0$.\n(B) For every function $f\\in S$, we have $X_f\\le2$.\n(C) There exists a function $f\\in S$ such that $X_f=2$.\n(D) There does NOT exist any function $f\\in S$ such that $X_f=1$.",
+    "answer": "(A), (B), (C)",
+    "trap": "Statement (D) is the killer. Convexity does forbid three-or-more crossings, but it never forbids exactly one — a strictly convex curve can pierce the line $y=x$ a single time (or be tangent to it once). Reading 'at most 2' as 'exactly 0 or 2' is the mistake; $X_f=1$ is perfectly attainable, so (D) is FALSE.",
+    "solutions": [
+      {
+        "name": "Reduce to zeros of a convex $g(x)=f(x)-x$",
+        "steps": [
+          "Set $g(x)=f(x)-x$ on $(-1,1)$. Then $g''(x)=f''(x)>0$, so $g$ is strictly convex on $(-1,1)$.",
+          "Solutions of $f(x)=x$ are exactly the zeros of $g$, so $X_f$ = number of zeros of $g$ in $(-1,1)$.",
+          "Upper bound: a strictly convex function has at most two zeros. If it had three, say $g(a)=g(b)=g(c)=0$ with $a<b<c$, then by Rolle $g'$ vanishes in $(a,b)$ and in $(b,c)$, so $g''$ vanishes somewhere between — contradicting $g''>0$. Hence $X_f\\le2$: statement (B) is TRUE.",
+          "$X_f=0$ example: take $f(x)=x+1$, so $g(x)=1>0$ (never zero). Here $f''=0$... adjust to $f(x)=x^2+1$: $g=x^2-x+1$ has discriminant $1-4<0$, no real zero, and $f''=2>0$. So $X_f=0$ is achievable: (A) is TRUE.",
+          "$X_f=2$ example: take $f(x)=2x^2$, so $g(x)=2x^2-x=x(2x-1)$ with zeros $x=0$ and $x=\\tfrac12$, both in $(-1,1)$, and $f''=4>0$. So $X_f=2$ is achievable: (C) is TRUE.",
+          "$X_f=1$ example: take $f(x)=x^2$, so $g(x)=x^2-x=x(x-1)$; only $x=0$ lies in $(-1,1)$ (the root $x=1$ is on the boundary, excluded), so $X_f=1$ with $f''=2>0$. Hence a function with $X_f=1$ EXISTS, so statement (D) is FALSE.",
+          "Therefore the true statements are (A), (B), (C)."
+        ]
+      },
+      {
+        "name": "Geometric convexity argument",
+        "steps": [
+          "A curve $y=f(x)$ with $f''>0$ is convex (bends upward): its graph lies below any of its chords and above any of its tangents.",
+          "The equation $f(x)=x$ asks where this convex graph meets the straight line $y=x$.",
+          "A straight line can cut a strictly convex arc in at most two points — a third intersection would force the arc to bend back toward the line, i.e. become concave somewhere, contradicting $f''>0$. This proves $X_f\\le2$, giving (B), and shows $X_f\\ge3$ is impossible.",
+          "Slide the convex curve entirely above the line: no intersection, $X_f=0$ (statement A).",
+          "Lower it so the line becomes a secant cutting the arc twice: $X_f=2$ (statement C).",
+          "Lower it just to the level where one intersection sits at the boundary $x=1$ (excluded) while the other stays strictly inside — or let the line be tangent to the convex arc at a single interior point — either way $X_f=1$ occurs. So a function with exactly one interior solution exists, and statement (D) ('no such $f$') is FALSE.",
+          "Hence (A), (B), (C) are correct and (D) is not."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 2, Q7. The clean idea: $f(x)=x$ becomes zeros of the convex auxiliary $g=f-x$, and a strictly convex function meets the horizontal axis at most twice — but 'at most two' quietly permits exactly one, which is what dooms option (D)."
   }
 ];

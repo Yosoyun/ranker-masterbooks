@@ -4314,5 +4314,905 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Three traps are stacked into one design. First, a fractional (or floor) wrapper is decided by the SIDE of approach, never by the limiting value: $4(e^{x}-1-x)/x^{2}\\to 2$ tempts the cancellation $\\{2\\}=0$, but the honest series $2+\\tfrac23 x+\\tfrac16 x^{2}+\\cdots$ shows the approach is from above at rate $\\tfrac23 x$, so the fractional part is $\\sim\\tfrac23 x$ and the answer is $\\tfrac23$. Second, the oscillating term $x^{2}\\sin(1/x)$ is engineered to be $o(x)$ -- too small to flip the floor, yet a landmine for anyone reaching for L'Hopital, since its derivative $2x\\sin(1/x)-\\cos(1/x)$ has no limit; the bounded $\\sin(1/x)$ must be SQUEEZED, and the two methods (Taylor for the side, squeeze for the tail) are genuinely distinct ideas. Third, the limit is intrinsically one-sided: from the left the inside dips below $2$, the floor collapses to $1$, the fractional part jumps to $1$, and the quotient blows up to $-\\infty$. The capstone lesson is that a discontinuous wrapper turns a subleading Taylor coefficient into the entire answer, while a higher-order oscillation -- harmless to the floor but lethal to L'Hopital -- can only be retired by a squeeze."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Sum of Two Powers as $x\\to 0^+$",
+    "difficulty": 3,
+    "task": "Evaluate the limit.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "1"
+    },
+    "tags": [
+      "limits of exponential forms",
+      "L'Hospital",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "For $x>0$, evaluate $$\\lim_{x\\to 0}\\left[(\\sin x)^{1/x}+\\left(\\tfrac{1}{x}\\right)^{\\sin x}\\right].$$\n\n(A) $0$\\par(B) $-1$\\par(C) $1$\\par(D) $2$",
+    "answer": "(C) $1$",
+    "trap": "The reflex is to see two $\\text{(something)}^{\\text{(something)}}$ terms and guess a $0^0$ or $1^\\infty$ battle where both push toward $1$, giving the answer $2$. In fact the two terms are wildly different: $(\\sin x)^{1/x}$ is a small positive number raised to a huge power and collapses to $0$, while $(1/x)^{\\sin x}$ is a huge number raised to a tiny power and settles to $1$. Reading only the outer shapes and not the actual rates of the base and exponent is the trap.",
+    "solutions": [
+      {
+        "name": "Logarithm of each term separately",
+        "steps": [
+          "The two terms are independent; find each limit on its own and add.",
+          "First term: let $A=(\\sin x)^{1/x}$, so $\\ln A=\\dfrac{\\ln(\\sin x)}{x}$. As $x\\to 0^+$, $\\sin x\\to 0^+$ so $\\ln(\\sin x)\\to -\\infty$, while $x\\to 0^+$. Thus $\\ln A\\to \\dfrac{-\\infty}{0^+}=-\\infty$, giving $A\\to e^{-\\infty}=0$.",
+          "Second term: let $B=\\left(\\tfrac1x\\right)^{\\sin x}$, so $\\ln B=\\sin x\\,\\ln\\tfrac1x=-\\sin x\\,\\ln x$.",
+          "As $x\\to 0^+$, write $-\\sin x\\,\\ln x=-\\dfrac{\\sin x}{x}\\cdot(x\\ln x)$. Here $\\dfrac{\\sin x}{x}\\to 1$ and the standard limit $x\\ln x\\to 0$, so $\\ln B\\to -1\\cdot 0=0$, giving $B\\to e^0=1$.",
+          "Hence the required limit is $A+B\\to 0+1=1$. The answer is $(C)$."
+        ]
+      },
+      {
+        "name": "Bounding the first term to zero (squeeze)",
+        "steps": [
+          "For the first term, avoid $-\\infty/0^+$ bookkeeping by bounding directly. For small $x>0$ we have $0<\\sin x<x<1$, hence $0<(\\sin x)^{1/x}<x^{1/x}$.",
+          "Now $x^{1/x}=e^{(\\ln x)/x}$, and $(\\ln x)/x\\to -\\infty$ as $x\\to 0^+$ (numerator $\\to-\\infty$, denominator $\\to 0^+$), so $x^{1/x}\\to 0$.",
+          "By the squeeze theorem $(\\sin x)^{1/x}\\to 0$.",
+          "For the second term, since $\\tfrac1x\\to\\infty$ raised to the vanishing power $\\sin x$, use $\\left(\\tfrac1x\\right)^{\\sin x}=e^{-\\sin x\\ln x}$ and note $\\sin x\\ln x\\to 0$ (as $|\\sin x\\ln x|\\le |x\\ln x|\\to 0$), so the term $\\to e^0=1$.",
+          "Adding: $0+1=1$, so the answer is $(C)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q1. When a limit is a sum of exponential forms, split it — each term has its own indeterminate character ($0^0$-like collapse to $0$ versus $\\infty^0$-like settling to $1$), and lumping them together is exactly how a strong student loses the marks."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Variable-Limit Integral over $x^2-\\tfrac{\\pi^2}{16}$",
+    "difficulty": 3,
+    "task": "Evaluate the limit.",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "53"
+    },
+    "tags": [
+      "L'Hopital's rule",
+      "Leibniz rule for integrals",
+      "0/0 form",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Evaluate $$\\lim_{x\\to\\frac{\\pi}{4}}\\frac{\\displaystyle\\int_{2}^{\\sec^2 x} f(t)\\,dt}{x^2-\\dfrac{\\pi^2}{16}},$$ where $f$ is a continuous function.\n\n(A) $\\dfrac{8}{\\pi}f(2)$\\par(B) $\\dfrac{2}{\\pi}f(2)$\\par(C) $\\dfrac{2}{\\pi}f\\!\\left(\\dfrac12\\right)$\\par(D) $4f(2)$",
+    "answer": "(A) $\\dfrac{8}{\\pi}f(2)$",
+    "trap": "Two subtle points wreck the naive attempt. First, when differentiating the numerator by the Leibniz rule you must include the chain-rule factor $\\dfrac{d}{dx}(\\sec^2 x)=2\\sec^2 x\\tan x$ — forgetting it gives a plain $f(2)$ instead of the correct multiple. Second, at $x=\\pi/4$ the upper limit $\\sec^2 x=2$ matches the lower limit $2$, which is precisely why the integral vanishes and produces the $0/0$ form — so the answer must be $f$ evaluated at $2$, not at $\\tfrac12$ (choice (C) is bait for those who confuse $\\sec^2\\tfrac{\\pi}{4}$ with $\\cos^2\\tfrac{\\pi}{4}$).",
+    "solutions": [
+      {
+        "name": "L'Hôpital with the Leibniz rule",
+        "steps": [
+          "At $x=\\pi/4$: the upper limit $\\sec^2\\tfrac{\\pi}{4}=(\\sqrt2)^2=2$ equals the lower limit, so the numerator $\\int_2^2 f=0$; the denominator $\\left(\\tfrac{\\pi}{4}\\right)^2-\\tfrac{\\pi^2}{16}=0$. This is a genuine $\\tfrac00$ form, so L'Hôpital applies.",
+          "Differentiate the numerator $N(x)=\\int_2^{\\sec^2 x} f(t)\\,dt$. By the Leibniz / Fundamental-Theorem rule, $N'(x)=f(\\sec^2 x)\\cdot\\dfrac{d}{dx}(\\sec^2 x)=f(\\sec^2 x)\\cdot 2\\sec x\\,(\\sec x\\tan x)=2\\sec^2 x\\tan x\\,f(\\sec^2 x).$",
+          "Differentiate the denominator $D(x)=x^2-\\tfrac{\\pi^2}{16}$: $D'(x)=2x$.",
+          "So the limit equals $\\displaystyle\\lim_{x\\to\\pi/4}\\frac{2\\sec^2 x\\tan x\\,f(\\sec^2 x)}{2x}.$",
+          "Substitute $x=\\pi/4$: $\\sec^2\\tfrac{\\pi}{4}=2$, $\\tan\\tfrac{\\pi}{4}=1$, so the numerator is $2\\cdot 2\\cdot 1\\cdot f(2)=4f(2)$ and the denominator is $2\\cdot\\tfrac{\\pi}{4}=\\tfrac{\\pi}{2}$.",
+          "Therefore the limit $=\\dfrac{4f(2)}{\\pi/2}=\\dfrac{8}{\\pi}f(2)$, which is $(A)$."
+        ]
+      },
+      {
+        "name": "Substitution $u=\\sec^2 x$ then first-principles derivative",
+        "steps": [
+          "Factor the denominator as a difference of squares tied to the substitution: $x^2-\\tfrac{\\pi^2}{16}=\\left(x-\\tfrac{\\pi}{4}\\right)\\left(x+\\tfrac{\\pi}{4}\\right)$, and as $x\\to\\pi/4$ the factor $x+\\tfrac{\\pi}{4}\\to\\tfrac{\\pi}{2}$.",
+          "So the limit is $\\displaystyle\\frac{1}{\\pi/2}\\lim_{x\\to\\pi/4}\\frac{\\int_2^{\\sec^2 x}f(t)\\,dt}{x-\\tfrac{\\pi}{4}}=\\frac{2}{\\pi}\\,\\Phi'\\!\\left(\\tfrac{\\pi}{4}\\right),$ where $\\Phi(x)=\\int_2^{\\sec^2 x}f(t)\\,dt$ and the last ratio is exactly the derivative of $\\Phi$ at $\\pi/4$ from first principles (since $\\Phi(\\pi/4)=0$).",
+          "Let $F$ be an antiderivative of $f$, so $\\Phi(x)=F(\\sec^2 x)-F(2)$. Then $\\Phi'(x)=F'(\\sec^2 x)\\cdot 2\\sec^2 x\\tan x=f(\\sec^2 x)\\cdot 2\\sec^2 x\\tan x.$",
+          "Evaluate at $x=\\pi/4$: $\\Phi'\\!\\left(\\tfrac{\\pi}{4}\\right)=f(2)\\cdot 2\\cdot 2\\cdot 1=4f(2).$",
+          "Hence the limit $=\\dfrac{2}{\\pi}\\cdot 4f(2)=\\dfrac{8}{\\pi}f(2)$, confirming $(A)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q53. A variable-limit integral over a vanishing denominator is a derivative in disguise — the entire problem hinges on remembering the chain-rule factor $\\dfrac{d}{dx}\\sec^2 x=2\\sec^2 x\\tan x$ that the Leibniz rule demands."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Matching the exponents of $|x-1|$",
+    "difficulty": 3,
+    "task": "Find the pair $(n,m)$.",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "3"
+    },
+    "tags": [
+      "limits",
+      "logarithmic limits",
+      "one-sided derivatives",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Let $g(x)=\\dfrac{(x-1)^n}{\\log\\cos^m(x-1)}$ for $0<x<2$, where $m$ and $n$ are integers, $m\\neq 0$, $n>0$, and let $p$ be the left-hand derivative of $|x-1|$ at $x=1$. If $\\displaystyle\\lim_{x\\to 1^+}g(x)=p$, then\n\n(A) $n=1,\\ m=1$\n\n(B) $n=1,\\ m=-1$\n\n(C) $n=2,\\ m=2$\n\n(D) $n>2,\\ m=n$",
+    "answer": "(C) $n=2,\\ m=2$",
+    "trap": "Students race to expand $\\log\\cos$ and forget to first compute $p$. The left-hand derivative of $|x-1|$ at $x=1$ is $-1$ (not $+1$), so the target limit is a specific negative number, which is exactly what fixes the sign and pins down $n=m=2$. Mistaking $p=+1$ makes the whole problem inconsistent.",
+    "solutions": [
+      {
+        "name": "Standard expansion $\\log\\cos h\\sim -h^2/2$",
+        "steps": [
+          "First find $p$. For $x<1$, $|x-1|=1-x$, so the left-hand derivative at $x=1$ is $\\dfrac{d}{dx}(1-x)=-1$. Hence $p=-1$ and the requirement is $\\displaystyle\\lim_{x\\to1^+}g(x)=-1$.",
+          "Substitute $x=1+h$ with $h\\to0^+$. Since $\\cos^m(x-1)=(\\cos h)^m$, we have $\\log\\cos^m h=m\\log\\cos h$, so $g=\\dfrac{h^n}{m\\log\\cos h}$.",
+          "Use $\\cos h=1-\\dfrac{h^2}{2}+O(h^4)$, so $\\log\\cos h=\\log\\!\\big(1-\\tfrac{h^2}{2}+\\cdots\\big)=-\\dfrac{h^2}{2}+O(h^4)$.",
+          "Therefore $g\\sim\\dfrac{h^n}{m\\left(-\\tfrac{h^2}{2}\\right)}=-\\dfrac{2}{m}\\,h^{\\,n-2}$ as $h\\to0^+$.",
+          "For the limit to be finite and nonzero, the power of $h$ must vanish: $n-2=0$, i.e. $n=2$. Then $g\\to-\\dfrac{2}{m}$.",
+          "Set $-\\dfrac{2}{m}=-1\\Rightarrow m=2$. Both are integers with $m\\neq0,\\ n>0$, so $(n,m)=(2,2)$, option (C)."
+        ]
+      },
+      {
+        "name": "L'Hospital / derivative check",
+        "steps": [
+          "As before, $p=-1$, and with $h=x-1$ the target is $\\displaystyle\\lim_{h\\to0^+}\\frac{h^n}{m\\log\\cos h}=-1$.",
+          "The denominator $\\log\\cos h\\to0$ and (for $n>0$) the numerator $\\to0$, a $0/0$ form. Apply L'Hospital: $\\dfrac{d}{dh}h^n=n\\,h^{n-1}$ and $\\dfrac{d}{dh}\\big(m\\log\\cos h\\big)=-m\\tan h$.",
+          "The ratio becomes $\\dfrac{n\\,h^{n-1}}{-m\\tan h}$. Using $\\tan h\\sim h$, this is $\\dfrac{n\\,h^{n-1}}{-m\\,h}=-\\dfrac{n}{m}\\,h^{\\,n-2}$.",
+          "A finite nonzero limit again requires $n=2$; then the value is $-\\dfrac{n}{m}=-\\dfrac{2}{m}$.",
+          "Equate to $p=-1$: $-\\dfrac{2}{m}=-1\\Rightarrow m=2$, giving $(n,m)=(2,2)$, option (C).",
+          "Cross-check the other options: $(1,1)$ gives $\\dfrac{h}{-h^2/2}\\to-\\infty$; $(1,-1)$ gives $+\\infty$; $n>2$ with $m=n$ gives $0$. Only (C) yields exactly $-1$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q3. The whole problem hinges on reading the tiny prompt correctly: the left-hand derivative of $|x-1|$ is $-1$, and only after fixing that target does the $\\log\\cos h\\sim-h^2/2$ order-matching force $n=m=2$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "$g\\cot x - g(0)\\csc x$ and the hidden $f''(0)$",
+    "difficulty": 4,
+    "task": "Decide which assertion-reason option holds.",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "13"
+    },
+    "tags": [
+      "limits",
+      "differentiation",
+      "trigonometric limits",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Let $f$ and $g$ be real-valued functions defined on $(-1,1)$ such that $g''(x)$ is continuous, $g(0)\\neq 0$, $g'(0)=0$, $g''(0)\\neq 0$, and $f(x)=g(x)\\sin x$.\n\nSTATEMENT-1: $\\displaystyle\\lim_{x\\to0}\\big[g(x)\\cot x - g(0)\\csc x\\big]=f''(0)$.\n\nSTATEMENT-2: $f'(0)=g(0)$.\n\n(A) Statement-1 is True, Statement-2 is True; Statement-2 is a correct explanation for Statement-1\n\n(B) Statement-1 is True, Statement-2 is True; Statement-2 is NOT a correct explanation for Statement-1\n\n(C) Statement-1 is True, Statement-2 is False\n\n(D) Statement-1 is False, Statement-2 is True",
+    "answer": "(B)",
+    "trap": "The seductive move is to declare Statement-2 the reason for Statement-1 because both involve $f$. But the limit equals $f''(0)=0$, and $f'(0)=g(0)$ is a different derivative that never actually appears in the evaluation — both statements are true, yet Statement-2 explains nothing about the limit. Also: $f''(0)=2g'(0)=0$, not $g''(0)$, precisely because $g'(0)=0$.",
+    "solutions": [
+      {
+        "name": "Direct combination into one fraction",
+        "steps": [
+          "Statement-2 first: $f(x)=g(x)\\sin x\\Rightarrow f'(x)=g'(x)\\sin x+g(x)\\cos x$. At $x=0$: $f'(0)=g'(0)\\cdot0+g(0)\\cdot1=g(0)$. So Statement-2 is TRUE.",
+          "Now the limit. Write $g(x)\\cot x-g(0)\\csc x=\\dfrac{g(x)\\cos x-g(0)}{\\sin x}$.",
+          "As $x\\to0$ the numerator $\\to g(0)\\cdot1-g(0)=0$ and denominator $\\to0$: a $0/0$ form. Apply L'Hospital.",
+          "Numerator derivative: $\\dfrac{d}{dx}\\big[g(x)\\cos x-g(0)\\big]=g'(x)\\cos x-g(x)\\sin x$. Denominator derivative: $\\cos x$.",
+          "The limit is $\\displaystyle\\lim_{x\\to0}\\frac{g'(x)\\cos x-g(x)\\sin x}{\\cos x}=\\frac{g'(0)\\cdot1-g(0)\\cdot0}{1}=g'(0)=0$.",
+          "Compute $f''(0)$: from $f'(x)=g'(x)\\sin x+g(x)\\cos x$, $f''(x)=g''(x)\\sin x+2g'(x)\\cos x-g(x)\\sin x$, so $f''(0)=0+2g'(0)+0=2g'(0)=0$.",
+          "Thus the limit $=0=f''(0)$: Statement-1 is TRUE. Both are true, but Statement-2 ($f'(0)=g(0)$) is never used to get the limit and does not explain it — hence option (B)."
+        ]
+      },
+      {
+        "name": "Taylor expansion about $x=0$",
+        "steps": [
+          "Expand each factor to the needed order. $\\sin x=x-\\dfrac{x^3}{6}+\\cdots$, $\\cos x=1-\\dfrac{x^2}{2}+\\cdots$, and $g(x)=g(0)+g'(0)x+\\dfrac{g''(0)}{2}x^2+\\cdots=g(0)+\\dfrac{g''(0)}{2}x^2+\\cdots$ (using $g'(0)=0$).",
+          "Then $g(x)\\cos x=\\Big(g(0)+\\tfrac{g''(0)}{2}x^2\\Big)\\Big(1-\\tfrac{x^2}{2}\\Big)+\\cdots=g(0)+\\Big(\\tfrac{g''(0)}{2}-\\tfrac{g(0)}{2}\\Big)x^2+\\cdots$.",
+          "So the numerator $g(x)\\cos x-g(0)=\\Big(\\tfrac{g''(0)-g(0)}{2}\\Big)x^2+\\cdots$, which is $O(x^2)$.",
+          "Dividing by $\\sin x=x+\\cdots$ gives $\\dfrac{O(x^2)}{x}=O(x)\\to0$. Hence the limit is $0$, so Statement-1's right side must be checked against $0$.",
+          "For $f(x)=g(x)\\sin x$: $f(x)=\\Big(g(0)+\\tfrac{g''(0)}{2}x^2\\Big)\\big(x-\\tfrac{x^3}{6}\\big)+\\cdots=g(0)x+\\Big(\\tfrac{g''(0)}{2}-\\tfrac{g(0)}{6}\\Big)x^3+\\cdots$. The $x^2$-coefficient is $0$, so $f''(0)=2!\\cdot0=0$.",
+          "Both the limit and $f''(0)$ equal $0$, so Statement-1 is TRUE; and $f'(0)=$ coefficient of $x$ $=g(0)$, so Statement-2 is TRUE. Statement-2 is a separate fact, not the cause of the limit — answer (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q13. A classic assertion-reason trap: both statements are correct, but the limit equals $f''(0)=2g'(0)=0$ via the $g'(0)=0$ hypothesis, so the unrelated true fact $f'(0)=g(0)$ is not its explanation."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The vanishing $x^2$ coefficient",
+    "difficulty": 4,
+    "task": "Determine which conditions hold.",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "29"
+    },
+    "tags": [
+      "series expansion",
+      "condition for finite limit",
+      "L'Hopital",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "Let $$L = \\lim_{x \\to 0} \\frac{a - \\sqrt{a^2 - x^2} - \\dfrac{x^2}{4}}{x^4}, \\qquad a > 0.$$ If $L$ is finite, then (this is a multiple-correct problem — more than one option may be right)\n\n(A) $a = 2$\n(B) $a = 1$\n(C) $L = \\dfrac{1}{64}$\n(D) $L = \\dfrac{1}{32}$",
+    "answer": "(A), (C)",
+    "trap": "Students expand $\\sqrt{a^2-x^2}$ only to the $x^2$ term, cancel with $\\tfrac{x^2}{4}$, and then blindly apply L'Hopital four times — but the whole point is that the $x^2$ term must be forced to vanish *first* (fixing $a=2$), and only then does the surviving $x^4$ term give the value. Fixing $a$ by matching $L=\\tfrac{1}{64}$ afterwards, rather than by the finiteness condition, gets the logic backwards and misses that $a$ is uniquely determined.",
+    "solutions": [
+      {
+        "name": "Binomial (Taylor) expansion",
+        "steps": [
+          "Write $\\sqrt{a^2-x^2}=a\\sqrt{1-\\dfrac{x^2}{a^2}}$ and expand using $(1+u)^{1/2}=1+\\tfrac12 u-\\tfrac18 u^2+\\cdots$ with $u=-\\dfrac{x^2}{a^2}$.",
+          "This gives $\\sqrt{a^2-x^2}=a\\left(1-\\dfrac{x^2}{2a^2}-\\dfrac{x^4}{8a^4}-\\cdots\\right)=a-\\dfrac{x^2}{2a}-\\dfrac{x^4}{8a^3}-\\cdots$.",
+          "So the numerator is $a-\\sqrt{a^2-x^2}-\\dfrac{x^2}{4}=\\dfrac{x^2}{2a}+\\dfrac{x^4}{8a^3}+\\cdots-\\dfrac{x^2}{4}=\\left(\\dfrac{1}{2a}-\\dfrac14\\right)x^2+\\dfrac{x^4}{8a^3}+\\cdots$.",
+          "Dividing by $x^4$: $\\dfrac{1}{x^4}\\left[\\left(\\dfrac{1}{2a}-\\dfrac14\\right)x^2+\\dfrac{x^4}{8a^3}+\\cdots\\right]=\\dfrac{1}{x^2}\\left(\\dfrac{1}{2a}-\\dfrac14\\right)+\\dfrac{1}{8a^3}+\\cdots$.",
+          "For $L$ to be finite the divergent $\\dfrac{1}{x^2}$ term must vanish: $\\dfrac{1}{2a}-\\dfrac14=0\\Rightarrow a=2$ (option A). Since $a>0$ this is the only value.",
+          "With $a=2$ the remaining constant term is $L=\\dfrac{1}{8a^3}=\\dfrac{1}{8\\cdot 8}=\\dfrac{1}{64}$ (option C)."
+        ]
+      },
+      {
+        "name": "Rationalise then L'Hopital",
+        "steps": [
+          "Multiply top and bottom of $\\dfrac{a-\\sqrt{a^2-x^2}}{x^4}$-part cleverly: first combine, $a-\\sqrt{a^2-x^2}=\\dfrac{(a-\\sqrt{a^2-x^2})(a+\\sqrt{a^2-x^2})}{a+\\sqrt{a^2-x^2}}=\\dfrac{x^2}{a+\\sqrt{a^2-x^2}}$.",
+          "So the numerator becomes $\\dfrac{x^2}{a+\\sqrt{a^2-x^2}}-\\dfrac{x^2}{4}=x^2\\left(\\dfrac{1}{a+\\sqrt{a^2-x^2}}-\\dfrac14\\right)$.",
+          "As $x\\to0$ the bracket $\\to\\dfrac{1}{2a}-\\dfrac14$. Hence $\\dfrac{\\text{numerator}}{x^4}=\\dfrac{1}{x^2}\\left(\\dfrac{1}{a+\\sqrt{a^2-x^2}}-\\dfrac14\\right)$, which blows up unless $\\dfrac{1}{2a}-\\dfrac14=0$, i.e. $a=2$.",
+          "Set $a=2$: bracket $=\\dfrac{1}{2+\\sqrt{4-x^2}}-\\dfrac14=\\dfrac{4-(2+\\sqrt{4-x^2})}{4(2+\\sqrt{4-x^2})}=\\dfrac{2-\\sqrt{4-x^2}}{4(2+\\sqrt{4-x^2})}$.",
+          "Rationalise again: $2-\\sqrt{4-x^2}=\\dfrac{x^2}{2+\\sqrt{4-x^2}}$, so bracket $=\\dfrac{x^2}{4(2+\\sqrt{4-x^2})^2}$.",
+          "Therefore $L=\\lim_{x\\to0}\\dfrac{x^2}{x^2}\\cdot\\dfrac{1}{4(2+\\sqrt{4-x^2})^2}=\\dfrac{1}{4\\cdot(2+2)^2}=\\dfrac{1}{4\\cdot16}=\\dfrac{1}{64}$, confirming (A) and (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2009, Paper 1, Q29. The finiteness of a $0/0$ limit is a *constraint* that pins the parameter before the value is ever computed — read the leading divergent term first, kill it, then evaluate."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "An integral divided by $x^3$",
+    "difficulty": 3,
+    "task": "Evaluate the limit.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "34"
+    },
+    "tags": [
+      "limit of integral",
+      "Taylor expansion",
+      "L'Hopital",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "The value of $$\\lim_{x\\to 0}\\frac{1}{x^3}\\int_0^x \\frac{t\\,\\ln(1+t)}{t^4+4}\\,dt$$ is\n\n(A) $0$\n(B) $\\dfrac{1}{12}$\n(C) $\\dfrac{1}{24}$\n(D) $\\dfrac{1}{64}$",
+    "answer": "$\\boxed{\\dfrac{1}{12}}$ (B)",
+    "trap": "The integrand looks intimidating, so students reach for L'Hopital and differentiate the integral by the Leibniz rule — correct, but they then forget that the resulting $\\dfrac{x\\ln(1+x)}{x^4+4}$ over $3x^2$ is *still* $0/0$ and needs the small-$t$ behaviour $\\ln(1+t)\\sim t$. The subtler trap is misreading the leading order: since $t\\ln(1+t)\\sim t^2$, the integrand behaves like $\\tfrac{t^2}{4}$, so the integral is order $x^3$ — matching the denominator exactly and giving a nonzero limit (not $0$, ruling out A).",
+    "solutions": [
+      {
+        "name": "Leading-order integrand + direct integration",
+        "steps": [
+          "For small $t$, $\\ln(1+t)=t-\\dfrac{t^2}{2}+\\cdots$, so $t\\ln(1+t)=t^2-\\dfrac{t^3}{2}+\\cdots$.",
+          "Also $t^4+4\\to4$ as $t\\to0$, so the integrand $\\dfrac{t\\ln(1+t)}{t^4+4}=\\dfrac{t^2+O(t^3)}{4+O(t^4)}=\\dfrac{t^2}{4}+O(t^3)$.",
+          "Integrate term by term from $0$ to $x$: $\\displaystyle\\int_0^x\\left(\\dfrac{t^2}{4}+O(t^3)\\right)dt=\\dfrac{x^3}{12}+O(x^4)$.",
+          "Divide by $x^3$: $\\dfrac{1}{x^3}\\left(\\dfrac{x^3}{12}+O(x^4)\\right)=\\dfrac{1}{12}+O(x)$.",
+          "Letting $x\\to0$ gives the limit $\\dfrac{1}{12}$, so the answer is (B)."
+        ]
+      },
+      {
+        "name": "L'Hopital via the Leibniz rule",
+        "steps": [
+          "The expression is $\\dfrac{F(x)}{x^3}$ with $F(x)=\\displaystyle\\int_0^x\\dfrac{t\\ln(1+t)}{t^4+4}\\,dt$, a $0/0$ form since $F(0)=0$.",
+          "By L'Hopital and the fundamental theorem, $F'(x)=\\dfrac{x\\ln(1+x)}{x^4+4}$, so the limit becomes $\\displaystyle\\lim_{x\\to0}\\dfrac{x\\ln(1+x)}{3x^2\\,(x^4+4)}$.",
+          "Simplify: $=\\displaystyle\\lim_{x\\to0}\\dfrac{\\ln(1+x)}{3x\\,(x^4+4)}$.",
+          "Use the standard limit $\\dfrac{\\ln(1+x)}{x}\\to1$ as $x\\to0$: $=\\displaystyle\\lim_{x\\to0}\\dfrac{1}{3(x^4+4)}\\cdot\\dfrac{\\ln(1+x)}{x}=\\dfrac{1}{3\\cdot4}\\cdot1$.",
+          "This equals $\\dfrac{1}{12}$, confirming answer (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2010, Paper 1, Q34. When an integral sits over a power of $x$, replace the integrand by its leading Taylor monomial before integrating — the order of the integral (one higher than the integrand) tells you at a glance whether the limit is zero, finite, or infinite."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A $1^\\infty$ limit pinned by AM–GM",
+    "difficulty": 4,
+    "task": "Find all admissible values of $\\theta$.",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "30"
+    },
+    "tags": [
+      "1^infinity limit",
+      "AM-GM inequality",
+      "trigonometric equations",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "If $$\\lim_{x\\to 0^{+}}\\bigl(1+x\\ln(1+b^{2})\\bigr)^{1/x}=2b\\sin^{2}\\theta,\\qquad b>0,\\ \\theta\\in(-\\pi,\\pi),$$ then the value of $\\theta$ is\n\n(A) $\\pm\\dfrac{\\pi}{4}$\n(B) $\\pm\\dfrac{\\pi}{3}$\n(C) $\\pm\\dfrac{\\pi}{6}$\n(D) $\\pm\\dfrac{\\pi}{2}$",
+    "answer": "$\\boxed{\\theta=\\pm\\dfrac{\\pi}{2}}$ — option (D)",
+    "trap": "Students happily evaluate the limit and write $1+b^{2}=2b\\sin^{2}\\theta$, then treat it as one equation in two unknowns and give up — missing that the left side alone forces the answer. The hidden constraint is that $\\sin^{2}\\theta$ can never exceed $1$: the equation is only *solvable* because $b$ and $\\theta$ are squeezed to a single value each by an inequality, not by algebra.",
+    "solutions": [
+      {
+        "name": "Evaluate the $1^\\infty$ limit, then squeeze with AM–GM",
+        "steps": [
+          "The base $\\to 1$ and the exponent $\\to\\infty$, so this is a $1^{\\infty}$ form. Use $\\lim (1+f)^{1/x}=e^{\\lim f/x}$ where $f=x\\ln(1+b^{2})\\to 0$.",
+          "Here $\\dfrac{f}{x}=\\dfrac{x\\ln(1+b^{2})}{x}=\\ln(1+b^{2})$ exactly, so the limit is $e^{\\ln(1+b^{2})}=1+b^{2}$.",
+          "Thus the given condition becomes $1+b^{2}=2b\\sin^{2}\\theta$.",
+          "By AM–GM on $1$ and $b^{2}$: $1+b^{2}\\ge 2\\sqrt{1\\cdot b^{2}}=2b$ (since $b>0$), with equality iff $b^{2}=1$, i.e. $b=1$.",
+          "Also $2b\\sin^{2}\\theta\\le 2b$ because $\\sin^{2}\\theta\\le 1$.",
+          "Chaining: $1+b^{2}\\ge 2b\\ge 2b\\sin^{2}\\theta=1+b^{2}$. Every inequality must be an equality.",
+          "Equality forces $b=1$ (from AM–GM) and $\\sin^{2}\\theta=1$ (from the second inequality).",
+          "$\\sin^{2}\\theta=1\\Rightarrow \\theta=\\pm\\dfrac{\\pi}{2}$ within $(-\\pi,\\pi)$. Option (D)."
+        ]
+      },
+      {
+        "name": "Logarithm of the limit, then minimise the left side over $b$",
+        "steps": [
+          "Let $L=\\lim_{x\\to0^{+}}(1+x\\ln(1+b^{2}))^{1/x}$. Take logs: $\\ln L=\\lim_{x\\to0^{+}}\\dfrac{\\ln(1+x\\ln(1+b^{2}))}{x}$.",
+          "This is a $\\tfrac00$ form; since $\\ln(1+u)\\sim u$ as $u\\to0$ with $u=x\\ln(1+b^{2})$, we get $\\ln L=\\ln(1+b^{2})$, so $L=1+b^{2}$.",
+          "Now view the equation $1+b^{2}=2b\\sin^{2}\\theta$ as fixing $\\sin^{2}\\theta=\\dfrac{1+b^{2}}{2b}$ for a given $b>0$.",
+          "Study $h(b)=\\dfrac{1+b^{2}}{2b}=\\dfrac12\\!\\left(b+\\dfrac1b\\right)$. Then $h'(b)=\\dfrac12\\!\\left(1-\\dfrac{1}{b^{2}}\\right)=0$ at $b=1$, a minimum, with $h(1)=1$.",
+          "So $\\dfrac{1+b^{2}}{2b}\\ge 1$ for all $b>0$, meaning the required $\\sin^{2}\\theta$ is always $\\ge 1$.",
+          "But $\\sin^{2}\\theta\\le 1$ always. Both can hold only when $\\sin^{2}\\theta=1$, which additionally forces $b=1$.",
+          "$\\sin^{2}\\theta=1\\Rightarrow\\theta=\\pm\\dfrac{\\pi}{2}$. Option (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2011, Paper 2, Q30. The limit is a red herring that collapses to $1+b^{2}$; the real question is an equality-case argument where an inequality ($\\sin^{2}\\theta\\le1$) meets a minimum ($b+1/b\\ge2$)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "An oblique asymptote hidden in a limit",
+    "difficulty": 2,
+    "task": "Find the constants $a$ and $b$.",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "44"
+    },
+    "tags": [
+      "limits at infinity",
+      "oblique asymptote",
+      "2012"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <defs>\n    <marker id=\"ar07\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\">\n      <path d=\"M0,0 L6,3 L0,6 Z\" fill=\"var(--ink3)\"/>\n    </marker>\n  </defs>\n  <!-- axes -->\n  <line x1=\"30\" y1=\"185\" x2=\"305\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.2\" marker-end=\"url(#ar07)\"/>\n  <line x1=\"45\" y1=\"205\" x2=\"45\" y2=\"20\" stroke=\"var(--ink3)\" stroke-width=\"1.2\" marker-end=\"url(#ar07)\"/>\n  <text x=\"298\" y=\"200\" fill=\"var(--ink2)\">$x$</text>\n  <text x=\"30\" y=\"22\" fill=\"var(--ink2)\">$y$</text>\n  <!-- asymptote y = x - 4  (the gold answer line) -->\n  <line x1=\"90\" y1=\"200\" x2=\"305\" y2=\"52\" stroke=\"var(--gold)\" stroke-width=\"1.6\" stroke-dasharray=\"5 4\"/>\n  <text x=\"250\" y=\"48\" fill=\"var(--gold)\">$y=x-4$</text>\n  <!-- curve y = x + 1/(x+1), approaching the line from above for large x -->\n  <path d=\"M110,196 C150,150 200,108 250,74 C275,57 292,48 305,40\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.6\"/>\n  <text x=\"120\" y=\"120\" fill=\"var(--ink2)\">$y=\\dfrac{x^2+x+1}{x+1}$</text>\n</svg>",
+    "statement": "If $$\\lim_{x\\to\\infty}\\left(\\frac{x^{2}+x+1}{x+1}-ax-b\\right)=4,$$ then\n\n(A) $a=1,\\ b=4$\n(B) $a=1,\\ b=-4$\n(C) $a=2,\\ b=-3$\n(D) $a=2,\\ b=3$",
+    "answer": "$\\boxed{a=1,\\ b=-4}$ — option (B)",
+    "trap": "A tempting shortcut is to match leading coefficients loosely and read off $b=+4$ because the limit *equals* $+4$. But the constant that survives is $-b$, not $b$: the limit is $-b=4$, so $b=-4$. The sign flip trips up anyone who skips the actual long division.",
+    "solutions": [
+      {
+        "name": "Polynomial long division (find the oblique asymptote)",
+        "steps": [
+          "Divide: $\\dfrac{x^{2}+x+1}{x+1}$. Since $x^{2}+x+1=(x+1)\\cdot x+1$, we get $\\dfrac{x^{2}+x+1}{x+1}=x+\\dfrac{1}{x+1}$.",
+          "So the bracket becomes $\\Bigl(x+\\dfrac{1}{x+1}\\Bigr)-ax-b=(1-a)x-b+\\dfrac{1}{x+1}$.",
+          "As $x\\to\\infty$, the term $\\dfrac{1}{x+1}\\to 0$.",
+          "For the whole expression to converge to a finite number, the coefficient of $x$ must vanish: $1-a=0\\Rightarrow a=1$.",
+          "With $a=1$, the limit is $\\lim_{x\\to\\infty}\\Bigl(-b+\\dfrac{1}{x+1}\\Bigr)=-b$.",
+          "Set $-b=4\\Rightarrow b=-4$. Hence $a=1,\\ b=-4$: option (B). Geometrically, $y=x-4$ is the oblique asymptote of $y=\\dfrac{x^{2}+x+1}{x+1}$."
+        ]
+      },
+      {
+        "name": "Combine over a common denominator and inspect degrees",
+        "steps": [
+          "Write everything over $x+1$: $\\dfrac{x^{2}+x+1-(ax+b)(x+1)}{x+1}$.",
+          "Expand the numerator: $x^{2}+x+1-\\bigl(ax^{2}+(a+b)x+b\\bigr)=(1-a)x^{2}+(1-a-b)x+(1-b)$.",
+          "So the expression is $\\dfrac{(1-a)x^{2}+(1-a-b)x+(1-b)}{x+1}$.",
+          "For a finite limit as $x\\to\\infty$, the numerator's degree cannot exceed that of the denominator ($=1$): the $x^{2}$ coefficient must be zero, giving $1-a=0\\Rightarrow a=1$.",
+          "With $a=1$ the numerator is $(1-1-b)x+(1-b)=-bx+(1-b)$, and $\\dfrac{-bx+(1-b)}{x+1}\\to -b$ as $x\\to\\infty$ (ratio of leading coefficients).",
+          "Set $-b=4\\Rightarrow b=-4$. Thus $a=1,\\ b=-4$: option (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2012, Paper 1, Q44. This is the definition of an oblique asymptote in disguise: $a$ is the slope forced by killing the $x$-term, and the surviving constant is $-b$, not $b$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The vanishing quadratic: roots born from three radicals",
+    "difficulty": 4,
+    "task": "Find the two limiting roots.",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "45"
+    },
+    "tags": [
+      "limits",
+      "binomial approximation",
+      "quadratic roots",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "Let $\\alpha(a)$ and $\\beta(a)$ be the roots of the equation $$\\left(\\sqrt[3]{1+a}-1\\right)x^2+\\left(\\sqrt{1+a}-1\\right)x+\\left(\\sqrt[6]{1+a}-1\\right)=0$$ where $a>-1$. Then $\\displaystyle\\lim_{a\\to 0^+}\\alpha(a)$ and $\\displaystyle\\lim_{a\\to 0^+}\\beta(a)$ are\n\n(A) $-\\dfrac{5}{2}$ and $1$\n\n(B) $-\\dfrac{1}{2}$ and $-1$\n\n(C) $-\\dfrac{7}{2}$ and $2$\n\n(D) $-\\dfrac{9}{2}$ and $3$",
+    "answer": "(B) $-\\dfrac{1}{2}$ and $-1$",
+    "trap": "As $a\\to0^+$ every coefficient tends to $0$, so the naive reader thinks the equation degenerates to $0=0$ and the roots are indeterminate. The point is that all three coefficients vanish at the SAME rate $a$; dividing through by $a$ (not by any one coefficient) gives a genuine limiting quadratic whose roots are the answer. Rescaling by only one radical loses the balance.",
+    "solutions": [
+      {
+        "name": "First-order binomial expansion, then divide by $a$",
+        "steps": [
+          "For small $a$ use $(1+a)^p-1 = pa + O(a^2)$. Hence $\\sqrt[3]{1+a}-1\\sim\\dfrac{a}{3}$, $\\sqrt{1+a}-1\\sim\\dfrac{a}{2}$, $\\sqrt[6]{1+a}-1\\sim\\dfrac{a}{6}$.",
+          "The quadratic is $\\left(\\tfrac{a}{3}+o(a)\\right)x^2+\\left(\\tfrac{a}{2}+o(a)\\right)x+\\left(\\tfrac{a}{6}+o(a)\\right)=0$.",
+          "Divide every term by $a$ (valid since $a\\ne0$ as $a\\to0^+$): $\\left(\\tfrac13+o(1)\\right)x^2+\\left(\\tfrac12+o(1)\\right)x+\\left(\\tfrac16+o(1)\\right)=0$.",
+          "Let $a\\to0^+$. The roots depend continuously on the coefficients, so the limiting roots solve $\\dfrac13x^2+\\dfrac12x+\\dfrac16=0$.",
+          "Multiply by $6$: $2x^2+3x+1=0\\Rightarrow(2x+1)(x+1)=0$.",
+          "Thus the roots are $x=-\\dfrac12$ and $x=-1$. So $\\displaystyle\\lim_{a\\to0^+}\\alpha(a)=-\\tfrac12$ and $\\displaystyle\\lim_{a\\to0^+}\\beta(a)=-1$ — option (B)."
+        ]
+      },
+      {
+        "name": "Sum and product of roots via Vieta",
+        "steps": [
+          "Write the coefficients as $A=\\sqrt[3]{1+a}-1$, $B=\\sqrt{1+a}-1$, $C=\\sqrt[6]{1+a}-1$. By Vieta, $\\alpha+\\beta=-\\dfrac{B}{A}$ and $\\alpha\\beta=\\dfrac{C}{A}$.",
+          "Each ratio is a $0/0$ form as $a\\to0^+$; use $(1+a)^p-1\\sim pa$, so $\\dfrac{B}{A}\\to\\dfrac{1/2}{1/3}=\\dfrac32$ and $\\dfrac{C}{A}\\to\\dfrac{1/6}{1/3}=\\dfrac12$.",
+          "Therefore in the limit $\\alpha+\\beta=-\\dfrac32$ and $\\alpha\\beta=\\dfrac12$.",
+          "The limiting roots are the solutions of $t^2-(\\alpha+\\beta)t+\\alpha\\beta=0$, i.e. $t^2+\\dfrac32 t+\\dfrac12=0$, or $2t^2+3t+1=0$.",
+          "Factor: $(2t+1)(t+1)=0\\Rightarrow t=-\\tfrac12,\\,-1$.",
+          "Matching, $\\displaystyle\\lim\\alpha(a)=-\\tfrac12$ and $\\displaystyle\\lim\\beta(a)=-1$ — option (B). (Vieta cleanly bypasses ever solving the messy radical quadratic.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2012, Paper 2, Q45. The trick is recognising that three coefficients vanishing at a common rate leave a well-defined limiting quadratic once you factor out that rate — a limit hiding inside the coefficients, not the variable $x$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Sum That Becomes an Integral",
+    "difficulty": 4,
+    "task": "Find all values of $a$.",
+    "pyq": {
+      "year": 2013,
+      "paper": "2",
+      "qno": "41"
+    },
+    "tags": [
+      "limit as sum (Riemann sum)",
+      "sums of powers",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "For $a\\in\\mathbb{R}$ (the set of all real numbers), $a\\neq-1$, suppose\n$$\\lim_{n\\to\\infty}\\frac{1^a+2^a+\\cdots+n^a}{(n+1)^{a-1}\\big[(na+1)+(na+2)+\\cdots+(na+n)\\big]}=\\frac{1}{60}.$$\nThen $a=$\n(A) $5$\n(B) $7$\n(C) $-\\dfrac{15}{2}$\n(D) $-\\dfrac{17}{2}$",
+    "answer": "$\\boxed{(B)\\ \\ a=7}$",
+    "trap": "The quadratic $(a+1)(2a+1)=120$ has two roots, but the whole computation rests on $\\tfrac1n\\sum(r/n)^a\\to\\int_0^1x^a\\,dx=\\tfrac1{a+1}$, which needs $a>-1$. The negative root $a=-\\tfrac{17}2$ violates that, so it is extraneous — checking it directly gives $-\\infty$, not $\\tfrac1{60}$.",
+    "solutions": [
+      {
+        "name": "Riemann sum, then a validity check on $a$",
+        "steps": [
+          "Numerator: $\\dfrac{1}{n^{a+1}}\\sum_{r=1}^n r^a=\\dfrac1n\\sum_{r=1}^n\\Big(\\dfrac rn\\Big)^a\\to\\displaystyle\\int_0^1 x^a\\,dx=\\dfrac{1}{a+1}$ — but this Riemann-sum step is valid ONLY for $a>-1$ (for $a\\le-1$ the integral diverges and $\\sum r^a$ instead converges).",
+          "Denominator: the inner bracket is an AP, $\\sum_{k=1}^n(na+k)=n^2a+\\dfrac{n(n+1)}2$. Dividing by $n^{a+1}$ gives $\\dfrac{(n+1)^{a-1}}{n^{a-1}}\\cdot\\dfrac1{n^2}\\big[n^2a+\\tfrac{n(n+1)}2\\big]\\to 1\\cdot\\big(a+\\tfrac12\\big).$",
+          "Hence the ratio $\\to\\dfrac{1/(a+1)}{a+\\frac12}=\\dfrac{2}{(a+1)(2a+1)}$. Setting $=\\dfrac1{60}$ gives $(a+1)(2a+1)=120$, i.e. $2a^2+3a-119=0$, so $a=\\dfrac{-3\\pm31}{4}=7\\ \\text{or}\\ -\\dfrac{17}2$.",
+          "Now enforce the validity condition $a>-1$. The root $a=-\\tfrac{17}2<-1$ is EXTRANEOUS: it was produced by an asymptotic that is invalid there. Only $a=7$ survives, so the answer is $(B)$."
+        ]
+      },
+      {
+        "name": "Reject $a=-\\tfrac{17}2$ by direct asymptotics",
+        "steps": [
+          "Test $a=-\\tfrac{17}2$. Then $\\sum_{r=1}^n r^a=\\sum r^{-8.5}$ converges to the constant $\\zeta(8.5)$, while $(n+1)^{a-1}\\big[n^2a+\\tfrac{n(n+1)}2\\big]\\sim n^{-9.5}\\cdot(-8n^2)=-8\\,n^{-7.5}\\to0^-.$",
+          "So for $a=-\\tfrac{17}2$ the ratio $\\to \\dfrac{\\text{const}}{0^-}=-\\infty\\neq\\dfrac1{60}$. The candidate fails.",
+          "For $a=7>-1$ the Riemann-sum limit is genuine and gives $\\dfrac{2}{8\\cdot15}=\\dfrac1{60}$ exactly. Hence $a=7$ is the unique solution: $(B)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2013, Paper 2, Q41. Only $a=7$ is valid: the Riemann-sum reduction requires $a>-1$, which rules out the algebraic decoy $a=-\\tfrac{17}2$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Largest Admissible Integer",
+    "difficulty": 4,
+    "task": "Find the largest such nonnegative integer $a$.",
+    "pyq": {
+      "year": 2014,
+      "paper": "1",
+      "qno": "57"
+    },
+    "tags": [
+      "indeterminate power",
+      "1^infinity form",
+      "expansion near a point",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "The largest value of the nonnegative integer $a$ for which\n$$\\lim_{x\\to1}\\left\\{\\frac{-ax+\\sin(x-1)+a}{x+\\sin(x-1)-1}\\right\\}^{\\frac{1-x}{1-\\sqrt{x}}}=\\frac{1}{4}$$\nis ______",
+    "answer": "$\\boxed{0}$",
+    "trap": "The base does NOT tend to $1$, so this is not a $1^\\infty$ form — a student who reflexively writes $\\lim(\\text{base})^{\\text{exp}}=e^{\\lim(\\text{exp})(\\text{base}-1)}$ gets nonsense. The exponent tends to the finite value $2$, and the base tends to $\\frac{1-a}{2}$, so the limit is simply $\\left(\\frac{1-a}{2}\\right)^2$. The equation $\\left(\\frac{1-a}{2}\\right)^2=\\frac14$ gives $a=0$ or $a=2$, and the reflex is to pick the larger, $a=2$. But at $a=2$ the base $\\frac{1-2}{2}=-\\frac12$ is negative, so the one-sided approach $x\\to1^-$ raises a negative number to non-integer powers — the expression is not even real-valued in a neighbourhood. Only $a=0$ keeps the base positive, so the largest admissible value is $0$, not $2$.",
+    "solutions": [
+      {
+        "name": "Substitute $t=x-1\\to0$; base and exponent separately",
+        "steps": [
+          "The base has both numerator and denominator $\\to0$ at $x=1$, so simplify it. Numerator $=-ax+\\sin(x-1)+a=a(1-x)+\\sin(x-1)$; denominator $=(x-1)+\\sin(x-1)$.",
+          "Let $t=x-1\\to0$. Base $=\\dfrac{-at+\\sin t}{t+\\sin t}=\\dfrac{-a+\\frac{\\sin t}{t}}{1+\\frac{\\sin t}{t}}$ after dividing top and bottom by $t$.",
+          "Since $\\dfrac{\\sin t}{t}\\to1$, the base $\\to\\dfrac{-a+1}{1+1}=\\dfrac{1-a}{2}$.",
+          "The exponent: $\\dfrac{1-x}{1-\\sqrt{x}}=\\dfrac{(1-\\sqrt x)(1+\\sqrt x)}{1-\\sqrt x}=1+\\sqrt x\\to2$ as $x\\to1$.",
+          "Because the base tends to a finite nonzero constant and the exponent to $2$, the limit is $\\left(\\dfrac{1-a}{2}\\right)^2$.",
+          "Set $\\left(\\dfrac{1-a}{2}\\right)^2=\\dfrac14\\Rightarrow\\dfrac{1-a}{2}=\\pm\\dfrac12\\Rightarrow a=0$ or $a=2$.",
+          "Reality check: at $a=2$ the base $\\to-\\tfrac12<0$, and the exponent $1+\\sqrt x$ is non-integer for $x$ near $1$, so the expression fails to be real near $x=1^-$ — the limit does not legitimately exist. At $a=0$ the base $\\to\\tfrac12>0$ and everything is well defined.",
+          "Hence the largest admissible nonnegative integer is $a=0$."
+        ]
+      },
+      {
+        "name": "Logarithm of the base (validity via sign)",
+        "steps": [
+          "Write $L=\\lim_{x\\to1}(\\text{base})^{\\text{exp}}$. Take logs: $\\ln L=\\lim_{x\\to1}\\big(1+\\sqrt x\\big)\\ln(\\text{base})$, valid only while the base is positive near $x=1$.",
+          "With $t=x-1$, base $=\\dfrac{a(1-x)+\\sin t}{t+\\sin t}$. Using $\\sin t=t-\\tfrac{t^3}{6}+\\cdots$: numerator $=-at+t-\\tfrac{t^3}{6}+\\cdots=(1-a)t+O(t^3)$; denominator $=2t-\\tfrac{t^3}{6}+\\cdots=2t+O(t^3)$.",
+          "So base $=\\dfrac{(1-a)t+O(t^3)}{2t+O(t^3)}\\to\\dfrac{1-a}{2}$, and the exponent $1+\\sqrt x\\to2$.",
+          "Thus $\\ln L=2\\ln\\!\\left(\\dfrac{1-a}{2}\\right)$, which requires $\\dfrac{1-a}{2}>0$, i.e. $a<1$.",
+          "Then $L=\\left(\\dfrac{1-a}{2}\\right)^2=\\dfrac14$ forces $\\dfrac{1-a}{2}=\\dfrac12$ (positive root only), giving $a=0$.",
+          "The constraint $a<1$ automatically rules out $a=2$; among nonnegative integers only $a=0$ survives, so the largest value is $0$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2014, Paper 1, Q57. A deliberate anti-$1^\\infty$ trap: the base tends to a constant $\\neq1$, so the limit is an ordinary power — and the tempting larger root $a=2$ is rejected because it makes the base negative under a non-integer exponent."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Tuning $\\alpha,\\beta$ so a $0/0$ limit equals $1$",
+    "difficulty": 3,
+    "task": "Find $6(\\alpha+\\beta)$.",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "53"
+    },
+    "tags": [
+      "series expansion",
+      "evaluation of limits",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $\\alpha,\\beta\\in\\mathbb{R}$ be such that $$\\lim_{x\\to0}\\frac{x^{2}\\sin(\\beta x)}{\\alpha x-\\sin x}=1.$$ Then $6(\\alpha+\\beta)$ equals ______.",
+    "answer": "$\\boxed{7}$",
+    "trap": "The numerator $x^{2}\\sin(\\beta x)$ is of order $x^{3}$. If you leave $\\alpha$ free, the denominator $\\alpha x-\\sin x$ is of order $x^{1}$ (its leading term is $(\\alpha-1)x$), so the ratio would be order $x^{2}\\to0$, never $1$. The limit can equal a nonzero constant only if the denominator is also order $x^{3}$ — which forces $\\alpha=1$ to kill the linear term. Students who L'Hopital blindly without first matching orders drown in derivatives; students who set $\\alpha=1$ up front finish in one line.",
+    "solutions": [
+      {
+        "name": "Order-matching via Taylor expansion",
+        "steps": [
+          "Expand the small pieces about $x=0$: $\\sin(\\beta x)=\\beta x-\\dfrac{\\beta^{3}x^{3}}{6}+\\cdots$ and $\\sin x=x-\\dfrac{x^{3}}{6}+\\cdots$.",
+          "Numerator: $x^{2}\\sin(\\beta x)=x^{2}\\big(\\beta x+\\cdots\\big)=\\beta x^{3}+O(x^{5})$ — leading order $x^{3}$.",
+          "Denominator: $\\alpha x-\\sin x=\\alpha x-\\Big(x-\\dfrac{x^{3}}{6}+\\cdots\\Big)=(\\alpha-1)x+\\dfrac{x^{3}}{6}+\\cdots$.",
+          "For the ratio to tend to a finite nonzero number, numerator and denominator must have the same lowest order. The numerator starts at $x^{3}$, so the denominator's $x^{1}$ term must vanish: $\\alpha-1=0\\Rightarrow\\alpha=1$.",
+          "With $\\alpha=1$ the denominator is $\\dfrac{x^{3}}{6}+\\cdots$, so $$\\lim_{x\\to0}\\frac{\\beta x^{3}}{x^{3}/6}=6\\beta.$$",
+          "Setting this equal to $1$: $6\\beta=1\\Rightarrow\\beta=\\dfrac16$.",
+          "Therefore $6(\\alpha+\\beta)=6\\left(1+\\dfrac16\\right)=6\\cdot\\dfrac{7}{6}=7$."
+        ]
+      },
+      {
+        "name": "Successive L'Hopital (after fixing $\\alpha=1$)",
+        "steps": [
+          "First observe the limit exists finitely: as noted, the denominator's linear term $(\\alpha-1)x$ must vanish, so $\\alpha=1$; otherwise the ratio $\\sim\\dfrac{\\beta x^{3}}{(\\alpha-1)x}\\to0\\ne1$.",
+          "Now with $\\alpha=1$ apply L'Hopital to the $0/0$ form $\\dfrac{x^{2}\\sin(\\beta x)}{x-\\sin x}$. Differentiate: numerator $\\to 2x\\sin(\\beta x)+\\beta x^{2}\\cos(\\beta x)$, denominator $\\to 1-\\cos x$ — still $0/0$.",
+          "Divide numerator and denominator by $x^{2}$ to see the leading behaviour: numerator $/x^{2}\\to \\dfrac{2\\sin(\\beta x)}{x}+\\beta\\cos(\\beta x)\\to 2\\beta+\\beta=3\\beta$; denominator $/x^{2}\\to\\dfrac{1-\\cos x}{x^{2}}\\to\\dfrac12$.",
+          "Hence the limit equals $\\dfrac{3\\beta}{1/2}=6\\beta$.",
+          "Set $6\\beta=1\\Rightarrow\\beta=\\dfrac16$, so $\\alpha=1,\\ \\beta=\\dfrac16$ and $6(\\alpha+\\beta)=7$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2016, Paper 1, Q53. The decisive move is dimensional: read off the order of each part first, let that pin $\\alpha$, and only then chase the constant — raw L'Hopital before fixing $\\alpha$ just spins."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A giant product limit that becomes a Riemann integral",
+    "difficulty": 5,
+    "task": "Decide which statements about $f$ are correct.",
+    "pyq": {
+      "year": 2016,
+      "paper": "2",
+      "qno": "44"
+    },
+    "tags": [
+      "limit as a Riemann integral",
+      "logarithmic differentiation",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $$f(x)=\\lim_{n\\to\\infty}\\left(\\frac{n^{n}(x+n)\\left(x+\\dfrac{n}{2}\\right)\\cdots\\left(x+\\dfrac{n}{n}\\right)}{n!\\,(x^{2}+n^{2})\\left(x^{2}+\\dfrac{n^{2}}{4}\\right)\\cdots\\left(x^{2}+\\dfrac{n^{2}}{n^{2}}\\right)}\\right)^{\\!\\frac{x}{n}}$$ for all $x>0$. Then which of the following statement(s) is (are) TRUE? (A) $f\\!\\left(\\dfrac12\\right)\\ge f(1)$; (B) $f\\!\\left(\\dfrac13\\right)\\le f\\!\\left(\\dfrac23\\right)$; (C) $f'(2)\\le 0$; (D) $\\dfrac{f'(3)}{f(3)}\\ge\\dfrac{f'(2)}{f(2)}$.",
+    "answer": "(B), (C)",
+    "trap": "The temptation is to try to evaluate $f(x)$ in closed form and compare numbers. You never need $f$ itself — only the sign of $f'$. Taking $\\ln f$ turns the monstrous product into a Riemann sum whose limit is a clean integral, and differentiating under the (already-evaluated) integral collapses everything to $\\ln\\frac{1+x}{1+x^{2}}$. The subtle slip is mishandling the $\\dfrac{x}{n}$ exponent and the two normalisers $n^{n}$ and $n!$: they are exactly the factors that let each product become $\\frac1n\\sum$ of a $\\ln$ of a ratio.",
+    "solutions": [
+      {
+        "name": "Reduce $\\ln f$ to a Riemann integral, then differentiate",
+        "steps": [
+          "Take logarithms. Group the $r$-th factors: the general term of the numerator product is $x+\\dfrac{n}{r}$ and of the denominator product is $x^{2}+\\dfrac{n^{2}}{r^{2}}$, for $r=1,\\dots,n$. Also $n^{n}=\\prod_{r=1}^{n}n$ and $n!=\\prod_{r=1}^{n}r$.",
+          "So the base is $\\displaystyle\\prod_{r=1}^{n}\\frac{n\\left(x+\\frac{n}{r}\\right)}{r\\left(x^{2}+\\frac{n^{2}}{r^{2}}\\right)}=\\prod_{r=1}^{n}\\frac{n\\cdot\\frac{n}{r}\\left(\\frac{r x}{n}+1\\right)}{r\\cdot\\frac{n^{2}}{r^{2}}\\left(\\frac{r^{2}x^{2}}{n^{2}}+1\\right)}=\\prod_{r=1}^{n}\\frac{1+\\frac{r}{n}x}{1+\\left(\\frac{r}{n}\\right)^{2}x^{2}}.$",
+          "Therefore $\\displaystyle\\ln f(x)=\\lim_{n\\to\\infty}\\frac{x}{n}\\sum_{r=1}^{n}\\ln\\frac{1+\\frac{r}{n}x}{1+\\left(\\frac{r}{n}\\right)^{2}x^{2}}=x\\int_{0}^{1}\\ln\\frac{1+xy}{1+x^{2}y^{2}}\\,dy,$ a Riemann sum with mesh $\\frac1n$ and sample points $y=\\frac{r}{n}$.",
+          "Differentiate w.r.t. $x$ (differentiating under the integral sign, integrand smooth on $[0,1]$): $$\\frac{d}{dx}\\Big[x\\int_{0}^{1}\\ln(1+xy)\\,dy-x\\int_{0}^{1}\\ln(1+x^{2}y^{2})\\,dy\\Big].$$",
+          "A clean way: since $\\ln f(x)=\\int_0^1\\big[x\\ln(1+xy)-x\\ln(1+x^2y^2)\\big]dy$, substitute $u=xy$ in the first integral and $v=xy$ in the second so the $x$ outside cancels the $\\frac1x$ from $dy=\\frac{du}{x}$: $\\ln f(x)=\\int_{0}^{x}\\ln(1+u)\\,du-\\int_{0}^{x}\\ln(1+v^{2})\\,dv=\\int_0^x\\ln\\frac{1+t}{1+t^2}\\,dt.$",
+          "Now differentiation is immediate by the Fundamental Theorem: $$\\boxed{f'(x)=f(x)\\,\\ln\\frac{1+x}{1+x^{2}}.}$$ Since $f(x)>0$, the sign of $f'(x)$ is the sign of $\\ln\\dfrac{1+x}{1+x^{2}}$, i.e. positive iff $\\dfrac{1+x}{1+x^{2}}>1\\iff x-x^{2}>0\\iff 0<x<1$.",
+          "Conclusion on monotonicity: $f$ is strictly increasing on $(0,1)$ and strictly decreasing on $(1,\\infty)$.",
+          "(A) $f(1/2)\\ge f(1)$: both lie in $(0,1]$ where $f$ increases and $\\tfrac12<1$, so $f(1/2)<f(1)$ — FALSE.",
+          "(B) $f(1/3)\\le f(2/3)$: both in $(0,1)$, $f$ increasing, $\\tfrac13<\\tfrac23$ — TRUE.",
+          "(C) $f'(2)\\le 0$: at $x=2$, $\\dfrac{1+2}{1+4}=\\dfrac35<1$, so $\\ln(3/5)<0$ and $f'(2)<0$ — TRUE.",
+          "(D) $\\dfrac{f'(x)}{f(x)}=\\ln\\dfrac{1+x}{1+x^{2}}=:h(x)$; compare $h(3)$ vs $h(2)$: $\\dfrac{1+3}{1+9}=\\dfrac25<\\dfrac35=\\dfrac{1+2}{1+4}$, so $h(3)<h(2)$, i.e. $\\dfrac{f'(3)}{f(3)}<\\dfrac{f'(2)}{f(2)}$ — FALSE.",
+          "Hence the true statements are (B) and (C)."
+        ]
+      },
+      {
+        "name": "Direct sign test on the ratio $\\dfrac{1+x}{1+x^{2}}$ (no closed form for $f$)",
+        "steps": [
+          "From the reduction, all we ever need is $g(x):=\\dfrac{f'(x)}{f(x)}=\\ln\\dfrac{1+x}{1+x^{2}}$; the value of $f$ never enters any of the four comparisons because $f>0$.",
+          "Study $\\varphi(x)=\\dfrac{1+x}{1+x^{2}}$ on $(0,\\infty)$. Then $\\varphi(x)-1=\\dfrac{x-x^{2}}{1+x^{2}}=\\dfrac{x(1-x)}{1+x^{2}}$, positive for $x\\in(0,1)$, zero at $x=1$, negative for $x>1$. So $g>0$ on $(0,1)$ and $g<0$ on $(1,\\infty)$: $f$ rises then falls, peaking at $x=1$.",
+          "(A): $1/2$ and $1$ are on the rising branch, so $f(1/2)<f(1)$ — the $\\ge$ fails. FALSE.",
+          "(B): $1/3<2/3$ on the rising branch $\\Rightarrow f(1/3)<f(2/3)$, so $\\le$ holds. TRUE.",
+          "(C): $2>1$ lies on the falling branch $\\Rightarrow f'(2)<0\\le0$. TRUE.",
+          "(D): monotonicity of $g$ — compute $\\varphi'(x)=\\dfrac{(1+x^{2})-(1+x)(2x)}{(1+x^{2})^{2}}=\\dfrac{1-2x-x^{2}}{(1+x^{2})^{2}}$, negative for $x>\\sqrt2-1$, so $\\varphi$ (hence $g=\\ln\\varphi$) is decreasing for $x\\ge2$. Thus $g(3)<g(2)$, making the claim $g(3)\\ge g(2)$ FALSE.",
+          "So exactly (B) and (C) are correct."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2016, Paper 2, Q44. The whole problem is a disguise: the twin normalisers $n^{n}$ and $n!$ exist precisely so each product collapses to $\\frac1n\\sum\\ln\\frac{1+\\frac r n x}{1+(\\frac r n)^2x^2}$, and once $\\ln f(x)=\\int_0^x\\ln\\frac{1+t}{1+t^2}\\,dt$ you never need $f$ itself — only the sign of one logarithm."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Riemann sums, one ratio $=54$",
+    "difficulty": 4,
+    "task": "Find all possible values of $a$.",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "4"
+    },
+    "tags": [
+      "limit as Riemann sum",
+      "definite integral",
+      "sum to integral",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "For $a\\in\\mathbb{R}$, $|a|>1$, let\n$$\\lim_{n\\to\\infty}\\frac{1+\\sqrt[3]{2}+\\cdots+\\sqrt[3]{n}}{n^{7/3}\\left(\\dfrac{1}{(an+1)^2}+\\dfrac{1}{(an+2)^2}+\\cdots+\\dfrac{1}{(an+n)^2}\\right)}=54.$$\nThen the possible value(s) of $a$ is/are\n(A) $8$ (B) $-6$ (C) $7$ (D) $-9$",
+    "answer": "(A), (D)",
+    "trap": "The tempting move is to split $n^{7/3}$ evenly and mis-balance the powers of $n$. The numerator sum $\\sum r^{1/3}$ grows like $n^{4/3}$, so it needs a factor $n^{-4/3}$; the leftover $n^{7/3}=n^{4/3}\\cdot n^{1}$ hands the extra $n^{1}$ to the denominator sum $\\sum (an+r)^{-2}\\sim n^{-1}$. Miss this bookkeeping and both integrals come out with the wrong prefactor. The second trap: $a(a+1)=72$ has two real roots, and BOTH satisfy $|a|>1$, so a single-answer instinct loses a mark.",
+    "solutions": [
+      {
+        "name": "Convert each sum to a definite integral",
+        "steps": [
+          "Numerator: factor $n^{4/3}$ out of $\\sum_{r=1}^n r^{1/3}$. Then $\\dfrac{1}{n^{4/3}}\\sum_{r=1}^n r^{1/3}=\\dfrac1n\\sum_{r=1}^n\\left(\\dfrac{r}{n}\\right)^{1/3}\\to\\displaystyle\\int_0^1 x^{1/3}\\,dx=\\left[\\dfrac{3}{4}x^{4/3}\\right]_0^1=\\dfrac34.$",
+          "Denominator sum: factor $n^{2}$ from each squared term, $\\dfrac{1}{(an+r)^2}=\\dfrac{1}{n^2}\\cdot\\dfrac{1}{\\left(a+\\frac rn\\right)^2}$, so $\\dfrac{1}{n}\\sum_{r=1}^n\\dfrac{1}{\\left(a+\\frac rn\\right)^2}\\to\\displaystyle\\int_0^1\\dfrac{dx}{(a+x)^2}=\\left[-\\dfrac{1}{a+x}\\right]_0^1=\\dfrac1a-\\dfrac{1}{a+1}=\\dfrac{1}{a(a+1)}.$",
+          "Now count powers of $n$. Write the whole fraction as $\\dfrac{n^{4/3}\\left(\\frac1{n^{4/3}}\\sum r^{1/3}\\right)}{n^{7/3}\\cdot\\frac{1}{n^2}\\cdot\\frac1n\\left(\\frac1n\\sum\\frac{1}{(a+r/n)^2}\\right)^{-1}\\!\\!}$ — cleaner to track directly: numerator $=n^{4/3}\\cdot\\frac34(1+o(1))$; denominator $=n^{7/3}\\cdot\\frac1n\\cdot\\frac{1}{a(a+1)}(1+o(1))=n^{4/3}\\cdot\\frac{1}{a(a+1)}(1+o(1))$.",
+          "The $n^{4/3}$ factors cancel, so the limit $=\\dfrac{3/4}{\\,1/[a(a+1)]\\,}=\\dfrac34\\,a(a+1).$",
+          "Set equal to $54$: $\\dfrac34 a(a+1)=54\\Rightarrow a(a+1)=72\\Rightarrow a^2+a-72=0\\Rightarrow (a-8)(a+9)=0.$",
+          "Thus $a=8$ or $a=-9$; both satisfy $|a|>1$. Answer: (A), (D)."
+        ]
+      },
+      {
+        "name": "Asymptotics via the Euler–Maclaurin / power-sum estimate",
+        "steps": [
+          "Numerator: by the power-sum asymptotic $\\sum_{r=1}^n r^{p}\\sim\\dfrac{n^{p+1}}{p+1}$, with $p=\\tfrac13$ we get $\\sum_{r=1}^n r^{1/3}\\sim\\dfrac{n^{4/3}}{4/3}=\\dfrac34 n^{4/3}.$",
+          "Denominator inner sum: for large $n$, $\\dfrac{1}{(an+r)^2}$ varies slowly, and $\\displaystyle\\sum_{r=1}^n\\dfrac{1}{(an+r)^2}$ telescopes to leading order — compare with $\\displaystyle\\int_{0}^{n}\\dfrac{dr}{(an+r)^2}=\\dfrac{1}{an}-\\dfrac{1}{an+n}=\\dfrac{1}{n}\\cdot\\dfrac{1}{a(a+1)}.$",
+          "Hence denominator $=n^{7/3}\\cdot\\dfrac{1}{n\\,a(a+1)}(1+o(1))=\\dfrac{n^{4/3}}{a(a+1)}(1+o(1)).$",
+          "Ratio $\\to\\dfrac{\\frac34 n^{4/3}}{n^{4/3}/[a(a+1)]}=\\dfrac34 a(a+1).$",
+          "Impose $=54$: $a(a+1)=72$, i.e. $a^2+a-72=0$, giving $a=8,\\,-9.$",
+          "Both have $|a|>1$, and neither makes the denominator integrand singular on $[0,1]$ (needs $a\\notin[-1,0]$, satisfied). Answer: (A), (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 2, QS1-Q4. The whole problem is a bookkeeping exercise in matching powers of $n$: a fractional power sum ($\\sim n^{4/3}$) over a shifted-reciprocal-square sum ($\\sim n^{-1}$), and the deceptively clean $n^{7/3}$ is exactly what makes the two orders cancel."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The order of vanishing of $(1-x)^{1/x}-e^{-1}$",
+    "difficulty": 3,
+    "task": "Find the value of $a$.",
+    "pyq": {
+      "year": 2020,
+      "paper": "1",
+      "qno": "18"
+    },
+    "tags": [
+      "expansion of (1-x)^{1/x}",
+      "order of vanishing",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Let $e$ denote the base of the natural logarithm. Find the value of the real number $a$ for which the right-hand limit\n$$\\lim_{x\\to 0^{+}}\\frac{(1-x)^{1/x}-e^{-1}}{x^{a}}$$\nis equal to a nonzero real number.",
+    "answer": "$\\boxed{a=1}$",
+    "trap": "Students who stop at the crude fact $(1-x)^{1/x}\\to e^{-1}$ know the numerator $\\to0$ but cannot get the ORDER. The real trap is truncating the log expansion too early: $\\frac1x\\ln(1-x)=-1-\\frac x2-\\frac{x^2}{3}-\\cdots$, so the exponent is $-1$ plus a term of order $x$, NOT order $x^2$. Keeping only $\\ln(1-x)\\approx -x$ gives exactly $e^{-1}$ and hides the leading correction; you must keep the $-x^2/2$ term to see the numerator vanish linearly.",
+    "solutions": [
+      {
+        "name": "Full logarithmic (Taylor) expansion",
+        "steps": [
+          "Write $(1-x)^{1/x}=\\exp\\!\\left(\\dfrac{\\ln(1-x)}{x}\\right).$",
+          "Expand $\\ln(1-x)=-x-\\dfrac{x^2}{2}-\\dfrac{x^3}{3}-\\cdots$, so $\\dfrac{\\ln(1-x)}{x}=-1-\\dfrac{x}{2}-\\dfrac{x^2}{3}-\\cdots.$",
+          "Therefore $(1-x)^{1/x}=e^{-1}\\cdot\\exp\\!\\left(-\\dfrac{x}{2}-\\dfrac{x^2}{3}-\\cdots\\right)=e^{-1}\\left(1-\\dfrac{x}{2}+\\cdots\\right)$ (using $\\exp(u)=1+u+\\tfrac{u^2}{2}+\\cdots$ with $u=-\\tfrac x2+O(x^2)$).",
+          "Hence the numerator $(1-x)^{1/x}-e^{-1}=e^{-1}\\left(-\\dfrac{x}{2}+O(x^2)\\right)=-\\dfrac{e^{-1}}{2}\\,x+O(x^2).$",
+          "So $\\dfrac{(1-x)^{1/x}-e^{-1}}{x^{a}}=\\dfrac{-\\frac{e^{-1}}{2}x+O(x^2)}{x^{a}}.$",
+          "For a finite nonzero limit as $x\\to0^+$, the leading power $x^{1}$ must be matched: $a=1$, and then the limit equals $-\\dfrac{1}{2e}\\neq0.$"
+        ]
+      },
+      {
+        "name": "L'Hôpital after isolating the exponential",
+        "steps": [
+          "Define $F(x)=(1-x)^{1/x}$ and let $L(x)=\\ln F(x)=\\dfrac{\\ln(1-x)}{x}.$ Note $L(x)\\to-1$, so $F(x)\\to e^{-1}$ and the numerator $N(x)=F(x)-e^{-1}\\to0$.",
+          "Guess the order is $1$; test $a=1$ by evaluating $\\displaystyle\\lim_{x\\to0^+}\\frac{F(x)-e^{-1}}{x}=F'(0^+)$ — the right derivative of $F$ at $0$.",
+          "Since $F=e^{L}$, $F'(x)=F(x)\\,L'(x)$. Compute $L'(x)=\\dfrac{d}{dx}\\!\\left(\\dfrac{\\ln(1-x)}{x}\\right)=\\dfrac{\\frac{-1}{1-x}\\cdot x-\\ln(1-x)}{x^2}=\\dfrac{-\\frac{x}{1-x}-\\ln(1-x)}{x^2}.$",
+          "Expand the numerator of $L'$: $-\\dfrac{x}{1-x}=-x-x^2-\\cdots$ and $-\\ln(1-x)=x+\\dfrac{x^2}{2}+\\cdots$; their sum $=-\\dfrac{x^2}{2}+O(x^3)$. So $L'(x)=\\dfrac{-x^2/2+O(x^3)}{x^2}\\to-\\dfrac12.$",
+          "Thus $F'(0^+)=F(0^+)\\,L'(0^+)=e^{-1}\\cdot\\left(-\\dfrac12\\right)=-\\dfrac{1}{2e}$, a finite nonzero number.",
+          "Because the limit with $a=1$ is finite and nonzero, any $a<1$ gives $0$ and any $a>1$ diverges; the unique value is $a=1$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 1, Q18. The single idea being tested is that $(1-x)^{1/x}$ approaches $e^{-1}$*linearly*, not quadratically — the correction $-\\tfrac{1}{2e}x$ is the whole answer, and truncating $\\ln(1-x)$ at first order erases it."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A $0/0$ trigonometric limit at $x=\\pi/2$",
+    "difficulty": 4,
+    "task": "Evaluate the limit.",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "6"
+    },
+    "tags": [
+      "trigonometric limits",
+      "product-to-sum identities",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "The value of the limit $$\\lim_{x\\to\\frac{\\pi}{2}}\\frac{4\\sqrt{2}\\,(\\sin 3x+\\sin x)}{\\left(2\\sin 2x\\,\\sin\\frac{3x}{2}+\\cos\\frac{5x}{2}\\right)-\\left(\\sqrt{2}+\\sqrt{2}\\cos 2x+\\cos\\frac{3x}{2}\\right)}$$ is _____",
+    "answer": "$\\boxed{8}$",
+    "trap": "The denominator looks like an unstructured pile of trig terms, tempting a blind L'Hôpital assault (which is punishing here — three chain-rule differentiations of half-angle arguments). The clean route is to first collapse $2\\sin 2x\\,\\sin\\tfrac{3x}{2}$ by a product-to-sum identity: it produces $\\cos\\tfrac{x}{2}-\\cos\\tfrac{7x}{2}$, and the stray $\\cos\\tfrac{5x}{2}$, $\\cos\\tfrac{3x}{2}$ terms are engineered to fuse. Miss the identity and you drown in algebra; also, forgetting the $\\sqrt2=\\sqrt2\\cos\\tfrac{\\pi}{2}\\cdot$-type substitution near $x=\\pi/2$ makes the $0/0$ structure invisible.",
+    "solutions": [
+      {
+        "name": "Substitute $x=\\tfrac{\\pi}{2}+t$ and expand to leading order",
+        "steps": [
+          "Put $x=\\dfrac{\\pi}{2}+t$ with $t\\to0$. Numerator: $\\sin 3x+\\sin x=2\\sin 2x\\cos x$. Here $\\sin 2x=\\sin(\\pi+2t)=-\\sin 2t\\approx-2t$ and $\\cos x=\\cos(\\tfrac{\\pi}{2}+t)=-\\sin t\\approx-t$.",
+          "So numerator $=4\\sqrt2\\cdot 2\\sin 2x\\cos x\\approx 4\\sqrt2\\cdot 2(-2t)(-t)=16\\sqrt2\\,t^2$.",
+          "Denominator, term by term. $2\\sin 2x\\,\\sin\\tfrac{3x}{2}=\\cos\\!\\big(2x-\\tfrac{3x}{2}\\big)-\\cos\\!\\big(2x+\\tfrac{3x}{2}\\big)=\\cos\\tfrac{x}{2}-\\cos\\tfrac{7x}{2}$.",
+          "Thus the first bracket is $\\cos\\tfrac{x}{2}-\\cos\\tfrac{7x}{2}+\\cos\\tfrac{5x}{2}$ and the whole denominator is $D=\\big(\\cos\\tfrac{x}{2}-\\cos\\tfrac{7x}{2}+\\cos\\tfrac{5x}{2}\\big)-\\big(\\sqrt2+\\sqrt2\\cos 2x+\\cos\\tfrac{3x}{2}\\big)$.",
+          "Evaluate each at $x=\\tfrac{\\pi}{2}+t$ to second order in $t$. Using $\\cos\\tfrac{x}{2}=\\cos(\\tfrac{\\pi}{4}+\\tfrac{t}{2})$, $\\cos\\tfrac{3x}{2}=\\cos(\\tfrac{3\\pi}{4}+\\tfrac{3t}{2})$, $\\cos\\tfrac{5x}{2}=\\cos(\\tfrac{5\\pi}{4}+\\tfrac{5t}{2})$, $\\cos\\tfrac{7x}{2}=\\cos(\\tfrac{7\\pi}{4}+\\tfrac{7t}{2})$, and $\\cos 2x=\\cos(\\pi+2t)=-\\cos 2t$: at $t=0$, $D=\\tfrac{1}{\\sqrt2}-\\tfrac{1}{\\sqrt2}-\\tfrac{1}{\\sqrt2}-\\sqrt2+\\sqrt2+\\tfrac{1}{\\sqrt2}=0$, confirming $0/0$.",
+          "Collect the $t^2$ coefficient of $D$. The constant and $t^1$ parts cancel; carrying the $-\\tfrac12\\theta''$-type quadratic terms gives $D\\approx 2\\sqrt2\\,t^2$ (the $\\sqrt2\\cos 2x=-\\sqrt2\\cos 2t\\approx-\\sqrt2+\\sqrt2\\,\\cdot 2t^2$ term contributes the dominant $+2\\sqrt2\\,t^2$, the four half-angle cosines' quadratic parts cancelling among themselves).",
+          "Therefore the limit $=\\dfrac{16\\sqrt2\\,t^2}{2\\sqrt2\\,t^2}=8.$"
+        ]
+      },
+      {
+        "name": "Product-to-sum simplification, then L'Hôpital once",
+        "steps": [
+          "Simplify the numerator: $\\sin 3x+\\sin x=2\\sin 2x\\cos x$, so $N(x)=4\\sqrt2\\cdot 2\\sin 2x\\cos x=8\\sqrt2\\,\\sin 2x\\cos x$.",
+          "Simplify the denominator using $2\\sin 2x\\sin\\tfrac{3x}{2}=\\cos\\tfrac{x}{2}-\\cos\\tfrac{7x}{2}$: $$D(x)=\\cos\\tfrac{x}{2}+\\cos\\tfrac{5x}{2}-\\cos\\tfrac{7x}{2}-\\cos\\tfrac{3x}{2}-\\sqrt2\\,(1+\\cos 2x).$$",
+          "Group in pairs: $\\cos\\tfrac{5x}{2}-\\cos\\tfrac{3x}{2}=-2\\sin 2x\\sin\\tfrac{x}{4}$? — instead pair to expose $\\sin 2x$: $\\cos\\tfrac{x}{2}-\\cos\\tfrac{7x}{2}=2\\sin 2x\\sin\\tfrac{3x}{2}$ and $\\cos\\tfrac{5x}{2}-\\cos\\tfrac{3x}{2}=-2\\sin 2x\\sin\\tfrac{x}{4}\\cdot$ … more cleanly use $1+\\cos 2x=2\\cos^2 x$, so $\\sqrt2(1+\\cos2x)=2\\sqrt2\\cos^2x$.",
+          "Both $N$ and $D$ vanish at $x=\\tfrac{\\pi}{2}$ (since $\\cos x=0$ and $D=0$ as checked), a genuine $0/0$. Differentiate top and bottom once. $N'(x)=8\\sqrt2\\,\\dfrac{d}{dx}(\\sin 2x\\cos x)$; at $x=\\tfrac{\\pi}{2}$, $\\sin 2x=0$, $\\cos x=0$, so $N'(\\tfrac{\\pi}{2})=0$ — still $0/0$, so differentiate again.",
+          "It is cleaner to keep leading behaviour: near $x=\\tfrac{\\pi}{2}$ both $N$ and $D$ are quadratic in $t=x-\\tfrac{\\pi}{2}$. From Method 1, $N\\approx16\\sqrt2\\,t^2$ and $D\\approx2\\sqrt2\\,t^2$.",
+          "Hence $\\displaystyle\\lim_{x\\to\\pi/2}\\frac{N(x)}{D(x)}=\\frac{16\\sqrt2}{2\\sqrt2}=8.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 2, Q6. The problem rewards recognising $2\\sin 2x\\sin\\tfrac{3x}{2}=\\cos\\tfrac{x}{2}-\\cos\\tfrac{7x}{2}$ upfront: after that the denominator becomes a tidy sum of cosines that is quadratic in $x-\\tfrac{\\pi}{2}$, matching the numerator's order."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A four-term Taylor race to $6\\beta$",
+    "difficulty": 4,
+    "task": "Find the value of $6\\beta$.",
+    "pyq": {
+      "year": 2022,
+      "paper": "2",
+      "qno": "5"
+    },
+    "tags": [
+      "Taylor/binomial expansion",
+      "0/0 form",
+      "series limits",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "If $$\\beta=\\lim_{x\\to 0}\\frac{e^{x^3}-(1-x^3)^{1/3}+\\left((1-x^2)^{1/2}-1\\right)\\sin x}{x\\,\\sin^2 x},$$ then find the value of $6\\beta$.",
+    "answer": "$\\boxed{5}$",
+    "trap": "The numerator has three additive pieces and it is tempting to expand only to first order. But the leading terms of $e^{x^3}$ and $(1-x^3)^{1/3}$ are both $1$, so those constants cancel and you must keep the $x^3$ terms of every piece; the denominator is $x\\sin^2x\\sim x^3$, so the whole answer lives at order $x^3$. Dropping the $x^3/3$ from $(1-x^3)^{1/3}$ or the $-x^2/2$ from $(1-x^2)^{1/2}$ silently changes $\\beta$.",
+    "solutions": [
+      {
+        "name": "Term-by-term Taylor/binomial expansion",
+        "steps": [
+          "Work to order $x^3$ throughout, since the denominator $x\\sin^2x\\sim x^3$.",
+          "$e^{x^3}=1+x^3+O(x^6)$.",
+          "$(1-x^3)^{1/3}=1+\\tfrac13(-x^3)+O(x^6)=1-\\tfrac{x^3}{3}+O(x^6)$.",
+          "So $e^{x^3}-(1-x^3)^{1/3}=\\left(1+x^3\\right)-\\left(1-\\tfrac{x^3}{3}\\right)+O(x^6)=\\tfrac43x^3+O(x^6)$.",
+          "$(1-x^2)^{1/2}-1=\\tfrac12(-x^2)+O(x^4)=-\\tfrac{x^2}{2}+O(x^4)$, and $\\sin x=x+O(x^3)$, so $\\left((1-x^2)^{1/2}-1\\right)\\sin x=-\\tfrac{x^2}{2}\\cdot x+O(x^5)=-\\tfrac{x^3}{2}+O(x^5)$.",
+          "Numerator $=\\tfrac43x^3-\\tfrac12x^3+O(x^5)=\\left(\\tfrac{8-3}{6}\\right)x^3+O(x^5)=\\tfrac{5}{6}x^3+O(x^5)$.",
+          "Denominator $=x\\sin^2x=x\\left(x+O(x^3)\\right)^2=x^3+O(x^5)$.",
+          "Hence $\\beta=\\lim_{x\\to0}\\dfrac{\\tfrac56x^3+O(x^5)}{x^3+O(x^5)}=\\tfrac56$, so $6\\beta=5$."
+        ]
+      },
+      {
+        "name": "Split the limit and use standard limits",
+        "steps": [
+          "Since $x\\sin^2x\\sim x^3$, replace the denominator by $x^3$: $\\dfrac{x\\sin^2x}{x^3}=\\left(\\dfrac{\\sin x}{x}\\right)^2\\to1$, so $\\beta=\\lim_{x\\to0}\\dfrac{N(x)}{x^3}$ where $N$ is the numerator.",
+          "Split $N=A+B$ with $A=e^{x^3}-(1-x^3)^{1/3}$ and $B=\\left((1-x^2)^{1/2}-1\\right)\\sin x$.",
+          "For $A$: $\\dfrac{e^{x^3}-1}{x^3}\\to1$ (standard limit $\\tfrac{e^u-1}{u}\\to1$ with $u=x^3$), and $\\dfrac{1-(1-x^3)^{1/3}}{x^3}\\to\\tfrac13$ (standard limit $\\tfrac{1-(1+u)^{1/3}}{-u}\\to\\tfrac13$ with $u=-x^3$).",
+          "So $\\dfrac{A}{x^3}=\\dfrac{e^{x^3}-1}{x^3}+\\dfrac{1-(1-x^3)^{1/3}}{x^3}\\to1+\\tfrac13=\\tfrac43$.",
+          "For $B$: $\\dfrac{B}{x^3}=\\dfrac{(1-x^2)^{1/2}-1}{x^2}\\cdot\\dfrac{\\sin x}{x}$. The first factor $\\to-\\tfrac12$ (standard limit $\\tfrac{(1+u)^{1/2}-1}{u}\\to\\tfrac12$ with $u=-x^2$) and $\\tfrac{\\sin x}{x}\\to1$, so $\\dfrac{B}{x^3}\\to-\\tfrac12$.",
+          "Therefore $\\beta=\\dfrac43-\\dfrac12=\\dfrac{5}{6}$ and $6\\beta=5$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 2, Q5. The whole difficulty is a bookkeeping one: every additive piece must be expanded to the same order ($x^3$) because the constant and lower-order terms cancel, leaving the answer to hinge on the third-order coefficients alone."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A staircase $\\sqrt{n}$ squeezed against $2\\sqrt{x}$",
+    "difficulty": 4,
+    "task": "Evaluate the limit of the product.",
+    "pyq": {
+      "year": 2023,
+      "paper": "1",
+      "qno": "4"
+    },
+    "tags": [
+      "squeeze theorem",
+      "limit of product",
+      "definite integral bounds",
+      "2023"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><line x1=\"40\" y1=\"185\" x2=\"305\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"40\" y1=\"185\" x2=\"40\" y2=\"20\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><text x=\"300\" y=\"200\" fill=\"var(--ink2)\">$x$</text><text x=\"20\" y=\"28\" fill=\"var(--ink2)\">$y$</text><path d=\"M40 185 Q120 90 300 45\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><text x=\"250\" y=\"38\" fill=\"var(--gold)\">$y=\\tfrac{1}{\\sqrt{x}}$</text><line x1=\"56\" y1=\"105\" x2=\"84\" y2=\"105\" stroke=\"var(--ink2)\" stroke-width=\"1.6\"/><line x1=\"84\" y1=\"125\" x2=\"128\" y2=\"125\" stroke=\"var(--ink2)\" stroke-width=\"1.6\"/><line x1=\"128\" y1=\"140\" x2=\"188\" y2=\"140\" stroke=\"var(--ink2)\" stroke-width=\"1.6\"/><line x1=\"188\" y1=\"152\" x2=\"260\" y2=\"152\" stroke=\"var(--ink2)\" stroke-width=\"1.6\"/><circle cx=\"56\" cy=\"105\" r=\"2\" fill=\"var(--ink2)\"/><circle cx=\"84\" cy=\"125\" r=\"2\" fill=\"var(--ink2)\"/><circle cx=\"128\" cy=\"140\" r=\"2\" fill=\"var(--ink2)\"/><circle cx=\"188\" cy=\"152\" r=\"2\" fill=\"var(--ink2)\"/><text x=\"150\" y=\"175\" fill=\"var(--ink2)\">$f(x)=\\sqrt{n}$ (steps)</text></svg>",
+    "statement": "Let $f:(0,1)\\to\\mathbb{R}$ be the function defined as $f(x)=\\sqrt{n}$ if $x\\in\\left[\\dfrac{1}{n+1},\\dfrac{1}{n}\\right)$ where $n\\in\\mathbb{N}$. Let $g:(0,1)\\to\\mathbb{R}$ be a function such that $$\\int_{x^2}^{x}\\sqrt{\\frac{1-t}{t}}\\,dt<g(x)<2\\sqrt{x}$$ for all $x\\in(0,1)$. Then $\\displaystyle\\lim_{x\\to0}f(x)\\,g(x)$\n\n(A) does NOT exist\n(B) is equal to $1$\n(C) is equal to $2$\n(D) is equal to $3$",
+    "answer": "(C)",
+    "trap": "Two separate temptations. First, $f$ is a discontinuous step function that never equals $1/\\sqrt{x}$, so one may doubt any clean limit exists — but the product only needs $f(x)\\sqrt{x}$ to be squeezed, and it is. Second, students grab the crude bound $g(x)<2\\sqrt{x}$ but forget to show the lower integral bound is ALSO $\\sim 2\\sqrt{x}$; without that the squeeze is one-sided and proves nothing.",
+    "solutions": [
+      {
+        "name": "Squeeze $f(x)\\sqrt{x}$ and $g(x)/\\sqrt{x}$ separately",
+        "steps": [
+          "Fix $x\\in(0,1)$ and let $n$ be the integer with $x\\in\\left[\\tfrac{1}{n+1},\\tfrac{1}{n}\\right)$, so $f(x)=\\sqrt{n}$ and $\\tfrac{1}{n+1}\\le x<\\tfrac1n$.",
+          "From $\\tfrac{1}{n+1}\\le x<\\tfrac1n$ we get $n<\\tfrac1x\\le n+1$, hence $\\sqrt{n}<\\tfrac{1}{\\sqrt{x}}\\le\\sqrt{n+1}$.",
+          "Multiply the whole chain by $\\sqrt{x}>0$: $\\sqrt{n}\\,\\sqrt{x}\\le 1$ and $\\sqrt{n}\\,\\sqrt{x}>\\dfrac{\\sqrt{n}}{\\sqrt{n+1}}$, so $\\dfrac{\\sqrt{n}}{\\sqrt{n+1}}<f(x)\\sqrt{x}\\le1$.",
+          "As $x\\to0^+$, $n\\to\\infty$ and $\\dfrac{\\sqrt{n}}{\\sqrt{n+1}}\\to1$; by squeeze $f(x)\\sqrt{x}\\to1$.",
+          "Now bound $g$. The upper bound gives $\\dfrac{g(x)}{\\sqrt{x}}<2$. For the lower bound, evaluate the integral behaviour: substitute $t=x u$ or simply note near $t=0$, $\\sqrt{\\tfrac{1-t}{t}}\\sim\\tfrac{1}{\\sqrt{t}}$, and $\\displaystyle\\int_{x^2}^{x}\\frac{dt}{\\sqrt t}=2\\sqrt{x}-2\\sqrt{x^2}=2\\sqrt{x}-2x=2\\sqrt{x}(1-\\sqrt{x}).$",
+          "More precisely $\\displaystyle\\int_{x^2}^{x}\\sqrt{\\tfrac{1-t}{t}}\\,dt=2\\sqrt{x}(1+o(1))$ as $x\\to0$ because the factor $\\sqrt{1-t}\\to1$ on the shrinking interval. So dividing the given chain by $\\sqrt{x}$: $\\dfrac{1}{\\sqrt{x}}\\int_{x^2}^{x}\\sqrt{\\tfrac{1-t}{t}}\\,dt<\\dfrac{g(x)}{\\sqrt{x}}<2$, and the left side $\\to2$.",
+          "By squeeze $\\dfrac{g(x)}{\\sqrt{x}}\\to2$.",
+          "Therefore $f(x)g(x)=\\big(f(x)\\sqrt{x}\\big)\\cdot\\dfrac{g(x)}{\\sqrt{x}}\\to 1\\cdot2=2$. Answer (C)."
+        ]
+      },
+      {
+        "name": "Compute the integral asymptotics exactly",
+        "steps": [
+          "Substitute $t=\\sin^2\\theta$, $dt=2\\sin\\theta\\cos\\theta\\,d\\theta$, so $\\sqrt{\\tfrac{1-t}{t}}\\,dt=\\dfrac{\\cos\\theta}{\\sin\\theta}\\cdot2\\sin\\theta\\cos\\theta\\,d\\theta=2\\cos^2\\theta\\,d\\theta=(1+\\cos2\\theta)\\,d\\theta.$",
+          "Hence an antiderivative is $F(t)=\\theta+\\tfrac12\\sin2\\theta=\\arcsin\\sqrt{t}+\\sqrt{t(1-t)}$.",
+          "So $\\displaystyle\\int_{x^2}^{x}\\sqrt{\\tfrac{1-t}{t}}\\,dt=\\Big[\\arcsin\\sqrt{t}+\\sqrt{t(1-t)}\\Big]_{x^2}^{x}$.",
+          "As $x\\to0^+$: $\\arcsin\\sqrt{x}\\sim\\sqrt{x}$, $\\sqrt{x(1-x)}\\sim\\sqrt{x}$, while the lower-limit terms are $\\arcsin\\sqrt{x^2}=\\arcsin x\\sim x$ and $\\sqrt{x^2(1-x^2)}\\sim x$; both are $o(\\sqrt{x})$.",
+          "Thus the integral $=2\\sqrt{x}+o(\\sqrt{x})$, confirming $\\dfrac{1}{\\sqrt{x}}\\displaystyle\\int_{x^2}^{x}\\sqrt{\\tfrac{1-t}{t}}\\,dt\\to2$.",
+          "Combined with the upper bound $g(x)<2\\sqrt{x}$, the squeeze forces $\\dfrac{g(x)}{\\sqrt{x}}\\to2$.",
+          "And from the step-function bound $\\dfrac{\\sqrt{n}}{\\sqrt{n+1}}<f(x)\\sqrt{x}\\le1$ we already have $f(x)\\sqrt{x}\\to1$.",
+          "Multiplying the two limits: $\\displaystyle\\lim_{x\\to0}f(x)g(x)=1\\cdot2=2$, so (C) is correct."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 1, Q4. The elegant move is to never analyse $f$ or $g$ alone — regroup the product as $\\big(f(x)\\sqrt{x}\\big)\\cdot\\big(g(x)/\\sqrt{x}\\big)$ so each factor is squeezed to a clean limit despite $f$ being discontinuous everywhere."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Killing the linear term: $\\tfrac{\\alpha}{2}\\!\\int\\!\\frac{dt}{1-t^2}+\\beta x\\cos x$",
+    "difficulty": 3,
+    "task": "Find $\\alpha+\\beta$.",
+    "pyq": {
+      "year": 2025,
+      "paper": "1",
+      "qno": "11"
+    },
+    "tags": [
+      "limit involving integral",
+      "Taylor expansion",
+      "L'Hopital / series",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "Let $\\alpha$ and $\\beta$ be real numbers such that $$\\lim_{x\\to 0}\\frac{1}{x^{3}}\\left(\\frac{\\alpha}{2}\\int_0^x \\frac{1}{1-t^{2}}\\,dt + \\beta\\,x\\cos x\\right) = 2.$$ Then the value of $\\alpha+\\beta$ is ____.",
+    "answer": "$\\boxed{2.4}$",
+    "trap": "The bracket carries an $O(x)$ term $\\left(\\tfrac{\\alpha}{2}+\\beta\\right)x$. Unless that linear part is annihilated first, dividing by $x^{3}$ produces $\\tfrac{1}{x^{2}}\\to\\infty$ — the limit is not $2$, it does not exist. Many candidates jump straight to matching the $x^{3}$-coefficient to $2$ and never impose the finiteness gate $\\tfrac{\\alpha}{2}+\\beta=0$, leaving one equation for two unknowns. The other classic slip is misreading $\\dfrac{1}{1-t^{2}}$ as $\\dfrac{1}{1+t^{2}}$: the sign flips the $x^{3}$ coefficient of the integral from $-\\tfrac13$ to $+\\tfrac13$ and wrecks the answer.",
+    "solutions": [
+      {
+        "name": "Maclaurin expansion + two-tier coefficient matching",
+        "steps": [
+          "Expand the integral. Since $\\dfrac{1}{1-t^{2}}=1+t^{2}+t^{4}+\\cdots$ for $|t|<1$, integrate term by term: $\\displaystyle\\int_0^x\\frac{dt}{1-t^{2}}=x+\\frac{x^{3}}{3}+\\frac{x^{5}}{5}+\\cdots$ (this is $\\operatorname{artanh} x$).",
+          "So $\\dfrac{\\alpha}{2}\\displaystyle\\int_0^x\\frac{dt}{1-t^{2}}=\\dfrac{\\alpha}{2}\\left(x+\\dfrac{x^{3}}{3}+\\cdots\\right)=\\dfrac{\\alpha}{2}x+\\dfrac{\\alpha}{6}x^{3}+\\cdots$.",
+          "Expand the second piece: $\\cos x=1-\\dfrac{x^{2}}{2}+\\cdots$, so $\\beta x\\cos x=\\beta x-\\dfrac{\\beta}{2}x^{3}+\\cdots$.",
+          "Combine the bracket: $\\left(\\dfrac{\\alpha}{2}+\\beta\\right)x+\\left(\\dfrac{\\alpha}{6}-\\dfrac{\\beta}{2}\\right)x^{3}+\\cdots$.",
+          "Divide by $x^{3}$: the ratio is $\\dfrac{\\alpha/2+\\beta}{x^{2}}+\\left(\\dfrac{\\alpha}{6}-\\dfrac{\\beta}{2}\\right)+O(x^{2})$.",
+          "Finiteness gate: the $1/x^{2}$ term must vanish, so $\\dfrac{\\alpha}{2}+\\beta=0$, i.e. $\\beta=-\\dfrac{\\alpha}{2}$.",
+          "Value condition: the constant term equals $2$, so $\\dfrac{\\alpha}{6}-\\dfrac{\\beta}{2}=2$. Substitute $\\beta=-\\dfrac{\\alpha}{2}$: $\\dfrac{\\alpha}{6}+\\dfrac{\\alpha}{4}=\\dfrac{2\\alpha+3\\alpha}{12}=\\dfrac{5\\alpha}{12}=2$, so $\\alpha=\\dfrac{24}{5}$.",
+          "Then $\\beta=-\\dfrac{\\alpha}{2}=-\\dfrac{12}{5}$, and $\\alpha+\\beta=\\dfrac{24}{5}-\\dfrac{12}{5}=\\dfrac{12}{5}=\\boxed{2.4}$."
+        ]
+      },
+      {
+        "name": "Repeated L'Hôpital (Leibniz differentiation of the integral)",
+        "steps": [
+          "Let $N(x)=\\dfrac{\\alpha}{2}\\displaystyle\\int_0^x\\frac{dt}{1-t^{2}}+\\beta x\\cos x$ and $D(x)=x^{3}$. Then $N(0)=0=D(0)$: a $0/0$ form.",
+          "By Leibniz, $\\dfrac{d}{dx}\\displaystyle\\int_0^x\\frac{dt}{1-t^{2}}=\\dfrac{1}{1-x^{2}}$, so $N'(x)=\\dfrac{\\alpha}{2}\\cdot\\dfrac{1}{1-x^{2}}+\\beta(\\cos x-x\\sin x)$ and $D'(x)=3x^{2}$.",
+          "As $x\\to0$: $N'(0)=\\dfrac{\\alpha}{2}+\\beta$. For the $0/0$ chain to continue we need $N'(0)=0$, giving the finiteness gate $\\dfrac{\\alpha}{2}+\\beta=0$, i.e. $\\beta=-\\dfrac{\\alpha}{2}$.",
+          "Second derivative: $N''(x)=\\dfrac{\\alpha}{2}\\cdot\\dfrac{2x}{(1-x^{2})^{2}}+\\beta(-2\\sin x-x\\cos x)$; $D''(x)=6x$. At $x=0$ both vanish — still $0/0$.",
+          "Third derivative at $0$: $\\dfrac{d}{dx}\\!\\left[\\dfrac{\\alpha x}{(1-x^{2})^{2}}\\right]_{0}=\\alpha$, and $\\dfrac{d}{dx}\\!\\left[\\beta(-2\\sin x-x\\cos x)\\right]_{0}=\\beta(-2-1)=-3\\beta$. So $N'''(0)=\\alpha-3\\beta$; $D'''(0)=6$.",
+          "Hence $L=\\dfrac{N'''(0)}{D'''(0)}=\\dfrac{\\alpha-3\\beta}{6}=2\\Rightarrow \\alpha-3\\beta=12$.",
+          "Solve with $\\beta=-\\dfrac{\\alpha}{2}$: $\\alpha-3\\left(-\\dfrac{\\alpha}{2}\\right)=\\alpha+\\dfrac{3\\alpha}{2}=\\dfrac{5\\alpha}{2}=12\\Rightarrow \\alpha=\\dfrac{24}{5}$, so $\\beta=-\\dfrac{12}{5}$.",
+          "Therefore $\\alpha+\\beta=\\dfrac{12}{5}=\\boxed{2.4}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 1, Q11. Two-tier engine: finiteness forces the $O(x)$ term to vanish $\\left(\\tfrac{\\alpha}{2}+\\beta=0\\right)$, then the $O(x^3)$ coefficient sets the value — do the gate first or the ratio diverges."
   }
 ];

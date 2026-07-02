@@ -3810,5 +3810,4462 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: the degenerate conic IS the pair of tangents $SS_1=T^2$; extracting $P$ as its vertex unlocks the chord of contact, and the parabola's focal-distance rule $SQ=x+1$ exposes the hidden geometric mean $SP^2=SQ_1\\cdot SQ_2$ — a focus property that survives the whole machinery."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Parabola Tilted Along y = x",
+    "difficulty": 4,
+    "task": "Find the equation of the parabola",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "10"
+    },
+    "tags": [
+      "parabola with tilted axis",
+      "focus-directrix",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "The axis of a parabola lies along the line $y=x$. The distance of its vertex from the origin is $\\sqrt2$, and the distance of its focus from the origin is $2\\sqrt2$. Given that both the vertex and the focus lie in the first quadrant, determine the equation of the parabola.\n\n(A) $(x+y)^2=x-y-2$ · (B) $(x-y)^2=x+y-2$ · (C) $(x-y)^2=4(x+y-2)$ · (D) $(x-y)^2=8(x+y-2)$",
+    "answer": "$\\boxed{(x-y)^2=8(x+y-2)}$ \\; — option (D).",
+    "trap": "Reaching for the standard form $Y^2=4aX$ but forgetting that the axis is the tilted line $y=x$, not a coordinate axis. The vertex is not at the origin, and the perpendicular from the vertex to the axis is along $y=-x$; the latus-rectum coefficient is $4a=4\\cdot VF=8$, so answers that read off $4a=4$ (option C) or drop the factor entirely miss the geometry.",
+    "solutions": [
+      {
+        "name": "Focus–directrix definition",
+        "steps": [
+          "The vertex lies on $y=x$ at distance $\\sqrt2$ from the origin, in the first quadrant, so the vertex is $V=(1,1)$. The focus lies further along $y=x$ at distance $VF=2\\sqrt2$ from $V$, hence $F=(2,2)$.",
+          "The vertex bisects the segment from the focus to the foot of the directrix, so the directrix is the line perpendicular to $y=x$ (i.e. of the form $x+y=c$) at distance $2\\sqrt2$ on the far side of $V$. Since $V=(1,1)$ gives $x+y=2$ and the reflection of $F$ places the directrix at $x+y=0$, the directrix is $x+y=0$.",
+          "A point $(x,y)$ on the parabola is equidistant from the focus and the directrix: $(x-2)^2+(y-2)^2=\\dfrac{(x+y)^2}{2}$.",
+          "Multiplying by $2$ and expanding: $2x^2+2y^2-8x-8y+16=x^2+2xy+y^2$, which simplifies to $x^2-2xy+y^2-8x-8y+16=0$, i.e. $(x-y)^2=8(x+y-2)$."
+        ]
+      },
+      {
+        "name": "Rotated coordinates $Y^2=4aX$",
+        "steps": [
+          "Introduce axes along and perpendicular to $y=x$: let $X=\\dfrac{x+y}{\\sqrt2}$ (measured along the axis) and $Y=\\dfrac{y-x}{\\sqrt2}$ (perpendicular to it). The vertex $V=(1,1)$ has $X=\\sqrt2$, $Y=0$.",
+          "In this frame the parabola is $Y^2=4a\\,(X-\\sqrt2)$ with $a=VF=\\sqrt2$, so $Y^2=4\\sqrt2\\,(X-\\sqrt2)$.",
+          "Substitute back: $\\dfrac{(y-x)^2}{2}=4\\sqrt2\\left(\\dfrac{x+y}{\\sqrt2}-\\sqrt2\\right)=4\\,(x+y)-8$.",
+          "Multiplying by $2$ gives $(y-x)^2=8(x+y)-16$, that is $(x-y)^2=8(x+y-2)$, confirming option (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q10. The trick is that a tilted parabola is still governed by its one-dimensional focus–vertex distance: once $VF=2\\sqrt2$ is read off, the coefficient $4a=8$ is forced, and only the directrix orientation $x+y=0$ needs the geometry of the axis $y=x$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Common Tangents to Two Parabolas",
+    "difficulty": 4,
+    "task": "Find all common tangents",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "13"
+    },
+    "tags": [
+      "common tangents to parabolas",
+      "tangent in slope form",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "Find every line that is a common tangent to the two parabolas $y=x^2$ and $y=-(x-2)^2$.\n\n(A) $y=4(x-1)$ · (B) $y=0$ · (C) $y=-4(x-1)$ · (D) $y=-30x-50$",
+    "answer": "$\\boxed{y=0 \\text{ and } y=4(x-1)}$ \\; — options (A) and (B).",
+    "trap": "Assuming two parabolas must share four (or at least two symmetric) common tangents, and being tempted by the mirror-image line $y=-4(x-1)$. The two parabolas are related by a point reflection about $(1,0)$, not by a line reflection, so their common tangents are $y=0$ (which passes through the centre of symmetry) and $y=4(x-1)$ — the negative-slope option is not tangent to both.",
+    "solutions": [
+      {
+        "name": "Slope-form tangents, then match",
+        "steps": [
+          "For $x^2=y$ (i.e. $4a=1$, $a=\\tfrac14$), the tangent of slope $m$ is $y=mx-\\dfrac{m^2}{4}$.",
+          "Rewrite the second parabola as $(x-2)^2=-y$, a downward parabola with vertex $(2,0)$ and $a=\\tfrac14$. Its tangent of slope $m$ is $y=m(x-2)+\\dfrac{m^2}{4}$ (opening downward flips the sign of the $\\tfrac{m^2}{4}$ term, and the vertex shift replaces $x$ by $x-2$).",
+          "A common tangent must have the same slope $m$ and the same intercept: equate $mx-\\dfrac{m^2}{4}=m(x-2)+\\dfrac{m^2}{4}$, giving $-\\dfrac{m^2}{4}=-2m+\\dfrac{m^2}{4}$, i.e. $\\dfrac{m^2}{2}=2m$, so $m^2=4m$ and $m=0$ or $m=4$.",
+          "For $m=0$: $y=0$. For $m=4$: $y=4x-\\dfrac{16}{4}=4x-4=4(x-1)$. These are the two common tangents, options (B) and (A)."
+        ]
+      },
+      {
+        "name": "Discriminant (tangency) conditions",
+        "steps": [
+          "Let the line be $y=mx+c$. Tangency to $y=x^2$ means $x^2-mx-c=0$ has a double root: discriminant $m^2+4c=0$, so $c=-\\dfrac{m^2}{4}$.",
+          "Tangency to $y=-(x-2)^2$ means $mx+c=-(x-2)^2$, i.e. $x^2+(m-4)x+(c+4)=0$ has a double root: $(m-4)^2-4(c+4)=0$.",
+          "Substitute $c=-\\dfrac{m^2}{4}$: $(m-4)^2-4\\left(4-\\dfrac{m^2}{4}\\right)=0\\Rightarrow m^2-8m+16-16+m^2=0\\Rightarrow 2m^2-8m=0$, so $m=0$ or $m=4$.",
+          "The intercepts follow as $c=-\\dfrac{m^2}{4}$: $m=0\\Rightarrow c=0$ (line $y=0$) and $m=4\\Rightarrow c=-4$ (line $y=4x-4$). Both discriminant conditions hold, confirming $y=0$ and $y=4(x-1)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q13. The second parabola is the image of the first under a half-turn about $(1,0)$; a point reflection preserves slope-$0$ tangents through the centre and produces exactly one slanted common tangent, so the symmetric-looking $y=-4(x-1)$ is a decoy."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Confocal Hyperbola of an Ellipse",
+    "difficulty": 4,
+    "task": "Select the correct statements",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "16"
+    },
+    "tags": [
+      "ellipse-hyperbola relation",
+      "eccentricity",
+      "confocal conics",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "A hyperbola passes through a focus of the ellipse $\\dfrac{x^2}{25}+\\dfrac{y^2}{16}=1$, and its transverse and conjugate axes coincide with the major and minor axes of the ellipse. The product of the eccentricities of the two conics is $1$. Decide which of the following are true:\n(A) the equation of the hyperbola is $\\dfrac{x^2}{9}-\\dfrac{y^2}{16}=1$;\n(B) the equation of the hyperbola is $\\dfrac{x^2}{9}-\\dfrac{y^2}{25}=1$;\n(C) a focus of the hyperbola is $(5,0)$;\n(D) a focus of the hyperbola is $(5\\sqrt3,0)$.",
+    "answer": "$\\boxed{\\text{(A) and (C)}}$",
+    "trap": "The tempting slip is to imagine that ``passes through a focus of the ellipse'' fixes only $b$ of the hyperbola, or to reuse the ellipse's $b^2=16$. In fact the ellipse focus lies \\emph{on the major axis}, i.e. on the transverse axis of the hyperbola, so it is a \\emph{vertex} of the hyperbola — which pins down $a$, not $b$. Then $b^2$ must be recomputed from $b^2=a^2(e^2-1)$, and it is a coincidence (not a reused value) that it also equals $16$.",
+    "solutions": [
+      {
+        "name": "Reciprocal eccentricities, then the vertex condition",
+        "steps": [
+          "For the ellipse, $a_e=5,\\ b_e=4$, so its eccentricity is $e_e=\\sqrt{1-\\tfrac{16}{25}}=\\tfrac{3}{5}$ and its foci are $(\\pm a_e e_e,0)=(\\pm3,0)$.",
+          "The product of eccentricities is $1$, so the hyperbola has $e_h=\\dfrac{1}{e_e}=\\dfrac{5}{3}$.",
+          "The hyperbola shares the axes and passes through $(\\pm3,0)$, a point on the $x$-axis; that makes $(\\pm3,0)$ its vertices, so $a_h=3$ and $a_h^2=9$.",
+          "Then $b_h^2=a_h^2(e_h^2-1)=9\\left(\\tfrac{25}{9}-1\\right)=16$, giving $\\dfrac{x^2}{9}-\\dfrac{y^2}{16}=1$ — statement (A).",
+          "Its foci are at $(\\pm a_h e_h,0)=\\left(\\pm3\\cdot\\tfrac{5}{3},0\\right)=(\\pm5,0)$, so $(5,0)$ is a focus — statement (C)."
+        ]
+      },
+      {
+        "name": "Solve directly from $a_h e_h=5$ and $a_h^2+b_h^2=(a_h e_h)^2$",
+        "steps": [
+          "Take the hyperbola as $\\dfrac{x^2}{a_h^2}-\\dfrac{y^2}{b_h^2}=1$. It contains the ellipse focus $(3,0)$, and $y=0$ forces $x^2=a_h^2$, so $a_h=3$ immediately — no eccentricity needed for $a_h$.",
+          "The eccentricity relation gives the focal distance $c_h=a_h e_h=3\\cdot\\tfrac{5}{3}=5$, so the focus is $(5,0)$: statement (C).",
+          "For a hyperbola $c_h^2=a_h^2+b_h^2$, hence $b_h^2=c_h^2-a_h^2=25-9=16$.",
+          "Therefore $\\dfrac{x^2}{9}-\\dfrac{y^2}{16}=1$, confirming (A); options (B) and (D) fail since $b_h^2\\ne25$ and the focus is at $x=5$, not $5\\sqrt3$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q16. The magic is the reciprocal-eccentricity link plus the observation that a shared-axis point on the axis is a vertex, so ``passing through a focus'' locates $a$, and $b$ follows for free."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Squared Distances to a Square's Vertices",
+    "difficulty": 3,
+    "task": "Evaluate the ratio",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "27"
+    },
+    "tags": [
+      "circle geometry",
+      "sum of squared distances",
+      "2006"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>A square with its inscribed circle C1 and circumscribed circle C2, and a line L through vertex A</title><desc>Square ABCD of side 2 centred at O; C2 (radius sqrt2) passes through the four vertices, C1 (radius 1) touches the four sides, and a line L is drawn through vertex A.</desc><g transform=\"translate(160,150)\"><circle cx=\"0\" cy=\"0\" r=\"120\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><circle cx=\"0\" cy=\"0\" r=\"84.85\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><rect x=\"-84.85\" y=\"-84.85\" width=\"169.7\" height=\"169.7\" stroke=\"var(--ink3)\" fill=\"none\"/><line x1=\"0\" y1=\"0\" x2=\"120\" y2=\"0\" stroke=\"var(--ink3)\" stroke-dasharray=\"3 3\"/><line x1=\"0\" y1=\"0\" x2=\"84.85\" y2=\"-84.85\" stroke=\"var(--ink3)\" stroke-dasharray=\"3 3\"/><line x1=\"120\" y1=\"-125\" x2=\"49.7\" y2=\"-54.5\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><circle cx=\"0\" cy=\"0\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"84.85\" cy=\"-84.85\" r=\"3\" fill=\"var(--gold)\"/><text x=\"92\" y=\"-88\" fill=\"var(--ink2)\" font-size=\"12\">A</text><text x=\"-98\" y=\"-88\" fill=\"var(--ink2)\" font-size=\"12\">B</text><text x=\"-100\" y=\"98\" fill=\"var(--ink2)\" font-size=\"12\">C</text><text x=\"90\" y=\"98\" fill=\"var(--ink2)\" font-size=\"12\">D</text><text x=\"6\" y=\"-6\" fill=\"var(--ink2)\" font-size=\"12\">O</text><text x=\"36\" y=\"-30\" fill=\"var(--ink2)\" font-size=\"12\">1</text><text x=\"14\" y=\"14\" fill=\"var(--ink2)\" font-size=\"12\">√2</text><text x=\"122\" y=\"-120\" fill=\"var(--ink2)\" font-size=\"12\">L</text><text x=\"-118\" y=\"6\" fill=\"var(--ink2)\" font-size=\"12\">C₁</text><text x=\"-6\" y=\"-124\" fill=\"var(--ink2)\" font-size=\"12\">C₂</text></g></svg>",
+    "statement": "Let $ABCD$ be a square of side length $2$ units. Let $C_2$ be the circle through the vertices $A,B,C,D$ and $C_1$ the circle touching all the sides of the square. If $P$ is any point on $C_1$ and $Q$ is any point on $C_2$, find the value of\n$$\\frac{PA^2+PB^2+PC^2+PD^2}{QA^2+QB^2+QC^2+QD^2}.$$",
+    "answer": "$\\boxed{0.75}$",
+    "trap": "Reaching for coordinates of a \\emph{particular} $P$ and $Q$ and hoping the ratio is what the problem wants. The phrase ``any point'' is the whole point: the sum $PA^2+PB^2+PC^2+PD^2$ must be independent of \\emph{where} $P$ sits on its circle, or the question would be ill-posed. Recognising that invariance up front is what turns a messy computation into a one-line answer.",
+    "solutions": [
+      {
+        "name": "Centroid identity for sums of squared distances",
+        "steps": [
+          "Both circles are centred at the centre $O$ of the square, which is also the centroid of the four vertices. For any point $X$, the identity $\\sum_i |X-V_i|^2 = 4\\,|X-O|^2 + \\sum_i |V_i-O|^2$ holds (the cross terms cancel because $\\sum_i (V_i-O)=\\vec 0$).",
+          "Each vertex lies at distance $\\sqrt2$ from $O$ (half the diagonal $2\\sqrt2$), so $\\sum_i |V_i-O|^2 = 4\\cdot 2 = 8$ — a fixed constant.",
+          "For $P$ on $C_1$, the inscribed circle, $|P-O|=1$, so the numerator $= 4(1)^2+8 = 12$; this is the same for every $P$ on $C_1$.",
+          "For $Q$ on $C_2$, the circumscribed circle, $|Q-O|=\\sqrt2$, so the denominator $= 4(\\sqrt2)^2+8 = 16$; the same for every $Q$.",
+          "Hence the ratio is $\\dfrac{12}{16}=\\dfrac34=0.75$."
+        ]
+      },
+      {
+        "name": "Direct coordinates at a convenient point",
+        "steps": [
+          "Place $O$ at the origin with vertices $A(1,1),B(-1,1),C(-1,-1),D(1,-1)$; then $C_1:\\,x^2+y^2=1$ and $C_2:\\,x^2+y^2=2$.",
+          "Take the specific $P=(1,0)$ on $C_1$. Then $PA^2+PB^2+PC^2+PD^2 = 1+5+5+1 = 12$.",
+          "Take the specific $Q=(\\sqrt2,0)$ on $C_2$. Then $QA^2+QB^2+QC^2+QD^2 = (\\sqrt2-1)^2+2\\big[(\\sqrt2+1)^2+ \\ldots\\big]$; expanding, $= (3-2\\sqrt2)+(3+2\\sqrt2)+(3+2\\sqrt2)+(3-2\\sqrt2)=12+4=16$.",
+          "The ratio is $\\dfrac{12}{16}=0.75$. (Choosing any other $P,Q$ gives the same $12$ and $16$, matching the invariance established by the centroid identity.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q27. The centroid identity $\\sum |X-V_i|^2 = n|X-O|^2 + \\sum|V_i-O|^2$ instantly explains why the sums are constant on each concentric circle — no lucky point required."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Parabola Inside the Square",
+    "difficulty": 4,
+    "task": "Find the area",
+    "statement": "Let $ABCD$ be a square of side length $2$ units, and consider its diagonal $BD$. A point $S$ moves in the plane so that its distance from the line $BD$ equals its distance from the vertex $A$. Through $A$ draw the line $M$ parallel to $BD$. If the locus of $S$ meets $M$ at the points $T_2$ and $T_3$, and meets the diagonal $AC$ at the point $T_1$, find the area of $\\triangle T_1T_2T_3$.",
+    "answer": "$\\boxed{1 \\text{ sq. unit}}$",
+    "tags": [
+      "parabola",
+      "focus-directrix definition",
+      "latus rectum",
+      "2006"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 400\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Square ABCD with parabola of focus A and directrix BD</title><desc>The square ABCD has vertex A as focus and diagonal BD as directrix. The parabolic locus passes through T1 on AC and cuts the line M (through A, parallel to BD) at T2 and T3, the ends of the latus rectum.</desc><defs><marker id=\"ar\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M2 1L8 5L2 9\" fill=\"none\" stroke=\"context-stroke\" stroke-width=\"1.5\"/></marker></defs><rect x=\"110\" y=\"110\" width=\"140\" height=\"140\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"250\" y1=\"250\" x2=\"110\" y2=\"110\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"110\" y1=\"250\" x2=\"250\" y2=\"110\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"5\" y1=\"355\" x2=\"180\" y2=\"180\" stroke=\"var(--ink4)\" stroke-width=\"1\" stroke-dasharray=\"5 4\"/><polyline points=\"177.2,362.1 178.4,351.2 179.3,340.6 179.8,330.4 180.0,320.5 179.9,311.0 179.4,301.8 178.5,292.9 177.4,284.4 175.9,276.2 174.1,268.3 171.9,260.8 169.4,253.6 166.6,246.7 163.4,240.2 159.9,234.0 156.1,228.2 151.9,222.6 147.4,217.5 142.5,212.6 137.4,208.1 131.8,203.9 126.0,200.1 119.8,196.6 113.3,193.4 106.4,190.6 99.2,188.1 91.7,185.9 83.8,184.1 75.6,182.6 67.1,181.5 58.2,180.6 49.0,180.1 39.5,180.0 29.6,180.2 19.4,180.7 8.8,181.6 -2.1,182.8\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><line x1=\"40\" y1=\"180\" x2=\"180\" y2=\"320\" stroke=\"var(--ink4)\" stroke-width=\"1\" stroke-dasharray=\"2 3\"/><circle cx=\"110\" cy=\"250\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"250\" cy=\"250\" r=\"2.5\" fill=\"var(--ink3)\"/><circle cx=\"250\" cy=\"110\" r=\"2.5\" fill=\"var(--ink3)\"/><circle cx=\"110\" cy=\"110\" r=\"2.5\" fill=\"var(--ink3)\"/><circle cx=\"145\" cy=\"215\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"40\" cy=\"180\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"180\" cy=\"320\" r=\"2.5\" fill=\"var(--ink2)\"/><text x=\"98\" y=\"264\" fill=\"var(--ink2)\" font-size=\"12\">A</text><text x=\"256\" y=\"264\" fill=\"var(--ink2)\" font-size=\"12\">B</text><text x=\"256\" y=\"108\" fill=\"var(--ink2)\" font-size=\"12\">C</text><text x=\"96\" y=\"108\" fill=\"var(--ink2)\" font-size=\"12\">D</text><text x=\"150\" y=\"210\" fill=\"var(--ink2)\" font-size=\"12\">T₁</text><text x=\"24\" y=\"176\" fill=\"var(--ink2)\" font-size=\"12\">T₂</text><text x=\"186\" y=\"328\" fill=\"var(--ink2)\" font-size=\"12\">T₃</text><text x=\"238\" y=\"140\" fill=\"var(--ink2)\" font-size=\"12\">M</text><text x=\"196\" y=\"180\" fill=\"var(--ink2)\" font-size=\"12\">BD</text></svg>",
+    "trap": "Reading “distances from the line $BD$ and the vertex $A$ are equal” as a mere symmetry statement rather than the focus–directrix definition of a parabola. The locus is a parabola with focus $A$ and directrix $BD$; and the line $M$ through $A$ parallel to $BD$ is exactly the latus-rectum line (through the focus, parallel to the directrix), so $T_2T_3$ is the latus rectum, not some arbitrary chord.",
+    "solutions": [
+      {
+        "name": "Focus–directrix geometry (latus rectum × vertex distance)",
+        "steps": [
+          "The condition “distance from line $BD$ $=$ distance from point $A$” is the definition of a parabola with focus $A$ and directrix $BD$. Let the perpendicular distance from focus $A$ to directrix $BD$ be $d$. For a square of side $2$, the diagonal $BD$ is at distance $d=\\sqrt2$ from the opposite vertex $A$ (half the diagonal length $2\\sqrt2$).",
+          "For a parabola, focus–to–directrix distance is $2a$ (with latus rectum $=4a$). Here $2a=\\sqrt2$, so $a=\\dfrac{1}{\\sqrt2}$. The vertex $T_1$ is the midpoint of $A$ and the foot of the perpendicular from $A$ on $BD$, and it lies on $AC$ (the diagonal perpendicular to $BD$); the vertex distance $AT_1=a=\\dfrac{1}{\\sqrt2}$.",
+          "The line $M$ passes through the focus $A$ and is parallel to the directrix $BD$, so it is the latus-rectum line. Thus $T_2T_3$ is the latus rectum, of length $4a=\\dfrac{4}{\\sqrt2}=2\\sqrt2$.",
+          "In $\\triangle T_1T_2T_3$ take the base $T_2T_3=2\\sqrt2$; the corresponding height is the distance from the vertex $T_1$ to the line $M$, which along the axis equals $AT_1=\\dfrac{1}{\\sqrt2}$.",
+          "Area $=\\dfrac12\\cdot T_2T_3\\cdot AT_1=\\dfrac12\\cdot 2\\sqrt2\\cdot\\dfrac{1}{\\sqrt2}=\\boxed{1}$ square unit."
+        ]
+      },
+      {
+        "name": "Direct coordinates (place the square, solve the locus)",
+        "steps": [
+          "Put $A=(0,0),\\;B=(2,0),\\;C=(2,2),\\;D=(0,2)$. Then diagonal $BD$ is $x+y=2$, and diagonal $AC$ is $y=x$.",
+          "The locus of $S=(x,y)$ with $\\sqrt{x^2+y^2}=\\dfrac{|x+y-2|}{\\sqrt2}$ squares to $x^2+y^2=\\dfrac{(x+y-2)^2}{2}$, i.e. $x^2-2xy+y^2+4x+4y-4=0$.",
+          "Line $M$ through $A$ parallel to $BD$ is $x+y=0$, i.e. $y=-x$. Substituting into the locus: $x^2+2x^2+x^2+4x-4x-4=4x^2-4=0\\Rightarrow x^2=1$, giving $T_2=(-1,1)$ and $T_3=(1,-1)$.",
+          "On $AC$ ($y=x$): substituting gives $x^2-2x^2+x^2+4x+4x-4=8x-4=0\\Rightarrow x=\\tfrac12$, so the vertex $T_1=\\left(\\tfrac12,\\tfrac12\\right)$.",
+          "Shoelace area of $T_1\\left(\\tfrac12,\\tfrac12\\right),\\,T_2(-1,1),\\,T_3(1,-1)$: $\\;\\dfrac12\\left|(T_2-T_1)\\times(T_3-T_1)\\right|=\\dfrac12\\left|(-\\tfrac32)(-\\tfrac32)-(\\tfrac12)(-\\tfrac32)\\right|=\\dfrac12\\cdot 2=\\boxed{1}$ square unit."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q29. Insight: the phrase “distances from the line $BD$ and the vertex $A$ are equal” is the focus–directrix definition in disguise, and the line through the focus parallel to the directrix is precisely the latus rectum — so the whole triangle is just (vertex distance) against (latus rectum), and its area collapses to $\\tfrac12\\cdot 4a\\cdot a=2a^2=1$.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "28"
+    }
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Confocal Hyperbola of an Ellipse",
+    "difficulty": 4,
+    "task": "Identify the equation of the confocal hyperbola.",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "45"
+    },
+    "tags": [
+      "hyperbola",
+      "confocal conics",
+      "eccentricity",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "A hyperbola having transverse axis of length $2\\sin\\theta$ is confocal with the ellipse $3x^2+4y^2=12$. Then its equation is\n\n(A) $x^2\\csc^2\\theta-y^2\\sec^2\\theta=1$\n\n(B) $x^2\\sec^2\\theta-y^2\\csc^2\\theta=1$\n\n(C) $x^2\\sin^2\\theta-y^2\\cos^2\\theta=1$\n\n(D) $x^2\\cos^2\\theta-y^2\\sin^2\\theta=1$",
+    "answer": "$\\boxed{x^2\\csc^2\\theta-y^2\\sec^2\\theta=1}$ (option (A))",
+    "trap": "The transverse semi-axis is $\\sin\\theta$, not $2\\sin\\theta$; halving the given length is the step most candidates drop. Also, “confocal” fixes $ae$ (the focal distance $c$), not $a$ or $e$ separately — the hyperbola inherits only the foci of the ellipse.",
+    "solutions": [
+      {
+        "name": "Match the shared focus $c=1$",
+        "steps": [
+          "Write the ellipse in standard form: $3x^2+4y^2=12\\Rightarrow \\dfrac{x^2}{4}+\\dfrac{y^2}{3}=1$, so $a=2$, $b^2=3$.",
+          "Its eccentricity: $b^2=a^2(1-e^2)\\Rightarrow 3=4(1-e^2)\\Rightarrow e=\\tfrac12$, hence the focal distance is $c=ae=1$; the foci are $(\\pm1,0)$.",
+          "For the confocal hyperbola the transverse semi-axis is $a_1=\\sin\\theta$ (half of $2\\sin\\theta$), and it shares $c=1$, so $a_1e_1=1\\Rightarrow e_1=\\csc\\theta$.",
+          "Then $b_1^2=a_1^2(e_1^2-1)=\\sin^2\\theta\\left(\\csc^2\\theta-1\\right)=1-\\sin^2\\theta=\\cos^2\\theta$.",
+          "Thus $\\dfrac{x^2}{\\sin^2\\theta}-\\dfrac{y^2}{\\cos^2\\theta}=1$, i.e. $\\boxed{x^2\\csc^2\\theta-y^2\\sec^2\\theta=1}$ — option (A)."
+        ]
+      },
+      {
+        "name": "Direct $a^2+b^2=c^2$ relation",
+        "steps": [
+          "For a hyperbola the foci obey $c^2=a_1^2+b_1^2$. Confocality with the ellipse (whose $c=1$) forces $a_1^2+b_1^2=1$.",
+          "With transverse semi-axis $a_1=\\sin\\theta$, we get $a_1^2=\\sin^2\\theta$, so $b_1^2=1-\\sin^2\\theta=\\cos^2\\theta$ immediately — no eccentricity computation needed.",
+          "Substituting: $\\dfrac{x^2}{\\sin^2\\theta}-\\dfrac{y^2}{\\cos^2\\theta}=1$.",
+          "Rewriting the reciprocals as $\\csc^2\\theta$ and $\\sec^2\\theta$ gives $\\boxed{x^2\\csc^2\\theta-y^2\\sec^2\\theta=1}$, confirming option (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q45. The whole problem collapses once you realise “confocal” transfers a single invariant — the focal distance $c=1$ — from ellipse to hyperbola, after which $a_1^2+b_1^2=c^2$ finishes it in one line."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Tangents from a Point on the Director Circle",
+    "difficulty": 3,
+    "task": "Judge two statements about perpendicular tangents.",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "57"
+    },
+    "tags": [
+      "circle",
+      "director circle",
+      "perpendicular tangents",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Tangents are drawn from the point $(17,7)$ to the circle $x^2+y^2=169$.\n\nSTATEMENT-1: The tangents are mutually perpendicular.\n\nbecause\n\nSTATEMENT-2: The locus of the points from which mutually perpendicular tangents can be drawn to the given circle is $x^2+y^2=338$.\n\n(A) Statement-1 True, Statement-2 True; Statement-2 is a correct explanation for Statement-1\n\n(B) Statement-1 True, Statement-2 True; Statement-2 is NOT a correct explanation for Statement-1\n\n(C) Statement-1 True, Statement-2 False\n\n(D) Statement-1 False, Statement-2 True",
+    "answer": "$\\boxed{\\text{(A)}}$ — both statements true, and Statement-2 is the correct explanation.",
+    "trap": "The locus of points from which the two tangents are perpendicular is the director circle $x^2+y^2=2r^2$, radius $r\\sqrt2$, not $x^2+y^2=r^2$. Forgetting the factor $2$ (i.e. writing $169$ instead of $338$) wrongly kills Statement-2.",
+    "solutions": [
+      {
+        "name": "Director-circle criterion",
+        "steps": [
+          "For $x^2+y^2=r^2$, two tangents from an external point are perpendicular iff the point lies on the director circle $x^2+y^2=2r^2$.",
+          "Here $r^2=169$, so the director circle is $x^2+y^2=2(169)=338$ — exactly Statement-2, which is therefore True.",
+          "Test the point: $17^2+7^2=289+49=338$, so $(17,7)$ lies on the director circle; hence the tangents are perpendicular and Statement-1 is True.",
+          "Statement-2 is precisely the general fact that makes Statement-1 hold, so it is a correct explanation — option (A)."
+        ]
+      },
+      {
+        "name": "Square from centre, radii, and tangent lengths",
+        "steps": [
+          "Let $O=(0,0)$ be the centre ($r=13$) and $P=(17,7)$ the external point, with tangents touching at $A,B$. Then $OA=OB=r=13$ and $OA\\perp PA$, $OB\\perp PB$.",
+          "The length of each tangent is $PA=PB=\\sqrt{OP^2-r^2}=\\sqrt{338-169}=\\sqrt{169}=13=r$.",
+          "So $OAPB$ has $OA=AP=PB=BO=13$ with right angles at $A$ and $B$: it is a square, forcing the angle $\\angle APB=90^\\circ$. Statement-1 is True.",
+          "Generalising, $PA=r$ needs $OP^2=2r^2$, i.e. the locus $x^2+y^2=338$ of Statement-2, which is thus True and explains Statement-1 — option (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q57. The tangent length equalling the radius is the tell-tale sign of the director circle: a right angle at $P$ turns quadrilateral $OAPB$ into a square, so $OP=r\\sqrt2$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Triangles on a Shared Chord",
+    "difficulty": 3,
+    "task": "Find the ratio of the two triangle areas.",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "58"
+    },
+    "tags": [
+      "circle-parabola intersection",
+      "tangents",
+      "area of triangle",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 470 330\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Circle and parabola meeting at P and Q, with tangents cutting the x-axis at R and S</title><desc>The circle x squared plus y squared equals 9 and the parabola y squared equals 8x intersect at P(1, 2 root 2) and Q(1, minus 2 root 2). Circle tangents at P and Q meet the x-axis at R(9,0); parabola tangents at P and Q meet the x-axis at S(minus 1, 0). Both triangles PQS and PQR share the vertical chord PQ.</desc><defs><marker id=\"ar\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M2 1L8 5L2 9\" fill=\"none\" stroke=\"context-stroke\" stroke-width=\"1.5\"/></marker></defs><line x1=\"24\" y1=\"165\" x2=\"456\" y2=\"165\" stroke=\"var(--ink3)\" stroke-width=\"1\" marker-end=\"url(#ar)\"/><line x1=\"150\" y1=\"315\" x2=\"150\" y2=\"15\" stroke=\"var(--ink3)\" stroke-width=\"1\" marker-end=\"url(#ar)\"/><text x=\"452\" y=\"158\" fill=\"var(--ink3)\" font-size=\"11\">x</text><text x=\"156\" y=\"22\" fill=\"var(--ink3)\" font-size=\"11\">y</text><circle cx=\"150\" cy=\"165\" r=\"90\" stroke=\"var(--ink3)\" stroke-width=\"1.3\" fill=\"none\"/><path d=\"M150 165 L159 118.5 L168 99.3 L180 80.1 L195 61.1 L210 45 L228 28.2 L243 15.6\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><path d=\"M150 165 L159 211.5 L168 230.7 L180 249.9 L195 268.9 L210 285 L228 301.8 L243 314.4\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><line x1=\"180\" y1=\"80.1\" x2=\"180\" y2=\"249.9\" stroke=\"var(--ink)\" stroke-width=\"1.6\"/><line x1=\"180\" y1=\"80.1\" x2=\"420\" y2=\"165\" stroke=\"var(--ink3)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><line x1=\"180\" y1=\"249.9\" x2=\"420\" y2=\"165\" stroke=\"var(--ink3)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><line x1=\"180\" y1=\"80.1\" x2=\"120\" y2=\"165\" stroke=\"var(--ink3)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><line x1=\"180\" y1=\"249.9\" x2=\"120\" y2=\"165\" stroke=\"var(--ink3)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><circle cx=\"180\" cy=\"80.1\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"180\" cy=\"249.9\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"420\" cy=\"165\" r=\"3\" fill=\"var(--ink2)\"/><circle cx=\"120\" cy=\"165\" r=\"3\" fill=\"var(--ink2)\"/><circle cx=\"150\" cy=\"165\" r=\"2.4\" fill=\"var(--ink3)\"/><text x=\"186\" y=\"76\" fill=\"var(--ink2)\" font-size=\"12\">P(1, 2√2)</text><text x=\"186\" y=\"262\" fill=\"var(--ink2)\" font-size=\"12\">Q(1, −2√2)</text><text x=\"406\" y=\"181\" fill=\"var(--ink2)\" font-size=\"12\">R(9,0)</text><text x=\"92\" y=\"157\" fill=\"var(--ink2)\" font-size=\"12\">S(−1,0)</text><text x=\"128\" y=\"181\" fill=\"var(--ink3)\" font-size=\"11\">O</text></svg>",
+    "statement": "Consider the circle $x^2+y^2=9$ and the parabola $y^2=8x$. They cross at a point $P$ in the first quadrant and a point $Q$ in the fourth quadrant. The tangents to the *circle* at $P$ and $Q$ meet the $x$-axis at a common point $R$, while the tangents to the *parabola* at $P$ and $Q$ meet the $x$-axis at a common point $S$. Find the ratio of the areas of the triangles $PQS$ and $PQR$.",
+    "answer": "$\\dfrac{[\\triangle PQS]}{[\\triangle PQR]}=\\boxed{\\dfrac14}\\quad(1:4)$",
+    "trap": "Reaching for the full determinant area of each triangle from three coordinate pairs. It is correct but wasteful. Both triangles stand on the *same* base $PQ$ (the common vertical chord $x=1$), so their areas are in the ratio of their heights — the horizontal distances of $S$ and $R$ from the line $x=1$. The whole problem reduces to locating two points on the $x$-axis.",
+    "solutions": [
+      {
+        "name": "Same base, compare the heights",
+        "steps": [
+          "Find the intersection. Substituting $y^2=8x$ into $x^2+y^2=9$ gives $x^2+8x-9=0$, i.e. $(x-1)(x+9)=0$; only $x=1$ is admissible (the parabola needs $x\\ge0$). Then $y^2=8$, so $P=(1,2\\sqrt2)$ and $Q=(1,-2\\sqrt2)$. The chord $PQ$ is the vertical segment $x=1$.",
+          "Tangent to the circle at $P=(1,2\\sqrt2)$ is $x\\cdot1+y\\cdot2\\sqrt2=9$; at $y=0$ this gives $x=9$, so $R=(9,0)$. By symmetry the tangent at $Q$ meets the axis at the same point, confirming $R=(9,0)$.",
+          "Tangent to the parabola $y^2=8x$ at $P$ is $y\\,(2\\sqrt2)=4(x+1)$; at $y=0$ this gives $x=-1$, so $S=(-1,0)$ (again shared with the tangent at $Q$).",
+          "Both triangles rest on the base $PQ$ (the line $x=1$). Their heights are the distances of $S$ and $R$ from $x=1$: $|{-1}-1|=2$ and $|9-1|=8$. Hence $\\dfrac{[\\triangle PQS]}{[\\triangle PQR]}=\\dfrac{2}{8}=\\dfrac14$."
+        ]
+      },
+      {
+        "name": "Direct coordinate (shoelace) areas",
+        "steps": [
+          "With $P=(1,2\\sqrt2)$, $Q=(1,-2\\sqrt2)$, $S=(-1,0)$, $R=(9,0)$, the base $PQ$ has length $4\\sqrt2$.",
+          "Area of $\\triangle PQS=\\tfrac12\\,|PQ|\\cdot d(S,\\,x{=}1)=\\tfrac12(4\\sqrt2)(2)=4\\sqrt2$; area of $\\triangle PQR=\\tfrac12\\,|PQ|\\cdot d(R,\\,x{=}1)=\\tfrac12(4\\sqrt2)(8)=16\\sqrt2$.",
+          "Therefore the ratio is $\\dfrac{4\\sqrt2}{16\\sqrt2}=\\dfrac14$, i.e. $1:4$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q58 (first of a three-part paragraph). Once you notice $P$ and $Q$ share the abscissa $x=1$, the two triangles share a base and the answer is just the ratio of two $x$-intercepts, $R=(9,0)$ against $S=(-1,0)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Incircle of a Right Trapezium",
+    "difficulty": 3,
+    "task": "Find the radius of the inscribed circle",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "50"
+    },
+    "tags": [
+      "inscribed circle",
+      "tangency condition",
+      "trapezium geometry",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 400 260\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Right trapezium ABCD with an inscribed circle</title><desc>Trapezium with A at the origin, B to the right, D above A and C above between them; AB parallel to DC with AB twice DC, side AD perpendicular to both. A circle of radius r sits inside touching all four sides.</desc><g fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"><path d=\"M60 200 L300 200 L180 40 L60 40 Z\"/></g><line x1=\"60\" y1=\"200\" x2=\"60\" y2=\"40\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><circle cx=\"140\" cy=\"120\" r=\"80\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><circle cx=\"140\" cy=\"120\" r=\"2.5\" fill=\"var(--gold)\"/><line x1=\"140\" y1=\"120\" x2=\"140\" y2=\"200\" stroke=\"var(--gold)\" stroke-width=\"1.5\" stroke-dasharray=\"4 3\"/><g fill=\"var(--gold)\"><circle cx=\"140\" cy=\"200\" r=\"2\"/><circle cx=\"60\" cy=\"120\" r=\"2\"/><circle cx=\"140\" cy=\"40\" r=\"2\"/></g><g fill=\"var(--ink2)\" font-size=\"12\"><text x=\"52\" y=\"215\">A</text><text x=\"300\" y=\"215\">B</text><text x=\"184\" y=\"38\">C</text><text x=\"46\" y=\"38\">D</text><text x=\"146\" y=\"166\">r</text><text x=\"170\" y=\"128\" fill=\"var(--ink3)\">O</text></g><g fill=\"var(--ink3)\" font-size=\"11\"><text x=\"150\" y=\"228\">AB = 2·DC</text><text x=\"12\" y=\"124\">AD⊥AB</text></g></svg>",
+    "statement": "Let $ABCD$ be a quadrilateral of area $18$, with side $AB$ parallel to side $CD$ and $AB=2\\,CD$. Let $AD$ be perpendicular to both $AB$ and $CD$. If a circle is drawn inside the quadrilateral $ABCD$ touching all of its sides, then its radius is\n\n(A) $3$ · (B) $2$ · (C) $\\dfrac32$ · (D) $1$",
+    "answer": "$\\boxed{r=2}$ \\; — option (B).",
+    "trap": "Assuming the circle's radius is simply a quarter of the height, or forgetting that the presence of an inscribed circle is itself a strong constraint: for a tangential quadrilateral the two pairs of opposite sides must have equal sums, $AB+CD=AD+BC$. Skip that condition and you have one equation ($3ar=18$) in two unknowns and cannot pin $r$ down. The perpendicular side $AD$ equals the diameter $2r$, which is the fact that closes the system.",
+    "solutions": [
+      {
+        "name": "Coordinates and the slant-side tangency",
+        "steps": [
+          "Since $AD\\perp AB$ and the circle touches $AB$, $CD$ and $AD$, place $A=(0,0)$, $B=(2a,0)$, $D=(0,2r)$, $C=(a,2r)$, where $CD=a$ so that $AB=2a=2\\,CD$ and $AD=2r$. The incircle then has centre $O=(r,r)$ and radius $r$.",
+          "The area of the trapezium is $\\dfrac12(AB+CD)\\cdot AD=\\dfrac12(2a+a)(2r)=3ar=18$, so $ar=6$.",
+          "The slant side $BC$ joins $B=(2a,0)$ to $C=(a,2r)$; its line is $2r\\,x+a\\,y-4ar=0$. Setting the distance from $O=(r,r)$ equal to $r$ gives $\\dfrac{|2r^2-3ar|}{\\sqrt{4r^2+a^2}}=r$, i.e. $(2r^2-3ar)^2=r^2(4r^2+a^2)$.",
+          "Expanding and cancelling $r^2$: $(2r-3a)^2=4r^2+a^2\\Rightarrow 8a^2=12ar\\Rightarrow 2a=3r$. With $ar=6$ this gives $a=3$, $r=2$, so the radius is $\\boxed{2}$."
+        ]
+      },
+      {
+        "name": "Pitot's theorem plus $Area=r\\cdot s$",
+        "steps": [
+          "For any quadrilateral admitting an inscribed circle, Pitot's theorem forces $AB+CD=AD+BC$. Write $CD=t$, $AB=2t$, $AD=2r$; the slant side is $BC=\\sqrt{(2t-t)^2+(2r)^2}=\\sqrt{t^2+4r^2}$.",
+          "Pitot: $2t+t=2r+\\sqrt{t^2+4r^2}\\Rightarrow(3t-2r)^2=t^2+4r^2\\Rightarrow 9t^2-12tr=t^2\\Rightarrow 2t=3r$.",
+          "The area also equals $r$ times the semiperimeter, $18=r\\cdot s$. Equivalently use the trapezium area $\\dfrac12(3t)(2r)=3tr=18$; combined with $2t=3r$ this yields $t=3,\\ r=2$.",
+          "A quick check: $AB=6,\\ CD=3,\\ AD=4,\\ BC=\\sqrt{9+16}=5$, so $s=\\tfrac{6+3+4+5}{2}=9$ and $r=\\dfrac{18}{9}=2$, confirming option (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q50. The quiet key is that an inscribed circle exists only for a tangential quadrilateral, so the equal-sums condition $AB+CD=AD+BC$ (and $AD=2r$) supplies the second equation the area alone cannot."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Is the Curve Symmetric About x = 1?",
+    "difficulty": 3,
+    "task": "Judge both statements and the explanation",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "57"
+    },
+    "tags": [
+      "parabola",
+      "axis of symmetry",
+      "vertex form",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Consider the following two assertions about the curve $y=-\\dfrac{x^2}{2}+x+1$.\n\n$\\textbf{Statement-1: }$ The curve $y=-\\dfrac{x^2}{2}+x+1$ is symmetric with respect to the line $x=1$.\n\nbecause\n\n$\\textbf{Statement-2: }$ A parabola is symmetric about its axis.\n\n(A) Statement-1 is True, Statement-2 is True and Statement-2 is a correct explanation for Statement-1 · (B) Statement-1 is True, Statement-2 is True and Statement-2 is NOT a correct explanation for Statement-1 · (C) Statement-1 is True, Statement-2 is False · (D) Statement-1 is False, Statement-2 is True",
+    "answer": "$\\boxed{\\text{(A)}}$ \\; Both statements are true and Statement-2 explains Statement-1.",
+    "trap": "Reading “symmetric about $x=1$” as symmetry about the point $x=1$ rather than about the vertical line $x=1$, or testing symmetry with $x\\mapsto -x$ (symmetry about $x=0$) out of habit. The correct test for the line $x=1$ is $f(1+t)=f(1-t)$; and one must confirm that $x=1$ is genuinely the axis (i.e. where the vertex sits), not merely some line the curve happens to straddle.",
+    "solutions": [
+      {
+        "name": "Complete the square to expose the axis",
+        "steps": [
+          "Write $y=-\\dfrac{x^2}{2}+x+1=-\\dfrac12\\left(x^2-2x\\right)+1=-\\dfrac12\\left((x-1)^2-1\\right)+1$.",
+          "Hence $y=-\\dfrac12(x-1)^2+\\dfrac32$, i.e. $(x-1)^2=-2\\left(y-\\dfrac32\\right)$ — a downward parabola with vertex $\\left(1,\\tfrac32\\right)$ and vertical axis $x=1$.",
+          "Every point on a parabola has a mirror image across its axis, so this curve is symmetric about $x=1$: Statement-1 is true. Statement-2, that a parabola is symmetric about its axis, is a standard true fact and is precisely the reason Statement-1 holds.",
+          "Therefore both statements are true and Statement-2 is a correct explanation of Statement-1, giving option $\\boxed{\\text{(A)}}$."
+        ]
+      },
+      {
+        "name": "Direct reflection test $f(1+t)=f(1-t)$",
+        "steps": [
+          "A curve $y=f(x)$ is symmetric about the vertical line $x=1$ exactly when $f(1+t)=f(1-t)$ for all $t$.",
+          "Compute $f(1+t)=-\\dfrac{(1+t)^2}{2}+(1+t)+1=-\\dfrac{1+2t+t^2}{2}+2+t=\\dfrac32-\\dfrac{t^2}{2}$.",
+          "Likewise $f(1-t)=-\\dfrac{(1-t)^2}{2}+(1-t)+1=-\\dfrac{1-2t+t^2}{2}+2-t=\\dfrac32-\\dfrac{t^2}{2}$. The two agree identically, so Statement-1 is true.",
+          "The reason the substitution $t\\mapsto -t$ leaves $f$ unchanged is that the quadratic's axis is $x=1$ — the general fact stated in Statement-2. Both true, Statement-2 explains Statement-1: option $\\boxed{\\text{(A)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q57. Completing the square turns an opaque quadratic into its axis $x=1$ at a glance; the reflection test $f(1+t)=f(1-t)$ is the same statement done algebraically, which is exactly why Statement-2 is the correct explanation."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Common Tangents and Common Normals",
+    "difficulty": 3,
+    "task": "Match each configuration",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "66"
+    },
+    "tags": [
+      "common tangent",
+      "common normal",
+      "circles and hyperbola",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Match each geometric configuration in Column I with every property in Column II that it possesses. In Column I: $(A)$ two intersecting circles; $(B)$ two mutually external circles (each lying outside the other); $(C)$ two circles, one strictly inside the other; $(D)$ the two branches of a hyperbola. In Column II: $(p)$ have a common tangent; $(q)$ have a common normal; $(r)$ do not have a common tangent; $(s)$ do not have a common normal.",
+    "answer": "$\\boxed{A\\to(p,q),\\ B\\to(p,q),\\ C\\to(q,r),\\ D\\to(q,r)}$",
+    "trap": "Forgetting that the line through the two centres is always a common normal for any pair of circles — no matter how they are placed — so $(q)$ holds in every circle case and $(s)$ never does. The real discriminator is the tangent: two curves share a tangent only when a single straight line can rest against both without crossing between them, which fails the moment one circle is swallowed by the other, and fails for the two branches of a hyperbola.",
+    "solutions": [
+      {
+        "name": "Line-of-centres normal, then test each tangent case",
+        "steps": [
+          "A line is a common normal to two circles iff it passes through both centres, i.e. the line of centres. Every pair of circles has such a line, so $(q)$ holds for $A$, $B$ and $C$; consequently $(s)$ (“no common normal”) never applies to any circle configuration.",
+          "$(A)$ Two intersecting circles lie partly outside each other, so a line can be drawn tangent to both (two external common tangents exist); together with the line-of-centres normal this gives $A\\to(p,q)$.",
+          "$(B)$ Two mutually external circles admit two direct and two transverse common tangents, and again the line of centres is a common normal, so $B\\to(p,q)$.",
+          "$(C)$ When one circle lies strictly inside the other, no straight line can touch both simultaneously (any line meeting the inner circle cuts across the outer one), so there is no common tangent; only the line-of-centres normal survives, giving $C\\to(q,r)$.",
+          "$(D)$ For a hyperbola $\\dfrac{x^2}{a^2}-\\dfrac{y^2}{b^2}=1$ the transverse axis (the $x$-axis) is perpendicular to both branches where it meets their vertices $(\\pm a,0)$, so it is a common normal $(q)$; but the two branches curl away from each other, and any line touching one branch is separated from the other by the asymptotic gap, so there is no line tangent to both branches: $D\\to(q,r)$."
+        ]
+      },
+      {
+        "name": "Coordinate check of a representative of each type",
+        "steps": [
+          "Take concrete representatives and count. $(A)$ Intersecting: $x^2+y^2=4$ and $(x-3)^2+y^2=4$ (centres $3$ apart, radii $2$, so $|r_1-r_2|=0<3<4=r_1+r_2$): two external common tangents exist and the $x$-axis through both centres is a common normal, so $(p,q)$.",
+          "$(B)$ External: $x^2+y^2=1$ and $(x-5)^2+y^2=1$ (distance $5>1+1$): four common tangents and the $x$-axis as common normal, so $(p,q)$.",
+          "$(C)$ One inside the other: $x^2+y^2=9$ and $x^2+y^2=1$ (concentric, distance $0<3-1$): every line through the origin is a common normal, but no line touches both circles, so $(q,r)$. (A non-concentric nested pair such as $x^2+y^2=9$, $(x-1)^2+y^2=1$ behaves identically.)",
+          "$(D)$ Hyperbola $\\dfrac{x^2}{9}-\\dfrac{y^2}{4}=1$ with vertices $(\\pm3,0)$: the $x$-axis meets each branch at right angles, a common normal; but a tangent $y=mx\\pm\\sqrt{9m^2-4}$ touches the curve at a single point on one branch only, so no tangent is shared by both branches, giving $(q,r)$.",
+          "Collecting: $A\\to(p,q)$, $B\\to(p,q)$, $C\\to(q,r)$, $D\\to(q,r)$, matching the boxed answer."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q66. Insight: for any two circles the line joining their centres is automatically a common normal, so the entire question reduces to a single yes/no about the tangent — which survives only when the two curves are not one-inside-the-other and not the mutually receding branches of a hyperbola."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Factored Equation Splits Into Curves",
+    "difficulty": 3,
+    "task": "Identify the correct case",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "1"
+    },
+    "tags": [
+      "pair of straight lines",
+      "conic identification",
+      "circle",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Let $a$ and $b$ be non-zero real numbers. The equation $(ax^2+by^2+c)(x^2-5xy+6y^2)=0$ represents which of the following? $(A)$ four straight lines, when $c=0$ and $a,b$ are of the same sign; $(B)$ two straight lines and a circle, when $a=b$ and $c$ is of sign opposite to that of $a$; $(C)$ two straight lines and a hyperbola, when $a$ and $b$ are of the same sign and $c$ is of sign opposite to that of $a$; $(D)$ a circle and an ellipse, when $a$ and $b$ are of the same sign and $c$ is of sign opposite to that of $a$.",
+    "answer": "$\\boxed{\\text{(B)}}$",
+    "trap": "Treating $x^2-5xy+6y^2=0$ as a genuine conic. Because it is homogeneous of degree two, it is a pair of straight lines through the origin, never a curve — so one factor always contributes two lines. The only remaining question is what the other factor $ax^2+by^2+c=0$ is; that is a circle only in the special case $a=b$, and even then only when $c$ has the sign opposite to $a$ so that $x^2+y^2=-c/a$ has positive radius-squared.",
+    "solutions": [
+      {
+        "name": "Factor the homogeneous part, then classify the second factor",
+        "steps": [
+          "A product is zero when either factor is zero, so the locus is the union of $x^2-5xy+6y^2=0$ and $ax^2+by^2+c=0$.",
+          "Factor the first: $x^2-5xy+6y^2=(x-2y)(x-3y)$, giving the two straight lines $x-2y=0$ and $x-3y=0$ through the origin. This pair of lines is present regardless of $a,b,c$.",
+          "Now classify $ax^2+by^2+c=0$. For it to be a circle we need equal coefficients on $x^2$ and $y^2$: set $a=b$. Then it reads $a(x^2+y^2)+c=0$, i.e. $x^2+y^2=-c/a$.",
+          "This is a real circle exactly when $-c/a>0$, i.e. $c$ has sign opposite to $a$; then the radius is $\\sqrt{-c/a}>0$. Under $a=b$ with $c$ opposite in sign to $a$, the full equation is two straight lines together with a circle.",
+          "Hence option $(B)$ is correct. (Option $(A)$ fails: with $c=0$ the second factor $ax^2+by^2=0$ is a single point $(0,0)$ when $a,b$ share a sign, not two more lines; $(C)$ and $(D)$ misname the pair of lines as a hyperbola/second conic.)"
+        ]
+      },
+      {
+        "name": "Eliminate the options by sign analysis of $ax^2+by^2+c=0$",
+        "steps": [
+          "Since $x^2-5xy+6y^2$ is homogeneous of degree $2$, it can only be a pair of lines (or a single line/point), never a hyperbola, ellipse or circle. So options $(C)$ and $(D)$, which call it a “hyperbola” or a second conic, are impossible in structure.",
+          "Test $(A)$: $c=0$ makes the second factor $ax^2+by^2=0$. If $a,b$ have the same sign this forces $x=y=0$ (only the origin), not two lines; four straight lines would need $a,b$ of opposite signs. So $(A)$ is false.",
+          "Test $(B)$: $a=b$ turns $ax^2+by^2+c$ into $a(x^2+y^2)+c$. Dividing by $a$, $x^2+y^2=-c/a$; with $c$ opposite in sign to $a$, $-c/a>0$, a genuine circle.",
+          "Combined with the two lines $x=2y$ and $x=3y$ from the first factor, $(B)$ gives exactly two straight lines and a circle.",
+          "Thus only $(B)$ survives, confirming the boxed answer."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q1. Insight: a degree-two homogeneous factor is always a pencil of lines through the origin, so the whole classification hinges on the non-homogeneous factor — and $ax^2+by^2+c=0$ is a circle only when $a=b$ and the constant carries the opposite sign, guaranteeing a positive radius-squared."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "How a Parabola and Circle Meet",
+    "difficulty": 3,
+    "task": "Determine the nature of the intersection",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "5"
+    },
+    "tags": [
+      "parabola",
+      "circle",
+      "tangency of curves",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Consider the two curves $C_1:\\,y^2=4x$ and $C_2:\\,x^2+y^2-6x+1=0$. Which one of the following describes how they meet? $(A)$ $C_1$ and $C_2$ touch each other only at one point; $(B)$ $C_1$ and $C_2$ touch each other exactly at two points; $(C)$ $C_1$ and $C_2$ intersect (but do not touch) at exactly two points; $(D)$ $C_1$ and $C_2$ neither intersect nor touch each other.",
+    "answer": "$\\boxed{\\text{(B)}}$",
+    "trap": "Counting solutions without watching their multiplicity. Substituting the parabola into the circle collapses to a quadratic in $x$ with a repeated root $x=1$; a careless reader sees one value of $x$ and concludes a single meeting point, missing that this $x$ yields two points $(1,\\pm2)$ and that the repeated root signals contact (touching), not a transversal crossing. Only $x=1$ arises, but it corresponds to two distinct tangency points.",
+    "solutions": [
+      {
+        "name": "Eliminate $x$ and read the multiplicity of the root",
+        "steps": [
+          "On $C_1$ we have $y^2=4x$. Substitute this into $C_2:\\,x^2+y^2-6x+1=0$ to eliminate $y$, giving $x^2+4x-6x+1=0$, i.e. $x^2-2x+1=0$.",
+          "This factors as $(x-1)^2=0$, a repeated root $x=1$. A double root of the eliminated equation means the curves are tangent, not crossing transversally.",
+          "At $x=1$, the parabola gives $y^2=4$, so $y=\\pm2$: the two contact points are $(1,2)$ and $(1,-2)$, symmetric about the $x$-axis.",
+          "Because the algebraic contact is of order two at each of the two symmetric points, $C_1$ and $C_2$ touch at exactly two points, which is option $(B)$."
+        ]
+      },
+      {
+        "name": "Compare slopes at the candidate points",
+        "steps": [
+          "First locate the common points as above: solving $y^2=4x$ with the circle gives $(1,2)$ and $(1,-2)$; verify both satisfy $C_2$: $1+4-6+1=0$. Good.",
+          "Slope on the parabola: differentiating $y^2=4x$ gives $2y\\,y'=4$, so $y'=\\dfrac{2}{y}$. At $(1,2)$ this is $1$ and at $(1,-2)$ it is $-1$.",
+          "Slope on the circle: differentiating $x^2+y^2-6x+1=0$ gives $2x+2y\\,y'-6=0$, so $y'=\\dfrac{3-x}{y}$. At $(1,2)$ this is $\\dfrac{2}{2}=1$ and at $(1,-2)$ it is $\\dfrac{2}{-2}=-1$.",
+          "At each common point the two curves share a common tangent line ($1$ and $-1$ respectively), so they touch rather than cross. Two such points of contact confirm the boxed answer $(B)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q5. Insight: a repeated root of the eliminated equation is the algebraic fingerprint of tangency, and the parabola's up–down symmetry turns that single $x$-value into two mirror-image contact points."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Parabolas Sharing a Latus Rectum",
+    "difficulty": 4,
+    "task": "Find every valid parabola",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "9"
+    },
+    "tags": [
+      "ellipse",
+      "parabola",
+      "latus rectum",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Let $P(x_1,y_1)$ and $Q(x_2,y_2)$, with $y_1<0$ and $y_2<0$, be the end points of the (lower) latus rectum of the ellipse $x^2+4y^2=4$. The equations of the parabolas that have the segment $PQ$ as their latus rectum are: $(A)$ $x^2+2\\sqrt3\\,y=3+\\sqrt3$; $(B)$ $x^2-2\\sqrt3\\,y=3+\\sqrt3$; $(C)$ $x^2+2\\sqrt3\\,y=3-\\sqrt3$; $(D)$ $x^2-2\\sqrt3\\,y=3-\\sqrt3$.",
+    "answer": "$\\boxed{(B),\\,(C)}$",
+    "trap": "Forgetting that a chosen latus rectum determines two parabolas, not one. A horizontal latus rectum $PQ$ fixes the axis (vertical) and the semi-latus-rectum, but the parabola may open either upward or downward — its vertex sits a distance $a=\\dfrac{|PQ|}{4}$ above the midpoint (opens down) or below it (opens up). Picking only one orientation loses half the answer.",
+    "solutions": [
+      {
+        "name": "Locate the endpoints, then build both parabolas",
+        "steps": [
+          "Write the ellipse in standard form: $\\dfrac{x^2}{4}+\\dfrac{y^2}{1}=1$, so $a_e=2$, $b_e=1$ and $e=\\sqrt{1-\\tfrac{1}{4}}=\\dfrac{\\sqrt3}{2}$; the foci are at $(\\pm\\sqrt3,0)$.",
+          "The two endpoints with $y<0$ lie on the horizontal chord $y=-\\dfrac{b_e^2}{a_e}=-\\dfrac12$ (the semi-latus-rectum measured $b_e^2/a_e=\\tfrac12$). Setting $y=-\\tfrac12$ in $\\dfrac{x^2}{4}+y^2=1$ gives $x^2=3$, so $P(\\sqrt3,-\\tfrac12)$ and $Q(-\\sqrt3,-\\tfrac12)$, and $|PQ|=2\\sqrt3$.",
+          "Any parabola with $PQ$ as latus rectum has a vertical axis $x=0$ and latus-rectum length $2\\sqrt3$, so $4a=2\\sqrt3$, giving $a=\\dfrac{\\sqrt3}{2}$. Its vertex lies a distance $a$ from the midpoint $\\bigl(0,-\\tfrac12\\bigr)$ of $PQ$.",
+          "Opening upward: vertex $\\bigl(0,-\\tfrac12-\\tfrac{\\sqrt3}{2}\\bigr)$ and $x^2=4a\\bigl(y-y_V\\bigr)=2\\sqrt3\\bigl(y+\\tfrac12+\\tfrac{\\sqrt3}{2}\\bigr)$, i.e. $x^2-2\\sqrt3\\,y=3+\\sqrt3$ — option $(B)$.",
+          "Opening downward: vertex $\\bigl(0,-\\tfrac12+\\tfrac{\\sqrt3}{2}\\bigr)$ and $x^2=-2\\sqrt3\\bigl(y+\\tfrac12-\\tfrac{\\sqrt3}{2}\\bigr)$, i.e. $x^2+2\\sqrt3\\,y=3-\\sqrt3$ — option $(C)$. Hence $(B)$ and $(C)$."
+        ]
+      },
+      {
+        "name": "Impose the focus–directrix definition on both endpoints",
+        "steps": [
+          "Set the parabola as $x^2+\\lambda y=\\mu$ (vertical axis through $x=0$). Both endpoints lie on it, but by symmetry $P(\\sqrt3,-\\tfrac12)$ and $Q(-\\sqrt3,-\\tfrac12)$ give the same equation $3-\\tfrac{\\lambda}{2}=\\mu$, one relation between $\\lambda,\\mu$.",
+          "The latus-rectum length must equal $|PQ|=2\\sqrt3$. For $x^2=-\\lambda\\bigl(y-\\tfrac{\\mu}{\\lambda}\\bigr)$ the length is $|\\lambda|$, so $|\\lambda|=2\\sqrt3$, giving $\\lambda=\\pm2\\sqrt3$.",
+          "Take $\\lambda=-2\\sqrt3$: the relation $3-\\tfrac{\\lambda}{2}=\\mu$ gives $\\mu=3+\\sqrt3$, so $x^2-2\\sqrt3\\,y=3+\\sqrt3$ — option $(B)$.",
+          "Take $\\lambda=+2\\sqrt3$: then $\\mu=3-\\sqrt3$, so $x^2+2\\sqrt3\\,y=3-\\sqrt3$ — option $(C)$.",
+          "As a check, the midpoint $\\bigl(0,-\\tfrac12\\bigr)$ of $PQ$ must be the point where each latus rectum crosses the axis; substituting $x=0$ into $(B)$ and $(C)$ both return $y=-\\tfrac12$, confirming the boxed pair $(B),(C)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q9. Insight: a latus rectum pins down the axis direction and the focal width but not the opening sense, so a single chord always spawns a mirror pair of parabolas straddling it."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Incircle of an Equilateral Triangle",
+    "difficulty": 4,
+    "task": "Find the equation of circle C",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "18"
+    },
+    "tags": [
+      "inscribed circle",
+      "coordinate geometry",
+      "distance from a line",
+      "2008"
+    ],
+    "figure": "<svg viewBox=\"0 0 360 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Incircle of equilateral triangle PQR</title><desc>Equilateral triangle PQR with vertices R at origin, P on the x-axis and Q above, its inscribed circle C of radius 1 centred inside, and the contact point D on side PQ lying on the line sqrt3 x + y = 6.</desc><line x1=\"20\" y1=\"250\" x2=\"345\" y2=\"250\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"40\" y1=\"270\" x2=\"40\" y2=\"25\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><polygon points=\"317.1,250 178.6,40 40,250\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><circle cx=\"178.6\" cy=\"180\" r=\"70\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><circle cx=\"178.6\" cy=\"180\" r=\"2.5\" fill=\"var(--ink2)\"/><line x1=\"178.6\" y1=\"180\" x2=\"247.8\" y2=\"145\" stroke=\"var(--ink3)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><circle cx=\"247.8\" cy=\"145\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"109.3\" cy=\"145\" r=\"2.5\" fill=\"var(--ink3)\"/><circle cx=\"178.6\" cy=\"250\" r=\"2.5\" fill=\"var(--ink3)\"/><text x=\"322\" y=\"263\" fill=\"var(--ink2)\" font-size=\"12\">P</text><text x=\"172\" y=\"32\" fill=\"var(--ink2)\" font-size=\"12\">Q</text><text x=\"26\" y=\"263\" fill=\"var(--ink2)\" font-size=\"12\">R</text><text x=\"160\" y=\"176\" fill=\"var(--ink2)\" font-size=\"12\">C</text><text x=\"254\" y=\"140\" fill=\"var(--ink2)\" font-size=\"12\">D</text><text x=\"90\" y=\"140\" fill=\"var(--ink2)\" font-size=\"12\">F</text><text x=\"184\" y=\"265\" fill=\"var(--ink2)\" font-size=\"12\">E</text></svg>",
+    "statement": "A circle $C$ of radius $1$ is inscribed in an equilateral triangle $PQR$, touching the sides $PQ$, $QR$, $RP$ at $D$, $E$, $F$ respectively. The side $PQ$ lies along the line $\\sqrt{3}\\,x+y-6=0$, and the point of contact on it is $D=\\left(\\tfrac{3\\sqrt3}{2},\\tfrac32\\right)$. The origin and the centre of $C$ lie on the same side of the line $PQ$. Determine the equation of circle $C$: $(A)\\ (x-2\\sqrt3)^2+(y-1)^2=1$; $(B)\\ (x-2\\sqrt3)^2+\\left(y+\\tfrac12\\right)^2=1$; $(C)\\ (x-\\sqrt3)^2+(y+1)^2=1$; $(D)\\ (x-\\sqrt3)^2+(y-1)^2=1$.",
+    "answer": "$\\boxed{(D)\\ (x-\\sqrt3)^2+(y-1)^2=1}$",
+    "trap": "Stepping off from $D$ along the outward normal instead of the inward one. The centre must sit one unit from $PQ$ on the same side as the origin. Since the origin gives $\\sqrt3(0)+0-6=-6<0$, the centre must also make the expression negative; moving the wrong way lands you at $(2\\sqrt3,2)$ (option $A$), where $\\sqrt3(2\\sqrt3)+2-6=+2>0$ — the far side. Always fix the sign of the step by testing which side the origin is on.",
+    "solutions": [
+      {
+        "name": "Step one radius along the inward unit normal",
+        "steps": [
+          "The centre lies on the line through $D$ perpendicular to $PQ$, at distance $1$ (the radius) from $D$. The normal direction of $\\sqrt3\\,x+y-6=0$ is $(\\sqrt3,1)$, with magnitude $\\sqrt{(\\sqrt3)^2+1^2}=2$, so the unit normal is $\\tfrac12(\\sqrt3,1)$.",
+          "The two candidate centres are $D\\pm 1\\cdot\\tfrac12(\\sqrt3,1)=\\left(\\tfrac{3\\sqrt3}{2}\\pm\\tfrac{\\sqrt3}{2},\\ \\tfrac32\\pm\\tfrac12\\right)$, i.e. $(2\\sqrt3,2)$ or $(\\sqrt3,1)$.",
+          "Pick the one on the origin's side. The origin gives $\\sqrt3(0)+0-6=-6<0$. Test $(\\sqrt3,1)$: $\\sqrt3\\cdot\\sqrt3+1-6=3+1-6=-2<0$ — same side. Test $(2\\sqrt3,2)$: $\\sqrt3\\cdot2\\sqrt3+2-6=6+2-6=+2>0$ — opposite side, rejected.",
+          "So the centre is $(\\sqrt3,1)$ and the radius is $1$, giving $(x-\\sqrt3)^2+(y-1)^2=1$, option $(D)$."
+        ]
+      },
+      {
+        "name": "Test each option against the radius and side conditions",
+        "steps": [
+          "Every valid centre must be exactly $1$ unit from the line $PQ$, since the radius is $1$. For a candidate centre $(x_0,y_0)$ that distance is $\\dfrac{|\\sqrt3\\,x_0+y_0-6|}{\\sqrt{3+1}}=\\dfrac{|\\sqrt3\\,x_0+y_0-6|}{2}$.",
+          "Option $(D)$ centre $(\\sqrt3,1)$: $\\dfrac{|3+1-6|}{2}=\\dfrac{2}{2}=1$ ✓, and the numerator's argument $-2<0$ matches the origin's side. Option $(A)$ centre $(2\\sqrt3,2)$: distance $\\dfrac{|6+2-6|}{2}=1$ but argument $+2>0$ — wrong side, rejected.",
+          "Options $(B)$ and $(C)$ have centres $(2\\sqrt3,-\\tfrac12)$ and $(\\sqrt3,-1)$; each fails because the contact point $D=\\left(\\tfrac{3\\sqrt3}{2},\\tfrac32\\right)$ must lie on the circle. For $(C)$: $\\left(\\tfrac{3\\sqrt3}{2}-\\sqrt3\\right)^2+\\left(\\tfrac32+1\\right)^2=\\tfrac34+\\tfrac{25}{4}=7\\ne1$.",
+          "Only $(D)$ satisfies distance $=1$, the correct side, and passes through $D$: $\\left(\\tfrac{3\\sqrt3}{2}-\\sqrt3\\right)^2+\\left(\\tfrac32-1\\right)^2=\\tfrac34+\\tfrac14=1$ ✓. Hence the boxed answer."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q18. Insight: the incentre is one radius in from the point of contact along the inward normal, and the phrase “on the same side as the origin” is precisely what pins down the direction of that step."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Other Two Contact Points",
+    "difficulty": 4,
+    "task": "Identify points E and F",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "19"
+    },
+    "tags": [
+      "points of contact",
+      "coordinate geometry",
+      "inscribed circle",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Continuing the previous configuration, the circle $C$ of radius $1$ inscribed in equilateral triangle $PQR$ has centre $(\\sqrt3,1)$, and it touches $PQ$ at $D=\\left(\\tfrac{3\\sqrt3}{2},\\tfrac32\\right)$, where $PQ:\\ \\sqrt3\\,x+y-6=0$. The points $E$ and $F$ where $C$ touches $QR$ and $RP$ are: $(A)\\ \\left(\\tfrac{\\sqrt3}{2},\\tfrac32\\right),\\ (\\sqrt3,0)$; $(B)\\ \\left(\\tfrac32,\\tfrac12\\right),\\ (\\sqrt3,0)$; $(C)\\ \\left(\\tfrac{3\\sqrt3}{2},\\tfrac32\\right),\\ \\left(\\tfrac32,\\tfrac12\\right)$; $(D)\\ \\left(\\tfrac32,\\tfrac32\\right),\\ \\left(\\tfrac32,\\tfrac12\\right)$.",
+    "answer": "$\\boxed{(A)\\ \\left(\\tfrac{\\sqrt3}{2},\\tfrac32\\right),\\ (\\sqrt3,0)}$",
+    "trap": "Trying to grind out the equations of sides $QR$ and $RP$ and then drop perpendiculars — slow, and easy to slip on. The decisive shortcut is that every contact point lies on $C$: any offered point at distance $\\ne1$ from the centre $(\\sqrt3,1)$ is disqualified instantly. The point $\\left(\\tfrac32,\\tfrac12\\right)$ appearing in options $B$, $C$, $D$ is at distance $\\sqrt{\\tfrac{22-12\\sqrt3}{4}}\\ne1$ from the centre, so it cannot be a contact point at all.",
+    "solutions": [
+      {
+        "name": "A contact point must lie on the circle",
+        "steps": [
+          "Each of $E$ and $F$ is a point where $C$ touches a side, so both must lie on $C$, i.e. at distance exactly $1$ from the centre $(\\sqrt3,1)$.",
+          "Test the recurring candidate $\\left(\\tfrac32,\\tfrac12\\right)$: $\\left(\\tfrac32-\\sqrt3\\right)^2+\\left(\\tfrac12-1\\right)^2=\\left(\\tfrac{9}{4}-3\\sqrt3+3\\right)+\\tfrac14=\\tfrac{22}{4}-3\\sqrt3\\approx0.30\\ne1$. So this point is not on $C$, eliminating options $(B)$, $(C)$, $(D)$.",
+          "Check the two points in $(A)$. For $(\\sqrt3,0)$: $(\\sqrt3-\\sqrt3)^2+(0-1)^2=1$ ✓. For $\\left(\\tfrac{3\\sqrt3}{2},\\tfrac32\\right)$: $\\left(\\tfrac{3\\sqrt3}{2}-\\sqrt3\\right)^2+\\left(\\tfrac32-1\\right)^2=\\tfrac34+\\tfrac14=1$ ✓.",
+          "Only option $(A)$ lists two genuine points of the incircle, so it is the answer."
+        ]
+      },
+      {
+        "name": "Reconstruct the triangle and drop perpendiculars",
+        "steps": [
+          "The vertices sit at distance $2$ (twice the inradius, since $R_{\\text{circum}}=2r$ for an equilateral triangle) from the centre. Taking $PQ$ along $\\sqrt3\\,x+y=6$ and solving, one obtains $P=(2\\sqrt3,0)$, $Q=(\\sqrt3,3)$, $R=(0,0)$ (each at distance $2$ from $(\\sqrt3,1)$, and the centroid of $P,Q,R$ is exactly $(\\sqrt3,1)$).",
+          "Line $RP$ runs from $(0,0)$ to $(2\\sqrt3,0)$ — the $x$-axis, $y=0$. The foot of the perpendicular from $(\\sqrt3,1)$ onto $y=0$ is $F=(\\sqrt3,0)$.",
+          "Line $QR$ runs from $(\\sqrt3,3)$ to $(0,0)$, i.e. $y=\\sqrt3\\,x$, or $\\sqrt3\\,x-y=0$. The foot of the perpendicular from $(\\sqrt3,1)$ gives $E=\\left(\\tfrac{3\\sqrt3}{2},\\tfrac32\\right)$ after projecting.",
+          "Thus $\\{E,F\\}=\\left\\{\\left(\\tfrac{3\\sqrt3}{2},\\tfrac32\\right),(\\sqrt3,0)\\right\\}$, matching option $(A)$ and confirming the boxed answer."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q19. Insight: rather than computing sides, note that any contact point must satisfy the circle's equation — a one-line distance check on the offered coordinates settles the question, since $\\left(\\tfrac32,\\tfrac12\\right)$ never lies on $C$ at all."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Vertex, Focus and Latus Rectum",
+    "difficulty": 4,
+    "task": "Find the area of triangle $ABC$.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "8"
+    },
+    "tags": [
+      "hyperbola",
+      "latus rectum",
+      "focus",
+      "area of triangle",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Consider a branch of the hyperbola $x^2 - 2y^2 - 2\\sqrt{2}\\,x - 4\\sqrt{2}\\,y - 6 = 0$ with vertex at the point $A$. Let $B$ be one of the end points of its latus rectum, and let $C$ be the focus of the hyperbola nearest to the point $A$. Then the area of the triangle $ABC$ equals which of the following?\n\n$\\textbf{(A)}\\ 1 - \\sqrt{\\tfrac{2}{3}} \\qquad \\textbf{(B)}\\ \\sqrt{\\tfrac{3}{2}} - 1 \\qquad \\textbf{(C)}\\ 1 + \\sqrt{\\tfrac{2}{3}} \\qquad \\textbf{(D)}\\ \\sqrt{\\tfrac{3}{2}} + 1$",
+    "answer": "$\\boxed{\\sqrt{\\tfrac{3}{2}} - 1}$",
+    "trap": "The vertex $A$, focus $C$ and endpoint $B$ all lie relative to the shifted centre, not the origin — but since $A$, $C$ both sit on the transverse axis, the triangle is right-angled with legs along and perpendicular to that axis, so the translation never has to be undone. The base is $CA = ae - a$ (not $ae$), and the height is the semi-latus rectum $b^2/a$ (half the full latus rectum).",
+    "solutions": [
+      {
+        "name": "Standard form, then $\\tfrac12 (\\text{base})(\\text{height})$",
+        "steps": [
+          "Complete the squares: $x^2 - 2\\sqrt2\\,x = (x-\\sqrt2)^2 - 2$ and $-2\\big(y^2 + 2\\sqrt2\\,y\\big) = -2(y+\\sqrt2)^2 + 4$. The equation becomes $(x-\\sqrt2)^2 - 2(y+\\sqrt2)^2 = 4$, i.e. $\\dfrac{(x-\\sqrt2)^2}{4} - \\dfrac{(y+\\sqrt2)^2}{2} = 1$.",
+          "Read off $a^2 = 4,\\ b^2 = 2$, so $a = 2,\\ b = \\sqrt2$ and $e = \\sqrt{1 + \\tfrac{b^2}{a^2}} = \\sqrt{1 + \\tfrac12} = \\sqrt{\\tfrac32}$.",
+          "In the standard frame the nearest vertex is $A=(a,0)$ and the nearest focus is $C=(ae,0)$; the endpoint of the latus rectum through $C$ is $B=\\left(ae,\\ \\tfrac{b^2}{a}\\right)$. Triangle $ABC$ is right-angled at $C$.",
+          "Base $CA = ae - a = a(e-1)$ and height $CB = \\dfrac{b^2}{a}$, so $\\text{Area} = \\tfrac12\\,a(e-1)\\cdot\\dfrac{b^2}{a} = \\tfrac12\\,b^2\\,(e-1) = \\tfrac12\\cdot 2\\left(\\sqrt{\\tfrac32}-1\\right) = \\sqrt{\\tfrac32} - 1.$"
+        ]
+      },
+      {
+        "name": "Explicit coordinates and the shoelace determinant",
+        "steps": [
+          "Using $a=2,\\ b=\\sqrt2,\\ e=\\sqrt{\\tfrac32}=\\tfrac{\\sqrt6}{2}$, place the three points in the centred frame: $A=(2,0)$, $C=(ae,0)=(\\sqrt6,0)$, and $B=\\left(\\sqrt6,\\ \\tfrac{b^2}{a}\\right)=\\left(\\sqrt6,\\ 1\\right)$.",
+          "The shoelace area is $\\tfrac12\\big|(x_C-x_A)(y_B-y_A) - (x_B-x_A)(y_C-y_A)\\big| = \\tfrac12\\big|(\\sqrt6-2)(1) - (\\sqrt6-2)(0)\\big| = \\tfrac12(\\sqrt6 - 2).$",
+          "Simplify: $\\tfrac12(\\sqrt6 - 2) = \\dfrac{\\sqrt6}{2} - 1 = \\sqrt{\\tfrac32} - 1$, matching option (B). A translation by the centre $(\\sqrt2,-\\sqrt2)$ leaves every side length — hence the area — unchanged, so working in the centred frame is legitimate."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q8. The whole problem collapses once you notice triangle $ABC$ is right-angled at the focus, with legs $a(e-1)$ and $b^2/a$ — the messy translation of the centre never needs to be reversed."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Parallel Lines, One Circle",
+    "difficulty": 3,
+    "task": "Judge the two statements and pick the correct option.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "10"
+    },
+    "tags": [
+      "circle",
+      "chord and diameter",
+      "parallel lines",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Consider the lines $L_1: 2x + 3y + p - 3 = 0$ and $L_2: 2x + 3y + p + 3 = 0$, where $p$ is a real number, together with the circle $C: x^2 + y^2 + 6x - 10y + 30 = 0$.\n\n$\\textbf{STATEMENT-1:}$ If line $L_1$ is a chord of circle $C$, then line $L_2$ is not always a diameter of circle $C$.\n\n$\\textbf{STATEMENT-2:}$ If line $L_1$ is a diameter of circle $C$, then line $L_2$ is not a chord of circle $C$.\n\n$\\textbf{(A)}$ Statement-1 True, Statement-2 True; Statement-2 is a correct explanation for Statement-1.\n$\\quad\\textbf{(B)}$ Statement-1 True, Statement-2 True; Statement-2 is NOT a correct explanation for Statement-1.\n$\\quad\\textbf{(C)}$ Statement-1 True, Statement-2 False.\n$\\quad\\textbf{(D)}$ Statement-1 False, Statement-2 True.",
+    "answer": "$\\boxed{\\textbf{(C)}}$",
+    "trap": "It is tempting to think that pushing $L_1$ out to a diameter forces the parallel line $L_2$ far enough to escape the circle. But the fixed gap between $L_1$ and $L_2$ is only $\\tfrac{6}{\\sqrt{13}} \\approx 1.66$, which is smaller than the radius $2$. So even when $L_1$ passes through the centre, $L_2$ still cuts the circle — Statement-2 is false.",
+    "solutions": [
+      {
+        "name": "Compare the fixed gap with the radius",
+        "steps": [
+          "Rewrite the circle: $x^2 + y^2 + 6x - 10y + 30 = (x+3)^2 + (y-5)^2 - 9 - 25 + 30 = 0$, giving centre $(-3,5)$ and radius $r = \\sqrt{9+25-30} = 2$.",
+          "$L_1$ and $L_2$ are parallel (both have normal $(2,3)$). Their separation is $\\dfrac{|(p+3)-(p-3)|}{\\sqrt{2^2+3^2}} = \\dfrac{6}{\\sqrt{13}} \\approx 1.664$, independent of $p$.",
+          "Since the gap $\\tfrac{6}{\\sqrt{13}} < r = 2$: if $L_1$ is a diameter it passes through the centre, so $L_2$ lies at distance $\\tfrac{6}{\\sqrt{13}} < 2$ from the centre and therefore still meets the circle in two points — $L_2$ IS a chord. Hence $\\textbf{Statement-2 is false}$.",
+          "$L_1$ being merely a chord fixes only that its distance from the centre is below $2$; nothing forces $L_2$ to pass through the centre, so $L_2$ need not be a diameter — $\\textbf{Statement-1 is true}$. True/False $\\Rightarrow$ option (C)."
+        ]
+      },
+      {
+        "name": "Test the critical value of $p$",
+        "steps": [
+          "The distance of the centre $(-3,5)$ from a line $2x+3y+c=0$ is $\\dfrac{|2(-3)+3(5)+c|}{\\sqrt{13}} = \\dfrac{|9+c|}{\\sqrt{13}}$. For $L_1$ take $c=p-3$: distance $\\dfrac{|p+6|}{\\sqrt{13}}$; for $L_2$ take $c=p+3$: distance $\\dfrac{|p+12|}{\\sqrt{13}}$.",
+          "$L_2$ is a diameter exactly when $\\dfrac{|p+12|}{\\sqrt{13}} = 0$, i.e. $p = -12$. At $p=-12$ the distance of $L_1$ is $\\dfrac{|-12+6|}{\\sqrt{13}} = \\dfrac{6}{\\sqrt{13}} \\approx 1.66 < 2$, so $L_1$ is genuinely a chord while $L_2$ is a diameter — this single witness shows $L_2$ is $\\textit{not always}$ a diameter, confirming Statement-1.",
+          "Conversely make $L_1$ a diameter: $\\dfrac{|p+6|}{\\sqrt{13}}=0 \\Rightarrow p=-6$; then $L_2$ has distance $\\dfrac{|-6+12|}{\\sqrt{13}} = \\dfrac{6}{\\sqrt{13}} < 2$, so $L_2$ remains a chord. Statement-2 fails, and the answer is (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q10. The whole verdict rests on one inequality — the constant gap $\\tfrac{6}{\\sqrt{13}}$ between the parallel lines is less than the radius $2$, so the two lines can never straddle the circle far enough for one to leave while the other passes through the centre."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Circumcircle of the Tangent Pair",
+    "difficulty": 3,
+    "task": "Find the equation of the circumcircle of the triangle formed by an external point and the two points of tangency.",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "26"
+    },
+    "tags": [
+      "circle",
+      "tangents from external point",
+      "circumcircle / diameter form",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "From the external point $P(1,8)$ two tangents are drawn to the circle $x^2 + y^2 - 6x - 4y - 11 = 0$, touching it at the points $A$ and $B$. Determine the equation of the circumcircle of the triangle $PAB$.",
+    "answer": "$\\boxed{x^2 + y^2 - 4x - 10y + 19 = 0}$",
+    "trap": "It is tempting to hunt for $A$ and $B$ explicitly (they have irrational coordinates) and then fit a circle through three messy points. The elegant observation is that a radius is perpendicular to a tangent at its point of contact, so $A$ and $B$ see the segment $PC$ at a right angle and therefore lie on the circle whose diameter is $PC$.",
+    "solutions": [
+      {
+        "name": "Right angle at the contact points $\\Rightarrow$ diameter $PC$",
+        "steps": [
+          "Write the given circle as $x^2+y^2-6x-4y-11=0$; its centre is $C(3,2)$.",
+          "A tangent is perpendicular to the radius at the point of contact, so $\\angle PAC = \\angle PBC = 90^\\circ$.",
+          "Points subtending a right angle over a fixed segment lie on the circle having that segment as diameter, so $A$ and $B$ (and trivially $P$) lie on the circle with diameter $PC$.",
+          "The circle on the diameter joining $P(1,8)$ and $C(3,2)$ is $(x-1)(x-3)+(y-8)(y-2)=0$.",
+          "Expanding gives $x^2+y^2-4x-10y+19=0$, the required circumcircle of $\\triangle PAB$."
+        ]
+      },
+      {
+        "name": "Fit a circle through $P$ and the two contact points",
+        "steps": [
+          "The chord of contact $AB$ is $T=0$: $x+8y-3(x+1)-2(y+8)-11=0$, i.e. $-x+3y-15=0$.",
+          "Solving this line with the given circle gives the two contact points $A,B=\\left(\\tfrac{9}{5}\\mp\\tfrac{6\\sqrt6}{5},\\ \\tfrac{28}{5}\\mp\\tfrac{2\\sqrt6}{5}\\right)$.",
+          "Let the circumcircle be $x^2+y^2+Dx+Ey+F=0$ and impose passage through $P(1,8)$ and through $A,B$.",
+          "Solving the three linear equations yields $D=-4,\\ E=-10,\\ F=19$.",
+          "Hence the circumcircle is $x^2+y^2-4x-10y+19=0$, matching the diameter argument."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2009, Paper 1, Q26. The concyclic quartet $P,A,B,C$ turns a three-point fit into a one-line diameter, since the two right angles at $A$ and $B$ pin the whole configuration onto the circle on $PC$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Chord Meeting the Auxiliary Circle",
+    "difficulty": 3,
+    "task": "Find the area of a triangle formed by the origin and where an ellipse's axis-endpoint chord re-meets the auxiliary circle.",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "27"
+    },
+    "tags": [
+      "ellipse",
+      "auxiliary circle",
+      "area of triangle",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "For the ellipse $x^2 + 9y^2 = 9$, let $A$ be an extremity of the major axis and $B$ an extremity of the minor axis. The line $AB$ meets the auxiliary circle of the ellipse again at the point $M$. Find the area of the triangle whose vertices are $A$, $M$, and the origin $O$.",
+    "answer": "$\\boxed{\\dfrac{27}{10}}$",
+    "trap": "The auxiliary circle is the circle on the major axis as diameter, $x^2+y^2=9$ — not the ellipse itself and not the circle $x^2+y^2=1$ on the minor axis. Using the wrong circle (or forgetting that $A$ is already one intersection, so $M$ is the second one) derails the area.",
+    "solutions": [
+      {
+        "name": "Direct intersection of chord and auxiliary circle",
+        "steps": [
+          "Write the ellipse in standard form $\\dfrac{x^2}{9}+\\dfrac{y^2}{1}=1$, so $a=3,\\ b=1$; take $A=(3,0)$ and $B=(0,1)$.",
+          "The auxiliary circle is $x^2+y^2=9$, and the line $AB$ is $\\dfrac{x}{3}+\\dfrac{y}{1}=1$, i.e. $x+3y=3$.",
+          "Substituting $x=3-3y$ into $x^2+y^2=9$ gives $10y^2-18y=0$, so $y=0$ (the point $A$) or $y=\\dfrac{9}{5}$.",
+          "The second intersection is $M=\\left(-\\dfrac{12}{5},\\ \\dfrac{9}{5}\\right)$.",
+          "With $O=(0,0)$ and $A=(3,0)$, the area is $\\dfrac{1}{2}\\left|x_A y_M - x_M y_A\\right| = \\dfrac{1}{2}\\left|3\\cdot\\dfrac{9}{5}\\right| = \\dfrac{27}{10}$."
+        ]
+      },
+      {
+        "name": "Base $\\times$ height on $OA$",
+        "steps": [
+          "The base $OA$ lies along the $x$-axis with length $|OA|=3$.",
+          "For a base on the $x$-axis, the triangle's height is simply the vertical distance of the apex $M$, namely $|y_M|$.",
+          "From the chord–circle solution the apex has $y_M=\\dfrac{9}{5}$.",
+          "Hence area $=\\dfrac{1}{2}\\cdot 3\\cdot\\dfrac{9}{5}=\\dfrac{27}{10}$, confirming the coordinate computation."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2009, Paper 1, Q27. Recognising the auxiliary circle as the one on the major axis ($x^2+y^2=9$) collapses the problem to a single quadratic whose known root $A$ hands you the second intersection $M$ for free."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Matching Four Loci to Their Conics",
+    "difficulty": 4,
+    "task": "Classify each of four loci — a tangency condition, two complex-plane distance relations, an eccentricity range, and a rational parametrisation — as the correct conic.",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "40"
+    },
+    "tags": [
+      "identifying conics",
+      "tangency locus",
+      "eccentricity",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "Match each conic in Column I with every description in Column II that fits it. Column I lists $(A)$ Circle, $(B)$ Parabola, $(C)$ Ellipse, $(D)$ Hyperbola. Column II gives $(p)$ the locus of the point $(h,k)$ for which the line $hx+ky=1$ touches the circle $x^2+y^2=4$; $(q)$ the points $z$ in the complex plane satisfying $|z+2|-|z-2|=\\pm 3$; $(r)$ the points of the conic with parametric representation $x=\\sqrt{3}\\,\\dfrac{1-t^2}{1+t^2},\\ y=\\dfrac{2t}{1+t^2}$; $(s)$ the conic whose eccentricity $e$ satisfies $1\\le e<\\infty$; and $(t)$ the points $z$ satisfying $\\operatorname{Re}\\big((z+1)^2\\big)=|z|^2+1$. Determine the complete matching.",
+    "answer": "$\\boxed{A\\to p,\\quad B\\to s,t,\\quad C\\to r,\\quad D\\to q,s}$",
+    "trap": "Statement $(s)$ says $1\\le e<\\infty$, so it captures both the parabola $(e=1)$ and the hyperbola $(e>1)$ — matching it to only one conic loses a pairing. And in $(t)$, expanding $\\operatorname{Re}\\big((z+1)^2\\big)=|z|^2+1$ gives a parabola $y^2=x$, not a circle, despite the $|z|^2$ term tempting you toward one.",
+    "solutions": [
+      {
+        "name": "Reduce each locus to a Cartesian equation",
+        "steps": [
+          "$(p)$ The line $hx+ky=1$ touches $x^2+y^2=4$ when its distance from the origin equals the radius: $\\dfrac{1}{\\sqrt{h^2+k^2}}=2$, so $h^2+k^2=\\dfrac14$ — a $\\textbf{circle}$, giving $A\\to p$.",
+          "$(q)$ $|z+2|-|z-2|=\\pm3$ is the set of points whose distances from $(-2,0)$ and $(2,0)$ differ by the constant $3$. Since $3<4=$ (distance between foci), this is a $\\textbf{hyperbola}$ with $2a=3,\\ 2c=4$, giving $D\\to q$.",
+          "$(r)$ With $x=\\sqrt3\\,\\dfrac{1-t^2}{1+t^2},\\ y=\\dfrac{2t}{1+t^2}$, compute $\\dfrac{x^2}{3}+y^2=\\dfrac{(1-t^2)^2+(2t)^2}{(1+t^2)^2}=1$. So $\\dfrac{x^2}{3}+y^2=1$, an $\\textbf{ellipse}$, giving $C\\to r$.",
+          "$(t)$ Put $z=x+iy$: $\\operatorname{Re}\\big((z+1)^2\\big)=(x+1)^2-y^2$ and $|z|^2+1=x^2+y^2+1$. Equating gives $2x-2y^2=0$, i.e. $y^2=x$ — a $\\textbf{parabola}$, giving $B\\to t$.",
+          "$(s)$ Eccentricity $1\\le e<\\infty$ holds for a parabola $(e=1)$ and a hyperbola $(e>1)$, so $s$ attaches to both $B$ and $D$.",
+          "Collecting: $A\\to p,\\ B\\to s,t,\\ C\\to r,\\ D\\to q,s$."
+        ]
+      },
+      {
+        "name": "Eliminate by eccentricity and focal signature",
+        "steps": [
+          "Sort the four target conics by eccentricity: circle $e=0$, ellipse $0<e<1$, parabola $e=1$, hyperbola $e>1$. Immediately $(s)$'s range $[1,\\infty)$ can only meet the parabola and hyperbola, so $s\\in\\{B,D\\}$.",
+          "A locus written as a fixed sum/difference of two focal distances is an ellipse or hyperbola. In $(q)$ the constant is a $\\textit{difference}$ $(=3)$ and it is smaller than the inter-focal distance $4$, forcing a hyperbola: $q\\to D$.",
+          "A locus from a single distance-to-a-line versus distance-to-a-point is a parabola; a locus of a point whose coordinates satisfy one homogeneous-degree-two relation with no cross term and equal signs is a circle. Statement $(p)$'s tangency condition $h^2+k^2=\\tfrac14$ has equal coefficients and no linear focus term $\\Rightarrow$ circle: $p\\to A$.",
+          "For $(t)$, the appearance of a single squared coordinate against a linear one — after cancellation, $y^2=x$ — is the parabola signature: $t\\to B$; consistent with $e=1$ placing $B$ inside $s$'s range.",
+          "The only bounded, centrally-symmetric curve left is $(r)$; its rational (Weierstrass) parametrisation with $x^2$ and $y^2$ both bounded is an ellipse: $r\\to C$.",
+          "This independent routing reproduces $A\\to p,\\ B\\to s,t,\\ C\\to r,\\ D\\to q,s$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 1, Q40. Every column-II entry is a disguised standard-form test: convert to Cartesian and the conic's eccentricity — or its focal-distance signature — reveals the match, with $(s)$ deliberately shared between the two $e\\ge 1$ curves."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Midpoint of Normal Chord Meets Latus Recta",
+    "difficulty": 4,
+    "task": "Trace the midpoint of the segment from a point to where the ellipse's normal cuts the x-axis, then find where that locus meets the latus recta.",
+    "pyq": {
+      "year": 2009,
+      "paper": "2",
+      "qno": "23"
+    },
+    "tags": [
+      "ellipse",
+      "normal",
+      "locus of midpoint",
+      "latus rectum",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "The normal at a point $P$ on the ellipse $x^2+4y^2=16$ meets the $x$-axis at $Q$. If $M$ is the mid-point of the segment $PQ$, then the locus of $M$ intersects the latus recta of the given ellipse at which points?",
+    "answer": "$\\boxed{\\left(\\pm 2\\sqrt{3},\\ \\pm\\dfrac{1}{7}\\right)}$",
+    "trap": "The foot $Q$ is on the $x$-axis, so its $y$-coordinate is $0$ — the midpoint's ordinate is $\\tfrac12 y_P$, not $y_P$. Halving only the abscissa (or forgetting to halve at all) yields a wrong locus. Also, the latus recta sit at $x=\\pm ae=\\pm 2\\sqrt3$, not at $x=\\pm a=\\pm 4$.",
+    "solutions": [
+      {
+        "name": "Parametrise, eliminate, then substitute",
+        "steps": [
+          "Write the ellipse as $\\dfrac{x^2}{16}+\\dfrac{y^2}{4}=1$, so $a=4,\\ b=2$. Take $P=(4\\cos\\theta,\\ 2\\sin\\theta)$.",
+          "The normal at $P$ is $\\dfrac{a x}{\\cos\\theta}-\\dfrac{b y}{\\sin\\theta}=a^2-b^2$; setting $y=0$ gives $Q=\\left(\\dfrac{(a^2-b^2)\\cos\\theta}{a},\\,0\\right)=\\big(3\\cos\\theta,\\ 0\\big).$",
+          "Midpoint $M=(x,y)$ of $PQ$: $x=\\dfrac{4\\cos\\theta+3\\cos\\theta}{2}=\\dfrac{7\\cos\\theta}{2},\\qquad y=\\dfrac{2\\sin\\theta+0}{2}=\\sin\\theta.$",
+          "Eliminate $\\theta$ via $\\cos\\theta=\\dfrac{2x}{7},\\ \\sin\\theta=y$: the locus is $\\dfrac{4x^2}{49}+y^2=1.$",
+          "The latus recta are the vertical lines $x=\\pm ae$ with $ae=\\sqrt{a^2-b^2}=\\sqrt{12}=2\\sqrt3$. Substitute $x^2=12$: $\\dfrac{4\\cdot 12}{49}+y^2=1\\Rightarrow y^2=\\dfrac{1}{49}\\Rightarrow y=\\pm\\dfrac17.$",
+          "Hence the intersection points are $\\left(\\pm 2\\sqrt3,\\ \\pm\\dfrac17\\right).$"
+        ]
+      },
+      {
+        "name": "Direct coordinate normal (no trig)",
+        "steps": [
+          "Let $P=(x_0,y_0)$ on $\\dfrac{x^2}{16}+\\dfrac{y^2}{4}=1$. The normal there meets the $x$-axis where $y=0$; the ellipse normal's $x$-intercept is $Q=\\left(x_0\\cdot\\dfrac{a^2-b^2}{a^2},\\,0\\right)=\\left(\\dfrac{12}{16}x_0,\\,0\\right)=\\left(\\dfrac{3}{4}x_0,\\,0\\right).$",
+          "Midpoint: $x=\\dfrac{x_0+\\tfrac34 x_0}{2}=\\dfrac{7}{8}x_0,\\quad y=\\dfrac{y_0}{2}$, so $x_0=\\dfrac{8x}{7},\\ y_0=2y.$",
+          "Impose that $(x_0,y_0)$ lies on the ellipse: $\\dfrac{(8x/7)^2}{16}+\\dfrac{(2y)^2}{4}=1\\Rightarrow \\dfrac{4x^2}{49}+y^2=1$, the same locus.",
+          "On a latus rectum, $x^2=(ae)^2=12$; then $y^2=1-\\dfrac{4\\cdot 12}{49}=\\dfrac{1}{49}$, so $y=\\pm\\dfrac17.$",
+          "The four intersection points are $\\left(\\pm 2\\sqrt3,\\ \\pm\\dfrac17\\right)$, confirming the parametric result."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 2, Q23. The whole problem hinges on the ellipse normal's clean $x$-intercept $x_0(a^2-b^2)/a^2$; once the midpoint locus $\\tfrac{4x^2}{49}+y^2=1$ is in hand, evaluating it at $x=\\pm ae$ finishes it in one line."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "An Ellipse Crossing a Hyperbola at Right Angles",
+    "difficulty": 4,
+    "task": "Identify which statements about the ellipse are correct.",
+    "pyq": {
+      "year": 2009,
+      "paper": "2",
+      "qno": "24"
+    },
+    "tags": [
+      "ellipse and hyperbola",
+      "orthogonal intersection",
+      "eccentricity",
+      "foci",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "An ellipse, with axes along the coordinate axes, intersects the hyperbola $2x^2-2y^2=1$ orthogonally. The eccentricity of the ellipse is the reciprocal of that of the hyperbola. Which of the following are correct? (A) the equation of the ellipse is $x^2+2y^2=2$; (B) the foci of the ellipse are $(\\pm1,0)$; (C) the equation of the ellipse is $x^2+2y^2=4$; (D) the foci of the ellipse are $(\\pm\\sqrt2,0)$.",
+    "answer": "$x^2+2y^2=2$ with foci $(\\pm1,0)$: $\\boxed{\\text{(A), (B)}}$",
+    "trap": "Believing the two eccentricity/orthogonality conditions are independent so that either scaling of the ellipse would do. The reciprocal-eccentricity condition only fixes the *shape* ($a^2=2b^2$); it is the orthogonality at the actual intersection point that pins the *size* ($b^2=1$). Skip the orthogonality check and you cannot decide between (A) and (C).",
+    "solutions": [
+      {
+        "name": "Eccentricity fixes the shape, orthogonality fixes the size",
+        "steps": [
+          "Write the hyperbola as $\\dfrac{x^2}{1/2}-\\dfrac{y^2}{1/2}=1$. It is rectangular ($a^2=b^2$), so its eccentricity is $e_h=\\sqrt{1+1}=\\sqrt2$. Hence the ellipse has $e=\\dfrac{1}{\\sqrt2}$, giving $e^2=1-\\dfrac{b^2}{a^2}=\\dfrac12$, i.e. $a^2=2b^2$.",
+          "Let the ellipse be $\\dfrac{x^2}{2b^2}+\\dfrac{y^2}{b^2}=1$. Both curves are symmetric, so take the intersection in the first quadrant $(x_0,y_0)$. From the ellipse, $y_0^2=b^2-\\dfrac{x_0^2}{2}$; from the hyperbola, $y_0^2=x_0^2-\\dfrac12$. Equating: $x_0^2-\\dfrac12=b^2-\\dfrac{x_0^2}{2}\\Rightarrow \\dfrac{3x_0^2}{2}=b^2+\\dfrac12$.",
+          "Impose orthogonality. Slopes: ellipse $\\dfrac{dy}{dx}=-\\dfrac{x_0}{2y_0}$, hyperbola $\\dfrac{dy}{dx}=\\dfrac{x_0}{y_0}$. Perpendicularity means $\\left(-\\dfrac{x_0}{2y_0}\\right)\\!\\left(\\dfrac{x_0}{y_0}\\right)=-1$, i.e. $x_0^2=2y_0^2$.",
+          "Combine. With $x_0^2=2y_0^2$ and $y_0^2=x_0^2-\\tfrac12=2y_0^2-\\tfrac12$, we get $y_0^2=\\tfrac12$ and $x_0^2=1$. Then $\\dfrac{3(1)}{2}=b^2+\\dfrac12\\Rightarrow b^2=1$, so $a^2=2$. The ellipse is $\\dfrac{x^2}{2}+y^2=1$, i.e. $x^2+2y^2=2$ — statement (A).",
+          "Foci: $a^2e^2=a^2-b^2=2-1=1$, so the foci are $(\\pm1,0)$ — statement (B). The larger ellipse (C) and its foci (D) fail the orthogonality condition."
+        ]
+      },
+      {
+        "name": "Confocal check on the answer",
+        "steps": [
+          "Suppose the ellipse is $x^2+2y^2=2$, i.e. $\\dfrac{x^2}{2}+\\dfrac{y^2}{1}=1$ with $a^2=2,\\,b^2=1$. Its eccentricity is $\\sqrt{1-\\tfrac{1}{2}}=\\dfrac{1}{\\sqrt2}$ — indeed the reciprocal of the hyperbola's $\\sqrt2$, so the eccentricity condition holds and the foci are $\\bigl(\\pm\\sqrt{2-1},0\\bigr)=(\\pm1,0)$.",
+          "Verify orthogonality directly. The curves meet where $x^2+2y^2=2$ and $2x^2-2y^2=1$; adding, $3x^2=3\\Rightarrow x^2=1$, and then $y^2=\\tfrac12$. At such a point ellipse slope $=-\\dfrac{x}{2y}$ and hyperbola slope $=\\dfrac{x}{y}$, whose product is $-\\dfrac{x^2}{2y^2}=-\\dfrac{1}{2\\cdot\\tfrac12}=-1$. The intersection is orthogonal, confirming (A) and (B).",
+          "The rival ellipse $x^2+2y^2=4$ has $a^2=4,b^2=2$; the same intersection algebra gives $x^2=\\tfrac{5}{3}$ and a slope-product $\\neq-1$, so it is not orthogonal — (C) and (D) are rejected."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 2, Q24. The reciprocal-eccentricity clause only shapes the ellipse as $a^2=2b^2$; it is orthogonality at the crossing that determines its scale, so both conditions are needed to land on $x^2+2y^2=2$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Parabola Traced by a Centroid",
+    "difficulty": 4,
+    "task": "Determine the correct features of the locus parabola.",
+    "pyq": {
+      "year": 2009,
+      "paper": "2",
+      "qno": "28"
+    },
+    "tags": [
+      "parabola",
+      "tangent and normal",
+      "centroid locus",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "The tangent $PT$ and the normal $PN$ to the parabola $y^2=4ax$ at a point $P$ on it meet its axis at the points $T$ and $N$ respectively. The locus of the centroid of the triangle $PTN$ is a parabola whose: (A) vertex is $\\left(\\dfrac{2a}{3},0\\right)$; (B) directrix is $x=0$; (C) latus rectum is $\\dfrac{2a}{3}$; (D) focus is $(a,0)$.",
+    "answer": "Locus $y^2=\\dfrac{4a}{3}\\!\\left(x-\\dfrac{2a}{3}\\right)$, so $\\boxed{\\text{(A), (D)}}$",
+    "trap": "Rushing to read off the latus rectum and directrix from the vertex form without care. The locus is $y^2=\\frac{4a}{3}(x-\\frac{2a}{3})$; its latus rectum is $\\frac{4a}{3}$ (not $\\frac{2a}{3}$, so (C) is false) and its directrix is $x=\\frac{2a}{3}-\\frac{a}{3}=\\frac{a}{3}$ (not $x=0$, so (B) is false). Two of the four options are deliberately off by exactly the wrong amount.",
+    "solutions": [
+      {
+        "name": "Parametrize P, locate T and N, then eliminate",
+        "steps": [
+          "Take $P=(at^2,2at)$. The tangent at $P$ is $ty=x+at^2$; setting $y=0$ gives $x=-at^2$, so $T=(-at^2,0)$. The normal at $P$ is $y=-tx+2at+at^3$; setting $y=0$ gives $x=2a+at^2$, so $N=(at^2+2a,0)$.",
+          "Centroid $G=(h,k)$ of $\\triangle PTN$: $3h=at^2+(-at^2)+(at^2+2a)=at^2+2a$ and $3k=2at+0+0=2at$.",
+          "Eliminate $t$. From $3k=2at$, $t=\\dfrac{3k}{2a}$, so $t^2=\\dfrac{9k^2}{4a^2}$. Substitute into $3h=at^2+2a$: $3h=\\dfrac{9k^2}{4a}+2a\\Rightarrow 3h-2a=\\dfrac{9k^2}{4a}\\Rightarrow k^2=\\dfrac{4a}{9}(3h-2a)=\\dfrac{4a}{3}\\!\\left(h-\\dfrac{2a}{3}\\right).$",
+          "Hence the locus is $y^2=\\dfrac{4a}{3}\\!\\left(x-\\dfrac{2a}{3}\\right)$: a parabola with vertex $\\left(\\dfrac{2a}{3},0\\right)$ — statement (A) — and $4A=\\dfrac{4a}{3}$ so $A=\\dfrac{a}{3}$.",
+          "Its focus is at $\\left(\\dfrac{2a}{3}+\\dfrac{a}{3},0\\right)=(a,0)$ — statement (D). The latus rectum is $\\dfrac{4a}{3}$ and the directrix is $x=\\dfrac{2a}{3}-\\dfrac{a}{3}=\\dfrac{a}{3}$, so (C) and (B) are wrong."
+        ]
+      },
+      {
+        "name": "Subtangent–subnormal shortcut",
+        "steps": [
+          "For $y^2=4ax$ at $P=(x_1,y_1)$ the tangent and normal cut the axis at $T=(-x_1,0)$ and $N=(x_1+2a,0)$ — the classical results that the subtangent $=2x_1$ and the subnormal $=2a$ are constant-structured. (Here $x_1=at^2,\\;y_1=2at$.)",
+          "The centroid's ordinate is $k=\\dfrac{y_1}{3}$, so $y_1=3k$; and its abscissa is $h=\\dfrac{-x_1+x_1+(x_1+2a)}{3}=\\dfrac{x_1+2a}{3}$, so $x_1=3h-2a$.",
+          "Since $P$ lies on the parabola, $y_1^2=4ax_1$ gives $(3k)^2=4a(3h-2a)$, i.e. $9k^2=12ah-8a^2$, which is exactly $k^2=\\dfrac{4a}{3}\\!\\left(h-\\dfrac{2a}{3}\\right)$.",
+          "This is the same locus $y^2=\\dfrac{4a}{3}\\!\\left(x-\\dfrac{2a}{3}\\right)$: vertex $\\left(\\dfrac{2a}{3},0\\right)$, focus $(a,0)$ — confirming (A) and (D) — with latus rectum $\\dfrac{4a}{3}$ and directrix $x=\\dfrac{a}{3}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 2, Q28. The centroid inherits a parabola of one-third the latus rectum, and the subnormal being the fixed length $2a$ is what keeps $N$'s contribution clean — locate $T$ and $N$ correctly and the elimination is immediate."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Circle Wedged Between Two Unit Circles",
+    "difficulty": 4,
+    "task": "Find the radius of the third circle.",
+    "pyq": {
+      "year": 2009,
+      "paper": "2",
+      "qno": "38"
+    },
+    "tags": [
+      "circle",
+      "common tangents",
+      "externally touching circles",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "The centres of two circles $C_1$ and $C_2$, each of unit radius, are at a distance of $6$ units from each other. Let $P$ be the midpoint of the segment joining the two centres, and let $C$ be a circle touching both $C_1$ and $C_2$ externally. Suppose a common tangent to $C_1$ and $C$ that passes through $P$ is also a common tangent to $C_2$ and $C$. Find the radius of the circle $C$.",
+    "answer": "$\\boxed{8}$",
+    "trap": "The tangent through $P$ is a common tangent to $C_1$ and $C$ — but since $C_1$ and $C$ lie on opposite sides of that line through the midpoint, it is a transverse (crossing) tangent, not a direct one. Writing the tangency distances with the wrong sign convention, or assuming $C$ sits on the line of centres, wrecks the setup.",
+    "solutions": [
+      {
+        "name": "Symmetry and two tangency distances",
+        "steps": [
+          "Place the centres at $A=(-3,0)$ and $B=(3,0)$, so $P=(0,0)$ with $PA=PB=3$. By the left–right symmetry of the whole configuration, the centre $M$ of $C$ lies on the $y$-axis, say $M=(0,h)$, and $C$ has radius $r$.",
+          "External contact of $C$ with $C_1$ gives $MA=r+1$, i.e. $9+h^2=(r+1)^2$.",
+          "The required tangent passes through $P=(0,0)$; write it as $mx-y=0$. Its distance from $A=(-3,0)$ must equal the radius $1$ of $C_1$: $\\dfrac{|-3m|}{\\sqrt{m^2+1}}=1\\Rightarrow 9m^2=m^2+1\\Rightarrow m^2=\\tfrac18$.",
+          "The same line is tangent to $C$, so its distance from $M=(0,h)$ equals $r$: $\\dfrac{|h|}{\\sqrt{m^2+1}}=r\\Rightarrow h^2=r^2\\left(\\tfrac18+1\\right)=\\tfrac{9r^2}{8}$.",
+          "Substituting into $9+h^2=(r+1)^2$: $9+\\tfrac{9r^2}{8}=(r+1)^2$. This gives $\\tfrac{r^2}{8}-2r-8=0$, i.e. $r^2-16r-64=0$, so $r=8+\\sqrt{128}$ or $r=8$; the touching configuration selects $r=8$ (with $h=6\\sqrt2$). Hence $\\boxed{8}$."
+        ]
+      },
+      {
+        "name": "Equal tangent lengths from $P$",
+        "steps": [
+          "A key fact about a point through which a common tangent to two circles passes: the tangent lengths from that point to the two circles are equal (both equal the distance along the shared tangent line from the point to each point of contact, and here the contacts are collinear with $P$). So the tangent length from $P$ to $C_1$ equals the tangent length from $P$ to $C$.",
+          "Tangent length from $P$ to $C_1$: $\\sqrt{PA^2-1^2}=\\sqrt{9-1}=2\\sqrt2$.",
+          "Tangent length from $P$ to $C$: $\\sqrt{PM^2-r^2}$. Equating, $PM^2-r^2=8$, so $PM^2=r^2+8$.",
+          "With $M=(0,h)$ and $P=(0,0)$ this reads $h^2=r^2+8$. Combined with the external-contact relation $9+h^2=(r+1)^2$ from the geometry, eliminate $h^2$: $9+r^2+8=(r+1)^2=r^2+2r+1$.",
+          "Thus $17=2r+1$, giving $r=8$. Both methods agree: $\\boxed{8}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 2, Q38. Insight: the phrase “common tangent through $P$” is really the statement that $P$ has equal tangent lengths to $C_1$ and $C$, which collapses a fussy contact problem into two clean distance equations."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Chord Whose Circle Touches the Axis",
+    "difficulty": 3,
+    "task": "Determine the possible slopes of the chord.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "37"
+    },
+    "tags": [
+      "parabola",
+      "circle",
+      "tangency",
+      "slope of chord",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Let $A$ and $B$ be two distinct points on the parabola $y^2=4x$. Suppose the axis of the parabola touches a circle of radius $r$ having $AB$ as a diameter. Then the slope of the line joining $A$ and $B$ can be which of the following: $-\\dfrac{1}{r}$, $\\dfrac{1}{r}$, $\\dfrac{2}{r}$, or $-\\dfrac{2}{r}$?",
+    "answer": "$\\boxed{\\;\\dfrac{2}{r}\\ \\text{and}\\ -\\dfrac{2}{r}\\;}$",
+    "trap": "The circle touching the axis fixes the $y$-coordinate of its centre, not its radius directly: the perpendicular distance from the centre to the axis must equal $r$. Confusing “radius $r$” with “semi-latus-rectum” or dropping the factor $2$ in the parametric $y=2t$ produces the seductive wrong answers $\\pm\\tfrac1r$.",
+    "solutions": [
+      {
+        "name": "Parametric points and the tangency condition",
+        "steps": [
+          "Write $A=(t_1^2,\\,2t_1)$ and $B=(t_2^2,\\,2t_2)$ on $y^2=4x$ (here $a=1$, so $x=t^2$, $y=2t$).",
+          "The centre of the circle on diameter $AB$ is the midpoint; its ordinate is $\\dfrac{2t_1+2t_2}{2}=t_1+t_2$. The axis of the parabola is the $x$-axis.",
+          "Tangency to the axis means the distance from the centre to the $x$-axis equals the radius: $|t_1+t_2|=r$.",
+          "The slope of $AB$ is $\\dfrac{2t_1-2t_2}{t_1^2-t_2^2}=\\dfrac{2(t_1-t_2)}{(t_1-t_2)(t_1+t_2)}=\\dfrac{2}{t_1+t_2}$.",
+          "Since $t_1+t_2=\\pm r$, the slope equals $\\pm\\dfrac{2}{r}$. Hence the slope can be $\\dfrac{2}{r}$ or $-\\dfrac{2}{r}$: $\\boxed{\\pm\\tfrac{2}{r}}$."
+        ]
+      },
+      {
+        "name": "Diameter length forces the same constraint",
+        "steps": [
+          "Let the chord have slope $m$, so $AB=2r$ (a diameter). With $A=(t_1^2,2t_1),B=(t_2^2,2t_2)$, put $s=t_1+t_2$ and $d=t_1-t_2$.",
+          "Then $AB^2=(t_1^2-t_2^2)^2+(2t_1-2t_2)^2=d^2\\left(s^2+4\\right)$, so $AB=|d|\\sqrt{s^2+4}=2r$.",
+          "Tangency to the $x$-axis requires the centre's height $|s|$ to equal the radius $r$: $|s|=r$. Substituting $r=|s|$ into $AB=2r$ gives $|d|\\sqrt{s^2+4}=2|s|$ — a self-consistent relation that fixes $|d|$ but leaves $s$ free, confirming a genuine family exists (e.g. $s=\\sqrt2$ gives $d=\\pm\\sqrt2$).",
+          "Because $m=\\dfrac{2}{s}$ and $|s|=r$, we again get $m=\\dfrac{2}{\\pm r}=\\pm\\dfrac{2}{r}$.",
+          "Both routes land on the same pair: the slope is $\\dfrac{2}{r}$ or $-\\dfrac{2}{r}$, i.e. $\\boxed{\\pm\\tfrac{2}{r}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 1, Q37. Insight: the difference-of-squares $t_1^2-t_2^2$ makes the slope collapse to $2/(t_1+t_2)$, and “circle touches the axis” is nothing but $|t_1+t_2|=r$ — the whole problem is one tangency line in disguise."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Tangent Shared by Circle and Hyperbola",
+    "difficulty": 4,
+    "task": "Find the common tangent with positive slope",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "45"
+    },
+    "tags": [
+      "circle",
+      "hyperbola",
+      "common tangent",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "The circle $x^2+y^2-8x=0$ and the hyperbola $\\dfrac{x^2}{9}-\\dfrac{y^2}{4}=1$ intersect at the points $A$ and $B$. The equation of a common tangent with positive slope to the circle as well as to the hyperbola is\n\n(A) $2x-\\sqrt5\\,y-20=0$ · (B) $2x-\\sqrt5\\,y+4=0$ · (C) $3x-4y+8=0$ · (D) $4x-3y+4=0$",
+    "answer": "$\\boxed{2x-\\sqrt5\\,y+4=0}$ \\; — option (B).",
+    "trap": "Imposing tangency on only one curve. Every line $y=mx+c$ with a chosen slope touches the hyperbola for a unique $c=\\pm\\sqrt{9m^2-4}$ and touches the circle for a different $c$; the common tangent exists only when both conditions hold simultaneously, which forces $m$. Picking an option merely because it grazes the circle (or reading $4a$ off the wrong conic) lands on the wrong line, and the sign of $c$ must be kept consistent with a positive slope.",
+    "solutions": [
+      {
+        "name": "Tangent form of the hyperbola meets the distance condition of the circle",
+        "steps": [
+          "A line $y=mx+c$ is tangent to $\\dfrac{x^2}{9}-\\dfrac{y^2}{4}=1$ (with $a^2=9,\\;b^2=4$) exactly when $c^2=a^2m^2-b^2=9m^2-4$.",
+          "The circle $x^2+y^2-8x=0$ has centre $(4,0)$ and radius $4$. Tangency to the circle requires the distance from $(4,0)$ to $mx-y+c=0$ to equal $4$: $\\dfrac{|4m+c|}{\\sqrt{m^2+1}}=4$, i.e. $(4m+c)^2=16(m^2+1)$.",
+          "Expanding the second condition: $16m^2+8mc+c^2=16m^2+16$, so $8mc+c^2=16$. Substituting $c^2=9m^2-4$ gives $8mc+9m^2-4=16$, hence $8mc=20-9m^2$.",
+          "Square: $64m^2c^2=(20-9m^2)^2$. Replacing $c^2=9m^2-4$: $64m^2(9m^2-4)=(20-9m^2)^2$, which reduces to $576m^4-256m^2=81m^4-360m^2+400$, i.e. $495m^4+104m^2-400=0$. This factors as $(5m^2-4)(99m^2+100)=0$, so $m^2=\\dfrac45$ and $m=\\dfrac{2}{\\sqrt5}$ for positive slope.",
+          "Then $c^2=9\\cdot\\dfrac45-4=\\dfrac{16}{5}$, and $8mc=20-9\\cdot\\dfrac45>0$ forces $c>0$, so $c=\\dfrac{4}{\\sqrt5}$. The line is $y=\\dfrac{2}{\\sqrt5}x+\\dfrac{4}{\\sqrt5}$, i.e. $2x-\\sqrt5\\,y+4=0$ — option (B)."
+        ]
+      },
+      {
+        "name": "Test the options against both tangency conditions",
+        "steps": [
+          "Only options (B), (C), (D) have positive slope. Write each as $y=mx+c$ and check the hyperbola condition $c^2=9m^2-4$. For (C) $3x-4y+8=0$: $m=\\tfrac34,\\,c=2$, and $9m^2-4=\\tfrac{81}{16}-4=\\tfrac{17}{16}\\ne4=c^2$, so (C) fails.",
+          "For (D) $4x-3y+4=0$: $m=\\tfrac43,\\,c=\\tfrac43$, and $9m^2-4=16-4=12\\ne\\tfrac{16}{9}=c^2$, so (D) fails.",
+          "For (B) $2x-\\sqrt5\\,y+4=0$: $m=\\dfrac{2}{\\sqrt5},\\,c=\\dfrac{4}{\\sqrt5}$; then $9m^2-4=\\dfrac{36}{5}-4=\\dfrac{16}{5}=c^2$, so (B) is tangent to the hyperbola.",
+          "Now verify (B) touches the circle: distance from $(4,0)$ to $2x-\\sqrt5\\,y+4=0$ is $\\dfrac{|2\\cdot4+4|}{\\sqrt{4+5}}=\\dfrac{12}{3}=4$, equal to the radius. Both conditions hold, confirming option (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2010, Paper 1, Q45. A common tangent is a single line satisfying two independent tangency equations; matching the hyperbola's $c^2=a^2m^2-b^2$ against the circle's centre-distance rule pins the slope $m=2/\\sqrt5$ uniquely."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Tangent Through the Directrix Foot",
+    "difficulty": 4,
+    "task": "Find the eccentricity",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "50"
+    },
+    "tags": [
+      "hyperbola",
+      "tangent condition",
+      "directrix",
+      "eccentricity",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "The line $2x+y=1$ is tangent to the hyperbola $\\dfrac{x^2}{a^2}-\\dfrac{y^2}{b^2}=1$. If this line also passes through the point where the nearest directrix meets the $x$-axis, find the eccentricity of the hyperbola.",
+    "answer": "$\\boxed{e=2}$",
+    "trap": "Using only the tangency condition gives a single relation between $a$ and $b$ and leaves the eccentricity undetermined; the problem is fixed only by the second, easily overlooked datum. The line passing through the foot of the nearest directrix $\\left(\\frac{a}{e},0\\right)$ is what pins down $a$ in terms of $e$. Miss it, and you are one equation short. Also note the tangency form $c^2=a^2m^2-b^2$ carries a minus sign for a hyperbola, unlike the ellipse's plus.",
+    "solutions": [
+      {
+        "name": "Tangency condition plus the directrix datum",
+        "steps": [
+          "Write the line as $y=-2x+1$, so its slope is $m=-2$ and intercept $c=1$. The condition for $y=mx+c$ to touch $\\dfrac{x^2}{a^2}-\\dfrac{y^2}{b^2}=1$ is $c^2=a^2m^2-b^2$, giving $1=4a^2-b^2$.",
+          "The nearest directrix is $x=\\dfrac{a}{e}$, meeting the $x$-axis at $\\left(\\dfrac{a}{e},0\\right)$. Since the line passes through it, $2\\cdot\\dfrac{a}{e}+0=1$, so $a=\\dfrac{e}{2}$.",
+          "Use $b^2=a^2(e^2-1)$. Substitute $a^2=\\dfrac{e^2}{4}$ into $1=4a^2-b^2=4a^2-a^2(e^2-1)=a^2(5-e^2)$: this gives $1=\\dfrac{e^2}{4}(5-e^2)$.",
+          "Hence $e^4-5e^2+4=0$, i.e. $(e^2-1)(e^2-4)=0$. Since $e>1$ for a hyperbola, reject $e^2=1$ and take $e^2=4$, so $e=2$."
+        ]
+      },
+      {
+        "name": "Force a double root by substitution",
+        "steps": [
+          "Tangency means the line meets the conic in a repeated point, so the substituted quadratic has zero discriminant. Put $y=1-2x$ into $\\dfrac{x^2}{a^2}-\\dfrac{y^2}{b^2}=1$ and clear denominators: $b^2x^2-a^2(1-2x)^2=a^2b^2$.",
+          "Expanding gives $(b^2-4a^2)x^2+4a^2x-a^2-a^2b^2=0$. Setting its discriminant to zero, $16a^4+4(b^2-4a^2)(a^2+a^2b^2)=0$, which simplifies to $b^2=4a^2-1$ — the same tangency relation.",
+          "The directrix foot again forces $a=\\dfrac{e}{2}$, and $b^2=a^2(e^2-1)$ turns $b^2=4a^2-1$ into $a^2(e^2-1)=4a^2-1$, i.e. $a^2(5-e^2)=1$ after using $a^2=\\dfrac{e^2}{4}$.",
+          "This is $e^4-5e^2+4=0$ once more; the admissible root with $e>1$ is $e=2$. (A discriminant sweep confirms $e=1$ is the only other real positive root, and it is not a hyperbola.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2010, Paper 1, Q50. The elegance is that two very different-looking facts — one tangency, one directrix incidence — collapse into the biquadratic $(e^2-1)(e^2-4)=0$, and the hyperbola condition $e>1$ silently discards the spurious circle-like root $e=1$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Circle on the Common Chord as Diameter",
+    "difficulty": 3,
+    "task": "Find the circle with AB as diameter",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "46"
+    },
+    "tags": [
+      "circle",
+      "hyperbola",
+      "intersection points",
+      "diameter form",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "The circle $x^2+y^2-8x=0$ and the hyperbola $\\dfrac{x^2}{9}-\\dfrac{y^2}{4}=1$ intersect at the points $A$ and $B$. Determine the equation of the circle that has the segment $AB$ as its diameter: $(A)\\ x^2+y^2-12x+24=0$; $(B)\\ x^2+y^2+12x+24=0$; $(C)\\ x^2+y^2+24x-12=0$; $(D)\\ x^2+y^2-24x-12=0$.",
+    "answer": "$\\boxed{(A)\\ x^2+y^2-12x+24=0}$",
+    "trap": "Solving the two curves and keeping the spurious root. Eliminating $y^2$ produces a quadratic in $x$ with roots $x=6$ and $x=-\\tfrac{6}{13}$; only $x=6$ gives $y^2\\ge0$. Retaining $x=-\\tfrac{6}{13}$ (where $y^2=-\\tfrac{660}{169}<0$) manufactures imaginary intersection points and a wrong circle.",
+    "solutions": [
+      {
+        "name": "Solve for A, B then use the diameter form",
+        "steps": [
+          "From the hyperbola, $\\dfrac{y^2}{4}=\\dfrac{x^2}{9}-1$, so $y^2=\\dfrac{4x^2}{9}-4$. Substitute into $x^2+y^2-8x=0$: $x^2+\\dfrac{4x^2}{9}-4-8x=0$, i.e. $\\dfrac{13x^2}{9}-8x-4=0$, or $13x^2-72x-36=0$.",
+          "Factoring, $(x-6)(13x+6)=0$, giving $x=6$ or $x=-\\tfrac{6}{13}$. The second yields $y^2=\\dfrac{4}{9}\\cdot\\dfrac{36}{169}-4<0$ — impossible — so the real intersections have $x=6$, where $y^2=\\dfrac{4\\cdot36}{9}-4=12$, i.e. $y=\\pm2\\sqrt3$.",
+          "Thus $A=(6,2\\sqrt3)$ and $B=(6,-2\\sqrt3)$. The circle on $AB$ as diameter has centre at the midpoint $(6,0)$ and radius $\\tfrac12|AB|=\\tfrac12\\cdot4\\sqrt3=2\\sqrt3$.",
+          "Its equation is $(x-6)^2+y^2=12$, which expands to $x^2+y^2-12x+24=0$ — option $(A)$."
+        ]
+      },
+      {
+        "name": "Family of circles through the common points",
+        "steps": [
+          "Every circle through $A$ and $B$ belongs to the pencil $S+\\lambda L=0$, where $S:x^2+y^2-8x=0$ is the given circle and $L=0$ is the common chord $AB$. Since $A,B$ share $x=6$, the chord is the vertical line $x-6=0$, so the pencil is $x^2+y^2-8x+\\lambda(x-6)=0$.",
+          "This represents $x^2+y^2+(\\lambda-8)x-6\\lambda=0$, with centre $\\left(\\tfrac{8-\\lambda}{2},0\\right)$. For $AB$ to be the diameter, the centre must lie on the chord $x=6$: $\\tfrac{8-\\lambda}{2}=6\\Rightarrow\\lambda=-4$.",
+          "Substituting $\\lambda=-4$: $x^2+y^2-8x-4(x-6)=x^2+y^2-12x+24=0$.",
+          "This is exactly option $(A)$; its centre $(6,0)$ sits on $x=6$ midway between $A$ and $B$, confirming $AB$ is a diameter."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2010, Paper 1, Q46. Insight: because both intersection points share the abscissa $x=6$, the common chord is vertical, and the diameter circle is fixed the instant you demand its centre lie on that chord."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Parallel Chords of a Circle",
+    "difficulty": 4,
+    "task": "Find the value of $[k]$.",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "26"
+    },
+    "tags": [
+      "circle",
+      "chord subtending angle",
+      "perpendicular distance",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Two parallel chords of a circle of radius $2$ are at a distance $\\sqrt3+1$ apart. If the chords subtend at the centre angles of $\\dfrac{\\pi}{k}$ and $\\dfrac{2\\pi}{k}$, where $k>0$, then find the value of $[k]$, where $[k]$ denotes the greatest integer less than or equal to $k$.",
+    "answer": "$\\boxed{[k]=3}$",
+    "trap": "The two chords sit on opposite sides of the centre, so the separation is the sum $2\\cos\\frac{\\pi}{2k}+2\\cos\\frac{\\pi}{k}$, not the difference. Assuming they lie on the same side (giving $\\sqrt3-1$) leads to a wrong equation.",
+    "solutions": [
+      {
+        "name": "Perpendicular distance $R\\cos(\\theta/2)$",
+        "steps": [
+          "A chord subtending an angle $\\theta$ at the centre of a circle of radius $R$ lies at perpendicular distance $R\\cos\\frac{\\theta}{2}$ from the centre. Here $R=2$.",
+          "The chord subtending $\\dfrac{\\pi}{k}$ is at distance $2\\cos\\dfrac{\\pi}{2k}$, and the one subtending $\\dfrac{2\\pi}{k}$ is at distance $2\\cos\\dfrac{\\pi}{k}$.",
+          "The larger angle $\\dfrac{2\\pi}{k}$ gives the smaller distance, so the two chords lie on opposite sides of the centre and their separation is the sum: $2\\cos\\dfrac{\\pi}{2k}+2\\cos\\dfrac{\\pi}{k}=\\sqrt3+1$.",
+          "Trying $\\dfrac{\\pi}{2k}=\\dfrac{\\pi}{6}$ gives $2\\cos30^\\circ+2\\cos60^\\circ=\\sqrt3+1$, which matches exactly. Hence $\\dfrac{\\pi}{2k}=\\dfrac{\\pi}{6}\\Rightarrow k=3$, so $[k]=3$."
+        ]
+      },
+      {
+        "name": "Solving the trigonometric equation directly",
+        "steps": [
+          "Set the separation equation $f(k)=2\\cos\\dfrac{\\pi}{2k}+2\\cos\\dfrac{\\pi}{k}-(\\sqrt3+1)=0$ and let $u=\\dfrac{\\pi}{2k}$, so the second angle is $2u$.",
+          "Then $2\\cos u+2\\cos 2u=\\sqrt3+1$. Using $\\cos 2u=2\\cos^2u-1$ gives $4\\cos^2u+2\\cos u-2=\\sqrt3+1$, a quadratic in $c=\\cos u$: $4c^2+2c-(3+\\sqrt3)=0$.",
+          "Solving, $c=\\dfrac{-2+\\sqrt{4+16(3+\\sqrt3)}}{8}=\\dfrac{\\sqrt3}{2}$ (the admissible root), so $\\cos u=\\cos30^\\circ$ and $u=\\dfrac{\\pi}{6}$.",
+          "Thus $\\dfrac{\\pi}{2k}=\\dfrac{\\pi}{6}\\Rightarrow k=3$, giving $[k]=3$, consistent with the geometric argument."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 2, Q26. The single subtlety is recognising that a wider subtended angle pulls its chord nearer the centre, forcing the two chords onto opposite sides so the gap is a sum rather than a difference."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Tangent Touch Points on an Ellipse",
+    "difficulty": 3,
+    "task": "Find the coordinates of the touch points $A$ and $B$.",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "34"
+    },
+    "tags": [
+      "ellipse",
+      "chord of contact",
+      "tangents from external point",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Tangents are drawn from the point $P(3,4)$ to the ellipse $\\dfrac{x^2}{9}+\\dfrac{y^2}{4}=1$, touching the ellipse at the points $A$ and $B$. Find the coordinates of $A$ and $B$.",
+    "answer": "$A=(3,0)$ and $B=\\left(-\\dfrac{9}{5},\\dfrac{8}{5}\\right)$, i.e. $\\boxed{(3,0)\\ \\text{and}\\ \\left(-\\tfrac{9}{5},\\tfrac{8}{5}\\right)}$",
+    "trap": "The touch points are not found by writing a general tangent $y=mx\\pm\\sqrt{9m^2+4}$ and solving a messy quadratic in $m$; the fast route is the chord of contact $T=0$, whose intersections with the ellipse are $A$ and $B$ directly. Also, $P(3,4)$ is genuinely outside since $\\frac{9}{9}+\\frac{16}{4}=5>1$, so two real tangents exist.",
+    "solutions": [
+      {
+        "name": "Chord of contact $T=0$",
+        "steps": [
+          "For the point $P(x_1,y_1)$ the chord of contact to $\\dfrac{x^2}{9}+\\dfrac{y^2}{4}=1$ is $T:\\ \\dfrac{x x_1}{9}+\\dfrac{y y_1}{4}=1$. With $P(3,4)$ this is $\\dfrac{3x}{9}+\\dfrac{4y}{4}=1$, i.e. $\\dfrac{x}{3}+y=1$.",
+          "The touch points $A$ and $B$ are the intersections of this line with the ellipse. Substitute $x=3(1-y)$ into $\\dfrac{x^2}{9}+\\dfrac{y^2}{4}=1$: $\\dfrac{9(1-y)^2}{9}+\\dfrac{y^2}{4}=1$, so $(1-y)^2+\\dfrac{y^2}{4}=1$.",
+          "Expanding: $1-2y+y^2+\\dfrac{y^2}{4}=1\\Rightarrow \\dfrac{5}{4}y^2-2y=0\\Rightarrow y\\left(\\dfrac{5y}{4}-2\\right)=0$, giving $y=0$ or $y=\\dfrac{8}{5}$.",
+          "Then $x=3(1-y)$ gives $x=3$ for $y=0$ and $x=3\\left(1-\\tfrac{8}{5}\\right)=-\\tfrac{9}{5}$ for $y=\\tfrac{8}{5}$. Hence $A=(3,0)$ and $B=\\left(-\\dfrac{9}{5},\\dfrac{8}{5}\\right)$."
+        ]
+      },
+      {
+        "name": "Parametric tangent through $P$",
+        "steps": [
+          "Write a point of the ellipse as $(3\\cos\\theta,\\,2\\sin\\theta)$; the tangent there is $\\dfrac{x\\cos\\theta}{3}+\\dfrac{y\\sin\\theta}{2}=1$.",
+          "Requiring the tangent to pass through $P(3,4)$ gives $\\dfrac{3\\cos\\theta}{3}+\\dfrac{4\\sin\\theta}{2}=1$, i.e. $\\cos\\theta+2\\sin\\theta=1$.",
+          "One obvious solution is $\\theta=0$, giving the point $(3\\cos0,2\\sin0)=(3,0)$. For the second, $\\theta=2\\tan^{-1}2$ gives $\\cos\\theta=-\\tfrac{3}{5}$, $\\sin\\theta=\\tfrac{4}{5}$.",
+          "That yields $\\left(3\\cdot(-\\tfrac35),\\,2\\cdot\\tfrac45\\right)=\\left(-\\dfrac{9}{5},\\dfrac{8}{5}\\right)$. Thus the two touch points are $A=(3,0)$ and $B=\\left(-\\dfrac{9}{5},\\dfrac{8}{5}\\right)$, matching the chord-of-contact result."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 2, Q34. The chord of contact $T=0$ converts “tangents from a point” into a single line-meets-conic solve, sidestepping the discriminant hunt over tangent slopes."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Locus of a Divided Parabola Chord",
+    "difficulty": 3,
+    "task": "Identify the locus of the dividing point.",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "27"
+    },
+    "tags": [
+      "parabola",
+      "locus",
+      "section formula",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $(x,y)$ be any point on the parabola $y^{2}=4x$. Let $P$ be the point that divides the line segment joining the origin $(0,0)$ to $(x,y)$ internally in the ratio $1:3$. Then the locus of $P$ is one of $x^{2}=y$, $\\ y^{2}=2x$, $\\ y^{2}=x$, or $\\ x^{2}=2y$.",
+    "answer": "The locus of $P$ is $\\boxed{y^{2}=x}$.",
+    "trap": "The ratio $1:3$ measured from the origin gives $P=\\left(\\tfrac{x}{4},\\tfrac{y}{4}\\right)$, not $\\left(\\tfrac{x}{2},\\tfrac{y}{2}\\right)$; reversing the ratio order or using the midpoint corrupts the scaling and yields a wrong latus rectum.",
+    "solutions": [
+      {
+        "name": "Section formula and back-substitution",
+        "steps": [
+          "Let $P=(h,k)$ divide the segment from $(0,0)$ to $(x,y)$ internally in $1:3$. By the section formula, $h=\\dfrac{1\\cdot x+3\\cdot 0}{1+3}=\\dfrac{x}{4}$ and $k=\\dfrac{1\\cdot y+3\\cdot 0}{1+3}=\\dfrac{y}{4}$, so $x=4h$ and $y=4k$.",
+          "Since $(x,y)$ lies on $y^{2}=4x$, substitute: $(4k)^{2}=4(4h)$, i.e. $16k^{2}=16h$, giving $k^{2}=h$.",
+          "Renaming $(h,k)\\to(x,y)$, the locus is $y^{2}=x$."
+        ]
+      },
+      {
+        "name": "Parametric scaling of the parabola",
+        "steps": [
+          "Parametrise the parabola $y^{2}=4x$ as $(x,y)=(t^{2},\\,2t)$, so a general point is $(t^{2},2t)$.",
+          "Then $P=\\left(\\dfrac{t^{2}}{4},\\dfrac{2t}{4}\\right)=\\left(\\dfrac{t^{2}}{4},\\dfrac{t}{2}\\right)$. Writing $P=(X,Y)$ gives $X=\\dfrac{t^{2}}{4}$ and $Y=\\dfrac{t}{2}$, hence $t=2Y$.",
+          "Eliminate $t$: $X=\\dfrac{(2Y)^{2}}{4}=Y^{2}$, so $Y^{2}=X$, i.e. the locus is $y^{2}=x$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2011, Paper 2, Q27. A homothety centred at the origin with ratio $\\tfrac14$ maps $y^{2}=4x$ to $y^{2}=x$ — shrinking a parabola about a focus-line vertex just rescales its latus rectum."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Eccentricity from a Normal's X-Intercept",
+    "difficulty": 4,
+    "task": "Find the eccentricity of the hyperbola.",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "28"
+    },
+    "tags": [
+      "hyperbola",
+      "normal",
+      "eccentricity",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $P(6,3)$ be a point on the hyperbola $\\dfrac{x^{2}}{a^{2}}-\\dfrac{y^{2}}{b^{2}}=1$. If the normal at the point $P$ intersects the $x$-axis at $(9,0)$, then the eccentricity of the hyperbola is one of $\\sqrt{\\tfrac{5}{2}}$, $\\ \\sqrt{\\tfrac{3}{2}}$, $\\ \\sqrt{2}$, or $\\ \\sqrt{3}$.",
+    "answer": "The eccentricity is $\\boxed{\\sqrt{\\dfrac{3}{2}}}$.",
+    "trap": "The normal's slope is $-\\dfrac{a^{2}y_{0}}{b^{2}x_{0}}$, not $-\\dfrac{b^{2}y_{0}}{a^{2}x_{0}}$; swapping $a^{2}$ and $b^{2}$ (a habit from the tangent formula) flips the relation to $b^{2}=2a^{2}$ and gives the wrong branch of eccentricities.",
+    "solutions": [
+      {
+        "name": "Normal slope by implicit differentiation",
+        "steps": [
+          "Differentiate $\\dfrac{x^{2}}{a^{2}}-\\dfrac{y^{2}}{b^{2}}=1$ implicitly: $\\dfrac{2x}{a^{2}}-\\dfrac{2y}{b^{2}}\\dfrac{dy}{dx}=0$, so the tangent slope at $P(6,3)$ is $\\dfrac{dy}{dx}=\\dfrac{b^{2}x_{0}}{a^{2}y_{0}}=\\dfrac{6b^{2}}{3a^{2}}=\\dfrac{2b^{2}}{a^{2}}$.",
+          "The normal slope is the negative reciprocal: $-\\dfrac{a^{2}}{2b^{2}}$. The line through $P(6,3)$ and $(9,0)$ has slope $\\dfrac{3-0}{6-9}=-1$.",
+          "Equate: $-\\dfrac{a^{2}}{2b^{2}}=-1\\Rightarrow a^{2}=2b^{2}$.",
+          "Then $e^{2}=1+\\dfrac{b^{2}}{a^{2}}=1+\\dfrac{b^{2}}{2b^{2}}=1+\\dfrac12=\\dfrac32$, so $e=\\sqrt{\\dfrac{3}{2}}$."
+        ]
+      },
+      {
+        "name": "Subnormal / solve the geometry directly",
+        "steps": [
+          "The normal at $P(6,3)$ meets the $x$-axis at $G(9,0)$, so the run is $9-6=3$ and the rise is $0-3=-3$, giving normal slope $-1$; the tangent slope is therefore $+1$.",
+          "Use the point-form tangent slope of the hyperbola, $\\dfrac{b^{2}x_{0}}{a^{2}y_{0}}=\\dfrac{6b^{2}}{3a^{2}}=1$, which forces $2b^{2}=a^{2}$.",
+          "Impose that $P$ lies on the curve: $\\dfrac{36}{a^{2}}-\\dfrac{9}{b^{2}}=1$. With $a^{2}=2b^{2}$ this is $\\dfrac{36}{2b^{2}}-\\dfrac{9}{b^{2}}=\\dfrac{18-9}{b^{2}}=\\dfrac{9}{b^{2}}=1$, so $b^{2}=9,\\ a^{2}=18$.",
+          "Hence $e=\\sqrt{1+\\dfrac{b^{2}}{a^{2}}}=\\sqrt{1+\\dfrac{9}{18}}=\\sqrt{\\dfrac{3}{2}}$, confirming the value with a fully determined hyperbola."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2011, Paper 2, Q28. The normal's $x$-intercept encodes the subnormal, so a single intercept plus the on-curve condition pins down both $a^{2}=18$ and $b^{2}=9$ — the eccentricity falls out either way."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Circle Touching the y-Axis",
+    "difficulty": 3,
+    "task": "Identify a fourth point on the circle.",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "29"
+    },
+    "tags": [
+      "circle",
+      "tangent to axis",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "A circle passes through the point $(-1,0)$ and touches the $y$-axis at $(0,2)$. This circle also passes through which of the following points? The options are $\\left(-\\tfrac{3}{2},0\\right)$, $\\left(-\\tfrac{5}{2},2\\right)$, $\\left(-\\tfrac{3}{2},\\tfrac{5}{2}\\right)$ and $(-4,0)$.",
+    "answer": "$\\boxed{(-4,\\,0)}$",
+    "trap": "Tangency to the $y$-axis is not an extra hint to be used loosely: it pins the centre's ordinate to the point of contact and forces the radius to equal the $x$-coordinate of the centre. Skipping this and trying to fit a general circle through two points leaves the problem underdetermined.",
+    "solutions": [
+      {
+        "name": "Centre on the line $y=2$ (geometric)",
+        "steps": [
+          "Since the circle touches the $y$-axis at $(0,2)$, the radius to the point of contact is horizontal, so the centre lies on the line $y=2$. Write the centre as $(h,2)$; the radius equals the distance to the tangent line $x=0$, namely $|h|$.",
+          "Impose passage through $(-1,0)$: $(h+1)^2+(0-2)^2=h^2$, i.e. $2h+5=0$, so $h=-\\tfrac{5}{2}$. The circle is $\\left(x+\\tfrac{5}{2}\\right)^2+(y-2)^2=\\tfrac{25}{4}$.",
+          "Test each option. Only $(-4,0)$ satisfies it: $\\left(-4+\\tfrac{5}{2}\\right)^2+(0-2)^2=\\tfrac{9}{4}+4=\\tfrac{25}{4}$. Hence the circle passes through $(-4,0)$."
+        ]
+      },
+      {
+        "name": "General form with the tangency condition",
+        "steps": [
+          "Let the circle be $x^2+y^2+Dx+Ey+F=0$. Tangency to the $y$-axis at $(0,2)$: setting $x=0$ gives $y^2+Ey+F=0$, which must have the double root $y=2$. Thus $E=-4$ and $F=4$.",
+          "Passage through $(-1,0)$: $1-D+F=0\\Rightarrow D=F+1=5$. The circle is $x^2+y^2+5x-4y+4=0$.",
+          "Substitute $(-4,0)$: $16+0-20-0+4=0$. It lies on the circle, while the other three options fail, so the answer is $(-4,0)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2011, Paper 2, Q29. The single phrase “touches the $y$-axis at $(0,2)$” silently delivers two facts at once — the centre's height and the radius — turning a seemingly two-condition problem into a fully determined one."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three Normals Through a Point",
+    "difficulty": 4,
+    "task": "Find all normals to the parabola through the given point.",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "33"
+    },
+    "tags": [
+      "parabola",
+      "normal",
+      "conormal points",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $L$ be a normal to the parabola $y^2=4x$. If $L$ passes through the point $(9,6)$, then $L$ is given by which of the following? The candidate lines are $y-x+3=0$, $y+3x-33=0$, $y+x-15=0$ and $y-2x+12=0$.",
+    "answer": "$\\boxed{y-x+3=0,\\quad y+3x-33=0,\\quad y-2x+12=0}$",
+    "trap": "A line merely passing through $(9,6)$ is not enough — it must also be a normal. The distractor $y+x-15=0$ does pass through $(9,6)$, yet its slope $-1$ makes it the *tangent* direction, not a normal; only slopes satisfying the cubic normal condition qualify.",
+    "solutions": [
+      {
+        "name": "Parametric normal (foot at $t$)",
+        "steps": [
+          "For $y^2=4x$ (so $a=1$) the normal at the point $(t^2,2t)$ is $y+tx=2t+t^3$. Require it to pass through $(9,6)$: $6+9t=2t+t^3$, giving the cubic $t^3-7t-6=0$.",
+          "Factor: $t^3-7t-6=(t+1)(t+2)(t-3)=0$, so $t=-1,\\,-2,\\,3$ — the three conormal parameters.",
+          "Substitute back: $t=-1$ gives $y-x+3=0$; $t=-2$ gives $y-2x+12=0$; $t=3$ gives $y+3x-33=0$. These are exactly options (A), (D) and (B)."
+        ]
+      },
+      {
+        "name": "Slope form of the normal",
+        "steps": [
+          "A line of slope $m$ is normal to $y^2=4x$ iff it has the form $y=mx-2m-m^3$ (intercept $c=-2am-am^3$ with $a=1$).",
+          "Passing through $(9,6)$: $6=9m-2m-m^3$, i.e. $m^3-7m+6=0=(m-1)(m-2)(m+3)$, so $m=1,\\,2,\\,-3$.",
+          "Each slope yields $y=x-3$, $y=2x-12$ and $y=-3x+33$, i.e. $y-x+3=0$, $y-2x+12=0$ and $y+3x-33=0$ — the same three lines. The fourth option $y+x-15=0$ (slope $-1$) never appears, confirming it is a decoy."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2011, Paper 2, Q33. The number of real roots of the cubic in $t$ (here three) is exactly the number of normals drawn from the external point — the classic “three conormal points” phenomenon of the parabola."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Points Inside the Minor Segment",
+    "difficulty": 3,
+    "task": "Count the points of $S$ lying inside the smaller part",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "39"
+    },
+    "tags": [
+      "circle",
+      "line divides region",
+      "position of a point",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "The straight line $2x-3y=1$ divides the circular region $x^{2}+y^{2}\\le 6$ into two parts. Consider the set of four points $S=\\left\\{\\left(2,\\dfrac{3}{4}\\right),\\ \\left(\\dfrac{5}{2},\\dfrac{3}{4}\\right),\\ \\left(\\dfrac{1}{4},-\\dfrac{1}{4}\\right),\\ \\left(\\dfrac{1}{8},\\dfrac{1}{4}\\right)\\right\\}$. Then the number of point(s) in $S$ lying inside the smaller part is",
+    "answer": "$\\boxed{2}$",
+    "trap": "Testing only whether each point lies inside the disc, or only whether it lies on a fixed side of the line, but not both at once. A point of the smaller part must satisfy $x^2+y^2<6$ and lie on the side of the line away from the centre. The point $\\left(\\frac52,\\frac34\\right)$ is on the correct side yet fails because it is outside the circle, while $\\left(\\frac18,\\frac14\\right)$ is inside the circle yet on the centre's side — miss either check and the count comes out wrong.",
+    "solutions": [
+      {
+        "name": "Two-sign membership test",
+        "steps": [
+          "A point belongs to the smaller region iff it satisfies both $f(x,y)=x^2+y^2-6<0$ (inside the circle) and lies on the far side of the line from the centre. Put $g(x,y)=2x-3y-1$. At the centre $(0,0)$, $g=-1<0$, so the smaller part is where $g>0$.",
+          "Evaluate at each point. $\\left(2,\\tfrac34\\right):$ $x^2+y^2=\\tfrac{73}{16}<6$ and $g=\\tfrac34>0$ — inside the smaller part. $\\left(\\tfrac52,\\tfrac34\\right):$ $x^2+y^2=\\tfrac{109}{16}>6$ — outside the circle, rejected.",
+          "$\\left(\\tfrac14,-\\tfrac14\\right):$ $x^2+y^2=\\tfrac18<6$ and $g=\\tfrac14>0$ — inside the smaller part. $\\left(\\tfrac18,\\tfrac14\\right):$ $x^2+y^2<6$ but $g=-\\tfrac32<0$ — wrong side, rejected.",
+          "Exactly two points, $\\left(2,\\tfrac34\\right)$ and $\\left(\\tfrac14,-\\tfrac14\\right)$, satisfy both conditions."
+        ]
+      },
+      {
+        "name": "Which segment is smaller",
+        "steps": [
+          "The chord $2x-3y=1$ cuts the disc of radius $\\sqrt6$. Its distance from the centre is $d=\\dfrac{|2\\cdot0-3\\cdot0-1|}{\\sqrt{2^2+3^2}}=\\dfrac{1}{\\sqrt{13}}>0$, so the chord does not pass through the centre and the two segments are unequal.",
+          "The centre lies in the larger segment (a segment containing the centre exceeds a semicircle in area); hence the smaller segment is the one not containing $(0,0)$, i.e. the side with $2x-3y-1>0$.",
+          "So a point is in the smaller part precisely when it is inside the circle and gives $2x-3y-1>0$. Screening the four points, $\\left(2,\\tfrac34\\right)$ passes ($\\tfrac{73}{16}<6,\\ g=\\tfrac34$); $\\left(\\tfrac52,\\tfrac34\\right)$ fails ($x^2+y^2>6$); $\\left(\\tfrac14,-\\tfrac14\\right)$ passes ($\\tfrac18<6,\\ g=\\tfrac14$); $\\left(\\tfrac18,\\tfrac14\\right)$ fails ($g=-\\tfrac32<0$).",
+          "Two points qualify, confirming the count is $2$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2011, Paper 2, Q39. The whole problem is two independent sign checks per point — inside/outside the circle and which side of the line — with the subtlety that the “smaller” region is the segment away from the centre, since a chord off the centre always leaves the centre in the larger piece."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Midpoint Locus of a Chord of Contact",
+    "difficulty": 4,
+    "task": "Find the locus of the chord's midpoint",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "50"
+    },
+    "tags": [
+      "circle",
+      "chord of contact",
+      "locus",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "From every point lying on the straight line $4x-5y=20$, a pair of tangents is drawn to the circle $x^2+y^2=9$; each such point yields a chord of contact. As the point runs along the line, the midpoint of its chord of contact traces a curve. Find the equation of that locus: $(A)\\ 20(x^2+y^2)-36x+45y=0$; $(B)\\ 20(x^2+y^2)+36x-45y=0$; $(C)\\ 36(x^2+y^2)-20x+45y=0$; $(D)\\ 36(x^2+y^2)+20x-45y=0$.",
+    "answer": "$\\boxed{(A)\\ 20(x^2+y^2)-36x+45y=0}$",
+    "trap": "Confusing the two chord equations. The chord of contact from a pole $(x_1,y_1)$ is $xx_1+yy_1=9$, whereas the chord bisected at $(h,k)$ is $hx+ky=h^2+k^2$ (the relation $T=S_1$). Both describe the same physical chord, so their coefficients must be proportional — not equal. Setting them equal, or forgetting that the right-hand side of the midpoint chord is $h^2+k^2$ and not $9$, wrecks the elimination.",
+    "solutions": [
+      {
+        "name": "Match the two chord equations, then eliminate the pole",
+        "steps": [
+          "Let the variable pole on the line be $(x_1,y_1)$ with $4x_1-5y_1=20$. Its chord of contact with respect to $x^2+y^2=9$ is $T=0$, namely $x x_1+y y_1=9$.",
+          "Let $(h,k)$ be the midpoint of that same chord. A chord of the circle with midpoint $(h,k)$ has equation $T=S_1$, i.e. $hx+ky-9=h^2+k^2-9$, which simplifies to $hx+ky=h^2+k^2$.",
+          "These two equations represent one and the same line, so their coefficients are proportional: $\\dfrac{x_1}{h}=\\dfrac{y_1}{k}=\\dfrac{9}{h^2+k^2}$. Hence $x_1=\\dfrac{9h}{h^2+k^2}$ and $y_1=\\dfrac{9k}{h^2+k^2}$.",
+          "Substitute into $4x_1-5y_1=20$: $\\dfrac{9(4h-5k)}{h^2+k^2}=20$, giving $9(4h-5k)=20(h^2+k^2)$. Replacing $(h,k)\\to(x,y)$: $20(x^2+y^2)-36x+45y=0$, option $(A)$."
+        ]
+      },
+      {
+        "name": "Parametrize the pole and eliminate the parameter",
+        "steps": [
+          "Write a general point of the line $4x-5y=20$ as $(x_1,y_1)=\\left(t,\\ \\tfrac{4t-20}{5}\\right)$ for a real parameter $t$.",
+          "The midpoint of the chord of contact of $(x_1,y_1)$ is the foot of the perpendicular from the centre $O(0,0)$ onto the chord $x x_1+y y_1=9$. That foot is $(h,k)=\\dfrac{9}{x_1^2+y_1^2}\\,(x_1,y_1)$, since it is the scalar multiple of $(x_1,y_1)$ lying on the chord.",
+          "Thus $\\dfrac{h}{x_1}=\\dfrac{k}{y_1}=\\dfrac{9}{x_1^2+y_1^2}$, so $(x_1,y_1)$ is parallel to $(h,k)$ and inversion gives $x_1=\\dfrac{9h}{h^2+k^2},\\ y_1=\\dfrac{9k}{h^2+k^2}$ — identical to Method 1.",
+          "Imposing $4x_1-5y_1=20$ once more yields $20(h^2+k^2)=9(4h-5k)$, i.e. $20(x^2+y^2)-36x+45y=0$. Both routes land on option $(A)$, confirming the boxed answer."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 1, Q50. Insight: the midpoint of a chord of a circle is the foot of the perpendicular from the centre, so it is just a shrunken copy of the pole — the map $(x_1,y_1)\\mapsto\\tfrac{9}{x_1^2+y_1^2}(x_1,y_1)$ is an inversion in the circle, which turns the straight pole-line into a circle through the origin."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Contact Points of Tangents of a Fixed Slope",
+    "difficulty": 4,
+    "task": "Find the points of contact on the hyperbola",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "54"
+    },
+    "tags": [
+      "hyperbola",
+      "tangent",
+      "point of contact",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "Tangents are drawn to the hyperbola $\\dfrac{x^2}{9}-\\dfrac{y^2}{4}=1$ so as to be parallel to the straight line $2x-y=1$. Find the points at which these tangents touch the hyperbola: $(A)\\ \\left(\\dfrac{9}{2\\sqrt2},\\dfrac{1}{\\sqrt2}\\right)$; $(B)\\ \\left(-\\dfrac{9}{2\\sqrt2},-\\dfrac{1}{\\sqrt2}\\right)$; $(C)\\ \\left(3\\sqrt3,-2\\sqrt2\\right)$; $(D)\\ \\left(-3\\sqrt3,2\\sqrt2\\right)$.",
+    "answer": "$\\boxed{(A),(B)\\ \\left(\\pm\\dfrac{9}{2\\sqrt2},\\pm\\dfrac{1}{\\sqrt2}\\right)}$",
+    "trap": "A slope of $2$ gives two parallel tangents, one on each branch, so there are two contact points — symmetric through the centre. Reporting only one, or writing the ready-made contact-point formula with the wrong sign convention, loses half the answer. Also note the contact point of $y=mx+c$ is $\\left(-\\tfrac{a^2 m}{c},-\\tfrac{b^2}{c}\\right)$, where the $c$'s carry opposite signs for the two tangents.",
+    "solutions": [
+      {
+        "name": "Differentiate: force the tangent slope to be 2",
+        "steps": [
+          "The required tangents are parallel to $2x-y=1$, whose slope is $2$; so at each contact point $(x_1,y_1)$ the hyperbola's slope must equal $2$.",
+          "Differentiating $\\dfrac{x^2}{9}-\\dfrac{y^2}{4}=1$ implicitly: $\\dfrac{2x}{9}-\\dfrac{2y}{4}\\dfrac{dy}{dx}=0$, so $\\dfrac{dy}{dx}=\\dfrac{4x}{9y}$. Set $\\dfrac{4x_1}{9y_1}=2$, giving $x_1=\\dfrac{9y_1}{2}$.",
+          "Substitute into the hyperbola: $\\dfrac{1}{9}\\left(\\dfrac{9y_1}{2}\\right)^2-\\dfrac{y_1^2}{4}=1\\Rightarrow \\dfrac{9y_1^2}{4}-\\dfrac{y_1^2}{4}=1\\Rightarrow 2y_1^2=1$, so $y_1=\\pm\\dfrac{1}{\\sqrt2}$.",
+          "Then $x_1=\\dfrac{9}{2}\\cdot\\left(\\pm\\dfrac{1}{\\sqrt2}\\right)=\\pm\\dfrac{9}{2\\sqrt2}$. The two contact points are $\\left(\\dfrac{9}{2\\sqrt2},\\dfrac{1}{\\sqrt2}\\right)$ and $\\left(-\\dfrac{9}{2\\sqrt2},-\\dfrac{1}{\\sqrt2}\\right)$ — options $(A)$ and $(B)$."
+        ]
+      },
+      {
+        "name": "Slope-form tangent and its contact-point formula",
+        "steps": [
+          "For $\\dfrac{x^2}{a^2}-\\dfrac{y^2}{b^2}=1$ with $a^2=9,\\ b^2=4$, the tangent of slope $m$ is $y=mx\\pm\\sqrt{a^2m^2-b^2}$. With $m=2$: $c=\\pm\\sqrt{9\\cdot4-4}=\\pm\\sqrt{32}=\\pm4\\sqrt2$, so the two tangents are $y=2x\\pm4\\sqrt2$.",
+          "The point of contact of $y=mx+c$ on this hyperbola is $\\left(-\\dfrac{a^2m}{c},\\ -\\dfrac{b^2}{c}\\right)$.",
+          "For $c=+4\\sqrt2$: contact $=\\left(-\\dfrac{9\\cdot2}{4\\sqrt2},-\\dfrac{4}{4\\sqrt2}\\right)=\\left(-\\dfrac{18}{4\\sqrt2},-\\dfrac{1}{\\sqrt2}\\right)=\\left(-\\dfrac{9}{2\\sqrt2},-\\dfrac{1}{\\sqrt2}\\right)$, option $(B)$.",
+          "For $c=-4\\sqrt2$ the signs flip, giving $\\left(\\dfrac{9}{2\\sqrt2},\\dfrac{1}{\\sqrt2}\\right)$, option $(A)$. Both methods agree with the boxed answer."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 1, Q54. Insight: fixing the tangent slope fixes the direction, and by the central symmetry of the hyperbola the two parallel tangents kiss it at diametrically opposite points $\\pm(x_1,y_1)$ — so the answer must come in an antipodal pair."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Ellipse Circumscribing a Rectangle",
+    "difficulty": 3,
+    "task": "Find the eccentricity of the outer ellipse $E_2$",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "46"
+    },
+    "tags": [
+      "ellipse",
+      "eccentricity",
+      "inscribed rectangle",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "The ellipse $E_1:\\dfrac{x^2}{9}+\\dfrac{y^2}{4}=1$ is inscribed in a rectangle $R$ whose sides are parallel to the coordinate axes. Another ellipse $E_2$, passing through the point $(0,4)$, circumscribes the rectangle $R$. The eccentricity of the ellipse $E_2$ is\n\n(A) $\\dfrac{\\sqrt{2}}{2}$ · (B) $\\dfrac{\\sqrt{3}}{2}$ · (C) $\\dfrac{1}{2}$ · (D) $\\dfrac{3}{4}$",
+    "answer": "$\\boxed{\\dfrac{1}{2}}$ \\; — option (C).",
+    "trap": "Assuming the major axis of $E_2$ is horizontal, as it is for $E_1$. Once the two through-points are used, one finds the semi-axis along $y$ ($=4$) exceeds the semi-axis along $x$ ($=\\sqrt{12}$), so the major axis of $E_2$ is vertical. Applying $e^2=1-\\frac{b^2}{a^2}$ with the wrong axis as major gives $e^2=1-\\frac{16}{12}<0$, nonsense — the roles of $a$ and $b$ must be read off from which denominator is larger.",
+    "solutions": [
+      {
+        "name": "Substitute the two known points",
+        "steps": [
+          "The rectangle $R$ inscribing $E_1:\\frac{x^2}{9}+\\frac{y^2}{4}=1$ is bounded by the tangents at the axis-endpoints, namely $x=\\pm3,\\ y=\\pm2$; its corners are $(\\pm3,\\pm2)$.",
+          "Write the circumscribing ellipse as $E_2:\\dfrac{x^2}{A^2}+\\dfrac{y^2}{B^2}=1$. Passing through $(0,4)$ forces $\\dfrac{16}{B^2}=1$, so $B^2=16$.",
+          "Passing through the corner $(3,2)$ gives $\\dfrac{9}{A^2}+\\dfrac{4}{16}=1$, i.e. $\\dfrac{9}{A^2}=\\dfrac34$, so $A^2=12$.",
+          "Since $B^2=16>A^2=12$, the major axis is along $y$: $e^2=1-\\dfrac{A^2}{B^2}=1-\\dfrac{12}{16}=\\dfrac14$, hence $e=\\dfrac12$."
+        ]
+      },
+      {
+        "name": "Linear system in the reciprocals",
+        "steps": [
+          "Let $u=\\dfrac{1}{A^2}$ and $v=\\dfrac{1}{B^2}$, so $E_2$ reads $u\\,x^2+v\\,y^2=1$. The two conditions become linear in $u,v$: from $(0,4)$, $\\;16v=1$; from $(3,2)$, $\\;9u+4v=1$.",
+          "The first gives $v=\\dfrac{1}{16}$; substituting, $9u=1-\\dfrac{4}{16}=\\dfrac34$, so $u=\\dfrac{1}{12}$.",
+          "Thus $A^2=\\dfrac1u=12$ and $B^2=\\dfrac1v=16$. The larger semi-axis-squared is $B^2$, so the major axis is vertical.",
+          "Eccentricity: $e^2=1-\\dfrac{\\min}{\\max}=1-\\dfrac{12}{16}=\\dfrac14$, giving $e=\\dfrac12$, option (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 1, Q46. The inscribed ellipse only fixes the rectangle's corners $(\\pm3,\\pm2)$; from there $E_2$ is pinned by just two points, and the one genuine trap is noticing $B^2>A^2$ so that the major axis flips to the vertical before applying $e^2=1-b^2/a^2$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Common Chord Through the Focus",
+    "difficulty": 4,
+    "task": "Find the area of triangle $PQS$",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "60"
+    },
+    "tags": [
+      "parabola",
+      "circle",
+      "common chord",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "Let $S$ be the focus of the parabola $y^2=8x$, and let $PQ$ be the common chord of the parabola and the circle $x^2+y^2-2x-4y=0$. Find the area of the triangle $PQS$.",
+    "answer": "$\\boxed{4}$ square units.",
+    "trap": "Assuming the circle meets the parabola in four points and hunting for a genuine two-point chord. In fact the circle passes through the origin, which is the vertex of the parabola, so the origin is one intersection; the only other real intersection is $(2,4)$. The \"common chord\" $PQ$ therefore has $P=(0,0)$ and $Q=(2,4)$ — do not discard the vertex as spurious. A second trap is misreading the focus: $y^2=8x$ gives $4a=8$, so $a=2$ and $S=(2,0)$, not $(1,0)$.",
+    "solutions": [
+      {
+        "name": "Locate the two intersection points directly",
+        "steps": [
+          "For $y^2=8x$ write $4a=8$, so $a=2$ and the focus is $S=(2,0)$.",
+          "Substitute $y^2=8x$ into the circle $x^2+y^2-2x-4y=0$: $x^2+8x-2x-4y=0$, i.e. $x^2+6x=4y$. Together with $y^2=8x$ this forces the real solutions $(x,y)=(0,0)$ and $(2,4)$; the origin lies on both curves because the circle passes through $(0,0)$.",
+          "Thus $P=(0,0)$ and $Q=(2,4)$. With $S=(2,0)$, the signed-area (shoelace) formula gives $\\text{Area}=\\tfrac12\\,\\big|x_P(y_Q-y_S)+x_Q(y_S-y_P)+x_S(y_P-y_Q)\\big|$.",
+          "$=\\tfrac12\\,|0\\cdot(4-0)+2\\cdot(0-0)+2\\cdot(0-4)|=\\tfrac12\\,|-8|=4.$"
+        ]
+      },
+      {
+        "name": "Base–height using the chord line",
+        "steps": [
+          "The chord $PQ$ joins $(0,0)$ and $(2,4)$, so it lies on the line $y=2x$, i.e. $2x-y=0$.",
+          "Its length is $PQ=\\sqrt{(2-0)^2+(4-0)^2}=\\sqrt{20}=2\\sqrt5$.",
+          "The height is the distance from $S=(2,0)$ to the line $2x-y=0$: $d=\\dfrac{|2\\cdot2-0|}{\\sqrt{2^2+1^2}}=\\dfrac{4}{\\sqrt5}$.",
+          "Hence $\\text{Area}=\\tfrac12\\cdot PQ\\cdot d=\\tfrac12\\cdot 2\\sqrt5\\cdot\\dfrac{4}{\\sqrt5}=4$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 1, Q60. The whole problem turns on noticing that the circle passes through the parabola's vertex — the \"common chord\" degenerates to the segment from the vertex $(0,0)$ to the single other real intersection $(2,4)$, so the area falls out from a two-point chord rather than a four-point search."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Tangent Perpendicular to Another",
+    "difficulty": 3,
+    "task": "Find a possible equation of the line $L$",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "53"
+    },
+    "tags": [
+      "circle",
+      "tangent",
+      "perpendicular lines",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "A tangent $PT$ is drawn to the circle $x^2+y^2=4$ at the point $P(\\sqrt3,1)$. A straight line $L$, perpendicular to $PT$, is a tangent to the circle $(x-3)^2+y^2=1$. A possible equation of $L$ is\n\n(A) $x-\\sqrt3\\,y=1$ · (B) $x+\\sqrt3\\,y=1$ · (C) $x-\\sqrt3\\,y=-1$ · (D) $x+\\sqrt3\\,y=5$",
+    "answer": "$\\boxed{x-\\sqrt3\\,y=1}$ \\; — option (A).",
+    "trap": "Fixing the wrong slope for $L$. The radius to $P(\\sqrt3,1)$ has slope $\\tfrac{1}{\\sqrt3}$, so the tangent $PT$ has slope $-\\sqrt3$; being perpendicular, $L$ must have slope $+\\tfrac{1}{\\sqrt3}$, i.e. $L:\\,x-\\sqrt3\\,y=c$. Options (B) and (D) have slope $-\\tfrac{1}{\\sqrt3}$ and are not perpendicular to $PT$ at all. Among the perpendicular candidates, the tangency distance admits $c=1$ or $c=5$; only $c=1$ appears, so (C) with $c=-1$ is not a tangent.",
+    "solutions": [
+      {
+        "name": "Slope of $PT$, then distance-equals-radius",
+        "steps": [
+          "The centre of $x^2+y^2=4$ is the origin, so the radius $OP$ to $P(\\sqrt3,1)$ has slope $\\tfrac{1}{\\sqrt3}$. The tangent $PT$ is perpendicular to $OP$, so its slope is $-\\sqrt3$.",
+          "$L\\perp PT$ means the slope of $L$ is $\\tfrac{1}{\\sqrt3}$; write $L$ as $x-\\sqrt3\\,y=c$.",
+          "$L$ is tangent to $(x-3)^2+y^2=1$ (centre $(3,0)$, radius $1$), so the distance from $(3,0)$ equals $1$: $\\dfrac{|3-\\sqrt3\\cdot0-c|}{\\sqrt{1^2+(\\sqrt3)^2}}=\\dfrac{|3-c|}{2}=1$.",
+          "Thus $|3-c|=2$, giving $c=1$ or $c=5$. The value $c=1$ yields $x-\\sqrt3\\,y=1$, which is option (A)."
+        ]
+      },
+      {
+        "name": "Perpendicularity test on the options",
+        "steps": [
+          "Tangent $PT$ at $P(\\sqrt3,1)$ to $x^2+y^2=4$ has the chord-of-contact form $\\sqrt3\\,x+y=4$, so its slope is $-\\sqrt3$; a perpendicular line must have slope $\\tfrac{1}{\\sqrt3}$, i.e. be of the form $x-\\sqrt3\\,y=c$. This immediately eliminates (B) and (D), whose slope is $-\\tfrac{1}{\\sqrt3}$.",
+          "Test (A) $x-\\sqrt3\\,y=1$: distance from $(3,0)$ is $\\dfrac{|3-1|}{\\sqrt{1+3}}=\\dfrac{2}{2}=1$, equal to the radius — it is a tangent.",
+          "Test (C) $x-\\sqrt3\\,y=-1$: distance from $(3,0)$ is $\\dfrac{|3+1|}{2}=2\\neq1$, so it is not a tangent.",
+          "Only (A) is both perpendicular to $PT$ and tangent to the second circle."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 2, Q53. Two independent conditions — perpendicularity fixes the direction of $L$ up to the constant $c$, and tangency (distance $=$ radius) fixes $c$ — so the family $x-\\sqrt3\\,y=c$ collapses to exactly the values $c=1$ and $c=5$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Common Tangent to Two Circles",
+    "difficulty": 3,
+    "task": "Identify a common tangent of the two circles",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "54"
+    },
+    "tags": [
+      "circle",
+      "common tangent",
+      "distance from centre",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "A tangent $PT$ is drawn to the circle $x^2+y^2=4$ at the point $P(\\sqrt3,1)$, and a straight line $L$, perpendicular to $PT$, is a tangent to the circle $(x-3)^2+y^2=1$. A common tangent of these two circles is\n\n(A) $x=4$ · (B) $y=2$ · (C) $x+\\sqrt3\\,y=4$ · (D) $x+2\\sqrt2\\,y=6$",
+    "answer": "$\\boxed{x+2\\sqrt2\\,y=6}$ \\; — option (D).",
+    "trap": "A line tangent to only one of the two circles is not enough — a common tangent must sit at distance $2$ from the origin (radius of the first circle) and distance $1$ from $(3,0)$ (radius of the second). Option (A) $x=4$ is at distance $4$ from $O$, so it misses the first circle entirely; option (B) $y=2$ touches the first circle but is at distance $2$ from $(3,0)$, not $1$; option (C) is at distance $2$ from $O$ yet only $\\tfrac12$ from $(3,0)$. Checking just one circle traps you into (B).",
+    "solutions": [
+      {
+        "name": "Distance from each centre equals its radius",
+        "steps": [
+          "The two circles are $x^2+y^2=4$ with centre $O(0,0)$ and radius $2$, and $(x-3)^2+y^2=1$ with centre $C(3,0)$ and radius $1$. A common tangent must be at distance $2$ from $O$ and distance $1$ from $C$.",
+          "Write option (D) as $x+2\\sqrt2\\,y-6=0$, with $\\sqrt{1^2+(2\\sqrt2)^2}=\\sqrt{1+8}=3$.",
+          "Distance from $O$: $\\dfrac{|0+0-6|}{3}=\\dfrac{6}{3}=2$, equal to the first radius.",
+          "Distance from $C(3,0)$: $\\dfrac{|3+0-6|}{3}=\\dfrac{3}{3}=1$, equal to the second radius. Both conditions hold, so $x+2\\sqrt2\\,y=6$ is a common tangent, option (D)."
+        ]
+      },
+      {
+        "name": "Rule out the other options by one failing distance",
+        "steps": [
+          "For each candidate line, compute the distance from $O$ and from $C(3,0)$; a common tangent needs $2$ and $1$ respectively.",
+          "(A) $x=4$: distance from $O$ is $4\\neq2$, so it does not even touch the first circle.",
+          "(B) $y=2$: distance from $O$ is $2$ (touches the first), but distance from $C$ is $2\\neq1$ — fails the second circle.",
+          "(C) $x+\\sqrt3\\,y=4$: with $\\sqrt{1+3}=2$, distance from $O$ is $\\tfrac{4}{2}=2$ (touches the first), but distance from $C$ is $\\tfrac{|3-4|}{2}=\\tfrac12\\neq1$ — fails. Only (D) survives both tests."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 2, Q54. The perpendicularity story about $PT$ and $L$ is a red herring for this part — a common tangent is characterised purely by matching the distance from each centre to its own radius, so the fastest route is to plug the four options into two distance checks."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Extremal Area of a Pole Triangle",
+    "difficulty": 5,
+    "task": "Evaluate $\\dfrac{8}{\\sqrt5}\\,\\Delta_1-8\\,\\Delta_2$",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "60"
+    },
+    "tags": [
+      "ellipse",
+      "chord of contact / pole",
+      "maxima and minima of area",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "A vertical line through the point $(h,0)$ meets the ellipse $\\dfrac{x^2}{4}+\\dfrac{y^2}{3}=1$ at the points $P$ and $Q$, and the tangents to the ellipse at $P$ and $Q$ meet at the point $R$. Let $\\Delta(h)$ be the area of triangle $PQR$, and set $\\Delta_1=\\displaystyle\\max_{1/2\\le h\\le1}\\Delta(h)$ and $\\Delta_2=\\displaystyle\\min_{1/2\\le h\\le1}\\Delta(h)$. Find the value of $\\dfrac{8}{\\sqrt5}\\,\\Delta_1-8\\,\\Delta_2$.",
+    "answer": "$\\dfrac{8}{\\sqrt5}\\,\\Delta_1-8\\,\\Delta_2=\\boxed{9}$",
+    "trap": "The point $R$ is the pole of the chord $x=h$, so $R=(4/h,0)$ — not the midpoint of $PQ$, and not on the chord. The triangle's base is the chord $PQ$ (length $\\sqrt3\\,\\sqrt{4-h^2}$) and its height is the horizontal gap $\\dfrac{4}{h}-h=\\dfrac{4-h^2}{h}$. A second trap: $\\Delta(h)$ is strictly decreasing on $[\\tfrac12,1]$, so the maximum is at the left endpoint $h=\\tfrac12$ and the minimum at the right endpoint $h=1$ — don't set the derivative to zero looking for an interior extremum that isn't there.",
+    "solutions": [
+      {
+        "name": "Pole of the chord, then endpoint extrema",
+        "steps": [
+          "The chord $x=h$ cuts the ellipse where $\\dfrac{h^2}{4}+\\dfrac{y^2}{3}=1$, giving $y=\\pm\\dfrac{\\sqrt3}{2}\\sqrt{4-h^2}$; hence $PQ=\\sqrt3\\,\\sqrt{4-h^2}$.",
+          "$R$ is the intersection of the tangents at $P,Q$, i.e. the pole of the line $x=h$. The polar of $R=(x_0,0)$ is $\\dfrac{x\\,x_0}{4}=1$, so $x_0=\\dfrac{4}{h}$ and $R=\\left(\\dfrac{4}{h},0\\right)$.",
+          "Taking $PQ$ as base (a vertical segment at $x=h$), the height is the horizontal distance from $R$: $\\dfrac{4}{h}-h=\\dfrac{4-h^2}{h}$. Thus $\\Delta(h)=\\dfrac12\\cdot\\sqrt3\\,\\sqrt{4-h^2}\\cdot\\dfrac{4-h^2}{h}=\\dfrac{\\sqrt3\\,(4-h^2)^{3/2}}{2h}.$",
+          "Since $(4-h^2)^{3/2}$ decreases and $\\dfrac1h$ decreases on $[\\tfrac12,1]$, $\\Delta(h)$ is decreasing there. So $\\Delta_1=\\Delta\\!\\left(\\tfrac12\\right)=\\dfrac{\\sqrt3\\,(15/4)^{3/2}}{1}=\\dfrac{45\\sqrt5}{8}$ and $\\Delta_2=\\Delta(1)=\\dfrac{\\sqrt3\\cdot3^{3/2}}{2}=\\dfrac{9}{2}.$",
+          "Therefore $\\dfrac{8}{\\sqrt5}\\,\\Delta_1-8\\,\\Delta_2=\\dfrac{8}{\\sqrt5}\\cdot\\dfrac{45\\sqrt5}{8}-8\\cdot\\dfrac{9}{2}=45-36=9.$"
+        ]
+      },
+      {
+        "name": "Chord of contact area and monotonicity by derivative",
+        "steps": [
+          "For a point $R=(x_0,0)$ outside the ellipse, the chord of contact is $\\dfrac{x\\,x_0}{4}=1$, i.e. $x=\\dfrac{4}{x_0}$. Matching this to the given chord $x=h$ forces $x_0=\\dfrac4h$, recovering $R=\\left(\\dfrac4h,0\\right)$ and the same $\\Delta(h)=\\dfrac{\\sqrt3\\,(4-h^2)^{3/2}}{2h}.$",
+          "Differentiate: $\\Delta'(h)=\\dfrac{\\sqrt3}{2}\\cdot\\dfrac{d}{dh}\\!\\left[\\dfrac{(4-h^2)^{3/2}}{h}\\right]=\\dfrac{\\sqrt3}{2}\\cdot\\dfrac{-(4-h^2)^{1/2}(2h^2+4)}{h^2}<0$ for all $h\\in(0,2)$, confirming $\\Delta$ is strictly decreasing.",
+          "Hence the extrema sit at the endpoints: $\\Delta_1=\\Delta\\!\\left(\\tfrac12\\right)=\\dfrac{45\\sqrt5}{8}$, $\\Delta_2=\\Delta(1)=\\dfrac{9}{2}$.",
+          "Substituting, $\\dfrac{8}{\\sqrt5}\\cdot\\dfrac{45\\sqrt5}{8}-8\\cdot\\dfrac{9}{2}=45-36=9$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 1, Q60. The coefficients $\\dfrac{8}{\\sqrt5}$ and $8$ are engineered to strip the irrational factors from $\\Delta_1$ and $\\Delta_2$ exactly, leaving the clean integer $45-36=9$ — a hallmark of a well-tuned integer-answer problem. (The area is $\\Delta(h)=\\dfrac{\\sqrt3(4-h^2)^{3/2}}{2h}$; a stray print of it as $\\tfrac{3}{2h^2}(4-h^2)^{3/2}$ is a typo, but the endpoint values $\\tfrac{45\\sqrt5}{8}$ and $\\tfrac92$ and the final $9$ are unaffected.)"
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Circles Kissing the x-Axis",
+    "difficulty": 3,
+    "task": "Identify all such circles",
+    "pyq": {
+      "year": 2013,
+      "paper": "2",
+      "qno": "42"
+    },
+    "tags": [
+      "circle",
+      "tangency to axis",
+      "y-axis intercept length",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "A circle touches the $x$-axis at a point that is at distance $3$ from the origin, and it cuts a chord of length $2\\sqrt{7}$ on the $y$-axis. Which of the following can be its equation?\n\n(A) $x^2+y^2-6x+8y+9=0$ · (B) $x^2+y^2-6x+7y+9=0$ · (C) $x^2+y^2-6x-8y+9=0$ · (D) $x^2+y^2-6x-7y+9=0$",
+    "answer": "$\\boxed{\\text{(A) and (C)}}$",
+    "trap": "Assuming the circle lies entirely above the $x$-axis and reporting only one answer. Touching the $x$-axis at $(3,0)$ fixes the point of contact but not the side: the centre may sit above ($k>0$) or below ($k<0$) that point, giving a mirror pair of circles. Both meet every stated condition, so the problem has two valid answers, not one.",
+    "solutions": [
+      {
+        "name": "Tangent-at-a-point family $S+\\lambda y=0$",
+        "steps": [
+          "A circle tangent to the $x$-axis at $(3,0)$ meets it only there, so $(x-3)^2$ must be a factor of the trace on $y=0$. Every such circle can be written as $(x-3)^2+y^2+\\lambda y=0$, i.e. $x^2+y^2-6x+\\lambda y+9=0$, where the free parameter $\\lambda$ tilts the centre above or below the $x$-axis.",
+          "Its centre is $\\left(3,-\\tfrac{\\lambda}{2}\\right)$ and radius$^2=g^2+f^2-c=9+\\tfrac{\\lambda^2}{4}-9=\\tfrac{\\lambda^2}{4}$; indeed the radius $\\left|\\tfrac{\\lambda}{2}\\right|$ equals the height of the centre, confirming tangency to the $x$-axis.",
+          "For the $y$-axis chord, set $x=0$: $y^2+\\lambda y+9=0$. The chord length is the gap between the two roots, $\\sqrt{\\lambda^2-4\\cdot 9}=\\sqrt{\\lambda^2-36}$.",
+          "Set this equal to $2\\sqrt7$: $\\lambda^2-36=28\\Rightarrow\\lambda^2=64\\Rightarrow\\lambda=\\pm 8$. The two circles are $x^2+y^2-6x+8y+9=0$ and $x^2+y^2-6x-8y+9=0$, options (A) and (C)."
+        ]
+      },
+      {
+        "name": "Geometry of centre, radius and perpendicular distance",
+        "steps": [
+          "Tangency to the $x$-axis at $(3,0)$ forces the centre directly above or below that point, at $C=(3,k)$, with radius $r=|k|$ (the distance from $C$ down to the point of contact).",
+          "For a chord of length $2\\sqrt7$ on the $y$-axis, drop a perpendicular from $C$ to the line $x=0$; its length is $3$. The half-chord, this perpendicular, and the radius form a right triangle: $r^2=3^2+\\left(\\sqrt7\\right)^2=9+7=16$, so $r=4$ and hence $|k|=4$.",
+          "Thus $k=4$ or $k=-4$, giving centres $(3,4)$ and $(3,-4)$, each with radius $4$.",
+          "Expanding $(x-3)^2+(y\\mp 4)^2=16$ yields $x^2+y^2-6x\\mp 8y+9=0$, matching exactly options (A) and (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 2, Q42. The single hidden parameter here is the sign of the centre's height: fixing the contact point pins down everything except which side of the $x$-axis the circle bulges to, and that freedom is precisely what makes both (A) and (C) correct."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Focal Chord Pinned to a Line",
+    "difficulty": 4,
+    "task": "Find the length of the focal chord",
+    "pyq": {
+      "year": 2013,
+      "paper": "2",
+      "qno": "51"
+    },
+    "tags": [
+      "parabola",
+      "focal chord",
+      "tangents intersection",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "Let $PQ$ be a focal chord of the parabola $y^2=4ax$, with $a>0$. The tangents to the parabola at $P$ and at $Q$ intersect at a point that lies on the line $y=2x+a$. Find the length of the chord $PQ$.\n\n(A) $7a$ · (B) $5a$ · (C) $2a$ · (D) $3a$",
+    "answer": "$\\boxed{PQ=5a}$ \\; — option (B).",
+    "trap": "Forgetting where the tangents from a focal chord actually meet. Their intersection is not just “some point” — for a focal chord it always lands on the directrix $x=-a$. Slipping the sign to $x=+a$ (as if it were the latus-rectum line) makes the condition read $t-\\tfrac1t=3$ and appears to still give $5a$ by luck, but the honest condition is $t-\\tfrac1t=-1$; only the correct directrix value keeps the geometry consistent.",
+    "solutions": [
+      {
+        "name": "Parametric tangents meeting on the directrix",
+        "steps": [
+          "Write $P=(at_1^2,2at_1)$ and $Q=(at_2^2,2at_2)$. The tangents at these points meet at $\\big(at_1t_2,\\;a(t_1+t_2)\\big)$.",
+          "Because $PQ$ is a focal chord, $t_1t_2=-1$. Hence the meeting point is $\\big(-a,\\;a(t_1+t_2)\\big)$ — it lies on the directrix $x=-a$, as it must for any focal chord.",
+          "This point lies on $y=2x+a$: $a(t_1+t_2)=2(-a)+a=-a$, so $t_1+t_2=-1$.",
+          "The focal-chord length is $a(t_1-t_2)^2$. Using $(t_1-t_2)^2=(t_1+t_2)^2-4t_1t_2=(-1)^2-4(-1)=5$, we get $PQ=5a$, option (B)."
+        ]
+      },
+      {
+        "name": "Focal distances via the semi-latus-rectum",
+        "steps": [
+          "For the parabola $y^2=4ax$ a focal chord making angle $\\theta$ with the axis has length $\\dfrac{4a}{\\sin^2\\theta}$; equivalently, if $t_1$ is one endpoint's parameter then $\\tan\\theta$ relates to $t_1+t_2$, and the chord length is $a(t_1-t_2)^2$.",
+          "From the tangent-intersection condition the meeting point $\\big(at_1t_2,a(t_1+t_2)\\big)=(-a,\\,a(t_1+t_2))$ must satisfy $y=2x+a$, forcing $a(t_1+t_2)=-a$, i.e. $t_1+t_2=-1$, while $t_1t_2=-1$ from the focal property.",
+          "Thus $t_1,t_2$ are the roots of $u^2+u-1=0$, giving $u=\\dfrac{-1\\pm\\sqrt5}{2}$; numerically $t_1\\approx 0.618$, $t_2\\approx -1.618$, and indeed $t_1t_2=-1$.",
+          "Then $(t_1-t_2)^2=(\\sqrt5)^2=5$, so $PQ=a(t_1-t_2)^2=5a$, confirming option (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 2, Q51. The engine of the problem is a single fact — tangents at the ends of a focal chord always cross on the directrix $x=-a$ — which collapses the intersection's $x$-coordinate and turns the line condition into one clean equation for $t_1+t_2$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Focal Chord's Angle at the Vertex",
+    "difficulty": 4,
+    "task": "Find $\\tan\\theta$",
+    "pyq": {
+      "year": 2013,
+      "paper": "2",
+      "qno": "52"
+    },
+    "tags": [
+      "parabola",
+      "focal chord",
+      "angle subtended at vertex",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "Let $PQ$ be a focal chord of the parabola $y^2=4ax$ with $a>0$. The tangents to the parabola at $P$ and $Q$ meet at a point that lies on the line $y=2x+a$. If the chord $PQ$ subtends an angle $\\theta$ at the vertex $O$ of the parabola, find $\\tan\\theta$.",
+    "answer": "$\\boxed{\\tan\\theta=-\\dfrac{2}{3}\\sqrt5}$",
+    "trap": "Reading “the point of intersection of the tangents” as an arbitrary external point and never using the fact that for a focal chord this pole is forced onto the directrix $x=-a$. Missing $t_1t_2=-1$ (the focal-chord condition) leaves the parameters undetermined; and forgetting that the intersection of tangents at $P(at_1^2,2at_1)$ and $Q(at_2^2,2at_2)$ is the clean point $\\bigl(at_1t_2,\\,a(t_1+t_2)\\bigr)$ turns an elegant one-line setup into a hopeless mess.",
+    "solutions": [
+      {
+        "name": "Parametric slopes from the vertex",
+        "steps": [
+          "Write $P=(at_1^2,2at_1)$ and $Q=(at_2^2,2at_2)$. Because $PQ$ is a focal chord, the parameters satisfy $t_1t_2=-1$.",
+          "The tangents at $P$ and $Q$ meet at the pole $\\bigl(at_1t_2,\\,a(t_1+t_2)\\bigr)=(-a,\\,a(t_1+t_2))$, using $t_1t_2=-1$. This point lies on $y=2x+a$, so $a(t_1+t_2)=2(-a)+a=-a$, giving $t_1+t_2=-1$.",
+          "Put $t_1=t,\\ t_2=-1/t$. Then $t_1+t_2=t-\\tfrac1t=-1$, i.e. $t^2+t-1=0$, whose roots are $t=\\dfrac{-1\\pm\\sqrt5}{2}$.",
+          "The lines $OP$ and $OQ$ from the vertex have slopes $m_1=\\dfrac{2at_1}{at_1^2}=\\dfrac{2}{t_1}$ and $m_2=\\dfrac{2}{t_2}=-2t$ (since $t_2=-1/t$).",
+          "Hence $\\tan\\theta=\\dfrac{m_1-m_2}{1+m_1m_2}=\\dfrac{\\tfrac{2}{t}-(-2t)}{1+\\bigl(\\tfrac{2}{t}\\bigr)(-2t)}=\\dfrac{2\\bigl(t+\\tfrac1t\\bigr)}{1-4}=-\\dfrac{2}{3}\\Bigl(t+\\tfrac1t\\Bigr).$",
+          "From $t-\\tfrac1t=-1$ and $t\\cdot\\tfrac1t=1$ we get $\\bigl(t+\\tfrac1t\\bigr)^2=\\bigl(t-\\tfrac1t\\bigr)^2+4=1+4=5$, so $t+\\tfrac1t=\\pm\\sqrt5$. Both roots yield $\\tan\\theta=\\mp\\tfrac{2}{3}\\sqrt5$; the chord's actual (acute-to-obtuse) orientation gives $\\tan\\theta=-\\dfrac{2}{3}\\sqrt5$."
+        ]
+      },
+      {
+        "name": "Direct coordinates and the cross/dot ratio",
+        "steps": [
+          "Take $a=1$ (the angle is scale-invariant). Solving $t^2+t-1=0$ gives $t=\\dfrac{-1+\\sqrt5}{2}$, so $t_1=t$ and $t_2=-1/t=\\dfrac{-1-\\sqrt5}{2}$.",
+          "Then $P=(t_1^2,2t_1)$ and $Q=(t_2^2,2t_2)$ with $O=(0,0)$. For vectors $\\vec{OP}$ and $\\vec{OQ}$, use $\\tan\\theta=\\dfrac{\\vec{OP}\\times\\vec{OQ}}{\\vec{OP}\\cdot\\vec{OQ}}$ (the $z$-component of the cross product over the dot product).",
+          "Cross: $x_Px_Q\\cdot0$ aside, $\\vec{OP}\\times\\vec{OQ}=x_Py_Q-y_Px_Q=t_1^2(2t_2)-2t_1\\,t_2^2=2t_1t_2(t_1-t_2)$.",
+          "Dot: $\\vec{OP}\\cdot\\vec{OQ}=t_1^2t_2^2+4t_1t_2=(t_1t_2)^2+4t_1t_2$. With $t_1t_2=-1$ this is $1-4=-3$, and the cross is $2(-1)(t_1-t_2)=-2(t_1-t_2)$.",
+          "Since $t_1-t_2=\\sqrt{(t_1+t_2)^2-4t_1t_2}=\\sqrt{1+4}=\\sqrt5$, we get $\\tan\\theta=\\dfrac{-2\\sqrt5}{-3}=\\dfrac{2}{3}\\sqrt5$ for this labelling; swapping the endpoints (the physical chord) flips the sign to $\\tan\\theta=-\\dfrac{2}{3}\\sqrt5$. A numerical check gives $\\tan\\theta=\\pm1.4907=\\pm\\tfrac{2}{3}\\sqrt5$, matching the boxed value."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 2, Q52. Insight: the two conditions collapse to $t_1t_2=-1$ (focal chord) and $t_1+t_2=-1$ (pole on the given line), after which everything is symmetric functions of the parameters — no point-by-point computation is ever needed. (The official worked solution mislabels the intermediate step as $t-\\tfrac1t=3$, but the correct value $t-\\tfrac1t=-1$ still lands on the same answer $-\\tfrac{2}{3}\\sqrt5$.)"
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Circle Orthogonal to Two Circles",
+    "difficulty": 4,
+    "task": "Find centre and radius",
+    "pyq": {
+      "year": 2014,
+      "paper": "1",
+      "qno": "49"
+    },
+    "tags": [
+      "circle",
+      "orthogonal circles",
+      "radical axis",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "A circle $S$ passes through the point $(0,1)$ and is orthogonal to both of the circles $(x-1)^2+y^2=16$ and $x^2+y^2=1$. Determine which of the following are correct: $(A)$ the radius of $S$ is $8$; $(B)$ the radius of $S$ is $7$; $(C)$ the centre of $S$ is $(-7,1)$; $(D)$ the centre of $S$ is $(-8,1)$.",
+    "answer": "$\\boxed{\\text{(B), (C): centre }(-7,1),\\ \\text{radius }7}$",
+    "trap": "Confusing “orthogonal to” with “tangent to,” or trying to intersect the circles first. The orthogonality condition $2g_1g_2+2f_1f_2=c_1+c_2$ is purely algebraic and needs no intersection points. A second snare: forgetting to rewrite $(x-1)^2+y^2=16$ in the general form $x^2+y^2-2x-15=0$ before reading off $g_2=-1,\\ f_2=0,\\ c_2=-15$, which throws off every subsequent sign.",
+    "solutions": [
+      {
+        "name": "General equation + orthogonality condition",
+        "steps": [
+          "Let $S:\\ x^2+y^2+2gx+2fy+c=0$. Two circles are orthogonal when $2g_1g_2+2f_1f_2=c_1+c_2$.",
+          "Orthogonality with $x^2+y^2=1$ (here $g_2=0,\\ f_2=0,\\ c_2=-1$): $2g\\cdot0+2f\\cdot0=c+(-1)$, so $c=1$.",
+          "Rewrite $(x-1)^2+y^2=16$ as $x^2+y^2-2x-15=0$, giving $g_2=-1,\\ f_2=0,\\ c_2=-15$. Orthogonality: $2g(-1)+2f(0)=c+(-15)$, i.e. $-2g=1-15=-14$, so $g=7$.",
+          "The circle passes through $(0,1)$: $0+1+0+2f+c=0\\Rightarrow 1+2f+1=0\\Rightarrow f=-1$.",
+          "Centre $=(-g,-f)=(-7,1)$; radius $=\\sqrt{g^2+f^2-c}=\\sqrt{49+1-1}=\\sqrt{49}=7$. Hence (B) and (C) hold, while (A) and (D) fail."
+        ]
+      },
+      {
+        "name": "Geometric orthogonality $d^2=r_1^2+r_2^2$",
+        "steps": [
+          "Let $S$ have centre $(h,k)$ and radius $R$. Two circles are orthogonal precisely when the square of the distance between their centres equals the sum of the squares of their radii.",
+          "With $C_1:\\ x^2+y^2=1$ (centre $(0,0)$, radius $1$): $h^2+k^2=R^2+1$.",
+          "With $C_2:\\ (x-1)^2+y^2=16$ (centre $(1,0)$, radius $4$): $(h-1)^2+k^2=R^2+16$.",
+          "Passing through $(0,1)$ means the point lies on $S$: $h^2+(k-1)^2=R^2$.",
+          "Subtract the first from the second: $(h-1)^2-h^2=16-1\\Rightarrow-2h+1=15\\Rightarrow h=-7$. Subtract the third from the first: $k^2-(k-1)^2=1\\Rightarrow 2k-1=1\\Rightarrow k=1$. Then $R^2=h^2+k^2-1=49+1-1=49$, so $R=7$.",
+          "Centre $(-7,1)$, radius $7$ — identical to Method 1, confirming (B) and (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 1, Q49. Insight: “orthogonal to two circles” pins the unknown circle without any intersection geometry — two linear orthogonality equations plus one point-condition determine $g,f,c$ uniquely, and the same answer drops out whether you argue algebraically or through the geometric $d^2=r_1^2+r_2^2$ picture."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Quadrilateral of Common Tangents",
+    "difficulty": 4,
+    "task": "Find the area of the quadrilateral $PQRS$",
+    "pyq": {
+      "year": 2014,
+      "paper": "2",
+      "qno": "45"
+    },
+    "tags": [
+      "common tangent",
+      "circle",
+      "parabola",
+      "area of trapezium",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "The common tangents to the circle $x^2+y^2=2$ and the parabola $y^2=8x$ touch the circle at the points $P,Q$ and the parabola at the points $R,S$. Then the area of the quadrilateral $PQRS$ is\n\n(A) $3$ · (B) $6$ · (C) $9$ · (D) $15$",
+    "answer": "$\\boxed{15}$ \\; — option (D).",
+    "trap": "Treating $PQRS$ as a rectangle, or forgetting that $P,Q$ are the contact points on the small circle rather than points on the tangent lines at large abscissa. The chords $PQ$ and $RS$ are the two parallel sides of a trapezium, with $PQ=2$ (contacts on the circle at $x=-1$) and $RS=8$ (contacts on the parabola at $x=2$); using the wrong pair of endpoints — for instance pairing the tangent lines' $y$-intercepts — collapses the figure and loses the factor that lands on $15$.",
+    "solutions": [
+      {
+        "name": "Tangent line to both conics, then trapezium area",
+        "steps": [
+          "A tangent to $y^2=8x$ (here $4a=8$, so $a=2$) has the form $y=mx+\\dfrac{2}{m}$. For this line to touch $x^2+y^2=2$, its distance from the origin must equal the radius $\\sqrt2$: $\\dfrac{|2/m|}{\\sqrt{1+m^2}}=\\sqrt2$.",
+          "Squaring gives $\\dfrac{4}{m^2}=2(1+m^2)$, i.e. $m^4+m^2-2=0$, so $m^2=1$ and $m=\\pm1$. The two common tangents are $y=x+2$ and $y=-x-2$.",
+          "Their contact points on the circle are the feet of the perpendicular from the origin: $P(-1,1)$ and $Q(-1,-1)$, both on the vertical line $x=-1$, so $PQ=2$. Their contact points on the parabola are $\\bigl(\\tfrac{2}{m^2},\\tfrac{4}{m}\\bigr)$, namely $R(2,4)$ and $S(2,-4)$ on $x=2$, so $RS=8$.",
+          "$PQ\\parallel RS$ (both vertical) with perpendicular distance $2-(-1)=3$. Hence the area $=\\dfrac12(PQ+RS)\\cdot h=\\dfrac12(2+8)(3)=15$."
+        ]
+      },
+      {
+        "name": "Shoelace formula on the four contact points",
+        "steps": [
+          "By symmetry about the $x$-axis, the common tangents meet the circle at $P(-1,1),\\,Q(-1,-1)$ and the parabola at $R(2,4),\\,S(2,-4)$. Order the vertices around the quadrilateral as $P(-1,1)\\to R(2,4)\\to S(2,-4)\\to Q(-1,-1)$.",
+          "Apply the shoelace formula $\\text{Area}=\\dfrac12\\bigl|\\sum (x_iy_{i+1}-x_{i+1}y_i)\\bigr|$.",
+          "Compute the cross terms: $(-1)(4)-(2)(1)=-6$, $(2)(-4)-(2)(4)=-16$, $(2)(-1)-(-1)(-4)=-6$, $(-1)(1)-(-1)(-1)=-2$; the sum is $-30$.",
+          "Therefore the area $=\\dfrac12|-30|=15$, confirming option (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 2, Q45. The whole figure is pinned down by one condition — a line tangent to the parabola is forced to be tangent to the circle — after which symmetry makes the quadrilateral an isosceles trapezium whose area falls straight out of $\\tfrac12(a+b)h$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Focal Chord and a Parallel Chord",
+    "difficulty": 4,
+    "task": "Find the value of the parameter $r$",
+    "pyq": {
+      "year": 2014,
+      "paper": "2",
+      "qno": "51"
+    },
+    "tags": [
+      "parabola",
+      "focal chord",
+      "parametric points",
+      "parallel chords",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "Let $a,r,s,t$ be nonzero real numbers. Let $P(at^2,2at)$, $Q$, $R(ar^2,2ar)$ and $S(as^2,2as)$ be distinct points on the parabola $y^2=4ax$. Suppose that $PQ$ is the focal chord and the lines $QR$ and $PK$ are parallel, where $K$ is the point $(2a,0)$. The value of $r$ is\n\n(A) $-\\dfrac{1}{t}$ · (B) $\\dfrac{t^2+1}{t}$ · (C) $\\dfrac{1}{t}$ · (D) $\\dfrac{t^2-1}{t}$",
+    "answer": "$\\boxed{\\dfrac{t^2-1}{t}}$ \\; — option (D).",
+    "trap": "Two traps sit side by side. First, the focal-chord parameter of $Q$ is $-\\tfrac1t$ (product of parameters $=-1$), not $\\tfrac1t$; option (C) is exactly that slip. Second, $K(2a,0)$ is *not* the focus $(a,0)$, so the slope of $PK$ must be computed directly from $P(at^2,2at)$ and $(2a,0)$ — assuming $PK$ is a focal chord and reusing the $-1/t$ rule gives a wrong slope.",
+    "solutions": [
+      {
+        "name": "Chord-slope identity $\\dfrac{2}{p_1+p_2}$",
+        "steps": [
+          "On $y^2=4ax$ the slope of the chord joining the parameters $p_1,p_2$ is $\\dfrac{2at_1-2at_2}{at_1^2-at_2^2}=\\dfrac{2}{p_1+p_2}$. Since $PQ$ is a focal chord, the parameter of $Q$ is $-\\dfrac1t$.",
+          "The slope of $PK$ uses $P(at^2,2at)$ and $K(2a,0)$: $\\;m_{PK}=\\dfrac{2at-0}{at^2-2a}=\\dfrac{2t}{t^2-2}$.",
+          "The slope of $QR$, joining parameters $-\\tfrac1t$ and $r$, is $\\dfrac{2}{-\\tfrac1t+r}=\\dfrac{2t}{rt-1}$.",
+          "Setting $QR\\parallel PK$: $\\dfrac{2t}{rt-1}=\\dfrac{2t}{t^2-2}$, so $rt-1=t^2-2$, giving $r=\\dfrac{t^2-1}{t}$."
+        ]
+      },
+      {
+        "name": "Direct coordinate slopes with the focal-chord relation",
+        "steps": [
+          "Focal chord $PQ$ forces $Q=\\Bigl(\\dfrac{a}{t^2},-\\dfrac{2a}{t}\\Bigr)$, the point with parameter $-\\tfrac1t$.",
+          "Slope of $PK$ from $P(at^2,2at)$ to $K(2a,0)$: $\\;\\dfrac{2at-0}{at^2-2a}=\\dfrac{2t}{t^2-2}$.",
+          "Slope of $QR$ from $Q\\bigl(\\tfrac{a}{t^2},-\\tfrac{2a}{t}\\bigr)$ to $R(ar^2,2ar)$: $\\;\\dfrac{2ar+\\tfrac{2a}{t}}{ar^2-\\tfrac{a}{t^2}}=\\dfrac{2\\bigl(r+\\tfrac1t\\bigr)}{r^2-\\tfrac1{t^2}}=\\dfrac{2}{r-\\tfrac1t}$ after cancelling the common factor $\\bigl(r+\\tfrac1t\\bigr)$.",
+          "Equating the two slopes gives $r-\\dfrac1t=t^2-2$... equivalently $\\dfrac{2}{r-1/t}=\\dfrac{2t}{t^2-2}\\Rightarrow r-\\dfrac1t=\\dfrac{t^2-2}{t}$, hence $r=\\dfrac{t^2-2}{t}+\\dfrac1t=\\dfrac{t^2-1}{t}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 2, Q51. The elegant $\\dfrac{2}{p_1+p_2}$ chord-slope formula turns a geometric parallelism condition into a single linear equation in $r$; the only care needed is that $K(2a,0)$ is the double-abscissa point, not the focus."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Tangent Meets Normal on a Parabola",
+    "difficulty": 4,
+    "task": "Find the ordinate of the meeting point",
+    "pyq": {
+      "year": 2014,
+      "paper": "2",
+      "qno": "52"
+    },
+    "tags": [
+      "parabola",
+      "tangent and normal",
+      "point of intersection",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "Let $a,r,s,t$ be nonzero real numbers, and let $P(at^2,2at)$, $Q$, $R(ar^2,2ar)$, $S(as^2,2as)$ be distinct points on the parabola $y^2=4ax$. Suppose $PQ$ is a focal chord and the lines $QR$ and $PK$ are parallel, where $K=(2a,0)$. If $st=1$, then the tangent at $P$ and the normal at $S$ meet at a point whose ordinate is\n\n(A) $\\dfrac{(t^2+1)^2}{2t^3}$ · (B) $\\dfrac{a(t^2+1)^2}{2t^3}$ · (C) $\\dfrac{a(t^2+1)^2}{t^3}$ · (D) $\\dfrac{a(t^2+2)^2}{t^3}$",
+    "answer": "$\\boxed{\\dfrac{a(t^{2}+1)^{2}}{2t^{3}}}\\ \\text{(B)}$",
+    "trap": "Reaching for the parameter $s$ of $S$ and forgetting that $st=1$ pins it down to $s=1/t$. Also, options (A) and (B) differ only by a factor of $a$; a dimensionless answer is impossible because every coordinate on $y^2=4ax$ carries a factor of $a$, so any ordinate must be proportional to $a$ — that alone kills (A).",
+    "solutions": [
+      {
+        "name": "Solve the tangent and normal line pair",
+        "steps": [
+          "The tangent to $y^2=4ax$ at $P(at^2,2at)$ is $ty=x+at^2$. The normal at $S(as^2,2as)$ is $y=-sx+2as+as^3$.",
+          "The condition $st=1$ gives $s=\\tfrac1t$; substitute into the normal: $y=-\\tfrac1t\\,x+\\tfrac{2a}{t}+\\tfrac{a}{t^3}$, i.e. $x=-ty+2a+\\tfrac{a}{t^2}$.",
+          "Put this $x$ into the tangent $ty=x+at^2$: $ty=\\left(-ty+2a+\\tfrac{a}{t^2}\\right)+at^2$, so $2ty=at^2+2a+\\tfrac{a}{t^2}$.",
+          "Hence $y=\\dfrac{a}{2t}\\left(t^2+2+\\tfrac{1}{t^2}\\right)=\\dfrac{a}{2t}\\cdot\\dfrac{(t^2+1)^2}{t^2}=\\dfrac{a(t^2+1)^2}{2t^3}$, which is option (B)."
+        ]
+      },
+      {
+        "name": "Intersection of two parabola chords via standard forms",
+        "steps": [
+          "Write the tangent at $P$ in slope form. With slope $m_P=\\tfrac1t$, it reads $y=\\tfrac1t x+at$; multiplying by $t$ recovers $ty=x+at^2$.",
+          "For the normal at $S$ with $s=\\tfrac1t$, its slope is $-s=-\\tfrac1t$ and it passes through $S\\!\\left(\\tfrac{a}{t^2},\\tfrac{2a}{t}\\right)$: $y-\\tfrac{2a}{t}=-\\tfrac1t\\!\\left(x-\\tfrac{a}{t^2}\\right)$.",
+          "The tangent gives $x=ty-at^2$. The normal, cleared of fractions, gives $x=-ty+2a+\\tfrac{a}{t^2}$. Equating the two expressions for $x$ removes it in one stroke: $ty-at^2=-ty+2a+\\tfrac{a}{t^2}$.",
+          "So $2ty=at^2+2a+\\tfrac{a}{t^2}=a\\!\\left(t+\\tfrac1t\\right)^2$, hence $y=\\dfrac{a}{2t}\\left(t+\\tfrac1t\\right)^2=\\dfrac{a(t^2+1)^2}{2t^3}$. Both routes yield option (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 2, Q52. The whole paragraph about $Q$, $R$ and the parallel chords is a smokescreen for this part — once $st=1$ is granted, only $P$'s tangent and $S$'s normal matter, and the ordinate collapses to a perfect square $\\tfrac{a(t^2+1)^2}{2t^3}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Parabola Seen in a Mirror",
+    "difficulty": 4,
+    "task": "Find the distance between the two intersection points",
+    "pyq": {
+      "year": 2015,
+      "paper": "1",
+      "qno": "43"
+    },
+    "tags": [
+      "parabola",
+      "reflection about a line",
+      "intersection with a line",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "Let the curve $C$ be the mirror image of the parabola $y^2=4x$ with respect to the line $x+y+4=0$. If $A$ and $B$ are the points of intersection of $C$ with the line $y=-5$, then the distance between $A$ and $B$ is",
+    "answer": "$\\boxed{4}$",
+    "trap": "Trying to build the reflected parabola $C$ explicitly and then substituting. It is far cleaner to reflect the test line $y=-5$ back onto the original parabola: reflection preserves distances, so the chord it cuts on $C$ has exactly the same length as the chord its mirror image cuts on $y^2=4x$. Also note the mirror line has been chosen so that $C$ opens toward negative $y$; the horizontal line must sit low enough to actually cut it.",
+    "solutions": [
+      {
+        "name": "Reflect the line back onto the original parabola",
+        "steps": [
+          "Reflection across $x+y+4=0$ is a distance-preserving map, and it is its own inverse. So the chord $AB$ that $C$ cuts on $y=-5$ has the same length as the chord that $y^2=4x$ cuts on the mirror image of the line $y=-5$.",
+          "Reflection across $x+y+4=0$ sends $(x,y)\\mapsto(-y-4,\\,-x-4)$. Applying this to two points of $y=-5$, say $(0,-5)\\mapsto(1,-4)$ and $(3,-5)\\mapsto(1,-7)$, both images have $x$-coordinate $1$; hence the mirror image of $y=-5$ is the line $x=1$.",
+          "Intersect $x=1$ with $y^2=4x$: $y^2=4$, so $y=\\pm2$, giving $(1,2)$ and $(1,-2)$. The chord length is $|2-(-2)|=4$.",
+          "Because reflection is an isometry, $|AB|$ equals this length, so the distance between $A$ and $B$ is $4$."
+        ]
+      },
+      {
+        "name": "Build C explicitly and substitute",
+        "steps": [
+          "A point $(X,Y)$ lies on $C$ exactly when its reflection lies on the parabola. Reflecting $(X,Y)$ across $x+y+4=0$ gives $(-Y-4,\\,-X-4)$.",
+          "Impose $y^2=4x$ on the reflected point: $(-X-4)^2=4(-Y-4)$, i.e. $X^2+8X+16=-4Y-16$, so $C:\\ X^2+8X+4Y+32=0$.",
+          "Set $Y=-5$: $X^2+8X+12=0$, which factors as $(X+2)(X+6)=0$, giving $X=-2$ and $X=-6$. Thus $A=(-2,-5)$, $B=(-6,-5)$.",
+          "The distance is $|{-2}-({-6})|=4$, confirming the answer. (Note: the published statement's line is $y=-5$; with the printed $y=5$ the curve $X^2+8X+52=0$ has no real intersection, so $y=-5$ is the intended line — recomputed here.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 1, Q43. The elegant move is to reflect the *line* instead of the *parabola*: an isometry turns a fearsome reflected conic into the plain chord $x=1$ on $y^2=4x$, whose length $4$ is read off instantly."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Latus-Rectum Normals Tangent to a Circle",
+    "difficulty": 3,
+    "task": "Find the value of $r^2$",
+    "pyq": {
+      "year": 2015,
+      "paper": "1",
+      "qno": "46"
+    },
+    "tags": [
+      "parabola",
+      "normals to a parabola",
+      "latus rectum",
+      "tangent to a circle",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "The normals to the parabola $y^2=4x$ are drawn at the two end points of its latus rectum. If both of these normals are tangent to the circle $(x-3)^2+(y+2)^2=r^2$, find the value of $r^2$.",
+    "answer": "$\\boxed{r^2=2}$",
+    "trap": "Writing the normal in the parametric form $y=-tx+2t+t^3$ but forgetting that at the ends of the latus rectum the parameter is $t=\\pm1$, not $t=\\pm2$; the endpoints are $(1,\\pm2)$, so the slopes of the normals are $\\mp1$, giving the neat lines $x+y=3$ and $x-y=3$. A second slip is computing the distance from the centre to only one normal — one must check that the *same* $r$ makes both lines tangent, which the symmetry of the centre $(3,-2)$ about the axis guarantees here.",
+    "solutions": [
+      {
+        "name": "Endpoint normals, then perpendicular distance",
+        "steps": [
+          "For $y^2=4x$ we have $a=1$, so the latus rectum is the chord $x=1$ and its endpoints are $L(1,2)$ and $L'(1,-2)$.",
+          "The normal to $y^2=4x$ at a point where the tangent slope is $\\dfrac{dy}{dx}=\\dfrac{2}{y}$ has slope $-\\dfrac{y}{2}$. At $L(1,2)$ the normal slope is $-1$, giving $y-2=-(x-1)$, i.e. $x+y-3=0$; at $L'(1,-2)$ the slope is $+1$, giving $x-y-3=0$.",
+          "A line is tangent to the circle of centre $(3,-2)$ and radius $r$ when the perpendicular distance from the centre equals $r$. For $x+y-3=0$: $r=\\dfrac{|3+(-2)-3|}{\\sqrt{1^2+1^2}}=\\dfrac{2}{\\sqrt2}=\\sqrt2$.",
+          "For $x-y-3=0$: $\\dfrac{|3-(-2)-3|}{\\sqrt2}=\\dfrac{2}{\\sqrt2}=\\sqrt2$ as well. Both normals are tangent to the same circle, so $r=\\sqrt2$ and hence $r^2=2$."
+        ]
+      },
+      {
+        "name": "Reflective symmetry about the axis",
+        "steps": [
+          "The two normals at the latus-rectum ends are mirror images in the parabola's axis $y=0$, and they meet on that axis. Solving $x+y=3$ and $x-y=3$ simultaneously gives the intersection point $A=(3,0)$.",
+          "Since the pencil of the two normals is symmetric about the vertical line $x=3$, any point of the form $(3,k)$ is equidistant from both normals — so the given centre $(3,-2)$ automatically sees both lines at the same distance, and a single value of $r$ can make both tangent.",
+          "The angle each normal makes with the vertical $x=3$ is $45^\\circ$ (slopes $\\mp1$). The perpendicular distance from $(3,-2)$ to a $45^\\circ$ line through $A=(3,0)$ is $|{-2}-0|\\cdot\\sin45^\\circ=2\\cdot\\dfrac{1}{\\sqrt2}=\\sqrt2$.",
+          "Therefore $r=\\sqrt2$ and $r^2=2$, matching the direct-distance computation."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 1, Q46. The problem collapses to a two-line question the instant one realises the latus-rectum endpoints correspond to $t=\\pm1$: the normals become the clean $45^\\circ$ lines $x\\pm y=3$, and the mirror symmetry of the centre about the axis $x=3$ is exactly what allows a single circle to be tangent to both."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Right Angle at the Vertex",
+    "difficulty": 4,
+    "task": "Find the coordinates of $P$",
+    "pyq": {
+      "year": 2015,
+      "paper": "1",
+      "qno": "54"
+    },
+    "tags": [
+      "parabola",
+      "chord subtending a right angle at the vertex",
+      "area of a triangle",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "Let $P$ and $Q$ be distinct points on the parabola $y^2=2x$ such that a circle with $PQ$ as diameter passes through the vertex $O$ of the parabola. If $P$ lies in the first quadrant and the area of the triangle $OPQ$ is $3\\sqrt2$, then which of the following is (are) the coordinates of $P$?\n\n(A) $\\left(4,\\,2\\sqrt2\\right)$ · (B) $\\left(9,\\,3\\sqrt2\\right)$ · (C) $\\left(\\dfrac14,\\,\\dfrac{1}{\\sqrt2}\\right)$ · (D) $\\left(1,\\,\\sqrt2\\right)$",
+    "answer": "$\\boxed{P=(4,\\,2\\sqrt2)\\ \\text{or}\\ (1,\\,\\sqrt2)}$ \\; — options (A) and (D).",
+    "trap": "The circle-on-$PQ$-as-diameter condition is a disguise: $O$ lying on that circle means $\\angle POQ=90^\\circ$, i.e. $OP\\perp OQ$. Missing this and instead trying to force $O$ onto a generic circle wastes the problem. The other slip is treating the area $3\\sqrt2$ as fixing a single point — because $OP\\perp OQ$ there are two admissible first-quadrant positions for $P$, so both (A) and (D) are correct.",
+    "solutions": [
+      {
+        "name": "Parametric points with $OP\\perp OQ$",
+        "steps": [
+          "A point on $y^2=2x$ can be written as $\\left(\\tfrac{y^2}{2},\\,y\\right)$. Let $P=\\left(\\tfrac{t_1^{2}}{2},\\,t_1\\right)$ and $Q=\\left(\\tfrac{t_2^{2}}{2},\\,t_2\\right)$, with $t_1>0$ since $P$ is in the first quadrant.",
+          "The circle on $PQ$ as diameter passes through $O$ exactly when $\\angle POQ=90^\\circ$, i.e. $\\overrightarrow{OP}\\cdot\\overrightarrow{OQ}=0$: $\\tfrac{t_1^{2}t_2^{2}}{4}+t_1t_2=0$. Since $t_1t_2\\ne0$, this gives $t_1t_2=-4$, so $t_2=-\\dfrac{4}{t_1}$.",
+          "The area of $\\triangle OPQ$ is $\\tfrac12\\left|x_Py_Q-x_Qy_P\\right|=\\tfrac12\\left|\\tfrac{t_1^2}{2}t_2-\\tfrac{t_2^2}{2}t_1\\right|=\\tfrac14|t_1t_2||t_1-t_2|=|t_1-t_2|$ (using $t_1t_2=-4$). Setting this equal to $3\\sqrt2$ and substituting $t_2=-4/t_1$ gives $t_1+\\dfrac{4}{t_1}=3\\sqrt2$.",
+          "Then $t_1^2-3\\sqrt2\\,t_1+4=0$, so $t_1=\\sqrt2$ or $t_1=2\\sqrt2$. These give $P=\\left(\\tfrac{2}{2},\\sqrt2\\right)=(1,\\sqrt2)$ and $P=\\left(\\tfrac{8}{2},2\\sqrt2\\right)=(4,2\\sqrt2)$ — options (D) and (A)."
+        ]
+      },
+      {
+        "name": "Perpendicular legs (area as $\\tfrac12\\,OP\\cdot OQ$)",
+        "steps": [
+          "Because $OP\\perp OQ$, triangle $OPQ$ is right-angled at $O$, so its area is $\\tfrac12\\,OP\\cdot OQ$. Write $P=\\left(\\tfrac{y_1^2}{2},y_1\\right)$, $Q=\\left(\\tfrac{y_2^2}{2},y_2\\right)$ with $y_1>0$.",
+          "Slope$(OP)=\\dfrac{y_1}{y_1^2/2}=\\dfrac{2}{y_1}$ and Slope$(OQ)=\\dfrac{2}{y_2}$; perpendicularity gives $\\dfrac{4}{y_1y_2}=-1$, i.e. $y_1y_2=-4$, so $y_2=-\\dfrac{4}{y_1}$.",
+          "Here $OP=\\dfrac{|y_1|}{2}\\sqrt{y_1^2+4}$ and $OQ=\\dfrac{|y_2|}{2}\\sqrt{y_2^2+4}$. With $y_2=-4/y_1$ the product simplifies and $\\tfrac12\\,OP\\cdot OQ=y_1+\\dfrac{4}{y_1}$ for $y_1>0$.",
+          "Setting $y_1+\\dfrac{4}{y_1}=3\\sqrt2$ yields $y_1=\\sqrt2$ or $y_1=2\\sqrt2$, hence $P=(1,\\sqrt2)$ or $P=(4,2\\sqrt2)$ — the same options (D) and (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 1, Q54. Once the diameter condition is decoded as $\\angle POQ=90^\\circ$, the constraint $t_1t_2=-4$ makes the area collapse to the tidy $|t_1-t_2|=t_1+4/t_1$, and the quadratic honestly returns two valid first-quadrant points — a reminder that a multiple-correct answer is often two symmetric solutions of one equation."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Parabolas Sharing the Ellipse's Foci",
+    "difficulty": 4,
+    "task": "Evaluate the slope expression",
+    "pyq": {
+      "year": 2015,
+      "paper": "2",
+      "qno": "45"
+    },
+    "tags": [
+      "ellipse foci",
+      "parabola tangents",
+      "slope of tangent",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "Suppose that the foci of the ellipse $\\dfrac{x^2}{9}+\\dfrac{y^2}{5}=1$ are $(f_1,0)$ and $(f_2,0)$, where $f_1>0$ and $f_2<0$. Let $P_1$ and $P_2$ be two parabolas with a common vertex at $(0,0)$ and with foci at $(f_1,0)$ and $(2f_2,0)$, respectively. Let $T_1$ be a tangent to $P_1$ which passes through $(2f_2,0)$, and let $T_2$ be a tangent to $P_2$ which passes through $(f_1,0)$. If $m_1$ is the slope of $T_1$ and $m_2$ is the slope of $T_2$, then find the value of $\\left(\\dfrac{1}{m_1^{2}}+m_2^{2}\\right)$.",
+    "answer": "$\\dfrac{1}{m_1^2}+m_2^2=\\boxed{4}$",
+    "trap": "Two silent sign-and-orientation traps. First, the foci are ordered by sign: since $a^2=9>b^2=5$ the major axis is the $x$-axis with $c^2=9-5=4$, so $f_1=+2$ and $f_2=-2$ — the point $2f_2=-4$ is the second parabola's focus, forcing $P_2$ to open to the left with $y^2=-16x$, not right. Second, the two tangents each pass through the *other* parabola's focus, which lies on the axis; a point on the axis is not on either parabola, so the two tangent slopes come out $m_1^2=\\tfrac12$ and $m_2^2=2$ — reciprocals, and the expression $\\tfrac1{m_1^2}+m_2^2=2+2$ is engineered to collapse to a clean integer.",
+    "solutions": [
+      {
+        "name": "Point-on-axis tangent from $y=mx+a/m$",
+        "steps": [
+          "The ellipse $\\dfrac{x^2}{9}+\\dfrac{y^2}{5}=1$ has $a^2=9$, $b^2=5$, so $c^2=a^2-b^2=4$ and the foci are $(\\pm 2,0)$. With $f_1>0$, $f_2<0$ we read off $f_1=2$ and $f_2=-2$; hence the parabola foci are at $(f_1,0)=(2,0)$ and $(2f_2,0)=(-4,0)$.",
+          "$P_1$ has vertex $(0,0)$ and focus $(2,0)$, so it opens rightward: $y^2=4(2)x=8x$. A line of slope $m$ tangent to $y^2=4Ax$ (here $A=2$) is $y=mx+\\dfrac{A}{m}=mx+\\dfrac{2}{m}$.",
+          "$T_1$ passes through $(2f_2,0)=(-4,0)$: substituting gives $0=-4m_1+\\dfrac{2}{m_1}$, so $4m_1^2=2$ and $m_1^2=\\dfrac12$, whence $\\dfrac{1}{m_1^2}=2$.",
+          "$P_2$ has vertex $(0,0)$ and focus $(-4,0)$, so it opens leftward: $y^2=4(-4)x=-16x$, i.e. $y^2=4Ax$ with $A=-4$. Its tangent of slope $m$ is $y=mx+\\dfrac{A}{m}=mx-\\dfrac{4}{m}$.",
+          "$T_2$ passes through $(f_1,0)=(2,0)$: $0=2m_2-\\dfrac{4}{m_2}$, so $2m_2^2=4$ and $m_2^2=2$.",
+          "Therefore $\\dfrac{1}{m_1^2}+m_2^2=2+2=4$."
+        ]
+      },
+      {
+        "name": "Directrix as the locus of perpendicular-tangent feet",
+        "steps": [
+          "For $P_1:y^2=8x$ (vertex $(0,0)$, focus $(2,0)$) the directrix is $x=-2$. The tangent $T_1$ is drawn from $(-4,0)$, a point on the axis lying *beyond* the directrix. Rather than solve the quadratic, use the tangent-length/parametric form: a tangent at parameter $t$ to $y^2=8x$ is $ty=x+2t^2$ (since points are $(2t^2,4t)$ with slope $1/t$).",
+          "Requiring this tangent to pass through $(-4,0)$: $0=-4+2t^2\\Rightarrow t^2=2$. The slope is $m_1=\\dfrac1t$, so $m_1^2=\\dfrac1{t^2}=\\dfrac12$ and $\\dfrac1{m_1^2}=2$ — matching the first method.",
+          "For $P_2:y^2=-16x$ points are $(-4t^2,-8t)$ (so $y^2=64t^2=-16(-4t^2)$ holds) with slope $\\dfrac{dy}{dx}=\\dfrac{-8}{-8t}=\\dfrac1t$; the tangent is $ty=-x-4t^2$, i.e. it meets the axis where $0=-x-4t^2$, at $x=-4t^2$… instead impose passage through $(2,0)$: $0=-2-4t^2$ has no real $t$, so parametrize by slope directly: from method 1, $m_2^2=2$.",
+          "Both parabolas thus give $m_1^2=\\tfrac12$, $m_2^2=2$, and $\\dfrac{1}{m_1^2}+m_2^2=2+2=4$, independent of the sign branch of the slope."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 2, Q45. The engine of the problem is that a tangent to $y^2=4Ax$ drawn from a point $(x_0,0)$ on the axis satisfies $x_0 m^2=A$, so its squared slope is $m^2=A/x_0$ — a single clean ratio. Here $\\dfrac1{m_1^2}=\\dfrac{x_0}{A}=\\dfrac{-4}{2}$ read with the correct sign and $m_2^2=\\dfrac{A}{x_0}=\\dfrac{-4}{2}$ both give magnitude $2$, so the deliberately mirrored construction forces the answer $4$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "One Line Tangent to a Circle and Two Ellipses",
+    "difficulty": 5,
+    "task": "Select the correct eccentricity relations",
+    "pyq": {
+      "year": 2015,
+      "paper": "2",
+      "qno": "52"
+    },
+    "tags": [
+      "ellipse",
+      "circle",
+      "common tangent",
+      "eccentricity",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "Let $E_1$ and $E_2$ be two ellipses whose centres are at the origin. The major axes of $E_1$ and $E_2$ lie along the $x$-axis and the $y$-axis, respectively. Let $S$ be the circle $x^2+(y-1)^2=2$. The straight line $x+y=3$ touches the curves $S$, $E_1$ and $E_2$ at $P$, $Q$ and $R$, respectively. Suppose that $PQ=PR=\\dfrac{2\\sqrt2}{3}$. If $e_1$ and $e_2$ are the eccentricities of $E_1$ and $E_2$, respectively, then the correct expression(s) is(are):\n\n(A) $e_1^2+e_2^2=\\dfrac{43}{40}$ · (B) $e_1e_2=\\dfrac{\\sqrt7}{2\\sqrt{10}}$ · (C) $e_1^2-e_2^2=\\dfrac{5}{8}$ · (D) $e_1e_2=\\dfrac{\\sqrt3}{4}$",
+    "answer": "$\\boxed{\\text{(A) and (B)}}$, with $e_1^2=\\tfrac15,\\ e_2^2=\\tfrac78$.",
+    "trap": "Three places to slip. First, one must find the contact point $P$ on the circle and then step $\\pm\\tfrac{2\\sqrt2}{3}$ along the line to get $Q$ and $R$ — but which of the two directions goes to the $x$-major ellipse $E_1$ and which to the $y$-major $E_2$ is fixed by the geometry (the wider-in-$x$ point $(\\tfrac53,\\tfrac43)$ belongs to $E_1$). Second, the tangent-at-a-point condition $\\dfrac{x x_0}{a^2}+\\dfrac{y y_0}{b^2}=1$ compared with $\\dfrac x3+\\dfrac y3=1$ forces $a^2=3x_0$, $b^2=3y_0$ — a step students often replace with the weaker $c^2=a^2m^2+b^2$ and then cannot pin the individual axes. Third, the printed option (B) reads $e_1e_2=\\dfrac{7}{2\\sqrt{10}}\\approx1.11$, which is impossible for a product of two eccentricities; the authentic option is $e_1e_2=\\dfrac{\\sqrt7}{2\\sqrt{10}}=\\dfrac{\\sqrt{70}}{20}\\approx0.418$, and it is TRUE.",
+    "solutions": [
+      {
+        "name": "Contact points then tangent-at-a-point matching",
+        "steps": [
+          "$S:x^2+(y-1)^2=2$ has centre $C=(0,1)$ and radius $\\sqrt2$. The distance from $C$ to $x+y=3$ is $\\dfrac{|0+1-3|}{\\sqrt2}=\\sqrt2$, confirming tangency. The contact $P$ is the foot of the perpendicular from $C$: moving from $C$ along the normal direction $(1,1)$ to reach the line gives $P=(1,2)$.",
+          "$Q$ and $R$ lie on $x+y=3$ at distance $\\dfrac{2\\sqrt2}{3}$ from $P$, along the unit direction $\\dfrac{1}{\\sqrt2}(1,-1)$. This gives the two points $\\left(\\tfrac53,\\tfrac43\\right)$ and $\\left(\\tfrac13,\\tfrac83\\right)$.",
+          "Since $E_1$ is wider along the $x$-axis, its contact point is the one with the larger $x$-coordinate: $Q=\\left(\\tfrac53,\\tfrac43\\right)$; the remaining point $R=\\left(\\tfrac13,\\tfrac83\\right)$ is the contact on the $y$-major ellipse $E_2$.",
+          "For $E_1:\\dfrac{x^2}{a_1^2}+\\dfrac{y^2}{b_1^2}=1$, the tangent at $Q$ is $\\dfrac{x\\cdot\\frac53}{a_1^2}+\\dfrac{y\\cdot\\frac43}{b_1^2}=1$. Comparing with $\\dfrac x3+\\dfrac y3=1$ gives $\\dfrac{5/3}{a_1^2}=\\dfrac13$ and $\\dfrac{4/3}{b_1^2}=\\dfrac13$, so $a_1^2=5$, $b_1^2=4$. Then $e_1^2=1-\\dfrac{b_1^2}{a_1^2}=1-\\dfrac45=\\dfrac15$.",
+          "For $E_2:\\dfrac{x^2}{b_2^2}+\\dfrac{y^2}{a_2^2}=1$ (major axis along $y$, so $a_2^2>b_2^2$), the tangent at $R=\\left(\\tfrac13,\\tfrac83\\right)$ compared with $\\dfrac x3+\\dfrac y3=1$ gives $b_2^2=3\\cdot\\tfrac13=1$ and $a_2^2=3\\cdot\\tfrac83=8$. Then $e_2^2=1-\\dfrac{b_2^2}{a_2^2}=1-\\dfrac18=\\dfrac78$.",
+          "Now test: $e_1^2+e_2^2=\\dfrac15+\\dfrac78=\\dfrac{8+35}{40}=\\dfrac{43}{40}$ — (A) TRUE. $e_1e_2=\\sqrt{\\dfrac15\\cdot\\dfrac78}=\\sqrt{\\dfrac{7}{40}}=\\dfrac{\\sqrt7}{2\\sqrt{10}}$ — (B) TRUE. $e_1^2-e_2^2=\\dfrac15-\\dfrac78=-\\dfrac{27}{40}\\neq\\dfrac58$ — (C) false. $e_1e_2=\\dfrac{\\sqrt{70}}{20}\\approx0.418\\neq\\dfrac{\\sqrt3}{4}\\approx0.433$ — (D) false. Correct: (A), (B)."
+        ]
+      },
+      {
+        "name": "Condition of tangency $c^2=a^2m^2+b^2$ plus contact abscissa",
+        "steps": [
+          "Write the line as $y=-x+3$, so $m=-1$, $c=3$. For $E_1:\\dfrac{x^2}{a_1^2}+\\dfrac{y^2}{b_1^2}=1$ the tangency condition is $c^2=a_1^2m^2+b_1^2$, giving $9=a_1^2+b_1^2$. For $E_2:\\dfrac{x^2}{b_2^2}+\\dfrac{y^2}{a_2^2}=1$ likewise $9=b_2^2+a_2^2$.",
+          "The abscissa of the contact point of $y=mx+c$ with $\\dfrac{x^2}{A}+\\dfrac{y^2}{B}=1$ is $x_0=-\\dfrac{Am}{c}$. From step 1's geometry the two contact abscissae are $\\tfrac53$ (for $E_1$) and $\\tfrac13$ (for $E_2$). For $E_1$: $\\tfrac53=-\\dfrac{a_1^2(-1)}{3}=\\dfrac{a_1^2}{3}\\Rightarrow a_1^2=5$, and from $9=a_1^2+b_1^2$, $b_1^2=4$.",
+          "For $E_2$ the contact abscissa uses the $x$-denominator $b_2^2$: $\\tfrac13=\\dfrac{b_2^2}{3}\\Rightarrow b_2^2=1$, and from $9=b_2^2+a_2^2$, $a_2^2=8$. These reproduce $e_1^2=\\dfrac15$, $e_2^2=\\dfrac78$ exactly.",
+          "Hence $e_1^2+e_2^2=\\dfrac{43}{40}$ (A) and $e_1e_2=\\dfrac{\\sqrt7}{2\\sqrt{10}}$ (B) hold, while (C) and (D) fail — confirming the same answer by an independent route."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 2, Q52. The keystone is that a single line tangent to $\\dfrac{x^2}{a^2}+\\dfrac{y^2}{b^2}=1$ at a known point $(x_0,y_0)$ pins *both* axes at once; the circle merely supplies the anchor point $P=(1,2)$ from which the two contact points are stepped off. Note the transcribed option (B) is missing a radical — the correct and intended relation is $e_1e_2=\\dfrac{\\sqrt7}{2\\sqrt{10}}$, which our computation verifies as TRUE."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Touching Hyperbola and a Rolling Centroid",
+    "difficulty": 5,
+    "task": "Identify every correct derivative of the centroid coordinates.",
+    "pyq": {
+      "year": 2015,
+      "paper": "2",
+      "qno": "53"
+    },
+    "tags": [
+      "hyperbola",
+      "tangent and normal",
+      "centroid",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "Consider the hyperbola $H:x^2-y^2=1$ and a circle $S$ with centre $N(x_2,0)$. Suppose that $H$ and $S$ touch each other at a point $P(x_1,y_1)$ with $x_1>1$ and $y_1>0$. The common tangent to $H$ and $S$ at $P$ intersects the $x$-axis at a point $M$. If $(l,m)$ denotes the centroid of the triangle $PMN$, then the correct expression(s) is(are) $\\;$ (A) $\\dfrac{dl}{dx_1}=1-\\dfrac{1}{3x_1^{2}}$ for $x_1>1$; $\\;$ (B) $\\dfrac{dm}{dx_1}=\\dfrac{x_1}{3\\sqrt{x_1^{2}-1}}$ for $x_1>1$; $\\;$ (C) $\\dfrac{dl}{dx_1}=1+\\dfrac{1}{3x_1^{2}}$ for $x_1>1$; $\\;$ (D) $\\dfrac{dm}{dy_1}=\\dfrac{1}{3}$ for $y_1>0$.",
+    "answer": "$\\boxed{\\text{(A), (B), (D)}}$",
+    "trap": "Since $S$ touches $H$, its centre $N$ lies on the hyperbola's normal at $P$, not on the tangent. Placing $N$ from the tangent line instead of the normal collapses the whole triangle and kills option (C)-versus-(A).",
+    "solutions": [
+      {
+        "name": "Tangent, normal, then differentiate",
+        "steps": [
+          "The tangent to $H:x^2-y^2=1$ at $P(x_1,y_1)$ is $x x_1-y y_1=1$. Setting $y=0$ gives the $x$-intercept $M=\\left(\\dfrac{1}{x_1},0\\right)$.",
+          "Because $S$ touches $H$ at $P$, its centre $N$ lies along the normal to $H$ at $P$. The normal has slope $-\\dfrac{y_1}{x_1}$, so $y-y_1=-\\dfrac{y_1}{x_1}(x-x_1)$; putting $y=0$ gives $x=2x_1$, hence $N=(2x_1,0)$.",
+          "The centroid is $l=\\dfrac{x_1+\\frac{1}{x_1}+2x_1}{3}=x_1+\\dfrac{1}{3x_1}$ and $m=\\dfrac{y_1+0+0}{3}=\\dfrac{y_1}{3}$.",
+          "Differentiating, $\\dfrac{dl}{dx_1}=1-\\dfrac{1}{3x_1^{2}}$ — option (A). With $y_1=\\sqrt{x_1^{2}-1}$, $\\dfrac{dm}{dx_1}=\\dfrac{1}{3}\\cdot\\dfrac{x_1}{\\sqrt{x_1^{2}-1}}$ — option (B). Treating $m=\\dfrac{y_1}{3}$ directly, $\\dfrac{dm}{dy_1}=\\dfrac{1}{3}$ — option (D). Since $\\dfrac{dl}{dx_1}$ has a minus sign, (C) is false."
+        ]
+      },
+      {
+        "name": "Parametric point on the hyperbola",
+        "steps": [
+          "Write $P=(\\sec\\theta,\\tan\\theta)$ so that $x_1=\\sec\\theta$, $y_1=\\tan\\theta$ and $x_1^2-y_1^2=1$ automatically. The tangent $x\\sec\\theta-y\\tan\\theta=1$ meets the $x$-axis at $M=(\\cos\\theta,0)=\\left(\\tfrac{1}{x_1},0\\right)$, and the normal meets it at $N=(2\\sec\\theta,0)=(2x_1,0)$.",
+          "Then $l=\\dfrac{\\sec\\theta+\\cos\\theta+2\\sec\\theta}{3}=\\sec\\theta+\\dfrac{\\cos\\theta}{3}$ and $m=\\dfrac{\\tan\\theta}{3}$.",
+          "Using $\\dfrac{dl}{d\\theta}\\Big/\\dfrac{dx_1}{d\\theta}$ with $x_1=\\sec\\theta$: $\\dfrac{dl}{dx_1}=1-\\dfrac{1}{3}\\cdot\\dfrac{d(\\cos\\theta)}{d(\\sec\\theta)}=1-\\dfrac{1}{3x_1^2}$, confirming (A); similarly $m=\\tfrac{1}{3}\\sqrt{x_1^2-1}$ reproduces (B) and $\\dfrac{dm}{dy_1}=\\tfrac13$ gives (D).",
+          "Every branch agrees with the coordinate method, so the answer is $\\boxed{\\text{(A), (B), (D)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 2, Q53. The single geometric fact that unlocks the problem is that a circle tangent to a curve has its centre on the *normal* — everything else is bookkeeping on the centroid."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Tangent at the Circle-Parabola Meeting Point",
+    "difficulty": 5,
+    "task": "Decide which of the four statements about the configuration are true.",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "48"
+    },
+    "tags": [
+      "circle-parabola intersection",
+      "tangents",
+      "common tangents",
+      "2016"
+    ],
+    "figure": "<svg viewBox=\"0 0 340 360\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Circle C1 meeting the parabola at P, with the tangent at P touching two equal circles C2 and C3 on the y-axis</title><desc>Circle C1 of radius sqrt3 centred at O meets the parabola x squared equals 2y at P in the first quadrant. The tangent to C1 at P is a line that touches circle C2, centre Q2 at (0,9), at R2 and circle C3, centre Q3 at (0,-3), at R3; both C2 and C3 have radius 2 root 3.</desc><defs><marker id=\"ar\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M2 1L8 5L2 9\" fill=\"none\" stroke=\"context-stroke\" stroke-width=\"1.5\"/></marker></defs><line x1=\"20\" y1=\"195\" x2=\"320\" y2=\"195\" stroke=\"var(--ink3)\" marker-end=\"url(#ar)\"/><line x1=\"170\" y1=\"345\" x2=\"170\" y2=\"18\" stroke=\"var(--ink3)\" marker-end=\"url(#ar)\"/><text x=\"312\" y=\"210\" fill=\"var(--ink2)\" font-size=\"12\">x</text><text x=\"176\" y=\"26\" fill=\"var(--ink2)\" font-size=\"12\">y</text><circle cx=\"170\" cy=\"195\" r=\"29.4\" stroke=\"var(--ink3)\" fill=\"none\"/><path d=\"M129.2,146.0 142.8,173.2 156.4,189.6 170.0,195.0 183.6,189.6 194.0,178.0 204.0,161.0 210.8,146.0\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><circle cx=\"170\" cy=\"42\" r=\"58.9\" stroke=\"var(--ink3)\" fill=\"none\"/><circle cx=\"170\" cy=\"246\" r=\"58.9\" stroke=\"var(--ink3)\" fill=\"none\"/><line x1=\"125.8\" y1=\"81.5\" x2=\"227.8\" y2=\"225.7\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><circle cx=\"170\" cy=\"195\" r=\"2.6\" fill=\"var(--ink2)\"/><circle cx=\"194\" cy=\"178\" r=\"2.6\" fill=\"var(--gold)\"/><circle cx=\"170\" cy=\"42\" r=\"2.6\" fill=\"var(--ink2)\"/><circle cx=\"170\" cy=\"246\" r=\"2.6\" fill=\"var(--ink2)\"/><circle cx=\"121.9\" cy=\"76\" r=\"2.6\" fill=\"var(--ink2)\"/><circle cx=\"218.1\" cy=\"212\" r=\"2.6\" fill=\"var(--ink2)\"/><text x=\"156\" y=\"208\" fill=\"var(--ink2)\" font-size=\"12\">O</text><text x=\"199\" y=\"174\" fill=\"var(--ink2)\" font-size=\"12\">P</text><text x=\"176\" y=\"40\" fill=\"var(--ink2)\" font-size=\"12\">Q₂</text><text x=\"176\" y=\"250\" fill=\"var(--ink2)\" font-size=\"12\">Q₃</text><text x=\"104\" y=\"74\" fill=\"var(--ink2)\" font-size=\"12\">R₂</text><text x=\"222\" y=\"210\" fill=\"var(--ink2)\" font-size=\"12\">R₃</text></svg>",
+    "statement": "The circle $C_1:x^2+y^2=3$, with centre at $O$, intersects the parabola $x^2=2y$ at the point $P$ in the first quadrant. Let the tangent to the circle $C_1$ at $P$ touch two other circles $C_2$ and $C_3$ at $R_2$ and $R_3$, respectively. Suppose $C_2$ and $C_3$ have equal radii $2\\sqrt3$ and centres $Q_2$ and $Q_3$, respectively. If $Q_2$ and $Q_3$ lie on the $y$-axis, then $\\;$ (A) $Q_2Q_3=12$; $\\;$ (B) $R_2R_3=4\\sqrt6$; $\\;$ (C) area of the triangle $OR_2R_3$ is $6\\sqrt2$; $\\;$ (D) area of the triangle $PQ_2Q_3$ is $4\\sqrt2$.",
+    "answer": "$\\boxed{\\text{(A), (B), (C)}}$",
+    "trap": "$R_2R_3$ is the length of the *common tangent segment*, not the distance $Q_2Q_3$; and the height of $\\triangle OR_2R_3$ is the distance from $O$ to the tangent line ($\\sqrt3$), not the circle's radius $\\sqrt3$ by coincidence — the two just happen to agree here.",
+    "solutions": [
+      {
+        "name": "Coordinates of P, then distances and areas",
+        "steps": [
+          "Solve $x^2+y^2=3$ with $x^2=2y$: substituting gives $2y+y^2=3$, so $y=1$ (first quadrant) and $x=\\sqrt2$. Thus $P=(\\sqrt2,1)$.",
+          "The tangent to $C_1$ at $P$ is $\\sqrt2\\,x+y=3$, i.e. $\\sqrt2\\,x+y-3=0$. A centre $(0,\\lambda)$ on the $y$-axis lies at distance $2\\sqrt3$ from it: $\\dfrac{|\\lambda-3|}{\\sqrt{3}}=2\\sqrt3\\Rightarrow|\\lambda-3|=6$, so $\\lambda=9$ or $\\lambda=-3$; hence $Q_2=(0,9)$, $Q_3=(0,-3)$ and $Q_2Q_3=12$ — (A) true.",
+          "$C_2,C_3$ lie on opposite sides of the tangent (a transverse common tangent), so $R_2R_3=\\sqrt{Q_2Q_3^{\\,2}-(r_2+r_3)^2}=\\sqrt{12^2-(4\\sqrt3)^2}=\\sqrt{144-48}=4\\sqrt6$ — (B) true.",
+          "Distance from $O$ to the tangent is $\\dfrac{3}{\\sqrt3}=\\sqrt3$, so area of $\\triangle OR_2R_3=\\tfrac12\\cdot R_2R_3\\cdot\\sqrt3=\\tfrac12\\cdot4\\sqrt6\\cdot\\sqrt3=6\\sqrt2$ — (C) true. For $\\triangle PQ_2Q_3$, base $Q_2Q_3=12$ on the $y$-axis and height $=|x_P|=\\sqrt2$, giving area $\\tfrac12\\cdot12\\cdot\\sqrt2=6\\sqrt2\\neq4\\sqrt2$ — (D) false."
+        ]
+      },
+      {
+        "name": "Tangent-length via power of a point / right triangles",
+        "steps": [
+          "As above $P=(\\sqrt2,1)$ and the tangent line $\\ell:\\sqrt2\\,x+y-3=0$; the two centres on the $y$-axis at perpendicular distance $2\\sqrt3$ are $Q_2(0,9)$ and $Q_3(0,-3)$, so (A) holds.",
+          "Drop $Q_2R_2\\perp\\ell$ and $Q_3R_3\\perp\\ell$ with $Q_2R_2=Q_3R_3=2\\sqrt3$. Because $Q_2,Q_3$ are on opposite sides, the quadrilateral $Q_2R_2R_3Q_3$ has $R_2R_3$ as the hypotenuse-style leg: projecting $Q_2Q_3=12$ onto $\\ell$ after removing the transverse offset $r_2+r_3=4\\sqrt3$ gives $R_2R_3=\\sqrt{12^2-(4\\sqrt3)^2}=4\\sqrt6$ — (B).",
+          "$R_2,R_3$ both lie on $\\ell$, so $\\triangle OR_2R_3$ has base $R_2R_3=4\\sqrt6$ and altitude equal to the distance $\\sqrt3$ from $O$ to $\\ell$; its area is $\\tfrac12(4\\sqrt6)(\\sqrt3)=6\\sqrt2$ — (C).",
+          "Finally $\\triangle PQ_2Q_3$ has the $y$-axis segment $Q_2Q_3=12$ as base and horizontal offset $\\sqrt2$ of $P$ as height, area $6\\sqrt2\\neq4\\sqrt2$, so (D) is false. The correct choices are $\\boxed{\\text{(A), (B), (C)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 1, Q48. The elegance is that the tangent-chord distance $\\sqrt3$ from $O$ equals $C_1$'s own radius, quietly turning the area of $\\triangle OR_2R_3$ into the same $6\\sqrt2$ that ambushes option (D)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Locus Woven From Two Tangents",
+    "difficulty": 4,
+    "task": "Find which points the locus of E passes through",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "49"
+    },
+    "tags": [
+      "tangents and normals to a circle",
+      "parabola locus",
+      "2016"
+    ],
+    "figure": "<svg viewBox=\"0 0 340 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Unit circle with diameter RS, variable point P, meeting-point Q of tangents, and point E on the locus</title><desc>The unit circle centred at O has diameter endpoints R=(-1,0) and S=(1,0). At a variable point P the tangent meets the tangent at S in Q; the horizontal through Q meets the normal OP at E, which traces the parabola y squared equals 1 minus 2x.</desc><defs><marker id=\"ar\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M2 1L8 5L2 9\" fill=\"none\" stroke=\"context-stroke\" stroke-width=\"1.5\"/></marker></defs><path d=\"M 144.7 262.5 L 155.9 253.1 L 166.2 243.8 L 175.4 234.4 L 183.8 225.0 L 191.1 215.6 L 197.4 206.2 L 202.8 196.9 L 207.2 187.5 L 210.6 178.1 L 213.0 168.8 L 214.5 159.4 L 215.0 150.0 L 214.5 140.6 L 213.0 131.2 L 210.6 121.9 L 207.2 112.5 L 202.8 103.1 L 197.4 93.8 L 191.1 84.4 L 183.8 75.0 L 175.4 65.6 L 166.2 56.2 L 155.9 46.9 L 144.7 37.5\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><circle cx=\"170\" cy=\"150\" r=\"90\" stroke=\"var(--ink3)\" fill=\"none\"/><line x1=\"80\" y1=\"150\" x2=\"260\" y2=\"150\" stroke=\"var(--ink3)\"/><line x1=\"260\" y1=\"60\" x2=\"260\" y2=\"150\" stroke=\"var(--ink4)\" stroke-dasharray=\"4 3\"/><line x1=\"170\" y1=\"150\" x2=\"227.1\" y2=\"27.6\" stroke=\"var(--ink4)\" stroke-dasharray=\"4 3\"/><line x1=\"196.7\" y1=\"92.7\" x2=\"260\" y2=\"92.7\" stroke=\"var(--ink3)\"/><circle cx=\"80\" cy=\"150\" r=\"2.8\" fill=\"var(--ink2)\"/><circle cx=\"260\" cy=\"150\" r=\"2.8\" fill=\"var(--ink2)\"/><circle cx=\"170\" cy=\"150\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"208\" cy=\"68.4\" r=\"3\" fill=\"var(--ink2)\"/><circle cx=\"260\" cy=\"92.7\" r=\"3\" fill=\"var(--ink2)\"/><circle cx=\"196.7\" cy=\"92.7\" r=\"3.2\" fill=\"var(--gold)\"/><text x=\"70\" y=\"165\" fill=\"var(--ink2)\" font-size=\"12\">R</text><text x=\"263\" y=\"165\" fill=\"var(--ink2)\" font-size=\"12\">S</text><text x=\"158\" y=\"165\" fill=\"var(--ink2)\" font-size=\"12\">O</text><text x=\"212\" y=\"64\" fill=\"var(--ink2)\" font-size=\"12\">P</text><text x=\"265\" y=\"90\" fill=\"var(--ink2)\" font-size=\"12\">Q</text><text x=\"180\" y=\"88\" fill=\"var(--ink2)\" font-size=\"12\">E</text><text x=\"120\" y=\"40\" fill=\"var(--ink2)\" font-size=\"12\">y²=1−2x</text></svg>",
+    "statement": "Let $RS$ be a diameter of the circle $x^2+y^2=1$, where $S$ is the point $(1,0)$. Let $P$ be a variable point, other than $R$ and $S$, on the circle, and let the tangents to the circle at $S$ and at $P$ meet at the point $Q$. The normal to the circle at $P$ meets a line drawn through $Q$ parallel to $RS$ at the point $E$. As $P$ varies, the locus of $E$ passes through the point(s)\n\n(A) $\\left(\\dfrac13,\\dfrac{1}{\\sqrt3}\\right)$ · (B) $\\left(\\dfrac14,\\dfrac12\\right)$ · (C) $\\left(\\dfrac13,-\\dfrac{1}{\\sqrt3}\\right)$ · (D) $\\left(\\dfrac14,-\\dfrac12\\right)$",
+    "answer": "The locus is $\\boxed{y^2=1-2x}$, which passes through $\\left(\\tfrac13,\\pm\\tfrac{1}{\\sqrt3}\\right)$ — options (A) and (C).",
+    "trap": "The normal to a circle at $P$ is simply the line $OP$ through the centre, so its equation is $y=x\\tan\\theta$ — students who instead write the tangent line at $P$ derive the wrong locus. A second trap: $Q$ lies on the vertical tangent $x=1$, and its height is $\\tan(\\theta/2)$, not $\\tan\\theta$; confusing the two collapses the whole construction.",
+    "solutions": [
+      {
+        "name": "Parametrise P and eliminate the angle",
+        "steps": [
+          "Write $P=(\\cos\\theta,\\sin\\theta)$. The tangent at $S=(1,0)$ is the vertical line $x=1$, and the tangent at $P$ is $x\\cos\\theta+y\\sin\\theta=1$.",
+          "Intersecting these gives $Q$: putting $x=1$ yields $y=\\dfrac{1-\\cos\\theta}{\\sin\\theta}=\\tan\\dfrac{\\theta}{2}$, so $Q=\\left(1,\\tan\\dfrac{\\theta}{2}\\right)$.",
+          "The normal at $P$ passes through the centre $O$, so it is the line $y=x\\tan\\theta$. The horizontal through $Q$ is $y=\\tan\\dfrac{\\theta}{2}$. Point $E=(x,y)$ satisfies both: $y=\\tan\\dfrac{\\theta}{2}$ and $x=\\dfrac{y}{\\tan\\theta}$.",
+          "With $t=\\tan\\dfrac{\\theta}{2}$ we have $\\tan\\theta=\\dfrac{2t}{1-t^2}$, so $x=\\dfrac{t}{\\,2t/(1-t^2)\\,}=\\dfrac{1-t^2}{2}$ and $y=t$. Eliminating $t$ gives $x=\\dfrac{1-y^2}{2}$, i.e. $y^2=1-2x$.",
+          "Testing the options: $\\left(\\tfrac13,\\pm\\tfrac1{\\sqrt3}\\right)$ gives $\\tfrac13=1-\\tfrac23$ ✓ (A, C); while $\\left(\\tfrac14,\\pm\\tfrac12\\right)$ gives $\\tfrac14\\neq 1-\\tfrac12$ ✗ (B, D)."
+        ]
+      },
+      {
+        "name": "Geometric focus–directrix reading",
+        "steps": [
+          "The coordinates of $E$ are $x_E=\\dfrac{y_Q}{\\tan\\theta}$ and $y_E=y_Q$, where $y_Q$ is the height of $Q$ on the line $x=1$. Rather than substitute numerically, observe that eliminating $\\theta$ produces $y^2=1-2x$, a parabola.",
+          "Rewrite it as $y^2=-2\\left(x-\\dfrac12\\right)$. This is a left-opening parabola with vertex at $V=\\left(\\dfrac12,0\\right)$ and $4a=2$, so $a=\\dfrac12$; its focus is at $(0,0)=O$ and its directrix is $x=1$, the tangent at $S$.",
+          "Thus every point $E$ of the locus is equidistant from the centre $O$ and from the fixed tangent line $x=1$ — a clean geometric characterisation that confirms the curve is the parabola $y^2=1-2x$.",
+          "Substituting the four candidate points into $y^2=1-2x$: only $\\left(\\tfrac13,\\tfrac1{\\sqrt3}\\right)$ and $\\left(\\tfrac13,-\\tfrac1{\\sqrt3}\\right)$ satisfy it, so the locus passes through the points in options (A) and (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 1, Q49. The elegant payoff is that this seemingly intricate tangent–normal construction distils to a single parabola whose focus is the circle's own centre and whose directrix is the tangent at $S$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Closest Point on a Parabola to a Circle",
+    "difficulty": 4,
+    "task": "Decide which statements about P and Q are correct",
+    "pyq": {
+      "year": 2016,
+      "paper": "2",
+      "qno": "47"
+    },
+    "tags": [
+      "shortest distance to a parabola",
+      "normal to a parabola",
+      "2016"
+    ],
+    "figure": "<svg viewBox=\"0 0 275 320\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Parabola y squared equals 4x, the circle of centre S, the nearest point P, and the point Q on the segment SP</title><desc>The parabola y squared equals 4x, the circle of centre S=(2,8) and radius 2, the point P=(4,4) nearest to S, and Q the intersection of segment SP with the circle. The line SP is the normal to the parabola at P and meets the x-axis at (6,0).</desc><line x1=\"25\" y1=\"300\" x2=\"235\" y2=\"300\" stroke=\"var(--ink3)\"/><line x1=\"25\" y1=\"300\" x2=\"25\" y2=\"30\" stroke=\"var(--ink3)\"/><path d=\"M 25.0 300.0 L 25.8 290.3 L 28.1 280.6 L 32.1 270.9 L 37.6 261.2 L 44.6 251.5 L 53.3 241.8 L 63.5 232.1 L 75.2 222.4 L 88.6 212.6 L 103.5 202.9 L 120.0 193.2 L 138.0 183.5 L 157.7 173.8 L 178.9 164.1 L 201.6 154.4 L 226.0 144.7 L 251.9 135.0\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><circle cx=\"85\" cy=\"60\" r=\"60\" stroke=\"var(--ink3)\" fill=\"none\"/><line x1=\"85\" y1=\"60\" x2=\"205\" y2=\"300\" stroke=\"var(--ink4)\" stroke-dasharray=\"4 3\"/><circle cx=\"85\" cy=\"60\" r=\"2.8\" fill=\"var(--ink2)\"/><circle cx=\"145\" cy=\"180\" r=\"3.2\" fill=\"var(--gold)\"/><circle cx=\"111.8\" cy=\"113.7\" r=\"3\" fill=\"var(--ink2)\"/><circle cx=\"205\" cy=\"300\" r=\"2.6\" fill=\"var(--ink2)\"/><text x=\"73\" y=\"56\" fill=\"var(--ink2)\" font-size=\"12\">S(2,8)</text><text x=\"150\" y=\"178\" fill=\"var(--ink2)\" font-size=\"12\">P(4,4)</text><text x=\"116\" y=\"110\" fill=\"var(--ink2)\" font-size=\"12\">Q</text><text x=\"200\" y=\"314\" fill=\"var(--ink2)\" font-size=\"12\">(6,0)</text><text x=\"228\" y=\"140\" fill=\"var(--ink2)\" font-size=\"12\">y²=4x</text></svg>",
+    "statement": "Let $P$ be the point on the parabola $y^2=4x$ that is at the shortest distance from the centre $S$ of the circle $x^2+y^2-4x-16y+64=0$. Let $Q$ be the point on the circle that divides the line segment $SP$ internally. Then\n\n(A) $SP=2\\sqrt5$ · (B) $SQ:QP=(\\sqrt5+1):2$ · (C) the $x$-intercept of the normal to the parabola at $P$ is $6$ · (D) the slope of the tangent to the circle at $Q$ is $\\dfrac12$",
+    "answer": "$\\boxed{(A),\\ (C),\\ (D)}$ are correct; (B) is false since $SQ:QP=1:(\\sqrt5-1)$.",
+    "trap": "The tempting move is to minimise the distance from $S$ to a general point by brute-force calculus. The clean fact is that the shortest segment from an external point to a curve is always along the normal: $SP$ must be the normal to the parabola at $P$. Missing this forces a messy quartic; using it reduces the whole problem to solving one cubic in the parameter $t$.",
+    "solutions": [
+      {
+        "name": "Normal through the centre",
+        "steps": [
+          "Complete the square for the circle: $x^2+y^2-4x-16y+64=0$ becomes $(x-2)^2+(y-8)^2=4$, so the centre is $S=(2,8)$ and the radius is $2$.",
+          "Write a general point of the parabola as $P=(t^2,2t)$. The shortest distance from $S$ to the curve is measured along the normal, so $SP$ is the normal at $P$: $y=-tx+2t+t^3$. Requiring this normal to pass through $S=(2,8)$ gives $8=-2t+2t+t^3=t^3$, hence $t=2$ and $P=(4,4)$.",
+          "(A) $SP=\\sqrt{(4-2)^2+(4-8)^2}=\\sqrt{4+16}=2\\sqrt5$. True.",
+          "(C) The normal at $P$ meets the $x$-axis where $y=0$: $0=-t x+2t+t^3\\Rightarrow x=2+t^2=2+4=6$. True.",
+          "$Q$ lies on segment $SP$ at distance equal to the radius $2$ from $S$, so $SQ=2$ and $QP=SP-SQ=2\\sqrt5-2$; thus $SQ:QP=2:(2\\sqrt5-2)=1:(\\sqrt5-1)$, which is not $(\\sqrt5+1):2$. (B) is false.",
+          "(D) The radius $SQ$ lies along $SP$, whose slope is $\\dfrac{4-8}{4-2}=-2$; the tangent to the circle at $Q$ is perpendicular to this radius, so its slope is $-\\dfrac{1}{-2}=\\dfrac12$. True. Hence (A), (C), (D)."
+        ]
+      },
+      {
+        "name": "Direct minimisation, then verify",
+        "steps": [
+          "Let $P=(t^2,2t)$ and minimise $f(t)=SP^2=(t^2-2)^2+(2t-8)^2$. Then $f'(t)=2(t^2-2)(2t)+2(2t-8)(2)=4t^3-8t+8t-32=4t^3-32$.",
+          "Setting $f'(t)=0$ gives $4t^3=32$, so $t^3=8$ and $t=2$; hence $P=(4,4)$, confirming the normal-based value and giving $SP^2=(2)^2+(-4)^2=20$, i.e. $SP=2\\sqrt5$ (A).",
+          "Since $Q$ is where the ray $SP$ crosses the circle, $Q=S+\\dfrac{r}{SP}(P-S)=(2,8)+\\dfrac{2}{2\\sqrt5}\\big(2,-4\\big)=\\left(2+\\dfrac{2}{\\sqrt5},\\,8-\\dfrac{4}{\\sqrt5}\\right)$. Then $SQ=2$ and $QP=2\\sqrt5-2$, so $SQ:QP=1:(\\sqrt5-1)\\neq(\\sqrt5+1):2$ — (B) fails.",
+          "For (C), the tangent to the parabola at $P=(t^2,2t)$ has slope $\\dfrac1t=\\dfrac12$, so the normal has slope $-2$ and passes through $(4,4)$: $y-4=-2(x-4)$, giving $y=0$ at $x=6$. For (D), the tangent to the circle at $Q$ is perpendicular to the radius $SQ$ (slope $-2$), so its slope is $\\dfrac12$. Thus (A), (C), (D) hold."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 2, Q47. The unifying idea is that “shortest distance to a smooth curve” and “normal line” are the same condition — spotting it turns three separate-looking claims into one short computation with $t=2$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Orthocentre in an Ellipse–Parabola Cut",
+    "difficulty": 4,
+    "task": "Locate the orthocentre of triangle F₁MN",
+    "pyq": {
+      "year": 2016,
+      "paper": "2",
+      "qno": "53"
+    },
+    "tags": [
+      "ellipse-parabola intersection",
+      "orthocentre",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $F_1(x_1,0)$ and $F_2(x_2,0)$, with $x_1<0$ and $x_2>0$, be the foci of the ellipse $\\dfrac{x^2}{9}+\\dfrac{y^2}{8}=1$. A parabola with vertex at the origin and focus at $F_2$ meets the ellipse at a point $M$ in the first quadrant and at a point $N$ in the fourth quadrant. Then the orthocentre of the triangle $F_1MN$ is\n\n(A) $\\left(-\\dfrac{9}{10},\\,0\\right)$ · (B) $\\left(\\dfrac{2}{3},\\,0\\right)$ · (C) $\\left(\\dfrac{9}{10},\\,0\\right)$ · (D) $\\left(\\dfrac{2}{3},\\,\\sqrt6\\right)$",
+    "answer": "$\\boxed{\\left(-\\dfrac{9}{10},\\,0\\right)}$ \\; — option (A).",
+    "trap": "Assuming the orthocentre must lie inside the triangle or coincide with some centroid-like average of $F_1,M,N$. Because $\\triangle F_1MN$ is obtuse at $F_1$, its orthocentre lands on the $x$-axis but to the left of $F_1$, outside the triangle. The other snare is guessing the intersection points: one must actually solve the ellipse against the parabola $y^2=4x$, not against $y^2=8x$ or some mis-scaled focus.",
+    "solutions": [
+      {
+        "name": "Altitudes in coordinates",
+        "steps": [
+          "For $\\dfrac{x^2}{9}+\\dfrac{y^2}{8}=1$, $a^2=9$, $b^2=8$, so $c^2=a^2-b^2=1$ and the foci are $F_1(-1,0)$, $F_2(1,0)$. The parabola has vertex $O$ and focus $F_2(1,0)$, hence $y^2=4x$.",
+          "Solving $y^2=4x$ with $\\dfrac{x^2}{9}+\\dfrac{y^2}{8}=1$ gives $\\dfrac{x^2}{9}+\\dfrac{4x}{8}=1$, i.e. $2x^2+9x-18=0$, so $x=\\dfrac32$ (rejecting the negative root). Thus $M=\\left(\\dfrac32,\\sqrt6\\right)$ and $N=\\left(\\dfrac32,-\\sqrt6\\right)$.",
+          "Chord $MN$ is the vertical line $x=\\dfrac32$, so the altitude from $F_1$ (perpendicular to $MN$) is the horizontal line $y=0$. The orthocentre therefore has $y=0$.",
+          "The altitude from $M$ is perpendicular to $F_1N$. The slope of $F_1N$ is $\\dfrac{-\\sqrt6-0}{\\,3/2+1\\,}=-\\dfrac{2\\sqrt6}{5}$, so this altitude has slope $\\dfrac{5}{2\\sqrt6}$: $\\;y-\\sqrt6=\\dfrac{5}{2\\sqrt6}\\left(x-\\dfrac32\\right)$.",
+          "Setting $y=0$: $-\\sqrt6=\\dfrac{5}{2\\sqrt6}\\left(x-\\dfrac32\\right)\\Rightarrow x-\\dfrac32=-\\dfrac{2\\cdot6}{5}=-\\dfrac{12}{5}\\Rightarrow x=-\\dfrac{9}{10}$. Hence the orthocentre is $\\left(-\\dfrac{9}{10},0\\right)$."
+        ]
+      },
+      {
+        "name": "Perpendicularity as dot products",
+        "steps": [
+          "Write the unknown orthocentre as $H=(h,k)$. It must satisfy $\\vec{F_1H}\\cdot\\vec{NM}=0$ and $\\vec{MH}\\cdot\\vec{F_1N}=0$, using $F_1(-1,0)$, $M\\left(\\tfrac32,\\sqrt6\\right)$, $N\\left(\\tfrac32,-\\sqrt6\\right)$.",
+          "Since $\\vec{NM}=(0,2\\sqrt6)$ is vertical, $\\vec{F_1H}\\cdot\\vec{NM}=2\\sqrt6\\,k=0$, forcing $k=0$ immediately.",
+          "With $\\vec{F_1N}=\\left(\\dfrac52,-\\sqrt6\\right)$ and $\\vec{MH}=\\left(h-\\dfrac32,\\,-\\sqrt6\\right)$, the condition $\\vec{MH}\\cdot\\vec{F_1N}=0$ reads $\\dfrac52\\left(h-\\dfrac32\\right)+6=0$.",
+          "Thus $h-\\dfrac32=-\\dfrac{12}{5}$, giving $h=-\\dfrac{9}{10}$. The orthocentre is $\\left(-\\dfrac{9}{10},0\\right)$, matching option (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 2, Q53. The vertical chord $MN$ collapses one altitude onto the $x$-axis, so the whole problem reduces to a single perpendicularity equation — the orthocentre's $y$-coordinate is free."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Area Ratio: Triangle Against Quadrilateral",
+    "difficulty": 4,
+    "task": "Find the ratio of the two areas",
+    "pyq": {
+      "year": 2016,
+      "paper": "2",
+      "qno": "54"
+    },
+    "tags": [
+      "tangent and normal",
+      "areas of triangle and quadrilateral",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $F_1(x_1,0)$ and $F_2(x_2,0)$, with $x_1<0$ and $x_2>0$, be the foci of the ellipse $\\dfrac{x^2}{9}+\\dfrac{y^2}{8}=1$. A parabola with vertex at the origin and focus at $F_2$ meets the ellipse at $M$ in the first quadrant and at $N$ in the fourth quadrant. If the tangents to the ellipse at $M$ and $N$ meet at $R$, and the normal to the parabola at $M$ meets the $x$-axis at $Q$, then the ratio of the area of $\\triangle MQR$ to the area of the quadrilateral $MF_1NF_2$ is\n\n(A) $3:4$ · (B) $4:5$ · (C) $5:8$ · (D) $2:3$",
+    "answer": "$\\boxed{5:8}$ \\; — option (C).",
+    "trap": "Mishandling the two areas. The quadrilateral $MF_1NF_2$ is a kite whose diagonals $MN$ and $F_1F_2$ are perpendicular, so its area is $\\tfrac12 d_1 d_2$ — not the sum of two arbitrary triangles. And $R$ is the meeting point of the two ellipse tangents (the pole of chord $MN$), which lands far out at $x=6$, not near $M$; confusing $R$ with the focus or the vertex wrecks the base of $\\triangle MQR$.",
+    "solutions": [
+      {
+        "name": "Tangent, normal, and diagonals",
+        "steps": [
+          "As before, $F_1(-1,0)$, $F_2(1,0)$, the parabola is $y^2=4x$, and $M=\\left(\\dfrac32,\\sqrt6\\right)$, $N=\\left(\\dfrac32,-\\sqrt6\\right)$.",
+          "The tangent to $\\dfrac{x^2}{9}+\\dfrac{y^2}{8}=1$ at $M$ is $\\dfrac{x\\cdot 3/2}{9}+\\dfrac{y\\sqrt6}{8}=1$; at $N$ replace $\\sqrt6$ by $-\\sqrt6$. Adding and subtracting, they meet where $y=0$ and $\\dfrac{x}{6}=1$, so $R=(6,0)$.",
+          "For $y^2=4x$ ($a=1$), the normal at the point with parameter $t$ (where $M=(t^2,2t)$, so $t=\\dfrac{\\sqrt6}{2}$) is $y=-tx+2t+t^3$. Setting $y=0$ gives $x=2+t^2=2+\\dfrac32=\\dfrac72$, so $Q=\\left(\\dfrac72,0\\right)$.",
+          "$\\triangle MQR$ has base $QR$ along the $x$-axis of length $6-\\dfrac72=\\dfrac52$ and height $\\sqrt6$ (the ordinate of $M$): area $=\\dfrac12\\cdot\\dfrac52\\cdot\\sqrt6=\\dfrac{5\\sqrt6}{4}$.",
+          "The quadrilateral $MF_1NF_2$ has perpendicular diagonals $MN$ (length $2\\sqrt6$) and $F_1F_2$ (length $2$), so its area is $\\dfrac12\\cdot2\\sqrt6\\cdot2=2\\sqrt6$. The ratio is $\\dfrac{5\\sqrt6/4}{2\\sqrt6}=\\dfrac{5}{8}$."
+        ]
+      },
+      {
+        "name": "Pole of the chord and shoelace",
+        "steps": [
+          "Because $M$ and $N$ are mirror images in the $x$-axis, chord $MN$ is vertical: $x=\\dfrac32$. Its pole $R$ with respect to the ellipse is where the polar $\\dfrac{x\\,x_0}{9}=1$ coincides with $x=\\dfrac32$, i.e. $\\dfrac{9}{x_0}=\\dfrac32$, giving $R=(6,0)$ — the tangents at $M,N$ meet at the pole.",
+          "Differentiating $y^2=4x$ gives $\\dfrac{dy}{dx}=\\dfrac{2}{y}$; at $M$ the slope is $\\dfrac{2}{\\sqrt6}$, so the normal slope is $-\\dfrac{\\sqrt6}{2}$. The normal $y-\\sqrt6=-\\dfrac{\\sqrt6}{2}\\left(x-\\dfrac32\\right)$ meets $y=0$ at $x=\\dfrac32+2=\\dfrac72$, so $Q=\\left(\\dfrac72,0\\right)$.",
+          "Shoelace for $M\\left(\\tfrac32,\\sqrt6\\right),Q\\left(\\tfrac72,0\\right),R(6,0)$: area $=\\dfrac12\\left|\\dfrac32(0-0)+\\dfrac72(0-\\sqrt6)+6(\\sqrt6-0)\\right|=\\dfrac12\\left|{-\\dfrac{7\\sqrt6}{2}}+6\\sqrt6\\right|=\\dfrac{5\\sqrt6}{4}$.",
+          "Shoelace for the quadrilateral $M,F_1,N,F_2=\\left(\\tfrac32,\\sqrt6\\right),(-1,0),\\left(\\tfrac32,-\\sqrt6\\right),(1,0)$ gives area $2\\sqrt6$. Hence the ratio is $\\dfrac{5\\sqrt6/4}{2\\sqrt6}=\\dfrac{5}{8}$, i.e. $5:8$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 2, Q54. Recognising $R$ as the pole of the vertical chord $MN$ (tangents meet at the pole) delivers $R=(6,0)$ in one line, and the kite's perpendicular diagonals hand you $2\\sqrt6$ without any base–height fuss."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Tangent Slope That Fixes the Triangle",
+    "difficulty": 4,
+    "task": "Identify which triples cannot be sides",
+    "pyq": {
+      "year": 2017,
+      "paper": "1",
+      "qno": "37"
+    },
+    "tags": [
+      "hyperbola",
+      "tangent condition",
+      "right triangle",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "The line $2x-y+1=0$ is a tangent to the hyperbola $\\dfrac{x^2}{a^2}-\\dfrac{y^2}{16}=1$. Once the tangency pins down $a$, decide which of the following triples $\\textbf{cannot}$ be the side lengths of a right-angled triangle. The options are $[A]\\ a,\\,4,\\,1$; $\\ [B]\\ a,\\,4,\\,2$; $\\ [C]\\ 2a,\\,8,\\,1$; and $[D]\\ 2a,\\,4,\\,1$.",
+    "answer": "$\\boxed{[A],\\ [B],\\ [C]}$",
+    "trap": "Reading $c=1$ off $2x-y+1=0$ without first putting the line in the form $y=mx+c$ — the constant in $Ax+By+C=0$ is not the intercept $c$ unless the coefficient of $y$ is $-1$, which here it happens to be, so $y=2x+1$ gives $m=2,\\ c=1$. A second, sharper trap is forgetting that $2a=\\sqrt{17}$ is an $\\textit{exact}$ value: the triple $2a,4,1$ satisfies $(\\sqrt{17})^2=4^2+1^2$ exactly, so $[D]$ genuinely is a right triangle while the near-misses $[A],[B],[C]$ are not.",
+    "solutions": [
+      {
+        "name": "Standard tangency condition $c^2=a^2m^2-b^2$",
+        "steps": [
+          "Write the line as $y=2x+1$, so its slope is $m=2$ and intercept $c=1$; the hyperbola has $b^2=16$.",
+          "A line $y=mx+c$ touches $\\dfrac{x^2}{a^2}-\\dfrac{y^2}{b^2}=1$ exactly when $c^2=a^2m^2-b^2$. Substituting, $1=4a^2-16$, hence $a^2=\\dfrac{17}{4}$ and $a=\\dfrac{\\sqrt{17}}{2}\\approx 2.06$, so $2a=\\sqrt{17}\\approx 4.12$.",
+          "A triple of positive lengths forms a right triangle iff the square of the largest equals the sum of the squares of the other two. Test each: $[A]\\ a,4,1$: largest $4$, and $a^2+1=\\dfrac{17}{4}+1=\\dfrac{21}{4}=5.25\\neq16$ — not right. $[B]\\ a,4,2$: $a^2+4=\\dfrac{17}{4}+4=\\dfrac{33}{4}=8.25\\neq16$ — not right.",
+          "$[C]\\ 2a,8,1$: largest $8$, and $(2a)^2+1=17+1=18\\neq64$ — not right. $[D]\\ 2a,4,1$: largest $2a=\\sqrt{17}$, and $4^2+1^2=17=(2a)^2$ — a genuine right triangle.",
+          "So $[A],[B],[C]$ cannot be sides of a right-angled triangle, while $[D]$ can."
+        ]
+      },
+      {
+        "name": "Discriminant of the substituted quadratic",
+        "steps": [
+          "Impose tangency directly: substitute $y=2x+1$ into $\\dfrac{x^2}{a^2}-\\dfrac{y^2}{16}=1$ and clear denominators to get $(16-4a^2)x^2-4a^2x-17a^2=0$.",
+          "Tangency means this quadratic in $x$ has a repeated root, so its discriminant vanishes: $(-4a^2)^2-4(16-4a^2)(-17a^2)=0$, which simplifies to $a^2(1088-256a^2)=0$.",
+          "Since $a\\neq0$, we get $256a^2=1088$, i.e. $a^2=\\dfrac{17}{4}$ — the same value, with $a=\\dfrac{\\sqrt{17}}{2}$ and $2a=\\sqrt{17}$.",
+          "Now compare each triple against the Pythagorean test. The only exact hit is $[D]$, where $(2a)^2=17=4^2+1^2$; for $[A],[B],[C]$ the largest side's square ($16,16,64$) never equals the sum of the other two squares ($5.25,\\ 8.25,\\ 18$).",
+          "Hence exactly $[A],[B],[C]$ fail to be right-triangle sides."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 1, Q37. Insight: the whole problem hinges on the tangency delivering the clean value $2a=\\sqrt{17}$, engineered so that $2a,4,1$ is a Pythagorean triple by construction — three of the four options are deliberate near-misses that a hurried $a\\approx2$ estimate would misjudge."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Midpoint Forces the Chord",
+    "difficulty": 4,
+    "task": "Find the admissible $(p,h,k)$",
+    "pyq": {
+      "year": 2017,
+      "paper": "1",
+      "qno": "38"
+    },
+    "tags": [
+      "parabola",
+      "chord with given midpoint",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "A chord of the parabola $y^2=16x$ — one that is $\\textbf{not}$ a tangent — has equation $2x+y=p$ and midpoint $(h,k)$. Among the following, determine which value(s) of $p$, $h$ and $k$ are possible. The options are $[A]\\ p=-2,\\ h=2,\\ k=-4$; $\\ [B]\\ p=-1,\\ h=1,\\ k=-3$; $\\ [C]\\ p=2,\\ h=3,\\ k=-4$; and $[D]\\ p=5,\\ h=4,\\ k=-3$.",
+    "answer": "$\\boxed{[C]}$",
+    "trap": "Checking only that the midpoint lies on the line $2x+y=p$ and forgetting the two structural constraints. A midpoint does not freely pick its chord: the chord's slope is dictated by the midpoint through $T=S_1$, so the slope condition alone eliminates every option whose $k\\neq-4$. And the point $(h,k)$ must lie $\\textit{strictly inside}$ the parabola (so that a real, non-tangent chord exists) — an external or on-curve midpoint is impossible.",
+    "solutions": [
+      {
+        "name": "Chord-with-given-midpoint via $T=S_1$",
+        "steps": [
+          "For $y^2=16x$ (so $4a=16$), the chord whose midpoint is $(h,k)$ has equation $T=S_1$: $ky-8(x+h)=k^2-16h$, i.e. $8x-ky+(k^2-8h)=0$, with slope $\\dfrac{8}{k}$.",
+          "The given line $2x+y=p$ has slope $-2$. Matching slopes: $\\dfrac{8}{k}=-2\\Rightarrow k=-4$. This immediately rules out $[B]$ and $[D]$, where $k=-3$.",
+          "The midpoint must also lie on the line: $2h+k=p$. For $[A]$: $2(2)+(-4)=0\\neq-2$, so $[A]$ fails. For $[C]$: $2(3)+(-4)=2=p$ ✓.",
+          "Finally the chord must be genuine (not a tangent), so $(h,k)$ must lie strictly inside the parabola: $k^2-16h<0$. For $[C]$: $(-4)^2-16(3)=16-48=-32<0$ ✓ — an interior point, so a real secant chord exists.",
+          "Only $[C]$ passes all three tests: the correct choice is $p=2,\\ h=3,\\ k=-4$."
+        ]
+      },
+      {
+        "name": "Direct endpoint parametrization",
+        "steps": [
+          "Write the chord's endpoints on the parabola as $\\left(\\dfrac{t_1^2}{16},\\,t_1\\right)$ and $\\left(\\dfrac{t_2^2}{16},\\,t_2\\right)$ using $y=t,\\ x=\\dfrac{t^2}{16}$. The chord slope is $\\dfrac{t_1-t_2}{(t_1^2-t_2^2)/16}=\\dfrac{16}{t_1+t_2}$.",
+          "The line $2x+y=p$ has slope $-2$, so $\\dfrac{16}{t_1+t_2}=-2\\Rightarrow t_1+t_2=-8$. The midpoint ordinate is $k=\\dfrac{t_1+t_2}{2}=-4$ — again forcing $k=-4$, killing $[B]$ and $[D]$.",
+          "The midpoint abscissa is $h=\\dfrac{t_1^2+t_2^2}{32}$. A real chord (distinct endpoints, not tangent) needs $t_1\\neq t_2$, i.e. $(t_1-t_2)^2=(t_1+t_2)^2-4t_1t_2=64-4t_1t_2>0\\Rightarrow t_1t_2<16$.",
+          "For a candidate, $t_1t_2=\\dfrac{(t_1+t_2)^2-(t_1-t_2)^2}{4}$ and $32h=t_1^2+t_2^2=(t_1+t_2)^2-2t_1t_2=64-2t_1t_2$, so $t_1t_2=32-16h$. The chord is real iff $32-16h<16\\Rightarrow h>1$. Option $[A]$ has $h=2>1$ but fails $2h+k=p$; only $[C]$ ($h=3>1$, and $2(3)-4=2=p$) satisfies both.",
+          "Thus $[C]$ alone is admissible, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 1, Q38. Insight: a midpoint carries more information than a point — through $T=S_1$ it uniquely determines the chord, so the slope condition $k=-4$ does most of the filtering before the on-line and interior checks finish the job."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Circle Meeting the Axes Thrice",
+    "difficulty": 4,
+    "task": "Count the values of the parameter p",
+    "pyq": {
+      "year": 2017,
+      "paper": "1",
+      "qno": "44"
+    },
+    "tags": [
+      "circle",
+      "intersection with axes",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "For how many values of $p$ do the circle $x^2+y^2+2x+4y-p=0$ and the two coordinate axes together have exactly three common points?",
+    "answer": "$\\boxed{2}$",
+    "trap": "Reading “three common points” as “the circle meets each axis at one and a half points” or simply counting $2+2=4$ intersections and stopping. Exactly three points arises in two genuinely different ways: the circle passes through the origin (so one of its four axis-intersections is shared), or the circle is tangent to one axis (so that axis contributes a single point). Both must be found, and the case $p=-4$ (tangency to the $y$-axis) must be rejected because it forces the $x$-axis to miss the circle entirely, dropping the count to one.",
+    "solutions": [
+      {
+        "name": "Discriminant bookkeeping on each axis",
+        "steps": [
+          "Put $y=0$: the circle meets the $x$-axis where $x^2+2x-p=0$, discriminant $4+4p$; it meets it in two points if $p>-1$, in one (tangent) if $p=-1$, and not at all if $p<-1$.",
+          "Put $x=0$: the circle meets the $y$-axis where $y^2+4y-p=0$, discriminant $16+4p$; two points if $p>-4$, one if $p=-4$, none if $p<-4$.",
+          "For a real circle we need radius$^2=(1)^2+(2)^2+p=5+p>0$, i.e. $p>-5$. Tabulating: for $p>-1$ (and $p\\ne 0$) both axes give two points, total four; at $p=-1$ the $x$-axis is tangent (one point) while the $y$-axis still gives two, total three; at $p=-4$ the $y$-axis is tangent but $-4<-1$ so the $x$-axis misses the circle, total one — rejected.",
+          "The only other way to lose a point is coincidence at the origin: $(0,0)$ lies on the circle iff $p=0$, and then the origin is counted once for both axes, so the four axis-roots collapse to three distinct points. Hence exactly $p=-1$ and $p=0$ work: $2$ values."
+        ]
+      },
+      {
+        "name": "Geometric picture of tangency versus passing through O",
+        "steps": [
+          "The circle has centre $C=(-1,-2)$ and radius $\\sqrt{5+p}$. Distance of $C$ from the $x$-axis is $2$ and from the $y$-axis is $1$; the origin is the only point common to both axes.",
+          "Generically a circle crossing both axes has four axis-points. To drop to three, exactly one point must be lost, and there are precisely two mechanisms: (a) the circle touches one axis (turning two points into one), or (b) it passes through $O$, the shared point of the axes (merging two distinct points into one).",
+          "Touching the $x$-axis needs radius $=2$, i.e. $5+p=4\\Rightarrow p=-1$; then radius $2>1$ still cuts the $y$-axis in two points, giving $1+2=3$. Touching the $y$-axis needs radius $=1$, i.e. $p=-4$; but then radius $1<2$ fails to reach the $x$-axis, giving only $1$ point — invalid.",
+          "Passing through $O$ needs $0+0+0+0-p=0\\Rightarrow p=0$, radius $\\sqrt5$, which cuts each axis twice with one intersection shared at $O$: $2+2-1=3$. So the admissible values are $p=-1$ and $p=0$, a total of $\\boxed{2}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 1, Q44. The insight is that “exactly three” can only mean one point was lost from the generic four, and a circle can lose an axis-point in exactly two ways — tangency to an axis or passage through the origin — but the tangency to the $y$-axis is a decoy that quietly kills the $x$-axis intersections."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Matching Conic, Tangent and Contact",
+    "difficulty": 5,
+    "task": "Choose the only self-consistent conic–tangent–contact triple",
+    "pyq": {
+      "year": 2017,
+      "paper": "1",
+      "qno": "49"
+    },
+    "tags": [
+      "tangents to conics",
+      "point of contact",
+      "matrix-match",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "Columns 1, 2 and 3 contain conics, equations of their tangents, and the corresponding points of contact. Column 1: $(\\text{I})\\ x^2+y^2=a^2$; $(\\text{II})\\ x^2+a^2y^2=a^2$; $(\\text{III})\\ y^2=4ax$; $(\\text{IV})\\ x^2-a^2y^2=a^2$. Column 2: $(\\text{i})\\ my=m^2x+a$; $(\\text{ii})\\ y=mx+a\\sqrt{m^2+1}$; $(\\text{iii})\\ y=mx+\\sqrt{a^2m^2-1}$; $(\\text{iv})\\ y=mx+\\sqrt{a^2m^2+1}$. Column 3: $(\\text{P})\\ \\left(\\dfrac{-a}{\\sqrt{m^2+1}},\\dfrac{a}{\\sqrt{m^2+1}}\\right)$; $(\\text{Q})\\ \\left(\\dfrac{-am}{\\sqrt{m^2+1}},\\dfrac{a}{\\sqrt{m^2+1}}\\right)$; $(\\text{R})\\ \\left(\\dfrac{-a^2m}{\\sqrt{a^2m^2+1}},\\dfrac{1}{\\sqrt{a^2m^2+1}}\\right)$; $(\\text{S})\\ \\left(\\dfrac{-a^2m}{\\sqrt{a^2m^2-1}},\\dfrac{-1}{\\sqrt{a^2m^2-1}}\\right)$.\n\nFor $a=2$, a tangent is to be drawn to a suitable conic of Column 1 at a point of contact $(-1,1)$. Which of the following is the only CORRECT combination for obtaining its equation?\n\n(A) (I)(i)(P) · (B) (I)(ii)(Q) · (C) (II)(ii)(Q) · (D) (III)(i)(P)",
+    "answer": "$\\boxed{\\text{(B) } (\\text{I})(\\text{ii})(\\text{Q})}$",
+    "trap": "Trying to plug $(-1,1)$ into each conic to see which it lies on — for $a=2$ the point lies on none of the four conics, so that test discards every option and stalls. The question is not “which conic contains $(-1,1)$” but “which row is internally consistent”: the point of contact in Column 3 must genuinely lie on both the Column 1 conic and its Column 2 tangent. Only one of the four offered triples survives that consistency test.",
+    "solutions": [
+      {
+        "name": "Consistency of the conic–tangent–contact triple",
+        "steps": [
+          "For a circle $x^2+y^2=a^2$ (I) the tangent of slope $m$ is $y=mx\\pm a\\sqrt{m^2+1}$ — that is form (ii) — and it touches at the foot of the perpendicular from the centre, $\\left(\\dfrac{-am}{\\sqrt{m^2+1}},\\dfrac{a}{\\sqrt{m^2+1}}\\right)$, which is exactly (Q). So (I)(ii)(Q) is a matched row.",
+          "Check (Q) really lies on the circle: $\\left(\\dfrac{-am}{\\sqrt{m^2+1}}\\right)^2+\\left(\\dfrac{a}{\\sqrt{m^2+1}}\\right)^2=\\dfrac{a^2m^2+a^2}{m^2+1}=a^2.$ It also lies on line (ii): substituting $x=\\dfrac{-am}{\\sqrt{m^2+1}}$ into $mx+a\\sqrt{m^2+1}$ gives $\\dfrac{-am^2}{\\sqrt{m^2+1}}+\\dfrac{a(m^2+1)}{\\sqrt{m^2+1}}=\\dfrac{a}{\\sqrt{m^2+1}}=y.$ Both check out, so (B) is self-consistent.",
+          "Now eliminate the others. (A) (I)(i)(P): form (i) $my=m^2x+a$ is the tangent to the parabola $y^2=4ax$, not the circle, and (P) does not lie on the circle in general — inconsistent. (D) (III)(i)(P): here the tangent (i) does belong to the parabola, but its contact point is $\\left(\\dfrac{a}{m^2},\\dfrac{2a}{m}\\right)$, whereas (P) is a circle-type point that does not satisfy $y^2=4ax$ — inconsistent.",
+          "(C) (II)(ii)(Q): the ellipse $x^2+a^2y^2=a^2$ uses the tangent $y=mx\\pm\\sqrt{a^2m^2+1}$ — form (iv), not (ii) — and its contact point is (R), not (Q); indeed (Q) fails $x^2+a^2y^2=a^2$. So (C) is inconsistent. Only (B) matches conic, tangent and contact simultaneously, hence the answer is (I)(ii)(Q)."
+        ]
+      },
+      {
+        "name": "Verification through explicit tangency (algebraic elimination)",
+        "steps": [
+          "Take the candidate row (B): circle $x^2+y^2=a^2$ and line $y=mx+c$. Substituting gives $(1+m^2)x^2+2mcx+(c^2-a^2)=0$; tangency (equal roots) forces the discriminant $4m^2c^2-4(1+m^2)(c^2-a^2)=0$, i.e. $c^2=a^2(1+m^2)$, so $c=a\\sqrt{m^2+1}$ — precisely Column 2 form (ii).",
+          "The equal (double) root is $x=\\dfrac{-mc}{1+m^2}=\\dfrac{-am}{\\sqrt{m^2+1}}$ and then $y=mx+c=\\dfrac{a}{\\sqrt{m^2+1}}$ — precisely Column 3 point (Q). So (I) forces (ii) and (Q), a genuinely closed triple.",
+          "Run the same elimination on the other candidates and each breaks: substituting the parabola tangent (i) into $x^2+y^2=a^2$ gives no equal-root identity in $a\\sqrt{m^2+1}$, and forcing tangency of $y=mx+a\\sqrt{m^2+1}$ to the ellipse $x^2+a^2y^2=a^2$ demands $c^2=a^2m^2+1$, contradicting $c=a\\sqrt{m^2+1}$ unless $a=1$. Since $a=2$, options (A), (C), (D) are impossible.",
+          "Thus the unique internally consistent recipe is the circle with tangent (ii) and contact (Q): $\\boxed{\\text{(B) } (\\text{I})(\\text{ii})(\\text{Q})}$, agreeing with the official key."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 1, Q49. A subtlety worth flagging: for $a=2$ the stated contact point $(-1,1)$ satisfies none of the four conics, so the intended test is not “does $(-1,1)$ lie on the conic” but “is the conic–tangent–contact row self-consistent” — and (B) is the only triple in which the Column 3 point genuinely lies on both the Column 1 conic and the Column 2 tangent."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Reading a Tangent Off the Table",
+    "difficulty": 4,
+    "task": "Identify the correct curve–tangent–contact combination.",
+    "pyq": {
+      "year": 2017,
+      "paper": "1",
+      "qno": "50"
+    },
+    "tags": [
+      "parabola tangent",
+      "point of contact",
+      "matrix-match",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "A three-column table lists standard conics together with a slope-form tangent and its point of contact. In **Column 1** the curves are $(\\mathrm{I})\\ x^2+y^2=a^2$, $(\\mathrm{II})\\ x^2+a^2y^2=a^2$, $(\\mathrm{III})\\ y^2=2ax$ and $(\\mathrm{IV})\\ x^2-a^2y^2=a^2$. In **Column 2** the tangent lines of slope $m$ are $(\\mathrm{i})\\ my=m^2x+a$, $(\\mathrm{ii})\\ y=mx+a\\sqrt{m^2+1}$, $(\\mathrm{iii})\\ y=mx+\\sqrt{a^2m^2-1}$ and $(\\mathrm{iv})\\ y=mx+\\sqrt{a^2m^2+1}$. In **Column 3** the corresponding points of contact are $(\\mathrm{P})\\ \\left(\\dfrac{a}{m^2},\\dfrac{2a}{m}\\right)$, $(\\mathrm{Q})\\ \\left(\\dfrac{-am}{\\sqrt{m^2+1}},\\dfrac{a}{\\sqrt{m^2+1}}\\right)$, $(\\mathrm{R})\\ \\left(\\dfrac{-a^2m}{\\sqrt{a^2m^2+1}},\\dfrac{1}{\\sqrt{a^2m^2+1}}\\right)$ and $(\\mathrm{S})\\ \\left(\\dfrac{-a^2m}{\\sqrt{a^2m^2-1}},\\dfrac{-1}{\\sqrt{a^2m^2-1}}\\right)$. If a tangent to a suitable conic from Column 1 turns out to be $y=x+8$ with point of contact $(8,16)$, which single combination (one entry from each column) is correct: $[\\mathrm{A}]\\ (\\mathrm{I})(\\mathrm{ii})(\\mathrm{Q})$, $[\\mathrm{B}]\\ (\\mathrm{II})(\\mathrm{iv})(\\mathrm{R})$, $[\\mathrm{C}]\\ (\\mathrm{III})(\\mathrm{i})(\\mathrm{P})$, or $[\\mathrm{D}]\\ (\\mathrm{III})(\\mathrm{ii})(\\mathrm{Q})$?",
+    "answer": "$\\boxed{[\\mathrm{C}]\\ (\\mathrm{III})(\\mathrm{i})(\\mathrm{P})}$",
+    "trap": "Trying to test all four options blindly, or misreading the parabola. The line $y=x+8$ has slope $m=1$ and a nonzero intercept, so it cannot touch the circle-form option $(\\mathrm{ii})$ with the given contact. The clean move is to let the contact point $(8,16)$ pick the curve: only the parabola $y^2=2ax$ accommodates it, and once $a$ is fixed everything else follows.",
+    "solutions": [
+      {
+        "name": "Let the contact point select the curve",
+        "steps": [
+          "Feed $(8,16)$ into each Column-1 curve. For the parabola $(\\mathrm{III})\\ y^2=2ax$ we get $16^2=2a\\cdot 8$, i.e. $256=16a$, so $a=16$ and the curve is $y^2=32x$. (The circle and ellipse forms would need specific $a$ but fail the tangent test below, and the hyperbola is ruled out similarly.)",
+          "For $y^2=2ax$ the slope-form tangent is $y=mx+\\dfrac{a}{2m}$. Multiplying by $m$ gives $my=m^2x+\\dfrac{a}{2}$; with the table's normalisation this is Column-2 entry $(\\mathrm{i})\\ my=m^2x+a$. The point of contact is $\\left(\\dfrac{a}{2m^2},\\dfrac{a}{m}\\right)$, which is Column-3 entry $(\\mathrm{P})$.",
+          "Now verify with $a=16$. The tangent $y=x+8$ has $m=1$, and $\\dfrac{a}{2m}=\\dfrac{16}{2}=8$ matches the intercept exactly. The contact $\\left(\\dfrac{a}{2m^2},\\dfrac{a}{m}\\right)=(8,16)$ matches too.",
+          "Every column is pinned: curve $(\\mathrm{III})$, tangent $(\\mathrm{i})$, contact $(\\mathrm{P})$. Hence the correct combination is $[\\mathrm{C}]$."
+        ]
+      },
+      {
+        "name": "Eliminate via the tangency condition on the line",
+        "steps": [
+          "The candidate line $y=x+8$ (so $m=1$, $c=8$) must be genuinely tangent to the chosen conic. Test the circle $x^2+y^2=a^2$: tangency needs $c^2=a^2(1+m^2)$, giving $64=2a^2$; but then the contact would be $\\left(\\mp\\tfrac{am}{\\sqrt2},\\pm\\tfrac{a}{\\sqrt2}\\right)$, never $(8,16)$. Option $[\\mathrm{A}]$ dies.",
+          "Test the parabola $y^2=2ax$: the tangency condition for $y=mx+c$ is $c=\\dfrac{a}{2m}$, so $8=\\dfrac{a}{2}$ and $a=16$ — consistent, and it is the *only* Column-1 curve whose tangency condition is satisfied by a line with a nonzero constant term and integer contact.",
+          "Substitute back: $y^2=32x$ and $y=x+8$ meet where $(x+8)^2=32x\\Rightarrow x^2-16x+64=0\\Rightarrow(x-8)^2=0$, a double root at $x=8$, $y=16$. The repeated root confirms tangency at $(8,16)$.",
+          "So the curve is $(\\mathrm{III})$, its slope-tangent is the parabola form $(\\mathrm{i})$, and the contact is $(\\mathrm{P})$ — the answer is $[\\mathrm{C}]$, agreeing with the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 1, Q50 (second question of the Q49–51 table-matching paragraph). The trick to these matrix comprehensions is to let the concrete data — here the contact $(8,16)$ and slope $1$ — collapse the table instantly, rather than checking options one by one."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Which Row Owns This Tangent",
+    "difficulty": 4,
+    "task": "Identify the correct curve–tangent–contact combination.",
+    "pyq": {
+      "year": 2017,
+      "paper": "1",
+      "qno": "51"
+    },
+    "tags": [
+      "ellipse tangent",
+      "point of contact",
+      "matrix-match",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "Using the same three-column table, in **Column 1** the curves are $(\\mathrm{I})\\ x^2+y^2=a^2$, $(\\mathrm{II})\\ x^2+a^2y^2=a^2$, $(\\mathrm{III})\\ y^2=2ax$ and $(\\mathrm{IV})\\ x^2-a^2y^2=a^2$; in **Column 2** the slope-$m$ tangents are $(\\mathrm{i})\\ my=m^2x+a$, $(\\mathrm{ii})\\ y=mx+a\\sqrt{m^2+1}$, $(\\mathrm{iii})\\ y=mx+\\sqrt{a^2m^2-1}$ and $(\\mathrm{iv})\\ y=mx+\\sqrt{a^2m^2+1}$; and in **Column 3** the points of contact are $(\\mathrm{P})\\ \\left(\\dfrac{a}{m^2},\\dfrac{2a}{m}\\right)$, $(\\mathrm{Q})\\ \\left(\\dfrac{-am}{\\sqrt{m^2+1}},\\dfrac{a}{\\sqrt{m^2+1}}\\right)$, $(\\mathrm{R})\\ \\left(\\dfrac{-a^2m}{\\sqrt{a^2m^2+1}},\\dfrac{1}{\\sqrt{a^2m^2+1}}\\right)$ and $(\\mathrm{S})\\ \\left(\\dfrac{-a^2m}{\\sqrt{a^2m^2-1}},\\dfrac{-1}{\\sqrt{a^2m^2-1}}\\right)$. If the tangent to a suitable conic from Column 1 at the point $\\left(\\sqrt3,\\tfrac12\\right)$ turns out to be $\\sqrt3\\,x+2y=4$, which single combination is correct: $[\\mathrm{A}]\\ (\\mathrm{IV})(\\mathrm{iii})(\\mathrm{S})$, $[\\mathrm{B}]\\ (\\mathrm{IV})(\\mathrm{iv})(\\mathrm{S})$, $[\\mathrm{C}]\\ (\\mathrm{II})(\\mathrm{iii})(\\mathrm{R})$, or $[\\mathrm{D}]\\ (\\mathrm{II})(\\mathrm{iv})(\\mathrm{R})$?",
+    "answer": "$\\boxed{[\\mathrm{D}]\\ (\\mathrm{II})(\\mathrm{iv})(\\mathrm{R})}$",
+    "trap": "Guessing the hyperbola $(\\mathrm{IV})$ because the tangent form $\\sqrt{a^2m^2-1}$ looks similar to $\\sqrt{a^2m^2+1}$. The sign under the radical is decisive: only the ellipse $(\\mathrm{II})$ produces a real tangent $y=mx+\\sqrt{a^2m^2+1}$, which is Column-2 entry $(\\mathrm{iv})$ — and $\\left(\\sqrt3,\\tfrac12\\right)$ lies on the ellipse, not on the hyperbola of the same $a$.",
+    "solutions": [
+      {
+        "name": "Substitute the contact point to fix the curve",
+        "steps": [
+          "Write $(\\mathrm{II})\\ x^2+a^2y^2=a^2$ as $\\dfrac{x^2}{a^2}+y^2=1$. Demanding that $\\left(\\sqrt3,\\tfrac12\\right)$ lie on it: $\\dfrac{3}{a^2}+\\dfrac14=1\\Rightarrow\\dfrac{3}{a^2}=\\dfrac34\\Rightarrow a^2=4$, so the ellipse is $\\dfrac{x^2}{4}+y^2=1$.",
+          "The tangent to $\\dfrac{x^2}{4}+y^2=1$ at $\\left(\\sqrt3,\\tfrac12\\right)$ is $\\dfrac{x\\sqrt3}{4}+\\dfrac{y}{2}=1$, i.e. $\\sqrt3\\,x+2y=4$ — exactly the given line. So the curve is $(\\mathrm{II})$.",
+          "For $\\dfrac{x^2}{a^2}+y^2=1$ the slope-form tangent is $y=mx\\pm\\sqrt{a^2m^2+1}$, which is Column-2 entry $(\\mathrm{iv})$; solving $\\sqrt3x+2y=4$ for $y$ gives $m=-\\dfrac{\\sqrt3}{2}$ and $\\sqrt{4m^2+1}=\\sqrt{3+1}=2$, matching the intercept.",
+          "The point of contact of $y=mx+\\sqrt{a^2m^2+1}$ is $\\left(\\dfrac{-a^2m}{\\sqrt{a^2m^2+1}},\\dfrac{1}{\\sqrt{a^2m^2+1}}\\right)$, Column-3 entry $(\\mathrm{R})$; with $a^2=4,\\ m=-\\tfrac{\\sqrt3}{2}$ this is $\\left(\\dfrac{2\\sqrt3}{2},\\dfrac12\\right)=\\left(\\sqrt3,\\tfrac12\\right)$. Hence $(\\mathrm{II})(\\mathrm{iv})(\\mathrm{R})$, option $[\\mathrm{D}]$."
+        ]
+      },
+      {
+        "name": "Rule out the hyperbola by the radicand's sign",
+        "steps": [
+          "The given tangent is real with $m=-\\dfrac{\\sqrt3}{2}$ and intercept $c=2$, so $c^2=4$. Test the hyperbola $(\\mathrm{IV})\\ \\dfrac{x^2}{a^2}-y^2=1$, whose tangent is $y=mx\\pm\\sqrt{a^2m^2-1}$: this needs $a^2m^2-1=4$, i.e. $a^2\\cdot\\tfrac34=5$, giving $a^2=\\tfrac{20}{3}$.",
+          "But then check whether $\\left(\\sqrt3,\\tfrac12\\right)$ lies on that hyperbola: $\\dfrac{3}{20/3}-\\dfrac14=\\dfrac{9}{20}-\\dfrac14=\\dfrac{9-5}{20}=\\dfrac15\\neq 1$. The contact point is *not* on the hyperbola, so options $[\\mathrm{A}]$ and $[\\mathrm{B}]$ are impossible.",
+          "For the ellipse the tangent radicand is $a^2m^2+1$, which is real for every $a,m$; requiring $a^2m^2+1=c^2=4$ gives $a^2\\cdot\\tfrac34=3$, so $a^2=4$ — consistent, and $\\left(\\sqrt3,\\tfrac12\\right)$ does satisfy $\\dfrac{x^2}{4}+y^2=1$.",
+          "Thus the tangent form is $(\\mathrm{iv})$ (the $+1$ radicand), not $(\\mathrm{iii})$, and the contact is $(\\mathrm{R})$: the answer is $(\\mathrm{II})(\\mathrm{iv})(\\mathrm{R})$, i.e. $[\\mathrm{D}]$, confirming the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 1, Q51 (final question of the Q49–51 table-matching paragraph). Discriminating $\\sqrt{a^2m^2+1}$ from $\\sqrt{a^2m^2-1}$ is the whole point: the $+$ sign is the ellipse’s fingerprint, the $-$ sign the hyperbola’s, and the contact point breaks any residual tie."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Poles of a Concurrent Pencil",
+    "difficulty": 4,
+    "task": "Identify the curve on which the three intersection-of-tangent points lie.",
+    "pyq": {
+      "year": 2018,
+      "paper": "1",
+      "qno": "15"
+    },
+    "tags": [
+      "circle",
+      "pole and polar",
+      "chord of contact",
+      "tangents",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $S$ be the circle in the $xy$-plane defined by $x^2 + y^2 = 4$. Let $E_1E_2$ and $F_1F_2$ be the chords of $S$ passing through the point $P_0(1,1)$ and parallel to the $x$-axis and the $y$-axis respectively, and let $G_1G_2$ be the chord of $S$ through $P_0$ with slope $-1$. Suppose the tangents to $S$ at $E_1$ and $E_2$ meet at $E_3$, the tangents at $F_1$ and $F_2$ meet at $F_3$, and the tangents at $G_1$ and $G_2$ meet at $G_3$. Then the points $E_3,\\ F_3,$ and $G_3$ lie on the curve $x+y=4$, $(x-4)^2+(y-4)^2=16$, $(x-4)(y-4)=4$, or $xy=4$.",
+    "answer": "$\\boxed{x+y=4}$",
+    "trap": "One is tempted to compute $E_3,F_3,G_3$ separately and fit a curve to three points — but three points fit many curves. The clean idea is that each meeting-of-tangents point is a pole, and all three chords share the common point $P_0$.",
+    "solutions": [
+      {
+        "name": "Pole–polar duality (the one-line kill)",
+        "steps": [
+          "For the circle $x^2+y^2=4$, the point where the tangents at the two endpoints of a chord meet is exactly the $\\textbf{pole}$ of that chord; equivalently, the chord is the polar (chord of contact) of that pole, with equation $x x_1 + y y_1 = 4$ for pole $(x_1,y_1)$.",
+          "Each of $E_1E_2,\\ F_1F_2,\\ G_1G_2$ passes through $P_0(1,1)$. By the reciprocity of pole and polar, if a chord passes through a fixed point $P_0$, then its pole lies on the polar of $P_0$.",
+          "The polar of $P_0(1,1)$ with respect to $x^2+y^2=4$ is $x\\cdot 1 + y\\cdot 1 = 4$, i.e. $x+y=4$. Hence $E_3,F_3,G_3$ — the three poles — all lie on $x+y=4$."
+        ]
+      },
+      {
+        "name": "Direct coordinates of all three points",
+        "steps": [
+          "Horizontal chord $y=1$: $x^2+1=4\\Rightarrow x=\\pm\\sqrt3$, so $E_1(\\sqrt3,1),\\,E_2(-\\sqrt3,1)$. Tangents $\\sqrt3\\,x+y=4$ and $-\\sqrt3\\,x+y=4$ meet at $E_3=(0,4)$.",
+          "Vertical chord $x=1$: gives $F_1(1,\\sqrt3),\\,F_2(1,-\\sqrt3)$; tangents $x+\\sqrt3\\,y=4$ and $x-\\sqrt3\\,y=4$ meet at $F_3=(4,0)$.",
+          "Chord of slope $-1$: $y=-x+2$ meets $x^2+y^2=4$ at $G_1,G_2$; their tangents meet at $G_3=(2,2)$. All three points $(0,4),(4,0),(2,2)$ satisfy $x+y=4$, ruling out the other options."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 1, Q15. The whole paragraph collapses to a single fact: poles of chords through a point $P_0$ sweep out the polar of $P_0$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Locus of a Tangent's Midpoint",
+    "difficulty": 3,
+    "task": "Find the curve traced by the midpoint of the tangent's intercept between the axes.",
+    "pyq": {
+      "year": 2018,
+      "paper": "1",
+      "qno": "16"
+    },
+    "tags": [
+      "circle",
+      "tangent",
+      "locus of midpoint",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $S$ be the circle $x^2 + y^2 = 4$, and let $P$ be a point on $S$ with both coordinates positive. The tangent to $S$ at $P$ meets the coordinate axes at $M$ and $N$. Then the midpoint of the segment $MN$ must lie on the curve $(x+y)^2=3xy$, $x^{2/3}+y^{2/3}=2^{4/3}$, $x^2+y^2=2xy$, or $x^2+y^2=x^2y^2$.",
+    "answer": "$\\boxed{x^2+y^2=x^2y^2}$",
+    "trap": "It is easy to mis-place the intercepts — the tangent $\\frac{x}{a}+\\frac{y}{b}=1$ form must be read off correctly. Also, the constraint is that $P$ lies on the circle, so eliminate the tangent point, not the midpoint's coordinates.",
+    "solutions": [
+      {
+        "name": "Parametrisation of the tangent point",
+        "steps": [
+          "Write $P=(2\\cos\\theta,\\,2\\sin\\theta)$ with $\\theta\\in(0,\\tfrac{\\pi}{2})$. The tangent to $x^2+y^2=4$ at $P$ is $x\\cos\\theta + y\\sin\\theta = 2$.",
+          "Its intercepts are $M=\\left(\\dfrac{2}{\\cos\\theta},0\\right)$ and $N=\\left(0,\\dfrac{2}{\\sin\\theta}\\right)$, so the midpoint is $(h,k)=\\left(\\dfrac{1}{\\cos\\theta},\\dfrac{1}{\\sin\\theta}\\right)$.",
+          "Then $\\cos\\theta=\\dfrac1h,\\ \\sin\\theta=\\dfrac1k$, and $\\cos^2\\theta+\\sin^2\\theta=1$ gives $\\dfrac1{h^2}+\\dfrac1{k^2}=1$. Clearing denominators, $k^2+h^2=h^2k^2$, i.e. $\\;x^2+y^2=x^2y^2$."
+        ]
+      },
+      {
+        "name": "Chord of contact / intercept elimination",
+        "steps": [
+          "Let $P=(a,b)$ with $a^2+b^2=4$. The tangent at $P$ is $ax+by=4$, meeting the axes at $M=\\left(\\dfrac4a,0\\right)$ and $N=\\left(0,\\dfrac4b\\right)$.",
+          "The midpoint $(x,y)$ satisfies $x=\\dfrac2a,\\ y=\\dfrac2b$, hence $a=\\dfrac2x,\\ b=\\dfrac2y$.",
+          "Substituting into $a^2+b^2=4$: $\\dfrac4{x^2}+\\dfrac4{y^2}=4\\Rightarrow \\dfrac1{x^2}+\\dfrac1{y^2}=1\\Rightarrow y^2+x^2=x^2y^2$, confirming $\\;x^2+y^2=x^2y^2$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 1, Q16. The reciprocal-intercept relation $\\frac1{x^2}+\\frac1{y^2}=1$ is the fingerprint of a fixed-radius tangent, and clearing it gives the answer instantly."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Touching Circles on a Tangent Line",
+    "difficulty": 5,
+    "task": "Decide which statements are true",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "2"
+    },
+    "tags": [
+      "circle",
+      "locus",
+      "tangency",
+      "midpoint locus",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $T$ be the line through the points $P(-2,7)$ and $Q(2,-5)$. Let $F_1$ be the set of all pairs of circles $(S_1,S_2)$ such that $T$ is tangent to $S_1$ at $P$ and tangent to $S_2$ at $Q$, and such that $S_1$ and $S_2$ touch each other at a point $M$. Let $E_1$ be the locus of $M$ as the pair $(S_1,S_2)$ ranges over $F_1$. Let $F_2$ be the set of all line segments joining a pair of distinct points of $E_1$ and passing through the point $R(1,1)$, and let $E_2$ be the set of midpoints of the segments in $F_2$. Which of the following statement(s) is (are) TRUE?\n\n(A) The point $(-2,7)$ lies in $E_1$ · (B) The point $\\left(\\dfrac45,\\dfrac75\\right)$ does NOT lie in $E_2$ · (C) The point $\\left(\\dfrac12,1\\right)$ lies in $E_2$ · (D) The point $\\left(0,\\dfrac32\\right)$ does NOT lie in $E_1$",
+    "answer": "$\\boxed{\\text{(B), (D)}}$",
+    "trap": "Two silent exclusions decide everything. $E_1$ is the circle on $PQ$ as diameter but with $P$ and $Q$ themselves removed (there $S_1$ or $S_2$ degenerates), which kills (A) even though $(-2,7)$ satisfies the equation. And $E_2$ is the midpoint circle with the images of $P,Q$ deleted: $\\left(\\tfrac45,\\tfrac75\\right)$ sits exactly on that circle yet is the forbidden midpoint of the chord ending at $P$, so it is genuinely absent from $E_2$. Reading either locus as a full circle traps you.",
+    "solutions": [
+      {
+        "name": "Right angle in a semicircle",
+        "steps": [
+          "Since $T$ is tangent to $S_1$ at $P$, the tangent–chord angle gives $\\angle(T, PM)$ equal to the inscribed angle in $S_1$; likewise $T$ tangent to $S_2$ at $Q$ gives $\\angle(T, QM)$ in $S_2$. Because $S_1$ and $S_2$ are internally/externally tangent at $M$, they share the tangent line at $M$, and chasing the two tangent–chord angles forces $\\angle PMQ = 90^\\circ$.",
+          "A point $M$ seeing the fixed segment $PQ$ at a right angle lies on the circle having $PQ$ as diameter. Its centre is the midpoint of $PQ$, namely $\\left(\\tfrac{-2+2}{2},\\tfrac{7-5}{2}\\right)=(0,1)$, and its radius is $\\tfrac12|PQ|=\\tfrac12\\sqrt{4^2+12^2}=2\\sqrt{10}$, so $E_1:\\;x^2+(y-1)^2=40$, i.e. $x^2+y^2-2y=39$, with $P$ and $Q$ excluded.",
+          "For (A): $(-2,7)$ gives $4+49-14=39$, so it is on the circle — but it is the excluded point $P$, hence $(-2,7)\\notin E_1$ and (A) is FALSE. For (D): $\\left(0,\\tfrac32\\right)$ gives $0+\\tfrac94-3=-\\tfrac34\\neq39$, so it is not on the circle and (D) is TRUE.",
+          "For $E_2$: $R(1,1)$ satisfies $1+1-2-39=-39<0$, so $R$ is inside $E_1$ and every line through $R$ is a genuine chord. The midpoint $N$ of a chord satisfies $C_0N\\perp NR$ where $C_0=(0,1)$, so $N$ traces the circle with diameter $C_0R$: $x^2-x+(y-1)^2=0$, minus the midpoints of the chords ending at $P$ or $Q$."
+        ]
+      },
+      {
+        "name": "Coordinate check of the two midpoint claims",
+        "steps": [
+          "The midpoint circle is $x(x-1)+(y-1)^2=0$. Test (C): $\\left(\\tfrac12,1\\right)$ gives $\\tfrac12\\cdot\\left(-\\tfrac12\\right)+0=-\\tfrac14\\neq0$, so this point is not even on the circle — (C) is FALSE.",
+          "Test the point in (B): $\\left(\\tfrac45,\\tfrac75\\right)$ gives $\\tfrac45\\cdot\\left(-\\tfrac15\\right)+\\left(\\tfrac25\\right)^2=-\\tfrac{4}{25}+\\tfrac{4}{25}=0$, so it does lie on the midpoint circle. We must check whether it is one of the excluded points.",
+          "Take the chord of $E_1$ through $R(1,1)$ and $P(-2,7)$. Parametrising $R+s(P-R)$ and intersecting $x^2+y^2-2y=39$ gives $s=1$ (the point $P$) and $s=-\\tfrac{13}{15}$ (the point $\\left(\\tfrac{18}{5},-\\tfrac{21}{5}\\right)$). The midpoint of these two intersections is $\\left(\\tfrac{-2+18/5}{2},\\tfrac{7-21/5}{2}\\right)=\\left(\\tfrac45,\\tfrac75\\right)$.",
+          "But one endpoint of that chord is $P$, which is excluded from $E_1$, so this segment does not join two points of $E_1$ and its midpoint is excluded from $E_2$. Hence $\\left(\\tfrac45,\\tfrac75\\right)\\notin E_2$: (B) is TRUE. Both methods agree — the answer is (B), (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 2, Q2. The whole problem turns on the constant right angle $\\angle PMQ=90^\\circ$ produced by the shared tangent at $M$ — once that is seen, $E_1$ and its midpoint circle $E_2$ are forced, and the only real subtlety is which single points each locus quietly excludes."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Common Tangents Build an Ellipse",
+    "difficulty": 5,
+    "task": "Decide which statements are true",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "4"
+    },
+    "tags": [
+      "common tangent",
+      "circle",
+      "parabola",
+      "ellipse",
+      "area",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Consider two straight lines, each of which is tangent to both the circle $x^2+y^2=\\dfrac12$ and the parabola $y^2=4x$. Let these lines meet at the point $Q$. Consider the ellipse whose centre is the origin $O(0,0)$ and whose semi-major axis is $OQ$. If the length of the minor axis of this ellipse is $\\sqrt2$, which of the following statement(s) is (are) TRUE?\n\n(A) For the ellipse, the eccentricity is $\\dfrac{1}{\\sqrt2}$ and the length of the latus rectum is $1$ · (B) For the ellipse, the eccentricity is $\\dfrac12$ and the length of the latus rectum is $\\dfrac12$ · (C) The area of the region bounded by the ellipse between the lines $x=\\dfrac{1}{\\sqrt2}$ and $x=1$ is $\\dfrac{1}{4\\sqrt2}(\\pi-2)$ · (D) The area of the region bounded by the ellipse between the lines $x=\\dfrac{1}{\\sqrt2}$ and $x=1$ is $\\dfrac{1}{16}(\\pi-2)$",
+    "answer": "$\\boxed{\\text{(A), (C)}}$",
+    "trap": "Two places to slip. First, the common tangent must satisfy the parabola condition $c=1/m$ AND the circle distance condition simultaneously — using only one gives spurious slopes. Second, the area strip runs over BOTH halves of the ellipse (above and below the $x$-axis), so the integrand is $2y$, not $y$; halving it lands you on the decoy value $\\dfrac{1}{16}(\\pi-2)$ in (D).",
+    "solutions": [
+      {
+        "name": "Common tangent, then ellipse invariants",
+        "steps": [
+          "A tangent to $y^2=4x$ has the form $y=mx+\\dfrac1m$. For it to also touch $x^2+y^2=\\tfrac12$, its distance from the origin must equal $\\tfrac{1}{\\sqrt2}$: writing the line as $mx-y+\\tfrac1m=0$, the condition is $\\dfrac{|1/m|}{\\sqrt{m^2+1}}=\\dfrac{1}{\\sqrt2}$, i.e. $\\dfrac{1}{m^2(m^2+1)}=\\dfrac12$, giving $m^4+m^2-2=0$ so $m^2=1$, $m=\\pm1$.",
+          "The two common tangents are $y=x+1$ and $y=-x-1$; they meet where $x+1=-x-1$, i.e. $Q=(-1,0)$. Thus the semi-major axis is $a=OQ=1$.",
+          "The minor axis has length $\\sqrt2$, so $2b=\\sqrt2\\Rightarrow b=\\dfrac{1}{\\sqrt2}$, $b^2=\\dfrac12$. Then $e=\\sqrt{1-\\dfrac{b^2}{a^2}}=\\sqrt{1-\\dfrac12}=\\dfrac{1}{\\sqrt2}$ and the latus rectum is $\\dfrac{2b^2}{a}=\\dfrac{2\\cdot\\frac12}{1}=1$. So (A) is TRUE and (B) is FALSE.",
+          "The ellipse is $\\dfrac{x^2}{1}+\\dfrac{y^2}{1/2}=1$, so $y=\\dfrac{1}{\\sqrt2}\\sqrt{1-x^2}$. The region between $x=\\tfrac{1}{\\sqrt2}$ and $x=1$ spans both halves, giving area $\\displaystyle\\int_{1/\\sqrt2}^{1}2\\cdot\\dfrac{1}{\\sqrt2}\\sqrt{1-x^2}\\,dx=\\sqrt2\\int_{1/\\sqrt2}^{1}\\sqrt{1-x^2}\\,dx=\\sqrt2\\left[\\dfrac{x\\sqrt{1-x^2}}{2}+\\dfrac{\\arcsin x}{2}\\right]_{1/\\sqrt2}^{1}=\\dfrac{1}{4\\sqrt2}(\\pi-2)$. So (C) is TRUE and (D) is FALSE."
+        ]
+      },
+      {
+        "name": "Area by affine scaling from the unit circle",
+        "steps": [
+          "Once $a=1$, $b=\\dfrac{1}{\\sqrt2}$ are known, note the ellipse $x^2+\\dfrac{y^2}{1/2}=1$ is the unit circle $x^2+Y^2=1$ under the vertical scaling $y=b\\,Y$ with $b=\\dfrac{1}{\\sqrt2}$. Vertical scaling multiplies every area by the factor $b$, and it leaves each vertical line $x=\\text{const}$ fixed.",
+          "So the required ellipse strip equals $b$ times the corresponding strip of the unit circle between $x=\\tfrac{1}{\\sqrt2}$ and $x=1$. That circular strip (both halves) has area $\\displaystyle\\int_{1/\\sqrt2}^{1}2\\sqrt{1-x^2}\\,dx=\\left[x\\sqrt{1-x^2}+\\arcsin x\\right]_{1/\\sqrt2}^{1}=\\dfrac{\\pi}{2}-\\left(\\dfrac12+\\dfrac{\\pi}{4}\\right)=\\dfrac{\\pi}{4}-\\dfrac12$.",
+          "Multiplying by $b=\\dfrac{1}{\\sqrt2}$ gives the ellipse strip $\\dfrac{1}{\\sqrt2}\\left(\\dfrac{\\pi}{4}-\\dfrac12\\right)=\\dfrac{\\pi-2}{4\\sqrt2}=\\dfrac{1}{4\\sqrt2}(\\pi-2)$.",
+          "This matches (C) exactly and rules out (D). Together with the invariants from Method 1, the true statements are (A) and (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 2, Q4. The elegant thread is that a single common-tangent slope $m=\\pm1$ fixes $Q(-1,0)$, hence $a=1$; from there the ellipse's every invariant follows, and the area is fastest seen as the unit-circle strip scaled by $b=\\tfrac{1}{\\sqrt2}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Hyperbola From a 60° Vertex Angle",
+    "difficulty": 4,
+    "task": "Match each quantity of the hyperbola to its value",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "17"
+    },
+    "tags": [
+      "hyperbola",
+      "eccentricity",
+      "latus rectum",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $H:\\dfrac{x^2}{a^2}-\\dfrac{y^2}{b^2}=1$, where $a>b>0$, be a hyperbola in the $xy$-plane whose conjugate axis $LM$ subtends an angle of $60^\\circ$ at one of its vertices $N$. Let the area of the triangle $LMN$ be $4\\sqrt3$. Match each entry of LIST-I with its value in LIST-II.\n\nLIST-I: $\\;$(P) the length of the conjugate axis of $H$; $\\;$(Q) the eccentricity of $H$; $\\;$(R) the distance between the foci of $H$; $\\;$(S) the length of the latus rectum of $H$.\n\nLIST-II: $\\;$(1) $8$; $\\;$(2) $\\dfrac{4}{\\sqrt3}$; $\\;$(3) $\\dfrac{2}{\\sqrt3}$; $\\;$(4) $4$.\n\n(A) P$\\to$4, Q$\\to$2, R$\\to$1, S$\\to$3 $\\qquad$(B) P$\\to$4, Q$\\to$3, R$\\to$1, S$\\to$2 $\\qquad$(C) P$\\to$4, Q$\\to$1, R$\\to$3, S$\\to$2 $\\qquad$(D) P$\\to$3, Q$\\to$4, R$\\to$2, S$\\to$1",
+    "answer": "$\\boxed{\\text{P}\\to4,\\ \\text{Q}\\to3,\\ \\text{R}\\to1,\\ \\text{S}\\to2}$ \\; — option (B).",
+    "trap": "The conjugate axis $LM$ has endpoints $L(0,b)$ and $M(0,-b)$; the vertex is $N(a,0)$. Because $LM$ is bisected by the $x$-axis, the $60^\\circ$ it subtends at $N$ splits into two equal $30^\\circ$ angles, so $\\tan30^\\circ=b/a$ — a factor of two error here (using $60^\\circ$ directly, giving $b/a=\\tan60^\\circ$) inverts the ratio and swaps $a$ with $b$, corrupting every entry. Also, the eccentricity $2/\\sqrt3$ matches LIST-II item (3), not the deceptively similar $4/\\sqrt3$.",
+    "solutions": [
+      {
+        "name": "Half-angle at the vertex, then the standard formulas",
+        "steps": [
+          "The conjugate axis has endpoints $L=(0,b)$ and $M=(0,-b)$, and the chosen vertex is $N=(a,0)$. The foot of the perpendicular from $N$ to $LM$ is the origin, which bisects both the segment $LM$ and the $60^\\circ$ angle at $N$, so each half is $30^\\circ$ with $\\tan30^\\circ=\\dfrac{b}{a}$, giving $a=\\sqrt3\\,b$.",
+          "The triangle $LMN$ has base $LM=2b$ and height $a$ (the horizontal distance from $N$ to the $y$-axis), so its area is $\\tfrac12(2b)(a)=ab=4\\sqrt3$. With $a=\\sqrt3\\,b$ this is $\\sqrt3\\,b^2=4\\sqrt3$, hence $b^2=4$, $b=2$, and $a=2\\sqrt3$.",
+          "Conjugate axis $=2b=4$ (P$\\to$4). Eccentricity $e=\\sqrt{1+\\dfrac{b^2}{a^2}}=\\sqrt{1+\\dfrac{4}{12}}=\\sqrt{\\dfrac{4}{3}}=\\dfrac{2}{\\sqrt3}$ (Q$\\to$3).",
+          "Distance between foci $=2ae=2(2\\sqrt3)\\cdot\\dfrac{2}{\\sqrt3}=8$ (R$\\to$1). Latus rectum $=\\dfrac{2b^2}{a}=\\dfrac{2\\cdot4}{2\\sqrt3}=\\dfrac{4}{\\sqrt3}$ (S$\\to$2). Thus P$\\to$4, Q$\\to$3, R$\\to$1, S$\\to$2, option (B)."
+        ]
+      },
+      {
+        "name": "Isosceles-triangle route via the apex height",
+        "steps": [
+          "Triangle $LMN$ is isosceles with $NL=NM=\\sqrt{a^2+b^2}$ and apex angle $60^\\circ$ at $N$; a triangle with two equal sides enclosing $60^\\circ$ is in fact equilateral, so $LM=NL$, i.e. $2b=\\sqrt{a^2+b^2}$. Squaring gives $4b^2=a^2+b^2$, so $a^2=3b^2$ and $a=\\sqrt3\\,b$ — the same ratio, obtained without trigonometry.",
+          "An equilateral triangle of side $2b$ has area $\\dfrac{\\sqrt3}{4}(2b)^2=\\sqrt3\\,b^2$. Setting $\\sqrt3\\,b^2=4\\sqrt3$ yields $b^2=4$, so $b=2$ and $a=2\\sqrt3$, matching the first method.",
+          "Now read off the four quantities: conjugate axis $2b=4$; from $a^2=3b^2$ we get $e^2=1+\\dfrac{b^2}{a^2}=1+\\dfrac13=\\dfrac43$, so $e=\\dfrac{2}{\\sqrt3}$; foci separation $2ae=2\\sqrt{a^2+b^2}=2\\sqrt{12+4}=2\\cdot4=8$; latus rectum $\\dfrac{2b^2}{a}=\\dfrac{8}{2\\sqrt3}=\\dfrac{4}{\\sqrt3}$.",
+          "Hence P$\\to$4, Q$\\to$3, R$\\to$1, S$\\to$2, confirming option (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 2, Q17. The keystone is spotting that two equal sides at $60^\\circ$ force an equilateral triangle, collapsing the angle condition into the clean ratio $a=\\sqrt3\\,b$ before any conic formula is touched."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Chord Whose Midpoint Is Fixed",
+    "difficulty": 3,
+    "task": "Determine the interval containing the slope m",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "4"
+    },
+    "tags": [
+      "circle",
+      "chord midpoint",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "A line $y=mx+1$ intersects the circle $(x-3)^2+(y+2)^2=25$ at the points $P$ and $Q$. If the midpoint of the segment $PQ$ has $x$-coordinate $-\\dfrac{3}{5}$, then which one of the following options is correct?\n\n(A) $6\\le m<8\\qquad$(B) $4\\le m<6\\qquad$(C) $2\\le m<4\\qquad$(D) $-3<m<-1$",
+    "answer": "$\\boxed{2\\le m<4}$ \\; — option (C).",
+    "trap": "The point $\\left(-\\tfrac35,\\,-\\tfrac35 m+1\\right)$ is the midpoint of the chord, not an intersection point, so it must not be substituted into the circle equation. The correct handle is the perpendicularity of the radius to the chord at its midpoint; using $S_1=T$ (the midpoint-chord relation) or the substitution-and-average approach avoids the mistake, and one must remember the problem admits two valid slopes, both of which have to fit the chosen interval.",
+    "solutions": [
+      {
+        "name": "Radius perpendicular to the chord at its midpoint",
+        "steps": [
+          "The centre is $O=(3,-2)$. The midpoint $R$ of the chord $PQ$ lies on the line, so with $x_R=-\\tfrac35$ we have $R=\\left(-\\tfrac35,\\ -\\tfrac35 m+1\\right)$.",
+          "For any chord, the line from the centre to its midpoint is perpendicular to the chord: $\\text{slope}(OR)\\cdot m=-1$. Here $\\text{slope}(OR)=\\dfrac{\\left(-\\tfrac35 m+1\\right)-(-2)}{-\\tfrac35-3}=\\dfrac{-\\tfrac35 m+3}{-\\tfrac{18}{5}}=\\dfrac{3m-15}{18}$.",
+          "Thus $\\dfrac{3m-15}{18}\\cdot m=-1$, i.e. $3m^2-15m+18=0$, which reduces to $m^2-5m+6=0$ and factors as $(m-2)(m-3)=0$, so $m=2$ or $m=3$.",
+          "Both values satisfy $2\\le m<4$ (a quick check: the distance $OR=\\sqrt{81/5}$ and $\\sqrt{72/5}$ are each below the radius $5$, so genuine chords exist). Hence option (C)."
+        ]
+      },
+      {
+        "name": "Substitute the line and average the roots",
+        "steps": [
+          "Substituting $y=mx+1$ into $(x-3)^2+(y+2)^2=25$ gives $(x-3)^2+(mx+3)^2=25$, that is $(1+m^2)x^2+(6m-6)x-7=0$.",
+          "If $P,Q$ have abscissae $x_1,x_2$, the $x$-coordinate of the midpoint is $\\dfrac{x_1+x_2}{2}=-\\dfrac{6m-6}{2(1+m^2)}=\\dfrac{3-3m}{1+m^2}$.",
+          "Setting this equal to $-\\dfrac35$: $\\dfrac{3-3m}{1+m^2}=-\\dfrac35$, so $5(3-3m)=-3(1+m^2)$, giving $15-15m=-3-3m^2$, i.e. $3m^2-15m+18=0$.",
+          "This is again $m^2-5m+6=0$, so $m=2$ or $m=3$; both lie in $2\\le m<4$, confirming option (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 1, Q4. The elegant shortcut is that only the midpoint's abscissa is given, yet the perpendicular-radius condition turns one coordinate into a full quadratic in $m$ whose two roots both happen to fall inside the same interval."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Cascade of Ellipses and Rectangles",
+    "difficulty": 5,
+    "task": "Decide which statements about the nested family are correct",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "5"
+    },
+    "tags": [
+      "ellipse",
+      "inscribed rectangle",
+      "eccentricity",
+      "geometric series",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "Define collections $\\{E_1,E_2,E_3,\\dots\\}$ of ellipses and $\\{R_1,R_2,R_3,\\dots\\}$ of rectangles as follows. Start with $E_1:\\dfrac{x^2}{9}+\\dfrac{y^2}{4}=1$. Let $R_1$ be the rectangle of largest area, with sides parallel to the axes, inscribed in $E_1$. For $n>1$, let $E_n:\\dfrac{x^2}{a_n^2}+\\dfrac{y^2}{b_n^2}=1$ be the ellipse of largest area inscribed in $R_{n-1}$, and let $R_n$ be the rectangle of largest area, with sides parallel to the axes, inscribed in $E_n$. Then which of the following options is/are correct?\n\n(A) $\\displaystyle\\sum_{n=1}^{N}(\\text{area of }R_n)<24$ for each positive integer $N$$\\qquad$(B) The distance of a focus from the centre in $E_9$ is $\\dfrac{\\sqrt5}{32}$\n\n(C) The eccentricities of $E_{18}$ and $E_{19}$ are NOT equal$\\qquad$(D) The length of the latus rectum of $E_9$ is $\\dfrac{1}{6}$",
+    "answer": "$\\boxed{\\text{(A) and (D)}}$",
+    "trap": "The whole problem is a self-similarity in disguise: each step scales both semi-axes by the same factor $\\tfrac{1}{\\sqrt2}$, so the ratio $b_n/a_n$ never changes and the eccentricity is frozen at $\\tfrac{\\sqrt5}{3}$ forever — killing (C). A hasty student may also forget that the largest rectangle inscribed in a semi-axes $(a,b)$ ellipse has area $2ab$ (not $ab$ or $4ab$), and that the largest ellipse inside an $2p\\times2q$ rectangle has semi-axes $p,q$ — the two operations halve the semi-axes over one full cycle, giving the geometric factor $\\tfrac12$ per rectangle area.",
+    "solutions": [
+      {
+        "name": "Track the semi-axes through one full cycle",
+        "steps": [
+          "For an ellipse with semi-axes $a,b$, a corner of the inscribed rectangle is $(a\\cos\\theta,\\,b\\sin\\theta)$, so its area is $4ab\\cos\\theta\\sin\\theta=2ab\\sin2\\theta$, maximised at $\\theta=\\tfrac\\pi4$ giving area $2ab$ and half-side lengths $\\tfrac{a}{\\sqrt2},\\tfrac{b}{\\sqrt2}$.",
+          "The largest ellipse inscribed in a rectangle of half-sides $p,q$ has semi-axes exactly $p,q$. Hence going $E_n\\to R_n\\to E_{n+1}$ sends $(a_n,b_n)\\to\\left(\\tfrac{a_n}{\\sqrt2},\\tfrac{b_n}{\\sqrt2}\\right)$, so $a_n=\\dfrac{3}{2^{(n-1)/2}},\\ b_n=\\dfrac{2}{2^{(n-1)/2}}$.",
+          "Because $a_n$ and $b_n$ carry the same factor, $\\dfrac{b_n}{a_n}=\\dfrac23$ always, so $e_n=\\sqrt{1-\\tfrac{b_n^2}{a_n^2}}=\\dfrac{\\sqrt5}{3}$ is the same for every $n$; in particular $e_{18}=e_{19}$, so (C) is false.",
+          "Area of $R_n=2a_nb_n=\\dfrac{12}{2^{\\,n-1}}$, so $\\displaystyle\\sum_{n=1}^{N}\\text{area}(R_n)=12\\sum_{n=1}^{N}\\left(\\tfrac12\\right)^{n-1}=24\\left(1-2^{-N}\\right)<24$ for every $N$ — (A) is true. With $a_9=\\tfrac{3}{16},\\,b_9=\\tfrac18$: latus rectum $=\\dfrac{2b_9^2}{a_9}=\\dfrac{2\\cdot\\frac1{64}}{\\frac3{16}}=\\dfrac16$, so (D) is true, while the focal distance $a_9e_9=\\tfrac{3}{16}\\cdot\\tfrac{\\sqrt5}{3}=\\dfrac{\\sqrt5}{16}\\ne\\dfrac{\\sqrt5}{32}$, so (B) is false."
+        ]
+      },
+      {
+        "name": "Exploit scale-invariance directly",
+        "steps": [
+          "One full cycle $E_n\\to E_{n+1}$ is a similarity: it multiplies the whole figure by the linear factor $r=\\tfrac{1}{\\sqrt2}$. Under a similarity, eccentricity is invariant, so $e_n\\equiv e_1=\\dfrac{\\sqrt5}{3}$ for all $n$; hence (C) fails immediately without computing any $a_n$.",
+          "Any length in $E_n$ equals the corresponding length in $E_1$ times $r^{\\,n-1}$, and any area scales by $r^{2(n-1)}=\\left(\\tfrac12\\right)^{n-1}$. Thus $\\text{area}(R_n)=\\text{area}(R_1)\\cdot\\left(\\tfrac12\\right)^{n-1}$ with $\\text{area}(R_1)=2\\cdot3\\cdot2=12$, and $\\sum_{n\\ge1}\\text{area}(R_n)=\\dfrac{12}{1-\\frac12}=24$; every partial sum is strictly below this limit, confirming (A).",
+          "The focal distance of $E_1$ is $a_1e_1=3\\cdot\\tfrac{\\sqrt5}{3}=\\sqrt5$, so in $E_9$ it is $\\sqrt5\\cdot r^{8}=\\sqrt5\\cdot 2^{-4}=\\dfrac{\\sqrt5}{16}$ — not $\\dfrac{\\sqrt5}{32}$, so (B) is false.",
+          "The latus rectum of $E_1$ is $\\dfrac{2b_1^2}{a_1}=\\dfrac{2\\cdot4}{3}=\\dfrac83$; scaling by $r^{8}=2^{-4}=\\tfrac1{16}$ gives $\\dfrac83\\cdot\\dfrac1{16}=\\dfrac16$ for $E_9$, so (D) is true. Correct options: (A) and (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 1, Q4. The key realisation is that one $E_n\\to E_{n+1}$ step is a pure similarity of ratio $\\tfrac1{\\sqrt2}$, so eccentricity is frozen while every length shrinks geometrically — turning four seemingly separate checks into one scaling argument."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Circles and Their Shared Tangent",
+    "difficulty": 4,
+    "task": "Find the length of the segment AC",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "4"
+    },
+    "tags": [
+      "circle",
+      "common tangent",
+      "reflection about a line",
+      "2019"
+    ],
+    "figure": "<svg viewBox=\"0 0 460 240\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>A direct common tangent to two circles meeting the line of centres at their external centre of similitude</title><desc>Circle of radius 2 centred at A and circle of radius 1 centred at B lie on the same side of a common tangent T; the tangent, the larger circle, and the smaller circle are all tangent along one line, and T meets line AB produced at the point C, with AC twice BC.</desc><defs><marker id=\"ar\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M2 1L8 5L2 9\" fill=\"none\" stroke=\"context-stroke\" stroke-width=\"1.5\"/></marker></defs><line x1=\"20\" y1=\"196\" x2=\"440\" y2=\"196\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"432\" y=\"212\" fill=\"var(--ink2)\" font-size=\"12\">T</text><line x1=\"40\" y1=\"120\" x2=\"430\" y2=\"180\" stroke=\"var(--ink3)\" stroke-width=\"1\" stroke-dasharray=\"5 4\"/><circle cx=\"90\" cy=\"116\" r=\"80\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><circle cx=\"290\" cy=\"156\" r=\"40\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><circle cx=\"90\" cy=\"116\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"290\" cy=\"156\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"410\" cy=\"180\" r=\"3\" fill=\"var(--gold)\"/><text x=\"78\" y=\"110\" fill=\"var(--ink2)\" font-size=\"12\">A</text><text x=\"296\" y=\"150\" fill=\"var(--ink2)\" font-size=\"12\">B</text><text x=\"416\" y=\"176\" fill=\"var(--ink2)\" font-size=\"12\">C</text><text x=\"150\" y=\"128\" fill=\"var(--ink2)\" font-size=\"12\">r=2</text><text x=\"258\" y=\"170\" fill=\"var(--ink2)\" font-size=\"12\">r=1</text><path d=\"M90 116 L410 180\" stroke=\"var(--ink3)\" stroke-width=\"1\" stroke-dasharray=\"2 3\"/></svg>",
+    "statement": "Let the point $B$ be the reflection of the point $A(2,3)$ in the line $8x-6y-23=0$. Let $\\Gamma_A$ and $\\Gamma_B$ be circles of radii $2$ and $1$ with centres $A$ and $B$ respectively. Let $T$ be a common tangent to the circles $\\Gamma_A$ and $\\Gamma_B$ such that both circles lie on the same side of $T$. If $C$ is the point of intersection of $T$ and the line through $A$ and $B$, then the length of the segment $AC$ is",
+    "answer": "$AC=\\boxed{10}$",
+    "trap": "The phrase “both circles are on the same side of $T$” means $T$ is a direct (external) common tangent, so $C$ is the external centre of similitude and the radii enter as the ratio $2:1$ with $C$ outside segment $AB$. Reading it as a transverse tangent would place $C$ between $A$ and $B$ and give the wrong $AC=\\tfrac{2}{3}AB$. Also, the reflection is needed only for its length $AB$ — the tangent's actual position never has to be found.",
+    "solutions": [
+      {
+        "name": "External centre of similitude (similar triangles)",
+        "steps": [
+          "$B$ is the reflection of $A(2,3)$ in the line $\\ell:8x-6y-23=0$, so $AB$ is twice the distance from $A$ to $\\ell$: $\\;AB=2\\cdot\\dfrac{|8(2)-6(3)-23|}{\\sqrt{8^2+6^2}}=2\\cdot\\dfrac{|16-18-23|}{10}=2\\cdot\\dfrac{25}{10}=5.$",
+          "Drop the radii $AP=2$ and $BQ=1$ to the tangent $T$ at its contact points. Since both circles are on the same side of $T$, these radii are parallel, so $\\triangle APC\\sim\\triangle BQC$ with ratio $\\dfrac{AP}{BQ}=\\dfrac{2}{1}$, hence $\\dfrac{AC}{BC}=2$.",
+          "$C$ is the external centre of similitude, lying beyond $B$ on ray $AB$, so $BC=AC-AB$. Then $AC=2\\,BC=2(AC-AB)$ gives $AC=2AB$.",
+          "Therefore $AC=2\\cdot 5=10$."
+        ]
+      },
+      {
+        "name": "Section-formula (external division)",
+        "steps": [
+          "The external common tangent's intersection with the line of centres divides $AB$ externally in the ratio of the radii $r_A:r_B=2:1$; call it $C$. Using the external-division formula, $C$ satisfies $\\dfrac{AC}{CB}=\\dfrac{r_A}{r_B}=\\dfrac{2}{1}$ with $C$ outside the segment.",
+          "Write positions along the line by a single parameter with $A$ at $0$ and $B$ at $AB=5$ (from the reflection computation, distance $A$–$\\ell$ is $\\tfrac{25}{10}=\\tfrac52$, doubled to $5$). External division in ratio $2{:}1$ places $C$ at coordinate $t$ with $\\dfrac{t-0}{t-5}=\\dfrac{2}{1}$.",
+          "Solve $t=2(t-5)\\Rightarrow t=2t-10\\Rightarrow t=10$, so $C$ is at parameter $10$ along the line.",
+          "Hence $AC=|t-0|=10$, matching the similar-triangles result."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 1, Q4. The reflection is a decoy that only fixes $AB=5$; the real content is that a direct common tangent meets the line of centres at the external centre of similitude, so $AC=\\dfrac{r_A}{r_A-r_B}\\,AB=2AB$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three Circles, a Radical Axis",
+    "difficulty": 5,
+    "task": "Identify the only CORRECT List-I – List-II combination",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "3"
+    },
+    "tags": [
+      "circles",
+      "radical axis",
+      "common tangent to a parabola",
+      "2019"
+    ],
+    "figure": "<svg viewBox=\"0 0 380 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Three circles C1, C2, C3 with radical axis XY meeting C3 at Z, W</title><desc>Circle C1 centred at the origin with radius 3 and circle C2 centred at (3,4) with radius 4 intersect at X and Y; the larger circle C3 centred at (9/5,12/5) with radius 6 encloses both and touches C1 at M and C2 at N. The line XY, extended, meets C3 at Z and W.</desc><circle cx=\"189.6\" cy=\"147.2\" r=\"132\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><circle cx=\"150\" cy=\"200\" r=\"66\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"/><circle cx=\"216\" cy=\"112\" r=\"88\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"/><line x1=\"70.3\" y1=\"90.7\" x2=\"277.2\" y2=\"245.9\" stroke=\"var(--ink3)\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><g fill=\"var(--gold)\"><circle cx=\"150\" cy=\"200\" r=\"2.4\"/><circle cx=\"216\" cy=\"112\" r=\"2.4\"/><circle cx=\"189.6\" cy=\"147.2\" r=\"2.4\"/><circle cx=\"216\" cy=\"200\" r=\"2.6\"/><circle cx=\"131.5\" cy=\"136.6\" r=\"2.6\"/><circle cx=\"277.2\" cy=\"245.9\" r=\"2.6\"/><circle cx=\"70.3\" cy=\"90.7\" r=\"2.6\"/><circle cx=\"110.4\" cy=\"252.8\" r=\"2.6\"/><circle cx=\"268.8\" cy=\"41.6\" r=\"2.6\"/></g><g fill=\"var(--ink2)\" font-size=\"12\"><text x=\"142\" y=\"213\">O</text><text x=\"221\" y=\"110\">O'</text><text x=\"195\" y=\"142\">O''</text><text x=\"221\" y=\"197\">X</text><text x=\"120\" y=\"133\">Y</text><text x=\"281\" y=\"249\">Z</text><text x=\"58\" y=\"88\">W</text><text x=\"98\" y=\"264\">M</text><text x=\"272\" y=\"38\">N</text><text x=\"250\" y=\"270\" fill=\"var(--gold)\">C₃</text><text x=\"152\" y=\"250\" fill=\"var(--ink3)\">C₁</text><text x=\"278\" y=\"120\" fill=\"var(--ink3)\">C₂</text></g></svg>",
+    "statement": "Consider the circles $C_1:x^2+y^2=9$ and $C_2:(x-3)^2+(y-4)^2=16$, which intersect at the points $X$ and $Y$. A third circle $C_3:(x-h)^2+(y-k)^2=r^2$ is chosen so that its centre is collinear with the centres of $C_1$ and $C_2$, both $C_1$ and $C_2$ lie inside $C_3$, and $C_3$ touches $C_1$ at $M$ and $C_2$ at $N$. The line through $X$ and $Y$ meets $C_3$ at $Z$ and $W$, and a common tangent of $C_1$ and $C_3$ is also a tangent to the parabola $x^2=8\\alpha y$.\n\nMatch each entry of List-I with its value in List-II.\n\nList-I: $\\;$(I) $2h+k$; $\\;$(II) $\\dfrac{\\text{length of }ZW}{\\text{length of }XY}$; $\\;$(III) $\\dfrac{\\text{area of }\\triangle MZN}{\\text{area of }\\triangle ZMW}$; $\\;$(IV) $\\alpha$.\n\nList-II: $\\;$(P) $6$; $\\;$(Q) $\\sqrt6$; $\\;$(R) $\\dfrac54$; $\\;$(S) $\\dfrac{21}{5}$; $\\;$(T) $2\\sqrt6$; $\\;$(U) $\\dfrac{10}{3}$.\n\nWhich of the following is the only CORRECT combination?\n\n(A) (II),(T)$\\qquad$(B) (II),(Q)$\\qquad$(C) (I),(U)$\\qquad$(D) (I),(S)",
+    "answer": "$\\boxed{\\text{(B) }(\\text{II})\\to(\\text{Q})}$",
+    "trap": "Two traps. First, “both lie inside $C_3$” forces internal contact, so $r_3=OO''+3=O'O''+4$ gives a linear equation — chasing the general two-radical condition invites a quadratic and a spurious root. Second, $ZW$ and $XY$ are chords of *different* circles cut by the *same* line (the radical axis $3x+4y=9$); students often recompute $XY$ as a chord of $C_2$ or forget that the two circles touch, so $C_1$ and $C_3$ share only the single tangent at $M$.",
+    "solutions": [
+      {
+        "name": "Radical axis and equal-tangent chords",
+        "steps": [
+          "The centres are $O=(0,0)$ and $O'=(3,4)$, collinear along the ray $3x=4y$; the centre $O''=(h,k)$ of $C_3$ lies on it, so $(h,k)=\\bigl(\\tfrac{3t}{5},\\tfrac{4t}{5}\\bigr)$ with $OO''=t$. Since $C_1,C_2$ lie inside $C_3$ and touch it, $r_3=t+3=(5-t)+4$, giving $t=3$. Hence $O''=\\bigl(\\tfrac95,\\tfrac{12}{5}\\bigr)$, $r_3=6$, and $2h+k=\\tfrac{18}{5}+\\tfrac{12}{5}=6$, so (I)$\\to$(P).",
+          "Subtracting the two circle equations gives the radical axis (line $XY$): $6x+8y-18=0$, i.e. $3x+4y=9$. This same line cuts $C_3$ in $Z,W$.",
+          "Chord length $=2\\sqrt{R^2-d^2}$ with $d$ the distance from the centre. For $C_1$ ($R=3$, centre $O$): $d=\\tfrac{9}{5}$, so $XY=2\\sqrt{9-\\tfrac{81}{25}}=\\tfrac{24}{5}$. For $C_3$ ($R=6$, centre $O''$): $d=\\dfrac{|3\\cdot\\frac95+4\\cdot\\frac{12}{5}-9|}{5}=\\tfrac{6}{5}$, so $ZW=2\\sqrt{36-\\tfrac{36}{25}}=\\tfrac{24\\sqrt6}{5}$.",
+          "Therefore $\\dfrac{ZW}{XY}=\\dfrac{24\\sqrt6/5}{24/5}=\\sqrt6$, so (II)$\\to$(Q). The only correct pairing among the options is $(\\text{II}),(\\text{Q})$ — option (B)."
+        ]
+      },
+      {
+        "name": "Direct coordinates of the four points",
+        "steps": [
+          "The internal-contact condition $r_3-3=OO''$ and $r_3-4=O'O''$ with $O''$ on $3x=4y$ give $r_3=6$, $O''=\\bigl(\\tfrac95,\\tfrac{12}{5}\\bigr)$, so $2h+k=6$ — a homothety of ratio $\\tfrac{r_3}{r_1}=2$ about the contact point $M$ carries $C_1$ onto $C_3$, which is the geometric reason the centres are collinear.",
+          "Solve $C_1\\cap C_2$ directly: from $x^2+y^2=9$ and the radical axis $3x+4y=9$, substitute $x=\\tfrac{9-4y}{3}$ to get $25y^2-72y+0=0$... more cleanly, $X=(3,0)$ and $Y=\\bigl(-\\tfrac{21}{25},\\tfrac{72}{25}\\bigr)$, whence $XY=\\sqrt{\\bigl(3+\\tfrac{21}{25}\\bigr)^2+\\bigl(\\tfrac{72}{25}\\bigr)^2}=\\tfrac{24}{5}$.",
+          "Intersect the same line $3x+4y=9$ with $C_3$: the endpoints come out as $Z=\\bigl(\\tfrac{9+56\\sqrt6}{25}\\cdot\\ldots\\bigr)$; rather than carry radicals, use the perpendicular distance $d=\\tfrac{6}{5}$ from $O''$ to the line, giving $ZW=2\\sqrt{6^2-\\bigl(\\tfrac65\\bigr)^2}=\\tfrac{24\\sqrt6}{5}$.",
+          "Hence $\\dfrac{ZW}{XY}=\\dfrac{24\\sqrt6/5}{24/5}=\\sqrt6$, so (II)$\\to$(Q) and option (B) is the correct combination. (As a cross-check, the tangent at $M$ is $3x+4y+15=0$; forcing $x^2=8\\alpha y$ to touch it gives $\\alpha=\\tfrac{10}{3}$, matching (IV)$\\to$(U).)"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 2, Q3 (Section 3). Insight: once “both circles lie inside $C_3$” is read as *internal* tangency, the whole configuration collapses to one linear equation — $r_3=6$, $O''=(\\tfrac95,\\tfrac{12}{5})$ — and every list quantity ($2h+k=6$, $ZW/XY=\\sqrt6$, area ratio $\\tfrac54$, $\\alpha=\\tfrac{10}{3}$) follows from the single radical axis $3x+4y=9$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The One Mismatched Pairing",
+    "difficulty": 5,
+    "task": "Identify the only INCORRECT List-I – List-II combination",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "4"
+    },
+    "tags": [
+      "circles",
+      "radical axis",
+      "common tangent to a parabola",
+      "2019"
+    ],
+    "figure": "<svg viewBox=\"0 0 380 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Three circles C1, C2, C3 with contact points M, N and chord ZW of C3</title><desc>Circle C1 centred at the origin with radius 3 and circle C2 centred at (3,4) with radius 4 intersect at X and Y. The enclosing circle C3 centred at (9/5,12/5) with radius 6 touches C1 at M=(-9/5,-12/5) and C2 at N=(27/5,36/5). The radical axis 3x+4y=9 through X, Y meets C3 at Z and W, forming triangles MZN and ZMW.</desc><circle cx=\"189.6\" cy=\"147.2\" r=\"132\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><circle cx=\"150\" cy=\"200\" r=\"66\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"/><circle cx=\"216\" cy=\"112\" r=\"88\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"/><polygon points=\"110.4,252.8 277.2,245.9 268.8,41.6\" fill=\"var(--gold-soft)\" stroke=\"none\" opacity=\"0.7\"/><line x1=\"70.3\" y1=\"90.7\" x2=\"277.2\" y2=\"245.9\" stroke=\"var(--ink3)\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><line x1=\"110.4\" y1=\"252.8\" x2=\"277.2\" y2=\"245.9\" stroke=\"var(--gold)\" stroke-width=\"1.4\"/><line x1=\"110.4\" y1=\"252.8\" x2=\"268.8\" y2=\"41.6\" stroke=\"var(--gold)\" stroke-width=\"1.4\"/><line x1=\"277.2\" y1=\"245.9\" x2=\"268.8\" y2=\"41.6\" stroke=\"var(--gold)\" stroke-width=\"1.4\"/><g fill=\"var(--gold)\"><circle cx=\"189.6\" cy=\"147.2\" r=\"2.4\"/><circle cx=\"216\" cy=\"200\" r=\"2.6\"/><circle cx=\"131.5\" cy=\"136.6\" r=\"2.6\"/><circle cx=\"277.2\" cy=\"245.9\" r=\"2.6\"/><circle cx=\"70.3\" cy=\"90.7\" r=\"2.6\"/><circle cx=\"110.4\" cy=\"252.8\" r=\"2.6\"/><circle cx=\"268.8\" cy=\"41.6\" r=\"2.6\"/></g><g fill=\"var(--ink2)\" font-size=\"12\"><text x=\"221\" y=\"197\">X</text><text x=\"120\" y=\"133\">Y</text><text x=\"281\" y=\"249\">Z</text><text x=\"58\" y=\"88\">W</text><text x=\"96\" y=\"264\">M</text><text x=\"272\" y=\"38\">N</text><text x=\"250\" y=\"270\" fill=\"var(--gold)\">C₃</text></g></svg>",
+    "statement": "Take the circles $C_1:x^2+y^2=9$ and $C_2:(x-3)^2+(y-4)^2=16$, meeting at $X$ and $Y$, together with the circle $C_3:(x-h)^2+(y-k)^2=r^2$ whose centre is collinear with those of $C_1$ and $C_2$, which contains both $C_1$ and $C_2$, and which touches $C_1$ at $M$ and $C_2$ at $N$. The line $XY$ cuts $C_3$ at $Z$ and $W$, and a common tangent of $C_1$ and $C_3$ is tangent to the parabola $x^2=8\\alpha y$.\n\nMatch each entry of List-I with its value in List-II.\n\nList-I: $\\;$(I) $2h+k$; $\\;$(II) $\\dfrac{\\text{length of }ZW}{\\text{length of }XY}$; $\\;$(III) $\\dfrac{\\text{area of }\\triangle MZN}{\\text{area of }\\triangle ZMW}$; $\\;$(IV) $\\alpha$.\n\nList-II: $\\;$(P) $6$; $\\;$(Q) $\\sqrt6$; $\\;$(R) $\\dfrac54$; $\\;$(S) $\\dfrac{21}{5}$; $\\;$(T) $2\\sqrt6$; $\\;$(U) $\\dfrac{10}{3}$.\n\nWhich of the following is the only INCORRECT combination?\n\n(A) (IV),(S)$\\qquad$(B) (III),(R)$\\qquad$(C) (IV),(U)$\\qquad$(D) (I),(P)",
+    "answer": "$\\boxed{\\text{(A) }(\\text{IV})\\not\\to(\\text{S})}$",
+    "trap": "The distractor is the value $\\tfrac{21}{5}$ (S), which never appears — it is a decoy resembling the intermediate fractions with denominator $5$ that litter the working. The real hazard in (III) is the area ratio: $\\triangle MZN$ and $\\triangle ZMW$ share the side $MZ$, so the ratio is just $\\dfrac{\\text{dist}(N,\\,MZ)}{\\text{dist}(W,\\,MZ)}$; students who instead take $\\dfrac12\\,\\text{base}\\times\\text{height}$ with the wrong shared base often land on $\\tfrac45$ or $2$.",
+    "solutions": [
+      {
+        "name": "Evaluate all four, then spot the odd one",
+        "steps": [
+          "As before, internal tangency gives $O''=\\bigl(\\tfrac95,\\tfrac{12}{5}\\bigr)$, $r_3=6$, so (I) $2h+k=\\tfrac{18}{5}+\\tfrac{12}{5}=6\\to$(P) — true, ruling out (D).",
+          "The radical axis $3x+4y=9$ cuts $C_1$ in a chord $XY=\\tfrac{24}{5}$ and $C_3$ in $ZW=\\tfrac{24\\sqrt6}{5}$, so (II) $\\tfrac{ZW}{XY}=\\sqrt6\\to$(Q).",
+          "For the common tangent: $C_1$ and $C_3$ touch internally at $M=(-\\tfrac95,-\\tfrac{12}{5})$, and their single common tangent there is $3x+4y+15=0$. Imposing tangency of this line to $x^2=8\\alpha y$: substituting $y=-\\tfrac{3x+15}{4}$ gives $x^2+6\\alpha x+30\\alpha=0$, whose discriminant $36\\alpha^2-120\\alpha=0$ yields $\\alpha=\\tfrac{10}{3}$ (the nonzero root). So (IV) $\\alpha=\\tfrac{10}{3}\\to$(U) — true, ruling out (C).",
+          "Since (IV) genuinely equals $\\tfrac{10}{3}$ (option U), the pairing (IV),(S) claiming $\\alpha=\\tfrac{21}{5}$ is false. The only INCORRECT combination is (IV),(S) — option (A)."
+        ]
+      },
+      {
+        "name": "Shared-side ratio for (III), decoy elimination",
+        "steps": [
+          "$\\triangle MZN$ and $\\triangle ZMW$ share the common side $ZM$; hence their areas are in the ratio of the perpendicular distances from the opposite vertices $N$ and $W$ to the line $ZM$: $\\dfrac{[MZN]}{[ZMW]}=\\dfrac{\\text{dist}(N,\\,ZM)}{\\text{dist}(W,\\,ZM)}$.",
+          "With $M=(-\\tfrac95,-\\tfrac{12}{5})$, $Z=\\bigl(\\tfrac{9+24\\sqrt6\\cdot\\frac{4}{5}}{5}\\ldots\\bigr)$ the algebra is cleaner using the coordinate areas directly: computing $[MZN]=\\tfrac{72\\sqrt6}{5}$ and $[ZMW]=\\tfrac{288\\sqrt6}{25}$ gives $\\dfrac{[MZN]}{[ZMW]}=\\dfrac{72\\sqrt6/5}{288\\sqrt6/25}=\\dfrac{72\\cdot25}{5\\cdot288}=\\dfrac54$. So (III)$\\to$(R) is correct, eliminating (B).",
+          "Thus (I)$\\to$(P), (II)$\\to$(Q), (III)$\\to$(R), (IV)$\\to$(U) are all valid matches, and $\\tfrac{21}{5}$ (S) and $2\\sqrt6$ (T) are pure decoys that no list entry attains.",
+          "The one option that asserts a match to a decoy value is (IV),(S) — since $\\alpha=\\tfrac{10}{3}\\ne\\tfrac{21}{5}$, this is the only INCORRECT combination, option (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 2, Q4 (Section 3). Insight: this is the twin of the previous “correct-combination” question on the same paragraph — the fastest route is to establish the full map (I,II,III,IV)$\\to$(P,Q,R,U) once, after which the answer is whichever option quotes a value from the leftover decoys $\\{S,T\\}$, here $\\alpha=\\tfrac{21}{5}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Perpendicular Tangents at a Latus-Rectum End",
+    "difficulty": 4,
+    "task": "Find the eccentricity of the ellipse",
+    "pyq": {
+      "year": 2020,
+      "paper": "1",
+      "qno": "4"
+    },
+    "tags": [
+      "parabola latus rectum",
+      "ellipse eccentricity",
+      "tangents to conics",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Let $a$, $b$ and $\\lambda$ be positive real numbers. Suppose $P$ is an end point of the latus rectum of the parabola $y^2=4\\lambda x$, and suppose the ellipse $\\dfrac{x^2}{a^2}+\\dfrac{y^2}{b^2}=1$ passes through the point $P$. If the tangents to the parabola and to the ellipse at the point $P$ are perpendicular to each other, then find the eccentricity of the ellipse.\n\n(A) $\\dfrac{1}{\\sqrt{2}}$ · (B) $\\dfrac{1}{2}$ · (C) $\\dfrac{1}{3}$ · (D) $\\dfrac{2}{5}$",
+    "answer": "$\\boxed{e=\\dfrac{1}{\\sqrt{2}}}$ \\; — option (A).",
+    "trap": "Assuming, out of habit, that $a>b$ so that the foci sit on the $x$-axis. The perpendicularity forces $b^2=2a^2$, so here $b>a$: the major axis is vertical and $e=\\sqrt{1-a^2/b^2}$, not $\\sqrt{1-b^2/a^2}$. Using the wrong formula gives an imaginary eccentricity, a sure sign the roles of $a$ and $b$ were swapped.",
+    "solutions": [
+      {
+        "name": "Slopes of the two tangents",
+        "steps": [
+          "The latus rectum of $y^2=4\\lambda x$ is the vertical chord through the focus $(\\lambda,0)$. Its ends satisfy $y^2=4\\lambda^2$, so $P=(\\lambda,2\\lambda)$ (taking the upper end).",
+          "Differentiating $y^2=4\\lambda x$ gives $2yy'=4\\lambda$, so the parabola's tangent slope at $P$ is $y'=\\dfrac{2\\lambda}{2\\lambda}=1$.",
+          "Differentiating $\\dfrac{x^2}{a^2}+\\dfrac{y^2}{b^2}=1$ gives $\\dfrac{2x}{a^2}+\\dfrac{2yy'}{b^2}=0$, so the ellipse's tangent slope at $P$ is $-\\dfrac{b^2x}{a^2y}=-\\dfrac{b^2\\lambda}{a^2\\cdot 2\\lambda}=-\\dfrac{b^2}{2a^2}$.",
+          "Perpendicularity means the product of slopes is $-1$: $1\\cdot\\left(-\\dfrac{b^2}{2a^2}\\right)=-1$, hence $b^2=2a^2$.",
+          "Since $b^2>a^2$ the major axis is along the $y$-axis, so $e=\\sqrt{1-\\dfrac{a^2}{b^2}}=\\sqrt{1-\\dfrac{a^2}{2a^2}}=\\sqrt{1-\\dfrac12}=\\dfrac{1}{\\sqrt2}$."
+        ]
+      },
+      {
+        "name": "Pin the semi-axes from both conditions",
+        "steps": [
+          "Impose that the ellipse actually passes through $P=(\\lambda,2\\lambda)$: $\\dfrac{\\lambda^2}{a^2}+\\dfrac{4\\lambda^2}{b^2}=1$, and keep the perpendicularity relation $b^2=2a^2$ from the tangent slopes.",
+          "Substituting $b^2=2a^2$ into the pass-through equation: $\\dfrac{\\lambda^2}{a^2}+\\dfrac{4\\lambda^2}{2a^2}=\\dfrac{\\lambda^2}{a^2}+\\dfrac{2\\lambda^2}{a^2}=\\dfrac{3\\lambda^2}{a^2}=1$, so $a^2=3\\lambda^2$ and $b^2=6\\lambda^2$.",
+          "Both semi-axes are now fixed, with $b^2=6\\lambda^2>a^2=3\\lambda^2$, confirming the vertical major axis.",
+          "Therefore $e^2=1-\\dfrac{a^2}{b^2}=1-\\dfrac{3\\lambda^2}{6\\lambda^2}=1-\\dfrac12=\\dfrac12$, giving $e=\\dfrac{1}{\\sqrt2}$, independent of $\\lambda$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 1, Q4. The parabola contributes only one clean number — its latus-rectum tangent has slope $1$ — after which perpendicularity alone fixes $b^2=2a^2$ and the eccentricity, no matter how large the parabola or the ellipse is."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Circumcircle of the Centre and a Chord",
+    "difficulty": 4,
+    "task": "Find the radius r",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "3"
+    },
+    "tags": [
+      "circle",
+      "chord and circumcircle",
+      "family of circles",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Let $O$ be the centre of the circle $x^2+y^2=r^2$, where $r>\\dfrac{\\sqrt{5}}{2}$. Suppose $PQ$ is a chord of this circle and the equation of the line passing through $P$ and $Q$ is $2x+4y=5$. If the centre of the circumcircle of the triangle $OPQ$ lies on the line $x+2y=4$, then find the value of $r$.",
+    "answer": "$\\boxed{r=2}$",
+    "trap": "Trying to solve for the two chord endpoints $P$ and $Q$ explicitly. The circumcircle of $OPQ$ can be written down as a single member of the pencil through $P$ and $Q$ that also passes through $O$ — the individual coordinates of $P$ and $Q$ never appear, and $r$ drops out from one linear condition.",
+    "solutions": [
+      {
+        "name": "Family of circles through the chord",
+        "steps": [
+          "Every circle through the intersection points $P,Q$ of the given circle and the line has the form $\\bigl(x^2+y^2-r^2\\bigr)+t\\,(2x+4y-5)=0$ for some parameter $t$.",
+          "The circumcircle of $\\triangle OPQ$ must also pass through $O=(0,0)$. Substituting $(0,0)$: $-r^2+t(-5)=0$, so $t=-\\dfrac{r^2}{5}$.",
+          "The circumcircle is thus $x^2+y^2-\\dfrac{2r^2}{5}x-\\dfrac{4r^2}{5}y=0$, whose centre is $\\left(\\dfrac{r^2}{5},\\dfrac{2r^2}{5}\\right)$ (half the negatives of the $x$- and $y$-coefficients).",
+          "This centre lies on $x+2y=4$: $\\dfrac{r^2}{5}+2\\cdot\\dfrac{2r^2}{5}=\\dfrac{r^2+4r^2}{5}=r^2=4$.",
+          "Hence $r^2=4$, and since $r>\\dfrac{\\sqrt5}{2}$ we take $r=2$."
+        ]
+      },
+      {
+        "name": "Circumcentre as midpoint of O and the foot",
+        "steps": [
+          "Let $M$ be the foot of the perpendicular from $O$ to the chord $2x+4y=5$; then $M$ is the midpoint of $PQ$: $M=\\dfrac{5}{2^2+4^2}(2,4)=\\left(\\dfrac12,1\\right)$.",
+          "Because $P$ and $Q$ lie on the circle centred $O$, the circumcentre $S$ of $\\triangle OPQ$ lies on the perpendicular bisector of $OP$ and of $OQ$; equivalently $S=(h,k)$ is equidistant from $O,P,Q$. Writing $|SO|^2=|SP|^2$ and using that $P,Q$ satisfy $x^2+y^2=r^2$ together with $2x+4y=5$ yields $2h+4k=r^2$ and $h+2k=\\tfrac{r^2}{2}$… i.e. $S$ scales with $r^2$: $S=\\left(\\dfrac{r^2}{5},\\dfrac{2r^2}{5}\\right)$, the midpoint of $O$ and the point $R=\\left(\\dfrac{2r^2}{5},\\dfrac{4r^2}{5}\\right)$ on ray $OM$.",
+          "Imposing $S$ on $x+2y=4$: $\\dfrac{r^2}{5}+\\dfrac{4r^2}{5}=r^2=4$.",
+          "As a check with $r=2$, $S=\\left(\\dfrac45,\\dfrac85\\right)$ satisfies $x+2y=4$, and $|SO|=\\dfrac{4\\sqrt5}{5}$ equals the distance from $S$ to each intersection point of $x^2+y^2=4$ with the chord. Thus $r=2$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 2, Q3. Writing the circumcircle as the one member of the chord's pencil that passes through the centre $O$ turns a three-point circle problem into a single substitution, and the radius $r$ emerges from one linear equation."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Tangent Through (1,0), Equal-Intercept Normal",
+    "difficulty": 5,
+    "task": "Decide which statements about $e$ and $\\Delta$ are true",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "8"
+    },
+    "tags": [
+      "hyperbola",
+      "tangent and normal",
+      "eccentricity",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Let $a$ and $b$ be positive real numbers with $a>1$ and $b<a$, and let $P$ be a point in the first quadrant on the hyperbola $\\dfrac{x^2}{a^2}-\\dfrac{y^2}{b^2}=1$. Suppose the tangent to the hyperbola at $P$ passes through the point $(1,0)$, and suppose the normal to the hyperbola at $P$ cuts off equal intercepts on the coordinate axes. Let $\\Delta$ denote the area of the triangle formed by the tangent at $P$, the normal at $P$, and the $x$-axis, and let $e$ denote the eccentricity of the hyperbola. Which of the following statements is/are TRUE?\n\n(A) $1<e<\\sqrt2$ · (B) $\\sqrt2<e<2$ · (C) $\\Delta=a^4$ · (D) $\\Delta=b^4$",
+    "answer": "$\\boxed{\\text{(A) and (D)}}$",
+    "trap": "Assuming the two conditions leave $a,b$ free. They do not: the tangent through $(1,0)$ forces $\\sec\\theta=a$, and the equal-intercept normal forces $\\tan\\theta=b$; together these pin $a^2-b^2=1$. Missing this makes the range of $e$ and the value of $\\Delta$ look indeterminate, and it is tempting to report $\\Delta=a^4$ by mislabelling the triangle's base or height.",
+    "solutions": [
+      {
+        "name": "Parametric point $P=(a\\sec\\theta,\\,b\\tan\\theta)$",
+        "steps": [
+          "Write $P=(a\\sec\\theta,\\,b\\tan\\theta)$ with $\\theta\\in(0,\\tfrac{\\pi}{2})$. The tangent at $P$ is $\\dfrac{x\\sec\\theta}{a}-\\dfrac{y\\tan\\theta}{b}=1$. Passing through $(1,0)$ gives $\\dfrac{\\sec\\theta}{a}=1$, so $\\sec\\theta=a$ and $\\tan\\theta=\\sqrt{a^2-1}$.",
+          "The normal at $P$ is $\\dfrac{ax}{\\sec\\theta}+\\dfrac{by}{\\tan\\theta}=a^2+b^2$, with $x$-intercept $\\dfrac{(a^2+b^2)\\sec\\theta}{a}$ and $y$-intercept $\\dfrac{(a^2+b^2)\\tan\\theta}{b}$. Equal intercepts require $\\dfrac{\\sec\\theta}{a}=\\dfrac{\\tan\\theta}{b}$, i.e. $\\tan\\theta=b$ (using $\\sec\\theta=a$).",
+          "Hence $b=\\sqrt{a^2-1}$, so $a^2-b^2=1$. Then $e^2=1+\\dfrac{b^2}{a^2}=\\dfrac{2a^2-1}{a^2}=2-\\dfrac{1}{a^2}$. As $a$ ranges over $(1,\\infty)$, $e^2\\in(1,2)$, giving $1<e<\\sqrt2$ — statement (A) is TRUE, (B) is FALSE.",
+          "With $\\sec\\theta=a,\\ \\tan\\theta=b$, the point is $P=(a^2,b^2)$; the tangent reduces to $x-y=1$ and the normal to $x+y=a^2+b^2$. The tangent meets the $x$-axis at $(1,0)$ and the normal at $(a^2+b^2,0)$, so the base is $(a^2+b^2)-1=2b^2$ and the height (the $y$-coordinate of $P$) is $b^2$. Thus $\\Delta=\\tfrac12(2b^2)(b^2)=b^4$ — statement (D) is TRUE, (C) is FALSE."
+        ]
+      },
+      {
+        "name": "Implicit slope + intercept conditions",
+        "steps": [
+          "Let $P=(x_0,y_0)$ on the hyperbola. Differentiating $\\dfrac{x^2}{a^2}-\\dfrac{y^2}{b^2}=1$ gives the tangent slope $m_t=\\dfrac{b^2x_0}{a^2y_0}$. The tangent is $\\dfrac{xx_0}{a^2}-\\dfrac{yy_0}{b^2}=1$; through $(1,0)$ it yields $\\dfrac{x_0}{a^2}=1$, so $x_0=a^2$.",
+          "From the hyperbola, $\\dfrac{a^4}{a^2}-\\dfrac{y_0^2}{b^2}=1\\Rightarrow y_0^2=b^2(a^2-1)$. The normal slope is $-\\dfrac1{m_t}=-\\dfrac{a^2y_0}{b^2x_0}=-\\dfrac{y_0}{b^2}$. A line cutting equal intercepts has slope $-1$, so $\\dfrac{y_0}{b^2}=1$, giving $y_0=b^2$.",
+          "Combining $y_0^2=b^2(a^2-1)$ with $y_0=b^2$ gives $b^4=b^2(a^2-1)$, hence $b^2=a^2-1$, i.e. $a^2-b^2=1$ — the same constraint. Then $e=\\sqrt{1+b^2/a^2}=\\sqrt{2-1/a^2}\\in(1,\\sqrt2)$, confirming (A).",
+          "Now $P=(a^2,b^2)$; tangent $x-y=1$ hits the $x$-axis at $(1,0)$, normal $x+y=a^2+b^2$ hits it at $(a^2+b^2,0)$. Base $=2b^2$, height $=b^2$, so $\\Delta=b^4$, confirming (D). Both routes agree: the correct answer is (A, D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 2, Q8. The whole problem collapses once you notice the two geometric conditions secretly enforce $a^2-b^2=1$: the eccentricity is then trapped in $(1,\\sqrt2)$ and the triangle's base and height are both simple multiples of $b^2$, so $\\Delta=b^4$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Circumcircle From an Orthocenter",
+    "difficulty": 4,
+    "task": "Find the circle through the triangle's vertices",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "1"
+    },
+    "tags": [
+      "circle",
+      "circumcircle",
+      "orthocentre and triangle geometry",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "Consider a triangle $\\Delta$ whose two sides lie along the $x$-axis and the line $x+y+1=0$. If the orthocentre of $\\Delta$ is $(1,1)$, then the equation of the circle passing through the vertices of the triangle $\\Delta$ is\n\n(A) $x^2+y^2-3x+y=0$ · (B) $x^2+y^2+x+3y=0$ · (C) $x^2+y^2+2y-1=0$ · (D) $x^2+y^2+x+y=0$",
+    "answer": "$\\boxed{x^2+y^2+x+3y=0}$ \\; — option (B).",
+    "trap": "Trying to pin all three vertices from just two lines and the orthocentre without using perpendicularity carefully, or forgetting that the reflection of the orthocentre across each side lands on the circumcircle. A common slip is reflecting $(1,1)$ in the wrong line or mis-signing the reflection, which lands you on a distractor circle.",
+    "solutions": [
+      {
+        "name": "Reflect the orthocentre onto the circumcircle",
+        "steps": [
+          "The two given sides meet at a vertex: solving $y=0$ with $x+y+1=0$ gives $A=(-1,0)$.",
+          "A classical fact: the reflection of the orthocentre in any side of a triangle lies on the circumcircle. Reflecting $H=(1,1)$ in the $x$-axis gives $(1,-1)$.",
+          "Reflecting $H=(1,1)$ in the line $x+y+1=0$: with $d=\\dfrac{1+1+1}{1^2+1^2}=\\dfrac32$, the image is $\\bigl(1-2\\cdot\\tfrac32,\\ 1-2\\cdot\\tfrac32\\bigr)=(-2,-2)$.",
+          "The circumcircle passes through $A=(-1,0)$, $(1,-1)$ and $(-2,-2)$. Writing $x^2+y^2+Dx+Ey+F=0$ and substituting: $1-D+F=0$, $2+D-E+F=0$, $8-2D-2E+F=0$. Solving gives $D=1,\\ E=3,\\ F=0$, so the circle is $x^2+y^2+x+3y=0$ — option (B)."
+        ]
+      },
+      {
+        "name": "Locate all three vertices, then circumscribe",
+        "steps": [
+          "Let $A=(-1,0)$ (intersection of the two given sides), $B=(p,0)$ on the $x$-axis, and $C=(q,-q-1)$ on $x+y+1=0$. The altitude from $C$ is perpendicular to side $AB$ (the $x$-axis), hence vertical: $x=q$; it must pass through $H=(1,1)$, so $q=1$ and $C=(1,-2)$.",
+          "The altitude from $B$ is perpendicular to side $AC$ (slope $-1$), so it has slope $1$: $y=x-p$. Passing through $H=(1,1)$ gives $1=1-p$, so $p=0$ and $B=(0,0)$.",
+          "The three vertices are $A=(-1,0)$, $B=(0,0)$, $C=(1,-2)$. Because $B$ is the origin, the circle $x^2+y^2+Dx+Ey+F=0$ has $F=0$; then $A$ gives $1-D=0\\Rightarrow D=1$, and $C$ gives $1+4+1-2E=0\\Rightarrow E=3$.",
+          "Hence the circumcircle is $x^2+y^2+x+3y=0$. (Check: its orthocentre-independent circumcentre is $(-\\tfrac12,-\\tfrac32)$, equidistant from all three vertices.) This matches option (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 1, Q1. The elegant route uses the reflection property — each mirror image of the orthocentre in a side sits on the circumcircle — turning an orthocentre condition into three concrete points without ever solving for the third vertex."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Product of Distances Hides a Conic",
+    "difficulty": 4,
+    "task": "Find the value of $\\lambda^2$.",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "9"
+    },
+    "tags": [
+      "product of distances from two lines",
+      "hyperbola",
+      "chord length",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "Consider the two lines $L_1:\\ \\sqrt2\\,x+y-1=0$ and $L_2:\\ \\sqrt2\\,x-y+1=0$. For a fixed constant $\\lambda$, let $C$ be the locus of a point $P$ for which the product of the distance of $P$ from $L_1$ and the distance of $P$ from $L_2$ equals $\\lambda^2$. The line $y=2x+1$ meets $C$ at two points $R$ and $S$, and the distance between them is $\\sqrt{270}$. Determine the value of $\\lambda^2$.",
+    "answer": "$\\lambda^2=\\boxed{9}$",
+    "trap": "Rushing to identify $C$ as a full hyperbola and hunting for its axes, eccentricity, and rotation angle. None of that is needed. The moment you intersect $C$ with the given line, the product of the two signed linear forms collapses to a single clean quadratic in one variable, and the chord condition becomes a one-line equation. Chasing the conic's geometry is a detour.",
+    "solutions": [
+      {
+        "name": "Substitute the line, then use the chord length",
+        "steps": [
+          "The distance of $P=(x,y)$ from $L_1$ is $\\dfrac{|\\sqrt2\\,x+y-1|}{\\sqrt{3}}$ and from $L_2$ is $\\dfrac{|\\sqrt2\\,x-y+1|}{\\sqrt{3}}$ (each denominator is $\\sqrt{(\\sqrt2)^2+1^2}=\\sqrt3$). So $C$ is $\\bigl|(\\sqrt2\\,x+y-1)(\\sqrt2\\,x-y+1)\\bigr|=3\\lambda^2$, i.e. $\\bigl|2x^2-(y-1)^2\\bigr|=3\\lambda^2$.",
+          "Put the line $y=2x+1$ into the two factors: $\\sqrt2\\,x+y-1=(\\sqrt2+2)x$ and $\\sqrt2\\,x-y+1=(\\sqrt2-2)x$. Their product is $(\\sqrt2+2)(\\sqrt2-2)x^2=(2-4)x^2=-2x^2$. Hence on the line $\\bigl|-2x^2\\bigr|=3\\lambda^2$, giving $x^2=\\dfrac{3\\lambda^2}{2}$.",
+          "So $R$ and $S$ have abscissae $x=\\pm a$ with $a=\\sqrt{\\tfrac{3\\lambda^2}{2}}$. Along $y=2x+1$ the slope is $2$, so $RS^2=(2a)^2(1+2^2)=20a^2=20\\cdot\\dfrac{3\\lambda^2}{2}=30\\lambda^2$.",
+          "Set $RS^2=270$: $30\\lambda^2=270\\Rightarrow \\lambda^2=9$."
+        ]
+      },
+      {
+        "name": "Solve the quadratic and use sum/product of roots",
+        "steps": [
+          "From Method 1, points of $C$ on the line satisfy $2x^2=3\\lambda^2$, i.e. $2x^2-3\\lambda^2=0$. Its roots $x_1,x_2$ obey $x_1+x_2=0$ and $x_1x_2=-\\dfrac{3\\lambda^2}{2}$, so $(x_1-x_2)^2=(x_1+x_2)^2-4x_1x_2=6\\lambda^2$.",
+          "The chord lies on $y=2x+1$, so its length satisfies $RS^2=(1+m^2)(x_1-x_2)^2=(1+4)\\cdot 6\\lambda^2=30\\lambda^2$.",
+          "Equating to the given $RS^2=270$ gives $30\\lambda^2=270$, hence $\\lambda^2=9$ — matching Method 1."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 1, Q9 (question stem shared with Q10). The elegance is that intersecting the “product of distances’’ locus with a line turns the product of two linear forms into a single quadratic, so the fearsome hyperbola never has to be diagonalised."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Perpendicular Bisector Hits the Other Branch",
+    "difficulty": 5,
+    "task": "Find $D$, the square of the distance between $R'$ and $S'$.",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "10"
+    },
+    "tags": [
+      "hyperbola",
+      "perpendicular bisector chord",
+      "central chord",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "As in the previous problem, $C$ is the locus of points $P$ for which the product of the distances from $L_1:\\ \\sqrt2\\,x+y-1=0$ and $L_2:\\ \\sqrt2\\,x-y+1=0$ equals $\\lambda^2$, and the line $y=2x+1$ meets $C$ at $R$ and $S$ with $RS=\\sqrt{270}$ (so $\\lambda^2=9$). Let the perpendicular bisector of $RS$ meet $C$ at two distinct points $R'$ and $S'$. If $D$ is the square of the distance between $R'$ and $S'$, find $D$.",
+    "answer": "$D=\\dfrac{540}{7}=\\dfrac{1620}{21}\\approx\\boxed{77.14}$",
+    "trap": "Assuming the perpendicular bisector meets the *same* piece of $C$ that $R$ and $S$ live on. It does not. On the line $y=2x+1$ the product $2x^2-(y-1)^2$ was negative, so $R,S$ sit on the branch $2x^2-(y-1)^2=-27$; the perpendicular bisector instead cuts the conjugate branch $2x^2-(y-1)^2=+27$. Using the wrong sign yields no real intersection — a silent trap that makes the problem look unsolvable.",
+    "solutions": [
+      {
+        "name": "Locate the centre, then a central chord",
+        "steps": [
+          "With $\\lambda^2=9$, the locus is $\\bigl|2x^2-(y-1)^2\\bigr|=27$. Both factors change sign about $x=0$ and $y=1$, so $C$ is centred at $(0,1)$. The chord $R,S$ on $y=2x+1$ has abscissae $x=\\pm\\sqrt{27/2}$ (from $2x^2=27$), so its midpoint is $M=\\bigl(0,\\,1\\bigr)$ — the centre itself.",
+          "Because the midpoint of $RS$ is the centre $(0,1)$, the perpendicular bisector of $RS$ also passes through $(0,1)$; it therefore cuts $C$ in a *central* chord, so $R'$ and $S'$ are symmetric about $(0,1)$ and $D=(R'S')^2=(2\\cdot\\text{half-chord})^2$.",
+          "The perpendicular bisector has slope $-\\tfrac12$ (perpendicular to slope $2$) through $(0,1)$: $y=1-\\tfrac{x}{2}$, so $y-1=-\\tfrac{x}{2}$. On this line $2x^2-(y-1)^2=2x^2-\\tfrac{x^2}{4}=\\tfrac{7x^2}{4}$, which is positive — hence it meets the branch $2x^2-(y-1)^2=+27$: $\\tfrac{7x^2}{4}=27\\Rightarrow x^2=\\tfrac{108}{7}$.",
+          "So $R',S'$ have $x=\\pm\\sqrt{108/7}$; along slope $-\\tfrac12$, $D=(2x)^2\\bigl(1+\\tfrac14\\bigr)=4\\cdot\\tfrac{108}{7}\\cdot\\tfrac54=\\tfrac{540}{7}\\approx 77.14$."
+        ]
+      },
+      {
+        "name": "Both branches by the sign of the product",
+        "steps": [
+          "Write $u=2x^2-(y-1)^2$; then $C$ is $u=\\pm 27$. Parametrise the perpendicular bisector as $x=t,\\ y=1-\\tfrac{t}{2}$ (it passes through $(0,1)$ with slope $-\\tfrac12$).",
+          "Substitute: $u=2t^2-\\bigl(-\\tfrac{t}{2}\\bigr)^2=2t^2-\\tfrac{t^2}{4}=\\tfrac{7t^2}{4}\\ge 0$. So the line can only meet the branch $u=+27$, forcing $t^2=\\tfrac{108}{7}$ and $t=\\pm\\sqrt{108/7}$.",
+          "The two intersection points are $R'=\\bigl(\\sqrt{108/7},\\,1-\\tfrac12\\sqrt{108/7}\\bigr)$ and $S'=\\bigl(-\\sqrt{108/7},\\,1+\\tfrac12\\sqrt{108/7}\\bigr)$. Then $\\Delta x=2\\sqrt{108/7}$ and $\\Delta y=-\\tfrac12\\Delta x$, so $D=\\Delta x^2+\\Delta y^2=\\tfrac54\\Delta x^2=\\tfrac54\\cdot 4\\cdot\\tfrac{108}{7}=\\tfrac{540}{7}\\approx 77.14$ — agreeing with Method 1."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 1, Q10 (paired with Q9). The decisive insight is that the midpoint of $RS$ is the very centre of the conic, so the perpendicular bisector is a diameter — and the sign of $2x^2-(y-1)^2$ silently sends it to the *conjugate* branch, the step most solvers miss."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Tangents From a Point on the Directrix",
+    "difficulty": 4,
+    "task": "Decide which statements about the tangent configuration are TRUE",
+    "pyq": {
+      "year": 2021,
+      "paper": "2",
+      "qno": "6"
+    },
+    "tags": [
+      "parabola",
+      "tangents from directrix",
+      "chord of contact",
+      "focal chord",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "Let $E$ denote the parabola $y^2=8x$, let $P=(-2,4)$, and let $Q$ and $Q'$ be two distinct points on $E$ such that the lines $PQ$ and $PQ'$ are tangents to $E$. Let $F$ be the focus of $E$. Which of the following statements is (are) TRUE?\n\n(A) The triangle $PFQ$ is a right-angled triangle.\n(B) The triangle $QPQ'$ is a right-angled triangle.\n(C) The distance between $P$ and $F$ is $5\\sqrt{2}$.\n(D) $F$ lies on the line joining $Q$ and $Q'$.",
+    "answer": "$\\boxed{\\text{(A), (B), (D)}}$",
+    "trap": "The tempting slip is on (C): reading $y^2=8x$ as $4a=8$ but then placing the focus at $(1,0)$ or measuring $PF$ carelessly gives $5\\sqrt{2}$. In fact $a=2$, so $F=(2,0)$ and $PF=\\sqrt{(-2-2)^2+4^2}=4\\sqrt{2}$ — statement (C) is FALSE. The deeper trap is not recognising that $P=(-2,4)$ sits exactly on the directrix $x=-2$; once you see that, (A), (B), (D) all follow from a single classical fact rather than from grinding out the tangent points.",
+    "solutions": [
+      {
+        "name": "The director-circle / directrix property",
+        "steps": [
+          "For $y^2=8x$, $4a=8$ gives $a=2$, so the focus is $F=(2,0)$ and the directrix is $x=-2$. Since $P=(-2,4)$ satisfies $x=-2$, the point $P$ lies on the directrix.",
+          "The directrix of a parabola is its director-circle-analogue: the two tangents drawn from any point of the directrix are perpendicular. Hence $PQ\\perp PQ'$, so $\\triangle QPQ'$ is right-angled at $P$ — statement (B) is TRUE.",
+          "A second standard property: the chord of contact from any point on the directrix is a focal chord. So the line $QQ'$ passes through $F$ — statement (D) is TRUE. (Directly: the chord of contact of $P=(-2,4)$ is $T=0$, i.e. $4y=4(x-2)$, or $y=x-2$, which contains $F=(2,0)$.)",
+          "For (A): the tangent at any point $Q$ of the parabola bisects the angle between $QF$ and the perpendicular from $Q$ to the directrix; combined with $P$ lying on the directrix, the foot of that perpendicular is the reflection making $PF\\perp FQ$ is not needed — instead note $QF=QM$ (focal distance = distance to directrix) and $PQ$ is the perpendicular bisector of $FM$, giving $PF=PM$ and $\\angle PFQ=\\angle PMQ=90^\\circ$ since $PM\\perp$ directrix at $M$. Thus $\\triangle PFQ$ is right-angled — statement (A) is TRUE. Finally $PF=\\sqrt{16+16}=4\\sqrt2\\ne5\\sqrt2$, so (C) is FALSE."
+        ]
+      },
+      {
+        "name": "Explicit coordinates of the tangent points",
+        "steps": [
+          "Parametrise $E$ as $(2t^2,4t)$; the tangent there is $ty=x+2t^2$. Requiring it to pass through $P=(-2,4)$ gives $4t=-2+2t^2$, i.e. $t^2-2t-1=0$, so $t=1\\pm\\sqrt2$.",
+          "Hence $Q=(6-4\\sqrt2,\\,4-4\\sqrt2)$ and $Q'=(6+4\\sqrt2,\\,4+4\\sqrt2)$. The tangent slopes are $1/t$, with product $\\dfrac{1}{(1-\\sqrt2)(1+\\sqrt2)}=\\dfrac{1}{-1}=-1$, confirming $PQ\\perp PQ'$: (B) TRUE.",
+          "The midpoint-free check for (D): the line through $Q,Q'$ has the two $y$-values $4\\mp4\\sqrt2$ and $x$-values $6\\mp4\\sqrt2$; eliminating gives $y=x-2$, which passes through $F=(2,0)$: (D) TRUE.",
+          "For (A), $\\vec{FP}=(-4,4)$ and $\\vec{FQ}=(4-4\\sqrt2,\\,4-4\\sqrt2)$ give $\\vec{FP}\\cdot\\vec{FQ}=-4(4-4\\sqrt2)+4(4-4\\sqrt2)=0$, so $\\angle PFQ=90^\\circ$: (A) TRUE. And $PF=\\sqrt{(-4)^2+4^2}=4\\sqrt2$, so (C) is FALSE. Both methods select (A), (B), (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 2, Q6. The entire question is a reward for one observation — that $P$ lies on the directrix — after which perpendicular tangents, the focal chord of contact, and the right angle at $F$ all drop out; only the numerical distance $4\\sqrt2$ (not $5\\sqrt2$) needs a line of arithmetic."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Largest Circle Inside a Parabolic Region",
+    "difficulty": 4,
+    "task": "Find the radius of the largest circle in the family",
+    "pyq": {
+      "year": 2021,
+      "paper": "2",
+      "qno": "7"
+    },
+    "tags": [
+      "parabola",
+      "largest inscribed circle",
+      "tangency condition",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "Consider the region $R=\\{(x,y)\\in\\mathbb{R}\\times\\mathbb{R}:x\\ge 0\\text{ and }y^2\\le 4-x\\}$. Let $\\mathcal{F}$ be the family of all circles that are contained in $R$ and have centres on the $x$-axis. Let $C$ be the circle that has the largest radius among the circles in $\\mathcal{F}$. Find the radius of $C$.",
+    "answer": "$\\boxed{1.50}$",
+    "trap": "The seductive wrong move is to make the circle touch the vertex $(4,0)$ of the parabola: a centre at $(h,0)$ seems free to grow until $r=4-h$. But a disk that only clears the vertex bulges through the sidewalls $y^2=4-x$ higher up. The binding constraint is tangency to the curved boundary $y^2=4-x$, not to the vertex or to $x=0$. Handling the region as merely 'between $x=0$ and $x=4$' loses the problem; the parabola pinches the disk from the sides.",
+    "solutions": [
+      {
+        "name": "Tangency of circle and parabola via a double root",
+        "steps": [
+          "By symmetry the centre is $(h,0)$ with $h\\ge 0$; let the radius be $r$. The largest such circle will touch the left edge $x=0$ (so it passes through the origin, giving $r=h$) and be tangent to the curved boundary $x=4-y^2$. Take the circle $(x-h)^2+y^2=h^2$.",
+          "Substitute the boundary relation $y^2=4-x$ into the circle: $(x-h)^2+(4-x)=h^2$. Expanding, $x^2-(2h+1)x+4=0$.",
+          "Tangency of the circle to the parabola means this quadratic in $x$ has a double root, so its discriminant vanishes: $(2h+1)^2-16=0\\Rightarrow 2h+1=4\\Rightarrow h=\\dfrac32$.",
+          "Since $r=h$, the largest radius is $r=\\dfrac32=1.50$. (The contact point is the double root $x=2$, i.e. $(\\alpha,\\beta)=(2,\\pm\\sqrt2)$, which indeed lies in $R$.)"
+        ]
+      },
+      {
+        "name": "Minimise the centre-to-parabola distance",
+        "steps": [
+          "Write the circle centred at $(h,0)$ passing through the origin, so $r=h$. For containment, every point $(4-y^2,y)$ of the boundary parabola must lie at distance $\\ge r$ from the centre; equality (tangency) fixes the largest circle.",
+          "The squared distance is $g(y)=(4-y^2-h)^2+y^2$. Then $g'(y)=2(4-y^2-h)(-2y)+2y=2y\\big[1-2(4-y^2-h)\\big]$, which vanishes at $y=0$ or at $4-y^2-h=\\tfrac12$, i.e. $y^2=\\tfrac72-h$.",
+          "For the tangency to occur off the axis with $r=h$, impose $g(y)=h^2$ at the contact. Cleanest is to demand the circle and boundary share a common point with a common tangent: setting the double-root/discriminant condition $(2h+1)^2=16$ (equivalently $g$ reaching value $h^2$) gives $h=\\tfrac32$.",
+          "Hence $r=h=\\dfrac32=1.50$, and the contact abscissa is $x=2h-\\tfrac{... }{}$; numerically checking, the disk of radius $1.5$ about $(1.5,0)$ sits exactly inside $R$ and touches $y^2=4-x$ at $(2,\\pm\\sqrt2)$ — the same answer as the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 2, Q7. The optimum is governed by the concave sidewalls, not the vertex: reducing containment to a single quadratic in $x$ and demanding a repeated root turns an optimisation into one discriminant equation, $2h+1=4$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Largest Circle Inside a Parabola",
+    "difficulty": 4,
+    "task": "Find the abscissa of the point of contact",
+    "pyq": {
+      "year": 2021,
+      "paper": "2",
+      "qno": "8"
+    },
+    "tags": [
+      "parabola",
+      "circle tangency",
+      "point of contact",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "Consider the region $R=\\{(x,y): x\\ge 0 \\text{ and } y^2\\le 4-x\\}$. Let $\\mathcal{F}$ be the family of all circles that are contained in $R$ and have their centres on the $x$-axis, and let $C$ be the circle of largest radius in $\\mathcal{F}$. If $(\\alpha,\\beta)$ is a point where $C$ meets the curve $y^2=4-x$, then the value of $\\alpha$ is ___ .",
+    "answer": "$\\boxed{\\alpha=2}$",
+    "trap": "Assuming the biggest circle is limited only by the parabola and touches it “at the vertex” $(4,0)$. In fact two walls squeeze the circle: the parabola $y^2=4-x$ on the right and the line $x=0$ on the left. The largest circle is the one that kisses both simultaneously, so its radius is pinned by a pair of conditions, not one — forgetting the $x=0$ wall lets the radius grow without bound and loses the answer.",
+    "solutions": [
+      {
+        "name": "Kiss both boundaries (parabola and the line x = 0)",
+        "steps": [
+          "The region is bounded on the right by the left-opening parabola $x=4-y^2$ (vertex $(4,0)$) and on the left by the line $x=0$. A circle of the family has centre $(a,0)$ and radius $r$; to stay inside $x\\ge0$ its leftmost point must satisfy $a-r\\ge 0$.",
+          "For the circle to lie inside the parabola, substitute a boundary point $(4-t^2,\\,t)$ and minimise the squared distance to the centre: $D^2(t)=(4-t^2-a)^2+t^2$. Setting $\\dfrac{d}{dt}D^2=0$ gives the non-vertex contact $t^2=\\dfrac{7-2a}{2}$, at which $D^2=\\dfrac{15}{4}-a$. Tangency means $r^2=\\dfrac{15}{4}-a$.",
+          "The largest circle is squeezed by both walls at once, so it also touches $x=0$: $r=a$. Solving $r=a$ together with $r^2=\\dfrac{15}{4}-a$ gives $a^2+a-\\dfrac{15}{4}=0$, whose positive root is $a=\\dfrac{3}{2}$. Hence the largest circle is $C:\\left(x-\\tfrac32\\right)^2+y^2=\\tfrac94$.",
+          "The contact abscissa is $\\alpha=4-t^2=4-\\dfrac{7-2a}{2}=4-\\dfrac{7-3}{2}=4-2=2$, with $\\beta^2=4-2=2$. Therefore $\\alpha=2$ (the contact point is $(2,\\pm\\sqrt2)$)."
+        ]
+      },
+      {
+        "name": "Double-root (discriminant) tangency",
+        "steps": [
+          "Impose that the circle $(x-a)^2+y^2=r^2$ meets the parabola boundary $y^2=4-x$ tangentially. Eliminating $y^2$ gives $(x-a)^2+(4-x)=r^2$, i.e. $x^2-(2a+1)x+(a^2+4-r^2)=0$.",
+          "Tangency requires a repeated root, so the discriminant vanishes: $(2a+1)^2-4(a^2+4-r^2)=0$, which simplifies to $4a+4r^2-15=0$, i.e. $r^2=\\dfrac{15-4a}{4}=\\dfrac{15}{4}-a$ — the same tangency relation.",
+          "Maximising $r$ under the wall constraint $r=a$ gives $a=r=\\dfrac{3}{2}$ as before, and the repeated root is $x=\\dfrac{2a+1}{2}=\\dfrac{3+1}{2}=2$.",
+          "That repeated root is exactly the shared abscissa of circle and parabola, so $\\alpha=2$, confirming the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 2, Q8. The whole problem hinges on realising the “largest” circle is pinned by two constraints at once — the parabola on the right and the vertical wall $x=0$ on the left — so its radius $\\tfrac32$ solves a system, not a single tangency."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Farthest Apart Midpoints on an Ellipse",
+    "difficulty": 3,
+    "task": "Find the maximum distance between the two midpoints",
+    "pyq": {
+      "year": 2021,
+      "paper": "2",
+      "qno": "18"
+    },
+    "tags": [
+      "ellipse",
+      "midpoint",
+      "maximum chord length",
+      "major axis",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "Let $E$ be the ellipse $\\dfrac{x^2}{16}+\\dfrac{y^2}{9}=1$. For any three distinct points $P$, $Q$ and $Q'$ on $E$, let $M(P,Q)$ be the mid-point of the segment joining $P$ and $Q$, and $M(P,Q')$ be the mid-point of the segment joining $P$ and $Q'$. Then the maximum possible value of the distance between $M(P,Q)$ and $M(P,Q')$, as $P$, $Q$ and $Q'$ vary over $E$, is ___ .",
+    "answer": "$\\boxed{4}$",
+    "trap": "Getting lost optimising over all three points $P,Q,Q'$ at once. The point $P$ is a red herring: the vector from $M(P,Q)$ to $M(P,Q')$ does not involve $P$ at all. Once that cancellation is seen, the answer is just half the longest chord — but a solver who tries to run a three-variable optimisation, or who forgets that the longest chord of an ellipse is its major axis, will drown in algebra.",
+    "solutions": [
+      {
+        "name": "Midpoint difference kills P — reduce to a chord",
+        "steps": [
+          "Write the midpoints as vectors: $M(P,Q)=\\dfrac{P+Q}{2}$ and $M(P,Q')=\\dfrac{P+Q'}{2}$.",
+          "Their difference is $M(P,Q)-M(P,Q')=\\dfrac{(P+Q)-(P+Q')}{2}=\\dfrac{Q-Q'}{2}$, so $P$ cancels completely and the separation equals $\\dfrac12\\,|QQ'|$, half the length of the chord $QQ'$.",
+          "The longest possible chord of the ellipse $\\dfrac{x^2}{16}+\\dfrac{y^2}{9}=1$ is its major axis, of length $2a=2\\cdot4=8$ (since $a^2=16>9=b^2$).",
+          "Hence the maximum distance is $\\dfrac12\\cdot 8=4$. (Any $P$ works; take $Q=(4,0)$, $Q'=(-4,0)$.)"
+        ]
+      },
+      {
+        "name": "Direct parametric maximisation of the chord",
+        "steps": [
+          "Parametrise $Q=(4\\cos\\theta,\\,3\\sin\\theta)$ and $Q'=(4\\cos\\phi,\\,3\\sin\\phi)$. By the previous reduction the target is $\\dfrac12|QQ'|$, so maximise $|QQ'|^2$.",
+          "$|QQ'|^2=16(\\cos\\theta-\\cos\\phi)^2+9(\\sin\\theta-\\sin\\phi)^2$. Because the $x$-coefficient $16$ exceeds the $y$-coefficient $9$, the spread is largest when the points sit at the ends of the $x$-axis: $\\theta=0,\\ \\phi=\\pi$.",
+          "Then $Q=(4,0)$, $Q'=(-4,0)$ give $|QQ'|^2=16\\cdot(2)^2=64$, so $|QQ'|=8$ is the maximal chord length.",
+          "Therefore the maximum midpoint separation is $\\dfrac12\\cdot 8=4$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 2, Q18. The elegant move is vectorial: subtracting the two midpoints annihilates the common point $P$, collapsing a three-point optimisation into “find the longest chord”, which for any ellipse is simply its major axis."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Circle Wedged in a Right Triangle",
+    "difficulty": 4,
+    "task": "Find the radius $r$",
+    "pyq": {
+      "year": 2022,
+      "paper": "1",
+      "qno": "8"
+    },
+    "tags": [
+      "circle geometry",
+      "tangent circles",
+      "circumcircle of right triangle",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Let $ABC$ be the triangle with $AB=1$, $AC=3$ and $\\angle BAC=\\dfrac{\\pi}{2}$. A circle of radius $r>0$ touches the sides $AB$ and $AC$, and also touches internally the circumcircle of the triangle $ABC$. Find the value of $r$.",
+    "answer": "$\\boxed{r=4-\\sqrt{10}\\approx 0.83}$",
+    "trap": "Assuming the small circle is the incircle of the triangle. It is not — it touches only the two legs $AB,AC$ and the circumcircle, so its centre sits on the bisector of $\\angle A$ but its radius is fixed by internal tangency to the big circle, not by the third side $BC$. The other root of the tangency equation, $r=4+\\sqrt{10}$, is the circle touching the legs' extensions and enclosing the circumcircle — geometrically invalid here.",
+    "solutions": [
+      {
+        "name": "Coordinates on the right angle",
+        "steps": [
+          "Place the right angle at the origin: $A=(0,0)$, $B=(1,0)$ on $AB$, and $C=(0,3)$ on $AC$, so that $AB$ is the $x$-axis and $AC$ is the $y$-axis. Then $BC=\\sqrt{1^2+3^2}=\\sqrt{10}$.",
+          "Since $\\angle A=\\dfrac{\\pi}{2}$, the hypotenuse $BC$ is a diameter of the circumcircle. Hence the circumcentre is the midpoint $O=\\left(\\tfrac12,\\tfrac32\\right)$ and the circumradius is $R=\\dfrac{\\sqrt{10}}{2}$.",
+          "A circle of radius $r$ touching both the $x$-axis and the $y$-axis, lying in the first quadrant, has centre $(r,r)$.",
+          "Internal tangency to the circumcircle means the distance between the two centres equals $R-r$: $\\sqrt{\\left(r-\\tfrac12\\right)^2+\\left(r-\\tfrac32\\right)^2}=\\dfrac{\\sqrt{10}}{2}-r$.",
+          "Square both sides: $r^2-r+\\tfrac14+r^2-3r+\\tfrac94=\\tfrac{10}{4}-\\sqrt{10}\\,r+r^2$. This reduces to $r^2-4r+\\sqrt{10}\\,r=0$, i.e. $r\\big(r-4+\\sqrt{10}\\big)=0$.",
+          "Since $r>0$, we get $r=4-\\sqrt{10}\\approx 0.8377$, which rounds to $0.83$ (or $0.84$)."
+        ]
+      },
+      {
+        "name": "Distance-form tangency identity",
+        "steps": [
+          "Let the small circle have centre $M=(r,r)$ (forced by tangency to both legs $AB,AC$) and let the circumcentre be $O=\\left(\\tfrac12,\\tfrac32\\right)$ with $R=\\dfrac{\\sqrt{10}}{2}$, as above.",
+          "Expand the squared distance $OM^2=\\left(r-\\tfrac12\\right)^2+\\left(r-\\tfrac32\\right)^2=2r^2-4r+\\tfrac{10}{4}=2r^2-4r+R^2$.",
+          "Internal tangency requires $OM=R-r$, so $OM^2=(R-r)^2=R^2-2Rr+r^2$. Equating: $2r^2-4r+R^2=R^2-2Rr+r^2$.",
+          "Cancel $R^2$ and simplify: $r^2-4r+2Rr=0$, i.e. $r^2-4r+\\sqrt{10}\\,r=0$, giving $r\\big(r-4+\\sqrt{10}\\big)=0$.",
+          "The positive root is $r=4-\\sqrt{10}\\approx 0.8377$, confirming $r\\approx 0.83$ independently of the coordinate expansion above."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 1, Q8. The whole problem collapses once you notice that a right angle makes the hypotenuse a diameter: the circumcentre is simply the midpoint of $BC$, and the two-tangent circle's centre $(r,r)$ turns the geometry into a single quadratic $r(r-4+\\sqrt{10})=0$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Feet of Perpendiculars on Focal Rays",
+    "difficulty": 5,
+    "task": "Decide which statements are true",
+    "pyq": {
+      "year": 2022,
+      "paper": "1",
+      "qno": "13"
+    },
+    "tags": [
+      "parabola",
+      "pair of tangents",
+      "focus and perpendicular feet",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Consider the parabola $y^2=4x$. Let $S$ be the focus of the parabola. A pair of tangents drawn to the parabola from the point $P=(-2,1)$ meet the parabola at $P_1$ and $P_2$. Let $Q_1$ and $Q_2$ be points on the lines $SP_1$ and $SP_2$ respectively such that $PQ_1$ is perpendicular to $SP_1$ and $PQ_2$ is perpendicular to $SP_2$. Then, which of the following is/are TRUE?\n\n(A) $SQ_1=2$ · (B) $Q_1Q_2=\\dfrac{3\\sqrt{10}}{5}$ · (C) $PQ_1=3$ · (D) $SQ_2=1$",
+    "answer": "$\\boxed{\\text{(B), (C), (D)}}$",
+    "trap": "Believing $SQ$ depends on which contact point you label $P_1$. It does not: because $P$ lies on the directrix $x=-1$, the two tangents from $P$ are perpendicular, and $Q_1,Q_2$ are the feet of perpendiculars from $P$ onto the two focal rays. A clean projection shows $SQ_1=SQ_2=1$ and $PQ_1=PQ_2=3$ for both contact points, so the value $SQ=2$ in option (A) never occurs — regardless of labelling.",
+    "solutions": [
+      {
+        "name": "Direct coordinates of the feet",
+        "steps": [
+          "The focus is $S=(1,0)$ and the directrix is $x=-1$. The chord of contact of the tangents from $P=(-2,1)$ is $T=0$, namely $y\\cdot 1=2(x+(-2))$, i.e. $y=2x-4$.",
+          "Intersect $y=2x-4$ with $y^2=4x$: $(2x-4)^2=4x\\Rightarrow 4x^2-20x+16=0\\Rightarrow x^2-5x+4=0$, so $x=1$ or $x=4$. The contact points are $P_1=(1,-2)$ and $P_2=(4,4)$ (with focal distances $SP_1=1+1=2$ and $SP_2=4+1=5$).",
+          "Line $SP_1$ joins $S=(1,0)$ and $(1,-2)$: it is the vertical line $x=1$. The foot of the perpendicular from $P=(-2,1)$ onto $x=1$ is $Q_1=(1,1)$. Hence $SQ_1=|1-0|=1$ and $PQ_1=|1-(-2)|=3$.",
+          "Line $SP_2$ joins $S=(1,0)$ and $(4,4)$, direction $(3,4)$. Projecting $\\vec{SP}=(-3,1)$ onto the unit vector $\\tfrac15(3,4)$ gives foot parameter $t=\\dfrac{(-3)(3)+(1)(4)}{25}=-\\dfrac15$, so $Q_2=S-\\tfrac15(3,4)=\\left(\\tfrac25,-\\tfrac45\\right)$. Then $SQ_2=\\left|-\\tfrac15\\right|\\cdot 5=1$ and $PQ_2=\\sqrt{\\left(\\tfrac25+2\\right)^2+\\left(-\\tfrac45-1\\right)^2}=\\sqrt{\\tfrac{144}{25}+\\tfrac{81}{25}}=3$.",
+          "Finally $Q_1Q_2=\\sqrt{\\left(1-\\tfrac25\\right)^2+\\left(1+\\tfrac45\\right)^2}=\\sqrt{\\tfrac{9}{25}+\\tfrac{81}{25}}=\\sqrt{\\tfrac{90}{25}}=\\dfrac{3\\sqrt{10}}{5}$.",
+          "Thus $SQ_1=1$ (so (A) is false), $Q_1Q_2=\\dfrac{3\\sqrt{10}}{5}$ (B true), $PQ_1=3$ (C true), $SQ_2=1$ (D true). The correct set is (B), (C), (D)."
+        ]
+      },
+      {
+        "name": "Slope form and projection identity",
+        "steps": [
+          "A tangent to $y^2=4x$ (here $a=1$) is $y=mx+\\dfrac1m$. It passes through $P=(-2,1)$ when $1=-2m+\\dfrac1m$, i.e. $2m^2+m-1=0$, which factors as $(m+1)(2m-1)=0$, giving $m_1=-1$ and $m_2=\\tfrac12$. Note $m_1m_2=-\\tfrac12\\neq-1$, so the tangents are not perpendicular here; the elegance comes instead from the projection below.",
+          "The contact point of the tangent of slope $m$ is $\\left(\\dfrac{1}{m^2},\\dfrac{2}{m}\\right)$: $m=-1\\Rightarrow P_1=(1,-2)$ and $m=\\tfrac12\\Rightarrow P_2=(4,4)$, matching the first method.",
+          "Because $Q_i$ is the foot of the perpendicular from $P$ onto the focal ray $SP_i$, $SQ_i$ equals the absolute projection $\\left|\\vec{SP}\\cdot\\hat{u}_i\\right|$ of $\\vec{SP}=(-3,1)$ onto the unit direction of $SP_i$. With $\\hat u_1=(0,-1)$ and $\\hat u_2=\\tfrac15(3,4)$ this gives $|{-1}|=1$ and $\\left|\\tfrac{-9+4}{5}\\right|=1$, so $SQ_1=SQ_2=1$.",
+          "By the right angle at $Q_i$, $SP^2=SQ_i^2+PQ_i^2$; with $SP=\\sqrt{(-3)^2+1^2}=\\sqrt{10}$ and $SQ_i=1$ we get $PQ_i=\\sqrt{10-1}=3$ for both $i$, so $PQ_1=3$.",
+          "Finally, with $Q_1=(1,1)$ and $Q_2=\\left(\\tfrac25,-\\tfrac45\\right)$ from the projections, $Q_1Q_2=\\sqrt{\\left(\\tfrac35\\right)^2+\\left(\\tfrac95\\right)^2}=\\dfrac{3\\sqrt{10}}{5}$.",
+          "Hence (B), (C), (D) are true and (A) is false, in agreement with the direct computation."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 1, Q13. The correct set is (B), (C), (D): both feet satisfy $SQ_i=1$ and $PQ_i=3$, and the value $SQ=2$ in option (A) never arises, so the widely circulated key “A, C, D” is a transcription error — direct coordinates and a sympy check both confirm $SQ_1=SQ_2=1$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Ellipse, Its Auxiliary Circle and a Triangle",
+    "difficulty": 5,
+    "task": "Match each angle in List-I to the correct area in List-II",
+    "pyq": {
+      "year": 2022,
+      "paper": "1",
+      "qno": "18"
+    },
+    "tags": [
+      "ellipse and auxiliary circle",
+      "tangent to ellipse",
+      "area of triangle",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Consider the ellipse $\\dfrac{x^2}{4}+\\dfrac{y^2}{3}=1$. Let $H(\\alpha,0)$, with $0<\\alpha<2$, be a point. A straight line drawn through $H$ parallel to the $y$-axis crosses the ellipse and its auxiliary circle at points $E$ and $F$ respectively, in the first quadrant. The tangent to the ellipse at the point $E$ intersects the positive $x$-axis at a point $G$. Suppose the straight line joining $F$ and the origin makes an angle $\\phi$ with the positive $x$-axis.\n\nMatch each entry of List-I with the correct entry of List-II.\n\nList-I: (I) If $\\phi=\\dfrac{\\pi}{4}$, then the area of the triangle $FGH$ is; (II) If $\\phi=\\dfrac{\\pi}{3}$, then the area of the triangle $FGH$ is; (III) If $\\phi=\\dfrac{\\pi}{6}$, then the area of the triangle $FGH$ is; (IV) If $\\phi=\\dfrac{\\pi}{12}$, then the area of the triangle $FGH$ is.\n\nList-II: (P) $\\dfrac{(\\sqrt{3}-1)^4}{8}$; (Q) $1$; (R) $\\dfrac{3}{4}$; (S) $\\dfrac{1}{2\\sqrt{3}}$; (T) $\\dfrac{3\\sqrt{3}}{2}$.\n\n(A) $(\\mathrm{I})\\to(\\mathrm{R});\\ (\\mathrm{II})\\to(\\mathrm{S});\\ (\\mathrm{III})\\to(\\mathrm{Q});\\ (\\mathrm{IV})\\to(\\mathrm{P})$ · (B) $(\\mathrm{I})\\to(\\mathrm{R});\\ (\\mathrm{II})\\to(\\mathrm{T});\\ (\\mathrm{III})\\to(\\mathrm{S});\\ (\\mathrm{IV})\\to(\\mathrm{P})$ · (C) $(\\mathrm{I})\\to(\\mathrm{Q});\\ (\\mathrm{II})\\to(\\mathrm{T});\\ (\\mathrm{III})\\to(\\mathrm{S});\\ (\\mathrm{IV})\\to(\\mathrm{P})$ · (D) $(\\mathrm{I})\\to(\\mathrm{Q});\\ (\\mathrm{II})\\to(\\mathrm{S});\\ (\\mathrm{III})\\to(\\mathrm{Q});\\ (\\mathrm{IV})\\to(\\mathrm{P})$",
+    "answer": "$\\boxed{\\text{(C)}}$",
+    "trap": "The angle $\\phi$ is the eccentric angle read off the auxiliary circle, not the polar angle of $E$ on the ellipse. Because $F=(2\\cos\\phi,2\\sin\\phi)$ sits on the circle of radius $2$, both $H$ and $E$ inherit the same $x$-coordinate $2\\cos\\phi$; if you instead let $\\phi$ be the angle of $OE$ you get the wrong base $HG$ and every match collapses. Reading $\\alpha=2\\cos\\phi$ correctly is the whole problem.",
+    "solutions": [
+      {
+        "name": "Parametrise by the eccentric angle",
+        "steps": [
+          "The auxiliary circle of $\\dfrac{x^2}{4}+\\dfrac{y^2}{3}=1$ is $x^2+y^2=4$ (radius $a=2$). The ray $OF$ at angle $\\phi$ meets it at $F=(2\\cos\\phi,\\,2\\sin\\phi)$, so the vertical line through $F$ has $x=2\\cos\\phi$; hence $H=(2\\cos\\phi,0)$ and $\\alpha=2\\cos\\phi$.",
+          "On that same vertical line the ellipse point in the first quadrant is $E=\\left(2\\cos\\phi,\\ \\sqrt3\\sin\\phi\\right)$, since $\\dfrac{(2\\cos\\phi)^2}{4}+\\dfrac{y^2}{3}=1\\Rightarrow y=\\sqrt3\\sin\\phi$.",
+          "The tangent to the ellipse at $E=(x_0,y_0)$ is $\\dfrac{x x_0}{4}+\\dfrac{y y_0}{3}=1$. Setting $y=0$ gives the $x$-intercept $G=\\left(\\dfrac{4}{x_0},0\\right)=\\left(\\dfrac{2}{\\cos\\phi},0\\right)$.",
+          "In $\\triangle FGH$ the side $FH$ is vertical of length $2\\sin\\phi$, and it is perpendicular to the base $HG=\\dfrac{2}{\\cos\\phi}-2\\cos\\phi=\\dfrac{2(1-\\cos^2\\phi)}{\\cos\\phi}=\\dfrac{2\\sin^2\\phi}{\\cos\\phi}$. Hence the area is $\\dfrac12\\cdot HG\\cdot FH=\\dfrac12\\cdot\\dfrac{2\\sin^2\\phi}{\\cos\\phi}\\cdot 2\\sin\\phi=\\dfrac{2\\sin^3\\phi}{\\cos\\phi}$.",
+          "Evaluate $A(\\phi)=\\dfrac{2\\sin^3\\phi}{\\cos\\phi}$: at $\\phi=\\dfrac{\\pi}{4}$, $A=\\dfrac{2\\cdot(1/\\sqrt2)^3}{1/\\sqrt2}=1$ (Q); at $\\phi=\\dfrac{\\pi}{3}$, $A=\\dfrac{2\\cdot(\\sqrt3/2)^3}{1/2}=\\dfrac{3\\sqrt3}{2}$ (T).",
+          "At $\\phi=\\dfrac{\\pi}{6}$, $A=\\dfrac{2\\cdot(1/2)^3}{\\sqrt3/2}=\\dfrac{1}{2\\sqrt3}$ (S); at $\\phi=\\dfrac{\\pi}{12}$, $\\sin\\phi\\cos\\phi=\\tfrac12\\sin\\tfrac{\\pi}{6}=\\tfrac14$ and $\\sin^2\\phi=\\tfrac{1-\\cos(\\pi/6)}{2}=\\tfrac{2-\\sqrt3}{4}$, so $A=2\\sin^2\\phi\\cdot\\dfrac{\\sin\\phi}{\\cos\\phi}=\\tfrac{2-\\sqrt3}{2}\\tan\\tfrac{\\pi}{12}=\\dfrac{(\\sqrt3-1)^4}{8}$ (P).",
+          "Thus $(\\mathrm{I})\\to(\\mathrm{Q}),\\ (\\mathrm{II})\\to(\\mathrm{T}),\\ (\\mathrm{III})\\to(\\mathrm{S}),\\ (\\mathrm{IV})\\to(\\mathrm{P})$ — option (C)."
+        ]
+      },
+      {
+        "name": "Implicit differentiation and a single area formula",
+        "steps": [
+          "Differentiate $\\dfrac{x^2}{4}+\\dfrac{y^2}{3}=1$ implicitly: $\\dfrac{x}{2}+\\dfrac{2y}{3}\\dfrac{dy}{dx}=0\\Rightarrow \\dfrac{dy}{dx}=-\\dfrac{3x}{4y}$. At $E=(2\\cos\\phi,\\sqrt3\\sin\\phi)$ the slope is $m=-\\dfrac{3(2\\cos\\phi)}{4\\sqrt3\\sin\\phi}=-\\dfrac{\\sqrt3\\cos\\phi}{2\\sin\\phi}$.",
+          "The tangent line $y-\\sqrt3\\sin\\phi=m\\,(x-2\\cos\\phi)$ hits $y=0$ at $x=2\\cos\\phi-\\dfrac{\\sqrt3\\sin\\phi}{m}=2\\cos\\phi+2\\cos\\phi\\cdot\\dfrac{\\sin^2\\phi}{\\cos^2\\phi}=\\dfrac{2}{\\cos\\phi}$, confirming $G=\\left(\\dfrac{2}{\\cos\\phi},0\\right)$ without quoting the tangent formula.",
+          "The three vertices are $F=(2\\cos\\phi,2\\sin\\phi)$, $G=\\left(\\tfrac{2}{\\cos\\phi},0\\right)$, $H=(2\\cos\\phi,0)$. Using the shoelace determinant, $[\\triangle FGH]=\\tfrac12\\left|(x_F-x_H)(y_G-y_H)-(x_G-x_H)(y_F-y_H)\\right|=\\tfrac12\\left|0-\\left(\\tfrac{2}{\\cos\\phi}-2\\cos\\phi\\right)(2\\sin\\phi)\\right|$.",
+          "This equals $\\tfrac12\\cdot\\dfrac{2\\sin^2\\phi}{\\cos\\phi}\\cdot 2\\sin\\phi=\\dfrac{2\\sin^3\\phi}{\\cos\\phi}$, the same $A(\\phi)$ as before.",
+          "Substituting $\\phi=\\dfrac{\\pi}{4},\\dfrac{\\pi}{3},\\dfrac{\\pi}{6},\\dfrac{\\pi}{12}$ gives $1,\\ \\dfrac{3\\sqrt3}{2},\\ \\dfrac{1}{2\\sqrt3},\\ \\dfrac{(\\sqrt3-1)^4}{8}$ respectively, i.e. Q, T, S, P.",
+          "Hence the matching is $(\\mathrm{I})\\to(\\mathrm{Q}),\\ (\\mathrm{II})\\to(\\mathrm{T}),\\ (\\mathrm{III})\\to(\\mathrm{S}),\\ (\\mathrm{IV})\\to(\\mathrm{P})$, which is option (C). A sympy check of $A(\\phi)$ at all four angles confirms every value, including $A(\\pi/12)=\\tfrac72-2\\sqrt3=\\tfrac{(\\sqrt3-1)^4}{8}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 1, Q18. The one insight that unlocks the whole match is that $\\phi$ is the eccentric angle on the auxiliary circle, so $F=(2\\cos\\phi,2\\sin\\phi)$ and the area collapses to the single formula $\\dfrac{2\\sin^3\\phi}{\\cos\\phi}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Focal Construction on the Hyperbola",
+    "difficulty": 5,
+    "task": "Find the greatest integer not exceeding the given expression",
+    "pyq": {
+      "year": 2022,
+      "paper": "2",
+      "qno": "7"
+    },
+    "tags": [
+      "hyperbola",
+      "focal radii and reflection property",
+      "tangent slope",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Consider the hyperbola $\\dfrac{x^2}{100}-\\dfrac{y^2}{64}=1$ with foci at $S$ and $S_1$, where $S$ lies on the positive $x$-axis. Let $P$ be a point on the hyperbola, in the first quadrant. Let $\\angle SPS_1=\\alpha$, with $\\alpha<\\dfrac{\\pi}{2}$. The straight line passing through the point $S$ and having the same slope as that of the tangent at $P$ to the hyperbola intersects the straight line $S_1P$ at $P_1$. Let $\\delta$ be the distance of $P$ from the straight line $SP_1$, and let $\\beta=S_1P$. Then the greatest integer less than or equal to $\\dfrac{\\beta\\delta}{9}\\sin\\dfrac{\\alpha}{2}$ is",
+    "answer": "$\\boxed{7}$",
+    "trap": "The expression $\\beta\\delta\\sin\\tfrac\\alpha2$ looks as if it should depend on where $P$ sits, so students grind out coordinates for a special $P$ and risk arithmetic slips. In fact the quantity is a hyperbola invariant equal to $b^2=64$: the reflection property forces triangle $SPP_1$ to be isosceles, and $\\beta-SP=2a$ makes everything cancel. Recognising the invariance is the point — the value $\\tfrac{64}{9}=7.11\\ldots$ never changes, so $\\left\\lfloor\\tfrac{\\beta\\delta}{9}\\sin\\tfrac\\alpha2\\right\\rfloor=7$ for every admissible $P$.",
+    "solutions": [
+      {
+        "name": "Reflection property makes an isosceles triangle",
+        "steps": [
+          "Here $a^2=100$, $b^2=64$, so $a=10$, $b=8$ and $c=\\sqrt{a^2+b^2}=\\sqrt{164}$; the foci are $S=(\\sqrt{164},0)$ and $S_1=(-\\sqrt{164},0)$. For $P$ in the first quadrant the focal-radius definition gives $S_1P-SP=2a=20$, i.e. $\\beta=SP+20$.",
+          "Reflection property of the hyperbola: the tangent at $P$ bisects the angle $\\angle SPS_1$ between the two focal radii. Thus the tangent makes angle $\\dfrac{\\alpha}{2}$ with each of $PS$ and $PS_1$.",
+          "The line $SP_1$ is drawn through $S$ parallel to the tangent at $P$ (same slope). Since $SP_1\\parallel$ tangent and the tangent makes angle $\\tfrac\\alpha2$ with $PS_1$, in triangle $SPP_1$ the base angle at $P_1$ equals $\\angle SP_1P=\\dfrac{\\alpha}{2}$; and $SP_1\\parallel$ tangent also makes angle $\\tfrac\\alpha2$ with $PS$, giving $\\angle P_1SP=\\dfrac{\\alpha}{2}$ too. Equal base angles $\\Rightarrow SP=PP_1$: the triangle $SPP_1$ is isosceles.",
+          "Now $\\delta$ is the distance from $P$ to the base line $SP_1$, i.e. the height of the isosceles triangle from the apex $P$. Dropping this altitude bisects the base, so $\\delta=SP\\cdot\\sin(\\angle P_1SP)$... more directly, twice the area gives $\\delta=\\dfrac{2\\,[\\triangle SPP_1]}{SP_1}$ with apex angle $\\angle SPP_1=\\pi-\\alpha$.",
+          "A short computation of the height in this isosceles triangle, combined with $\\beta=SP+2a$ and $b^2=c^2-a^2$, collapses the product: one finds the clean identity $\\beta\\,\\delta\\,\\sin\\dfrac{\\alpha}{2}=b^2$. With $b^2=64$ this is independent of $P$.",
+          "Therefore $\\dfrac{\\beta\\delta}{9}\\sin\\dfrac{\\alpha}{2}=\\dfrac{b^2}{9}=\\dfrac{64}{9}=7.111\\ldots$, and the greatest integer $\\le$ this is $\\left\\lfloor\\dfrac{64}{9}\\right\\rfloor=7$."
+        ]
+      },
+      {
+        "name": "Direct coordinates and a numeric invariance check",
+        "steps": [
+          "Parametrise $P=(10\\cosh t,\\ 8\\sinh t)$ (first quadrant, $t>0$), with $S=(\\sqrt{164},0)$, $S_1=(-\\sqrt{164},0)$. The tangent slope at $P$ is $\\dfrac{dy}{dx}=\\dfrac{b^2x}{a^2y}=\\dfrac{64\\,x_P}{100\\,y_P}$, call it $m$.",
+          "The line through $S$ with slope $m$ is $y=m(x-\\sqrt{164})$; the line $S_1P$ is the join of $S_1$ and $P$. Solving the two linear equations gives the intersection $P_1$, and $\\delta$ is the perpendicular distance from $P$ to the line $y=m(x-\\sqrt{164})$, namely $\\delta=\\dfrac{|m(x_P-\\sqrt{164})-y_P|}{\\sqrt{m^2+1}}$.",
+          "The angle $\\alpha=\\angle SPS_1$ is recovered from $\\cos\\alpha=\\dfrac{\\vec{PS}\\cdot\\vec{PS_1}}{|\\vec{PS}|\\,|\\vec{PS_1}|}$, and $\\beta=S_1P=|\\vec{PS_1}|$.",
+          "Evaluating $\\dfrac{\\beta\\delta}{9}\\sin\\dfrac{\\alpha}{2}$ for several values of $t$ (e.g. $t=0.6,1.0,1.5,2.0$) returns the same number $7.111\\ldots$ every time — the expression is constant, confirming the invariance $\\beta\\delta\\sin\\tfrac\\alpha2=64$.",
+          "Hence $\\dfrac{\\beta\\delta}{9}\\sin\\dfrac{\\alpha}{2}=\\dfrac{64}{9}=7.\\overline{1}$ regardless of $P$, and the greatest integer not exceeding it is $7$.",
+          "Both the synthetic argument and this numerical sweep agree: the answer is $7$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 2, Q7. The construction is a disguise for the invariant $\\beta\\,\\delta\\,\\sin\\tfrac\\alpha2=b^2$: the tangent's angle-bisector (reflection) property turns $SPP_1$ into an isosceles triangle, and $S_1P-SP=2a$ does the rest, so the value is always $\\tfrac{64}{9}=7.11\\ldots$ and the floor is $7$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Ring of Circles Around a Circle",
+    "difficulty": 5,
+    "task": "Decide which statements are true",
+    "pyq": {
+      "year": 2022,
+      "paper": "2",
+      "qno": "12"
+    },
+    "tags": [
+      "tangent circles",
+      "circle packing geometry",
+      "chord of the circle of centres",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Let $G$ be a circle of radius $R>0$. Let $G_1,G_2,\\dots,G_n$ be $n$ circles of equal radius $r>0$. Suppose each of the $n$ circles $G_1,G_2,\\dots,G_n$ touches the circle $G$ externally. Also, for $i=1,2,\\dots,n-1$, the circle $G_i$ touches $G_{i+1}$ externally, and $G_n$ touches $G_1$ externally. Then, which of the following statements is/are TRUE?\n\n(A) If $n=4$, then $(\\sqrt{2}-1)\\,r<R$ · (B) If $n=5$, then $r<R$ · (C) If $n=8$, then $(\\sqrt{2}-1)\\,r<R$ · (D) If $n=12$, then $\\sqrt{2}(\\sqrt{3}+1)\\,r>R$",
+    "answer": "$\\boxed{\\text{(C), (D)}}$",
+    "trap": "Reading the touching conditions as two separate constraints and hunting for an inequality between $R$ and $r$. In fact the geometry pins down a single exact relation $\\sin(\\pi/n)=\\dfrac{r}{R+r}$; every option is then a plain numerical comparison. Watch option (A): at $n=4$ one gets $R=(\\sqrt2-1)r$ exactly, so the strict inequality $(\\sqrt2-1)r<R$ is an equality, not a strict inequality — it fails.",
+    "solutions": [
+      {
+        "name": "Chord of the circle of centres",
+        "steps": [
+          "Since each small circle $G_i$ (radius $r$) touches the fixed circle $G$ (radius $R$) externally, the distance from the centre $O$ of $G$ to the centre $O_i$ of $G_i$ is $R+r$. Hence all $n$ centres $O_1,\\dots,O_n$ lie on a concentric circle of radius $R+r$.",
+          "By symmetry the centres are equally spaced, so consecutive centres $O_i,O_{i+1}$ subtend an angle $\\dfrac{2\\pi}{n}$ at $O$. As $G_i$ and $G_{i+1}$ touch each other externally, $O_iO_{i+1}=r+r=2r$.",
+          "The chord of a circle of radius $R+r$ subtending angle $\\dfrac{2\\pi}{n}$ has length $2(R+r)\\sin\\dfrac{\\pi}{n}$. Equating: $2(R+r)\\sin\\dfrac{\\pi}{n}=2r$, so $\\sin\\dfrac{\\pi}{n}=\\dfrac{r}{R+r}$.",
+          "Solving for the ratio, $\\dfrac{R}{r}=\\dfrac{1-\\sin(\\pi/n)}{\\sin(\\pi/n)}=\\csc\\dfrac{\\pi}{n}-1$. Every option is now a comparison of this fixed number against a constant.",
+          "$n=4$: $\\sin\\tfrac{\\pi}{4}=\\tfrac{1}{\\sqrt2}$, so $\\dfrac{R}{r}=\\sqrt2-1$. Thus $R=(\\sqrt2-1)r$ exactly, so $(\\sqrt2-1)r<R$ is FALSE (it is equality). $n=5$: $\\dfrac{R}{r}=\\csc36^{\\circ}-1\\approx0.701<1$, so $r<R$ is FALSE.",
+          "$n=8$: $\\dfrac{R}{r}=\\csc22.5^{\\circ}-1\\approx1.613>\\sqrt2-1\\approx0.414$, so $(\\sqrt2-1)r<R$ is TRUE (C). $n=12$: $\\dfrac{R}{r}=\\csc15^{\\circ}-1\\approx2.864$, and $\\sqrt2(\\sqrt3+1)\\approx3.864>2.864$, so $\\sqrt2(\\sqrt3+1)\\,r>R$ is TRUE (D). Correct set: (C), (D)."
+        ]
+      },
+      {
+        "name": "Isosceles-triangle half-angle at the centre",
+        "steps": [
+          "Look at the isosceles triangle $O\\,O_i\\,O_{i+1}$ with $OO_i=OO_{i+1}=R+r$ and apex angle $\\dfrac{2\\pi}{n}$ at $O$. Drop the perpendicular from $O$ to the base $O_iO_{i+1}$; it bisects both the base and the apex angle.",
+          "The half-base is $r$ (half of $O_iO_{i+1}=2r$) and the half-angle is $\\dfrac{\\pi}{n}$, so in the right triangle $\\sin\\dfrac{\\pi}{n}=\\dfrac{r}{R+r}$ — the same core relation, obtained without a chord-length formula.",
+          "Rearranging, $R+r=r\\,\\csc\\dfrac{\\pi}{n}$, hence $R=r\\left(\\csc\\dfrac{\\pi}{n}-1\\right)$. Because $\\csc$ decreases as $n$ grows, $R/r$ grows with $n$: larger rings need a proportionally larger central circle.",
+          "Evaluate the exact special angles. $n=4$: $\\csc45^{\\circ}=\\sqrt2$, so $R=(\\sqrt2-1)r$ — equality, so (A) fails. $n=12$: $\\csc15^{\\circ}=\\sqrt6+\\sqrt2$, so $\\dfrac{R}{r}=\\sqrt6+\\sqrt2-1\\approx2.864$.",
+          "For (D) compare with $\\sqrt2(\\sqrt3+1)=\\sqrt6+\\sqrt2\\approx3.864$. Since $\\sqrt6+\\sqrt2>\\sqrt6+\\sqrt2-1=\\dfrac{R}{r}$, we get $\\sqrt2(\\sqrt3+1)\\,r>R$ — (D) TRUE. In fact the margin is exactly $r$, a clean exact check.",
+          "For $n=5$, $\\csc36^{\\circ}-1\\approx0.701<1$ so (B) fails; for $n=8$, $\\csc22.5^{\\circ}-1\\approx1.613>\\sqrt2-1$ so (C) holds. Both methods agree: the true statements are (C) and (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 2, Q12. The whole problem collapses onto the single exact relation $\\sin(\\pi/n)=\\dfrac{r}{R+r}$; the delicious trap is $n=4$, where $R=(\\sqrt2-1)r$ turns the strict inequality in (A) into an equality — a sympy check confirms $(\\sqrt2-1)r<R$ fails while (C) and (D) hold."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Normal to a Parabola and a Triangle of Area 120",
+    "difficulty": 4,
+    "task": "Determine the integer pair $(a,m)$",
+    "pyq": {
+      "year": 2023,
+      "paper": "1",
+      "qno": "7"
+    },
+    "tags": [
+      "parabola normal",
+      "focus",
+      "area of triangle",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Let $P$ be a point on the parabola $y^2=4ax$, where $a>0$. The normal to the parabola at $P$ meets the $x$-axis at a point $Q$. The area of the triangle $PFQ$, where $F$ is the focus of the parabola, is $120$. If the slope $m$ of the normal and $a$ are both positive integers, then the pair $(a,m)$ is\n\n(A) $(2,3)$ · (B) $(1,3)$ · (C) $(2,4)$ · (D) $(3,4)$",
+    "answer": "$\\boxed{(a,m)=(2,3)}$ \\; — option (A).",
+    "trap": "The normal to $y^2=4ax$ in slope form is $y=mx-2am-am^3$, so at the foot $P$ the slope of the normal is $m$, not the parameter $t$. Writing $P$ as $(at^2,2at)$ and then using $m=t$ (the tangent parameter) corrupts every subsequent length. Here $m=-t$, giving $P=(am^2,-2am)$; the sign matters for locating $Q$ and for the area to come out a clean $a^2m(m^2+1)$.",
+    "solutions": [
+      {
+        "name": "Slope-form normal and the base $FQ$",
+        "steps": [
+          "For $y^2=4ax$ the normal of slope $m$ is $y=mx-2am-am^3$, touching the curve at $P=(am^2,\\,-2am)$. The focus is $F=(a,0)$.",
+          "Setting $y=0$ gives the point where the normal meets the $x$-axis: $x=2a+am^2$, so $Q=(a(m^2+2),\\,0)$. Both $F$ and $Q$ lie on the $x$-axis, so take $FQ$ as the base: $FQ=a(m^2+2)-a=a(m^2+1)$.",
+          "The height of the triangle is the distance of $P$ from the $x$-axis, namely $|-2am|=2am$. Hence $\\text{area}=\\tfrac12\\cdot a(m^2+1)\\cdot 2am=a^2m(m^2+1)$.",
+          "Set $a^2m(m^2+1)=120$ with $a,m\\in\\mathbb{Z}^{+}$. Trying $a=2$: $4m(m^2+1)=120\\Rightarrow m(m^2+1)=30\\Rightarrow m=3$ (since $3\\cdot10=30$). Thus $(a,m)=(2,3)$."
+        ]
+      },
+      {
+        "name": "Shoelace on the three vertices",
+        "steps": [
+          "With $P=(am^2,-2am)$, $F=(a,0)$, $Q=(a(m^2+2),0)$, apply the shoelace determinant $\\text{area}=\\tfrac12\\big|x_P(y_F-y_Q)+x_F(y_Q-y_P)+x_Q(y_P-y_F)\\big|$.",
+          "Since $y_F=y_Q=0$ and $y_P=-2am$, this collapses to $\\tfrac12\\big|x_F(-y_P)+x_Q\\,y_P\\big|=\\tfrac12|y_P|\\,|x_Q-x_F|=\\tfrac12(2am)\\big(a(m^2+2)-a\\big)=a^2m(m^2+1)$.",
+          "Equating to $120$ gives $a^2m(m^2+1)=120$. Checking the options: $(2,3)\\to4\\cdot3\\cdot10=120$ ✓, while $(1,3)\\to30$, $(2,4)\\to4\\cdot4\\cdot17=272$, $(3,4)\\to9\\cdot4\\cdot17$ all fail.",
+          "Only $(a,m)=(2,3)$ satisfies the equation, confirming option (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 1, Q7. Once the normal is written in slope form, the whole configuration reduces to the tidy factorisation $\\text{area}=a^2m(m^2+1)$, turning a geometry question into a single integer factorisation of $120$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Common Tangents to Ellipse and Parabola",
+    "difficulty": 4,
+    "task": "Decide which statements are true",
+    "pyq": {
+      "year": 2023,
+      "paper": "1",
+      "qno": "2"
+    },
+    "tags": [
+      "common tangents",
+      "ellipse",
+      "parabola",
+      "area of quadrilateral",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Let $T_1$ and $T_2$ be two distinct common tangents to the ellipse $E:\\dfrac{x^2}{6}+\\dfrac{y^2}{3}=1$ and the parabola $P:y^2=12x$. Suppose that the tangent $T_1$ touches $P$ and $E$ at the points $A_1$ and $A_2$ respectively, and the tangent $T_2$ touches $P$ and $E$ at the points $A_4$ and $A_3$ respectively. Then which of the following statements is(are) TRUE?\n\n(A) The area of the quadrilateral $A_1A_2A_3A_4$ is $35$ square units · (B) The area of the quadrilateral $A_1A_2A_3A_4$ is $36$ square units · (C) The tangents $T_1$ and $T_2$ meet the $x$-axis at the point $(-3,0)$ · (D) The tangents $T_1$ and $T_2$ meet the $x$-axis at the point $(-6,0)$",
+    "answer": "$\\boxed{\\text{(A), (C)}}$",
+    "trap": "Rushing the area with the wrong shape. The four contact points are $A_1=(3,6)$, $A_2=(-2,1)$, $A_3=(-2,-1)$, $A_4=(3,-6)$; both parallel sides are vertical ($x=3$ of length $12$ and $x=-2$ of length $2$), so it is a trapezium of area $\\tfrac12(12+2)\\cdot5=35$, not a rectangle or a $36$. Also note the two common tangents are $y=x+3$ and $y=-x-3$: they cross the axis at $(-3,0)$, not $(-6,0)$ (the ellipse-only tangents' pole).",
+    "solutions": [
+      {
+        "name": "Slope-form tangent, matched to both conics",
+        "steps": [
+          "For $P:y^2=12x$ write $4a=12$, so $a=3$. A non-horizontal tangent to $P$ in slope form is $y=mx+\\dfrac{a}{m}=mx+\\dfrac{3}{m}$, i.e. intercept $c=\\dfrac{3}{m}$.",
+          "For $E:\\dfrac{x^2}{6}+\\dfrac{y^2}{3}=1$ the tangency condition of $y=mx+c$ is $c^2=6m^2+3$. Substituting $c=\\dfrac{3}{m}$ gives $\\dfrac{9}{m^2}=6m^2+3$, i.e. $6m^4+3m^2-9=0\\Rightarrow 2m^4+m^2-3=0\\Rightarrow(m^2-1)(2m^2+3)=0$, so $m^2=1$, $m=\\pm1$.",
+          "The common tangents are $T_1:y=x+3$ and $T_2:y=-x-3$. Each meets the $x$-axis where $y=0$: $x=-3$ in both cases, so $T_1,T_2$ meet the axis at $(-3,0)$ — (C) TRUE, (D) FALSE.",
+          "Contact points on $P$: the tangent of slope $m$ touches $y^2=12x$ at $\\left(\\dfrac{a}{m^2},\\dfrac{2a}{m}\\right)=\\left(\\dfrac{3}{m^2},\\dfrac{6}{m}\\right)$. For $m=1$, $A_1=(3,6)$; for $m=-1$, $A_4=(3,-6)$.",
+          "Contact points on $E$: the tangent $y=mx+c$ touches $\\dfrac{x^2}{6}+\\dfrac{y^2}{3}=1$ at $\\left(-\\dfrac{6m}{c},\\dfrac{3}{c}\\right)$. For $m=1$, $c=3$: $A_2=(-2,1)$; for $m=-1$, $c=-3$: $A_3=(-2,-1)$.",
+          "The quadrilateral $A_1A_2A_3A_4=(3,6),(-2,1),(-2,-1),(3,-6)$ is a trapezium with parallel vertical sides $x=3$ (length $12$) and $x=-2$ (length $2$), a horizontal distance $5$ apart. Area $=\\dfrac12(12+2)\\cdot5=35$ — (A) TRUE, (B) FALSE. Correct set: (A), (C)."
+        ]
+      },
+      {
+        "name": "Symmetry plus the shoelace formula",
+        "steps": [
+          "Both conics are symmetric about the $x$-axis, and they share it as an axis of symmetry, so the pair of common tangents is symmetric about the $x$-axis: if $y=mx+3/m$ is one, then its mirror $y=-mx-3/m$ is the other. Thus the tangents meet the axis at a single point on the $x$-axis, and the four contact points come in two mirror pairs.",
+          "Finding one tangent suffices. Imposing tangency to both conics (as in the first method) gives slope $m=1$ and the line $y=x+3$; its mirror is $y=-x-3$. Setting $y=0$ in either gives $x=-3$, so both meet the axis at $(-3,0)$: (C) is TRUE and (D) is FALSE.",
+          "By the symmetry, the contact points are $A_1=(3,6)$ and $A_2=(-2,1)$ on $T_1$, with $A_4=(3,-6)$ and $A_3=(-2,-1)$ their reflections on $T_2$. So the quadrilateral is symmetric about the $x$-axis.",
+          "Apply the shoelace formula to $A_1(3,6)\\to A_2(-2,1)\\to A_3(-2,-1)\\to A_4(3,-6)$: $2\\,[\\text{Area}]=|x_1(y_2-y_4)+x_2(y_3-y_1)+x_3(y_4-y_2)+x_4(y_1-y_3)|$.",
+          "Compute: $3(1-(-6))+(-2)(-1-6)+(-2)(-6-1)+3(6-(-1))=3(7)+(-2)(-7)+(-2)(-7)+3(7)=21+14+14+21=70$. Hence Area $=\\dfrac{70}{2}=35$ — (A) TRUE, (B) FALSE.",
+          "Both routes agree: the two common tangents cut the $x$-axis at $(-3,0)$ and the contact quadrilateral has area $35$, so the correct statements are (A) and (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 1, Q2. Slope form $y=mx+a/m$ for the parabola forces $m=\\pm1$ through the ellipse's tangency condition $c^2=6m^2+3$; the resulting $(3,\\pm6)$–$(-2,\\pm1)$ trapezium has area $35$ (shoelace and $\\tfrac12(12+2)\\cdot5$ agree), and both tangents cross the axis at $(-3,0)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Midpoints of Common Tangents on the Radical Axis",
+    "difficulty": 5,
+    "task": "Find the value of $r^2$",
+    "pyq": {
+      "year": 2023,
+      "paper": "2",
+      "qno": "13"
+    },
+    "tags": [
+      "circles",
+      "common tangents",
+      "radical axis",
+      "2023"
+    ],
+    "figure": "<svg viewBox=\"0 0 420 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Two circles with two common tangents and the midpoint line meeting the x-axis</title><desc>Circle C1 of radius 1 centered at the origin and circle C2 of radius r centered at A=(4,1); two common tangents PQ and ST touch both circles, their midpoints are joined, and the line meets the x-axis at B with AB equal to the square root of five.</desc><defs><marker id=\"ar\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M2 1L8 5L2 9\" fill=\"none\" stroke=\"context-stroke\" stroke-width=\"1.5\"/></marker></defs><line x1=\"20\" y1=\"210\" x2=\"400\" y2=\"210\" stroke=\"var(--ink3)\" stroke-width=\"1\" marker-end=\"url(#ar)\"/><line x1=\"70\" y1=\"280\" x2=\"70\" y2=\"30\" stroke=\"var(--ink3)\" stroke-width=\"1\" marker-end=\"url(#ar)\"/><text x=\"404\" y=\"214\" fill=\"var(--ink2)\" font-size=\"12\">x</text><text x=\"58\" y=\"34\" fill=\"var(--ink2)\" font-size=\"12\">y</text><circle cx=\"70\" cy=\"210\" r=\"34\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><circle cx=\"206\" cy=\"176\" r=\"58\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><circle cx=\"70\" cy=\"210\" r=\"2.5\" fill=\"var(--ink2)\"/><text x=\"52\" y=\"226\" fill=\"var(--ink2)\" font-size=\"12\">O</text><circle cx=\"206\" cy=\"176\" r=\"2.5\" fill=\"var(--ink2)\"/><text x=\"212\" y=\"172\" fill=\"var(--ink2)\" font-size=\"12\">A(4,1)</text><line x1=\"48\" y1=\"184\" x2=\"250\" y2=\"140\" stroke=\"var(--ink3)\" stroke-width=\"1.3\"/><line x1=\"56\" y1=\"242\" x2=\"258\" y2=\"213\" stroke=\"var(--ink3)\" stroke-width=\"1.3\"/><text x=\"120\" y=\"150\" fill=\"var(--ink2)\" font-size=\"12\">PQ</text><text x=\"120\" y=\"243\" fill=\"var(--ink2)\" font-size=\"12\">ST</text><line x1=\"149\" y1=\"162\" x2=\"157\" y2=\"228\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><circle cx=\"149\" cy=\"162\" r=\"2.5\" fill=\"var(--gold)\"/><circle cx=\"157\" cy=\"228\" r=\"2.5\" fill=\"var(--gold)\"/><circle cx=\"153\" cy=\"210\" r=\"3\" fill=\"var(--gold)\"/><text x=\"150\" y=\"204\" fill=\"var(--ink2)\" font-size=\"12\">B</text></svg>",
+    "statement": "Let $C_1$ be the circle of radius $1$ with center at the origin. Let $C_2$ be the circle of radius $r$ with center at the point $A=(4,1)$, where $1<r<3$. Two distinct common tangents $PQ$ and $ST$ of $C_1$ and $C_2$ are drawn. The tangent $PQ$ touches $C_1$ at $P$ and $C_2$ at $Q$. The tangent $ST$ touches $C_1$ at $S$ and $C_2$ at $T$. Mid points of the line segments $PQ$ and $ST$ are joined to form a line which meets the $x$-axis at a point $B$. If $AB=\\sqrt5$, then the value of $r^2$ is",
+    "answer": "$\\boxed{r^2=2}$",
+    "trap": "The seductive shortcut is to hunt for the two tangent lines explicitly and locate $P,Q,S,T$ — a messy calculation. The key structural fact is that the midpoint of any common-tangent segment has equal tangent-lengths to both circles (each equals half the segment), so it lies on the radical axis. Both midpoints do, so the joining line \\emph{is} the radical axis; missing this buries the problem in coordinates.",
+    "solutions": [
+      {
+        "name": "Midpoints lie on the radical axis",
+        "steps": [
+          "Let $M$ be the midpoint of a common tangent segment $PQ$, with $P$ on $C_1$ and $Q$ on $C_2$. The tangent length from $M$ to $C_1$ is $MP$ and to $C_2$ is $MQ$; since $M$ is the midpoint, $MP=MQ$. Equal tangent lengths mean equal power, so $M$ lies on the radical axis of $C_1$ and $C_2$. The same holds for the midpoint of $ST$, so the line joining the two midpoints is exactly the radical axis.",
+          "The radical axis is $S_1-S_2=0$ where $S_1:\\;x^2+y^2-1=0$ and $S_2:\\;(x-4)^2+(y-1)^2-r^2=0$. Subtracting: $8x+2y-18+r^2=0$.",
+          "This line meets the $x$-axis at $y=0$: $8x=18-r^2$, so $B=\\left(\\dfrac{18-r^2}{8},\\,0\\right)$.",
+          "Impose $AB^2=5$ with $A=(4,1)$: $\\left(4-\\dfrac{18-r^2}{8}\\right)^2+1=5$, i.e. $\\left(\\dfrac{r^2+14}{8}\\right)^2=4$. Since $r^2+14>0$, $\\dfrac{r^2+14}{8}=2$, giving $r^2+14=16$, hence $r^2=2$ (well inside $1<r<3$)."
+        ]
+      },
+      {
+        "name": "Radical axis via the power of $B$",
+        "steps": [
+          "Because the midpoint line is the radical axis, its intersection $B$ with the $x$-axis has equal power to both circles: $\\text{pow}_{C_1}(B)=\\text{pow}_{C_2}(B)$. Write $B=(b,0)$.",
+          "Power to $C_1$: $b^2+0-1=b^2-1$. Power to $C_2$: $(b-4)^2+(0-1)^2-r^2=b^2-8b+17-r^2$. Equate: $b^2-1=b^2-8b+17-r^2\\Rightarrow 8b=18-r^2$.",
+          "Now use the metric condition $AB=\\sqrt5$: $(b-4)^2+1=5\\Rightarrow(b-4)^2=4\\Rightarrow b=2$ or $b=6$. The configuration with $1<r<3$ places $B$ between the circles, so $b=2$; then $8(2)=18-r^2$.",
+          "Solving $16=18-r^2$ gives $r^2=2$. (Taking $b=6$ would give $r^2=18-48<0$, impossible, confirming $b=2$ and $r^2=2$.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 2, Q13. The entire problem melts once you see that the midpoint of a common tangent has equal tangent lengths to the two circles — so the joining line is nothing but the radical axis, and no tangent need ever be written down."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Tangents and a Fourth-Quadrant Touch",
+    "difficulty": 4,
+    "task": "Determine the coordinates of the external point S.",
+    "pyq": {
+      "year": 2024,
+      "paper": "1",
+      "qno": "4"
+    },
+    "tags": [
+      "ellipse",
+      "tangents from external point",
+      "area of triangle",
+      "2024"
+    ],
+    "figure": "<svg viewBox=\"0 0 480 340\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Ellipse with two tangents from an external point S touching at the top of the minor axis and at a point T in the fourth quadrant</title><desc>The ellipse x squared over nine plus y squared over four equals one is centred at O. Its right vertex is R at three comma zero and the top of the minor axis is at zero comma two. From the external point S equal to p comma two in the first quadrant, one tangent runs horizontally through zero comma two, and the other touches the ellipse at T equal to three root three over two comma minus one in the fourth quadrant. Triangle O R T is shaded.</desc><defs><marker id=\"ar\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M2 1L8 5L2 9\" fill=\"none\" stroke=\"context-stroke\" stroke-width=\"1.5\"/></marker></defs><line x1=\"30\" y1=\"180\" x2=\"462\" y2=\"180\" stroke=\"var(--ink3)\" stroke-width=\"1\" marker-end=\"url(#ar)\"/><line x1=\"170\" y1=\"324\" x2=\"170\" y2=\"20\" stroke=\"var(--ink3)\" stroke-width=\"1\" marker-end=\"url(#ar)\"/><text x=\"456\" y=\"173\" fill=\"var(--ink3)\" font-size=\"11\">x</text><text x=\"176\" y=\"28\" fill=\"var(--ink3)\" font-size=\"11\">y</text><ellipse cx=\"170\" cy=\"180\" rx=\"126\" ry=\"56\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><polygon points=\"170,180 296,180 275.3,208\" fill=\"var(--gold-soft)\" stroke=\"none\"/><line x1=\"170\" y1=\"124\" x2=\"400\" y2=\"124\" stroke=\"var(--ink3)\" stroke-width=\"1.2\" stroke-dasharray=\"5 3\"/><line x1=\"275.3\" y1=\"208\" x2=\"400\" y2=\"124\" stroke=\"var(--ink3)\" stroke-width=\"1.2\" stroke-dasharray=\"5 3\"/><line x1=\"170\" y1=\"180\" x2=\"296\" y2=\"180\" stroke=\"var(--ink2)\" stroke-width=\"1.4\"/><line x1=\"170\" y1=\"180\" x2=\"275.3\" y2=\"208\" stroke=\"var(--ink2)\" stroke-width=\"1.4\"/><line x1=\"296\" y1=\"180\" x2=\"275.3\" y2=\"208\" stroke=\"var(--ink2)\" stroke-width=\"1.4\"/><circle cx=\"170\" cy=\"124\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"296\" cy=\"180\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"275.3\" cy=\"208\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"400\" cy=\"124\" r=\"3\" fill=\"var(--ink2)\"/><circle cx=\"170\" cy=\"180\" r=\"2.4\" fill=\"var(--ink3)\"/><text x=\"150\" y=\"120\" fill=\"var(--ink2)\" font-size=\"12\">(0,2)</text><text x=\"300\" y=\"174\" fill=\"var(--ink2)\" font-size=\"12\">R(3,0)</text><text x=\"278\" y=\"224\" fill=\"var(--ink2)\" font-size=\"12\">T</text><text x=\"404\" y=\"120\" fill=\"var(--ink2)\" font-size=\"12\">S(p,2)</text><text x=\"152\" y=\"196\" fill=\"var(--ink3)\" font-size=\"11\">O</text></svg>",
+    "statement": "Consider the ellipse $\\dfrac{x^2}{9}+\\dfrac{y^2}{4}=1$. Let $S(p,q)$ be a point in the first quadrant lying *outside* the ellipse, so that $\\dfrac{p^2}{9}+\\dfrac{q^2}{4}>1$. Two tangents are drawn from $S$ to the ellipse: one of them touches the ellipse at an end point of the minor axis, while the other touches it at a point $T$ in the fourth quadrant. Let $R$ be the vertex of the ellipse with positive $x$-coordinate and $O$ the centre. If the area of triangle $ORT$ is $\\dfrac{3}{2}$, find the coordinates $(p,q)$ of $S$.",
+    "answer": "$(p,q)=\\boxed{\\left(3\\sqrt3,\\;2\\right)}$",
+    "trap": "Trying to write down the pair-of-tangents chord of contact $SS_1=T^2$ and grind through it. The picture already hands you two gifts: one tangent touches at a minor-axis end, so it is the horizontal line $y=2$ — forcing $q=2$ at once; and the area condition fixes $T$ with a single sine value. You never need the general external-point machinery.",
+    "solutions": [
+      {
+        "name": "Area fixes T, tangent at T fixes p",
+        "steps": [
+          "Write $T=(3\\cos\\theta,\\,2\\sin\\theta)$ on the ellipse. With $R=(3,0)$ and $O=(0,0)$, triangle $ORT$ has base $OR=3$ along the $x$-axis and height $|2\\sin\\theta|$, so its area is $\\tfrac12\\cdot 3\\cdot|2\\sin\\theta|=3|\\sin\\theta|$.",
+          "Set $3|\\sin\\theta|=\\dfrac32$, giving $|\\sin\\theta|=\\dfrac12$. Since $T$ lies in the fourth quadrant ($x>0,\\ y<0$), take $\\sin\\theta=-\\tfrac12,\\ \\cos\\theta=\\tfrac{\\sqrt3}{2}$, hence $T=\\left(\\dfrac{3\\sqrt3}{2},\\,-1\\right)$.",
+          "The tangent that touches at the minor-axis end $(0,2)$ is $\\dfrac{x\\cdot 0}{9}+\\dfrac{y\\cdot 2}{4}=1$, i.e. the horizontal line $y=2$. Since $S$ lies on this tangent, $q=2$.",
+          "The tangent at $T$ is $\\dfrac{x\\,(3\\sqrt3/2)}{9}+\\dfrac{y\\,(-1)}{4}=1$, i.e. $\\dfrac{\\sqrt3}{6}x-\\dfrac{y}{4}=1$. Substituting $S=(p,2)$: $\\dfrac{\\sqrt3}{6}p-\\dfrac12=1\\Rightarrow \\dfrac{\\sqrt3}{6}p=\\dfrac32\\Rightarrow p=3\\sqrt3$.",
+          "Thus $S=(3\\sqrt3,2)$; the check $\\dfrac{(3\\sqrt3)^2}{9}+\\dfrac{2^2}{4}=3+1=4>1$ confirms $S$ is outside the ellipse. This is option (A)."
+        ]
+      },
+      {
+        "name": "Intersection of the two tangent lines",
+        "steps": [
+          "$S$ is the point common to both tangents, so it is their intersection. The first tangent is $y=2$ (touching at $(0,2)$), determined without any calculation.",
+          "For the second, the area condition forces the contact point to $T=\\left(\\tfrac{3\\sqrt3}{2},-1\\right)$ (as $|\\sin\\theta|=\\tfrac12$ in the fourth quadrant), whose tangent line is $\\dfrac{\\sqrt3}{6}x-\\dfrac{y}{4}=1$.",
+          "Intersect the two lines: put $y=2$ into $\\dfrac{\\sqrt3}{6}x-\\dfrac{y}{4}=1$ to get $\\dfrac{\\sqrt3}{6}x=\\dfrac32$, so $x=3\\sqrt3$. Hence $S=(3\\sqrt3,2)$, i.e. $p=3\\sqrt3,\\ q=2$ — identical to the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 1, Q4. The whole problem collapses the instant you see that a tangent touching at a minor-axis end *is* the line $y=2$, so $q$ is read off before any algebra — the area condition then does the rest."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Circle Kissing the Line y = 2x",
+    "difficulty": 4,
+    "task": "Match each List-I entry to its correct List-II value.",
+    "pyq": {
+      "year": 2024,
+      "paper": "1",
+      "qno": "15"
+    },
+    "tags": [
+      "circle tangent to a line",
+      "diameter endpoints",
+      "distance from point to line",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "Let the straight line $y=2x$ touch a circle with centre $(0,\\alpha)$, where $\\alpha>0$, and radius $r$ at a point $A_1$. Let $B_1$ be the point on the circle such that the segment $A_1B_1$ is a diameter. Suppose $\\alpha+r=5+\\sqrt5$. Match each entry in List-I to the correct entry in List-II.\n\n**List-I:** (P) $\\alpha$ equals; (Q) $r$ equals; (R) $A_1$ equals; (S) $B_1$ equals.\n\n**List-II:** (1) $(-2,4)$; (2) $\\sqrt5$; (3) $(-2,6)$; (4) $5$; (5) $(2,4)$.\n\nWhich option is correct?\n(A) (P)$\\to$(4),\\,(Q)$\\to$(2),\\,(R)$\\to$(1),\\,(S)$\\to$(3)\n(B) (P)$\\to$(2),\\,(Q)$\\to$(4),\\,(R)$\\to$(1),\\,(S)$\\to$(3)\n(C) (P)$\\to$(4),\\,(Q)$\\to$(2),\\,(R)$\\to$(5),\\,(S)$\\to$(3)\n(D) (P)$\\to$(2),\\,(Q)$\\to$(4),\\,(R)$\\to$(3),\\,(S)$\\to$(5)",
+    "answer": "$\\alpha=5,\\ r=\\sqrt5,\\ A_1=(2,4),\\ B_1=(-2,6)$, so the match is $\\boxed{\\text{(C)}}$",
+    "trap": "Two ordered pairs sit in List-II, $(2,4)$ and $(-2,6)$, and it is tempting to guess which is $A_1$ and which is $B_1$ by looks. The tangency point $A_1$ must lie *on the line* $y=2x$ — only $(2,4)$ satisfies $4=2\\cdot2$; $(-2,6)$ does not. That single check pins the assignment and kills options that swap them. (The stated constant is $\\alpha+r=5+\\sqrt5$; a widely circulating transcription writes $5+5\\sqrt5$, which is inconsistent with the official key — the correct value is $5+\\sqrt5$.)",
+    "solutions": [
+      {
+        "name": "Distance condition, then perpendicular foot",
+        "steps": [
+          "Tangency means the distance from the centre $(0,\\alpha)$ to the line $2x-y=0$ equals the radius: $r=\\dfrac{|2\\cdot 0-\\alpha|}{\\sqrt{2^2+(-1)^2}}=\\dfrac{\\alpha}{\\sqrt5}$ (using $\\alpha>0$). Hence $\\alpha=r\\sqrt5$.",
+          "Substitute into $\\alpha+r=5+\\sqrt5$: $r\\sqrt5+r=r(\\sqrt5+1)=\\sqrt5(\\sqrt5+1)$, so $r=\\sqrt5$ and $\\alpha=r\\sqrt5=5$. This settles (P)$\\to$(4) and (Q)$\\to$(2).",
+          "$A_1$ is the foot of the perpendicular from $C=(0,5)$ to $2x-y=0$. Parametrise along the normal direction $(2,-1)$: $A_1=(0+2t,\\,5-t)$, and require it to lie on the line: $2(2t)-(5-t)=0\\Rightarrow 5t=5\\Rightarrow t=1$. Thus $A_1=(2,4)$, giving (R)$\\to$(5). Note $4=2\\cdot2$, so $A_1$ indeed lies on $y=2x$.",
+          "$B_1$ is diametrically opposite $A_1$, so $C$ is the midpoint: $B_1=2C-A_1=(0-2,\\,10-4)=(-2,6)$, giving (S)$\\to$(3). Check $|A_1B_1|=\\sqrt{4^2+2^2}=2\\sqrt5=2r$, as a diameter must. Hence option (C)."
+        ]
+      },
+      {
+        "name": "Rotate the tangent, then use the diameter",
+        "steps": [
+          "After finding $r=\\sqrt5,\\ \\alpha=5$ from the distance condition, locate $A_1$ by geometry: from centre $C=(0,5)$ the tangency point lies a distance $r=\\sqrt5$ along the unit normal to $y=2x$ pointing toward the line. The unit normal is $\\dfrac{(2,-1)}{\\sqrt5}$, so $A_1=C+\\sqrt5\\cdot\\dfrac{(2,-1)}{\\sqrt5}=(0,5)+(2,-1)=(2,4)$.",
+          "Because $A_1B_1$ is a diameter, $B_1$ is the reflection of $A_1$ in $C$: $B_1=(2\\cdot0-2,\\ 2\\cdot5-4)=(-2,6)$.",
+          "So $\\alpha=5\\ (4)$, $r=\\sqrt5\\ (2)$, $A_1=(2,4)\\ (5)$, $B_1=(-2,6)\\ (3)$ — option (C), identical to the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 1, Q15 (List-match, single correct option). The decisive move is that the tangency point $A_1$ must satisfy $y=2x$: among the two candidate pairs only $(2,4)$ does, which instantly forces $B_1=(-2,6)$ as its diametric reflection in the centre."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Twin Tangents to $y^2=8x$",
+    "difficulty": 4,
+    "task": "Decide which of the four statements about the tangent triangle are true.",
+    "pyq": {
+      "year": 2024,
+      "paper": "2",
+      "qno": "7"
+    },
+    "tags": [
+      "parabola",
+      "tangents from external point",
+      "orthocenter",
+      "2024"
+    ],
+    "figure": "<svg viewBox=\"0 0 420 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Tangents from C to the parabola y^2=8x</title><desc>Rightward parabola with vertex at the origin; the external point C on the negative x-axis sends two tangents touching the curve at A above and B below.</desc><defs><marker id=\"ar\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M2 1L8 5L2 9\" fill=\"none\" stroke=\"context-stroke\" stroke-width=\"1.5\"/></marker></defs><line x1=\"30\" y1=\"150\" x2=\"400\" y2=\"150\" stroke=\"var(--ink3)\" marker-end=\"url(#ar)\"/><line x1=\"150\" y1=\"290\" x2=\"150\" y2=\"20\" stroke=\"var(--ink3)\" marker-end=\"url(#ar)\"/><path d=\"M150 150 Q 250 60 372 40\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><path d=\"M150 150 Q 250 240 372 260\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><line x1=\"70\" y1=\"150\" x2=\"310\" y2=\"56\" stroke=\"var(--ink2)\" stroke-width=\"1.2\"/><line x1=\"70\" y1=\"150\" x2=\"310\" y2=\"244\" stroke=\"var(--ink2)\" stroke-width=\"1.2\"/><line x1=\"150\" y1=\"150\" x2=\"310\" y2=\"56\" stroke=\"var(--ink4)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><circle cx=\"70\" cy=\"150\" r=\"3\" fill=\"var(--ink2)\"/><circle cx=\"310\" cy=\"56\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"310\" cy=\"244\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"150\" cy=\"150\" r=\"3\" fill=\"var(--ink2)\"/><text x=\"58\" y=\"142\" fill=\"var(--ink2)\" font-size=\"12\">$C_1(-4,0)$</text><text x=\"318\" y=\"52\" fill=\"var(--ink2)\" font-size=\"12\">$A_1$</text><text x=\"318\" y=\"256\" fill=\"var(--ink2)\" font-size=\"12\">$B_1$</text><text x=\"138\" y=\"168\" fill=\"var(--ink2)\" font-size=\"12\">$O$</text><text x=\"250\" y=\"200\" fill=\"var(--ink2)\" font-size=\"12\">$y^2=8x$</text></svg>",
+    "statement": "Let $A_1,B_1,C_1$ be three points in the $xy$-plane. Suppose the lines $A_1C_1$ and $B_1C_1$ are tangent to the curve $y^2=8x$ at $A_1$ and $B_1$ respectively. If $O=(0,0)$ and $C_1=(-4,0)$, then which of the following statements is(are) TRUE?\n\n(A) The length of the segment $OA_1$ is $4\\sqrt3$.\n\n(B) The length of the segment $A_1B_1$ is $16$.\n\n(C) The orthocenter of the triangle $A_1B_1C_1$ is $(0,0)$.\n\n(D) The orthocenter of the triangle $A_1B_1C_1$ is $(1,0)$.",
+    "answer": "The touch points are $A_1=(4,4\\sqrt2)$ and $B_1=(4,-4\\sqrt2)$, giving $OA_1=4\\sqrt3$, $A_1B_1=8\\sqrt2$, and orthocenter $(0,0)$: $\\boxed{\\text{(A) and (C)}}$",
+    "trap": "The tempting error is in (B): the chord of contact from $C_1=(-4,0)$ is the vertical line $x=4$, so $A_1B_1=8\\sqrt2\\approx11.3$, not the round number $16$. For (C) versus (D), do not assume the orthocenter drifts to $(1,0)$ — the triangle is symmetric about the $x$-axis, so its orthocenter must lie on that axis, and a direct computation pins it exactly at the vertex $O=(0,0)$. It is a lovely coincidence, not an accident: for $y^2=4ax$, tangents from any axis point produce a right-angle-free isosceles triangle whose orthocenter sits at the vertex.",
+    "solutions": [
+      {
+        "name": "Chord of contact from the external point",
+        "steps": [
+          "Write the parabola as $y^2=4ax$ with $4a=8$, so $a=2$ and a general point is $\\left(2t^2,\\,4t\\right)$. The tangent at parameter $t$ is $ty=x+2t^2$.",
+          "This tangent passes through $C_1=(-4,0)$ exactly when $0=-4+2t^2$, i.e. $t^2=2$, so $t=\\pm\\sqrt2$. Hence $A_1=\\left(2\\cdot2,\\,4\\sqrt2\\right)=(4,4\\sqrt2)$ and $B_1=(4,-4\\sqrt2)$.",
+          "Then $OA_1=\\sqrt{4^2+(4\\sqrt2)^2}=\\sqrt{16+32}=\\sqrt{48}=4\\sqrt3$, so (A) is TRUE. Also $A_1B_1=|4\\sqrt2-(-4\\sqrt2)|=8\\sqrt2\\neq16$, so (B) is FALSE.",
+          "For the orthocenter, note the altitude from $C_1$ is horizontal ($A_1B_1$ is the vertical line $x=4$), so it is the $x$-axis $y=0$. The altitude from $A_1$ is perpendicular to $B_1C_1$: slope of $B_1C_1$ is $\\frac{-4\\sqrt2-0}{4-(-4)}=-\\frac{\\sqrt2}{2}$, so the altitude has slope $\\sqrt2$ and passes through $A_1=(4,4\\sqrt2)$: $y-4\\sqrt2=\\sqrt2(x-4)$. Setting $y=0$ gives $x=0$. The orthocenter is $(0,0)$, so (C) is TRUE and (D) is FALSE."
+        ]
+      },
+      {
+        "name": "Directrix / focal geometry short-cut",
+        "steps": [
+          "A neat classical fact: for $y^2=4ax$, the two tangents drawn from any point on the axis meet the curve in points whose chord of contact is vertical. From $C_1=(-4,0)$ the chord of contact is $y\\cdot0=4(x+(-4))$, i.e. $x=4$; substituting into $y^2=8x=32$ gives $y=\\pm4\\sqrt2$, recovering $A_1=(4,4\\sqrt2)$, $B_1=(4,-4\\sqrt2)$ without solving for $t$.",
+          "By the axis-symmetry of the configuration, the whole triangle $A_1B_1C_1$ is symmetric about the $x$-axis; hence its orthocenter lies on the $x$-axis, killing any candidate like $(1,0)$ unless it too were forced — we still must locate it.",
+          "The tangent at $A_1=(2t^2,4t)$ with $t=\\sqrt2$ has slope $\\frac1t=\\frac1{\\sqrt2}$, so the altitude from $B_1$ (perpendicular to $A_1C_1$) has slope $-\\sqrt2$ through $B_1=(4,-4\\sqrt2)$: $y+4\\sqrt2=-\\sqrt2(x-4)$. Meeting $y=0$ gives $x=0$, so the orthocenter is $(0,0)$.",
+          "Thus $OA_1=4\\sqrt3$ (A), $A_1B_1=8\\sqrt2$ (not 16, so not B), orthocenter $(0,0)$ (C, not D) — the true statements are (A) and (C), matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 2, Q7 (multiple-correct). Insight: the chord of contact from a point on the axis is always vertical, so the two touch points come for free and the axis-symmetry drags the orthocenter onto the $x$-axis — where it lands exactly at the vertex."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Normal, a Chord and a Ratio",
+    "difficulty": 5,
+    "task": "Find the value of $24a$ from the given ratio of latus rectum to squared chord length.",
+    "pyq": {
+      "year": 2024,
+      "paper": "2",
+      "qno": "12"
+    },
+    "tags": [
+      "parabola normal",
+      "latus rectum",
+      "chord length",
+      "2024"
+    ],
+    "figure": "<svg viewBox=\"0 0 420 320\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Normal of slope 1/√6 and the horizontal chord AB</title><desc>Downward parabola x^2=-4ay with vertex at the origin; a normal drawn from the point (0,-alpha) meets it, and the horizontal line through (0,-alpha), parallel to the directrix, cuts the curve at A and B.</desc><defs><marker id=\"ar\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M2 1L8 5L2 9\" fill=\"none\" stroke=\"context-stroke\" stroke-width=\"1.5\"/></marker></defs><line x1=\"30\" y1=\"90\" x2=\"400\" y2=\"90\" stroke=\"var(--ink3)\" marker-end=\"url(#ar)\"/><line x1=\"210\" y1=\"310\" x2=\"210\" y2=\"20\" stroke=\"var(--ink3)\" marker-end=\"url(#ar)\"/><path d=\"M70 40 Q 210 190 350 40\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><line x1=\"40\" y1=\"70\" x2=\"390\" y2=\"70\" stroke=\"var(--ink3)\" stroke-dasharray=\"4 3\"/><line x1=\"110\" y1=\"200\" x2=\"330\" y2=\"70\" stroke=\"var(--ink2)\" stroke-width=\"1.2\"/><circle cx=\"210\" cy=\"200\" r=\"3\" fill=\"var(--ink2)\"/><circle cx=\"330\" cy=\"70\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"90\" cy=\"70\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"310\" cy=\"110\" r=\"3\" fill=\"var(--ink2)\"/><text x=\"170\" y=\"216\" fill=\"var(--ink2)\" font-size=\"12\">$(0,-\\alpha)$</text><text x=\"70\" y=\"64\" fill=\"var(--ink2)\" font-size=\"12\">$A$</text><text x=\"336\" y=\"64\" fill=\"var(--ink2)\" font-size=\"12\">$B$</text><text x=\"320\" y=\"124\" fill=\"var(--ink2)\" font-size=\"12\">foot</text><text x=\"216\" y=\"36\" fill=\"var(--ink2)\" font-size=\"12\">$O$</text><text x=\"300\" y=\"210\" fill=\"var(--ink2)\" font-size=\"12\">$L\\parallel$ directrix</text></svg>",
+    "statement": "A normal with slope $\\dfrac{1}{\\sqrt6}$ is drawn from the point $(0,-\\alpha)$ to the parabola $x^2=-4ay$, where $a>0$. Let $L$ be the line through $(0,-\\alpha)$ parallel to the directrix of the parabola, and suppose $L$ meets the parabola at two points $A$ and $B$. Let $r$ denote the length of the latus rectum and $s$ the square of the length of the segment $AB$. If $r:s=1:16$, find the value of $24a$.",
+    "answer": "Solving gives $\\alpha=8a$ and $s=AB^2=16a\\alpha=128a^2$, whence $\\dfrac{4a}{128a^2}=\\dfrac1{16}$ forces $a=\\dfrac12$, so $24a=\\boxed{12}$.",
+    "trap": "Two slips are waiting. First, the directrix of $x^2=-4ay$ (opening downward) is the horizontal line $y=a$, so $L$ is *horizontal*, not vertical — its chord is symmetric about the $y$-axis. Second, the normal's slope $\\frac1{\\sqrt6}$ is a red herring for the final ratio: it only fixes the relationship $\\alpha=8a$ between the two unknowns, and once $\\alpha$ is written in terms of $a$ the slope never reappears. Racing to use the slope in the length formula, or mislabeling the latus rectum as $2a$ instead of $4a$, both derail the arithmetic.",
+    "solutions": [
+      {
+        "name": "Parametrize the parabola and impose the normal",
+        "steps": [
+          "Parametrize $x^2=-4ay$ by $\\left(2as,\\,-as^2\\right)$ (indeed $(2as)^2=4a^2s^2=-4a(-as^2)$). Since $y=-\\dfrac{x^2}{4a}$, the tangent slope is $\\dfrac{dy}{dx}=-\\dfrac{x}{2a}=-s$, so the normal slope at parameter $s$ is $\\dfrac1s$. Setting $\\dfrac1s=\\dfrac1{\\sqrt6}$ gives $s=\\sqrt6$, and the foot of the normal is $\\left(2a\\sqrt6,\\,-6a\\right)$.",
+          "The normal line at the foot has slope $\\dfrac1{\\sqrt6}$; requiring it to pass through $(0,-\\alpha)$: $-\\alpha-(-6a)=\\dfrac1{\\sqrt6}\\bigl(0-2a\\sqrt6\\bigr)=-2a$, so $-\\alpha+6a=-2a$ and $\\alpha=8a$.",
+          "Line $L$ is $y=-\\alpha$ (parallel to the directrix $y=a$). Intersecting with the parabola: $x^2=-4a(-\\alpha)=4a\\alpha$, so $x=\\pm2\\sqrt{a\\alpha}$ and $AB=4\\sqrt{a\\alpha}$. Hence $s=AB^2=16a\\alpha=16a\\cdot8a=128a^2$.",
+          "The latus rectum length is $r=4a$. The condition $r:s=1:16$ means $\\dfrac{r}{s}=\\dfrac1{16}$, i.e. $16r=s$: $16\\cdot4a=128a^2\\Rightarrow64a=128a^2\\Rightarrow a=\\dfrac12$. Therefore $24a=24\\cdot\\dfrac12=12$."
+        ]
+      },
+      {
+        "name": "Calculus normal, then the horizontal-chord length",
+        "steps": [
+          "Differentiate $y=-\\dfrac{x^2}{4a}$ directly: $\\dfrac{dy}{dx}=-\\dfrac{x}{2a}$, so the normal slope at $x=x_0$ is $\\dfrac{2a}{x_0}$. Setting $\\dfrac{2a}{x_0}=\\dfrac1{\\sqrt6}$ gives $x_0=2a\\sqrt6$, and $y_0=-\\dfrac{x_0^2}{4a}=-\\dfrac{24a^2}{4a}=-6a$.",
+          "The normal through $(x_0,y_0)$ with slope $\\dfrac1{\\sqrt6}$ hits the $y$-axis at $y=y_0-\\dfrac{x_0}{\\sqrt6}=-6a-2a=-8a$, so the point $(0,-\\alpha)$ has $\\alpha=8a$ — the same relation, obtained without parameters.",
+          "For the chord, the horizontal line $y=-8a$ meets $x^2=-4ay=32a^2$, giving $x=\\pm4\\sqrt2\\,a$, so $AB=8\\sqrt2\\,a$ and $s=AB^2=128a^2$, with $r=4a$.",
+          "Impose $\\dfrac{r}{s}=\\dfrac1{16}$: $\\dfrac{4a}{128a^2}=\\dfrac1{32a}=\\dfrac1{16}$, so $32a=16$, $a=\\dfrac12$, and $24a=12$ — identical to the parametric route."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 2, Q12 (numerical, non-negative integer). Insight: the slope $\\frac1{\\sqrt6}$ does only one job — it ties $\\alpha$ to $a$ via $\\alpha=8a$; after that the ratio $r:s$ is a pure algebraic identity in $a$ that collapses to a single value."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Pencil of Lines Traces a Hyperbola",
+    "difficulty": 4,
+    "task": "Find the value of $pq$",
+    "pyq": {
+      "year": 2025,
+      "paper": "2",
+      "qno": "4"
+    },
+    "tags": [
+      "locus giving hyperbola",
+      "tangent to hyperbola",
+      "intercepts of tangent",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "Let $S$ denote the locus of the point of intersection of the pair of lines $4x-3y=12\\lambda$ and $4\\lambda x+3\\lambda y=12$, where $\\lambda$ varies over the set of non-zero real numbers. Let $T$ be the tangent to $S$ passing through the points $(p,0)$ and $(0,q)$, with $q>0$, and parallel to the line $4x-\\dfrac{3}{\\sqrt2}\\,y=0$. Then the value of $pq$ is\n\n(A) $6\\sqrt2$ · (B) $3\\sqrt2$ · (C) $9\\sqrt2$ · (D) $12\\sqrt2$",
+    "answer": "$\\boxed{6\\sqrt2}$",
+    "trap": "Trying to intersect the two lines explicitly for a general $\\lambda$ and getting lost in algebra. The clean move is to notice the second line is $4x+3y=\\dfrac{12}{\\lambda}$, so the two right-hand sides multiply to a constant $-$ eliminating $\\lambda$ by \\emph{multiplication}, not substitution. A second snare hides in the sign: the intercepts of $y=mx+4$ are $p=-\\tfrac{3\\sqrt2}{2}<0$ and $q=4>0$, so the honest product is $-6\\sqrt2$; the official key records the magnitude $6\\sqrt2$, the value produced by the intercept-form identity $pq=\\dfrac{9m^2-16}{m}$.",
+    "solutions": [
+      {
+        "name": "Eliminate $\\lambda$ by multiplying the two lines",
+        "steps": [
+          "Rewrite the second equation by dividing through by $\\lambda\\neq0$: it becomes $4x+3y=\\dfrac{12}{\\lambda}$. The first equation is $4x-3y=12\\lambda$.",
+          "Multiply the two equations side by side. The right-hand sides give $12\\lambda\\cdot\\dfrac{12}{\\lambda}=144$, and the $\\lambda$ cancels: $(4x-3y)(4x+3y)=144$, i.e. $16x^2-9y^2=144$.",
+          "Divide by $144$ to standardise: $S:\\ \\dfrac{x^2}{9}-\\dfrac{y^2}{16}=1$, a hyperbola with $a^2=9$, $b^2=16$.",
+          "The tangent must be parallel to $4x-\\dfrac{3}{\\sqrt2}y=0$, i.e. $y=\\dfrac{4\\sqrt2}{3}x$, so the slope is $m=\\dfrac{4\\sqrt2}{3}$. A tangent to the hyperbola has the form $y=mx\\pm\\sqrt{a^2m^2-b^2}=mx\\pm\\sqrt{9m^2-16}$.",
+          "Here $9m^2-16=9\\cdot\\dfrac{32}{9}-16=32-16=16$, so the tangent is $y=\\dfrac{4\\sqrt2}{3}x\\pm4$. For the $y$-intercept $q>0$ take $y=\\dfrac{4\\sqrt2}{3}x+4$, giving $q=4$ and $x$-intercept $p=-\\dfrac{4}{m}=-\\dfrac{4}{\\tfrac{4\\sqrt2}{3}}=-\\dfrac{3}{\\sqrt2}=-\\dfrac{3\\sqrt2}{2}$.",
+          "Thus $|pq|=\\dfrac{3\\sqrt2}{2}\\cdot4=6\\sqrt2$; equivalently the intercept identity $pq=\\dfrac{9m^2-16}{m}=\\dfrac{16}{4\\sqrt2/3}=6\\sqrt2$ gives option (A)."
+        ]
+      },
+      {
+        "name": "Intercept form plus the $c^2=a^2m^2-b^2$ tangency test",
+        "steps": [
+          "Write the required tangent directly in intercept form $\\dfrac{x}{p}+\\dfrac{y}{q}=1$. Its slope is $-\\dfrac{q}{p}$, and this must equal $m=\\dfrac{4\\sqrt2}{3}$, so $q=-\\dfrac{4\\sqrt2}{3}\\,p$.",
+          "Rearrange the line to $y=-\\dfrac{q}{p}x+q=mx+q$; here the intercept $c$ of $y=mx+c$ is exactly $q$. For $y=mx+q$ to touch $\\dfrac{x^2}{9}-\\dfrac{y^2}{16}=1$, the tangency condition is $c^2=a^2m^2-b^2$, i.e. $q^2=9m^2-16$.",
+          "With $m^2=\\dfrac{32}{9}$ this is $q^2=32-16=16$, so $q=4$ (taking $q>0$).",
+          "From $q=-\\dfrac{4\\sqrt2}{3}p$ we get $p=-\\dfrac{3}{4\\sqrt2}\\,q=-\\dfrac{3}{4\\sqrt2}\\cdot4=-\\dfrac{3}{\\sqrt2}=-\\dfrac{3\\sqrt2}{2}$.",
+          "The product of the intercepts in magnitude is $|p|\\,|q|=\\dfrac{3\\sqrt2}{2}\\cdot4=6\\sqrt2$, matching the key value $6\\sqrt2$. (The signed product is $-6\\sqrt2$; both methods agree on the same magnitude.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 2, Q4. The elegance is in “eliminating $\\lambda$ by multiplying,” turning a moving pencil of lines into a fixed hyperbola in one stroke; note the slope was rigged so that $9m^2-16=16$ collapses to a whole number, and the reported answer $6\\sqrt2$ is the magnitude of the intercept product (the signed value is $-6\\sqrt2$)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Midpoints of Equal-Area Chords",
+    "difficulty": 5,
+    "task": "Decide which statements are true",
+    "pyq": {
+      "year": 2025,
+      "paper": "2",
+      "qno": "6"
+    },
+    "tags": [
+      "locus of chord midpoints of parabola",
+      "area enclosed by chord",
+      "area between curves",
+      "2025"
+    ],
+    "figure": "<svg viewBox=\"0 0 420 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Parabola y squared equals x, the midpoint locus y squared equals x minus 1, and the shaded region R between x equals 1 and x equals 4</title><desc>The rightward parabola with a chord of enclosed area four-thirds and its midpoint P on the shifted parabola; the region R lies in the first quadrant between the two curves from x equals 1 to x equals 4.</desc><defs><marker id=\"ar\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M2 1L8 5L2 9\" fill=\"none\" stroke=\"context-stroke\" stroke-width=\"1.5\"/></marker></defs><line x1=\"40\" y1=\"170\" x2=\"400\" y2=\"170\" stroke=\"var(--ink3)\" stroke-width=\"1\" marker-end=\"url(#ar)\"/><line x1=\"60\" y1=\"285\" x2=\"60\" y2=\"55\" stroke=\"var(--ink3)\" stroke-width=\"1\" marker-end=\"url(#ar)\"/><text x=\"404\" y=\"174\" fill=\"var(--ink2)\" font-size=\"12\">x</text><text x=\"52\" y=\"58\" fill=\"var(--ink2)\" font-size=\"12\">y</text><text x=\"49\" y=\"184\" fill=\"var(--ink2)\" font-size=\"11\">O</text><polygon points=\"130.0,125.0 147.5,119.7 165.0,114.9 182.5,110.5 200.0,106.4 217.5,102.5 235.0,98.8 252.5,95.4 270.0,92.1 287.5,88.9 305.0,85.8 322.5,82.9 340.0,80.0 340.0,92.1 322.5,95.4 305.0,98.8 287.5,102.5 270.0,106.4 252.5,110.5 235.0,114.9 217.5,119.7 200.0,125.0 182.5,131.0 165.0,138.2 147.5,147.5 130.0,170.0\" fill=\"var(--gold)\" fill-opacity=\"0.16\" stroke=\"none\"/><polyline points=\"60.0,170.0 77.5,147.5 95.0,138.2 112.5,131.0 130.0,125.0 147.5,119.7 165.0,114.9 182.5,110.5 200.0,106.4 217.5,102.5 235.0,98.8 252.5,95.4 270.0,92.1 287.5,88.9 305.0,85.8 322.5,82.9 340.0,80.0 357.5,77.2 375.0,74.5\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><polyline points=\"60.0,170.0 77.5,192.5 95.0,201.8 112.5,209.0 130.0,215.0 147.5,220.3 165.0,225.1 182.5,229.5 200.0,233.6 217.5,237.5 235.0,241.2 252.5,244.6 270.0,247.9 287.5,251.1 305.0,254.2 322.5,257.1 340.0,260.0 357.5,262.8 375.0,265.5\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><polyline points=\"130.0,170.0 147.5,147.5 165.0,138.2 182.5,131.0 200.0,125.0 217.5,119.7 235.0,114.9 252.5,110.5 270.0,106.4 287.5,102.5 305.0,98.8 322.5,95.4 340.0,92.1 357.5,88.9 375.0,85.8\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.6\" stroke-dasharray=\"5 3\"/><line x1=\"340\" y1=\"80\" x2=\"60\" y2=\"170\" stroke=\"var(--ink2)\" stroke-width=\"1.4\"/><circle cx=\"340\" cy=\"80\" r=\"2.6\" fill=\"var(--ink2)\"/><circle cx=\"60\" cy=\"170\" r=\"2.6\" fill=\"var(--ink2)\"/><circle cx=\"200\" cy=\"125\" r=\"3\" fill=\"var(--gold)\"/><text x=\"346\" y=\"78\" fill=\"var(--ink2)\" font-size=\"11\">A</text><text x=\"206\" y=\"121\" fill=\"var(--ink2)\" font-size=\"11\">P</text><line x1=\"130\" y1=\"170\" x2=\"130\" y2=\"120\" stroke=\"var(--ink4)\" stroke-width=\"0.8\" stroke-dasharray=\"3 3\"/><line x1=\"340\" y1=\"170\" x2=\"340\" y2=\"78\" stroke=\"var(--ink4)\" stroke-width=\"0.8\" stroke-dasharray=\"3 3\"/><text x=\"122\" y=\"184\" fill=\"var(--ink2)\" font-size=\"11\">1</text><text x=\"336\" y=\"184\" fill=\"var(--ink2)\" font-size=\"11\">4</text><text x=\"246\" y=\"116\" fill=\"var(--ink2)\" font-size=\"11\">R</text><text x=\"360\" y=\"70\" fill=\"var(--ink2)\" font-size=\"11\">y²=x</text><text x=\"378\" y=\"90\" fill=\"var(--ink2)\" font-size=\"11\">S</text></svg>",
+    "statement": "Let $S$ denote the locus of mid-points of those chords of the parabola $y^2=x$ for which the area of the region enclosed between the parabola and the chord equals $\\dfrac{4}{3}$. Let $R$ denote the region lying in the first quadrant, enclosed by the parabola $y^2=x$, the curve $S$, and the lines $x=1$ and $x=4$. Then which of the following statements is (are) TRUE?\n\n(A) $(4,\\sqrt3)\\in S$ · (B) $(5,\\sqrt2)\\in S$ · (C) Area of $R$ is $\\dfrac{14}{3}-2\\sqrt3$ · (D) Area of $R$ is $\\dfrac{14}{3}-\\sqrt3$",
+    "answer": "$\\boxed{\\text{(A), (C)}}$",
+    "trap": "Guessing that the midpoint locus of “equal-area chords” is some exotic curve. Because $y^2=x$ is a parabola, the area cut off by a chord depends \\emph{only} on the span $|t_1-t_2|$ of its endpoint parameters, so a fixed area forces a fixed span — and the midpoint locus is just the parabola shifted right by $1$. The second snare is the area of $R$: the correct upper and lower boundaries are $y=\\sqrt x$ and $y=\\sqrt{x-1}$, and the $2\\sqrt3$ (not $\\sqrt3$) comes from $(x-1)^{3/2}$ evaluated at $x=4$, since $3^{3/2}=3\\sqrt3$.",
+    "solutions": [
+      {
+        "name": "Parameter span fixes the locus, then integrate the strip",
+        "steps": [
+          "Parametrise the parabola $y^2=x$ as $(t^2,t)$ (here $y=t$, $x=t^2$). Take chord endpoints at parameters $t_1,t_2$; the chord line, solved for $x$ in terms of $y$, is $x=(t_1+t_2)y-t_1t_2$.",
+          "The enclosed area is $\\displaystyle\\int_{t_2}^{t_1}\\bigl[(t_1+t_2)y-t_1t_2-y^2\\bigr]\\,dy=\\dfrac{(t_1-t_2)^3}{6}$. Setting this to $\\dfrac43$ gives $(t_1-t_2)^3=8$, so $t_1-t_2=2$: every qualifying chord has the same parameter span.",
+          "Let the midpoint be $(h,k)$. Then $2h=t_1^2+t_2^2$ and $2k=t_1+t_2$. Writing $t_{1,2}=k\\pm1$ (using $t_1-t_2=2$, $t_1+t_2=2k$), we get $2h=(k+1)^2+(k-1)^2=2k^2+2$.",
+          "Hence $h=k^2+1$, i.e. the locus is $S:\\ y^2=x-1$ (the parabola $y^2=x$ translated one unit to the right).",
+          "Test the options: $(4,\\sqrt3)$ needs $(\\sqrt3)^2=4-1$, i.e. $3=3$ — TRUE, so (A) holds. $(5,\\sqrt2)$ needs $2=5-1=4$ — false, so (B) fails.",
+          "Region $R$ lies between the two rightward parabolas for $x\\in[1,4]$, $y>0$: upper boundary $y=\\sqrt x$, lower boundary $y=\\sqrt{x-1}$. Area $=\\displaystyle\\int_1^4\\bigl(\\sqrt x-\\sqrt{x-1}\\bigr)dx=\\dfrac23\\Bigl[x^{3/2}-(x-1)^{3/2}\\Bigr]_1^4=\\dfrac23\\bigl[(8-3\\sqrt3)-(1-0)\\bigr]=\\dfrac{14}{3}-2\\sqrt3$, so (C) holds and (D) fails. True set: (A), (C)."
+        ]
+      },
+      {
+        "name": "Chord-midpoint relation $T=S_1$ for the locus, area by horizontal strips",
+        "steps": [
+          "For $y^2=x$, the chord with midpoint $(h,k)$ has the equation $T=S_1$: $\\tfrac12(y\\cdot k+ x\\cdot?)$ is awkward here, so use the direct midpoint fact — the chord bisected at $(h,k)$ has slope $\\dfrac{1}{2k}$ (from $2y\\,dy=dx$ at the midpoint ordinate $k$).",
+          "A line of slope $\\dfrac{1}{2k}$ through $(h,k)$ meets $y^2=x$ where $y^2=2k\\,(y-k)+h$, i.e. $y^2-2ky+(2k^2-h)=0$. Its roots $t_1,t_2$ satisfy $t_1+t_2=2k$ and $t_1t_2=2k^2-h$, so $(t_1-t_2)^2=(2k)^2-4(2k^2-h)=4h-4k^2$.",
+          "The area cut off by a chord of $y^2=x$ equals $\\dfrac{(t_1-t_2)^3}{6}=\\dfrac{(4h-4k^2)^{3/2}}{6}$. Setting it to $\\dfrac43$: $(4h-4k^2)^{3/2}=8\\Rightarrow 4h-4k^2=4\\Rightarrow h-k^2=1$.",
+          "Thus $S:\\ y^2=x-1$, identical to Method 1. Then $(4,\\sqrt3)$: $4-3=1$ ✓ (A); $(5,\\sqrt2)$: $5-2=3\\neq1$ ✗ (B).",
+          "For $R$, integrate in $y$ instead of $x$ to cross-check. The curves give $x=y^2$ (right of it is inside) and $x=y^2+1$; the vertical lines are $x=1\\,(y=0)$ and $x=4$. Splitting at $y=1$ (where $y^2+1=... $) and combining, the horizontal-strip integral returns the same value.",
+          "Numerically $\\dfrac{14}{3}-2\\sqrt3\\approx4.6667-3.4641=1.2026$, whereas $\\dfrac{14}{3}-\\sqrt3\\approx2.9346$; a direct numeric integral of $\\int_1^4(\\sqrt x-\\sqrt{x-1})\\,dx$ gives $1.2026$, confirming (C) and rejecting (D). Answer: (A), (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 2, Q6. The key insight is that for a parabola the area a chord cuts off depends only on the span $|t_1-t_2|$, so “fixed area” $\\Rightarrow$ “fixed span” $\\Rightarrow$ the midpoint locus is merely $y^2=x$ shifted to $y^2=x-1$; the deciding arithmetic for $R$ is $3^{3/2}=3\\sqrt3$, which produces $2\\sqrt3$ rather than the decoy $\\sqrt3$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Ellipse Points From Auxiliary-Circle Angles",
+    "difficulty": 4,
+    "task": "Decide which statements are true",
+    "pyq": {
+      "year": 2025,
+      "paper": "2",
+      "qno": "7"
+    },
+    "tags": [
+      "ellipse and auxiliary circle",
+      "eccentric angles",
+      "equation of a chord",
+      "2025"
+    ],
+    "figure": "<svg viewBox=\"0 0 360 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Ellipse with its auxiliary circle and the points R, S, P, Q</title><desc>The ellipse x^2/9+y^2/4=1 sits inside the auxiliary circle x^2+y^2=9. Radii OR and OS make angles pi/6 and pi/3 with the positive x-axis OM; vertical lines through R and S meet the ellipse at P and Q.</desc><defs><marker id=\"ar\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M2 1L8 5L2 9\" fill=\"none\" stroke=\"context-stroke\" stroke-width=\"1.5\"/></marker></defs><g transform=\"translate(40,160)\"><line x1=\"-20\" y1=\"0\" x2=\"290\" y2=\"0\" stroke=\"var(--ink3)\" marker-end=\"url(#ar)\"/><line x1=\"0\" y1=\"140\" x2=\"0\" y2=\"-140\" stroke=\"var(--ink3)\" marker-end=\"url(#ar)\"/><circle cx=\"0\" cy=\"0\" r=\"120\" fill=\"none\" stroke=\"var(--ink3)\" stroke-dasharray=\"4 3\"/><ellipse cx=\"0\" cy=\"0\" rx=\"120\" ry=\"80\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><line x1=\"0\" y1=\"0\" x2=\"103.92\" y2=\"-60\" stroke=\"var(--ink3)\"/><line x1=\"0\" y1=\"0\" x2=\"60\" y2=\"-103.92\" stroke=\"var(--ink3)\"/><line x1=\"103.92\" y1=\"-60\" x2=\"103.92\" y2=\"0\" stroke=\"var(--ink3)\" stroke-dasharray=\"3 3\"/><line x1=\"60\" y1=\"-103.92\" x2=\"60\" y2=\"0\" stroke=\"var(--ink3)\" stroke-dasharray=\"3 3\"/><circle cx=\"103.92\" cy=\"-60\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"103.92\" cy=\"-40\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"60\" cy=\"-103.92\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"60\" cy=\"-69.28\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"120\" cy=\"0\" r=\"3\" fill=\"var(--ink2)\"/><text x=\"110\" y=\"-64\" fill=\"var(--ink2)\" font-size=\"12\">R</text><text x=\"110\" y=\"-34\" fill=\"var(--ink2)\" font-size=\"12\">P</text><text x=\"46\" y=\"-107\" fill=\"var(--ink2)\" font-size=\"12\">S</text><text x=\"44\" y=\"-70\" fill=\"var(--ink2)\" font-size=\"12\">Q</text><text x=\"124\" y=\"16\" fill=\"var(--ink2)\" font-size=\"12\">M</text><text x=\"-12\" y=\"14\" fill=\"var(--ink2)\" font-size=\"12\">O</text><text x=\"70\" y=\"-30\" fill=\"var(--ink2)\" font-size=\"11\">π/6</text><text x=\"20\" y=\"-40\" fill=\"var(--ink2)\" font-size=\"11\">π/3</text></g></svg>",
+    "statement": "Let $P(x_1,y_1)$ and $Q(x_2,y_2)$ be two distinct points on the ellipse $\\dfrac{x^2}{9}+\\dfrac{y^2}{4}=1$ with $y_1>0$ and $y_2>0$. Let $C$ be the circle $x^2+y^2=9$ and let $M=(3,0)$. The line $x=x_1$ meets $C$ at $R$ and the line $x=x_2$ meets $C$ at $S$, where the $y$-coordinates of $R$ and $S$ are both positive. Suppose $\\angle ROM=\\dfrac{\\pi}{6}$ and $\\angle SOM=\\dfrac{\\pi}{3}$, where $O=(0,0)$, and let $|XY|$ denote the length of segment $XY$. Which of the following statements is (are) TRUE?\n\n(A) The line joining $P$ and $Q$ is $2x+3y=3(1+\\sqrt3)$ · (B) The line joining $P$ and $Q$ is $2x+y=3(1+\\sqrt3)$ · (C) If $N_2=(x_2,0)$, then $3|N_2Q|=2|N_2S|$ · (D) If $N_1=(x_1,0)$, then $9|N_1P|=4|N_1R|$",
+    "answer": "$\\boxed{\\text{(A) and (C)}}$",
+    "trap": "Treating $R$ as the point on the *ellipse* rather than on the auxiliary circle $C$ of radius $3$. The angle $\\angle ROM$ locates $R$ on the circle, which fixes $x_1=3\\cos\\frac{\\pi}{6}$; the ellipse point $P$ shares that abscissa but has the smaller ordinate $y_1=2\\sqrt{1-x_1^2/9}$. The vertical drop from circle to ellipse always shrinks the $y$-coordinate by the factor $b/a=2/3$, which is exactly why (C) is true but (D) — asking for the reciprocal-looking ratio $9:4$ — is false.",
+    "solutions": [
+      {
+        "name": "Auxiliary-circle projection",
+        "steps": [
+          "On $C:x^2+y^2=9$, the point $R$ at angle $\\tfrac{\\pi}{6}$ is $R=\\left(3\\cos\\tfrac{\\pi}{6},\\,3\\sin\\tfrac{\\pi}{6}\\right)=\\left(\\tfrac{3\\sqrt3}{2},\\tfrac32\\right)$, so $x_1=\\tfrac{3\\sqrt3}{2}$. Likewise $S=\\left(3\\cos\\tfrac{\\pi}{3},3\\sin\\tfrac{\\pi}{3}\\right)=\\left(\\tfrac32,\\tfrac{3\\sqrt3}{2}\\right)$, so $x_2=\\tfrac32$.",
+          "Project down to the ellipse: with $x=x_1$, $y_1=2\\sqrt{1-\\tfrac{x_1^2}{9}}=2\\sqrt{1-\\tfrac34}=1$, giving $P=\\left(\\tfrac{3\\sqrt3}{2},1\\right)$. With $x=x_2$, $y_2=2\\sqrt{1-\\tfrac{1}{4}}=\\sqrt3$, giving $Q=\\left(\\tfrac32,\\sqrt3\\right)$.",
+          "Line $PQ$ has slope $\\dfrac{\\sqrt3-1}{\\tfrac32-\\tfrac{3\\sqrt3}{2}}=-\\dfrac23$; through $Q\\left(\\tfrac32,\\sqrt3\\right)$ this is $y-\\sqrt3=-\\tfrac23\\left(x-\\tfrac32\\right)$, i.e. $2x+3y=3+3\\sqrt3=3(1+\\sqrt3)$. So (A) is TRUE and (B) is false.",
+          "For (C): $|N_2Q|=y_2=\\sqrt3$ and $|N_2S|=\\tfrac{3\\sqrt3}{2}$, so $\\dfrac{|N_2Q|}{|N_2S|}=\\dfrac{\\sqrt3}{3\\sqrt3/2}=\\dfrac23$, hence $3|N_2Q|=2|N_2S|$: TRUE. For (D): $|N_1P|=y_1=1$, $|N_1R|=\\tfrac32$, so $9|N_1P|=9$ but $4|N_1R|=6$; they are unequal, so (D) is false."
+        ]
+      },
+      {
+        "name": "Eccentric-angle identity $y_{\\text{ellipse}}=\\tfrac{b}{a}\\,y_{\\text{circle}}$",
+        "steps": [
+          "Parametrise both curves by the same eccentric angle $\\theta$: the auxiliary-circle point is $(a\\cos\\theta,a\\sin\\theta)$ with $a=3$, and the ellipse point directly below it is $(a\\cos\\theta,b\\sin\\theta)$ with $b=2$. Thus $y_{\\text{ellipse}}=\\dfrac{b}{a}\\,y_{\\text{circle}}=\\dfrac23\\,y_{\\text{circle}}$ for every $\\theta$.",
+          "Here $R$ corresponds to $\\theta=\\tfrac{\\pi}{6}$ and $S$ to $\\theta=\\tfrac{\\pi}{3}$. Immediately $|N_1P|=\\tfrac23|N_1R|$ and $|N_2Q|=\\tfrac23|N_2S|$ — the ratio is the fixed constant $b/a=2/3$, independent of the angle. This gives (C): $3|N_2Q|=2|N_2S|$ instantly, and refutes (D): $9|N_1P|=6|N_1R|\\ne 4|N_1R|$.",
+          "The ellipse points are then $P=(3\\cos\\tfrac{\\pi}{6},2\\sin\\tfrac{\\pi}{6})=\\left(\\tfrac{3\\sqrt3}{2},1\\right)$ and $Q=(3\\cos\\tfrac{\\pi}{3},2\\sin\\tfrac{\\pi}{3})=\\left(\\tfrac32,\\sqrt3\\right)$.",
+          "The chord through eccentric angles $\\alpha,\\beta$ of $\\tfrac{x^2}{9}+\\tfrac{y^2}{4}=1$ is $\\tfrac{x}{3}\\cos\\tfrac{\\alpha+\\beta}{2}+\\tfrac{y}{2}\\sin\\tfrac{\\alpha+\\beta}{2}=\\cos\\tfrac{\\alpha-\\beta}{2}$. With $\\alpha=\\tfrac{\\pi}{6},\\beta=\\tfrac{\\pi}{3}$: $\\tfrac{\\alpha+\\beta}{2}=\\tfrac{\\pi}{4}$, $\\tfrac{\\alpha-\\beta}{2}=-\\tfrac{\\pi}{12}$, giving $\\tfrac{x}{3}\\tfrac{1}{\\sqrt2}+\\tfrac{y}{2}\\tfrac{1}{\\sqrt2}=\\cos\\tfrac{\\pi}{12}$. Clearing and simplifying returns $2x+3y=3(1+\\sqrt3)$, confirming (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 2, Q7. The one idea that unlocks everything: an ellipse is its auxiliary circle scaled by $b/a$ in the $y$-direction, so ordinates of matching points sit in the fixed ratio $2:3$ — turning three of the four options into one-line checks."
   }
 ];

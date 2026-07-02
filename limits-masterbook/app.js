@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['floor','frac','signum','modulus','invtrig','log','trig','indeterminate','squeeze','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['floor','frac','signum','modulus','invtrig','log','trig','indeterminate','squeeze','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     floor:        { glyph:'⌊x⌋',  blurb:'Where the graph leaps, the limit hides. Master the jump at every integer.' },
     frac:         { glyph:'{x}',  blurb:'The sawtooth that never rests — fractional parts that refuse to vanish.' },
@@ -17,6 +17,7 @@
     indeterminate:{ glyph:'1^∞',  blurb:'0^0, ∞−∞, ∞^0 — the forms that hide their answer until you force them.' },
     squeeze:      { glyph:'Σ',    blurb:'When termwise intuition lies, only a global bound tells the truth.' },
     hybrid:       { glyph:'∞',    blurb:'The capstones: three or more worlds fused into a single pitiless limit.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

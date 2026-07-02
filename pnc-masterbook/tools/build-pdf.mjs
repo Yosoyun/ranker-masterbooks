@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['fundamental','permutations','combinations','circular','distributions','inclusionexclusion','identities','geomcount','lattice','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { fundamental:'×+', permutations:'ₙPᵣ', combinations:'ₙCᵣ', circular:'↻', distributions:'★|', inclusionexclusion:'∪∩', identities:'ΣC', geomcount:'△ₙ', lattice:'↗', hybrid:'⊕' };
+const THEME_ORDER = ['fundamental','permutations','combinations','circular','distributions','inclusionexclusion','identities','geomcount','lattice','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { fundamental:'×+', permutations:'ₙPᵣ', combinations:'ₙCᵣ', circular:'↻', distributions:'★|', inclusionexclusion:'∪∩', identities:'ΣC', geomcount:'△ₙ', lattice:'↗', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   fundamental:'Multiply for a chain of choices, add for a split into cases — and bijections.',
   permutations:'Order matters — arrangements, repetition, identical objects, forbidden spots.',
@@ -25,6 +25,7 @@ const BLURB = {
   geomcount:'Lines, triangles, diagonals & regions from n points in general position.',
   lattice:'Monotone grid walks counted by C(m+n,n); through or around a point.',
   hybrid:'Arrangements, selections, inclusion–exclusion and geometric counting, fused.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

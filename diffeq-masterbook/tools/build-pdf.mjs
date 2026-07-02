@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['formation','separable','redsep','homogeneous','redhom','linear','ivp','geometry','applications','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { formation:'dⁿy', separable:'f·g', redsep:'ax+by', homogeneous:'y/x', redhom:'X,Y', linear:'y′+Py', ivp:'y(x₀)', geometry:'ψ', applications:'dN/dt', hybrid:'⊕' };
+const THEME_ORDER = ['formation','separable','redsep','homogeneous','redhom','linear','ivp','geometry','applications','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { formation:'dⁿy', separable:'f·g', redsep:'ax+by', homogeneous:'y/x', redhom:'X,Y', linear:'y′+Py', ivp:'y(x₀)', geometry:'ψ', applications:'dN/dt', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   formation:'Eliminate arbitrary constants to form the ODE; order and degree.',
   separable:'Separate the variables and integrate — the most direct method.',

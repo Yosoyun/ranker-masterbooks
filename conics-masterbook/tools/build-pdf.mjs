@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['circle','parabola','ellipse','hyperbola','tangents','polepolar','generalconic','eccentricity','locus','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { circle:'x²+y²', parabola:'y²=4ax', ellipse:'x²/a²', hyperbola:'x²−y²', tangents:'T=0', polepolar:'T=S₁', generalconic:'B²−4AC', eccentricity:'e', locus:'P(t)', hybrid:'⊕' };
+const THEME_ORDER = ['circle','parabola','ellipse','hyperbola','tangents','polepolar','generalconic','eccentricity','locus','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { circle:'x²+y²', parabola:'y²=4ax', ellipse:'x²/a²', hyperbola:'x²−y²', tangents:'T=0', polepolar:'T=S₁', generalconic:'B²−4AC', eccentricity:'e', locus:'P(t)', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   circle:'Equation, tangents & normals, chord of contact, family & radical axis.',
   parabola:'Focal chords, parametric points, tangents/normals, the reflection law.',
@@ -25,6 +25,7 @@ const BLURB = {
   eccentricity:'Focus–directrix & eccentricity — focal distances, latus rectum.',
   locus:'Loci & parametric problems — midpoints, feet of perpendiculars, optima.',
   hybrid:'The four conics, the T/pole–polar machinery & the general equation, fused.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

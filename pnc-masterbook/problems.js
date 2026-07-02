@@ -3917,5 +3917,1081 @@ window.PROBLEMS = [
       }
     ],
     "remark": "**Insight.** This welds geometric path-counting to inclusion–exclusion. The whole difficulty lives in the overlap term: because  $P$  and  $Q$  are comparable on the staircase (one is reachable from the other), a path can hit both, so the intersection is nonzero and the add-back is essential. Had the two potholes been incomparable (neither up-right of the other), the add-back would vanish — recognizing which case you are in is the conceptual hinge."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Ordered pairs with a prescribed LCM",
+    "difficulty": 3,
+    "task": "Find the number of ordered pairs.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "8"
+    },
+    "tags": [
+      "counting ordered pairs",
+      "LCM / number theory",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "If $r,s,t$ are prime numbers and $p,q$ are positive integers such that $\\operatorname{lcm}(p,q)=r^2\\,t^4\\,s^2$, then the number of ordered pairs $(p,q)$ is\n\n(A) $252$\n\n(B) $254$\n\n(C) $225$\n\n(D) $224$",
+    "answer": "$\\boxed{225}$ (C)",
+    "trap": "Students count the pairs of exponents where the *maximum* of the two exponents equals $n$ as though every split were allowed independently for $p$ and $q$, and forget that for each prime the pair $(\\text{exp in }p,\\text{exp in }q)$ must hit the max at least once. Miscounting this constraint as $ (n+1)^2 $ or $2^n$ instead of $2n+1$ is the classic slip.",
+    "solutions": [
+      {
+        "name": "Per-prime exponent count $ (2n+1) $",
+        "steps": [
+          "Since $\\operatorname{lcm}(p,q)=r^2 t^4 s^2$, both $p$ and $q$ can only use the primes $r,t,s$, so write $p=r^{a_1}t^{a_2}s^{a_3}$ and $q=r^{b_1}t^{b_2}s^{b_3}$.",
+          "The lcm takes the *maximum* exponent for each prime, so the conditions decouple prime by prime: $\\max(a_1,b_1)=2$, $\\max(a_2,b_2)=4$, $\\max(a_3,b_3)=2$.",
+          "For a single prime with required maximum $n$, count pairs $(a,b)$ with $\\max(a,b)=n$, $0\\le a,b\\le n$. Either $a=n$ (then $b$ is any of $0,\\dots,n$: $n+1$ choices) or $b=n$ (another $n+1$), minus the double-counted case $a=b=n$: total $2(n+1)-1=2n+1$.",
+          "Apply to each prime: $r$ gives $2(2)+1=5$, $t$ gives $2(4)+1=9$, $s$ gives $2(2)+1=5$.",
+          "The three choices are independent, so multiply: $5\\times 9\\times 5=225$.",
+          "Hence the number of ordered pairs is $225$, option (C)."
+        ]
+      },
+      {
+        "name": "Complementary count (total minus $\\max<n$)",
+        "steps": [
+          "For one prime with target max $n$, the exponent pair $(a,b)$ lives in the grid $\\{0,1,\\dots,n\\}^2$, which has $(n+1)^2$ points.",
+          "We must exclude the pairs where the maximum is strictly less than $n$, i.e. $a\\le n-1$ and $b\\le n-1$: that is an $n\\times n$ sub-grid with $n^2$ points.",
+          "So the count with $\\max(a,b)=n$ is $(n+1)^2-n^2=2n+1$, matching the direct count.",
+          "For the primes $r,t,s$ this gives $(2\\cdot2+1),(2\\cdot4+1),(2\\cdot2+1)=5,9,5$.",
+          "Multiplying the independent factors: $5\\times9\\times5=225$, so the answer is (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q8. The whole problem collapses once you realize the lcm condition is separable across primes — the factor $2n+1$ is exactly the number of ways two exponents can attain a shared maximum."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Dictionary rank of COCHIN",
+    "difficulty": 3,
+    "task": "Find how many words precede it.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "48"
+    },
+    "tags": [
+      "permutations",
+      "dictionary/rank ordering",
+      "arrangements with repetition",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "The letters of the word COCHIN are permuted and all the permutations are arranged in alphabetical order as in an English dictionary. The number of words that appear before the word COCHIN is\n\n(A) $360$\n\n(B) $192$\n\n(C) $96$\n\n(D) $48$",
+    "answer": "$\\boxed{96}$ (C)",
+    "trap": "The word has two identical C's. Beginners either (i) forget that the two C's are indistinguishable and inflate their block counts by a factor of $2$, or (ii) after fixing the first letter as C they wrongly treat the second C as still available for the second position — leading them to over- or under-count the words starting with 'CO…'. The clean fix: once you commit to first letter C, only one C remains for later slots.",
+    "solutions": [
+      {
+        "name": "Rank by fixing leading letters",
+        "steps": [
+          "Sort the six letters of COCHIN alphabetically: $C, C, H, I, N, O$ (C appears twice).",
+          "Every word before COCHIN must start with C (any word starting with a letter earlier than C is impossible, and words starting with $H,I,N,O$ come later). So fix the first letter as $C$; the remaining pool is $\\{C,H,I,N,O\\}$ — five distinct letters.",
+          "COCHIN has second letter O. Words starting 'C?' with second letter alphabetically before O come first. The available second letters (from $\\{C,H,I,N,O\\}$) that precede O are $C,H,I,N$ — that is $4$ choices.",
+          "For each such choice of second letter, the remaining $4$ letters fill the last four positions freely in $4!=24$ ways, all of which precede COCHIN.",
+          "Count of words starting 'C' then a letter $<O$: $4\\times 24=96$.",
+          "Now consider words starting 'CO…'. The next letters of COCHIN are $C,H,I,N$; the smallest arrangement of the remaining letters $\\{C,H,I,N\\}$ after 'CO' is exactly 'CHIN', giving 'COCHIN' — no arrangement of $\\{C,H,I,N\\}$ is alphabetically smaller than $CHIN$. So no 'CO…' word precedes COCHIN.",
+          "Total words before COCHIN: $96+0=96$, option (C)."
+        ]
+      },
+      {
+        "name": "Positional rank formula",
+        "steps": [
+          "Alphabet order of the multiset: $C(2), H, I, N, O$. Process COCHIN position by position, at each step counting permutations that would place a smaller letter here (with the remaining multiset).",
+          "Position 1 = C: letters strictly before C: none, contributes $0$.",
+          "Position 2 = O (remaining letters $\\{C,H,I,N,O\\}$): letters before O are $C,H,I,N$ ($4$ of them, all distinct here); for each, the other $4$ letters arrange in $4!/1!=24$ ways (no repeats remain). Contribution $4\\times 24=96$.",
+          "Position 3 = C (remaining $\\{C,H,I,N\\}$): letters before C: none, contributes $0$.",
+          "Positions 4,5,6 = H,I,N in increasing order with the remaining letters already the smallest available each time, so each contributes $0$.",
+          "The rank (number of words strictly before COCHIN) is the sum $0+96+0+0+0+0=96$.",
+          "Hence $96$ words appear before COCHIN, option (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q48. A dictionary-rank problem whose only subtlety is the repeated C — track the *remaining* multiset at each step and the two solution routes agree at $96$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Four Faces of $\\text{ENDEANOEL}$",
+    "difficulty": 4,
+    "task": "Match each count in Column I to its value in Column II.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "21"
+    },
+    "tags": [
+      "permutations",
+      "arrangements with repetition",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Consider all possible permutations of the letters of the word $\\text{ENDEANOEL}$ (nine letters, with the letter $E$ appearing three times and $N$ appearing twice). Match each statement in Column I with its value in Column II.\n\nColumn I:\n(A) The number of permutations containing the word $\\text{ENDEA}$ is\n(B) The number of permutations in which the letter $E$ occurs in the first and the last positions is\n(C) The number of permutations in which none of the letters $D, L, N$ occurs in the last five positions is\n(D) The number of permutations in which the letters $A, E, O$ occur only in odd positions is\n\nColumn II:\n(p) $5!$\n(q) $2\\times 5!$\n(r) $7\\times 5!$\n(s) $21\\times 5!$",
+    "answer": "$\\text{(A)}\\to\\text{(p)},\\ \\text{(B)}\\to\\text{(s)},\\ \\text{(C)}\\to\\text{(q)},\\ \\text{(D)}\\to\\text{(q)}$",
+    "trap": "The word has hidden repetition: $E$ appears three times and $N$ twice. A student who treats all nine letters as distinct gets (A) right by luck but overcounts (B), (C) and (D) by exactly the factor of the repeated letters they forget to divide out — the whole point of the question is which repeats survive into each restricted region.",
+    "solutions": [
+      {
+        "name": "Direct block-and-slot counting",
+        "steps": [
+          "First inventory the letters of $\\text{ENDEANOEL}$: the multiset is $\\{E,E,E,N,N,A,D,O,L\\}$ — nine letters with $E$ thrice and $N$ twice.",
+          "(A) Glue $\\text{ENDEA}$ into a single block. This block consumes two of the three $E$'s, one $N$, and the single $D$ and $A$. What is left to arrange alongside the block is $\\{N,O,E,L\\}$ — four distinct letters. So we permute $1$ block $+4$ letters $=5$ units, all now distinct, in $5! = 120 = 5!$ ways. Hence $\\text{(A)}\\to\\text{(p)}$.",
+          "(B) Fix an $E$ in position $1$ and an $E$ in position $9$. Two $E$'s are used up, leaving the multiset $\\{E,N,N,A,D,O,L\\}$ — seven letters with $N$ twice — to fill the middle seven slots. That is $\\dfrac{7!}{2!}=\\dfrac{5040}{2}=2520$. Since $2520 = 21\\times 120 = 21\\times 5!$, we get $\\text{(B)}\\to\\text{(s)}$.",
+          "(C) 'None of $D,L,N$ in the last five positions' forces $D,L,N,N$ (four letters) into the first four positions, and the remaining $\\{E,E,E,A,O\\}$ into the last five. First four: $\\dfrac{4!}{2!}=12$ (two $N$'s); last five: $\\dfrac{5!}{3!}=20$ (three $E$'s). Product $=12\\times 20 = 240 = 2\\times 120 = 2\\times 5!$, so $\\text{(C)}\\to\\text{(q)}$.",
+          "(D) There are exactly five odd positions $\\{1,3,5,7,9\\}$ and four even ones. Put $\\{A,E,E,E,O\\}$ in the odd slots: $\\dfrac{5!}{3!}=20$. Put the remaining $\\{N,N,D,L\\}$ in the even slots: $\\dfrac{4!}{2!}=12$. Product $=20\\times 12 = 240 = 2\\times 5!$, so $\\text{(D)}\\to\\text{(q)}$."
+        ]
+      },
+      {
+        "name": "Ratio-to-total bookkeeping",
+        "steps": [
+          "The total number of distinct arrangements of $\\text{ENDEANOEL}$ is $T=\\dfrac{9!}{3!\\,2!}=\\dfrac{362880}{12}=30240$; use it as a sanity anchor for each restricted count.",
+          "(A) Requiring the exact adjacent string $\\text{ENDEA}$ is a hard positional constraint, not a mere fraction of $T$: the block behaves as one super-letter, so the count is the arrangements of $\\{[\\text{ENDEA}],N,O,E,L\\}$, all distinct, $=5!=120$. Confirms $\\text{(A)}\\to\\text{(p)}$.",
+          "(B) The fraction of all arrangements with an $E$ at both ends: probability that position $1$ is $E$ is $\\tfrac{3}{9}$, and given that, position $9$ is $E$ is $\\tfrac{2}{8}$. So the count is $T\\cdot\\tfrac{3}{9}\\cdot\\tfrac{2}{8}=30240\\cdot\\tfrac{1}{12}=2520=21\\times 5!$. Confirms $\\text{(B)}\\to\\text{(s)}$.",
+          "(C) Independently permuting the two forced groups gives $\\dfrac{4!}{2!}\\cdot\\dfrac{5!}{3!}=12\\cdot 20=240=2\\times 5!$; note $240/30240=1/126$, matching $\\binom{9}{4}^{-1}$ times the internal arrangements — a second consistency check. Confirms $\\text{(C)}\\to\\text{(q)}$.",
+          "(D) By the identical odd/even split, $\\dfrac{5!}{3!}\\cdot\\dfrac{4!}{2!}=20\\cdot 12=240=2\\times 5!$. Confirms $\\text{(D)}\\to\\text{(q)}$.",
+          "Assembled: $\\text{(A)}\\to\\text{(p)},\\ \\text{(B)}\\to\\text{(s)},\\ \\text{(C)}\\to\\text{(q)},\\ \\text{(D)}\\to\\text{(q)}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q21. The engine of every part is the same: once letters are frozen into a region, divide by the factorials of only those repeats that actually land there — the three $E$'s and two $N$'s move between regions and that is what separates $5!$ from $21\\times 5!$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Seven Digits, Sum Ten, Alphabet $\\{1,2,3\\}$",
+    "difficulty": 3,
+    "task": "Find how many such seven-digit integers exist.",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "22"
+    },
+    "tags": [
+      "distributions",
+      "counting with restrictions",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "The number of seven-digit integers, with the sum of the digits equal to $10$ and formed by using the digits $1, 2$ and $3$ only, is\n\n(A) $55$\n(B) $66$\n(C) $77$\n(D) $88$",
+    "answer": "$\\boxed{77}$ — option (C)",
+    "trap": "The digits are drawn from $\\{1,2,3\\}$, so every position already contributes at least $1$; the 'extra' to distribute is only $10-7=3$, not $10$. Students who set up $x_1+\\cdots+x_7=10$ with $x_i\\ge 0$ forget both the lower bound $1$ and the upper bound $3$ (each digit can absorb at most $2$ extra), and overcount badly.",
+    "solutions": [
+      {
+        "name": "Direct enumeration of digit-type profiles",
+        "steps": [
+          "Let the seven digits contain $a$ ones, $b$ twos and $c$ threes, so $a+b+c=7$ (seven positions) and $a+2b+3c=10$ (sum is ten).",
+          "Subtract the first equation from the second: $(a+2b+3c)-(a+b+c)=b+2c=3$. So we need non-negative $b,c$ with $b+2c=3$.",
+          "That gives only two profiles: $c=0,\\ b=3$ (then $a=4$), and $c=1,\\ b=1$ (then $a=5$).",
+          "Profile $(a,b,c)=(4,3,0)$: arrangements of the multiset with four $1$'s and three $2$'s $=\\dfrac{7!}{4!\\,3!}=\\binom{7}{4}=35$.",
+          "Profile $(a,b,c)=(5,1,1)$: arrangements with five $1$'s, one $2$, one $3$ $=\\dfrac{7!}{5!\\,1!\\,1!}=7\\times 6=42$.",
+          "Every arrangement is automatically a genuine seven-digit integer (no digit is $0$, so there is no leading-zero worry). Total $=35+42=77$, option (C)."
+        ]
+      },
+      {
+        "name": "Bounded stars-and-bars via inclusion–exclusion",
+        "steps": [
+          "Write each digit as $d_i = 1 + x_i$ where $x_i\\in\\{0,1,2\\}$ is the 'excess' over the minimum digit $1$.",
+          "The sum condition $\\sum_{i=1}^{7} d_i = 10$ becomes $\\sum_{i=1}^{7} x_i = 10-7 = 3$, with each $x_i \\le 2$.",
+          "Count non-negative solutions of $x_1+\\cdots+x_7=3$ ignoring the upper bound: $\\binom{3+7-1}{7-1}=\\binom{9}{6}=\\binom{9}{3}=84$.",
+          "Now subtract solutions where some $x_i\\ge 3$. Since the total is only $3$, a violation means one variable equals exactly $3$ and the rest are $0$: there are $7$ such solutions (one for each position).",
+          "No two variables can simultaneously reach $3$ (that would need total $\\ge 6>3$), so inclusion–exclusion stops after one term.",
+          "Valid count $=84-7=77$, option (C) — matching the enumeration above."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 1, Q22. Whenever the alphabet has a positive floor, shift each variable down to its minimum first; the problem collapses from 'sum $10$ over seven digits' to distributing just $3$ units of slack under a small cap."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Unordered Pairs of Disjoint Subsets of $\\{1,2,3,4\\}$",
+    "difficulty": 3,
+    "task": "Count the unordered pairs.",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "21"
+    },
+    "tags": [
+      "subsets",
+      "disjoint sets",
+      "counting unordered pairs",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Let $S=\\{1,2,3,4\\}$. The total number of unordered pairs of disjoint subsets of $S$ is equal to\n\n(A) $25$ · (B) $34$ · (C) $42$ · (D) $41$",
+    "answer": "$\\boxed{41}$ \\; (D)",
+    "trap": "The clean count $3^n$ is for ORDERED pairs $(A,B)$. Halving to make them unordered double-counts nothing except the single self-paired case $A=B=\\varnothing$ (the only pair with $A=B$, since disjointness forces $A\\cap B=\\varnothing$, i.e. equality is possible only when both are empty). You must pull that one fixed point out before dividing by $2$, then add it back — forgetting it gives $40$, and blindly writing $3^4/2$ gives the non-integer $40.5$.",
+    "solutions": [
+      {
+        "name": "Assign each element to one of three regions",
+        "steps": [
+          "For an ordered pair $(A,B)$ of disjoint subsets, every element of $S$ lands in exactly one of three places: in $A$ only, in $B$ only, or in neither.",
+          "These three choices are independent across the $4$ elements, so the number of ordered disjoint pairs is $3^4 = 81$.",
+          "We want UNORDERED pairs, so $(A,B)$ and $(B,A)$ should be identified. Pairs with $A\\neq B$ come in $2$ ordered versions; pairs with $A=B$ come in just $1$.",
+          "Disjointness $A\\cap B=\\varnothing$ combined with $A=B$ forces $A=B=\\varnothing$ — exactly ONE ordered pair, namely $(\\varnothing,\\varnothing)$.",
+          "So of the $81$ ordered pairs, $1$ is self-paired and the other $80$ split into $40$ unordered pairs.",
+          "Total unordered pairs $=\\dfrac{81-1}{2}+1 = 40+1 = \\boxed{41}$."
+        ]
+      },
+      {
+        "name": "Sum over the size of $A$",
+        "steps": [
+          "Count ordered pairs by first choosing $A$, then choosing $B\\subseteq S\\setminus A$.",
+          "If $|A|=k$, there are $\\binom{4}{k}$ choices for $A$, and $B$ may be any subset of the remaining $4-k$ elements, giving $2^{4-k}$ choices for $B$.",
+          "Ordered total $=\\sum_{k=0}^{4}\\binom{4}{k}2^{4-k} = \\binom40 2^4+\\binom41 2^3+\\binom42 2^2+\\binom43 2^1+\\binom44 2^0.$",
+          "$=16+32+24+8+1 = 81,$ which is just $(2+1)^4=3^4$ by the binomial theorem — confirming the region count.",
+          "Now pass to unordered pairs. The only ordered pair fixed under swapping is $(\\varnothing,\\varnothing)$; all $80$ others pair up.",
+          "Unordered total $=\\dfrac{81-1}{2}+1=41.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 2, Q21. The three-region ($A$ / $B$ / neither) encoding turns \"pairs of disjoint subsets\" into a plain $3^n$ count; the entire difficulty is the ordered-to-unordered correction around the lone fixed point $(\\varnothing,\\varnothing)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "5 Coloured Balls to 3 Persons, Nobody Empty-Handed",
+    "difficulty": 3,
+    "task": "Count the distributions.",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "41"
+    },
+    "tags": [
+      "distributions",
+      "onto functions",
+      "inclusion-exclusion",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "The total number of ways in which $5$ balls of different colours can be distributed among $3$ persons so that each person gets at least one ball is\n\n(A) $75$ · (B) $150$ · (C) $210$ · (D) $243$",
+    "answer": "$\\boxed{150}$ \\; (B)",
+    "trap": "The balls are DISTINCT but the persons are also distinct, so this is the number of ONTO functions from a $5$-set to a $3$-set — not a partition of $5$ into $3$ labelled blocks done by hand, and certainly not $\\binom{5}{1}\\binom{4}{1}\\cdots$. A tempting wrong route is \"pick the split type $3{+}1{+}1$ or $2{+}2{+}1$, count colour choices, then assign persons\" but forgetting to account for identical block sizes (dividing by the symmetry among equal-size groups BEFORE multiplying by $3!$) inflates the count. Also $3^5=243$ counts distributions where someone may get nothing — you must subtract those.",
+    "solutions": [
+      {
+        "name": "Inclusion–exclusion on the person who is skipped",
+        "steps": [
+          "Without the \"at least one\" rule, each of the $5$ distinct balls independently goes to any of the $3$ persons: $3^5=243$ total distributions.",
+          "Subtract those in which some chosen person gets nothing. If a fixed person is excluded, the balls go to the other $2$ persons: $2^5=32$ ways, and there are $\\binom31=3$ persons to exclude, removing $3\\cdot 32=96$.",
+          "But distributions where TWO persons are excluded (all balls to one person) were subtracted twice, so add them back: $\\binom32\\cdot 1^5=3\\cdot1=3$.",
+          "By inclusion–exclusion the number of onto distributions is $3^5-\\binom31 2^5+\\binom32 1^5 = 243-96+3 = \\boxed{150}$."
+        ]
+      },
+      {
+        "name": "Casework on the group-size partition of $5$",
+        "steps": [
+          "Each person gets $\\ge1$ ball and the totals sum to $5$, so the only size patterns are $3{+}1{+}1$ and $2{+}2{+}1$.",
+          "Pattern $3{+}1{+}1$: choose which $3$ of the $5$ colours form the big group in $\\binom53=10$ ways; the remaining $2$ colours are the two singletons. This makes UNLABELLED groups of sizes $\\{3,1,1\\}$ — with two blocks of equal size $1$ the two singletons are interchangeable, so $\\binom53\\cdot\\binom21\\cdot\\binom11/2!=10\\cdot1=10$ unordered groupings.",
+          "Assign these $3$ distinct groups to the $3$ distinct persons in $3!=6$ ways: $10\\cdot 6=60$.",
+          "Pattern $2{+}2{+}1$: choose the singleton colour in $\\binom51=5$ ways; split the remaining $4$ colours into two unordered pairs in $\\dfrac{1}{2!}\\binom42\\binom22=\\dfrac{6}{2}=3$ ways, giving $5\\cdot3=15$ unordered groupings.",
+          "Assign to the $3$ persons in $3!=6$ ways: $15\\cdot 6=90$.",
+          "Total $=60+90=150$, matching the inclusion–exclusion count."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2012, Paper 1, Q41. \"Distinct objects into distinct boxes, none empty\" is exactly the surjection count $3^5-\\binom31 2^5+\\binom32 1^5=150$; the casework route works too but only if you divide out the symmetry of equal-size groups before labelling the persons."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Binary strings with no two zeros — the value of $b_6$",
+    "difficulty": 3,
+    "task": "Find the value of $b_6$.",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "49"
+    },
+    "tags": [
+      "counting",
+      "recurrence",
+      "Fibonacci",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "Let $a_n$ denote the number of all $n$-digit positive integers formed by the digits $0$, $1$ or both, such that no two consecutive digits in them are $0$. Let $b_n$ be the number of such $n$-digit integers ending with the digit $1$, and $c_n$ be the number of such $n$-digit integers ending with the digit $0$.\n\nThe value of $b_6$ is\n$$\\text{(A) }7 \\qquad \\text{(B) }8 \\qquad \\text{(C) }9 \\qquad \\text{(D) }11$$",
+    "answer": "$\\boxed{8}$ — option (B)",
+    "trap": "Because these are $n$-digit *positive* integers, the leading digit can never be $0$. A student who forgets this counts strings like $0110$ as valid and inflates every count. The leading-digit rule is exactly what forces $c_1=0$ and makes the recurrence start correctly.",
+    "solutions": [
+      {
+        "name": "Two-way recurrence on the last digit",
+        "steps": [
+          "Split every valid string by its final digit: $a_n=b_n+c_n$, where $b_n$ end in $1$ and $c_n$ end in $0$.",
+          "Append a $1$: any valid $(n-1)$-digit string stays valid (a $1$ never creates a consecutive-zero pair). Hence $b_n=a_{n-1}$.",
+          "Append a $0$: this is legal only if the previous digit is $1$, i.e. only onto strings counted by $b_{n-1}$. Hence $c_n=b_{n-1}$.",
+          "Base case $n=1$: the only valid $1$-digit positive integer is $1$ (a leading $0$ is forbidden), so $b_1=1$, $c_1=0$, $a_1=1$.",
+          "Now build up. $n=2$: $b_2=a_1=1$, $c_2=b_1=1$, $a_2=2$.",
+          "$n=3$: $b_3=a_2=2$, so $a_3=b_3+c_3=2+b_2=2+1=3$.",
+          "$n=4$: $b_4=a_3=3$, $a_4=3+c_4=3+b_3=3+2=5$.",
+          "$n=5$: $b_5=a_4=5$, $a_5=5+c_5=5+b_4=5+3=8$.",
+          "$n=6$: $b_6=a_5=8$. Answer (B)."
+        ]
+      },
+      {
+        "name": "Fibonacci shortcut via $a_n=a_{n-1}+a_{n-2}$",
+        "steps": [
+          "Combine the two relations: $a_n=b_n+c_n=a_{n-1}+b_{n-1}=a_{n-1}+a_{n-2}$, the Fibonacci recurrence.",
+          "With $a_1=1$ and $a_2=2$ (the strings $11$ and $10$), the sequence is $a_1,a_2,a_3,\\dots=1,2,3,5,8,13,\\dots$",
+          "Since $b_n=a_{n-1}$, we get $b_6=a_5$.",
+          "Read off $a_5=8$, so $b_6=8$. Answer (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2012, Paper 2, Q49. The whole paragraph is the Fibonacci sequence in disguise — recognising that $b_n=a_{n-1}$ collapses the two-variable system to a single one-line recurrence."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Which relation among $a_n,b_n,c_n$ is correct?",
+    "difficulty": 3,
+    "task": "Identify the correct statement.",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "50"
+    },
+    "tags": [
+      "counting",
+      "recurrence",
+      "Fibonacci",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "Let $a_n$ denote the number of all $n$-digit positive integers formed by the digits $0$, $1$ or both, such that no two consecutive digits in them are $0$. Let $b_n$ be the number of such $n$-digit integers ending with the digit $1$, and $c_n$ be the number of such $n$-digit integers ending with the digit $0$.\n\nWhich of the following is correct?\n$$\\text{(A) }a_{17}=a_{16}+a_{15} \\qquad \\text{(B) }c_{17}\\neq c_{16}+c_{15}$$\n$$\\text{(C) }b_{17}\\neq b_{16}+c_{16} \\qquad \\text{(D) }a_{17}=c_{17}+b_{16}$$",
+    "answer": "$\\boxed{\\text{(A)}}\\;\\; a_{17}=a_{16}+a_{15}$",
+    "trap": "The tempting distractor is (D): $a_{17}=b_{17}+c_{17}$ is a true identity, so a hurried reader misreads (D) as that split. But (D) writes $c_{17}+b_{16}$ (note the mismatched index $16$), which is generally false. Every option must be tested against the *exact* subscripts, not the identity you expect to see.",
+    "solutions": [
+      {
+        "name": "Derive the master recurrences, then test each option",
+        "steps": [
+          "From the last-digit split: $b_n=a_{n-1}$ (append $1$ to any valid string) and $c_n=b_{n-1}$ (append $0$ only after a $1$), with $a_n=b_n+c_n$.",
+          "Chain these: $a_n=b_n+c_n=a_{n-1}+b_{n-1}=a_{n-1}+a_{n-2}$. So $a_n$ obeys the Fibonacci recurrence — statement (A) $a_{17}=a_{16}+a_{15}$ is TRUE.",
+          "Check (B): since $c_n=b_{n-1}=a_{n-2}$, and $a$ is Fibonacci, $c_n=c_{n-1}+c_{n-2}$ as well. Thus $c_{17}=c_{16}+c_{15}$, which contradicts the strict inequality in (B). (B) is FALSE.",
+          "Check (C): $b_n=a_{n-1}=a_{n-2}+a_{n-3}=b_{n-1}+b_{n-2}=b_{n-1}+c_{n-1}$ (using $c_{n-1}=b_{n-2}$). So $b_{17}=b_{16}+c_{16}$ actually holds with equality, contradicting the $\\neq$ in (C). (C) is FALSE.",
+          "Check (D): the genuine identity is $a_{17}=b_{17}+c_{17}$. But (D) claims $a_{17}=c_{17}+b_{16}$, i.e. it replaces $b_{17}$ by $b_{16}$. Since $b_{17}=a_{16}\\neq a_{15}=b_{16}$, (D) is FALSE.",
+          "Only (A) survives."
+        ]
+      },
+      {
+        "name": "Numerical spot-check with small indices",
+        "steps": [
+          "Build the table from the base cases $a_1=1,\\ a_2=2$: $a_n=1,2,3,5,8,13,21,\\dots$ (Fibonacci), with $b_n=a_{n-1}$ and $c_n=a_{n-2}$.",
+          "So $b_n=1,1,2,3,5,8,\\dots$ and $c_n=0,1,1,2,3,5,\\dots$ for $n=1,2,3,\\dots$",
+          "(A) pattern: $a_5=a_4+a_3\\Rightarrow 8=5+3$ — holds, and the same additive law scales to indices $15,16,17$. TRUE.",
+          "(B) pattern: $c_5=c_4+c_3\\Rightarrow 3=2+1$ — the $c$ sequence is also Fibonacci, so the claimed inequality fails. FALSE.",
+          "(C) pattern: $b_5=b_4+c_4\\Rightarrow 5=3+2$ — equality holds, so the $\\neq$ fails. FALSE.",
+          "(D) pattern: test at the matching indices $a_5$ vs $c_5+b_4$: $a_5=8$ but $c_5+b_4=3+3=6\\neq8$. FALSE.",
+          "The small-case behaviour confirms only (A) is correct."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2012, Paper 2, Q50. The point of the question is that $a_n$, $b_n$ and $c_n$ are all shifted copies of one Fibonacci sequence; the wrong options survive only if you slip on a subscript."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Blue Edges, Red Diagonals",
+    "difficulty": 2,
+    "task": "Find the value of $n$.",
+    "pyq": {
+      "year": 2014,
+      "paper": "1",
+      "qno": "52"
+    },
+    "tags": [
+      "combinations",
+      "counting segments",
+      "polygon diagonals",
+      "2014"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"13\">\n  <!-- regular pentagon vertices on a circle centred (160,110) r=80 -->\n  <circle cx=\"160\" cy=\"110\" r=\"80\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\"/>\n  <!-- vertices: angles -90, -18, 54, 126, 198 deg -->\n  <!-- P1 top (160,30) P2 (236.1,85.3) P3 (207.0,177.6) P4 (113.0,177.6) P5 (83.9,85.3) -->\n  <!-- red diagonals (non-adjacent) -->\n  <line x1=\"160\" y1=\"30\" x2=\"207.0\" y2=\"177.6\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/>\n  <line x1=\"160\" y1=\"30\" x2=\"113.0\" y2=\"177.6\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/>\n  <line x1=\"236.1\" y1=\"85.3\" x2=\"113.0\" y2=\"177.6\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/>\n  <line x1=\"236.1\" y1=\"85.3\" x2=\"83.9\" y2=\"85.3\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/>\n  <line x1=\"207.0\" y1=\"177.6\" x2=\"83.9\" y2=\"85.3\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/>\n  <!-- blue edges (adjacent) -->\n  <line x1=\"160\" y1=\"30\" x2=\"236.1\" y2=\"85.3\" stroke=\"var(--ink3)\" stroke-width=\"2.5\"/>\n  <line x1=\"236.1\" y1=\"85.3\" x2=\"207.0\" y2=\"177.6\" stroke=\"var(--ink3)\" stroke-width=\"2.5\"/>\n  <line x1=\"207.0\" y1=\"177.6\" x2=\"113.0\" y2=\"177.6\" stroke=\"var(--ink3)\" stroke-width=\"2.5\"/>\n  <line x1=\"113.0\" y1=\"177.6\" x2=\"83.9\" y2=\"85.3\" stroke=\"var(--ink3)\" stroke-width=\"2.5\"/>\n  <line x1=\"83.9\" y1=\"85.3\" x2=\"160\" y2=\"30\" stroke=\"var(--ink3)\" stroke-width=\"2.5\"/>\n  <!-- vertices -->\n  <circle cx=\"160\" cy=\"30\" r=\"3.5\" fill=\"var(--ink3)\"/>\n  <circle cx=\"236.1\" cy=\"85.3\" r=\"3.5\" fill=\"var(--ink3)\"/>\n  <circle cx=\"207.0\" cy=\"177.6\" r=\"3.5\" fill=\"var(--ink3)\"/>\n  <circle cx=\"113.0\" cy=\"177.6\" r=\"3.5\" fill=\"var(--ink3)\"/>\n  <circle cx=\"83.9\" cy=\"85.3\" r=\"3.5\" fill=\"var(--ink3)\"/>\n  <text x=\"296\" y=\"40\" fill=\"var(--ink3)\">blue = edges</text>\n  <text x=\"296\" y=\"58\" fill=\"var(--gold)\">red = diagonals</text>\n  <text x=\"296\" y=\"40\" fill=\"var(--ink3)\" text-anchor=\"end\">n = 5 shown</text>\n</svg>",
+    "statement": "Let $n \\ge 2$ be an integer. Take $n$ distinct points on a circle and join every pair of points by a line segment. Colour the segment joining each pair of **adjacent** points blue, and colour all the remaining segments red. If the number of red segments equals the number of blue segments, find the value of $n$.",
+    "answer": "$\\boxed{5}$",
+    "trap": "Students correctly get blue $= n$ but then miscount red. The total number of segments is $\\binom{n}{2}$ (every pair, chords included), not $n$ diagonals of a convex polygon by some diagonal formula memorised out of context. Red is *total minus blue*, i.e. $\\binom{n}{2}-n$, and forgetting that the $n$ blue edges are already inside $\\binom{n}{2}$ leads to a wrong equation.",
+    "solutions": [
+      {
+        "name": "Direct count of each colour",
+        "steps": [
+          "Every pair of the $n$ points is joined, so the total number of segments is $\\displaystyle \\binom{n}{2}=\\frac{n(n-1)}{2}$.",
+          "\"Adjacent\" points on the circle are consecutive around the circle, so the blue segments are exactly the $n$ sides of the convex $n$-gon: blue $= n$.",
+          "Red segments are all the rest: $\\displaystyle \\text{red}=\\binom{n}{2}-n=\\frac{n(n-1)}{2}-n=\\frac{n(n-3)}{2}$ (these are precisely the diagonals).",
+          "Set red $=$ blue: $\\displaystyle \\frac{n(n-3)}{2}=n$.",
+          "Since $n\\ge 2$ we may divide by $n$: $\\dfrac{n-3}{2}=1\\Rightarrow n-3=2\\Rightarrow n=5$.",
+          "Check: $n=5$ gives $\\binom{5}{2}=10$ segments, $5$ blue and $5$ red. Equal. So $n=5$."
+        ]
+      },
+      {
+        "name": "Solve the quadratic in $n$",
+        "steps": [
+          "From blue $=n$ and red $=\\binom{n}{2}-n$, the condition red $=$ blue reads $\\binom{n}{2}-n=n$, i.e. $\\binom{n}{2}=2n$.",
+          "Write $\\dfrac{n(n-1)}{2}=2n$, so $n(n-1)=4n$.",
+          "Then $n^2-n-4n=0\\Rightarrow n^2-5n=0\\Rightarrow n(n-5)=0$.",
+          "The roots are $n=0$ and $n=5$; the constraint $n\\ge 2$ discards $n=0$.",
+          "Hence $n=5$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2014, Paper 1, Q52. The whole problem collapses once you see that blue $=n$ and total $=\\binom{n}{2}$, so \"red $=$ blue\" is just $\\binom{n}{2}=2n$ — a one-line quadratic."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Five Rising Integers Summing to $20$",
+    "difficulty": 3,
+    "task": "Find the number of such arrangements.",
+    "pyq": {
+      "year": 2014,
+      "paper": "1",
+      "qno": "53"
+    },
+    "tags": [
+      "partitions",
+      "distinct integers",
+      "counting",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "Let $n_1 < n_2 < n_3 < n_4 < n_5$ be positive integers such that $n_1+n_2+n_3+n_4+n_5=20$. Find the number of such distinct arrangements $(n_1,n_2,n_3,n_4,n_5)$.",
+    "answer": "$\\boxed{7}$",
+    "trap": "The strict inequalities $n_1<n_2<\\dots<n_5$ are the whole difficulty. A student who forgets them and counts ordered positive solutions of a sum $=20$ (a stars-and-bars problem) gets a huge wrong number. The clean move is the shift $m_i=n_i-i$, which turns \"strictly increasing\" into \"non-decreasing\" — but you must then still respect $m_1\\le m_2\\le\\cdots$, not count freely.",
+    "solutions": [
+      {
+        "name": "Shift to a partition, then enumerate",
+        "steps": [
+          "The smallest possible value of $n_1+\\dots+n_5$ under $n_1<\\dots<n_5$ is $1+2+3+4+5=15$.",
+          "Put $m_i=n_i-i$ for $i=1,\\dots,5$. Because $n_{i+1}>n_i$ means $n_{i+1}\\ge n_i+1$, we get $m_{i+1}=n_{i+1}-(i+1)\\ge n_i-i=m_i$, so $0\\le m_1\\le m_2\\le m_3\\le m_4\\le m_5$.",
+          "Summing, $\\sum m_i=\\sum n_i-(1+2+3+4+5)=20-15=5$.",
+          "So we need $m_1\\le m_2\\le\\cdots\\le m_5$ non-negative integers with total $5$ — exactly the number of partitions of $5$ into at most $5$ parts.",
+          "Every partition of $5$ has at most $5$ parts, so this is $p(5)$, the total number of partitions of $5$.",
+          "List them: $5;\\ 4+1;\\ 3+2;\\ 3+1+1;\\ 2+2+1;\\ 2+1+1+1;\\ 1+1+1+1+1$ — that is $7$ partitions.",
+          "Hence there are $\\boxed{7}$ tuples $(n_1,\\dots,n_5)$."
+        ]
+      },
+      {
+        "name": "Direct enumeration by the largest term",
+        "steps": [
+          "We want strictly increasing positive integers $n_1<n_2<n_3<n_4<n_5$ with sum $20$. Since $n_1\\ge1,\\ n_2\\ge2,\\dots$, the least four are at least $1,2,3,4$ summing to $\\ge10$, forcing $n_5\\le 10$; and $n_5\\ge5$.",
+          "Organise by $n_5$ and list the smaller four (all $<n_5$, distinct, positive) summing to $20-n_5$.",
+          "$n_5=6$: need $n_1<n_2<n_3<n_4$ from $\\{1,\\dots,5\\}$ with sum $14$. Only $2+3+4+5=14$. → $(2,3,4,5,6)$. [1 tuple]",
+          "$n_5=7$: four distinct from $\\{1,\\dots,6\\}$ summing to $13$: $1+3+4+5$ and $2+3+4+... $? Check: $1+3+4+5=13$ and $1+2+4+6=13$ and $2+3+... $ — systematically $\\{1,3,4,5\\},\\{1,2,4,6\\},\\{1,2,3,...\\}(=6\\ne)$, and $\\{2,3,4,...\\}$ needs $4$ more$=... $. Valid: $(1,3,4,5,7),(1,2,4,6,7)$. [2 tuples]",
+          "$n_5=8$: four distinct from $\\{1,\\dots,7\\}$ summing to $12$: $\\{1,2,4,5\\},\\{1,2,3,6\\}$. → $(1,2,4,5,8),(1,2,3,6,8)$. [2 tuples]",
+          "$n_5=9$: four distinct from $\\{1,\\dots,8\\}$ summing to $11$: $\\{1,2,3,5\\}$. → $(1,2,3,5,9)$. [1 tuple]",
+          "$n_5=10$: four distinct summing to $10$: $\\{1,2,3,4\\}$. → $(1,2,3,4,10)$. [1 tuple]",
+          "$n_5=5$ is impossible (four distinct positives $<5$ summing to $15$ but $1+2+3+4=10$). Total $=1+2+2+1+1=7$.",
+          "The seven tuples are $(2,3,4,5,6),(1,3,4,5,7),(1,2,4,6,7),(1,2,4,5,8),(1,2,3,6,8),(1,2,3,5,9),(1,2,3,4,10)$, matching the partition count."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2014, Paper 1, Q53. The shift $m_i=n_i-i$ is the signature trick: strictly-increasing tuples with a fixed sum are in bijection with partitions of the “excess” $20-15=5$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Envelope That Was Already Sealed",
+    "difficulty": 4,
+    "task": "Count the valid placements.",
+    "pyq": {
+      "year": 2014,
+      "paper": "2",
+      "qno": "48"
+    },
+    "tags": [
+      "derangements",
+      "restricted permutations",
+      "casework",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "Six cards and six envelopes are numbered $1,2,3,4,5,6$. The cards are to be placed in the envelopes so that each envelope contains exactly one card and no card is placed in the envelope bearing the same number. Moreover, the card numbered $1$ is always placed in the envelope numbered $2$. Then the number of ways it can be done is\n\n(A) $264$ (B) $265$ (C) $53$ (D) $67$",
+    "answer": "(C) $53$",
+    "trap": "Once card $1$ sits in envelope $2$, students reflexively treat the remaining five cards as a plain derangement $D_5=44$. But envelope $1$ is now special: it is the \"home\" of no remaining card, so card $2$ is *allowed* to land in envelope $1$. The remaining problem is a derangement with one relaxed forbidden position, not $D_5$.",
+    "solutions": [
+      {
+        "name": "Casework on where card $2$ goes",
+        "steps": [
+          "Fix card $1$ in envelope $2$ (forced). The remaining cards $2,3,4,5,6$ must fill envelopes $1,3,4,5,6$, each card avoiding its own-numbered envelope.",
+          "Envelope $2$ is already used, so card $2$'s only forbidden envelope is now envelope $2$ — which is gone. Hence card $2$ has *no* restriction among $\\{1,3,4,5,6\\}$; split on whether it takes envelope $1$.",
+          "Case A — card $2$ goes into envelope $1$. Then cards $3,4,5,6$ must go into envelopes $3,4,5,6$ each avoiding its own number: a pure derangement of $4$ objects, $D_4=9$.",
+          "Case B — card $2$ does not go into envelope $1$. Now consider cards $2,3,4,5,6$ and envelopes $1,3,4,5,6$: card $2$ forbidden from envelope $1$, and each of $3,4,5,6$ forbidden from its own envelope. This is a derangement of $5$ objects (each has exactly one forbidden slot), $D_5=44$.",
+          "Total $=D_4+D_5=9+44=53$. Answer $(C)$."
+        ]
+      },
+      {
+        "name": "Permanent / direct enumeration check",
+        "steps": [
+          "With card $1\\to$ envelope $2$ fixed, we need bijections $f$ on the remaining five cards $\\{2,3,4,5,6\\}$ onto envelopes $\\{1,3,4,5,6\\}$ with $f(k)\\neq k$ for $k\\in\\{3,4,5,6\\}$ and $f(2)$ unrestricted.",
+          "Count arrangements with NO restriction: $5!=120$. Subtract those violating at least one of the four constraints $f(k)=k$ for $k\\in\\{3,4,5,6\\}$ by inclusion–exclusion.",
+          "$\\sum|A_k|=\\binom{4}{1}\\cdot 4!$, pairs $\\binom{4}{2}\\cdot 3!$, triples $\\binom{4}{3}\\cdot 2!$, all four $\\binom{4}{4}\\cdot 1!$.",
+          "Valid $=5!-\\binom{4}{1}4!+\\binom{4}{2}3!-\\binom{4}{3}2!+\\binom{4}{4}1!=120-96+36-8+1=53$.",
+          "Both routes agree: the count is $53$, confirming $(C)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2014, Paper 2, Q48. The lesson is that fixing one element rewrites the constraint graph — envelope $1$ loses its owner, so the leftover is $D_4+D_5$, not $D_5$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "All Five Together, or Exactly Four",
+    "difficulty": 3,
+    "task": "Compute the ratio $m/n$.",
+    "pyq": {
+      "year": 2015,
+      "paper": "1",
+      "qno": "45"
+    },
+    "tags": [
+      "arrangements with grouping",
+      "consecutive objects",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "Let $n$ be the number of ways in which $5$ boys and $5$ girls can stand in a queue in such a way that all the girls stand consecutively in the queue. Let $m$ be the number of ways in which $5$ boys and $5$ girls can stand in a queue in such a way that exactly four girls stand consecutively in the queue. Then the value of $\\dfrac{m}{n}$ is.",
+    "answer": "$\\boxed{5}$",
+    "trap": "\"Exactly four consecutive\" is not \"at least four consecutive.\" A block of four girls must be flanked so the fifth girl is neither adjacent to it (else the run becomes five) — and you must also not accidentally let the lone girl abut the block on the other side. Forgetting to force a boy on each open side of the four-block is the classic slip.",
+    "solutions": [
+      {
+        "name": "Gap method (block insertion)",
+        "steps": [
+          "Compute $n$: glue all $5$ girls into one super-unit. Then $5$ boys plus $1$ girl-unit $=6$ objects arrange in $6!$ ways, and the girls inside permute in $5!$ ways, so $n=6!\\,5!$.",
+          "Compute $m$: choose which $4$ girls form the consecutive block: $\\binom{5}{4}$, order them inside: $4!$; the remaining lone girl is separate.",
+          "Arrange the $5$ boys first: $5!$ ways, creating $6$ gaps (including the two ends): $\\_\\,B\\,\\_\\,B\\,\\_\\,B\\,\\_\\,B\\,\\_\\,B\\,\\_$.",
+          "Place the girl-block into one of these $6$ gaps and the lone girl into a *different* gap so the two are never adjacent — that separation guarantees the block stays exactly four (a boy sits on each side that faces the interior). This is an ordered choice of $2$ distinct gaps: $6\\cdot 5=30$ ways.",
+          "So $m=\\binom{5}{4}\\cdot 4!\\cdot 5!\\cdot (6\\cdot 5)=5\\cdot 24\\cdot 5!\\cdot 30$. Now $\\dfrac{m}{n}=\\dfrac{5\\cdot 24\\cdot 5!\\cdot 30}{6!\\,5!}=\\dfrac{5\\cdot 24\\cdot 30}{720}=\\dfrac{3600}{720}=5.$"
+        ]
+      },
+      {
+        "name": "Positional pattern count (structure of girl-slots)",
+        "steps": [
+          "Think only of which $5$ of the $10$ queue positions are occupied by girls; boys take the rest. Any such pattern gets multiplied by $5!\\,5!$ for labelling the girls and boys.",
+          "For $n$ (all five girls consecutive), the girl-run of length $5$ can start at positions $1$ through $6$: exactly $6$ patterns. So $n=6\\cdot 5!\\cdot 5!$, matching $6!\\,5!$.",
+          "For $m$ (a maximal run of exactly $4$ girls, plus one isolated girl), the girl-pattern must have runs of lengths $\\{4,1\\}$ with at least one boy separating them. Counting placements of a length-$4$ block and a length-$1$ block among $10$ slots with a mandatory gap gives $30$ such patterns.",
+          "Hence $m=30\\cdot 5!\\cdot 5!$ and $n=6\\cdot 5!\\cdot 5!$, so $\\dfrac{m}{n}=\\dfrac{30}{6}=5.$",
+          "The girl/boy labelling factor $5!\\,5!$ cancels, exposing that the answer is purely the ratio of admissible slot-patterns: $30:6$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2015, Paper 1, Q45. Because both counts share the $5!\\,5!$ labelling factor, the ratio collapses to a count of position-patterns — $30$ \"four-and-a-loner\" patterns against $6$ \"all-five\" patterns."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Team and Its Captain",
+    "difficulty": 2,
+    "task": "Count the ways to pick the team and its captain.",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "38"
+    },
+    "tags": [
+      "combinations",
+      "selection with a distinguished member",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "A debate club consists of $6$ girls and $4$ boys. A team of $4$ members is to be selected from this club, including the selection of a captain (from among these $4$ members) for the team. If the team has to include at most one boy, then the number of ways of selecting the team is\n\n(A) $380$\n(B) $320$\n(C) $260$\n(D) $95$",
+    "answer": "$\\boxed{380}$ — option (A)",
+    "trap": "Students correctly get the $95$ unordered teams but then forget that a captain must still be chosen. The phrase \"including the selection of a captain\" turns each committee into $4$ ordered outcomes; dropping that factor lands you on the decoy answer $95$.",
+    "solutions": [
+      {
+        "name": "Select the team, then appoint the captain",
+        "steps": [
+          "\"At most one boy\" splits into two disjoint cases: no boy, or exactly one boy.",
+          "No boy: all $4$ members are girls, giving $\\binom{6}{4}=15$ teams.",
+          "Exactly one boy: choose $1$ of the $4$ boys and $3$ of the $6$ girls, giving $\\binom{4}{1}\\binom{6}{3}=4\\cdot20=80$ teams.",
+          "Total unordered teams $=15+80=95$.",
+          "For each team of $4$ members the captain can be any one of the $4$, contributing a factor of $4$.",
+          "Answer $=95\\times4=380$."
+        ]
+      },
+      {
+        "name": "Appoint the captain first, then fill the rest",
+        "steps": [
+          "The team has $4$ members and at most one boy, so the boy count is $0$ or $1$.",
+          "Case boys $=0$: pick the captain among $6$ girls in $6$ ways, then the remaining $3$ members from the other $5$ girls in $\\binom{5}{3}=10$ ways; subtotal $6\\cdot10=60$.",
+          "Case boys $=1$: either the captain is the boy or the captain is a girl.",
+          "Captain is the boy ($4$ choices) and the other $3$ members are girls from $6$: $4\\cdot\\binom{6}{3}=4\\cdot20=80$.",
+          "Captain is a girl ($6$ choices), the single boy is chosen in $4$ ways, and the remaining $2$ members are girls from the other $5$: $6\\cdot4\\cdot\\binom{5}{2}=6\\cdot4\\cdot10=240$.",
+          "Case boys $=1$ subtotal $=80+240=320$; grand total $=60+320=380$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 1, Q38. Whenever a problem asks for a team *and* a distinguished role, resolve the role as a separate multiplicative stage — the clean split of counting-then-crowning avoids the classic off-by-factor-of-$4$ slip."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "One Letter Twice",
+    "difficulty": 3,
+    "task": "Evaluate the ratio $\\dfrac{y}{9x}$.",
+    "pyq": {
+      "year": 2017,
+      "paper": "1",
+      "qno": "47"
+    },
+    "tags": [
+      "arrangements with repetition",
+      "combinations",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "Words of length $10$ are formed using the letters $A, B, C, D, E, F, G, H, I, J$. Let $x$ be the number of such words where no letter is repeated, and let $y$ be the number of such words where exactly one letter is repeated twice and no other letter is repeated. Then the value of $\\dfrac{y}{9x}$ is",
+    "answer": "$\\boxed{5}$",
+    "trap": "The tempting shortcut is to divide $\\frac{10!}{2!}$ by $10!$ and cancel too eagerly, forgetting that a length-$10$ word using a letter twice must use only $9$ distinct letters — so you must also choose *which* $8$ extra letters accompany the doubled one. Miscount that selection factor and the neat $5$ collapses.",
+    "solutions": [
+      {
+        "name": "Direct count of $x$ and $y$",
+        "steps": [
+          "No letter repeated: a length-$10$ word with $10$ distinct letters drawn from exactly $10$ available letters is just a permutation of all of them, so $x=10!$.",
+          "For $y$, one letter appears twice and the remaining $8$ positions hold $8$*distinct* letters, none repeated — that uses $1+8=9$ distinct letters out of the $10$.",
+          "Choose the doubled letter: $10$ ways.",
+          "Choose the $8$ other distinct letters from the remaining $9$: $\\binom{9}{8}=9$ ways.",
+          "Arrange this multiset of $10$ letters (one letter twice, eight singletons): $\\dfrac{10!}{2!}$ orderings.",
+          "So $y=10\\cdot9\\cdot\\dfrac{10!}{2!}$.",
+          "Therefore $\\dfrac{y}{9x}=\\dfrac{10\\cdot9\\cdot\\frac{10!}{2}}{9\\cdot10!}=\\dfrac{10}{2}=5$."
+        ]
+      },
+      {
+        "name": "Build $y$ from an $x$-word by an editing argument",
+        "steps": [
+          "Start from any no-repeat word counted by $x$: it uses all $10$ letters exactly once, and there are $x=10!$ of them.",
+          "To manufacture a $y$-word, one letter of the alphabet must be *dropped* (so a repeat can take its slot) and one surviving letter must be *duplicated*.",
+          "Equivalently: pick the letter to be duplicated in $10$ ways and the letter to be omitted in $9$ ways (any of the other $9$), fixing the multiset of letters used.",
+          "Each such multiset has one letter of multiplicity $2$ and eight of multiplicity $1$, so its distinct arrangements number $\\dfrac{10!}{2!}$ — exactly half of the $10!$ arrangements a full distinct set would have.",
+          "Hence $y=(10)(9)\\cdot\\dfrac{10!}{2!}=(90)\\cdot\\dfrac{x}{2}=45x$.",
+          "Then $\\dfrac{y}{9x}=\\dfrac{45x}{9x}=5$, agreeing with the direct count."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 1, Q47. The hidden constraint is that a repeated letter forces the word onto $9$ distinct letters, so a $\\binom{9}{8}$ selection factor rides alongside the $\\frac{10!}{2!}$ arrangement count — miss it and the answer is off by a factor of nine."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Five-Digit Multiples of $4$ from $\\{1,2,3,4,5\\}$",
+    "difficulty": 2,
+    "task": "Count the numbers.",
+    "pyq": {
+      "year": 2018,
+      "paper": "1",
+      "qno": "8"
+    },
+    "tags": [
+      "counting",
+      "divisibility by 4",
+      "repetition allowed",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "The number of $5$-digit numbers which are divisible by $4$, with digits from the set $\\{1,2,3,4,5\\}$ and the repetition of digits is allowed, is _____ .",
+    "answer": "$\\boxed{625}$",
+    "trap": "Students reflexively fix the last digit for even/parity divisibility. But divisibility by $4$ depends on the last TWO digits, not the last one — and one must actually enumerate which ordered pairs from $\\{1,2,3,4,5\\}$ form a multiple of $4$, rather than guessing there are $5$ or trusting a half-remembered rule.",
+    "solutions": [
+      {
+        "name": "Last-two-digit rule",
+        "steps": [
+          "An integer is divisible by $4$ if and only if the two-digit number formed by its last two digits is divisible by $4$.",
+          "List all ordered pairs $(d_4,d_5)$ with $d_4,d_5\\in\\{1,2,3,4,5\\}$ such that $10\\,d_4+d_5\\equiv0\\pmod4$. Since $10\\equiv2\\pmod4$, we need $2d_4+d_5\\equiv0\\pmod4$.",
+          "Testing: $d_4=1$: $2+d_5\\equiv0\\Rightarrow d_5=2$ ($12$). $d_4=2$: $4+d_5\\equiv0\\Rightarrow d_5=4$ ($24$). $d_4=3$: $6+d_5\\equiv0\\Rightarrow d_5=2$ ($32$). $d_4=4$: $8+d_5\\equiv0\\Rightarrow d_5=4$ ($44$). $d_4=5$: $10+d_5\\equiv0\\Rightarrow d_5=2$ ($52$).",
+          "So exactly $5$ valid endings: $12,24,32,44,52$.",
+          "The first three digits are unrestricted, each chosen from $5$ digits with repetition: $5^3=125$ ways.",
+          "Total $=125\\times5=625$."
+        ]
+      },
+      {
+        "name": "Direct residue count of the tail",
+        "steps": [
+          "Write the number as $\\overline{d_1d_2d_3d_4d_5}$; divisibility by $4$ is governed solely by the tail $T=10\\,d_4+d_5$.",
+          "For each fixed $d_4$, the values $10d_4+d_5$ as $d_5$ runs over $\\{1,2,3,4,5\\}$ are five consecutive integers $10d_4+1,\\dots,10d_4+5$.",
+          "Among any five consecutive integers exactly one or two are divisible by $4$; here for each $d_4$ precisely one falls in $\\{4k\\}$ because $10d_4$ has residue $2d_4\\bmod4$ and only one shift $d_5\\in\\{1,\\dots,5\\}$ (never $d_5$ that would need to be $6$) completes it — verified: each $d_4$ yields exactly one good $d_5$.",
+          "Hence there are $5$ admissible tails, one per value of $d_4$.",
+          "The leading three digits are free: $5\\times5\\times5=125$.",
+          "Multiplying, $5\\times125=625$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2018, Paper 1, Q8. The whole problem collapses once you recall that divisibility by $4$ is a property of the last two digits — the leading digits then contribute a clean $5^3$ factor."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "One-One from $X$ vs. Onto onto $X$",
+    "difficulty": 3,
+    "task": "Evaluate the expression.",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "9"
+    },
+    "tags": [
+      "one-one functions",
+      "onto functions",
+      "inclusion-exclusion",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $X$ be a set with exactly $5$ elements and $Y$ be a set with exactly $7$ elements. If $\\alpha$ is the number of one-one functions from $X$ to $Y$ and $\\beta$ is the number of onto functions from $Y$ to $X$, then the value of $\\dfrac{1}{5!}(\\beta-\\alpha)$ is _____ .",
+    "answer": "$\\boxed{119}$",
+    "trap": "It is easy to point the arrows the wrong way — $\\alpha$ counts injections $X\\to Y$ (from the $5$-set into the $7$-set), while $\\beta$ counts surjections $Y\\to X$ (from the $7$-set onto the $5$-set). Swapping the direction, or forgetting that onto functions require inclusion–exclusion (not a plain product), sinks the answer.",
+    "solutions": [
+      {
+        "name": "Inclusion–exclusion for surjections",
+        "steps": [
+          "One-one functions $X\\to Y$: pick ordered images for the $5$ distinct elements of $X$ from the $7$ elements of $Y$, i.e. $\\alpha={}^7P_5={}^7C_5\\cdot5!=21\\cdot120=2520$.",
+          "Onto functions $Y\\to X$: count surjections from a $7$-set onto a $5$-set by inclusion–exclusion, $\\beta=\\sum_{k=0}^{5}(-1)^k\\,{}^5C_k\\,(5-k)^7$.",
+          "Term by term: $5^7=78125$; $\\;{}^5C_1\\,4^7=5\\cdot16384=81920$; $\\;{}^5C_2\\,3^7=10\\cdot2187=21870$; $\\;{}^5C_3\\,2^7=10\\cdot128=1280$; $\\;{}^5C_4\\,1^7=5\\cdot1=5$.",
+          "So $\\beta=78125-81920+21870-1280+5=16800$.",
+          "Then $\\dfrac{1}{5!}(\\beta-\\alpha)=\\dfrac{16800-2520}{120}=\\dfrac{14280}{120}=119$."
+        ]
+      },
+      {
+        "name": "Surjections via Stirling numbers",
+        "steps": [
+          "The number of onto functions from a $7$-element set to a $5$-element set equals $5!\\cdot S(7,5)$, where $S(7,5)$ is the Stirling number of the second kind (partitions of the $7$-set into $5$ non-empty unlabelled blocks), the $5!$ labelling the blocks by the $5$ target elements.",
+          "Compute $S(7,5)=140$ (using $S(n,k)=k\\,S(n-1,k)+S(n-1,k-1)$: $S(6,5)=15$, $S(6,4)=65$, so $S(7,5)=5\\cdot15+65=140$).",
+          "Hence $\\beta=5!\\cdot140=120\\cdot140=16800$.",
+          "For the injections, $\\alpha={}^7P_5=2520=21\\cdot5!$, so $\\alpha/5!=21$.",
+          "Also $\\beta/5!=140$. Therefore $\\dfrac{1}{5!}(\\beta-\\alpha)=140-21=119.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2018, Paper 2, Q9. Dividing by $5!$ is a deliberate hint: both counts carry a hidden factor of $5!$ (block-labelling for surjections, the range-ordering for injections), so the messy arithmetic cancels to $140-21$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Hats Around the Round Table ($C_5$ colourings)",
+    "difficulty": 3,
+    "task": "Count the valid hat distributions.",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "3"
+    },
+    "tags": [
+      "circular arrangement",
+      "proper colouring of a cycle",
+      "chromatic counting",
+      "2019"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"13\"><circle cx=\"160\" cy=\"110\" r=\"70\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"4 4\"/><g stroke=\"var(--ink3)\" stroke-width=\"1.5\" fill=\"none\"><line x1=\"160\" y1=\"40\" x2=\"226.6\" y2=\"88.4\"/><line x1=\"226.6\" y1=\"88.4\" x2=\"201.1\" y2=\"166.6\"/><line x1=\"201.1\" y1=\"166.6\" x2=\"118.9\" y2=\"166.6\"/><line x1=\"118.9\" y1=\"166.6\" x2=\"93.4\" y2=\"88.4\"/><line x1=\"93.4\" y1=\"88.4\" x2=\"160\" y2=\"40\"/></g><g><circle cx=\"160\" cy=\"40\" r=\"11\" fill=\"var(--gold)\" stroke=\"var(--ink3)\"/><circle cx=\"226.6\" cy=\"88.4\" r=\"11\" fill=\"var(--gold)\" stroke=\"var(--ink3)\"/><circle cx=\"201.1\" cy=\"166.6\" r=\"11\" fill=\"var(--gold)\" stroke=\"var(--ink3)\"/><circle cx=\"118.9\" cy=\"166.6\" r=\"11\" fill=\"var(--gold)\" stroke=\"var(--ink3)\"/><circle cx=\"93.4\" cy=\"88.4\" r=\"11\" fill=\"var(--gold)\" stroke=\"var(--ink3)\"/></g><g fill=\"var(--ink2)\" text-anchor=\"middle\"><text x=\"160\" y=\"44\">A</text><text x=\"226.6\" y=\"92.4\">B</text><text x=\"201.1\" y=\"170.6\">C</text><text x=\"118.9\" y=\"170.6\">D</text><text x=\"93.4\" y=\"92.4\">E</text></g><text x=\"160\" y=\"210\" fill=\"var(--ink2)\" text-anchor=\"middle\">3 colours; adjacent seats differ</text></svg>",
+    "statement": "Five persons $A,B,C,D$ and $E$ are seated in a circular arrangement. If each of them is given a hat of one of the three colours red, blue and green, then the number of ways of distributing the hats such that the persons seated in adjacent seats get different coloured hats is ____",
+    "answer": "$\\boxed{30}$",
+    "trap": "The seats are fixed and labelled by the named persons, so this is a *labelled* colouring, not an arrangement up to rotation — do NOT divide by $5$ for rotations. Also, because the cycle length $5$ is odd, the naive product $3\\cdot2\\cdot2\\cdot2\\cdot2 = 48$ overcounts: it silently allows $A$ and the last neighbour $E$ to share a colour, and correcting that closing edge is the whole difficulty.",
+    "solutions": [
+      {
+        "name": "Chromatic polynomial of the cycle $C_5$",
+        "steps": [
+          "The persons sit at the vertices of a $5$-cycle $C_5$ (each adjacent to exactly two neighbours), and 'adjacent hats differ' is precisely a proper vertex-colouring with $k=3$ colours.",
+          "The number of proper $k$-colourings of a cycle $C_n$ is the standard formula $P(C_n,k)=(k-1)^n+(-1)^n(k-1)$.",
+          "Substitute $n=5$, $k=3$: $P(C_5,3)=(3-1)^5+(-1)^5(3-1)=2^5-2$.",
+          "$=32-2=30$.",
+          "So there are $\\boxed{30}$ valid distributions."
+        ]
+      },
+      {
+        "name": "Break-the-cycle inclusion–exclusion (path minus bad closing edge)",
+        "steps": [
+          "First ignore the edge between $E$ and $A$ and colour the open path $A\\!-\\!B\\!-\\!C\\!-\\!D\\!-\\!E$: choose $A$ in $3$ ways, then each successive person just avoids their left neighbour, giving $3\\cdot2\\cdot2\\cdot2\\cdot2=48$ colourings.",
+          "These $48$ include the illegal cases where $E$ and $A$ ended up the same colour; we must subtract exactly those.",
+          "Count the bad ones by merging $A$ and $E$ into a single vertex forced to one colour: the loop $A\\!=\\!E,\\ B,\\ C,\\ D$ becomes a $4$-cycle $C_4$, whose proper $3$-colourings number $P(C_4,3)=(3-1)^4+(3-1)=16+2=18$.",
+          "Therefore valid colourings $=48-18=30$.",
+          "Confirming, $\\boxed{30}$."
+        ]
+      },
+      {
+        "name": "Colour-pattern count (the multiset must be $2{+}2{+}1$)",
+        "steps": [
+          "With only $3$ colours on $5$ seats and every adjacent pair distinct, no colour can appear $3$ or more times around $C_5$ (three of one colour on five cyclic seats forces two of them adjacent). So the colour counts are of type $2,2,1$.",
+          "Pick which colour is used once: $3$ ways; the other two colours are each used twice.",
+          "Now place them on the labelled cycle. Fix the singleton colour at a seat: because the arrangement is a labelled cycle of length $5$, the valid patterns of the form $XY\\,X\\,Y$ around the remaining four seats give $2$ distinct assignments of the two doubled colours, and the singleton can sit in $5$ seats.",
+          "Total $=3\\times5\\times2=30$, matching the polynomial count.",
+          "Hence $\\boxed{30}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 2, QS2-Q3. Recognising 'adjacent seats differ' as a proper colouring of $C_n$ turns a messy casework problem into the one-line formula $(k-1)^n+(-1)^n(k-1)$ — the odd cycle length is exactly why the $-2$ correction is unavoidable."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Four Visits, No Two in a Row",
+    "difficulty": 3,
+    "task": "Count the possible visit schedules.",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "13"
+    },
+    "tags": [
+      "combinations with restrictions",
+      "no two consecutive",
+      "2020"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 90\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><text x=\"6\" y=\"16\" fill=\"var(--ink2)\">Days 1–15 of June (a valid selection: 2, 5, 9, 13)</text><g transform=\"translate(8,34)\"><rect x=\"0\" y=\"0\" width=\"18\" height=\"22\" fill=\"none\" stroke=\"var(--ink2)\"/><rect x=\"20\" y=\"0\" width=\"18\" height=\"22\" fill=\"var(--gold)\" stroke=\"var(--ink3)\"/><rect x=\"40\" y=\"0\" width=\"18\" height=\"22\" fill=\"none\" stroke=\"var(--ink2)\"/><rect x=\"60\" y=\"0\" width=\"18\" height=\"22\" fill=\"none\" stroke=\"var(--ink2)\"/><rect x=\"80\" y=\"0\" width=\"18\" height=\"22\" fill=\"var(--gold)\" stroke=\"var(--ink3)\"/><rect x=\"100\" y=\"0\" width=\"18\" height=\"22\" fill=\"none\" stroke=\"var(--ink2)\"/><rect x=\"120\" y=\"0\" width=\"18\" height=\"22\" fill=\"none\" stroke=\"var(--ink2)\"/><rect x=\"140\" y=\"0\" width=\"18\" height=\"22\" fill=\"none\" stroke=\"var(--ink2)\"/><rect x=\"160\" y=\"0\" width=\"18\" height=\"22\" fill=\"var(--gold)\" stroke=\"var(--ink3)\"/><rect x=\"180\" y=\"0\" width=\"18\" height=\"22\" fill=\"none\" stroke=\"var(--ink2)\"/><rect x=\"200\" y=\"0\" width=\"18\" height=\"22\" fill=\"none\" stroke=\"var(--ink2)\"/><rect x=\"220\" y=\"0\" width=\"18\" height=\"22\" fill=\"none\" stroke=\"var(--ink2)\"/><rect x=\"240\" y=\"0\" width=\"18\" height=\"22\" fill=\"var(--gold)\" stroke=\"var(--ink3)\"/><rect x=\"260\" y=\"0\" width=\"18\" height=\"22\" fill=\"none\" stroke=\"var(--ink2)\"/><rect x=\"280\" y=\"0\" width=\"18\" height=\"22\" fill=\"none\" stroke=\"var(--ink2)\"/></g><text x=\"8\" y=\"78\" fill=\"var(--ink2)\">gold = a visit; no two gold cells adjacent</text></svg>",
+    "statement": "An engineer is required to visit a factory for exactly four days during the first 15 days of a month, and it is mandatory that no two visits take place on consecutive days. Find the number of all possible ways in which such visits to the factory can be made by the engineer during the 15-day window (as during 1–15 June).",
+    "answer": "$\\boxed{495}$",
+    "trap": "Students subtract 'consecutive' cases from $\\binom{15}{4}=1365$ by inclusion–exclusion and repeatedly miscount overlaps (two separate adjacent pairs vs. a run of three). The clean move is a bijection to an *unrestricted* choice on a smaller set — no inclusion–exclusion at all — giving $\\binom{12}{4}$, not $\\binom{15}{4}$ minus corrections.",
+    "solutions": [
+      {
+        "name": "Gap (stars-and-bars) bijection",
+        "steps": [
+          "Let the four chosen days be $d_1<d_2<d_3<d_4$ from $\\{1,\\dots,15\\}$.",
+          "Record the gaps: $x_1=d_1-1\\ge 0$ (days before the first visit), $x_2=d_2-d_1$, $x_3=d_3-d_2$, $x_4=d_4-d_3$ (internal gaps), and $x_5=15-d_4\\ge 0$ (days after the last visit).",
+          "These satisfy $x_1+x_2+x_3+x_4+x_5=14$, and the no-consecutive rule forces each internal gap to be at least $2$: $x_2,x_3,x_4\\ge 2$, while $x_1,x_5\\ge 0$.",
+          "Substitute $y_2=x_2-2,\\;y_3=x_3-2,\\;y_4=x_4-2$ (all $\\ge 0$). Then $x_1+y_2+y_3+y_4+x_5 = 14-6 = 8$ in nonnegative integers.",
+          "The number of nonnegative solutions of a $5$-variable sum equal to $8$ is $\\binom{8+4}{4}=\\binom{12}{4}$.",
+          "$\\displaystyle \\binom{12}{4}=\\frac{12\\cdot 11\\cdot 10\\cdot 9}{24}=495.$"
+        ]
+      },
+      {
+        "name": "Direct 'shrink the line' bijection $\\binom{n-k+1}{k}$",
+        "steps": [
+          "General fact: the number of ways to choose $k$ objects from a row of $n$ so that no two are adjacent is $\\binom{n-k+1}{k}$.",
+          "Proof of the formula: from a valid selection $d_1<\\cdots<d_k$ define $e_i=d_i-(i-1)$. Since $d_{i+1}\\ge d_i+2$, the $e_i$ are *strictly* increasing by at least $1$, i.e. an ordinary $k$-subset of $\\{1,\\dots,n-(k-1)\\}$.",
+          "The map $d_i\\mapsto e_i$ is a bijection between non-consecutive $k$-selections from $n$ and arbitrary $k$-selections from $n-k+1$.",
+          "Here $n=15,\\ k=4$, so the count is $\\binom{15-4+1}{4}=\\binom{12}{4}=495.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 2, Q13. The whole difficulty evaporates once you stop counting 'bad' arrangements and instead compress the timeline: forbidding adjacency on $n$ slots is *exactly* free choice on $n-k+1$ slots."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Six Guests, Four Rooms — At Least One, At Most Two",
+    "difficulty": 3,
+    "task": "Count the valid room assignments.",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "14"
+    },
+    "tags": [
+      "distribution into groups",
+      "arrangements",
+      "2020"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 120\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><text x=\"6\" y=\"14\" fill=\"var(--ink2)\">Occupancy pattern must be 2, 2, 1, 1</text><g transform=\"translate(10,26)\"><rect x=\"0\" y=\"0\" width=\"66\" height=\"70\" fill=\"none\" stroke=\"var(--ink3)\"/><text x=\"6\" y=\"14\" fill=\"var(--ink2)\">Room 1</text><circle cx=\"20\" cy=\"38\" r=\"7\" fill=\"var(--gold)\" stroke=\"var(--ink3)\"/><circle cx=\"44\" cy=\"38\" r=\"7\" fill=\"var(--gold)\" stroke=\"var(--ink3)\"/></g><g transform=\"translate(86,26)\"><rect x=\"0\" y=\"0\" width=\"66\" height=\"70\" fill=\"none\" stroke=\"var(--ink3)\"/><text x=\"6\" y=\"14\" fill=\"var(--ink2)\">Room 2</text><circle cx=\"20\" cy=\"38\" r=\"7\" fill=\"var(--gold)\" stroke=\"var(--ink3)\"/><circle cx=\"44\" cy=\"38\" r=\"7\" fill=\"var(--gold)\" stroke=\"var(--ink3)\"/></g><g transform=\"translate(162,26)\"><rect x=\"0\" y=\"0\" width=\"66\" height=\"70\" fill=\"none\" stroke=\"var(--ink3)\"/><text x=\"6\" y=\"14\" fill=\"var(--ink2)\">Room 3</text><circle cx=\"33\" cy=\"38\" r=\"7\" fill=\"var(--ink2)\" stroke=\"var(--ink3)\"/></g><g transform=\"translate(238,26)\"><rect x=\"0\" y=\"0\" width=\"66\" height=\"70\" fill=\"none\" stroke=\"var(--ink3)\"/><text x=\"6\" y=\"14\" fill=\"var(--ink2)\">Room 4</text><circle cx=\"33\" cy=\"38\" r=\"7\" fill=\"var(--ink2)\" stroke=\"var(--ink3)\"/></g><text x=\"10\" y=\"112\" fill=\"var(--ink2)\">6 distinct persons; rooms are distinct (labelled)</text></svg>",
+    "statement": "In a hotel, four rooms are available. Six persons are to be accommodated in these four rooms in such a way that each of these rooms contains at least one person and at most two persons. Find the number of all possible ways in which this can be done.",
+    "answer": "$\\boxed{1080}$",
+    "trap": "Two silent bookkeeping errors. First, the persons are distinct and the rooms are distinct (labelled), so the two rooms holding a pair are *distinguishable* — you must NOT divide by $2!$ for the two 'size-2' rooms once you have committed to labelled rooms. Second, the constraint 'at least $1$, at most $2$' with $6$ people in $4$ rooms forces the occupancy multiset to be exactly $(2,2,1,1)$ — it is the only partition of $6$ into $4$ parts each in $\\{1,2\\}$.",
+    "solutions": [
+      {
+        "name": "Choose the double-rooms, then seat the people",
+        "steps": [
+          "Since every room holds $1$ or $2$ people and the totals are $6=4\\ \\text{rooms}$, the occupancies must be $(2,2,1,1)$ in some order — no other split of $6$ into four parts from $\\{1,2\\}$ exists.",
+          "Pick which two of the four labelled rooms are the 'double' rooms: $\\binom{4}{2}=6$ ways.",
+          "Now fill the two chosen double rooms from the $6$ distinct persons: choose $2$ for the first double room ($\\binom{6}{2}=15$), then $2$ of the remaining $4$ for the second double room ($\\binom{4}{2}=6$).",
+          "The remaining $2$ persons go one each into the two single rooms, and since those rooms are labelled this can be done in $2!=2$ ways.",
+          "Multiply: $6\\times 15\\times 6\\times 2 = 1080.$"
+        ]
+      },
+      {
+        "name": "Multinomial / permanent count",
+        "steps": [
+          "First distribute the $6$ distinct persons into an *ordered* list of group-sizes $(2,2,1,1)$ attached to Rooms $1,2,3,4$ in that fixed size-pattern: the number of ways is the multinomial $\\dfrac{6!}{2!\\,2!\\,1!\\,1!}=\\dfrac{720}{4}=180.$",
+          "But the size-pattern itself can be permuted among the four labelled rooms. The distinct arrangements of the sizes $\\{2,2,1,1\\}$ over $4$ rooms number $\\dfrac{4!}{2!\\,2!}=6$ (divide by the $2!$ for the two equal '2's and the $2!$ for the two equal '1's).",
+          "Because room labels are fixed, each of these $6$ size-patterns gives a genuinely different set of assignments, so total $=180\\times 6.$",
+          "$180\\times 6 = 1080.$",
+          "Cross-check: this equals $\\dfrac{6!}{(2!)^2(1!)^2}\\cdot\\dfrac{4!}{2!\\,2!}=180\\cdot 6=1080$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 2, Q14. The knife-edge is that both people and rooms are labelled: choosing *which* rooms are the doubles ($\\binom42$) is a real, un-cancellable factor — dividing it away is the classic way to land on the wrong answer $540$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Four-Digit Numbers Trapped in $[2022,\\,4482]$",
+    "difficulty": 4,
+    "task": "Count the four-digit integers.",
+    "pyq": {
+      "year": 2022,
+      "paper": "1",
+      "qno": "7"
+    },
+    "tags": [
+      "counting with restricted digits",
+      "casework on place value",
+      "bounded range",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "The number of $4$-digit integers in the closed interval $[2022,\\,4482]$ formed by using the digits $0,\\,2,\\,3,\\,4,\\,6,\\,7$ is $\\underline{\\qquad}$. (Repetition of digits is allowed, and only these six digits may be used.)",
+    "answer": "$\\boxed{569}$",
+    "trap": "The tempting shortcut is to count every allowed number below $4482$ and subtract those below $2022$ — but a raw base-$6$-style count over the six digits does not respect the ragged boundaries $2022$ and $4482$. You must anchor the casework at each place value and stop comparing digits the instant a strictly larger allowed digit is placed, otherwise you silently include numbers like $2777$ (fine) but also numbers past $4482$ or below $2022$.",
+    "solutions": [
+      {
+        "name": "Casework on the thousands digit",
+        "steps": [
+          "The allowed digit set is $D=\\{0,2,3,4,6,7\\}$ ($6$ digits). The thousands digit cannot be $0$, and the number lies in $[2022,4482]$, so the thousands digit is $2$, $3$, or $4$.",
+          "Thousands digit $=3$: any number $3\\overline{abc}$ with $a,b,c\\in D$ satisfies $3000\\le 3\\,abc\\le 3777<4482$ and is $\\ge2022$, so all $6^3=216$ are valid.",
+          "Thousands digit $=2$: the number must be $\\ge2022$. Freely there would be $6^3=216$ numbers $2\\overline{abc}$; the only ones below $2022$ are $2000,2002,2003,2004,2006,2007,2020$ — that is $7$ numbers (hundreds digit $0$, then either tens digit $0$ with units $\\le2$ giving $2000,2002,2003,2004,2006,2007$, or the value $2020$). All $2\\overline{abc}\\le 2777<4482$, so the upper bound is automatic. Count $=216-7=209$.",
+          "Thousands digit $=4$: the number must be $\\le4482$. Split on the hundreds digit $h\\in D$. If $h\\in\\{0,2,3\\}$ (i.e. $h<4$) the number $4h\\_\\_\\le 4377<4482$, giving $3\\cdot6^2=108$. If $h=4$, we need $44\\overline{c d}\\le4482$, i.e. the tens digit $c$ satisfies $4\\,4\\,c\\,d\\le4482$: for $c\\in\\{0,2,3\\}$ ($c<8$ and $<8$, all of $\\{0,2,3,4,6,7\\}$ give $\\le4477<4482$)—in fact every $c\\in D$ works since $4477<4482$, giving $6\\cdot6=36$. Hundreds digit $h\\in\\{6,7\\}$ would give $46\\_\\_\\ge4600>4482$, excluded. So thousands $=4$ gives $108+36=144$.",
+          "Total $=209+216+144=569$."
+        ]
+      },
+      {
+        "name": "Complementary count over the full six-digit ranges",
+        "steps": [
+          "Ignore the bounds first: how many allowed numbers start with each thousands digit? For thousands $\\in\\{2,3,4\\}$ there are $6^3=216$ allowed numbers each.",
+          "Now trim the two ragged ends. Lower end: allowed numbers $2\\overline{abc}$ that are $<2022$. These are exactly $2000,2002,2003,2004,2006,2007,2020$ — $7$ of them.",
+          "Upper end: allowed numbers $4\\overline{abc}$ that are $>4482$. With hundreds digit $6$ or $7$ we get $46\\_\\_$ and $47\\_\\_$, all $>4482$: that is $2\\cdot6^2=72$. With hundreds digit $4$ we need $44cd>4482$, impossible since the largest allowed is $4477<4482$; with hundreds digit $\\le3$ the number is $\\le4377$. So exactly $72$ allowed numbers exceed $4482$.",
+          "Valid count $=3\\cdot216-7-72=648-79=569$.",
+          "The two independent methods agree, confirming $\\boxed{569}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 1, Q7. The whole difficulty is bookkeeping: fix a place value, and the moment you place a digit strictly inside the allowed band the lower digits become free — this “digit-DP” discipline turns a messy range count into three clean sub-counts."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Ten Balls, Four Boxes, One Constraint Apiece",
+    "difficulty": 4,
+    "task": "Count the selections.",
+    "pyq": {
+      "year": 2022,
+      "paper": "2",
+      "qno": "15"
+    },
+    "tags": [
+      "combinations with constraints",
+      "generating functions",
+      "coefficient extraction",
+      "2022"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><text x=\"160\" y=\"16\" fill=\"var(--ink2)\" text-anchor=\"middle\">4 boxes · each holds 3 red + 2 blue (all distinct)</text><g><rect x=\"18\" y=\"40\" width=\"64\" height=\"120\" rx=\"6\" fill=\"none\" stroke=\"var(--ink3)\"/><rect x=\"90\" y=\"40\" width=\"64\" height=\"120\" rx=\"6\" fill=\"none\" stroke=\"var(--ink3)\"/><rect x=\"162\" y=\"40\" width=\"64\" height=\"120\" rx=\"6\" fill=\"none\" stroke=\"var(--ink3)\"/><rect x=\"234\" y=\"40\" width=\"64\" height=\"120\" rx=\"6\" fill=\"none\" stroke=\"var(--ink3)\"/></g><g fill=\"var(--gold)\" stroke=\"var(--ink2)\" stroke-width=\"0.6\"><circle cx=\"34\" cy=\"62\" r=\"7\"/><circle cx=\"50\" cy=\"62\" r=\"7\"/><circle cx=\"66\" cy=\"62\" r=\"7\"/><circle cx=\"106\" cy=\"62\" r=\"7\"/><circle cx=\"122\" cy=\"62\" r=\"7\"/><circle cx=\"138\" cy=\"62\" r=\"7\"/><circle cx=\"178\" cy=\"62\" r=\"7\"/><circle cx=\"194\" cy=\"62\" r=\"7\"/><circle cx=\"210\" cy=\"62\" r=\"7\"/><circle cx=\"250\" cy=\"62\" r=\"7\"/><circle cx=\"266\" cy=\"62\" r=\"7\"/><circle cx=\"282\" cy=\"62\" r=\"7\"/></g><g fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"><circle cx=\"42\" cy=\"92\" r=\"7\"/><circle cx=\"58\" cy=\"92\" r=\"7\"/><circle cx=\"114\" cy=\"92\" r=\"7\"/><circle cx=\"130\" cy=\"92\" r=\"7\"/><circle cx=\"186\" cy=\"92\" r=\"7\"/><circle cx=\"202\" cy=\"92\" r=\"7\"/><circle cx=\"258\" cy=\"92\" r=\"7\"/><circle cx=\"274\" cy=\"92\" r=\"7\"/></g><g fill=\"var(--ink2)\" text-anchor=\"middle\"><text x=\"50\" y=\"180\">Box 1</text><text x=\"122\" y=\"180\">Box 2</text><text x=\"194\" y=\"180\">Box 3</text><text x=\"266\" y=\"180\">Box 4</text></g><text x=\"160\" y=\"204\" fill=\"var(--ink2)\" text-anchor=\"middle\">filled = red (3), outline = blue (2) · pick ≥1 of each per box</text></svg>",
+    "statement": "Consider $4$ boxes, where each box contains $3$ red balls and $2$ blue balls. Assume that all $20$ balls are distinct. In how many different ways can $10$ balls be chosen from these $4$ boxes so that from each box at least one red ball and one blue ball are chosen?\n\n(A) $21816$\n(B) $85536$\n(C) $12096$\n(D) $156816$",
+    "answer": "$\\boxed{21816}$ — option (A)",
+    "trap": "The tempting shortcut is to pin down one guaranteed red and one guaranteed blue per box, then freely pick the remaining $10-8=2$ balls from the leftover $12$ — giving $\\binom{12}{2}$ times a factor. This overcounts wildly, because the balls are distinct: fixing which red is the 'mandatory' one and then choosing another red as a 'free' pick double-counts the same 2-red subset. You must count each box's actual subset (with the $\\ge1$-red, $\\ge1$-blue constraint) as one object and convolve the four boxes — there is no clean 'reserve one and free-pick the rest' move here.",
+    "solutions": [
+      {
+        "name": "Per-box generating function, then $[x^{10}]$",
+        "steps": [
+          "Fix one box. If we take $r$ red balls ($1\\le r\\le3$) and $b$ blue balls ($1\\le b\\le2$), the number of ways is $\\binom{3}{r}\\binom{2}{b}$, and the total taken from that box is $r+b$.",
+          "Track the total by a variable $x$. The box's generating polynomial is $$\\big(\\tbinom31 x+\\tbinom32 x^2+\\tbinom33 x^3\\big)\\big(\\tbinom21 x+\\tbinom22 x^2\\big)=(3x+3x^2+x^3)(2x+x^2).$$",
+          "Expand once: $(3x+3x^2+x^3)(2x+x^2)=6x^2+9x^3+5x^4+x^5.$ So per box the coefficients by total taken are: $2\\!\\to\\!6,\\ 3\\!\\to\\!9,\\ 4\\!\\to\\!5,\\ 5\\!\\to\\!1$ (minimum $2$, since $\\ge1$ red and $\\ge1$ blue).",
+          "Four independent boxes give the product $f(x)=(6x^2+9x^3+5x^4+x^5)^4$; the answer is the coefficient of $x^{10}$ (choose $10$ balls in all).",
+          "Factor $x^8$ out: $f(x)=x^8(6+9x+5x^2+x^3)^4$, so we need $[x^{2}]$ of $g(x)=(6+9x+5x^2+x^3)^4$.",
+          "For $[x^2]$ only the constant and the $x,x^2$ terms of the base matter: $6+9x+5x^2+\\cdots$. With four factors, $[x^2]=\\binom{4}{1}\\cdot6^3\\cdot5+\\binom{4}{2}\\cdot6^2\\cdot9^2.$",
+          "Compute: $\\binom41\\,6^3\\,5=4\\cdot216\\cdot5=4320$ and $\\binom42\\,6^2\\,9^2=6\\cdot36\\cdot81=17496.$ Sum $=4320+17496=21816.$",
+          "Hence the number of selections is $21816$, option (A)."
+        ]
+      },
+      {
+        "name": "Direct casework on the box-composition multiset",
+        "steps": [
+          "Each box contributes a total between $2$ and $5$ balls, and the four box-totals must sum to $10$. Let $w_k$ be the number of ways one box contributes exactly $k$ balls: from the count above, $w_2=6,\\ w_3=9,\\ w_4=5,\\ w_5=1.$",
+          "List the multisets of four totals in $\\{2,3,4,5\\}$ summing to $10$: $\\{5,3,1?\\}$ is impossible (min is $2$), so the valid multisets are $\\{5,3,1\\}\\!\\to\\!$no; enumerate properly: $(5,3,1)$ invalid; the ones with min $\\ge2$ summing to $10$ over four parts are $\\{2,2,2,4\\},\\ \\{2,2,3,3\\},\\ \\{2,3,3,2\\}$… Concretely the partitions are $\\{4,2,2,2\\}$, $\\{3,3,2,2\\}$, $\\{5,3,... \\}$.",
+          "The complete list: (i) $4\\!+\\!2\\!+\\!2\\!+\\!2$, (ii) $3\\!+\\!3\\!+\\!2\\!+\\!2$, (iii) $5\\!+\\!2\\!+\\!... $ needs $5+2+2+1$ (invalid) so $5$ can pair only with $3$: $5+3+... =8$, remaining two boxes sum to $2$ but each $\\ge2$, forcing $5+3+... $ invalid too. Thus exactly two admissible multisets: $\\{4,2,2,2\\}$ and $\\{3,3,2,2\\}$.",
+          "Multiset $\\{4,2,2,2\\}$: choose which box gives $4$ in $\\binom41=4$ ways; ways $=4\\cdot(w_4\\,w_2^3)=4\\cdot(5\\cdot6^3)=4\\cdot(5\\cdot216)=4\\cdot1080=4320.$",
+          "Multiset $\\{3,3,2,2\\}$: choose which two boxes give $3$ in $\\binom42=6$ ways; ways $=6\\cdot(w_3^2\\,w_2^2)=6\\cdot(9^2\\cdot6^2)=6\\cdot(81\\cdot36)=6\\cdot2916=17496.$",
+          "Total $=4320+17496=21816$, confirming option (A). (This is exactly the two terms the generating-function extraction produced.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 2, Q15. The 'at least one of each' constraint per box makes a clean $\\binom{n}{k}$ shortcut impossible; the honest route is a per-box generating function whose $[x^{10}]$ collapses to just two composition types, $\\{4,2,2,2\\}$ and $\\{3,3,2,2\\}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three Teams, Two Forbidden Seats",
+    "difficulty": 3,
+    "task": "Count the ways to form the teams.",
+    "pyq": {
+      "year": 2024,
+      "paper": "1",
+      "qno": "11"
+    },
+    "tags": [
+      "grouping into teams",
+      "restricted selections",
+      "combinations",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "A group of $9$ students $s_1,s_2,\\dots,s_9$ is to be divided to form three teams $X$, $Y$ and $Z$ of sizes $2$, $3$ and $4$ respectively. Suppose that $s_1$ cannot be selected for the team $X$, and $s_2$ cannot be selected for team $Y$. Then the number of ways to form such teams is _____.",
+    "answer": "$\\boxed{665}$",
+    "trap": "Because the three teams have distinct sizes, they are automatically labelled — so there is NO division by $3!$ (a reflex carried over from splitting into equal-sized groups). The other snare is treating the two bans as independent and subtracting them separately: the constraints on $s_1$ and $s_2$ interact, so a blind inclusion–exclusion on 'unrestricted' minus 'bad' must handle the overlap where BOTH $s_1\\in X$ and $s_2\\in Y$ carefully, not just the two single-ban corrections.",
+    "solutions": [
+      {
+        "name": "Complementary counting (total $-$ forbidden), inclusion–exclusion",
+        "steps": [
+          "With teams of fixed distinct sizes $2,3,4$, the total number of unrestricted divisions is the multinomial $\\dbinom{9}{2,3,4}=\\dfrac{9!}{2!\\,3!\\,4!}=1260.$ No $3!$ division — the teams are distinguishable by size.",
+          "Let $A$ be the set of divisions with $s_1\\in X$ (a violation), and $B$ the set with $s_2\\in Y$. We want $1260-|A\\cup B|=1260-|A|-|B|+|A\\cap B|.$",
+          "$|A|$: put $s_1$ in $X$, then fill the remaining $1$ seat of $X$ and teams $Y,Z$ from the other $8$ students: $\\dfrac{8!}{1!\\,3!\\,4!}=280.$",
+          "$|B|$: put $s_2$ in $Y$, then fill $X(2),\\ $rest of $Y(2),\\ Z(4)$ from the other $8$: $\\dfrac{8!}{2!\\,2!\\,4!}=420.$",
+          "$|A\\cap B|$: $s_1\\in X$ and $s_2\\in Y$. Fill $X$'s remaining $1$ seat, $Y$'s remaining $2$ seats, and $Z$'s $4$ from the other $7$ students: $\\dfrac{7!}{1!\\,2!\\,4!}=105.$",
+          "Therefore $|A\\cup B|=280+420-105=595$, and the count $=1260-595=665.$"
+        ]
+      },
+      {
+        "name": "Direct casework on where $s_1$ and $s_2$ land",
+        "steps": [
+          "Since $s_1\\notin X$, student $s_1$ is in $Y$ or $Z$; since $s_2\\notin Y$, student $s_2$ is in $X$ or $Z$. That gives four disjoint cases for the pair $(\\text{team of }s_1,\\ \\text{team of }s_2)$.",
+          "Case $s_1\\in Y,\\ s_2\\in X$: fill $X$'s remaining $1$ seat, $Y$'s remaining $2$ seats, $Z$'s $4$ seats from the other $7$ students: $\\dfrac{7!}{1!\\,2!\\,4!}=105.$",
+          "Case $s_1\\in Y,\\ s_2\\in Z$: fill $X$'s $2$ seats, $Y$'s remaining $2$ seats, $Z$'s remaining $3$ seats from the other $7$: $\\dfrac{7!}{2!\\,2!\\,3!}=210.$",
+          "Case $s_1\\in Z,\\ s_2\\in X$: fill $X$'s remaining $1$ seat, $Y$'s $3$ seats, $Z$'s remaining $3$ seats from the other $7$: $\\dfrac{7!}{1!\\,3!\\,3!}=140.$",
+          "Case $s_1\\in Z,\\ s_2\\in Z$: fill $X$'s $2$ seats, $Y$'s $3$ seats, $Z$'s remaining $2$ seats from the other $7$: $\\dfrac{7!}{2!\\,3!\\,2!}=210.$",
+          "The four cases are mutually exclusive and exhaustive, so the total is $105+210+140+210=665$, matching the complementary count."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 1, Q11. Distinct team sizes mean the groups are labelled (no $3!$ quotient); the cleanest guard against the interacting bans is to condition on the seats of $s_1$ and $s_2$, which partitions the count into four independent multinomials."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Seven Digits, Two Twos",
+    "difficulty": 4,
+    "task": "Count the qualifying seven-digit numbers.",
+    "pyq": {
+      "year": 2025,
+      "paper": "1",
+      "qno": "10"
+    },
+    "tags": [
+      "counting numbers with digit constraints",
+      "inclusion-exclusion",
+      "permutations with repetition",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "Let $S$ be the set of all seven-digit numbers that can be formed using the digits $0,1$ and $2$. For example, $2210222$ is in $S$, but $0210222$ is NOT in $S$ (a valid seven-digit number cannot begin with $0$). Find the number of elements $x$ in $S$ such that at least one of the digits $0$ and $1$ appears exactly twice in $x$.",
+    "answer": "$\\boxed{762}$",
+    "trap": "The leading digit cannot be $0$, so the two events \"$0$ appears exactly twice\" and \"$1$ appears exactly twice\" are NOT symmetric — a string beginning with $0$ is disqualified, while a string beginning with $1$ is fine. Forgetting the leading-digit restriction (or applying it to only one of the two cases) is the classic slip. You must also use inclusion–exclusion: the two events overlap and cannot simply be added.",
+    "solutions": [
+      {
+        "name": "Inclusion–exclusion on the two events",
+        "steps": [
+          "Let $A=$ {seven-digit numbers where $0$ occurs exactly twice} and $B=$ {seven-digit numbers where $1$ occurs exactly twice}. We want $|A\\cup B|=|A|+|B|-|A\\cap B|$.",
+          "Count $|A|$: exactly two of the seven positions are $0$. Since a leading $0$ is banned, position $1$ cannot be one of the two zeros, so choose the two zero-positions from the last $6$ positions in $\\binom{6}{2}=15$ ways. Each of the remaining $5$ positions is filled freely by $1$ or $2$ ($2^5=32$ ways). Thus $|A|=32\\cdot 15=480$.",
+          "Count $|B|$: exactly two positions are $1$. Split on the leading digit. If the number starts with $1$: one of the two ones is fixed at position $1$, so choose the other one among the last $6$ positions ($\\binom{6}{1}=6$), and the remaining $5$ positions take $0$ or $2$ freely ($2^5=32$): that gives $32\\cdot 6=192$.",
+          "If the number does NOT start with $1$: neither $1$ sits in position $1$, so both ones lie in the last $6$ positions ($\\binom{6}{2}=15$). Position $1$ must then be $2$ (it cannot be $0$ or $1$), forced. The remaining $4$ non-one positions take $0$ or $2$ freely ($2^4=16$): that gives $16\\cdot 15=240$. So $|B|=192+240=432$.",
+          "Count $|A\\cap B|$: exactly two $0$'s and exactly two $1$'s, hence exactly three $2$'s (since $2+2+3=7$). Split on the leading digit, which must be $1$ or $2$ (not $0$).",
+          "Leading digit $1$: the remaining $6$ positions hold one $1$, two $0$'s, three $2$'s, arranged in $\\frac{6!}{1!\\,2!\\,3!}=60$ ways. Leading digit $2$: the remaining $6$ positions hold two $1$'s, two $0$'s, two $2$'s, arranged in $\\frac{6!}{2!\\,2!\\,2!}=90$ ways. So $|A\\cap B|=60+90=150$.",
+          "Therefore $|A\\cup B|=480+432-150=762$."
+        ]
+      },
+      {
+        "name": "Complementary count (subtract the all-fail strings)",
+        "steps": [
+          "A string $x\\in S$ FAILS the condition when $0$ does NOT appear exactly twice AND $1$ does NOT appear exactly twice. We count all of $S$, then subtract the failures.",
+          "Total $|S|$: the leading digit is $1$ or $2$ ($2$ choices), each of the other $6$ digits is $0,1,2$ ($3^6$): $|S|=2\\cdot 3^6=1458$.",
+          "Now count strings in which $0$ appears exactly twice, over $|S|$, we already need the two \"exactly-twice\" events; it is cleaner to compute failures directly by fixing the count of $0$'s and $1$'s away from $2$. Let $z=$ number of $0$'s and $u=$ number of $1$'s in $x$; the string fails iff $z\\neq 2$ and $u\\neq 2$.",
+          "By inclusion–exclusion on the complement, $|\\text{fail}| = |S| - |A| - |B| + |A\\cap B|$ where $A,B$ are the exactly-twice events from Method 1. Rearranging gives exactly $|A\\cup B| = |A|+|B|-|A\\cap B|$, so the succeed count is what we want.",
+          "Using the block counts of Method 1 as an independent check: $|A|=480$ (choose the $2$ zero-slots from the last $6$, fill the rest with $\\{1,2\\}$), $|B|=432$, $|A\\cap B|=150$.",
+          "Hence the number of successes is $|S|-|\\text{fail}| = |A|+|B|-|A\\cap B| = 480+432-150 = 762$, matching Method 1."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 1, Q10. The whole difficulty lives in the leading-digit ban breaking the symmetry between the roles of $0$ and $1$ — treat the two counts asymmetrically and inclusion–exclusion does the rest."
   }
 ];

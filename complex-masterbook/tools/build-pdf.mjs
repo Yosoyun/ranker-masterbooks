@@ -11,8 +11,8 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['algebra','modulusarg','demoivre','rootsofunity','geometry','loci','complexgeo','triangles','equations','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
+const THEME_ORDER = ['algebra','modulusarg','demoivre','rootsofunity','geometry','loci','complexgeo','triangles','equations','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
 const GLYPH = { algebra:'a+bi', modulusarg:'|z|', demoivre:'zⁿ', rootsofunity:'ω', geometry:'△z', loci:'|z−a|', complexgeo:'e^{iθ}z', triangles:'⟁', equations:'P(z)', hybrid:'⊕' };
 const BLURB = {
   algebra:'The arithmetic of a+bi — conjugates, modulus and the half-right square roots.',
@@ -25,6 +25,7 @@ const BLURB = {
   triangles:'Equilateral conditions, similar triangles and centroids from one identity.',
   equations:'Polynomials over ℂ: conjugate roots, the fundamental theorem, factoring by ω.',
   hybrid:'Roots of unity, geometry, loci and De Moivre, fused.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

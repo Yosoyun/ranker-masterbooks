@@ -3736,5 +3736,1063 @@ window.PROBLEMS = [
       }
     ],
     "remark": "**Insight.** A trigonometric ODE can be secretly linear: spotting that $\\cos y\\,y'$ is exactly $\\dfrac{d}{dx}\\sin y$ collapses the equation to $z'+z=x$ in one stroke. The boundary value enters through $z=\\sin y$, not $y$ itself, so the natural unknown to track is $\\sin y$ — which is precisely what the question asks for, sidestepping any need to invert back to $y$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The tangent cut in ratio $3:1$",
+    "difficulty": 3,
+    "task": "Decide which statements about the curve are correct.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "15"
+    },
+    "tags": [
+      "tangent geometry",
+      "first-order ODE",
+      "2006"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"185\" x2=\"305\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"40\" y1=\"205\" x2=\"40\" y2=\"15\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><text x=\"298\" y=\"200\" fill=\"var(--ink2)\">x</text><text x=\"26\" y=\"22\" fill=\"var(--ink2)\">y</text><path d=\"M60 30 C 110 90, 150 150, 290 178\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.6\"/><line x1=\"40\" y1=\"40\" x2=\"250\" y2=\"185\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><circle cx=\"40\" cy=\"40\" r=\"3\" fill=\"var(--gold)\"/><text x=\"14\" y=\"44\" fill=\"var(--ink2)\">B</text><circle cx=\"250\" cy=\"185\" r=\"3\" fill=\"var(--gold)\"/><text x=\"252\" y=\"200\" fill=\"var(--ink2)\">A</text><circle cx=\"197.5\" cy=\"148.75\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"203\" y=\"146\" fill=\"var(--ink2)\">P(x,y)</text><text x=\"110\" y=\"88\" fill=\"var(--ink2)\">BP</text><text x=\"222\" y=\"172\" fill=\"var(--ink2)\">AP</text></svg>",
+    "statement": "A tangent drawn to the curve $y=f(x)$ at $P(x,y)$ cuts the $x$-axis and $y$-axis at $A$ and $B$ respectively such that $BP:AP=3:1$. Given that $f(1)=1$, then\n\n(A) equation of curve is $x\\dfrac{dy}{dx}-3y=0$\n\n(B) normal at $(1,1)$ is $x+3y=4$\n\n(C) curve passes through $\\left(2,\\tfrac18\\right)$\n\n(D) equation of curve is $x\\dfrac{dy}{dx}+3y=0$",
+    "answer": "(C), (D)",
+    "trap": "Rushing the section-formula ratio. $B$ is the $y$-axis end and $A$ the $x$-axis end, so $P=\\dfrac{3A+B}{4}$ (weight $3$ goes with $A$). Flip the weights and you get $xy'=+3y$ — the plausible-looking option (A) — and the wrong final curve $y=x^3$.",
+    "solutions": [
+      {
+        "name": "Section formula on the intercepts",
+        "steps": [
+          "The tangent at $P(x,y)$ has slope $y'$. Its $x$-intercept is $A=\\left(x-\\dfrac{y}{y'},\\,0\\right)$ and its $y$-intercept is $B=\\left(0,\\,y-xy'\\right)$.",
+          "$P$ lies on segment $BA$ with $BP:PA=3:1$, so $P$ divides $BA$ internally in ratio $3:1$ measured from $B$. By the section formula $P=\\dfrac{3\\,A+1\\,B}{4}$.",
+          "Compare $x$-coordinates: $x=\\dfrac{3\\left(x-\\frac{y}{y'}\\right)+0}{4}$, i.e. $4x=3x-\\dfrac{3y}{y'}$, giving $x=-\\dfrac{3y}{y'}$.",
+          "Hence $xy'=-3y$, i.e. $x\\dfrac{dy}{dx}+3y=0$ — option (D). (Option (A) is its sign-flipped decoy.)",
+          "Separate: $\\dfrac{dy}{y}=-3\\dfrac{dx}{x}\\Rightarrow \\ln y=-3\\ln x+c\\Rightarrow y=\\dfrac{k}{x^{3}}$. Using $f(1)=1$ gives $k=1$, so $y=\\dfrac{1}{x^{3}}$.",
+          "Check $(2,\\tfrac18)$: $\\dfrac{1}{2^{3}}=\\dfrac18$ ✓, so (C) holds. The normal at $(1,1)$ has slope $-1/y'(1)$; here $y'=-3x^{-4}$ so $y'(1)=-3$ and the normal slope is $\\tfrac13$, giving $x-3y+2=0$, not $x+3y=4$ — (B) is false.",
+          "Correct options: (C) and (D)."
+        ]
+      },
+      {
+        "name": "Directly from the two segment lengths",
+        "steps": [
+          "Write the tangent as $Y-y=y'(X-x)$. The foot on the $x$-axis is $A$ and on the $y$-axis is $B$ as above.",
+          "The horizontal run from $B(0,\\cdot)$ to $P(x,\\cdot)$ is $x$; the horizontal run from $P(x,\\cdot)$ to $A\\left(x-\\frac{y}{y'},\\cdot\\right)$ is $\\left|-\\frac{y}{y'}\\right|$. Because the three points are collinear, the ratio $BP:PA$ equals the ratio of these runs.",
+          "So $\\dfrac{BP}{PA}=\\dfrac{x}{\\,|y/y'|\\,}=\\dfrac31\\Rightarrow \\left|\\dfrac{y}{y'}\\right|=\\dfrac{x}{3}$.",
+          "For a curve falling in the first quadrant $y'<0$, so $\\dfrac{y}{y'}=-\\dfrac{x}{3}$, i.e. $xy'=-3y$ — the same equation $x\\dfrac{dy}{dx}+3y=0$, option (D).",
+          "Integrating gives $y=x^{-3}$ after applying $f(1)=1$, which passes through $\\left(2,\\tfrac18\\right)$ — option (C). Answer: (C), (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q15. The whole problem turns on which endpoint carries the weight $3$ in the section formula — get the intercepts right and the separable ODE $xy'+3y=0$ hands you $y=1/x^3$ immediately."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A limit that hides a linear ODE",
+    "difficulty": 3,
+    "task": "Determine $f(x)$.",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "48"
+    },
+    "tags": [
+      "first-order linear ODE",
+      "limit definition of derivative",
+      "initial condition",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Let $f(x)$ be differentiable on the interval $(0,\\infty)$ such that $f(1)=1$, and\n$$\\lim_{t\\to x}\\frac{t^{2}f(x)-x^{2}f(t)}{t-x}=1$$\nfor each $x>0$. Then $f(x)$ is\n\n(A) $\\dfrac{1}{3x}+\\dfrac{2x^{2}}{3}$\n\n(B) $\\dfrac{-1}{3x}+\\dfrac{4x^{2}}{3}$\n\n(C) $\\dfrac{-1}{x}+\\dfrac{2}{x^{2}}$\n\n(D) $\\dfrac{1}{x}$",
+    "answer": "(A) $\\dfrac{1}{3x}+\\dfrac{2x^{2}}{3}$",
+    "trap": "The numerator does not vanish as $t\\to x$ unless you first spot the hidden $0/0$ setup — it equals $x^2f(x)-x^2f(x)=0$ at $t=x$, so L'Hôpital is legal. Differentiate with respect to $t$ (not $x$): the $t^2f(x)$ term gives $2t\\,f(x)$ and $x^2f(t)$ gives $x^2f'(t)$. Mixing up which variable is the limit variable scrambles every sign.",
+    "solutions": [
+      {
+        "name": "L'Hôpital in $t$ $\\to$ linear ODE",
+        "steps": [
+          "At $t=x$ the numerator is $x^{2}f(x)-x^{2}f(x)=0$ and the denominator is $0$, so the limit is $\\tfrac00$; apply L'Hôpital differentiating with respect to $t$.",
+          "$\\dfrac{d}{dt}\\big[t^{2}f(x)-x^{2}f(t)\\big]=2t\\,f(x)-x^{2}f'(t)$, and $\\dfrac{d}{dt}(t-x)=1$.",
+          "Take $t\\to x$: $\\;2x\\,f(x)-x^{2}f'(x)=1$.",
+          "Rearrange into standard linear form: $f'(x)-\\dfrac{2}{x}f(x)=-\\dfrac{1}{x^{2}}$.",
+          "Integrating factor $\\mu=e^{\\int -\\frac{2}{x}dx}=x^{-2}$. Then $\\dfrac{d}{dx}\\big(x^{-2}f\\big)=-x^{-4}$.",
+          "Integrate: $x^{-2}f=\\dfrac{1}{3x^{3}}+c$, so $f(x)=\\dfrac{1}{3x}+c\\,x^{2}$.",
+          "Apply $f(1)=1$: $\\dfrac13+c=1\\Rightarrow c=\\dfrac23$. Hence $f(x)=\\dfrac{1}{3x}+\\dfrac{2x^{2}}{3}$ — option (A)."
+        ]
+      },
+      {
+        "name": "Recognise the exact derivative $\\dfrac{d}{dx}\\!\\left(\\dfrac{f}{x^2}\\right)$",
+        "steps": [
+          "From step 3 above the governing relation is $2x\\,f(x)-x^{2}f'(x)=1$.",
+          "Divide by $-x^{4}$: $\\dfrac{x^{2}f'(x)-2x\\,f(x)}{x^{4}}=-\\dfrac{1}{x^{4}}$.",
+          "The left side is exactly $\\dfrac{d}{dx}\\!\\left(\\dfrac{f(x)}{x^{2}}\\right)$ by the quotient rule.",
+          "So $\\dfrac{d}{dx}\\!\\left(\\dfrac{f}{x^{2}}\\right)=-x^{-4}$, and integrating gives $\\dfrac{f}{x^{2}}=\\dfrac{1}{3x^{3}}+c$.",
+          "Thus $f(x)=\\dfrac{1}{3x}+c\\,x^{2}$; the condition $f(1)=1$ forces $c=\\tfrac23$, giving $f(x)=\\dfrac{1}{3x}+\\dfrac{2x^{2}}{3}$ — option (A). A quick sanity check on the options: only (A) satisfies $f(1)=1$ AND the relation $2x f-x^2f'=1$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q48. A textbook trap: the difference quotient is really the derivative $\\dfrac{d}{dt}\\big[t^2f(x)-x^2f(t)\\big]$ at $t=x$, and clearing the algebra exposes a first-order linear ODE with integrating factor $x^{-2}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Slope That Draws Circles",
+    "difficulty": 2,
+    "task": "Identify the family of curves.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "52"
+    },
+    "tags": [
+      "variables separable",
+      "family of circles",
+      "first-order ODE",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"150\" x2=\"300\" y2=\"150\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"110\" y1=\"20\" x2=\"110\" y2=\"200\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><text x=\"294\" y=\"165\" fill=\"var(--ink2)\">x</text><circle cx=\"110\" cy=\"110\" r=\"40\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><circle cx=\"170\" cy=\"110\" r=\"40\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><circle cx=\"230\" cy=\"110\" r=\"40\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><circle cx=\"170\" cy=\"110\" r=\"2.2\" fill=\"var(--gold)\"/><line x1=\"170\" y1=\"110\" x2=\"210\" y2=\"110\" stroke=\"var(--gold)\" stroke-width=\"1.2\"/><text x=\"184\" y=\"104\" fill=\"var(--ink2)\">1</text><text x=\"150\" y=\"178\" fill=\"var(--ink2)\">centres on x-axis</text></svg>",
+    "statement": "The differential equation $$\\frac{dy}{dx}=\\frac{\\sqrt{1-y^{2}}}{y}$$ determines a family of circles with\n\n(A) variable radii and a fixed centre at $(0,1)$\n\n(B) variable radii and a fixed centre at $(0,-1)$\n\n(C) fixed radius $1$ and variable centres along the $x$-axis\n\n(D) fixed radius $1$ and variable centres along the $y$-axis",
+    "answer": "(C)",
+    "trap": "The word ‘family’ tempts you to expect variable radii — but here the arbitrary constant enters as the centre’s $x$-coordinate, not the radius. Reading $\\frac{dy}{dx}$ as slope of a circle also misleads: separating variables is the only clean route, and forgetting the $\\pm$ from $\\sqrt{1-y^{2}}$ is harmless because squaring restores the full circle.",
+    "solutions": [
+      {
+        "name": "Separate variables and integrate",
+        "steps": [
+          "The equation is variable-separable. Cross-multiply: $$\\frac{y\\,dy}{\\sqrt{1-y^{2}}}=dx.$$",
+          "Integrate the left side with the substitution $u=1-y^{2}$, $du=-2y\\,dy$, so $\\frac{y\\,dy}{\\sqrt{1-y^{2}}}=-d\\!\\left(\\sqrt{1-y^{2}}\\right)$.",
+          "Hence $-\\sqrt{1-y^{2}}=x+c$, where $c$ is the constant of integration.",
+          "Square both sides: $1-y^{2}=(x+c)^{2}$, i.e. $(x+c)^{2}+y^{2}=1$.",
+          "This is a circle of radius $1$ centred at $(-c,0)$. As $c$ ranges over $\\mathbb{R}$ the centre slides along the $x$-axis while the radius stays $1$. Answer: (C)."
+        ]
+      },
+      {
+        "name": "Reverse-engineer from the standard circle",
+        "steps": [
+          "Test the candidate answer (C) directly: the family it names is $(x-h)^{2}+y^{2}=1$, circles of radius $1$ with centre $(h,0)$ on the $x$-axis.",
+          "Differentiate implicitly with respect to $x$: $2(x-h)+2y\\dfrac{dy}{dx}=0$, so $x-h=-y\\dfrac{dy}{dx}$.",
+          "Substitute back into the circle equation to eliminate the parameter $h$: $\\left(y\\dfrac{dy}{dx}\\right)^{2}+y^{2}=1$, giving $\\left(\\dfrac{dy}{dx}\\right)^{2}=\\dfrac{1-y^{2}}{y^{2}}$.",
+          "Taking the positive root reproduces exactly $\\dfrac{dy}{dx}=\\dfrac{\\sqrt{1-y^{2}}}{y}$, the given equation.",
+          "So the only family with no free radius but a free centre on the $x$-axis satisfies the ODE. The other options fail: options (A),(B) fix a centre and vary the radius, which cannot match a first-order equation with a single arbitrary constant governing translation. Answer: (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q52. A first-order ODE carries exactly one arbitrary constant, so the geometric family it defines has exactly one degree of freedom — here that freedom is horizontal translation, not radius."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Statements, One $\\sec^{-1}$",
+    "difficulty": 3,
+    "task": "Judge both statements.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "13"
+    },
+    "tags": [
+      "variable separable",
+      "inverse trig",
+      "first-order ODE",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Let a solution $y=y(x)$ of the differential equation $$x\\sqrt{x^{2}-1}\\,dy-y\\sqrt{y^{2}-1}\\,dx=0$$ satisfy $y(2)=\\dfrac{2}{\\sqrt{3}}$.\n\nSTATEMENT-1: $\\;y(x)=\\sec\\!\\left(\\sec^{-1}x-\\dfrac{\\pi}{6}\\right)$.\n\nSTATEMENT-2: $\\;y(x)$ is given by $\\dfrac{1}{y}=\\dfrac{2\\sqrt{3}}{x}-\\sqrt{1-\\dfrac{1}{x^{2}}}$.\n\n(A) STATEMENT-1 is True, STATEMENT-2 is True; STATEMENT-2 is a correct explanation for STATEMENT-1\n\n(B) STATEMENT-1 is True, STATEMENT-2 is True; STATEMENT-2 is NOT a correct explanation for STATEMENT-1\n\n(C) STATEMENT-1 is True, STATEMENT-2 is False\n\n(D) STATEMENT-1 is False, STATEMENT-2 is True",
+    "answer": "(C)",
+    "trap": "Statement-2 looks like a faithful ‘expansion’ of Statement-1, so a hurried student marks (A). But when you actually expand $\\sec\\!\\left(\\sec^{-1}x-\\tfrac{\\pi}{6}\\right)$ the coefficient of the surd is $+\\tfrac12$, not the $-1$ that Statement-2 shows, and the constant term is $\\tfrac{\\sqrt3}{2x}$, not $\\tfrac{2\\sqrt3}{x}$. Statement-1 is genuinely correct; Statement-2 is a decoy that fails the very algebra it claims to perform.",
+    "solutions": [
+      {
+        "name": "Separate variables using the $\\sec^{-1}$ integral",
+        "steps": [
+          "Separate: $$\\frac{dy}{y\\sqrt{y^{2}-1}}=\\frac{dx}{x\\sqrt{x^{2}-1}}.$$",
+          "Both sides are the standard form $\\dfrac{dt}{t\\sqrt{t^{2}-1}}=d\\!\\left(\\sec^{-1}t\\right)$, so integrating gives $\\sec^{-1}y=\\sec^{-1}x+c$.",
+          "Apply $y(2)=\\tfrac{2}{\\sqrt3}$: then $\\sec^{-1}\\tfrac{2}{\\sqrt3}=\\sec^{-1}2+c$. Since $\\sec^{-1}2=\\tfrac{\\pi}{3}$ and $\\sec^{-1}\\tfrac{2}{\\sqrt3}=\\cos^{-1}\\tfrac{\\sqrt3}{2}=\\tfrac{\\pi}{6}$, we get $\\tfrac{\\pi}{6}=\\tfrac{\\pi}{3}+c$, so $c=-\\tfrac{\\pi}{6}$.",
+          "Therefore $\\sec^{-1}y=\\sec^{-1}x-\\tfrac{\\pi}{6}$, i.e. $y=\\sec\\!\\left(\\sec^{-1}x-\\tfrac{\\pi}{6}\\right)$. **Statement-1 is TRUE.**",
+          "Now expand it. Write $\\theta=\\sec^{-1}x$, so $\\cos\\theta=\\tfrac1x$ and $\\sin\\theta=\\sqrt{1-\\tfrac{1}{x^{2}}}$. Then $$\\frac1y=\\cos\\!\\left(\\theta-\\tfrac{\\pi}{6}\\right)=\\cos\\theta\\cos\\tfrac{\\pi}{6}+\\sin\\theta\\sin\\tfrac{\\pi}{6}=\\frac{\\sqrt3}{2x}+\\frac12\\sqrt{1-\\tfrac{1}{x^{2}}}.$$",
+          "Compare with Statement-2, which asserts $\\tfrac1y=\\tfrac{2\\sqrt3}{x}-\\sqrt{1-\\tfrac{1}{x^{2}}}$. The constant term ($\\tfrac{\\sqrt3}{2x}$ vs $\\tfrac{2\\sqrt3}{x}$) and the surd coefficient ($+\\tfrac12$ vs $-1$) both disagree. **Statement-2 is FALSE.** Hence (C)."
+        ]
+      },
+      {
+        "name": "Numerical spot-check at a second point",
+        "steps": [
+          "Take the correct solution $\\sec^{-1}y=\\sec^{-1}x-\\tfrac{\\pi}{6}$ (established above) and evaluate at a fresh value, $x=\\sqrt2$.",
+          "There $\\sec^{-1}\\sqrt2=\\tfrac{\\pi}{4}$, so $\\sec^{-1}y=\\tfrac{\\pi}{4}-\\tfrac{\\pi}{6}=\\tfrac{\\pi}{12}$, giving $\\dfrac1y=\\cos\\tfrac{\\pi}{12}=\\dfrac{\\sqrt6+\\sqrt2}{4}\\approx0.9659$.",
+          "Test Statement-2 at $x=\\sqrt2$: $\\dfrac{2\\sqrt3}{\\sqrt2}-\\sqrt{1-\\tfrac12}=\\sqrt6-\\tfrac{1}{\\sqrt2}\\approx2.449-0.707=1.742$.",
+          "Since $1.742\\neq0.9659$, Statement-2 gives the wrong value even though Statement-1 is exact — a single counterexample kills it.",
+          "So Statement-1 True, Statement-2 False: answer (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q13. Recognising $\\tfrac{dt}{t\\sqrt{t^{2}-1}}=d(\\sec^{-1}t)$ turns the ODE into pure inverse-trig arithmetic; the assertion-reason twist is that the ‘reason’ is a mis-expanded decoy, so verify Statement-2 by actually running the $\\cos(\\theta-\\tfrac{\\pi}{6})$ expansion rather than trusting its form."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The arc-length trap: $\\sqrt{1-(f')^2}=f$",
+    "difficulty": 3,
+    "task": "Decide the sign of $f(\\tfrac12)-\\tfrac12$ and $f(\\tfrac13)-\\tfrac13$.",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "24"
+    },
+    "tags": [
+      "fundamental theorem of calculus",
+      "variables separable",
+      "inequality sin x < x",
+      "2009"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"185\" x2=\"300\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"30\" y1=\"185\" x2=\"30\" y2=\"20\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><text x=\"303\" y=\"189\" fill=\"var(--ink2)\">x</text><text x=\"20\" y=\"20\" fill=\"var(--ink2)\">y</text><path d=\"M30 185 Q 100 55 185 40\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><line x1=\"30\" y1=\"185\" x2=\"185\" y2=\"40\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><text x=\"120\" y=\"110\" fill=\"var(--ink2)\">y=x</text><text x=\"150\" y=\"70\" fill=\"var(--gold)\">y=sin x</text><line x1=\"110\" y1=\"185\" x2=\"110\" y2=\"98\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"2 2\"/><circle cx=\"110\" cy=\"98\" r=\"2.5\" fill=\"var(--gold)\"/><text x=\"98\" y=\"200\" fill=\"var(--ink2)\">x&gt;0</text><text x=\"120\" y=\"150\" fill=\"var(--ink2)\">sin x &lt; x</text></svg>",
+    "statement": "Let $f$ be a non-negative function defined on the interval $[0,1]$. If $$\\int_0^x \\sqrt{1-\\left(f'(t)\\right)^2}\\,dt=\\int_0^x f(t)\\,dt,\\qquad 0\\le x\\le 1,$$ and $f(0)=0$, then\n\n(A) $f\\!\\left(\\tfrac12\\right)<\\tfrac12$ and $f\\!\\left(\\tfrac13\\right)>\\tfrac13$\n\n(B) $f\\!\\left(\\tfrac12\\right)>\\tfrac12$ and $f\\!\\left(\\tfrac13\\right)>\\tfrac13$\n\n(C) $f\\!\\left(\\tfrac12\\right)<\\tfrac12$ and $f\\!\\left(\\tfrac13\\right)<\\tfrac13$\n\n(D) $f\\!\\left(\\tfrac12\\right)>\\tfrac12$ and $f\\!\\left(\\tfrac13\\right)<\\tfrac13$",
+    "answer": "(C)",
+    "trap": "The differentiated equation $\\sqrt{1-(f')^2}=f$ has TWO branches, $f'=\\pm\\sqrt{1-f^2}$, and it also admits the constant solution $f\\equiv 1$ (which fails $f(0)=0$). The trap is grabbing $f=\\sin x$ without checking that non-negativity plus $f(0)=0$ actually pins down $f'=+\\sqrt{1-f^2}$ on the relevant interval — and then forgetting the clean inequality $\\sin x<x$ that decides both parts at once.",
+    "solutions": [
+      {
+        "name": "Differentiate the integral equation, then separate",
+        "steps": [
+          "Both sides are integrals from $0$ to $x$ of continuous integrands, so by the Fundamental Theorem of Calculus we differentiate with respect to $x$: $\\sqrt{1-\\left(f'(x)\\right)^2}=f(x)$.",
+          "Square (both sides are $\\ge 0$ since $f\\ge 0$): $1-\\left(f'(x)\\right)^2=f(x)^2$, i.e. $\\left(f'(x)\\right)^2=1-f(x)^2$.",
+          "Write $y=f(x)$. Then $\\dfrac{dy}{dx}=\\pm\\sqrt{1-y^2}$. Near $x=0$ we have $y=f(0)=0$ and $f$ non-negative, so $y$ must rise from $0$; take the $+$ branch: $\\dfrac{dy}{\\sqrt{1-y^2}}=dx$.",
+          "Integrate: $\\sin^{-1}y=x+C$. The condition $f(0)=0$ gives $\\sin^{-1}0=C$, so $C=0$ and $y=\\sin x$, i.e. $f(x)=\\sin x$ on $[0,1]$.",
+          "For $x>0$ the standard inequality $\\sin x<x$ holds, so $f(x)<x$ for every $x\\in(0,1]$.",
+          "Hence $f\\!\\left(\\tfrac12\\right)=\\sin\\tfrac12<\\tfrac12$ and $f\\!\\left(\\tfrac13\\right)=\\sin\\tfrac13<\\tfrac13$. Both are less, so the answer is (C)."
+        ]
+      },
+      {
+        "name": "Geometric arc-length reading (no explicit solve)",
+        "steps": [
+          "The left integrand $\\sqrt{1-\\left(f'\\right)^2}$ can be read against $\\sqrt{1+\\left(f'\\right)^2}$ (arc length): here $\\sqrt{1-(f')^2}\\le 1$, and equals $f$, so $0\\le f(x)\\le 1$ automatically — $f$ never exceeds $1$.",
+          "Differentiating gives $\\sqrt{1-(f')^2}=f\\le 1$, so $|f'(x)|=\\sqrt{1-f(x)^2}\\le 1$ for all $x$; the graph of $f$ has slope of magnitude at most $1$.",
+          "Since $f(0)=0$ and $|f'|\\le 1$, the Mean Value Theorem gives $f(x)=f(x)-f(0)=f'(\\xi)\\,x\\le |f'(\\xi)|\\,x\\le x$ for each $x\\in(0,1]$.",
+          "Equality $f(x)=x$ would force $|f'|\\equiv 1$ on $(0,x)$, hence $f\\equiv 0$ there (from $\\sqrt{1-1}=f$), contradicting a rising $f$. So the inequality is strict: $f(x)<x$ for $x>0$.",
+          "Therefore $f\\!\\left(\\tfrac12\\right)<\\tfrac12$ and $f\\!\\left(\\tfrac13\\right)<\\tfrac13$ without ever writing $f=\\sin x$ — the answer is (C).",
+          "(Solving explicitly confirms $f=\\sin x$, consistent with $\\sin x<x$.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 1, Q24. The integral equation is a disguised separable ODE, but the winning move is spotting that $|f'|\\le 1$ with $f(0)=0$ forces $f(x)<x$ — the closed form $f=\\sin x$ is optional."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "When $y'=y$ collapses to zero",
+    "difficulty": 2,
+    "task": "Evaluate $f(\\ln 5)$.",
+    "pyq": {
+      "year": 2009,
+      "paper": "2",
+      "qno": "34"
+    },
+    "tags": [
+      "fundamental theorem of calculus",
+      "integral equation",
+      "y'=y",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "Let $f:\\mathbb{R}\\to\\mathbb{R}$ be a continuous function which satisfies $$f(x)=\\int_0^x f(t)\\,dt.$$ Then the value of $f(\\ln 5)$ is $\\underline{\\hphantom{000}}$.",
+    "answer": "$\\boxed{0}$",
+    "trap": "After differentiating you get $f'=f$, whose general solution is $f(x)=ke^{x}$ — and it is tempting to plug $x=\\ln 5$ to report $5k$ as if $k$ were free. But the ORIGINAL equation carries a hidden initial condition: setting $x=0$ gives $f(0)=\\int_0^0 f=0$, which kills $k$. The exponential family is a red herring; the only continuous solution is $f\\equiv 0$.",
+    "solutions": [
+      {
+        "name": "Differentiate, then use the built-in initial value",
+        "steps": [
+          "The right side $\\int_0^x f(t)\\,dt$ is an accumulation function of the continuous $f$, so by the Fundamental Theorem of Calculus it is differentiable with derivative $f(x)$.",
+          "Differentiate both sides of $f(x)=\\int_0^x f(t)\\,dt$: $f'(x)=f(x)$ for all $x$.",
+          "This is the linear ODE $\\dfrac{dy}{dx}=y$, whose general solution is $f(x)=ke^{x}$.",
+          "Recover the initial condition from the ORIGINAL equation by putting $x=0$: $f(0)=\\int_0^0 f(t)\\,dt=0$.",
+          "But $f(0)=ke^{0}=k$, so $k=0$. Hence $f(x)\\equiv 0$ for all $x$.",
+          "Therefore $f(\\ln 5)=0$."
+        ]
+      },
+      {
+        "name": "Integrating factor / Grönwall-style bound (no guessing the family)",
+        "steps": [
+          "Rewrite the differentiated relation $f'(x)-f(x)=0$ and multiply by the integrating factor $e^{-x}$: $\\dfrac{d}{dx}\\!\\left(e^{-x}f(x)\\right)=e^{-x}\\left(f'(x)-f(x)\\right)=0$.",
+          "So $e^{-x}f(x)=C$, a constant, i.e. $f(x)=Ce^{x}$.",
+          "Evaluate the original integral equation at $x=0$: the integral over $[0,0]$ is $0$, forcing $f(0)=0$, hence $C=0$.",
+          "Alternatively, argue directly from the integral form: let $M=\\max_{[0,L]}|f|$ on any $[0,L]$. Then $|f(x)|=\\left|\\int_0^x f\\right|\\le M\\,|x|$, and iterating gives $|f(x)|\\le M\\dfrac{|x|^{n}}{n!}\\to 0$, so $f\\equiv 0$ on every bounded interval.",
+          "Either route gives $f\\equiv 0$, so in particular $f(\\ln 5)=0$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 2, Q34. A Volterra integral equation of the form $f(x)=\\int_0^x f$ silently encodes $f(0)=0$; that single evaluation collapses the whole $ke^{x}$ family to the trivial solution."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The tangent whose $y$-intercept is $x^3$",
+    "difficulty": 3,
+    "task": "Find $f(-3)$.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "56"
+    },
+    "tags": [
+      "first-order linear ODE",
+      "tangent y-intercept",
+      "initial value problem",
+      "2010"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"180\" x2=\"300\" y2=\"180\" stroke=\"var(--ink3)\"/><line x1=\"70\" y1=\"200\" x2=\"70\" y2=\"20\" stroke=\"var(--ink3)\"/><text x=\"302\" y=\"184\" fill=\"var(--ink2)\">x</text><text x=\"60\" y=\"22\" fill=\"var(--ink2)\">y</text><path d=\"M 80 168 Q 150 60 210 40\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.5\"/><text x=\"196\" y=\"36\" fill=\"var(--ink2)\">y=f(x)</text><line x1=\"70\" y1=\"150\" x2=\"245\" y2=\"20\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/><circle cx=\"170\" cy=\"78\" r=\"3\" fill=\"var(--gold)\"/><text x=\"176\" y=\"74\" fill=\"var(--ink2)\">P(x,y)</text><circle cx=\"70\" cy=\"150\" r=\"3\" fill=\"var(--gold)\"/><text x=\"18\" y=\"148\" fill=\"var(--ink2)\">(0, x³)</text><line x1=\"70\" y1=\"150\" x2=\"70\" y2=\"180\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><text x=\"74\" y=\"168\" fill=\"var(--gold)\">x³</text></svg>",
+    "statement": "Let $f$ be a real-valued differentiable function on $\\mathbb{R}$ such that $f(1)=1$. If the $y$-intercept of the tangent at any point $P(x,y)$ on the curve $y=f(x)$ is equal to the cube of the abscissa of $P$, then the value of $f(-3)$ is equal to",
+    "answer": "$\\boxed{9}$",
+    "trap": "The $y$-intercept of the tangent is $y-x\\,y'$, NOT $y$ itself. Students who write $y=x^3$ (reading 'the curve's $y$ equals $x^3$') skip the tangent entirely and never form an ODE. The whole problem lives in that intercept expression.",
+    "solutions": [
+      {
+        "name": "Tangent intercept $\\to$ linear ODE",
+        "steps": [
+          "The tangent at $P(x,y)$ is $Y-y=y'(X-x)$.",
+          "Its $y$-intercept is found by setting $X=0$: $Y=y-x\\,y'$.",
+          "The condition 'y-intercept equals the cube of the abscissa' reads $y-x\\,y'=x^3$.",
+          "Rearrange into standard linear form: $y'-\\dfrac{y}{x}=-x^2$.",
+          "Integrating factor: $\\mu=e^{\\int(-1/x)\\,dx}=e^{-\\ln x}=\\dfrac{1}{x}$.",
+          "Multiply through: $\\dfrac{d}{dx}\\!\\left(\\dfrac{y}{x}\\right)=-x$, so $\\dfrac{y}{x}=-\\dfrac{x^2}{2}+c$.",
+          "Apply $f(1)=1$: $1=-\\dfrac12+c\\Rightarrow c=\\dfrac32$. Hence $f(x)=\\dfrac{3x}{2}-\\dfrac{x^3}{2}$.",
+          "Therefore $f(-3)=\\dfrac{-9}{2}-\\dfrac{-27}{2}=\\dfrac{-9+27}{2}=9$."
+        ]
+      },
+      {
+        "name": "Recognising the $(y/x)'$ structure directly",
+        "steps": [
+          "From $y-x\\,y'=x^3$, divide by $-x^2$ (valid for $x\\neq0$): $\\dfrac{x\\,y'-y}{x^2}=-x$.",
+          "The left side is exactly the quotient derivative $\\dfrac{d}{dx}\\!\\left(\\dfrac{y}{x}\\right)$ — no integrating factor needed.",
+          "Integrate both sides: $\\dfrac{y}{x}=-\\dfrac{x^2}{2}+c$.",
+          "Use $f(1)=1$: $1=-\\dfrac12+c\\Rightarrow c=\\dfrac32$, so $y=\\dfrac{3x}{2}-\\dfrac{x^3}{2}$.",
+          "The cubic $f$ is odd-plus-nothing about the transformation $x\\mapsto-x$? Check: $f(-x)=-\\dfrac{3x}{2}+\\dfrac{x^3}{2}=-f(x)$, so $f$ is odd.",
+          "Thus $f(-3)=-f(3)=-\\left(\\dfrac{9}{2}-\\dfrac{27}{2}\\right)=-(-9)=9$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2010, Paper 1, Q56. The step $x y'-y$ over $x^2$ is a quotient-rule derivative in disguise — spotting it turns a linear ODE into a one-line integration."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Differentiate the integral: $6\\!\\int_1^x f=3xf-x^3$",
+    "difficulty": 3,
+    "task": "Find $f(2)$.",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "65"
+    },
+    "tags": [
+      "Leibniz differentiation of integral",
+      "linear first-order ODE",
+      "initial value",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $f:[1,\\infty)\\to[2,\\infty)$ be a differentiable function such that $f(1)=2$. If $6\\displaystyle\\int_{1}^{x}f(t)\\,dt=3x\\,f(x)-x^{3}$ for all $x\\ge 1$, then the value of $f(2)$ is",
+    "answer": "$\\boxed{6}$",
+    "trap": "You must differentiate BOTH sides — the right side $3x f(x)$ needs the product rule ($3f+3xf'$), and $\\frac{d}{dx}\\!\\int_1^x f\\,dt=f(x)$ by the FTC. Forgetting the product rule (writing $6f=3xf'-3x^2$) drops the $3f$ term and derails the ODE. Also, do NOT try to solve the integral equation as-is; differentiating converts it into a clean ODE.",
+    "solutions": [
+      {
+        "name": "Differentiate, then linear ODE with $\\mu=1/x$",
+        "steps": [
+          "Differentiate both sides w.r.t. $x$. By the Fundamental Theorem, $\\dfrac{d}{dx}\\!\\int_1^x f(t)\\,dt=f(x)$; on the right use the product rule.",
+          "$6f(x)=3f(x)+3x\\,f'(x)-3x^2$.",
+          "Simplify: $3x\\,f'(x)-3f(x)=3x^2$, i.e. $x\\,f'(x)-f(x)=x^2$.",
+          "Divide by $x$: $f'(x)-\\dfrac{f(x)}{x}=x$ — a first-order linear ODE.",
+          "Integrating factor $\\mu=e^{\\int(-1/x)dx}=\\dfrac1x$, so $\\dfrac{d}{dx}\\!\\left(\\dfrac{f}{x}\\right)=1$.",
+          "Integrate: $\\dfrac{f(x)}{x}=x+c\\Rightarrow f(x)=x^2+cx$.",
+          "Apply $f(1)=2$: $2=1+c\\Rightarrow c=1$, so $f(x)=x^2+x$.",
+          "Therefore $f(2)=4+2=6$."
+        ]
+      },
+      {
+        "name": "Assume a polynomial ansatz, then verify by the ODE",
+        "steps": [
+          "The relation $x f'-f=x^2$ is homogeneous-degree balanced: try $f(x)=ax^2+bx$ (a quadratic with no constant term, since $f/x$ must be differentiable and integrable cleanly).",
+          "Then $f'(x)=2ax+b$, so $x f'-f=(2ax^2+bx)-(ax^2+bx)=ax^2$.",
+          "Match with the required $x^2$: $a=1$. The $bx$ term is annihilated by $xf'-f$, so $b$ is fixed only by the initial data.",
+          "Thus $f(x)=x^2+bx$; impose $f(1)=2$: $1+b=2\\Rightarrow b=1$.",
+          "So $f(x)=x^2+x$, giving $f(2)=6$.",
+          "Range check: for $x\\ge1$, $f(x)=x^2+x\\ge2$, consistent with the stated codomain $[2,\\infty)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2011, Paper 1, Q65. A textbook 'differentiate the integral equation' problem — the product rule on $3xf(x)$ is where careless solvers lose the crucial $3f$ term."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The vanishing endpoints of $g$",
+    "difficulty": 4,
+    "task": "Find the value of $y(2)$.",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "37"
+    },
+    "tags": [
+      "linear first-order ODE",
+      "integrating factor",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $y'(x)+y(x)\\,g'(x)=g(x)\\,g'(x)$, $y(0)=0$, $x\\in\\mathbb{R}$, where $f'(x)$ denotes $\\dfrac{d f(x)}{dx}$ and $g(x)$ is a given non-constant differentiable function on $\\mathbb{R}$ with $g(0)=g(2)=0$. Then the value of $y(2)$ is",
+    "answer": "$\\boxed{0}$",
+    "trap": "The temptation is to solve for $g$ or to assume the answer depends on the shape of $g$ between $0$ and $2$. It does not: the integrating factor is $e^{g(x)}$ (not $e^{\\int g'\\,dx}$ with $g$ treated as the variable), and the closed form $y=(g-1)+ce^{-g}$ depends on $x$ only through $g(x)$. Since $g(2)=g(0)=0$, the answer is forced to equal $y(0)=0$ regardless of what $g$ does in between.",
+    "solutions": [
+      {
+        "name": "Integrating factor $e^{g(x)}$",
+        "steps": [
+          "The equation is linear in $y$: $\\dfrac{dy}{dx}+g'(x)\\,y=g(x)\\,g'(x)$, with coefficient $P(x)=g'(x)$.",
+          "Integrating factor: $\\mu=e^{\\int g'(x)\\,dx}=e^{g(x)}$.",
+          "Multiply through: $\\dfrac{d}{dx}\\big(e^{g}\\,y\\big)=e^{g}\\,g\\,g'$.",
+          "Integrate the right side by parts (let $u=g$, $dv=e^{g}g'\\,dx$, so $v=e^{g}$): $\\displaystyle\\int e^{g}g\\,g'\\,dx=g\\,e^{g}-\\int e^{g}g'\\,dx=g\\,e^{g}-e^{g}=e^{g}(g-1).$",
+          "Hence $e^{g}y=e^{g}(g-1)+c$, i.e. $y=(g-1)+c\\,e^{-g}$.",
+          "Apply $y(0)=0$ with $g(0)=0$: $0=(0-1)+c\\cdot e^{0}=-1+c$, so $c=1$ and $y=(g-1)+e^{-g}$.",
+          "At $x=2$, $g(2)=0$: $y(2)=(0-1)+e^{0}=-1+1=0.$"
+        ]
+      },
+      {
+        "name": "Substitution $u=e^{g(x)}$ (reduce to a plain integral)",
+        "steps": [
+          "Let $u=e^{g(x)}$, so $\\dfrac{du}{dx}=g'(x)e^{g(x)}=g'(x)\\,u$; this is exactly the combination that appears once we multiply by the integrating factor.",
+          "Writing the ODE as $\\dfrac{d}{dx}\\big(e^{g}y\\big)=g\\,g'\\,e^{g}$ and noting $g=\\ln u$, $g'e^{g}\\,dx=du$, the right side becomes $\\ln u\\;du$.",
+          "So $e^{g}y=\\displaystyle\\int \\ln u\\,du=u\\ln u-u+c=e^{g}g-e^{g}+c$, giving $y=g-1+c\\,e^{-g}$ — the same closed form.",
+          "The value of $y$ at any point depends on $x$ only through $g(x)$; since $g(2)=g(0)=0$, the state at $x=2$ is identical to the state at $x=0$.",
+          "Therefore $y(2)=y(0)=0$, with no need to know $g$ on the open interval $(0,2)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2011, Paper 2, Q37. The whole problem collapses once you see the left side is $\\tfrac{d}{dx}(e^{g}y)$: because the solution is a function of $g$ alone, the two equal endpoint values $g(0)=g(2)=0$ pin $y(2)=y(0)=0$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "$y'-y\\tan x=2x\\sec x$",
+    "difficulty": 3,
+    "task": "Decide which options are correct.",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "55"
+    },
+    "tags": [
+      "linear first-order ODE",
+      "integrating factor",
+      "initial value",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "If $y(x)$ satisfies the differential equation $y'-y\\tan x=2x\\sec x$ and $y(0)=0$, then\n\n(A) $y\\left(\\dfrac{\\pi}{4}\\right)=\\dfrac{\\pi^2}{8\\sqrt{2}}$\n\n(B) $y'\\left(\\dfrac{\\pi}{4}\\right)=\\dfrac{\\pi^2}{18}$\n\n(C) $y\\left(\\dfrac{\\pi}{3}\\right)=\\dfrac{\\pi^2}{9}$\n\n(D) $y'\\left(\\dfrac{\\pi}{3}\\right)=\\dfrac{4\\pi}{3}+\\dfrac{2\\pi^2}{3\\sqrt{3}}$",
+    "answer": "(A), (D)",
+    "trap": "Two traps. First, when checking $y'$ at a point, do not re-solve — use the ODE itself: $y'=y\\tan x+2x\\sec x$, which is the fastest, error-proof route. Second, the integrating factor is $e^{-\\int\\tan x\\,dx}=e^{\\ln\\cos x}=\\cos x$ (the minus sign cancels the minus inside $\\int\\tan x$); a sign slip here gives $\\sec x$ and wrecks every option.",
+    "solutions": [
+      {
+        "name": "Integrating factor $\\cos x$, then test each option",
+        "steps": [
+          "Standard linear form: $\\dfrac{dy}{dx}+P(x)y=Q(x)$ with $P=-\\tan x$, $Q=2x\\sec x$.",
+          "Integrating factor: $\\mu=e^{\\int P\\,dx}=e^{-\\int\\tan x\\,dx}=e^{\\ln|\\cos x|}=\\cos x$.",
+          "Multiply through: $\\dfrac{d}{dx}(y\\cos x)=2x\\sec x\\cdot\\cos x=2x$.",
+          "Integrate: $y\\cos x=x^2+C$. Apply $y(0)=0$: $0=0+C$, so $C=0$ and $y=x^2\\sec x$.",
+          "(A) $y(\\pi/4)=\\dfrac{\\pi^2}{16}\\sec\\dfrac{\\pi}{4}=\\dfrac{\\pi^2}{16}\\cdot\\sqrt2=\\dfrac{\\pi^2}{8\\sqrt2}$ — TRUE.",
+          "(C) $y(\\pi/3)=\\dfrac{\\pi^2}{9}\\sec\\dfrac{\\pi}{3}=\\dfrac{\\pi^2}{9}\\cdot 2=\\dfrac{2\\pi^2}{9}\\ne\\dfrac{\\pi^2}{9}$ — FALSE.",
+          "Differentiate: $y'=2x\\sec x+x^2\\sec x\\tan x$.",
+          "(B) $y'(\\pi/4)=2\\cdot\\dfrac{\\pi}{4}\\cdot\\sqrt2+\\dfrac{\\pi^2}{16}\\cdot\\sqrt2\\cdot1=\\dfrac{\\pi\\sqrt2}{2}+\\dfrac{\\pi^2\\sqrt2}{16}\\ne\\dfrac{\\pi^2}{18}$ — FALSE.",
+          "(D) $y'(\\pi/3)=2\\cdot\\dfrac{\\pi}{3}\\cdot 2+\\dfrac{\\pi^2}{9}\\cdot 2\\cdot\\sqrt3=\\dfrac{4\\pi}{3}+\\dfrac{2\\sqrt3\\,\\pi^2}{9}=\\dfrac{4\\pi}{3}+\\dfrac{2\\pi^2}{3\\sqrt3}$ — TRUE.",
+          "Hence the correct options are (A) and (D)."
+        ]
+      },
+      {
+        "name": "Recognise the exact-derivative structure directly",
+        "steps": [
+          "Guess that the RHS hints at a product rule: try to write the equation as $\\dfrac{d}{dx}(y\\cos x)=$ something clean.",
+          "Compute $\\dfrac{d}{dx}(y\\cos x)=y'\\cos x-y\\sin x=\\cos x\\,(y'-y\\tan x)$.",
+          "But $y'-y\\tan x=2x\\sec x$ by hypothesis, so $\\dfrac{d}{dx}(y\\cos x)=\\cos x\\cdot 2x\\sec x=2x$ — no integrating-factor computation needed, the structure is already exact after multiplying by $\\cos x$.",
+          "Integrate: $y\\cos x=x^2+C$; $y(0)=0\\Rightarrow C=0$, so $y=x^2\\sec x$ (same solution).",
+          "For the derivative options, avoid re-differentiating the product: use the ODE as an evaluator, $y'(x)=y(x)\\tan x+2x\\sec x$.",
+          "At $x=\\pi/3$: $y(\\pi/3)=\\dfrac{2\\pi^2}{9}$, so $y'(\\pi/3)=\\dfrac{2\\pi^2}{9}\\cdot\\sqrt3+2\\cdot\\dfrac{\\pi}{3}\\cdot 2=\\dfrac{2\\pi^2}{3\\sqrt3}+\\dfrac{4\\pi}{3}$ — matches (D).",
+          "At $x=\\pi/4$: $y'(\\pi/4)=\\dfrac{\\pi^2}{8\\sqrt2}\\cdot 1+2\\cdot\\dfrac{\\pi}{4}\\cdot\\sqrt2=\\dfrac{\\pi^2}{8\\sqrt2}+\\dfrac{\\pi\\sqrt2}{2}\\ne\\dfrac{\\pi^2}{18}$, so (B) is false; and $y(\\pi/3)=\\dfrac{2\\pi^2}{9}\\ne\\dfrac{\\pi^2}{9}$, so (C) is false.",
+          "Correct options: (A) and (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2012, Paper 1, Q55. The elegant move is spotting that multiplying by $\\cos x$ turns the whole left side into $\\tfrac{d}{dx}(y\\cos x)=2x$; for the derivative parts, evaluate $y'$ straight from the ODE rather than re-differentiating $x^2\\sec x$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The slope that reads $\\dfrac{y}{x}+\\sec\\dfrac{y}{x}$",
+    "difficulty": 3,
+    "task": "Find the equation of the curve.",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "50"
+    },
+    "tags": [
+      "homogeneous differential equation",
+      "substitution y=vx",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "A curve passes through the point $\\left(1,\\dfrac{\\pi}{6}\\right)$. The slope of the curve at each point $(x,y)$ is $\\dfrac{y}{x}+\\sec\\!\\left(\\dfrac{y}{x}\\right)$, where $x>0$. Then the equation of the curve is\n\n(A) $\\sin\\!\\left(\\dfrac{y}{x}\\right)=\\log_e x+\\dfrac{1}{2}$\n\n(B) $\\operatorname{cosec}\\!\\left(\\dfrac{y}{x}\\right)=\\log_e x+2$\n\n(C) $\\sec\\!\\left(\\dfrac{2y}{x}\\right)=\\log_e x+2$\n\n(D) $\\cos\\!\\left(\\dfrac{2y}{x}\\right)=\\log_e x+\\dfrac{1}{2}$",
+    "answer": "$\\boxed{\\text{(A)}}\\quad \\sin\\!\\left(\\dfrac{y}{x}\\right)=\\log_e x+\\dfrac12$",
+    "trap": "The $\\sec(y/x)$ term makes the equation look non-standard, but the whole right side depends only on $y/x$, so it is a pure homogeneous equation. Students who try an integrating factor or attempt to treat it as linear waste the entire problem; and after substituting $y=vx$ many forget that the term $v$ cancels — leaving the clean separable core $\\cos v\\,dv = dx/x$, not $(\\,v+\\sec v)\\,dv$.",
+    "solutions": [
+      {
+        "name": "Homogeneous substitution $y=vx$",
+        "steps": [
+          "The right side $\\dfrac{y}{x}+\\sec\\dfrac{y}{x}$ is a function of $y/x$ alone, so the equation $\\dfrac{dy}{dx}=\\dfrac{y}{x}+\\sec\\dfrac{y}{x}$ is homogeneous. Put $y=vx$, so $\\dfrac{dy}{dx}=v+x\\dfrac{dv}{dx}$.",
+          "Substitute: $v+x\\dfrac{dv}{dx}=v+\\sec v$. The $v$ cancels, giving $x\\dfrac{dv}{dx}=\\sec v$.",
+          "Separate variables: $\\dfrac{dv}{\\sec v}=\\dfrac{dx}{x}$, i.e. $\\cos v\\,dv=\\dfrac{dx}{x}$.",
+          "Integrate both sides: $\\sin v=\\log_e x+c$.",
+          "Return to $v=\\dfrac{y}{x}$: $\\sin\\!\\left(\\dfrac{y}{x}\\right)=\\log_e x+c$.",
+          "Apply $(1,\\pi/6)$: at $x=1$, $y/x=\\pi/6$, so $\\sin(\\pi/6)=\\log_e 1+c\\Rightarrow \\tfrac12=0+c\\Rightarrow c=\\tfrac12$.",
+          "Hence $\\sin\\!\\left(\\dfrac{y}{x}\\right)=\\log_e x+\\dfrac12$, which is option (A)."
+        ]
+      },
+      {
+        "name": "Verify by back-differentiating each option",
+        "steps": [
+          "Differentiate option (A) $\\sin\\!\\left(\\dfrac{y}{x}\\right)=\\log_e x+\\dfrac12$ implicitly. Let $u=y/x$; then $\\cos u\\cdot\\dfrac{d}{dx}\\!\\left(\\dfrac{y}{x}\\right)=\\dfrac1x$.",
+          "Compute $\\dfrac{d}{dx}\\!\\left(\\dfrac{y}{x}\\right)=\\dfrac{y'x-y}{x^2}=\\dfrac{y'}{x}-\\dfrac{y}{x^2}$.",
+          "So $\\cos u\\left(\\dfrac{y'}{x}-\\dfrac{y}{x^2}\\right)=\\dfrac1x$. Multiply by $\\dfrac{x}{\\cos u}$: $y'-\\dfrac{y}{x}=\\dfrac{1}{\\cos u}=\\sec\\dfrac{y}{x}$.",
+          "This rearranges to $y'=\\dfrac{y}{x}+\\sec\\dfrac{y}{x}$ — exactly the given slope, so (A) is a genuine solution family.",
+          "Check the point: at $(1,\\pi/6)$, LHS $=\\sin(\\pi/6)=\\tfrac12$ and RHS $=\\log_e 1+\\tfrac12=\\tfrac12$; the curve passes through the point.",
+          "The other options fail either the differential equation (e.g. their derivative introduces spurious factors of $2$) or the initial point (B gives $\\operatorname{cosec}(\\pi/6)=2\\ne 0+2$? here $2$, but its derivative does not reproduce the slope), so (A) is the answer."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 1, Q50. The disguise is the point: a $\\sec(y/x)$ nonlinearity that looks fearsome collapses to the one-line separable equation $\\cos v\\,dv=dx/x$ the instant you recognise the equation is homogeneous."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A linear ODE whose odd half vanishes",
+    "difficulty": 4,
+    "task": "Evaluate the symmetric integral of the solution.",
+    "pyq": {
+      "year": 2014,
+      "paper": "2",
+      "qno": "41"
+    },
+    "tags": [
+      "linear differential equation",
+      "integrating factor",
+      "definite integral",
+      "symmetry",
+      "2014"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"20\" y1=\"170\" x2=\"300\" y2=\"170\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"/>\n  <line x1=\"160\" y1=\"30\" x2=\"160\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"/>\n  <text x=\"292\" y=\"185\" fill=\"var(--ink2)\">x</text>\n  <text x=\"166\" y=\"40\" fill=\"var(--ink2)\">y</text>\n  <path d=\"M 70 168 Q 115 165 160 150 Q 205 108 250 40\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.4\" stroke-dasharray=\"4 3\"/>\n  <path d=\"M 250 300 Q 205 232 160 190 Q 115 175 70 172\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\" opacity=\"0.5\"/>\n  <path d=\"M 100 170 Q 130 168 160 150 Q 190 132 220 40 L 220 170 Q 190 170 160 170 Q 130 170 100 170 Z\" fill=\"var(--gold)\" opacity=\"0.28\" stroke=\"none\"/>\n  <line x1=\"100\" y1=\"170\" x2=\"100\" y2=\"165\" stroke=\"var(--ink3)\"/>\n  <line x1=\"220\" y1=\"170\" x2=\"220\" y2=\"165\" stroke=\"var(--ink3)\"/>\n  <text x=\"78\" y=\"188\" fill=\"var(--ink2)\">-√3/2</text>\n  <text x=\"210\" y=\"188\" fill=\"var(--ink2)\">√3/2</text>\n  <text x=\"228\" y=\"70\" fill=\"var(--gold)\">y=f(x)</text>\n</svg>",
+    "statement": "The function $y=f(x)$ is the solution of the differential equation $\\dfrac{dy}{dx}+\\dfrac{xy}{x^2-1}=\\dfrac{x^4+2x}{\\sqrt{1-x^2}}$ in $(-1,1)$ satisfying $f(0)=0$. Then $\\displaystyle\\int_{-\\frac{\\sqrt{3}}{2}}^{\\frac{\\sqrt{3}}{2}} f(x)\\,dx$ is\n\n(A) $\\dfrac{\\pi}{3}-\\dfrac{\\sqrt{3}}{2}$\n\n(B) $\\dfrac{\\pi}{3}-\\dfrac{\\sqrt{3}}{4}$\n\n(C) $\\dfrac{\\pi}{6}-\\dfrac{\\sqrt{3}}{4}$\n\n(D) $\\dfrac{\\pi}{6}-\\dfrac{\\sqrt{3}}{2}$",
+    "answer": "$\\boxed{\\text{(B)}\\quad \\dfrac{\\pi}{3}-\\dfrac{\\sqrt{3}}{4}}$",
+    "trap": "Two traps stacked. First, the integrating factor is $e^{\\int \\frac{x}{x^2-1}dx}=\\sqrt{|x^2-1|}=\\sqrt{1-x^2}$ on $(-1,1)$ — sign of $x^2-1$ matters (it is negative here), so the absolute value flips it to $1-x^2$. Second, once $f(x)=\\dfrac{x^5/5+x^2}{\\sqrt{1-x^2}}$, the $x^5$ piece is ODD over the symmetric interval and integrates to $0$; a student who grinds out the full antiderivative wastes minutes and risks arithmetic errors instead of killing the odd part on sight.",
+    "solutions": [
+      {
+        "name": "Integrating factor, then symmetry",
+        "steps": [
+          "The equation $\\dfrac{dy}{dx}+\\dfrac{x}{x^2-1}\\,y=\\dfrac{x^4+2x}{\\sqrt{1-x^2}}$ is linear. Compute $\\int\\dfrac{x}{x^2-1}\\,dx=\\dfrac12\\ln|x^2-1|$.",
+          "On $(-1,1)$, $x^2-1<0$ so $|x^2-1|=1-x^2$, and the integrating factor is $\\mu=e^{\\frac12\\ln(1-x^2)}=\\sqrt{1-x^2}$.",
+          "Multiply through: $\\dfrac{d}{dx}\\!\\left(y\\sqrt{1-x^2}\\right)=\\sqrt{1-x^2}\\cdot\\dfrac{x^4+2x}{\\sqrt{1-x^2}}=x^4+2x$.",
+          "Integrate: $y\\sqrt{1-x^2}=\\dfrac{x^5}{5}+x^2+C$. Apply $f(0)=0$: $0\\cdot1=0+0+C\\Rightarrow C=0$.",
+          "Hence $f(x)=\\dfrac{\\frac{x^5}{5}+x^2}{\\sqrt{1-x^2}}=\\underbrace{\\dfrac{x^5}{5\\sqrt{1-x^2}}}_{\\text{odd}}+\\underbrace{\\dfrac{x^2}{\\sqrt{1-x^2}}}_{\\text{even}}$.",
+          "Over the symmetric interval $\\left[-\\tfrac{\\sqrt3}{2},\\tfrac{\\sqrt3}{2}\\right]$ the odd term integrates to $0$, so $\\displaystyle\\int_{-\\sqrt3/2}^{\\sqrt3/2} f\\,dx=2\\int_0^{\\sqrt3/2}\\dfrac{x^2}{\\sqrt{1-x^2}}\\,dx$.",
+          "Put $x=\\sin\\theta$, $dx=\\cos\\theta\\,d\\theta$: $\\dfrac{x^2}{\\sqrt{1-x^2}}dx=\\sin^2\\theta\\,d\\theta$. Upper limit $x=\\tfrac{\\sqrt3}{2}\\Rightarrow\\theta=\\tfrac{\\pi}{3}$.",
+          "So $2\\displaystyle\\int_0^{\\pi/3}\\sin^2\\theta\\,d\\theta=2\\int_0^{\\pi/3}\\dfrac{1-\\cos2\\theta}{2}\\,d\\theta=\\Big[\\theta-\\tfrac{\\sin2\\theta}{2}\\Big]_0^{\\pi/3}=\\dfrac{\\pi}{3}-\\dfrac{\\sin(2\\pi/3)}{2}=\\dfrac{\\pi}{3}-\\dfrac{\\sqrt3}{4}$.",
+          "This is option (B)."
+        ]
+      },
+      {
+        "name": "Reduction $\\dfrac{x^2}{\\sqrt{1-x^2}}=\\dfrac{1}{\\sqrt{1-x^2}}-\\sqrt{1-x^2}$",
+        "steps": [
+          "As above, the solution is $f(x)=\\dfrac{x^5/5+x^2}{\\sqrt{1-x^2}}$ with the $x^5$ term odd, so only the even part $\\dfrac{x^2}{\\sqrt{1-x^2}}$ survives the symmetric integral.",
+          "Write $\\dfrac{x^2}{\\sqrt{1-x^2}}=\\dfrac{-(1-x^2)+1}{\\sqrt{1-x^2}}=\\dfrac{1}{\\sqrt{1-x^2}}-\\sqrt{1-x^2}$ — no trig substitution needed, just standard forms.",
+          "Then $\\displaystyle\\int f\\,dx=\\int_{-\\sqrt3/2}^{\\sqrt3/2}\\!\\left(\\dfrac{1}{\\sqrt{1-x^2}}-\\sqrt{1-x^2}\\right)dx$ (odd part dropped).",
+          "$\\displaystyle\\int\\dfrac{dx}{\\sqrt{1-x^2}}=\\sin^{-1}x$, so its value is $\\Big[\\sin^{-1}x\\Big]_{-\\sqrt3/2}^{\\sqrt3/2}=\\dfrac{\\pi}{3}-\\left(-\\dfrac{\\pi}{3}\\right)=\\dfrac{2\\pi}{3}$.",
+          "$\\displaystyle\\int\\sqrt{1-x^2}\\,dx=\\dfrac{x\\sqrt{1-x^2}}{2}+\\dfrac{\\sin^{-1}x}{2}$; evaluated on $\\left[-\\tfrac{\\sqrt3}{2},\\tfrac{\\sqrt3}{2}\\right]$ this even function gives $2\\left(\\dfrac{\\frac{\\sqrt3}{2}\\cdot\\frac12}{2}+\\dfrac{\\pi/3}{2}\\right)=\\dfrac{\\sqrt3}{4}+\\dfrac{\\pi}{3}$.",
+          "Subtract: $\\dfrac{2\\pi}{3}-\\left(\\dfrac{\\sqrt3}{4}+\\dfrac{\\pi}{3}\\right)=\\dfrac{\\pi}{3}-\\dfrac{\\sqrt3}{4}$ — option (B), confirming the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2014, Paper 2, Q41. A model \"integrating-factor meets even/odd symmetry\" problem: solve the linear ODE cleanly, then let the odd term die on the symmetric interval so only a short even integral remains."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A solution curve through $(1,3)$ and who it meets",
+    "difficulty": 4,
+    "task": "Determine which statements about the solution curve are true.",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "46"
+    },
+    "tags": [
+      "first-order ODE",
+      "intersection of solution curve with given curves",
+      "2016"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"30\" y1=\"195\" x2=\"305\" y2=\"195\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <line x1=\"40\" y1=\"205\" x2=\"40\" y2=\"15\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <text x=\"298\" y=\"189\" fill=\"var(--ink2)\">x</text>\n  <text x=\"46\" y=\"22\" fill=\"var(--ink2)\">y</text>\n  <path d=\"M 55 175 Q 90 120 135 70 Q 175 30 235 22\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/>\n  <text x=\"238\" y=\"26\" fill=\"var(--gold)\">$\\Gamma$: $\\ln\\frac{y}{3}=1-\\frac{y}{x+2}$</text>\n  <line x1=\"40\" y1=\"175\" x2=\"250\" y2=\"55\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/>\n  <text x=\"200\" y=\"85\" fill=\"var(--ink2)\">$y=x+2$</text>\n  <circle cx=\"120\" cy=\"84\" r=\"3.5\" fill=\"var(--gold)\"/>\n  <text x=\"126\" y=\"80\" fill=\"var(--ink2)\">$(1,3)$</text>\n</svg>",
+    "statement": "A solution curve of the differential equation $\\big(x^2+xy+4x+2y+4\\big)\\dfrac{dy}{dx}-y^2=0$, $x>0$, passes through the point $(1,3)$. Then the solution curve\n\n(A) intersects $y=x+2$ at exactly one point\n\n(B) intersects $y=x+2$ at exactly two points\n\n(C) intersects $y=(x+2)^2$\n\n(D) does NOT intersect $y=(x+3)^2$",
+    "answer": "(A), (D)",
+    "trap": "The clutter $x^2+xy+4x+2y+4$ hides a clean factorisation. Miss that the coefficient is $(x+2)(x+2+y)$ and you never spot the substitution $u=x+2$ that turns the mess into a homogeneous equation. A second trap: after solving, students test the option curves numerically and misread a tangency/near-miss as an intersection — the algebra must be pinned down exactly.",
+    "solutions": [
+      {
+        "name": "Factor the coefficient, shift $u=x+2$, reduce to homogeneous",
+        "steps": [
+          "Group the coefficient: $x^2+4x+4+xy+2y=(x+2)^2+y(x+2)=(x+2)(x+2+y)$.",
+          "The ODE becomes $(x+2)(x+2+y)\\,dy=y^2\\,dx$. Put $u=x+2$ (so $dx=du$): $u(u+y)\\,dy=y^2\\,du$.",
+          "This is homogeneous in $u,y$. Write $\\dfrac{du}{dy}=\\dfrac{u(u+y)}{y^2}=\\Big(\\dfrac{u}{y}\\Big)^2+\\dfrac{u}{y}$ and set $v=\\dfrac{u}{y}$, i.e. $u=vy$, $\\dfrac{du}{dy}=v+y\\dfrac{dv}{dy}$.",
+          "Then $v+y\\,v'=v^2+v\\Rightarrow y\\,v'=v^2\\Rightarrow \\dfrac{dv}{v^2}=\\dfrac{dy}{y}$.",
+          "Integrate: $-\\dfrac{1}{v}=\\ln y+C_0$, and $v=\\dfrac{u}{y}=\\dfrac{x+2}{y}$, so $-\\dfrac{y}{x+2}=\\ln y+C_0$, i.e. $\\ln y+\\dfrac{y}{x+2}=C$.",
+          "Apply $(1,3)$: $\\ln 3+\\dfrac{3}{3}=\\ln 3+1=C$. Hence the curve is $\\ln y+\\dfrac{y}{x+2}=\\ln 3+1$, i.e. $\\ln\\dfrac{y}{3}=1-\\dfrac{y}{x+2}$.",
+          "(A)/(B): set $y=x+2$. Then $\\dfrac{y}{x+2}=1$, so $\\ln\\dfrac{y}{3}=1-1=0\\Rightarrow y=3\\Rightarrow x=1$. Exactly one point $(1,3)$. So (A) TRUE, (B) FALSE.",
+          "(C): set $y=(x+2)^2$. Then $\\dfrac{y}{x+2}=x+2$, so the relation reads $\\ln\\dfrac{(x+2)^2}{3}=1-(x+2)$. For $x>0$ the left side grows like $2\\ln(x+2)$ while the right side falls like $-(x+2)$; they never meet (a quick sign check at $x=0^+$ and $x\\to\\infty$ shows no crossing). So the curve does NOT meet $y=(x+2)^2$ — (C) FALSE.",
+          "(D): set $y=(x+3)^2$; the same growth-vs-decay comparison gives no solution for $x>0$, so the curve does NOT intersect $y=(x+3)^2$ — (D) TRUE.",
+          "Correct options: (A) and (D)."
+        ]
+      },
+      {
+        "name": "Verify by implicit differentiation, then decide intersections",
+        "steps": [
+          "Claim the family is $F(x,y)=\\ln y+\\dfrac{y}{x+2}=C$. Differentiate implicitly in $x$: $\\dfrac{y'}{y}+\\dfrac{y'(x+2)-y}{(x+2)^2}=0$.",
+          "Solve for $y'$: $y'\\!\\left(\\dfrac{1}{y}+\\dfrac{1}{x+2}\\right)=\\dfrac{y}{(x+2)^2}$, so $y'\\cdot\\dfrac{(x+2)+y}{y(x+2)}=\\dfrac{y}{(x+2)^2}$.",
+          "Hence $y'=\\dfrac{y^2(x+2)}{(x+2)^2\\big[(x+2)+y\\big]}=\\dfrac{y^2}{(x+2)\\big[(x+2)+y\\big]}=\\dfrac{y^2}{(x+2)(x+2+y)}$.",
+          "But $(x+2)(x+2+y)=x^2+xy+4x+2y+4$ (expand to confirm), so $y'=\\dfrac{y^2}{x^2+xy+4x+2y+4}$, exactly the given ODE. The family is verified.",
+          "Fix $C$ from $(1,3)$: $\\ln 3+1$. The curve is $\\ln y+\\dfrac{y}{x+2}=\\ln 3+1$.",
+          "Intersection with a target curve $y=\\phi(x)$ reduces to $g(x):=\\ln\\phi(x)+\\dfrac{\\phi(x)}{x+2}-\\ln 3-1=0$.",
+          "For $y=x+2$: $g(x)=\\ln(x+2)+1-\\ln3-1=\\ln\\dfrac{x+2}{3}$, zero only at $x=1$. Single point $(1,3)$: (A) TRUE, (B) FALSE.",
+          "For $y=(x+2)^2$: $g(x)=2\\ln(x+2)+(x+2)-\\ln3-1$, which is strictly increasing for $x>0$ and already positive at $x=0$ ($2\\ln2+2-\\ln3-1>0$); no root, so no intersection: (C) FALSE.",
+          "For $y=(x+3)^2$: $g(x)=2\\ln(x+3)+\\dfrac{(x+3)^2}{x+2}-\\ln3-1$; the added positive term makes $g>0$ throughout $x>0$, so again no root: the curve does not intersect it — (D) TRUE.",
+          "Thus (A) and (D) are the correct choices."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2016, Paper 1, Q46. The entire difficulty is packaged in one hidden factorisation, $(x+2)(x+2+y)$; once seen, the shift $u=x+2$ makes the equation homogeneous and every intersection question collapses to comparing a logarithm against a linear/quadratic term."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Solved ODE Hidden Inside $f'=2-\\tfrac{f}{x}$",
+    "difficulty": 4,
+    "task": "Decide which statements are true.",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "43"
+    },
+    "tags": [
+      "linear first-order ODE",
+      "limits of derived function",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $f:(0,\\infty)\\to\\mathbb{R}$ be a differentiable function such that $f'(x) = 2 - \\dfrac{f(x)}{x}$ for all $x \\in (0,\\infty)$ and $f(1) \\neq 1$. Then\n\n(A) $\\displaystyle\\lim_{x\\to 0^{+}} f'\\!\\left(\\tfrac{1}{x}\\right) = 1$\n\n(B) $\\displaystyle\\lim_{x\\to 0^{+}} x\\,f\\!\\left(\\tfrac{1}{x}\\right) = 2$\n\n(C) $\\displaystyle\\lim_{x\\to 0^{+}} x^{2}\\,f'(x) = 0$\n\n(D) $|f(x)| \\le 2$ for all $x \\in (0,2)$",
+    "answer": "(A)",
+    "trap": "The extra condition $f(1)\\neq 1$ is not decoration: it forces the arbitrary constant $c\\neq 0$. If you sloppily take the particular solution $f(x)=x$ (i.e. $c=0$), then options (B) and (C) look 'true' and (A) looks like it needs checking — you get the wrong answer set. The whole problem turns on keeping $c$ alive.",
+    "solutions": [
+      {
+        "name": "Solve the linear ODE, then read off each limit",
+        "steps": [
+          "Write the equation in standard linear form: $f'(x)+\\dfrac{1}{x}f(x)=2$.",
+          "Integrating factor is $\\mu=e^{\\int \\frac{1}{x}\\,dx}=e^{\\ln x}=x$ (for $x>0$).",
+          "Then $\\dfrac{d}{dx}\\big(x\\,f(x)\\big)=2x$, so $x\\,f(x)=x^{2}+c$ and $f(x)=x+\\dfrac{c}{x}$.",
+          "The condition $f(1)\\neq 1$ means $1+c\\neq 1$, i.e. $c\\neq 0$. Keep $c$ nonzero throughout.",
+          "Also $f'(x)=1-\\dfrac{c}{x^{2}}$.",
+          "(A): $f'\\!\\left(\\tfrac{1}{x}\\right)=1-c x^{2}\\to 1$ as $x\\to 0^{+}$. TRUE.",
+          "(B): $x\\,f\\!\\left(\\tfrac{1}{x}\\right)=x\\left(\\tfrac{1}{x}+cx\\right)=1+c x^{2}\\to 1\\neq 2$. FALSE.",
+          "(C): $x^{2}f'(x)=x^{2}\\left(1-\\tfrac{c}{x^{2}}\\right)=x^{2}-c\\to -c\\neq 0$ (since $c\\neq0$). FALSE.",
+          "(D): $f(x)=x+\\tfrac{c}{x}$; as $x\\to 0^{+}$, $|f(x)|\\to\\infty$, so it is not bounded by $2$ on $(0,2)$. FALSE.",
+          "Only (A) holds."
+        ]
+      },
+      {
+        "name": "Asymptotic reasoning without fully solving",
+        "steps": [
+          "From $f'(x)=2-\\dfrac{f(x)}{x}$ multiply by $x$: $x f'(x)+f(x)=2x$, i.e. $\\big(x f(x)\\big)'=2x$, so $x f(x)=x^{2}+c$ — the same structure, but now argue by orders of magnitude.",
+          "Hence $f(x)=x+\\dfrac{c}{x}$ with $c\\neq 0$. For large arguments the $x$ term dominates; for small arguments the $\\tfrac{c}{x}$ term blows up.",
+          "For (A), replace $x$ by $\\tfrac1x$ and let $x\\to0^+$, i.e. push the argument to $+\\infty$: $f'(t)=1-\\tfrac{c}{t^2}\\to 1$ as $t\\to\\infty$. The $\\tfrac{c}{t^{2}}$ tail vanishes regardless of $c$, so (A) is TRUE.",
+          "For (B), $t f(1/t)$ with $t\\to0^+$ probes $x\\to\\infty$: the leading behaviour $f(x)\\sim x$ gives $t\\cdot\\tfrac1t=1$, and the correction $c t^{2}\\to0$; the limit is $1$, never $2$. FALSE.",
+          "For (C), $x^{2}f'(x)=x^{2}-c$; near $x=0$ the $x^{2}$ is negligible and the limit is $-c\\neq 0$. The nonzero constant $c$ is exactly what $f(1)\\neq1$ guarantees. FALSE.",
+          "For (D), the $\\tfrac{c}{x}$ singularity at $x\\to0^+$ makes $f$ unbounded on $(0,2)$. FALSE.",
+          "Answer: (A) only."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE/JEE Advanced 2016, Paper 1, Q43. The lone hypothesis $f(1)\\neq1$ is the linchpin — it keeps the integration constant nonzero, which single-handedly kills options (B) and (C)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Broken Symmetry of $f(x)\\sin t - f(t)\\sin x$",
+    "difficulty": 5,
+    "task": "Decide which statements are true.",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "6"
+    },
+    "tags": [
+      "derivative from limit",
+      "first order linear ODE",
+      "L'Hopital",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $f:(0,\\pi)\\to\\mathbb{R}$ be a twice differentiable function such that $$\\lim_{t\\to x}\\frac{f(x)\\sin t - f(t)\\sin x}{t-x}=\\sin^2 x\\quad\\text{for all }x\\in(0,\\pi).$$ If $f\\!\\left(\\dfrac{\\pi}{6}\\right)=-\\dfrac{\\pi}{12}$, then which of the following statement(s) is (are) TRUE?\n\n(A) $f\\!\\left(\\dfrac{\\pi}{4}\\right)=\\dfrac{\\pi}{4\\sqrt{2}}$\n\n(B) $f(x)<\\dfrac{x^4}{6}-x^2$ for all $x\\in(0,\\pi)$\n\n(C) There exists $\\alpha\\in(0,\\pi)$ such that $f'(\\alpha)=0$\n\n(D) $f\\!\\left(\\dfrac{\\pi}{2}\\right)+f''\\!\\left(\\dfrac{\\pi}{2}\\right)=0$",
+    "answer": "(B), (C), (D)",
+    "trap": "The limit looks like a difference quotient in $t$, so students reflexively 'differentiate with respect to $t$ and set $t=x$', getting $f(x)\\cos x - f'(x)\\sin x$. That step is correct — but many then mis-sign it as $f'(x)\\sin x - f(x)\\cos x$, flipping the ODE. Worse, they forget the resulting first-order ODE has an integration constant fixed by $f(\\pi/6)=-\\pi/12$; carelessly taking the constant nonzero breaks every option.",
+    "solutions": [
+      {
+        "name": "L'Hôpital $\\Rightarrow$ recognise a product-rule derivative",
+        "steps": [
+          "As $t\\to x$ the numerator $f(x)\\sin t - f(t)\\sin x\\to f(x)\\sin x - f(x)\\sin x = 0$ and the denominator $t-x\\to 0$, so the limit is $\\tfrac{0}{0}$. Apply L'Hôpital differentiating with respect to $t$.",
+          "$\\dfrac{d}{dt}\\big[f(x)\\sin t - f(t)\\sin x\\big]=f(x)\\cos t - f'(t)\\sin x$. Setting $t=x$ gives the limit value $f(x)\\cos x - f'(x)\\sin x=\\sin^2 x$.",
+          "Divide by $\\sin^2 x$ (valid since $\\sin x>0$ on $(0,\\pi)$): $\\dfrac{f(x)\\cos x - f'(x)\\sin x}{\\sin^2 x}=1$. The left side is exactly $-\\dfrac{d}{dx}\\!\\left(\\dfrac{f(x)}{\\sin x}\\right)$, because $\\dfrac{d}{dx}\\!\\left(\\dfrac{f}{\\sin x}\\right)=\\dfrac{f'\\sin x - f\\cos x}{\\sin^2 x}$.",
+          "Hence $\\dfrac{d}{dx}\\!\\left(\\dfrac{f(x)}{\\sin x}\\right)=-1$, so $\\dfrac{f(x)}{\\sin x}=-x+c$, giving $f(x)=(c-x)\\sin x$.",
+          "Impose $f(\\pi/6)=-\\pi/12$: $(c-\\pi/6)\\sin(\\pi/6)=(c-\\pi/6)\\cdot\\tfrac12=-\\pi/12$, so $c-\\pi/6=-\\pi/6$, i.e. $c=0$. Therefore $f(x)=-x\\sin x$.",
+          "(A) $f(\\pi/4)=-\\tfrac{\\pi}{4}\\sin\\tfrac{\\pi}{4}=-\\tfrac{\\pi}{4\\sqrt2}$, which is negative — not $+\\tfrac{\\pi}{4\\sqrt2}$. So (A) is FALSE.",
+          "(C) $f'(x)=-\\sin x - x\\cos x$. At $x=\\pi/2$, $f'=-1<0$; as $x\\to0^+$, $f'(x)\\to -0-0=0^-$ but just inside, $f'(x)=-\\sin x - x\\cos x<0$. Instead use Rolle: $f(0^+)\\to0$ and $f(\\pi^-)=-\\pi\\sin\\pi=0$, and $f$ is continuous on $[0,\\pi]$, differentiable inside, with equal end-values $0$; by Rolle's theorem some $\\alpha\\in(0,\\pi)$ has $f'(\\alpha)=0$. So (C) is TRUE.",
+          "(D) $f''(x)=-2\\cos x + x\\sin x$ (differentiate $f'=-\\sin x - x\\cos x$: $f''=-\\cos x-\\cos x + x\\sin x$). At $x=\\pi/2$: $f(\\pi/2)=-\\tfrac{\\pi}{2}\\cdot1=-\\tfrac{\\pi}{2}$ and $f''(\\pi/2)=-0+\\tfrac{\\pi}{2}\\cdot1=\\tfrac{\\pi}{2}$, so their sum is $0$. (D) is TRUE.",
+          "(B) With $f(x)=-x\\sin x$, claim $-x\\sin x<\\tfrac{x^4}{6}-x^2$ on $(0,\\pi)$. Since $\\sin x>x-\\tfrac{x^3}{6}$ for $x>0$, we get $-x\\sin x<-x\\left(x-\\tfrac{x^3}{6}\\right)=\\tfrac{x^4}{6}-x^2$. So (B) is TRUE.",
+          "Conclusion: (B), (C), (D) are true; (A) is false."
+        ]
+      },
+      {
+        "name": "Integrating-factor view of the linear ODE",
+        "steps": [
+          "From the limit (Solution 1, step 2) the relation is the first-order linear ODE $f'(x)\\sin x - f(x)\\cos x = -\\sin^2 x$, i.e. $f'(x)-(\\cot x)\\,f(x)=-\\sin x$ after dividing by $\\sin x$.",
+          "Integrating factor: $\\mu=e^{-\\int\\cot x\\,dx}=e^{-\\ln\\sin x}=\\dfrac{1}{\\sin x}$.",
+          "Multiply through: $\\dfrac{d}{dx}\\!\\left(\\dfrac{f}{\\sin x}\\right)=\\dfrac{-\\sin x}{\\sin x}=-1$. Integrate: $\\dfrac{f}{\\sin x}=-x+c$, the same first integral as before.",
+          "Fix $c$ with $f(\\pi/6)=-\\pi/12$: as above $c=0$, so $f(x)=-x\\sin x$.",
+          "Now verify (D) structurally without recomputing at a point: for $f=-x\\sin x$ one checks $f+f''=(-x\\sin x)+(-2\\cos x+x\\sin x)=-2\\cos x$, which vanishes exactly at $x=\\pi/2$. Hence $f(\\pi/2)+f''(\\pi/2)=0$ — (D) TRUE, and it is a genuine coincidence at that single point, not an identity.",
+          "For (C), note $g(x)=f(x)/\\sin x=-x$ is strictly decreasing, but that alone does not give $f'=0$; the clean argument is Rolle on $f$ between its two boundary zeros $f(0^+)=f(\\pi^-)=0$. TRUE.",
+          "(A) and (B) follow exactly as in Solution 1: $f(\\pi/4)=-\\tfrac{\\pi}{4\\sqrt2}<0$ (A false), and the Taylor bound $\\sin x>x-\\tfrac{x^3}{6}$ gives (B) true.",
+          "Answer: (B), (C), (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 2, Q6. The whole problem hinges on spotting that $\\dfrac{f\\cos x-f'\\sin x}{\\sin^2x}$ is the derivative of $-\\dfrac{f}{\\sin x}$ — recognise the quotient-rule pattern and a scary-looking limit collapses to $\\big(f/\\sin x\\big)'=-1$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Logistic Well: $y'=(2+5y)(5y-2)$",
+    "difficulty": 3,
+    "task": "Find the limit as $x\\to-\\infty$.",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "10"
+    },
+    "tags": [
+      "variable separable",
+      "logistic-type ODE",
+      "limit at infinity",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $f:\\mathbb{R}\\to\\mathbb{R}$ be a differentiable function with $f(0)=0$. If $y=f(x)$ satisfies the differential equation $$\\frac{dy}{dx}=(2+5y)(5y-2),$$ then the value of $\\displaystyle\\lim_{x\\to-\\infty}f(x)$ is ______ .",
+    "answer": "$\\boxed{0.4}$",
+    "trap": "The equilibria of $y'=(5y)^2-4$ are $y=\\pm\\tfrac25$, and it is tempting to just pick one. But which one the solution approaches depends on the direction of the limit AND the sign of $y'$ near the start. With $f(0)=0$ we sit between the two equilibria where $y'=(2)(-2)=-4<0$, so $y$ is decreasing in $x$; running $x\\to-\\infty$ therefore sends $y$ UP toward $+\\tfrac25$, not down toward $-\\tfrac25$. Reading the phase line backwards costs the mark.",
+    "solutions": [
+      {
+        "name": "Separate variables and solve explicitly",
+        "steps": [
+          "Expand: $\\dfrac{dy}{dx}=(5y+2)(5y-2)=25y^2-4$. Separate: $\\dfrac{dy}{25y^2-4}=dx$.",
+          "Partial fractions with $25y^2-4=(5y-2)(5y+2)$: $\\dfrac{1}{(5y-2)(5y+2)}=\\dfrac{1}{4}\\left(\\dfrac{1}{5y-2}-\\dfrac{1}{5y+2}\\right)$ (since $(5y+2)-(5y-2)=4$).",
+          "Integrate: $\\dfrac{1}{4}\\cdot\\dfrac{1}{5}\\ln\\!\\left|\\dfrac{5y-2}{5y+2}\\right|=x+C_0$, i.e. $\\ln\\!\\left|\\dfrac{5y-2}{5y+2}\\right|=20x+C_1$.",
+          "So $\\dfrac{5y-2}{5y+2}=A\\,e^{20x}$. Apply $f(0)=0$: at $x=0,\\ y=0$ the left side is $\\dfrac{-2}{2}=-1$, so $A=-1$.",
+          "Thus $\\dfrac{5y-2}{5y+2}=-e^{20x}$. Solve for $y$: $5y-2=-e^{20x}(5y+2)\\Rightarrow 5y(1+e^{20x})=2(1-e^{20x})$, giving $y=\\dfrac{2}{5}\\cdot\\dfrac{1-e^{20x}}{1+e^{20x}}$.",
+          "As $x\\to-\\infty$, $e^{20x}\\to0$, so $y\\to\\dfrac{2}{5}\\cdot\\dfrac{1-0}{1+0}=\\dfrac{2}{5}=0.4$.",
+          "(Check the trap: as $x\\to+\\infty$, $e^{20x}\\to\\infty$ and $y\\to-\\tfrac25$. The two limits land on the two different equilibria — the direction matters.)"
+        ]
+      },
+      {
+        "name": "Phase-line / equilibrium reasoning (no explicit solve)",
+        "steps": [
+          "The autonomous ODE $y'=(5y-2)(5y+2)$ has equilibria at $y=\\tfrac25$ and $y=-\\tfrac25$. Between them ($-\\tfrac25<y<\\tfrac25$) the product $(5y-2)(5y+2)<0$, so $y'<0$; outside, $y'>0$.",
+          "Initial data $f(0)=0$ lies strictly between the equilibria, so the solution stays trapped in $\\left(-\\tfrac25,\\tfrac25\\right)$ for all $x$ (it cannot cross an equilibrium by uniqueness).",
+          "On this interval $y'<0$, meaning $y$ strictly decreases as $x$ increases. Equivalently, as $x$ decreases toward $-\\infty$, $y$ strictly increases.",
+          "A bounded monotone solution on an autonomous line must limit to an equilibrium. Increasing as $x\\to-\\infty$ while bounded above by $\\tfrac25$ forces $\\displaystyle\\lim_{x\\to-\\infty}f(x)=\\dfrac{2}{5}=0.4$.",
+          "(Symmetrically, decreasing as $x\\to+\\infty$ gives the other equilibrium $-\\tfrac25$ in that limit.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 2, Q10. A logistic-type autonomous ODE: you can grind out $y=\\tfrac25\\tanh(-10x)$ explicitly, or read the answer straight off the phase line once you notice the initial point sits between the two equilibria."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The curve whose tangent-to-$y$-axis segment is always length $1$",
+    "difficulty": 4,
+    "task": "Identify every correct statement about the curve.",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "3"
+    },
+    "tags": [
+      "tangent length",
+      "first-order ODE",
+      "separable equation",
+      "2019"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"185\" x2=\"305\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"40\" y1=\"205\" x2=\"40\" y2=\"15\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><text x=\"298\" y=\"200\" fill=\"var(--ink2)\">x</text><text x=\"26\" y=\"22\" fill=\"var(--ink2)\">y</text><path d=\"M 250 185 C 160 178, 70 135, 41 30\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><text x=\"250\" y=\"200\" fill=\"var(--ink2)\">(1,0)</text><circle cx=\"250\" cy=\"185\" r=\"2.5\" fill=\"var(--ink3)\"/><circle cx=\"120\" cy=\"150\" r=\"3\" fill=\"var(--gold)\"/><text x=\"126\" y=\"148\" fill=\"var(--ink2)\">P</text><line x1=\"40\" y1=\"96\" x2=\"175\" y2=\"185\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><circle cx=\"40\" cy=\"96\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"12\" y=\"100\" fill=\"var(--ink2)\">Y_P</text><line x1=\"40\" y1=\"96\" x2=\"120\" y2=\"150\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><text x=\"66\" y=\"114\" fill=\"var(--gold)\">1</text></svg>",
+    "statement": "Let $\\Gamma$ denote a curve $y=y(x)$ lying in the first quadrant, and suppose the point $(1,0)$ lies on it. Let the tangent to $\\Gamma$ at a point $P$ intersect the $y$-axis at $Y_P$. If the segment $PY_P$ has length $1$ for every point $P$ on $\\Gamma$, then which of the following options is/are correct?\n\n(A) $y=\\log_e\\!\\left(\\dfrac{1+\\sqrt{1-x^2}}{x}\\right)-\\sqrt{1-x^2}$\n\n(B) $xy'+\\sqrt{1-x^2}=0$\n\n(C) $y=-\\log_e\\!\\left(\\dfrac{1+\\sqrt{1-x^2}}{x}\\right)+\\sqrt{1-x^2}$\n\n(D) $xy'-\\sqrt{1-x^2}=0$",
+    "answer": "(A), (B)",
+    "trap": "The length condition gives $y'=\\pm\\sqrt{1-x^2}/x$, so both a $+$ and a $-$ branch appear to be admissible. Students who keep the $+$ sign (options C, D) forget that the curve must stay in the first quadrant AND pass through $(1,0)$ with $y>0$ for $x<1$: as $x$ decreases from $1$, $y$ must increase, which forces $y'<0$. Only the minus branch survives.",
+    "solutions": [
+      {
+        "name": "Geometry of the tangent segment $PY_P$",
+        "steps": [
+          "Let $P=(x,\\,y)$ with slope $y'$. The tangent line is $Y-y=y'(X-x)$.",
+          "It meets the $y$-axis at $X=0$: $Y_P=\\bigl(0,\\;y-xy'\\bigr)$.",
+          "The squared length of $PY_P$ is $|PY_P|^2=(x-0)^2+\\bigl(y-(y-xy')\\bigr)^2=x^2+(xy')^2$.",
+          "Set this equal to $1$: $x^2+x^2(y')^2=1$, so $(y')^2=\\dfrac{1-x^2}{x^2}$ and $y'=\\pm\\dfrac{\\sqrt{1-x^2}}{x}$.",
+          "The curve is in the first quadrant and passes through $(1,0)$; for $x\\in(0,1)$ it must lie above the axis, so $y$ decreases as $x$ increases toward $1$. Hence $y'<0$ and we take $y'=-\\dfrac{\\sqrt{1-x^2}}{x}$, i.e. $xy'+\\sqrt{1-x^2}=0$ — this is option (B).",
+          "Integrate: $y=-\\displaystyle\\int\\frac{\\sqrt{1-x^2}}{x}\\,dx$. Substituting $\\sqrt{1-x^2}=t$ (so $x^2=1-t^2$, $x\\,dx=-t\\,dt$) gives $\\displaystyle\\int\\frac{t^2}{1-t^2}\\,dt=-t+\\tfrac12\\log\\frac{1+t}{1-t}$.",
+          "Back-substituting and simplifying $\\tfrac12\\log\\frac{1+t}{1-t}=\\log\\frac{1+\\sqrt{1-x^2}}{x}$ yields $y=\\log_e\\!\\left(\\dfrac{1+\\sqrt{1-x^2}}{x}\\right)-\\sqrt{1-x^2}+C$.",
+          "Apply $(1,0)$: at $x=1$, $\\sqrt{1-x^2}=0$ and $\\log(1/1)=0$, so $C=0$. This is exactly option (A). Answer: (A), (B)."
+        ]
+      },
+      {
+        "name": "Direct verification of the printed options",
+        "steps": [
+          "Options (B) and (D) differ only in a sign; options (A) and (C) are exact negatives of each other. So at most one from each pair can be right, and the two correct ones must be consistent.",
+          "Check (A) against (B). Let $y=\\log_e\\frac{1+\\sqrt{1-x^2}}{x}-\\sqrt{1-x^2}$. Write $r=\\sqrt{1-x^2}$, so $r'=-x/r$.",
+          "Differentiate the log term: $\\frac{d}{dx}\\log\\frac{1+r}{x}=\\frac{r'}{1+r}-\\frac1x=\\frac{-x/r}{1+r}-\\frac1x$.",
+          "Differentiate $-r$: $-r'=x/r$. Adding, $y'=\\frac{-x}{r(1+r)}-\\frac1x+\\frac{x}{r}=\\frac{-x}{r(1+r)}+\\frac{x}{r}-\\frac1x$.",
+          "Combine the first two: $\\frac{x}{r}\\!\\left(1-\\frac{1}{1+r}\\right)=\\frac{x}{r}\\cdot\\frac{r}{1+r}=\\frac{x}{1+r}$. So $y'=\\frac{x}{1+r}-\\frac1x=\\frac{x^2-(1+r)}{x(1+r)}$.",
+          "Since $x^2=1-r^2=(1-r)(1+r)$, the numerator is $(1-r)(1+r)-(1+r)=(1+r)(-r)=-r(1+r)$, giving $y'=\\frac{-r(1+r)}{x(1+r)}=-\\frac{r}{x}=-\\frac{\\sqrt{1-x^2}}{x}$.",
+          "Thus $xy'+\\sqrt{1-x^2}=0$: option (A) satisfies option (B), and (A) passes through $(1,0)$. Options (C),(D) have the wrong sign and describe the second-quadrant reflection, not the first-quadrant curve. Answer: (A), (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 1, QS2-Q3. The whole problem hinges on one geometric quantity — the foot of the tangent on the $y$-axis is $(0,\\,y-xy')$ — after which the sign is pinned entirely by 'first quadrant through $(1,0)$', not by the algebra."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "$f'(x)=\\dfrac{f(x)}{b^2+x^2}$ and the symmetry $f(x)f(-x)=1$",
+    "difficulty": 3,
+    "task": "Select every true statement about the solution $f$.",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "7"
+    },
+    "tags": [
+      "variable separable",
+      "first order ODE",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Let $b$ be a nonzero real number. Suppose $f:\\mathbb{R}\\to\\mathbb{R}$ is a differentiable function such that $f(0)=1$. If the derivative $f'$ of $f$ satisfies the equation $f'(x)=\\dfrac{f(x)}{b^2+x^2}$ for all $x\\in\\mathbb{R}$, then which of the following statements is/are TRUE?\n\n(A) If $b>0$, then $f$ is an increasing function\n\n(B) If $b<0$, then $f$ is a decreasing function\n\n(C) $f(x)\\,f(-x)=1$ for all $x\\in\\mathbb{R}$\n\n(D) $f(x)-f(-x)=0$ for all $x\\in\\mathbb{R}$",
+    "answer": "(A), (C)",
+    "trap": "The factor $b$ appears only inside $b^2$ and $\\tfrac1b$, so people expect the sign of $b$ to control monotonicity — leading them to accept (A) but reject nothing, or to think (B) mirrors (A). But $b^2+x^2>0$ regardless of the sign of $b$, so $f'=f/(b^2+x^2)>0$ for every $b\\neq0$: $f$ is increasing for ALL $b$, which makes (A) true but (B) false. Separately, $f(x)f(-x)=1$ (an even product) is confused with $f$ being even, $f(x)=f(-x)$ (D) — a classic trap since $f$ is neither even nor odd.",
+    "solutions": [
+      {
+        "name": "Solve explicitly by separating variables",
+        "steps": [
+          "The equation $f'(x)=\\dfrac{f(x)}{b^2+x^2}$ is separable: $\\dfrac{f'(x)}{f(x)}=\\dfrac{1}{b^2+x^2}$ (note $f>0$ near $0$ since $f(0)=1$, so division is valid).",
+          "Integrate both sides: $\\ln f(x)=\\displaystyle\\int\\frac{dx}{b^2+x^2}=\\frac1b\\tan^{-1}\\!\\frac{x}{b}+C.$",
+          "Apply $f(0)=1$: $\\ln 1 = \\frac1b\\tan^{-1}(0)+C\\Rightarrow C=0.$ Hence $f(x)=\\exp\\!\\left(\\dfrac{1}{b}\\tan^{-1}\\dfrac{x}{b}\\right)>0$ for all $x$.",
+          "Because $f>0$ everywhere, the fraction is always defined and $f'(x)=\\dfrac{f(x)}{b^2+x^2}>0$ for every $x$ and every $b\\neq0$. So $f$ is strictly increasing regardless of the sign of $b$: (A) is TRUE, (B) is FALSE.",
+          "Now compute $f(-x)=\\exp\\!\\left(\\frac1b\\tan^{-1}\\frac{-x}{b}\\right)=\\exp\\!\\left(-\\frac1b\\tan^{-1}\\frac{x}{b}\\right)$, using that $\\tan^{-1}$ is odd.",
+          "Therefore $f(x)\\,f(-x)=\\exp\\!\\left(\\frac1b\\tan^{-1}\\frac{x}{b}\\right)\\exp\\!\\left(-\\frac1b\\tan^{-1}\\frac{x}{b}\\right)=e^0=1$: (C) is TRUE.",
+          "Since $f(-x)=1/f(x)\\neq f(x)$ in general (e.g. $f$ is increasing, not even), $f(x)-f(-x)\\not\\equiv0$: (D) is FALSE. Answer: (A), (C)."
+        ]
+      },
+      {
+        "name": "Deduce (A),(C) structurally without evaluating the integral",
+        "steps": [
+          "Sign of $f$: at $x=0$, $f=1>0$. If $f$ ever vanished, uniqueness for $f'=f/(b^2+x^2)$ (a linear ODE with continuous coefficient, since $b\\neq0$ keeps $b^2+x^2>0$) would force $f\\equiv0$, contradicting $f(0)=1$. So $f(x)>0$ for all $x$.",
+          "Monotonicity: with $f>0$ and $b^2+x^2>0$, we get $f'(x)=\\dfrac{f(x)}{b^2+x^2}>0$ everywhere, for every nonzero $b$. Hence $f$ is increasing for all $b$ — (A) TRUE, (B) FALSE. The sign of $b$ never enters because only $b^2$ appears.",
+          "Symmetry: define $g(x)=f(x)\\,f(-x)$. Then $g'(x)=f'(x)f(-x)-f(x)f'(-x)$.",
+          "Substitute $f'(x)=\\dfrac{f(x)}{b^2+x^2}$ and $f'(-x)=\\dfrac{f(-x)}{b^2+x^2}$ (the denominator $b^2+(-x)^2=b^2+x^2$ is unchanged): $g'(x)=\\dfrac{f(x)f(-x)}{b^2+x^2}-\\dfrac{f(x)f(-x)}{b^2+x^2}=0.$",
+          "So $g$ is constant; its value is $g(0)=f(0)^2=1$. Thus $f(x)f(-x)=1$ for all $x$ — (C) TRUE, with no integral computed.",
+          "(D) would require $f$ even, i.e. $f(x)=f(-x)$; combined with (C) that would force $f(x)^2=1$, i.e. $f\\equiv1$, contradicting $f'>0$. So (D) is FALSE. Answer: (A), (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 2, Q7. The elegant move is proving $f(x)f(-x)\\equiv1$ by showing its derivative vanishes — the symmetry falls out of the ODE itself, before you ever meet $\\tfrac1b\\tan^{-1}(x/b)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The curve pinned at $y(1)=2$",
+    "difficulty": 3,
+    "task": "Find the value of $10\\,y(\\sqrt2)$.",
+    "pyq": {
+      "year": 2022,
+      "paper": "2",
+      "qno": "2"
+    },
+    "tags": [
+      "variable separable",
+      "partial fractions",
+      "initial value problem",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "If $y(x)$ is the solution of the differential equation $x\\,dy-(y^2-4y)\\,dx=0$ for $x>0$, with $y(1)=2$, and the slope of the curve $y=y(x)$ is never zero, then find the value of $10\\,y(\\sqrt2)$.",
+    "answer": "$\\boxed{8}$",
+    "trap": "The equilibrium solutions $y\\equiv0$ and $y\\equiv4$ make $y'=0$ everywhere, and $y=2$ sits exactly halfway between them. A hurried student divides by $y^2-4y$ without noticing that at the start point $y=2$ the ratio $\\frac{y-4}{y}=-1$ is negative, so the constant of integration is $C=0$ and the modulus must be resolved as $\\frac{4-y}{y}=+x^4$ (not $\\frac{y-4}{y}$). Getting the sign of the absolute value wrong flips the whole curve.",
+    "solutions": [
+      {
+        "name": "Separation with partial fractions",
+        "steps": [
+          "Write the equation in separated form: $\\dfrac{dy}{y^2-4y}=\\dfrac{dx}{x}$.",
+          "Decompose $\\dfrac{1}{y^2-4y}=\\dfrac{1}{y(y-4)}=\\dfrac14\\left(\\dfrac{1}{y-4}-\\dfrac{1}{y}\\right)$.",
+          "Integrate both sides: $\\dfrac14\\left(\\ln|y-4|-\\ln|y|\\right)=\\ln x+C_1$, i.e. $\\dfrac14\\ln\\left|\\dfrac{y-4}{y}\\right|=\\ln x+C_1$.",
+          "Apply $y(1)=2$: the left side is $\\dfrac14\\ln\\left|\\dfrac{2-4}{2}\\right|=\\dfrac14\\ln 1=0$ and the right side is $\\ln 1+C_1=C_1$, so $C_1=0$.",
+          "Hence $\\left|\\dfrac{y-4}{y}\\right|=x^4$. Near the start point $y=2$ lies in $(0,4)$, so $y-4<0<y$ and $\\dfrac{y-4}{y}<0$; the correct signed relation is $\\dfrac{4-y}{y}=x^4$.",
+          "Solve for $y$: $4-y=x^4 y\\Rightarrow y(1+x^4)=4\\Rightarrow y=\\dfrac{4}{1+x^4}$.",
+          "Check: $y(1)=\\dfrac{4}{2}=2$ and $y'=-\\dfrac{16x^3}{(1+x^4)^2}\\ne0$ for $x>0$, so the slope is never zero, as required.",
+          "Evaluate: $y(\\sqrt2)=\\dfrac{4}{1+(\\sqrt2)^4}=\\dfrac{4}{1+4}=\\dfrac45=0.8$, hence $10\\,y(\\sqrt2)=8$."
+        ]
+      },
+      {
+        "name": "Bernoulli substitution $u=1/y$",
+        "steps": [
+          "Since $y\\ne0$ on the curve, divide $x\\,dy=(y^2-4y)\\,dx$ by $y^2$: $\\dfrac{x}{y^2}\\dfrac{dy}{dx}=1-\\dfrac{4}{y}$.",
+          "Let $u=\\dfrac1y$, so $\\dfrac{du}{dx}=-\\dfrac{1}{y^2}\\dfrac{dy}{dx}$. The equation becomes $-x\\dfrac{du}{dx}=1-4u$, i.e. $\\dfrac{du}{dx}-\\dfrac{4}{x}u=-\\dfrac1x$.",
+          "This is linear in $u$ with integrating factor $x^{-4}$: $\\dfrac{d}{dx}\\!\\left(u\\,x^{-4}\\right)=-x^{-5}$.",
+          "Integrate: $u\\,x^{-4}=\\dfrac{1}{4}x^{-4}+C$, so $u=\\dfrac14+Cx^4$.",
+          "Apply $y(1)=2\\Rightarrow u(1)=\\tfrac12$: $\\tfrac12=\\tfrac14+C\\Rightarrow C=\\tfrac14$. Thus $u=\\dfrac{1+x^4}{4}$ and $y=\\dfrac1u=\\dfrac{4}{1+x^4}$.",
+          "Then $y(\\sqrt2)=\\dfrac{4}{5}$ and $10\\,y(\\sqrt2)=8$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 2, Q2. The “slope never zero” clause is not decoration — it rules out the constant equilibrium solutions $y\\equiv0,4$ and forces the branch that keeps $0<y<4$, which is exactly why $C=0$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Transient dies, oscillation survives",
+    "difficulty": 4,
+    "task": "Decide which statements about the solution are true.",
+    "pyq": {
+      "year": 2022,
+      "paper": "2",
+      "qno": "14"
+    },
+    "tags": [
+      "linear first-order ODE",
+      "integrating factor",
+      "steady-state/transient behavior",
+      "2022"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"120\" x2=\"305\" y2=\"120\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"30\" y1=\"20\" x2=\"30\" y2=\"205\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"298\" y=\"134\" fill=\"var(--ink2)\">x</text><text x=\"14\" y=\"26\" fill=\"var(--ink2)\">y</text><path d=\"M30,120 C40,60 52,60 62,120 C72,175 84,175 94,120 C104,68 116,68 126,120 C136,168 148,168 158,120 C168,72 180,72 190,120 C200,166 212,166 222,120 C232,74 244,74 254,120 C264,165 276,165 286,120 C293,96 298,108 300,120\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\" opacity=\"0.55\"/><path d=\"M30,120 C42,55 54,55 66,120 C78,178 90,178 102,120 C114,66 126,66 138,120 C150,170 162,170 174,120 C186,70 198,70 210,120 C222,168 234,168 246,120 C258,72 270,72 282,120 C290,92 296,110 300,120\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><line x1=\"30\" y1=\"92\" x2=\"305\" y2=\"92\" stroke=\"var(--ink3)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><text x=\"235\" y=\"88\" fill=\"var(--ink2)\">y=β</text><circle cx=\"46\" cy=\"92\" r=\"2.5\" fill=\"var(--gold)\"/><circle cx=\"126\" cy=\"92\" r=\"2.5\" fill=\"var(--gold)\"/><circle cx=\"210\" cy=\"92\" r=\"2.5\" fill=\"var(--gold)\"/><circle cx=\"282\" cy=\"92\" r=\"2.5\" fill=\"var(--gold)\"/><text x=\"90\" y=\"200\" fill=\"var(--ink2)\">steady oscillation about a level</text></svg>",
+    "statement": "For $x\\in\\mathbb{R}$, let the function $y(x)$ be the solution of the differential equation $\\dfrac{dy}{dx}+12y=\\cos\\!\\left(\\dfrac{\\pi}{12}x\\right)$, with $y(0)=0$. Then, which of the following statements is (are) TRUE? (A) $y(x)$ is an increasing function. (B) $y(x)$ is a decreasing function. (C) There exists a real number $\\beta$ such that the line $y=\\beta$ intersects the curve $y=y(x)$ at infinitely many points. (D) $y(x)$ is a periodic function.",
+    "answer": "(C)",
+    "trap": "Because the transient $Ce^{-12x}$ decays, students are tempted to declare $y$ periodic (D) — but the exponential term never vanishes for finite $x$, so $y$ is only asymptotically periodic, not periodic. Likewise the sinusoidal particular part guarantees infinitely many oscillations for large $x$, so $y$ can be neither strictly increasing nor strictly decreasing; only (C) survives.",
+    "solutions": [
+      {
+        "name": "Integrating factor + asymptotic analysis",
+        "steps": [
+          "The equation is linear with integrating factor $e^{\\int 12\\,dx}=e^{12x}$, so $\\dfrac{d}{dx}\\!\\left(y\\,e^{12x}\\right)=e^{12x}\\cos\\!\\left(\\dfrac{\\pi}{12}x\\right)$.",
+          "Integrating the right side (standard $\\int e^{ax}\\cos bx\\,dx$) gives a particular solution of the form $y_p=A\\cos\\!\\left(\\dfrac{\\pi}{12}x\\right)+B\\sin\\!\\left(\\dfrac{\\pi}{12}x\\right)$ with $A=\\dfrac{12}{144+(\\pi/12)^2}$, $B=\\dfrac{\\pi/12}{144+(\\pi/12)^2}$.",
+          "The full solution is $y=y_p+Ce^{-12x}$; the constant $C$ is fixed by $y(0)=0$, giving $C=-A$.",
+          "As $x\\to+\\infty$ the transient $Ce^{-12x}\\to0$, so $y(x)\\to y_p(x)$, a genuine sinusoid of period $\\dfrac{2\\pi}{\\pi/12}=24$ that oscillates forever between $-\\sqrt{A^2+B^2}$ and $+\\sqrt{A^2+B^2}$.",
+          "(A),(B): a function that oscillates for large $x$ cannot be monotonic on all of $\\mathbb{R}$ — both are FALSE.",
+          "(D): the transient $Ce^{-12x}$ is present for every finite $x$ (it is nonzero for all $x$ since $C=-A\\ne0$), so $y(x+T)\\ne y(x)$ exactly; $y$ is not periodic — FALSE.",
+          "(C): pick any level $\\beta$ strictly inside the eventual oscillation band, e.g. $\\beta=0$; since $y_p$ crosses that band infinitely often for large $x$ and the perturbation is exponentially small, the curve $y=y(x)$ meets $y=\\beta$ at infinitely many points — TRUE.",
+          "Only statement (C) holds."
+        ]
+      },
+      {
+        "name": "Qualitative sign-of-slope argument",
+        "steps": [
+          "Read the ODE as $\\dfrac{dy}{dx}=\\cos\\!\\left(\\dfrac{\\pi}{12}x\\right)-12y$: the slope is the cosine forcing minus $12$ times the current height.",
+          "Suppose, for contradiction, $y$ were increasing everywhere, so $y'\\ge0$ throughout. The bounded forcing $\\cos(\\pi x/12)\\in[-1,1]$ forces $y$ to stay bounded (the $-12y$ term drives large $|y|$ back toward $0$), so $y$ would converge to a finite limit $L$ with $y'\\to0$.",
+          "But then $12y\\to\\cos(\\pi x/12)$ would have to hold in the limit, which is impossible because the right side keeps oscillating while $12L$ is constant — so $y'$ must change sign. This kills (A), and symmetrically (B).",
+          "Boundedness plus persistent oscillation of $y'$ means $y$ itself oscillates within a bounded band for large $x$; by the Intermediate Value Theorem every horizontal line through the interior of that band is crossed infinitely often, giving (C).",
+          "Periodicity (D) fails because the initial data $y(0)=0$ does not lie on the steady oscillation; the approach to it is monotone-in-envelope (exponential), so no finite period reproduces the curve exactly.",
+          "Therefore the correct answer is (C) only."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 2, Q14. A model “steady-state vs transient” problem: the large decay rate ($12$) crushes the exponential fast, but “fast” is not “instant” — the transient is nonzero for every finite $x$, so the solution is asymptotically periodic, never exactly periodic."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three ODEs, one product: $y_1y_2y_3$",
+    "difficulty": 4,
+    "task": "Evaluate the limit.",
+    "pyq": {
+      "year": 2025,
+      "paper": "1",
+      "qno": "13"
+    },
+    "tags": [
+      "first-order linear/separable ODE",
+      "product of solutions",
+      "limit at a point",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "For all $x>0$, let $y_1(x),\\,y_2(x)$ and $y_3(x)$ be the functions satisfying\n$$\\frac{dy_1}{dx}-\\sin^2x\\,y_1=0,\\quad y_1(1)=\\sqrt5;$$\n$$\\frac{dy_2}{dx}-\\cos^2x\\,y_2=0,\\quad y_2(1)=\\tfrac13;$$\n$$\\frac{dy_3}{dx}-\\frac{2-x^3}{x^3}\\,y_3=0,\\quad y_3(1)=\\frac{3}{5e},$$\nrespectively. Then $\\displaystyle\\lim_{x\\to 0^+}\\frac{y_1(x)\\,y_2(x)\\,y_3(x)+2x}{e^{3x}\\sin x}$ is equal to __________.",
+    "answer": "$\\boxed{2}$",
+    "trap": "Multiplying the equations, the $\\sin^2x+\\cos^2x=1$ cancels the $-1$ inside $a_3=\\tfrac2{x^3}-1$, leaving $\\tfrac{P'}{P}=\\tfrac2{x^3}$ and $P=\\tfrac1{\\sqrt5}e^{-1/x^2}\\to0$. Because that decays faster than any power, only the $+2x$ in the numerator survives, giving the clean limit $2$.",
+    "solutions": [
+      {
+        "name": "Multiply the three equations into one ODE for $P=y_1y_2y_3$",
+        "steps": [
+          "Each equation gives $\\dfrac{y_i'}{y_i}=a_i(x)$ with $a_1=\\sin^2x,\\ a_2=\\cos^2x,\\ a_3=\\dfrac{2-x^3}{x^3}=\\dfrac{2}{x^3}-1$.",
+          "For $P=y_1y_2y_3$: $\\dfrac{P'}{P}=\\sin^2x+\\cos^2x+\\Big(\\dfrac2{x^3}-1\\Big)=1+\\dfrac2{x^3}-1=\\dfrac2{x^3}.$",
+          "Integrate: $\\ln P=\\displaystyle\\int\\dfrac2{x^3}\\,dx=-\\dfrac1{x^2}+K$, so $P(x)=A\\,e^{-1/x^2}$. From $P(1)=\\sqrt5\\cdot\\tfrac13\\cdot\\dfrac3{5e}=\\dfrac1{\\sqrt5\\,e}$ and $P(1)=A e^{-1}$, we get $A=\\dfrac1{\\sqrt5}$, so $P(x)=\\dfrac1{\\sqrt5}e^{-1/x^2}$.",
+          "As $x\\to0^+$, $e^{-1/x^2}\\to0$ faster than any power, so $P(x)=o(x)$. Then $\\dfrac{P(x)+2x}{e^{3x}\\sin x}=\\dfrac{2x+o(x)}{x+o(x)}\\to\\boxed{2}$."
+        ]
+      },
+      {
+        "name": "Leading-order Taylor",
+        "steps": [
+          "Denominator: $e^{3x}\\sin x=(1+3x+\\cdots)(x-\\tfrac{x^3}6+\\cdots)=x+3x^2+O(x^3)$, leading term $x$.",
+          "Numerator: $P(x)+2x$ with $P(x)=\\tfrac1{\\sqrt5}e^{-1/x^2}$. Since $e^{-1/x^2}$ decays faster than every power of $x$, $P(x)$ contributes nothing to any finite Taylor order, so the numerator $=2x+o(x)$.",
+          "Hence $\\displaystyle\\lim_{x\\to0^+}\\dfrac{P(x)+2x}{e^{3x}\\sin x}=\\dfrac{2x}{x}=2.$",
+          "The product trick is the key: three coupled unknowns collapse to a single integration $\\ln P=\\int 2/x^3$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 1, Q13. The product $y_1y_2y_3=\\tfrac1{\\sqrt5}e^{-1/x^2}\\to0$ super-fast, so $\\lim_{x\\to0^+}\\dfrac{y_1y_2y_3+2x}{e^{3x}\\sin x}=2$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Homogeneous curve through $(1,0)$",
+    "difficulty": 3,
+    "task": "Evaluate the given expression.",
+    "pyq": {
+      "year": 2025,
+      "paper": "2",
+      "qno": "9"
+    },
+    "tags": [
+      "homogeneous differential equation",
+      "substitution y=vx",
+      "evaluating solution",
+      "2025"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"20\" y1=\"185\" x2=\"305\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"/>\n  <line x1=\"48\" y1=\"200\" x2=\"48\" y2=\"18\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"/>\n  <text x=\"298\" y=\"200\" fill=\"var(--ink2)\">x</text>\n  <text x=\"34\" y=\"26\" fill=\"var(--ink2)\">y</text>\n  <path d=\"M 78 185 Q 150 140 210 92 Q 250 60 290 34\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/>\n  <circle cx=\"78\" cy=\"185\" r=\"3\" fill=\"var(--gold)\"/>\n  <text x=\"62\" y=\"200\" fill=\"var(--ink2)\">(1,0)</text>\n  <line x1=\"48\" y1=\"185\" x2=\"78\" y2=\"185\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/>\n  <circle cx=\"165\" cy=\"120\" r=\"2.5\" fill=\"var(--ink3)\"/>\n  <text x=\"150\" y=\"112\" fill=\"var(--ink2)\">(e, e/2)</text>\n  <circle cx=\"255\" cy=\"56\" r=\"2.5\" fill=\"var(--ink3)\"/>\n  <text x=\"236\" y=\"48\" fill=\"var(--ink2)\">(e², 2e²/3)</text>\n  <text x=\"200\" y=\"175\" fill=\"var(--ink2)\">y = x·ln x / (1+ln x)</text>\n</svg>",
+    "statement": "Let $y(x)$ be the solution of the differential equation\n$$x^2\\frac{dy}{dx}=xy+x^2-y^2,\\qquad x\\ge \\frac{1}{e},$$\nsatisfying $y(1)=0$. Then the value of $\\dfrac{2\\,y(e)-2}{y(e^2)}$ is __________.",
+    "answer": "$\\boxed{0.30}$",
+    "trap": "The tempting shortcut is to guess a “nice” closed form like $\\tfrac{x\\ln x}{1+\\ln x}$ — but that does NOT satisfy this ODE. The equation is homogeneous (degree-2 over degree-2), giving $\\tfrac{1+v}{1-v}=x^2$ and $y=\\tfrac{x(x^2-1)}{x^2+1}=x\\tanh(\\ln x)$; the final value is $\\approx0.30$, not $0.75$.",
+    "solutions": [
+      {
+        "name": "Homogeneous substitution $y=vx$",
+        "steps": [
+          "Divide by $x^2$: $\\dfrac{dy}{dx}=1+\\dfrac yx-\\Big(\\dfrac yx\\Big)^2$, homogeneous. Put $y=vx$: $v+x\\dfrac{dv}{dx}=1+v-v^2$, so $x\\dfrac{dv}{dx}=1-v^2$.",
+          "Separate and integrate: $\\dfrac{dv}{1-v^2}=\\dfrac{dx}{x}\\Rightarrow \\tfrac12\\ln\\dfrac{1+v}{1-v}=\\ln x+C$. From $y(1)=0$ ($v=0$ at $x=1$), $C=0$, so $\\dfrac{1+v}{1-v}=x^2$.",
+          "Solve: $v=\\dfrac{x^2-1}{x^2+1}$, hence $y(x)=x\\cdot\\dfrac{x^2-1}{x^2+1}$. (One checks $y(1)=0$ and that it satisfies the ODE exactly.)",
+          "Evaluate: $y(e)=\\dfrac{e(e^2-1)}{e^2+1}\\approx2.0702$ and $y(e^2)=\\dfrac{e^2(e^4-1)}{e^4+1}\\approx7.1233$. Then $\\dfrac{2y(e)-2}{y(e^2)}=\\dfrac{2.1404}{7.1233}\\approx\\boxed{0.30}$."
+        ]
+      },
+      {
+        "name": "Verify the closed form, then compute",
+        "steps": [
+          "Claim $y=\\dfrac{x(x^2-1)}{x^2+1}$. At $x=1$, $y=0$ ✓. Writing $y=x\\tanh(\\ln x)$ makes $\\dfrac yx=\\tanh(\\ln x)$ and $1-\\big(\\tfrac yx\\big)^2=\\operatorname{sech}^2(\\ln x)$.",
+          "Differentiate: $\\dfrac{dy}{dx}=\\tanh(\\ln x)+\\operatorname{sech}^2(\\ln x)$, while $1+\\dfrac yx-\\big(\\tfrac yx\\big)^2=1+\\tanh(\\ln x)-\\tanh^2(\\ln x)=\\tanh(\\ln x)+\\operatorname{sech}^2(\\ln x)$. They match, so the ODE holds.",
+          "Numerically $y(e)=e\\tanh1=2.0702$, $y(e^2)=e^2\\tanh2=7.1233$.",
+          "Therefore $\\dfrac{2y(e)-2}{y(e^2)}=\\dfrac{2(2.0702)-2}{7.1233}=0.3005\\approx0.30$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 2, Q9. The homogeneous substitution gives $y=\\dfrac{x(x^2-1)}{x^2+1}$; then $\\dfrac{2y(e)-2}{y(e^2)}\\approx0.30$."
   }
 ];

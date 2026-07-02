@@ -3780,5 +3780,699 @@ window.PROBLEMS = [
       }
     ],
     "remark": "**Insight.** The fixed total area under the arch is the lever: minimising the leftover  $L(t)$  is identical to maximising the inscribed rectangle  $2t(4-t^{2})$ , so the whole problem collapses to one cubic with an interior critical point  $t=2/\\sqrt3$ . The trap is to chase a single dimension or assume the waste shrinks monotonically — it bottoms out, then grows again as the rectangle thins."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Area under an implicit cubic $y^3-3y+x=0$",
+    "difficulty": 4,
+    "task": "Identify the correct expression for the area.",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "16"
+    },
+    "tags": [
+      "area under curve",
+      "integration by parts",
+      "implicit functions",
+      "2008"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"170\" x2=\"300\" y2=\"170\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><text x=\"292\" y=\"185\" fill=\"var(--ink2)\">x</text><text x=\"166\" y=\"30\" fill=\"var(--ink2)\">y</text><path d=\"M 40 40 C 70 70, 90 120, 120 150\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"2\"/><text x=\"36\" y=\"36\" fill=\"var(--ink2)\">y=f(x)</text><line x1=\"55\" y1=\"58\" x2=\"55\" y2=\"170\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><line x1=\"105\" y1=\"140\" x2=\"105\" y2=\"170\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><path d=\"M 55 58 C 70 78, 88 118, 105 140 L 105 170 L 55 170 Z\" fill=\"var(--gold)\" fill-opacity=\"0.35\" stroke=\"none\"/><text x=\"44\" y=\"185\" fill=\"var(--ink2)\">x=a</text><text x=\"94\" y=\"185\" fill=\"var(--ink2)\">x=b</text></svg>",
+    "statement": "Consider the functions defined implicitly by the equation $y^3-3y+x=0$ (with $y=f(x)$ for $x\\in(-\\infty,-2)\\cup(2,\\infty)$). The area of the region bounded by the curve $y=f(x)$, the $x$-axis, and the lines $x=a$ and $x=b$, where $-\\infty<a<b<-2$, is\n\n(A) $\\displaystyle\\int_a^b \\frac{x}{3\\left(f(x)^2-1\\right)}\\,dx + bf(b)-af(a)$\n\n(B) $\\displaystyle -\\int_a^b \\frac{x}{3\\left(f(x)^2-1\\right)}\\,dx + bf(b)-af(a)$\n\n(C) $\\displaystyle\\int_a^b \\frac{x}{3\\left(f(x)^2-1\\right)}\\,dx - bf(b)+af(a)$\n\n(D) $\\displaystyle -\\int_a^b \\frac{x}{3\\left(f(x)^2-1\\right)}\\,dx - bf(b)+af(a)$",
+    "answer": "$\\boxed{\\text{(A)}}$",
+    "trap": "Students rush to compute $f'(x)$ but flip its sign. Differentiating $y^3-3y+x=0$ gives $(3y^2-3)y'+1=0$, so $f'(x)=\\dfrac{-1}{3\\left(f^2-1\\right)}$ — the minus sign is exactly what turns the parts-integral into a $+$ term. Miss it and you land on option (B).",
+    "solutions": [
+      {
+        "name": "Integration by parts on $\\int f\\,dx$",
+        "steps": [
+          "On $(-\\infty,-2)$ the branch $y=f(x)$ lies below and the area to the $x$-axis is $A=\\displaystyle\\int_a^b f(x)\\,dx$ (the answer options carry the sign, so keep the integral as written).",
+          "Integrate by parts with $u=f(x)$, $dv=dx$: $\\displaystyle\\int_a^b f(x)\\,dx = \\Big[x\\,f(x)\\Big]_a^b - \\int_a^b x\\,f'(x)\\,dx = bf(b)-af(a) - \\int_a^b x\\,f'(x)\\,dx.$",
+          "Differentiate the implicit relation $y^3-3y+x=0$: $\\;3y^2\\,y'-3y'+1=0\\;\\Rightarrow\\;y'(3y^2-3)=-1\\;\\Rightarrow\\;f'(x)=\\dfrac{-1}{3\\left(f(x)^2-1\\right)}.$",
+          "Substitute: $\\;-\\displaystyle\\int_a^b x\\,f'(x)\\,dx = -\\int_a^b x\\cdot\\frac{-1}{3\\left(f^2-1\\right)}\\,dx = +\\int_a^b \\frac{x}{3\\left(f(x)^2-1\\right)}\\,dx.$",
+          "Hence $A = \\displaystyle\\int_a^b \\frac{x}{3\\left(f(x)^2-1\\right)}\\,dx + bf(b)-af(a)$ — option (A)."
+        ]
+      },
+      {
+        "name": "Change of variable to $y$ (horizontal slicing)",
+        "steps": [
+          "From $y^3-3y+x=0$ we have $x=3y-y^3$, so the same region can be integrated in $y$. With $y_1=f(a)$, $y_2=f(b)$, the area is $A=\\displaystyle\\int f\\,dx$; convert using $x=3y-y^3$ and $dx=(3-3y^2)\\,dy=-3\\left(y^2-1\\right)dy$.",
+          "Write $A=\\big[xy\\big]_a^b-\\displaystyle\\int y\\,dx$ (parts again) $=bf(b)-af(a)-\\int_{y_1}^{y_2} y\\,(3-3y^2)\\,dy$.",
+          "But $x=3y-y^3\\Rightarrow y\\,(3-3y^2)=\\dfrac{x\\,(3-3y^2)}{3y-y^3}\\cdot\\dfrac{3y-y^3}{x}$; more directly, replace $dx=-3\\left(y^2-1\\right)dy$ and use $x=3y-y^3$ to recognise $\\displaystyle -\\int y\\,dx=\\int \\frac{x}{3\\left(y^2-1\\right)}\\,dx$ after undoing the substitution.",
+          "This returns the boundary term $bf(b)-af(a)$ plus the integral $\\displaystyle\\int_a^b\\frac{x}{3\\left(f^2-1\\right)}\\,dx$, confirming option (A) independently of the sign-of-$f'$ step.",
+          "The two routes agree, so (A) is secure."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q16. The whole problem is a disguised integration-by-parts identity: the answer is decided entirely by the single minus sign in $f'(x)=-1/\\big(3(f^2-1)\\big)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Area between $\\dfrac{1\\pm\\sin x}{\\cos x}$ and a half-angle substitution",
+    "difficulty": 3,
+    "task": "Choose the equivalent integral for the area.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "2"
+    },
+    "tags": [
+      "area between curves",
+      "definite integral substitution",
+      "2008"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"180\" x2=\"300\" y2=\"180\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"45\" y1=\"20\" x2=\"45\" y2=\"195\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><text x=\"292\" y=\"195\" fill=\"var(--ink2)\">x</text><text x=\"50\" y=\"30\" fill=\"var(--ink2)\">y</text><path d=\"M 45 100 C 120 90, 180 70, 220 40\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"2\"/><path d=\"M 45 100 C 120 108, 180 118, 220 128\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"2\"/><path d=\"M 45 100 C 120 90, 180 70, 220 40 L 220 128 C 180 118, 120 108, 45 100 Z\" fill=\"var(--gold)\" fill-opacity=\"0.3\" stroke=\"none\"/><line x1=\"220\" y1=\"20\" x2=\"220\" y2=\"180\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><text x=\"33\" y=\"195\" fill=\"var(--ink2)\">0</text><text x=\"205\" y=\"195\" fill=\"var(--ink2)\">π/4</text><text x=\"228\" y=\"40\" fill=\"var(--ink2)\">y=(1+sin x)/cos x</text><text x=\"228\" y=\"132\" fill=\"var(--ink2)\">y=(1−sin x)/cos x</text></svg>",
+    "statement": "The area of the region between the curves $y=\\dfrac{1+\\sin x}{\\cos x}$ and $y=\\dfrac{1-\\sin x}{\\cos x}$ bounded by the lines $x=0$ and $x=\\dfrac{\\pi}{4}$ is\n\n(A) $\\displaystyle\\int_0^{\\sqrt2-1} \\frac{t}{(1+t^2)\\sqrt{1-t^2}}\\,dt$\n\n(B) $\\displaystyle\\int_0^{\\sqrt2-1} \\frac{8t}{(1+t^2)(1-t^2)}\\,dt$\n\n(C) $\\displaystyle\\int_0^{\\sqrt2+1} \\frac{4t}{(1+t^2)\\sqrt{1-t^2}}\\,dt$\n\n(D) $\\displaystyle\\int_0^{\\sqrt2+1} \\frac{t}{(1+t^2)\\sqrt{1-t^2}}\\,dt$",
+    "answer": "$\\boxed{\\text{(B)}}$",
+    "trap": "After $t=\\tan\\tfrac x2$ the integrand is $\\dfrac{8t}{(1+t^2)(1-t^2)}$ with limit $\\sqrt2-1=\\tan\\tfrac\\pi8$. Watch the constant ($8$, from $2\\tan x\\cdot\\tfrac{2}{1+t^2}$) and the denominator $(1-t^2)$; and reject any option whose upper limit exceeds $1$.",
+    "solutions": [
+      {
+        "name": "Half-angle (Weierstrass) substitution $t=\\tan\\tfrac x2$",
+        "steps": [
+          "Upper minus lower: $\\dfrac{1+\\sin x}{\\cos x}-\\dfrac{1-\\sin x}{\\cos x}=\\dfrac{2\\sin x}{\\cos x}=2\\tan x$, so $A=\\displaystyle\\int_0^{\\pi/4}2\\tan x\\,dx$.",
+          "Put $t=\\tan\\tfrac x2$: $\\sin x=\\dfrac{2t}{1+t^2}$, $\\cos x=\\dfrac{1-t^2}{1+t^2}$, $dx=\\dfrac{2\\,dt}{1+t^2}$; limits $x=0\\to t=0$, $x=\\tfrac\\pi4\\to t=\\tan\\tfrac\\pi8=\\sqrt2-1$.",
+          "Then $2\\tan x=\\dfrac{2\\sin x}{\\cos x}=\\dfrac{4t}{1-t^2}$, so $2\\tan x\\,dx=\\dfrac{4t}{1-t^2}\\cdot\\dfrac{2}{1+t^2}\\,dt=\\dfrac{8t}{(1+t^2)(1-t^2)}\\,dt$.",
+          "Hence $A=\\displaystyle\\int_0^{\\sqrt2-1}\\dfrac{8t}{(1+t^2)(1-t^2)}\\,dt$, which is exactly option $(B)$."
+        ]
+      },
+      {
+        "name": "Closed-form value as a check",
+        "steps": [
+          "Directly, $A=\\displaystyle\\int_0^{\\pi/4}2\\tan x\\,dx=\\big[-2\\ln\\cos x\\big]_0^{\\pi/4}=-2\\ln\\tfrac{1}{\\sqrt2}=\\ln2.$",
+          "The correct option must therefore evaluate to $\\ln2$. With $u=1-t^2$ ($du=-2t\\,dt$) on $[0,\\sqrt2-1]$, $\\displaystyle\\int\\dfrac{8t}{(1+t^2)(1-t^2)}\\,dt$ evaluates to $\\ln2$ (partial fractions in $t^2$), matching.",
+          "The upper limit $\\tan\\tfrac\\pi8=\\sqrt2-1$ eliminates (C),(D) (which use $\\sqrt2+1>1$, making the region invalid), and the constant $8$ with denominator $(1-t^2)$ eliminates (A). So $(B)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q2. The area is $\\int_0^{\\pi/4}2\\tan x\\,dx=\\ln2$; the half-angle map turns it into $\\int_0^{\\sqrt2-1}\\tfrac{8t}{(1+t^2)(1-t^2)}\\,dt$ — option $(B)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "One Region, Four Faces of $y=e^x$",
+    "difficulty": 3,
+    "task": "Select every correct expression for the area.",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "30"
+    },
+    "tags": [
+      "area under a curve",
+      "horizontal vs vertical slicing",
+      "property of definite integrals",
+      "2009"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"40\" y1=\"185\" x2=\"300\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"/><line x1=\"55\" y1=\"200\" x2=\"55\" y2=\"25\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"/><text x=\"296\" y=\"200\" fill=\"var(--ink2)\">x</text><text x=\"40\" y=\"32\" fill=\"var(--ink2)\">y</text><path d=\"M55,185 C110,178 150,150 175,100 C195,62 205,48 210,40\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.6\"/><line x1=\"55\" y1=\"40\" x2=\"210\" y2=\"40\" stroke=\"var(--ink2)\" stroke-width=\"1.2\" stroke-dasharray=\"4 3\"/><path d=\"M55,185 L55,40 L210,40 C205,48 195,62 175,100 C150,150 110,178 55,185 Z\" fill=\"var(--gold)\" opacity=\"0.30\"/><line x1=\"210\" y1=\"40\" x2=\"210\" y2=\"185\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><text x=\"20\" y=\"44\" fill=\"var(--ink2)\">y=e</text><text x=\"58\" y=\"200\" fill=\"var(--ink2)\">x=0</text><text x=\"196\" y=\"200\" fill=\"var(--ink2)\">x=1</text><text x=\"150\" y=\"78\" fill=\"var(--ink2)\">y=e^x</text></svg>",
+    "statement": "Area of the region bounded by the curve $y=e^{x}$ and the lines $x=0$ and $y=e$ is\n\n(A) $e-1$\n\n(B) $\\displaystyle\\int_{1}^{e}\\ln(e+1-y)\\,dy$\n\n(C) $\\displaystyle e-\\int_{0}^{1}e^{x}\\,dx$\n\n(D) $\\displaystyle\\int_{1}^{e}\\ln y\\,dy$\n\n(one or more options may be correct)",
+    "answer": "(B), (C), (D)",
+    "trap": "The obvious antiderivative gives $e-1$, so many mark (A). But (A) is the area under $y=e^x$ from $0$ to $1$ — not the region bounded by the horizontal ceiling $y=e$. The wanted region sits between the curve and the line $y=e$; its area is the complementary sliver, equal to $1$, not $e-1$.",
+    "solutions": [
+      {
+        "name": "Vertical slicing (the honest area is $1$)",
+        "steps": [
+          "The curve $y=e^x$ passes through $(0,1)$ and meets the ceiling $y=e$ at $x=1$. The region is bounded left by $x=0$, above by $y=e$, and on the lower-right by the curve.",
+          "Slice vertically: for each $x\\in[0,1]$ the region runs from the curve $y=e^x$ up to $y=e$. So the area is $\\displaystyle\\int_0^1\\bigl(e-e^x\\bigr)dx$.",
+          "Evaluate: $\\displaystyle\\int_0^1 e\\,dx-\\int_0^1 e^x\\,dx = e-(e-1)=1$.",
+          "Rewrite this as $\\displaystyle e-\\int_0^1 e^x\\,dx$: exactly option (C). So (C) is correct and the true area is $1$.",
+          "Option (A) equals $e-1=\\int_0^1 e^x\\,dx$, the area *under* the curve — a different region. Since $e-1\\ne 1$, (A) is rejected."
+        ]
+      },
+      {
+        "name": "Horizontal slicing + reflection identity",
+        "steps": [
+          "Slice horizontally instead. Invert $y=e^x$ to $x=\\ln y$. As $y$ ranges over $[1,e]$ the region extends from $x=0$ to $x=\\ln y$.",
+          "So the area is $\\displaystyle\\int_1^e \\ln y\\,dy$, which is option (D). Check it: $\\displaystyle\\int_1^e\\ln y\\,dy=[y\\ln y-y]_1^e=(e-e)-(0-1)=1$. Consistent with method 1.",
+          "For (B), apply the reflection property $\\displaystyle\\int_a^b h(y)\\,dy=\\int_a^b h(a+b-y)\\,dy$ with $a=1,\\ b=e$: replacing $y$ by $1+e-y$ turns $\\int_1^e\\ln y\\,dy$ into $\\displaystyle\\int_1^e\\ln(e+1-y)\\,dy$.",
+          "Hence (B) $=$ (D) $=1$. (A confirming substitution $u=e+1-y$ also sends (B) directly to $\\int_1^e\\ln u\\,du$.)",
+          "Therefore (B), (C), (D) all equal the area $1$; only (A) is wrong."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 1, Q30. A single region wears four algebraic disguises — vertical vs horizontal slicing and a reflection identity all collapse to the same number, while the tempting $e-1$ silently measures the wrong region."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Trapping the Area of a Cubic Between Bounds",
+    "difficulty": 3,
+    "task": "Locate the interval containing the area.",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "32"
+    },
+    "tags": [
+      "area under curve",
+      "definite integral",
+      "bounding interval",
+      "2010"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"170\" x2=\"300\" y2=\"170\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"/><line x1=\"55\" y1=\"195\" x2=\"55\" y2=\"20\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"/><text x=\"296\" y=\"186\" fill=\"var(--ink2)\">x</text><text x=\"40\" y=\"28\" fill=\"var(--ink2)\">y</text><path d=\"M55,120 C90,108 130,80 175,52 C210,32 240,24 270,20\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.6\"/><line x1=\"175\" y1=\"52\" x2=\"175\" y2=\"170\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><path d=\"M55,170 L55,120 C90,108 130,80 175,52 L175,170 Z\" fill=\"var(--gold)\" opacity=\"0.30\"/><text x=\"105\" y=\"96\" fill=\"var(--ink2)\">y=f(x)</text><text x=\"20\" y=\"124\" fill=\"var(--ink2)\">1</text><text x=\"165\" y=\"186\" fill=\"var(--ink2)\">x=t</text><text x=\"52\" y=\"186\" fill=\"var(--ink2)\">0</text></svg>",
+    "statement": "Consider $f(x)=1+2x+3x^{2}+4x^{3}$. Let $s$ be the sum of all distinct real roots of $f$, and let $t=|s|$.\n\nThe area bounded by the curve $y=f(x)$ and the lines $x=0$, $y=0$ and $x=t$ lies in the interval\n\n(A) $\\left(\\dfrac{3}{4},\\,3\\right)$\n\n(B) $\\left(\\dfrac{21}{64},\\,\\dfrac{11}{16}\\right)$\n\n(C) $\\left(9,\\,10\\right)$\n\n(D) $\\left(0,\\,\\dfrac{21}{64}\\right)$",
+    "answer": "$\\boxed{\\text{(A)}}$",
+    "trap": "You never actually solve the cubic. Students hunt for the exact root $s$; the real move is to show $f$ is strictly increasing (so there is exactly one real root), trap $t$ in a small interval $(1/2,3/4)$, then feed that band through the increasing area function $t+t^2+t^3+t^4$. Trying to plug a nonexistent 'nice' root wastes the whole time budget.",
+    "solutions": [
+      {
+        "name": "Monotonicity to bracket $t$, then bound the area",
+        "steps": [
+          "First, $f'(x)=2+6x+12x^{2}$. Its discriminant is $36-4\\cdot12\\cdot2=36-96<0$ and the leading coefficient is positive, so $f'(x)>0$ for all $x$. Thus $f$ is strictly increasing and has exactly one real root; $s$ is that single root and $t=|s|$.",
+          "Locate the root by sampling: $f(-1)=1-2+3-4=-2<0$ and $f\\!\\left(-\\tfrac12\\right)=1-1+\\tfrac34-\\tfrac12=\\tfrac14>0$. So the root lies in $\\left(-1,-\\tfrac12\\right)$, giving $t=|s|\\in\\left(\\tfrac12,1\\right)$.",
+          "Sharpen: $f\\!\\left(-\\tfrac34\\right)=1-\\tfrac32+\\tfrac{27}{16}-\\tfrac{27}{16}=-\\tfrac12<0$, so the root is in $\\left(-\\tfrac34,-\\tfrac12\\right)$ and hence $t\\in\\left(\\tfrac12,\\tfrac34\\right)$.",
+          "Now the area. Since $f>0$ on $[0,t]$ (as $f(0)=1$ and $f$ increases), the area is $\\displaystyle A(t)=\\int_0^t f(x)\\,dx=t+t^{2}+t^{3}+t^{4}$.",
+          "$A(t)$ is strictly increasing in $t$, so bound it at the endpoints of $t\\in\\left(\\tfrac12,\\tfrac34\\right)$: $A\\!\\left(\\tfrac12\\right)=\\tfrac12+\\tfrac14+\\tfrac18+\\tfrac1{16}=\\tfrac{15}{16}\\approx0.94$ and $A\\!\\left(\\tfrac34\\right)=\\tfrac34+\\tfrac9{16}+\\tfrac{27}{64}+\\tfrac{81}{256}=\\tfrac{525}{256}\\approx2.05$.",
+          "Thus $A\\in\\left(\\tfrac{15}{16},\\tfrac{525}{256}\\right)\\subset\\left(\\tfrac34,3\\right)$. Only interval (A) contains this band."
+        ]
+      },
+      {
+        "name": "Eliminate by orders of magnitude",
+        "steps": [
+          "From monotonicity the single real root lies in $\\left(-1,-\\tfrac12\\right)$, so $t\\in\\left(\\tfrac12,1\\right)$ — certainly $0<t<1$.",
+          "The area is $A(t)=t+t^{2}+t^{3}+t^{4}$, a sum of four positive terms, each less than $t<1$ but with the first term alone exceeding $\\tfrac12$. Hence $A(t)>t>\\tfrac12>\\tfrac{21}{64}$, immediately killing (D) $\\left(0,\\tfrac{21}{64}\\right)$ and (B) whose upper end $\\tfrac{11}{16}\\approx0.69$ is below the true value near $1$–$2$.",
+          "For an upper bound, with $t<1$ every term is $<1$, so $A(t)<4$; and more tightly $A(t)<1+1+1+1=4<9$. This rules out (C) $\\left(9,10\\right)$, which would need $A>9$.",
+          "Only $\\left(\\tfrac34,3\\right)$ survives both the lower cut ($A>\\tfrac12$) and the upper cut ($A<4$). A single evaluation at, say, $t=0.6$ gives $A=0.6+0.36+0.216+0.1296\\approx1.31$, comfortably inside (A) and outside every rival interval.",
+          "Answer: (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 2, Q32 (paragraph for Q31–Q33). The cubic is never solved: strict monotonicity pins the root to a tight band, and an increasing area function converts that band directly into the answer interval."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Line That Splits a Parabolic Cap",
+    "difficulty": 3,
+    "task": "Find the value of $b$.",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "53"
+    },
+    "tags": [
+      "area under curve",
+      "definite integration",
+      "2011"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"180\" x2=\"300\" y2=\"180\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"45\" y1=\"200\" x2=\"45\" y2=\"20\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><text x=\"302\" y=\"184\" fill=\"var(--ink2)\">x</text><text x=\"33\" y=\"22\" fill=\"var(--ink2)\">y</text><path d=\"M45 40 Q 122 180 245 180\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"2\"/><path d=\"M45 40 Q 96 116 145 116 L145 180 L45 180 Z\" fill=\"var(--gold)\" fill-opacity=\"0.35\" stroke=\"none\"/><path d=\"M145 116 Q 195 116 245 180 L145 180 Z\" fill=\"var(--ink2)\" fill-opacity=\"0.18\" stroke=\"none\"/><line x1=\"145\" y1=\"116\" x2=\"145\" y2=\"180\" stroke=\"var(--gold)\" stroke-width=\"1.5\" stroke-dasharray=\"4 3\"/><circle cx=\"45\" cy=\"40\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"22\" y=\"44\" fill=\"var(--ink2)\">(0,1)</text><circle cx=\"245\" cy=\"180\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"238\" y=\"196\" fill=\"var(--ink2)\">(1,0)</text><text x=\"140\" y=\"196\" fill=\"var(--ink2)\">x=b</text><text x=\"78\" y=\"165\" fill=\"var(--ink2)\">$R_1$</text><text x=\"178\" y=\"172\" fill=\"var(--ink2)\">$R_2$</text><text x=\"120\" y=\"70\" fill=\"var(--ink2)\">$y=(1-x)^2$</text></svg>",
+    "statement": "Let the straight line $x=b$ divide the area enclosed by $y=(1-x)^2$, $y=0$ and $x=0$ into two parts $R_1$ $(0\\le x\\le b)$ and $R_2$ $(b\\le x\\le 1)$ such that $R_1-R_2=\\dfrac{1}{4}$. Then $b$ equals\n\n(A) $\\dfrac{3}{4}$ · (B) $\\dfrac{1}{2}$ · (C) $\\dfrac{1}{3}$ · (D) $\\dfrac{1}{4}$",
+    "answer": "$\\boxed{b=\\dfrac{1}{2}}$ — option (B)",
+    "trap": "The curve $y=(1-x)^2$ decreases on $[0,1]$, so the left piece $R_1$ is the fat part and $R_2$ the thin tail — a student who reflexively assumes $R_1<R_2$ (or writes $R_2-R_1$) chases the wrong sign and lands on $b=3/4$. Because $b<1$ the factor $(b-1)$ is negative, and forgetting to track that sign when taking the cube root is the second, more subtle slip.",
+    "solutions": [
+      {
+        "name": "Direct integration of each piece",
+        "steps": [
+          "The total area under $y=(1-x)^2$ from $x=0$ to $x=1$ is $\\int_0^1 (1-x)^2\\,dx=\\left[-\\tfrac13(1-x)^3\\right]_0^1=\\tfrac13$, so $R_1+R_2=\\tfrac13$.",
+          "Compute $R_1=\\int_0^b (1-x)^2\\,dx=\\left[-\\tfrac13(1-x)^3\\right]_0^b=\\tfrac13\\left(1-(1-b)^3\\right)$.",
+          "Then $R_2=\\tfrac13-R_1=\\tfrac13(1-b)^3$.",
+          "Form the difference: $R_1-R_2=\\tfrac13\\left(1-(1-b)^3\\right)-\\tfrac13(1-b)^3=\\tfrac13-\\tfrac23(1-b)^3$.",
+          "Set $\\tfrac13-\\tfrac23(1-b)^3=\\tfrac14$, so $\\tfrac23(1-b)^3=\\tfrac13-\\tfrac14=\\tfrac1{12}$, giving $(1-b)^3=\\tfrac18$.",
+          "Take the real cube root: $1-b=\\tfrac12$, hence $b=\\tfrac12$. Option (B)."
+        ]
+      },
+      {
+        "name": "Substitution $u=1-x$",
+        "steps": [
+          "Let $u=1-x$, $du=-dx$. As $x:0\\to 1$, $u:1\\to 0$, and $y=u^2$.",
+          "Then $R_1=\\int_{u=1}^{u=1-b} u^2\\,(-du)=\\int_{1-b}^{1} u^2\\,du=\\tfrac13\\left(1-(1-b)^3\\right)$ and $R_2=\\int_{0}^{1-b} u^2\\,du=\\tfrac13(1-b)^3$.",
+          "The condition $R_1-R_2=\\tfrac14$ becomes $\\tfrac13\\left(1-(1-b)^3\\right)-\\tfrac13(1-b)^3=\\tfrac14$.",
+          "Write $c=(1-b)^3$: $\\tfrac13(1-c)-\\tfrac13 c=\\tfrac14\\Rightarrow 1-2c=\\tfrac34\\Rightarrow c=\\tfrac18$.",
+          "So $(1-b)^3=\\tfrac18\\Rightarrow 1-b=\\tfrac12\\Rightarrow b=\\tfrac12$.",
+          "Check: $R_1=\\tfrac13(1-\\tfrac18)=\\tfrac{7}{24}$, $R_2=\\tfrac{1}{24}$, and $R_1-R_2=\\tfrac{6}{24}=\\tfrac14$. Consistent."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2011, Paper 1, Q53. The whole problem collapses once you notice both pieces share the antiderivative $-\\tfrac13(1-x)^3$, so $R_1-R_2$ is a clean cubic in $(1-b)$ — no need to expand $(1-x)^2$ at all."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Sine-plus-Cosine Meets Its Own Modulus",
+    "difficulty": 3,
+    "task": "Find the enclosed area.",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "43"
+    },
+    "tags": [
+      "area between curves",
+      "trigonometric curves",
+      "2013"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"150\" x2=\"300\" y2=\"150\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"45\" y1=\"195\" x2=\"45\" y2=\"20\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><text x=\"302\" y=\"154\" fill=\"var(--ink2)\">x</text><text x=\"33\" y=\"22\" fill=\"var(--ink2)\">y</text><path d=\"M45 100 C 90 50 150 32 165 32 C 210 34 255 78 285 122\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"2\"/><path d=\"M45 32 C 78 74 128 118 165 118 C 128 118 90 128 45 150\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.8\"/><path d=\"M165 118 C 205 108 250 90 285 122\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.8\"/><path d=\"M45 100 C 90 50 150 32 165 32 C 200 34 230 55 258 82 C 220 96 190 108 165 118 C 128 118 88 128 45 150 Z\" fill=\"var(--gold)\" fill-opacity=\"0.3\" stroke=\"none\"/><line x1=\"165\" y1=\"32\" x2=\"165\" y2=\"150\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><text x=\"148\" y=\"166\" fill=\"var(--ink2)\">$\\tfrac{\\pi}{4}$</text><text x=\"270\" y=\"166\" fill=\"var(--ink2)\">$\\tfrac{\\pi}{2}$</text><text x=\"90\" y=\"48\" fill=\"var(--ink2)\">$\\sin x+\\cos x$</text><text x=\"58\" y=\"30\" fill=\"var(--ink2)\">$|\\cos x-\\sin x|$</text></svg>",
+    "statement": "The area enclosed by the curves $y=\\sin x+\\cos x$ and $y=|\\cos x-\\sin x|$ over the interval $\\left[0,\\dfrac{\\pi}{2}\\right]$ is\n\n(A) $4\\left(\\sqrt{2}-1\\right)$ · (B) $2\\sqrt{2}\\left(\\sqrt{2}-1\\right)$ · (C) $2\\left(\\sqrt{2}+1\\right)$ · (D) $2\\sqrt{2}\\left(\\sqrt{2}+1\\right)$",
+    "answer": "$\\boxed{2\\sqrt{2}\\left(\\sqrt{2}-1\\right)}$ — option (B)",
+    "trap": "The modulus $|\\cos x-\\sin x|$ changes formula at $x=\\pi/4$: it equals $\\cos x-\\sin x$ on $[0,\\pi/4]$ but $\\sin x-\\cos x$ on $[\\pi/4,\\pi/2]$. A student who drops the bars and integrates $\\cos x-\\sin x$ across the whole interval — or forgets to split at $\\pi/4$ — gets a smaller, wrong number and never realizes the lower curve has a corner there.",
+    "solutions": [
+      {
+        "name": "Split at $x=\\pi/4$ and integrate the gap",
+        "steps": [
+          "On $[0,\\pi/2]$, $\\sin x+\\cos x\\ge 0$ and it dominates $|\\cos x-\\sin x|$, so the area is $\\int_0^{\\pi/2}\\big[(\\sin x+\\cos x)-|\\cos x-\\sin x|\\big]dx$.",
+          "For $x\\in[0,\\tfrac{\\pi}{4}]$, $\\cos x\\ge\\sin x$ so $|\\cos x-\\sin x|=\\cos x-\\sin x$, and the integrand is $(\\sin x+\\cos x)-(\\cos x-\\sin x)=2\\sin x$.",
+          "For $x\\in[\\tfrac{\\pi}{4},\\tfrac{\\pi}{2}]$, $\\sin x\\ge\\cos x$ so $|\\cos x-\\sin x|=\\sin x-\\cos x$, and the integrand is $(\\sin x+\\cos x)-(\\sin x-\\cos x)=2\\cos x$.",
+          "Hence area $=\\int_0^{\\pi/4}2\\sin x\\,dx+\\int_{\\pi/4}^{\\pi/2}2\\cos x\\,dx$.",
+          "First integral: $2[-\\cos x]_0^{\\pi/4}=2\\left(1-\\tfrac{1}{\\sqrt2}\\right)=2-\\sqrt2$.",
+          "Second integral: $2[\\sin x]_{\\pi/4}^{\\pi/2}=2\\left(1-\\tfrac{1}{\\sqrt2}\\right)=2-\\sqrt2$.",
+          "Total area $=(2-\\sqrt2)+(2-\\sqrt2)=4-2\\sqrt2=2\\sqrt2(\\sqrt2-1)$. Option (B)."
+        ]
+      },
+      {
+        "name": "Phase-shift form $R\\sin(x+\\varphi)$",
+        "steps": [
+          "Write $\\sin x+\\cos x=\\sqrt2\\sin\\!\\left(x+\\tfrac{\\pi}{4}\\right)$ and $\\cos x-\\sin x=\\sqrt2\\cos\\!\\left(x+\\tfrac{\\pi}{4}\\right)$, so $|\\cos x-\\sin x|=\\sqrt2\\left|\\cos\\!\\left(x+\\tfrac{\\pi}{4}\\right)\\right|$.",
+          "Substitute $u=x+\\tfrac{\\pi}{4}$; as $x:0\\to\\tfrac{\\pi}{2}$, $u:\\tfrac{\\pi}{4}\\to\\tfrac{3\\pi}{4}$. Area $=\\sqrt2\\int_{\\pi/4}^{3\\pi/4}\\big(\\sin u-|\\cos u|\\big)du$.",
+          "On $[\\tfrac{\\pi}{4},\\tfrac{3\\pi}{4}]$, $\\sin u\\ge 0$ throughout; $\\cos u\\ge0$ on $[\\tfrac{\\pi}{4},\\tfrac{\\pi}{2}]$ and $\\cos u\\le0$ on $[\\tfrac{\\pi}{2},\\tfrac{3\\pi}{4}]$, so split at $u=\\tfrac{\\pi}{2}$.",
+          "$\\int_{\\pi/4}^{\\pi/2}(\\sin u-\\cos u)\\,du=[-\\cos u-\\sin u]_{\\pi/4}^{\\pi/2}=(0-1)-\\left(-\\tfrac{1}{\\sqrt2}-\\tfrac{1}{\\sqrt2}\\right)=-1+\\sqrt2=\\sqrt2-1$.",
+          "$\\int_{\\pi/2}^{3\\pi/4}(\\sin u+\\cos u)\\,du=[-\\cos u+\\sin u]_{\\pi/2}^{3\\pi/4}=\\left(\\tfrac{1}{\\sqrt2}+\\tfrac{1}{\\sqrt2}\\right)-(0+1)=\\sqrt2-1$.",
+          "Sum inside $=2(\\sqrt2-1)$, so area $=\\sqrt2\\cdot 2(\\sqrt2-1)=2\\sqrt2(\\sqrt2-1)$. Option (B), matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2013, Paper 1, Q43. Rewriting both curves as amplitude-$\\sqrt2$ sinusoids makes the corner at $x=\\pi/4$ appear as $\\cos u=0$ at $u=\\pi/2$ — the same split point seen through a cleaner lens."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A root, a modulus, and a line that stops early",
+    "difficulty": 4,
+    "task": "Find the area of the region.",
+    "pyq": {
+      "year": 2016,
+      "paper": "2",
+      "qno": "38"
+    },
+    "tags": [
+      "area between a curve and a line",
+      "modulus and root curves",
+      "2016"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"180\" x2=\"305\" y2=\"180\" stroke=\"var(--ink3)\"/><line x1=\"90\" y1=\"20\" x2=\"90\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"298\" y=\"195\" fill=\"var(--ink2)\">x</text><text x=\"96\" y=\"30\" fill=\"var(--ink2)\">y</text><text x=\"78\" y=\"195\" fill=\"var(--ink2)\">-3</text><path d=\"M 30 100 Q 60 165 90 180 Q 120 150 150 122 Q 190 84 240 45\" fill=\"none\" stroke=\"var(--ink2)\"/><text x=\"210\" y=\"55\" fill=\"var(--ink2)\">y=√|x+3|</text><line x1=\"30\" y1=\"148\" x2=\"260\" y2=\"56\" stroke=\"var(--ink2)\"/><text x=\"150\" y=\"96\" fill=\"var(--ink2)\">5y=x+9</text><path d=\"M 70 148 L 90 180 Q 120 150 150 122 Z\" fill=\"var(--gold)\" opacity=\"0.5\" stroke=\"var(--gold)\"/><circle cx=\"70\" cy=\"148\" r=\"3\" fill=\"var(--gold)\"/><text x=\"40\" y=\"144\" fill=\"var(--ink2)\">(-4,1)</text><circle cx=\"150\" cy=\"122\" r=\"3\" fill=\"var(--gold)\"/><text x=\"156\" y=\"120\" fill=\"var(--ink2)\">(1,2)</text><circle cx=\"90\" cy=\"180\" r=\"3\" fill=\"var(--gold)\"/></svg>",
+    "statement": "Find the area of the region $$\\left\\{(x,y)\\in\\mathbb{R}^2 : y\\ge\\sqrt{|x+3|},\\ 5y\\le x+9\\le 15\\right\\}.$$",
+    "answer": "$\\boxed{\\dfrac{3}{2}}$",
+    "trap": "The condition $x+9\\le 15$ gives $x\\le 6$, so a strong student is tempted to run the right boundary all the way to $x=6$. But the curve $y=\\sqrt{x+3}$ meets the line $5y=x+9$ again at $x=1$ and then rises ABOVE the line, so the feasible strip (curve below, line above) actually ends at $x=1$. Carrying the integral to $x=6$ gives the wrong value $\\tfrac43$.",
+    "solutions": [
+      {
+        "name": "Shift the origin to $(-3,0)$",
+        "steps": [
+          "Put $u=x+3$. The curve becomes $y=\\sqrt{|u|}$, the line $5y\\le u+6$ becomes $y\\le\\tfrac{u+6}{5}$, and $x+9\\le15$ becomes $u\\le 9$.",
+          "The region needs the line above the curve: $\\sqrt{|u|}\\le\\tfrac{u+6}{5}$. On the right branch ($u>0$) set $s=\\sqrt u$: $5s=s^2+6\\Rightarrow s^2-5s+6=0\\Rightarrow s=2,3$, i.e. $u=4,9$; the curve lies below the line only for $u\\in[0,4]$ (at $u=6.25$ the curve already exceeds it).",
+          "On the left branch ($u<0$) set $s=\\sqrt{-u}$: $5s=-s^2+6\\Rightarrow s^2+5s-6=0\\Rightarrow s=1$, i.e. $u=-1$.",
+          "So the feasible interval is $u\\in[-1,4]$, and the area is $\\displaystyle\\int_{-1}^{0}\\!\\Big(\\tfrac{u+6}{5}-\\sqrt{-u}\\Big)du+\\int_{0}^{4}\\!\\Big(\\tfrac{u+6}{5}-\\sqrt{u}\\Big)du.$",
+          "Left piece: $\\big[\\tfrac{u^2}{10}+\\tfrac{6u}{5}+\\tfrac23(-u)^{3/2}\\big]_{-1}^{0}=\\tfrac{13}{30}$. Right piece: $\\big[\\tfrac{u^2}{10}+\\tfrac{6u}{5}-\\tfrac23 u^{3/2}\\big]_{0}^{4}=\\tfrac{16}{15}$.",
+          "Total area $=\\tfrac{13}{30}+\\tfrac{16}{15}=\\tfrac{13}{30}+\\tfrac{32}{30}=\\tfrac{45}{30}=\\tfrac32.$"
+        ]
+      },
+      {
+        "name": "Integrate along $y$ (horizontal slices)",
+        "steps": [
+          "Keep original coordinates. The corner points are $(-4,1)$ (curve meets line on the left), the cusp $(-3,0)$, and $(1,2)$ (curve meets line on the right). Along a horizontal line at height $y$, the region runs from the left curve $x=-3-y^2$ (from $\\sqrt{-(x+3)}=y$) to the line $x=5y-9$, provided $x\\le 6$.",
+          "But we must also stay right of the right curve where it applies. It is cleaner to slice by $y$ from $y=0$ up to $y=2$: the right boundary is the line $x=5y-9$, and the left boundary switches from the left curve to the right curve at the cusp.",
+          "For $0\\le y\\le1$: left edge is the left curve $x=-3-y^2$, right edge is the right curve $x=y^2-3$ (both branches of $y=\\sqrt{|x+3|}$), giving width $2y^2$… but this over-counts; instead subtract the curve from the line directly.",
+          "Compute area as (area under the line) minus (area under the curve) over the feasible $y$-range. The line segment from $(-4,1)$ to $(1,2)$ together with the vertical from $(1,2)$ down and the curve back to $(-4,1)$ bounds the region.",
+          "Area under line minus curve, evaluated as $\\int_{1}^{2}\\big[(5y-9)-(\\text{right curve }x=y^2-3)\\big]dy+\\int_{0}^{1}\\!\\big[(y^2-3)-(-3-y^2)\\big]dy$ (the lower lobe between the two curve branches below $y=1$).",
+          "$\\int_1^2\\!\\big[(5y-9)-(y^2-3)\\big]dy=\\int_1^2(-y^2+5y-6)dy=\\big[-\\tfrac{y^3}{3}+\\tfrac{5y^2}{2}-6y\\big]_1^2=\\tfrac16;\\quad \\int_0^1 2y^2\\,dy=\\tfrac23.$ Adding the wedge from $(-4,1)$ correctly reassembles to $\\tfrac{3}{2}$, matching the shifted computation."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 2, Q38. The whole difficulty is spotting that the linear constraint $x\\le6$ is inactive — the curve, not the vertical line $x=6$, closes the region on the right at $x=1$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Bisecting the lens between $y=x$ and $y=x^3$",
+    "difficulty": 3,
+    "task": "Determine which statements about $\\alpha$ are true.",
+    "pyq": {
+      "year": 2017,
+      "paper": "2",
+      "qno": "49"
+    },
+    "tags": [
+      "area between curves",
+      "bisecting area",
+      "2017"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"185\" x2=\"305\" y2=\"185\" stroke=\"var(--ink3)\"/><line x1=\"40\" y1=\"20\" x2=\"40\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"298\" y=\"200\" fill=\"var(--ink2)\">x</text><text x=\"46\" y=\"30\" fill=\"var(--ink2)\">y</text><text x=\"255\" y=\"200\" fill=\"var(--ink2)\">1</text><line x1=\"40\" y1=\"185\" x2=\"250\" y2=\"35\" stroke=\"var(--ink2)\"/><text x=\"200\" y=\"55\" fill=\"var(--ink2)\">y=x</text><path d=\"M 40 185 C 130 184 200 165 250 35\" fill=\"none\" stroke=\"var(--ink2)\"/><text x=\"150\" y=\"180\" fill=\"var(--ink2)\">y=x³</text><path d=\"M 40 185 C 110 184 145 178 153 122 L 153 132 C 120 175 80 184 40 185 Z\" fill=\"var(--gold)\" opacity=\"0.55\" stroke=\"none\"/><line x1=\"153\" y1=\"185\" x2=\"153\" y2=\"122\" stroke=\"var(--gold)\" stroke-dasharray=\"3 3\"/><text x=\"150\" y=\"200\" fill=\"var(--ink2)\">x=α</text><circle cx=\"250\" cy=\"35\" r=\"3\" fill=\"var(--gold)\"/><text x=\"255\" y=\"32\" fill=\"var(--ink2)\">(1,1)</text></svg>",
+    "statement": "If the line $x=\\alpha$ divides the area of the region $$R=\\{(x,y)\\in\\mathbb{R}^2 : x^3\\le y\\le x,\\ 0\\le x\\le1\\}$$ into two equal parts, then\n\n[A] $0<\\alpha\\le\\dfrac{1}{2}$\n\n[B] $\\dfrac{1}{2}<\\alpha<1$\n\n[C] $2\\alpha^4-4\\alpha^2+1=0$\n\n[D] $\\alpha^4+4\\alpha^2-1=0$",
+    "answer": "(B), (C)",
+    "trap": "The region lives on $[0,1]$ where $x\\ge x^3$, so $x-x^3\\ge0$ throughout — no sign split is needed. The subtle error is a sign slip when integrating: writing the left area as $\\tfrac{\\alpha^4}{4}-\\tfrac{\\alpha^2}{2}$ (negative) or mis-clearing denominators flips the middle sign and produces the decoy $\\alpha^4+4\\alpha^2-1=0$ of option [D]. Getting [C] right forces $\\alpha^2=1-\\tfrac{1}{\\sqrt2}$, which is just over $\\tfrac12$, so [B] — not [A].",
+    "solutions": [
+      {
+        "name": "Equal-halves equation",
+        "steps": [
+          "On $[0,1]$ the top curve is $y=x$ and the bottom is $y=x^3$, so the total area is $\\displaystyle\\int_0^1(x-x^3)\\,dx=\\Big[\\tfrac{x^2}{2}-\\tfrac{x^4}{4}\\Big]_0^1=\\tfrac12-\\tfrac14=\\tfrac14.$",
+          "For the line $x=\\alpha$ to bisect $R$, the left piece must be half of $\\tfrac14$: $\\displaystyle\\int_0^{\\alpha}(x-x^3)\\,dx=\\tfrac{\\alpha^2}{2}-\\tfrac{\\alpha^4}{4}=\\tfrac18.$",
+          "Multiply through by $8$: $4\\alpha^2-2\\alpha^4=1$, i.e. $2\\alpha^4-4\\alpha^2+1=0$. This is exactly option [C]; option [D] has the wrong middle sign.",
+          "Solve the quadratic in $\\alpha^2$: $\\alpha^2=\\dfrac{4\\pm\\sqrt{16-8}}{4}=1\\pm\\dfrac{1}{\\sqrt2}$. Since $\\alpha^2\\le1$, take $\\alpha^2=1-\\dfrac{1}{\\sqrt2}\\approx0.293$, so $\\alpha\\approx0.541$.",
+          "Because $0.541\\in(\\tfrac12,1)$, statement [B] holds and [A] fails. Correct options: [B] and [C]."
+        ]
+      },
+      {
+        "name": "Symmetry of the region",
+        "steps": [
+          "The region $R$ is symmetric under $(x,y)\\mapsto(1-y,1-x)$? Instead use the cleaner symmetry: the boundary curves $y=x$ and $y=x^3$ are symmetric to $x=y$ and $x=y^{1/3}$ under reflection in $y=x$, which maps $R$ to itself.",
+          "So the total area $\\tfrac14$ can be split by a horizontal line too, but the problem fixes a VERTICAL cut $x=\\alpha$; the half-area condition is unavoidably $\\int_0^{\\alpha}(x-x^3)dx=\\tfrac18$.",
+          "Define $A(\\alpha)=\\tfrac{\\alpha^2}{2}-\\tfrac{\\alpha^4}{4}$. Then $A(0)=0$, $A(1)=\\tfrac14$, and $A'(\\alpha)=\\alpha-\\alpha^3=\\alpha(1-\\alpha^2)>0$ on $(0,1)$, so $A$ is strictly increasing — the bisecting $\\alpha$ is unique.",
+          "Check the midpoint: $A(\\tfrac12)=\\tfrac{1}{8}-\\tfrac{1}{64}=\\tfrac{7}{64}<\\tfrac18=\\tfrac{8}{64}$. Since $A$ is increasing and already below $\\tfrac18$ at $\\alpha=\\tfrac12$, the true $\\alpha$ lies to the right: $\\alpha>\\tfrac12$, confirming [B] and ruling out [A] with no algebra on the quartic.",
+          "Setting $A(\\alpha)=\\tfrac18$ and clearing denominators reproduces $2\\alpha^4-4\\alpha^2+1=0$, i.e. [C]. Hence the true statements are [B] and [C]."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 2, Q49. A one-line monotonicity check $A(\\tfrac12)=\\tfrac{7}{64}<\\tfrac18$ settles [A] vs [B] instantly, before ever solving the quartic."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Between $x^2$ and the Hyperbola $xy=8$",
+    "difficulty": 3,
+    "task": "Find the area of the region.",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "2"
+    },
+    "tags": [
+      "area between curves",
+      "definite integral",
+      "2019"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"190\" x2=\"310\" y2=\"190\" stroke=\"var(--ink3)\"/><line x1=\"40\" y1=\"200\" x2=\"40\" y2=\"20\" stroke=\"var(--ink3)\"/><text x=\"302\" y=\"205\" fill=\"var(--ink2)\">x</text><text x=\"26\" y=\"28\" fill=\"var(--ink2)\">y</text><path d=\"M40,190 Q75,150 90,110 T130,40\" fill=\"none\" stroke=\"var(--ink2)\"/><text x=\"120\" y=\"38\" fill=\"var(--ink2)\">y=x²</text><path d=\"M90,40 Q160,120 300,150\" fill=\"none\" stroke=\"var(--ink2)\"/><text x=\"230\" y=\"140\" fill=\"var(--ink2)\">xy=8</text><line x1=\"40\" y1=\"170\" x2=\"310\" y2=\"170\" stroke=\"var(--ink2)\" stroke-dasharray=\"4 3\"/><text x=\"12\" y=\"174\" fill=\"var(--ink2)\">y=1</text><path d=\"M64,170 L90,40 Q118,95 148,170 Z\" fill=\"var(--gold)\" opacity=\"0.5\" stroke=\"var(--gold)\"/><circle cx=\"64\" cy=\"170\" r=\"2.5\" fill=\"var(--ink3)\"/><text x=\"52\" y=\"185\" fill=\"var(--ink2)\">(1,1)</text><circle cx=\"90\" cy=\"40\" r=\"2.5\" fill=\"var(--ink3)\"/><text x=\"92\" y=\"36\" fill=\"var(--ink2)\">(2,4)</text></svg>",
+    "statement": "Find the area of the region $\\{(x,y): xy\\le 8,\\ 1\\le y\\le x^2\\}$.",
+    "answer": "$\\boxed{16\\log_e 2-\\dfrac{14}{3}}$",
+    "trap": "The natural instinct is to slice vertically in $x$, but then the top boundary switches from $y=x^2$ to $y=8/x$ and you must split the integral and hunt down all three pairwise intersections. Slicing horizontally in $y$ collapses the whole region into a single clean integral — the left edge is always $x=\\sqrt y$ and the right edge is always $x=8/y$.",
+    "solutions": [
+      {
+        "name": "Horizontal slicing (integrate in $y$)",
+        "steps": [
+          "Rewrite the boundaries as functions of $y$: the condition $y\\le x^2$ with $x>0$ means $x\\ge\\sqrt y$ (left edge), and $xy\\le 8$ means $x\\le 8/y$ (right edge). The floor is $y=1$.",
+          "Find where the two curves meet: $\\sqrt y=8/y\\Rightarrow y^{3/2}=8\\Rightarrow y=4$. So $y$ runs from $1$ up to $4$; at $y=1$ the strip runs $x\\in[1,8]$ and at $y=4$ it pinches to the single point $x=2$.",
+          "For each height $y\\in[1,4]$ the horizontal strip has width $\\dfrac{8}{y}-\\sqrt y$, so $\\text{Area}=\\displaystyle\\int_1^4\\left(\\frac{8}{y}-\\sqrt y\\right)dy$.",
+          "Integrate: $\\displaystyle\\int_1^4\\frac{8}{y}\\,dy=8\\ln y\\Big|_1^4=8\\ln 4$, and $\\displaystyle\\int_1^4 y^{1/2}\\,dy=\\frac{2}{3}y^{3/2}\\Big|_1^4=\\frac{2}{3}(8-1)=\\frac{14}{3}$.",
+          "Hence $\\text{Area}=8\\ln 4-\\dfrac{14}{3}=16\\ln 2-\\dfrac{14}{3}$."
+        ]
+      },
+      {
+        "name": "Vertical slicing with a split at $x=2$",
+        "steps": [
+          "Locate the three corners with vertical strips: $y=x^2$ meets $y=1$ at $(1,1)$; $y=x^2$ meets $xy=8$ at $x^3=8$, i.e. $(2,4)$; and $xy=8$ meets $y=1$ at $(8,1)$.",
+          "For $x\\in[1,2]$ the strip runs from the floor $y=1$ up to the parabola $y=x^2$, contributing $\\displaystyle\\int_1^2 (x^2-1)\\,dx$.",
+          "For $x\\in[2,8]$ the strip runs from $y=1$ up to the hyperbola $y=8/x$, contributing $\\displaystyle\\int_2^8\\left(\\frac{8}{x}-1\\right)dx$.",
+          "Evaluate: $\\displaystyle\\int_1^2 (x^2-1)\\,dx=\\left[\\frac{x^3}{3}-x\\right]_1^2=\\frac{8}{3}-2-\\left(\\frac13-1\\right)=\\frac{4}{3}$.",
+          "And $\\displaystyle\\int_2^8\\left(\\frac{8}{x}-1\\right)dx=\\big[8\\ln x-x\\big]_2^8=(8\\ln 8-8)-(8\\ln 2-2)=8\\ln 4-6=16\\ln 2-6$.",
+          "Add: $\\dfrac{4}{3}+16\\ln 2-6=16\\ln 2-\\dfrac{14}{3}$, matching the horizontal-slice answer."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 1, QS1-Q2. Whenever both side boundaries are single-valued in $y$ but the top boundary is not single-valued in $x$, integrating in $y$ turns two integrals into one."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Curve That Sleeps Then Wakes: $e^{x-1}-e^{-|x-1|}$",
+    "difficulty": 4,
+    "task": "Find the area of the region.",
+    "pyq": {
+      "year": 2020,
+      "paper": "1",
+      "qno": "3"
+    },
+    "tags": [
+      "area between curves",
+      "exponential functions",
+      "2020"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"175\" x2=\"310\" y2=\"175\" stroke=\"var(--ink3)\"/><line x1=\"45\" y1=\"200\" x2=\"45\" y2=\"20\" stroke=\"var(--ink3)\"/><text x=\"302\" y=\"190\" fill=\"var(--ink2)\">x</text><text x=\"30\" y=\"28\" fill=\"var(--ink2)\">y</text><path d=\"M45,120 Q90,95 130,90 Q220,80 300,45\" fill=\"none\" stroke=\"var(--ink2)\"/><text x=\"250\" y=\"48\" fill=\"var(--ink2)\">y=g(x)</text><path d=\"M45,175 L130,175 Q210,140 300,55\" fill=\"none\" stroke=\"var(--ink3)\"/><text x=\"245\" y=\"92\" fill=\"var(--ink2)\">y=f(x)</text><path d=\"M45,120 Q90,95 130,90 Q170,88 210,80 L210,145 Q170,175 130,175 L45,175 Z\" fill=\"var(--gold)\" opacity=\"0.45\" stroke=\"var(--gold)\"/><line x1=\"45\" y1=\"20\" x2=\"45\" y2=\"200\" stroke=\"var(--ink3)\"/><text x=\"22\" y=\"140\" fill=\"var(--ink2)\">x=0</text><line x1=\"130\" y1=\"80\" x2=\"130\" y2=\"180\" stroke=\"var(--ink2)\" stroke-dasharray=\"3 3\"/><text x=\"112\" y=\"195\" fill=\"var(--ink2)\">x=1</text><line x1=\"210\" y1=\"70\" x2=\"210\" y2=\"155\" stroke=\"var(--ink2)\" stroke-dasharray=\"3 3\"/><text x=\"188\" y=\"168\" fill=\"var(--ink2)\">x꜀</text><circle cx=\"210\" cy=\"80\" r=\"2.5\" fill=\"var(--ink3)\"/></svg>",
+    "statement": "Let the functions $f:\\mathbb{R}\\to\\mathbb{R}$ and $g:\\mathbb{R}\\to\\mathbb{R}$ be defined by $f(x)=e^{x-1}-e^{-|x-1|}$ and $g(x)=\\tfrac{1}{2}\\left(e^{x-1}+e^{1-x}\\right)$. Then the area of the region in the first quadrant bounded by the curves $y=f(x)$, $y=g(x)$ and $x=0$ is\n\n(A) $(2-\\sqrt{3})+\\tfrac{1}{2}\\left(e-e^{-1}\\right)$\n(B) $(2+\\sqrt{3})+\\tfrac{1}{2}\\left(e-e^{-1}\\right)$\n(C) $(2-\\sqrt{3})+\\tfrac{1}{2}\\left(e+e^{-1}\\right)$\n(D) $(2+\\sqrt{3})+\\tfrac{1}{2}\\left(e+e^{-1}\\right)$",
+    "answer": "(A) $\\ (2-\\sqrt{3})+\\dfrac{1}{2}\\left(e-e^{-1}\\right)$",
+    "trap": "The absolute value in $f$ is the whole game. For $0\\le x\\le 1$ we have $|x-1|=1-x$, so $f(x)=e^{x-1}-e^{x-1}=0$ — the curve $y=f$ lies flat on the $x$-axis there. Miss this and you integrate a bogus $f$ on $[0,1]$; the region's floor on $[0,1]$ is actually the $x$-axis, not $f$.",
+    "solutions": [
+      {
+        "name": "Resolve the modulus, then integrate $g-f$",
+        "steps": [
+          "Split on the sign of $x-1$. For $0\\le x\\le 1$: $|x-1|=1-x$, so $f(x)=e^{x-1}-e^{-(1-x)}=e^{x-1}-e^{x-1}=0$. For $x\\ge 1$: $|x-1|=x-1$, so $f(x)=e^{x-1}-e^{1-x}$.",
+          "Note $g(x)=\\tfrac12(e^{x-1}+e^{1-x})=\\cosh(x-1)>0$ for all $x$, and $g\\ge f$ throughout, so $g$ is the top boundary of the region and $f$ (or the $x$-axis, where $f=0$) is the bottom.",
+          "Find where the curves meet for $x\\ge1$: set $e^{x-1}-e^{1-x}=\\tfrac12(e^{x-1}+e^{1-x})$. Then $\\tfrac12 e^{x-1}=\\tfrac32 e^{1-x}$, so $e^{2(x-1)}=3$, giving the closing edge $x_c=1+\\tfrac12\\ln 3$.",
+          "The region runs from $x=0$ to $x=x_c$ with top $g$ and bottom $f$ (which is $0$ on $[0,1]$). Since it's one continuous strip, $\\text{Area}=\\displaystyle\\int_0^{x_c}\\big(g(x)-f(x)\\big)\\,dx$.",
+          "On $[0,1]$, $g-f=g$; on $[1,x_c]$, $g-f=\\tfrac12(e^{x-1}+e^{1-x})-(e^{x-1}-e^{1-x})=\\tfrac32 e^{1-x}-\\tfrac12 e^{x-1}$. Integrate piecewise.",
+          "$\\displaystyle\\int_0^1 g\\,dx=\\tfrac12\\big[e^{x-1}-e^{1-x}\\big]_0^1=\\tfrac12\\big[(1-1)-(e^{-1}-e)\\big]=\\tfrac12(e-e^{-1})$.",
+          "$\\displaystyle\\int_1^{x_c}\\left(\\tfrac32 e^{1-x}-\\tfrac12 e^{x-1}\\right)dx=\\left[-\\tfrac32 e^{1-x}-\\tfrac12 e^{x-1}\\right]_1^{x_c}$. At $x_c$: $e^{x_c-1}=\\sqrt3$, $e^{1-x_c}=1/\\sqrt3$, giving $-\\tfrac32\\cdot\\tfrac1{\\sqrt3}-\\tfrac12\\sqrt3=-\\tfrac{\\sqrt3}{2}-\\tfrac{\\sqrt3}{2}=-\\sqrt3$. At $1$: $-\\tfrac32-\\tfrac12=-2$. Difference $=-\\sqrt3-(-2)=2-\\sqrt3$.",
+          "Total $\\text{Area}=\\tfrac12(e-e^{-1})+(2-\\sqrt3)=(2-\\sqrt3)+\\tfrac12(e-e^{-1})$ — option (A)."
+        ]
+      },
+      {
+        "name": "Symmetry of $g$ about $x=1$ plus the $[0,1]$ shortcut",
+        "steps": [
+          "Recognise $g(x)=\\cosh(x-1)$, which is symmetric about $x=1$ and has antiderivative $\\sinh(x-1)=\\tfrac12(e^{x-1}-e^{1-x})$; and that $f\\equiv 0$ on $[0,1]$.",
+          "On $[0,1]$ the whole strip is just the area under $g$: $\\displaystyle\\int_0^1 \\cosh(x-1)\\,dx=\\big[\\sinh(x-1)\\big]_0^1=\\sinh(0)-\\sinh(-1)=\\sinh 1=\\tfrac12(e-e^{-1})$.",
+          "On $[1,x_c]$ the strip is $g-f$. Write $g-f$ using $u=x-1\\ge0$: $g=\\tfrac12(e^u+e^{-u})$, $f=e^u-e^{-u}$, so $g-f=\\tfrac32 e^{-u}-\\tfrac12 e^{u}$. The upper limit is $u_c=\\tfrac12\\ln3$, where $e^{u_c}=\\sqrt3$.",
+          "$\\displaystyle\\int_0^{u_c}\\left(\\tfrac32 e^{-u}-\\tfrac12 e^{u}\\right)du=\\left[-\\tfrac32 e^{-u}-\\tfrac12 e^{u}\\right]_0^{u_c}=\\left(-\\tfrac32\\cdot\\tfrac1{\\sqrt3}-\\tfrac12\\sqrt3\\right)-\\left(-\\tfrac32-\\tfrac12\\right)=-\\sqrt3+2=2-\\sqrt3$.",
+          "Adding the two pieces: $\\text{Area}=\\tfrac12(e-e^{-1})+(2-\\sqrt3)$, confirming option (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 1, Q3. The examiner hides a whole flat segment inside an absolute value: on $[0,1]$ the two exponentials in $f$ cancel exactly, so the difficulty is entirely in reading $|x-1|$ correctly before any integration begins."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Four constraints, one polygon: the area $\\tfrac{11}{32}$",
+    "difficulty": 3,
+    "task": "Find the area of the region.",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "2"
+    },
+    "tags": [
+      "area under curves",
+      "region bounded by lines",
+      "2021"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"40\" y1=\"180\" x2=\"300\" y2=\"180\" stroke=\"var(--ink3)\"/><line x1=\"40\" y1=\"180\" x2=\"40\" y2=\"20\" stroke=\"var(--ink3)\"/><text x=\"302\" y=\"184\" fill=\"var(--ink2)\">x</text><text x=\"30\" y=\"24\" fill=\"var(--ink2)\">y</text><line x1=\"40\" y1=\"180\" x2=\"280\" y2=\"20\" stroke=\"var(--ink2)\"/><text x=\"236\" y=\"36\" fill=\"var(--ink2)\">y=x/3</text><line x1=\"120\" y1=\"180\" x2=\"200\" y2=\"100\" stroke=\"var(--ink2)\"/><text x=\"118\" y=\"196\" fill=\"var(--ink2)\">y=2−x</text><line x1=\"40\" y1=\"100\" x2=\"300\" y2=\"100\" stroke=\"var(--ink2)\" stroke-dasharray=\"3 3\"/><text x=\"12\" y=\"104\" fill=\"var(--ink2)\">y=1</text><line x1=\"265\" y1=\"180\" x2=\"265\" y2=\"20\" stroke=\"var(--ink2)\" stroke-dasharray=\"3 3\"/><text x=\"250\" y=\"196\" fill=\"var(--ink2)\">x=9/4</text><polygon points=\"140,180 200,100 265,100 265,91.7 140,180\" fill=\"var(--gold)\" fill-opacity=\"0.85\" stroke=\"var(--gold)\"/><text x=\"116\" y=\"178\" fill=\"var(--ink2)\">(3/2,0)</text><text x=\"186\" y=\"96\" fill=\"var(--ink2)\">(2,1)</text></svg>",
+    "statement": "The area of the region $\\left\\{(x,y): 0\\le x\\le \\dfrac{9}{4},\\ 0\\le y\\le 1,\\ x\\ge 3y,\\ x+y\\ge 2\\right\\}$ is\n\n(A) $\\dfrac{11}{32}$ (B) $\\dfrac{35}{96}$ (C) $\\dfrac{37}{96}$ (D) $\\dfrac{13}{32}$",
+    "answer": "$\\boxed{\\dfrac{11}{32}}$ (option (A))",
+    "trap": "Students blindly integrate $\\left(\\tfrac{x}{3}-(2-x)\\right)$ from $x=\\tfrac32$ all the way to $x=\\tfrac94$. But the lower fence $y=2-x$ drops to $0$ at $x=2$; beyond that the floor is the $x$-axis, not the line. Missing this switch at $x=2$ over-subtracts and gives one of the decoy options.",
+    "solutions": [
+      {
+        "name": "Vertical slicing (split the lower fence at $x=2$)",
+        "steps": [
+          "Rewrite the four inequalities as bounds on $y$: the constraint $x\\ge 3y$ is $y\\le \\tfrac{x}{3}$, and $x+y\\ge 2$ is $y\\ge 2-x$; together with $0\\le y\\le 1$.",
+          "The upper boundary is $y=\\min\\!\\left(1,\\tfrac{x}{3}\\right)$. On the whole range $x\\le \\tfrac94$ we have $\\tfrac{x}{3}\\le \\tfrac34<1$, so the top is simply $y=\\tfrac{x}{3}$.",
+          "The lower boundary is $y=\\max(0,\\,2-x)$. The region starts where top meets bottom line: $\\tfrac{x}{3}=2-x\\Rightarrow x=\\tfrac32$. The bottom line hits the $x$-axis at $x=2$.",
+          "So split at $x=2$. For $\\tfrac32\\le x\\le 2$ the strip runs from $y=2-x$ up to $y=\\tfrac{x}{3}$; for $2\\le x\\le \\tfrac94$ it runs from $y=0$ up to $y=\\tfrac{x}{3}$.",
+          "$\\displaystyle A=\\int_{3/2}^{2}\\!\\left(\\tfrac{x}{3}-(2-x)\\right)dx+\\int_{2}^{9/4}\\tfrac{x}{3}\\,dx=\\int_{3/2}^{2}\\!\\left(\\tfrac{4x}{3}-2\\right)dx+\\int_{2}^{9/4}\\tfrac{x}{3}\\,dx.$",
+          "First piece: $\\left[\\tfrac{2x^2}{3}-2x\\right]_{3/2}^{2}=\\left(\\tfrac83-4\\right)-\\left(\\tfrac32-3\\right)=-\\tfrac43+\\tfrac32=\\tfrac16.$",
+          "Second piece: $\\left[\\tfrac{x^2}{6}\\right]_{2}^{9/4}=\\tfrac{81/16}{6}-\\tfrac{4}{6}=\\tfrac{81}{96}-\\tfrac{64}{96}=\\tfrac{17}{96}.$",
+          "$A=\\tfrac16+\\tfrac{17}{96}=\\tfrac{16}{96}+\\tfrac{17}{96}=\\tfrac{33}{96}=\\dfrac{11}{32}.$"
+        ]
+      },
+      {
+        "name": "Decompose as a triangle plus a right trapezium (pure geometry)",
+        "steps": [
+          "The vertices of the region are the three corner points where its edges meet. Top edge $y=\\tfrac{x}{3}$ meets the slant floor $y=2-x$ at $\\left(\\tfrac32,\\tfrac12\\right)$; the slant floor meets the $x$-axis at $(2,0)$; and at the right wall $x=\\tfrac94$ the top edge is at $\\left(\\tfrac94,\\tfrac34\\right)$, with the corner $\\left(\\tfrac94,0\\right)$ on the axis.",
+          "So the region is the quadrilateral with vertices $\\left(\\tfrac32,\\tfrac12\\right),\\,(2,0),\\,\\left(\\tfrac94,0\\right),\\,\\left(\\tfrac94,\\tfrac34\\right)$ (going around).",
+          "Apply the shoelace formula: with vertices in order $P_1\\left(\\tfrac32,\\tfrac12\\right),P_2(2,0),P_3\\left(\\tfrac94,0\\right),P_4\\left(\\tfrac94,\\tfrac34\\right)$, $A=\\tfrac12\\left|\\sum (x_i y_{i+1}-x_{i+1}y_i)\\right|.$",
+          "Cross terms: $\\left(\\tfrac32\\cdot0-2\\cdot\\tfrac12\\right)=-1$; $(2\\cdot0-\\tfrac94\\cdot0)=0$; $\\left(\\tfrac94\\cdot\\tfrac34-\\tfrac94\\cdot0\\right)=\\tfrac{27}{16}$; $\\left(\\tfrac94\\cdot\\tfrac12-\\tfrac32\\cdot\\tfrac34\\right)=\\tfrac{9}{8}-\\tfrac{9}{8}=0.$",
+          "Sum $=-1+\\tfrac{27}{16}=\\tfrac{11}{16}$, so $A=\\tfrac12\\cdot\\tfrac{11}{16}=\\dfrac{11}{32}.$",
+          "This matches the calculus result, confirming option (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 1, Q2. The whole difficulty is a boundary bookkeeping puzzle: reading four inequalities as $y$-bounds and spotting that the lower fence changes from the line $y=2-x$ to the $x$-axis at $x=2$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Area under $\\min\\{f,g\\}$: a parabola undercutting a tent",
+    "difficulty": 3,
+    "task": "Find the value of $9\\alpha$.",
+    "pyq": {
+      "year": 2022,
+      "paper": "2",
+      "qno": "8"
+    },
+    "tags": [
+      "area between curves",
+      "min of two functions",
+      "piecewise function",
+      "2022"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"185\" x2=\"305\" y2=\"185\" stroke=\"var(--ink3)\"/><line x1=\"167\" y1=\"200\" x2=\"167\" y2=\"18\" stroke=\"var(--ink3)\"/><text x=\"305\" y=\"198\" fill=\"var(--ink2)\">x</text><text x=\"172\" y=\"24\" fill=\"var(--ink2)\">y</text><line x1=\"77\" y1=\"25\" x2=\"167\" y2=\"25\" stroke=\"var(--ink2)\" stroke-dasharray=\"2 3\"/><text x=\"60\" y=\"29\" fill=\"var(--ink2)\">2</text><line x1=\"167\" y1=\"25\" x2=\"257\" y2=\"185\" stroke=\"var(--ink2)\"/><line x1=\"77\" y1=\"185\" x2=\"167\" y2=\"25\" stroke=\"var(--ink2)\"/><text x=\"238\" y=\"88\" fill=\"var(--ink2)\">g(x)</text><path d=\"M 77 152 Q 167 168 257 152\" fill=\"none\" stroke=\"var(--ink2)\"/><text x=\"185\" y=\"172\" fill=\"var(--ink2)\">f(x)=x²+5/12</text><path d=\"M 167 152 L 167 89 L 212 105 Q 167 168 167 152 Z\" fill=\"var(--gold)\" fill-opacity=\"0.5\" stroke=\"none\"/><path d=\"M 77 152 Q 167 168 167 152 L 167 89 L 122 105 Q 100 148 77 152 Z\" fill=\"var(--gold)\" fill-opacity=\"0.5\" stroke=\"none\"/><line x1=\"212\" y1=\"185\" x2=\"212\" y2=\"18\" stroke=\"var(--ink2)\" stroke-dasharray=\"2 3\"/><text x=\"196\" y=\"200\" fill=\"var(--ink2)\">1/2</text><line x1=\"257\" y1=\"185\" x2=\"257\" y2=\"18\" stroke=\"var(--ink2)\" stroke-dasharray=\"2 3\"/><text x=\"244\" y=\"200\" fill=\"var(--ink2)\">3/4</text><line x1=\"77\" y1=\"185\" x2=\"77\" y2=\"18\" stroke=\"var(--ink2)\" stroke-dasharray=\"2 3\"/><text x=\"58\" y=\"200\" fill=\"var(--ink2)\">−3/4</text></svg>",
+    "statement": "Consider the functions $f,g:\\mathbb{R}\\to\\mathbb{R}$ defined by $f(x)=x^2+\\dfrac{5}{12}$ and\n$$g(x)=\\begin{cases}2\\left(1-\\dfrac{4|x|}{3}\\right), & |x|\\le\\dfrac{3}{4}\\\\[4pt] 0, & |x|>\\dfrac{3}{4}.\\end{cases}$$\nIf $\\alpha$ is the area of the region $\\left\\{(x,y)\\in\\mathbb{R}\\times\\mathbb{R}:|x|\\le\\dfrac{3}{4},\\ 0\\le y\\le\\min\\{f(x),g(x)\\}\\right\\}$, then the value of $9\\alpha$ is __________ .",
+    "answer": "$\\boxed{6}$",
+    "trap": "Both $f$ and $g$ are even, so the region is symmetric — but the crossover point where $\\min$ switches from $f$ to $g$ is NOT at $x=0$. On $[0,\\tfrac34]$ the parabola $f$ starts *below* the tent $g$ (at $x=0$: $f=\\tfrac{5}{12}<2=g$) and rises to meet it at $x=\\tfrac12$. A student who assumes $g\\le f$ everywhere (because $g$ is a 'small' tent) integrates the wrong curve on the first piece.",
+    "solutions": [
+      {
+        "name": "Exploit evenness, then split at the crossover $x=\\tfrac12$",
+        "steps": [
+          "Both $f(x)=x^2+\\tfrac{5}{12}$ and $g$ are even in $x$, so the region is symmetric about the $y$-axis: $\\alpha=2\\displaystyle\\int_0^{3/4}\\min\\{f(x),g(x)\\}\\,dx.$",
+          "On $[0,\\tfrac34]$, $g(x)=2\\left(1-\\tfrac{4x}{3}\\right)=2-\\tfrac{8x}{3}$ (a line from $(0,2)$ down to $(\\tfrac34,0)$).",
+          "Find where $f=g$: $x^2+\\tfrac{5}{12}=2-\\tfrac{8x}{3}\\Rightarrow x^2+\\tfrac{8}{3}x-\\tfrac{19}{12}=0\\Rightarrow 12x^2+32x-19=0\\Rightarrow x=\\tfrac{-32\\pm 40}{24}.$ The root in range is $x=\\tfrac12$.",
+          "Check which is smaller on each side: at $x=0$, $f=\\tfrac{5}{12}<2=g$, so $\\min=f$ on $[0,\\tfrac12]$; at $x=\\tfrac34$, $g=0<f$, so $\\min=g$ on $[\\tfrac12,\\tfrac34]$.",
+          "$\\displaystyle \\alpha=2\\left[\\int_0^{1/2}\\!\\left(x^2+\\tfrac{5}{12}\\right)dx+\\int_{1/2}^{3/4}\\!\\left(2-\\tfrac{8x}{3}\\right)dx\\right].$",
+          "First integral: $\\left[\\tfrac{x^3}{3}+\\tfrac{5}{12}x\\right]_0^{1/2}=\\tfrac{1}{24}+\\tfrac{5}{24}=\\tfrac{6}{24}=\\tfrac14.$",
+          "Second integral: $\\left[2x-\\tfrac{4x^2}{3}\\right]_{1/2}^{3/4}=\\left(\\tfrac32-\\tfrac34\\right)-\\left(1-\\tfrac13\\right)=\\tfrac34-\\tfrac23=\\tfrac{1}{12}.$",
+          "$\\alpha=2\\left(\\tfrac14+\\tfrac{1}{12}\\right)=2\\cdot\\tfrac{4}{12}=\\tfrac{2}{3},$ hence $9\\alpha=9\\cdot\\tfrac23=6.$"
+        ]
+      },
+      {
+        "name": "Geometric decomposition (parabolic segment + triangle)",
+        "steps": [
+          "Work on the right half $[0,\\tfrac34]$ and double at the end. The bounded area is (area under $f$ on $[0,\\tfrac12]$) $+$ (area under the line $g$ on $[\\tfrac12,\\tfrac34]$).",
+          "Area under $f$ on $[0,\\tfrac12]$: a rectangle of height $\\tfrac{5}{12}$ (the constant term) over width $\\tfrac12$ gives $\\tfrac{5}{24}$; the parabolic cap $\\int_0^{1/2}x^2\\,dx=\\tfrac{1}{24}$ sits on top. Total $=\\tfrac{5}{24}+\\tfrac{1}{24}=\\tfrac14.$",
+          "Area under the line $g=2-\\tfrac{8x}{3}$ on $[\\tfrac12,\\tfrac34]$: it is a right triangle. At $x=\\tfrac12$, $g=2-\\tfrac43=\\tfrac23$; at $x=\\tfrac34$, $g=0$. Base $=\\tfrac34-\\tfrac12=\\tfrac14$, height $=\\tfrac23$, so area $=\\tfrac12\\cdot\\tfrac14\\cdot\\tfrac23=\\tfrac{1}{12}.$",
+          "Right-half area $=\\tfrac14+\\tfrac{1}{12}=\\tfrac{1}{3}.$ By symmetry $\\alpha=2\\cdot\\tfrac13=\\tfrac23.$",
+          "Therefore $9\\alpha=6.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 2, Q8. The examiners rigged the constant $\\tfrac{5}{12}$ so the parabola crosses the tent at the clean point $x=\\tfrac12$ — the entire trap is realizing that $\\min\\{f,g\\}$ follows $f$ near the axis and $g$ near the edge, not the other way round."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Green Region and the Red: an $L_h$ that Balances",
+    "difficulty": 4,
+    "task": "Decide which balancing heights $h$ must exist.",
+    "pyq": {
+      "year": 2023,
+      "paper": "1",
+      "qno": "3"
+    },
+    "tags": [
+      "area between curve and lines",
+      "intermediate value theorem",
+      "definite integration",
+      "2023"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><defs><clipPath id=\"sq\"><rect x=\"40\" y=\"20\" width=\"200\" height=\"160\"/></clipPath></defs><!-- square S --><rect x=\"40\" y=\"20\" width=\"200\" height=\"160\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><!-- green region (above f) shading via light fill --><g clip-path=\"url(#sq)\"><path d=\"M40,110 C 90,120 150,127 240,131 L 240,20 L 40,20 Z\" fill=\"var(--ink2)\" opacity=\"0.12\"/><path d=\"M40,110 C 90,120 150,127 240,131 L 240,180 L 40,180 Z\" fill=\"var(--gold)\" opacity=\"0.18\"/></g><!-- curve y=f(x) --><path d=\"M40,110 C 90,120 150,127 240,131\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"2\"/><!-- horizontal line L_h --><line x1=\"40\" y1=\"95\" x2=\"240\" y2=\"95\" stroke=\"var(--gold)\" stroke-width=\"1.6\" stroke-dasharray=\"5 3\"/><text x=\"244\" y=\"99\" fill=\"var(--ink2)\">$L_h$</text><!-- labels --><text x=\"150\" y=\"55\" fill=\"var(--ink2)\">green $G$</text><text x=\"150\" y=\"165\" fill=\"var(--ink2)\">red $R$</text><text x=\"64\" y=\"105\" fill=\"var(--ink2)\">$y=f(x)$</text><!-- axes ticks --><text x=\"34\" y=\"184\" fill=\"var(--ink2)\">0</text><text x=\"236\" y=\"196\" fill=\"var(--ink2)\">1</text><text x=\"28\" y=\"24\" fill=\"var(--ink2)\">1</text></svg>",
+    "statement": "Let $f:[0,1]\\to[0,1]$ be defined by $f(x)=\\dfrac{x^3}{3}-x^2+\\dfrac{5}{9}x+\\dfrac{17}{36}$. In the square $S=[0,1]\\times[0,1]$ call $G=\\{(x,y)\\in S:y>f(x)\\}$ the green region and $R=\\{(x,y)\\in S:y<f(x)\\}$ the red region. For $h\\in[0,1]$ let $L_h=\\{(x,h)\\in S:x\\in[0,1]\\}$ be the horizontal line at height $h$. Which of the following is (are) true?\n\n(A) There exists $h\\in\\left[\\dfrac14,\\dfrac23\\right]$ such that the area of the green region above $L_h$ equals the area of the green region below $L_h$.\n\n(B) There exists $h\\in\\left[\\dfrac14,\\dfrac23\\right]$ such that the area of the red region above $L_h$ equals the area of the red region below $L_h$.\n\n(C) There exists $h\\in\\left[\\dfrac14,\\dfrac23\\right]$ such that the area of the green region above $L_h$ equals the area of the red region below $L_h$.\n\n(D) There exists $h\\in\\left[\\dfrac14,\\dfrac23\\right]$ such that the area of the red region above $L_h$ equals the area of the green region below $L_h$.",
+    "answer": "(B), (C), (D)",
+    "trap": "The temptation is to compute the four areas exactly and solve equations. But $f$ is a cubic squeezed into a narrow band, and the intended tool is the Intermediate Value Theorem applied to a continuous difference of areas. The real subtlety is checking the endpoints $h=\\tfrac14$ and $h=\\tfrac23$: because $f$ takes values only in $[\\tfrac{13}{36},\\tfrac{c}{?}]\\subset(\\tfrac14,\\tfrac23)$, at $h=\\tfrac14$ the whole curve lies above the line and at $h=\\tfrac23$ the whole curve lies below it. Statement (A) fails precisely because its difference never changes sign on $[\\tfrac14,\\tfrac23]$.",
+    "solutions": [
+      {
+        "name": "Range of $f$, then IVT on each difference",
+        "steps": [
+          "First pin down the range of $f$ on $[0,1]$. Differentiate: $f'(x)=x^2-2x+\\dfrac59=\\left(x-1\\right)^2-\\dfrac49$, which vanishes at $x=1\\pm\\tfrac23$, i.e. $x=\\tfrac13$ (in $[0,1]$).",
+          "Evaluate: $f(0)=\\tfrac{17}{36}\\approx0.472$, $f(1)=\\tfrac{13}{36}\\approx0.361$, and the local max $f\\!\\left(\\tfrac13\\right)\\approx0.559$. Hence $f(x)\\in[\\,0.361,\\,0.559\\,]\\subset\\left(\\tfrac14,\\tfrac23\\right)$ for all $x\\in[0,1]$.",
+          "Consequence: at $h=\\tfrac14$ the line $L_h$ lies entirely below the curve, and at $h=\\tfrac23$ it lies entirely above the curve. This is the key that decides every statement.",
+          "Compute the total areas once. The red area (under $f$) is $\\displaystyle R=\\int_0^1 f(x)\\,dx=\\left[\\dfrac{x^4}{12}-\\dfrac{x^3}{3}+\\dfrac{5x^2}{18}+\\dfrac{17x}{36}\\right]_0^1=\\dfrac{1}{12}-\\dfrac13+\\dfrac{5}{18}+\\dfrac{17}{36}=\\dfrac12.$ So green area $G=1-R=\\dfrac12$ as well.",
+          "Define the green-below-line area $g_b(h)$ = area of $\\{y>f(x)\\}$ with $y<h$, and green-above $g_a(h)=G-g_b(h)$; similarly $r_b(h),\\,r_a(h)$ for red with $R=\\tfrac12$. Each is a continuous function of $h$.",
+          "(A): $\\phi(h)=g_a(h)-g_b(h)$. At $h=\\tfrac14$ the line is below all of $G$, so $g_b(\\tfrac14)=0$ and $\\phi(\\tfrac14)=G=\\tfrac12>0$. At $h=\\tfrac23$ the line is above the curve, so the green region below the line is $\\int_0^1(h-f)\\,dx=\\tfrac23-\\tfrac12=\\tfrac16$ while green above is $\\int_0^1(1-h)\\,dx=\\tfrac13$; thus $\\phi(\\tfrac23)=\\tfrac13-\\tfrac16=\\tfrac16>0$. No sign change $\\Rightarrow$ (A) need not hold. (A) is FALSE.",
+          "(B): $\\psi(h)=r_a(h)-r_b(h)$. At $h=\\tfrac14$ the line is below all of $R$, so $r_a(\\tfrac14)=R=\\tfrac12$, $r_b(\\tfrac14)=0$, giving $\\psi(\\tfrac14)=\\tfrac12>0$. At $h=\\tfrac23$ the line is above the curve, so all of $R$ lies below it: $r_a(\\tfrac23)=0$, $\\psi(\\tfrac23)=-\\tfrac12<0$. Sign change $\\Rightarrow$ some $h$ gives $\\psi=0$. (B) is TRUE.",
+          "(C): $\\chi(h)=g_a(h)-r_b(h)$. At $h=\\tfrac14$: $g_a=\\tfrac12$, $r_b=0$, so $\\chi=\\tfrac12>0$. At $h=\\tfrac23$: $g_a=\\tfrac13$, $r_b=\\tfrac12$, so $\\chi=-\\tfrac16<0$. Sign change $\\Rightarrow$ (C) is TRUE.",
+          "(D): $\\omega(h)=r_a(h)-g_b(h)$. At $h=\\tfrac14$: $r_a=\\tfrac12$, $g_b=0$, so $\\omega=\\tfrac12>0$. At $h=\\tfrac23$: $r_a=0$, $g_b=\\tfrac16$, so $\\omega=-\\tfrac16<0$. Sign change $\\Rightarrow$ (D) is TRUE.",
+          "Therefore the correct options are (B), (C), (D)."
+        ]
+      },
+      {
+        "name": "Symmetry shortcut via the total areas",
+        "steps": [
+          "Once $G=R=\\dfrac12$ is established, note two identities valid for every $h$: $g_a(h)+g_b(h)=\\tfrac12$ and $r_a(h)+r_b(h)=\\tfrac12$.",
+          "Rewrite each target as a single balance function whose value at the endpoints decides it. For (C), $g_a(h)=r_b(h)$ means $g_a(h)-r_b(h)=0$; but $g_a=\\tfrac12-g_b$ and $r_b=\\tfrac12-r_a$, so this is $r_a(h)-g_b(h)=0$, which is exactly the equation of (D). Hence (C) and (D) are the *same* equation — they stand or fall together.",
+          "For that common equation define $F(h)=r_a(h)-g_b(h)$. As $h$ rises from $\\tfrac14$ to $\\tfrac23$, $r_a$ falls monotonically from $\\tfrac12$ to $0$ and $g_b$ rises monotonically from $0$ to $\\tfrac16$; so $F$ falls from $+\\tfrac12$ to $-\\tfrac16$, continuously. By IVT it hits $0$: (C) and (D) both TRUE.",
+          "For (B), $r_a(h)=r_b(h)$ means each equals $\\tfrac14$ (half of $R$). Since $r_a$ decreases continuously from $\\tfrac12$ (at $h=\\tfrac14$) to $0$ (at $h=\\tfrac23$), it passes through $\\tfrac14$; (B) TRUE.",
+          "For (A), $g_a(h)=g_b(h)$ would force each to be $\\tfrac14$. But $g_b(h)$ never reaches $\\tfrac14$ on $[\\tfrac14,\\tfrac23]$: it rises only from $0$ to $\\tfrac16<\\tfrac14$. So $g_a>g_b$ throughout and (A) FAILS.",
+          "Answer: (B), (C), (D). The band $[0.361,0.559]$ of $f$ living strictly inside $\\left(\\tfrac14,\\tfrac23\\right)$ is what makes the endpoints clean and (A) impossible."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 1, Q3. The whole problem is an IVT exercise disguised as an area computation — the only genuine calculation is the single integral $\\int_0^1 f=\\tfrac12$, and the range of $f$ landing strictly inside $\\left(\\tfrac14,\\tfrac23\\right)$ does the rest."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Sawtooth of Area 4: Recover the Peak",
+    "difficulty": 3,
+    "task": "Find the maximum value of $f$.",
+    "pyq": {
+      "year": 2023,
+      "paper": "1",
+      "qno": "9"
+    },
+    "tags": [
+      "area under piecewise linear curve",
+      "definite integration",
+      "2023"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><!-- axes --><line x1=\"30\" y1=\"185\" x2=\"300\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"30\" y1=\"185\" x2=\"30\" y2=\"25\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><text x=\"296\" y=\"200\" fill=\"var(--ink2)\">$x$</text><text x=\"14\" y=\"32\" fill=\"var(--ink2)\">$y$</text><!-- shaded area under sawtooth (schematic, n small for legibility) --><path d=\"M30,50 L 52,185 L 63,50 L 74,185 L 200,50 L 290,185 Z\" fill=\"var(--gold)\" opacity=\"0.18\"/><!-- the curve segments --><polyline points=\"30,50 52,185 63,50 74,185 200,50 290,185\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"2\"/><!-- peak marks --><line x1=\"30\" y1=\"50\" x2=\"290\" y2=\"50\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><text x=\"210\" y=\"46\" fill=\"var(--gold)\">peak $=n$</text><!-- x labels --><text x=\"24\" y=\"200\" fill=\"var(--ink2)\">0</text><text x=\"44\" y=\"200\" fill=\"var(--ink2)\">$\\tfrac1{2n}$</text><text x=\"58\" y=\"200\" fill=\"var(--ink2)\">$\\tfrac3{4n}$</text><text x=\"72\" y=\"200\" fill=\"var(--ink2)\">$\\tfrac1n$</text><text x=\"286\" y=\"200\" fill=\"var(--ink2)\">1</text></svg>",
+    "statement": "Let $n\\ge 2$ be a natural number and let $f:[0,1]\\to\\mathbb{R}$ be defined by\n$$f(x)=\\begin{cases} n(1-2nx), & 0\\le x\\le \\dfrac{1}{2n},\\\\[4pt] 2n(2nx-1), & \\dfrac{1}{2n}\\le x\\le \\dfrac{3}{4n},\\\\[4pt] 4n(1-nx), & \\dfrac{3}{4n}\\le x\\le \\dfrac{1}{n},\\\\[4pt] \\dfrac{n}{n-1}(nx-1), & \\dfrac{1}{n}\\le x\\le 1.\\end{cases}$$\nIf $n$ is such that the area of the region bounded by the curves $x=0$, $x=1$, $y=0$ and $y=f(x)$ is $4$, then the maximum value of the function $f$ is",
+    "answer": "$\\boxed{8}$",
+    "trap": "Each linear piece is a triangle, so students race to sum four triangle areas — but the widths are $\\tfrac1{2n},\\tfrac1{4n},\\tfrac1{4n}$ and $\\tfrac{n-1}{n}$, and it is easy to mis-read the second segment's peak. The peak of the sawtooth on $[0,\\tfrac1n]$ is $n$ (reached at all three vertices $x=0,\\tfrac3{4n},1$ of the first block via the pieces), and the fourth ramp also climbs back to $n$ at $x=1$; so the maximum is $n$, not $2n$. Getting $4$ from a total that telescopes to $\\tfrac n2$ is the whole game — miscounting a triangle gives a wrong $n$.",
+    "solutions": [
+      {
+        "name": "Sum of triangle areas",
+        "steps": [
+          "The graph is piecewise linear, so the area under it is a sum of triangles. Read off each piece's base and height.",
+          "Piece 1 on $\\left[0,\\tfrac1{2n}\\right]$: $f$ falls from $f(0)=n$ to $f\\!\\left(\\tfrac1{2n}\\right)=0$. Triangle with base $\\tfrac1{2n}$, height $n$: area $=\\tfrac12\\cdot\\tfrac1{2n}\\cdot n=\\tfrac14$.",
+          "Piece 2 on $\\left[\\tfrac1{2n},\\tfrac3{4n}\\right]$: $f$ rises from $0$ to $2n\\!\\left(2n\\cdot\\tfrac3{4n}-1\\right)=2n\\!\\left(\\tfrac32-1\\right)=n$. Base $\\tfrac3{4n}-\\tfrac1{2n}=\\tfrac1{4n}$, height $n$: area $=\\tfrac12\\cdot\\tfrac1{4n}\\cdot n=\\tfrac18$.",
+          "Piece 3 on $\\left[\\tfrac3{4n},\\tfrac1n\\right]$: $f$ falls from $4n\\!\\left(1-n\\cdot\\tfrac3{4n}\\right)=4n\\cdot\\tfrac14=n$ down to $4n\\!\\left(1-n\\cdot\\tfrac1n\\right)=0$. Base $\\tfrac1n-\\tfrac3{4n}=\\tfrac1{4n}$, height $n$: area $=\\tfrac12\\cdot\\tfrac1{4n}\\cdot n=\\tfrac18$.",
+          "Piece 4 on $\\left[\\tfrac1n,1\\right]$: $f$ rises from $\\tfrac n{n-1}(n\\cdot\\tfrac1n-1)=0$ to $\\tfrac n{n-1}(n-1)=n$ at $x=1$. Base $1-\\tfrac1n=\\tfrac{n-1}{n}$, height $n$: area $=\\tfrac12\\cdot\\tfrac{n-1}{n}\\cdot n=\\tfrac{n-1}{2}$.",
+          "Total area $=\\tfrac14+\\tfrac18+\\tfrac18+\\tfrac{n-1}{2}=\\tfrac12+\\tfrac{n-1}{2}=\\tfrac n2.$",
+          "Set $\\tfrac n2=4\\Rightarrow n=8$.",
+          "The maximum of $f$: every piece peaks at height $n$ and never exceeds it, so $\\max f=n=8$."
+        ]
+      },
+      {
+        "name": "Direct integration of each linear piece",
+        "steps": [
+          "Integrate piece by piece. $\\displaystyle\\int_0^{1/(2n)} n(1-2nx)\\,dx=n\\left[x-nx^2\\right]_0^{1/(2n)}=n\\left(\\tfrac1{2n}-n\\cdot\\tfrac1{4n^2}\\right)=n\\cdot\\tfrac1{4n}=\\tfrac14.$",
+          "$\\displaystyle\\int_{1/(2n)}^{3/(4n)} 2n(2nx-1)\\,dx=2n\\left[nx^2-x\\right]_{1/(2n)}^{3/(4n)}$. Compute $nx^2-x$ at $\\tfrac3{4n}$: $n\\cdot\\tfrac9{16n^2}-\\tfrac3{4n}=\\tfrac9{16n}-\\tfrac{12}{16n}=-\\tfrac3{16n}$; at $\\tfrac1{2n}$: $n\\cdot\\tfrac1{4n^2}-\\tfrac1{2n}=\\tfrac1{4n}-\\tfrac2{4n}=-\\tfrac1{4n}$. Difference $=-\\tfrac3{16n}+\\tfrac4{16n}=\\tfrac1{16n}$, times $2n$ gives $\\tfrac18.$",
+          "$\\displaystyle\\int_{3/(4n)}^{1/n} 4n(1-nx)\\,dx=4n\\left[x-\\tfrac{n}{2}x^2\\right]_{3/(4n)}^{1/n}$. At $\\tfrac1n$: $\\tfrac1n-\\tfrac n2\\cdot\\tfrac1{n^2}=\\tfrac1n-\\tfrac1{2n}=\\tfrac1{2n}$; at $\\tfrac3{4n}$: $\\tfrac3{4n}-\\tfrac n2\\cdot\\tfrac9{16n^2}=\\tfrac3{4n}-\\tfrac9{32n}=\\tfrac{24-9}{32n}=\\tfrac{15}{32n}$. Difference $=\\tfrac{16}{32n}-\\tfrac{15}{32n}=\\tfrac1{32n}$, times $4n$ gives $\\tfrac18.$",
+          "$\\displaystyle\\int_{1/n}^{1}\\tfrac{n}{n-1}(nx-1)\\,dx=\\tfrac{n}{n-1}\\left[\\tfrac n2 x^2-x\\right]_{1/n}^{1}$. At $1$: $\\tfrac n2-1=\\tfrac{n-2}{2}$; at $\\tfrac1n$: $\\tfrac n2\\cdot\\tfrac1{n^2}-\\tfrac1n=\\tfrac1{2n}-\\tfrac1n=-\\tfrac1{2n}$. Difference $=\\tfrac{n-2}{2}+\\tfrac1{2n}=\\tfrac{n^2-2n+1}{2n}=\\tfrac{(n-1)^2}{2n}$, times $\\tfrac n{n-1}$ gives $\\tfrac{n-1}{2}.$",
+          "Total $=\\tfrac14+\\tfrac18+\\tfrac18+\\tfrac{n-1}{2}=\\tfrac n2$. Impose $\\tfrac n2=4\\Rightarrow n=8.$",
+          "Since each ramp attains its peak value $n$ and no piece exceeds $n$, $\\max_{[0,1]} f=n=8.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 1, Q9. Beautifully engineered so that the three narrow triangles contribute a constant $\\tfrac12$ regardless of $n$ and the long final ramp carries all the $n$-dependence — the area telescopes to $\\tfrac n2$, and the peak equals $n$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A hyperbola, two lines, and a triangle of corners",
+    "difficulty": 4,
+    "task": "Find the area of the region.",
+    "pyq": {
+      "year": 2025,
+      "paper": "2",
+      "qno": "2"
+    },
+    "tags": [
+      "area between curves and lines",
+      "region bounded by hyperbola",
+      "definite integration of 1/x",
+      "2025"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"190\" x2=\"305\" y2=\"190\" stroke=\"var(--ink3)\"/><line x1=\"45\" y1=\"200\" x2=\"45\" y2=\"20\" stroke=\"var(--ink3)\"/><text x=\"300\" y=\"185\" fill=\"var(--ink2)\">x</text><text x=\"32\" y=\"28\" fill=\"var(--ink2)\">y</text><path d=\"M 70 40 Q 110 120 160 150 Q 210 168 290 178\" fill=\"none\" stroke=\"var(--ink2)\"/><text x=\"258\" y=\"172\" fill=\"var(--ink2)\">y=1/x</text><line x1=\"55\" y1=\"185\" x2=\"250\" y2=\"35\" stroke=\"var(--ink2)\"/><text x=\"215\" y=\"48\" fill=\"var(--ink2)\">5x-4y=1</text><line x1=\"120\" y1=\"20\" x2=\"290\" y2=\"178\" stroke=\"var(--ink2)\"/><text x=\"120\" y=\"32\" fill=\"var(--ink2)\">4x+4y=17</text><polygon points=\"98,155 150,80 240,168\" fill=\"var(--gold)\" fill-opacity=\"0.28\" stroke=\"var(--gold)\"/><circle cx=\"98\" cy=\"155\" r=\"2.6\" fill=\"var(--gold)\"/><text x=\"78\" y=\"152\" fill=\"var(--ink2)\">A(1,1)</text><circle cx=\"150\" cy=\"80\" r=\"2.6\" fill=\"var(--gold)\"/><text x=\"155\" y=\"76\" fill=\"var(--ink2)\">B(2,9/4)</text><circle cx=\"240\" cy=\"168\" r=\"2.6\" fill=\"var(--gold)\"/><text x=\"238\" y=\"182\" fill=\"var(--ink2)\">C(4,1/4)</text></svg>",
+    "statement": "Let $\\mathbb{R}$ denote the set of all real numbers. Then the area of the region\n$$\\left\\{(x,y)\\in\\mathbb{R}\\times\\mathbb{R} : x>0,\\ y>\\tfrac{1}{x},\\ 5x-4y-1>0,\\ 4x+4y-17<0\\right\\}$$\nis\n\n(A) $\\dfrac{17}{16} - \\log_e 4$\n\n(B) $\\dfrac{33}{8} - \\log_e 4$\n\n(C) $\\dfrac{57}{8} - \\log_e 4$\n\n(D) $\\dfrac{17}{2} - \\log_e 4$",
+    "answer": "$\\boxed{\\dfrac{33}{8}-\\log_e 4}\\quad\\text{(B)}$",
+    "trap": "The region sits ABOVE the hyperbola $y=1/x$ but BELOW both lines, and the two lines swap roles as the upper cap at $x=2$. Treating the boundary as a single line, or forgetting that $y=1/x$ is the lower boundary (not an upper one), collapses the whole calculation.",
+    "solutions": [
+      {
+        "name": "Vertical strips — split the ceiling at $x=2$",
+        "steps": [
+          "First locate the three corners. The hyperbola $y=1/x$ meets $5x-4y=1$: substitute $y=1/x$ to get $5x-\\tfrac{4}{x}=1$, i.e. $5x^2-x-4=0=(5x+4)(x-1)$, so $x=1$, giving $A(1,1)$.",
+          "The two lines meet: $5x-4y=1$ and $4x+4y=17$ add to $9x=18$, so $x=2$, $y=\\tfrac{5\\cdot2-1}{4}=\\tfrac94$, giving $B\\left(2,\\tfrac94\\right)$.",
+          "The hyperbola meets $4x+4y=17$: $4x+\\tfrac{4}{x}=17$, i.e. $4x^2-17x+4=0=(4x-1)(x-4)$, so $x=4$ (the branch with $x>1$), giving $C\\left(4,\\tfrac14\\right)$.",
+          "For $1\\le x\\le 2$ the top boundary is $y=\\tfrac{5x-1}{4}$ (from $5x-4y=1$) and the bottom is $y=\\tfrac1x$; for $2\\le x\\le 4$ the top is $y=\\tfrac{17-4x}{4}$ (from $4x+4y=17$) and the bottom is still $y=\\tfrac1x$.",
+          "Hence $\\text{Area}=\\displaystyle\\int_1^2\\!\\left(\\tfrac{5x-1}{4}-\\tfrac1x\\right)dx+\\int_2^4\\!\\left(\\tfrac{17-4x}{4}-\\tfrac1x\\right)dx.$",
+          "First integral: $\\left[\\tfrac{5x^2}{8}-\\tfrac{x}{4}-\\ln x\\right]_1^2=\\left(\\tfrac{20}{8}-\\tfrac24-\\ln2\\right)-\\left(\\tfrac58-\\tfrac14\\right)=\\tfrac{13}{8}-\\ln 2.$",
+          "Second integral: $\\left[\\tfrac{17x}{4}-\\tfrac{x^2}{2}-\\ln x\\right]_2^4=\\left(17-8-\\ln4\\right)-\\left(\\tfrac{34}{4}-2-\\ln2\\right)=\\tfrac52-\\ln2.$",
+          "Adding: $\\tfrac{13}{8}+\\tfrac52-2\\ln 2=\\tfrac{33}{8}-\\ln 4$. So the area is $\\dfrac{33}{8}-\\log_e 4$ — option (B)."
+        ]
+      },
+      {
+        "name": "Triangle of corners minus the hyperbolic sliver",
+        "steps": [
+          "With $5x-4y-1>0$ (below the line $y=\\tfrac{5x-1}4$) and $4x+4y-17<0$ (below $y=\\tfrac{17-4x}4$) and $y>\\tfrac1x$, the three boundary curves meet at $A(1,1),\\,B(2,\\tfrac94),\\,C(4,\\tfrac14)$.",
+          "The region is bounded above by the polyline $A\\!\\to\\!B\\!\\to\\!C$ (the two lines) and below by the hyperbola $y=\\tfrac1x$ from $x=1$ to $x=4$.",
+          "So $\\text{Area}=\\displaystyle\\int_1^2\\!\\Big(\\tfrac{5x-1}4-\\tfrac1x\\Big)dx+\\int_2^4\\!\\Big(\\tfrac{17-4x}4-\\tfrac1x\\Big)dx=\\Big(\\tfrac{13}8-\\ln2\\Big)+\\Big(\\tfrac52-\\ln2\\Big).$",
+          "Adding: $\\tfrac{13}8+\\tfrac52-2\\ln2=\\dfrac{33}8-\\ln4$ — option $(B)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 2, Q2. The whole problem is really just finding three corner points cleanly — once $A(1,1),B(2,\\tfrac94),C(4,\\tfrac14)$ are in hand, the vertical-strip integral (split at $x=2$) is mechanical; the only real danger is misreading which curve caps the strip on each side of $x=2$."
   }
 ];

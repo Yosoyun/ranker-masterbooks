@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['classical','conditional','bayes','counting','binomial','binomdist','expectation','inclusionexcl','paradox','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['classical','conditional','bayes','counting','binomial','binomdist','expectation','inclusionexcl','paradox','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     classical:     { glyph:'Ω',     blurb:'Count the sample space, count the favourable, divide — the classical law of equally likely outcomes, sharpened by permutations and combinations.' },
     conditional:   { glyph:'A|B',   blurb:'New information reshapes the space. The multiplication rule and independence — the most over-claimed property in all of probability.' },
@@ -17,6 +17,7 @@
     inclusionexcl: { glyph:'∪∩',    blurb:'The probability of “at least one”, derangements and matchings — inclusion–exclusion translated into the language of chance.' },
     paradox:       { glyph:'?!',    blurb:'Monty Hall, Simpson’s reversal, the birthday collision — the problems where intuition and a clean conditioning argument violently disagree.' },
     hybrid:        { glyph:'⊕',     blurb:'The capstones: counting, conditioning, total probability and the binomial law fused into one problem that resists every single tool.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

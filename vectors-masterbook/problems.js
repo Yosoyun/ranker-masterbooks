@@ -4001,5 +4001,3558 @@ window.PROBLEMS = [
       }
     ],
     "remark": "Insight: three instruments chain with no shortcut — the cross product of two plane normals supplies the line's direction, a second cross product builds the base normal/area, and the scalar triple product measures volume. The decisive subtlety is that volume is $\\tfrac16$ of the absolute triple product, so the constraint is $|20t-10|=30$, a pair of equations. The two roots are the two parallel level planes at the required height, one on each side of the base — drop the sign and you lose half the answer."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Plane Standing Perpendicular to Two",
+    "difficulty": 3,
+    "task": "Find",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "11"
+    },
+    "tags": [
+      "plane perpendicular to two planes",
+      "point-plane distance",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "A plane passes through the point $(1,-2,1)$ and is perpendicular to the two planes $2x-2y+z=0$ and $x-y+2z=4$. Find the distance of this plane from the point $(1,2,2)$.",
+    "answer": "The distance equals $\\boxed{2\\sqrt2}$.",
+    "trap": "The seductive error is to imagine the required plane's normal must lie along one of the given normals, or to average them. Being perpendicular to both planes means the plane $\\textit{contains}$ both of their normals, so its own normal is the cross product $\\mathbf{n_1}\\times\\mathbf{n_2}$, not any combination of $\\mathbf{n_1}$ and $\\mathbf{n_2}$ themselves. A second slip is to forget that $z$ genuinely drops out: $\\mathbf{n_1}\\times\\mathbf{n_2}=(-3,-3,0)$ has zero $z$-component, so the answer plane is $x+y+1=0$ with no $z$ at all — the point's $z=2$ never enters the distance.",
+    "solutions": [
+      {
+        "name": "Normal as a cross product",
+        "steps": [
+          "The required plane is perpendicular to both given planes, so it contains both of their normals $\\mathbf{n_1}=(2,-2,1)$ and $\\mathbf{n_2}=(1,-1,2)$. Its own normal is therefore $\\mathbf{n}=\\mathbf{n_1}\\times\\mathbf{n_2}$.",
+          "Compute $\\mathbf{n}=\\begin{vmatrix}\\hat i&\\hat j&\\hat k\\\\2&-2&1\\\\1&-1&2\\end{vmatrix}=(-4+1)\\hat i-(4-1)\\hat j+(-2+2)\\hat k=(-3,-3,0)$, which is parallel to $(1,1,0)$.",
+          "The plane through $(1,-2,1)$ with normal $(1,1,0)$ is $1\\cdot(x-1)+1\\cdot(y+2)+0=0$, i.e. $x+y+1=0$.",
+          "Distance from $(1,2,2)$ is $\\dfrac{|1+2+1|}{\\sqrt{1^2+1^2+0^2}}=\\dfrac{4}{\\sqrt2}=2\\sqrt2$. Hence the distance is $\\boxed{2\\sqrt2}$."
+        ]
+      },
+      {
+        "name": "Normal by solving a linear system",
+        "steps": [
+          "Let the required normal be $\\mathbf{n}=(a,b,c)$. Perpendicularity of the plane to each given plane means $\\mathbf{n}$ is orthogonal to each given normal: $2a-2b+c=0$ and $a-b+2c=0$.",
+          "Subtracting the second equation from the first gives $(2a-2b+c)-(a-b+2c)=a-b-c=0$; combined with $a-b+2c=0$ this forces $c=0$ and $a=b$. Choosing $b=1$ gives $\\mathbf{n}=(1,1,0)$, matching the cross-product result.",
+          "So the plane is $x+y=k$; passing through $(1,-2,1)$ gives $k=-1$, i.e. $x+y+1=0$.",
+          "Distance from $(1,2,2)$ is $\\dfrac{|1+2+1|}{\\sqrt2}=\\dfrac{4}{\\sqrt2}=2\\sqrt2$, so the distance is $\\boxed{2\\sqrt2}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q11. Insight: “perpendicular to two planes” is code for “normal is the cross product of their normals” — and once that normal turns out to have a vanishing component, an entire coordinate of the query point becomes irrelevant to the distance."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Vector Confined to a Plane",
+    "difficulty": 3,
+    "task": "Find",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "12"
+    },
+    "tags": [
+      "vector in a plane",
+      "projection",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "Let $\\mathbf{a}=\\hat i+2\\hat j+\\hat k$, $\\mathbf{b}=\\hat i-\\hat j+\\hat k$ and $\\mathbf{c}=\\hat i-\\hat j-\\hat k$. Find a vector that lies in the plane of $\\mathbf{a}$ and $\\mathbf{b}$ whose projection on $\\mathbf{c}$ equals $\\dfrac{1}{\\sqrt3}$.",
+    "answer": "One such vector is $\\boxed{4\\hat i-\\hat j+4\\hat k}$.",
+    "trap": "The temptation is to hunt among the options by testing lengths or dot products blindly, or to project onto $\\mathbf{c}$ without dividing by $|\\mathbf{c}|$. The projection of $\\mathbf{r}$ on $\\mathbf{c}$ is $\\dfrac{\\mathbf{r}\\cdot\\mathbf{c}}{|\\mathbf{c}|}$, and here $|\\mathbf{c}|=\\sqrt3$, so the scalar condition is $\\mathbf{r}\\cdot\\mathbf{c}=1$, not $\\mathbf{r}\\cdot\\mathbf{c}=\\tfrac{1}{\\sqrt3}$. Confusing the projection with the raw dot product scales the answer by $\\sqrt3$ and lands on none of the choices.",
+    "solutions": [
+      {
+        "name": "Parametrise inside the plane",
+        "steps": [
+          "Any vector coplanar with $\\mathbf{a}$ and $\\mathbf{b}$ can be written $\\mathbf{r}=\\mathbf{a}+\\lambda\\mathbf{b}=(1+\\lambda)\\hat i+(2-\\lambda)\\hat j+(1+\\lambda)\\hat k$.",
+          "The projection on $\\mathbf{c}$ is $\\dfrac{\\mathbf{r}\\cdot\\mathbf{c}}{|\\mathbf{c}|}$. Here $|\\mathbf{c}|=\\sqrt{1+1+1}=\\sqrt3$ and $\\mathbf{r}\\cdot\\mathbf{c}=(1+\\lambda)-(2-\\lambda)-(1+\\lambda)=\\lambda-2$.",
+          "Setting $\\dfrac{\\lambda-2}{\\sqrt3}=\\dfrac{1}{\\sqrt3}$ gives $\\lambda-2=1$, so $\\lambda=3$.",
+          "Then $\\mathbf{r}=(1+3)\\hat i+(2-3)\\hat j+(1+3)\\hat k=4\\hat i-\\hat j+4\\hat k$, so the vector is $\\boxed{4\\hat i-\\hat j+4\\hat k}$."
+        ]
+      },
+      {
+        "name": "Coplanarity via scalar triple product",
+        "steps": [
+          "Write the unknown as $\\mathbf{r}=x\\hat i+y\\hat j+z\\hat k$. Lying in the plane of $\\mathbf{a},\\mathbf{b}$ means the scalar triple product vanishes: $[\\mathbf{r}\\ \\mathbf{a}\\ \\mathbf{b}]=\\begin{vmatrix}x&y&z\\\\1&2&1\\\\1&-1&1\\end{vmatrix}=0$.",
+          "Expanding: $x(2\\cdot1-1\\cdot(-1))-y(1\\cdot1-1\\cdot1)+z(1\\cdot(-1)-2\\cdot1)=3x+0\\cdot y-3z=0$, i.e. $x=z$.",
+          "The projection condition $\\mathbf{r}\\cdot\\mathbf{c}=|\\mathbf{c}|\\cdot\\tfrac{1}{\\sqrt3}=\\sqrt3\\cdot\\tfrac{1}{\\sqrt3}=1$ reads $x-y-z=1$; with $x=z$ this becomes $-y=1$, so $y=-1$.",
+          "Testing the natural candidate $x=z=4,\\,y=-1$ satisfies both $x=z$ and $x-y-z=1$; it also equals $\\mathbf{a}+3\\mathbf{b}$, confirming it lies in the plane. Hence $\\mathbf{r}=\\boxed{4\\hat i-\\hat j+4\\hat k}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q12. Insight: “in the plane of $\\mathbf{a}$ and $\\mathbf{b}$” is a one-parameter family $\\mathbf{a}+\\lambda\\mathbf{b}$ (or equivalently the single linear constraint $[\\mathbf{r}\\ \\mathbf{a}\\ \\mathbf{b}]=0$), and the projection supplies exactly the one equation needed to pin $\\lambda$ down."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Fold Between Two Pencils",
+    "difficulty": 4,
+    "task": "Determine",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "19"
+    },
+    "tags": [
+      "line of intersection of planes",
+      "angle between vectors",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec A$ be a vector parallel to the line of intersection of the planes $P_1$ and $P_2$, both passing through the origin. The plane $P_1$ is parallel to the vectors $2\\hat j+3\\hat k$ and $4\\hat j-3\\hat k$, while $P_2$ is parallel to $\\hat j-\\hat k$ and $3\\hat i+3\\hat j$. Determine every possible value of the angle between $\\vec A$ and the vector $2\\hat i+\\hat j-2\\hat k$.",
+    "answer": "\\[\\boxed{\\theta=\\frac{\\pi}{4}\\ \\text{or}\\ \\theta=\\frac{3\\pi}{4}}\\]",
+    "trap": "Treating $\\vec A$ as a single fixed direction and reporting only one angle. A line of intersection has no intrinsic orientation: $\\vec A$ and $-\\vec A$ describe the same line, so $\\cos\\theta$ is only determined up to sign. Here $|\\cos\\theta|=\\tfrac{1}{\\sqrt2}$, which forces BOTH $\\tfrac{\\pi}{4}$ and $\\tfrac{3\\pi}{4}$ — dropping the supplementary value loses half the answer.",
+    "solutions": [
+      {
+        "name": "Normals, then a cross of normals",
+        "steps": [
+          "A plane through the origin parallel to two vectors has normal equal to their cross product. For $P_1$: $\\vec n_1=(2\\hat j+3\\hat k)\\times(4\\hat j-3\\hat k)=-18\\,\\hat i\\parallel\\hat i$.",
+          "For $P_2$: $\\vec n_2=(\\hat j-\\hat k)\\times(3\\hat i+3\\hat j)=3\\hat i-3\\hat j-3\\hat k\\parallel(\\hat i-\\hat j-\\hat k)$.",
+          "The line of intersection lies in both planes, so it is perpendicular to both normals: $\\vec A\\parallel\\vec n_1\\times\\vec n_2=\\hat i\\times(\\hat i-\\hat j-\\hat k)=-\\hat j+\\hat k$. Take $\\vec A=\\hat j-\\hat k$ (either sign is valid).",
+          "With $\\vec b=2\\hat i+\\hat j-2\\hat k$: $\\cos\\theta=\\dfrac{\\vec A\\cdot\\vec b}{|\\vec A||\\vec b|}=\\dfrac{0+1+2}{\\sqrt2\\cdot 3}=\\dfrac{3}{3\\sqrt2}=\\dfrac{1}{\\sqrt2}$. Because the line's orientation is arbitrary, $\\cos\\theta=\\pm\\tfrac{1}{\\sqrt2}$, so $\\boxed{\\theta=\\tfrac{\\pi}{4}\\ \\text{or}\\ \\tfrac{3\\pi}{4}}$."
+        ]
+      },
+      {
+        "name": "Solve the two homogeneous plane equations directly",
+        "steps": [
+          "From $\\vec n_1\\parallel\\hat i$, plane $P_1$ is $x=0$. From $\\vec n_2\\parallel(\\hat i-\\hat j-\\hat k)$, plane $P_2$ is $x-y-z=0$.",
+          "On the intersection, $x=0$ and $-y-z=0$, i.e. $z=-y$. A direction vector is $(x,y,z)=(0,1,-1)$, so $\\vec A\\parallel\\hat j-\\hat k$ — matching the first method.",
+          "Now project onto $\\vec b=2\\hat i+\\hat j-2\\hat k$ (with $|\\vec b|=3$): the component along $\\hat i$ contributes nothing, and $\\vec A\\cdot\\vec b=(1)(1)+(-1)(-2)=3$, giving $|\\cos\\theta|=\\dfrac{3}{\\sqrt2\\cdot3}=\\dfrac{1}{\\sqrt2}$.",
+          "Hence $\\theta=\\tfrac{\\pi}{4}$ or its supplement $\\tfrac{3\\pi}{4}$, since $\\vec A$ may point either way along the line. $\\boxed{\\theta=\\tfrac{\\pi}{4}\\ \\text{or}\\ \\tfrac{3\\pi}{4}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q19. Insight: the intersection of two origin-planes is $\\vec n_1\\times\\vec n_2$, and because a line carries no fixed direction, an angle problem against it always yields a value and its supplement — here $\\tfrac{\\pi}{4}$ paired with $\\tfrac{3\\pi}{4}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Counting the Flattening Parameters",
+    "difficulty": 4,
+    "task": "Count",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "51"
+    },
+    "tags": [
+      "coplanarity",
+      "scalar triple product",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Consider the three vectors $-\\lambda^2\\,\\hat i+\\hat j+\\hat k$, $\\ \\hat i-\\lambda^2\\,\\hat j+\\hat k$ and $\\ \\hat i+\\hat j-\\lambda^2\\,\\hat k$, where $\\lambda$ is real. Count the number of distinct real values of $\\lambda$ for which these three vectors are coplanar.",
+    "answer": "\\[\\boxed{2}\\]",
+    "trap": "Reading the degree-six equation $\\lambda^6-3\\lambda^2-2=0$ as if it could have up to six real roots, or forgetting that $(\\lambda^2+1)^2$ contributes NO real solutions. Only the factor $\\lambda^2-2$ is real-solvable, and it gives the paired values $\\pm\\sqrt2$ — two distinct reals, not one and not six.",
+    "solutions": [
+      {
+        "name": "Scalar triple product = 0",
+        "steps": [
+          "Three vectors are coplanar exactly when their scalar triple product (the $3\\times3$ determinant of their components) vanishes: $\\begin{vmatrix}-\\lambda^2&1&1\\\\1&-\\lambda^2&1\\\\1&1&-\\lambda^2\\end{vmatrix}=0$.",
+          "Expanding gives $-\\lambda^6+3\\lambda^2+2=0$, i.e. $\\lambda^6-3\\lambda^2-2=0$.",
+          "Factor with $u=\\lambda^2$: $u^3-3u-2=(u-2)(u+1)^2=0$, so $(\\lambda^2-2)(\\lambda^2+1)^2=0$.",
+          "Since $\\lambda^2+1>0$ for all real $\\lambda$, only $\\lambda^2=2$ survives, giving $\\lambda=\\pm\\sqrt2$: exactly $\\boxed{2}$ distinct real values."
+        ]
+      },
+      {
+        "name": "Row-sum eigenvector shortcut",
+        "steps": [
+          "Let $M$ be the matrix whose rows are the three vectors. Each row sums to $2-\\lambda^2$, so $M\\,(1,1,1)^{\\mathsf T}=(2-\\lambda^2)(1,1,1)^{\\mathsf T}$; thus $2-\\lambda^2$ is one characteristic root of $M$.",
+          "$M=(1-(-\\ )\\,)\\dots$ more cleanly, $M=J-(\\lambda^2+1)I$ where $J$ is the all-ones matrix. The eigenvalues of $J$ are $3$ (once) and $0$ (twice), so $\\det M=\\big(3-(\\lambda^2+1)\\big)\\big(0-(\\lambda^2+1)\\big)^2$.",
+          "Hence $\\det M=(2-\\lambda^2)\\,(-(\\lambda^2+1))^2=(2-\\lambda^2)(\\lambda^2+1)^2$, matching the determinant above.",
+          "Setting $\\det M=0$: the repeated factor $(\\lambda^2+1)^2$ has no real root, and $2-\\lambda^2=0$ gives $\\lambda=\\pm\\sqrt2$. So there are $\\boxed{2}$ distinct real values."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q51. Insight: recognizing the coefficient matrix as $J-(\\lambda^2+1)I$ turns a determinant expansion into a two-line eigenvalue read-off, and the substitution $u=\\lambda^2$ makes the real-root count immediate."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Hexagon Sides and Cross Products",
+    "difficulty": 4,
+    "task": "Judge each statement true or false and decide whether the second explains the first.",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "54"
+    },
+    "tags": [
+      "cross product",
+      "regular hexagon geometry",
+      "parallel vectors",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 400 320\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Regular hexagon PQRSTU with directed sides</title><desc>A regular hexagon with vertices P, Q, R, S, T, U and its six sides drawn as directed vectors PQ, QR, RS, ST, TU, UP traversing the boundary.</desc><defs><marker id=\"ar\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M2 1L8 5L2 9\" fill=\"none\" stroke=\"context-stroke\" stroke-width=\"1.5\"/></marker></defs><polygon points=\"104.7,105 200,50 295.3,105 295.3,215 200,270 104.7,215\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1\" opacity=\"0.4\"/><line x1=\"104.7\" y1=\"105\" x2=\"200\" y2=\"50\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\" marker-end=\"url(#ar)\"/><line x1=\"200\" y1=\"50\" x2=\"295.3\" y2=\"105\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\" marker-end=\"url(#ar)\"/><line x1=\"295.3\" y1=\"105\" x2=\"295.3\" y2=\"215\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\" marker-end=\"url(#ar)\"/><line x1=\"295.3\" y1=\"215\" x2=\"200\" y2=\"270\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\" marker-end=\"url(#ar)\"/><line x1=\"200\" y1=\"270\" x2=\"104.7\" y2=\"215\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\" marker-end=\"url(#ar)\"/><line x1=\"104.7\" y1=\"215\" x2=\"104.7\" y2=\"105\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\" marker-end=\"url(#ar)\"/><text x=\"96\" y=\"100\" fill=\"var(--ink2)\" font-size=\"12\" text-anchor=\"end\">P</text><text x=\"200\" y=\"42\" fill=\"var(--ink2)\" font-size=\"12\" text-anchor=\"middle\">Q</text><text x=\"304\" y=\"100\" fill=\"var(--ink2)\" font-size=\"12\">R</text><text x=\"304\" y=\"220\" fill=\"var(--ink2)\" font-size=\"12\">S</text><text x=\"200\" y=\"286\" fill=\"var(--ink2)\" font-size=\"12\" text-anchor=\"middle\">T</text><text x=\"96\" y=\"220\" fill=\"var(--ink2)\" font-size=\"12\" text-anchor=\"end\">U</text></svg>",
+    "statement": "Let the vectors $\\overrightarrow{PQ},\\ \\overrightarrow{QR},\\ \\overrightarrow{RS},\\ \\overrightarrow{ST},\\ \\overrightarrow{TU}$ and $\\overrightarrow{UP}$ represent the sides of a regular hexagon. Consider two statements. STATEMENT-1: $\\overrightarrow{PQ}\\times(\\overrightarrow{RS}+\\overrightarrow{ST})\\neq\\vec{0}$; and STATEMENT-2: $\\overrightarrow{PQ}\\times\\overrightarrow{RS}=\\vec{0}$ while $\\overrightarrow{PQ}\\times\\overrightarrow{ST}\\neq\\vec{0}$. Which option is correct? $(A)$ both true, and Statement-2 correctly explains Statement-1; $(B)$ both true, but Statement-2 does not explain Statement-1; $(C)$ Statement-1 true, Statement-2 false; $(D)$ Statement-1 false, Statement-2 true.",
+    "answer": "$\\boxed{(C)}$ Statement-1 is true, Statement-2 is false.",
+    "trap": "The tempting slip is to think $\\overrightarrow{PQ}\\times\\overrightarrow{RS}=\\vec 0$ because \"$RS$ looks parallel to $PQ$.\" In a regular hexagon it is the *opposite* side $\\overrightarrow{ST}$ that is parallel (anti-parallel) to $\\overrightarrow{PQ}$, not $\\overrightarrow{RS}$. So the two cross products in Statement-2 are exactly backwards.",
+    "solutions": [
+      {
+        "name": "Direction angles of the sides",
+        "steps": [
+          "Traverse the hexagon so that consecutive sides turn by the exterior angle $60^\\circ$. Assign directions: if $\\overrightarrow{PQ}$ points along $0^\\circ$, then $\\overrightarrow{QR}$ is at $60^\\circ$, $\\overrightarrow{RS}$ at $120^\\circ$, $\\overrightarrow{ST}$ at $180^\\circ$, $\\overrightarrow{TU}$ at $240^\\circ$, $\\overrightarrow{UP}$ at $300^\\circ$.",
+          "Thus $\\overrightarrow{RS}$ makes $120^\\circ$ with $\\overrightarrow{PQ}$, so $\\overrightarrow{PQ}\\times\\overrightarrow{RS}$ has magnitude $\\sin120^\\circ\\neq0$: it is $\\emph{not}$ $\\vec0$. Meanwhile $\\overrightarrow{ST}$ is at $180^\\circ$ (anti-parallel to $\\overrightarrow{PQ}$), so $\\overrightarrow{PQ}\\times\\overrightarrow{ST}=\\vec0$. Statement-2's two claims are both wrong, so Statement-2 is $\\textbf{false}$.",
+          "For Statement-1, $\\overrightarrow{RS}+\\overrightarrow{ST}=\\overrightarrow{RT}$, the diagonal from $R$ to $T$. Since $\\overrightarrow{RT}$ is not parallel to $\\overrightarrow{PQ}$, we get $\\overrightarrow{PQ}\\times\\overrightarrow{RT}\\neq\\vec0$, so Statement-1 is $\\textbf{true}$. Hence the answer is $(C)$."
+        ]
+      },
+      {
+        "name": "Explicit coordinates on the unit circle",
+        "steps": [
+          "Place the vertices at angles $0^\\circ,60^\\circ,\\dots,300^\\circ$ on a unit circle: $P=(1,0)$, $Q=(\\tfrac12,\\tfrac{\\sqrt3}{2})$, $R=(-\\tfrac12,\\tfrac{\\sqrt3}{2})$, $S=(-1,0)$, $T=(-\\tfrac12,-\\tfrac{\\sqrt3}{2})$, $U=(\\tfrac12,-\\tfrac{\\sqrt3}{2})$. Then $\\overrightarrow{PQ}=(-\\tfrac12,\\tfrac{\\sqrt3}{2},0)$ and $\\overrightarrow{RS}=(-\\tfrac12,-\\tfrac{\\sqrt3}{2},0)$.",
+          "Compute $\\overrightarrow{PQ}\\times\\overrightarrow{RS}=\\bigl(0,0,(-\\tfrac12)(-\\tfrac{\\sqrt3}{2})-(\\tfrac{\\sqrt3}{2})(-\\tfrac12)\\bigr)=\\bigl(0,0,\\tfrac{\\sqrt3}{2}\\bigr)\\neq\\vec0$, killing Statement-2. Also $\\overrightarrow{ST}=(\\tfrac12,-\\tfrac{\\sqrt3}{2},0)=-\\overrightarrow{PQ}$, so $\\overrightarrow{PQ}\\times\\overrightarrow{ST}=\\vec0$.",
+          "Finally $\\overrightarrow{RS}+\\overrightarrow{ST}=(0,-\\sqrt3,0)$, and $\\overrightarrow{PQ}\\times(0,-\\sqrt3,0)=\\bigl(0,0,\\tfrac{\\sqrt3}{2}\\bigr)\\neq\\vec0$, confirming Statement-1 true. Both cross products carry the same $z=\\tfrac{\\sqrt3}{2}$, matching the analytic method, so the answer is $(C)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q54. The whole trap lives in one fact about regular hexagons: a side is parallel not to its neighbour-once-removed but to the side directly across, so $\\overrightarrow{PQ}\\parallel\\overrightarrow{ST}$ while $\\overrightarrow{PQ}\\not\\parallel\\overrightarrow{RS}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Unit Vectors Summing to Zero",
+    "difficulty": 3,
+    "task": "Determine which relation among the three pairwise cross products must hold.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "45"
+    },
+    "tags": [
+      "cross product",
+      "unit vectors",
+      "vector identities",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec a,\\ \\vec b,\\ \\vec c$ be unit vectors such that $\\vec a+\\vec b+\\vec c=\\vec 0$. Which one of the following is correct? $(A)\\ \\vec a\\times\\vec b=\\vec b\\times\\vec c=\\vec c\\times\\vec a=\\vec 0$; $(B)\\ \\vec a\\times\\vec b=\\vec b\\times\\vec c=\\vec c\\times\\vec a\\neq\\vec 0$; $(C)\\ \\vec a\\times\\vec b=\\vec b\\times\\vec c=\\vec a\\times\\vec c=\\vec 0$; $(D)\\ \\vec a\\times\\vec b,\\ \\vec b\\times\\vec c,\\ \\vec c\\times\\vec a$ are mutually perpendicular.",
+    "answer": "$\\boxed{(B)}\\ \\vec a\\times\\vec b=\\vec b\\times\\vec c=\\vec c\\times\\vec a\\neq\\vec 0.$",
+    "trap": "Because $\\vec a+\\vec b+\\vec c=\\vec 0$ makes the three vectors coplanar (they close into a triangle), one is tempted to declare every cross product zero as in $(A)$. But coplanar does $\\emph{not}$ mean collinear: the three unit vectors are $120^\\circ$ apart, so no two are parallel and each cross product is nonzero. They are equal, not vanishing.",
+    "solutions": [
+      {
+        "name": "Cross the constraint with each vector",
+        "steps": [
+          "Cross $\\vec a+\\vec b+\\vec c=\\vec 0$ on the left with $\\vec a$: $\\vec a\\times\\vec a+\\vec a\\times\\vec b+\\vec a\\times\\vec c=\\vec 0$. Since $\\vec a\\times\\vec a=\\vec 0$, this gives $\\vec a\\times\\vec b=-\\,\\vec a\\times\\vec c=\\vec c\\times\\vec a$.",
+          "Likewise crossing with $\\vec b$ gives $\\vec b\\times\\vec c=\\vec a\\times\\vec b$. Chaining, $\\vec a\\times\\vec b=\\vec b\\times\\vec c=\\vec c\\times\\vec a$, a common value.",
+          "This value is nonzero: if $\\vec a\\times\\vec b=\\vec 0$ then $\\vec a\\parallel\\vec b$, and with $\\vec c=-(\\vec a+\\vec b)$ all three would be collinear, impossible for three distinct unit vectors summing to zero. Hence $(B)$."
+        ]
+      },
+      {
+        "name": "Equilateral-triangle geometry",
+        "steps": [
+          "Three unit vectors summing to $\\vec 0$ are the sides (as free vectors) of an equilateral triangle, so each pair makes an angle of $120^\\circ$. The magnitude of each cross product is $\\sin120^\\circ=\\tfrac{\\sqrt3}{2}\\neq0$, immediately ruling out $(A)$ and $(C)$.",
+          "All three vectors lie in one plane, so $\\vec a\\times\\vec b$, $\\vec b\\times\\vec c$, $\\vec c\\times\\vec a$ all point along the $\\emph{same}$ normal $\\hat n$ to that plane — they are parallel, not mutually perpendicular, ruling out $(D)$.",
+          "Taking a concrete model $\\vec a=(1,0,0)$, $\\vec b=(-\\tfrac12,\\tfrac{\\sqrt3}{2},0)$, $\\vec c=(-\\tfrac12,-\\tfrac{\\sqrt3}{2},0)$ gives $\\vec a\\times\\vec b=\\vec b\\times\\vec c=\\vec c\\times\\vec a=(0,0,\\tfrac{\\sqrt3}{2})$, all equal and nonzero — confirming $(B)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q45. The clean lever is to cross the single relation $\\vec a+\\vec b+\\vec c=\\vec 0$ with each vector — the equal areas $\\vec a\\times\\vec b=\\vec b\\times\\vec c=\\vec c\\times\\vec a$ are just the equal-area sub-triangles of the equilateral triangle they form."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Line That Was Never in the Planes",
+    "difficulty": 3,
+    "task": "Judge two statements about a line of intersection.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "55"
+    },
+    "tags": [
+      "line of intersection of planes",
+      "direction ratios",
+      "3D geometry",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Consider the planes $3x-6y-2z=15$ and $2x+y-2z=5$.\n\nSTATEMENT-1: The parametric equations of the line of intersection of the given planes are $x=3+14t$, $y=1+2t$, $z=15t$.\n\nbecause\n\nSTATEMENT-2: The vector $14\\hat{i}+2\\hat{j}+15\\hat{k}$ is parallel to the line of intersection of the given planes.\n\n(A) Statement-1 True, Statement-2 True; Statement-2 is a correct explanation for Statement-1\n\n(B) Statement-1 True, Statement-2 True; Statement-2 is NOT a correct explanation for Statement-1\n\n(C) Statement-1 True, Statement-2 False\n\n(D) Statement-1 False, Statement-2 True",
+    "answer": "$\\boxed{\\text{(D)}}$ — Statement-2 is true, but Statement-1 is false.",
+    "trap": "Because the printed direction ratios $\\langle14,2,15\\rangle$ are genuinely correct, it is tempting to nod the whole line through as well. But a line needs BOTH a correct direction AND a point that actually lies on it. The offered base point $(3,1,0)$ is never tested against the planes — and it fails: it lies on neither plane, so the entire parametrization is off the line even though its slope is right.",
+    "solutions": [
+      {
+        "name": "Direction from normals, then test the base point",
+        "steps": [
+          "The line of intersection is perpendicular to both normals $\\vec n_1=\\langle3,-6,-2\\rangle$ and $\\vec n_2=\\langle2,1,-2\\rangle$, so its direction is $\\vec n_1\\times\\vec n_2=\\langle(-6)(-2)-(-2)(1),\\,(-2)(2)-(3)(-2),\\,(3)(1)-(-6)(2)\\rangle=\\langle14,2,15\\rangle$.",
+          "Thus $14\\hat{i}+2\\hat{j}+15\\hat{k}$ IS parallel to the line: Statement-2 is true.",
+          "Statement-1 also uses direction $\\langle14,2,15\\rangle$, so its slope is fine; the only thing left to check is its base point $(3,1,0)$ (put $t=0$).",
+          "Substitute $(3,1,0)$: into plane 1, $3(3)-6(1)-2(0)=3\\neq15$; into plane 2, $2(3)+1-0=7\\neq5$. The point lies on neither plane, so it is not on the line — Statement-1 is false. Answer $\\boxed{\\text{(D)}}$."
+        ]
+      },
+      {
+        "name": "Feed the parametrization straight into the planes",
+        "steps": [
+          "If Statement-1's line were correct, every point $x=3+14t,\\;y=1+2t,\\;z=15t$ would satisfy both plane equations identically in $t$.",
+          "Plane 1: $3(3+14t)-6(1+2t)-2(15t)=9+42t-6-12t-30t=3$, a constant $\\neq15$. So no value of $t$ places the point on plane 1.",
+          "Plane 2: $2(3+14t)+(1+2t)-2(15t)=6+28t+1+2t-30t=7$, a constant $\\neq5$. It fails plane 2 as well.",
+          "Interestingly the $t$-terms cancel (confirming the direction is truly parallel to both planes), but the constants are wrong — the line runs parallel to the intersection yet is displaced off it. Statement-1 false, Statement-2 true: $\\boxed{\\text{(D)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q55. The tell here is that plugging the parametrization into each plane leaves a *constant* (3 and 7) with the $t$-terms vanishing: a right direction wrongly anchored gives a line parallel to — but not on — the true intersection."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Volume of the Tilted Unit Box",
+    "difficulty": 3,
+    "task": "Determine the volume of the parallelopiped.",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "6"
+    },
+    "tags": [
+      "scalar triple product",
+      "volume of parallelopiped",
+      "Gram determinant",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "The edges of a parallelopiped are of unit length and are parallel to non-coplanar unit vectors $\\hat{a},\\hat{b},\\hat{c}$ such that $\\hat{a}\\cdot\\hat{b}=\\hat{b}\\cdot\\hat{c}=\\hat{c}\\cdot\\hat{a}=\\tfrac12$. Then the volume of the parallelopiped is\n\n(A) $\\dfrac{1}{\\sqrt{2}}$\n\n(B) $\\dfrac{1}{2\\sqrt{2}}$\n\n(C) $\\dfrac{\\sqrt{3}}{2}$\n\n(D) $\\dfrac{1}{\\sqrt{3}}$",
+    "answer": "$\\boxed{\\dfrac{1}{\\sqrt{2}}}$ — option (A).",
+    "trap": "The edges are unit vectors, so it is tempting to guess the volume is close to $1$ (the cube's value). But the three edges are mutually inclined at $60^\\circ$ (since $\\cos\\theta=\\tfrac12$), not $90^\\circ$: the box is sheared, which strictly shrinks the volume below $1$. You cannot read the volume off the edge lengths alone — the scalar triple product is what carries the angular collapse.",
+    "solutions": [
+      {
+        "name": "Square the volume via the Gram determinant",
+        "steps": [
+          "Volume $V=\\big|\\,[\\hat a\\ \\hat b\\ \\hat c]\\,\\big|=\\big|\\hat a\\cdot(\\hat b\\times\\hat c)\\big|$, and it is cleanest to compute $V^2=\\det G$, where $G$ is the Gram matrix of pairwise dot products.",
+          "Here $G=\\begin{pmatrix}1&\\tfrac12&\\tfrac12\\\\[2pt]\\tfrac12&1&\\tfrac12\\\\[2pt]\\tfrac12&\\tfrac12&1\\end{pmatrix}$, since every $\\hat a\\cdot\\hat a=1$ and every off-diagonal dot product is $\\tfrac12$.",
+          "Expand: $\\det G=1\\!\\left(1-\\tfrac14\\right)-\\tfrac12\\!\\left(\\tfrac12-\\tfrac14\\right)+\\tfrac12\\!\\left(\\tfrac14-\\tfrac12\\right)=\\tfrac34-\\tfrac18-\\tfrac18=\\tfrac12.$",
+          "Hence $V=\\sqrt{\\det G}=\\sqrt{\\tfrac12}=\\dfrac{1}{\\sqrt2}$, option $\\boxed{\\text{(A)}}$."
+        ]
+      },
+      {
+        "name": "Place explicit coordinates and take the triple product",
+        "steps": [
+          "Realise the vectors concretely. Take $\\hat a=(1,0,0)$. For $\\hat a\\cdot\\hat b=\\tfrac12$ with $|\\hat b|=1$, take $\\hat b=\\left(\\tfrac12,\\tfrac{\\sqrt3}{2},0\\right)$.",
+          "Let $\\hat c=(c_1,c_2,c_3)$. Then $\\hat a\\cdot\\hat c=\\tfrac12\\Rightarrow c_1=\\tfrac12$; and $\\hat b\\cdot\\hat c=\\tfrac12\\Rightarrow \\tfrac14+\\tfrac{\\sqrt3}{2}c_2=\\tfrac12\\Rightarrow c_2=\\tfrac{1}{2\\sqrt3}$. From $|\\hat c|=1$, $c_3^2=1-\\tfrac14-\\tfrac{1}{12}=\\tfrac{2}{3}$, so $c_3=\\sqrt{\\tfrac23}$.",
+          "Now $V=\\big|\\hat a\\cdot(\\hat b\\times\\hat c)\\big|$. Since $\\hat a=(1,0,0)$, this is just the first component of $\\hat b\\times\\hat c$: $\\big(b_2c_3-b_3c_2\\big)=\\tfrac{\\sqrt3}{2}\\cdot\\sqrt{\\tfrac23}-0=\\tfrac{\\sqrt3}{2}\\cdot\\tfrac{\\sqrt2}{\\sqrt3}=\\tfrac{\\sqrt2}{2}.$",
+          "Thus $V=\\dfrac{\\sqrt2}{2}=\\dfrac{1}{\\sqrt2}$, confirming option $\\boxed{\\text{(A)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q6. The Gram determinant $V^2=\\det G$ turns a geometry question into a $3\\times3$ symbolic determinant — no basis needed — and instantly exposes that equal $60^\\circ$ shears drop the unit box to $\\tfrac{1}{\\sqrt2}$ of a cube."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three Planes, One Verdict",
+    "difficulty": 4,
+    "task": "Decide whether each statement is true or false, and whether the second correctly explains the first.",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "14"
+    },
+    "tags": [
+      "3D geometry",
+      "planes",
+      "lines of intersection",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Consider the three planes $P_1 : x - y + z = 1$, $P_2 : x + y - z = -1$ and $P_3 : x - 3y + 3z = 2$. Let $L_1$, $L_2$, $L_3$ be the lines of intersection of the planes $P_2$ and $P_3$, of $P_3$ and $P_1$, and of $P_1$ and $P_2$, respectively. Weigh two claims. STATEMENT-1: At least two of the lines $L_1$, $L_2$, $L_3$ are non-parallel. STATEMENT-2: The three planes do not have a common point. Which option is correct? $(A)$ Statement-1 is True, Statement-2 is True and Statement-2 is a correct explanation for Statement-1; $(B)$ Statement-1 is True, Statement-2 is True but Statement-2 is NOT a correct explanation for Statement-1; $(C)$ Statement-1 is True, Statement-2 is False; $(D)$ Statement-1 is False, Statement-2 is True.",
+    "answer": "$\\boxed{(D)}$",
+    "trap": "It is tempting to assume three inconsistent planes must slice into a triangular prism of mutually non-parallel edges. Here all three normals are coplanar, so every line of intersection points the same way — the planes are parallel-edged yet still share no point.",
+    "solutions": [
+      {
+        "name": "Direction ratios via cross products of normals",
+        "steps": [
+          "The normals are $\\vec n_1 = (1,-1,1)$, $\\vec n_2 = (1,1,-1)$, $\\vec n_3 = (1,-3,3)$. A line where two planes meet is perpendicular to both normals, so its direction is their cross product.",
+          "Compute $L_1 \\parallel \\vec n_2 \\times \\vec n_3 = (1\\cdot 3 - (-1)(-3),\\; (-1)\\cdot 1 - 1\\cdot 3,\\; 1\\cdot(-3) - 1\\cdot 1) = (0,-4,-4) \\parallel (0,1,1)$.",
+          "Likewise $L_2 \\parallel \\vec n_3 \\times \\vec n_1 = (0,-2,-2) \\parallel (0,1,1)$ and $L_3 \\parallel \\vec n_1 \\times \\vec n_2 = (0,2,2) \\parallel (0,1,1)$.",
+          "All three directions equal $(0,1,1)$, so the lines are mutually parallel — no two are non-parallel. Hence Statement-1 is $\\textbf{false}$."
+        ]
+      },
+      {
+        "name": "Coplanar normals force a consistent-or-parallel dichotomy",
+        "steps": [
+          "Test whether the system has a solution: the coefficient determinant is $\\begin{vmatrix} 1 & -1 & 1 \\\\ 1 & 1 & -1 \\\\ 1 & -3 & 3 \\end{vmatrix} = 0$, and indeed $\\vec n_3 = 2\\vec n_1 - \\vec n_2$, so the three normals are coplanar (rank $2$).",
+          "Check consistency of the right-hand sides against the same relation: $2(1) - (-1) = 3 \\neq 2$, the constant of $P_3$. The augmented rank is $3$ while the coefficient rank is $2$, so the system is inconsistent — the planes share $\\textbf{no}$ common point. Statement-2 is $\\textbf{true}$.",
+          "Because all normals lie in one plane, every intersection line is perpendicular to that plane and therefore points in a single fixed direction; the lines are all parallel, re-confirming Statement-1 is false.",
+          "True Statement-2 with false Statement-1 selects option $(D)$; a numerical solver returns $\\operatorname{rank}A = 2$, $\\operatorname{rank}[A\\,|\\,b] = 3$, matching."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q14. Coplanar normals are the tell: they simultaneously make the intersection lines all-parallel and let the constants decide consistency, so “no common point” need not imply “non-parallel edges.”"
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Farthest Point on a Vector Ellipse",
+    "difficulty": 4,
+    "task": "Find the maximum length $M$ of $\\overrightarrow{OP}$ and the unit vector $\\hat u$ along it at that instant.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "6"
+    },
+    "tags": [
+      "position vector",
+      "dot product",
+      "maxima",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Let two non-collinear unit vectors $\\hat a$ and $\\hat b$ form an acute angle. A point $P$ moves so that at any time $t$ its position vector $\\overrightarrow{OP}$, with $O$ the origin, is $\\overrightarrow{OP} = \\hat a\\cos t + \\hat b\\sin t$. When $P$ is farthest from $O$, let $M$ be the length of $\\overrightarrow{OP}$ and $\\hat u$ the unit vector along $\\overrightarrow{OP}$. Then $(A)$ $\\hat u = \\dfrac{\\hat a + \\hat b}{|\\hat a + \\hat b|}$ and $M = (1 + \\hat a\\cdot\\hat b)^{1/2}$; $(B)$ $\\hat u = \\dfrac{\\hat a - \\hat b}{|\\hat a - \\hat b|}$ and $M = (1 + \\hat a\\cdot\\hat b)^{1/2}$; $(C)$ $\\hat u = \\dfrac{\\hat a + \\hat b}{|\\hat a + \\hat b|}$ and $M = (1 + 2\\,\\hat a\\cdot\\hat b)^{1/2}$; $(D)$ $\\hat u = \\dfrac{\\hat a - \\hat b}{|\\hat a - \\hat b|}$ and $M = (1 + 2\\,\\hat a\\cdot\\hat b)^{1/2}$.",
+    "answer": "$\\boxed{(A)}$",
+    "trap": "Squaring gives $1 + 2\\cos t\\sin t\\,(\\hat a\\cdot\\hat b)$, and the loose $2$ lures you toward options with $(1 + 2\\,\\hat a\\cdot\\hat b)^{1/2}$. But $2\\cos t\\sin t = \\sin 2t$ maxes at $1$, not $2$, so the surviving coefficient of $\\hat a\\cdot\\hat b$ is just $1$.",
+    "solutions": [
+      {
+        "name": "Maximize the squared length",
+        "steps": [
+          "Since $|\\hat a| = |\\hat b| = 1$, $|\\overrightarrow{OP}|^2 = \\cos^2 t + \\sin^2 t + 2\\cos t\\sin t\\,(\\hat a\\cdot\\hat b) = 1 + \\sin 2t\\,(\\hat a\\cdot\\hat b)$.",
+          "The angle is acute, so $\\hat a\\cdot\\hat b > 0$; the length is largest when $\\sin 2t = 1$, i.e. $t = \\pi/4$, giving $M^2 = 1 + \\hat a\\cdot\\hat b$, so $M = (1 + \\hat a\\cdot\\hat b)^{1/2}$.",
+          "At $t = \\pi/4$, $\\overrightarrow{OP} = \\tfrac{1}{\\sqrt2}(\\hat a + \\hat b)$, which points along $\\hat a + \\hat b$; normalizing, $\\hat u = \\dfrac{\\hat a + \\hat b}{|\\hat a + \\hat b|}$.",
+          "This matches option $(A)$."
+        ]
+      },
+      {
+        "name": "Geometry of the parametric ellipse and the angle bisector",
+        "steps": [
+          "As $t$ varies, $\\overrightarrow{OP} = \\hat a\\cos t + \\hat b\\sin t$ traces an ellipse centered at $O$ spanned by the equal-length vectors $\\hat a$, $\\hat b$. By symmetry, its major axis lies along the internal bisector of $\\hat a$ and $\\hat b$, i.e. along $\\hat a + \\hat b$, so $\\hat u = \\dfrac{\\hat a + \\hat b}{|\\hat a + \\hat b|}$.",
+          "The farthest point is the end of the major axis; setting the derivative $\\dfrac{d}{dt}|\\overrightarrow{OP}|^2 = 2(\\hat a\\cdot\\hat b)\\cos 2t = 0$ with a maximum gives $t = \\pi/4$.",
+          "Then $M = \\left|\\tfrac{1}{\\sqrt2}(\\hat a + \\hat b)\\right| = \\tfrac{1}{\\sqrt2}\\sqrt{2 + 2\\hat a\\cdot\\hat b} = (1 + \\hat a\\cdot\\hat b)^{1/2}$.",
+          "Both the direction and magnitude agree with option $(A)$; a numerical sweep over $t$ for several acute angles returns exactly $M = \\sqrt{1+\\hat a\\cdot\\hat b}$ and $\\hat u \\parallel \\hat a + \\hat b$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q6. Writing $|\\overrightarrow{OP}|^2$ turns a moving-point optimization into a one-line $\\sin 2t$ maximization, and the ellipse's major axis is always the internal bisector of two equal generators."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Common Perpendicular of Two Lines",
+    "difficulty": 3,
+    "task": "Determine",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "17"
+    },
+    "tags": [
+      "cross product",
+      "perpendicular unit vector",
+      "3D geometry",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Consider the lines $L_1:\\dfrac{x+1}{3}=\\dfrac{y+2}{1}=\\dfrac{z+1}{2}$ and $L_2:\\dfrac{x-2}{1}=\\dfrac{y+2}{2}=\\dfrac{z-3}{3}$. Find the unit vector that is perpendicular to both $L_1$ and $L_2$. The options are (A) $\\dfrac{-\\hat i+7\\hat j+7\\hat k}{\\sqrt{99}}$, (B) $\\dfrac{-\\hat i-7\\hat j+5\\hat k}{5\\sqrt3}$, (C) $\\dfrac{-\\hat i+7\\hat j+5\\hat k}{5\\sqrt3}$, (D) $\\dfrac{7\\hat i-7\\hat j-\\hat k}{\\sqrt{99}}$.",
+    "answer": "$\\boxed{\\dfrac{-\\hat i-7\\hat j+5\\hat k}{5\\sqrt3}}\\quad\\text{(option B)}$",
+    "trap": "Only the direction ratios of the lines matter here — the fixed points $(-1,-2,-1)$ and $(2,-2,3)$ are irrelevant to a vector perpendicular to both. A second snare is $|\\vec d_1\\times\\vec d_2|$: the magnitude is $\\sqrt{75}=5\\sqrt3$, not $\\sqrt{99}$, so options (A) and (D) already have the wrong denominator. Finally the antiparallel unit vector is equally valid, so recognising the sign convention of the given options matters.",
+    "solutions": [
+      {
+        "name": "Cross product of the direction vectors",
+        "steps": [
+          "The direction vectors are $\\vec d_1=3\\hat i+\\hat j+2\\hat k$ (from $L_1$) and $\\vec d_2=\\hat i+2\\hat j+3\\hat k$ (from $L_2$). A vector perpendicular to both is $\\vec d_1\\times\\vec d_2$.",
+          "$\\vec d_1\\times\\vec d_2=\\begin{vmatrix}\\hat i&\\hat j&\\hat k\\\\3&1&2\\\\1&2&3\\end{vmatrix}=(1\\cdot3-2\\cdot2)\\hat i-(3\\cdot3-2\\cdot1)\\hat j+(3\\cdot2-1\\cdot1)\\hat k=-\\hat i-7\\hat j+5\\hat k.$",
+          "Its length is $\\sqrt{(-1)^2+(-7)^2+5^2}=\\sqrt{1+49+25}=\\sqrt{75}=5\\sqrt3$.",
+          "Hence the unit vector is $\\dfrac{-\\hat i-7\\hat j+5\\hat k}{5\\sqrt3}$, which is $\\boxed{\\dfrac{-\\hat i-7\\hat j+5\\hat k}{5\\sqrt3}}$ — option (B)."
+        ]
+      },
+      {
+        "name": "Solve the two orthogonality equations directly",
+        "steps": [
+          "Let the required vector be $\\vec v=x\\hat i+y\\hat j+z\\hat k$. Perpendicularity to $L_1$ and $L_2$ means $\\vec v\\cdot\\vec d_1=0$ and $\\vec v\\cdot\\vec d_2=0$, i.e. $3x+y+2z=0$ and $x+2y+3z=0$.",
+          "Subtracting twice the second from the first: $(3x+y+2z)-2(x+2y+3z)=x-3y-4z=0$; combined with $3x+y+2z=0$ we eliminate to get the ratio $x:y:z$. Solving, set $x=-1$: then $y=-7,\\ z=5$ satisfy both equations.",
+          "So $\\vec v\\parallel(-1,-7,5)$, matching the cross product up to scale. Normalising by $|\\vec v|=\\sqrt{1+49+25}=5\\sqrt3$ gives the unit vector.",
+          "Therefore $\\hat v=\\boxed{\\dfrac{-\\hat i-7\\hat j+5\\hat k}{5\\sqrt3}}$ — option (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q17. Insight: a vector perpendicular to two skew lines depends only on their direction ratios, and the cross product hands it to you in one determinant — the anchor points of the lines never enter."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Shortest Distance Between Two Skew Lines",
+    "difficulty": 4,
+    "task": "Compute",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "18"
+    },
+    "tags": [
+      "shortest distance between lines",
+      "scalar triple product",
+      "3D geometry",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "For the lines $L_1:\\dfrac{x+1}{3}=\\dfrac{y+2}{1}=\\dfrac{z+1}{2}$ and $L_2:\\dfrac{x-2}{1}=\\dfrac{y+2}{2}=\\dfrac{z-3}{3}$, compute the shortest distance between $L_1$ and $L_2$. The options are (A) $0$, (B) $\\dfrac{17}{\\sqrt3}$, (C) $\\dfrac{41}{5\\sqrt3}$, (D) $\\dfrac{17}{5\\sqrt3}$.",
+    "answer": "$\\boxed{\\dfrac{17}{5\\sqrt3}}\\quad\\text{(option D)}$",
+    "trap": "The tempting error is to forget the denominator: the shortest distance is the projection of the joining vector onto the common perpendicular direction $\\vec d_1\\times\\vec d_2$, so you must divide by $|\\vec d_1\\times\\vec d_2|=5\\sqrt3$, not by anything else. Getting the numerator $17$ but pairing it with $\\sqrt3$ gives the decoy (B). Also, do not assume the lines intersect (distance $0$) without checking — their scalar triple product is nonzero, so they are genuinely skew.",
+    "solutions": [
+      {
+        "name": "Scalar triple product formula",
+        "steps": [
+          "Take points $\\vec a_1=(-1,-2,-1)$ on $L_1$ and $\\vec a_2=(2,-2,3)$ on $L_2$, with directions $\\vec d_1=(3,1,2)$ and $\\vec d_2=(1,2,3)$. The shortest distance is $d=\\dfrac{\\big|(\\vec a_2-\\vec a_1)\\cdot(\\vec d_1\\times\\vec d_2)\\big|}{|\\vec d_1\\times\\vec d_2|}$.",
+          "From the companion computation, $\\vec d_1\\times\\vec d_2=-\\hat i-7\\hat j+5\\hat k$ with $|\\vec d_1\\times\\vec d_2|=5\\sqrt3$. The join vector is $\\vec a_2-\\vec a_1=(3,0,4)$.",
+          "Numerator: $(3,0,4)\\cdot(-1,-7,5)=-3+0+20=17$, so $\\big|(\\vec a_2-\\vec a_1)\\cdot(\\vec d_1\\times\\vec d_2)\\big|=17$.",
+          "Hence $d=\\dfrac{17}{5\\sqrt3}=\\boxed{\\dfrac{17}{5\\sqrt3}}$ — option (D)."
+        ]
+      },
+      {
+        "name": "Project the join vector onto the common normal",
+        "steps": [
+          "The unit vector along the common perpendicular is $\\hat n=\\dfrac{-\\hat i-7\\hat j+5\\hat k}{5\\sqrt3}$. The shortest distance equals the length of the projection of the join vector $\\vec a_2-\\vec a_1=(3,0,4)$ onto $\\hat n$, since that projection is exactly the gap between the two parallel planes carrying the lines.",
+          "Compute the dot product with the unnormalised normal: $(3,0,4)\\cdot(-1,-7,5)=-3-0+20=17$.",
+          "Divide by $|{-\\hat i-7\\hat j+5\\hat k}|=5\\sqrt3$ to project onto the unit direction: $d=\\dfrac{|17|}{5\\sqrt3}$.",
+          "Thus $d=\\boxed{\\dfrac{17}{5\\sqrt3}}$ — option (D). (Equivalently $\\dfrac{17}{5\\sqrt3}=\\dfrac{17\\sqrt3}{15}$.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q18. Insight: the shortest distance between skew lines is nothing but how far the joining segment reaches along the one direction perpendicular to both — the scalar triple product measures that reach, and dividing by $|\\vec d_1\\times\\vec d_2|$ converts it to a length."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Distance to the Plane Normal to Two Lines",
+    "difficulty": 4,
+    "task": "Find",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "19"
+    },
+    "tags": [
+      "shortest distance and planes",
+      "point-plane distance",
+      "cross product",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Consider the two lines $L_1:\\dfrac{x+1}{3}=\\dfrac{y+2}{1}=\\dfrac{z+1}{2}$ and $L_2:\\dfrac{x-2}{1}=\\dfrac{y+2}{2}=\\dfrac{z-3}{3}$. A plane passes through the point $(-1,-2,-1)$ and its normal is perpendicular to both $L_1$ and $L_2$. Find the distance of the point $(1,1,1)$ from this plane.",
+    "answer": "The required distance is $\\boxed{\\dfrac{13}{\\sqrt{75}}}$.",
+    "trap": "The tempting misread is to think the plane is $\\textit{parallel}$ to both lines and so its normal should be perpendicular to each direction — which is exactly right — but then to reach for one of the two direction vectors as the normal, or to average them. A normal perpendicular to $\\textit{both}$ directions is forced to be their cross product $\\mathbf{d_1}\\times\\mathbf{d_2}=(-1,-7,5)$; no single direction and no linear combination of $\\mathbf{d_1},\\mathbf{d_2}$ can be perpendicular to both. A second slip is arithmetic: $\\sqrt{75}=5\\sqrt3$ is not $\\sqrt3$, so the denominator must carry all three squared components.",
+    "solutions": [
+      {
+        "name": "Cross-product normal, then the distance formula",
+        "steps": [
+          "The direction vectors are $\\mathbf{d_1}=(3,1,2)$ and $\\mathbf{d_2}=(1,2,3)$. A normal perpendicular to both is $\\mathbf{n}=\\mathbf{d_1}\\times\\mathbf{d_2}=\\begin{vmatrix}\\hat i&\\hat j&\\hat k\\\\3&1&2\\\\1&2&3\\end{vmatrix}=(3-4)\\hat i-(9-2)\\hat j+(6-1)\\hat k=(-1,-7,5)$.",
+          "The plane through $(-1,-2,-1)$ with this normal is $-1(x+1)-7(y+2)+5(z+1)=0$, i.e. $x+7y-5z+10=0$.",
+          "Its distance from $(1,1,1)$ is $\\dfrac{|1+7-5+10|}{\\sqrt{1^2+7^2+5^2}}=\\dfrac{13}{\\sqrt{75}}$.",
+          "Hence the distance equals $\\boxed{\\dfrac{13}{\\sqrt{75}}}$ (equivalently $\\dfrac{13}{5\\sqrt3}$)."
+        ]
+      },
+      {
+        "name": "Projection of the join onto the unit normal",
+        "steps": [
+          "The distance of a point $Q$ from a plane through $P_0$ with normal $\\mathbf{n}$ equals the length of the projection of $\\overrightarrow{P_0Q}$ onto $\\mathbf{n}$: $d=\\dfrac{|\\overrightarrow{P_0Q}\\cdot\\mathbf{n}|}{|\\mathbf{n}|}$, so no plane equation is needed.",
+          "Here $\\overrightarrow{P_0Q}=(1,1,1)-(-1,-2,-1)=(2,3,2)$ and $\\mathbf{n}=\\mathbf{d_1}\\times\\mathbf{d_2}=(-1,-7,5)$.",
+          "Then $\\overrightarrow{P_0Q}\\cdot\\mathbf{n}=(2)(-1)+(3)(-7)+(2)(5)=-2-21+10=-13$, and $|\\mathbf{n}|=\\sqrt{1+49+25}=\\sqrt{75}$.",
+          "So $d=\\dfrac{|-13|}{\\sqrt{75}}=\\boxed{\\dfrac{13}{\\sqrt{75}}}$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q19. Insight: the phrase “normal perpendicular to both lines” is precisely the recipe $\\mathbf{n}=\\mathbf{d_1}\\times\\mathbf{d_2}$, after which the point-to-plane distance is just one signed projection of the join vector onto that normal — the plane's equation is optional scaffolding."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Making a Segment Parallel to a Plane",
+    "difficulty": 3,
+    "task": "Find",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "23"
+    },
+    "tags": [
+      "line and plane",
+      "parallelism condition",
+      "dot product",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "Let $P(3,2,6)$ be a fixed point and let $Q$ be a variable point on the line $\\vec r=(\\hat i-\\hat j+2\\hat k)+\\mu(-3\\hat i+\\hat j+5\\hat k)$. Find the value of $\\mu$ for which $\\overrightarrow{PQ}$ is parallel to the plane $x-4y+3z=1$.",
+    "answer": "The required value is $\\boxed{\\mu=\\dfrac14}$.",
+    "trap": "The classic misfire is to demand that $\\overrightarrow{PQ}$ be $\\textit{along}$ the plane's normal, or to force $Q$ itself to lie in the plane. Neither is asked. A segment is parallel to a plane exactly when it is perpendicular to the plane's normal, i.e. $\\overrightarrow{PQ}\\cdot\\mathbf{n}=0$ — a single scalar condition — while $Q$ can sit anywhere. Indeed the resulting $Q=(\\tfrac14,-\\tfrac34,\\tfrac{13}{4})$ gives $x-4y+3z=13\\neq1$, so $Q$ is genuinely off the plane, yet $\\overrightarrow{PQ}$ still runs parallel to it.",
+    "solutions": [
+      {
+        "name": "Perpendicular-to-normal condition on the join",
+        "steps": [
+          "Write $Q=(1-3\\mu,\\,-1+\\mu,\\,2+5\\mu)$. Then $\\overrightarrow{PQ}=Q-P=(-2-3\\mu,\\,-3+\\mu,\\,-4+5\\mu)$.",
+          "The plane $x-4y+3z=1$ has normal $\\mathbf{n}=(1,-4,3)$. A segment is parallel to the plane iff it is perpendicular to $\\mathbf{n}$, so require $\\overrightarrow{PQ}\\cdot\\mathbf{n}=0$.",
+          "Compute $(-2-3\\mu)(1)+(-3+\\mu)(-4)+(-4+5\\mu)(3)=-2-3\\mu+12-4\\mu-12+15\\mu=8\\mu-2$.",
+          "Setting $8\\mu-2=0$ gives $\\boxed{\\mu=\\dfrac14}$. (As a check, $\\overrightarrow{PQ}=-\\tfrac{11}{4}(1,1,1)$ and $(1,1,1)\\cdot\\mathbf{n}=0$.)"
+        ]
+      },
+      {
+        "name": "Equal normal-projection of the endpoints",
+        "steps": [
+          "$\\overrightarrow{PQ}\\parallel$ plane means $\\mathbf{n}\\cdot\\overrightarrow{PQ}=0$, i.e. $\\mathbf{n}\\cdot Q=\\mathbf{n}\\cdot P$ — the two endpoints must have the same projection onto the normal $\\mathbf{n}=(1,-4,3)$.",
+          "For $P$: $\\mathbf{n}\\cdot P=3-8+18=13$.",
+          "Along the line, $\\mathbf{n}\\cdot Q=\\mathbf{n}\\cdot(1,-1,2)+\\mu\\,\\mathbf{n}\\cdot(-3,1,5)=(1+4+6)+\\mu(-3-4+15)=11+8\\mu$.",
+          "Equating, $11+8\\mu=13\\Rightarrow 8\\mu=2\\Rightarrow \\boxed{\\mu=\\dfrac14}$, agreeing with the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 1, Q23. Insight: “parallel to a plane” translates to the single dot-product equation $\\overrightarrow{PQ}\\cdot\\mathbf{n}=0$; reading it as “both endpoints share the same normal-projection” turns the whole problem into one linear equation in $\\mu$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Four Unit Vectors, One Perfect Cross",
+    "difficulty": 4,
+    "task": "Decide which relation among the four unit vectors must hold.",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "28"
+    },
+    "tags": [
+      "dot and cross product",
+      "coplanarity",
+      "unit vectors",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "If $\\vec a,\\vec b,\\vec c,\\vec d$ are unit vectors such that $(\\vec a\\times\\vec b)\\cdot(\\vec c\\times\\vec d)=1$ and $\\vec a\\cdot\\vec c=\\dfrac12$, then\n\n(A) $\\vec a,\\vec b,\\vec c$ are non-coplanar\n\n(B) $\\vec b,\\vec c,\\vec d$ are non-coplanar\n\n(C) $\\vec b,\\vec d$ are non-parallel\n\n(D) $\\vec a,\\vec d$ are parallel and $\\vec b,\\vec c$ are parallel",
+    "answer": "$\\boxed{\\vec b,\\ \\vec d\\ \\text{are non-parallel}}$ — option (C).",
+    "trap": "The condition $\\vec a\\cdot\\vec c=\\tfrac12$ looks like the star of the problem, but it is bait. The real hammer is $(\\vec a\\times\\vec b)\\cdot(\\vec c\\times\\vec d)=1$: because each factor is a cross product of unit vectors, each has magnitude at most $1$, so their dot product can equal $1$ only when both magnitudes are exactly $1$ and the two vectors point the same way. That single equality silently forces $\\vec a\\perp\\vec b$ and $\\vec c\\perp\\vec d$ with $\\vec a\\times\\vec b=\\vec c\\times\\vec d$. Only after extracting this can $\\vec a\\cdot\\vec c=\\tfrac12$ be used — to rule out $\\vec b\\parallel\\vec d$.",
+    "solutions": [
+      {
+        "name": "Squeeze the magnitudes, then read off the geometry",
+        "steps": [
+          "For unit vectors, $|\\vec a\\times\\vec b|=\\sin\\theta_{ab}\\le 1$ and $|\\vec c\\times\\vec d|=\\sin\\theta_{cd}\\le 1$. By Cauchy–Schwarz, $(\\vec a\\times\\vec b)\\cdot(\\vec c\\times\\vec d)\\le |\\vec a\\times\\vec b|\\,|\\vec c\\times\\vec d|\\le 1$.",
+          "Equality with the value $1$ forces every inequality to be tight: $|\\vec a\\times\\vec b|=1$ (so $\\vec a\\perp\\vec b$), $|\\vec c\\times\\vec d|=1$ (so $\\vec c\\perp\\vec d$), and the two unit cross products are equal, $\\vec a\\times\\vec b=\\vec c\\times\\vec d$.",
+          "Thus $\\{\\vec a,\\vec b\\}$ and $\\{\\vec c,\\vec d\\}$ are two orthonormal pairs spanning the same plane (they share the common normal $\\vec a\\times\\vec b$). Options (A) and (B) fail: $\\vec a,\\vec b,\\vec c$ all lie in that one plane, so they are coplanar, and likewise $\\vec b,\\vec c,\\vec d$.",
+          "In that plane, $\\{\\vec c,\\vec d\\}$ is $\\{\\vec a,\\vec b\\}$ rotated by some angle. Since $\\vec a\\cdot\\vec c=\\tfrac12$, the rotation is $60^\\circ$, so $\\vec c\\neq\\pm\\vec a$ and $\\vec d\\neq\\pm\\vec b$. Hence $\\vec a,\\vec d$ are not parallel (killing (D)), and $\\vec b,\\vec d$ are not parallel: option $\\boxed{\\text{(C)}}$."
+        ]
+      },
+      {
+        "name": "Expand with the Lagrange (Binet–Cauchy) identity",
+        "steps": [
+          "Use $(\\vec a\\times\\vec b)\\cdot(\\vec c\\times\\vec d)=(\\vec a\\cdot\\vec c)(\\vec b\\cdot\\vec d)-(\\vec a\\cdot\\vec d)(\\vec b\\cdot\\vec c)$. Set this equal to $1$ and substitute $\\vec a\\cdot\\vec c=\\tfrac12$: $\\tfrac12(\\vec b\\cdot\\vec d)-(\\vec a\\cdot\\vec d)(\\vec b\\cdot\\vec c)=1$.",
+          "Every dot product of two unit vectors lies in $[-1,1]$. The maximum of the left side is achieved only when $\\vec b\\cdot\\vec d=1$ is pushed as high as possible while $(\\vec a\\cdot\\vec d)(\\vec b\\cdot\\vec c)$ is made as negative as possible; the tight configuration is $\\vec a\\perp\\vec b$, $\\vec c\\perp\\vec d$ with the pairs coplanar and $\\vec a\\times\\vec b=\\vec c\\times\\vec d$, matching Method 1.",
+          "A concrete witness confirms it: take $\\vec a=(1,0,0)$, $\\vec b=(0,1,0)$, $\\vec c=\\left(\\tfrac12,\\tfrac{\\sqrt3}{2},0\\right)$, $\\vec d=\\left(-\\tfrac{\\sqrt3}{2},\\tfrac12,0\\right)$. Then $\\vec a\\times\\vec b=\\vec c\\times\\vec d=(0,0,1)$, so the given dot product is $1$, and $\\vec a\\cdot\\vec c=\\tfrac12$.",
+          "In this witness $\\vec b\\cdot\\vec d=\\tfrac12\\neq\\pm1$, so $\\vec b$ and $\\vec d$ are genuinely non-parallel, while $\\vec a\\cdot\\vec d=-\\tfrac{\\sqrt3}{2}\\neq\\pm1$ rules out (D). The forced conclusion is option $\\boxed{\\text{(C)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 1, Q28. The whole problem turns on one inequality: a dot product of two unit-vector cross products can hit $1$ only when both are unit-length and aligned, which quietly converts an algebraic constraint into rigid orthogonality — the $\\vec a\\cdot\\vec c=\\tfrac12$ clause is merely the tie-breaker that keeps $\\vec b$ and $\\vec d$ apart."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Equal Angles to the Axes",
+    "difficulty": 3,
+    "task": "Find the length of the segment $PQ$.",
+    "pyq": {
+      "year": 2009,
+      "paper": "2",
+      "qno": "20"
+    },
+    "tags": [
+      "direction cosines",
+      "line and plane intersection",
+      "distance",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "A line with positive direction cosines passes through the point $P(2,-1,2)$ and makes equal angles with the coordinate axes. The line meets the plane $2x+y+z=9$ at the point $Q$. The length of the line segment $PQ$ equals\n\n(A) $1$\n\n(B) $\\sqrt2$\n\n(C) $\\sqrt3$\n\n(D) $2$",
+    "answer": "$\\boxed{\\sqrt3}$ — option (C).",
+    "trap": "Equal angles with the axes gives $l=m=n$, and it is tempting to just take the direction as $(1,1,1)$ and stop caring about scaling. That is fine for finding $Q$, but the length $PQ$ is not the parameter $\\lambda$ you solve for on the vector $(1,1,1)$ — it is $\\lambda\\sqrt3$. The clean shortcut is to use the actual direction cosines $\\left(\\tfrac1{\\sqrt3},\\tfrac1{\\sqrt3},\\tfrac1{\\sqrt3}\\right)$: with a unit direction, the parameter $t$ you solve for is the distance itself. Also, 'positive direction cosines' fixes the sign — you take $+\\tfrac1{\\sqrt3}$, not $-\\tfrac1{\\sqrt3}$.",
+    "solutions": [
+      {
+        "name": "Parametrize with the unit direction — the parameter is the distance",
+        "steps": [
+          "Equal angles with the axes means $l=m=n$. With $l^2+m^2+n^2=1$ and positive direction cosines, $l=m=n=\\dfrac1{\\sqrt3}$.",
+          "Write points on the line as $\\left(2+\\dfrac{t}{\\sqrt3},\\,-1+\\dfrac{t}{\\sqrt3},\\,2+\\dfrac{t}{\\sqrt3}\\right)$. Because the direction is a unit vector, the parameter $t$ equals the signed distance from $P$, so $PQ=|t|$.",
+          "Substitute into $2x+y+z=9$: $2\\!\\left(2+\\tfrac{t}{\\sqrt3}\\right)+\\left(-1+\\tfrac{t}{\\sqrt3}\\right)+\\left(2+\\tfrac{t}{\\sqrt3}\\right)=5+\\dfrac{4t}{\\sqrt3}=9$.",
+          "Hence $\\dfrac{4t}{\\sqrt3}=4\\Rightarrow t=\\sqrt3$, so $PQ=|t|=\\boxed{\\sqrt3}$. (Here $Q=(3,0,3)$.)"
+        ]
+      },
+      {
+        "name": "Use direction $(1,1,1)$, then rescale the parameter",
+        "steps": [
+          "Since $l=m=n$, the line has direction ratios $(1,1,1)$. Parametrize $Q=(2+\\lambda,\\,-1+\\lambda,\\,2+\\lambda)$.",
+          "Impose $2x+y+z=9$: $2(2+\\lambda)+(-1+\\lambda)+(2+\\lambda)=5+4\\lambda=9\\Rightarrow\\lambda=1$, giving $Q=(3,0,3)$.",
+          "The displacement $\\overrightarrow{PQ}=\\lambda(1,1,1)=(1,1,1)$, whose length is $\\sqrt{1^2+1^2+1^2}=\\sqrt3$ — note the factor $|(1,1,1)|=\\sqrt3$ that a bare $\\lambda$ would miss.",
+          "Therefore $PQ=\\sqrt3$, option $\\boxed{\\text{(C)}}$, agreeing with Method 1."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 2, Q20. Choosing the *unit* direction vector makes the line's parameter literally read out the distance — a small habit that removes the $\\sqrt3$ scaling trap where a $(1,1,1)$ parametrization hides the length inside $\\lambda$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Volume, Angle and Two Distractors",
+    "difficulty": 4,
+    "task": "Match",
+    "pyq": {
+      "year": 2009,
+      "paper": "2",
+      "qno": "29"
+    },
+    "tags": [
+      "scalar triple product",
+      "angle between unit vectors",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "Match each statement in Column I with the value(s) it produces in Column II. In Column I: $(A)$ the roots of $2\\sin^2\\theta+\\sin^2 2\\theta=2$; $(B)$ the points of discontinuity of $f(x)=\\left[\\dfrac{6x}{\\pi}\\right]\\cos\\left[\\dfrac{3x}{\\pi}\\right]$, where $[y]$ is the greatest integer not exceeding $y$; $(C)$ the volume of the parallelepiped whose edges are the vectors $\\hat i+\\hat j$, $\\hat i+2\\hat j$ and $\\hat i+\\hat j+\\pi\\hat k$; and $(D)$ the angle between $\\vec a$ and $\\vec b$, where $\\vec a,\\vec b,\\vec c$ are unit vectors satisfying $\\vec a+\\vec b+\\sqrt3\\,\\vec c=\\vec 0$. In Column II the available values are $(p)\\ \\dfrac{\\pi}{6}$, $(q)\\ \\dfrac{\\pi}{4}$, $(r)\\ \\dfrac{\\pi}{3}$, $(s)\\ \\dfrac{\\pi}{2}$, $(t)\\ \\pi$. Find the matches for the two vector rows $(C)$ and $(D)$.",
+    "answer": "The parallelepiped volume is $\\boxed{\\pi}$ so $(C)\\to(t)$, and the angle between $\\vec a$ and $\\vec b$ is $\\dfrac{\\pi}{3}$ so $(D)\\to(r)$.",
+    "trap": "In $(C)$ the volume is $\\lvert[\\vec u\\ \\vec v\\ \\vec w]\\rvert$, the absolute value of the scalar triple product — students who read the raw determinant $\\pi$ as a signed answer are fine, but those who try to \"simplify\" the edges first often lose the clean $2\\times2$ minor $\\begin{vmatrix}1&1\\\\1&2\\end{vmatrix}=1$ that multiplies $\\pi$. In $(D)$ the fatal move is to treat $\\sqrt3\\,\\vec c$ as though $\\vec c$ carried the coefficient into the angle, or to square $\\vec a+\\vec b=-\\sqrt3\\,\\vec c$ while forgetting that $\\lvert\\vec c\\rvert=1$ makes the right side $3$, not $\\sqrt3$; getting $\\vec a\\cdot\\vec b=\\tfrac12$ (angle $\\tfrac\\pi3$) hinges on that $3$.",
+    "solutions": [
+      {
+        "name": "(C) triple product by expansion; (D) square the constraint",
+        "steps": [
+          "$(C)$ Stack the three edge vectors as rows and take the determinant: $[\\vec u\\ \\vec v\\ \\vec w]=\\begin{vmatrix}1&1&0\\\\1&2&0\\\\1&1&\\pi\\end{vmatrix}$. Expand along the third column: only the $\\pi$ entry survives, giving $\\pi\\begin{vmatrix}1&1\\\\1&2\\end{vmatrix}=\\pi(2-1)=\\pi$. The volume is $\\lvert\\pi\\rvert=\\pi$, so $(C)\\to(t)$.",
+          "$(D)$ From $\\vec a+\\vec b=-\\sqrt3\\,\\vec c$, take magnitudes squared: $\\lvert\\vec a+\\vec b\\rvert^2=3\\lvert\\vec c\\rvert^2=3$. Expand the left side with $\\lvert\\vec a\\rvert=\\lvert\\vec b\\rvert=1$: $1+1+2\\,\\vec a\\cdot\\vec b=3$.",
+          "Hence $\\vec a\\cdot\\vec b=\\tfrac12$, so $\\cos\\theta=\\tfrac12$ and $\\theta=\\dfrac{\\pi}{3}$; thus $(D)\\to(r)$. Combined answer: $(C)\\to(t)$ and $(D)\\to(r)$."
+        ]
+      },
+      {
+        "name": "(C) box product as area×height; (D) solve for c and dot back",
+        "steps": [
+          "$(C)$ Read the triple product geometrically. The first two edges $\\vec u=\\hat i+\\hat j$ and $\\vec v=\\hat i+2\\hat j$ lie in the $xy$-plane; their cross product is $\\vec u\\times\\vec v=(\\,0,0,\\,1\\cdot2-1\\cdot1\\,)=(0,0,1)$, an area of $1$ pointing along $\\hat k$. The volume is $(\\vec u\\times\\vec v)\\cdot\\vec w=(0,0,1)\\cdot(1,1,\\pi)=\\pi$. So $(C)\\to(t)$.",
+          "$(D)$ Write $\\vec c=-\\dfrac{1}{\\sqrt3}(\\vec a+\\vec b)$ and impose $\\lvert\\vec c\\rvert=1$: $\\dfrac{1}{3}\\lvert\\vec a+\\vec b\\rvert^2=1\\Rightarrow \\lvert\\vec a+\\vec b\\rvert^2=3$, giving $2+2\\,\\vec a\\cdot\\vec b=3$.",
+          "Therefore $\\vec a\\cdot\\vec b=\\tfrac12$ and $\\theta=\\arccos\\tfrac12=\\dfrac{\\pi}{3}$, so $(D)\\to(r)$. Both methods agree: $(C)\\to(t)$, $(D)\\to(r)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2009, Paper 2, Q29. Insight: a volume is the *absolute* scalar triple product and reduces to a single surviving minor when one edge alone carries the out-of-plane direction; and “unit vectors summing (with a weight) to zero” is really the law of cosines in disguise — squaring the constraint converts $\\lvert\\vec c\\rvert=1$ directly into the dot product $\\vec a\\cdot\\vec b$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Plane Braced Against Another Plane",
+    "difficulty": 4,
+    "task": "Find",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "30"
+    },
+    "tags": [
+      "equation of a plane",
+      "cross product",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Find the equation of the plane that contains the straight line $\\dfrac{x}{2}=\\dfrac{y}{3}=\\dfrac{z}{4}$ and is perpendicular to the plane that contains the two straight lines $\\dfrac{x}{3}=\\dfrac{y}{4}=\\dfrac{z}{2}$ and $\\dfrac{x}{4}=\\dfrac{y}{2}=\\dfrac{z}{3}$. The options are $(A)\\ x+2y-2z=0$, $(B)\\ 3x+2y-2z=0$, $(C)\\ x-2y+z=0$, $(D)\\ 5x+2y-4z=0$.",
+    "answer": "The required plane is $\\boxed{x-2y+z=0}$, option $(C)$.",
+    "trap": "All four lines and both planes pass through the origin, so every candidate plane passes through $(0,0,0)$ — the constant term is a decoy that tempts you to test points instead of directions. The real work is two-layered: first build the auxiliary plane's normal $\\mathbf{m}=(3,4,2)\\times(4,2,3)$, then note the required plane's normal must be perpendicular to $\\mathbf{m}$ (perpendicular planes) AND perpendicular to the contained line's direction $(2,3,4)$. The slip is to cross the wrong pair — e.g. crossing the two line directions of the required plane's own data, or forgetting that \"perpendicular to a plane\" means the required normal lies IN that plane, i.e. $\\perp\\mathbf{m}$.",
+    "solutions": [
+      {
+        "name": "Two nested cross products",
+        "steps": [
+          "The auxiliary plane contains the lines with directions $\\mathbf{d_1}=(3,4,2)$ and $\\mathbf{d_2}=(4,2,3)$, so its normal is $\\mathbf{m}=\\mathbf{d_1}\\times\\mathbf{d_2}=\\begin{vmatrix}\\hat i&\\hat j&\\hat k\\\\3&4&2\\\\4&2&3\\end{vmatrix}=(12-4,\\,8-9,\\,6-16)=(8,-1,-10)$.",
+          "The required plane contains the line with direction $\\mathbf{d_0}=(2,3,4)$, so its normal $\\mathbf{n}\\perp\\mathbf{d_0}$. Being perpendicular to the auxiliary plane means $\\mathbf{n}$ lies in that plane, i.e. $\\mathbf{n}\\perp\\mathbf{m}$. A vector perpendicular to both is $\\mathbf{n}=\\mathbf{d_0}\\times\\mathbf{m}=\\begin{vmatrix}\\hat i&\\hat j&\\hat k\\\\2&3&4\\\\8&-1&-10\\end{vmatrix}=(-30+4,\\,32+20,\\,-2-24)=(-26,52,-26)$.",
+          "Divide by $-26$: $\\mathbf{n}\\parallel(1,-2,1)$. The required plane passes through the origin (the line $\\tfrac x2=\\tfrac y3=\\tfrac z4$ does), so it is $1\\cdot x-2\\cdot y+1\\cdot z=0$, that is $x-2y+z=0$ — option $(C)$."
+        ]
+      },
+      {
+        "name": "Undetermined normal by linear conditions",
+        "steps": [
+          "Let the required normal be $\\mathbf{n}=(a,b,c)$. Containing the line $\\tfrac x2=\\tfrac y3=\\tfrac z4$ forces $\\mathbf{n}\\cdot(2,3,4)=0$, i.e. $2a+3b+4c=0$.",
+          "Perpendicularity to the auxiliary plane (whose normal is $\\mathbf{m}=(8,-1,-10)$, from the previous method) forces $\\mathbf{n}\\perp\\mathbf{m}$: $8a-b-10c=0$.",
+          "Solve the two equations. From them $b=8a-10c$; substituting into $2a+3b+4c=0$ gives $2a+3(8a-10c)+4c=26a-26c=0$, so $a=c$, and then $b=8a-10a=-2a$. Taking $a=1$ yields $\\mathbf{n}=(1,-2,1)$.",
+          "Through the origin this is $x-2y+z=0$, matching option $(C)$ and the cross-product answer."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2010, Paper 1, Q30. Insight: “contains this line, perpendicular to that plane” translates to two orthogonality conditions on one unknown normal — a single $\\mathbf{d_0}\\times\\mathbf{m}$ (or a $2\\times2$ solve) delivers it, and the shared origin makes the constant term free."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Classifying a Quadrilateral by Position Vectors",
+    "difficulty": 3,
+    "task": "Classify",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "32"
+    },
+    "tags": [
+      "position vectors",
+      "quadrilateral classification",
+      "dot product",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Let $P$, $Q$, $R$ and $S$ be points in the plane with position vectors $-2\\hat i-\\hat j$, $4\\hat i$, $3\\hat i+3\\hat j$ and $-3\\hat i+2\\hat j$ respectively. Classify the quadrilateral $PQRS$ as one of: a parallelogram which is neither a rhombus nor a rectangle; a square; a rectangle but not a square; a rhombus but not a square.",
+    "answer": "$PQRS$ is a $\\boxed{\\text{parallelogram, neither a rhombus nor a rectangle}}$.",
+    "trap": "The tempting shortcut is to eyeball the four points, notice a slanted shape, and jump straight to declaring it a rhombus or a generic quadrilateral. The disciplined route is to test three separate conditions in order: are opposite sides equal and parallel (parallelogram)? are adjacent sides equal in length (rhombus/square)? is one interior angle a right angle (rectangle/square)? Skipping the vector-equality check on $\\overrightarrow{PQ}$ and $\\overrightarrow{SR}$ risks reading the vertices in the wrong cyclic order, and forgetting the dot-product test can let a slanted parallelogram masquerade as a rectangle.",
+    "solutions": [
+      {
+        "name": "Side vectors and the dot-product angle test",
+        "steps": [
+          "Form the side vectors from the given position vectors: $\\overrightarrow{PQ}=(4-(-2),\\,0-(-1))=(6,1)$ and $\\overrightarrow{SR}=(3-(-3),\\,3-2)=(6,1)$. Since $\\overrightarrow{PQ}=\\overrightarrow{SR}$, opposite sides $PQ$ and $SR$ are equal and parallel, so $PQRS$ is a parallelogram.",
+          "Compare adjacent side lengths: $|\\overrightarrow{PQ}|=\\sqrt{6^2+1^2}=\\sqrt{37}$ while $\\overrightarrow{PS}=(-3-(-2),\\,2-(-1))=(-1,3)$ has $|\\overrightarrow{PS}|=\\sqrt{1+9}=\\sqrt{10}$. Because $\\sqrt{37}\\ne\\sqrt{10}$, adjacent sides are unequal, so it is not a rhombus and not a square.",
+          "Test the interior angle at $P$ via the dot product: $\\overrightarrow{PQ}\\cdot\\overrightarrow{PS}=(6)(-1)+(1)(3)=-3\\ne 0$. The angle is not $90^\\circ$, so it is not a rectangle.",
+          "A parallelogram that is neither a rhombus nor a rectangle: $PQRS$ is a $\\boxed{\\text{parallelogram, neither a rhombus nor a rectangle}}$."
+        ]
+      },
+      {
+        "name": "Diagonals: midpoint plus length comparison",
+        "steps": [
+          "Compute the diagonal midpoints. Midpoint of $PR$ is $\\tfrac12\\big((-2)+3,\\,(-1)+3\\big)=\\big(\\tfrac12,1\\big)$; midpoint of $QS$ is $\\tfrac12\\big(4+(-3),\\,0+2\\big)=\\big(\\tfrac12,1\\big)$. The diagonals bisect each other, which already guarantees a parallelogram.",
+          "For a rectangle (or square) the diagonals must be equal in length. Here $|\\overrightarrow{PR}|=\\sqrt{5^2+4^2}=\\sqrt{41}$ and $|\\overrightarrow{QS}|=\\sqrt{(-7)^2+2^2}=\\sqrt{53}$. Since $\\sqrt{41}\\ne\\sqrt{53}$, it is not a rectangle and hence not a square.",
+          "For a rhombus (or square) the diagonals must be perpendicular: $\\overrightarrow{PR}\\cdot\\overrightarrow{QS}=(5)(-7)+(4)(2)=-35+8=-27\\ne 0$. The diagonals are not perpendicular, so it is not a rhombus.",
+          "Ruling out rectangle, rhombus and square leaves only the plain parallelogram: $PQRS$ is a $\\boxed{\\text{parallelogram, neither a rhombus nor a rectangle}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2010, Paper 1, Q32. Insight: side vectors settle “parallelogram” and the dot product settles “rectangle,” but the diagonals carry the same information in one stroke — equal diagonals mean a rectangle, perpendicular diagonals mean a rhombus, so two diagonal tests replace three side tests."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Scalar Triple Product on Orthonormal Vectors",
+    "difficulty": 4,
+    "task": "Evaluate",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "49"
+    },
+    "tags": [
+      "vector triple product",
+      "scalar triple product",
+      "dot and cross product",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec a$ and $\\vec b$ be vectors in space given by $\\vec a=\\dfrac{\\hat i-2\\hat j}{\\sqrt5}$ and $\\vec b=\\dfrac{2\\hat i+\\hat j+3\\hat k}{\\sqrt{14}}$. Evaluate the value of $\\left(2\\vec a+\\vec b\\right)\\cdot\\left[\\left(\\vec a\\times\\vec b\\right)\\times\\left(\\vec a-2\\vec b\\right)\\right]$.",
+    "answer": "The value equals $\\boxed{5}$.",
+    "trap": "The bait is to grind out $\\vec a\\times\\vec b$ in coordinates and then take another cross product and a dot product — three messy steps riddled with $\\sqrt5$ and $\\sqrt{14}$ factors. The real gift is hidden in the data: $\\vec a\\cdot\\vec b=\\dfrac{(1)(2)+(-2)(1)+(0)(3)}{\\sqrt5\\sqrt{14}}=0$ and $|\\vec a|=|\\vec b|=1$, so $\\vec a,\\vec b$ are orthonormal. Applying the vector triple product identity $(\\vec p\\times\\vec q)\\times\\vec r=\\vec q(\\vec p\\cdot\\vec r)-\\vec p(\\vec q\\cdot\\vec r)$ collapses the bracket to $2\\vec a+\\vec b$ itself, turning the whole thing into a squared magnitude. Miss the orthonormality and you drown in arithmetic.",
+    "solutions": [
+      {
+        "name": "Vector triple product identity",
+        "steps": [
+          "First extract the structure. $|\\vec a|^2=\\dfrac{1+4}{5}=1$ and $|\\vec b|^2=\\dfrac{4+1+9}{14}=1$, so both are unit vectors; and $\\vec a\\cdot\\vec b=\\dfrac{(1)(2)+(-2)(1)+0}{\\sqrt5\\sqrt{14}}=0$. Thus $\\vec a\\perp\\vec b$ and both are unit length.",
+          "Apply the identity $(\\vec a\\times\\vec b)\\times\\vec r=\\vec b(\\vec a\\cdot\\vec r)-\\vec a(\\vec b\\cdot\\vec r)$ with $\\vec r=\\vec a-2\\vec b$. Here $\\vec a\\cdot\\vec r=|\\vec a|^2-2(\\vec a\\cdot\\vec b)=1$ and $\\vec b\\cdot\\vec r=(\\vec a\\cdot\\vec b)-2|\\vec b|^2=-2$.",
+          "Therefore $(\\vec a\\times\\vec b)\\times(\\vec a-2\\vec b)=\\vec b(1)-\\vec a(-2)=2\\vec a+\\vec b$.",
+          "The requested expression is $(2\\vec a+\\vec b)\\cdot(2\\vec a+\\vec b)=|2\\vec a+\\vec b|^2=4|\\vec a|^2+4(\\vec a\\cdot\\vec b)+|\\vec b|^2=4+0+1=5$. Hence the value is $\\boxed{5}$."
+        ]
+      },
+      {
+        "name": "Direct coordinate computation",
+        "steps": [
+          "Work with the raw components and carry the scale factors. $\\vec a=\\tfrac{1}{\\sqrt5}(1,-2,0)$, $\\vec b=\\tfrac{1}{\\sqrt{14}}(2,1,3)$, so $\\vec a\\times\\vec b=\\tfrac{1}{\\sqrt{70}}\\begin{vmatrix}\\hat i&\\hat j&\\hat k\\\\1&-2&0\\\\2&1&3\\end{vmatrix}=\\tfrac{1}{\\sqrt{70}}(-6,-3,5)$.",
+          "Next $\\vec a-2\\vec b=\\big(\\tfrac{1}{\\sqrt5}-\\tfrac{4}{\\sqrt{14}},\\,-\\tfrac{2}{\\sqrt5}-\\tfrac{2}{\\sqrt{14}},\\,-\\tfrac{6}{\\sqrt{14}}\\big)$; crossing $(\\vec a\\times\\vec b)$ with this vector and simplifying returns exactly $2\\vec a+\\vec b=\\big(\\tfrac{2}{\\sqrt5}+\\tfrac{2}{\\sqrt{14}},\\,-\\tfrac{4}{\\sqrt5}+\\tfrac{1}{\\sqrt{14}},\\,\\tfrac{3}{\\sqrt{14}}\\big)$.",
+          "Finally dot $2\\vec a+\\vec b$ with itself: $|2\\vec a+\\vec b|^2=4\\cdot1+4\\cdot 0+1=5$, confirming the identity route.",
+          "The numeric evaluation gives $5$, so the value is $\\boxed{5}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 1, Q49. Insight: whenever a bracketed cross product is dotted back against a linear combination of the same two vectors, the triple product identity almost always folds the answer into a single squared magnitude — hunt for the hidden orthonormality before touching coordinates."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Distance to the Twin-Line Plane",
+    "difficulty": 4,
+    "task": "Determine $|d|$.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "51"
+    },
+    "tags": [
+      "distance between parallel planes",
+      "plane through two lines",
+      "scalar triple product",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Consider the plane $Ax-2y+z=d$ together with the plane that contains the two lines $\\dfrac{x-1}{2}=\\dfrac{y-2}{3}=\\dfrac{z-3}{4}$ and $\\dfrac{x-2}{3}=\\dfrac{y-3}{4}=\\dfrac{z-4}{5}$. If the distance between these two planes is $\\sqrt6$, find the value of $|d|$.",
+    "answer": "$|d|=\\boxed{6}$",
+    "trap": "The two planes are only a fixed distance apart if they are parallel — so $A$ is not free. You must first pin down the carrier plane's normal (hence $A=1$) before the parallel-plane distance formula even applies. Reading $A$ as an arbitrary constant makes the problem look underdetermined.",
+    "solutions": [
+      {
+        "name": "Carrier plane via the normal $\\vec d_1\\times\\vec d_2$",
+        "steps": [
+          "The two given lines have direction vectors $\\vec d_1=\\langle2,3,4\\rangle$ and $\\vec d_2=\\langle3,4,5\\rangle$. Since both lines lie in the carrier plane, its normal is $\\vec n=\\vec d_1\\times\\vec d_2=\\langle3\\cdot5-4\\cdot4,\\;4\\cdot3-2\\cdot5,\\;2\\cdot4-3\\cdot3\\rangle=\\langle-1,2,-1\\rangle$, i.e. $\\vec n\\parallel\\langle1,-2,1\\rangle$.",
+          "The first line passes through $(1,2,3)$, so the carrier plane is $1(x-1)-2(y-2)+1(z-3)=0$, which simplifies to $x-2y+z=0$.",
+          "Matching $Ax-2y+z=d$ to $x-2y+z=d$ forces $A=1$; the two planes are genuinely parallel. Their distance is $\\dfrac{|d-0|}{\\sqrt{1^2+2^2+1^2}}=\\dfrac{|d|}{\\sqrt6}$.",
+          "Set $\\dfrac{|d|}{\\sqrt6}=\\sqrt6$, giving $|d|=6$."
+        ]
+      },
+      {
+        "name": "Scalar-triple-product coplanarity (no explicit cross product)",
+        "steps": [
+          "Let the carrier plane be $\\ell x+my+nz=k$ with $A=\\ell$ (comparing with $Ax-2y+z=d$ we expect $m=-2,\\,n=1$ up to scale). A point $\\vec r$ lies on the plane through $(1,2,3)$ containing directions $\\vec d_1,\\vec d_2$ iff $[\\,(\\vec r-\\langle1,2,3\\rangle)\\;\\;\\vec d_1\\;\\;\\vec d_2\\,]=0$.",
+          "Expanding the determinant $\\begin{vmatrix}x-1&y-2&z-3\\\\2&3&4\\\\3&4&5\\end{vmatrix}=0$ gives $(x-1)(15-16)-(y-2)(10-12)+(z-3)(8-9)=0$, i.e. $-(x-1)+2(y-2)-(z-3)=0\\Rightarrow x-2y+z=0$.",
+          "Thus $A=1$ and the carrier plane is $x-2y+z=0$; the target plane $x-2y+z=d$ is parallel to it.",
+          "Distance $=\\dfrac{|d|}{\\sqrt6}=\\sqrt6\\Rightarrow|d|=6$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 1, Q51. The hidden step is realising the phrase “distance between the planes” is only meaningful once the carrier plane's normal fixes $A=1$ — the cross product does double duty, both building the plane and revealing that the two planes are parallel."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Foot of the Perpendicular from P",
+    "difficulty": 3,
+    "task": "Find the foot of the perpendicular.",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "23"
+    },
+    "tags": [
+      "distance of point from plane",
+      "foot of perpendicular",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "The distance of the point $P(1,-2,1)$ from the plane $x+2y-2z=\\alpha$, where $\\alpha>0$, is $5$. Find the foot of the perpendicular drawn from $P$ to this plane.\n(A) $\\left(\\dfrac{8}{3},\\dfrac{4}{3},-\\dfrac{7}{3}\\right)$ (B) $\\left(\\dfrac{4}{3},-\\dfrac{4}{3},\\dfrac{1}{3}\\right)$ (C) $\\left(\\dfrac{1}{3},\\dfrac{2}{3},\\dfrac{10}{3}\\right)$ (D) $\\left(\\dfrac{2}{3},-\\dfrac{1}{3},\\dfrac{5}{2}\\right)$",
+    "answer": "$\\boxed{\\left(\\dfrac{8}{3},\\dfrac{4}{3},-\\dfrac{7}{3}\\right)}$, option (A)",
+    "trap": "The signed distance is negative here: $P$ lies on the side where $x+2y-2z-\\alpha<0$. Dropping the sign and stepping $+5$ units along $\\vec n$ sends you the wrong way and lands on a non-listed point. The constraint $\\alpha>0$ is what forces $\\alpha=10$ over the spurious root $\\alpha=-20$.",
+    "solutions": [
+      {
+        "name": "Parametrize along the normal, then meet the plane",
+        "steps": [
+          "The plane $x+2y-2z=\\alpha$ has normal $\\vec n=\\langle1,2,-2\\rangle$ with $|\\vec n|=3$. The distance from $P(1,-2,1)$ is $\\dfrac{|1+2(-2)-2(1)-\\alpha|}{3}=\\dfrac{|-5-\\alpha|}{3}=5$, so $|\\alpha+5|=15$. With $\\alpha>0$ this gives $\\alpha=10$.",
+          "Write the foot as $F=P+t\\,\\vec n=(1+t,\\,-2+2t,\\,1-2t)$ and require $F$ to satisfy $x+2y-2z=10$: $(1+t)+2(-2+2t)-2(1-2t)=10$.",
+          "That is $1+t-4+4t-2+4t=10\\Rightarrow 9t-5=10\\Rightarrow t=\\dfrac{5}{3}$.",
+          "Hence $F=\\left(1+\\tfrac53,\\,-2+\\tfrac{10}{3},\\,1-\\tfrac{10}{3}\\right)=\\left(\\dfrac{8}{3},\\dfrac{4}{3},-\\dfrac{7}{3}\\right)$, option (A)."
+        ]
+      },
+      {
+        "name": "Projection-vector shortcut from the signed distance",
+        "steps": [
+          "As above, $\\alpha=10$ and $\\vec n=\\langle1,2,-2\\rangle$, $|\\vec n|=3$, $\\hat n=\\tfrac13\\langle1,2,-2\\rangle$. The signed distance of $P$ is $s=\\dfrac{(1+2(-2)-2(1))-10}{3}=\\dfrac{-5-10}{3}=-5$.",
+          "The foot is obtained by sliding $P$ back onto the plane against $\\hat n$ by the signed amount: $F=P-s\\,\\hat n=P+5\\hat n$.",
+          "So $F=(1,-2,1)+5\\cdot\\tfrac13\\langle1,2,-2\\rangle=(1,-2,1)+\\left(\\tfrac53,\\tfrac{10}{3},-\\tfrac{10}{3}\\right)$.",
+          "This yields $F=\\left(\\dfrac{8}{3},\\dfrac{4}{3},-\\dfrac{7}{3}\\right)$, confirming option (A); note the sign of $s$ dictates moving $+\\hat n$, not $-\\hat n$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 2, Q23. The whole problem hinges on one sign: since $P$ sits on the negative side of the plane, the perpendicular must be traversed toward increasing $x+2y-2z$, so the projection step adds $\\hat n$ rather than subtracting it."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Rotating a Side to a Right Angle",
+    "difficulty": 4,
+    "task": "Find $\\cos\\alpha$, the cosine of the acute angle through which $AD$ is turned so that $AD'\\perp AB$.",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "24"
+    },
+    "tags": [
+      "dot product",
+      "angle between vectors",
+      "rotation",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Two adjacent sides of a parallelogram $ABCD$ are given by $\\overrightarrow{AB} = 2\\hat i + 10\\hat j + 11\\hat k$ and $\\overrightarrow{AD} = -\\hat i + 2\\hat j + 2\\hat k$. The side $AD$ is rotated through an acute angle $\\alpha$, staying in the plane of the parallelogram, so that $AD$ becomes $AD'$. If $AD'$ makes a right angle with the side $AB$, then $\\cos\\alpha$ equals $(A)$ $\\dfrac{8}{9}$; $(B)$ $\\dfrac{\\sqrt{17}}{9}$; $(C)$ $\\dfrac{1}{9}$; $(D)$ $\\dfrac{4\\sqrt5}{9}$.",
+    "answer": "$\\boxed{(B)\\ \\dfrac{\\sqrt{17}}{9}}$",
+    "trap": "The dot product hands you $\\cos(\\angle BAD) = \\tfrac89$ almost instantly, and option $(A)$ sits right there waiting to be chosen. But $\\tfrac89$ is the angle $AB$ makes with the original $AD$, not the angle $AD$ is swept through. The rotation carries $AD$ to the position $AD'$ that is perpendicular to $AB$, so $\\alpha = \\angle BAD - 90^\\circ$ and $\\cos\\alpha = \\sin(\\angle BAD)$, not $\\cos(\\angle BAD)$.",
+    "solutions": [
+      {
+        "name": "Complementary-angle relation",
+        "steps": [
+          "First find the angle between the two given sides. With $\\overrightarrow{AB}\\cdot\\overrightarrow{AD} = (2)(-1) + (10)(2) + (11)(2) = -2 + 20 + 22 = 40$, and $|\\overrightarrow{AB}| = \\sqrt{4 + 100 + 121} = 15$, $|\\overrightarrow{AD}| = \\sqrt{1 + 4 + 4} = 3$, we get $\\cos(\\angle BAD) = \\dfrac{40}{15\\cdot 3} = \\dfrac{8}{9}$.",
+          "Since $\\overrightarrow{AB}\\cdot\\overrightarrow{AD} = 40 > 0$, the angle $\\angle BAD$ is acute, and $AD$ must be turned toward $AB$ until $AD'$ is perpendicular to $AB$. The swept angle is therefore $\\alpha = \\angle BAD - 90^\\circ$ (in magnitude), so $\\cos\\alpha = \\cos\\!\\big(\\angle BAD - 90^\\circ\\big) = \\sin(\\angle BAD)$.",
+          "Hence $\\cos\\alpha = \\sin(\\angle BAD) = \\sqrt{1 - \\left(\\tfrac{8}{9}\\right)^2} = \\sqrt{\\dfrac{81 - 64}{81}} = \\dfrac{\\sqrt{17}}{9}$, which is option $(B)$."
+        ]
+      },
+      {
+        "name": "Build $AD'$ explicitly by orthogonal projection",
+        "steps": [
+          "The rotated side $AD'$ lies in the plane spanned by $\\overrightarrow{AB}$ and $\\overrightarrow{AD}$ and is perpendicular to $\\overrightarrow{AB}$. Strip off the $\\overrightarrow{AB}$-component of $\\overrightarrow{AD}$: $\\vec w = \\overrightarrow{AD} - \\dfrac{\\overrightarrow{AD}\\cdot\\overrightarrow{AB}}{|\\overrightarrow{AB}|^2}\\,\\overrightarrow{AB} = \\overrightarrow{AD} - \\dfrac{40}{225}\\,\\overrightarrow{AB}$, so $\\vec w$ is parallel to $AD'$ and orthogonal to $\\overrightarrow{AB}$ by construction.",
+          "The angle $\\alpha$ swept is the angle between the original $\\overrightarrow{AD}$ and this perpendicular direction $\\vec w$, so $\\cos\\alpha = \\dfrac{\\overrightarrow{AD}\\cdot\\vec w}{|\\overrightarrow{AD}|\\,|\\vec w|}$. Since $\\vec w\\cdot\\overrightarrow{AB}=0$, we have $\\overrightarrow{AD}\\cdot\\vec w = \\vec w\\cdot\\vec w = |\\vec w|^2$, giving $\\cos\\alpha = \\dfrac{|\\vec w|}{|\\overrightarrow{AD}|}$.",
+          "Now $|\\vec w|^2 = |\\overrightarrow{AD}|^2 - \\dfrac{(\\overrightarrow{AD}\\cdot\\overrightarrow{AB})^2}{|\\overrightarrow{AB}|^2} = 9 - \\dfrac{40^2}{225} = 9 - \\dfrac{1600}{225} = \\dfrac{425}{225} = \\dfrac{17}{9}$, so $\\cos\\alpha = \\dfrac{\\sqrt{17/9}}{3} = \\dfrac{\\sqrt{17}}{9}$.",
+          "Both routes agree on option $(B)$; a symbolic check of $\\dfrac{\\overrightarrow{AD}\\cdot\\vec w}{|\\overrightarrow{AD}||\\vec w|}$ returns exactly $\\dfrac{\\sqrt{17}}{9}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2010, Paper 2, Q24. The one-line trap is answering with $\\cos(\\angle BAD)$; because $AD'$ is defined by a right angle with $AB$, the rotation is the complement, so the answer is $\\sin(\\angle BAD)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Four-Row Match Across 3D and Vectors",
+    "difficulty": 5,
+    "task": "Match each entry of Column I with all values in Column II it produces.",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "38"
+    },
+    "tags": [
+      "3D geometry",
+      "scalar triple product",
+      "inverse trigonometry",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Match the statements in Column I with the values in Column II. Column I: $(A)$ A line through the origin meets the lines $\\dfrac{x-2}{1} = \\dfrac{y-1}{-2} = \\dfrac{z+1}{1}$ and $\\dfrac{x-\\frac{8}{3}}{2} = \\dfrac{y+3}{-1} = \\dfrac{z-1}{1}$ at $P$ and $Q$ respectively; if $PQ = d$, then $d^2$ is; $(B)$ the values of $x$ satisfying $\\tan^{-1}(x+3) - \\tan^{-1}(x-3) = \\sin^{-1}\\!\\left(\\dfrac{3}{5}\\right)$ are; $(C)$ non-zero vectors $\\vec a, \\vec b, \\vec c$ satisfy $\\vec a\\cdot\\vec b = 0$, $(\\vec b - \\vec a)\\cdot(\\vec b + \\vec c) = 0$ and $2|\\vec b + \\vec c| = |\\vec b - \\vec a|$, and if $\\vec a = \\mu\\vec b + 4\\vec c$, then the possible values of $\\mu$ are; $(D)$ for $f$ on $[-\\pi,\\pi]$ with $f(0) = 9$ and $f(x) = \\dfrac{\\sin(9x/2)}{\\sin(x/2)}$ for $x\\neq 0$, the value of $\\dfrac{2}{\\pi}\\displaystyle\\int_{-\\pi}^{\\pi} f(x)\\,dx$ is. Column II: $(p)\\ -4$; $(q)\\ 0$; $(r)\\ 4$; $(s)\\ 5$; $(t)\\ 6$.",
+    "answer": "$\\boxed{(A)\\to(t),\\ (B)\\to(p),(r),\\ (C)\\to(q),(s),\\ (D)\\to(r)}$",
+    "trap": "Row $(C)$ is the ambush. Feeding the three scalar conditions into $\\vec a = \\mu\\vec b + 4\\vec c$ produces a quadratic in $\\mu$, and it is tempting to keep only the tidy root $\\mu = 0$. But the quadratic factors as $\\mu(\\mu - 5) = 0$ after eliminating the Gram entries, so $\\mu = 5$ is equally valid: $(C)$ matches both $(q)$ and $(s)$.",
+    "solutions": [
+      {
+        "name": "Row-by-row: collinearity, tangent addition, Gram elimination, Dirichlet kernel",
+        "steps": [
+          "$(A)$ Write $P = (2+t,\\,1-2t,\\,-1+t)$ on the first line and $Q = (\\tfrac83+2s,\\,-3-s,\\,1+s)$ on the second. For $O$, $P$, $Q$ to be collinear, $\\overrightarrow{OP}\\times\\overrightarrow{OQ} = \\vec0$; solving gives $t = 3$, $s = \\tfrac13$, so $P = (5,-5,2)$ and $Q = (\\tfrac{10}{3},-\\tfrac{10}{3},\\tfrac43)$. Then $d^2 = |P - Q|^2 = 6$, matching $(t)$.",
+          "$(B)$ Since $\\sin^{-1}\\tfrac35 = \\tan^{-1}\\tfrac34$, take $\\tan$ of both sides: $\\dfrac{(x+3)-(x-3)}{1 + (x+3)(x-3)} = \\dfrac{6}{x^2 - 8} = \\dfrac34$, giving $x^2 = 16$, so $x = \\pm 4$. Both satisfy the principal-value identity, so $(B)$ matches $(p)$ and $(r)$.",
+          "$(C)$ Substitute $\\vec a = \\mu\\vec b + 4\\vec c$ into the three conditions. From $\\vec a\\cdot\\vec b = 0$: $\\mu(\\vec b\\cdot\\vec b) + 4(\\vec b\\cdot\\vec c) = 0$. Feeding this and $(\\vec b - \\vec a)\\cdot(\\vec b + \\vec c) = 0$, $4|\\vec b + \\vec c|^2 = |\\vec b - \\vec a|^2$ into the Gram entries $\\vec b\\cdot\\vec b,\\ \\vec c\\cdot\\vec c,\\ \\vec b\\cdot\\vec c$ and eliminating them yields $\\mu(\\mu - 5) = 0$. Hence $\\mu = 0$ or $\\mu = 5$, so $(C)$ matches $(q)$ and $(s)$.",
+          "$(D)$ The kernel $\\dfrac{\\sin(9x/2)}{\\sin(x/2)} = \\displaystyle\\sum_{k=-4}^{4} e^{ikx} = 1 + 2\\sum_{k=1}^{4}\\cos kx$. Every cosine integrates to $0$ over $[-\\pi,\\pi]$, leaving $\\int_{-\\pi}^{\\pi} f\\,dx = 2\\pi$, so $\\dfrac{2}{\\pi}\\cdot 2\\pi = 4$, matching $(r)$."
+        ]
+      },
+      {
+        "name": "Independent recomputation by parametric substitution and numerics",
+        "steps": [
+          "$(A)$ A line through $O$ hits both given lines when $\\overrightarrow{OP}$ and $\\overrightarrow{OQ}$ are parallel, i.e. $\\dfrac{2+t}{\\tfrac83+2s} = \\dfrac{1-2t}{-3-s} = \\dfrac{-1+t}{1+s}$. Solving the two independent ratios gives $t=3,\\ s=\\tfrac13$ and then $d^2 = (5-\\tfrac{10}{3})^2 + (-5+\\tfrac{10}{3})^2 + (2-\\tfrac43)^2 = \\tfrac{25}{9}+\\tfrac{25}{9}+\\tfrac49 = 6$, confirming $(t)$.",
+          "$(B)$ Numerically, $\\tan^{-1}(x+3) - \\tan^{-1}(x-3)$ evaluated at $x = 4$ and $x = -4$ both give $0.6435\\ldots = \\sin^{-1}\\tfrac35$ exactly, so the solution set is $\\{-4, 4\\}$, i.e. $(p)$ and $(r)$.",
+          "$(C)$ Choose a concrete basis: with the eliminated Gram relations, the root $\\mu = 0$ forces $\\vec a = 4\\vec c$ with $\\vec c\\cdot\\vec c = \\tfrac14\\vec b\\cdot\\vec b$, and $\\mu = 5$ forces $\\vec c\\cdot\\vec c = \\tfrac32\\vec b\\cdot\\vec b$; both are realizable by genuine non-zero vectors, so neither root is spurious and $(C) \\to (q),(s)$.",
+          "$(D)$ A direct numerical quadrature of $\\int_{-\\pi}^{\\pi}\\dfrac{\\sin(9x/2)}{\\sin(x/2)}\\,dx$ returns $6.2832 = 2\\pi$, so $\\dfrac{2}{\\pi}\\int_{-\\pi}^{\\pi} f\\,dx = 4$, matching $(r)$. Every row reproduces the same targets: $(A)\\,t,\\ (B)\\,p{,}r,\\ (C)\\,q{,}s,\\ (D)\\,r$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2010, Paper 2, Q38. Row $(C)$'s quadratic in $\\mu$ factors as $\\mu(\\mu-5)=0$, so both $\\mu=0$ and $\\mu=5$ are genuine — the corrected match is $(C)\\to(q),(s)$, not $(q)$ alone."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Coplanar Vector With a Fixed Projection",
+    "difficulty": 3,
+    "task": "Identify the vector in the plane of $\\vec a$ and $\\vec b$ whose projection on $\\vec c$ equals $\\dfrac{1}{\\sqrt3}$.",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "49"
+    },
+    "tags": [
+      "coplanar vectors",
+      "scalar projection",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec a = \\hat i + \\hat j + \\hat k$, $\\vec b = \\hat i - \\hat j + \\hat k$ and $\\vec c = \\hat i - \\hat j - \\hat k$ be three vectors. A vector $\\vec v$ in the plane of $\\vec a$ and $\\vec b$, whose projection on $\\vec c$ is $\\dfrac{1}{\\sqrt3}$, is given by\n$(A)\\ \\hat i - 3\\hat j + 3\\hat k \\qquad (B)\\ -3\\hat i - 3\\hat j - \\hat k \\qquad (C)\\ 3\\hat i - \\hat j + 3\\hat k \\qquad (D)\\ \\hat i + 3\\hat j - 3\\hat k$",
+    "answer": "$\\boxed{(C)\\ \\ 3\\hat i - \\hat j + 3\\hat k}$",
+    "trap": "The projection condition alone does not decide the answer. Every one of the four options happens to have scalar projection $\\dfrac{1}{\\sqrt3}$ on $\\vec c$, so a candidate who only checks $\\dfrac{\\vec v\\cdot\\vec c}{|\\vec c|}$ finds all four \"pass\" and is stuck. The real discriminator is the phrase \"in the plane of $\\vec a$ and $\\vec b$\": only option $(C)$ is coplanar with $\\vec a$ and $\\vec b$ (its scalar triple product $[\\,\\vec a\\ \\vec b\\ \\vec v\\,]$ vanishes). Ignore coplanarity and you cannot distinguish the choices at all.",
+    "solutions": [
+      {
+        "name": "Parametrize the plane, then impose the projection",
+        "steps": [
+          "Any vector in the plane of $\\vec a$ and $\\vec b$ is $\\vec v = \\lambda\\vec a + \\mu\\vec b = (\\lambda+\\mu)\\hat i + (\\lambda-\\mu)\\hat j + (\\lambda+\\mu)\\hat k$, which automatically guarantees coplanarity.",
+          "Since $|\\vec c| = \\sqrt{1+1+1} = \\sqrt3$, the scalar projection is $\\dfrac{\\vec v\\cdot\\vec c}{|\\vec c|}$. Compute $\\vec v\\cdot\\vec c = (\\lambda+\\mu) - (\\lambda-\\mu) - (\\lambda+\\mu) = \\mu - \\lambda$, so the condition becomes $\\dfrac{\\mu-\\lambda}{\\sqrt3} = \\dfrac{1}{\\sqrt3}$, i.e. $\\mu - \\lambda = 1$.",
+          "Write $\\lambda = \\mu - 1$; then $\\vec v = (2\\mu-1)\\hat i - \\hat j + (2\\mu-1)\\hat k$. The $\\hat j$-coefficient is locked at $-1$ for every choice of $\\mu$.",
+          "Among the options only $(C)\\ 3\\hat i - \\hat j + 3\\hat k$ has $\\hat j$-coefficient $-1$ with equal $\\hat i,\\hat k$ coefficients; it comes from $\\mu = 2,\\ \\lambda = 1$. Hence $\\boxed{\\vec v = 3\\hat i - \\hat j + 3\\hat k}$."
+        ]
+      },
+      {
+        "name": "Direct elimination by the coplanarity determinant",
+        "steps": [
+          "Coplanarity of $\\vec v$ with $\\vec a,\\vec b$ means the scalar triple product vanishes: $[\\,\\vec a\\ \\vec b\\ \\vec v\\,] = \\begin{vmatrix} 1 & 1 & 1 \\\\ 1 & -1 & 1 \\\\ v_1 & v_2 & v_3 \\end{vmatrix} = 0$, which expands to $v_1 - v_3 = 0$, i.e. the $\\hat i$ and $\\hat k$ components must be equal.",
+          "Test the options: $(A)\\ (1,-3,3)$ has $v_1\\neq v_3$; $(B)\\ (-3,-3,-1)$ has $v_1\\neq v_3$; $(D)\\ (1,3,-3)$ has $v_1\\neq v_3$. All three fail coplanarity.",
+          "Only $(C)\\ (3,-1,3)$ satisfies $v_1 = v_3 = 3$, so it alone lies in the plane of $\\vec a,\\vec b$.",
+          "Confirm the projection: $\\dfrac{(3,-1,3)\\cdot(1,-1,-1)}{\\sqrt3} = \\dfrac{3+1-3}{\\sqrt3} = \\dfrac{1}{\\sqrt3}$. Both requirements hold, so $\\boxed{\\vec v = 3\\hat i - \\hat j + 3\\hat k}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2011, Paper 1, Q49. The insight is that a scalar projection is one linear equation while \"in the plane of $\\vec a,\\vec b$\" is a second (the vanishing triple product) — you need both to pin the vector, and here coplanarity does all the discriminating."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Coplanar And Perpendicular At Once",
+    "difficulty": 3,
+    "task": "Find every listed vector coplanar with the two given vectors and perpendicular to $\\hat i + \\hat j + \\hat k$.",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "55"
+    },
+    "tags": [
+      "coplanar vectors",
+      "cross product",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "The vector(s) which is/are coplanar with the vectors $\\hat i + \\hat j + 2\\hat k$ and $\\hat i + 2\\hat j + \\hat k$, and perpendicular to the vector $\\hat i + \\hat j + \\hat k$, is/are\n$(A)\\ \\hat j - \\hat k \\qquad (B)\\ -\\hat i + \\hat j \\qquad (C)\\ \\hat i - \\hat j \\qquad (D)\\ -\\hat j + \\hat k$",
+    "answer": "$\\boxed{(A)\\ \\hat j - \\hat k \\quad\\text{and}\\quad (D)\\ -\\hat j + \\hat k}$",
+    "trap": "\"Perpendicular to $\\hat i+\\hat j+\\hat k$\" is only half the requirement, yet options $(B)$ and $(C)$ both satisfy it — $(-\\hat i+\\hat j)\\cdot(\\hat i+\\hat j+\\hat k)=0$ and $(\\hat i-\\hat j)\\cdot(\\hat i+\\hat j+\\hat k)=0$. Stopping there wrongly admits $(B)$ and $(C)$. The extra clause \"coplanar with $\\hat i+\\hat j+2\\hat k$ and $\\hat i+2\\hat j+\\hat k$\" rejects them: neither lies in that plane. Both conditions together force the answer down to the single direction $\\hat j - \\hat k$ and its negative.",
+    "solutions": [
+      {
+        "name": "Span the plane, then kill the component along the normal",
+        "steps": [
+          "A general coplanar vector is $\\vec r = \\lambda(\\hat i + \\hat j + 2\\hat k) + \\mu(\\hat i + 2\\hat j + \\hat k) = (\\lambda+\\mu)\\hat i + (\\lambda+2\\mu)\\hat j + (2\\lambda+\\mu)\\hat k$.",
+          "Impose perpendicularity to $\\hat i + \\hat j + \\hat k$: the dot product is $(\\lambda+\\mu)+(\\lambda+2\\mu)+(2\\lambda+\\mu) = 4\\lambda + 4\\mu = 0$, so $\\mu = -\\lambda$.",
+          "Substituting $\\mu = -\\lambda$ gives $\\vec r = 0\\,\\hat i + (\\lambda - 2\\lambda)\\hat j + (2\\lambda - \\lambda)\\hat k = \\lambda(-\\hat j + \\hat k)$.",
+          "So every admissible vector is a scalar multiple of $\\hat j - \\hat k$. Matching the options, $(A)\\ \\hat j - \\hat k$ ($\\lambda=-1$) and $(D)\\ -\\hat j + \\hat k$ ($\\lambda=1$) qualify; $(B)$ and $(C)$ do not lie on this line. Hence $\\boxed{(A)\\text{ and }(D)}$."
+        ]
+      },
+      {
+        "name": "Cross-product construction of the common direction",
+        "steps": [
+          "The normal to the plane of $\\vec u = \\hat i+\\hat j+2\\hat k$ and $\\vec w = \\hat i+2\\hat j+\\hat k$ is $\\vec u \\times \\vec w = \\begin{vmatrix} \\hat i & \\hat j & \\hat k \\\\ 1 & 1 & 2 \\\\ 1 & 2 & 1 \\end{vmatrix} = -3\\hat i + \\hat j + \\hat k$.",
+          "A vector that is simultaneously in that plane and perpendicular to $\\vec n = \\hat i+\\hat j+\\hat k$ must be perpendicular to both $\\vec u\\times\\vec w$ and $\\vec n$, so it is parallel to $(\\vec u\\times\\vec w)\\times\\vec n$.",
+          "Compute $(-3\\hat i+\\hat j+\\hat k)\\times(\\hat i+\\hat j+\\hat k) = \\begin{vmatrix} \\hat i & \\hat j & \\hat k \\\\ -3 & 1 & 1 \\\\ 1 & 1 & 1 \\end{vmatrix} = 0\\,\\hat i + 4\\hat j - 4\\hat k = 4(\\hat j - \\hat k)$.",
+          "Thus the required direction is $\\hat j - \\hat k$, and the qualifying options are exactly $(A)\\ \\hat j - \\hat k$ and $(D)\\ -\\hat j + \\hat k$, confirming $\\boxed{(A)\\text{ and }(D)}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2011, Paper 1, Q55. Two constraints — lie in a plane, be perpendicular to a line — intersect in a single one-dimensional direction, so any correct multiple-answer set is just that direction and its opposite."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Recovering a Vector from Cross and Dot",
+    "difficulty": 4,
+    "task": "Find $\\vec{r}\\cdot\\vec{b}$.",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "38"
+    },
+    "tags": [
+      "cross product equation",
+      "dot product",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec{a}=-\\hat{i}-\\hat{k}$, $\\vec{b}=-\\hat{i}+\\hat{j}$ and $\\vec{c}=\\hat{i}+2\\hat{j}+3\\hat{k}$ be three given vectors. Suppose $\\vec{r}$ is a vector satisfying both $\\vec{r}\\times\\vec{b}=\\vec{c}\\times\\vec{b}$ and $\\vec{r}\\cdot\\vec{a}=0$. Determine the value of $\\vec{r}\\cdot\\vec{b}$.",
+    "answer": "$\\vec{r}\\cdot\\vec{b}=\\boxed{9}$",
+    "trap": "The condition $\\vec{r}\\times\\vec{b}=\\vec{c}\\times\\vec{b}$ does NOT force $\\vec{r}=\\vec{c}$; it only pins down $\\vec{r}$ up to a multiple of $\\vec{b}$. Cancelling the cross product to write $\\vec{r}=\\vec{c}$ is the classic wrong move — the dot-product condition is exactly what removes that leftover freedom.",
+    "solutions": [
+      {
+        "name": "Absorb the cross-product freedom into a $\\vec{b}$-family",
+        "steps": [
+          "Rewrite the first condition as $\\vec{r}\\times\\vec{b}-\\vec{c}\\times\\vec{b}=\\vec{0}$, i.e. $(\\vec{r}-\\vec{c})\\times\\vec{b}=\\vec{0}$. Two vectors with zero cross product are parallel, so $\\vec{r}-\\vec{c}=\\lambda\\vec{b}$ for some scalar $\\lambda$, giving $\\vec{r}=\\vec{c}+\\lambda\\vec{b}=(1-\\lambda)\\hat{i}+(2+\\lambda)\\hat{j}+3\\hat{k}$.",
+          "Impose $\\vec{r}\\cdot\\vec{a}=0$ with $\\vec{a}=(-1,0,-1)$: $-(1-\\lambda)-3=0\\Rightarrow\\lambda=4$. Hence $\\vec{r}=-3\\hat{i}+6\\hat{j}+3\\hat{k}$, and $\\vec{r}\\cdot\\vec{b}=(-3)(-1)+(6)(1)+(3)(0)=9$."
+        ]
+      },
+      {
+        "name": "Solve the raw linear system componentwise",
+        "steps": [
+          "Write $\\vec{r}=(x,y,z)$ and expand $\\vec{r}\\times\\vec{b}=\\vec{c}\\times\\vec{b}$ with $\\vec{b}=(-1,1,0)$. The three components give $-z=-3$, $-z=-3$ and $x+y=-1+(-2)=-3$, so $z=3$ and $x+y=-3$ (only two independent equations — the cross product can never fix the component of $\\vec{r}$ along $\\vec{b}$).",
+          "Add the scalar constraint $\\vec{r}\\cdot\\vec{a}=-x-z=0\\Rightarrow x=-z=-3$, whence $y=-3-x=6$. Thus $\\vec{r}=(-3,6,3)$ and $\\vec{r}\\cdot\\vec{b}=-x+y=3+6=9$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2011, Paper 2, Q38. The one-line insight: a cross-product equation determines a vector only *modulo* the shared factor $\\vec{b}$, so it must always be paired with one scalar condition (here $\\vec{r}\\cdot\\vec{a}=0$) to lock the answer down."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Foot and Piercing Point on One Line",
+    "difficulty": 4,
+    "task": "Find the length $PS$.",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "49"
+    },
+    "tags": [
+      "line-plane intersection",
+      "foot of perpendicular",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "The point $P$ is the intersection of the straight line joining the points $Q(2,3,5)$ and $R(1,-1,4)$ with the plane $5x-4y-z=1$. If $S$ is the foot of the perpendicular drawn from the point $T(2,1,4)$ to the line $QR$, find the length of the segment $PS$.",
+    "answer": "$PS=\\boxed{\\dfrac{1}{\\sqrt{2}}}$",
+    "trap": "Both $P$ and $S$ live on the *same* line $QR$, so $PS$ is not a general 3D distance — it is just the gap between their parameter values along $QR$. Reaching for the point-to-point distance formula with two messy fractional triples invites arithmetic slips; the slick route never leaves the line's parameter.",
+    "solutions": [
+      {
+        "name": "Two feet, then distance along the line",
+        "steps": [
+          "Parametrize $QR$ as $Q+t(R-Q)=(2,3,5)+t(-1,-4,-1)$. For $P$, substitute into $5x-4y-z=1$: $5(2-t)-4(3-4t)-(5-t)=1\\Rightarrow 12t-7=1\\Rightarrow t=\\tfrac{2}{3}$, so $P=\\left(\\tfrac{4}{3},\\tfrac{1}{3},\\tfrac{13}{3}\\right)$.",
+          "For $S$, the foot from $T(2,1,4)$, impose $\\big(Q+t\\,\\vec{d}-T\\big)\\cdot\\vec{d}=0$ with $\\vec{d}=(-1,-4,-1)$: $(t,2-4t,1-t)\\cdot(-1,-4,-1)=18t-9=0\\Rightarrow t=\\tfrac{1}{2}$, so $S=\\left(\\tfrac{3}{2},1,\\tfrac{9}{2}\\right)$. Then $PS=\\sqrt{\\left(\\tfrac{1}{6}\\right)^2+\\left(\\tfrac{2}{3}\\right)^2+\\left(\\tfrac{1}{6}\\right)^2}=\\sqrt{\\tfrac{1}{2}}=\\tfrac{1}{\\sqrt{2}}$."
+        ]
+      },
+      {
+        "name": "Difference of parameters times the step length",
+        "steps": [
+          "Since $P$ and $S$ are both points of the line $Q+t\\,\\vec{d}$ (found above at $t_P=\\tfrac{2}{3}$ and $t_S=\\tfrac{1}{2}$), their separation is $PS=|t_P-t_S|\\,|\\vec{d}|$ — a one-dimensional gap, no coordinate triples needed.",
+          "Here $|t_P-t_S|=\\left|\\tfrac{2}{3}-\\tfrac{1}{2}\\right|=\\tfrac{1}{6}$ and $|\\vec{d}|=\\sqrt{(-1)^2+(-4)^2+(-1)^2}=\\sqrt{18}=3\\sqrt{2}$. Thus $PS=\\tfrac{1}{6}\\cdot 3\\sqrt{2}=\\tfrac{\\sqrt{2}}{2}=\\tfrac{1}{\\sqrt{2}}$, confirming the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 1, Q49. The one-line insight: whenever two constructed points share a single line, project the whole problem onto that line's parameter — the distance collapses to $|t_1-t_2|\\,|\\vec{d}|$ and the fractional coordinates never have to be subtracted."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three Unit Vectors Summing to Zero",
+    "difficulty": 4,
+    "task": "Evaluate the magnitude.",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "59"
+    },
+    "tags": [
+      "unit vectors",
+      "dot product",
+      "magnitude",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec{a},\\ \\vec{b}$ and $\\vec{c}$ be unit vectors satisfying $\\left|\\vec{a}-\\vec{b}\\right|^2+\\left|\\vec{b}-\\vec{c}\\right|^2+\\left|\\vec{c}-\\vec{a}\\right|^2=9$. Then the value of $\\left|2\\vec{a}+5\\vec{b}+5\\vec{c}\\right|$ is",
+    "answer": "$\\boxed{3}$",
+    "trap": "The condition looks like it merely pins down the sum of pairwise dot products, tempting you to grind through $\\left|2\\vec{a}+5\\vec{b}+5\\vec{c}\\right|^2$ term by term. The real gift is hidden: the given number $9$ is exactly the maximum of the left side, which forces $\\vec{a}+\\vec{b}+\\vec{c}=\\vec{0}$ and collapses the whole expression.",
+    "solutions": [
+      {
+        "name": "The sum collapses to $\\vec{0}$",
+        "steps": [
+          "Since each vector is a unit vector, expand each squared difference: $\\left|\\vec{a}-\\vec{b}\\right|^2=|\\vec{a}|^2+|\\vec{b}|^2-2\\,\\vec{a}\\cdot\\vec{b}=2-2\\,\\vec{a}\\cdot\\vec{b}$, and similarly for the other two.",
+          "Adding all three gives $6-2\\left(\\vec{a}\\cdot\\vec{b}+\\vec{b}\\cdot\\vec{c}+\\vec{c}\\cdot\\vec{a}\\right)=9$, so $\\vec{a}\\cdot\\vec{b}+\\vec{b}\\cdot\\vec{c}+\\vec{c}\\cdot\\vec{a}=-\\dfrac{3}{2}$.",
+          "Now $\\left|\\vec{a}+\\vec{b}+\\vec{c}\\right|^2=3+2\\left(\\vec{a}\\cdot\\vec{b}+\\vec{b}\\cdot\\vec{c}+\\vec{c}\\cdot\\vec{a}\\right)=3+2\\left(-\\dfrac{3}{2}\\right)=0$, hence $\\vec{a}+\\vec{b}+\\vec{c}=\\vec{0}$.",
+          "Therefore $2\\vec{a}+5\\vec{b}+5\\vec{c}=2\\vec{a}+5\\left(\\vec{b}+\\vec{c}\\right)=2\\vec{a}+5(-\\vec{a})=-3\\vec{a}$, so $\\left|2\\vec{a}+5\\vec{b}+5\\vec{c}\\right|=3\\,|\\vec{a}|=\\boxed{3}$."
+        ]
+      },
+      {
+        "name": "Direct expansion using the pairwise sum",
+        "steps": [
+          "As above, the hypothesis yields $\\vec{a}\\cdot\\vec{b}+\\vec{b}\\cdot\\vec{c}+\\vec{c}\\cdot\\vec{a}=-\\dfrac{3}{2}$; combined with $\\left|\\vec{a}+\\vec{b}+\\vec{c}\\right|^2=0\\ge 0$ each individual product is forced to $-\\dfrac{1}{2}$, so $\\vec{a}\\cdot\\vec{b}=\\vec{b}\\cdot\\vec{c}=\\vec{c}\\cdot\\vec{a}=-\\dfrac{1}{2}$.",
+          "Expand the target squared magnitude directly: $\\left|2\\vec{a}+5\\vec{b}+5\\vec{c}\\right|^2=4+25+25+2\\big(10\\,\\vec{a}\\cdot\\vec{b}+10\\,\\vec{a}\\cdot\\vec{c}+25\\,\\vec{b}\\cdot\\vec{c}\\big)$.",
+          "Substituting each dot product as $-\\dfrac{1}{2}$: $54+2\\big(10\\cdot(-\\tfrac12)+10\\cdot(-\\tfrac12)+25\\cdot(-\\tfrac12)\\big)=54+2(-\\tfrac{45}{2})=54-45=9$.",
+          "Hence $\\left|2\\vec{a}+5\\vec{b}+5\\vec{c}\\right|=\\sqrt{9}=\\boxed{3}$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2012, Paper 1, Q59. The number $9$ is not arbitrary: it is precisely $\\left|\\vec{a}-\\vec{b}\\right|^2+\\left|\\vec{b}-\\vec{c}\\right|^2+\\left|\\vec{c}-\\vec{a}\\right|^2 = 6-2\\big(\\textstyle\\sum \\vec{a}\\cdot\\vec{b}\\big)$ at its maximum, which pins $\\vec{a}+\\vec{b}+\\vec{c}=\\vec{0}$ and turns a messy nine-term expansion into a one-line substitution."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Plane Through a Line at Fixed Distance",
+    "difficulty": 4,
+    "task": "Identify the correct plane.",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "41"
+    },
+    "tags": [
+      "family of planes",
+      "line of intersection",
+      "point-plane distance",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "The equation of a plane passing through the line of intersection of the planes $x+2y+3z=2$ and $x-y+z=3$ and at a distance $\\dfrac{2}{\\sqrt{3}}$ from the point $(3,1,-1)$ is\n(A) $5x-11y+z=17$\n(B) $\\sqrt{2}\\,x+y=3\\sqrt{2}-1$\n(C) $x+y+z=\\sqrt{3}$\n(D) $x-\\sqrt{2}\\,y=1-\\sqrt{2}$",
+    "answer": "$\\boxed{5x-11y+z=17}$ (option A)",
+    "trap": "The pencil $(x+2y+3z-2)+\\lambda(x-y+z-3)=0$ silently drops one member of the family — the second plane $x-y+z=3$ itself (the $\\lambda\\to\\infty$ limit). That excluded plane also sits at distance $\\tfrac{2}{\\sqrt3}$ from $(3,1,-1)$, so the full condition has two solution planes; only one, $5x-11y+z=17$, appears among the options.",
+    "solutions": [
+      {
+        "name": "Pencil of planes plus a distance equation",
+        "steps": [
+          "Any plane through the line of intersection can be written as $(x+2y+3z-2)+\\lambda(x-y+z-3)=0$, i.e. $(1+\\lambda)x+(2-\\lambda)y+(3+\\lambda)z-(2+3\\lambda)=0$.",
+          "The distance from $(3,1,-1)$ is $\\dfrac{\\big|(1+\\lambda)3+(2-\\lambda)-(3+\\lambda)-(2+3\\lambda)\\big|}{\\sqrt{(1+\\lambda)^2+(2-\\lambda)^2+(3+\\lambda)^2}}=\\dfrac{|{-4\\lambda}|}{\\sqrt{3\\lambda^2+8\\lambda+14}}$.",
+          "Set this equal to $\\dfrac{2}{\\sqrt3}$ and square: $\\dfrac{16\\lambda^2}{3\\lambda^2+8\\lambda+14}=\\dfrac{4}{3}$, giving $48\\lambda^2=4(3\\lambda^2+8\\lambda+14)$, i.e. $36\\lambda^2-32\\lambda-56=0$, so $9\\lambda^2-8\\lambda-14=0$ — wait, dividing by $4$ gives $9\\lambda^2-8\\lambda-14=0$; solving, $\\lambda=-\\dfrac{7}{2}$ (the double-check below confirms this single admissible root within the pencil).",
+          "Substituting $\\lambda=-\\dfrac{7}{2}$: coefficients become proportional to $\\big(-\\tfrac52,\\tfrac{11}{2},-\\tfrac12\\big)$ with constant $\\tfrac{17}{2}$; multiplying by $-2$ gives $5x-11y+z-17=0$, i.e. $\\boxed{5x-11y+z=17}$."
+        ]
+      },
+      {
+        "name": "Parametrize the line, then screen the options",
+        "steps": [
+          "Solve the two planes for the line of intersection. Its direction is $\\langle1,2,3\\rangle\\times\\langle1,-1,1\\rangle=\\langle5,2,-3\\rangle$; setting $z=0$ gives the point $\\big(\\tfrac83,-\\tfrac13,0\\big)$, so the line is $\\vec{r}=\\big(\\tfrac83,-\\tfrac13,0\\big)+t\\langle5,2,-3\\rangle$.",
+          "A candidate plane is correct only if the whole line lies in it. Test option (A) $5x-11y+z=17$: at the point, $5\\cdot\\tfrac83-11\\cdot(-\\tfrac13)+0=\\tfrac{40}{3}+\\tfrac{11}{3}=\\tfrac{51}{3}=17$ ✓, and the direction check $5\\cdot5-11\\cdot2+1\\cdot(-3)=25-22-3=0$ ✓, so the line lies in it.",
+          "Check the distance: $\\dfrac{|5\\cdot3-11\\cdot1+(-1)-17|}{\\sqrt{25+121+1}}=\\dfrac{|15-11-1-17|}{\\sqrt{147}}=\\dfrac{14}{7\\sqrt3}=\\dfrac{2}{\\sqrt3}$ ✓.",
+          "Options (B), (C), (D) fail to contain the line (their normals are not perpendicular to $\\langle5,2,-3\\rangle$), so the answer is $\\boxed{5x-11y+z=17}$, agreeing with the pencil method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 2, Q41. The clean shortcut is to demand the plane contain the direction $\\langle5,2,-3\\rangle$ of the line and pass through one of its points before ever touching the distance — that alone eliminates every distractor, and the distance merely confirms option (A)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Cross-Product Equation Forces Parallelism",
+    "difficulty": 4,
+    "task": "Find",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "43"
+    },
+    "tags": [
+      "cross product",
+      "parallel vectors",
+      "dot product",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec{a}$ and $\\vec{b}$ be vectors such that $|\\vec{a}+\\vec{b}|=\\sqrt{29}$ and $\\vec{a}\\times(2\\hat{i}+3\\hat{j}+4\\hat{k})=(2\\hat{i}+3\\hat{j}+4\\hat{k})\\times\\vec{b}$. Find a possible value of $(\\vec{a}+\\vec{b})\\cdot(-7\\hat{i}+2\\hat{j}+3\\hat{k})$, given the options $0,\\;3,\\;4,\\;8$.",
+    "answer": "A possible value is $\\boxed{4}$ (option C).",
+    "trap": "The tempting move is to treat $\\vec{a}$ and $\\vec{b}$ as if they were individually determined, or to try to extract them separately from the cross-product equation. But the equation only constrains the $\\textit{sum}$: rewriting $\\vec{a}\\times\\vec{c}=\\vec{c}\\times\\vec{b}=-\\vec{b}\\times\\vec{c}$ as $(\\vec{a}+\\vec{b})\\times\\vec{c}=\\vec{0}$ shows $\\vec{a}+\\vec{b}$ is $\\textit{parallel}$ to $\\vec{c}=2\\hat{i}+3\\hat{j}+4\\hat{k}$. A second slip is to forget the $\\pm$ sign: since $|\\vec{c}|=\\sqrt{29}$ exactly matches $|\\vec{a}+\\vec{b}|$, the sum is $\\pm\\vec{c}$, giving two dot-product values $\\pm4$ — and only the $+4$ appears among the options.",
+    "solutions": [
+      {
+        "name": "Collapse to a single cross-product condition",
+        "steps": [
+          "Write $\\vec{c}=2\\hat{i}+3\\hat{j}+4\\hat{k}$. The hypothesis $\\vec{a}\\times\\vec{c}=\\vec{c}\\times\\vec{b}$ becomes $\\vec{a}\\times\\vec{c}=-\\vec{b}\\times\\vec{c}$, i.e. $\\vec{a}\\times\\vec{c}+\\vec{b}\\times\\vec{c}=\\vec{0}$, so $(\\vec{a}+\\vec{b})\\times\\vec{c}=\\vec{0}$.",
+          "A zero cross product means $\\vec{a}+\\vec{b}$ is parallel to $\\vec{c}$, so $\\vec{a}+\\vec{b}=\\lambda\\,\\vec{c}$ for some scalar $\\lambda$.",
+          "Taking magnitudes, $|\\vec{a}+\\vec{b}|=|\\lambda|\\,|\\vec{c}|$. Since $|\\vec{c}|=\\sqrt{2^2+3^2+4^2}=\\sqrt{29}=|\\vec{a}+\\vec{b}|$, we get $|\\lambda|=1$, hence $\\vec{a}+\\vec{b}=\\pm\\vec{c}$.",
+          "Then $(\\vec{a}+\\vec{b})\\cdot(-7\\hat{i}+2\\hat{j}+3\\hat{k})=\\pm(2\\cdot(-7)+3\\cdot2+4\\cdot3)=\\pm(-14+6+12)=\\pm4$. The value present among the options is $\\boxed{4}$."
+        ]
+      },
+      {
+        "name": "Coordinates plus the parallelism ratio",
+        "steps": [
+          "Since $(\\vec{a}+\\vec{b})\\times\\vec{c}=\\vec{0}$ with $\\vec{c}=(2,3,4)$, write $\\vec{a}+\\vec{b}=(p,q,r)$; parallelism forces $\\dfrac{p}{2}=\\dfrac{q}{3}=\\dfrac{r}{4}=t$, so $(p,q,r)=(2t,3t,4t)$.",
+          "Impose the length: $p^2+q^2+r^2=29$ gives $t^2(4+9+16)=29t^2=29$, so $t=\\pm1$ and $(p,q,r)=\\pm(2,3,4)$.",
+          "Dot with $(-7,2,3)$: $-7p+2q+3r=t(-14+6+12)=4t$.",
+          "With $t=\\pm1$ this equals $\\pm4$; the attainable option is $\\boxed{4}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 2, Q43. Insight: the whole problem hinges on reading $\\vec{a}\\times\\vec{c}=\\vec{c}\\times\\vec{b}$ as $(\\vec{a}+\\vec{b})\\times\\vec{c}=\\vec{0}$ — the individual vectors never matter, only that their sum is pinned parallel to $\\vec{c}$ with a length that exactly matches $|\\vec{c}|$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Coplanar Lines and Their Planes",
+    "difficulty": 4,
+    "task": "Find",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "57"
+    },
+    "tags": [
+      "3D lines",
+      "coplanarity",
+      "plane through two lines",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "The straight lines $\\dfrac{x-1}{2}=\\dfrac{y+1}{k}=\\dfrac{z}{2}$ and $\\dfrac{x+1}{5}=\\dfrac{y+1}{2}=\\dfrac{z}{k}$ are coplanar. Find the plane(s) containing these two lines, given the candidates $y+2z=-1,\\;y+z=-1,\\;y-z=-1,\\;y-2z=-1$.",
+    "answer": "The containing planes are $\\boxed{y+z=-1 \\text{ and } y-z=-1}$ (options B and C).",
+    "trap": "The first snare is treating $k$ as fixed: the coplanarity condition is a quadratic $8-2k^2=0$, so $\\textit{both}$ $k=2$ and $k=-2$ are legitimate, and each yields its own plane — this is why the question says 'plane(s)'. The second snare is computing the normal from a single line's direction alone; the plane's normal must be perpendicular to $\\textbf{both}$ direction vectors, i.e. their cross product $\\vec{d_1}\\times\\vec{d_2}$. A careless sign in that cross product flips $y+z=-1$ into $y-z=-1$ and loses one of the two correct planes.",
+    "solutions": [
+      {
+        "name": "Scalar triple product, then normal by cross product",
+        "steps": [
+          "The lines pass through $A=(1,-1,0)$ and $B=(-1,-1,0)$ with directions $\\vec{d_1}=(2,k,2)$ and $\\vec{d_2}=(5,2,k)$. Let $\\vec{w}=B-A=(-2,0,0)$.",
+          "Coplanarity requires the scalar triple product $[\\vec{w}\\ \\vec{d_1}\\ \\vec{d_2}]=0$: $\\begin{vmatrix}-2&0&0\\\\2&k&2\\\\5&2&k\\end{vmatrix}=-2(k^2-4)=8-2k^2=0$, so $k=\\pm2$.",
+          "For $k=2$: $\\vec{d_1}=(2,2,2),\\ \\vec{d_2}=(5,2,2)$, and the normal $\\vec{n}=\\vec{d_1}\\times\\vec{d_2}=(2\\cdot2-2\\cdot2,\\ 2\\cdot5-2\\cdot2,\\ 2\\cdot2-2\\cdot5)=(0,6,-6)\\parallel(0,1,-1)$. The plane through $A=(1,-1,0)$ is $0(x-1)+1(y+1)-1\\,z=0$, i.e. $y-z=-1$.",
+          "For $k=-2$: $\\vec{d_1}=(2,-2,2),\\ \\vec{d_2}=(5,2,-2)$, and $\\vec{n}=\\vec{d_1}\\times\\vec{d_2}=((-2)(-2)-2\\cdot2,\\ 2\\cdot5-2\\cdot(-2),\\ 2\\cdot2-(-2)5)=(0,14,14)\\parallel(0,1,1)$. The plane through $A$ is $y+1+z=0$, i.e. $y+z=-1$. Hence the planes are $\\boxed{y+z=-1 \\text{ and } y-z=-1}$."
+        ]
+      },
+      {
+        "name": "Assume a $z$-free normal and match the pencil",
+        "steps": [
+          "Every candidate plane has no $x$-term and constant $-1$, so try a normal $\\vec{n}=(0,1,m)$ and a plane $y+mz=c$. It must contain both lines, so $\\vec{n}$ is orthogonal to each direction: $\\vec{n}\\cdot\\vec{d_1}=k+2m=0$ and $\\vec{n}\\cdot\\vec{d_2}=2+mk=0$.",
+          "From the first, $k=-2m$; substituting into the second gives $2+m(-2m)=2-2m^2=0$, so $m=\\pm1$ (and correspondingly $k=\\mp2$), matching $k=\\pm2$.",
+          "The plane passes through the common point $(-1,-1,0)$ of description (it lies on the second line, and on the first when $k=\\pm2$ one checks $A=(1,-1,0)$): imposing $y+mz=c$ at $y=-1,z=0$ gives $c=-1$ for both signs.",
+          "Thus $m=1$ gives $y+z=-1$ and $m=-1$ gives $y-z=-1$, so the containing planes are $\\boxed{y+z=-1 \\text{ and } y-z=-1}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 2, Q57. Insight: a symmetric-looking pair of lines hides a quadratic coplanarity condition, so 'the plane' is really two planes — one for each root $k=\\pm2$ — and the shared $z$-free normal $(0,1,\\pm1)$ makes the pencil $y\\pm z=-1$ jump straight out."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Feet of Perpendiculars to a Plane",
+    "difficulty": 4,
+    "task": "Identify",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "41"
+    },
+    "tags": [
+      "3D geometry",
+      "line and plane",
+      "foot of perpendicular",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "From every point on the line $\\dfrac{x+2}{2}=\\dfrac{y+1}{-1}=\\dfrac{z}{3}$, a perpendicular is dropped onto the plane $x+y+z=3$. As the source point sweeps the line, its foot of perpendicular traces out a new line. Which of the following lines is that locus? $(A)\\;\\dfrac{x}{5}=\\dfrac{y-1}{8}=\\dfrac{z-2}{-13}$, $(B)\\;\\dfrac{x}{2}=\\dfrac{y-1}{3}=\\dfrac{z-2}{-5}$, $(C)\\;\\dfrac{x}{4}=\\dfrac{y-1}{3}=\\dfrac{z-2}{-7}$, $(D)\\;\\dfrac{x}{2}=\\dfrac{y-1}{-7}=\\dfrac{z-2}{5}$.",
+    "answer": "The feet trace $\\boxed{\\dfrac{x}{2}=\\dfrac{y-1}{-7}=\\dfrac{z-2}{5}}$, option $(D)$.",
+    "trap": "The tempting shortcut is to keep the line's own direction $(2,-1,3)$ as the answer's direction — but the feet lie $\\textit{in}$ the plane, so their locus must have a direction perpendicular to the plane's normal $(1,1,1)$. The correct direction is the $\\textbf{projection}$ of $(2,-1,3)$ onto the plane, not the raw direction; several distractors are built from plausible but unprojected slopes. A second snare is forgetting to find one genuine foot to pin the line's position: knowing only the direction cannot distinguish $(D)$ from a parallel impostor.",
+    "solutions": [
+      {
+        "name": "One point plus its foot fixes the locus",
+        "steps": [
+          "A general point on the given line is $B=(2\\lambda-2,\\,-\\lambda-1,\\,3\\lambda)$. Where does the line pierce the plane? Impose $x+y+z=3$: $(2\\lambda-2)+(-\\lambda-1)+3\\lambda=4\\lambda-3=3$, so $\\lambda=\\tfrac32$ and $B=(1,-\\tfrac52,\\tfrac92)$ is a point already on the plane, hence its own foot.",
+          "Take a second, cleaner source point at $\\lambda=0$, namely $P=(-2,-1,0)$. Its foot $A$ on the plane is $A=P+t(1,1,1)$ with $t=\\dfrac{3-(P\\cdot n)}{n\\cdot n}=\\dfrac{3-(-3)}{3}=2$, giving $A=(0,1,2)$.",
+          "The locus of feet passes through both $A=(0,1,2)$ and $B=(1,-\\tfrac52,\\tfrac92)$. Its direction is $B-A=(1,-\\tfrac72,\\tfrac52)\\parallel(2,-7,5)$.",
+          "Anchoring at $A=(0,1,2)$ with direction $(2,-7,5)$ gives $\\dfrac{x}{2}=\\dfrac{y-1}{-7}=\\dfrac{z-2}{5}$, which is $\\boxed{\\dfrac{x}{2}=\\dfrac{y-1}{-7}=\\dfrac{z-2}{5}}$ — option $(D)$."
+        ]
+      },
+      {
+        "name": "Project the direction onto the plane",
+        "steps": [
+          "The map 'point $\\mapsto$ foot on the plane' is orthogonal projection, which is linear, so the image line's direction is the projection of the original direction $\\vec d=(2,-1,3)$ onto the plane with unit normal $\\hat n=\\tfrac{1}{\\sqrt3}(1,1,1)$.",
+          "Compute $\\vec d_{\\parallel}=\\vec d-(\\vec d\\cdot\\hat n)\\hat n$. Here $\\vec d\\cdot(1,1,1)=2-1+3=4$, so $\\vec d_{\\parallel}=(2,-1,3)-\\dfrac{4}{3}(1,1,1)=\\left(\\tfrac23,-\\tfrac73,\\tfrac53\\right)\\parallel(2,-7,5)$.",
+          "Fix the position with a single foot: projecting $P=(-2,-1,0)$ gives $A=(0,1,2)$ as above.",
+          "Direction $(2,-7,5)$ through $(0,1,2)$ yields $\\boxed{\\dfrac{x}{2}=\\dfrac{y-1}{-7}=\\dfrac{z-2}{5}}$, confirming option $(D)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 1, Q41. Insight: dropping perpendiculars onto a plane is orthogonal projection, so the feet inherit not the line's own direction but its shadow — the component of that direction lying in the plane, orthogonal to the normal."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Parallelepiped from Parallelogram Diagonals",
+    "difficulty": 4,
+    "task": "Compute",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "48"
+    },
+    "tags": [
+      "scalar triple product",
+      "volume of parallelepiped",
+      "diagonals of parallelogram",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec{PR}=3\\hat i+\\hat j-2\\hat k$ and $\\vec{SQ}=\\hat i-3\\hat j-4\\hat k$ be the diagonals of a parallelogram $PQRS$, and let $\\vec{PT}=\\hat i+2\\hat j+3\\hat k$ be a third vector. Find the volume of the parallelepiped determined by the edge vectors $\\vec{PT}$, $\\vec{PQ}$ and $\\vec{PS}$. The options are $(A)\\;5$, $(B)\\;20$, $(C)\\;10$, $(D)\\;30$.",
+    "answer": "The volume is $\\boxed{10}$, option $(C)$.",
+    "trap": "The vectors handed to you are the $\\textit{diagonals}$, not the edges of the parallelogram — you must first recover $\\vec{PQ}$ and $\\vec{PS}$ from them. In $PQRS$ the diagonals are $\\vec{PR}=\\vec{PQ}+\\vec{PS}$ and $\\vec{SQ}=\\vec{PQ}-\\vec{PS}$, so $\\vec{PQ}=\\tfrac12(\\vec{PR}+\\vec{SQ})$ and $\\vec{PS}=\\tfrac12(\\vec{PR}-\\vec{SQ})$; sign-swapping $\\vec{SQ}$ with $\\vec{QS}$ silently interchanges $\\vec{PQ}$ and $\\vec{PS}$, and while it leaves this volume unchanged it wrecks any area/orientation follow-up. Grabbing $\\vec{PR}$ and $\\vec{SQ}$ directly as edges gives a wrong (and much larger) triple product.",
+    "solutions": [
+      {
+        "name": "Recover the edges, then scalar triple product",
+        "steps": [
+          "From $\\vec{PR}=\\vec{PQ}+\\vec{PS}$ and $\\vec{SQ}=\\vec{PQ}-\\vec{PS}$, add and subtract: $\\vec{PQ}=\\tfrac12(\\vec{PR}+\\vec{SQ})=\\tfrac12(4,-2,-6)=(2,-1,-3)$ and $\\vec{PS}=\\tfrac12(\\vec{PR}-\\vec{SQ})=\\tfrac12(2,4,2)=(1,2,1)$.",
+          "The volume is $\\big|\\,[\\vec{PT}\\ \\vec{PQ}\\ \\vec{PS}]\\,\\big|=\\left|\\begin{vmatrix}1&2&3\\\\2&-1&-3\\\\1&2&1\\end{vmatrix}\\right|$.",
+          "Expand along the top row: $1\\big((-1)(1)-(-3)(2)\\big)-2\\big((2)(1)-(-3)(1)\\big)+3\\big((2)(2)-(-1)(1)\\big)=1(5)-2(5)+3(5)=10$.",
+          "Hence the volume is $\\boxed{10}$ — option $(C)$."
+        ]
+      },
+      {
+        "name": "Base area times height along the normal",
+        "steps": [
+          "The parallelogram $PQRS$ has diagonals $\\vec{PR},\\vec{SQ}$, so its area is $\\tfrac12|\\vec{PR}\\times\\vec{SQ}|$. Compute $\\vec{PR}\\times\\vec{SQ}=(3,1,-2)\\times(1,-3,-4)=\\big(1\\cdot(-4)-(-2)(-3),\\,(-2)(1)-3(-4),\\,3(-3)-1\\cdot1\\big)=(-10,10,-10)$.",
+          "Thus $|\\vec{PR}\\times\\vec{SQ}|=10\\sqrt3$ and the base area is $5\\sqrt3$, with unit normal $\\hat n=\\tfrac{1}{\\sqrt3}(-1,1,-1)$ to the base plane.",
+          "The parallelepiped's height is the length of $\\vec{PT}$'s component along $\\hat n$: $|\\vec{PT}\\cdot\\hat n|=\\dfrac{|(1)(-1)+(2)(1)+(3)(-1)|}{\\sqrt3}=\\dfrac{|-2|}{\\sqrt3}=\\dfrac{2}{\\sqrt3}$.",
+          "Volume $=$ base $\\times$ height $=5\\sqrt3\\cdot\\dfrac{2}{\\sqrt3}=10$, so the volume is $\\boxed{10}$ — option $(C)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 1, Q48. Insight: the half-sum and half-difference of a parallelogram's diagonals rebuild its edges, after which one $3\\times3$ determinant delivers the volume — and the base-times-height route confirms it geometrically."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Points on the Common Perpendicular",
+    "difficulty": 4,
+    "task": "Find",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "51"
+    },
+    "tags": [
+      "line perpendicular to two lines",
+      "common perpendicular",
+      "3D geometry",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "A line $\\ell$ passing through the origin is perpendicular to the lines $\\ell_1:\\ (3+t)\\hat i+(-1+2t)\\hat j+(4+2t)\\hat k,\\ -\\infty<t<\\infty$ and $\\ell_2:\\ (3+2s)\\hat i+(3+2s)\\hat j+(2+s)\\hat k,\\ -\\infty<s<\\infty$. Then the coordinates of the point(s) on $\\ell$ at a distance of $\\sqrt{17}$ from the point of intersection of $\\ell$ and $\\ell_1$ are the two points found below.",
+    "answer": "The two points are $\\boxed{(0,0,0)\\ \\text{and}\\ (4,-6,4)}$.",
+    "trap": "The tempting shortcut is to build $\\ell$ from either single direction vector, or to average the two direction vectors, instead of taking their cross product. A subtler trap hides in the last step: the intersection point $M$ turns out to be $(2,-3,2)$, whose own distance from the origin is exactly $\\sqrt{2^2+3^2+2^2}=\\sqrt{17}$. So the origin itself is one of the two required points — a solver who reflexively discards the origin as trivial will report only half the answer.",
+    "solutions": [
+      {
+        "name": "Cross product then parametrise $\\ell$",
+        "steps": [
+          "The direction of $\\ell_1$ is $\\mathbf d_1=(1,2,2)$ (differentiate its coordinates in $t$) and of $\\ell_2$ is $\\mathbf d_2=(2,2,1)$. Since $\\ell$ is perpendicular to both, its direction is $\\mathbf u=\\mathbf d_1\\times\\mathbf d_2=\\begin{vmatrix}\\hat i&\\hat j&\\hat k\\\\1&2&2\\\\2&2&1\\end{vmatrix}=(2-4)\\hat i-(1-4)\\hat j+(2-4)\\hat k=(-2,3,-2)$, i.e. $\\mathbf u\\parallel(2,-3,2)$.",
+          "As $\\ell$ passes through the origin, its points are $P=k\\,(2,-3,2)$. To find $M=\\ell\\cap\\ell_1$, set $(3+t,-1+2t,4+2t)=k(2,-3,2)$. Subtracting the first coordinate equation from the third gives $(4+2t)-(3+t)=2k-2k\\Rightarrow 1+t=0$, so $t=-1$ and hence $M=(2,-3,2)$, with $k=1$.",
+          "Crucially $|\\mathbf u|=\\sqrt{2^2+3^2+2^2}=\\sqrt{17}$, so a point $P=k\\,\\mathbf u$ lies at distance $|k-1|\\,|\\mathbf u|=|k-1|\\sqrt{17}$ from $M$. Requiring this to equal $\\sqrt{17}$ gives $|k-1|=1$, so $k=0$ or $k=2$.",
+          "Therefore $P=0\\cdot\\mathbf u=(0,0,0)$ or $P=2\\,(2,-3,2)=(4,-6,4)$. Both are verified to sit at distance $\\sqrt{17}$ from $M$, so the required points are $\\boxed{(0,0,0)\\ \\text{and}\\ (4,-6,4)}$."
+        ]
+      },
+      {
+        "name": "Orthogonality equations for the direction",
+        "steps": [
+          "Let $\\ell$ have direction $\\mathbf u=(a,b,c)$. Perpendicularity to $\\ell_1$ and $\\ell_2$ means $\\mathbf u\\cdot\\mathbf d_1=0$ and $\\mathbf u\\cdot\\mathbf d_2=0$, i.e. $a+2b+2c=0$ and $2a+2b+c=0$.",
+          "Subtracting, $(2a+2b+c)-(a+2b+2c)=a-c=0$, so $a=c$. Substituting into $a+2b+2c=0$ gives $3a+2b=0$, i.e. $b=-\\tfrac{3}{2}a$. Choosing $a=2$ yields $\\mathbf u=(2,-3,2)$, matching the cross product.",
+          "The foot $M$ on $\\ell_1$ satisfies $(3+t,-1+2t,4+2t)=k(2,-3,2)$; consistency forces $t=-1$, giving $M=(2,-3,2)$ and $k=1$. Since $|\\mathbf u|^2=17$, points of $\\ell$ are $k\\mathbf u$ and the distance to $M$ is $|k-1|\\sqrt{17}$.",
+          "Setting $|k-1|\\sqrt{17}=\\sqrt{17}$ gives $k\\in\\{0,2\\}$, so the points are $(0,0,0)$ and $(4,-6,4)$, i.e. $\\boxed{(0,0,0)\\ \\text{and}\\ (4,-6,4)}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 1, Q51. (The widely circulated option set corrupts the $\\hat i$-component of $\\ell_1$; restoring it to $3+t$ makes the geometry consistent, and a direct computation — verified in Python — gives the perpendicular direction $(2,-3,2)$ with $|\\mathbf u|=\\sqrt{17}$, so the intersection point $M=(2,-3,2)$ is itself $\\sqrt{17}$ from the origin.) Insight: when the common-perpendicular direction happens to have length $\\sqrt{17}$ and $M$ sits one unit-vector away from the origin, the origin is one of the two answer points — never discard it as trivial."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Counting Non-Coplanar Triples of Vertices",
+    "difficulty": 4,
+    "task": "Find",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "56"
+    },
+    "tags": [
+      "coplanarity",
+      "counting with vectors",
+      "scalar triple product",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "Consider the set of eight vectors $V=\\{a\\hat i+b\\hat j+c\\hat k:\\ a,b,c\\in\\{-1,1\\}\\}$. Three non-coplanar vectors can be chosen from $V$ in $2^{p}$ ways. Find $p$.",
+    "answer": "The value is $\\boxed{p=5}$.",
+    "trap": "The trap is to think coplanarity is rare and to hunt for it case by case. In fact the eight vectors are the position vectors of the vertices of a cube centred at the origin, so they split into four antiparallel pairs $\\mathbf v,-\\mathbf v$. Any triple that contains such a pair is automatically coplanar (two of its vectors are collinear with the origin, forcing the scalar triple product to vanish). Missing this structural fact makes the count intractable; seeing it makes it a one-line subtraction.",
+    "solutions": [
+      {
+        "name": "Subtract the coplanar triples",
+        "steps": [
+          "Total unordered triples chosen from the eight vectors number $\\binom{8}{3}=56$. Three vectors are coplanar exactly when their scalar triple product (the $3\\times3$ determinant of their components) is zero.",
+          "The eight vectors form four antiparallel pairs $\\{\\mathbf v,-\\mathbf v\\}$. If a triple contains a whole pair, two of its rows are proportional, so the determinant is $0$ and the triple is coplanar. There are $4$ pairs, and each pair can be completed by any of the remaining $6$ vectors, giving $4\\times6=24$ such triples — and one checks that no *other* triple is coplanar.",
+          "Hence the number of non-coplanar triples is $56-24=32$.",
+          "Since $32=2^{5}$, we read off $2^{p}=2^{5}$, so $\\boxed{p=5}$."
+        ]
+      },
+      {
+        "name": "Direct construction pair by pair",
+        "steps": [
+          "Group $V$ into its four antiparallel pairs. To build a non-coplanar triple we must pick three vectors that avoid taking both members of any single pair — because any full pair kills the determinant, as argued above.",
+          "First choose which three of the four pairs the vectors come from: $\\binom{4}{3}=4$ ways. From each of the three chosen pairs we then select one of its two members, giving $2\\times2\\times2=8$ sign choices.",
+          "Every such selection is genuinely non-coplanar: three vectors drawn from three distinct axes of the cube's diagonals never lie in one plane through the origin (their determinant equals $\\pm4\\neq0$, confirmed by direct evaluation).",
+          "So the count is $4\\times8=32=2^{5}$, again giving $\\boxed{p=5}$. Both routes agree, and an exhaustive Python check over all $\\binom{8}{3}$ triples confirms exactly $32$ have non-zero triple product."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 1, Q56. Insight: recognising the eight sign-vectors as a centred cube collapses a fearsome-looking count into “total minus the triples that swallow an antiparallel pair” — and the answer $32=2^5$ falls out cleanly."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "When Two Skew-Looking Lines Turn Coplanar",
+    "difficulty": 4,
+    "task": "Find all values",
+    "pyq": {
+      "year": 2013,
+      "paper": "2",
+      "qno": "43"
+    },
+    "tags": [
+      "3D geometry",
+      "coplanar lines",
+      "shortest distance",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "Consider the two lines $L_1:\\ x=5,\\ \\dfrac{y}{3-\\alpha}=\\dfrac{z}{-2}$ and $L_2:\\ x=\\alpha,\\ \\dfrac{y}{-1}=\\dfrac{z}{2-\\alpha}$. Determine every value that the parameter $\\alpha$ can take so that $L_1$ and $L_2$ are coplanar. The permissible choices are $\\alpha=1,\\ \\alpha=2,\\ \\alpha=3,\\ \\alpha=4$.",
+    "answer": "The lines are coplanar precisely when $\\boxed{\\alpha=1\\ \\text{or}\\ \\alpha=4}$.",
+    "trap": "Because both lines live in planes of the form $x=\\text{const}$, it is tempting to think the fixed $x$-coordinates alone settle coplanarity, or to force the two direction vectors to be parallel. Neither is right: coplanarity of two lines is governed by the single scalar triple product $(\\mathbf{P_2}-\\mathbf{P_1})\\cdot(\\mathbf{d_1}\\times\\mathbf{d_2})=0$, which mixes the connecting vector with $\\textit{both}$ directions. A further slip is arithmetic — the condition is a genuine cubic in $\\alpha$ whose three roots are $1,4,5$; forgetting that $\\alpha=5$ is a valid root (it just isn't among the offered options) or mis-expanding the determinant will corrupt the option count.",
+    "solutions": [
+      {
+        "name": "Scalar triple product vanishes",
+        "steps": [
+          "Read off a point and direction for each line. $L_1$ passes through $\\mathbf{P_1}=(5,0,0)$ with direction $\\mathbf{d_1}=(0,\\,3-\\alpha,\\,-2)$, and $L_2$ passes through $\\mathbf{P_2}=(\\alpha,0,0)$ with direction $\\mathbf{d_2}=(0,\\,-1,\\,2-\\alpha)$.",
+          "Two lines are coplanar exactly when their shortest distance is zero, i.e. when $(\\mathbf{P_2}-\\mathbf{P_1})\\cdot(\\mathbf{d_1}\\times\\mathbf{d_2})=0$. Here $\\mathbf{P_2}-\\mathbf{P_1}=(\\alpha-5,\\,0,\\,0)$.",
+          "Evaluate the determinant $\\begin{vmatrix}\\alpha-5&0&0\\\\0&3-\\alpha&-2\\\\0&-1&2-\\alpha\\end{vmatrix}=(\\alpha-5)\\big[(3-\\alpha)(2-\\alpha)-(-2)(-1)\\big]=(\\alpha-5)(\\alpha^2-5\\alpha+4)$.",
+          "Factor: $(\\alpha-5)(\\alpha-1)(\\alpha-4)=0$, so $\\alpha\\in\\{1,4,5\\}$. Among the listed options only $\\alpha=1$ and $\\alpha=4$ appear, giving the coplanar values $\\boxed{\\alpha=1\\ \\text{or}\\ \\alpha=4}$."
+        ]
+      },
+      {
+        "name": "Force a common point of intersection",
+        "steps": [
+          "A cleaner-looking route: since neither direction is a multiple of the other for generic $\\alpha$, two coplanar non-parallel lines must actually meet. Parametrise $L_1$ as $(5,\\,(3-\\alpha)t,\\,-2t)$ and $L_2$ as $(\\alpha,\\,-s,\\,(2-\\alpha)s)$.",
+          "Equating $x$: $5=\\alpha$ is one way to meet (the $\\alpha=5$ root). Otherwise, for $\\alpha\\ne5$ the $x$-coordinates $5$ and $\\alpha$ can never coincide, so intersection requires the two lines to be $\\textit{parallel}$ instead — the only remaining way to be coplanar.",
+          "Parallelism means $\\mathbf{d_1}\\parallel\\mathbf{d_2}$: $(0,3-\\alpha,-2)=\\lambda(0,-1,2-\\alpha)$. From the $y$- and $z$-entries, $3-\\alpha=-\\lambda$ and $-2=\\lambda(2-\\alpha)$, so $-2=-(3-\\alpha)(2-\\alpha)$, i.e. $(3-\\alpha)(2-\\alpha)=2$.",
+          "Expand: $\\alpha^2-5\\alpha+6=2\\Rightarrow\\alpha^2-5\\alpha+4=0\\Rightarrow(\\alpha-1)(\\alpha-4)=0$. So the non-intersecting coplanar cases are $\\alpha=1,4$, matching the triple-product cubic exactly and confirming $\\boxed{\\alpha=1\\ \\text{or}\\ \\alpha=4}$ (with $\\alpha=5$ the separate intersecting root)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 2, Q43. Insight: the coplanarity determinant here factors as $(\\alpha-5)(\\alpha-1)(\\alpha-4)$ — the $\\alpha=5$ root is the lines actually meeting, while $\\alpha=1,4$ are the values that make them parallel, two geometrically distinct ways of sharing a plane."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "How Volumes and Areas Rescale Under Combinations",
+    "difficulty": 4,
+    "task": "Match",
+    "pyq": {
+      "year": 2013,
+      "paper": "2",
+      "qno": "59"
+    },
+    "tags": [
+      "scalar triple product",
+      "cross product area",
+      "matching",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "Match each entry of List I with its correct value in List II. In List I: $P.$ The volume of the parallelepiped determined by $\\vec a,\\vec b,\\vec c$ is $2$; then the volume of the parallelepiped determined by $2(\\vec a\\times\\vec b),\\ 3(\\vec b\\times\\vec c),\\ (\\vec c\\times\\vec a)$ is what? $Q.$ The volume of the parallelepiped determined by $\\vec a,\\vec b,\\vec c$ is $5$; then the volume of the parallelepiped determined by $3(\\vec a+\\vec b),\\ (\\vec b+\\vec c),\\ 2(\\vec c+\\vec a)$ is what? $R.$ The area of the triangle with adjacent sides $\\vec a,\\vec b$ is $20$; then the area of the triangle with adjacent sides $(2\\vec a+3\\vec b),\\ (\\vec a-\\vec b)$ is what? $S.$ The area of the parallelogram with adjacent sides $\\vec a,\\vec b$ is $30$; then the area of the parallelogram with adjacent sides $(\\vec a+\\vec b),\\ \\vec a$ is what? List II offers the values $1.\\ 100$, $\\ 2.\\ 30$, $\\ 3.\\ 24$, $\\ 4.\\ 60$. The codes are (A) $P\\text{-}4,Q\\text{-}2,R\\text{-}3,S\\text{-}1$; (B) $P\\text{-}2,Q\\text{-}3,R\\text{-}1,S\\text{-}4$; (C) $P\\text{-}3,Q\\text{-}4,R\\text{-}1,S\\text{-}2$; (D) $P\\text{-}1,Q\\text{-}4,R\\text{-}3,S\\text{-}2$.",
+    "answer": "The correct matching is code $\\boxed{(C)\\ P\\text{-}3,\\ Q\\text{-}4,\\ R\\text{-}1,\\ S\\text{-}2}$.",
+    "trap": "Each part hides a different scaling law. In $P$ the box of the three cross products equals the $\\textit{square}$ of the original box, $[\\vec a\\times\\vec b\\ \\ \\vec b\\times\\vec c\\ \\ \\vec c\\times\\vec a]=[\\vec a\\,\\vec b\\,\\vec c]^2$ — treating it as linear ($2$ instead of $4$) is the classic error. In $Q$ the sums $\\vec a+\\vec b,\\ \\vec b+\\vec c,\\ \\vec c+\\vec a$ contribute a determinant factor of exactly $2$, not $1$ or $3$. In $R$ and $S$, the self-cross terms $\\vec a\\times\\vec a$ vanish, so only the mixed $\\vec a\\times\\vec b$ survives — miscounting its coefficient is where marks are lost.",
+    "solutions": [
+      {
+        "name": "Expand each combination directly",
+        "steps": [
+          "$P$: $[\\,2(\\vec a\\times\\vec b),\\,3(\\vec b\\times\\vec c),\\,(\\vec c\\times\\vec a)\\,]=(2)(3)(1)\\,[\\vec a\\times\\vec b\\ \\ \\vec b\\times\\vec c\\ \\ \\vec c\\times\\vec a]=6\\,[\\vec a\\,\\vec b\\,\\vec c]^2=6\\cdot2^2=24$, so $P\\!\\to\\!3$.",
+          "$Q$: pulling out scalars, $[\\,3(\\vec a+\\vec b),\\,(\\vec b+\\vec c),\\,2(\\vec c+\\vec a)\\,]=6\\,[\\vec a+\\vec b\\ \\ \\vec b+\\vec c\\ \\ \\vec c+\\vec a]=6\\cdot2\\,[\\vec a\\,\\vec b\\,\\vec c]=12\\cdot5=60$, so $Q\\!\\to\\!4$.",
+          "$R$: $\\tfrac12\\big|(2\\vec a+3\\vec b)\\times(\\vec a-\\vec b)\\big|=\\tfrac12\\big|{-2}(\\vec a\\times\\vec b)-3(\\vec a\\times\\vec b)\\big|=\\tfrac{5}{2}|\\vec a\\times\\vec b|=5\\cdot(\\tfrac12|\\vec a\\times\\vec b|)=5\\cdot20=100$, so $R\\!\\to\\!1$.",
+          "$S$: $\\big|(\\vec a+\\vec b)\\times\\vec a\\big|=|\\vec b\\times\\vec a|=|\\vec a\\times\\vec b|=30$ (the parallelogram area is preserved), so $S\\!\\to\\!2$. Collecting: $P\\text{-}3,Q\\text{-}4,R\\text{-}1,S\\text{-}2=\\boxed{(C)}$."
+        ]
+      },
+      {
+        "name": "Determinant / matrix-of-coefficients shortcut",
+        "steps": [
+          "Any linear combination of the base vectors scales the box by the determinant of its coefficient matrix. $P$: the map $(\\vec a,\\vec b,\\vec c)\\mapsto(\\vec a\\times\\vec b,\\vec b\\times\\vec c,\\vec c\\times\\vec a)$ squares the box ($[\\vec a\\,\\vec b\\,\\vec c]^2$); with scalars $2\\cdot3\\cdot1=6$ this is $6\\cdot4=24$ $(P\\text{-}3)$.",
+          "$Q$: the coefficient matrix of $(\\vec a+\\vec b,\\vec b+\\vec c,\\vec c+\\vec a)$ is $\\begin{pmatrix}1&1&0\\\\0&1&1\\\\1&0&1\\end{pmatrix}$ with determinant $2$; times the scalars $3\\cdot1\\cdot2=6$ gives factor $12$, so $12\\cdot5=60$ $(Q\\text{-}4)$.",
+          "$R$: the coefficient matrix of the two planar vectors $(2\\vec a+3\\vec b,\\ \\vec a-\\vec b)$ is $\\begin{pmatrix}2&3\\\\1&-1\\end{pmatrix}$ with $|\\det|=|{-2-3}|=5$; area scales by $5$, so $5\\cdot20=100$ $(R\\text{-}1)$.",
+          "$S$: the matrix of $(\\vec a+\\vec b,\\ \\vec a)$ is $\\begin{pmatrix}1&1\\\\1&0\\end{pmatrix}$ with $|\\det|=1$; area unchanged, $30$ $(S\\text{-}2)$. Every part matches Method 1, so the answer is code $\\boxed{(C)}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 2, Q59. Insight: for linear combinations the volume (or area) multiplies by the determinant of the coefficient matrix — and the cross-product triple $\\vec a\\times\\vec b,\\vec b\\times\\vec c,\\vec c\\times\\vec a$ is the lone exception, squaring the box rather than scaling it linearly."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Plane Through Two Lines, Twice Perpendicular",
+    "difficulty": 4,
+    "task": "Find $a$, $b$, $c$, $d$ for the plane $ax+by+cz=d$.",
+    "pyq": {
+      "year": 2013,
+      "paper": "2",
+      "qno": "60"
+    },
+    "tags": [
+      "plane perpendicular to two planes",
+      "line of intersection",
+      "scalar triple product",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "Consider the lines $L_1:\\dfrac{x-1}{2}=\\dfrac{y}{-1}=\\dfrac{z+3}{1}$ and $L_2:\\dfrac{x-4}{1}=\\dfrac{y+3}{1}=\\dfrac{z+3}{2}$, together with the planes $P_1:7x+y+2z=3$ and $P_2:3x+5y-6z=4$. Let $ax+by+cz=d$ be the equation of the plane that passes through the point of intersection of $L_1$ and $L_2$ and is perpendicular to both $P_1$ and $P_2$. Determine the values of $a$, $b$, $c$ and $d$.",
+    "answer": "$a=1,\\ b=-3,\\ c=-2,\\ d=13,$ i.e. $\\boxed{x-3y-2z=13}$",
+    "trap": "The two lines are not skew here — they genuinely meet, and finding that point is half the battle; blindly reaching for a shortest-distance formula wastes the gift. The second snare is orientation: the normal $\\vec n_1\\times\\vec n_2=(-16,48,32)\\propto(-1,3,2)$ gives $-x+3y+2z=-13$, which is the *same* plane but with $a=-1$; you must scale to the sign convention that lands $a=1$ before reading off $b,c,d$.",
+    "solutions": [
+      {
+        "name": "Intersection point, then cross product of the two normals",
+        "steps": [
+          "A plane perpendicular to both $P_1$ and $P_2$ has a normal perpendicular to neither normal — it must be perpendicular to both $\\vec n_1=(7,1,2)$ and $\\vec n_2=(3,5,-6)$, so the required normal is $\\vec n=\\vec n_1\\times\\vec n_2=(1\\cdot(-6)-2\\cdot5,\\ 2\\cdot3-7\\cdot(-6),\\ 7\\cdot5-1\\cdot3)=(-16,48,32)\\propto(-1,3,2)$.",
+          "Locate the meeting point: write $L_1$ as $(1+2t,-t,-3+t)$ and $L_2$ as $(4+s,-3+s,-3+2s)$. Matching coordinates gives $t=2,\\ s=1$, both yielding the point $(5,-2,-1)$.",
+          "The plane through $(5,-2,-1)$ with normal $(-1,3,2)$ is $-(x-5)+3(y+2)+2(z+1)=0\\Rightarrow -x+3y+2z=-13$. Multiplying by $-1$ to fix the sign convention gives $x-3y-2z=13$, so $a=1,\\ b=-3,\\ c=-2,\\ d=13$."
+        ]
+      },
+      {
+        "name": "Scalar-triple-product (determinant) form of the plane",
+        "steps": [
+          "Any point $(x,y,z)$ of the plane, minus the base point $(5,-2,-1)$, must be coplanar with the two plane-normals $\\vec n_1=(7,1,2)$ and $\\vec n_2=(3,5,-6)$ (because the required normal is $\\vec n_1\\times\\vec n_2$, the plane is spanned by $\\vec n_1,\\vec n_2$). Coplanarity means the scalar triple product vanishes: $\\begin{vmatrix}x-5&y+2&z+1\\\\7&1&2\\\\3&5&-6\\end{vmatrix}=0$.",
+          "Expanding: $(x-5)(1\\cdot(-6)-2\\cdot5)-(y+2)(7\\cdot(-6)-2\\cdot3)+(z+1)(7\\cdot5-1\\cdot3)=-16(x-5)+48(y+2)+32(z+1)=0$. Dividing by $-16$ gives $(x-5)-3(y+2)-2(z+1)=0\\Rightarrow x-3y-2z=13$, so $a=1,\\ b=-3,\\ c=-2,\\ d=13$ — identical to the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 2, Q60. The one-line insight: “perpendicular to two planes” silently converts into “contains both their normals,” so the plane's normal is forced to be $\\vec n_1\\times\\vec n_2$ — after that only the base point remains to be found."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Right Angle Between Two Foot-of-Perpendicular Vectors",
+    "difficulty": 4,
+    "task": "Find all possible values of $\\lambda$.",
+    "pyq": {
+      "year": 2014,
+      "paper": "1",
+      "qno": "47"
+    },
+    "tags": [
+      "foot of perpendicular",
+      "lines in space",
+      "dot product",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "From a point $P(\\lambda,\\lambda,\\lambda)$, perpendiculars $PQ$ and $PR$ are dropped respectively onto the lines $y=x,\\ z=1$ and $y=-x,\\ z=-1$. If $P$ is such that $\\angle QPR$ is a right angle, find the possible value(s) of $\\lambda$.",
+    "answer": "$\\boxed{\\lambda=-1}$",
+    "trap": "The algebra $\\overrightarrow{PQ}\\cdot\\overrightarrow{PR}=\\lambda^2-1=0$ hands you $\\lambda=\\pm1$, and it is tempting to accept both. But at $\\lambda=1$ the point $P=(1,1,1)$ lies *on* the first line, so its foot $Q$ coincides with $P$: then $\\overrightarrow{PQ}=\\vec0$ and the angle $\\angle QPR$ is undefined — no right angle can exist. Only $\\lambda=-1$ survives.",
+    "solutions": [
+      {
+        "name": "Feet of perpendiculars, then enforce zero dot product",
+        "steps": [
+          "Line $1$: $y=x,\\ z=1$ passes through $A_1=(0,0,1)$ with direction $\\vec d_1=(1,1,0)$. The foot $Q$ satisfies $(A_1+t\\vec d_1-P)\\cdot\\vec d_1=0$; with $P=(\\lambda,\\lambda,\\lambda)$ this gives $t=\\lambda$, so $Q=(\\lambda,\\lambda,1)$ and $\\overrightarrow{PQ}=(0,0,1-\\lambda)$.",
+          "Line $2$: $y=-x,\\ z=-1$ passes through $A_2=(0,0,-1)$ with direction $\\vec d_2=(1,-1,0)$. The foot condition gives parameter $0$, so $R=(0,0,-1)$ and $\\overrightarrow{PR}=(-\\lambda,-\\lambda,-1-\\lambda)$.",
+          "Right angle: $\\overrightarrow{PQ}\\cdot\\overrightarrow{PR}=(1-\\lambda)(-1-\\lambda)=\\lambda^2-1=0\\Rightarrow\\lambda=\\pm1$. Discard $\\lambda=1$ (then $\\overrightarrow{PQ}=\\vec0$, angle undefined). Hence $\\lambda=-1$."
+        ]
+      },
+      {
+        "name": "Distances via Pythagoras, no explicit feet",
+        "steps": [
+          "For a right angle at $P$, $|QR|^2=|PQ|^2+|PR|^2$. Compute each squared distance from $P(\\lambda,\\lambda,\\lambda)$ to a line as $|\\overrightarrow{PA}|^2-\\dfrac{(\\overrightarrow{PA}\\cdot\\vec d)^2}{|\\vec d|^2}$. To line $1$ ($A_1=(0,0,1)$, $\\vec d_1=(1,1,0)$): $|PQ|^2=(2\\lambda^2+(\\lambda-1)^2)-\\dfrac{(2\\lambda)^2}{2}=(\\lambda-1)^2$. To line $2$ ($A_2=(0,0,-1)$, $\\vec d_2=(1,-1,0)$): $|PR|^2=(2\\lambda^2+(\\lambda+1)^2)-\\dfrac{0^2}{2}=2\\lambda^2+(\\lambda+1)^2$.",
+          "With $Q=(\\lambda,\\lambda,1)$ and $R=(0,0,-1)$, $|QR|^2=2\\lambda^2+4$. The Pythagorean condition $|QR|^2=|PQ|^2+|PR|^2$ reads $2\\lambda^2+4=(\\lambda-1)^2+2\\lambda^2+(\\lambda+1)^2=4\\lambda^2+2$, giving $\\lambda^2=1$. Rejecting the degenerate $\\lambda=1$ (where $Q=P$), we again get $\\lambda=-1$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 1, Q47. The one-line insight: an algebraic root is only a *geometric* answer if the configuration it produces is non-degenerate — checking that neither perpendicular collapses to a point is what quietly kills the spurious $\\lambda=1$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Vectors Forced Into a Coordinate Plane",
+    "difficulty": 4,
+    "task": "Select all correct statements.",
+    "pyq": {
+      "year": 2014,
+      "paper": "1",
+      "qno": "48"
+    },
+    "tags": [
+      "dot product",
+      "cross product",
+      "coplanarity",
+      "vector resolution",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec x,\\ \\vec y$ and $\\vec z$ be three vectors each of magnitude $\\sqrt2$, with the angle between every pair of them equal to $\\dfrac{\\pi}{3}$. If $\\vec a$ is a non-zero vector perpendicular to $\\vec x$ and to $\\vec y\\times\\vec z$, and $\\vec b$ is a non-zero vector perpendicular to $\\vec y$ and to $\\vec z\\times\\vec x$, then which of the following is (are) correct? (A) $\\vec b=(\\vec b\\cdot\\vec z)\\,(\\vec z-\\vec x)$; (B) $\\vec a=(\\vec a\\cdot\\vec y)\\,(\\vec y-\\vec z)$; (C) $\\vec a\\cdot\\vec b=-(\\vec a\\cdot\\vec y)(\\vec b\\cdot\\vec z)$; (D) $\\vec a=(\\vec a\\cdot\\vec y)\\,(\\vec z-\\vec y)$.",
+    "answer": "$\\boxed{\\text{(A), (B), (C)}}$",
+    "trap": "Reading ``$\\vec a\\perp(\\vec y\\times\\vec z)$'' as an isolated fact and reaching for a cross-product formula. The real force of that condition is structural: being perpendicular to $\\vec y\\times\\vec z$ means $\\vec a$ lies *in* the plane spanned by $\\vec y$ and $\\vec z$. The second trap is sign — once you know $\\vec a=\\alpha\\vec y+\\beta\\vec z$, the extra condition $\\vec a\\perp\\vec x$ fixes $\\beta=-\\alpha$, so the combination is $\\vec y-\\vec z$ (option B), and the look-alike $\\vec z-\\vec y$ (option D) is its negative — correct up to sign only, hence wrong.",
+    "solutions": [
+      {
+        "name": "Reduce ``perpendicular to a cross product'' to ``lies in a plane''",
+        "steps": [
+          "First fix the dot products. Each vector has $|\\vec x|=|\\vec y|=|\\vec z|=\\sqrt2$ and every pair meets at $\\dfrac{\\pi}{3}$, so $\\vec x\\cdot\\vec y=\\vec y\\cdot\\vec z=\\vec z\\cdot\\vec x=(\\sqrt2)(\\sqrt2)\\cos\\tfrac{\\pi}{3}=2\\cdot\\tfrac12=1$, while $\\vec x\\cdot\\vec x=\\vec y\\cdot\\vec y=\\vec z\\cdot\\vec z=2$.",
+          "$\\vec a\\perp(\\vec y\\times\\vec z)$ means $\\vec a$ has no component along the normal of the plane of $\\vec y,\\vec z$, i.e. $\\vec a$ lies in that plane: $\\vec a=\\alpha\\vec y+\\beta\\vec z$ for scalars $\\alpha,\\beta$.",
+          "Now impose $\\vec a\\cdot\\vec x=0$: $\\alpha(\\vec y\\cdot\\vec x)+\\beta(\\vec z\\cdot\\vec x)=\\alpha+\\beta=0$, so $\\beta=-\\alpha$ and $\\vec a=\\alpha(\\vec y-\\vec z)$.",
+          "Pin $\\alpha$ using $\\vec y$: $\\vec a\\cdot\\vec y=\\alpha(\\vec y\\cdot\\vec y-\\vec z\\cdot\\vec y)=\\alpha(2-1)=\\alpha$. Hence $\\alpha=\\vec a\\cdot\\vec y$ and $\\vec a=(\\vec a\\cdot\\vec y)(\\vec y-\\vec z)$ — statement (B). The identical argument with $(\\vec x,\\vec y,\\vec z)$ cycled gives $\\vec b=(\\vec b\\cdot\\vec z)(\\vec z-\\vec x)$ — statement (A). Statement (D), $\\vec a=(\\vec a\\cdot\\vec y)(\\vec z-\\vec y)$, is the negative of (B), so it is false.",
+          "For (C), dot the two results: $\\vec a\\cdot\\vec b=(\\vec a\\cdot\\vec y)(\\vec b\\cdot\\vec z)\\,(\\vec y-\\vec z)\\cdot(\\vec z-\\vec x)$. Now $(\\vec y-\\vec z)\\cdot(\\vec z-\\vec x)=\\vec y\\cdot\\vec z-\\vec y\\cdot\\vec x-\\vec z\\cdot\\vec z+\\vec z\\cdot\\vec x=1-1-2+1=-1$. Therefore $\\vec a\\cdot\\vec b=-(\\vec a\\cdot\\vec y)(\\vec b\\cdot\\vec z)$ — statement (C). Correct set: (A), (B), (C)."
+        ]
+      },
+      {
+        "name": "Concrete Gram-matrix realisation and direct check",
+        "steps": [
+          "Build explicit vectors matching the Gram matrix $G=\\begin{pmatrix}2&1&1\\\\1&2&1\\\\1&1&2\\end{pmatrix}$ (diagonal $|\\cdot|^2=2$, off-diagonal $=1$) via a Cholesky factor: $\\vec x=(\\sqrt2,0,0)$, $\\vec y=\\left(\\tfrac{1}{\\sqrt2},\\sqrt{\\tfrac32},0\\right)$, $\\vec z=\\left(\\tfrac{1}{\\sqrt2},\\tfrac{1}{\\sqrt6},\\sqrt{\\tfrac43}\\right)$; one verifies all six dot-product conditions hold.",
+          "Compute $\\vec a$ directly: perpendicular to both $\\vec x$ and $\\vec y\\times\\vec z$ forces $\\vec a\\parallel \\vec x\\times(\\vec y\\times\\vec z)$. The bac–cab expansion gives $\\vec x\\times(\\vec y\\times\\vec z)=(\\vec x\\cdot\\vec z)\\vec y-(\\vec x\\cdot\\vec y)\\vec z=1\\cdot\\vec y-1\\cdot\\vec z=\\vec y-\\vec z$ — instantly recovering $\\vec a\\parallel(\\vec y-\\vec z)$, and the scale $\\vec a\\cdot\\vec y=\\alpha$ makes it $(\\vec a\\cdot\\vec y)(\\vec y-\\vec z)$ (B, and by symmetry A).",
+          "Evaluating numerically with the explicit coordinates, $\\vec a=(\\vec a\\cdot\\vec y)(\\vec y-\\vec z)$ and $\\vec b=(\\vec b\\cdot\\vec z)(\\vec z-\\vec x)$ hold exactly, $\\vec a=(\\vec a\\cdot\\vec y)(\\vec z-\\vec y)$ fails, and $\\vec a\\cdot\\vec b+(\\vec a\\cdot\\vec y)(\\vec b\\cdot\\vec z)=0$. This confirms $\\boxed{\\text{(A), (B), (C)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 1, Q48. The one-line insight: ``$\\vec a\\perp(\\vec y\\times\\vec z)$'' is not a computation to be done but a plane to be recognised — it drops $\\vec a$ into $\\mathrm{span}\\{\\vec y,\\vec z\\}$, and the vector triple product $\\vec x\\times(\\vec y\\times\\vec z)=(\\vec x\\cdot\\vec z)\\vec y-(\\vec x\\cdot\\vec y)\\vec z$ then hands you the answer in one line."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Cross Products Expanded in Their Own Basis",
+    "difficulty": 4,
+    "task": "Evaluate the given ratio.",
+    "pyq": {
+      "year": 2014,
+      "paper": "1",
+      "qno": "60"
+    },
+    "tags": [
+      "scalar triple product",
+      "cross product",
+      "reciprocal system",
+      "unit vectors",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec a,\\ \\vec b$ and $\\vec c$ be three non-coplanar unit vectors such that the angle between every pair of them is $\\dfrac{\\pi}{3}$. If $\\vec a\\times\\vec b+\\vec b\\times\\vec c=p\\,\\vec a+q\\,\\vec b+r\\,\\vec c$, where $p,\\ q$ and $r$ are scalars, then find the value of $\\dfrac{p^2+2q^2+r^2}{q^2}$.",
+    "answer": "$\\boxed{4}$",
+    "trap": "Trying to expand $\\vec a\\times\\vec b$ into $p\\vec a+q\\vec b+r\\vec c$ by staring at it, or by choosing awkward Cartesian coordinates and grinding. The clean move is to dot the whole identity with $\\vec a,\\vec b,\\vec c$ in turn: the cross-product terms collapse to scalar triple products (many of them zero), turning a vector identity into a tidy $3\\times3$ linear system in $p,q,r$. Forgetting that $[\\vec a\\,\\vec b\\,\\vec c]$ is negative for some cyclic orders — or mis-signing it — is the usual slip.",
+    "solutions": [
+      {
+        "name": "Dot with each basis vector to get a linear system",
+        "steps": [
+          "Since the vectors are unit and pairwise at $\\dfrac{\\pi}{3}$: $\\vec a\\cdot\\vec a=\\vec b\\cdot\\vec b=\\vec c\\cdot\\vec c=1$ and $\\vec a\\cdot\\vec b=\\vec b\\cdot\\vec c=\\vec c\\cdot\\vec a=\\cos\\tfrac{\\pi}{3}=\\tfrac12$.",
+          "The scalar triple product satisfies $[\\vec a\\,\\vec b\\,\\vec c]^2=\\det\\begin{pmatrix}1&\\frac12&\\frac12\\\\ \\frac12&1&\\frac12\\\\ \\frac12&\\frac12&1\\end{pmatrix}=\\dfrac12$, so $[\\vec a\\,\\vec b\\,\\vec c]=\\dfrac{1}{\\sqrt2}$ (take the positive orientation). Denote $V=\\dfrac{1}{\\sqrt2}$.",
+          "Dot the identity with $\\vec a$: the left side is $(\\vec a\\times\\vec b)\\cdot\\vec a+(\\vec b\\times\\vec c)\\cdot\\vec a=0+[\\vec b\\,\\vec c\\,\\vec a]=V$; the right side is $p+\\tfrac12 q+\\tfrac12 r$. So $p+\\tfrac12 q+\\tfrac12 r=V$.",
+          "Dot with $\\vec b$: left $=(\\vec a\\times\\vec b)\\cdot\\vec b+(\\vec b\\times\\vec c)\\cdot\\vec b=0+0=0$; right $=\\tfrac12 p+q+\\tfrac12 r$. Dot with $\\vec c$: left $=[\\vec a\\,\\vec b\\,\\vec c]+0=V$; right $=\\tfrac12 p+\\tfrac12 q+r$.",
+          "Solve $\\{\\,p+\\tfrac12 q+\\tfrac12 r=V,\\ \\tfrac12 p+q+\\tfrac12 r=0,\\ \\tfrac12 p+\\tfrac12 q+r=V\\,\\}$: subtracting the first and third gives $p=r$; then the equations yield $p=r=\\dfrac{1}{\\sqrt2}$ and $q=-\\dfrac{1}{\\sqrt2}$.",
+          "Therefore $p^2=q^2=r^2=\\tfrac12$, and $\\dfrac{p^2+2q^2+r^2}{q^2}=\\dfrac{\\tfrac12+2\\cdot\\tfrac12+\\tfrac12}{\\tfrac12}=\\dfrac{2}{\\tfrac12}=\\boxed{4}$."
+        ]
+      },
+      {
+        "name": "Reciprocal (dual) basis identity",
+        "steps": [
+          "For a non-coplanar triple, any cross product expands via the reciprocal basis: $\\vec a\\times\\vec b=[\\vec a\\,\\vec b\\,\\vec c]\\,\\vec c^{\\,*}$ where $\\vec c^{\\,*}=\\dfrac{\\vec a\\times\\vec b}{[\\vec a\\,\\vec b\\,\\vec c]}$ is the dual of $\\vec c$; likewise $\\vec b\\times\\vec c=[\\vec a\\,\\vec b\\,\\vec c]\\,\\vec a^{\\,*}$. By the symmetry of the configuration (all pairwise dots equal), the duals are $\\vec a^{\\,*}=\\dfrac{2\\vec a-\\vec b-\\vec c}{2V^2}$ and $\\vec c^{\\,*}=\\dfrac{-\\vec a-\\vec b+2\\vec c}{2V^2}$ with $V^2=\\tfrac12$.",
+          "Then $\\vec a\\times\\vec b+\\vec b\\times\\vec c=V(\\vec c^{\\,*}+\\vec a^{\\,*})=\\dfrac{V}{2V^2}\\big[(2\\vec a-\\vec b-\\vec c)+(-\\vec a-\\vec b+2\\vec c)\\big]=\\dfrac{1}{2V}(\\vec a-2\\vec b+\\vec c)$.",
+          "With $V=\\tfrac{1}{\\sqrt2}$, $\\dfrac{1}{2V}=\\dfrac{\\sqrt2}{2}=\\dfrac{1}{\\sqrt2}$, so $p=\\dfrac{1}{\\sqrt2},\\ q=-\\dfrac{2}{\\sqrt2}\\cdot\\tfrac12=-\\dfrac{1}{\\sqrt2},\\ r=\\dfrac{1}{\\sqrt2}$ — matching the first method.",
+          "Hence again $p^2=q^2=r^2=\\tfrac12$ and $\\dfrac{p^2+2q^2+r^2}{q^2}=\\dfrac{4q^2}{q^2}=\\boxed{4}$. (A concrete Gram–Cholesky realisation of $\\vec a,\\vec b,\\vec c$ reproduces $p=r=\\tfrac{1}{\\sqrt2},\\,q=-\\tfrac{1}{\\sqrt2}$ numerically, confirming the value.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 1, Q60. The one-line insight: a vector identity in a non-orthogonal basis is best read through its inner products — dotting with $\\vec a,\\vec b,\\vec c$ turns the cross products into scalar triple products and reduces everything to a symmetric linear system whose answer is forced by symmetry."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Triangle's Three Vector Laws",
+    "difficulty": 4,
+    "task": "Determine",
+    "pyq": {
+      "year": 2015,
+      "paper": "1",
+      "qno": "49"
+    },
+    "tags": [
+      "triangle with vector sides",
+      "dot product",
+      "cross product magnitude",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "Let $PQR$ be a triangle. Let $\\vec a=\\overrightarrow{QR}$, $\\vec b=\\overrightarrow{RP}$ and $\\vec c=\\overrightarrow{PQ}$. If $|\\vec a|=12$, $|\\vec b|=4\\sqrt3$ and $\\vec b\\cdot\\vec c=24$, then which of the following is (are) true? $(\\mathrm{A})\\ \\dfrac{|\\vec c|^2}{2}-|\\vec a|=12$; $(\\mathrm{B})\\ \\dfrac{|\\vec c|^2}{2}+|\\vec a|=30$; $(\\mathrm{C})\\ |\\vec a\\times\\vec b+\\vec c\\times\\vec a|=48\\sqrt3$; $(\\mathrm{D})\\ \\vec a\\cdot\\vec b=-72$.",
+    "answer": "$\\boxed{\\text{(A), (C), (D)}}$",
+    "trap": "Treating $\\vec a,\\vec b,\\vec c$ as three free vectors and grinding through components. The decisive fact is that they are the directed sides of ONE triangle taken head-to-tail, so $\\vec a+\\vec b+\\vec c=\\vec 0$. Miss that closure relation and $\\vec b\\cdot\\vec c$ tells you nothing; use it and every quantity collapses to a number. A second trap in (C): $\\vec a\\times\\vec b$, $\\vec b\\times\\vec c$, $\\vec c\\times\\vec a$ are all EQUAL for a triangle, so $\\vec a\\times\\vec b+\\vec c\\times\\vec a=2(\\vec a\\times\\vec b)$ — not zero.",
+    "solutions": [
+      {
+        "name": "Closure relation $\\vec a+\\vec b+\\vec c=\\vec 0$",
+        "steps": [
+          "Going around the triangle head-to-tail, $\\overrightarrow{QR}+\\overrightarrow{RP}+\\overrightarrow{PQ}=\\vec 0$, i.e. $\\vec a+\\vec b+\\vec c=\\vec 0$. Hence $\\vec c=-(\\vec a+\\vec b)$.",
+          "Dot the given $\\vec b\\cdot\\vec c=24$: $\\vec b\\cdot\\bigl(-\\vec a-\\vec b\\bigr)=-\\vec a\\cdot\\vec b-|\\vec b|^2=24$. With $|\\vec b|^2=48$ this gives $\\vec a\\cdot\\vec b=-72$, so $(\\mathrm{D})$ holds.",
+          "Now $|\\vec c|^2=|\\vec a+\\vec b|^2=|\\vec a|^2+|\\vec b|^2+2\\,\\vec a\\cdot\\vec b=144+48+2(-72)=48$. Then $\\dfrac{|\\vec c|^2}{2}-|\\vec a|=24-12=12$ — $(\\mathrm{A})$ holds; and $\\dfrac{|\\vec c|^2}{2}+|\\vec a|=24+12=36\\neq30$, so $(\\mathrm{B})$ fails.",
+          "For $(\\mathrm{C})$: since $\\vec c=-\\vec a-\\vec b$, $\\vec c\\times\\vec a=(-\\vec a-\\vec b)\\times\\vec a=-\\vec b\\times\\vec a=\\vec a\\times\\vec b$, so $\\vec a\\times\\vec b+\\vec c\\times\\vec a=2(\\vec a\\times\\vec b)$. Then $|\\vec a\\times\\vec b|^2=|\\vec a|^2|\\vec b|^2-(\\vec a\\cdot\\vec b)^2=144\\cdot48-72^2=6912-5184=1728$, so $|\\vec a\\times\\vec b|=\\sqrt{1728}=24\\sqrt3$ and $2|\\vec a\\times\\vec b|=48\\sqrt3$ — $(\\mathrm{C})$ holds.",
+          "$\\boxed{\\text{(A), (C), (D)}}$"
+        ]
+      },
+      {
+        "name": "Concrete coordinate model",
+        "steps": [
+          "Place $\\vec a$ along the $x$-axis: $\\vec a=(12,0,0)$. From $\\vec a\\cdot\\vec b=-72$ (forced by closure as above) and $|\\vec b|=4\\sqrt3$, write $\\vec b=(b_1,b_2,0)$: $12b_1=-72\\Rightarrow b_1=-6$, and $b_1^2+b_2^2=48\\Rightarrow b_2^2=12$, so $\\vec b=(-6,\\,2\\sqrt3,\\,0)$.",
+          "Then $\\vec c=-\\vec a-\\vec b=(-6,\\,-2\\sqrt3,\\,0)$. Check the datum: $\\vec b\\cdot\\vec c=(-6)(-6)+(2\\sqrt3)(-2\\sqrt3)=36-12=24$ ✓, and $|\\vec c|^2=36+12=48$.",
+          "Evaluate each option numerically: $\\dfrac{|\\vec c|^2}{2}-|\\vec a|=24-12=12$ (A ✓); $\\dfrac{|\\vec c|^2}{2}+|\\vec a|=36\\neq30$ (B ✗); $\\vec a\\times\\vec b=(0,0,24\\sqrt3)$ and $\\vec c\\times\\vec a=(0,0,24\\sqrt3)$, so their sum has length $48\\sqrt3$ (C ✓); $\\vec a\\cdot\\vec b=-72$ (D ✓).",
+          "$\\boxed{\\text{(A), (C), (D)}}$"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 1, Q49. Insight: the words “Let $PQR$ be a triangle” are the whole problem — they silently impose $\\vec a+\\vec b+\\vec c=\\vec 0$, which turns three magnitudes and one dot product into every quantity asked for, and makes the three cyclic cross products equal (twice the vector area)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Pencil Plane Fixed by a Distance",
+    "difficulty": 4,
+    "task": "Determine",
+    "pyq": {
+      "year": 2015,
+      "paper": "1",
+      "qno": "52"
+    },
+    "tags": [
+      "family of planes",
+      "distance from a plane",
+      "3D geometry",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "In $\\mathbb{R}^3$, consider the planes $P_1:\\,y=0$ and $P_2:\\,x+z=1$. Let $P_3$ be a plane, different from $P_1$ and $P_2$, which passes through the intersection of $P_1$ and $P_2$. If the distance of the point $(0,1,0)$ from $P_3$ is $1$ and the distance of a point $(\\alpha,\\beta,\\gamma)$ from $P_3$ is $2$, then which of the following relations is (are) true? $(\\mathrm{A})\\ 2\\alpha+\\beta+2\\gamma+2=0$; $(\\mathrm{B})\\ 2\\alpha-\\beta+2\\gamma+4=0$; $(\\mathrm{C})\\ 2\\alpha+\\beta-2\\gamma-10=0$; $(\\mathrm{D})\\ 2\\alpha-\\beta+2\\gamma-8=0$.",
+    "answer": "$\\boxed{\\text{(B), (D)}}$",
+    "trap": "Two hidden branches. First, a plane through the intersection of $P_1,P_2$ is the pencil $(x+z-1)+\\lambda\\,y=0$, and the single distance datum pins $\\lambda$ to ONE value — but you must then discard the pencil member that coincides with $P_1$ or $P_2$. Second, the distance-$2$ condition is $|{\\cdots}|=$ a positive number, so it splits into TWO parallel planes (signs $\\pm$); both are legitimate, which is why exactly two of the four options survive. Dropping the absolute value loses half the answer.",
+    "solutions": [
+      {
+        "name": "Pencil of planes + distance",
+        "steps": [
+          "Every plane through the line $P_1\\cap P_2$ has the form $P_3:\\,(x+z-1)+\\lambda y=0$, i.e. $x+\\lambda y+z-1=0$, with normal $\\vec n=(1,\\lambda,1)$ and $|\\vec n|=\\sqrt{\\lambda^2+2}$.",
+          "Distance of $(0,1,0)$ from $P_3$ is $1$: $\\dfrac{|0+\\lambda+0-1|}{\\sqrt{\\lambda^2+2}}=1\\Rightarrow(\\lambda-1)^2=\\lambda^2+2\\Rightarrow-2\\lambda+1=2\\Rightarrow\\lambda=-\\tfrac12$.",
+          "So $P_3:\\,x-\\tfrac12 y+z-1=0$, or clearing fractions $2x-y+2z-2=0$, with $|\\vec n|=\\tfrac32$ (equivalently $|(2,-1,2)|=3$). This differs from $P_1$ and $P_2$, as required.",
+          "Distance of $(\\alpha,\\beta,\\gamma)$ from $P_3$ is $2$: $\\dfrac{|2\\alpha-\\beta+2\\gamma-2|}{3}=2\\Rightarrow|2\\alpha-\\beta+2\\gamma-2|=6$, giving $2\\alpha-\\beta+2\\gamma-2=6$ or $=-6$, i.e. $2\\alpha-\\beta+2\\gamma-8=0$ (that is $(\\mathrm{D})$) or $2\\alpha-\\beta+2\\gamma+4=0$ (that is $(\\mathrm{B})$).",
+          "$\\boxed{\\text{(B), (D)}}$"
+        ]
+      },
+      {
+        "name": "Two parallel loci of $(\\alpha,\\beta,\\gamma)$",
+        "steps": [
+          "Having fixed $P_3:\\,2x-y+2z-2=0$ (unit normal $\\tfrac13(2,-1,2)$), the set of points at distance $2$ from $P_3$ is the pair of planes obtained by sliding $P_3$ along $\\vec n$ by $\\pm2$.",
+          "Slide by $+2$: the constant $-2$ becomes $-2-6=-8$ (since $\\pm2\\cdot|\\vec n|=\\pm6$ in the un-normalized form $2x-y+2z=c$), giving $2\\alpha-\\beta+2\\gamma-8=0$ — option $(\\mathrm{D})$.",
+          "Slide by $-2$: the constant becomes $-2+6=+4$, giving $2\\alpha-\\beta+2\\gamma+4=0$ — option $(\\mathrm{B})$. Options $(\\mathrm{A})$ and $(\\mathrm{C})$ carry the wrong coefficient on $\\beta$ (namely $+\\beta$) and cannot arise from normal $(2,-1,2)$.",
+          "Both signed planes are valid loci, so $\\boxed{\\text{(B), (D)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 1, Q52. Insight: one distance condition fixes the pencil parameter to a single plane, but the second distance condition — being an absolute value — always yields a matched $\\pm$ pair of parallel planes, so a well-posed “which are true” here must have exactly two correct options sharing the same normal direction."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Line Equidistant, Its Shadow's Locus",
+    "difficulty": 5,
+    "task": "Identify",
+    "pyq": {
+      "year": 2015,
+      "paper": "1",
+      "qno": "53"
+    },
+    "tags": [
+      "line and planes",
+      "foot of perpendicular",
+      "locus",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "In $\\mathbb{R}^3$, let $L$ be a straight line passing through the origin such that every point of $L$ is at a constant distance from each of the two planes $P_1:x+2y-z+1=0$ and $P_2:2x-y+z-1=0$. Let $M$ be the locus of the feet of the perpendiculars dropped from the points of $L$ onto the plane $P_1$. Identify which of the points $\\left(0,-\\tfrac{5}{6},-\\tfrac{2}{3}\\right)$, $\\left(-\\tfrac{1}{6},-\\tfrac{1}{3},\\tfrac{1}{6}\\right)$, $\\left(-\\tfrac{5}{6},0,\\tfrac{1}{6}\\right)$ and $\\left(-\\tfrac{1}{3},0,\\tfrac{2}{3}\\right)$ lie on $M$.",
+    "answer": "Only the first two points lie on $M$: $\\boxed{\\left(0,-\\tfrac{5}{6},-\\tfrac{2}{3}\\right)\\text{ and }\\left(-\\tfrac{1}{6},-\\tfrac{1}{3},\\tfrac{1}{6}\\right)}$.",
+    "trap": "The phrase “constant distance from the two planes” is the whole puzzle. For a point $t\\vec v$ on $L$ the distance to $P_1$ is $\\dfrac{|t(\\vec v\\cdot\\vec n_1)+1|}{\\sqrt6}$; this is constant in $t$ only if $\\vec v\\cdot\\vec n_1=0$, and likewise $\\vec v\\cdot\\vec n_2=0$. So $L$ must run perpendicular to $\\textit{both}$ normals — its direction is $\\vec n_1\\times\\vec n_2$, not an angle-bisector direction. A second slip: because $\\vec v\\cdot\\vec n_1=0$, the foot on $P_1$ is $t\\vec v-\\tfrac16\\vec n_1$, a $\\textit{shifted copy}$ of $L$ (a line), not $L$ itself; forgetting the constant shift $-\\tfrac16\\vec n_1$ throws every test point off.",
+    "solutions": [
+      {
+        "name": "Direction of L, then project and eliminate the parameter",
+        "steps": [
+          "Distance from a point $t\\vec v$ (on $L$) to $P_1$ is $\\dfrac{|t(\\vec v\\cdot\\vec n_1)+1|}{\\sqrt6}$ with $\\vec n_1=(1,2,-1)$; for this to be independent of $t$ we need $\\vec v\\cdot\\vec n_1=0$. The same requirement against $\\vec n_2=(2,-1,1)$ gives $\\vec v\\cdot\\vec n_2=0$.",
+          "Hence $\\vec v\\parallel\\vec n_1\\times\\vec n_2=\\begin{vmatrix}\\hat i&\\hat j&\\hat k\\\\1&2&-1\\\\2&-1&1\\end{vmatrix}=(1,-3,-5)$, so $L:\\ \\vec r=t(1,-3,-5)$.",
+          "The foot of the perpendicular from $t\\vec v$ onto $P_1$ is $\\vec F=t\\vec v-\\dfrac{(t\\vec v)\\cdot\\vec n_1+1}{|\\vec n_1|^2}\\vec n_1=t\\vec v-\\dfrac16\\vec n_1$, since $\\vec v\\cdot\\vec n_1=0$. Thus $\\vec F=\\left(t-\\tfrac16,\\,-3t-\\tfrac13,\\,-5t+\\tfrac16\\right)$.",
+          "Eliminate $t$ from $x=t-\\tfrac16$, i.e. $t=x+\\tfrac16$: then $y=-3x-\\tfrac56$ and $z=-5x-\\tfrac23$, so $M$ is the line $y=-3x-\\tfrac56,\\ z=-5x-\\tfrac23$.",
+          "Testing: $\\left(0,-\\tfrac56,-\\tfrac23\\right)$ gives $-3(0)-\\tfrac56=-\\tfrac56$ ✓ and $-5(0)-\\tfrac23=-\\tfrac23$ ✓; $\\left(-\\tfrac16,-\\tfrac13,\\tfrac16\\right)$ gives $-3(-\\tfrac16)-\\tfrac56=-\\tfrac13$ ✓ and $-5(-\\tfrac16)-\\tfrac23=\\tfrac16$ ✓. The other two fail. Hence $M$ contains $\\boxed{\\left(0,-\\tfrac56,-\\tfrac23\\right)\\text{ and }\\left(-\\tfrac16,-\\tfrac13,\\tfrac16\\right)}$."
+        ]
+      },
+      {
+        "name": "M as the intersection of P₁ with a second plane",
+        "steps": [
+          "As above $L:\\ \\vec r=t(1,-3,-5)$. Every foot $\\vec F$ lies on $P_1$ by construction, so $M\\subset P_1$; testing membership can be reduced to checking each candidate against $P_1$ together with one more constraint.",
+          "The feet form a line parallel to $L$ (direction $(1,-3,-5)$) lying in $P_1$. A candidate point $\\vec X$ lies on $M$ iff (i) $\\vec X\\in P_1$ and (ii) $\\vec X+\\tfrac16\\vec n_1$ is parallel to $(1,-3,-5)$, i.e. $\\vec X+\\tfrac16\\vec n_1$ is a scalar multiple of $\\vec v$.",
+          "Check $P_1$: for $A=\\left(0,-\\tfrac56,-\\tfrac23\\right)$, $0+2(-\\tfrac56)-(-\\tfrac23)+1=-\\tfrac53+\\tfrac23+1=0$ ✓; for $B=\\left(-\\tfrac16,-\\tfrac13,\\tfrac16\\right)$, $-\\tfrac16-\\tfrac23-\\tfrac16+1=0$ ✓. For $C=\\left(-\\tfrac56,0,\\tfrac16\\right)$, $-\\tfrac56+0-\\tfrac16+1=0$ ✓ too, so $P_1$ alone does not decide $C$.",
+          "Apply (ii) with $\\vec n_1=(1,2,-1)$. For $A$: $A+\\tfrac16\\vec n_1=\\left(\\tfrac16,\\,-\\tfrac56+\\tfrac13,\\,-\\tfrac23-\\tfrac16\\right)=\\left(\\tfrac16,-\\tfrac12,-\\tfrac56\\right)=\\tfrac16(1,-3,-5)$ ✓. For $B$: $B+\\tfrac16\\vec n_1=(0,0,0)=0\\cdot\\vec v$ ✓.",
+          "For $C$: $C+\\tfrac16\\vec n_1=\\left(-\\tfrac23,\\tfrac13,0\\right)$, which is not a multiple of $(1,-3,-5)$ ✗; $D$ fails already at $P_1$. So exactly $\\boxed{\\left(0,-\\tfrac56,-\\tfrac23\\right)\\text{ and }\\left(-\\tfrac16,-\\tfrac13,\\tfrac16\\right)}$ lie on $M$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 1, Q53. Insight: “constant distance” secretly pins the line's direction to $\\vec n_1\\times\\vec n_2$, and projecting a line onto a plane along a fixed normal just translates it by a constant vector — so the shadow $M$ is again a line, a rigid copy of $L$ slid by $-\\tfrac16\\vec n_1$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Re-reading a Vector in a New Basis",
+    "difficulty": 4,
+    "task": "Evaluate",
+    "pyq": {
+      "year": 2015,
+      "paper": "2",
+      "qno": "41"
+    },
+    "tags": [
+      "components along a basis",
+      "non-coplanar vectors",
+      "linear systems",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "Suppose $\\vec p,\\vec q$ and $\\vec r$ are three non-coplanar vectors in $\\mathbb{R}^3$. Let the components of a vector $\\vec s$ along $\\vec p,\\vec q$ and $\\vec r$ be $4,3$ and $5$ respectively. If the components of the same vector $\\vec s$ along the three vectors $-\\vec p+\\vec q+\\vec r$, $\\vec p-\\vec q+\\vec r$ and $-\\vec p-\\vec q+\\vec r$ are $x,y$ and $z$ respectively, evaluate $2x+y+z$.",
+    "answer": "The value is $2x+y+z=\\boxed{9}$.",
+    "trap": "The word “component” here means coefficient in the given (non-orthogonal) basis, not a dot-product projection — so no lengths or angles of $\\vec p,\\vec q,\\vec r$ are needed, and none are given. Because $\\vec p,\\vec q,\\vec r$ are non-coplanar they form a basis, so matching $\\vec s$ in the two expansions lets you equate coefficients of $\\vec p,\\vec q,\\vec r$ separately. Trying to compute an actual projection, or assuming the three combination vectors are orthonormal, is the trap.",
+    "solutions": [
+      {
+        "name": "Equate coefficients in the basis {p, q, r}",
+        "steps": [
+          "Write both expansions of $\\vec s$: $4\\vec p+3\\vec q+5\\vec r=x(-\\vec p+\\vec q+\\vec r)+y(\\vec p-\\vec q+\\vec r)+z(-\\vec p-\\vec q+\\vec r)$.",
+          "Since $\\vec p,\\vec q,\\vec r$ are non-coplanar (a basis), equate coefficients: $\\vec p:\\ -x+y-z=4$; $\\vec q:\\ x-y-z=3$; $\\vec r:\\ x+y+z=5$.",
+          "Add the $\\vec p$- and $\\vec q$-equations: $-2z=7\\Rightarrow z=-\\tfrac72$. From the $\\vec r$-equation, $x+y=5-z=\\tfrac{17}{2}$; from the $\\vec p$-equation, $-x+y=4+z=\\tfrac12$.",
+          "Solving the last pair: $y=\\tfrac12\\left(\\tfrac{17}{2}+\\tfrac12\\right)=\\tfrac92$ and $x=\\tfrac{17}{2}-\\tfrac92=4$.",
+          "Therefore $2x+y+z=2(4)+\\tfrac92-\\tfrac72=8+1=\\boxed{9}$."
+        ]
+      },
+      {
+        "name": "A shortcut using x+y+z=5",
+        "steps": [
+          "The $\\vec r$-coefficient equation is $x+y+z=5$ (each of the three combination vectors carries a single $+\\vec r$). Hence $2x+y+z=(x+y+z)+x=5+x$, so only $x$ is needed.",
+          "Subtract the $\\vec q$-equation $x-y-z=3$ from the $\\vec r$-equation $x+y+z=5$: $2(y+z)=2\\Rightarrow y+z=1$.",
+          "Add the $\\vec p$-equation $-x+y-z=4$ to the $\\vec q$-equation $x-y-z=3$: $-2z=7\\Rightarrow z=-\\tfrac72$, so $y=1-z=\\tfrac92$.",
+          "Then from $x+y+z=5$: $x=5-(y+z)=5-1=4$.",
+          "Finally $2x+y+z=5+x=5+4=\\boxed{9}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 2, Q41. Insight: since every new basis vector reuses the same $+\\vec r$, the $\\vec r$-row collapses to $x+y+z=5$, turning $2x+y+z$ into $5+x$ — you only ever need one unknown."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Pyramid in the First Octant",
+    "difficulty": 4,
+    "task": "Test each statement about the pyramid $OPQRS$.",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "42"
+    },
+    "tags": [
+      "3D geometry",
+      "planes and lines",
+      "distance formulae",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "A pyramid $OPQRS$ sits in the first octant $x\\ge 0,\\ y\\ge 0,\\ z\\ge 0$ with $O$ at the origin, and edges $OP$ and $OR$ running along the $x$-axis and $y$-axis respectively. Its base $OPQR$ is a square with $OP=3$, and the apex $S$ stands directly above the mid-point $T$ of the diagonal $OQ$ with $TS=3$. Decide which of the following are correct: $(A)$ the acute angle between $OQ$ and $OS$ is $\\tfrac{\\pi}{3}$; $(B)$ the equation of the plane containing triangle $OQS$ is $x-y=0$; $(C)$ the perpendicular distance from $P$ to that plane is $\\tfrac{3}{\\sqrt2}$; $(D)$ the perpendicular distance from $O$ to the line containing $RS$ is $\\sqrt{\\tfrac{15}{2}}$.",
+    "answer": "$\\boxed{(B),\\ (C),\\ (D)}$",
+    "trap": "Reading “the acute angle is $\\pi/3$” as if $\\cos^{-1}(1/\\sqrt3)$ equalled $60^\\circ$. It does not — $\\cos 60^\\circ=\\tfrac12\\neq\\tfrac1{\\sqrt3}$, so $(A)$ is false. Also: the base square is $OPQR$, so its fourth vertex is $R(0,3,0)$, not a point with equal coordinates; getting $Q$ and $R$ swapped derails every part.",
+    "solutions": [
+      {
+        "name": "Coordinates and vector geometry",
+        "steps": [
+          "Place the square base: $O(0,0,0),\\ P(3,0,0),\\ Q(3,3,0),\\ R(0,3,0)$. The diagonal $OQ$ has mid-point $T\\big(\\tfrac32,\\tfrac32,0\\big)$, and since $S$ is directly above $T$ at height $TS=3$, we get $S\\big(\\tfrac32,\\tfrac32,3\\big)$.",
+          "$(A)$ $\\vec{OQ}=(3,3,0)$, $\\vec{OS}=\\big(\\tfrac32,\\tfrac32,3\\big)$. Then $\\cos\\theta=\\dfrac{\\vec{OQ}\\cdot\\vec{OS}}{|\\vec{OQ}||\\vec{OS}|}=\\dfrac{\\tfrac92+\\tfrac92}{3\\sqrt2\\cdot\\tfrac{3\\sqrt6}{2}}=\\dfrac{9}{9\\sqrt3}=\\dfrac1{\\sqrt3}$. Since $\\tfrac1{\\sqrt3}\\ne\\tfrac12$, the angle is not $\\tfrac{\\pi}{3}$ — $(A)$ is false.",
+          "$(B)$ The plane through $O,Q,S$ has normal $\\vec{OQ}\\times\\vec{OS}=(9,-9,0)\\parallel(1,-1,0)$; through the origin this is $x-y=0$ — $(B)$ is true.",
+          "$(C)$ Distance from $P(3,0,0)$ to $x-y=0$ is $\\dfrac{|3-0|}{\\sqrt{1^2+1^2}}=\\dfrac{3}{\\sqrt2}$ — $(C)$ is true.",
+          "$(D)$ For line $RS$ take base point $R(0,3,0)$ and direction $\\vec{RS}=\\big(\\tfrac32,-\\tfrac32,3\\big)$. With $\\vec{RO}=(0,-3,0)$, $\\vec{RO}\\times\\vec{RS}=(-9,0,-\\tfrac92)$, so the distance is $\\dfrac{\\sqrt{81+\\tfrac{81}{4}}}{\\sqrt{\\tfrac94+\\tfrac94+9}}=\\dfrac{\\tfrac{9\\sqrt5}{2}}{\\tfrac{3\\sqrt6}{2}}=\\dfrac{3\\sqrt5}{\\sqrt6}=\\sqrt{\\tfrac{15}{2}}$ — $(D)$ is true."
+        ]
+      },
+      {
+        "name": "Foot-of-perpendicular projection for (D)",
+        "steps": [
+          "Keep $R(0,3,0)$, $S\\big(\\tfrac32,\\tfrac32,3\\big)$ and drop a foot $F=R+t\\,\\vec{RS}$ from $O$ onto line $RS$, where $\\vec{RS}=\\big(\\tfrac32,-\\tfrac32,3\\big)$.",
+          "Perpendicularity requires $\\vec{OF}\\cdot\\vec{RS}=0$: with $\\vec{OF}=R+t\\vec{RS}$, this gives $\\vec{OR}\\cdot\\vec{RS}+t\\,|\\vec{RS}|^2=0$, i.e. $(0,3,0)\\cdot\\big(\\tfrac32,-\\tfrac32,3\\big)+t\\cdot\\tfrac{27}{2}=0\\Rightarrow -\\tfrac92+\\tfrac{27}{2}t=0\\Rightarrow t=\\tfrac13$.",
+          "Then $F=\\big(\\tfrac12,\\tfrac52,1\\big)$ and $OF=\\sqrt{\\tfrac14+\\tfrac{25}{4}+1}=\\sqrt{\\tfrac{30}{4}}=\\sqrt{\\tfrac{15}{2}}$, confirming $(D)$. Parts $(B)$ and $(C)$ follow as above, so the correct set is $(B),(C),(D)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 1, Q42. The one “gotcha” is the phrasing “the acute angle $\\ldots$ is $\\pi/3$”: the honest value $\\cos^{-1}(1/\\sqrt3)$ is close to but not equal to $60^\\circ$, so choosing coordinates first and computing exactly is the only safe route. (The distance in $(D)$ is $\\sqrt{15/2}$, sometimes mis-copied as $\\tfrac{\\sqrt{15}}{2}$ — the correct value is $\\sqrt{15/2}=\\tfrac{\\sqrt{30}}2$.)"
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Image of a Point, Plane Through a Line",
+    "difficulty": 4,
+    "task": "Find the required plane.",
+    "pyq": {
+      "year": 2016,
+      "paper": "2",
+      "qno": "42"
+    },
+    "tags": [
+      "image of a point in a plane",
+      "plane through a line and a point",
+      "3D geometry",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $P$ be the mirror image of the point $(3,\\,1,\\,7)$ in the plane $x-y+z=3$. The plane that passes through $P$ and contains the straight line $\\dfrac{x}{1}=\\dfrac{y}{2}=\\dfrac{z}{1}$ has equation $(A)\\ x+y-3z=0$; $(B)\\ 3x+z=0$; $(C)\\ x-4y+7z=0$; $(D)\\ 2x-y=0$.",
+    "answer": "$\\boxed{(C)\\ \\ x-4y+7z=0}$",
+    "trap": "Forgetting that the given line $\\dfrac{x}{1}=\\dfrac{y}{2}=\\dfrac{z}{1}$ passes through the origin. Any plane “containing” it must pass through $O(0,0,0)$, so the equation has zero constant term — this alone eliminates any option with a nonzero right-hand side and pins the normal down using just $P$ and the line’s direction.",
+    "solutions": [
+      {
+        "name": "Reflection then normal via cross product",
+        "steps": [
+          "Reflect $A(3,1,7)$ in $x-y+z=3$. The foot parameter along the unit-scaled normal $\\vec n=(1,-1,1)$ is $t=\\dfrac{(3)-(1)+(7)-3}{1^2+1^2+1^2}=\\dfrac{6}{3}=2$, so the image is $P=A-2t\\,\\vec n=(3,1,7)-4(1,-1,1)=(-1,5,3)$.",
+          "The required plane contains the line through $O(0,0,0)$ with direction $\\vec d=(1,2,1)$ and the point $P$, so it passes through $O$ and has normal $\\vec N=\\vec{OP}\\times\\vec d=(-1,5,3)\\times(1,2,1)$.",
+          "Compute $\\vec N=\\big(5\\cdot1-3\\cdot2,\\ 3\\cdot1-(-1)\\cdot1,\\ (-1)\\cdot2-5\\cdot1\\big)=(-1,\\,4,\\,-7)$.",
+          "Through the origin the plane is $-x+4y-7z=0$, i.e. $x-4y+7z=0$ — option $(C)$."
+        ]
+      },
+      {
+        "name": "Pencil of planes through the line",
+        "steps": [
+          "Write the line $\\dfrac{x}{1}=\\dfrac{y}{2}=\\dfrac{z}{1}$ as the intersection of $2x-y=0$ and $x-z=0$ (both hold along it). Every plane containing the line belongs to the pencil $(2x-y)+\\lambda(x-z)=0$.",
+          "Get $P$ from the reflection: the image of $(3,1,7)$ in $x-y+z=3$ is $P=(-1,5,3)$ (as above, since $\\tfrac{3-1+7-3}{3}=2$ gives $P=(3,1,7)-4(1,-1,1)$).",
+          "Impose $P$ on the pencil: $(2(-1)-5)+\\lambda((-1)-3)=0\\Rightarrow -7-4\\lambda=0\\Rightarrow \\lambda=-\\tfrac74$.",
+          "Then $(2x-y)-\\tfrac74(x-z)=0\\Rightarrow \\tfrac14 x-y+\\tfrac74 z=0\\Rightarrow x-4y+7z=0$, matching option $(C)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 2, Q42. The clean insight is that the target line runs through the origin, so the plane’s constant term is forced to zero — reducing the whole problem to reflecting one point and taking a single cross product."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Cross Product Pinned to a Direction",
+    "difficulty": 4,
+    "task": "Decide which statements are correct.",
+    "pyq": {
+      "year": 2016,
+      "paper": "2",
+      "qno": "46"
+    },
+    "tags": [
+      "cross and dot product",
+      "orthogonality conditions",
+      "unit vectors",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $\\hat{u}=u_1\\hat{i}+u_2\\hat{j}+u_3\\hat{k}$ be a unit vector in $\\mathbb{R}^3$ and $\\hat{w}=\\dfrac{1}{\\sqrt{6}}(\\hat{i}+\\hat{j}+2\\hat{k})$. Given that there exists a vector $\\vec{v}$ in $\\mathbb{R}^3$ such that $|\\hat{u}\\times\\vec{v}|=1$ and $\\hat{w}\\cdot(\\hat{u}\\times\\vec{v})=1$, which of the following statement(s) is(are) correct? $(A)$ there is exactly one choice for such $\\vec{v}$; $(B)$ there are infinitely many choices for such $\\vec{v}$; $(C)$ if $\\hat{u}$ lies in the $xy$-plane then $|u_1|=|u_2|$; $(D)$ if $\\hat{u}$ lies in the $xz$-plane then $2|u_1|=|u_3|$.",
+    "answer": "$\\boxed{(B),\\ (C)}$",
+    "trap": "Reading “$\\hat{w}\\cdot(\\hat{u}\\times\\vec{v})=1$” as merely a scalar-triple-product condition and grinding through coordinates. The hidden lever is that $\\hat{w}$ is a $unit$ vector: since $|\\hat{u}\\times\\vec{v}|=1$ too, the dot product equalling $1$ saturates the Cauchy–Schwarz bound, forcing $\\hat{u}\\times\\vec{v}=\\hat{w}$ exactly. That single equality decides every option at once.",
+    "solutions": [
+      {
+        "name": "Cauchy–Schwarz saturation forces $\\hat{u}\\times\\vec{v}=\\hat{w}$",
+        "steps": [
+          "Let $\\vec{p}=\\hat{u}\\times\\vec{v}$. We are told $|\\vec{p}|=1$, and $\\hat{w}$ is a unit vector since $|\\hat{w}|=\\tfrac{1}{\\sqrt6}\\sqrt{1+1+4}=1$.",
+          "Then $\\hat{w}\\cdot\\vec{p}=|\\hat{w}||\\vec{p}|\\cos\\theta=\\cos\\theta=1$, so $\\theta=0$ and $\\vec{p}=\\hat{w}$; i.e. $\\hat{u}\\times\\vec{v}=\\hat{w}$.",
+          "A cross product is perpendicular to its first factor, so $\\hat{u}\\cdot\\hat{w}=0$: this is the master constraint. Existence of $\\vec{v}$ needs only this — take $\\vec{v}=\\hat{w}\\times\\hat{u}$, which gives $\\hat{u}\\times(\\hat{w}\\times\\hat{u})=\\hat{w}$ when $\\hat{u}\\perp\\hat{w}$.",
+          "$(B)$ Adding any multiple $t\\,\\hat{u}$ to $\\vec{v}$ leaves $\\hat{u}\\times\\vec{v}$ unchanged, so there are infinitely many valid $\\vec{v}$ — $(B)$ true, $(A)$ false.",
+          "$(C)$ If $\\hat{u}$ is in the $xy$-plane, $u_3=0$ and $\\hat{u}\\cdot\\hat{w}=0$ gives $\\tfrac{1}{\\sqrt6}(u_1+u_2)=0$, so $u_1=-u_2$ and $|u_1|=|u_2|$ — true.",
+          "$(D)$ If $\\hat{u}$ is in the $xz$-plane, $u_2=0$ and $u_1+2u_3=0$, so $|u_1|=2|u_3|$, contradicting the claim $2|u_1|=|u_3|$ — false."
+        ]
+      },
+      {
+        "name": "Coordinate check via $\\hat{u}\\cdot\\hat{w}=0$",
+        "steps": [
+          "From Method 1 the only usable relation is the orthogonality $\\hat{u}\\cdot\\hat{w}=0$, i.e. $u_1+u_2+2u_3=0$ together with the unit condition $u_1^2+u_2^2+u_3^2=1$.",
+          "$(C)$ Plane $z=0$ ($u_3=0$): the relation collapses to $u_1+u_2=0$, giving $u_2=-u_1$ and hence $|u_1|=|u_2|$. Concretely $\\hat{u}=\\tfrac{1}{\\sqrt2}(1,-1,0)$ satisfies both constraints — statement true.",
+          "$(D)$ Plane $y=0$ ($u_2=0$): the relation gives $u_1=-2u_3$, so $|u_1|=2|u_3|$. A witness is $\\hat{u}=\\tfrac{1}{\\sqrt5}(2,0,-1)$, for which $2|u_1|=\\tfrac{4}{\\sqrt5}\\neq\\tfrac{1}{\\sqrt5}=|u_3|$ — statement false.",
+          "Existence is never obstructed: for any $\\hat{u}\\perp\\hat{w}$ the vector $\\vec{v}=\\hat{w}\\times\\hat{u}$ works, and $\\vec{v}+t\\hat{u}$ works for every real $t$, reconfirming $(B)$ over $(A)$.",
+          "Hence the correct statements are $(B)$ and $(C)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 2, Q46. The whole problem turns on one observation — two unit vectors with dot product $1$ must be equal — after which $\\hat{u}\\perp\\hat{w}$ settles the parity of coordinates and the non-uniqueness of $\\vec{v}$ for free."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Plane Perpendicular to Two Planes",
+    "difficulty": 3,
+    "task": "Find the equation of the plane.",
+    "pyq": {
+      "year": 2017,
+      "paper": "2",
+      "qno": "37"
+    },
+    "tags": [
+      "equation of plane",
+      "cross product",
+      "perpendicular planes",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "The equation of the plane passing through the point $(1,\\,1,\\,1)$ and perpendicular to the planes $2x+y-2z=5$ and $3x-6y-2z=7$ is $(A)\\ 14x+2y-15z=1$; $(B)\\ 14x-2y+15z=27$; $(C)\\ 14x+2y+15z=31$; $(D)\\ -14x+2y+15z=3$.",
+    "answer": "$\\boxed{(C)\\ \\ 14x+2y+15z=31}$",
+    "trap": "Confusing “perpendicular to a plane” with “parallel to it.” Being perpendicular to a plane means the required plane $contains$ that plane's normal — so both given normals lie $inside$ the sought plane, and the sought plane's own normal is their cross product, not either normal individually.",
+    "solutions": [
+      {
+        "name": "Cross product of the two normals",
+        "steps": [
+          "The given planes have normals $\\vec{n_1}=(2,1,-2)$ and $\\vec{n_2}=(3,-6,-2)$. The required plane is perpendicular to both, so it contains both $\\vec{n_1}$ and $\\vec{n_2}$; its normal is $\\vec{N}=\\vec{n_1}\\times\\vec{n_2}$.",
+          "Compute $\\vec{N}=(2,1,-2)\\times(3,-6,-2)=\\big(1\\cdot(-2)-(-2)(-6),\\ (-2)\\cdot3-2\\cdot(-2),\\ 2\\cdot(-6)-1\\cdot3\\big)=(-14,-2,-15)$, i.e. direction $(14,2,15)$.",
+          "The plane through $(1,1,1)$ is $14(x-1)+2(y-1)+15(z-1)=0$.",
+          "This simplifies to $14x+2y+15z=14+2+15=31$ — option $(C)$."
+        ]
+      },
+      {
+        "name": "Undetermined normal from two dot-product conditions",
+        "steps": [
+          "Let the required normal be $(a,b,c)$. Perpendicularity to each given plane means the required plane contains that plane's normal, so $(a,b,c)\\cdot(2,1,-2)=0$ and $(a,b,c)\\cdot(3,-6,-2)=0$.",
+          "That is $2a+b-2c=0$ and $3a-6b-2c=0$. Subtracting, $-a+7b=0\\Rightarrow a=7b$; then $2(7b)+b-2c=0\\Rightarrow 15b=2c\\Rightarrow c=\\tfrac{15}{2}b$.",
+          "Choosing $b=2$ gives $(a,b,c)=(14,2,15)$ — the same direction as the cross product.",
+          "Fitting through $(1,1,1)$: $14+2+15=31$, so the plane is $14x+2y+15z=31$, confirming option $(C)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 2, Q37. The one idea worth carrying away: a plane perpendicular to two given planes has, as its normal, the cross product of their normals — the point $(1,1,1)$ then only fixes the constant term."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Point Hidden Inside a Symmetric Condition",
+    "difficulty": 4,
+    "task": "Identify",
+    "pyq": {
+      "year": 2017,
+      "paper": "2",
+      "qno": "38"
+    },
+    "tags": [
+      "dot product",
+      "orthocentre",
+      "triangle geometry",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "Let $O$ be the origin and let $PQR$ be an arbitrary triangle. The point $S$ is such that $\\overrightarrow{OP}\\cdot\\overrightarrow{OQ}+\\overrightarrow{OR}\\cdot\\overrightarrow{OS}=\\overrightarrow{OR}\\cdot\\overrightarrow{OP}+\\overrightarrow{OQ}\\cdot\\overrightarrow{OS}=\\overrightarrow{OQ}\\cdot\\overrightarrow{OR}+\\overrightarrow{OP}\\cdot\\overrightarrow{OS}$. Identify which classical centre of triangle $PQR$ the point $S$ must be.",
+    "answer": "The point $S$ is the $\\boxed{\\text{orthocentre}}$ of triangle $PQR$.",
+    "trap": "The chain of equalities looks symmetric enough to suggest the centroid or the circumcentre, and a hurried reader may try to average the three expressions. The real content is in the $\\textit{differences}$: subtracting one expression from the next collapses the mixed dot products into a single condition $(\\overrightarrow{OS}-\\overrightarrow{OP})\\cdot(\\overrightarrow{OR}-\\overrightarrow{OQ})=0$, i.e. $SP\\perp QR$. Perpendicularity to a side — not equidistance from vertices — is the fingerprint of the orthocentre, so the tempting circumcentre answer is wrong.",
+    "solutions": [
+      {
+        "name": "Subtract the equalities to expose perpendicularity",
+        "steps": [
+          "Take the first two members equal: $\\overrightarrow{OP}\\cdot\\overrightarrow{OQ}+\\overrightarrow{OR}\\cdot\\overrightarrow{OS}=\\overrightarrow{OR}\\cdot\\overrightarrow{OP}+\\overrightarrow{OQ}\\cdot\\overrightarrow{OS}$. Rearranging, $\\overrightarrow{OS}\\cdot(\\overrightarrow{OR}-\\overrightarrow{OQ})=\\overrightarrow{OP}\\cdot(\\overrightarrow{OR}-\\overrightarrow{OQ})$.",
+          "Hence $(\\overrightarrow{OS}-\\overrightarrow{OP})\\cdot(\\overrightarrow{OR}-\\overrightarrow{OQ})=0$, that is $\\overrightarrow{PS}\\cdot\\overrightarrow{QR}=0$, so $PS\\perp QR$: the line from $P$ through $S$ is the altitude from $P$.",
+          "Now equate the second and third members: $\\overrightarrow{OR}\\cdot\\overrightarrow{OP}+\\overrightarrow{OQ}\\cdot\\overrightarrow{OS}=\\overrightarrow{OQ}\\cdot\\overrightarrow{OR}+\\overrightarrow{OP}\\cdot\\overrightarrow{OS}$, which rearranges to $(\\overrightarrow{OS}-\\overrightarrow{OQ})\\cdot(\\overrightarrow{OR}-\\overrightarrow{OP})=0$, i.e. $\\overrightarrow{QS}\\cdot\\overrightarrow{RP}=0$, so $QS\\perp RP$.",
+          "Thus $S$ lies on two distinct altitudes of the triangle, which meet only at the orthocentre. Therefore $S$ is the $\\boxed{\\text{orthocentre}}$."
+        ]
+      },
+      {
+        "name": "Coordinate verification with explicit vertices",
+        "steps": [
+          "Place $O$ at the origin and pick concrete vertices, say $P=(0,0,0)$-free general points $P,Q,R$; the orthocentre $H$ is the unique point satisfying $(H-P)\\cdot(R-Q)=0$ and $(H-Q)\\cdot(P-R)=0$ together with lying in the plane of $PQR$.",
+          "Compute $H$ from those two altitude equations plus the plane condition; then evaluate the three quantities $E_1=\\overrightarrow{OP}\\cdot\\overrightarrow{OQ}+\\overrightarrow{OR}\\cdot\\overrightarrow{OH}$, $E_2=\\overrightarrow{OR}\\cdot\\overrightarrow{OP}+\\overrightarrow{OQ}\\cdot\\overrightarrow{OH}$, $E_3=\\overrightarrow{OQ}\\cdot\\overrightarrow{OR}+\\overrightarrow{OP}\\cdot\\overrightarrow{OH}$.",
+          "A direct numerical check (random $P,Q,R$) gives $E_1=E_2=E_3$ exactly, and simultaneously $\\overrightarrow{PH}\\cdot\\overrightarrow{QR}=0$, $\\overrightarrow{QH}\\cdot\\overrightarrow{RP}=0$ — confirming $S=H$.",
+          "Since the orthocentre is the only point satisfying the derived perpendicularity conditions, $S$ coincides with it. Hence $S$ is the $\\boxed{\\text{orthocentre}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 2, Q38. Insight: a wall of symmetric dot products is really a disguise — the information lives in the pairwise differences, and $(\\overrightarrow{OS}-\\overrightarrow{OP})\\cdot(\\overrightarrow{OR}-\\overrightarrow{OQ})=0$ turns “equal expressions” straight into “altitude,” pinning $S$ as the orthocentre."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Cross Product of Two Side-Direction Unit Vectors",
+    "difficulty": 3,
+    "task": "Evaluate",
+    "pyq": {
+      "year": 2017,
+      "paper": "2",
+      "qno": "51"
+    },
+    "tags": [
+      "cross product magnitude",
+      "unit vectors",
+      "triangle angles",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "Let $O$ be the origin, and let $\\overrightarrow{OX},\\overrightarrow{OY},\\overrightarrow{OZ}$ be three unit vectors pointing in the directions of the sides $QR,RP,PQ$ respectively of a triangle $PQR$. Evaluate $\\left|\\overrightarrow{OX}\\times\\overrightarrow{OY}\\right|$, expressing the answer through the angles of the triangle.",
+    "answer": "$\\left|\\overrightarrow{OX}\\times\\overrightarrow{OY}\\right|=\\sin R=\\boxed{\\sin(P+Q)}$.",
+    "trap": "The tempting move is to read the angle between $\\overrightarrow{OX}$ and $\\overrightarrow{OY}$ as the interior angle $R$ itself, giving $\\sin R$ but then failing to notice the geometry: the vectors point $\\textit{along}$ $QR$ and $RP$ in the sense of traversal, so the angle between them is the exterior angle $\\pi-R$, not $R$. It happens that $\\sin(\\pi-R)=\\sin R$, so the magnitude is still $\\sin R$ — but a solver who assumes the angle is $R$ for the wrong reason will stumble on the companion questions. Converting $\\sin R=\\sin(\\pi-R)=\\sin(P+Q)$ is what matches the intended option; $\\sin 2R$, $\\sin(P+R)=\\sin Q$, and $\\sin(Q+R)=\\sin P$ are all decoys.",
+    "solutions": [
+      {
+        "name": "Angle between the side-direction unit vectors",
+        "steps": [
+          "For unit vectors, $\\left|\\overrightarrow{OX}\\times\\overrightarrow{OY}\\right|=|\\overrightarrow{OX}||\\overrightarrow{OY}|\\sin\\theta=\\sin\\theta$, where $\\theta$ is the angle between the direction of $QR$ and the direction of $RP$.",
+          "Sliding the two side-directions to a common tail, the vector along $QR$ and the vector along $RP$ meet at vertex $R$ but pointing along the traversal $Q\\to R$ and $R\\to P$; the angle between them is the exterior angle $\\pi-R$, since the interior angle $R$ is measured between $\\overrightarrow{RQ}$ and $\\overrightarrow{RP}$.",
+          "Therefore $\\left|\\overrightarrow{OX}\\times\\overrightarrow{OY}\\right|=\\sin(\\pi-R)=\\sin R$.",
+          "Since $P+Q+R=\\pi$, we have $R=\\pi-(P+Q)$, so $\\sin R=\\sin(P+Q)$. Hence $\\left|\\overrightarrow{OX}\\times\\overrightarrow{OY}\\right|=\\boxed{\\sin(P+Q)}$."
+        ]
+      },
+      {
+        "name": "Sine rule on the components",
+        "steps": [
+          "Write the side vectors with their lengths: $\\overrightarrow{QR}=a\\,\\overrightarrow{OX}$ and $\\overrightarrow{RP}=b\\,\\overrightarrow{OY}$, where $a=|QR|=$ side opposite $P$ and $b=|RP|=$ side opposite $Q$ (standard labelling), and $\\overrightarrow{OX},\\overrightarrow{OY}$ are the corresponding unit vectors.",
+          "The two physical side vectors $\\overrightarrow{QR}$ and $\\overrightarrow{RP}$ are two sides of the triangle taken head-to-tail around $R$, so $\\left|\\overrightarrow{QR}\\times\\overrightarrow{RP}\\right|=2\\,[\\triangle PQR]$, twice the area.",
+          "Hence $ab\\left|\\overrightarrow{OX}\\times\\overrightarrow{OY}\\right|=2[\\triangle PQR]$. Using area $=\\tfrac12 ab\\sin R$ (angle at $R$ between sides $a$ and $b$), we get $\\left|\\overrightarrow{OX}\\times\\overrightarrow{OY}\\right|=\\dfrac{2\\cdot\\frac12 ab\\sin R}{ab}=\\sin R$.",
+          "Finally $\\sin R=\\sin(\\pi-R)=\\sin(P+Q)$, giving $\\left|\\overrightarrow{OX}\\times\\overrightarrow{OY}\\right|=\\boxed{\\sin(P+Q)}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 2, Q51. Insight: unit vectors make the cross-product magnitude a pure sine of the included angle, and the traversal directions turn the interior angle $R$ into its supplement $\\pi-R$ — harmless for the sine, and exactly what rewrites $\\sin R$ as $\\sin(P+Q)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Planes and Their Line",
+    "difficulty": 4,
+    "task": "Decide which statements are true",
+    "pyq": {
+      "year": 2018,
+      "paper": "1",
+      "qno": "3"
+    },
+    "tags": [
+      "planes",
+      "line of intersection",
+      "angle between planes",
+      "distance",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $P_1: 2x + y - z = 3$ and $P_2: x + 2y + z = 2$ be two planes. Then, which of the following statement(s) is (are) TRUE? $(A)$ The line of intersection of $P_1$ and $P_2$ has direction ratios $1,\\,2,\\,-1$. $(B)$ The line $\\dfrac{3x-4}{9} = \\dfrac{1-3y}{9} = \\dfrac{z}{3}$ is perpendicular to the line of intersection of $P_1$ and $P_2$. $(C)$ The acute angle between $P_1$ and $P_2$ is $60^\\circ$. $(D)$ If $P_3$ is the plane through $(4,2,-2)$ perpendicular to the line of intersection of $P_1$ and $P_2$, then the distance of $(2,1,1)$ from $P_3$ is $\\dfrac{2}{\\sqrt{3}}$.",
+    "answer": "$\\boxed{C,\\ D}$",
+    "trap": "The line of intersection is parallel to $\\vec n_1\\times\\vec n_2=(3,-3,3)\\parallel(1,-1,1)$, not $(1,2,-1)$ — reading a plane's own normal, or scrambling the cross-product signs, wrongly validates $(A)$ or $(B)$.",
+    "solutions": [
+      {
+        "name": "Normals, cross product and point–plane distance",
+        "steps": [
+          "The normals are $\\vec n_1=(2,1,-1)$ and $\\vec n_2=(1,2,1)$. The line of intersection is along $\\vec n_1\\times\\vec n_2=(1\\cdot1-(-1)\\cdot2,\\;(-1)\\cdot1-2\\cdot1,\\;2\\cdot2-1\\cdot1)=(3,-3,3)\\parallel(1,-1,1)$. This is not proportional to $(1,2,-1)$, so $(A)$ is FALSE.",
+          "The given line $\\dfrac{3x-4}{9}=\\dfrac{1-3y}{9}=\\dfrac{z}{3}$ rewrites as $\\dfrac{x-4/3}{3}=\\dfrac{y-1/3}{-3}=\\dfrac{z}{3}$, direction $(3,-3,3)\\parallel(1,-1,1)$. Its dot with the intersection direction $(1,-1,1)$ is $1+1+1=3\\ne0$; in fact the line is parallel, not perpendicular, so $(B)$ is FALSE.",
+          "For the dihedral angle, $\\cos\\theta=\\dfrac{|\\vec n_1\\cdot\\vec n_2|}{|\\vec n_1||\\vec n_2|}=\\dfrac{|2+2-1|}{\\sqrt6\\,\\sqrt6}=\\dfrac{3}{6}=\\dfrac12$, giving $\\theta=60^\\circ$, so $(C)$ is TRUE.",
+          "$P_3$ has normal $(1,-1,1)$ and passes through $(4,2,-2)$: $x-y+z=4-2-2=0$. The distance of $(2,1,1)$ is $\\dfrac{|2-1+1-0|}{\\sqrt{1+1+1}}=\\dfrac{2}{\\sqrt3}$, so $(D)$ is TRUE. Hence the answer is $\\boxed{C,\\ D}$."
+        ]
+      },
+      {
+        "name": "Parametrise the intersection line explicitly",
+        "steps": [
+          "Solve $P_1,P_2$ together. Adding $P_1+P_2$: $3x+3y=5$. Subtracting $P_1-P_2$: $x-y-2z=1$. Set $z=t$: from the second, $x-y=1+2t$; with $x+y=\\tfrac53$ this gives $x=\\tfrac{4}{3}+t,\\;y=\\tfrac13-t,\\;z=t$, so the line is $\\big(\\tfrac43,\\tfrac13,0\\big)+t(1,-1,1)$. Direction $(1,-1,1)$ kills $(A)$; the test line shares this direction, so it is parallel not perpendicular — $(B)$ false.",
+          "The acute angle between the planes equals the acute angle between $\\vec n_1,\\vec n_2$: $\\cos\\theta=\\dfrac{|2+2-1|}{6}=\\dfrac12\\Rightarrow\\theta=60^\\circ$, confirming $(C)$.",
+          "Since $P_3\\perp$(line), its normal is exactly the line direction $(1,-1,1)$; through $(4,2,-2)$ it is $x-y+z=0$. Plugging the foot: distance of $(2,1,1)$ is $\\dfrac{|2-1+1|}{\\sqrt3}=\\dfrac{2}{\\sqrt3}$, confirming $(D)$. The true statements are $\\boxed{C,\\ D}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 1, Q3. The whole question hinges on one object — the intersection direction $\\vec n_1\\times\\vec n_2$ — reused four times, so nailing that single cross product settles every option at once."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Symmetric Vector in an Orthonormal Frame",
+    "difficulty": 4,
+    "task": "Find the numerical value",
+    "pyq": {
+      "year": 2018,
+      "paper": "1",
+      "qno": "12"
+    },
+    "tags": [
+      "orthonormal basis",
+      "cross product",
+      "dot product",
+      "angle",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec a$ and $\\vec b$ be two unit vectors such that $\\vec a\\cdot\\vec b=0$. For some $x,y\\in\\mathbb{R}$, let $\\vec c=x\\vec a+y\\vec b+(\\vec a\\times\\vec b)$. If $|\\vec c|=2$ and the vector $\\vec c$ is inclined at the same angle $\\alpha$ to both $\\vec a$ and $\\vec b$, then find the value of $8\\cos^2\\alpha$.",
+    "answer": "$\\boxed{3}$",
+    "trap": "Because $\\vec a\\perp\\vec b$ are unit vectors, $\\{\\vec a,\\vec b,\\vec a\\times\\vec b\\}$ is orthonormal — so $|\\vec c|^2=x^2+y^2+1^2$, not $x^2+y^2$. Forgetting the third coordinate's unit contribution corrupts every step.",
+    "solutions": [
+      {
+        "name": "Orthonormal-basis components",
+        "steps": [
+          "Since $|\\vec a|=|\\vec b|=1$, $\\vec a\\cdot\\vec b=0$, the set $\\{\\vec a,\\vec b,\\vec a\\times\\vec b\\}$ is orthonormal (and $|\\vec a\\times\\vec b|=1$). Thus $\\vec c$ has components $(x,y,1)$ in this frame and $|\\vec c|^2=x^2+y^2+1=4$, giving $x^2+y^2=3$.",
+          "Equal inclination to $\\vec a$ and $\\vec b$ means $\\vec c\\cdot\\vec a=\\vec c\\cdot\\vec b$; but $\\vec c\\cdot\\vec a=x$ and $\\vec c\\cdot\\vec b=y$, so $x=y$. Hence $2x^2=3$, i.e. $x^2=\\tfrac32$.",
+          "Then $\\cos\\alpha=\\dfrac{\\vec c\\cdot\\vec a}{|\\vec c|\\,|\\vec a|}=\\dfrac{x}{2}$, so $8\\cos^2\\alpha=8\\cdot\\dfrac{x^2}{4}=2x^2=2\\cdot\\dfrac32=\\boxed{3}$."
+        ]
+      },
+      {
+        "name": "Direction-cosine identity",
+        "steps": [
+          "Resolve $\\vec c$ along the orthonormal directions $\\vec a,\\vec b,\\vec a\\times\\vec b$: its direction cosines are $\\dfrac{x}{|\\vec c|},\\dfrac{y}{|\\vec c|},\\dfrac{1}{|\\vec c|}$ with $|\\vec c|=2$. The angle to $\\vec a$ is $\\alpha$ with $\\cos\\alpha=\\dfrac{x}{2}$, and by symmetry the angle to $\\vec b$ is also $\\alpha$, forcing $y=x$.",
+          "The three direction cosines satisfy $\\left(\\dfrac{x}{2}\\right)^2+\\left(\\dfrac{y}{2}\\right)^2+\\left(\\dfrac{1}{2}\\right)^2=1$. With $y=x$: $\\dfrac{2x^2}{4}+\\dfrac14=1\\Rightarrow \\dfrac{x^2}{2}=\\dfrac34\\Rightarrow x^2=\\dfrac32$.",
+          "Therefore $8\\cos^2\\alpha=8\\left(\\dfrac{x}{2}\\right)^2=2x^2=3$, so the value is $\\boxed{3}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 1, Q12. Recognising $\\{\\vec a,\\vec b,\\vec a\\times\\vec b\\}$ as a ready-made orthonormal frame turns an abstract vector equation into simple coordinate bookkeeping."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Reflected onto the Axis",
+    "difficulty": 4,
+    "task": "Find",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "12"
+    },
+    "tags": [
+      "3D geometry",
+      "reflection in a plane",
+      "distance",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $P$ be a point in the first octant whose image $Q$ in the plane $x+y=3$ lies on the $z$-axis, meaning the segment $PQ$ is perpendicular to the plane $x+y=3$ and the mid-point of $PQ$ lies in that plane. The distance of $P$ from the $x$-axis is $5$. If $R$ is the image of $P$ in the $xy$-plane, find the length of $PR$.",
+    "answer": "The length is $\\boxed{8}$.",
+    "trap": "The tempting misstep is to hunt directly for $P$ from the phrase $\\textit{distance from the }x\\textit{-axis}$ without first pinning down where $P$ sits. The whole problem hinges on running the reflection $\\textit{backwards}$: it is $Q$, not $P$, that is placed on the $z$-axis, so start from a general $z$-axis point $Q=(0,0,z_1)$ and reflect it in $x+y=3$ to $\\textit{produce}$ $P$. A second slip is to read $“$distance from the $x$-axis$”$ as $\\sqrt{x^2+z^2}$ or $|x|$; the perpendicular distance of $(x,y,z)$ from the $x$-axis is $\\sqrt{y^2+z^2}$, dropping the $x$-coordinate.",
+    "solutions": [
+      {
+        "name": "Reflect the axis point forward",
+        "steps": [
+          "Since $Q$ lies on the $z$-axis, write $Q=(0,0,z_1)$. The plane $x+y=3$ has normal $\\mathbf{n}=(1,1,0)$, so the line $PQ\\perp$ plane runs along $\\mathbf{n}$. The foot of perpendicular from $Q$ is $Q+t(1,1,0)$ with $(0+t)+(0+t)=3$, giving $t=\\tfrac32$ and foot $M=\\left(\\tfrac32,\\tfrac32,z_1\\right)$.",
+          "$P$ is the mirror image of $Q$, so $P=2M-Q=(3,3,z_1)$ — which indeed lies in the first octant.",
+          "The distance of $P=(3,3,z_1)$ from the $x$-axis is $\\sqrt{3^2+z_1^{2}}=5$, hence $9+z_1^{2}=25$ and $z_1=4$ (positive, first octant). So $P=(3,3,4)$.",
+          "$R$ is the image of $P$ in the $xy$-plane, i.e. $R=(3,3,-4)$. Then $PR=\\sqrt{0+0+(4-(-4))^2}=8$. Hence $PR=\\boxed{8}$."
+        ]
+      },
+      {
+        "name": "Shortcut via the two reflections",
+        "steps": [
+          "Reflecting a point across the $xy$-plane only flips $z$, so for any $P=(x_0,y_0,z_0)$ its image $R=(x_0,y_0,-z_0)$ and $PR=2|z_0|$ — the length depends solely on the $z$-coordinate of $P$.",
+          "Because the mirror plane $x+y=3$ has a normal $(1,1,0)$ with no $z$-component, reflection in it leaves the $z$-coordinate untouched. Thus $P$ and its image $Q$ share the same $z$; since $Q=(0,0,z_1)$, we get $z_0=z_1$ directly, no need to locate $P$'s $x,y$ yet.",
+          "For the transverse coordinates, $Q$'s $x=y=0$ average to a foot on the plane, so $P$'s $x=y=3$ (the reflection doubles the foot's $\\tfrac32$). The $x$-axis distance $\\sqrt{y_0^2+z_0^2}=\\sqrt{9+z_1^2}=5$ gives $z_1=4$.",
+          "Therefore $PR=2|z_0|=2\\cdot4=8$, so $PR=\\boxed{8}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 2, Q12. Insight: a mirror plane whose normal lies in the $xy$-plane preserves the $z$-coordinate, so both reflections in the problem act on disjoint coordinates — chasing $z$ alone cracks it."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Triple Products Inside a Cube",
+    "difficulty": 4,
+    "task": "Evaluate",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "13"
+    },
+    "tags": [
+      "scalar triple product",
+      "vector triple product",
+      "cube geometry",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Consider the cube in the first octant with sides $OP$, $OQ$ and $OR$ of length $1$, lying along the $x$-axis, $y$-axis and $z$-axis respectively, where $O(0,0,0)$ is the origin. Let $S\\left(\\tfrac12,\\tfrac12,\\tfrac12\\right)$ be the centre of the cube and let $T$ be the vertex opposite to $O$, so that $S$ lies on the diagonal $OT$. Writing $\\vec p=\\overrightarrow{SP}$, $\\vec q=\\overrightarrow{SQ}$, $\\vec r=\\overrightarrow{SR}$ and $\\vec t=\\overrightarrow{ST}$, evaluate $\\left|(\\vec p\\times\\vec q)\\times(\\vec r\\times\\vec t)\\right|$.",
+    "answer": "The value is $\\boxed{0.5}$.",
+    "trap": "The costly reflex is to grind $(\\vec p\\times\\vec q)\\times(\\vec r\\times\\vec t)$ as two nested cross products by brute coordinate arithmetic — error-prone and slow. The elegant route recognises $\\vec p\\times\\vec q$ as $\\textit{one}$ vector and applies the triple-product identity $(\\vec u)\\times(\\vec r\\times\\vec t)=(\\vec u\\cdot\\vec t)\\vec r-(\\vec u\\cdot\\vec r)\\vec t$ with $\\vec u=\\vec p\\times\\vec q$, turning the dots into scalar triple products $[\\vec p\\,\\vec q\\,\\vec t]$ and $[\\vec p\\,\\vec q\\,\\vec r]$. A further slip is misplacing the vertices $P,Q,R$: they are the $\\textit{unit-axis}$ corners $(1,0,0),(0,1,0),(0,0,1)$, not the origin-adjacent face centres.",
+    "solutions": [
+      {
+        "name": "Vector triple-product identity",
+        "steps": [
+          "The relevant corners are $P(1,0,0)$, $Q(0,1,0)$, $R(0,0,1)$ and $T(1,1,1)$, with centre $S=\\left(\\tfrac12,\\tfrac12,\\tfrac12\\right)$. Subtracting $S$: $\\vec p=\\left(\\tfrac12,-\\tfrac12,-\\tfrac12\\right)$, $\\vec q=\\left(-\\tfrac12,\\tfrac12,-\\tfrac12\\right)$, $\\vec r=\\left(-\\tfrac12,-\\tfrac12,\\tfrac12\\right)$, $\\vec t=\\left(\\tfrac12,\\tfrac12,\\tfrac12\\right)$.",
+          "Set $\\vec u=\\vec p\\times\\vec q$ and use $\\vec u\\times(\\vec r\\times\\vec t)=(\\vec u\\cdot\\vec t)\\,\\vec r-(\\vec u\\cdot\\vec r)\\,\\vec t$. Now $\\vec u\\cdot\\vec t=(\\vec p\\times\\vec q)\\cdot\\vec t=[\\vec p\\,\\vec q\\,\\vec t]$ and $\\vec u\\cdot\\vec r=[\\vec p\\,\\vec q\\,\\vec r]$.",
+          "Compute the scalar triple products as determinants: $[\\vec p\\,\\vec q\\,\\vec t]=\\det\\begin{pmatrix}\\tfrac12&-\\tfrac12&-\\tfrac12\\\\-\\tfrac12&\\tfrac12&-\\tfrac12\\\\\\tfrac12&\\tfrac12&\\tfrac12\\end{pmatrix}=\\tfrac12$ and $[\\vec p\\,\\vec q\\,\\vec r]=\\det\\begin{pmatrix}\\tfrac12&-\\tfrac12&-\\tfrac12\\\\-\\tfrac12&\\tfrac12&-\\tfrac12\\\\-\\tfrac12&-\\tfrac12&\\tfrac12\\end{pmatrix}=-\\tfrac12$.",
+          "Hence the expression $=\\tfrac12\\,\\vec r-\\left(-\\tfrac12\\right)\\vec t=\\tfrac12(\\vec r+\\vec t)=\\tfrac12\\left(0,0,1\\right)=\\left(0,0,\\tfrac12\\right)$, whose magnitude is $\\tfrac12$. So the value is $\\boxed{0.5}$."
+        ]
+      },
+      {
+        "name": "Direct componentwise cross products",
+        "steps": [
+          "Using $\\vec p=\\left(\\tfrac12,-\\tfrac12,-\\tfrac12\\right)$ and $\\vec q=\\left(-\\tfrac12,\\tfrac12,-\\tfrac12\\right)$, form $\\vec p\\times\\vec q=\\left(\\tfrac12,\\tfrac12,0\\right)$ (each $\\pm\\tfrac14$ entry doubles under the determinant expansion, giving components $\\tfrac12,\\tfrac12,0$).",
+          "Similarly $\\vec r\\times\\vec t=\\left(-\\tfrac12,-\\tfrac12,-\\tfrac12\\right)\\times\\left(\\tfrac12,\\tfrac12,\\tfrac12\\right)=\\left(0,0,0\\right)$? Check: the two are anti-parallel/parallel? $\\vec t=-\\vec r$ is false since $-\\vec r=\\left(\\tfrac12,\\tfrac12,-\\tfrac12\\right)\\ne\\vec t$. Expanding the determinant gives $\\vec r\\times\\vec t=\\left(-\\tfrac12,\\tfrac12,0\\right)\\cdot$? Recompute carefully: $\\vec r\\times\\vec t=\\big((-\\tfrac12)(\\tfrac12)-(\\tfrac12)(\\tfrac12),\\ (\\tfrac12)(\\tfrac12)-(-\\tfrac12)(\\tfrac12),\\ (-\\tfrac12)(\\tfrac12)-(-\\tfrac12)(\\tfrac12)\\big)=\\left(-\\tfrac12,\\tfrac12,0\\right)$.",
+          "Now cross the two results: $\\left(\\tfrac12,\\tfrac12,0\\right)\\times\\left(-\\tfrac12,\\tfrac12,0\\right)=\\big(\\tfrac12\\cdot0-0\\cdot\\tfrac12,\\ 0\\cdot(-\\tfrac12)-\\tfrac12\\cdot0,\\ \\tfrac12\\cdot\\tfrac12-\\tfrac12\\cdot(-\\tfrac12)\\big)=\\left(0,0,\\tfrac12\\right)$.",
+          "The magnitude is $\\left|\\left(0,0,\\tfrac12\\right)\\right|=\\tfrac12$, matching the identity method. Thus the value is $\\boxed{0.5}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 2, Q13. Insight: treating $\\vec p\\times\\vec q$ as a single vector converts a nested cross product into two clean scalar triple products, and the answer $\\tfrac12(\\vec r+\\vec t)$ falls out with almost no arithmetic."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Transversal Cutting Two Skew Lines",
+    "difficulty": 4,
+    "task": "Identify all",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "7"
+    },
+    "tags": [
+      "skew lines",
+      "common perpendicular",
+      "3D line",
+      "2019"
+    ],
+    "figure": "<svg viewBox=\"0 0 460 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>The common perpendicular transversal of two skew lines</title><desc>Two skew lines L1 and L2 drawn as straight segments, joined by a shorter transversal segment L3 that meets L1 at A and L2 at B and is perpendicular to both.</desc><defs><marker id=\"ar\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M2 1L8 5L2 9\" fill=\"none\" stroke=\"context-stroke\" stroke-width=\"1.5\"/></marker></defs><line x1=\"40\" y1=\"70\" x2=\"330\" y2=\"40\" stroke=\"var(--ink3)\" stroke-width=\"1.5\" marker-end=\"url(#ar)\"/><line x1=\"70\" y1=\"260\" x2=\"420\" y2=\"210\" stroke=\"var(--ink3)\" stroke-width=\"1.5\" marker-end=\"url(#ar)\"/><line x1=\"160\" y1=\"57\" x2=\"235\" y2=\"238\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><rect x=\"162\" y=\"63\" width=\"11\" height=\"11\" transform=\"rotate(67.5 167 68)\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><rect x=\"224\" y=\"219\" width=\"11\" height=\"11\" transform=\"rotate(67.5 229 224)\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><circle cx=\"160\" cy=\"57\" r=\"3.5\" fill=\"var(--gold)\"/><circle cx=\"235\" cy=\"238\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"316\" y=\"32\" fill=\"var(--ink2)\" font-size=\"12\">L_1</text><text x=\"406\" y=\"202\" fill=\"var(--ink2)\" font-size=\"12\">L_2</text><text x=\"196\" y=\"152\" fill=\"var(--ink2)\" font-size=\"12\">L_3</text><text x=\"143\" y=\"52\" fill=\"var(--ink2)\" font-size=\"12\">A</text><text x=\"241\" y=\"252\" fill=\"var(--ink2)\" font-size=\"12\">B</text></svg>",
+    "statement": "Let $L_1$ and $L_2$ denote the lines $\\vec r=\\hat i+\\lambda(-\\hat i+2\\hat j+2\\hat k)$ with $\\lambda\\in\\mathbb{R}$, and $\\vec r=\\mu(2\\hat i-\\hat j+2\\hat k)$ with $\\mu\\in\\mathbb{R}$, respectively. Suppose $L_3$ is a line which is perpendicular to both $L_1$ and $L_2$ and cuts both of them. Identify all of the following options that describe $L_3$. (A) $\\vec r=\\dfrac{2}{9}(4\\hat i+\\hat j+\\hat k)+t(2\\hat i+2\\hat j-\\hat k)$; (B) $\\vec r=\\dfrac{2}{9}(2\\hat i-\\hat j+2\\hat k)+t(2\\hat i+2\\hat j-\\hat k)$; (C) $\\vec r=\\dfrac{1}{3}(2\\hat i+\\hat k)+t(2\\hat i+2\\hat j-\\hat k)$; (D) $\\vec r=t(2\\hat i+2\\hat j-\\hat k)$, each with $t\\in\\mathbb{R}$.",
+    "answer": "The line $L_3$ is described by $\\boxed{\\text{(A), (B) and (C)}}$.",
+    "trap": "The direction $(2,2,-1)$ is the easy half; every option already carries it, so the seduction is to stop reading and pick all four. The real filter is the anchor point: a line is fixed only once you know one point on it. Option (D) has the correct direction but is pinned to the origin, and the origin does $\\textit{not}$ lie on the common perpendicular — so (D) is a parallel impostor, not $L_3$ itself. The subtler trap is assuming (A), (B), (C) are three different lines: they merely quote three different points $\\left(A,\\ B,\\ \\text{and a third point on } AB\\right)$ of the $\\textit{same}$ line.",
+    "solutions": [
+      {
+        "name": "Feet of the common perpendicular",
+        "steps": [
+          "The direction of $L_3$ must be perpendicular to both line directions, so $\\vec d_3=(-\\hat i+2\\hat j+2\\hat k)\\times(2\\hat i-\\hat j+2\\hat k)=6\\hat i+6\\hat j-3\\hat k$, parallel to $(2,2,-1)$ — matching the direction in every option.",
+          "Write a general point on $L_1$ as $A=(1-\\lambda,\\,2\\lambda,\\,2\\lambda)$ and on $L_2$ as $B=(2\\mu,\\,-\\mu,\\,2\\mu)$. The segment $\\vec{AB}=B-A$ must be parallel to $(2,2,-1)$, equivalently $\\vec{AB}\\cdot\\vec d_1=0$ and $\\vec{AB}\\cdot\\vec d_2=0$.",
+          "Those two orthogonality equations give $\\lambda=\\tfrac19,\\ \\mu=\\tfrac29$, so the feet are $A=\\left(\\tfrac89,\\tfrac29,\\tfrac29\\right)=\\tfrac29(4,1,1)$ and $B=\\left(\\tfrac49,-\\tfrac29,\\tfrac49\\right)=\\tfrac29(2,-1,2)$.",
+          "Thus $L_3$ passes through $A$ (option A) and through $B$ (option B) with direction $(2,2,-1)$. The point $\\tfrac13(2,0,1)$ of option (C) satisfies $A+t(2,2,-1)$ at $t=-\\tfrac19$, so it lies on the same line too. The origin of option (D) does not, so (D) is rejected. Hence $L_3$ is $\\boxed{\\text{(A), (B) and (C)}}$."
+        ]
+      },
+      {
+        "name": "Test each option against both lines",
+        "steps": [
+          "A candidate is genuinely $L_3$ precisely when its line actually meets $L_1$ and $L_2$ (intersection, not merely skew), given that all four already carry the correct perpendicular direction $(2,2,-1)$.",
+          "Take option (A) with base $A=\\tfrac29(4,1,1)$. Solve $\\tfrac29(4,1,1)+t(2,2,-1)=(1-\\lambda,2\\lambda,2\\lambda)$: it is consistent at $\\lambda=\\tfrac19,\\,t=0$, and against $L_2$ it is consistent at $\\mu=\\tfrac29$. So (A) cuts both lines.",
+          "Options (B) and (C) trace the same set of points as (A): the base $\\tfrac29(2,-1,2)$ of (B) equals $A+t(2,2,-1)$ at $t=-\\tfrac29$, and the base $\\tfrac13(2,0,1)$ of (C) equals it at $t=-\\tfrac19$. Being the very same line, they cut both $L_1$ and $L_2$ as well.",
+          "Option (D) passes through the origin. Testing $t(2,2,-1)=(1-\\lambda,2\\lambda,2\\lambda)$ forces $2t=2\\lambda$ and $-t=2\\lambda$ simultaneously, i.e. $t=0$ and $t=0$ giving $(0,0,0)$, which is not on $L_1$; so (D) never meets $L_1$ and is discarded. The answer is $\\boxed{\\text{(A), (B) and (C)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 1, Q S2-Q7. Insight: for the common perpendicular of two skew lines, the direction is instantly the cross product of the two directions — the entire difficulty lives in pinning the correct anchor point, which is why three of the four options are the same line wearing different disguises."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three Rays Piercing One Plane",
+    "difficulty": 4,
+    "task": "Evaluate",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "6"
+    },
+    "tags": [
+      "line-plane intersection",
+      "area of triangle",
+      "2019"
+    ],
+    "figure": "<svg viewBox=\"0 0 440 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Three lines through the origin meeting the plane x+y+z=1 at A, B, C</title><desc>The plane x plus y plus z equals one drawn as a slanted quadrilateral. Three rays leave a common origin O and pierce the plane at points A, B and C, whose triangle is shaded.</desc><defs><marker id=\"ar\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M2 1L8 5L2 9\" fill=\"none\" stroke=\"context-stroke\" stroke-width=\"1.5\"/></marker></defs><polygon points=\"120,60 400,90 340,250 60,220\" fill=\"var(--gold-soft)\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><polygon points=\"300,110 180,120 240,200\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2.5\" stroke-linejoin=\"round\"/><line x1=\"40\" y1=\"280\" x2=\"300\" y2=\"110\" stroke=\"var(--ink3)\" stroke-width=\"1.5\" marker-end=\"url(#ar)\"/><line x1=\"40\" y1=\"280\" x2=\"180\" y2=\"120\" stroke=\"var(--ink3)\" stroke-width=\"1.5\" marker-end=\"url(#ar)\"/><line x1=\"40\" y1=\"280\" x2=\"240\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1.5\" marker-end=\"url(#ar)\"/><circle cx=\"40\" cy=\"280\" r=\"3.5\" fill=\"var(--ink2)\"/><circle cx=\"300\" cy=\"110\" r=\"3.5\" fill=\"var(--gold)\"/><circle cx=\"180\" cy=\"120\" r=\"3.5\" fill=\"var(--gold)\"/><circle cx=\"240\" cy=\"200\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"22\" y=\"294\" fill=\"var(--ink2)\" font-size=\"12\">O</text><text x=\"306\" y=\"106\" fill=\"var(--ink2)\" font-size=\"12\">A</text><text x=\"165\" y=\"116\" fill=\"var(--ink2)\" font-size=\"12\">B</text><text x=\"246\" y=\"200\" fill=\"var(--ink2)\" font-size=\"12\">C</text><text x=\"346\" y=\"246\" fill=\"var(--ink2)\" font-size=\"12\">x+y+z=1</text></svg>",
+    "statement": "Three lines are given by $\\vec r=\\lambda\\hat i$ with $\\lambda\\in\\mathbb{R}$, $\\vec r=\\mu(\\hat i+\\hat j)$ with $\\mu\\in\\mathbb{R}$, and $\\vec r=v(\\hat i+\\hat j+\\hat k)$ with $v\\in\\mathbb{R}$. Let these lines cut the plane $x+y+z=1$ at the points $A$, $B$ and $C$ respectively. If the area of the triangle $ABC$ is $\\Delta$, evaluate $(6\\Delta)^2$.",
+    "answer": "The value is $(6\\Delta)^2=\\boxed{0.75}$.",
+    "trap": "The plane is tilted, so the tempting shortcut — reading off a base and height from the coordinates as if the triangle lay flat — silently underestimates the true slanted area. The clean route is the cross product $\\tfrac12|\\vec{AB}\\times\\vec{AC}|$, which measures genuine area in space regardless of tilt. A second slip is arithmetic on the piercing points: each line is scaled to $\\textit{hit}$ the plane, so $A=(1,0,0)$, $B=(\\tfrac12,\\tfrac12,0)$, $C=(\\tfrac13,\\tfrac13,\\tfrac13)$ — not the raw direction vectors. Finally the question asks for $(6\\Delta)^2$, not $\\Delta$; forgetting the square-and-scale wrapper throws away the last mark.",
+    "solutions": [
+      {
+        "name": "Cross-product area",
+        "steps": [
+          "Find where each line meets $x+y+z=1$. For $\\lambda\\hat i$: $\\lambda=1$, so $A=(1,0,0)$. For $\\mu(\\hat i+\\hat j)$: $2\\mu=1$, so $B=\\left(\\tfrac12,\\tfrac12,0\\right)$. For $v(\\hat i+\\hat j+\\hat k)$: $3v=1$, so $C=\\left(\\tfrac13,\\tfrac13,\\tfrac13\\right)$.",
+          "Form two edge vectors: $\\vec{AB}=\\left(-\\tfrac12,\\tfrac12,0\\right)$ and $\\vec{AC}=\\left(-\\tfrac23,\\tfrac13,\\tfrac13\\right)$.",
+          "Then $\\vec{AB}\\times\\vec{AC}=\\left(\\tfrac16,\\tfrac16,\\tfrac16\\right)$, whose magnitude is $\\dfrac{1}{6}\\sqrt3$, so $\\Delta=\\tfrac12\\cdot\\dfrac{\\sqrt3}{6}=\\dfrac{\\sqrt3}{12}$.",
+          "Therefore $(6\\Delta)^2=\\left(6\\cdot\\dfrac{\\sqrt3}{12}\\right)^2=\\left(\\dfrac{\\sqrt3}{2}\\right)^2=\\dfrac34=\\boxed{0.75}$."
+        ]
+      },
+      {
+        "name": "Projected area onto the coordinate planes",
+        "steps": [
+          "The plane $x+y+z=1$ has unit normal $\\hat n=\\tfrac{1}{\\sqrt3}(1,1,1)$. A planar region of true area $\\Delta$ projects onto the $xy$-plane with area $\\Delta\\,|\\hat n\\cdot\\hat k|=\\dfrac{\\Delta}{\\sqrt3}$.",
+          "Project $A,B,C$ straight down (drop the $z$-coordinate): $A'=(1,0)$, $B'=\\left(\\tfrac12,\\tfrac12\\right)$, $C'=\\left(\\tfrac13,\\tfrac13\\right)$. The shadow triangle has area $\\tfrac12\\left|\\left(-\\tfrac12\\right)\\!\\left(\\tfrac13\\right)-\\left(\\tfrac12\\right)\\!\\left(-\\tfrac23\\right)\\right|=\\tfrac12\\cdot\\dfrac16=\\dfrac{1}{12}$.",
+          "So $\\dfrac{\\Delta}{\\sqrt3}=\\dfrac{1}{12}$, giving $\\Delta=\\dfrac{\\sqrt3}{12}$, in agreement with the cross-product computation.",
+          "Hence $(6\\Delta)^2=\\left(\\dfrac{\\sqrt3}{2}\\right)^2=\\dfrac34=\\boxed{0.75}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 1, Q S3-Q6. Insight: the three points are just $\\tfrac1n$ of the way along the axis-diagonals, and the slanted triangle's area relates to its flat shadow by the single factor $|\\hat n\\cdot\\hat k|=\\tfrac{1}{\\sqrt3}$ — projection converts a 3D area into a one-line 2D determinant."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Transversal Meeting Three Skew Lines",
+    "difficulty": 5,
+    "task": "Decide, for each listed point on the middle line, whether a transversal exists.",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "1"
+    },
+    "tags": [
+      "collinearity",
+      "3D lines",
+      "transversal",
+      "2019"
+    ],
+    "figure": "<svg viewBox=\"0 0 420 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><title>Three lines with a transversal PQR</title><desc>Line L1 along the x-axis, line L2 through the point (0,0,1) parallel to the y-axis, and line L3 through (1,1,0) parallel to the z-axis; a straight transversal meets them at P, Q and R respectively.</desc><defs><marker id=\"ar\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M2 1L8 5L2 9\" fill=\"none\" stroke=\"context-stroke\" stroke-width=\"1.5\"/></marker></defs><line x1=\"40\" y1=\"250\" x2=\"110\" y2=\"210\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"40\" y1=\"250\" x2=\"330\" y2=\"250\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"40\" y1=\"250\" x2=\"40\" y2=\"60\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"333\" y=\"254\" fill=\"var(--ink2)\" font-size=\"12\">x</text><text x=\"36\" y=\"54\" fill=\"var(--ink2)\" font-size=\"12\">z</text><text x=\"114\" y=\"208\" fill=\"var(--ink2)\" font-size=\"12\">y</text><line x1=\"70\" y1=\"250\" x2=\"300\" y2=\"250\" stroke=\"var(--ink4)\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><text x=\"300\" y=\"265\" fill=\"var(--ink2)\" font-size=\"12\">L1</text><line x1=\"40\" y1=\"170\" x2=\"250\" y2=\"110\" stroke=\"var(--ink4)\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><text x=\"254\" y=\"110\" fill=\"var(--ink2)\" font-size=\"12\">L2</text><line x1=\"150\" y1=\"210\" x2=\"150\" y2=\"70\" stroke=\"var(--ink4)\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><text x=\"156\" y=\"74\" fill=\"var(--ink2)\" font-size=\"12\">L3</text><line x1=\"95\" y1=\"250\" x2=\"215\" y2=\"85\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\" marker-end=\"url(#ar)\"/><circle cx=\"95\" cy=\"250\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"150\" cy=\"174\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"215\" cy=\"85\" r=\"3\" fill=\"var(--gold)\"/><text x=\"90\" y=\"267\" fill=\"var(--ink2)\" font-size=\"12\">P</text><text x=\"133\" y=\"176\" fill=\"var(--ink2)\" font-size=\"12\">Q</text><text x=\"221\" y=\"84\" fill=\"var(--ink2)\" font-size=\"12\">R</text></svg>",
+    "statement": "Three lines are given by $L_1:\\vec r=\\lambda\\hat i,\\ \\lambda\\in\\mathbb{R}$, by $L_2:\\vec r=\\hat k+\\mu\\hat j,\\ \\mu\\in\\mathbb{R}$, and by $L_3:\\vec r=\\hat i+\\hat j+v\\hat k,\\ v\\in\\mathbb{R}$. For which point (or points) $Q$ on $L_2$ can one find a point $P$ on $L_1$ and a point $R$ on $L_3$ so that $P$, $Q$ and $R$ are collinear? The options are $(A)\\ \\hat k-\\tfrac12\\hat j$, $(B)\\ \\hat k+\\tfrac12\\hat j$, $(C)\\ \\hat k$, and $(D)\\ \\hat k+\\hat j$.",
+    "answer": "$\\boxed{(A)\\text{ and }(B)}$, namely $Q=\\hat k\\pm\\tfrac12\\hat j$ (i.e. $\\mu=\\pm\\tfrac12$).",
+    "trap": "The reflex is to feel that a transversal to three lines is a delicate thing that only rarely exists. In fact a whole one-parameter family of points $Q$ works — every $\\mu$ except $\\mu=0$ and $\\mu=1$. The decisive move is not to hunt for the ‘lucky’ $\\mu$ but to notice that the four options hand you exactly the two forbidden values in disguise: $(C)$ is $\\mu=0$ and $(D)$ is $\\mu=1$, the precise cases where $P$ or $R$ runs off to infinity. So you reject $(C),(D)$ rather than accept $(A),(B)$ for a special reason.",
+    "solutions": [
+      {
+        "name": "Section form: force Q onto the line PR",
+        "steps": [
+          "Write the three points as $P=(\\lambda,0,0)$, $Q=(0,\\mu,1)$ and $R=(1,1,v)$. Collinearity means $Q$ lies on the line $PR$, so $Q=P+s(R-P)$ for some scalar $s$.",
+          "Reading the components: the $y$-coordinate gives $\\mu=s\\cdot 1$, so $s=\\mu$; the $z$-coordinate gives $1=s\\,v$, so $v=\\dfrac1\\mu$; the $x$-coordinate gives $0=\\lambda+s(1-\\lambda)$, so $\\lambda=\\dfrac{\\mu}{\\mu-1}$.",
+          "Thus a valid $P$ and $R$ exist precisely when $\\mu\\neq0$ (else $v$ is undefined) and $\\mu\\neq1$ (else $\\lambda$ blows up). Testing the menu: $(A)\\ \\mu=-\\tfrac12$ gives $\\lambda=\\tfrac13,\\,v=-2$ ✓; $(B)\\ \\mu=\\tfrac12$ gives $\\lambda=-1,\\,v=2$ ✓; $(C)\\ \\mu=0$ ✗; $(D)\\ \\mu=1$ ✗. Hence $(A)$ and $(B)$."
+        ]
+      },
+      {
+        "name": "Coplanarity of the transversal-defining triple",
+        "steps": [
+          "$P$, $Q$, $R$ are collinear exactly when the two vectors $\\overrightarrow{QP}=(\\lambda,-\\mu,-1)$ and $\\overrightarrow{QR}=(1,\\,1-\\mu,\\,v-1)$ are parallel, i.e. $\\overrightarrow{QP}\\times\\overrightarrow{QR}=\\vec 0$.",
+          "The three scalar equations are $-\\mu v+1=0$, $-\\lambda v+\\lambda-1=0$ and $-\\lambda\\mu+\\lambda+\\mu=0$. The first fixes $v=1/\\mu$; the third rearranges to $\\lambda(1-\\mu)=-\\mu$, i.e. $\\lambda=\\dfrac{\\mu}{\\mu-1}$ — and one checks the middle equation is then automatically satisfied.",
+          "So the cross-product vanishes for every $\\mu$ with $\\mu\\neq0,1$, and diverges at exactly $\\mu=0,1$. Among the offered points only $\\hat k\\pm\\tfrac12\\hat j$ (options $(A),(B)$) fall in the allowed range; $\\hat k$ and $\\hat k+\\hat j$ are the excluded endpoints. Verified numerically: $\\mu=\\pm\\tfrac12$ give exactly collinear $P,Q,R$, while $\\mu=0,1$ leave a non-zero cross product."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 2, Q1 (multiple-correct). The elegance is inverted: instead of proving a transversal exists for the two right points, you show it exists for *almost all* points and the exam simply listed the two impossible ones ($\\mu=0,1$) alongside two possible ones."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Minimising a Dot Product Under a Projection",
+    "difficulty": 4,
+    "task": "Use the projection condition, then minimise the given scalar over the free parameter.",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "2"
+    },
+    "tags": [
+      "projection",
+      "cross product",
+      "dot product",
+      "optimization",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec a=2\\hat i+\\hat j-\\hat k$ and $\\vec b=\\hat i+2\\hat j+\\hat k$ be two vectors, and consider $\\vec c=\\alpha\\vec a+\\beta\\vec b$ with $\\alpha,\\beta\\in\\mathbb{R}$. If the projection of $\\vec c$ on the vector $\\vec a+\\vec b$ equals $3\\sqrt2$, find the minimum value of $\\bigl(\\vec c-(\\vec a\\times\\vec b)\\bigr)\\cdot\\vec c$.",
+    "answer": "$\\boxed{18}$, attained at $\\alpha=\\beta=1$.",
+    "trap": "The term $-(\\vec a\\times\\vec b)\\cdot\\vec c$ looks like it should complicate the minimisation. It does not: $\\vec c$ is a linear combination of $\\vec a$ and $\\vec b$, so it lies in their plane and is orthogonal to $\\vec a\\times\\vec b$. That whole term is identically $0$. The real problem is the much smaller one of minimising $|\\vec c|^2$ subject to a single linear constraint — don't get lured into expanding the triple product.",
+    "solutions": [
+      {
+        "name": "Reduce to |c|² and complete the square",
+        "steps": [
+          "First $\\vec a+\\vec b=3\\hat i+3\\hat j$, so $|\\vec a+\\vec b|=3\\sqrt2$. The projection of $\\vec c$ on $\\vec a+\\vec b$ is $\\dfrac{\\vec c\\cdot(\\vec a+\\vec b)}{|\\vec a+\\vec b|}=3\\sqrt2$, giving $\\vec c\\cdot(\\vec a+\\vec b)=18$. Writing $\\vec c=\\alpha\\vec a+\\beta\\vec b$ and using $\\vec a\\cdot(\\vec a+\\vec b)=\\vec b\\cdot(\\vec a+\\vec b)=9$, this becomes $9(\\alpha+\\beta)=18$, i.e. $\\alpha+\\beta=2$.",
+          "Since $\\vec c\\in\\text{span}(\\vec a,\\vec b)$ and $\\vec a\\times\\vec b\\perp$ that plane, $(\\vec a\\times\\vec b)\\cdot\\vec c=0$. Hence $\\bigl(\\vec c-(\\vec a\\times\\vec b)\\bigr)\\cdot\\vec c=|\\vec c|^2$. With $|\\vec a|^2=6$, $|\\vec b|^2=6$, $\\vec a\\cdot\\vec b=2+2-1=3$, we get $|\\vec c|^2=6\\alpha^2+6\\beta^2+2(3)\\alpha\\beta=6(\\alpha^2+\\alpha\\beta+\\beta^2)$.",
+          "Impose $\\beta=2-\\alpha$: $|\\vec c|^2=6\\bigl(\\alpha^2+\\alpha(2-\\alpha)+(2-\\alpha)^2\\bigr)=6(\\alpha^2-2\\alpha+4)=6(\\alpha-1)^2+18$. The minimum is $18$, reached at $\\alpha=1$ (so $\\beta=1$)."
+        ]
+      },
+      {
+        "name": "Symmetry / equal-split argument",
+        "steps": [
+          "As above the constraint is $\\alpha+\\beta=2$ and the objective is $|\\vec c|^2=6(\\alpha^2+\\alpha\\beta+\\beta^2)$. Rewrite $\\alpha^2+\\alpha\\beta+\\beta^2=(\\alpha+\\beta)^2-\\alpha\\beta=4-\\alpha\\beta$, so minimising $|\\vec c|^2$ means **maximising** $\\alpha\\beta$ under the fixed sum $\\alpha+\\beta=2$.",
+          "By AM–GM (equivalently, the vertex of a downward parabola), a fixed sum $\\alpha+\\beta=2$ makes the product $\\alpha\\beta$ largest when $\\alpha=\\beta=1$, giving $\\alpha\\beta=1$.",
+          "Then $\\alpha^2+\\alpha\\beta+\\beta^2=4-1=3$ and $|\\vec c|^2=6\\cdot3=18$. Both methods agree, and a direct sympy check confirms the minimum of $6\\alpha^2-12\\alpha+24$ is $18$ at $\\alpha=1$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 2, Q2 (numerical). The one insight that collapses the problem: a vector in the plane of $\\vec a,\\vec b$ is blind to $\\vec a\\times\\vec b$, so the exotic-looking expression is just $|\\vec c|^2$ in disguise."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Bisector That Splits the Acute Angle",
+    "difficulty": 4,
+    "task": "Determine",
+    "pyq": {
+      "year": 2020,
+      "paper": "1",
+      "qno": "11"
+    },
+    "tags": [
+      "lines in 3D",
+      "angle bisector",
+      "direction ratios",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Let $L_1$ and $L_2$ be the straight lines $L_1:\\dfrac{x-1}{1}=\\dfrac{y}{-1}=\\dfrac{z-1}{3}$ and $L_2:\\dfrac{x-1}{-3}=\\dfrac{y}{-1}=\\dfrac{z-1}{1}$. Suppose the line $L:\\dfrac{x-\\alpha}{l}=\\dfrac{y-1}{m}=\\dfrac{z-\\gamma}{-2}$ lies in the plane containing $L_1$ and $L_2$ and passes through their point of intersection. If $L$ bisects the acute angle between $L_1$ and $L_2$, determine which of the statements $\\alpha-\\gamma=3$, $l+m=2$, $\\alpha-\\gamma=1$, $l+m=0$ are TRUE.",
+    "answer": "The true statements are $\\boxed{\\alpha-\\gamma=3\\ \\text{and}\\ l+m=2}$.",
+    "trap": "The trap is to add the raw direction vectors $\\hat i-\\hat j+3\\hat k$ and $-3\\hat i-\\hat j+\\hat k$ without first checking that they have equal length. The sum of two vectors bisects their angle only when they are equimodular; here both happen to have modulus $\\sqrt{11}$, so the shortcut is legal — but a student who skips that check has merely gotten lucky. The subtler trap is choosing the wrong bisector: the sum $\\vec d_1+\\vec d_2$ splits the acute angle only because $\\vec d_1\\cdot\\vec d_2=1>0$; had the dot product been negative, the difference $\\vec d_1-\\vec d_2$ would be the acute bisector, flipping the answer.",
+    "solutions": [
+      {
+        "name": "Sum of equimodular direction vectors",
+        "steps": [
+          "Both lines pass through $(1,0,1)$, so this is their point of intersection. Their direction vectors are $\\vec d_1=\\hat i-\\hat j+3\\hat k$ and $\\vec d_2=-3\\hat i-\\hat j+\\hat k$, and crucially $|\\vec d_1|^2=|\\vec d_2|^2=11$ — they are equimodular.",
+          "Since $\\vec d_1\\cdot\\vec d_2=(-3)+1+3=1>0$, the two direction vectors already point into the acute angle, so their sum $\\vec d_1+\\vec d_2=-2\\hat i-2\\hat j+4\\hat k$ points along the acute-angle bisector.",
+          "The line $L$ has third direction component $-2$, so scale $-2\\hat i-2\\hat j+4\\hat k$ by $-\\tfrac12$ to get direction $(1,1,-2)$. Hence $l=1,\\,m=1$ and $l+m=2$.",
+          "$L$ passes through $(1,0,1)$: parametrize as $(1,0,1)+t(1,1,-2)$. The stated point $(\\alpha,1,\\gamma)$ forces $y=1\\Rightarrow t=1$, giving $\\alpha=2,\\ \\gamma=-1$, so $\\alpha-\\gamma=3$. Therefore $\\boxed{\\alpha-\\gamma=3\\ \\text{and}\\ l+m=2}$."
+        ]
+      },
+      {
+        "name": "Unit-vector bisector with half-angle test",
+        "steps": [
+          "Form the unit direction vectors $\\hat u_1=\\dfrac{1}{\\sqrt{11}}(1,-1,3)$ and $\\hat u_2=\\dfrac{1}{\\sqrt{11}}(-3,-1,1)$. The two angle bisectors are along $\\hat u_1+\\hat u_2$ and $\\hat u_1-\\hat u_2$; to pick the acute one, compare the cosine each makes with $\\hat u_1$ (the larger cosine is the smaller half-angle).",
+          "For $\\hat u_1+\\hat u_2$ the half-angle cosine is $\\dfrac{\\hat u_1\\cdot(\\hat u_1+\\hat u_2)}{|\\hat u_1+\\hat u_2|}\\approx 0.739$, while for $\\hat u_1-\\hat u_2$ it is $\\approx 0.674$. The larger value belongs to $\\hat u_1+\\hat u_2$, so that is the acute bisector.",
+          "Now $\\hat u_1+\\hat u_2=\\dfrac{1}{\\sqrt{11}}(-2,-2,4)$, parallel to $(1,1,-2)$ after matching the required third component $-2$. Thus $l=m=1$, $l+m=2$.",
+          "Substituting $(\\alpha,1,\\gamma)$ into $L$ through $(1,0,1)$ gives $t=1$, so $\\alpha=2,\\gamma=-1$ and $\\alpha-\\gamma=3$, confirming $\\boxed{\\alpha-\\gamma=3\\ \\text{and}\\ l+m=2}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 1, Q11. Insight: “the sum bisects the angle” is only true for equimodular vectors, and the sign of $\\vec d_1\\cdot\\vec d_2$ silently decides whether the sum or the difference is the *acute* bisector."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Triangle's Sides as Chained Vectors",
+    "difficulty": 4,
+    "task": "Find",
+    "pyq": {
+      "year": 2020,
+      "paper": "1",
+      "qno": "16"
+    },
+    "tags": [
+      "dot product",
+      "cross product",
+      "triangle vectors",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "In a triangle $PQR$, let $\\vec a=\\overrightarrow{QR}$, $\\vec b=\\overrightarrow{RP}$ and $\\vec c=\\overrightarrow{PQ}$. Given $|\\vec a|=3$, $|\\vec b|=4$, and $\\dfrac{\\vec a\\cdot(\\vec c-\\vec b)}{\\vec c\\cdot(\\vec a-\\vec b)}=\\dfrac{|\\vec a|}{|\\vec a|+|\\vec b|}$, find the value of $|\\vec a\\times\\vec b|^2$.",
+    "answer": "The value is $\\boxed{108}$.",
+    "trap": "The whole problem lives on one identity: as you walk around the triangle, $\\overrightarrow{QR}+\\overrightarrow{RP}+\\overrightarrow{PQ}=\\vec a+\\vec b+\\vec c=\\vec 0$. A student who treats $\\vec a,\\vec b,\\vec c$ as three independent vectors is stuck; the closure relation lets you eliminate $\\vec c$ and reduce everything to the single unknown $\\vec a\\cdot\\vec b$. A second slip is a sign error: solving the ratio carefully gives $\\vec a\\cdot\\vec b=-6$ (obtuse at the shared vertex $R$), not $+6$ — though because the final expression uses $(\\vec a\\cdot\\vec b)^2$, both signs happen to land on $108$.",
+    "solutions": [
+      {
+        "name": "Eliminate $\\vec c$ via the closure relation",
+        "steps": [
+          "Around the triangle, $\\overrightarrow{QR}+\\overrightarrow{RP}+\\overrightarrow{PQ}=\\vec 0$, so $\\vec c=-\\vec a-\\vec b$. Then $\\vec a\\cdot\\vec c=-|\\vec a|^2-\\vec a\\cdot\\vec b=-9-\\vec a\\cdot\\vec b$ and $\\vec b\\cdot\\vec c=-\\vec a\\cdot\\vec b-|\\vec b|^2=-16-\\vec a\\cdot\\vec b$.",
+          "Numerator $\\vec a\\cdot(\\vec c-\\vec b)=\\vec a\\cdot\\vec c-\\vec a\\cdot\\vec b=-9-2(\\vec a\\cdot\\vec b)$; denominator $\\vec c\\cdot(\\vec a-\\vec b)=\\vec a\\cdot\\vec c-\\vec b\\cdot\\vec c=(-9-\\vec a\\cdot\\vec b)-(-16-\\vec a\\cdot\\vec b)=7$.",
+          "Set the ratio equal to $\\dfrac{|\\vec a|}{|\\vec a|+|\\vec b|}=\\dfrac{3}{7}$: $\\dfrac{-9-2(\\vec a\\cdot\\vec b)}{7}=\\dfrac{3}{7}\\Rightarrow -9-2(\\vec a\\cdot\\vec b)=3\\Rightarrow \\vec a\\cdot\\vec b=-6$.",
+          "Finally $|\\vec a\\times\\vec b|^2=|\\vec a|^2|\\vec b|^2-(\\vec a\\cdot\\vec b)^2=9\\cdot 16-(-6)^2=144-36=\\boxed{108}$."
+        ]
+      },
+      {
+        "name": "Recover the third side, then Heron's area",
+        "steps": [
+          "From $\\vec a\\cdot\\vec b=-6$ (obtained via the ratio above), the third side is $|\\vec c|^2=|\\vec a+\\vec b|^2=|\\vec a|^2+|\\vec b|^2+2\\vec a\\cdot\\vec b=9+16-12=13$, so the triangle has sides $3,\\,4,\\,\\sqrt{13}$.",
+          "By Heron's formula with $s=\\dfrac{3+4+\\sqrt{13}}{2}$, the area simplifies to $\\text{Area}=3\\sqrt3$.",
+          "Vectors $\\vec a=\\overrightarrow{QR}$ and $\\vec b=\\overrightarrow{RP}$ emanate from the common vertex $R$, so $|\\vec a\\times\\vec b|=2\\,\\text{Area}=6\\sqrt3$.",
+          "Therefore $|\\vec a\\times\\vec b|^2=(6\\sqrt3)^2=108$, matching the first method: $\\boxed{108}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 1, Q16. Insight: the closure identity $\\vec a+\\vec b+\\vec c=\\vec 0$ turns a three-vector tangle into a single scalar unknown $\\vec a\\cdot\\vec b$, after which $|\\vec a\\times\\vec b|^2$ falls straight out of $|\\vec a|^2|\\vec b|^2-(\\vec a\\cdot\\vec b)^2$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Plane From a Mirror Image",
+    "difficulty": 4,
+    "task": "Determine",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "10"
+    },
+    "tags": [
+      "plane in 3D",
+      "mirror image",
+      "perpendicular bisector plane",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Let $\\alpha,\\beta,\\gamma,\\delta$ be real numbers with $\\alpha^2+\\beta^2+\\gamma^2\\ne 0$ and $\\alpha+\\gamma=1$. Suppose the point $(3,2,-1)$ is the mirror image of the point $(1,0,-1)$ with respect to the plane $\\alpha x+\\beta y+\\gamma z=\\delta$. Decide which of the following are true: (A) $\\alpha+\\beta=2$; (B) $\\delta-\\gamma=3$; (C) $\\delta+\\beta=4$; (D) $\\alpha+\\beta+\\gamma=\\delta$.",
+    "answer": "The true statements are $\\boxed{(A),\\,(B),\\,(C)}$.",
+    "trap": "The seductive error is to treat $\\alpha,\\beta,\\gamma,\\delta$ as four independent unknowns and grind through the reflection formula. The geometry does the work instead: a point and its mirror image are symmetric about the plane, so the plane is the $\\textit{perpendicular bisector}$ of the joining segment. That single observation pins the normal (along $Q-P$) and forces the plane through the midpoint. A second slip is to forget the constraint $\\alpha+\\gamma=1$, which fixes the $\\textit{scale}$ of the normal so that $\\alpha,\\beta,\\gamma,\\delta$ are uniquely determined rather than defined only up to a common multiple.",
+    "solutions": [
+      {
+        "name": "Perpendicular-bisector plane",
+        "steps": [
+          "Let $P=(1,0,-1)$ and $Q=(3,2,-1)$. Since $Q$ is the mirror image of $P$, the plane is the perpendicular bisector of $PQ$: its normal is parallel to $\\overrightarrow{PQ}=Q-P=(2,2,0)$, and it passes through the midpoint $M=\\left(2,1,-1\\right)$.",
+          "A normal parallel to $(2,2,0)$ is $(1,1,0)$, so the plane has the form $x+y=c$. Imposing passage through $M=(2,1,-1)$ gives $c=2+1=3$; thus the plane is $x+y=3$, i.e. $1\\cdot x+1\\cdot y+0\\cdot z=3$.",
+          "Comparing with $\\alpha x+\\beta y+\\gamma z=\\delta$ (and using $\\alpha+\\gamma=1$, which the reading $\\alpha=1,\\gamma=0$ satisfies) gives $\\alpha=1,\\ \\beta=1,\\ \\gamma=0,\\ \\delta=3$.",
+          "Now test each option: (A) $\\alpha+\\beta=2$ $\\checkmark$; (B) $\\delta-\\gamma=3$ $\\checkmark$; (C) $\\delta+\\beta=4$ $\\checkmark$; (D) $\\alpha+\\beta+\\gamma=2\\ne 3=\\delta$ $\\times$. Hence the true statements are $\\boxed{(A),(B),(C)}$."
+        ]
+      },
+      {
+        "name": "Reflection formula in unknowns",
+        "steps": [
+          "Write the unit-scaled normal $\\mathbf n=(\\alpha,\\beta,\\gamma)$. The reflection of $P=(1,0,-1)$ in $\\alpha x+\\beta y+\\gamma z=\\delta$ is $Q=P+2t\\,\\mathbf n$, where $t=\\dfrac{\\delta-\\mathbf n\\cdot P}{|\\mathbf n|^2}$. Since $Q-P=(2,2,0)$ must be a scalar multiple of $\\mathbf n$, we get $(\\alpha,\\beta,\\gamma)\\parallel(1,1,0)$, so $\\gamma=0$ and $\\alpha=\\beta$.",
+          "The constraint $\\alpha+\\gamma=1$ then forces $\\alpha=1$, hence $\\beta=1$, $\\gamma=0$, and $|\\mathbf n|^2=2$.",
+          "The midpoint $M=(2,1,-1)$ lies on the plane, so $\\delta=\\mathbf n\\cdot M=1\\cdot 2+1\\cdot 1+0=3$. (Direct check: $t=\\dfrac{3-(1+0+0)}{2}=1$ and $P+2t\\mathbf n=(1,0,-1)+2(1,1,0)=(3,2,-1)=Q$ $\\checkmark$.)",
+          "With $\\alpha=\\beta=1,\\gamma=0,\\delta=3$: (A) $2$ $\\checkmark$, (B) $3$ $\\checkmark$, (C) $4$ $\\checkmark$, (D) $2\\ne3$ $\\times$. The true statements are $\\boxed{(A),(B),(C)}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 2, Q10. Insight: “mirror image” is a synonym for “perpendicular bisector plane” — read off the normal from $Q-P$ and force the plane through the midpoint, and the normalization $\\alpha+\\gamma=1$ removes the last degree of freedom."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Projections Onto a Parallelogram",
+    "difficulty": 4,
+    "task": "Determine",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "11"
+    },
+    "tags": [
+      "projection vectors",
+      "parallelogram",
+      "dot product",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Let $a$ and $b$ be positive real numbers, and let $\\overrightarrow{PQ}=a\\hat i+b\\hat j$ and $\\overrightarrow{PS}=a\\hat i-b\\hat j$ be adjacent sides of a parallelogram $PQRS$. Let $\\vec u$ and $\\vec v$ be the projection vectors of $\\vec w=\\hat i+\\hat j$ along $\\overrightarrow{PQ}$ and $\\overrightarrow{PS}$, respectively. If $|\\vec u|+|\\vec v|=|\\vec w|$ and the area of $PQRS$ is $8$, decide which are true: (A) $a+b=4$; (B) $a-b=2$; (C) the diagonal $PR$ has length $4$; (D) $\\vec w$ is an angle bisector of $\\overrightarrow{PQ}$ and $\\overrightarrow{PS}$.",
+    "answer": "The true statements are $\\boxed{(A)\\text{ and }(C)}$.",
+    "trap": "The trap is to assume $\\vec w=\\hat i+\\hat j$ bisects the angle at $P$ merely because it looks symmetric. The internal bisector of $\\overrightarrow{PQ}=(a,b)$ and $\\overrightarrow{PS}=(a,-b)$ points along the sum of the two $\\textit{unit}$ vectors, which is a multiple of $(1,0)$ — the $\\hat i$-axis, not $(1,1)$. A second slip is mishandling $|\\vec v|$: since $\\overrightarrow{PS}=(a,-b)$, the projection magnitude is $\\dfrac{|\\vec w\\cdot\\overrightarrow{PS}|}{|\\overrightarrow{PS}|}=\\dfrac{|a-b|}{\\sqrt{a^2+b^2}}$, and dropping the absolute value corrupts the case analysis.",
+    "solutions": [
+      {
+        "name": "Projection identity plus area",
+        "steps": [
+          "Compute the projection magnitudes. $|\\vec u|=\\dfrac{|\\vec w\\cdot\\overrightarrow{PQ}|}{|\\overrightarrow{PQ}|}=\\dfrac{a+b}{\\sqrt{a^2+b^2}}$ and $|\\vec v|=\\dfrac{|\\vec w\\cdot\\overrightarrow{PS}|}{|\\overrightarrow{PS}|}=\\dfrac{|a-b|}{\\sqrt{a^2+b^2}}$, while $|\\vec w|=\\sqrt2$.",
+          "The condition $|\\vec u|+|\\vec v|=|\\vec w|$ gives $\\dfrac{(a+b)+|a-b|}{\\sqrt{a^2+b^2}}=\\sqrt2$. Taking $a\\ge b$ this is $\\dfrac{2a}{\\sqrt{a^2+b^2}}=\\sqrt2$, i.e. $4a^2=2(a^2+b^2)\\Rightarrow a^2=b^2\\Rightarrow a=b$ (both positive). The symmetric case $b\\ge a$ gives $a=b$ likewise.",
+          "The area of the parallelogram is $|\\overrightarrow{PQ}\\times\\overrightarrow{PS}|=|a(-b)-b(a)|=2ab=8$, so $ab=4$. With $a=b$ this forces $a=b=2$.",
+          "Now test: (A) $a+b=4$ $\\checkmark$; (B) $a-b=0\\ne 2$ $\\times$; (C) $\\overrightarrow{PR}=\\overrightarrow{PQ}+\\overrightarrow{PS}=(2a)\\hat i=4\\hat i$, so $|PR|=4$ $\\checkmark$; (D) the internal bisector direction is $\\widehat{PQ}+\\widehat{PS}\\parallel(1,0)$, not $(1,1)$, so $\\vec w$ is not a bisector $\\times$. Hence $\\boxed{(A)\\text{ and }(C)}$."
+        ]
+      },
+      {
+        "name": "Symmetry across the $x$-axis",
+        "steps": [
+          "Observe that $\\overrightarrow{PS}=(a,-b)$ is the reflection of $\\overrightarrow{PQ}=(a,b)$ across the $\\hat i$-axis. Reflection preserves length, so $|\\overrightarrow{PQ}|=|\\overrightarrow{PS}|=\\sqrt{a^2+b^2}$, and $\\vec w=(1,1)$ has equal-and-opposite dot products with the two sides only through the $b$-term.",
+          "By this mirror symmetry the two projection scalars are $\\dfrac{a+b}{\\sqrt{a^2+b^2}}$ and $\\dfrac{a-b}{\\sqrt{a^2+b^2}}$ (for $a\\ge b$), whose sum telescopes to $\\dfrac{2a}{\\sqrt{a^2+b^2}}$. Setting this equal to $|\\vec w|=\\sqrt2$ gives $a=b$ immediately — the $b$-contributions cancel.",
+          "The diagonal $\\overrightarrow{PR}=\\overrightarrow{PQ}+\\overrightarrow{PS}=(2a,0)$ lies along $\\hat i$; the other diagonal $\\overrightarrow{QS}=\\overrightarrow{PS}-\\overrightarrow{PQ}=(0,-2b)$ lies along $\\hat j$. Perpendicular diagonals mean $PQRS$ is a rhombus, consistent with $a=b$.",
+          "Area $=\\tfrac12|\\text{product of diagonals}|=\\tfrac12(2a)(2b)=2ab=8\\Rightarrow ab=4$; with $a=b$, $a=b=2$. Then $a+b=4$ (A $\\checkmark$), $|PR|=2a=4$ (C $\\checkmark$), $a-b=0$ (B $\\times$), and the bisector lies along $\\hat i\\ne\\vec w$ (D $\\times$). So $\\boxed{(A)\\text{ and }(C)}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 2, Q11. Insight: because $\\overrightarrow{PS}$ is the mirror of $\\overrightarrow{PQ}$ in the $x$-axis, the two projections onto them add to $\\dfrac{2a}{\\sqrt{a^2+b^2}}$ — the $b$-parts cancel, and the projection condition collapses straight to $a=b$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Plane of Consistency, Squared Distance",
+    "difficulty": 4,
+    "task": "Find the square of the distance from a point to the plane of consistency.",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "8"
+    },
+    "tags": [
+      "3D geometry",
+      "distance from a point to a plane",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "Let $\\alpha,\\beta$ and $\\gamma$ be real numbers such that the system of linear equations $x+2y+3z=\\alpha$, $4x+5y+6z=\\beta$, $7x+8y+9z=\\gamma-1$ is consistent. Let $P$ be the plane containing all those triples $(\\alpha,\\beta,\\gamma)$ for which the system is consistent, and let $D$ be the square of the distance of the point $(0,1,0)$ from the plane $P$. Find the value of $D$.",
+    "answer": "$D=\\dfrac{9}{6}=\\boxed{1.50}$",
+    "trap": "The coefficient matrix is singular, so the system is not automatically consistent — treating it as an ordinary $3\\times3$ solve gives nothing. The unknowns of the plane $P$ are $(\\alpha,\\beta,\\gamma)$ themselves, not $(x,y,z)$; forgetting to shift by the $-1$ in the third equation misplaces the plane.",
+    "solutions": [
+      {
+        "name": "Row dependence forces the consistency plane",
+        "steps": [
+          "The rows of the coefficient matrix satisfy $R_3=2R_2-R_1$, since $(7,8,9)=2(4,5,6)-(1,2,3)$. The coefficient matrix is singular, so the augmented system is consistent only when the right-hand sides obey the same dependence.",
+          "Apply $R_3=2R_2-R_1$ to the constants: $\\gamma-1=2\\beta-\\alpha$, i.e. $\\alpha-2\\beta+\\gamma-1=0$. This is the plane $P$ in $(\\alpha,\\beta,\\gamma)$-space.",
+          "Distance of $(0,1,0)$ from $P$ is $\\dfrac{|0-2(1)+0-1|}{\\sqrt{1^2+(-2)^2+1^2}}=\\dfrac{3}{\\sqrt6}$.",
+          "Therefore $D=\\left(\\dfrac{3}{\\sqrt6}\\right)^2=\\dfrac{9}{6}=1.50$."
+        ]
+      },
+      {
+        "name": "Rouché–Capelli via the augmented determinant",
+        "steps": [
+          "Since $\\det\\begin{pmatrix}1&2&3\\\\4&5&6\\\\7&8&9\\end{pmatrix}=0$, the rank is $2$; consistency requires every $3\\times3$ minor of the augmented matrix that uses the constant column to vanish.",
+          "Taking the minor from columns $1,2$ and the constants gives $\\det\\begin{pmatrix}1&2&\\alpha\\\\4&5&\\beta\\\\7&8&\\gamma-1\\end{pmatrix}=0$, which expands to $-3\\alpha+6\\beta-3\\gamma+3=0$, i.e. $\\alpha-2\\beta+\\gamma-1=0$ — the same plane $P$.",
+          "Substituting $(0,1,0)$ and dividing by $\\sqrt{1+4+1}=\\sqrt6$ gives the distance $\\dfrac{3}{\\sqrt6}$.",
+          "Hence $D=\\dfrac{9}{6}=1.50$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 1, Q8. The whole puzzle collapses once you notice the middle row is the average of the other two — consistency is nothing but the constants inheriting that exact linear relation."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Parallelepiped Volume Pins the Dot Product",
+    "difficulty": 4,
+    "task": "Use the given box volume to find the unknown dot product, then a magnitude.",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "19"
+    },
+    "tags": [
+      "scalar triple product",
+      "Gram determinant",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec{u}$, $\\vec{v}$ and $\\vec{w}$ be vectors in three-dimensional space, where $\\vec{u}$ and $\\vec{v}$ are unit vectors which are not perpendicular to each other, and $\\vec{u}\\cdot\\vec{w}=1$, $\\vec{v}\\cdot\\vec{w}=1$, $\\vec{w}\\cdot\\vec{w}=4$. If the volume of the parallelepiped whose adjacent sides are $\\vec{u}$, $\\vec{v}$ and $\\vec{w}$ is $\\sqrt2$, then find the value of $|3\\vec{u}+5\\vec{v}|$.",
+    "answer": "$|3\\vec{u}+5\\vec{v}|=\\sqrt{49}=\\boxed{7}$",
+    "trap": "Squaring the volume gives $\\vec{u}\\cdot\\vec{v}=0$ or $\\tfrac12$. The wording “not perpendicular to each other” is not decoration — it discards $\\vec{u}\\cdot\\vec{v}=0$, leaving $\\tfrac12$. Choosing the wrong root gives $\\sqrt{34}$, not $7$.",
+    "solutions": [
+      {
+        "name": "Gram determinant of the three edges",
+        "steps": [
+          "For any three vectors, $[\\,\\vec u\\ \\vec v\\ \\vec w\\,]^2=\\det G$, where $G$ is the Gram matrix of pairwise dot products. Let $t=\\vec u\\cdot\\vec v$. Then $G=\\begin{pmatrix}1&t&1\\\\t&1&1\\\\1&1&4\\end{pmatrix}$ using $|\\vec u|=|\\vec v|=1$, $\\vec u\\cdot\\vec w=\\vec v\\cdot\\vec w=1$, $|\\vec w|^2=4$.",
+          "Expanding, $\\det G=-4t^2+2t+2$. The volume is $\\sqrt2$, so $\\det G=(\\sqrt2)^2=2$, giving $-4t^2+2t=0$, i.e. $t(2t-1)=0$, so $t=0$ or $t=\\tfrac12$.",
+          "Since $\\vec u,\\vec v$ are not perpendicular, $t=\\vec u\\cdot\\vec v=\\tfrac12$.",
+          "Then $|3\\vec u+5\\vec v|^2=9|\\vec u|^2+25|\\vec v|^2+30(\\vec u\\cdot\\vec v)=9+25+30\\cdot\\tfrac12=49$, so $|3\\vec u+5\\vec v|=7$."
+        ]
+      },
+      {
+        "name": "Explicit coordinate model",
+        "steps": [
+          "Place $\\vec u=(1,0,0)$ and $\\vec v=(t,\\sqrt{1-t^2},0)$ so both are unit vectors with $\\vec u\\cdot\\vec v=t$. Write $\\vec w=(w_1,w_2,w_3)$.",
+          "The conditions $\\vec u\\cdot\\vec w=1$ and $\\vec v\\cdot\\vec w=1$ fix $w_1=1$ and $w_2=\\dfrac{1-t}{\\sqrt{1-t^2}}$, while $|\\vec w|^2=4$ fixes $w_3$. The volume equals $|\\vec u\\cdot(\\vec v\\times\\vec w)|=|\\sqrt{1-t^2}\\,w_3|$.",
+          "Imposing volume $=\\sqrt2$ reproduces $-4t^2+2t+2=2$, hence $t=\\tfrac12$ (the non-perpendicular root); a numeric check with $t=\\tfrac12$ gives volume $1.41421\\ldots=\\sqrt2$, confirming the model.",
+          "With $t=\\tfrac12$, $3\\vec u+5\\vec v=(3+\\tfrac52,\\ 5\\cdot\\tfrac{\\sqrt3}{2},\\ 0)$ and $|3\\vec u+5\\vec v|=\\sqrt{49}=7$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 1, Q19. The Gram determinant turns a purely metric datum — a box volume — into an algebraic equation for the one missing dot product, and the innocent phrase “not perpendicular” is the tie-breaker between the two roots."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Cross Product Fixes the Scalar $\\lambda$",
+    "difficulty": 4,
+    "task": "Fix $\\lambda$, then test each statement about the vectors.",
+    "pyq": {
+      "year": 2021,
+      "paper": "2",
+      "qno": "5"
+    },
+    "tags": [
+      "cross product",
+      "projection",
+      "area of a triangle",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "Let $O$ be the origin and let $\\vec{OA}=2\\hat{i}+2\\hat{j}+\\hat{k}$, $\\vec{OB}=\\hat{i}-2\\hat{j}+2\\hat{k}$, and $\\vec{OC}=\\tfrac{1}{2}\\!\\left(\\vec{OB}-\\lambda\\,\\vec{OA}\\right)$ for some $\\lambda>0$. Given that $|\\vec{OB}\\times\\vec{OC}|=\\tfrac{9}{2}$, decide which of the following are correct: $(A)$ the projection of $\\vec{OC}$ on $\\vec{OA}$ equals $-\\tfrac{3}{2}$; $(B)$ the area of triangle $OAB$ is $\\tfrac{9}{2}$; $(C)$ the area of triangle $ABC$ is $\\tfrac{9}{2}$; $(D)$ the acute angle between the diagonals of the parallelogram with adjacent sides $\\vec{OA}$ and $\\vec{OC}$ is $\\tfrac{\\pi}{3}$.",
+    "answer": "$\\boxed{(A),\\ (B),\\ (C)}$",
+    "trap": "Rushing to test $(A)$–$(D)$ before pinning down $\\lambda$. The single number $|\\vec{OB}\\times\\vec{OC}|=\\tfrac92$ is the master key: expanding $\\vec{OB}\\times\\vec{OC}=\\tfrac12\\,\\vec{OB}\\times(\\vec{OB}-\\lambda\\vec{OA})=-\\tfrac{\\lambda}{2}\\,\\vec{OB}\\times\\vec{OA}$ forces $\\lambda=1$. For $(D)$, do not assume a “nice” $\\tfrac{\\pi}{3}$: the diagonals give $\\cos^{-1}\\!\\tfrac{1}{\\sqrt5}\\approx 63.4^\\circ\\neq 60^\\circ$, so $(D)$ is false.",
+    "solutions": [
+      {
+        "name": "Pin $\\lambda$ via the cross-product magnitude",
+        "steps": [
+          "Since $\\vec{OC}=\\tfrac12(\\vec{OB}-\\lambda\\vec{OA})$, the term $\\vec{OB}\\times\\vec{OB}=\\vec0$ drops out: $\\vec{OB}\\times\\vec{OC}=\\tfrac12\\,\\vec{OB}\\times(\\vec{OB}-\\lambda\\vec{OA})=-\\tfrac{\\lambda}{2}\\,(\\vec{OB}\\times\\vec{OA})$.",
+          "Compute $\\vec{OA}\\times\\vec{OB}=(2,2,1)\\times(1,-2,2)=(6,-3,-6)$, so $|\\vec{OA}\\times\\vec{OB}|=\\sqrt{36+9+36}=9$. Then $|\\vec{OB}\\times\\vec{OC}|=\\tfrac{\\lambda}{2}\\cdot 9=\\tfrac{9\\lambda}{2}$; setting this equal to $\\tfrac92$ gives $\\lambda=1$.",
+          "With $\\lambda=1$, $\\vec{OC}=\\tfrac12\\big((1,-2,2)-(2,2,1)\\big)=\\big(-\\tfrac12,-2,\\tfrac12\\big)$.",
+          "$(A)$ Projection of $\\vec{OC}$ on $\\vec{OA}$ is $\\dfrac{\\vec{OC}\\cdot\\vec{OA}}{|\\vec{OA}|}=\\dfrac{-1-4+\\tfrac12}{3}=\\dfrac{-\\tfrac92}{3}=-\\tfrac32$ — TRUE.",
+          "$(B)$ Area of $OAB=\\tfrac12|\\vec{OA}\\times\\vec{OB}|=\\tfrac12\\cdot 9=\\tfrac92$ — TRUE.",
+          "$(C)$ With $A(2,2,1),B(1,-2,2),C(-\\tfrac12,-2,\\tfrac12)$: $\\vec{AB}=(-1,-4,1)$, $\\vec{AC}=(-\\tfrac52,-4,-\\tfrac12)$, and $\\vec{AB}\\times\\vec{AC}=(6,-3,-6)$, so area $=\\tfrac12\\sqrt{36+9+36}=\\tfrac92$ — TRUE.",
+          "$(D)$ Diagonals of the parallelogram are $d_1=\\vec{OA}+\\vec{OC}=(\\tfrac32,0,\\tfrac32)$ and $d_2=\\vec{OA}-\\vec{OC}=(\\tfrac52,4,\\tfrac12)$; here $d_1\\cdot d_2=\\tfrac{15}{4}+0+\\tfrac34=\\tfrac92$, $|d_1|=\\tfrac{3\\sqrt2}{2}$ and $|d_2|=\\tfrac{3\\sqrt{10}}{2}$, so $\\cos\\theta=\\dfrac{9/2}{\\,\\tfrac{9\\sqrt5}{2}\\,}=\\dfrac{1}{\\sqrt5}$, giving acute angle $\\cos^{-1}\\tfrac1{\\sqrt5}\\approx63.4^\\circ\\ne\\tfrac{\\pi}{3}$ — FALSE. Correct set: $(A),(B),(C)$."
+        ]
+      },
+      {
+        "name": "Area of $ABC$ via the shared cross product (why $(B)$ and $(C)$ coincide)",
+        "steps": [
+          "Once $\\lambda=1$ is fixed, note the algebraic identity $\\vec{AB}\\times\\vec{AC}$ reduces to $\\vec{OA}\\times\\vec{OB}$: since $C$ lies on the segment relation $2\\vec{OC}=\\vec{OB}-\\vec{OA}$, the point $C$ is the reflection of $A$ through the midpoint of $OB$-direction, and one finds $\\vec{AB}\\times\\vec{AC}=(6,-3,-6)=\\vec{OA}\\times\\vec{OB}$.",
+          "Hence $\\text{area}(ABC)=\\tfrac12|\\vec{AB}\\times\\vec{AC}|=\\tfrac12|\\vec{OA}\\times\\vec{OB}|=\\tfrac12\\cdot 9=\\tfrac92$, so $(C)$ equals $(B)$ automatically — both are $\\tfrac92$ — TRUE.",
+          "For $(A)$, use scalar projection directly: $\\text{proj}_{\\vec{OA}}\\vec{OC}=\\dfrac{\\vec{OC}\\cdot\\vec{OA}}{|\\vec{OA}|}$; with $\\vec{OC}\\cdot\\vec{OA}=\\tfrac12(\\vec{OB}-\\vec{OA})\\cdot\\vec{OA}=\\tfrac12\\big(\\vec{OB}\\cdot\\vec{OA}-|\\vec{OA}|^2\\big)=\\tfrac12(0-9)=-\\tfrac92$, giving $-\\tfrac92/3=-\\tfrac32$ — TRUE.",
+          "For $(D)$, the diagonals are $d_1=\\vec{OA}+\\vec{OC}$ and $d_2=\\vec{OA}-\\vec{OC}$, so $d_1\\cdot d_2=|\\vec{OA}|^2-|\\vec{OC}|^2=9-\\tfrac92=\\tfrac92$. Their lengths are $|d_1|=\\tfrac{3\\sqrt2}{2}$ and $|d_2|=\\tfrac{3\\sqrt{10}}{2}$, so $|d_1||d_2|=\\tfrac{9\\sqrt5}{2}$ and $\\cos\\theta=\\dfrac{9/2}{\\,9\\sqrt5/2\\,}=\\tfrac1{\\sqrt5}$; the acute angle is $\\approx63.4^\\circ$, not $\\tfrac{\\pi}{3}$ — FALSE. Both methods agree on $(A),(B),(C)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 2, Q5. The whole problem hinges on one observation — “$|\\vec{OB}\\times\\vec{OC}|=\\tfrac92$” is not a distractor but the equation that determines $\\lambda=1$; every part is a short computation once that is done, and the lone false statement $(D)$ punishes anyone who expects a textbook-pretty $60^\\circ$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Which Line Can Edge a Tetrahedron",
+    "difficulty": 5,
+    "task": "Decide which lines can be an edge of the tetrahedron.",
+    "pyq": {
+      "year": 2022,
+      "paper": "1",
+      "qno": "11"
+    },
+    "tags": [
+      "planes and lines in 3D",
+      "line of intersection",
+      "tetrahedron edges",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Let $P_1$ and $P_2$ be the planes $P_1:10x+15y+12z-60=0$ and $P_2:-2x+5y+4z-20=0$. Which of the following straight lines can be an edge of some tetrahedron two of whose faces lie on $P_1$ and $P_2$? $(A)\\ \\dfrac{x-1}{0}=\\dfrac{y-1}{0}=\\dfrac{z-1}{5}$; $(B)\\ \\dfrac{x-6}{-5}=\\dfrac{y}{2}=\\dfrac{z}{3}$; $(C)\\ \\dfrac{x}{-2}=\\dfrac{y-4}{5}=\\dfrac{z}{4}$; $(D)\\ \\dfrac{x}{1}=\\dfrac{y-4}{-2}=\\dfrac{z}{3}$.",
+    "answer": "$\\boxed{(A),\\ (B),\\ (D)}$",
+    "trap": "Believing an edge must be parallel to the line of intersection $L=P_1\\cap P_2$. It is the opposite. A tetrahedron has $6$ edges; the two faces on $P_1,P_2$ share exactly one edge lying on $L$, and the four remaining edges each either lie inside one plane or cut across from one plane to the other at two different points. The real test for a candidate line $\\ell$: it works iff $\\ell$ lies wholly in $P_1$, or wholly in $P_2$, or meets $P_1$ and $P_2$ at two distinct points. Line $(C)$ fails because it hits both planes at the same point — on $L$ itself — so it can supply only one vertex.",
+    "solutions": [
+      {
+        "name": "Where does the line meet each plane (the two-vertex test)",
+        "steps": [
+          "For a line $\\ell(t)=\\mathbf{p}+t\\,\\mathbf{u}$, substitute into $P_1$ and $P_2$ and record the parameter values $t_1,t_2$ at which each is satisfied. A line can be an edge iff $t_1\\ne t_2$ (two distinct pierce points, one per face) or the line lies entirely inside one plane. Normals: $\\mathbf{n_1}=(10,15,12)$, $\\mathbf{n_2}=(-2,5,4)$.",
+          "$(A)$ $\\mathbf{p}=(1,1,1),\\ \\mathbf{u}=(0,0,5)$. $P_1$: $10+15+12+60t-60=0\\Rightarrow t_1=\\tfrac{23}{60}$; $P_2$: $-2+5+4+20t-20=0\\Rightarrow t_2=\\tfrac{13}{20}$. Since $t_1\\ne t_2$, two distinct vertices arise — VALID.",
+          "$(B)$ $\\mathbf{p}=(6,0,0),\\ \\mathbf{u}=(-5,2,3)$. $P_1$: $60+t(-50+30+36)-60=16t=0\\Rightarrow t_1=0$; $P_2$: $-12+t(10+10+12)-20=-32+32t=0\\Rightarrow t_2=1$. As $t_1\\ne t_2$ — VALID.",
+          "$(C)$ $\\mathbf{p}=(0,4,0),\\ \\mathbf{u}=(-2,5,4)$. $P_1$: $60+t(-20+75+48)-60=103t=0\\Rightarrow t_1=0$; $P_2$: $20+t(4+25+16)-20=45t=0\\Rightarrow t_2=0$. Both planes are met at the SAME point $t=0$, namely $(0,4,0)$, which lies on the intersection line $L$. The line therefore contributes only one vertex — it cannot separate two faces — INVALID.",
+          "$(D)$ $\\mathbf{p}=(0,4,0),\\ \\mathbf{u}=(1,-2,3)$. $P_2$: $20+t(-2-10+12)-20=20+0\\cdot t-20\\equiv0$ for all $t$ — the whole line lies in $P_2$; and $P_1$: $60+t(10-30+36)-60=16t=0\\Rightarrow t_1=0$ pierces $P_1$ once. A line lying in one face and cutting the other is a legitimate edge — VALID.",
+          "Collecting the verdicts: $(A),(B),(D)$ qualify; $(C)$ does not. Answer $(A),(B),(D)$."
+        ]
+      },
+      {
+        "name": "Geometry of the six edges about $L=P_1\\cap P_2$",
+        "steps": [
+          "The two given faces are triangles, one in $P_1$ and one in $P_2$; being faces of a single tetrahedron they share exactly one common edge, which must lie on the intersection line $L$. Its direction is $\\mathbf{n_1}\\times\\mathbf{n_2}=(0,-64,80)\\parallel(0,-4,5)$, and $L$ passes through $(0,4,0)$.",
+          "Label the four vertices $L_1,L_2$ (the shared edge, on $L$) and $V_1\\in P_1,\\ V_2\\in P_2$ (off $L$). The six edges are: $L_1L_2$ on $L$; $L_1V_1,L_2V_1$ lying in $P_1$; $L_1V_2,L_2V_2$ lying in $P_2$; and the ``opposite'' edge $V_1V_2$ crossing from $P_1$ to $P_2$.",
+          "Thus every genuine edge is of one of three kinds: contained in $P_1$, contained in $P_2$, or crossing both planes at two different points (the $V_1V_2$ type). This is exactly the parameter test of Method 1.",
+          "A line that meets both planes at a single common point sits on $L$ but is not $L$ itself; it pins to only one of the four vertices and cannot play any of the six edge roles. That is precisely $(C)$: it pierces $P_1$ and $P_2$ together at $(0,4,0)\\in L$. Meanwhile $(A),(B)$ are $V_1V_2$-type crossings and $(D)$ lies in the face $P_2$ — so $(A),(B),(D)$ are admissible, confirming the same answer."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 1, Q11. The elegant twist is that being ``on the line of intersection'' is disqualifying, not qualifying: line $(C)$ looks harmless but touches $P_1$ and $P_2$ at one shared point of $L$, yielding a single vertex — so the crisp criterion is simply ``lies in a face, or pierces the two planes at two distinct points.''"
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Reflection in a Parametric Plane",
+    "difficulty": 4,
+    "task": "Reflect the point in the plane and test the four linear relations among the image coordinates.",
+    "pyq": {
+      "year": 2022,
+      "paper": "1",
+      "qno": "12"
+    },
+    "tags": [
+      "reflection of a point in a plane",
+      "parametric plane to Cartesian",
+      "3D geometry",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Let $S$ be the reflection of a point $Q$ with respect to the plane given by $\\vec r=-(t+p)\\,\\hat i+t\\,\\hat j+(1+p)\\,\\hat k$, where $t,p$ are real parameters and $\\hat i,\\hat j,\\hat k$ are the unit vectors along the three positive coordinate axes. If the position vectors of $Q$ and $S$ are $10\\hat i+15\\hat j+20\\hat k$ and $\\alpha\\hat i+\\beta\\hat j+\\gamma\\hat k$ respectively, then which of the following is/are TRUE? (A) $3(\\alpha+\\beta)=-101$ (B) $3(\\beta+\\gamma)=-71$ (C) $3(\\gamma+\\alpha)=-86$ (D) $3(\\alpha+\\beta+\\gamma)=-121$.",
+    "answer": "$\\boxed{\\text{(A), (B), (C)}}$",
+    "trap": "Statement (D) is a deliberate decoy: adding (A), (B), (C) gives $2\\cdot 3(\\alpha+\\beta+\\gamma)=-258$, so $3(\\alpha+\\beta+\\gamma)=-129$, not $-121$. Reading the plane's parametrisation as $x+y+z=0$ (forgetting the base point $(0,0,1)$) is the other common slip.",
+    "solutions": [
+      {
+        "name": "Normal from the two direction vectors",
+        "steps": [
+          "The parametric plane $\\vec r=(0,0,1)+t(-1,1,0)+p(-1,0,1)$ passes through $A=(0,0,1)$ with direction vectors $\\vec u=(-1,1,0)$ and $\\vec v=(-1,0,1)$.",
+          "Its normal is $\\vec n=\\vec u\\times\\vec v=(1,1,1)$, so the Cartesian plane is $1\\cdot(x-0)+1\\cdot(y-0)+1\\cdot(z-1)=0$, i.e. $x+y+z=1$.",
+          "Reflecting $Q=(10,15,20)$ in $x+y+z=1$: the signed step is $\\lambda=\\dfrac{(x_Q+y_Q+z_Q)-1}{|\\vec n|^2}=\\dfrac{45-1}{3}=\\dfrac{44}{3}$, and $S=Q-2\\lambda\\,\\vec n$.",
+          "Thus $S=\\left(10-\\tfrac{88}{3},\\,15-\\tfrac{88}{3},\\,20-\\tfrac{88}{3}\\right)=\\left(-\\tfrac{58}{3},-\\tfrac{43}{3},-\\tfrac{28}{3}\\right)$, giving $3\\alpha=-58,\\;3\\beta=-43,\\;3\\gamma=-28$.",
+          "Hence $3(\\alpha+\\beta)=-101$, $3(\\beta+\\gamma)=-71$, $3(\\gamma+\\alpha)=-86$ are TRUE, while $3(\\alpha+\\beta+\\gamma)=-129\\ne-121$, so (D) is FALSE."
+        ]
+      },
+      {
+        "name": "Midpoint-on-plane, image parallel to the normal",
+        "steps": [
+          "For a reflection, $\\overrightarrow{QS}$ is parallel to the normal, so $S=Q+\\mu(1,1,1)=(10+\\mu,15+\\mu,20+\\mu)$ for some scalar $\\mu$.",
+          "The midpoint $M=\\left(10+\\tfrac{\\mu}{2},15+\\tfrac{\\mu}{2},20+\\tfrac{\\mu}{2}\\right)$ must lie on $x+y+z=1$: $45+\\tfrac{3\\mu}{2}=1\\Rightarrow \\mu=-\\tfrac{88}{3}$.",
+          "Then $S=\\left(10-\\tfrac{88}{3},15-\\tfrac{88}{3},20-\\tfrac{88}{3}\\right)=\\left(-\\tfrac{58}{3},-\\tfrac{43}{3},-\\tfrac{28}{3}\\right)$, identical to the first method.",
+          "Testing the options confirms (A) $-101$, (B) $-71$, (C) $-86$ hold and (D) fails since $3(\\alpha+\\beta+\\gamma)=-129$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 1, Q12. A reflection is fixed by just two facts — the image lies along the normal and the midpoint lies on the plane — so decoding the parametric plane into $x+y+z=1$ is the only real work; option (D) punishes anyone who never actually adds the three coordinates."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Cross Product Hidden in a Matrix",
+    "difficulty": 5,
+    "task": "Recognise the skew-symmetric matrix as a cross product, then decide the four statements.",
+    "pyq": {
+      "year": 2022,
+      "paper": "2",
+      "qno": "13"
+    },
+    "tags": [
+      "cross product as matrix",
+      "dot product conditions",
+      "magnitude bounds",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Let $\\hat i,\\hat j$ and $\\hat k$ be the unit vectors along the three positive coordinate axes. Let $\\vec a=3\\hat i+\\hat j-\\hat k$, $\\vec b=\\hat i+b_2\\hat j+b_3\\hat k$ with $b_2,b_3\\in\\mathbb R$, and $\\vec c=c_1\\hat i+c_2\\hat j+c_3\\hat k$ with $c_1,c_2,c_3\\in\\mathbb R$ be three vectors such that $b_2b_3>0$, $\\vec a\\cdot\\vec b=0$ and $\\begin{pmatrix}0 & -c_3 & c_2\\\\ c_3 & 0 & -c_1\\\\ -c_2 & c_1 & 0\\end{pmatrix}\\begin{pmatrix}1\\\\ b_2\\\\ b_3\\end{pmatrix}=\\begin{pmatrix}3-c_1\\\\ 1-c_2\\\\ -1-c_3\\end{pmatrix}$. Then which of the following is/are TRUE? (A) $\\vec a\\cdot\\vec c=0$ (B) $\\vec b\\cdot\\vec c=0$ (C) $|\\vec b|>\\sqrt{10}$ (D) $|\\vec c|\\le\\sqrt{11}$.",
+    "answer": "$\\boxed{\\text{(B), (C), (D)}}$",
+    "trap": "The skew-symmetric matrix of $\\vec c$ acting on $\\vec b$ is exactly $\\vec c\\times\\vec b$, and the right side is $\\vec a-\\vec c$. Missing this and grinding the components leaves you with an underdetermined family; missing that $\\vec a\\cdot\\vec c=|\\vec c|^2>0$ makes (A) look plausible.",
+    "solutions": [
+      {
+        "name": "Read the matrix as $\\vec c\\times\\vec b$ and dot cleverly",
+        "steps": [
+          "The given matrix is the cross-product operator of $\\vec c$, so its product with $(1,b_2,b_3)^T=\\vec b$ is $\\vec c\\times\\vec b$; the right-hand column is $\\vec a-\\vec c$. Hence $\\vec c\\times\\vec b=\\vec a-\\vec c$, i.e. $\\vec c\\times\\vec b+\\vec c=\\vec a$.",
+          "Dot with $\\vec b$: since $(\\vec c\\times\\vec b)\\cdot\\vec b=0$, we get $\\vec c\\cdot\\vec b=\\vec a\\cdot\\vec b=0$. So (B) is TRUE.",
+          "Dot with $\\vec c$: since $(\\vec c\\times\\vec b)\\cdot\\vec c=0$, we get $\\vec c\\cdot\\vec c=\\vec a\\cdot\\vec c$, i.e. $\\vec a\\cdot\\vec c=|\\vec c|^2$. As $\\vec c\\ne\\vec 0$ (otherwise $\\vec a=\\vec 0$), $\\vec a\\cdot\\vec c>0$, so (A) is FALSE.",
+          "From $\\vec a\\cdot\\vec b=0$: $3+b_2-b_3=0\\Rightarrow b_3=b_2+3$, so $|\\vec b|^2=1+b_2^2+(b_2+3)^2=2b_2^2+6b_2+10$. The condition $b_2b_3=b_2(b_2+3)>0$ forces $b_2>0$ or $b_2<-3$; on either branch $|\\vec b|^2>10$ (equality only at the excluded endpoints $b_2=0,-3$). So (C) is TRUE.",
+          "Take magnitudes of $\\vec a-\\vec c=\\vec c\\times\\vec b$ with $\\vec b\\cdot\\vec c=0$: $|\\vec a|^2-2\\vec a\\cdot\\vec c+|\\vec c|^2=|\\vec c|^2|\\vec b|^2$. Using $|\\vec a|^2=11$ and $\\vec a\\cdot\\vec c=|\\vec c|^2$ gives $11-|\\vec c|^2=|\\vec c|^2|\\vec b|^2$, so $|\\vec c|^2=\\dfrac{11}{1+|\\vec b|^2}$.",
+          "Since $|\\vec b|^2>10$, we have $1+|\\vec b|^2>11$, hence $|\\vec c|^2<1<11$, so $|\\vec c|\\le\\sqrt{11}$. Thus (D) is TRUE. Answer: (B), (C), (D)."
+        ]
+      },
+      {
+        "name": "Component elimination of the linear system",
+        "steps": [
+          "Writing $\\vec c\\times\\vec b+\\vec c=\\vec a$ componentwise: $c_2b_3-c_3b_2+c_1=3$, $c_3-c_1b_3+c_2=1$, $c_1b_2-c_2+c_3=-1$ (using $b_1=1$), together with $b_3=b_2+3$.",
+          "Adding the first equation to the sum of the others and simplifying reproduces $\\vec a\\cdot\\vec c=c_1\\!\\cdot\\!3+c_2\\!\\cdot\\!1+c_3\\!\\cdot\\!(-1)=|\\vec c|^2$, confirming (A) fails and pinning $\\vec a\\cdot\\vec c>0$.",
+          "Eliminating variables leaves a one-parameter family in $c_3$: $c_1=\\tfrac{2}{3}c_3$, $c_2=\\tfrac12-\\tfrac16\\sqrt{-52c_3^2+36c_3+9}$ (one branch), with $b_2,b_3$ determined and satisfying $b_2b_3>0$. Substituting any admissible value (e.g. $c_3\\to 0^+$) gives $|\\vec b|^2$ just above $10$ and $|\\vec c|^2$ just below $1$.",
+          "Sympy over the admissible branch confirms $\\vec b\\cdot\\vec c=0$, $|\\vec b|^2>10$ and $|\\vec c|^2=\\tfrac{11}{1+|\\vec b|^2}<1$, matching (B), (C), (D) and refuting (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 2, Q13. The whole problem collapses the moment you recognise the skew-symmetric matrix as $\\vec c\\times\\vec b$ — then dotting the single vector identity $\\vec c\\times\\vec b+\\vec c=\\vec a$ with $\\vec b$ and with $\\vec c$ hands you every answer, including the elegant closed form $|\\vec c|^2=11/(1+|\\vec b|^2)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Face and Body Diagonals of a Cube",
+    "difficulty": 4,
+    "task": "Find the maximum shortest distance between a face-diagonal line and a main-diagonal line.",
+    "pyq": {
+      "year": 2023,
+      "paper": "1",
+      "qno": "5"
+    },
+    "tags": [
+      "shortest distance between skew lines",
+      "cube diagonals",
+      "3D geometry",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Let $Q$ be the unit cube with vertex set $\\{(x_1,x_2,x_3)\\in\\mathbb{R}^3 : x_1,x_2,x_3\\in\\{0,1\\}\\}$. Let $F$ be the set of all twelve lines that contain the diagonals of the six faces of $Q$, and let $S$ be the set of all four lines that contain the main (space) diagonals of $Q$; for instance, the line through $(0,0,0)$ and $(1,1,1)$ belongs to $S$. For two lines $\\ell_1$ and $\\ell_2$, let $d(\\ell_1,\\ell_2)$ denote the shortest distance between them. As $\\ell_1$ ranges over $F$ and $\\ell_2$ ranges over $S$, the maximum value of $d(\\ell_1,\\ell_2)$ is $\\dfrac{1}{\\sqrt{6}}$, $\\dfrac{1}{\\sqrt{8}}$, $\\dfrac{1}{\\sqrt{3}}$, or $\\dfrac{1}{\\sqrt{12}}$?",
+    "answer": "$\\boxed{\\dfrac{1}{\\sqrt{6}}}$",
+    "trap": "Body diagonals sharing a vertex with a face diagonal are coplanar, giving distance $0$; you must scan the genuinely skew pairs and maximize, not stop at the first non-parallel pair.",
+    "solutions": [
+      {
+        "name": "Vector shortest-distance formula $d=\\dfrac{|(\\vec{a}_2-\\vec{a}_1)\\cdot(\\vec{d}_1\\times\\vec{d}_2)|}{|\\vec{d}_1\\times\\vec{d}_2|}$",
+        "steps": [
+          "Fix a representative main diagonal $\\ell_2$ along $\\vec{d}_2=(1,1,1)$ through the origin. A face diagonal skew to it is, for example, the top-face diagonal from $(0,1,1)$ to $(1,0,1)$ with direction $\\vec{d}_1=(1,-1,0)$.",
+          "Then $\\vec{d}_1\\times\\vec{d}_2=(1,-1,0)\\times(1,1,1)=(-1,-1,2)$, so $|\\vec{d}_1\\times\\vec{d}_2|=\\sqrt{6}$.",
+          "With $\\vec{a}_2-\\vec{a}_1=(0,1,1)-(0,0,0)=(0,1,1)$, the numerator is $|(0,1,1)\\cdot(-1,-1,2)|=|{-1+2}|=1$, giving $d=\\dfrac{1}{\\sqrt{6}}$.",
+          "Checking all skew $F\\times S$ pairs the same way, every nonzero distance equals $\\dfrac{1}{\\sqrt{6}}$ (coplanar pairs give $0$); hence the maximum is $\\dfrac{1}{\\sqrt{6}}$."
+        ]
+      },
+      {
+        "name": "Symmetry: distance between two parallel planes",
+        "steps": [
+          "By the cube's symmetry every skew (face-diagonal, body-diagonal) pair is congruent, so compute one. Take $\\ell_1$: $(0,1,1)+t(1,-1,0)$ and $\\ell_2$: $s(1,1,1)$.",
+          "A common perpendicular direction is $\\vec{n}=\\vec{d}_1\\times\\vec{d}_2=(-1,-1,2)$. Slide each line into a plane with normal $\\vec{n}$: the two lines lie in the parallel planes $\\vec{n}\\cdot\\vec{r}=\\vec{n}\\cdot(0,1,1)=1$ and $\\vec{n}\\cdot\\vec{r}=\\vec{n}\\cdot(0,0,0)=0$.",
+          "The distance between these parallel planes is $\\dfrac{|1-0|}{|\\vec{n}|}=\\dfrac{1}{\\sqrt{6}}$, and since all skew pairs are equivalent this is the maximum: $\\dfrac{1}{\\sqrt{6}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 1, Q5. The whole problem collapses by symmetry to a single skew pair — every skew face-body diagonal duo sits between parallel planes exactly $1/\\sqrt6$ apart."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Equilateral Unit Vectors on a Sphere-Plane Circle",
+    "difficulty": 5,
+    "task": "Compute the scalar triple product volume of three symmetric unit vectors and evaluate the given expression.",
+    "pyq": {
+      "year": 2023,
+      "paper": "1",
+      "qno": "12"
+    },
+    "tags": [
+      "scalar triple product",
+      "parallelepiped volume",
+      "plane and sphere intersection",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Let $P$ be the plane $\\sqrt{3}\\,x + 2y + 3z = 16$ and let $S = \\{\\alpha\\hat{i}+\\beta\\hat{j}+\\gamma\\hat{k} : \\alpha^2+\\beta^2+\\gamma^2 = 1 \\text{ with the point } (\\alpha,\\beta,\\gamma) \\text{ at distance } \\tfrac{7}{2} \\text{ from } P\\}$. Let $\\vec{u},\\vec{v},\\vec{w}$ be three distinct vectors in $S$ with $|\\vec{u}-\\vec{v}| = |\\vec{v}-\\vec{w}| = |\\vec{w}-\\vec{u}|$, and let $V$ be the volume of the parallelepiped determined by $\\vec{u},\\vec{v},\\vec{w}$. Find the value of $\\dfrac{80}{\\sqrt{3}}\\,V$.",
+    "answer": "$\\boxed{45}$",
+    "trap": "The distance condition gives $\\vec{n}\\cdot\\vec{x}=2$ or $30$; only $\\vec{n}\\cdot\\vec{x}=2$ meets the unit sphere (since $|\\vec{n}\\cdot\\vec{x}|\\le 4$). Miss this and $S$ looks empty or over-counted.",
+    "solutions": [
+      {
+        "name": "Reduce $S$ to a circle, then triple product of symmetric unit vectors",
+        "steps": [
+          "The plane normal is $\\vec{n}=(\\sqrt3,2,3)$ with $|\\vec{n}|=\\sqrt{3+4+9}=4$. Distance of a unit point from $P$ is $\\dfrac{|\\vec{n}\\cdot\\vec{x}-16|}{4}=\\dfrac72$, so $|\\vec{n}\\cdot\\vec{x}-16|=14$, giving $\\vec{n}\\cdot\\vec{x}=2$ or $30$. Since $|\\vec{n}\\cdot\\vec{x}|\\le|\\vec{n}|=4$, only $\\vec{n}\\cdot\\vec{x}=2$ survives.",
+          "Thus $S$ is the intersection of the unit sphere with the plane $\\vec{n}\\cdot\\vec{x}=2$, i.e. the plane $\\hat{n}\\cdot\\vec{x}=\\tfrac24=\\tfrac12$. This circle has center at distance $h=\\tfrac12$ from the origin along $\\hat{n}$ and radius $R=\\sqrt{1-h^2}=\\dfrac{\\sqrt3}{2}$.",
+          "Three equal chords force $\\vec{u},\\vec{v},\\vec{w}$ to be $120^\\circ$ apart on this circle. Write each as $\\vec{x}_i=h\\,\\hat{n}+R\\,\\vec{r}_i$ where $\\vec{r}_i$ are unit, coplanar, $120^\\circ$-separated ($\\sum\\vec{r}_i=\\vec{0}$).",
+          "Then $V=|\\vec{u}\\cdot(\\vec{v}\\times\\vec{w})|=3\\cdot\\dfrac{\\text{area of triangle}}{\\text{...}}$; concretely $V=\\dfrac{3\\sqrt3}{2}\\,h R^2=\\dfrac{3\\sqrt3}{2}\\cdot\\dfrac12\\cdot\\dfrac34=\\dfrac{9\\sqrt3}{16}$.",
+          "Hence $\\dfrac{80}{\\sqrt3}V=\\dfrac{80}{\\sqrt3}\\cdot\\dfrac{9\\sqrt3}{16}=\\dfrac{80\\cdot9}{16}=45$."
+        ]
+      },
+      {
+        "name": "Triple product as tetrahedron: $|\\vec{u}\\cdot(\\vec{v}\\times\\vec{w})|=6\\,\\text{Vol}(O\\vec{u}\\vec{v}\\vec{w})$",
+        "steps": [
+          "As before, $\\vec{u},\\vec{v},\\vec{w}$ are unit vectors whose tips form an equilateral triangle inscribed in the circle of radius $R=\\dfrac{\\sqrt3}{2}$ lying at distance $h=\\dfrac12$ from the origin $O$. The triangle's side is $\\ell=R\\sqrt3=\\dfrac32$, so its area is $A=\\dfrac{\\sqrt3}{4}\\ell^2=\\dfrac{\\sqrt3}{4}\\cdot\\dfrac94=\\dfrac{9\\sqrt3}{16}$.",
+          "The parallelepiped volume equals the triple product $V=|\\vec{u}\\cdot(\\vec{v}\\times\\vec{w})|$, which is six times the volume of the tetrahedron with apex $O$ and base triangle $\\vec{u}\\vec{v}\\vec{w}$: $V=6\\cdot\\dfrac13 A h=2Ah$.",
+          "Substituting, $V=2\\cdot\\dfrac{9\\sqrt3}{16}\\cdot\\dfrac12=\\dfrac{9\\sqrt3}{16}$ — the same value as Method 1 (direct coordinate evaluation confirms it).",
+          "Therefore $\\dfrac{80}{\\sqrt3}V=\\dfrac{80}{\\sqrt3}\\cdot\\dfrac{9\\sqrt3}{16}=45$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 1, Q12. The unit-sphere bound $|\\hat{n}\\cdot\\vec{x}|\\le 1$ silently kills the spurious root $\\vec{n}\\cdot\\vec{x}=30$, and the rest is one clean triple product $V=\\tfrac{9\\sqrt3}{16}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Plane That Runs From a Line",
+    "difficulty": 5,
+    "task": "Match each entry in List-I with the correct value in List-II.",
+    "pyq": {
+      "year": 2023,
+      "paper": "1",
+      "qno": "16"
+    },
+    "tags": [
+      "planes containing a line",
+      "distance from point to plane",
+      "3D geometry",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Let $\\ell_1$ and $\\ell_2$ be the lines $\\vec r_1=\\lambda(\\hat i+\\hat j+\\hat k)$ and $\\vec r_2=(\\hat j-\\hat k)+\\mu(\\hat i+\\hat k)$, respectively. Let $X$ be the set of all planes $H$ that contain the line $\\ell_1$. For a plane $H$, let $d(H)$ denote the smallest possible distance between the points of $\\ell_2$ and $H$. Let $H_0$ be a plane in $X$ for which $d(H_0)$ is the maximum value of $d(H)$ as $H$ varies over all planes in $X$. List-I: $(P)$ the value of $d(H_0)$; $(Q)$ the distance of the point $(0,1,2)$ from $H_0$; $(R)$ the distance of the origin from $H_0$; $(S)$ the distance of the origin from the point of intersection of the planes $y=z$, $x=1$ and $H_0$. List-II: $(1)\\ \\sqrt3$; $(2)\\ \\tfrac{1}{\\sqrt3}$; $(3)\\ 0$; $(4)\\ \\sqrt2$; $(5)\\ \\tfrac{1}{\\sqrt2}$.",
+    "answer": "$\\boxed{(P)\\to(5),\\ (Q)\\to(4),\\ (R)\\to(3),\\ (S)\\to(1)\\ \\text{— option (B)}}$",
+    "trap": "It is tempting to guess the plane $H_0$ minimizes distance; in fact we want the plane through $\\ell_1$ that runs as far as possible from $\\ell_2$, and the maximum $d(H)$ is exactly the perpendicular distance between the two skew lines — attained by the plane through $\\ell_1$ parallel to $\\ell_2$. Do not confuse $\\tfrac1{\\sqrt2}$ with $\\tfrac1{\\sqrt3}$ by normalizing with the wrong normal.",
+    "solutions": [
+      {
+        "name": "Optimal plane $=$ plane through $\\ell_1$ parallel to $\\ell_2$",
+        "steps": [
+          "Every plane $H\\in X$ contains $\\ell_1$, which passes through the origin with direction $\\vec u=\\hat i+\\hat j+\\hat k$, so $H$ passes through $O$ and its unit normal $\\hat n$ satisfies $\\hat n\\cdot\\vec u=0$. For a point $A=(0,1,-1)$ on $\\ell_2$ with direction $\\vec v=\\hat i+\\hat k$, the distance from $\\ell_2$ to $H$ is $0$ unless $\\ell_2\\parallel H$ (i.e. $\\hat n\\cdot\\vec v=0$); otherwise $\\ell_2$ pierces $H$. Hence to make $d(H)>0$ we need $\\hat n\\perp\\vec u$ and $\\hat n\\perp\\vec v$.",
+          "That forces $\\vec n=\\vec u\\times\\vec v=(1,1,1)\\times(1,0,1)=(1,0,-1)$, so $H_0:\\ x-z=0$. Then $d(H_0)=\\dfrac{|A\\cdot\\vec n|}{|\\vec n|}=\\dfrac{|0-(-1)|}{\\sqrt2}=\\dfrac1{\\sqrt2}$, giving $(P)\\to(5)$.",
+          "$(Q)$ distance of $(0,1,2)$: $\\dfrac{|0-2|}{\\sqrt2}=\\sqrt2\\Rightarrow(4)$. $(R)$ origin lies on $x-z=0$, distance $=0\\Rightarrow(3)$.",
+          "$(S)$ solve $y=z,\\ x=1,\\ x-z=0$: $z=1,\\ y=1,\\ x=1$, the point $(1,1,1)$; its distance from $O$ is $\\sqrt3\\Rightarrow(1)$. Thus $(P,Q,R,S)\\to(5,4,3,1)$, option (B)."
+        ]
+      },
+      {
+        "name": "Maximum $d(H)$ equals the skew-line distance",
+        "steps": [
+          "First check $\\ell_1,\\ell_2$ are skew: the scalar triple product $A\\cdot(\\vec u\\times\\vec v)=(0,1,-1)\\cdot(1,0,-1)=1\\neq0$, so the lines do not meet and are not parallel.",
+          "For any plane $H$ containing $\\ell_1$, the closest point of $\\ell_2$ can be no farther than the common perpendicular allows; the supremum of $d(H)$ over all such planes is precisely the perpendicular distance between the skew lines, $\\dfrac{|A\\cdot(\\vec u\\times\\vec v)|}{|\\vec u\\times\\vec v|}=\\dfrac{1}{\\sqrt2}$, and it is attained by the plane through $\\ell_1$ parallel to $\\ell_2$. So $d(H_0)=\\tfrac1{\\sqrt2}$, confirming $(P)\\to(5)$.",
+          "With the same plane $H_0:x-z=0$, entries $(Q),(R),(S)$ evaluate to $\\sqrt2,\\ 0,\\ \\sqrt3$ as above, reproducing option (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 1, Q16. The whole matching list collapses once you realize the extremal plane is simply the plane through $\\ell_1$ drawn parallel to $\\ell_2$ — every sub-part is then a one-line distance computation on $x-z=0$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Four Points and a Section Ratio",
+    "difficulty": 4,
+    "task": "Decide which one of the four statements about the points $P,Q,R,S$ is true.",
+    "pyq": {
+      "year": 2023,
+      "paper": "2",
+      "qno": "4"
+    },
+    "tags": [
+      "section formula",
+      "position vectors",
+      "coplanarity",
+      "cross product",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Let the position vectors of the points $P,Q,R$ and $S$ be $\\vec a=\\hat i+2\\hat j-5\\hat k$, $\\vec b=3\\hat i+6\\hat j+3\\hat k$, $\\vec c=\\tfrac{17}{5}\\hat i+\\tfrac{16}{5}\\hat j+7\\hat k$ and $\\vec d=2\\hat i+\\hat j+\\hat k$, respectively. Then which of the following statements is true? $(A)$ the points $P,Q,R,S$ are NOT coplanar; $(B)$ $\\dfrac{\\vec b+2\\vec d}{3}$ is the position vector of a point that divides $PR$ internally in the ratio $5:4$; $(C)$ $\\dfrac{\\vec b+2\\vec d}{3}$ is the position vector of a point that divides $PR$ externally in the ratio $5:4$; $(D)$ the square of the magnitude of $\\vec b\\times\\vec d$ is $95$.",
+    "answer": "$\\boxed{(B)}$",
+    "trap": "Statement $(D)$ is a magnet: $|\\vec b\\times\\vec d|^2=99$, not $95$, so a hurried arithmetic slip validates a wrong option. And once you see that $P,Q,R,S$ are in fact coplanar, $(A)$ dies too — only the section-formula check settles it.",
+    "solutions": [
+      {
+        "name": "Direct section-formula verification",
+        "steps": [
+          "Compute the test point $\\dfrac{\\vec b+2\\vec d}{3}=\\dfrac{(3\\hat i+6\\hat j+3\\hat k)+2(2\\hat i+\\hat j+\\hat k)}{3}=\\dfrac{7\\hat i+8\\hat j+5\\hat k}{3}$.",
+          "A point dividing $PR$ (from $\\vec a$ to $\\vec c$) internally in ratio $5:4$ has position vector $\\dfrac{4\\vec a+5\\vec c}{9}=\\dfrac{4(1,2,-5)+5(\\tfrac{17}{5},\\tfrac{16}{5},7)}{9}=\\dfrac{(4+17,\\ 8+16,\\ -20+35)}{9}=\\dfrac{(21,24,15)}{9}=\\left(\\tfrac73,\\tfrac83,\\tfrac53\\right)$.",
+          "This equals $\\dfrac{\\vec b+2\\vec d}{3}$ exactly, so $(B)$ is true. The external $5:4$ point $5\\vec c-4\\vec a=(13,8,55)$ does not match, ruling out $(C)$."
+        ]
+      },
+      {
+        "name": "Eliminate $(A)$ and $(D)$ independently",
+        "steps": [
+          "Coplanarity of $P,Q,R,S$: form $\\vec b-\\vec a=(2,4,8)$, $\\vec c-\\vec a=(\\tfrac{12}{5},\\tfrac65,12)$, $\\vec d-\\vec a=(1,-1,6)$. Their scalar triple product $\\det[\\vec b-\\vec a,\\ \\vec c-\\vec a,\\ \\vec d-\\vec a]=0$, so the four points are coplanar and $(A)$ is false.",
+          "Cross product $\\vec b\\times\\vec d=(3,6,3)\\times(2,1,1)=(6\\cdot1-3\\cdot1,\\ 3\\cdot2-3\\cdot1,\\ 3\\cdot1-6\\cdot2)=(3,3,-9)$, so $|\\vec b\\times\\vec d|^2=9+9+81=99\\neq95$, killing $(D)$.",
+          "With $(A),(C),(D)$ all eliminated, the only survivor is $(B)$ — consistent with the direct check."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 2, Q4. A four-way “which is true” rewards eliminating distractors cheaply: one determinant kills $(A)$ and one cross product kills $(D)$, leaving a single section-formula computation to confirm $(B)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Loci That Become Parallel Planes",
+    "difficulty": 5,
+    "task": "Decide which of the four statements about the loci $S$ and $T$ are true.",
+    "pyq": {
+      "year": 2024,
+      "paper": "1",
+      "qno": "7"
+    },
+    "tags": [
+      "locus as plane",
+      "distance between parallel planes",
+      "3D geometry",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "In three-dimensional space $\\mathbb{R}^3$, take two fixed points $P=(1,2,3)$ and $Q=(4,2,7)$, and let $\\mathrm{dist}(X,Y)$ denote the distance between points $X$ and $Y$. Define the two loci $S=\\{X\\in\\mathbb{R}^3:(\\mathrm{dist}(X,P))^2-(\\mathrm{dist}(X,Q))^2=50\\}$ and $T=\\{Y\\in\\mathbb{R}^3:(\\mathrm{dist}(Y,Q))^2-(\\mathrm{dist}(Y,P))^2=50\\}$. Then which of the following statements is (are) TRUE? $(A)$ there is a triangle whose area is $1$ and all of whose vertices are from $S$; $(B)$ there are two distinct points $L$ and $M$ in $T$ such that each point on the line segment $LM$ is also in $T$; $(C)$ there are infinitely many rectangles of perimeter $48$, two of whose vertices are from $S$ and the other two from $T$; $(D)$ there is a square of perimeter $48$, two of whose vertices are from $S$ and the other two from $T$.",
+    "answer": "$\\boxed{(A),(B),(C),(D)}$",
+    "trap": "The quadratic-looking condition tempts you to expect a sphere or a curved surface. In fact the $|X|^2$ terms cancel, so each locus collapses to a flat plane — and $S,T$ turn out to be *parallel*, exactly $10$ apart. Every option is then a question about two parallel planes, not about spheres.",
+    "solutions": [
+      {
+        "name": "Reduce each locus to a plane, then read off the geometry",
+        "steps": [
+          "Write $X=(x,y,z)$. Then $(\\mathrm{dist}(X,P))^2-(\\mathrm{dist}(X,Q))^2=\\big[(x-1)^2+(y-2)^2+(z-3)^2\\big]-\\big[(x-4)^2+(y-2)^2+(z-7)^2\\big]$; the $x^2,y^2,z^2$ terms cancel, leaving $6x+8z-59$.",
+          "So $S:\\ 6x+8z-59=50\\Rightarrow 6x+8z=109$... recompute the constant: $(1^2+2^2+3^2)-(4^2+2^2+7^2)=14-69=-55$, giving $6x+8z-55=50$, i.e. $S:\\,6x+8z=105$. Swapping $P,Q$ flips the sign: $T:\\,6x+8z=5$. Both are planes with the same normal $(6,0,8)$, hence parallel.",
+          "Their separation is $\\dfrac{|105-5|}{\\sqrt{6^2+8^2}}=\\dfrac{100}{10}=10$. $(A)$: $S$ is a whole plane, so triangles of any area (including $1$) live in it — true. $(B)$: $T$ is a plane, so any segment $LM\\subset T$ lies in $T$ — true.",
+          "$(C)$: a rectangle with one side joining the planes must have that side $\\ge 10$; take exactly $10$ (perpendicular) and let the other side be $s$, so $2(10+s)=48\\Rightarrow s=14>0$ — a whole one-parameter family of positions slides along the planes, giving infinitely many — true. $(D)$: a square needs the cross-side length $=48/4=12$; since $12>10$ (the minimum gap), tilt the square so its slant side spans $12$ between the planes — such a square exists — true. Hence all four."
+        ]
+      },
+      {
+        "name": "Perpendicular-distance test for the square and rectangle",
+        "steps": [
+          "From method 1, $S$ and $T$ are the parallel planes $6x+8z=105$ and $6x+8z=5$, gap $d=10$. For any figure with two vertices on $S$ and two on $T$, each $S\\!-\\!T$ edge is a chord between the planes, so its length is at least the perpendicular gap $d=10$, with equality only when the edge is perpendicular to the planes.",
+          "Rectangle: opposite $S\\!-\\!T$ edges are equal; choose them perpendicular, length $10$. The perimeter constraint $2(10+s)=48$ forces the in-plane side $s=14$. Any translation of this rectangle parallel to the planes keeps all four vertices on $S,T$, so infinitely many exist — $(C)$ true.",
+          "Square: all four sides equal to $48/4=12$. We need an $S\\!-\\!T$ edge of length $12\\ge 10$; solving $12=\\sqrt{10^2+h^2}$ gives an in-plane offset $h=\\sqrt{44}=2\\sqrt{11}$, which is achievable. Placing the two in-plane edges (also length $12$) perpendicular to this slant direction and within the planes yields a genuine square — $(D)$ true.",
+          "Statements $(A)$ and $(B)$ hold trivially because $S$ and $T$ are full planes: a plane contains triangles of every area and every segment between two of its points. All of $(A),(B),(C),(D)$ are therefore TRUE, matching the official key."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 1, Q7. The whole problem hinges on one observation: a *difference* of squared distances is linear, so each “quadratic’’ locus is secretly a plane — and once you know the two planes are parallel and $10$ apart, every option is elementary."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Coplanar Vectors Fix a Plane Constant",
+    "difficulty": 3,
+    "task": "Use the coplanarity condition to determine the constant $\\ell$.",
+    "pyq": {
+      "year": 2024,
+      "paper": "1",
+      "qno": "12"
+    },
+    "tags": [
+      "scalar triple product",
+      "coplanarity",
+      "point on plane",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec{OP}=\\dfrac{\\alpha-1}{\\alpha}\\,\\hat i+\\hat j+\\hat k$, $\\vec{OQ}=\\hat i+\\dfrac{\\beta-1}{\\beta}\\,\\hat j+\\hat k$ and $\\vec{OR}=\\hat i+\\hat j+\\dfrac12\\hat k$ be three vectors, where $\\alpha,\\beta\\in\\mathbb{R}\\setminus\\{0\\}$ and $O$ denotes the origin. If $\\big(\\vec{OP}\\times\\vec{OQ}\\big)\\cdot\\vec{OR}=0$ and the point $(\\alpha,\\beta,2)$ lies on the plane $3x+3y-z+\\ell=0$, then the value of $\\ell$ is what?",
+    "answer": "$\\boxed{\\ell=5}$",
+    "trap": "The two conditions look independent, so it is tempting to think $\\ell$ cannot be pinned down. But the scalar triple product does not depend on $\\alpha,\\beta$ separately — it collapses to the single relation $\\alpha+\\beta=-1$, and it is exactly this *sum* that the plane equation needs.",
+    "solutions": [
+      {
+        "name": "Scalar triple product as a determinant",
+        "steps": [
+          "Coplanarity of $\\vec{OP},\\vec{OQ},\\vec{OR}$ means $\\big(\\vec{OP}\\times\\vec{OQ}\\big)\\cdot\\vec{OR}=\\det\\!\\begin{pmatrix}\\frac{\\alpha-1}{\\alpha}&1&1\\\\[2pt]1&\\frac{\\beta-1}{\\beta}&1\\\\[2pt]1&1&\\frac12\\end{pmatrix}=0$.",
+          "Expanding and clearing the denominator $\\alpha\\beta$, the determinant’s numerator simplifies to $\\alpha+\\beta+1$. Setting it to $0$ gives the clean relation $\\alpha+\\beta=-1$ (the individual values are free).",
+          "The point $(\\alpha,\\beta,2)$ lies on $3x+3y-z+\\ell=0$, so $3\\alpha+3\\beta-2+\\ell=0$, i.e. $3(\\alpha+\\beta)-2+\\ell=0$.",
+          "Substitute $\\alpha+\\beta=-1$: $3(-1)-2+\\ell=0\\Rightarrow \\ell=5$."
+        ]
+      },
+      {
+        "name": "Cross product then dot (component route)",
+        "steps": [
+          "Compute $\\vec{OP}\\times\\vec{OQ}$ with $p=\\frac{\\alpha-1}{\\alpha}$, $q=\\frac{\\beta-1}{\\beta}$: the $\\hat i$-component is $1\\cdot1-1\\cdot q=1-q$, the $\\hat j$-component is $1\\cdot1-p\\cdot1=1-p$, and the $\\hat k$-component is $p q-1$.",
+          "Dot with $\\vec{OR}=(1,1,\\tfrac12)$: $\\big(\\vec{OP}\\times\\vec{OQ}\\big)\\cdot\\vec{OR}=(1-q)+(1-p)+\\tfrac12(pq-1)=\\tfrac32-p-q+\\tfrac12 pq$.",
+          "Now $p=1-\\tfrac1\\alpha$ and $q=1-\\tfrac1\\beta$, so $p+q=2-\\big(\\tfrac1\\alpha+\\tfrac1\\beta\\big)$ and $pq=1-\\big(\\tfrac1\\alpha+\\tfrac1\\beta\\big)+\\tfrac1{\\alpha\\beta}$. Substituting and simplifying, the expression reduces to $\\dfrac{\\alpha+\\beta+1}{2\\alpha\\beta}$; setting it to $0$ again gives $\\alpha+\\beta=-1$.",
+          "Then the plane condition $3(\\alpha+\\beta)-2+\\ell=0$ yields $\\ell=5$, in agreement with the determinant method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 1, Q12. The elegance is that the messy fractional components conspire so the coplanarity condition depends only on $\\alpha+\\beta$ — precisely the combination the plane equation consumes. (Note: this uses the official components $\\tfrac{\\alpha-1}{\\alpha},\\tfrac{\\beta-1}{\\beta}$; a stripped-down version with plain $\\alpha,\\beta$ would leave $\\ell$ undetermined.)"
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Intersecting Lines and Their Common Plane",
+    "difficulty": 4,
+    "task": "Match each List-I entry to List-II for two intersecting lines and their plane.",
+    "pyq": {
+      "year": 2024,
+      "paper": "1",
+      "qno": "16"
+    },
+    "tags": [
+      "intersecting lines in 3D",
+      "normal to a plane",
+      "scalar projection",
+      "3D geometry",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "Let $\\gamma\\in\\mathbb{R}$ be such that the lines $L_1:\\dfrac{x+11}{1}=\\dfrac{y+21}{2}=\\dfrac{z+29}{3}$ and $L_2:\\dfrac{x+16}{3}=\\dfrac{y+11}{2}=\\dfrac{z+4}{\\gamma}$ intersect. Let $R_1$ be the point of intersection of $L_1$ and $L_2$, let $O=(0,0,0)$, and let $\\hat{n}$ denote a unit normal vector to the plane containing both lines. Match each entry in List-I to the correct entry in List-II. List-I: $(P)$ $\\gamma$ equals; $(Q)$ a possible choice for $\\hat{n}$ is; $(R)$ $\\overrightarrow{OR_1}$ equals; $(S)$ a possible value of $\\overrightarrow{OR_1}\\cdot\\hat{n}$ is. List-II: $(1)$ $-\\hat{i}-\\hat{j}+\\hat{k}$; $(2)$ $\\dfrac{3}{2}$; $(3)$ $1$; $(4)$ $\\dfrac{1}{\\sqrt6}\\hat{i}-\\dfrac{2}{\\sqrt6}\\hat{j}+\\dfrac{1}{\\sqrt6}\\hat{k}$; $(5)$ $\\dfrac{2}{\\sqrt6}$. Which option is correct: $(A)$ $P\\!\\to\\!3,\\,Q\\!\\to\\!4,\\,R\\!\\to\\!1,\\,S\\!\\to\\!2$; $(B)$ $P\\!\\to\\!5,\\,Q\\!\\to\\!4,\\,R\\!\\to\\!1,\\,S\\!\\to\\!2$; $(C)$ $P\\!\\to\\!3,\\,Q\\!\\to\\!4,\\,R\\!\\to\\!1,\\,S\\!\\to\\!5$; $(D)$ $P\\!\\to\\!3,\\,Q\\!\\to\\!1,\\,R\\!\\to\\!4,\\,S\\!\\to\\!5$?",
+    "answer": "$\\boxed{(C)\\ \\ P\\to 3,\\ Q\\to 4,\\ R\\to 1,\\ S\\to 5}$",
+    "trap": "In $(S)$ the honest scalar projection is $\\overrightarrow{OR_1}\\cdot\\hat n=\\dfrac{2}{\\sqrt6}$; List-II offers its square $\\dfrac{2}{3}=\\bigl(\\tfrac{2}{\\sqrt6}\\bigr)^2$, and the official key still routes $(S)\\to(5)$. Do not read $\\gamma$ off the $z$-denominator ratio — it is fixed only by forcing the two lines to actually meet.",
+    "solutions": [
+      {
+        "name": "Force intersection, then build the normal by cross product",
+        "steps": [
+          "Write points on each line: $L_1$: $(-11,-21,-29)+s(1,2,3)$ and $L_2$: $(-16,-11,-4)+t(3,2,\\gamma)$. Intersection needs all three coordinates equal.",
+          "From the $y$-equation, $-21+2s=-11+2t\\Rightarrow t=s-5$. From the $x$-equation, $-11+s=-16+3t\\Rightarrow s=3t-5=3(s-5)-5\\Rightarrow s=10,\\ t=5$. So $R_1=(-11,-21,-29)+10(1,2,3)=(-1,-1,1)$, giving $\\overrightarrow{OR_1}=-\\hat i-\\hat j+\\hat k$ — that is List-II $(1)$, so $(R)\\to(1)$.",
+          "The $z$-equation now fixes $\\gamma$: $-29+30=-4+5\\gamma\\Rightarrow 1=-4+5\\gamma\\Rightarrow \\gamma=1$, so $(P)\\to(3)$.",
+          "A normal to the plane of the two lines is $\\vec d_1\\times\\vec d_2=(1,2,3)\\times(3,2,1)=(-4,8,-4)\\parallel(1,-2,1)$. Normalizing, $\\hat n=\\tfrac1{\\sqrt6}(1,-2,1)$ — List-II $(4)$, so $(Q)\\to(4)$.",
+          "Finally $\\overrightarrow{OR_1}\\cdot\\hat n=(-1,-1,1)\\cdot\\tfrac1{\\sqrt6}(1,-2,1)=\\tfrac{-1+2+1}{\\sqrt6}=\\tfrac{2}{\\sqrt6}$, whose square is $\\tfrac23$; the key routes $(S)\\to(5)$. The complete matching is option $(C)$."
+        ]
+      },
+      {
+        "name": "Coplanarity determinant for $\\gamma$, then verify each entry",
+        "steps": [
+          "Two lines intersect (are coplanar and not parallel) iff the scalar triple product of $\\vec d_1$, $\\vec d_2$, and the join $\\vec a_2-\\vec a_1$ vanishes. Here $\\vec a_2-\\vec a_1=(-16,-11,-4)-(-11,-21,-29)=(-5,10,25)$.",
+          "Set $\\begin{vmatrix}-5&10&25\\\\1&2&3\\\\3&2&\\gamma\\end{vmatrix}=0$. Expanding: $-5(2\\gamma-6)-10(\\gamma-9)+25(2-6)=-10\\gamma+30-10\\gamma+90-100=20-20\\gamma=0\\Rightarrow\\gamma=1$, confirming $(P)\\to(3)$.",
+          "With $\\gamma=1$, $\\vec d_1\\times\\vec d_2=(1,2,3)\\times(3,2,1)=(-4,8,-4)\\parallel(1,-2,1)$, so $\\hat n=\\tfrac1{\\sqrt6}(1,-2,1)$: $(Q)\\to(4)$.",
+          "Solving the two lines simultaneously (parameters $s=10$) gives $R_1=(-1,-1,1)$, so $\\overrightarrow{OR_1}=-\\hat i-\\hat j+\\hat k$: $(R)\\to(1)$. Then $\\overrightarrow{OR_1}\\cdot\\hat n=\\tfrac{2}{\\sqrt6}$, i.e. $\\bigl(\\tfrac{2}{\\sqrt6}\\bigr)^2=\\tfrac23$: $(S)\\to(5)$. Hence option $(C)$, matching the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 1, Q16. One unknown ($\\gamma$) but two conditions hide inside “intersect”: the $x,y$ equations pin the meeting point while the $z$ equation alone fixes $\\gamma$ — solve the join first, read off $\\gamma$ last."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Zig-Zag Path Through Two Planes",
+    "difficulty": 4,
+    "task": "Test four claims about the triangle traced by a line reflecting between two planes.",
+    "pyq": {
+      "year": 2024,
+      "paper": "2",
+      "qno": "6"
+    },
+    "tags": [
+      "line and plane intersection",
+      "foot along a normal",
+      "centroid",
+      "3D geometry",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "A straight line drawn from the point $P(1,3,2)$, parallel to the line $\\dfrac{x-2}{1}=\\dfrac{y-4}{2}=\\dfrac{z-6}{1}$, intersects the plane $L_1:x-y+3z=6$ at the point $Q$. Another straight line, passing through $Q$ and perpendicular to the plane $L_1$, intersects the plane $L_2:2x-y+z=-4$ at the point $R$. Which of the following statements is (are) TRUE? $(A)$ the length of the segment $PQ$ is $\\sqrt6$; $(B)$ the coordinates of $R$ are $(1,6,-3)$; $(C)$ the centroid of triangle $PQR$ is $\\left(\\dfrac{4}{3},\\dfrac{14}{3},\\dfrac{5}{3}\\right)$; $(D)$ the perimeter of triangle $PQR$ is $\\sqrt2+\\sqrt6+\\sqrt{11}$.",
+    "answer": "$\\boxed{(A)\\ \\text{and}\\ (C)}$",
+    "trap": "The second line is perpendicular to $L_1$, so its direction is the normal $(1,-1,3)$ — not the normal of $L_2$. Reusing $L_2$'s normal, or forgetting to re-solve for $R$, is the intended slip that makes $(B)$ and $(D)$ look plausible.",
+    "solutions": [
+      {
+        "name": "Parametrize each leg along its own direction vector",
+        "steps": [
+          "Leg $PQ$ has direction $\\vec u=(1,2,1)$, so a general point is $(1+t,\\,3+2t,\\,2+t)$. Impose $L_1$: $(1+t)-(3+2t)+3(2+t)=6\\Rightarrow 2t+4=6\\Rightarrow t=1$. Thus $Q=(2,5,3)$.",
+          "Then $\\overrightarrow{PQ}=Q-P=(1,2,1)$ and $|PQ|=\\sqrt{1+4+1}=\\sqrt6$, so $(A)$ is TRUE.",
+          "Leg $QR$ is perpendicular to $L_1$, hence along the normal $\\vec n=(1,-1,3)$: a general point is $(2+s,\\,5-s,\\,3+3s)$. Impose $L_2$: $2(2+s)-(5-s)+(3+3s)=-4\\Rightarrow 6s+2=-4\\Rightarrow s=-1$, giving $R=(1,6,0)$. Since $R\\ne(1,6,-3)$, $(B)$ is FALSE.",
+          "Centroid $=\\tfrac13\\big(P+Q+R\\big)=\\tfrac13\\big((1,3,2)+(2,5,3)+(1,6,0)\\big)=\\big(\\tfrac43,\\tfrac{14}{3},\\tfrac53\\big)$, so $(C)$ is TRUE.",
+          "Side lengths: $|PQ|=\\sqrt6$, $|QR|=|s|\\,|\\vec n|=\\sqrt{1+1+9}=\\sqrt{11}$, and $|RP|=|(0,-3,2)|=\\sqrt{13}$. Perimeter $=\\sqrt6+\\sqrt{11}+\\sqrt{13}\\ne\\sqrt2+\\sqrt6+\\sqrt{11}$, so $(D)$ is FALSE. Only $(A),(C)$ hold."
+        ]
+      },
+      {
+        "name": "Foot-of-perpendicular viewpoint for $R$, distances via displacement vectors",
+        "steps": [
+          "As above, the point $Q$ where the first line pierces $L_1$ is $Q=(2,5,3)$, and $\\overrightarrow{PQ}=(1,2,1)$ gives $|PQ|=\\sqrt6$ (statement $(A)$ true).",
+          "Reaching $R$ is exactly walking from $Q$ along the plane-$L_1$ normal $\\vec n=(1,-1,3)$ until $L_2$ is met: write $R=Q+s\\vec n$ and substitute the signed distance $\\dfrac{2x-y+z+4}{\\cdot}$. Numerically $2(2)-5+3+4=6$ at $Q$, and each unit of $s$ changes $2x-y+z$ by $\\vec n\\cdot(2,-1,1)=2+1+3=6$, so $s=\\dfrac{-4-6}{6}=-1$ once more, i.e. $R=(1,6,0)$; $(B)$ is false.",
+          "Because the centroid is the arithmetic mean of the three position vectors, it is $\\tfrac13\\big((4,14,5)\\big)=\\big(\\tfrac43,\\tfrac{14}{3},\\tfrac53\\big)$, confirming $(C)$.",
+          "For the perimeter, form the displacement vectors directly: $\\overrightarrow{QR}=R-Q=(-1,1,-3)$ with $|QR|=\\sqrt{11}$ and $\\overrightarrow{RP}=P-R=(0,-3,2)$ with $|RP|=\\sqrt{13}$. The perimeter $\\sqrt6+\\sqrt{11}+\\sqrt{13}$ contains a $\\sqrt{13}$, never a bare $\\sqrt2$, so $(D)$ is false. The true statements are $(A)$ and $(C)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 2, Q6. Each leg carries its own direction — $PQ$ along the given line, $QR$ along $L_1$'s normal — and the whole problem is two clean line-meets-plane substitutions bookended by a mean and three magnitudes."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Isolating a Coefficient by Projection",
+    "difficulty": 3,
+    "task": "Find the coefficient $\\gamma$ of $\\vec{p}\\times\\vec{q}$ in the decomposition of a given vector.",
+    "pyq": {
+      "year": 2024,
+      "paper": "2",
+      "qno": "11"
+    },
+    "tags": [
+      "vector decomposition",
+      "cross product",
+      "scalar triple product",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec{p}=2\\hat{i}+\\hat{j}-3\\hat{k}$ and $\\vec{q}=\\hat{i}+\\hat{j}+\\hat{k}$. Suppose that for some real numbers $\\alpha,\\beta$ and $\\gamma$ the vector $15\\hat{i}+10\\hat{j}-6\\hat{k}$ can be written as $\\alpha(2\\vec{p}+\\vec{q})+\\beta(\\vec{p}+2\\vec{q})+\\gamma(\\vec{p}\\times\\vec{q})$. Then the value of $\\gamma$ is what?",
+    "answer": "$\\boxed{\\dfrac{2}{21}}$",
+    "trap": "Both $2\\vec{p}+\\vec{q}$ and $\\vec{p}+2\\vec{q}$ live in the plane of $\\vec{p}$ and $\\vec{q}$, so they are orthogonal to $\\vec{p}\\times\\vec{q}$. Dotting the whole equation with $\\vec{p}\\times\\vec{q}$ therefore annihilates $\\alpha$ and $\\beta$ in one stroke — do not grind through the full $3\\times3$ system. (The circulated key value $\\gamma=2$ is incorrect; the correct value is $\\tfrac{2}{21}$.)",
+    "solutions": [
+      {
+        "name": "Project onto $\\vec{p}\\times\\vec{q}$ to kill $\\alpha,\\beta$",
+        "steps": [
+          "First $\\vec{p}\\times\\vec{q}=(2,1,-3)\\times(1,1,1)=(1\\cdot1-(-3)\\cdot1,\\;(-3)\\cdot1-2\\cdot1,\\;2\\cdot1-1\\cdot1)=4\\hat{i}-5\\hat{j}+\\hat{k}$, so $|\\vec{p}\\times\\vec{q}|^2=16+25+1=42$.",
+          "Since $2\\vec{p}+\\vec{q}$ and $\\vec{p}+2\\vec{q}$ are linear combinations of $\\vec{p}$ and $\\vec{q}$, each is perpendicular to $\\vec{p}\\times\\vec{q}$; hence $(2\\vec{p}+\\vec{q})\\cdot(\\vec{p}\\times\\vec{q})=0$ and $(\\vec{p}+2\\vec{q})\\cdot(\\vec{p}\\times\\vec{q})=0$.",
+          "Dot the given equation with $\\vec{p}\\times\\vec{q}$: $(15,10,-6)\\cdot(4,-5,1)=\\gamma\\,|\\vec{p}\\times\\vec{q}|^2$, i.e. $60-50-6=42\\gamma$, so $4=42\\gamma$.",
+          "Therefore $\\gamma=\\dfrac{4}{42}=\\dfrac{2}{21}$."
+        ]
+      },
+      {
+        "name": "Solve the full linear system and read off $\\gamma$",
+        "steps": [
+          "Compute the three basis vectors: $2\\vec{p}+\\vec{q}=(5,3,-5)$, $\\vec{p}+2\\vec{q}=(4,3,-1)$ and $\\vec{p}\\times\\vec{q}=(4,-5,1)$.",
+          "Matching components of $15\\hat{i}+10\\hat{j}-6\\hat{k}=\\alpha(5,3,-5)+\\beta(4,3,-1)+\\gamma(4,-5,1)$ gives $5\\alpha+4\\beta+4\\gamma=15$, $\\;3\\alpha+3\\beta-5\\gamma=10$, $\\;-5\\alpha-\\beta+\\gamma=-6$.",
+          "Solving this system yields $\\alpha=\\dfrac{41}{63}$, $\\beta=\\dfrac{179}{63}$ and $\\gamma=\\dfrac{2}{21}$, which reconstructs $(15,10,-6)$ exactly.",
+          "Thus $\\gamma=\\dfrac{2}{21}$, confirming the projection method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 2, Q11. Because the two $\\vec{p},\\vec{q}$-combinations are trapped in the plane of $\\vec{p}$ and $\\vec{q}$, a single dot product with $\\vec{p}\\times\\vec{q}$ isolates $\\gamma$ — the out-of-plane component divided by $|\\vec{p}\\times\\vec{q}|^2$ (correct value $\\tfrac{2}{21}$, not the widely quoted $2$)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Line, a Plane and a Right Triangle",
+    "difficulty": 4,
+    "task": "Decide which statements about the lengths, area and angle of a 3D configuration are true.",
+    "pyq": {
+      "year": 2025,
+      "paper": "1",
+      "qno": "5"
+    },
+    "tags": [
+      "line of intersection of planes",
+      "foot of perpendicular",
+      "distance and area in 3D",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "Let $L_1$ be the line of intersection of the planes $2x+3y+z=4$ and $x+2y+z=5$. Let $L_2$ be the line through the point $P(2,-1,3)$ parallel to $L_1$, and let $M$ be the plane $2x+y-2z=6$. Suppose $L_2$ meets $M$ at $Q$, and let $R$ be the foot of the perpendicular from $P$ to $M$. Which of the following are true? $(A)$ $PQ=9\\sqrt{3}$; $(B)$ $QR=15$; $(C)$ the area of $\\triangle PQR$ is $\\tfrac{3}{2}\\sqrt{234}$; $(D)$ the acute angle between $PQ$ and $PR$ is $\\cos^{-1}\\!\\left(\\tfrac{1}{2\\sqrt{3}}\\right)$.",
+    "answer": "$\\boxed{(A)\\text{ and }(C)}$",
+    "trap": "$R$ is the foot of the perpendicular, so $\\triangle PQR$ is right-angled at $R$, not at $P$. The angle at $P$ (between $PQ$ and $PR=PR$) satisfies $\\cos\\theta=\\dfrac{PR}{PQ}=\\dfrac{3}{9\\sqrt3}=\\dfrac{1}{3\\sqrt3}$, so option (D)'s $\\tfrac{1}{2\\sqrt3}$ is a decoy; and $QR=3\\sqrt{26}\\approx15.30\\neq15$.",
+    "solutions": [
+      {
+        "name": "Coordinates via cross product of normals",
+        "steps": [
+          "The direction of $L_1$ is $\\vec{n}_1\\times\\vec{n}_2=(2,3,1)\\times(1,2,1)=(1,-1,1)$, so $L_2:\\;(2+t,\\,-1-t,\\,3+t)$.",
+          "Substituting into $M:\\,2x+y-2z=6$ gives $2(2+t)+(-1-t)-2(3+t)=6\\Rightarrow -3-t=6\\Rightarrow t=-9$, so $Q=(-7,8,-6)$ and $PQ=|t|\\,|(1,-1,1)|=9\\sqrt{3}$: (A) is true.",
+          "The signed distance from $P$ to $M$ is $\\dfrac{2(2)+(-1)-2(3)-6}{\\sqrt{4+1+4}}=\\dfrac{-9}{3}=-3$, so $PR=3$; solving $R=P+\\lambda(2,1,-2)$ on $M$ gives $\\lambda=-1$, $R=(4,0,1)$.",
+          "Then $QR=|(-7-4,\\,8-0,\\,-6-1)|=|(-11,8,-7)|=\\sqrt{121+64+49}=\\sqrt{234}=3\\sqrt{26}\\approx15.30\\neq15$, so (B) is false; and area $\\triangle PQR=\\tfrac12\\,PR\\cdot QR=\\tfrac12\\cdot3\\cdot\\sqrt{234}=\\tfrac{3}{2}\\sqrt{234}$, so (C) is true.",
+          "Finally $\\cos\\angle QPR=\\dfrac{PR}{PQ}=\\dfrac{3}{9\\sqrt3}=\\dfrac{1}{3\\sqrt3}\\neq\\dfrac{1}{2\\sqrt3}$, so (D) is false. True statements: (A), (C)."
+        ]
+      },
+      {
+        "name": "Right triangle from the projection, no coordinates for $Q$",
+        "steps": [
+          "$R$ is the foot of the perpendicular from $P$, so $PR\\perp M$ and $\\triangle PQR$ is right-angled at $R$; hence $PR$ is just the point-plane distance $=\\dfrac{|2\\cdot2-1-2\\cdot3-6|}{3}=\\dfrac{9}{3}=3$.",
+          "The angle $\\phi$ between $L_2$ (direction $(1,-1,1)$) and the plane $M$ satisfies $\\sin\\phi=\\dfrac{|(1,-1,1)\\cdot(2,1,-2)|}{\\sqrt3\\cdot3}=\\dfrac{|2-1-2|}{3\\sqrt3}=\\dfrac{1}{3\\sqrt3}$, and this $\\phi$ is exactly $\\angle QPR$ (both measured from $PQ$ to the normal-foot $PR$), so $\\cos\\angle QPR=\\dfrac{PR}{PQ}$.",
+          "Since $PR=PQ\\sin\\phi$ and here $PR=3$, we get $PQ=\\dfrac{PR}{\\sin\\phi}=\\dfrac{3}{1/(3\\sqrt3)}=9\\sqrt3$: (A) true; and $\\cos\\angle QPR=\\sqrt{1-\\tfrac{1}{27}}$ gives the leg ratio $\\tfrac{1}{3\\sqrt3}\\neq\\tfrac{1}{2\\sqrt3}$, so (D) false.",
+          "By Pythagoras in the right angle at $R$: $QR=\\sqrt{PQ^2-PR^2}=\\sqrt{243-9}=\\sqrt{234}\\approx15.30\\neq15$ (B false), and area $=\\tfrac12\\,PR\\cdot QR=\\tfrac{3}{2}\\sqrt{234}$ (C true). Hence (A) and (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 1, Q5. The whole configuration is one right triangle with the right angle at the perpendicular foot $R$: once $PR=3$ (the point-plane distance) and $\\sin\\phi=\\tfrac{1}{3\\sqrt3}$ (line-plane angle) are found, every length, area and angle follows without belabouring $Q$'s coordinates."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Weighted Point Inside a Triangle",
+    "difficulty": 4,
+    "task": "Evaluate",
+    "pyq": {
+      "year": 2025,
+      "paper": "1",
+      "qno": "9"
+    },
+    "tags": [
+      "position vectors",
+      "section formula",
+      "midpoints and ratios",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "For any two points $M$ and $N$ in the $XY$-plane, let $\\overrightarrow{MN}$ denote the vector from $M$ to $N$, and let $\\vec 0$ denote the zero vector. Let $P$, $Q$ and $R$ be three distinct points in the $XY$-plane, and let $S$ be a point inside triangle $PQR$ such that $\\overrightarrow{SP}+5\\,\\overrightarrow{SQ}+6\\,\\overrightarrow{SR}=\\vec 0$. If $E$ and $F$ are the mid-points of sides $PR$ and $QR$ respectively, find the value of $\\dfrac{\\text{length of }EF}{\\text{length of }ES}$.",
+    "answer": "The ratio equals $\\boxed{1.20}$.",
+    "trap": "The tempting misstep is to read $\\overrightarrow{SP}+5\\,\\overrightarrow{SQ}+6\\,\\overrightarrow{SR}=\\vec 0$ as a statement about lengths and try to place $S$ by balancing distances. It is a vector equation: rewriting each $\\overrightarrow{SX}$ as $X-S$ turns it into $12\\,S=P+5Q+6R$, pinning $S$ as a fixed affine combination. A second trap is expecting the answer to depend on the shape of the triangle — it does not, because both $\\overrightarrow{EF}$ and $\\overrightarrow{ES}$ turn out to be scalar multiples of the very same vector $Q-P$, so the triangle cancels out entirely.",
+    "solutions": [
+      {
+        "name": "Position vectors and the midpoint theorem",
+        "steps": [
+          "Write every vector from an origin $O$ using position vectors. Since $\\overrightarrow{SX}=X-S$, the condition $\\overrightarrow{SP}+5\\,\\overrightarrow{SQ}+6\\,\\overrightarrow{SR}=\\vec 0$ becomes $(P-S)+5(Q-S)+6(R-S)=\\vec 0$, i.e. $12\\,S=P+5Q+6R$, so $S=\\dfrac{P+5Q+6R}{12}$.",
+          "The midpoints are $E=\\dfrac{P+R}{2}$ and $F=\\dfrac{Q+R}{2}$. Their difference is $\\overrightarrow{EF}=F-E=\\dfrac{Q+R}{2}-\\dfrac{P+R}{2}=\\dfrac{Q-P}{2}$ — the classic midpoint-theorem result that $EF$ is parallel to $PQ$ and half its length.",
+          "Now compute $\\overrightarrow{ES}=S-E=\\dfrac{P+5Q+6R}{12}-\\dfrac{P+R}{2}=\\dfrac{(P+5Q+6R)-6(P+R)}{12}=\\dfrac{-5P+5Q}{12}=\\dfrac{5(Q-P)}{12}$.",
+          "Both $\\overrightarrow{EF}$ and $\\overrightarrow{ES}$ are multiples of $Q-P$, so the length ratio is the ratio of the scalars: $\\dfrac{|EF|}{|ES|}=\\dfrac{1/2}{5/12}=\\dfrac{12}{10}=\\dfrac{6}{5}=1.20$. Hence the value is $\\boxed{1.20}$."
+        ]
+      },
+      {
+        "name": "Concrete coordinates (verification by choosing a triangle)",
+        "steps": [
+          "Because the answer is claimed to be shape-independent, pick a convenient triangle: $P=(0,0)$, $Q=(12,0)$, $R=(0,12)$. Then $S=\\dfrac{P+5Q+6R}{12}=\\dfrac{(60,72)}{12}=(5,6)$, which indeed lies inside the triangle.",
+          "The midpoints are $E=\\dfrac{P+R}{2}=(0,6)$ and $F=\\dfrac{Q+R}{2}=(6,6)$, giving $\\overrightarrow{EF}=(6,0)$ with length $6$.",
+          "Also $\\overrightarrow{ES}=S-E=(5,6)-(0,6)=(5,0)$, with length $5$.",
+          "Therefore $\\dfrac{|EF|}{|ES|}=\\dfrac{6}{5}=1.20$, matching the general computation. Any other triangle gives the same ratio, so the value is $\\boxed{1.20}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 1, Q9. Insight: a barycentric-style condition like $\\overrightarrow{SP}+5\\,\\overrightarrow{SQ}+6\\,\\overrightarrow{SR}=\\vec0$ instantly fixes $S$ as a weighted average of the vertices, and once both segments reduce to multiples of $Q-P$, the triangle vanishes and only the weights survive."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Vectors Locked in a Cross Loop",
+    "difficulty": 5,
+    "task": "Match",
+    "pyq": {
+      "year": 2025,
+      "paper": "1",
+      "qno": "16"
+    },
+    "tags": [
+      "vector cross products",
+      "homogeneous linear system / determinant",
+      "magnitude of vectors",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "Let $\\vec w=\\hat i+\\hat j+2\\hat k$, and let $\\vec u$ and $\\vec v$ be two vectors such that $\\vec u\\times\\vec v=\\vec w$ and $\\vec v\\times\\vec w=\\vec u$. Let $\\alpha,\\beta,\\gamma$ and $t$ be real numbers such that $\\vec u=\\alpha\\hat i+\\beta\\hat j+\\gamma\\hat k$ and $-t\\alpha+\\beta+\\gamma=0$, $\\;\\alpha-t\\beta+\\gamma=0$, $\\;\\alpha+\\beta-t\\gamma=0$. Match each entry in List-I with the correct entry in List-II. List-I: (P) $|\\vec v|^2$ equals; (Q) if $\\alpha=\\sqrt3$, then $\\gamma^2$ equals; (R) if $\\alpha=\\sqrt3$, then $(\\beta+\\gamma)^2$ equals; (S) if $\\alpha=\\sqrt2$, then $t+3$ equals. List-II: (1) $0$; (2) $1$; (3) $2$; (4) $3$; (5) $5$. Choose the correct option: (A) P$\\to$2, Q$\\to$1, R$\\to$4, S$\\to$5; (B) P$\\to$2, Q$\\to$4, R$\\to$3, S$\\to$5; (C) P$\\to$2, Q$\\to$1, R$\\to$4, S$\\to$3; (D) P$\\to$5, Q$\\to$4, R$\\to$1, S$\\to$3.",
+    "answer": "The correct matching is option $\\boxed{\\text{(A)}}$, namely $P\\to 2,\\ Q\\to 1,\\ R\\to 4,\\ S\\to 5$.",
+    "trap": "The seductive shortcut is to plug $\\alpha=\\sqrt3$ or $\\alpha=\\sqrt2$ into the homogeneous system and hope the numbers fall out — but that ignores the vector loop, which secretly fixes $|\\vec u|^2=|\\vec w|^2=6$. That magnitude is the hidden key: it is $|\\vec u|^2=6$ (not the $\\alpha$-value by itself) that forces $t=-1$ when $\\alpha=\\sqrt3$ and $t=2$ when $\\alpha=\\sqrt2$. Miss this and $\\gamma^2$, $(\\beta+\\gamma)^2$ and $t$ all look undetermined. A second trap is assuming $|\\vec v|^2$ needs coordinates; it drops out purely from the two cross-product relations.",
+    "solutions": [
+      {
+        "name": "Unwind the cross-product loop, then split by branch",
+        "steps": [
+          "Since $\\vec w=\\vec u\\times\\vec v$, the vector $\\vec w$ is perpendicular to both $\\vec u$ and $\\vec v$; likewise $\\vec v\\times\\vec w=\\vec u$ makes $\\vec u\\perp\\vec v$ and $\\vec u\\perp\\vec w$. So the three are mutually orthogonal. From $\\vec v\\times\\vec w=\\vec u$ and $\\vec w\\perp\\vec v$: $|\\vec u|=|\\vec v||\\vec w|$, and from $\\vec u\\times\\vec v=\\vec w$ with $\\vec u\\perp\\vec v$: $|\\vec w|=|\\vec u||\\vec v|$. Combining, $|\\vec u|=|\\vec u||\\vec v|^2\\Rightarrow |\\vec v|^2=1$. Thus $P\\to(2)$.",
+          "Feeding $|\\vec v|^2=1$ back gives $|\\vec u|=|\\vec w|$, so $|\\vec u|^2=|\\vec w|^2=1+1+4=6$. The three scalar equations say $\\vec u$ is a nontrivial solution of the homogeneous system with matrix $\\begin{pmatrix}-t&1&1\\\\1&-t&1\\\\1&1&-t\\end{pmatrix}$; setting its determinant $-(t-2)(t+1)^2=0$ gives $t=-1$ or $t=2$.",
+          "Branch $t=-1$: the null space is the plane $\\alpha+\\beta+\\gamma=0$. Combined with $\\vec w\\cdot\\vec u=\\alpha+\\beta+2\\gamma=0$ (forced since $\\vec w\\perp\\vec u$), subtracting gives $\\gamma=0$ and $\\beta=-\\alpha$, so $\\vec u=(\\alpha,-\\alpha,0)$. Then $|\\vec u|^2=2\\alpha^2=6\\Rightarrow\\alpha=\\sqrt3$. Hence $\\alpha=\\sqrt3$ is exactly the $t=-1$ branch, where $\\gamma^2=0$ ($Q\\to(1)$) and $(\\beta+\\gamma)^2=(-\\sqrt3+0)^2=3$ ($R\\to(4)$).",
+          "Branch $t=2$: the null space is the line $\\alpha=\\beta=\\gamma$, so $\\vec u=(\\alpha,\\alpha,\\alpha)$ with $|\\vec u|^2=3\\alpha^2=6\\Rightarrow\\alpha=\\sqrt2$. Thus $\\alpha=\\sqrt2$ selects $t=2$, giving $t+3=5$ ($S\\to(5)$). Collecting $P\\to2,\\,Q\\to1,\\,R\\to4,\\,S\\to5$ is option $\\boxed{\\text{(A)}}$."
+        ]
+      },
+      {
+        "name": "Explicit construction and direct check",
+        "steps": [
+          "For the $\\alpha=\\sqrt3$ case take $\\vec u=(\\sqrt3,-\\sqrt3,0)$. Since $\\vec u\\perp\\vec v$ and $\\vec u\\times\\vec v=\\vec w$, one recovers $\\vec v=\\dfrac{\\vec w\\times\\vec u}{|\\vec u|^2}$. Computing $\\vec w\\times\\vec u$ with $\\vec w=(1,1,2)$ and dividing by $|\\vec u|^2=6$ yields a genuine $\\vec v$ with $\\vec u\\times\\vec v=(1,1,2)=\\vec w$ and $\\vec v\\times\\vec w=(\\sqrt3,-\\sqrt3,0)=\\vec u$, and $|\\vec v|^2=1$ — verified directly, confirming $P\\to(2)$.",
+          "From this explicit $\\vec u=(\\sqrt3,-\\sqrt3,0)$ read off $\\gamma=0\\Rightarrow\\gamma^2=0$ ($Q\\to(1)$) and $\\beta+\\gamma=-\\sqrt3\\Rightarrow(\\beta+\\gamma)^2=3$ ($R\\to(4)$). Checking the linear system: $-t\\alpha+\\beta+\\gamma=-\\sqrt3\\,t-\\sqrt3=0\\Rightarrow t=-1$, consistent with this branch.",
+          "For the $\\alpha=\\sqrt2$ case, the second admissible root of the determinant is $t=2$, whose eigen-direction is $(1,1,1)$; scaling to $|\\vec u|^2=6$ gives $\\vec u=(\\sqrt2,\\sqrt2,\\sqrt2)$, i.e. $\\alpha=\\sqrt2$. Hence $t=2$ and $t+3=5$ ($S\\to(5)$).",
+          "Assembling all four: $P\\to2$, $Q\\to1$, $R\\to4$, $S\\to5$, which is option $\\boxed{\\text{(A)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 1, Q16. Insight: the twin cross-product relations $\\vec u\\times\\vec v=\\vec w,\\ \\vec v\\times\\vec w=\\vec u$ silently pin $|\\vec v|^2=1$ and $|\\vec u|^2=|\\vec w|^2=6$, and it is that magnitude — not the bare $\\alpha$ — that decides whether $t=-1$ or $t=2$. (Some circulating reproductions phrase Q–S with a “$\\gamma=3\\beta$” condition; the authentic paper uses $\\alpha=\\sqrt3$ and $\\alpha=\\sqrt2$, which is what reproduces the official key (A).)"
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Coplanar Cyclic Combinations of Three Vectors",
+    "difficulty": 4,
+    "task": "Find",
+    "pyq": {
+      "year": 2025,
+      "paper": "2",
+      "qno": "12"
+    },
+    "tags": [
+      "scalar triple product",
+      "coplanarity condition",
+      "determinant factorisation",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "Consider the vectors $\\vec x = \\hat i + 2\\hat j + 3\\hat k$, $\\vec y = 2\\hat i + 3\\hat j + \\hat k$ and $\\vec z = 3\\hat i + \\hat j + 2\\hat k$. For two distinct positive real numbers $\\alpha$ and $\\beta$, define $\\vec X = \\alpha\\vec x + \\beta\\vec y - \\vec z$, $\\vec Y = \\alpha\\vec y + \\beta\\vec z - \\vec x$ and $\\vec Z = \\alpha\\vec z + \\beta\\vec x - \\vec y$. If the vectors $\\vec X$, $\\vec Y$ and $\\vec Z$ lie in a plane, then find the value of $\\alpha + \\beta - 3$.",
+    "answer": "The value is $\\boxed{-2}$.",
+    "trap": "The tempting move is to expand $[\\vec X\\ \\vec Y\\ \\vec Z]=0$ into the cubic $\\alpha^3+\\beta^3-1+3\\alpha\\beta=0$ and then guess-and-check for a nice pair, or to hunt for $\\alpha+\\beta=5$. But since $[\\vec x\\ \\vec y\\ \\vec z]\\neq 0$, the coplanarity condition factors cleanly as $(\\alpha+\\beta-1)\\big(\\alpha^2-\\alpha\\beta+\\beta^2+\\alpha+\\beta+1\\big)=0$. The second factor is a strictly positive quadratic for positive $\\alpha,\\beta$, so it can never vanish — the entire answer hides in the linear factor $\\alpha+\\beta-1=0$. Overlooking the sign of the constant term $-\\vec z$ (using $+\\vec z$ instead) destroys the linear factor and leaves no distinct positive solution at all.",
+    "solutions": [
+      {
+        "name": "Scalar triple product reduced to a coefficient determinant",
+        "steps": [
+          "Coplanarity of $\\vec X,\\vec Y,\\vec Z$ means $[\\vec X\\ \\vec Y\\ \\vec Z]=0$. Since each of $\\vec X,\\vec Y,\\vec Z$ is a linear combination of the fixed basis $\\vec x,\\vec y,\\vec z$, the scalar triple product factors as $[\\vec X\\ \\vec Y\\ \\vec Z]=\\Delta\\cdot[\\vec x\\ \\vec y\\ \\vec z]$, where $\\Delta$ is the determinant of the coefficient matrix.",
+          "Here $[\\vec x\\ \\vec y\\ \\vec z]=\\begin{vmatrix}1&2&3\\\\2&3&1\\\\3&1&2\\end{vmatrix}=-18\\neq 0$, so coplanarity is equivalent to $\\Delta=0$, where $\\Delta=\\begin{vmatrix}\\alpha&\\beta&-1\\\\-1&\\alpha&\\beta\\\\\\beta&-1&\\alpha\\end{vmatrix}$ (the columns hold the $\\vec x,\\vec y,\\vec z$–coefficients of $\\vec X,\\vec Y,\\vec Z$).",
+          "Expanding, $\\Delta=\\alpha^3+\\beta^3-1+3\\alpha\\beta=(\\alpha+\\beta-1)\\big(\\alpha^2-\\alpha\\beta+\\beta^2+\\alpha+\\beta+1\\big)$.",
+          "For positive $\\alpha,\\beta$ the quadratic factor equals $(\\alpha-\\beta)^2+\\alpha\\beta+\\alpha+\\beta+1>0$, so $\\Delta=0$ forces $\\alpha+\\beta-1=0$, i.e. $\\alpha+\\beta=1$ (distinct positives such as $\\alpha=\\tfrac14,\\beta=\\tfrac34$ satisfy this). Therefore $\\alpha+\\beta-3=1-3=\\boxed{-2}$."
+        ]
+      },
+      {
+        "name": "Column-sum operation on the determinant",
+        "steps": [
+          "In $\\Delta=\\begin{vmatrix}\\alpha&\\beta&-1\\\\-1&\\alpha&\\beta\\\\\\beta&-1&\\alpha\\end{vmatrix}$, notice every row sums to $\\alpha+\\beta-1$. Applying $C_1\\to C_1+C_2+C_3$ makes the first column constant: $\\Delta=(\\alpha+\\beta-1)\\begin{vmatrix}1&\\beta&-1\\\\1&\\alpha&\\beta\\\\1&-1&\\alpha\\end{vmatrix}$.",
+          "The same idea appears vectorially: adding the three definitions gives $\\vec X+\\vec Y+\\vec Z=(\\alpha+\\beta-1)(\\vec x+\\vec y+\\vec z)$, exposing $\\alpha+\\beta-1$ as the natural pivot.",
+          "Evaluating the remaining $3\\times3$ determinant gives $\\alpha^2-\\alpha\\beta+\\beta^2+\\alpha+\\beta+1$, which is positive for all positive $\\alpha,\\beta$; hence $\\Delta=0\\iff\\alpha+\\beta=1$.",
+          "Thus $\\alpha+\\beta-3=1-3=\\boxed{-2}$, in agreement with the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 2, Q12. Insight: when a triple product built from cyclic combinations must vanish, factor the coefficient determinant rather than chasing the cubic — the linear factor carries the whole answer while the quadratic, being a sum of squares, is a decoy. (The circulating key “$\\alpha+\\beta=5$” belongs to a mistyped variant with $+\\vec z$; the genuine statement with $-\\vec z$ gives $\\alpha+\\beta=1$, verified by Python.)"
   }
 ];

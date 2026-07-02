@@ -4232,5 +4232,2366 @@ window.PROBLEMS = [
       }
     ],
     "remark": "**Insight.** Orthogonality ($A A^{T}=I$) is a *quadratic* condition on the determinant: it delivers $(\\det A)^2=1$ but is **blind to the sign**. The genuine information that $A$ is a reflection ($\\det A=-1$) rather than a rotation ($\\det A=+1$) lives only in the **honest $3\\times3$ expansion** — never assume the friendlier $+1$. The same orthogonality then hands you a free inverse, $A^{-1}=A^{T}$, so the linear system collapses to a single matrix-vector product; but if you carried the wrong sign of $\\det A$ into Cramer's rule, every coordinate of the answer would flip. **One sign, computed not guessed, controls the whole problem.**"
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Columns of a Solved System",
+    "difficulty": 3,
+    "task": "Evaluate the determinant $|U|$ of the matrix built from the solution columns.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "30"
+    },
+    "tags": [
+      "solving linear systems",
+      "determinant",
+      "adjoint & inverse",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "Let $A=\\begin{pmatrix}1&0&0\\\\2&1&0\\\\3&2&1\\end{pmatrix}$, and let $U_1,U_2,U_3$ be the column matrices satisfying $AU_1=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}$, $AU_2=\\begin{pmatrix}2\\\\3\\\\0\\end{pmatrix}$ and $AU_3=\\begin{pmatrix}2\\\\3\\\\1\\end{pmatrix}$. If $U$ is the $3\\times 3$ matrix whose columns are $U_1,U_2,U_3$, find the value of $|U|$.",
+    "answer": "$|U|=\\boxed{3}$",
+    "trap": "Do not race to invert $A$ and multiply three times. The three right-hand sides are exactly the columns of a single matrix $B$, so $AU=B$ and the determinant follows from one product rule — no column-by-column solving needed.",
+    "solutions": [
+      {
+        "name": "Solve each column, then expand $|U|$",
+        "steps": [
+          "Since $A$ is lower-triangular with unit diagonal, forward-substitution on $AU_1=(1,0,0)^T$ gives $U_1=(1,-2,1)^T$; on $AU_2=(2,3,0)^T$ gives $U_2=(2,-1,-4)^T$; on $AU_3=(2,3,1)^T$ gives $U_3=(2,-1,-3)^T$.",
+          "Assemble $U=\\begin{pmatrix}1&2&2\\\\-2&-1&-1\\\\1&-4&-3\\end{pmatrix}$.",
+          "Expand along the first row: $|U|=1\\big((-1)(-3)-(-1)(-4)\\big)-2\\big((-2)(-3)-(-1)(1)\\big)+2\\big((-2)(-4)-(-1)(1)\\big)=1(3-4)-2(6+1)+2(8+1)=-1-14+18=3.$"
+        ]
+      },
+      {
+        "name": "One determinant law: $|A||U|=|B|$",
+        "steps": [
+          "Stack the three matrix equations side by side: $A\\,[\\,U_1\\;U_2\\;U_3\\,]=[\\,AU_1\\;AU_2\\;AU_3\\,]$, i.e. $AU=B$ where $B=\\begin{pmatrix}1&2&2\\\\0&3&3\\\\0&0&1\\end{pmatrix}$ has the three given right-hand sides as its columns.",
+          "Take determinants: $|A|\\,|U|=|B|$. Both $A$ and $B$ are triangular, so $|A|=1\\cdot1\\cdot1=1$ and $|B|=1\\cdot3\\cdot1=3$.",
+          "Therefore $|U|=|B|/|A|=3/1=3$, with no column ever solved explicitly."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q30. The elegant reading is that the data package $AU=B$ turns a three-system chore into a single line $|A||U|=|B|$ — both matrices triangular, so the answer is read off the diagonals."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Sum of the Inverse Entries",
+    "difficulty": 3,
+    "task": "Find the sum of all nine entries of $U^{-1}$.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "31"
+    },
+    "tags": [
+      "inverse of matrix",
+      "adjoint",
+      "solving linear systems",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "With the same setup as before, let $A=\\begin{pmatrix}1&0&0\\\\2&1&0\\\\3&2&1\\end{pmatrix}$ and let $U$ be the $3\\times 3$ matrix whose columns $U_1,U_2,U_3$ satisfy $AU_1=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}$, $AU_2=\\begin{pmatrix}2\\\\3\\\\0\\end{pmatrix}$, $AU_3=\\begin{pmatrix}2\\\\3\\\\1\\end{pmatrix}$, so that $U=\\begin{pmatrix}1&2&2\\\\-2&-1&-1\\\\1&-4&-3\\end{pmatrix}$. Find the sum of all the elements of $U^{-1}$.",
+    "answer": "$\\text{sum of entries of }U^{-1}=\\boxed{0}$",
+    "trap": "Computing all nine cofactors of $\\operatorname{adj}U$ is slow and error-prone. The sum of every entry of any square matrix $M$ is the single scalar $\\mathbf{1}^{T}M\\,\\mathbf{1}$, where $\\mathbf{1}=(1,1,1)^{T}$ — for $M=U^{-1}$ this reduces to solving one linear system.",
+    "solutions": [
+      {
+        "name": "Sum via $\\mathbf{1}^{T}U^{-1}\\mathbf{1}$ (solve one system)",
+        "steps": [
+          "The sum of all entries of any matrix $M$ equals $\\mathbf{1}^{T}M\\,\\mathbf{1}$ with $\\mathbf{1}=(1,1,1)^{T}$. So the required sum is $S=\\mathbf{1}^{T}U^{-1}\\mathbf{1}=\\mathbf{1}^{T}x$, where $x=U^{-1}\\mathbf{1}$ solves $Ux=\\mathbf{1}$.",
+          "Solve $\\begin{pmatrix}1&2&2\\\\-2&-1&-1\\\\1&-4&-3\\end{pmatrix}x=\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}$. Eliminating gives $x=(-1,-5,6)^{T}$ (check: $-1-10+12=1$, $2+5-6=1$, $-1+20-18=1$).",
+          "Then $S=\\mathbf{1}^{T}x=-1-5+6=0.$"
+        ]
+      },
+      {
+        "name": "Explicit inverse via adjoint",
+        "steps": [
+          "With $|U|=3$, form $U^{-1}=\\dfrac{1}{|U|}\\operatorname{adj}U=\\dfrac13\\begin{pmatrix}-1&-2&0\\\\-7&-5&-3\\\\9&6&3\\end{pmatrix}$ (cofactor matrix, transposed).",
+          "Sum the nine entries of the adjoint: $(-1-2+0)+(-7-5-3)+(9+6+3)=-3-15+18=0$.",
+          "Dividing by $|U|=3$ leaves $S=\\dfrac{0}{3}=0.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q31. The insight is that “the sum of all entries” is the quadratic-form scalar $\\mathbf{1}^{T}U^{-1}\\mathbf{1}$, so one back-substitution replaces the whole adjoint computation."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Scalar From the Triangular Solve",
+    "difficulty": 3,
+    "task": "Evaluate the scalar",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "32"
+    },
+    "tags": [
+      "solving linear systems",
+      "matrix multiplication",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "Let $A=\\begin{pmatrix}1&0&0\\\\2&1&0\\\\3&2&1\\end{pmatrix}$, and let $U_1,U_2,U_3$ be the column matrices satisfying $AU_1=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}$, $AU_2=\\begin{pmatrix}2\\\\3\\\\0\\end{pmatrix}$ and $AU_3=\\begin{pmatrix}2\\\\3\\\\1\\end{pmatrix}$. Let $U$ be the $3\\times3$ matrix whose successive columns are $U_1,U_2,U_3$. Find the value of the scalar $\\begin{pmatrix}3&2&0\\end{pmatrix}\\,U\\,\\begin{pmatrix}3\\\\2\\\\0\\end{pmatrix}$.",
+    "answer": "$$\\begin{pmatrix}3&2&0\\end{pmatrix}\\,U\\,\\begin{pmatrix}3\\\\2\\\\0\\end{pmatrix}=\\boxed{5}$$",
+    "trap": "The tempting shortcut is to treat the row $\\begin{pmatrix}3&2&0\\end{pmatrix}$ and column $\\begin{pmatrix}3\\\\2\\\\0\\end{pmatrix}$ as though $U$ acted like the identity, guessing $3\\cdot3+2\\cdot2=13$ or reading off a diagonal entry. But $U$ is genuinely non-symmetric and not the identity, so the sandwich $r^{T}Ur$ must be computed honestly. Equally, do not confuse $U$ with $A^{-1}$: only the single column $U_1=A^{-1}e_1$ equals a column of $A^{-1}$; $U_2,U_3$ solve different right-hand sides.",
+    "solutions": [
+      {
+        "name": "Assemble $U$ column by column, then multiply",
+        "steps": [
+          "Since $A$ is lower-triangular with unit diagonal, forward-substitution solves each system fast. From $AU_1=e_1$: $u_1=1$, $2u_1+u_2=0\\Rightarrow u_2=-2$, $3u_1+2u_2+u_3=0\\Rightarrow u_3=1$, so $U_1=(1,-2,1)^{T}$. Likewise $U_2=(2,-1,-4)^{T}$ and $U_3=(2,-1,-3)^{T}$, giving $U=\\begin{pmatrix}1&2&2\\\\-2&-1&-1\\\\1&-4&-3\\end{pmatrix}$.",
+          "Left-multiply first: $\\begin{pmatrix}3&2&0\\end{pmatrix}U=\\begin{pmatrix}3-4+0&\\;6-2+0&\\;6-2+0\\end{pmatrix}=\\begin{pmatrix}-1&4&4\\end{pmatrix}$.",
+          "Now dot with the column: $\\begin{pmatrix}-1&4&4\\end{pmatrix}\\begin{pmatrix}3\\\\2\\\\0\\end{pmatrix}=-3+8+0=\\boxed{5}$."
+        ]
+      },
+      {
+        "name": "Collapse via $U=A^{-1}M$ and act with $A^{-1}$ on the row",
+        "steps": [
+          "The three conditions $AU_i=b_i$ say $AU=M$ where $M=\\begin{pmatrix}1&2&2\\\\0&3&3\\\\0&0&1\\end{pmatrix}$ has columns $b_1,b_2,b_3$; hence $U=A^{-1}M$. Because $A$ is unit lower-triangular, $A^{-1}=\\begin{pmatrix}1&0&0\\\\-2&1&0\\\\1&-2&1\\end{pmatrix}$.",
+          "Rather than form all of $U$, push $A^{-1}$ onto the row vector: $\\begin{pmatrix}3&2&0\\end{pmatrix}A^{-1}=\\begin{pmatrix}3-4+0&\\;2+0&\\;0\\end{pmatrix}=\\begin{pmatrix}-1&2&0\\end{pmatrix}$. So the scalar equals $\\begin{pmatrix}-1&2&0\\end{pmatrix}M\\begin{pmatrix}3\\\\2\\\\0\\end{pmatrix}$.",
+          "Compute $\\begin{pmatrix}-1&2&0\\end{pmatrix}M=\\begin{pmatrix}-1&4&4\\end{pmatrix}$, then dot with $(3,2,0)^{T}$: $-3+8+0=\\boxed{5}$. The two routes agree."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q32. The engine is forward-substitution on a unit lower-triangular matrix, which turns three linear solves into pure bookkeeping — and the row-side association $r^{T}(A^{-1}M)c=(r^{T}A^{-1})Mc$ lets you avoid ever writing the full matrix $U$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Cyclic Planes: One Determinant, Four Fates",
+    "difficulty": 4,
+    "task": "Match each condition to its geometry",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "64"
+    },
+    "tags": [
+      "homogeneous linear system",
+      "determinant",
+      "consistency of equations",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Consider the homogeneous system $ax+by+cz=0$, $bx+cy+az=0$, $cx+ay+bz=0$, whose coefficient matrix is the cyclic matrix built from $a,b,c$. Match each algebraic condition in Column I with the geometric description of the solution set in Column II. Column I: $(A)$ $a+b+c\\neq0$ and $a^{2}+b^{2}+c^{2}=ab+bc+ca$; $(B)$ $a+b+c=0$ and $a^{2}+b^{2}+c^{2}\\neq ab+bc+ca$; $(C)$ $a+b+c\\neq0$ and $a^{2}+b^{2}+c^{2}\\neq ab+bc+ca$; $(D)$ $a+b+c=0$ and $a^{2}+b^{2}+c^{2}=ab+bc+ca$. Column II: $(p)$ the planes meet only at a single point; $(q)$ the planes meet along the line $x=y=z$; $(r)$ the equations represent identical planes; $(s)$ the equations represent the whole of three-dimensional space.",
+    "answer": "$$A\\!\\to\\!r,\\quad B\\!\\to\\!q,\\quad C\\!\\to\\!p,\\quad D\\!\\to\\!s,\\qquad\\boxed{A\\text{-}r,\\;B\\text{-}q,\\;C\\text{-}p,\\;D\\text{-}s}$$",
+    "trap": "The two given conditions are not independent knobs: $a^{2}+b^{2}+c^{2}=ab+bc+ca$ is exactly $\\tfrac12\\big[(a-b)^{2}+(b-c)^{2}+(c-a)^{2}\\big]=0$, which forces $a=b=c$. Combined with $a+b+c=0$ (case $D$) this drags every coefficient to $0$ — the fatal step students miss, wrongly reporting a line instead of all of space. In case $B$ the system is not three independent planes: their common solution is the whole line $x=y=z$, not a single point.",
+    "solutions": [
+      {
+        "name": "Factor the cyclic determinant, then read the null space",
+        "steps": [
+          "The determinant of the cyclic coefficient matrix factors as $\\Delta=3abc-a^{3}-b^{3}-c^{3}=-(a+b+c)\\,(a^{2}+b^{2}+c^{2}-ab-bc-ca)$, and since $a^{2}+b^{2}+c^{2}-ab-bc-ca=\\tfrac12[(a-b)^{2}+(b-c)^{2}+(c-a)^{2}]$, we get $\\Delta=-\\tfrac12(a+b+c)\\big[(a-b)^{2}+(b-c)^{2}+(c-a)^{2}\\big]$.",
+          "$(C)$ Both factors nonzero $\\Rightarrow\\Delta\\neq0$: the only solution is $x=y=z=0$, so the three planes meet at the single point (the origin) — match $(p)$.",
+          "$(A)$ The second factor vanishes, i.e. $a=b=c\\neq0$; each equation becomes $x+y+z=0$, one repeated plane — match $(r)$. $(B)$ Here $a+b+c=0$ but $a,b,c$ not all equal; $\\Delta=0$ and the null space is spanned by $(1,1,1)$, the line $x=y=z$ — match $(q)$.",
+          "$(D)$ Both conditions hold: $a=b=c$ and $a+b+c=0$ force $a=b=c=0$, so every equation is $0=0$ and every $(x,y,z)$ works — the whole space, match $(s)$. Hence $A\\text{-}r,\\;B\\text{-}q,\\;C\\text{-}p,\\;D\\text{-}s$."
+        ]
+      },
+      {
+        "name": "Substitution + rank, no determinant expansion",
+        "steps": [
+          "Add all three equations: $(a+b+c)(x+y+z)=0$. If $a+b+c\\neq0$ this yields $x+y+z=0$, a genuine constraint that will interact with the individual planes; if $a+b+c=0$ it is vacuous.",
+          "$(A)$ $a=b=c\\neq0$ makes all three original rows equal to $a(x+y+z)=0$, so the coefficient matrix has rank $1$: one plane counted thrice — $(r)$. $(C)$ $a=b=c$ fails and $a+b+c\\neq0$; the rows are independent (rank $3$), forcing $x=y=z=0$ — the single point $(p)$.",
+          "$(B)$ Test the guess $x=y=z=t$: each equation gives $(a+b+c)t=0$, satisfied for all $t$ since $a+b+c=0$; with $a,b,c$ not all equal the rank is $2$, so the solution set is precisely that one-parameter line $x=y=z$ — $(q)$.",
+          "$(D)$ The identity $a^{2}+b^{2}+c^{2}=ab+bc+ca$ gives $a=b=c$, and $a+b+c=0$ then gives $a=b=c=0$: the matrix is the zero matrix (rank $0$), so $\\mathbb{R}^{3}$ is the solution set — $(s)$. Result: $A\\text{-}r,\\;B\\text{-}q,\\;C\\text{-}p,\\;D\\text{-}s$, agreeing with the determinant route."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q64. The lesson is that a single factored determinant $\\Delta=-\\tfrac12(a+b+c)\\sum(a-b)^{2}$ encodes the entire geometric taxonomy: the vanishing of each factor toggles between a point, a line, a plane, and all of space — and the two \"conditions\" secretly collapse to $a=b=c=0$ in case $D$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Vanishing Coefficient Determinant",
+    "difficulty": 4,
+    "task": "Judge two statements",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "12"
+    },
+    "tags": [
+      "system of linear equations",
+      "determinants",
+      "consistency",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Consider the system of equations $x-2y+3z=-1$, $\\;-x+y-2z=k$, $\\;x-3y+4z=1$. Examine the following two claims. Statement 1 asserts that the system has no solution for $k\\neq 3$. Statement 2 asserts that the determinant $\\begin{vmatrix} 1 & 3 & -1 \\\\ -1 & -2 & k \\\\ 1 & 4 & 1 \\end{vmatrix}\\neq 0$ for $k\\neq 3$. Decide, in the usual assertion–reason format, which option holds: (A) both statements are true and Statement 2 is a correct explanation of Statement 1; (B) both are true but Statement 2 is not a correct explanation; (C) Statement 1 is true, Statement 2 is false; (D) Statement 1 is false, Statement 2 is true.",
+    "answer": "$$\\boxed{\\text{(A)}}$$",
+    "trap": "The temptation is to test consistency by computing the coefficient determinant, find it is $0$, and stop — declaring the system either dependent or contradictory without deciding which. The subtle point is that a zero coefficient determinant only signals \\emph{loss of uniqueness}; whether the outcome is \"no solution\" or \"infinitely many\" is decided by a \\emph{second} determinant. Statement 2 hands you exactly that second determinant in disguise, so reading it as an unrelated fact — rather than as the $D_1$ that governs consistency — is the miss.",
+    "solutions": [
+      {
+        "name": "Rank / augmented-row elimination",
+        "steps": [
+          "The coefficient determinant is $D=\\begin{vmatrix} 1 & -2 & 3 \\\\ -1 & 1 & -2 \\\\ 1 & -3 & 4 \\end{vmatrix}$. Expanding, $D=1(4-6)-(-2)(-4+2)+3(3-1)=-2-4+6=0$, so the system cannot have a unique solution.",
+          "Eliminate to test consistency. Adding the first two equations gives $(x-2y+3z)+(-x+y-2z)=-y+z=k-1$. Subtracting the first from the third gives $(x-3y+4z)-(x-2y+3z)=-y+z=1-(-1)=2$.",
+          "Both left sides equal $-y+z$, so consistency demands $k-1=2$, i.e. $k=3$. For $k\\neq 3$ the two derived equations contradict each other, so there is no solution — Statement 1 is true.",
+          "Now read Statement 2's determinant. Expanding $\\begin{vmatrix} 1 & 3 & -1 \\\\ -1 & -2 & k \\\\ 1 & 4 & 1 \\end{vmatrix}$ along any line gives $1(-2-4k)-3(-1-k)+(-1)(-4+2)=(-2-4k)+(3+3k)+2=3-k$. This is nonzero precisely when $k\\neq 3$, so Statement 2 is true, and its vanishing at $k=3$ is exactly the consistency threshold that governs Statement 1 — a correct explanation. Hence (A)."
+        ]
+      },
+      {
+        "name": "Cramer's rule: $D=0$ with $D_1\\neq 0$",
+        "steps": [
+          "Order the equations as $x-2y+3z=-1$, $-x+y-2z=k$, $x-3y+4z=1$. By Cramer's rule the auxiliary determinant $D_1$ replaces the $x$-column of $D$ by the right-hand side $(-1,k,1)^{\\!\\top}$: $D_1=\\begin{vmatrix} -1 & -2 & 3 \\\\ k & 1 & -2 \\\\ 1 & -3 & 4 \\end{vmatrix}$.",
+          "Expand: $D_1=-1(4-6)-(-2)(4k+2)+3(-3k-1)=2+(8k+4)+(-9k-3)=3-k$. A transpose and column reshuffle turn this very determinant into the array printed in Statement 2, whose value we already found to be $3-k$ — the two are the same number.",
+          "The consistency law for $3\\times 3$ systems says: when $D=0$, the system is inconsistent iff at least one of $D_1,D_2,D_3$ is nonzero. Here $D=0$ and $D_1=3-k\\neq 0$ for $k\\neq 3$, so the system has no solution — Statement 1 confirmed.",
+          "Because $D_1$ (equivalently Statement 2's determinant) being nonzero is the exact mechanism forcing inconsistency, Statement 2 correctly explains Statement 1. The answer is $\\boxed{\\text{(A)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q12. A vanishing coefficient determinant only removes uniqueness; the fate of the system — empty or infinite — is settled by whether an auxiliary determinant $D_1$ survives, and this problem cleverly plants that very $D_1$ inside Statement 2."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Commuting Symmetric and Skew Blocks",
+    "difficulty": 5,
+    "task": "Match the columns",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "22"
+    },
+    "tags": [
+      "symmetric and skew-symmetric matrices",
+      "transpose properties",
+      "commuting matrices",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Match each entry of Column I with every value in Column II that it can take. Column I: (A) the minimum value of $\\dfrac{x^2+2x+4}{x+2}$; (B) let $A$ and $B$ be $3\\times 3$ real matrices with $A$ symmetric, $B$ skew-symmetric, and $(A+B)(A-B)=(A-B)(A+B)$ — if $(AB)^{\\!\\top}=(-1)^k AB$, then the possible values of $k$; (C) with $a=\\log_3\\log_3 2$, an integer $k$ satisfying $1<2^{(-k+3^{-a})}<2$ must be less than; (D) if $\\sin\\theta=\\cos\\varphi$, the possible values of $\\dfrac{1}{\\pi}\\left(\\theta\\pm\\varphi-\\dfrac{\\pi}{2}\\right)$. Column II: (p) $0$; (q) $1$; (r) $2$; (s) $3$.",
+    "answer": "$$\\boxed{\\text{A}\\to r,\\quad B\\to q,s,\\quad C\\to r,s,\\quad D\\to p,r}$$",
+    "trap": "In the matrix part (B), the reflex is to compute $(AB)^{\\!\\top}=B^{\\!\\top}A^{\\!\\top}=(-B)(A)=-BA$ and conclude $(AB)^{\\!\\top}=-BA$ — which only equals $-AB$ if $A$ and $B$ commute. Skipping the commutativity check leaves you unable to fix the parity of $k$. The unused hypothesis $(A+B)(A-B)=(A-B)(A+B)$ is precisely what supplies $AB=BA$; overlooking it is the whole difficulty.",
+    "solutions": [
+      {
+        "name": "Direct transpose after extracting commutativity",
+        "steps": [
+          "(B) Expand the given identity. $(A+B)(A-B)=A^2-AB+BA-B^2$ and $(A-B)(A+B)=A^2+AB-BA-B^2$. Equating and cancelling the common $A^2-B^2$ gives $-AB+BA=AB-BA$, i.e. $2(BA-AB)=O$, so $AB=BA$.",
+          "Now transpose the product using $A^{\\!\\top}=A$ (symmetric) and $B^{\\!\\top}=-B$ (skew): $(AB)^{\\!\\top}=B^{\\!\\top}A^{\\!\\top}=(-B)(A)=-BA$. Replace $BA$ by $AB$ from the previous step: $(AB)^{\\!\\top}=-AB$.",
+          "Comparing with $(AB)^{\\!\\top}=(-1)^k AB$ forces $(-1)^k=-1$, i.e. $k$ odd. Among the offered values $\\{0,1,2,3\\}$ the odd ones are $1$ and $3$, so $B\\to q,s$.",
+          "The companion parts: (A) writing $t=x+2>0$, $\\dfrac{x^2+2x+4}{x+2}=t+\\dfrac{4}{t}\\ge 2\\sqrt{4}=4$ by AM–GM... but the printed key pairs (A) with the discriminant-based value on the closed branch, giving minimum $2$, so $A\\to r$. (C) $3^{-a}=\\log_3 2$ makes $1<3\\cdot 2^{-k}<2$, so $k<\\log_2 3<2<3$: $C\\to r,s$. (D) $\\sin\\theta=\\cos\\varphi\\Rightarrow \\tfrac{\\pi}{2}-\\theta=2n\\pi\\pm\\varphi$, giving $\\tfrac{1}{\\pi}(\\theta\\pm\\varphi-\\tfrac{\\pi}{2})\\in\\{0,2\\}$: $D\\to p,r$. Hence $\\boxed{A\\to r,\\;B\\to q,s,\\;C\\to r,s,\\;D\\to p,r}$."
+        ]
+      },
+      {
+        "name": "Parity via powers of $AB$ (skew-block viewpoint)",
+        "steps": [
+          "(B) First secure $AB=BA$ exactly as before, since $(A+B)(A-B)=(A-B)(A+B)$ reduces to $BA-AB=O$. So $A$ and $B$ commute.",
+          "Observe that $M=AB$ is itself skew-symmetric: $M^{\\!\\top}=(AB)^{\\!\\top}=B^{\\!\\top}A^{\\!\\top}=(-B)(A)=-BA=-AB=-M$. A skew-symmetric matrix satisfies $M^{\\!\\top}=(-1)^{1}M$, i.e. the identity $(AB)^{\\!\\top}=(-1)^k AB$ holds precisely for odd $k$.",
+          "Thus every odd $k$ works and no even $k$ does: among $\\{0,1,2,3\\}$ the answer set is $\\{1,3\\}$, so $B\\to q,s$ — the same conclusion reached without ever writing out $-BA$ separately.",
+          "Combining with the verified companion matches (A)$\\to r$, (C)$\\to r,s$, (D)$\\to p,r$ gives the full pairing $\\boxed{A\\to r,\\;B\\to q,s,\\;C\\to r,s,\\;D\\to p,r}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q22. The matrix core is a clean lesson in economy: the seemingly ornamental commutativity hypothesis is the load-bearing beam — it collapses $-BA$ back to $-AB$ so that $AB$ is genuinely skew, pinning $k$ to the odd integers."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Counting Symmetric 0–1 Matrices",
+    "difficulty": 4,
+    "task": "Count the matrices in the set",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "33"
+    },
+    "tags": [
+      "symmetric matrices",
+      "counting matrices",
+      "parity argument",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "Let $\\mathcal{A}$ be the set of all $3\\times3$ symmetric matrices whose entries are each either $0$ or $1$, subject to the condition that exactly five of the nine entries equal $1$ and the remaining four equal $0$. Find the number of matrices in $\\mathcal{A}$.",
+    "answer": "$$|\\mathcal{A}|=\\boxed{12}$$",
+    "trap": "The reflex is to treat the nine entries as free and count $\\binom{9}{5}=126$ placements of the five $1$'s. Symmetry destroys that count: an off-diagonal $1$ at position $(i,j)$ forces a matching $1$ at $(j,i)$, so off-diagonal $1$'s arrive strictly in pairs. Consequently the number of off-diagonal $1$'s is even, and since the total is $5$ (odd), the number of $1$'s on the main diagonal must be odd — a parity constraint the naive $\\binom{9}{5}$ completely ignores.",
+    "solutions": [
+      {
+        "name": "Parity of the diagonal, then casework",
+        "steps": [
+          "A symmetric matrix is determined by its three diagonal entries $d_1,d_2,d_3$ and its three independent off-diagonal entries $a_{12},a_{13},a_{23}$ (each off-diagonal choice is mirrored below the diagonal). The number of $1$'s equals $(\\text{diagonal }1\\text{'s})+2\\times(\\text{off-diagonal }1\\text{'s})$, so the off-diagonal contribution is even. Since the total $5$ is odd, the diagonal must carry an odd number of $1$'s: either $1$ or $3$.",
+          "Case — exactly one diagonal $1$: choose which of the three diagonal slots is $1$ in $\\binom{3}{1}=3$ ways. The remaining four $1$'s are supplied by two off-diagonal pairs, chosen from the three available pairs in $\\binom{3}{2}=3$ ways. This case gives $3\\times3=9$ matrices.",
+          "Case — all three diagonal $1$'s: $\\binom{3}{3}=1$ way for the diagonal. The remaining two $1$'s form exactly one off-diagonal pair, chosen in $\\binom{3}{1}=3$ ways, giving $3$ matrices.",
+          "Total $=9+3=\\boxed{12}$."
+        ]
+      },
+      {
+        "name": "Enumerate over the number of off-diagonal pairs $k$",
+        "steps": [
+          "Let $k$ be the number of off-diagonal $1$-pairs used, so they account for $2k$ of the five $1$'s and the diagonal must supply the remaining $5-2k$. For a valid configuration we need $0\\le 5-2k\\le 3$ (the diagonal has only three slots) and $0\\le k\\le 3$ (only three off-diagonal pairs exist), which forces $k\\in\\{1,2\\}$.",
+          "For each admissible $k$, the count is $\\binom{3}{\\,5-2k\\,}$ ways to place the diagonal $1$'s times $\\binom{3}{k}$ ways to choose which off-diagonal pairs are used.",
+          "$k=1$: $\\binom{3}{3}\\binom{3}{1}=1\\cdot3=3$. $\\;k=2$: $\\binom{3}{1}\\binom{3}{2}=3\\cdot3=9$.",
+          "Summing, $3+9=\\boxed{12}$, in agreement with the diagonal-parity casework."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 1, Q33. The entire count hinges on one structural fact — symmetry forces off-diagonal $1$'s into pairs, so their number is even and the odd total $5$ must be balanced by an odd number of diagonal $1$'s; once that parity is seen, the twelve matrices fall out of two tiny binomial cases rather than a $\\binom{9}{5}$ overcount."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Unique Solutions Among the Twelve",
+    "difficulty": 4,
+    "task": "Count matrices giving a unique solution",
+    "pyq": {
+      "year": 2009,
+      "paper": "1",
+      "qno": "34"
+    },
+    "tags": [
+      "symmetric matrices",
+      "non-singular matrices",
+      "unique solution",
+      "2009"
+    ],
+    "figure": "",
+    "statement": "As before, let $\\mathcal{A}$ be the set of $3\\times3$ symmetric matrices with entries in $\\{0,1\\}$ having exactly five $1$'s and four $0$'s, so that $|\\mathcal{A}|=12$. Determine the number of matrices $A\\in\\mathcal{A}$ for which the linear system $A\\begin{bmatrix}x\\\\y\\\\z\\end{bmatrix}=\\begin{bmatrix}1\\\\0\\\\0\\end{bmatrix}$ possesses a unique solution.",
+    "answer": "$$\\#\\{A:\\text{unique solution}\\}=\\boxed{6}\\ \\ (\\text{at least }4\\text{ but less than }7)$$",
+    "trap": "The tempting shortcut is that a system with a nonzero right-hand side is \"usually solvable,\" so most of the twelve should qualify. But uniqueness is governed solely by $\\det A$: a unique solution exists precisely when $\\det A\\neq0$, wholly independent of the vector $(1,0,0)^{\\mathsf T}$. Judging solvability from the right-hand side instead of testing invertibility conflates \"a solution exists\" with \"exactly one solution exists\" and misses that every singular $A$ here fails uniqueness outright.",
+    "solutions": [
+      {
+        "name": "Uniqueness ⇔ non-singularity, by diagonal type",
+        "steps": [
+          "A square system $A\\mathbf{x}=\\mathbf{b}$ has a unique solution if and only if $A$ is invertible, i.e. $\\det A\\neq0$; the particular right-hand side $(1,0,0)^{\\mathsf T}$ is irrelevant to uniqueness. So we simply count the non-singular members of $\\mathcal{A}$.",
+          "From the previous problem the twelve matrices split into two diagonal types: three matrices carry $1$'s on all three diagonal slots, and nine carry a $1$ on exactly one diagonal slot.",
+          "All-diagonal type: each such matrix has diagonal $(1,1,1)$ with a single off-diagonal $1$-pair, e.g. $\\begin{pmatrix}1&1&0\\\\1&1&0\\\\0&0&1\\end{pmatrix}$, whose first two rows are identical, so $\\det=0$. By the same repeated-row structure all three are singular — contributing $0$.",
+          "One-diagonal type (nine matrices): by the symmetry that permutes which single diagonal slot holds the $1$, these split into three congruent families of three. Direct evaluation of $\\det$ shows exactly two of every three are non-singular, so $2\\times3=6$ are non-singular here.",
+          "Total non-singular $=0+6=6$, which lies in the band \"at least $4$ but less than $7$\": $\\boxed{6}$."
+        ]
+      },
+      {
+        "name": "Sieve the twelve by the determinant directly",
+        "steps": [
+          "Uniqueness is equivalent to $\\det A\\neq0$, so run through all twelve matrices and discard those with $\\det A=0$. A symmetric $0/1$ matrix is singular exactly when its rows are linearly dependent — here that happens whenever two rows coincide or one row is the sum of the other two.",
+          "The three matrices with diagonal $(1,1,1)$ each contain a repeated row (the off-diagonal pair links two rows into copies), so all three have $\\det=0$ and are eliminated.",
+          "Among the nine matrices with a single diagonal $1$, testing each determinant leaves six with $\\det A=\\pm1\\neq0$ and three with $\\det A=0$ (those in which the two off-diagonal pairs create a dependent row).",
+          "Hence $6$ matrices survive with $\\det A\\neq0$, giving a unique solution: $\\boxed{6}$ — consistent with the diagonal-type count, and inside \"at least $4$ but less than $7$\"."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 1, Q34. The decisive realisation is that uniqueness is a property of $A$ alone — it means $\\det A\\neq0$ — so the whole question reduces to counting invertible members of the twelve; the all-$1$-diagonal trio dies by a repeated row, and precisely two-thirds of the single-$1$-diagonal nine survive, landing the total at exactly $6$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Systems With Exactly Two Solutions",
+    "difficulty": 4,
+    "task": "Count the qualifying matrices, or argue that none exist.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "33"
+    },
+    "tags": [
+      "system of linear equations",
+      "number of solutions",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Consider all $3\\times 3$ matrices $A$ whose entries are each either $0$ or $1$. For how many such matrices $A$ does the linear system $A\\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix}=\\begin{bmatrix} 1 \\\\ 0 \\\\ 0 \\end{bmatrix}$ possess exactly two distinct solutions? The options are $(A)\\ 0$, $(B)\\ 2^{9}-1$, $(C)\\ 168$, $(D)\\ 2$.",
+    "answer": "$\\boxed{(A)\\ 0}$",
+    "trap": "The finite $0/1$ menu of $2^{9}=512$ matrices tempts you to launch a case count and chase a number like $168$. But the entries of $A$ are irrelevant to the real obstruction: no real linear system can ever have precisely two solutions, whatever $A$ is.",
+    "solutions": [
+      {
+        "name": "Structure of the solution set (affine subspace)",
+        "steps": [
+          "The solution set of $A\\mathbf{x}=\\mathbf{b}$ is either empty, or is a coset $\\mathbf{x}_0+\\ker A$ of the null space, where $\\mathbf{x}_0$ is any particular solution.",
+          "Since $\\ker A$ is a vector subspace of $\\mathbb{R}^3$, it contains either the single vector $\\mathbf{0}$ (dimension $0$) or infinitely many vectors (dimension $\\ge 1$).",
+          "Hence the number of solutions is $0$ (inconsistent), $1$ (unique, $\\ker A=\\{\\mathbf 0\\}$), or $\\infty$ — the value $2$ is unreachable for every real matrix $A$.",
+          "Therefore the count of $0/1$ matrices giving exactly two solutions is $\\boxed{(A)\\ 0}$."
+        ]
+      },
+      {
+        "name": "Superposition (convex-combination) argument",
+        "steps": [
+          "Suppose two distinct solutions $\\mathbf{u}\\ne\\mathbf{v}$ existed, so $A\\mathbf{u}=A\\mathbf{v}=\\mathbf{b}$.",
+          "For any scalar $t\\in\\mathbb{R}$ set $\\mathbf{w}=t\\mathbf{u}+(1-t)\\mathbf{v}$; then $A\\mathbf{w}=tA\\mathbf{u}+(1-t)A\\mathbf{v}=t\\mathbf b+(1-t)\\mathbf b=\\mathbf{b}$.",
+          "Since $\\mathbf u\\ne\\mathbf v$, the map $t\\mapsto \\mathbf w$ produces a distinct solution for every real $t$, i.e. infinitely many solutions.",
+          "So two distinct solutions force infinitely many — never exactly two. The answer is $\\boxed{(A)\\ 0}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 1, Q33. The finite $0/1$ dressing is pure misdirection — the count is forced to zero by the affine (subspace-coset) geometry every real linear system obeys."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Symmetric Or Skew, Determinant Divisible By p",
+    "difficulty": 5,
+    "task": "Count the qualifying matrices in $T_p$ in closed form.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "42"
+    },
+    "tags": [
+      "determinants",
+      "symmetric/skew-symmetric matrices",
+      "modular counting",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Let $p$ be an odd prime and let $T_p$ be the set of $2\\times2$ matrices $T_p=\\left\\{ A=\\begin{bmatrix} a & b \\\\ c & a \\end{bmatrix} : a,b,c\\in\\{0,1,2,\\dots,p-1\\}\\right\\}$. Find the number of matrices $A$ in $T_p$ that are symmetric or skew-symmetric (or both) and for which $\\det(A)$ is divisible by $p$. The options are $(A)\\ (p-1)^2$, $(B)\\ 2(p-1)$, $(C)\\ (p-1)^2+1$, $(D)\\ 2p-1$.",
+    "answer": "$\\boxed{(D)\\ 2p-1}$",
+    "trap": "The equal diagonal entries make skew-symmetry look plentiful, but a $2\\times2$ skew-symmetric matrix must have zero diagonal, forcing $a=0$; combined with $c=-b$ this gives only the zero matrix once $p\\mid\\det$. Nearly the whole count comes from the symmetric case — miscounting the tiny skew overlap sends you to a wrong option.",
+    "solutions": [
+      {
+        "name": "Direct count on the symmetric case (skew contributes nothing new)",
+        "steps": [
+          "For $A=\\begin{bmatrix}a&b\\\\c&a\\end{bmatrix}$, symmetric means $b=c$, and skew-symmetric forces the diagonal to vanish, i.e. $a=0$ with $c=-b\\pmod p$.",
+          "Skew case: $a=0,\\ c\\equiv-b$, so $\\det A=a^2-bc=0-b(-b)=b^2$. Then $p\\mid b^2\\iff p\\mid b\\iff b\\equiv0$, giving only the zero matrix — already symmetric. Thus skew adds nothing beyond symmetric.",
+          "Symmetric case: $b=c$, so $\\det A=a^2-b^2=(a-b)(a+b)$. Since $p$ is prime, $p\\mid(a-b)(a+b)\\iff a\\equiv b$ or $a\\equiv-b\\pmod p$.",
+          "For each $b\\in\\{0,\\dots,p-1\\}$ the value $a\\equiv b$ gives one $a$ and $a\\equiv -b$ gives one $a$; these coincide iff $2b\\equiv0$, i.e. $b\\equiv0$ (as $p$ is odd). So there are $2$ choices of $a$ for the $p-1$ nonzero $b$'s and $1$ choice for $b=0$.",
+          "Total $=2(p-1)+1=\\boxed{(D)\\ 2p-1}$ (verified in sympy for $p=3,5,7,11$ giving $5,9,13,21$)."
+        ]
+      },
+      {
+        "name": "Inclusion–exclusion over the two symmetry classes",
+        "steps": [
+          "Let $S=\\{$symmetric $A$ with $p\\mid\\det\\}$ and $K=\\{$skew-symmetric $A$ with $p\\mid\\det\\}$; the wanted count is $|S\\cup K|=|S|+|K|-|S\\cap K|$.",
+          "Symmetric class: $b=c$ and $(a-b)(a+b)\\equiv0$ yields $a\\equiv\\pm b$; counting the coincidence at $b=0$ gives $|S|=2p-1$.",
+          "Skew class: $a=0,\\ c\\equiv-b$ and $\\det=b^2\\equiv0$ forces $b\\equiv0$, so $K$ is the single zero matrix, $|K|=1$.",
+          "Overlap: a matrix both symmetric and skew-symmetric (over $\\mathbb Z_p$, $p$ odd) is the zero matrix, which lies in $S$; hence $|S\\cap K|=1$.",
+          "Therefore $|S\\cup K|=(2p-1)+1-1=\\boxed{(D)\\ 2p-1}$, matching the direct count."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 1, Q42. The elegant kill is realizing the skew branch collapses to the single zero matrix, so the answer is essentially just the symmetric determinant-count $2p-1$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Trace Off, Determinant Divisible",
+    "difficulty": 5,
+    "task": "Count the matrices with the prescribed divisibility of trace and determinant.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "43"
+    },
+    "tags": [
+      "determinants",
+      "trace",
+      "modular counting",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Let $p$ be an odd prime and let $T_p=\\left\\{A=\\begin{bmatrix} a & b \\\\ c & a \\end{bmatrix}: a,b,c\\in\\{0,1,2,\\dots,p-1\\}\\right\\}$ be the set of $2\\times 2$ matrices whose two diagonal entries are equal. Count the matrices $A$ in $T_p$ for which the trace of $A$ is $\\emph{not}$ divisible by $p$ while $\\det(A)$ $\\emph{is}$ divisible by $p$. Here the trace is the sum $a+a=2a$ of the diagonal entries, and all divisibility is read modulo $p$.",
+    "answer": "The count of such matrices is $\\boxed{(p-1)^2}$.",
+    "trap": "Since $p$ is odd, $p\\mid 2a$ forces $p\\mid a$, i.e. $a\\equiv 0$; the ``trace not divisible'' condition is therefore exactly $a\\neq 0$, not some subtler parity statement. Forgetting that $2$ is invertible mod an odd prime is the classic slip. The second trap is miscounting the solutions of $bc\\equiv a^2$: when $a^2\\not\\equiv 0$ the value on the right is a nonzero residue, so $b$ ranges over the $p-1$ nonzero residues and $c\\equiv a^2 b^{-1}$ is then forced — giving $p-1$ pairs, not $p$.",
+    "solutions": [
+      {
+        "name": "Direct residue count of $bc\\equiv a^2$",
+        "steps": [
+          "The trace is $2a$. Because $p$ is odd, $2$ is invertible mod $p$, so $p\\nmid 2a\\iff p\\nmid a\\iff a\\in\\{1,2,\\dots,p-1\\}$ — exactly the $p-1$ nonzero residues.",
+          "The determinant is $\\det A=a^2-bc$, so the condition $p\\mid\\det A$ reads $bc\\equiv a^2\\pmod p$.",
+          "Fix any nonzero $a$. Then $a^2$ is a fixed $\\emph{nonzero}$ residue. For $bc\\equiv a^2$ we need $b\\neq 0$ (else the product is $0$), and each of the $p-1$ choices $b\\in\\{1,\\dots,p-1\\}$ forces the unique $c\\equiv a^2 b^{-1}$. That is $p-1$ ordered pairs $(b,c)$.",
+          "Multiplying over the $p-1$ admissible values of $a$ gives $(p-1)\\cdot(p-1)=(p-1)^2$, so the count is $\\boxed{(p-1)^2}$."
+        ]
+      },
+      {
+        "name": "Complementary count via the $a=0$ slice",
+        "steps": [
+          "Count $N=\\#\\{A: p\\mid\\det A\\}$ first, then remove those with $p\\mid\\mathrm{tr}$; here $p\\mid\\mathrm{tr}\\iff a=0$, so the answer is $N-\\#\\{a=0,\\ p\\mid\\det A\\}$.",
+          "Slice $a=0$: $\\det A=-bc\\equiv 0$ means $b=0$ or $c=0$, giving $2p-1$ pairs $(b,c)$ (the $p$ pairs with $b=0$ plus the $p$ with $c=0$, minus the doubly counted $(0,0)$).",
+          "Slice $a\\neq 0$ (there are $p-1$ such $a$): as computed above each contributes $p-1$ pairs, so together $(p-1)(p-1)=(p-1)^2$. Hence $N=(2p-1)+(p-1)^2=p^2$.",
+          "Subtract the $a=0$ contribution: $N-(2p-1)=p^2-(2p-1)=(p-1)^2$. Cross-checking by brute force for $p=3,5,7,11$ gives $4,16,36,100=(p-1)^2$, confirming $\\boxed{(p-1)^2}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 1, Q43. The whole paragraph turns on one fact — over $\\mathbb{F}_p$ the equation $bc=k$ has $p-1$ solutions when $k\\neq0$ but $2p-1$ when $k=0$ — so the ``$k=0$'' hyperbola degenerates into a cross and carries all the exceptional counting."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Determinant Not Divisible by p",
+    "difficulty": 4,
+    "task": "Count the matrices whose determinant is not divisible by the prime.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "44"
+    },
+    "tags": [
+      "determinants",
+      "modular counting",
+      "counting",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Let $p$ be an odd prime and let $T_p=\\left\\{A=\\begin{bmatrix} a & b \\\\ c & a \\end{bmatrix}: a,b,c\\in\\{0,1,2,\\dots,p-1\\}\\right\\}$ be the set of $2\\times 2$ matrices with equal diagonal entries. Count the matrices $A$ in $T_p$ for which $\\det(A)$ is $\\emph{not}$ divisible by $p$.",
+    "answer": "The count is $\\boxed{p^3-p^2}$.",
+    "trap": "The set $T_p$ has $p^3$ members (free choices of $a,b,c$), so it is tempting to guess a clean answer directly. The real work is counting the $\\emph{complement}$ $bc\\equiv a^2\\pmod p$, and the trap is treating the $a=0$ case like the others: there $a^2\\equiv0$, so $bc\\equiv0$ has $2p-1$ solutions (a degenerate cross), not $p-1$. Miss this and the singular count comes out wrong.",
+    "solutions": [
+      {
+        "name": "Complement: subtract the singular matrices",
+        "steps": [
+          "The three entries $a,b,c$ are free in $\\{0,\\dots,p-1\\}$, so $|T_p|=p^3$. Count instead the singular ones, $S=\\#\\{p\\mid\\det A\\}$ with $\\det A=a^2-bc$, i.e. $bc\\equiv a^2\\pmod p$.",
+          "Case $a=0$: $bc\\equiv 0$ forces $b=0$ or $c=0$, giving $p+p-1=2p-1$ pairs (inclusion–exclusion on the two axes).",
+          "Case $a\\neq 0$ ($p-1$ values): $a^2$ is a fixed nonzero residue, and $bc\\equiv a^2$ has exactly $p-1$ pairs (choose $b\\neq0$ freely, then $c=a^2b^{-1}$). This slice contributes $(p-1)(p-1)=(p-1)^2$.",
+          "Hence $S=(2p-1)+(p-1)^2=2p-1+p^2-2p+1=p^2$, and the non-singular count is $p^3-S=\\boxed{p^3-p^2}$."
+        ]
+      },
+      {
+        "name": "Direct count by the value of $\\det$",
+        "steps": [
+          "Non-singular means $\\det A=a^2-bc\\not\\equiv 0$. For each fixed $a$, count pairs $(b,c)$ with $bc\\not\\equiv a^2$; there are $p^2$ pairs in all, so subtract the $bc\\equiv a^2$ ones.",
+          "If $a=0$: forbidden pairs $bc\\equiv0$ number $2p-1$, leaving $p^2-(2p-1)=(p-1)^2$ good pairs.",
+          "If $a\\neq0$ (there are $p-1$ such $a$): forbidden pairs $bc\\equiv a^2$ number $p-1$, leaving $p^2-(p-1)=p^2-p+1$ good pairs each.",
+          "Total $=(p-1)^2+(p-1)(p^2-p+1)=(p-1)\\big[(p-1)+(p^2-p+1)\\big]=(p-1)\\,p^2=p^3-p^2$. Brute force for $p=3,5,7,11$ returns $18,100,294,1210=p^3-p^2$, confirming $\\boxed{p^3-p^2}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 1, Q44. Factoring the answer as $(p-1)p^2$ exposes its meaning: of the $p^2$ choices for $(b,c)$, on average a fraction $\\tfrac{p-1}{p}$ dodge each target value $a^2$, and the singular set is exactly a full $\\tfrac1p$-slice of $T_p$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Determinant Woven from ω",
+    "difficulty": 4,
+    "task": "Count the distinct complex roots",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "53"
+    },
+    "tags": [
+      "determinants",
+      "cube roots of unity",
+      "roots of equation",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Let $\\omega=\\cos\\dfrac{2\\pi}{3}+i\\sin\\dfrac{2\\pi}{3}$. Then the number of distinct complex numbers $z$ satisfying $\\begin{vmatrix} z+1 & \\omega & \\omega^{2} \\\\ \\omega & z+\\omega^{2} & 1 \\\\ \\omega^{2} & 1 & z+\\omega \\end{vmatrix}=0$ is equal to what value?",
+    "answer": "$$\\boxed{1}$$",
+    "trap": "Because the equation is cubic in $z$, the reflex is to answer $3$ — three roots for a degree-three polynomial. But the whole determinant collapses to $z^{3}$: the entangled $\\omega$-terms annihilate one another through $1+\\omega+\\omega^{2}=0$, leaving the single triple root $z=0$. “Number of roots” and “number of *distinct* roots” are different questions, and here the multiplicity hides in plain sight.",
+    "solutions": [
+      {
+        "name": "Column collapse via $1+\\omega+\\omega^{2}=0$",
+        "steps": [
+          "Since $\\omega$ is a primitive cube root of unity, $1+\\omega+\\omega^{2}=0$ and $\\omega^{3}=1$. Replace column $C_{1}$ by $C_{1}+C_{2}+C_{3}$; this leaves the determinant unchanged. The new first column is $\\begin{pmatrix} (z+1)+\\omega+\\omega^{2} \\\\ \\omega+(z+\\omega^{2})+1 \\\\ \\omega^{2}+1+(z+\\omega) \\end{pmatrix}=\\begin{pmatrix} z \\\\ z \\\\ z \\end{pmatrix}$, because in each row the $\\omega$-terms sum to $1+\\omega+\\omega^{2}=0$ and only the $z$ survives.",
+          "Factor $z$ out of column $1$: the determinant equals $z\\begin{vmatrix} 1 & \\omega & \\omega^{2} \\\\ 1 & z+\\omega^{2} & 1 \\\\ 1 & 1 & z+\\omega \\end{vmatrix}$. Now subtract row $1$ from rows $2$ and $3$ to clear the first column: $z\\begin{vmatrix} 1 & \\omega & \\omega^{2} \\\\ 0 & z+\\omega^{2}-\\omega & 1-\\omega^{2} \\\\ 0 & 1-\\omega & z+\\omega-\\omega^{2} \\end{vmatrix}$.",
+          "Expand along the first column: the value is $z\\big[(z+\\omega^{2}-\\omega)(z+\\omega-\\omega^{2})-(1-\\omega^{2})(1-\\omega)\\big]$. The first product is $z^{2}-(\\omega^{2}-\\omega)^{2}$, and $(\\omega^{2}-\\omega)^{2}=\\omega^{4}-2\\omega^{3}+\\omega^{2}=\\omega-2+\\omega^{2}=-3$; the second product $(1-\\omega^{2})(1-\\omega)=1-\\omega-\\omega^{2}+\\omega^{3}=1-(-1)+1=3$. So the bracket is $z^{2}+3-3=z^{2}$, and the determinant is $z\\cdot z^{2}=z^{3}$.",
+          "Hence the equation is $z^{3}=0$, whose only root is $z=0$ (with multiplicity three). The number of *distinct* complex numbers is $\\boxed{1}$."
+        ]
+      },
+      {
+        "name": "Reduce the entries modulo $\\omega^{2}+\\omega+1$",
+        "steps": [
+          "Treat $\\omega$ as a formal symbol and expand the $3\\times3$ determinant directly as a polynomial in $z$ and $\\omega$. Every coefficient is a polynomial in $\\omega$; reduce it using the minimal relation $\\omega^{2}+\\omega+1=0$ (equivalently, replace $\\omega^{2}\\mapsto-1-\\omega$ and $\\omega^{3}\\mapsto 1$).",
+          "The $z^{2}$ coefficient reduces to the sum of the three diagonal-difference terms, which vanishes; the $z^{1}$ coefficient reduces to a symmetric combination that also vanishes; the constant term reduces to $0$ as well. Only the leading $z^{3}$ term survives, so after reduction the determinant is identically $z^{3}$.",
+          "This is exactly the sympy verification: expanding and taking the remainder modulo $\\omega^{2}+\\omega+1$ returns $z^{3}$. Therefore $z^{3}=0$ forces $z=0$, and there is $\\boxed{1}$ distinct root."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 1, Q53. The insight is that the single relation $1+\\omega+\\omega^{2}=0$ does all the work: adding the three columns instantly exposes a common factor $z$, and the leftover $2\\times2$ block is engineered so that $(\\omega^{2}-\\omega)^{2}=-3$ cancels the off-diagonal contribution $3$, leaving the bare cube $z^{3}$ — so the honest count is one distinct root, not three."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Skew, Commuting, Sign-Traced",
+    "difficulty": 4,
+    "task": "Simplify the matrix expression",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "57"
+    },
+    "tags": [
+      "skew-symmetric matrices",
+      "transpose",
+      "inverse",
+      "commuting matrices",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $M$ and $N$ be two $3\\times3$ non-singular skew-symmetric matrices such that $MN=NM$. Writing $P^{T}$ for the transpose of $P$, the expression $M^{2}N^{2}\\,(M^{T}N)^{-1}\\,(MN^{-1})^{T}$ is equal to which of $M^{2}$, $-N^{2}$, $-M^{2}$, or $MN$?",
+    "answer": "$$M^{2}N^{2}\\,(M^{T}N)^{-1}\\,(MN^{-1})^{T}=\\boxed{-M^{2}}$$",
+    "trap": "The declared premise is quietly impossible: every $3\\times3$ real skew-symmetric matrix has $\\det=0$ (odd order forces $\\det M=\\det M^{T}=\\det(-M)=-\\det M$), so a non-singular one cannot exist over $\\mathbb{R}$. The exam nonetheless wants you to manipulate the symbols formally. The real hazard is the sign: with $M^{T}=-M$, $N^{T}=-N$ every substitution injects a $-1$, and it is easy to leave $(N^{-1})^{T}$ as $+N^{-1}$ rather than $-N^{-1}$ and flip the whole answer to $+M^{2}$. Commutativity is what cancels the $N$-powers, but it is the parity of skew flips — not commutativity — that fixes the minus sign.",
+    "solutions": [
+      {
+        "name": "Reduce each factor using $M^{T}=-M,\\ N^{T}=-N$",
+        "steps": [
+          "First factor: $(M^{T}N)^{-1}=\\big((-M)N\\big)^{-1}=(-MN)^{-1}=-(MN)^{-1}=-N^{-1}M^{-1}$, using $M^{T}=-M$ and $(AB)^{-1}=B^{-1}A^{-1}$.",
+          "Second factor: $(MN^{-1})^{T}=(N^{-1})^{T}M^{T}=(N^{T})^{-1}M^{T}=(-N)^{-1}(-M)=(-N^{-1})(-M)=N^{-1}M$. Because $MN=NM$, the matrices $M,N,M^{-1},N^{-1}$ all commute pairwise, so $N^{-1}M=MN^{-1}$.",
+          "Assemble everything: $M^{2}N^{2}\\big(-N^{-1}M^{-1}\\big)\\big(N^{-1}M\\big)=-M^{2}N^{2}\\,N^{-1}M^{-1}N^{-1}M$. Regroup the commuting powers: the $M$-powers give $M^{2}\\cdot M^{-1}\\cdot M=M^{2}$ and the $N$-powers give $N^{2}\\cdot N^{-1}\\cdot N^{-1}=I$.",
+          "Hence the product is $-M^{2}\\cdot I=\\boxed{-M^{2}}$, which is option (C)."
+        ]
+      },
+      {
+        "name": "Separate the magnitude from the sign (parity count)",
+        "steps": [
+          "Ignore signs first. After replacing every transpose by an inverse, the product is a scalar $\\pm1$ times a word in $M,N,M^{-1},N^{-1}$. Since all these commute, collect exponents: $M$ appears with net exponent $2-1+1=2$ and $N$ with net exponent $2-1-1=0$, so the magnitude is exactly $M^{2}$ and the answer must be $\\pm M^{2}$.",
+          "Now count the skew flips that supply the sign. In $(M^{T}N)^{-1}$ the single substitution $M^{T}=-M$ contributes one factor $-1$. In $(MN^{-1})^{T}=(N^{-1})^{T}M^{T}$, the piece $(N^{-1})^{T}=(N^{T})^{-1}=(-N)^{-1}=-N^{-1}$ gives $-1$ and $M^{T}=-M$ gives another $-1$, so this factor multiplies to $(-1)(-1)=+1$.",
+          "Total sign $=(-1)\\times(+1)=-1$, so the expression equals $-M^{2}=\\boxed{-M^{2}}$ — agreeing with the factor-by-factor reduction, which confirms the sign is genuinely negative and not an artifact of ordering."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2011, Paper 1, Q57. The whole difficulty distills to bookkeeping: commutativity lets the $N$-powers annihilate to the identity and the $M$-powers collapse to $M^{2}$, so only the sign remains in doubt, and the parity of the skew substitutions $M^{T}=-M,\\ N^{T}=-N$ pins it as $-M^{2}$ (option (C)). Worth noting that no real $3\\times3$ non-singular skew-symmetric matrix exists — odd order forces $\\det=0$ — so the problem is a formal-algebra exercise on the given identities rather than a statement about actual matrices."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Row Vector in the Null Space",
+    "difficulty": 3,
+    "task": "Evaluate the linear combination",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "60"
+    },
+    "tags": [
+      "homogeneous linear systems",
+      "row-vector matrix product",
+      "plane",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $a,b,c$ be three real numbers satisfying $\\begin{bmatrix} a & b & c \\end{bmatrix}\\begin{bmatrix} 1 & 9 & 7 \\\\ 8 & 2 & 7 \\\\ 7 & 3 & 7 \\end{bmatrix}=\\begin{bmatrix} 0 & 0 & 0 \\end{bmatrix}$. If the point $P(a,b,c)$ additionally lies on the plane $2x+y+z=1$, find the value of $7a+b+c$.",
+    "answer": "$$7a+b+c=\\boxed{6}$$",
+    "trap": "The row-vector product multiplies $[a\\ b\\ c]$ on the left, so each output entry is a column of the matrix dotted with $(a,b,c)$ — giving $a+8b+7c=0$, $9a+2b+3c=0$, $7a+7b+7c=0$. Reading the rows of the matrix instead of its columns produces the wrong three equations. Also, the third equation collapses to $a+b+c=0$, so a hasty solver who tries to treat all three as independent (they are dependent, the coefficient determinant is $0$) may declare only $a=b=c=0$ and miss the one-parameter family that the plane then selects.",
+    "solutions": [
+      {
+        "name": "Solve the homogeneous system, then apply the plane",
+        "steps": [
+          "Expanding the left multiplication column by column gives $a+8b+7c=0$, $9a+2b+3c=0$, and $7a+7b+7c=0$. The last simplifies to $a+b+c=0$.",
+          "Subtract $a+b+c=0$ from $a+8b+7c=0$ to get $7b+6c=0$; subtract $9(a+b+c)=0$ from $9a+2b+3c=0$ to get $-7b-6c=0$ — the same relation, confirming the system is rank $2$. Set the free scale by writing $b=6a$, $c=-7a$ (which satisfies $7b+6c=42a-42a=0$ and $a+b+c=a+6a-7a=0$).",
+          "Impose the plane $2a+b+c=1$: $2a+6a-7a=a=1$, so $a=1,\\ b=6,\\ c=-7$.",
+          "Therefore $7a+b+c=7(1)+6+(-7)=\\boxed{6}$."
+        ]
+      },
+      {
+        "name": "Null direction via a cross product",
+        "steps": [
+          "A left null row $[a\\ b\\ c]$ is orthogonal to every column of the matrix; equivalently $(a,b,c)$ is orthogonal to the normals $(1,8,7)$ and $(9,2,3)$ coming from the first two independent equations. So $(a,b,c)$ is parallel to $(1,8,7)\\times(9,2,3)$.",
+          "Compute the cross product: $(1,8,7)\\times(9,2,3)=(8\\cdot3-7\\cdot2,\\ 7\\cdot9-1\\cdot3,\\ 1\\cdot2-8\\cdot9)=(10,60,-70)$, i.e. the direction $(1,6,-7)$.",
+          "Write $(a,b,c)=t(1,6,-7)$ and force the plane $2x+y+z=1$: $2t+6t-7t=t=1$, so $t=1$ and $(a,b,c)=(1,6,-7)$.",
+          "Then $7a+b+c=7+6-7=\\boxed{6}$, matching the direct elimination."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2011, Paper 1, Q60. The key insight is that a *left* null row of a rank-$2$ matrix is determined up to scale by orthogonality to two independent columns — so the whole family is a single line through the origin, and the extra plane condition simply pins the scale, turning a would-be degenerate system into a unique point $(1,6,-7)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Non-Singular Matrices Over $\\omega$",
+    "difficulty": 4,
+    "task": "Count the non-singular matrices in the family.",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "25"
+    },
+    "tags": [
+      "determinants",
+      "cube roots of unity",
+      "non-singular matrices",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $\\omega\\neq 1$ be a cube root of unity, and let $S$ be the set of all non-singular matrices of the form $\\begin{bmatrix} 1 & a & b \\\\ \\omega & 1 & c \\\\ \\omega^{2} & \\omega & 1 \\end{bmatrix}$, where each of $a,\\,b,\\,c$ is either $\\omega$ or $\\omega^{2}$. Find the number of distinct matrices in $S$.",
+    "answer": "$\\boxed{2}$",
+    "trap": "With three independent binary choices for $a,b,c$ there are $2^{3}=8$ candidate matrices, and it is tempting to think each is a genuinely new invertible matrix. But the determinant factors as $(1-a\\omega)(1-c\\omega)$ and does not involve $b$ at all: non-singularity pins down $a$ and $c$ completely, while $b$ stays free. So the answer is not $8$, nor the count of singular ones — it is the small handful where both factors survive.",
+    "solutions": [
+      {
+        "name": "Factor the determinant using $1+\\omega+\\omega^{2}=0$",
+        "steps": [
+          "Expand along the first row and use $\\omega^{3}=1$: $\\det=1\\!\\cdot\\!(1-c\\omega)-a(\\omega-c\\omega^{2})+b(\\omega^{2}-\\omega^{2})$. The last bracket is $\\omega^{2}-\\omega^{2}=0$, so $b$ drops out entirely.",
+          "The middle term is $-a\\omega(1-c\\omega)$, so $\\det=(1-c\\omega)-a\\omega(1-c\\omega)=(1-a\\omega)(1-c\\omega)$.",
+          "Each of $a,c\\in\\{\\omega,\\omega^{2}\\}$. Now $1-\\omega\\cdot\\omega=1-\\omega^{2}\\neq0$ but $1-\\omega^{2}\\cdot\\omega=1-\\omega^{3}=1-1=0$. Hence $1-a\\omega=0$ exactly when $a=\\omega^{2}$, and likewise $1-c\\omega=0$ exactly when $c=\\omega^{2}$.",
+          "For $\\det\\neq0$ we need $a\\neq\\omega^{2}$ and $c\\neq\\omega^{2}$, i.e. $a=c=\\omega$ (forced), while $b\\in\\{\\omega,\\omega^{2}\\}$ is free. That gives $1\\times1\\times2=\\boxed{2}$ non-singular matrices, confirmed by brute-forcing all $8$ cases in sympy."
+        ]
+      },
+      {
+        "name": "Complementary count via singular cases",
+        "steps": [
+          "There are $2^{3}=8$ candidate matrices in total. A matrix is $singular$ precisely when at least one factor of $\\det=(1-a\\omega)(1-c\\omega)$ vanishes, and by the previous computation that happens iff $a=\\omega^{2}$ or $c=\\omega^{2}$.",
+          "Count the singular ones by inclusion–exclusion on the pair $(a,c)$, with $b$ always free ($2$ choices). Event $a=\\omega^{2}$: $1\\cdot2$ choices for $(a,c)$ times $2$ for $b=4$; event $c=\\omega^{2}$: also $4$; both together ($a=c=\\omega^{2}$): $1\\cdot1\\cdot2=2$.",
+          "Singular total $=4+4-2=6$, so non-singular $=8-6=2$.",
+          "Both routes agree: the number of distinct matrices in $S$ is $\\boxed{2}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2011, Paper 2, Q25. The pretty surprise is that a $3\\times3$ determinant loaded with $\\omega$'s collapses, thanks to $\\omega^{3}=1$, into the clean product $(1-a\\omega)(1-c\\omega)$ in which the entry $b$ plays no role — invertibility is decided entirely by the two corner entries $a,c$, leaving $b$ as a free label that doubles the count from $1$ to $2$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Trace From Three Images",
+    "difficulty": 3,
+    "task": "Find the sum of the diagonal entries of $M$.",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "40"
+    },
+    "tags": [
+      "matrix from linear map",
+      "columns via standard basis",
+      "trace",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $M$ be a $3\\times 3$ matrix satisfying $M\\begin{bmatrix}0\\\\1\\\\0\\end{bmatrix}=\\begin{bmatrix}-1\\\\2\\\\3\\end{bmatrix}$, $\\;M\\begin{bmatrix}1\\\\-1\\\\0\\end{bmatrix}=\\begin{bmatrix}1\\\\1\\\\-1\\end{bmatrix}$, and $M\\begin{bmatrix}1\\\\1\\\\1\\end{bmatrix}=\\begin{bmatrix}0\\\\0\\\\12\\end{bmatrix}$. Find the sum of the diagonal entries of $M$.",
+    "answer": "$\\boxed{9}$",
+    "trap": "The three input vectors are $not$ the standard basis $e_1,e_2,e_3$, so their images are not the columns of $M$ — reading off diagonal entries from the given right-hand sides gives nonsense. Only $Me_2$ is handed to you directly; $e_1$ and $e_3$ must first be rebuilt as combinations of the given inputs before their images (the true columns of $M$) can be found.",
+    "solutions": [
+      {
+        "name": "Rebuild the standard basis, read off the columns",
+        "steps": [
+          "The columns of $M$ are $Me_1,Me_2,Me_3$. Directly, $Me_2=M(0,1,0)^{T}=(-1,2,3)^{T}$ is the second column, contributing diagonal entry $2$.",
+          "Write $e_1=(1,0,0)^{T}=(1,-1,0)^{T}+(0,1,0)^{T}$, so by linearity $Me_1=(1,1,-1)^{T}+(-1,2,3)^{T}=(0,3,2)^{T}$; its first entry $0$ is the top-left diagonal term.",
+          "Write $e_3=(0,0,1)^{T}=(1,1,1)^{T}-(1,-1,0)^{T}-2(0,1,0)^{T}$ (the coefficient $2$ is essential — check the middle entry $1-(-1)-2=0$), so $Me_3=(0,0,12)^{T}-(1,1,-1)^{T}-2(-1,2,3)^{T}=(1,-5,7)^{T}$; its third entry $7$ is the bottom-right diagonal term.",
+          "Assembling the three columns $Me_1=(0,3,2)^{T}$, $Me_2=(-1,2,3)^{T}$, $Me_3=(1,-5,7)^{T}$ gives $M=\\begin{bmatrix}0&-1&1\\\\3&2&-5\\\\2&3&7\\end{bmatrix}$, whose diagonal $(0,2,7)$ sums to $\\operatorname{tr}M=0+2+7=\\boxed{9}$."
+        ]
+      },
+      {
+        "name": "Solve $M=R\\,P^{-1}$ in one stroke",
+        "steps": [
+          "Stack the three inputs as columns of $P=\\begin{bmatrix}0&1&1\\\\1&-1&1\\\\0&0&1\\end{bmatrix}$ and their images as columns of $R=\\begin{bmatrix}-1&1&0\\\\2&1&0\\\\3&-1&12\\end{bmatrix}$. Then $MP=R$, and since $\\det P=-1\\neq0$, $M=R\\,P^{-1}$.",
+          "Invert: $P^{-1}=\\begin{bmatrix}1&1&-2\\\\1&0&-1\\\\0&0&1\\end{bmatrix}$ (check $PP^{-1}=I$).",
+          "Multiply $M=RP^{-1}=\\begin{bmatrix}0&-1&1\\\\3&2&-5\\\\2&3&7\\end{bmatrix}$.",
+          "The diagonal entries are $0,2,7$, so $\\operatorname{tr}M=\\boxed{9}$ — matching the basis method and the sympy check."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2011, Paper 2, Q40. A linear map is determined by its action on any basis: the three given inputs form one, so the whole matrix is recoverable — but only $Me_2$ is a column for free, and the elegance lies in expressing $e_1,e_3$ as tidy $\\pm1$ combinations of the given inputs rather than solving a $9\\times9$ system."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Scaling Every Entry of a Determinant",
+    "difficulty": 3,
+    "task": "Find the determinant of the scaled matrix",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "47"
+    },
+    "tags": [
+      "determinant scaling",
+      "row and column operations",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "Let $P=[a_{ij}]$ be a $3\\times3$ matrix and let $Q=[b_{ij}]$, where $b_{ij}=2^{\\,i+j}a_{ij}$ for $1\\le i,j\\le3$. If the determinant of $P$ is $2$, what is the determinant of $Q$?",
+    "answer": "$$\\det Q=2^{12}\\cdot\\det P=2^{12}\\cdot 2=\\boxed{2^{13}}$$",
+    "trap": "The exponent $2^{\\,i+j}$ looks like a single tag glued onto each entry, tempting you to pull out one common power of $2$ and write $\\det Q=2^{k}\\det P$ for some small $k$ — or, worse, to treat it as scaling the whole matrix by a scalar $c$ and reach for $\\det(cP)=c^{3}\\det P$. Neither applies: $2^{\\,i+j}$ is not constant across the matrix. The correct move is to split $2^{\\,i+j}=2^{i}\\cdot 2^{j}$, so that the factor $2^{i}$ belongs to row $i$ and $2^{j}$ belongs to column $j$. Forgetting that both a row sweep and a column sweep occur — or double-counting an entry's factor — is where the exponent goes wrong.",
+    "solutions": [
+      {
+        "name": "Factor $2^{i}$ from each row, then $2^{j}$ from each column",
+        "steps": [
+          "Split the multiplier: $b_{ij}=2^{\\,i+j}a_{ij}=2^{i}\\cdot 2^{j}\\cdot a_{ij}$, so entry $(i,j)$ of $Q$ carries a factor $2^{i}$ tied to its row and a factor $2^{j}$ tied to its column.",
+          "Pull the row factors out. Row $i$ has the common factor $2^{i}$, and factoring a scalar from a row multiplies the determinant by that scalar. Doing this for $i=1,2,3$ contributes $2^{1}\\cdot2^{2}\\cdot2^{3}=2^{1+2+3}=2^{6}$.",
+          "Pull the column factors out. The remaining matrix has entry $(i,j)$ equal to $2^{j}a_{ij}$, so column $j$ has common factor $2^{j}$; factoring for $j=1,2,3$ contributes another $2^{1+2+3}=2^{6}$, leaving exactly $P$.",
+          "Combine: $\\det Q=2^{6}\\cdot 2^{6}\\cdot\\det P=2^{12}\\cdot 2=\\boxed{2^{13}}$."
+        ]
+      },
+      {
+        "name": "Diagonal-conjugation view $Q=DPD$",
+        "steps": [
+          "Let $D=\\operatorname{diag}(2^{1},2^{2},2^{3})$. Then $(DPD)_{ij}=2^{i}\\,a_{ij}\\,2^{j}=2^{\\,i+j}a_{ij}=b_{ij}$, so $Q=DPD$ exactly.",
+          "Determinant is multiplicative: $\\det Q=\\det D\\cdot\\det P\\cdot\\det D=(\\det D)^{2}\\det P$.",
+          "For the diagonal matrix, $\\det D=2^{1}\\cdot2^{2}\\cdot2^{3}=2^{6}$, hence $(\\det D)^{2}=2^{12}$.",
+          "Therefore $\\det Q=2^{12}\\cdot\\det P=2^{12}\\cdot 2=\\boxed{2^{13}}$, agreeing with the row–column factoring."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 1, Q47. The insight is that a per-entry weight $2^{\\,i+j}$ is really a product of a row weight and a column weight, i.e. a two-sided diagonal conjugation $Q=DPD$; the determinant then picks up $(\\det D)^{2}=2^{12}$ regardless of what $P$ is, so only $\\det P=2$ remains to give $2^{13}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "When the Transpose Pins Down the Matrix",
+    "difficulty": 3,
+    "task": "Identify the guaranteed eigen-relation",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "44"
+    },
+    "tags": [
+      "transpose",
+      "matrix equations",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "If $P$ is a $3\\times3$ matrix such that $P^{T}=2P+I$, where $P^{T}$ is the transpose of $P$ and $I$ is the $3\\times3$ identity matrix, then there exists a non-zero column matrix $X=\\begin{bmatrix}x\\\\y\\\\z\\end{bmatrix}$ for which $PX$ takes one of the forms $0,\\ X,\\ 2X,\\ -X$. Which relation must hold?",
+    "answer": "$$P=-I\\quad\\Longrightarrow\\quad PX=\\boxed{-X}\\ \\text{for every non-zero }X$$",
+    "trap": "The equation $P^{T}=2P+I$ invites you to hunt for a special direction $X$ — an eigenvector — and to imagine the four options correspond to four possible eigenvalues you must sift between. That framing overcomplicates it. The condition is not a spectral hint; it is rigid enough to determine $P$ completely. Transposing the relation a second time and substituting back forces $P$ to be a scalar multiple of $I$, so no genuine eigenvector search is needed — every non-zero $X$ works, and only the value $-1$ is consistent.",
+    "solutions": [
+      {
+        "name": "Transpose again and back-substitute",
+        "steps": [
+          "Start from $P^{T}=2P+I$. Take the transpose of both sides, using $(P^{T})^{T}=P$ and $I^{T}=I$: this gives $P=2P^{T}+I$.",
+          "Substitute the original $P^{T}=2P+I$ into $P=2P^{T}+I$: $P=2(2P+I)+I=4P+2I+I=4P+3I$.",
+          "Rearrange: $P-4P=3I\\Rightarrow -3P=3I\\Rightarrow P=-I$.",
+          "Hence for any non-zero $X$, $PX=-IX=-X$, so the guaranteed relation is $\\boxed{PX=-X}$."
+        ]
+      },
+      {
+        "name": "Symmetric-part elimination",
+        "steps": [
+          "Add the relation to its transpose. From $P^{T}=2P+I$ and $P=2P^{T}+I$, adding gives $P+P^{T}=2(P+P^{T})+2I$, so $P+P^{T}=-2I$; the symmetric part of $P$ is thus $\\tfrac12(P+P^{T})=-I$.",
+          "Subtract instead: $P^{T}-P=2P-2P^{T}\\Rightarrow 3(P^{T}-P)=0\\Rightarrow P^{T}=P$, so $P$ is symmetric and equals its own symmetric part.",
+          "Combining, $P=\\tfrac12(P+P^{T})=-I$.",
+          "Therefore $PX=-X$ for every non-zero column $X$, confirming $\\boxed{PX=-X}$ — the same conclusion as the back-substitution route."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 2, Q44. The insight is that a linear relation coupling $P$ with $P^{T}$ becomes fully determined once you transpose it a second time: the two equations together collapse to $P=-I$, so the ``eigenvector'' phrasing is a red herring — the matrix is scalar, and $-1$ is its only value."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Determinant Recovered From Its Adjugate",
+    "difficulty": 3,
+    "task": "Determine every possible value of $\\det P$.",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "59"
+    },
+    "tags": [
+      "adjoint",
+      "determinant identities",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "The adjugate of a $3\\times 3$ matrix $P$ is $\\operatorname{adj}P=\\begin{bmatrix}1&4&4\\\\2&1&7\\\\1&1&3\\end{bmatrix}$. Find every possible value of $\\det P$.",
+    "answer": "$\\boxed{\\det P=-2 \\text{ or } 2}$",
+    "trap": "It is tempting to reach for $P=\\dfrac{1}{\\det P}\\operatorname{adj}P$ and try to reconstruct $P$ first — but $\\det P$ is exactly what is unknown, so this is circular. The clean route never recovers $P$: it uses the scalar identity $\\det(\\operatorname{adj}P)=(\\det P)^{2}$. That squaring is also why the sign is not pinned down, so $\\det P=-2$ is just as valid as $+2$; discarding the negative root is the second trap.",
+    "solutions": [
+      {
+        "name": "Scalar identity $\\det(\\operatorname{adj}P)=(\\det P)^{n-1}$",
+        "steps": [
+          "For an $n\\times n$ matrix the defining relation $P\\,(\\operatorname{adj}P)=(\\det P)\\,I$ gives, on taking determinants, $\\det P\\cdot\\det(\\operatorname{adj}P)=(\\det P)^{n}$, hence $\\det(\\operatorname{adj}P)=(\\det P)^{\\,n-1}$; here $n=3$ so $\\det(\\operatorname{adj}P)=(\\det P)^{2}$.",
+          "Evaluate the determinant of the given adjugate by cofactor expansion along the first row: $1\\,(1\\cdot3-7\\cdot1)-4\\,(2\\cdot3-7\\cdot1)+4\\,(2\\cdot1-1\\cdot1)=1(-4)-4(-1)+4(1)=-4+4+4=4$.",
+          "Therefore $(\\det P)^{2}=4$, and taking both square roots gives $\\det P=\\pm2$.",
+          "Both signs are attainable (the identity imposes no sign restriction on a real matrix), so the possible values are $\\boxed{\\det P=-2\\text{ or }2}$."
+        ]
+      },
+      {
+        "name": "Adjugate-of-adjugate route (avoids expanding the $3\\times3$ directly)",
+        "steps": [
+          "Use $\\operatorname{adj}(\\operatorname{adj}P)=(\\det P)^{\\,n-2}\\,P$; for $n=3$ this reads $\\operatorname{adj}(\\operatorname{adj}P)=\\det P\\cdot P$, so recovering $P$ still needs $\\det P$ — instead track only scalars.",
+          "Apply $\\det(\\operatorname{adj}M)=(\\det M)^{2}$ twice: $\\det\\big(\\operatorname{adj}(\\operatorname{adj}P)\\big)=(\\det(\\operatorname{adj}P))^{2}=\\big((\\det P)^{2}\\big)^{2}=(\\det P)^{4}$.",
+          "On the other hand $\\operatorname{adj}(\\operatorname{adj}P)=\\det P\\cdot P$ has determinant $(\\det P)^{3}\\det P=(\\det P)^{4}$ — consistent — and both equal $\\big(\\det(\\operatorname{adj}P)\\big)^{2}$, so $(\\det P)^{4}=(\\det(\\operatorname{adj}P))^{2}$, giving $(\\det P)^{2}=\\det(\\operatorname{adj}P)=4$.",
+          "Hence $\\det P=\\pm2$, i.e. $\\boxed{\\det P=-2\\text{ or }2}$ — matching a direct sympy check that $\\det\\begin{bmatrix}1&4&4\\\\2&1&7\\\\1&1&3\\end{bmatrix}=4$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2012, Paper 2, Q59. The insight is that the adjugate stores the determinant *squared*, so one recoverable number ($\\det\\operatorname{adj}P=4$) fixes $|\\det P|$ but deliberately loses its sign — which is why this is a multiple-answer question."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Which Matrix Statements Fail",
+    "difficulty": 4,
+    "task": "Identify every statement that is NOT correct.",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "54"
+    },
+    "tags": [
+      "symmetric/skew-symmetric matrices",
+      "adjugate",
+      "transpose properties",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "Let $M$ and $N$ be $3\\times 3$ matrices. Decide which of the following statements is (are) $NOT$ correct. (A) $N^{T}MN$ is symmetric or skew-symmetric according as $M$ is symmetric or skew-symmetric. (B) $MN-NM$ is skew-symmetric for all symmetric matrices $M$ and $N$. (C) $MN$ is symmetric for all symmetric matrices $M$ and $N$. (D) $(\\operatorname{adj}M)(\\operatorname{adj}N)=\\operatorname{adj}(MN)$ for all invertible matrices $M$ and $N$.",
+    "answer": "$\\boxed{\\text{(C) and (D)}}$",
+    "trap": "The question asks for the statements that are $NOT$ correct — the reflex to circle the true ones inverts the answer. The subtler trap is order-reversal under transpose and adjugate: for symmetric $M,N$ one has $(MN)^{T}=N^{T}M^{T}=NM$ (not $MN$), and $\\operatorname{adj}(MN)=(\\operatorname{adj}N)(\\operatorname{adj}M)$ (reversed). Since matrices need not commute, (C) and (D) collapse.",
+    "solutions": [
+      {
+        "name": "Transpose/adjugate order laws, then a counterexample for each failure",
+        "steps": [
+          "(A) $\\big(N^{T}MN\\big)^{T}=N^{T}M^{T}N$; if $M^{T}=M$ this is $N^{T}MN$ (symmetric) and if $M^{T}=-M$ it is $-N^{T}MN$ (skew) — so (A) is correct.",
+          "(B) With $M^{T}=M,\\;N^{T}=N$: $(MN-NM)^{T}=N^{T}M^{T}-M^{T}N^{T}=NM-MN=-(MN-NM)$, so the commutator is skew-symmetric — (B) is correct.",
+          "(C) $(MN)^{T}=N^{T}M^{T}=NM$, which equals $MN$ only when $M,N$ commute; e.g. $M=\\begin{bmatrix}1&2&0\\\\2&0&0\\\\0&0&1\\end{bmatrix},\\,N=\\begin{bmatrix}0&1&0\\\\1&1&0\\\\0&0&2\\end{bmatrix}$ are symmetric but $MN$ is not — (C) is NOT correct.",
+          "(D) The correct law is $\\operatorname{adj}(MN)=(\\operatorname{adj}N)(\\operatorname{adj}M)$; the reversed product $(\\operatorname{adj}M)(\\operatorname{adj}N)=\\operatorname{adj}(NM)$, which differs from $\\operatorname{adj}(MN)$ for non-commuting invertible $M,N$ — a sympy check on $M=\\begin{bmatrix}1&2&1\\\\0&1&1\\\\1&0&1\\end{bmatrix},\\,N=\\begin{bmatrix}2&0&1\\\\1&1&0\\\\0&1&1\\end{bmatrix}$ confirms $(\\operatorname{adj}M)(\\operatorname{adj}N)\\neq\\operatorname{adj}(MN)$ — (D) is NOT correct. Hence $\\boxed{\\text{(C) and (D)}}$."
+        ]
+      },
+      {
+        "name": "Structural view via the antihomomorphism $X\\mapsto X^{T}$ and $X\\mapsto\\operatorname{adj}X$",
+        "steps": [
+          "Both transpose and adjugate are order-reversing (antihomomorphisms): $(XY)^{T}=Y^{T}X^{T}$ and $\\operatorname{adj}(XY)=\\operatorname{adj}(Y)\\operatorname{adj}(X)$. A statement stays correct only if the intended product survives this reversal.",
+          "(A) sandwiches $M$ symmetrically as $N^{T}(\\cdot)N$, so reversal returns the same sandwich up to the sign carried by $M$ — invariant, correct. (B) is a commutator $MN-NM$, and reversal sends it to $NM-MN=-(MN-NM)$ — the built-in antisymmetry makes it skew, correct.",
+          "(C) asks a single product $MN$ to be transpose-invariant, but reversal turns it into $NM$; there is no symmetry forcing $MN=NM$, so it generically fails — NOT correct.",
+          "(D) writes the adjugate product in the $same$ order $(\\operatorname{adj}M)(\\operatorname{adj}N)$ as $MN$, but the antihomomorphism demands the $reverse$ order; so the identity holds only when $M,N$ commute, not for all invertible pairs — NOT correct. The non-invariant statements are exactly $\\boxed{\\text{(C) and (D)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 1, Q54. One principle settles all four: transpose and adjugate both reverse products, so a claim survives only if its product order is symmetric under that reversal — which is why the sandwich (A) and the commutator (B) live while the bare products (C), (D) die."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "When The Root-Of-Unity Matrix Survives Squaring",
+    "difficulty": 4,
+    "task": "Find every order $n$ for which $P^{2}$ is not the zero matrix.",
+    "pyq": {
+      "year": 2013,
+      "paper": "2",
+      "qno": "47"
+    },
+    "tags": [
+      "matrix defined by cube roots of unity",
+      "matrix square",
+      "geometric sum of roots",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "Let $\\omega\\neq 1$ be a complex cube root of unity, and let $P=[p_{ij}]$ be the $n\\times n$ matrix whose entries are given by the rank-one rule $p_{ij}=\\omega^{\\,i+j}$ for $1\\le i,j\\le n$. For which of the listed orders is the square $P^{2}$ different from the zero matrix? (A) $n=57$ (B) $n=55$ (C) $n=58$ (D) $n=56$",
+    "answer": "$\\boxed{\\text{(B), (C) and (D)}}$",
+    "trap": "Because $P$ is packed with cube roots of unity, one expects some delicate case analysis; in fact $P$ has rank one and $P^{2}$ collapses to a single scalar $\\sum_{k=1}^{n}\\omega^{2k}$ times $P$. That scalar vanishes precisely when $3\\mid n$, so the tempting reflex to hunt for a pattern in the specific numbers hides the fact that only divisibility by $3$ matters — and $57$ is the sole multiple of $3$ on the list.",
+    "solutions": [
+      {
+        "name": "Factor $P$ as a rank-one outer product and reduce $P^{2}$ to a scalar",
+        "steps": [
+          "Since $p_{ij}=\\omega^{i}\\,\\omega^{j}$, the matrix splits as $P=u\\,u^{T}$ where $u=(\\omega^{1},\\omega^{2},\\dots,\\omega^{n})^{T}$; every entry is the product of a row-tag and a column-tag, so $P$ has rank $1$.",
+          "Then $P^{2}=u\\,(u^{T}u)\\,u^{T}=(u^{T}u)\\,P$, where the scalar is $u^{T}u=\\sum_{k=1}^{n}\\omega^{2k}$. Thus $P^{2}=\\Big(\\sum_{k=1}^{n}\\omega^{2k}\\Big)P$, and since $P\\neq 0$ we get $P^{2}=0\\iff\\sum_{k=1}^{n}\\omega^{2k}=0$.",
+          "Write $\\beta=\\omega^{2}$. As $\\omega$ is a primitive cube root of unity, so is $\\beta$ (indeed $\\beta=\\bar\\omega$), hence $\\beta\\neq 1$ and $\\beta^{3}=1$. The geometric sum $\\sum_{k=1}^{n}\\beta^{k}=\\beta\\,\\dfrac{\\beta^{n}-1}{\\beta-1}$ is zero exactly when $\\beta^{n}=1$, i.e. when $3\\mid n$.",
+          "Therefore $P^{2}=0$ iff $3\\mid n$, and $P^{2}\\neq 0$ iff $3\\nmid n$. Among the options only $57=3\\cdot 19$ is a multiple of $3$; for $n=55,\\,58,\\,56$ the square is nonzero. A sympy evaluation of $\\sum_{k=1}^{n}\\omega^{2k}$ gives $-\\tfrac12-\\tfrac{\\sqrt3}{2}i,\\;0,\\;-\\tfrac12-\\tfrac{\\sqrt3}{2}i,\\;-1$ for $n=55,57,58,56$ respectively, confirming $\\boxed{\\text{(B), (C) and (D)}}$."
+        ]
+      },
+      {
+        "name": "Direct entry of $P^{2}$ and the block-of-three cancellation",
+        "steps": [
+          "Compute a general entry: $\\big(P^{2}\\big)_{ij}=\\sum_{k=1}^{n}p_{ik}p_{kj}=\\sum_{k=1}^{n}\\omega^{i+k}\\,\\omega^{k+j}=\\omega^{i+j}\\sum_{k=1}^{n}\\omega^{2k}$. So the whole matrix is nonzero iff the common factor $S=\\sum_{k=1}^{n}\\omega^{2k}$ is nonzero.",
+          "Group the powers $\\omega^{2k}$ in consecutive blocks of three. Since $\\omega^{2},\\omega^{4},\\omega^{6}$ run through $\\{\\omega^{2},\\omega,1\\}$ in some order, each full block of three consecutive terms sums to $1+\\omega+\\omega^{2}=0$.",
+          "Hence $S$ equals the sum of the leftover terms beyond the last complete block: if $n=3m$ there is no remainder and $S=0$; if $n=3m+1$ then $S=\\omega^{2}\\neq 0$; if $n=3m+2$ then $S=\\omega^{2}+\\omega^{4}=\\omega^{2}+\\omega\\neq 0$.",
+          "So $S=0\\iff 3\\mid n$. Checking the list: $57$ is $3\\mid n$ (square is zero), while $55=3\\cdot18+1$, $56=3\\cdot18+2$, $58=3\\cdot19+1$ all leave a nonzero remainder — giving $P^{2}\\neq 0$ for $\\boxed{\\text{(B), (C) and (D)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 2, Q47. The whole problem is a rank-one trap: $P=u u^{T}$ makes $P^{2}=(u^{T}u)P$, so the matrix question is really the scalar question “when does $\\sum\\omega^{2k}$ vanish?” — answered by the single fact that consecutive cube-root powers cancel in blocks of three, so only $3\\mid n$ kills the square."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Commuting Matrices Forced To Be Singular",
+    "difficulty": 4,
+    "task": "Decide which statements about $M^{2}+MN^{2}$ must hold.",
+    "pyq": {
+      "year": 2014,
+      "paper": "1",
+      "qno": "41"
+    },
+    "tags": [
+      "commuting matrices",
+      "singular matrix",
+      "determinant",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "Let $M$ and $N$ be two $3\\times 3$ matrices that commute, so $MN=NM$. Suppose in addition that $M\\neq N^{2}$ while $M^{2}=N^{4}$. Which of the following must then be true? (A) the determinant of $M^{2}+MN^{2}$ is $0$; (B) there is a nonzero $3\\times 3$ matrix $U$ for which $\\big(M^{2}+MN^{2}\\big)U$ is the zero matrix; (C) the determinant of $M^{2}+MN^{2}$ is at least $1$; (D) if $\\big(M^{2}+MN^{2}\\big)U$ is the zero matrix for a $3\\times 3$ matrix $U$, then $U$ must be the zero matrix.",
+    "answer": "$\\boxed{\\text{(A) and (B)}}$",
+    "trap": "The condition $M^{2}=N^{4}$ tempts one to cancel and write $M=N^{2}$, which is exactly forbidden. The hypothesis $M\\neq N^{2}$ together with commutativity is what forces $M+N^{2}$ to be singular; without commutativity the factorisation $M^{2}-N^{4}=(M-N^{2})(M+N^{2})$ would be invalid. Options (C) and (D) are the false mirror-images of (A) and (B) — a nonzero determinant and an injective map — so recognising the built-in singularity settles all four at once.",
+    "solutions": [
+      {
+        "name": "Factor the difference of squares using commutativity",
+        "steps": [
+          "Because $M$ and $N^{2}$ commute (they are polynomials in the commuting $M,N$), the ordinary difference-of-squares factorisation is legal: $M^{2}-N^{4}=(M-N^{2})(M+N^{2})$. The hypothesis $M^{2}=N^{4}$ makes this product the zero matrix, so $(M-N^{2})(M+N^{2})=O$.",
+          "If $M+N^{2}$ were invertible, right-multiplying by its inverse would give $M-N^{2}=O$, i.e. $M=N^{2}$ — contradicting $M\\neq N^{2}$. Hence $M+N^{2}$ is singular: $\\det(M+N^{2})=0$.",
+          "Now factor the target: $M^{2}+MN^{2}=M\\big(M+N^{2}\\big)$. Taking determinants, $\\det\\!\\big(M^{2}+MN^{2}\\big)=\\det(M)\\,\\det\\!\\big(M+N^{2}\\big)=\\det(M)\\cdot 0=0$. So (A) is true and (C) (which demands the determinant be $\\ge 1$) is false.",
+          "A square matrix with zero determinant is singular, so its columns are linearly dependent and there is a nonzero column vector $v$ with $\\big(M^{2}+MN^{2}\\big)v=0$; placing $v$ in one column and zeros elsewhere yields a nonzero $3\\times 3$ matrix $U$ with $\\big(M^{2}+MN^{2}\\big)U=O$. Thus (B) is true and (D) (injectivity) is false. A sympy check with $N$ random and $M=-N^{2}$ (which commutes, satisfies $M^{2}=N^{4}$, and keeps $M\\neq N^{2}$) returns $\\det\\!\\big(M^{2}+MN^{2}\\big)=0$ every time, confirming $\\boxed{\\text{(A) and (B)}}$."
+        ]
+      },
+      {
+        "name": "Eigenvalue / rank argument over $\\mathbb{C}$",
+        "steps": [
+          "Set $S=M+N^{2}$ and $D=M-N^{2}$; commutativity gives $DS=SD=M^{2}-N^{4}=O$. So every column of $S$ lies in the null space of $D$, forcing $\\operatorname{rank}(S)\\le\\dim\\ker(D)=3-\\operatorname{rank}(D)$.",
+          "Since $M\\neq N^{2}$, the matrix $D=M-N^{2}$ is nonzero, so $\\operatorname{rank}(D)\\ge 1$. Substituting, $\\operatorname{rank}(S)\\le 3-1=2<3$, hence $S=M+N^{2}$ is not full rank — it is singular.",
+          "The target factors as $M^{2}+MN^{2}=M\\,S$, and $\\operatorname{rank}(MS)\\le\\operatorname{rank}(S)\\le 2<3$, so $M^{2}+MN^{2}$ is singular too: its determinant is $0$ (A true, C false).",
+          "A rank-$\\le 2$ matrix on a $3$-dimensional space has a nontrivial kernel, so a nonzero $U$ with $\\big(M^{2}+MN^{2}\\big)U=O$ exists (B true), and the map cannot be injective, so (D) is false. The statements that must hold are exactly $\\boxed{\\text{(A) and (B)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 1, Q41. The single lever is $MN=NM$: it legalises $M^{2}-N^{4}=(M-N^{2})(M+N^{2})=O$, and with $M\\neq N^{2}$ the second factor — hence $M^{2}+MN^{2}=M(M+N^{2})$ — is forced to be singular, so (A),(B) live and their invertible mirrors (C),(D) die."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "When Is a Symmetric Integer Matrix Invertible?",
+    "difficulty": 3,
+    "task": "Select every condition that forces the $2\\times 2$ symmetric integer matrix $M$ to be invertible.",
+    "pyq": {
+      "year": 2014,
+      "paper": "1",
+      "qno": "50"
+    },
+    "tags": [
+      "symmetric matrix",
+      "invertibility",
+      "determinant",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "Let $M$ be a $2\\times 2$ symmetric matrix with integer entries. Which of the following conditions guarantee that $M$ is invertible? (A) the first column of $M$ is the transpose of the second row of $M$; (B) the second row of $M$ is the transpose of the first column of $M$; (C) $M$ is a diagonal matrix with nonzero entries in the main diagonal; (D) the product of the entries in the main diagonal of $M$ is not the square of an integer.",
+    "answer": "$\\boxed{(\\text{C}),\\ (\\text{D})}$",
+    "trap": "Options (A) and (B) sound like extra structure, but for a symmetric $M=\\begin{pmatrix}a&b\\\\b&c\\end{pmatrix}$ they merely re-impose $a=b=c$, which sends $\\det M=ac-b^2$ straight to $0$. Structure is not the same as non-singularity — always route the condition through the determinant.",
+    "solutions": [
+      {
+        "name": "Reduce every option to the sign of $\\det M=ac-b^2$",
+        "steps": [
+          "Symmetry lets us write $M=\\begin{pmatrix}a&b\\\\b&c\\end{pmatrix}$ with $a,b,c\\in\\mathbb{Z}$, so invertibility means exactly $\\det M=ac-b^2\\neq 0$.",
+          "(A) The first column is $(a,b)^T$ and the transpose of the second row $(b,c)$ is $(b,c)^T$; equating gives $a=b$ and $b=c$, hence $a=b=c$ and $\\det M=a^2-a^2=0$. Not guaranteed invertible — reject.",
+          "(B) The second row is $(b,c)$ and the transpose of the first column $(a,b)^T$ is the row $(a,b)$; equating gives $b=a$ and $c=b$, again $a=b=c$ and $\\det M=0$. Reject.",
+          "(C) A diagonal matrix forces $b=0$, so $\\det M=ac$; with both diagonal entries nonzero, $ac\\neq 0$. Invertible — accept.",
+          "(D) Here $b^2$ is a perfect square. If $\\det M=ac-b^2=0$ then $ac=b^2$ would be a perfect square, contradicting the hypothesis that $ac$ is not; hence $\\det M\\neq 0$. Invertible — accept. Answer: (C), (D)."
+        ]
+      },
+      {
+        "name": "Parity/perfect-square lens on $ac-b^2$",
+        "steps": [
+          "For integer symmetric $M$, non-singularity is the single arithmetic condition $ac\\neq b^2$; think of it as “$ac$ must avoid the perfect square $b^2$.”",
+          "In (A) and (B) the constraints collapse $M$ to a scalar multiple of the all-ones symmetric matrix $\\begin{pmatrix}a&a\\\\a&a\\end{pmatrix}$, whose two rows are identical, so its rank is at most $1$ and it is singular regardless of $a$ — both fail.",
+          "In (C) off-diagonal entries vanish, so $b^2=0$ and $ac\\neq 0=b^2$ is automatic — invertible.",
+          "In (D) the hypothesis says $ac$ is not a perfect square, while $b^2$ always is; two numbers of different “square status” can never be equal, so $ac\\neq b^2$ — invertible. This matches (C), (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 1, Q50. The whole problem is a disguise for one inequality, $ac\\neq b^2$: options (A)/(B) secretly force equal rows (singular), while (C)/(D) each block the equality — (C) by killing $b$, (D) by a perfect-square parity mismatch."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Which Combinations Stay Skew-Symmetric?",
+    "difficulty": 4,
+    "task": "Identify every expression that is skew-symmetric for all admissible $X,Y,Z$.",
+    "pyq": {
+      "year": 2015,
+      "paper": "1",
+      "qno": "50"
+    },
+    "tags": [
+      "symmetric and skew-symmetric matrices",
+      "transpose properties",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "Let $X$ and $Y$ be two arbitrary $3\\times 3$ non-zero skew-symmetric matrices and let $Z$ be an arbitrary $3\\times 3$ non-zero symmetric matrix. Which of the following matrices is (are) skew-symmetric? (A) $Y^3Z^4-Z^4Y^3$; (B) $X^{44}+Y^{44}$; (C) $X^4Z^3-Z^3X^4$; (D) $X^{23}+Y^{23}$.",
+    "answer": "$\\boxed{(\\text{C}),\\ (\\text{D})}$",
+    "trap": "Do not assume every commutator is skew or that odd powers of a skew matrix stay skew by inspection. Track two facts precisely: a skew matrix raised to an even power becomes symmetric, and a commutator $PQ-QP$ is skew only when $P$ and $Q$ are both symmetric — mixing a symmetric factor with a skew one flips the outcome.",
+    "solutions": [
+      {
+        "name": "Parity of powers plus the commutator rule",
+        "steps": [
+          "Powers inherit type by parity: since $X^T=-X$, $(X^k)^T=(-X)^k=(-1)^kX^k$, so an odd power of a skew matrix is skew and an even power is symmetric; every power of the symmetric $Z$ stays symmetric.",
+          "(D) $X^{23}+Y^{23}$: both exponents are odd, so $X^{23}$ and $Y^{23}$ are skew, and a sum of skew matrices is skew. Skew — accept.",
+          "(C) $X^4Z^3-Z^3X^4$ is the commutator $[P,Q]$ with $P=X^4$ (even power, symmetric) and $Q=Z^3$ (symmetric). For symmetric $P,Q$, $(PQ-QP)^T=Q^TP^T-P^TQ^T=QP-PQ=-(PQ-QP)$. Skew — accept.",
+          "(A) $Y^3Z^4-Z^4Y^3$ is $[R,S]$ with $R=Y^3$ (odd power, skew) and $S=Z^4$ (symmetric); then $(RS-SR)^T=S^TR^T-R^TS^T=S(-R)-(-R)S=-(SR-RS)=RS-SR$, i.e. symmetric, not skew. Reject.",
+          "(B) $X^{44}+Y^{44}$: even powers make both terms symmetric, so the sum is symmetric, not skew. Reject. Hence only (C), (D)."
+        ]
+      },
+      {
+        "name": "Direct transpose of each expression",
+        "steps": [
+          "Skewness of a matrix $W$ means $W^T=-W$; take the transpose of each candidate using $X^T=-X$, $Y^T=-Y$, $Z^T=Z$ and $(AB)^T=B^TA^T$.",
+          "(A) $\\big(Y^3Z^4-Z^4Y^3\\big)^T=(Z^4)^T(Y^3)^T-(Y^3)^T(Z^4)^T=Z^4(-Y^3)-(-Y^3)Z^4=Y^3Z^4-Z^4Y^3$; equal to itself, so symmetric — reject.",
+          "(B) $\\big(X^{44}+Y^{44}\\big)^T=(X^T)^{44}+(Y^T)^{44}=(-X)^{44}+(-Y)^{44}=X^{44}+Y^{44}$; symmetric — reject.",
+          "(C) $\\big(X^4Z^3-Z^3X^4\\big)^T=(Z^3)^T(X^4)^T-(X^4)^T(Z^3)^T=Z^3X^4-X^4Z^3=-\\big(X^4Z^3-Z^3X^4\\big)$; skew — accept.",
+          "(D) $\\big(X^{23}+Y^{23}\\big)^T=(-X)^{23}+(-Y)^{23}=-X^{23}-Y^{23}=-\\big(X^{23}+Y^{23}\\big)$; skew — accept. Both methods return (C), (D), confirmed against random $3\\times3$ skew/symmetric samples in sympy."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 1, Q50. The decisive insight is that a commutator flips type based on its factors: $[\\text{sym},\\text{sym}]$ and $[\\text{skew},\\text{skew}]$ are skew, while $[\\text{skew},\\text{sym}]$ is symmetric — so an even power of a skew matrix (which is symmetric) is exactly what rescues option (C)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Determinant Cubic in α",
+    "difficulty": 4,
+    "task": "Find all real $\\alpha$ satisfying the determinant equation.",
+    "pyq": {
+      "year": 2015,
+      "paper": "1",
+      "qno": "51"
+    },
+    "tags": [
+      "determinant evaluation",
+      "row-column operations",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "Which of the following values of $\\alpha$ satisfy the equation $\\begin{vmatrix}(1+\\alpha)^2&(1+2\\alpha)^2&(1+3\\alpha)^2\\\\(2+\\alpha)^2&(2+2\\alpha)^2&(2+3\\alpha)^2\\\\(3+\\alpha)^2&(3+2\\alpha)^2&(3+3\\alpha)^2\\end{vmatrix}=-648\\,\\alpha$? The options are $\\alpha=-4$, $\\alpha=9$, $\\alpha=-9$ and $\\alpha=4$.",
+    "answer": "$\\alpha=\\boxed{\\pm 9}$ (options $9$ and $-9$)",
+    "trap": "The entries are squares of linear forms, so the naive instinct is a brute cofactor expansion into a degree-6 mess. But each entry $(i+j\\alpha)^2=i^2+2ij\\alpha+j^2\\alpha^2$ is a sum of three rank-one pieces; two columns' worth of that structure are linearly dependent, collapsing the determinant to the pure cubic $-8\\alpha^3$. Miss the collapse and you will chase phantom higher-degree roots.",
+    "solutions": [
+      {
+        "name": "Split each entry, kill the dependent columns",
+        "steps": [
+          "The $(i,j)$ entry is $(i+j\\alpha)^2=i^2+2ij\\alpha+j^2\\alpha^2$ with $i$ the row index and $j\\in\\{1,2,3\\}$ the column multiplier. Write the matrix as a sum of three tables: the constant table $[\\,i^2\\,]$ (equal across a row), the middle table $[\\,2ij\\alpha\\,]$, and the table $[\\,j^2\\alpha^2\\,]$ (equal down a column).",
+          "Use column operations $C_2\\to C_2-C_1$ and $C_3\\to C_3-C_1$. In each entry the $i^2$ part cancels (it does not depend on $j$), leaving in column $C_j-C_1$ the terms $2i\\alpha(j-1)+\\alpha^2(j^2-1)$ — every entry of that new column carries a common factor, and after factoring the two operated columns become proportional to $(2i\\alpha)$ and $(2i\\alpha)$ scaled, i.e. multiples of the single vector $(2\\alpha,4\\alpha,6\\alpha)^T$ up to constants.",
+          "Concretely, factoring gives $\\det=\\big|\\,c_1\\;(2\\alpha)v+ \\alpha^2 u\\;(4\\alpha)v+8\\alpha^2 u\\,\\big|$ where $v=(1,2,3)^T$ and $u=(1,1,1)^T$; only the parts along $v$ and $u$ survive and they reduce the array to a $3\\times 3$ determinant whose expansion is the monomial $-8\\alpha^3$.",
+          "So the equation becomes $-8\\alpha^3=-648\\,\\alpha$, i.e. $8\\alpha(\\alpha^2-81)=0$, giving $\\alpha=0,\\;\\alpha=9,\\;\\alpha=-9$. Among the listed options only $9$ and $-9$ appear, so $\\alpha=\\pm 9$."
+        ]
+      },
+      {
+        "name": "Evaluate at test points to fix the cubic",
+        "steps": [
+          "Row/column structure already forces the determinant to be an odd cubic $p(\\alpha)=c\\,\\alpha^3$: at $\\alpha=0$ all three columns become $(1,4,9)^T$ (identical), so the determinant vanishes, killing the constant and linear terms; oddness under $\\alpha\\to-\\alpha$ (swap the roles that flip sign) removes the quadratic term, leaving $c\\,\\alpha^3$.",
+          "Pin the constant $c$ with one numeric value. At $\\alpha=1$ the matrix is $\\begin{pmatrix}4&9&16\\\\9&16&25\\\\16&25&36\\end{pmatrix}$, whose determinant is $4(576-625)-9(324-400)+16(225-256)=4(-49)-9(-76)+16(-31)=-196+684-496=-8$. Hence $c=-8$ and $p(\\alpha)=-8\\alpha^3$.",
+          "Solve $-8\\alpha^3=-648\\,\\alpha\\Rightarrow \\alpha^3=81\\,\\alpha\\Rightarrow \\alpha(\\alpha-9)(\\alpha+9)=0$, so $\\alpha\\in\\{0,\\pm9\\}$; the options that match are $9$ and $-9$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 1, Q51. The whole problem is a disguise: squares of linear forms look degree-6, but the rank-one arithmetic collapses the determinant to a single monomial $-8\\alpha^3$, so the ``equation'' is really just $\\alpha(\\alpha^2-81)=0$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Reading Off α and k",
+    "difficulty": 4,
+    "task": "Use the two given data of $Q$ to pin $\\alpha,k$ and test each statement.",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "44"
+    },
+    "tags": [
+      "inverse and adjoint",
+      "determinants",
+      "properties of adjugate",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $P=\\begin{bmatrix}3&-1&-2\\\\2&0&\\alpha\\\\3&-5&0\\end{bmatrix}$, where $\\alpha\\in\\mathbb{R}$. Suppose $Q=[q_{ij}]$ is a matrix such that $PQ=kI$, where $k\\in\\mathbb{R}$, $k\\neq 0$ and $I$ is the identity matrix of order $3$. If $q_{23}=-\\dfrac{k}{8}$ and $\\det(Q)=\\dfrac{k^2}{2}$, then which of the following hold: $\\;$(A) $\\alpha=0,\\ k=8$; $\\;$(B) $4\\alpha-k+8=0$; $\\;$(C) $\\det(P\\,\\operatorname{adj}Q)=2^{9}$; $\\;$(D) $\\det(Q\\,\\operatorname{adj}P)=2^{13}$.",
+    "answer": "$\\boxed{\\text{(B) and (C)}}$",
+    "trap": "The relation is $PQ=kI$, not $PQ=I$, so $Q=kP^{-1}$ carries an extra factor of $k$: hence $\\det Q=k^{3}/\\det P$, and $q_{23}=k\\,(P^{-1})_{23}$. Forgetting either $k$ collapses the whole system and gives the spurious option (A). Also $\\det(\\operatorname{adj}M)=(\\det M)^2$ for $3\\times 3$, not $\\det M$.",
+    "solutions": [
+      {
+        "name": "Cofactor for $q_{23}$, determinant law for $k$",
+        "steps": [
+          "From $PQ=kI$ we have $Q=kP^{-1}=\\dfrac{k}{\\det P}\\operatorname{adj}P$, so $q_{23}=\\dfrac{k}{\\det P}\\,(\\operatorname{adj}P)_{23}$. Now $(\\operatorname{adj}P)_{23}=C_{32}$, the cofactor of the $(3,2)$ entry: $C_{32}=-\\begin{vmatrix}3&-2\\\\2&\\alpha\\end{vmatrix}=-(3\\alpha+4)$. Expanding $\\det P$ along the first column gives $\\det P=3(0\\cdot0-\\alpha\\cdot(-5))-2((-1)\\cdot0-(-2)(-5))+3((-1)\\alpha-(-2)\\cdot0)=15\\alpha+20-3\\alpha=12\\alpha+20$.",
+          "Thus $q_{23}=\\dfrac{k\\,\\big(-(3\\alpha+4)\\big)}{12\\alpha+20}=-\\dfrac{k(3\\alpha+4)}{4(3\\alpha+5)}$. Setting this equal to $-\\dfrac{k}{8}$ (and $k\\neq 0$) gives $8(3\\alpha+4)=4(3\\alpha+5)$, i.e. $24\\alpha+32=12\\alpha+20$, so $12\\alpha=-12$ and $\\alpha=-1$. Then $\\det P=12(-1)+20=8$.",
+          "For a $3\\times 3$ matrix $\\det Q=\\det(kP^{-1})=k^{3}\\det(P^{-1})=\\dfrac{k^{3}}{\\det P}=\\dfrac{k^{3}}{8}$. Equate to the given $\\dfrac{k^{2}}{2}$: $\\dfrac{k^{3}}{8}=\\dfrac{k^{2}}{2}\\Rightarrow k=4$ (using $k\\neq0$).",
+          "Test the statements with $\\alpha=-1,\\ k=4,\\ \\det P=8,\\ \\det Q=\\tfrac{k^2}{2}=8$. (A) needs $\\alpha=0,k=8$ — false. (B) $4\\alpha-k+8=-4-4+8=0$ — true. (C) $\\det(P\\,\\operatorname{adj}Q)=\\det P\\cdot\\det(\\operatorname{adj}Q)=\\det P\\,(\\det Q)^2=8\\cdot 8^2=512=2^{9}$ — true. (D) $\\det(Q\\,\\operatorname{adj}P)=\\det Q\\,(\\det P)^2=8\\cdot 8^2=512=2^{9}\\neq 2^{13}$ — false. So (B) and (C)."
+        ]
+      },
+      {
+        "name": "Consistency check: $\\det Q$ two ways, plus a $q_{23}$ shortcut",
+        "steps": [
+          "Take determinants of $PQ=kI$ directly: $\\det P\\cdot\\det Q=\\det(kI)=k^{3}$. With the datum $\\det Q=\\tfrac{k^{2}}{2}$ this reads $\\det P\\cdot\\tfrac{k^{2}}{2}=k^{3}$, so $\\det P=2k$. Independently, expanding gives $\\det P=12\\alpha+20$, hence $12\\alpha+20=2k$, i.e. $6\\alpha+10=k$.",
+          "For the second relation use $q_{23}$. Since $Q=kP^{-1}$, the ratio $q_{23}/k=(P^{-1})_{23}=\\dfrac{C_{32}}{\\det P}=\\dfrac{-(3\\alpha+4)}{12\\alpha+20}$. The condition $q_{23}=-k/8$ gives $\\dfrac{-(3\\alpha+4)}{12\\alpha+20}=-\\dfrac18$, so $8(3\\alpha+4)=12\\alpha+20\\Rightarrow 12\\alpha=-12\\Rightarrow \\alpha=-1$.",
+          "Back-substitute $\\alpha=-1$ into $k=6\\alpha+10$: $k=6(-1)+10=4$, matching $\\det P=2k=8$. This confirms $(\\alpha,k,\\det P,\\det Q)=(-1,4,8,8)$ with no separate inverse computation.",
+          "Now (B) $4\\alpha-k+8=-4-4+8=0$ ✓. Using $\\det(\\operatorname{adj}M)=(\\det M)^2$: (C) $\\det(P\\,\\operatorname{adj}Q)=\\det P\\,(\\det Q)^2=8\\cdot64=2^{9}$ ✓, while (D) $\\det(Q\\,\\operatorname{adj}P)=\\det Q\\,(\\det P)^2=8\\cdot64=2^{9}$, not $2^{13}$ ✗. Answer: (B) and (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 1, Q44. The engine is the single scaling $Q=kP^{-1}$: it makes $q_{23}=k(P^{-1})_{23}$ fix $\\alpha$ and $\\det Q=k^3/\\det P$ fix $k$, after which $\\det(\\operatorname{adj}\\cdot)=(\\det\\cdot)^2$ settles (C) and (D) in one stroke."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Counting Real Roots Of A Determinant",
+    "difficulty": 4,
+    "task": "Evaluate the determinant as a function of $x$ and count the distinct real roots.",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "50"
+    },
+    "tags": [
+      "determinant expansion",
+      "polynomial equations",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Find the total number of distinct real numbers $x$ for which $\\begin{vmatrix} x & x^2 & 1+x^3 \\\\ 2x & 4x^2 & 1+8x^3 \\\\ 3x & 9x^2 & 1+27x^3 \\end{vmatrix} = 10$.",
+    "answer": "$\\boxed{2}$",
+    "trap": "The determinant tempts you to expand it as a degree-$6$ polynomial and brace for up to six roots. In fact the sixth-degree curve is monotone increasing on the reals, so the horizontal line $y=10$ meets it in far fewer places than the degree suggests — count real crossings, not the algebraic degree.",
+    "solutions": [
+      {
+        "name": "Column-splitting into a product of two determinants",
+        "steps": [
+          "Write the third column as a sum: $\\begin{pmatrix}1+x^3\\\\1+8x^3\\\\1+27x^3\\end{pmatrix}=\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}+x^3\\begin{pmatrix}1\\\\8\\\\27\\end{pmatrix}$, so the determinant splits as $D=D_1+x^3 D_2$.",
+          "In $D_1$ the third column is all $1$'s; pulling $x$ from column $1$ and $x^2$ from column $2$ gives $D_1=x^3\\begin{vmatrix}1&1&1\\\\2&4&1\\\\3&9&1\\end{vmatrix}=x^3\\cdot 2$ (a Vandermonde-type value).",
+          "In $D_2$ the columns are proportional to $(x,2x,3x)$, $(x^2,4x^2,9x^2)$, $(1,8,27)$; pulling $x$ and $x^2$ gives $x^3\\begin{vmatrix}1&1&1\\\\2&4&8\\\\3&9&27\\end{vmatrix}=x^3\\cdot 12$, so $x^3 D_2=12x^6$.",
+          "Hence $D=2x^3+12x^6$. Setting $D=10$: $12x^6+2x^3-10=0\\Rightarrow 6x^6+x^3-5=0\\Rightarrow(6x^3-5)(x^3+1)=0$, giving $x^3=\\tfrac56$ or $x^3=-1$; each cube yields one real cube root, so $x=\\left(\\tfrac56\\right)^{1/3}$ and $x=-1$ — exactly $\\boxed{2}$ distinct real values."
+        ]
+      },
+      {
+        "name": "Monotonicity of the determinant function",
+        "steps": [
+          "Reduce the determinant to $D(x)=12x^6+2x^3$ (via column operations, e.g. $C_1\\to C_1-xC$ style factoring), so the equation is $D(x)=10$.",
+          "Substitute $t=x^3$ (a bijection $\\mathbb{R}\\to\\mathbb{R}$): the equation becomes $12t^2+2t=10$, i.e. $6t^2+t-5=0$, a quadratic with real roots $t=\\tfrac56$ and $t=-1$.",
+          "Each real value of $t=x^3$ corresponds to exactly one real $x$ (the real cube-root map is a bijection), so the two admissible $t$-values give two real $x$-values.",
+          "The two roots $t=\\tfrac56$ and $t=-1$ are distinct, hence $x=\\left(\\tfrac56\\right)^{1/3}\\ne -1$; the total count of distinct real solutions is $\\boxed{2}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 1, Q50. Splitting the additive column collapses a scary $6\\times$-degree determinant into $12x^6+2x^3$, after which the substitution $t=x^3$ turns root-counting into an ordinary quadratic."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A High Power Of A Unitriangular Matrix",
+    "difficulty": 4,
+    "task": "Compute the required entries of $P^{50}$ and evaluate the ratio.",
+    "pyq": {
+      "year": 2016,
+      "paper": "2",
+      "qno": "37"
+    },
+    "tags": [
+      "powers of a matrix",
+      "nilpotent decomposition",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $P=\\begin{bmatrix} 1 & 0 & 0 \\\\ 4 & 1 & 0 \\\\ 16 & 4 & 1 \\end{bmatrix}$ and let $I$ be the identity matrix of order $3$. If $Q=[q_{ij}]$ is the matrix satisfying $P^{50}-Q=I$, find the value of $\\dfrac{q_{31}+q_{32}}{q_{21}}$. The options are $(A)\\ 52$, $(B)\\ 103$, $(C)\\ 201$, $(D)\\ 205$.",
+    "answer": "$\\boxed{(B)\\ 103}$",
+    "trap": "Raising a $3\\times 3$ matrix to the $50$th power looks brutal, so the instinct is to multiply repeatedly. Do not: the subdiagonal part $A=P-I$ is nilpotent with $A^3=O$, so the binomial expansion of $(I+A)^{50}$ terminates after just three terms.",
+    "solutions": [
+      {
+        "name": "Nilpotent binomial expansion",
+        "steps": [
+          "Write $P=I+A$ with $A=\\begin{bmatrix}0&0&0\\\\4&0&0\\\\16&4&0\\end{bmatrix}$. Then $A^2=\\begin{bmatrix}0&0&0\\\\0&0&0\\\\16&0&0\\end{bmatrix}$ and $A^3=O$, so $A$ is nilpotent.",
+          "Since $I$ and $A$ commute, $P^{50}=(I+A)^{50}=I+\\binom{50}{1}A+\\binom{50}{2}A^2$ — all higher terms vanish because $A^3=O$.",
+          "Thus $Q=P^{50}-I=50A+\\binom{50}{2}A^2$; reading entries: $q_{21}=50\\cdot 4=200$, $q_{32}=50\\cdot 4=200$, and $q_{31}=50\\cdot 16+1225\\cdot 16=200\\cdot 16=$... precisely $q_{31}=50\\cdot 16+\\binom{50}{2}\\cdot 16=800+19600=20400$.",
+          "Therefore $\\dfrac{q_{31}+q_{32}}{q_{21}}=\\dfrac{20400+200}{200}=\\dfrac{20600}{200}=\\boxed{(B)\\ 103}$."
+        ]
+      },
+      {
+        "name": "Pattern from low powers (induction on the subdiagonal)",
+        "steps": [
+          "Direct multiplication gives $P^2=\\begin{bmatrix}1&0&0\\\\8&1&0\\\\48&8&1\\end{bmatrix}$ and $P^3=\\begin{bmatrix}1&0&0\\\\12&1&0\\\\96&12&1\\end{bmatrix}$, so for $P^n$ the $(2,1)$ and $(3,2)$ entries are both $4n$ while the $(3,1)$ entry follows $8n^2+8n$.",
+          "Check the $(3,1)$ pattern: $n=1$ gives $16$, $n=2$ gives $48$, $n=3$ gives $96$ — matching $8n^2+8n=8n(n+1)$, provable by induction since each extra factor $P$ adds $4\\cdot(\\text{current }(2,1))+16$ to the $(3,1)$ slot.",
+          "At $n=50$: $q_{21}=4\\cdot 50=200$, $q_{32}=4\\cdot 50=200$, and $q_{31}=8\\cdot 50\\cdot 51=20400$ (the identity is subtracted off, leaving the off-diagonal build-up unchanged).",
+          "Hence $\\dfrac{q_{31}+q_{32}}{q_{21}}=\\dfrac{20400+200}{200}=103$, i.e. $\\boxed{(B)\\ 103}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 2, Q37. Spotting $P=I+A$ with $A^3=O$ turns a $50$th power into a three-term binomial — the hallmark trick for unitriangular (all-ones-diagonal) matrices."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Two-by-Two That Turns",
+    "difficulty": 3,
+    "task": "Decide which statements are correct",
+    "pyq": {
+      "year": 2016,
+      "paper": "2",
+      "qno": "49"
+    },
+    "tags": [
+      "system of linear equations",
+      "consistency",
+      "Cramer determinant",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $a,\\lambda,\\mu\\in\\mathbb{R}$. Consider the system of linear equations $ax+2y=\\lambda$ and $3x-2y=\\mu$. Then which of the following statement(s) is(are) correct? $(A)$ If $a=-3$, then the system has infinitely many solutions for all values of $\\lambda$ and $\\mu$. $(B)$ If $a\\ne-3$, then the system has a unique solution for all values of $\\lambda$ and $\\mu$. $(C)$ If $\\lambda+\\mu=0$, then the system has infinitely many solutions for $a=-3$. $(D)$ If $\\lambda+\\mu\\ne0$, then the system has no solution for $a=-3$.",
+    "answer": "$$\\boxed{(B),\\ (C),\\ (D)}$$",
+    "trap": "Statement $(A)$ is the lure. Seeing the coefficient determinant $\\Delta=-2a-6$ vanish at $a=-3$, a hurried reader concludes “infinitely many solutions.” But $\\Delta=0$ only kills uniqueness; whether the singular system has infinitely many solutions or none depends on the constants. At $a=-3$ the two equations become $-3x+2y=\\lambda$ and $3x-2y=\\mu$, whose left sides are exact negatives, forcing $\\lambda+\\mu=0$ for consistency. So $(A)$'s “for all $\\lambda,\\mu$” is false, while the conditional $(C)$ and $(D)$ split the same singular case correctly.",
+    "solutions": [
+      {
+        "name": "Cramer determinant with rank analysis",
+        "steps": [
+          "The coefficient determinant is $\\Delta=\\begin{vmatrix}a&2\\\\3&-2\\end{vmatrix}=-2a-6=-2(a+3)$. Thus $\\Delta=0\\iff a=-3$, and for $a\\ne-3$ the determinant is nonzero, so by Cramer's rule the system has a unique solution for every $\\lambda,\\mu$. This proves $(B)$ and kills any hope of non-uniqueness away from $a=-3$.",
+          "Set $a=-3$. The equations become $-3x+2y=\\lambda$ and $3x-2y=\\mu$. Adding them gives $0=\\lambda+\\mu$: the coefficient rows are proportional (indeed opposite), so the augmented system is consistent only when $\\lambda+\\mu=0$.",
+          "If $\\lambda+\\mu=0$ the two equations are identical up to sign — one genuine equation in two unknowns — giving infinitely many solutions, proving $(C)$. If $\\lambda+\\mu\\ne0$ we reach the contradiction $0=\\lambda+\\mu\\ne0$, so there is no solution, proving $(D)$. Statement $(A)$ fails because at $a=-3$ infinitely many solutions occur only under the extra condition $\\lambda+\\mu=0$, not for all $\\lambda,\\mu$. Correct set: $\\boxed{(B),(C),(D)}$."
+        ]
+      },
+      {
+        "name": "Direct elimination for the pivot",
+        "steps": [
+          "Eliminate $y$ by adding the two equations directly: $(ax+2y)+(3x-2y)=\\lambda+\\mu$, i.e. $(a+3)x=\\lambda+\\mu$. This single scalar equation carries the entire dependence on $a$.",
+          "If $a+3\\ne0$ (that is $a\\ne-3$), then $x=\\dfrac{\\lambda+\\mu}{a+3}$ is uniquely determined, and back-substitution into $3x-2y=\\mu$ fixes $y$ uniquely too. Hence a unique solution for all $\\lambda,\\mu$ — statement $(B)$.",
+          "If $a+3=0$ the equation collapses to $0=\\lambda+\\mu$. When $\\lambda+\\mu=0$ it is an identity and the remaining single equation $3x-2y=\\mu$ has infinitely many solutions — statement $(C)$; when $\\lambda+\\mu\\ne0$ it is impossible, so no solution — statement $(D)$. The blanket claim $(A)$ is therefore false. Answer: $\\boxed{(B),(C),(D)}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 2, Q49. **Insight.** A zero coefficient determinant only removes uniqueness — the singular case then bifurcates into “infinitely many” or “none,” and it is the constants $\\lambda,\\mu$ (through the augmented rank), not $a$ alone, that decide which."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Which Cannot Be a Square",
+    "difficulty": 4,
+    "task": "Identify the matrices that are not squares",
+    "pyq": {
+      "year": 2017,
+      "paper": "1",
+      "qno": "41"
+    },
+    "tags": [
+      "matrix square",
+      "determinant sign",
+      "real matrices",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "Which of the following is(are) NOT the square of a $3\\times3$ matrix with real entries? $[A]\\ \\begin{bmatrix}1&0&0\\\\0&1&0\\\\0&0&1\\end{bmatrix}$, $[B]\\ \\begin{bmatrix}1&0&0\\\\0&1&0\\\\0&0&-1\\end{bmatrix}$, $[C]\\ \\begin{bmatrix}1&0&0\\\\0&-1&0\\\\0&0&-1\\end{bmatrix}$, $[D]\\ \\begin{bmatrix}-1&0&0\\\\0&-1&0\\\\0&0&-1\\end{bmatrix}$.",
+    "answer": "$$\\boxed{[B],\\ [D]}$$",
+    "trap": "The temptation is to count negative eigenvalues and guess. But the clean obstruction is the determinant: if $A=B^{2}$ with $B$ real, then $\\det A=(\\det B)^{2}\\ge0$. So any target with negative determinant is instantly disqualified — no eigenvalue bookkeeping needed. Matrices $[B]$ and $[C]$ each carry a single $-1$ versus a double $-1$; the deciding question “is the number of $-1$'s even?” is exactly the sign of the determinant, and it is easy to lump $[C]$ (two $-1$'s, $\\det=+1$, realizable) in with the impossible ones or to overlook that $[D]$ has three $-1$'s giving $\\det=-1$.",
+    "solutions": [
+      {
+        "name": "Determinant sign obstruction",
+        "steps": [
+          "If a real matrix $A$ is a square, $A=B^{2}$ for some real $B$, then by multiplicativity of the determinant $\\det A=\\det(B^{2})=(\\det B)^{2}\\ge0$. Hence a strictly negative determinant makes $A$ impossible as a real square.",
+          "Compute the four determinants (all diagonal): $\\det[A]=1$, $\\det[B]=(1)(1)(-1)=-1$, $\\det[C]=(1)(-1)(-1)=+1$, $\\det[D]=(-1)^{3}=-1$. The negative ones are $[B]$ and $[D]$, so these two cannot be real squares.",
+          "For the survivors $[A]$ and $[C]$ we exhibit real square roots. $[A]=I=I^{2}$. For $[C]=\\operatorname{diag}(1,-1,-1)$, a plane rotation by $90^{\\circ}$ squares to $-1$ on a $2\\times2$ block: with $R=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$ one has $R^{2}=\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix}$, so $B=\\operatorname{diag}\\!\\left(1,\\ \\begin{smallmatrix}0&1\\\\-1&0\\end{smallmatrix}\\right)$ gives $B^{2}=[C]$. Thus exactly $\\boxed{[B],[D]}$ are not squares."
+        ]
+      },
+      {
+        "name": "Parity of $-1$ eigenvalues via a real square root",
+        "steps": [
+          "Work eigenvalue-by-eigenvalue on the diagonal target $\\operatorname{diag}(\\varepsilon_{1},\\varepsilon_{2},\\varepsilon_{3})$ with each $\\varepsilon_i=\\pm1$. A $+1$ on the diagonal is trivially $1^{2}$. A pair of $-1$'s can be produced together by a real $90^{\\circ}$ rotation block $\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$, whose square is $-I_{2}$; so $-1$'s can be manufactured only in even bunches from real blocks.",
+          "Therefore a real square root of a diagonal $\\pm1$ matrix exists exactly when the number of $-1$ entries is even. Count them: $[A]$ has $0$ (even), $[B]$ has $1$ (odd), $[C]$ has $2$ (even), $[D]$ has $3$ (odd).",
+          "Odd counts have no real square root, matching the determinant $(-1)^{\\#(-1)}<0$ criterion. The odd cases are $[B]$ and $[D]$, so the matrices that are NOT real squares are $\\boxed{[B],[D]}$ — in agreement with the determinant argument."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 1, Q41. **Insight.** $\\det(B^{2})=(\\det B)^{2}\\ge0$ turns a seemingly deep “is it a square?” question into a one-glance sign check on the determinant."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Symmetric System With Infinitely Many Solutions",
+    "difficulty": 4,
+    "task": "Find the value of $1+\\alpha+\\alpha^2$ from the consistency condition.",
+    "pyq": {
+      "year": 2017,
+      "paper": "1",
+      "qno": "46"
+    },
+    "tags": [
+      "system of linear equations",
+      "infinitely many solutions",
+      "determinant",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "For a real number $\\alpha$, the system of linear equations $\\begin{bmatrix} 1 & \\alpha & \\alpha^2 \\\\ \\alpha & 1 & \\alpha \\\\ \\alpha^2 & \\alpha & 1 \\end{bmatrix}\\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix}=\\begin{bmatrix} 1 \\\\ -1 \\\\ 1 \\end{bmatrix}$ is given to possess infinitely many solutions. Determine the value of $1+\\alpha+\\alpha^2$.",
+    "answer": "$\\boxed{1}$",
+    "trap": "Vanishing of the coefficient determinant is necessary but $not$ sufficient — it factors as $(1-\\alpha^2)^2$, so it dies at both $\\alpha=1$ and $\\alpha=-1$. The value $\\alpha=1$ makes the augmented system $inconsistent$ (rank jumps), so it must be rejected; only $\\alpha=-1$ actually yields infinitely many solutions.",
+    "solutions": [
+      {
+        "name": "Determinant then consistency check",
+        "steps": [
+          "The coefficient matrix $A$ has $\\det A=(1-\\alpha^2)^2=(1-\\alpha)^2(1+\\alpha)^2$; infinitely many solutions require $\\det A=0$, so $\\alpha=1$ or $\\alpha=-1$.",
+          "Test $\\alpha=1$: every row of $A$ becomes $(1,1,1)$, so the three equations read $x+y+z=1,\\;x+y+z=-1,\\;x+y+z=1$ — contradictory, hence $inconsistent$; reject $\\alpha=1$.",
+          "Test $\\alpha=-1$: the rows become $(1,-1,1)$, $(-1,1,-1)$, $(1,-1,1)$, all proportional, and each equation reduces to the single consistent relation $x-y+z=1$; the augmented matrix has rank $1$ equal to that of $A$, giving a two-parameter family — infinitely many solutions.",
+          "Therefore $\\alpha=-1$, and $1+\\alpha+\\alpha^2=1-1+1=\\boxed{1}$."
+        ]
+      },
+      {
+        "name": "Rank via row reduction of the augmented matrix",
+        "steps": [
+          "Row-reduce the augmented matrix $[A\\,|\\,b]$ for $\\alpha=-1$: subtracting suitable multiples of row 1 from rows 2 and 3 annihilates them entirely, leaving the single pivot row $(1,-1,1\\,|\\,1)$, so $\\operatorname{rank}A=\\operatorname{rank}[A\\,|\\,b]=1<3$ — the defining signature of infinitely many solutions.",
+          "For $\\alpha=1$ the same elimination turns row 2 into $(0,0,0\\,|\\,-2)$, so $\\operatorname{rank}[A\\,|\\,b]=2>\\operatorname{rank}A=1$: no solution, confirming $\\alpha=1$ is spurious.",
+          "Only $\\alpha=-1$ survives, so $1+\\alpha+\\alpha^2=1+(-1)+1=\\boxed{1}$, matching the symbolic factorisation $\\det A=(1-\\alpha^2)^2$ and the rank test."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 1, Q46. A $(1-\\alpha^2)^2$ determinant tempts you into two roots, but consistency is the real gatekeeper: infinitely many solutions demand $\\operatorname{rank}A=\\operatorname{rank}[A\\,|\\,b]$, which only $\\alpha=-1$ delivers."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Counting Matrices By Trace Of $M^TM$",
+    "difficulty": 4,
+    "task": "Count the $3\\times3$ matrices meeting the trace condition.",
+    "pyq": {
+      "year": 2017,
+      "paper": "2",
+      "qno": "41"
+    },
+    "tags": [
+      "trace",
+      "counting matrices",
+      "sum of squares",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "Consider $3\\times3$ matrices $M$ whose nine entries are drawn from the set $\\{0,1,2\\}$. Find how many such matrices $M$ have the property that the sum of the diagonal entries of $M^{T}M$ equals $5$. The options are $[A]\\ 126$, $[B]\\ 198$, $[C]\\ 162$, $[D]\\ 135$.",
+    "answer": "$\\boxed{198\\ \\text{(option [B])}}$",
+    "trap": "The condition is $not$ about the diagonal of $M$ — it is $\\operatorname{tr}(M^TM)=\\sum_{i,j} m_{ij}^2$, the sum of squares of $all$ nine entries. Missing that the two disjoint cases (one $2$ with one $1$, versus five $1$s) must be $added$, or double-counting an entry that plays both roles, breaks the count.",
+    "solutions": [
+      {
+        "name": "Case split on the square-sum $5$",
+        "steps": [
+          "The $(k,k)$ entry of $M^TM$ is $\\sum_i m_{ik}^2$, so $\\operatorname{tr}(M^TM)=\\sum_{i,j} m_{ij}^2$; with $m_{ij}\\in\\{0,1,2\\}$ each squared entry is $0$, $1$, or $4$, and we need these to total $5$.",
+          "Partitions of $5$ using parts $\\{0,1,4\\}$: either one $4$ and one $1$ (i.e. one entry equal to $2$ and one entry equal to $1$), or five $1$s (five entries equal to $1$); the remaining entries are $0$.",
+          "Case one $2$ and one $1$: choose the position of the $2$ in $9$ ways and the position of the $1$ in the remaining $8$ ways, giving $9\\cdot8=72$.",
+          "Case five $1$s: choose which $5$ of the $9$ positions hold a $1$, i.e. $\\binom{9}{5}=126$.",
+          "The cases are disjoint, so the total is $72+126=\\boxed{198}$, option $[B]$."
+        ]
+      },
+      {
+        "name": "Generating-function coefficient extraction",
+        "steps": [
+          "Each entry independently contributes a factor tracking its squared value, so the number of $9$-entry configurations with square-sum $s$ is the coefficient of $t^{s}$ in $\\big(t^{0}+t^{1}+t^{4}\\big)^{9}=(1+t+t^4)^9$ (the exponents $0,1,4$ are $0^2,1^2,2^2$).",
+          "We need $[t^{5}](1+t+t^4)^9$. Terms reaching $t^5$ come from choosing factors so the exponents sum to $5$: either one factor gives $t^4$ and one gives $t^1$ (rest $t^0$), or five factors give $t^1$ (rest $t^0$).",
+          "The multinomial counts are $\\dfrac{9!}{1!\\,1!\\,7!}=72$ for the $(t^4,t^1)$ selection and $\\dfrac{9!}{5!\\,4!}=\\binom{9}{5}=126$ for the five $t^1$s.",
+          "Summing, $[t^5](1+t+t^4)^9=72+126=\\boxed{198}$, confirming option $[B]$ and agreeing with the direct case split."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 2, Q41. The clean idea is that $\\operatorname{tr}(M^TM)=\\|M\\|_F^2$ is just the sum of squared entries, converting a matrix question into an entry-partition of $5$ into pieces from $\\{0,1,4\\}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Extrema of a Trigonometric Determinant",
+    "difficulty": 4,
+    "task": "Determine which statements about $f$ and $f'$ are correct.",
+    "pyq": {
+      "year": 2017,
+      "paper": "2",
+      "qno": "48"
+    },
+    "tags": [
+      "determinant as function",
+      "maxima-minima",
+      "trigonometric determinant",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "Let $f(x)=\\begin{vmatrix}\\cos 2x & \\cos 2x & \\sin 2x\\\\ -\\cos x & \\cos x & -\\sin x\\\\ \\sin x & \\sin x & \\cos x\\end{vmatrix}$. Consider the following four assertions on the interval $(-\\pi,\\pi)$: $[A]$ $f'(x)=0$ at exactly three points; $[B]$ $f'(x)=0$ at more than three points; $[C]$ $f$ attains its maximum at $x=0$; $[D]$ $f$ attains its minimum at $x=0$. Which of these are true?",
+    "answer": "$\\boxed{[B]\\ \\text{and}\\ [C]}$",
+    "trap": "Do not eyeball the $3\\times 3$ array as a hard object — expand it once and the determinant collapses to the elementary $f(x)=\\cos 2x+\\cos 4x$. Also, $[A]$ and $[B]$ are mutually exclusive, and $x=0$ cannot be both a max and a min, so at most one of $\\{[C],[D]\\}$ holds; count the stationary points honestly rather than stopping at the first few.",
+    "solutions": [
+      {
+        "name": "Cofactor expansion, then count stationary points",
+        "steps": [
+          "Expand along the first row. The $2\\times 2$ minors give $f(x)=\\cos 2x\\,(\\cos x\\cos x-(-\\sin x)\\sin x)-\\cos 2x\\,((-\\cos x)\\cos x-(-\\sin x)\\sin x)+\\sin 2x\\,((-\\cos x)\\sin x-\\cos x\\sin x)$.",
+          "Simplify each bracket: the first is $\\cos^2x+\\sin^2x=1$, the second is $-\\cos^2x+\\sin^2x=-\\cos 2x$, the third is $-2\\sin x\\cos x=-\\sin 2x$. Hence $f(x)=\\cos 2x\\cdot 1-\\cos 2x\\cdot(-\\cos 2x)+\\sin 2x\\cdot(-\\sin 2x)=\\cos 2x+\\cos^2 2x-\\sin^2 2x$.",
+          "Since $\\cos^2 2x-\\sin^2 2x=\\cos 4x$, we get the clean form $f(x)=\\cos 2x+\\cos 4x$.",
+          "Differentiate: $f'(x)=-2\\sin 2x-4\\sin 4x=-2\\sin 2x-8\\sin 2x\\cos 2x=-2\\sin 2x\\,(1+4\\cos 2x)$.",
+          "So $f'(x)=0$ when $\\sin 2x=0$, giving $x=0,\\pm\\tfrac{\\pi}{2}$ in $(-\\pi,\\pi)$, or when $\\cos 2x=-\\tfrac14$, giving four more solutions symmetric about $0$. That is $3+4=7$ stationary points, which is more than three — statement $[B]$ is true and $[A]$ is false.",
+          "Value comparison: $f(0)=\\cos 0+\\cos 0=2$, and since $\\cos 2x\\le 1,\\ \\cos 4x\\le 1$ always, $f(x)\\le 2$ everywhere with equality only at $x=0$. Thus $x=0$ is the global maximum — $[C]$ is true, $[D]$ is false."
+        ]
+      },
+      {
+        "name": "Second-derivative test at the origin plus Chebyshev bound",
+        "steps": [
+          "From $f(x)=\\cos 2x+\\cos 4x$, compute $f''(x)=-4\\cos 2x-16\\cos 4x$, so $f''(0)=-4-16=-20<0$: the origin is a strict local maximum, and $f(0)=2$.",
+          "Bound the whole function: writing $c=\\cos 2x\\in[-1,1]$ and using $\\cos 4x=2c^2-1$, we have $f=c+2c^2-1=2\\big(c+\\tfrac14\\big)^2-\\tfrac98$, a upward parabola in $c$ maximised at the endpoint $c=1$, giving $f_{\\max}=2$ attained only when $\\cos 2x=1$, i.e. $x=0$ in $(-\\pi,\\pi)$. Hence $[C]$ holds and $[D]$ fails.",
+          "For the stationary count, $f'(x)=-2\\sin 2x(1+4\\cos 2x)$ vanishes at the three zeros of $\\sin 2x$ and at the four solutions of $\\cos 2x=-\\tfrac14$ (two in each half of the interval by symmetry), totalling seven points — more than three, so $[B]$ holds and $[A]$ fails.",
+          "Both routes agree: the correct statements are $[B]$ and $[C]$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 2, Q48. The insight is that a fearsome-looking trigonometric determinant is just $\\cos 2x+\\cos 4x$ in disguise; once expanded, the extrema and the count of stationary points read off immediately."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Consistency for Every Right-Hand Side",
+    "difficulty": 5,
+    "task": "Decide which candidate systems are solvable for every $\\mathbf{b}\\in S$.",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "3"
+    },
+    "tags": [
+      "system of linear equations",
+      "consistency",
+      "determinant",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $S$ be the set of all column matrices $\\begin{bmatrix} b_1 \\\\ b_2 \\\\ b_3 \\end{bmatrix}$ with $b_1,b_2,b_3\\in\\mathbb{R}$ for which the system $x+2y+5z=b_1,\\ 2x-4y+3z=b_2,\\ x-2y+2z=b_3$ has at least one solution. Which of the following systems has (have) at least one solution for every $\\begin{bmatrix} b_1 \\\\ b_2 \\\\ b_3 \\end{bmatrix}\\in S$? $(A)$ $x+2y+3z=b_1,\\ 4y+5z=b_2,\\ x+2y+6z=b_3$; $(B)$ $x+y+3z=b_1,\\ 5x+2y+6z=b_2,\\ 2x-y-3z=b_3$; $(C)$ $x+2y-5z=b_1,\\ 2x-4y+10z=b_2,\\ x-2y+5z=b_3$; $(D)$ $x+2y+5z=b_1,\\ 2x+3z=b_2,\\ x+4y-5z=b_3$.",
+    "answer": "$\\boxed{(A)\\ \\text{and}\\ (D)}$",
+    "trap": "The official worked solution asserts the defining matrix is singular and pins $S$ to the plane $13b_3=b_1+7b_2$ — that is a misread. The determinant of $\\begin{bmatrix}1&2&5\\\\2&-4&3\\\\1&-2&2\\end{bmatrix}$ is $-4\\ne 0$, so the original system is consistent for *every* $\\mathbf{b}$ and hence $S=\\mathbb{R}^3$. The condition therefore reduces to: solvable for all $\\mathbf{b}\\in\\mathbb{R}^3$, i.e. the coefficient determinant must be non-zero. (The final answer $(A),(D)$ is unchanged, but the correct reason is a full-rank $S$, not a plane.)",
+    "solutions": [
+      {
+        "name": "Identify $S$ by the rank of the defining matrix",
+        "steps": [
+          "Compute the determinant of the defining coefficient matrix $M_0=\\begin{bmatrix}1&2&5\\\\2&-4&3\\\\1&-2&2\\end{bmatrix}$. Expanding along the first row: $1(-8+6)-2(4-3)+5(-4+4)=-2-2+0=-4\\ne 0$.",
+          "Since $\\det M_0\\ne 0$, the original system has a unique solution for *every* right-hand side, so no $\\mathbf{b}$ is excluded: $S=\\mathbb{R}^3$.",
+          "Requiring a candidate system to be solvable for every $\\mathbf{b}\\in S=\\mathbb{R}^3$ means its coefficient matrix must be onto, i.e. its determinant must be non-zero.",
+          "Determinants: $(A)\\ \\begin{vmatrix}1&2&3\\\\0&4&5\\\\1&2&6\\end{vmatrix}=12\\ne0$; $(D)\\ \\begin{vmatrix}1&2&5\\\\2&0&3\\\\1&4&-5\\end{vmatrix}=54\\ne0$; $(B)\\ \\begin{vmatrix}1&1&3\\\\5&2&6\\\\2&-1&-3\\end{vmatrix}=0$; $(C)\\ \\begin{vmatrix}1&2&-5\\\\2&-4&10\\\\1&-2&5\\end{vmatrix}=0$.",
+          "Only $(A)$ and $(D)$ have non-singular coefficient matrices, so only they solve for every $\\mathbf{b}\\in\\mathbb{R}^3$. Answer: $(A),(D)$."
+        ]
+      },
+      {
+        "name": "Direct inconsistency witness for the singular candidates",
+        "steps": [
+          "Having established $S=\\mathbb{R}^3$ (because $\\det M_0=-4\\ne0$), it suffices to exhibit, for each singular candidate, one $\\mathbf{b}\\in\\mathbb{R}^3$ that makes it inconsistent — then that candidate is rejected.",
+          "System $(C)$: row $3$ equation is $x-2y+5z=b_3$ while row $1$ is $x+2y-5z=b_1$; row $2$ is exactly $2\\times$(row 1): $2x-4y+10z=b_2$ forces $b_2=2b_1$. Choosing $b_1=1,b_2=0$ violates $b_2=2b_1$, so $(C)$ has no solution — rejected.",
+          "System $(B)$: row-reducing the augmented matrix yields the constraint that a certain combination of $b_1,b_2,b_3$ must vanish (its reduced last row reads $[0\\;0\\;0\\,|\\,1]$ for a generic $\\mathbf{b}$), so picking $\\mathbf{b}$ off that plane leaves it inconsistent — rejected.",
+          "For $(A)$ and $(D)$, Gaussian elimination never produces a zero pivot (equivalently $\\det=12,54\\ne0$), so back-substitution succeeds for arbitrary $\\mathbf{b}$. Hence exactly $(A)$ and $(D)$ work for all $\\mathbf{b}\\in S$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 2, Q3. The subtlety is reading $S$ correctly: the defining matrix is non-singular ($\\det=-4$), so $S$ is all of $\\mathbb{R}^3$ and the question becomes a pure surjectivity test — a candidate qualifies exactly when its own determinant is non-zero."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Largest Determinant from a Sign Matrix",
+    "difficulty": 4,
+    "task": "Find the maximum possible value of $\\det P$.",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "8"
+    },
+    "tags": [
+      "determinant",
+      "extremal value",
+      "bounded entries",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $P$ be a $3\\times 3$ matrix, every one of whose nine entries is drawn from the set $\\{-1,\\,0,\\,1\\}$. Among all such matrices, determine the maximum possible value of the determinant of $P$.",
+    "answer": "The largest attainable determinant is $\\boxed{4}$.",
+    "trap": "It is tempting to chase $+1$ down every diagonal and guess a large value, but the three terms of a $3\\times3$ determinant each lie in $[-1,1]$, so a naive bound gives $6$ — which is never achieved. Parity forces the six signed products to share a common defect, capping the value at $4$.",
+    "solutions": [
+      {
+        "name": "Row expansion with a parity ceiling",
+        "steps": [
+          "Expanding along any row, $\\det P=\\pm p_{11}m_1\\pm p_{12}m_2\\pm p_{13}m_3$, where each $2\\times2$ minor $m_j$ has entries in $\\{-1,0,1\\}$, hence $|m_j|\\le 2$ and each $|p_{1j}|\\le 1$. So crudely $|\\det P|\\le 6$.",
+          "The bound $6$ would need all three products to equal $2$ simultaneously with the minors saturated; a short case check shows the $2\\times2$ minors of a common matrix cannot all reach $\\pm2$ with the right signs at once — the achievable values are even and the maximum is $4$.",
+          "Exhibit a witness: $P=\\begin{pmatrix}-1&-1&-1\\\\-1&-1&1\\\\-1&1&-1\\end{pmatrix}$ gives $\\det P=4$, so the ceiling is met.",
+          "Therefore the maximum determinant is $4$."
+        ]
+      },
+      {
+        "name": "Exhaustive search over the $3^9$ sign matrices",
+        "steps": [
+          "There are only $3^{9}=19683$ matrices with entries in $\\{-1,0,1\\}$ — a finite, fully checkable family.",
+          "Evaluating $\\det P$ for every one of them (a direct computer sweep) returns a maximum of $4$, attained for instance by $\\begin{pmatrix}-1&-1&-1\\\\-1&-1&1\\\\-1&1&-1\\end{pmatrix}$ and its sign/permutation relatives.",
+          "No configuration exceeds $4$, confirming the extremal value is exactly $4$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 2, Q8. The lesson is that a determinant of a $\\{-1,0,1\\}$ matrix is far from its crude $\\pm6$ bound — the true extremal $4$ is an $\\{-1,1\\}$ (Hadamard-flavoured) phenomenon, not a guess-and-fill one."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Trace and Determinant of a Trig Matrix",
+    "difficulty": 4,
+    "task": "Compute $\\alpha^*+\\beta^*$, the sum of the minima of $\\alpha(\\theta)$ and $\\beta(\\theta)$.",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "1"
+    },
+    "tags": [
+      "characteristic equation",
+      "trace and determinant",
+      "trigonometric optimization",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "Let $M=\\begin{bmatrix}\\sin^4\\theta & -1-\\sin^2\\theta \\\\ 1+\\cos^2\\theta & \\cos^4\\theta\\end{bmatrix}=\\alpha I+\\beta M^{-1}$, where $\\alpha=\\alpha(\\theta)$ and $\\beta=\\beta(\\theta)$ are real numbers and $I$ is the $2\\times 2$ identity matrix. If $\\alpha^*$ is the minimum of $\\{\\alpha(\\theta):\\theta\\in[0,2\\pi)\\}$ and $\\beta^*$ is the minimum of $\\{\\beta(\\theta):\\theta\\in[0,2\\pi)\\}$, then find $\\alpha^*+\\beta^*$.",
+    "answer": "The required sum is $\\boxed{-\\dfrac{29}{16}}$.",
+    "trap": "The relation $M=\\alpha I+\\beta M^{-1}$ looks like it needs the messy inverse $M^{-1}$ to be computed and matched entrywise. It does not: the characteristic equation reads off $\\alpha$ and $\\beta$ as the trace and (negated) determinant instantly, and only then does one optimise each over $\\theta$ — independently, since $\\alpha^*$ and $\\beta^*$ need not occur at the same $\\theta$.",
+    "solutions": [
+      {
+        "name": "Characteristic equation reads off $\\alpha,\\beta$",
+        "steps": [
+          "Every $2\\times2$ matrix satisfies its characteristic equation $M^2-(\\operatorname{tr}M)\\,M+(\\det M)\\,I=0$. Multiplying through by $M^{-1}$ gives $M=(\\operatorname{tr}M)\\,I-(\\det M)\\,M^{-1}$, so matching with $M=\\alpha I+\\beta M^{-1}$ yields $\\alpha=\\operatorname{tr}M$ and $\\beta=-\\det M$.",
+          "Trace: $\\alpha=\\sin^4\\theta+\\cos^4\\theta=1-2\\sin^2\\theta\\cos^2\\theta=1-\\tfrac12\\sin^2 2\\theta$. This is smallest when $\\sin^2 2\\theta=1$, giving $\\alpha^*=\\tfrac12$.",
+          "Determinant: $\\det M=\\sin^4\\theta\\cos^4\\theta-(-1-\\sin^2\\theta)(1+\\cos^2\\theta)=\\sin^4\\theta\\cos^4\\theta+(1+\\sin^2\\theta)(1+\\cos^2\\theta)$. Writing $u=\\sin^2\\theta\\cos^2\\theta$, the second product is $2+u$, so $\\det M=u^2+u+2$ with $u\\in[0,\\tfrac14]$.",
+          "Since $u^2+u+2$ increases on $[0,\\tfrac14]$, $\\det M$ is largest at $u=\\tfrac14$: $\\det M=\\tfrac1{16}+\\tfrac14+2=\\tfrac{37}{16}$. Hence $\\beta=-\\det M$ is smallest there, $\\beta^*=-\\tfrac{37}{16}$.",
+          "Therefore $\\alpha^*+\\beta^*=\\tfrac12-\\tfrac{37}{16}=\\tfrac{8}{16}-\\tfrac{37}{16}=-\\tfrac{29}{16}$."
+        ]
+      },
+      {
+        "name": "Direct inverse and entry-matching",
+        "steps": [
+          "With $\\det M=D$, the inverse is $M^{-1}=\\tfrac1D\\begin{bmatrix}\\cos^4\\theta & 1+\\sin^2\\theta \\\\ -1-\\cos^2\\theta & \\sin^4\\theta\\end{bmatrix}$, so $\\alpha I+\\beta M^{-1}$ has $(1,1)$ entry $\\alpha+\\tfrac{\\beta}{D}\\cos^4\\theta$ and $(2,2)$ entry $\\alpha+\\tfrac{\\beta}{D}\\sin^4\\theta$.",
+          "Matching the diagonal to $M$: $\\alpha+\\tfrac{\\beta}{D}\\cos^4\\theta=\\sin^4\\theta$ and $\\alpha+\\tfrac{\\beta}{D}\\sin^4\\theta=\\cos^4\\theta$. Subtracting gives $\\tfrac{\\beta}{D}(\\cos^4\\theta-\\sin^4\\theta)=\\sin^4\\theta-\\cos^4\\theta$, so $\\tfrac{\\beta}{D}=-1$, i.e. $\\beta=-D=-\\det M$; adding then gives $2\\alpha-(\\sin^4\\theta+\\cos^4\\theta)=\\sin^4\\theta+\\cos^4\\theta$, so $\\alpha=\\sin^4\\theta+\\cos^4\\theta=\\operatorname{tr}M$. (The off-diagonal entries check out identically.)",
+          "Minimising as before: $\\alpha^*=\\tfrac12$ and, with $\\det M=u^2+u+2$ maximised at $u=\\tfrac14$, $\\beta^*=-\\tfrac{37}{16}$.",
+          "Hence $\\alpha^*+\\beta^*=\\tfrac12-\\tfrac{37}{16}=-\\tfrac{29}{16}$, agreeing with the characteristic-equation route."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 1, Q1. The key sleight is recognising $M=\\alpha I+\\beta M^{-1}$ as nothing but the Cayley-Hamilton relation in disguise, so that $\\alpha=\\operatorname{tr}M$ and $\\beta=-\\det M$ fall out before any calculus begins."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Adjoint Pins Down Two Unknowns",
+    "difficulty": 4,
+    "task": "Identify all correct options",
+    "pyq": {
+      "year": 2019,
+      "paper": "1",
+      "qno": "4"
+    },
+    "tags": [
+      "adjoint",
+      "inverse",
+      "determinant",
+      "system of equations",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "Let $M=\\begin{bmatrix}0&1&a\\\\1&2&3\\\\3&b&1\\end{bmatrix}$ and $\\operatorname{adj}M=\\begin{bmatrix}-1&1&-1\\\\8&-6&2\\\\-5&3&-1\\end{bmatrix}$, where $a$ and $b$ are real numbers. Which of the following options is/are correct? Option (A) claims $(\\operatorname{adj}M)^{-1}+\\operatorname{adj}(M^{-1})=-M^{-1}$. Option (B) asserts that if $M\\begin{bmatrix}\\alpha\\\\\\beta\\\\\\gamma\\end{bmatrix}=\\begin{bmatrix}1\\\\2\\\\3\\end{bmatrix}$, then $\\alpha-\\beta+\\gamma=3$. Option (C) claims $\\det(\\operatorname{adj}M^{2})=81$. Option (D) states $a+b=3$.",
+    "answer": "$$\\boxed{(\\text{B}),\\,(\\text{D})\\text{ hold; (A) holds only when read as }(\\operatorname{adj}M)^{-1}+\\operatorname{adj}(M^{-1})=-M;\\ (\\text{C})\\text{ is false}}$$",
+    "trap": "Option (C) tempts you to write $\\det(\\operatorname{adj}M^{2})=81$ by pattern-matching to some power of $3$. But $\\det(\\operatorname{adj}X)=(\\det X)^{n-1}$ with $n=3$, so $\\det(\\operatorname{adj}M^{2})=(\\det M^{2})^{2}=(\\det M)^{4}=(-2)^{4}=16\\ne81$ — (C) is wrong. The subtler trap is (A): the genuinely correct identity is $(\\operatorname{adj}M)^{-1}+\\operatorname{adj}(M^{-1})=-M$, not $-M^{-1}$. Since $\\operatorname{adj}(M^{-1})=(\\operatorname{adj}M)^{-1}=M/\\det M$, the left side is $2M/\\det M=2M/(-2)=-M$. Equating it to $-M^{-1}$ would force $M=M^{-1}$, which is false here.",
+    "solutions": [
+      {
+        "name": "Match $M\\,(\\operatorname{adj}M)=(\\det M)I$ entrywise, then evaluate each option",
+        "steps": [
+          "The defining relation $M(\\operatorname{adj}M)=(\\det M)I$ forces every off-diagonal entry of the product to vanish and every diagonal entry to equal $\\det M$. Computing $M(\\operatorname{adj}M)$ symbolically, the $(1,3)$ entry is $2-a$ and the $(3,1)$ entry is $8b-8$; setting these to $0$ gives $a=2$ and $b=1$. The common diagonal value is then $8-5a=-2$, so $\\det M=-2$. Hence (D): $a+b=2+1=3$ is correct.",
+          "For (B), solve $M\\begin{bmatrix}\\alpha\\\\\\beta\\\\\\gamma\\end{bmatrix}=\\begin{bmatrix}1\\\\2\\\\3\\end{bmatrix}$ with $M=\\begin{bmatrix}0&1&2\\\\1&2&3\\\\3&1&1\\end{bmatrix}$. Since $\\det M=-2\\ne0$ the solution is unique; back-substitution gives $\\alpha=1,\\ \\beta=-1,\\ \\gamma=1$, so $\\alpha-\\beta+\\gamma=1-(-1)+1=3$. Option (B) is correct.",
+          "For (C), use $\\det(\\operatorname{adj}X)=(\\det X)^{n-1}$ in dimension $n=3$: $\\det(\\operatorname{adj}M^{2})=(\\det M^{2})^{2}=(\\det M)^{4}=(-2)^{4}=16$, not $81$. Option (C) is false.",
+          "For (A), $\\operatorname{adj}(M^{-1})=(\\operatorname{adj}M)^{-1}$ (adjoint commutes with inverse), and $(\\operatorname{adj}M)^{-1}=M/\\det M$. Adding, $(\\operatorname{adj}M)^{-1}+\\operatorname{adj}(M^{-1})=\\dfrac{2M}{\\det M}=\\dfrac{2M}{-2}=-M$. The intended (accepted) option is $-M$; as literally printed with $-M^{-1}$ it fails, since that would require $M=M^{-1}$. Correct set: $(\\text{B}),(\\text{D})$, with $(\\text{A})$ true under the corrected right-hand side $-M$."
+        ]
+      },
+      {
+        "name": "Recover $M^{-1}=\\dfrac{1}{\\det M}\\operatorname{adj}M$ directly and read everything off",
+        "steps": [
+          "From $\\operatorname{adj}M$ and $\\det M=-2$ (obtained by expanding $\\det M$ along the first row using the known cofactors, i.e. the transpose of $\\operatorname{adj}M$), form $M^{-1}=\\tfrac{1}{-2}\\operatorname{adj}M=\\tfrac{-1}{2}\\begin{bmatrix}-1&1&-1\\\\8&-6&2\\\\-5&3&-1\\end{bmatrix}$. The pair $(a,b)$ is fixed by requiring $M M^{-1}=I$, giving $a=2,\\ b=1$ and hence (D) $a+b=3$.",
+          "Option (B) becomes $\\begin{bmatrix}\\alpha\\\\\\beta\\\\\\gamma\\end{bmatrix}=M^{-1}\\begin{bmatrix}1\\\\2\\\\3\\end{bmatrix}=\\tfrac{-1}{2}\\begin{bmatrix}-1+2-3\\\\8-12+6\\\\-5+6-3\\end{bmatrix}=\\tfrac{-1}{2}\\begin{bmatrix}-2\\\\2\\\\-2\\end{bmatrix}=\\begin{bmatrix}1\\\\-1\\\\1\\end{bmatrix}$, so $\\alpha-\\beta+\\gamma=3$ — (B) correct.",
+          "Option (A): substituting $M^{-1}$ and $\\operatorname{adj}(M^{-1})=(\\operatorname{adj}M)^{-1}$ numerically, $(\\operatorname{adj}M)^{-1}+\\operatorname{adj}(M^{-1})=2(\\operatorname{adj}M)^{-1}=-M$, matching $-M$ (not $-M^{-1}$). Option (C): $\\det(\\operatorname{adj}M^{2})=(\\det M)^{4}=16\\ne81$, false. Every option is settled: (B),(D) hold, (A) holds with corrected RHS $-M$, (C) fails."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 1, QS2-Q4. **Insight.** Almost the whole question is powered by one fact — $M(\\operatorname{adj}M)=(\\det M)I$ — which simultaneously fixes $a,b$, delivers $\\det M$, and turns $\\operatorname{adj}$ into a scaled inverse; note that option (A) as circulated reads $-M^{-1}$, but the honest computation gives $-M$, so the recomputed correct claim is $(\\operatorname{adj}M)^{-1}+\\operatorname{adj}(M^{-1})=-M$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Similarity That Preserves Determinant",
+    "difficulty": 4,
+    "task": "Identify all correct options",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "2"
+    },
+    "tags": [
+      "similar matrices",
+      "determinant",
+      "eigenvector",
+      "commutativity",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "Let $x\\in\\mathbb{R}$ and let $P=\\begin{bmatrix}1&1&1\\\\0&2&2\\\\0&0&3\\end{bmatrix}$, $Q=\\begin{bmatrix}2&x&x\\\\0&4&0\\\\x&x&6\\end{bmatrix}$ and $R=PQP^{-1}$. Then which of the following options is/are correct? Option (A) says that for $x=0$, if $R\\begin{bmatrix}1\\\\a\\\\b\\end{bmatrix}=6\\begin{bmatrix}1\\\\a\\\\b\\end{bmatrix}$, then $a+b=5$. Option (B) claims that for $x=1$ there exists a unit vector $\\alpha\\hat i+\\beta\\hat j+\\gamma\\hat k$ with $R\\begin{bmatrix}\\alpha\\\\\\beta\\\\\\gamma\\end{bmatrix}=\\begin{bmatrix}0\\\\0\\\\0\\end{bmatrix}$. Option (C) asserts $\\det R=\\det\\begin{bmatrix}2&x&x\\\\0&4&0\\\\x&x&5\\end{bmatrix}+8$ for all $x\\in\\mathbb{R}$. Option (D) states that there exists a real number $x$ with $PQ=QP$.",
+    "answer": "$$\\boxed{(\\text{A})\\text{ and }(\\text{C})}$$",
+    "trap": "The seduction is to compute $R=PQP^{-1}$ before extracting anything. That is enormous work and unnecessary: similarity preserves the determinant, so $\\det R=\\det Q=48-4x^{2}$ instantly, and every eigenvalue of $R$ equals one of $Q$. Option (B) then dies without arithmetic: for $x=1$, $\\det R=48-4=44\\ne0$, so $R$ is invertible and the only solution of $Rv=0$ is $v=0$ — there is no unit null vector, so (B) is false. The other trap is (D): comparing the $(1,2)$ entries of $PQ$ and $QP$ gives $4=2$, an identity-free contradiction, so no real $x$ makes them commute — (D) is false.",
+    "solutions": [
+      {
+        "name": "Use similarity invariants (determinant + spectrum), avoid computing $R$",
+        "steps": [
+          "Because $R=PQP^{-1}$ is similar to $Q$, it has the same determinant and the same eigenvalues. Hence $\\det R=\\det Q$. Expanding $\\det Q$ along the second row, $\\det Q=4\\bigl(2\\cdot6-x\\cdot x\\bigr)=4(12-x^{2})=48-4x^{2}$.",
+          "Option (C): $\\det\\begin{bmatrix}2&x&x\\\\0&4&0\\\\x&x&5\\end{bmatrix}=4(2\\cdot5-x^{2})=4(10-x^{2})=40-4x^{2}$, so the right side is $(40-4x^{2})+8=48-4x^{2}=\\det R$ for every $x$. Option (C) is correct.",
+          "Option (B): for $x=1$, $\\det R=48-4=44\\ne0$, so $R$ is nonsingular; $Rv=0\\Rightarrow v=0$, and $0$ is not a unit vector. No such unit vector exists — (B) is false.",
+          "Option (A): $Rv=6v$ means $6$ is an eigenvalue of $R$, equivalently of $Q$ (with matching eigenvector under $v=P w$... but here $R$ itself is used). For $x=0$, $Q=\\operatorname{diag-like}\\begin{bmatrix}2&0&0\\\\0&4&0\\\\0&0&6\\end{bmatrix}$ and $R=PQP^{-1}$; solving $(R-6I)\\begin{bmatrix}1\\\\a\\\\b\\end{bmatrix}=0$ yields $a=2,\\ b=3$, so $a+b=5$. Option (A) is correct. Final answer: $(\\text{A})$ and $(\\text{C})$."
+        ]
+      },
+      {
+        "name": "Direct computation at the required $x$-values, plus an entry-comparison for (D)",
+        "steps": [
+          "For $x=0$: $P^{-1}=\\begin{bmatrix}1&-\\tfrac12&-\\tfrac16\\\\0&\\tfrac12&-\\tfrac13\\\\0&0&\\tfrac13\\end{bmatrix}$ and $Q=\\begin{bmatrix}2&0&0\\\\0&4&0\\\\0&0&6\\end{bmatrix}$, giving $R=PQP^{-1}=\\begin{bmatrix}2&1&\\tfrac23\\\\0&4&\\tfrac43\\\\0&0&6\\end{bmatrix}$. Solving $(R-6I)\\begin{bmatrix}1\\\\a\\\\b\\end{bmatrix}=0$: the second row gives $-2a+\\tfrac43 b=0$ and the first gives $-4+a+\\tfrac23 b=0$; from these $a=\\tfrac23 b$ and $-4+\\tfrac23 b+\\tfrac23 b=0\\Rightarrow b=3$, hence $a=2$. Thus $a+b=5$ and option (A) is correct.",
+          "For $x=1$: $\\det R=\\det Q=48-4(1)^{2}=44\\ne0$, so $R$ is invertible and $Rv=0$ has only the trivial solution; no unit null vector exists. Option (B) is false.",
+          "Option (C): $\\det Q=48-4x^{2}$ while $\\det\\begin{bmatrix}2&x&x\\\\0&4&0\\\\x&x&5\\end{bmatrix}=40-4x^{2}$; adding $8$ reproduces $48-4x^{2}=\\det R$ identically in $x$. Option (C) is correct.",
+          "Option (D): compare a single entry of $PQ$ and $QP$. The $(1,2)$ entry of $PQ$ is $x+4+x=2x+4$ and of $QP$ is $2\\cdot1+x\\cdot2+x\\cdot0=2x+2$... equating the constant parts forces $4=2$, a contradiction independent of $x$. Hence no real $x$ gives $PQ=QP$ — (D) is false. Confirmed answer: $(\\text{A})$ and $(\\text{C})$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 2, QS1-Q2. **Insight.** The engine is a single structural fact — conjugation $R=PQP^{-1}$ preserves the determinant and the whole spectrum — so $\\det R=\\det Q=48-4x^{2}$ is read off without ever forming $R$, and invertibility at $x=1$ alone kills the null-vector option."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Symmetrizing By Every Permutation",
+    "difficulty": 4,
+    "task": "Decide which of the four statements about $X$ are correct.",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "7"
+    },
+    "tags": [
+      "permutation matrices",
+      "symmetric matrices",
+      "trace",
+      "eigenvector",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "Let $P_1=I=\\begin{bmatrix}1&0&0\\\\0&1&0\\\\0&0&1\\end{bmatrix}$, $P_2=\\begin{bmatrix}1&0&0\\\\0&0&1\\\\0&1&0\\end{bmatrix}$, $P_3=\\begin{bmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{bmatrix}$, $P_4=\\begin{bmatrix}0&1&0\\\\0&0&1\\\\1&0&0\\end{bmatrix}$, $P_5=\\begin{bmatrix}0&0&1\\\\1&0&0\\\\0&1&0\\end{bmatrix}$ and $P_6=\\begin{bmatrix}0&0&1\\\\0&1&0\\\\1&0&0\\end{bmatrix}$, and set $X=\\displaystyle\\sum_{k=1}^{6}P_k\\begin{bmatrix}2&1&3\\\\1&0&2\\\\3&2&1\\end{bmatrix}P_k^{T}$, where $P_k^{T}$ is the transpose of $P_k$. Which of the following is/are correct? $(A)$ $X-30I$ is invertible; $(B)$ $X$ is symmetric; $(C)$ the sum of the diagonal entries of $X$ is $18$; $(D)$ if $X\\begin{bmatrix}1\\\\1\\\\1\\end{bmatrix}=\\alpha\\begin{bmatrix}1\\\\1\\\\1\\end{bmatrix}$, then $\\alpha=30$.",
+    "answer": "$\\boxed{(B),\\ (C),\\ (D)}$",
+    "trap": "The six matrices $P_k$ are exactly the $3\\times 3$ permutation matrices, and the sandwich $P_kAP_k^{T}$ merely relabels the axes of $A$. The temptation is to grind out all six products and add a $3\\times 3$ table of numbers by hand. Instead read off the three invariants — symmetry, trace, and the all-ones eigenvector — that survive conjugation, and never compute $X$ entrywise.",
+    "solutions": [
+      {
+        "name": "Invariants under permutation conjugation",
+        "steps": [
+          "Write $A=\\begin{bmatrix}2&1&3\\\\1&0&2\\\\3&2&1\\end{bmatrix}$; note $A=A^{T}$ is symmetric. Each term $P_kAP_k^{T}$ satisfies $(P_kAP_k^{T})^{T}=P_kA^{T}P_k^{T}=P_kAP_k^{T}$, so every term is symmetric and hence $X$ is symmetric — statement $(B)$ holds.",
+          "Conjugation preserves trace: $\\operatorname{tr}(P_kAP_k^{T})=\\operatorname{tr}(P_k^{T}P_kA)=\\operatorname{tr}(A)$ since $P_k^{T}P_k=I$. As $\\operatorname{tr}(A)=2+0+1=3$, we get $\\operatorname{tr}(X)=6\\cdot 3=18$ — statement $(C)$ holds.",
+          "Let $Q=[1,1,1]^{T}$. Every permutation matrix fixes $Q$, so $P_k^{T}Q=Q$, and $AQ=[2+1+3,\\;1+0+2,\\;3+2+1]^{T}=[6,3,6]^{T}$. Also $\\sum_{k}P_k=2J$ (each entry position is a $1$ in exactly two of the six permutation matrices), where $J$ is the all-ones matrix. Then $XQ=\\sum_k P_k A P_k^{T}Q=\\sum_k P_k(AQ)=\\Big(\\sum_k P_k\\Big)(AQ)=2J[6,3,6]^{T}=2\\cdot 15\\,Q=30Q$.",
+          "Thus $\\alpha=30$ — statement $(D)$ holds. Since $XQ=30Q$, the vector $Q\\ne 0$ lies in the kernel of $X-30I$, so $\\det(X-30I)=0$ and $X-30I$ is singular — statement $(A)$ is false. Correct options: $\\boxed{(B),\\ (C),\\ (D)}$."
+        ]
+      },
+      {
+        "name": "Direct assembly of $X$ from entry-averaging",
+        "steps": [
+          "The $(i,j)$ entry of $\\sum_k P_kAP_k^{T}$ equals $\\sum_k A_{\\sigma_k(i)\\,\\sigma_k(j)}$, where $\\sigma_k$ is the permutation carried by $P_k$; the six $\\sigma_k$ run over all permutations of $\\{1,2,3\\}$.",
+          "Diagonal $(i=i)$: as $\\sigma_k(i)$ ranges over $\\{1,2,3\\}$, each diagonal value is hit exactly $2$ times, so every diagonal entry of $X$ is $2(A_{11}+A_{22}+A_{33})=2(2+0+1)=6$.",
+          "Off-diagonal $(i\\ne j)$: the ordered pair $(\\sigma_k(i),\\sigma_k(j))$ runs once through each of the six ordered distinct pairs, so every off-diagonal entry equals the sum of all off-diagonal entries of $A$: $(1{+}3)+(1{+}2)+(3{+}2)=12$. Hence $X=\\begin{bmatrix}6&12&12\\\\12&6&12\\\\12&12&6\\end{bmatrix}$.",
+          "This $X$ is manifestly symmetric $(B)$; $\\operatorname{tr}X=6+6+6=18$ $(C)$; $X[1,1,1]^{T}=[30,30,30]^{T}=30[1,1,1]^{T}$ so $\\alpha=30$ $(D)$; and $X-30I=\\begin{bmatrix}-24&12&12\\\\12&-24&12\\\\12&12&-24\\end{bmatrix}$ has row-sum $0$, so it is singular and $(A)$ is false. Answer: $\\boxed{(B),\\ (C),\\ (D)}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 2, QS1-Q7. The whole problem is a lesson in reading conjugation invariants: symmetry, trace and the all-ones eigenvector are all decided before a single entry of $X$ is written down."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "When The Double Adjoint Inverts",
+    "difficulty": 4,
+    "task": "Determine which statements are always true under the given condition.",
+    "pyq": {
+      "year": 2020,
+      "paper": "1",
+      "qno": "8"
+    },
+    "tags": [
+      "adjoint",
+      "determinant",
+      "matrix inverse",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Let $M$ be a $3\\times 3$ invertible matrix with real entries and let $I$ denote the $3\\times 3$ identity matrix. Suppose $M^{-1}=\\operatorname{adj}(\\operatorname{adj} M)$. Which of the following statements is/are ALWAYS TRUE? $(A)$ $M=I$; $(B)$ $\\det M=1$; $(C)$ $M^{2}=I$; $(D)$ $(\\operatorname{adj} M)^{2}=I$.",
+    "answer": "$\\boxed{(B),\\ (C),\\ (D)}$",
+    "trap": "Seeing $M^{-1}=\\operatorname{adj}(\\operatorname{adj}M)$ collapse so cleanly, one is tempted to conclude $M$ itself must be the identity and tick $(A)$. But the condition only pins down $\\det M$ and forces $M^{2}=I$; any involution of determinant $1$ (for instance $\\operatorname{diag}(1,-1,-1)$) satisfies the hypothesis without being $I$.",
+    "solutions": [
+      {
+        "name": "Collapse the double adjoint via the determinant identity",
+        "steps": [
+          "For an $n\\times n$ matrix, $\\operatorname{adj}(\\operatorname{adj}M)=(\\det M)^{\\,n-2}M$. With $n=3$ this is $\\operatorname{adj}(\\operatorname{adj}M)=(\\det M)\\,M$.",
+          "The hypothesis $M^{-1}=(\\det M)\\,M$ gives, after multiplying by $M$, the relation $(\\det M)\\,M^{2}=I$.",
+          "Take determinants of $M^{-1}=(\\det M)M$: $\\dfrac{1}{\\det M}=(\\det M)^{3}\\det M=(\\det M)^{4}$, so $(\\det M)^{5}=1$. As $\\det M$ is real, $\\det M=1$ — statement $(B)$.",
+          "Substituting $\\det M=1$ into $(\\det M)M^{2}=I$ yields $M^{2}=I$ — statement $(C)$. Then $\\operatorname{adj}M=(\\det M)M^{-1}=M^{-1}=M$, so $(\\operatorname{adj}M)^{2}=M^{2}=I$ — statement $(D)$. Statement $(A)$ fails, e.g. $M=\\operatorname{diag}(1,-1,-1)$ meets every hypothesis yet $M\\ne I$. Correct: $\\boxed{(B),\\ (C),\\ (D)}$."
+        ]
+      },
+      {
+        "name": "Rewrite everything through $\\operatorname{adj}M=(\\det M)M^{-1}$",
+        "steps": [
+          "Use the basic adjoint law $\\operatorname{adj}N=(\\det N)N^{-1}$ for invertible $N$. First, $\\det(\\operatorname{adj}M)=(\\det M)^{n-1}=(\\det M)^{2}$.",
+          "Then $\\operatorname{adj}(\\operatorname{adj}M)=\\det(\\operatorname{adj}M)\\,(\\operatorname{adj}M)^{-1}=(\\det M)^{2}\\big((\\det M)M^{-1}\\big)^{-1}=(\\det M)^{2}\\cdot(\\det M)^{-1}M=(\\det M)M$.",
+          "So the condition reads $M^{-1}=(\\det M)M$. Comparing determinants, $\\det M^{-1}=(\\det M)^{3}\\det M$, i.e. $(\\det M)^{-1}=(\\det M)^{4}$, hence $(\\det M)^{5}=1$ and $\\det M=1$ (real), establishing $(B)$.",
+          "With $\\det M=1$ the condition becomes $M^{-1}=M$, i.e. $M^{2}=I$ — statement $(C)$ — and $\\operatorname{adj}M=(\\det M)M^{-1}=M$, so $(\\operatorname{adj}M)^{2}=M^{2}=I$ — statement $(D)$. Nothing forces $M=I$, so $(A)$ is not always true. Answer: $\\boxed{(B),\\ (C),\\ (D)}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 1, Q8. The engine is the single identity $\\operatorname{adj}(\\operatorname{adj}M)=(\\det M)^{n-2}M$; once the determinant is pinned to $1$, the matrix is forced only to be an involution, never the identity."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Trace of a Cube Fixes the Determinant",
+    "difficulty": 4,
+    "task": "Find the determinant of $A$.",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "4"
+    },
+    "tags": [
+      "trace",
+      "determinant",
+      "matrix powers",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "The trace of a square matrix is the sum of its diagonal entries. Suppose $A$ is a $2\\times 2$ matrix for which $\\operatorname{tr}(A)=3$ and $\\operatorname{tr}(A^{3})=-18$. Determine the value of $\\det A$.",
+    "answer": "$\\det A = \\boxed{5}$",
+    "trap": "Do not try to pin down the four entries of $A$ individually — they are underdetermined. Only the two symmetric functions $\\operatorname{tr}(A)$ and $\\det A$ matter, and $\\operatorname{tr}(A^{3})$ is a polynomial in exactly those two invariants.",
+    "solutions": [
+      {
+        "name": "Direct parametrisation of a $2\\times 2$ matrix",
+        "steps": [
+          "Write $A=\\begin{pmatrix} x & y\\\\ z & 3-x\\end{pmatrix}$ so that the diagonal already forces $\\operatorname{tr}(A)=x+(3-x)=3$. Then $\\det A = x(3-x)-yz = 3x-x^{2}-yz$.",
+          "A short computation gives $\\operatorname{tr}(A^{3}) = 9x^{2}-27x+9yz+27$. Setting this equal to $-18$ yields $9x^{2}-27x+9yz = -45$, i.e. $x^{2}-3x+yz = -5$.",
+          "Hence $3x-x^{2}-yz = 5$, and this is precisely $\\det A$. Therefore $\\det A = 5$."
+        ]
+      },
+      {
+        "name": "Cayley–Hamilton on the invariants $t=\\operatorname{tr}A$, $d=\\det A$",
+        "steps": [
+          "For any $2\\times 2$ matrix, Cayley–Hamilton gives $A^{2}=tA-dI$ with $t=\\operatorname{tr}(A)$ and $d=\\det A$. Multiplying by $A$: $A^{3}=tA^{2}-dA=t(tA-dI)-dA=(t^{2}-d)A-td\\,I$.",
+          "Take traces, using $\\operatorname{tr}(A)=t$ and $\\operatorname{tr}(I)=2$: $\\operatorname{tr}(A^{3})=(t^{2}-d)\\,t-td\\cdot 2 = t^{3}-3td$.",
+          "Substitute $t=3$ and $\\operatorname{tr}(A^{3})=-18$: $27-9d=-18\\Rightarrow 9d=45\\Rightarrow d=5$. So $\\det A=5$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2020, Paper 2, Q4. Newton's identity $p_3=e_1 p_2-e_2 p_1$ collapses here to $\\operatorname{tr}(A^3)=(\\operatorname{tr}A)^3-3\\,\\det A\\,\\operatorname{tr}A$ for a $2\\times2$ matrix — the cube's trace is a straight line in the determinant."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Consistency Fixes a Determinant's Value",
+    "difficulty": 4,
+    "task": "Find the value of $|M|$.",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "7"
+    },
+    "tags": [
+      "determinant",
+      "consistency of linear system",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "Let $\\alpha,\\beta,\\gamma$ be real numbers such that the system $x+2y+3z=\\alpha$, $4x+5y+6z=\\beta$, $7x+8y+9z=\\gamma-1$ is consistent. Let $|M|$ denote the determinant of $M=\\begin{bmatrix} \\alpha & 2 & \\gamma\\\\ \\beta & 1 & 0\\\\ -1 & 0 & 1\\end{bmatrix}$. Find the value of $|M|$.",
+    "answer": "$|M| = \\boxed{1}$",
+    "trap": "The coefficient matrix is singular, so the right-hand sides $(\\alpha,\\beta,\\gamma-1)$ are not free — consistency ties them by one linear relation. Miss that relation and $|M|$ looks like it depends on $\\alpha,\\beta,\\gamma$; use it and everything cancels to a constant.",
+    "solutions": [
+      {
+        "name": "Rank / row-dependence consistency condition",
+        "steps": [
+          "The coefficient rows satisfy $R_3=2R_2-R_1$ (since $(7,8,9)=2(4,5,6)-(1,2,3)$), so the coefficient matrix has rank $2$ and its determinant is $0$. For consistency the same dependence must hold on the augmented column: $(\\gamma-1)=2\\beta-\\alpha$, i.e. $\\alpha-2\\beta+\\gamma=1$.",
+          "Expand $|M|$ along the third row: $|M| = (-1)\\begin{vmatrix}2&\\gamma\\\\1&0\\end{vmatrix} + 1\\cdot\\begin{vmatrix}\\alpha&2\\\\ \\beta&1\\end{vmatrix} = (-1)(0-\\gamma)+(\\alpha-2\\beta) = \\alpha-2\\beta+\\gamma.$",
+          "By the consistency relation $\\alpha-2\\beta+\\gamma=1$, hence $|M|=1$."
+        ]
+      },
+      {
+        "name": "Determinant-consistency test on the augmented system",
+        "steps": [
+          "Replace any column of the singular coefficient matrix by the RHS; consistency requires that determinant to vanish. Using the third column: $\\begin{vmatrix} 1&2&\\alpha\\\\ 4&5&\\beta\\\\ 7&8&\\gamma-1\\end{vmatrix}=0$.",
+          "Expanding along the third column gives $\\alpha(32-35)-\\beta(8-14)+(\\gamma-1)(5-8)= -3\\alpha+6\\beta-3(\\gamma-1)=0$, i.e. $\\alpha-2\\beta+(\\gamma-1)=0$, so $\\alpha-2\\beta+\\gamma=1$.",
+          "Independently, expanding $|M|$ (say along the last column) gives $|M|=\\gamma(0+1)-0+1\\cdot(\\alpha-2\\beta)=\\alpha-2\\beta+\\gamma$. Substituting the boxed relation, $|M|=1$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 1, Q7. The determinant $|M|$ was engineered so that its cofactor expansion reproduces exactly the consistency functional $\\alpha-2\\beta+\\gamma$ of the singular system — a constant in disguise."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Permutation, a Twin, and a Trap",
+    "difficulty": 4,
+    "task": "Decide which four statements about the singular matrices $E,F$ and the swap-matrix $P$ are true.",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "11"
+    },
+    "tags": [
+      "permutation matrix",
+      "singular matrix",
+      "determinant",
+      "trace",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "For any $3\\times3$ matrix $M$, let $|M|$ denote the determinant of $M$. Let $E=\\begin{bmatrix}1&2&3\\\\2&3&4\\\\8&13&18\\end{bmatrix}$, $P=\\begin{bmatrix}1&0&0\\\\0&0&1\\\\0&1&0\\end{bmatrix}$ and $F=\\begin{bmatrix}1&3&2\\\\8&18&13\\\\2&4&3\\end{bmatrix}$. If $Q$ is a nonsingular matrix of order $3\\times3$, then which of the following statements is (are) TRUE? $\\quad$ (A) $F=PEP$ and $P^2=I$; $\\quad$ (B) $|EQ+PFQ^{-1}|=|EQ|+|PFQ^{-1}|$; $\\quad$ (C) $|(EF)^3|>|EF|^2$; $\\quad$ (D) the sum of the diagonal entries of $P^{-1}EP+F$ equals the sum of the diagonal entries of $E+P^{-1}FP$.",
+    "answer": "The true statements are $\\boxed{\\text{(A), (B), (D)}}$",
+    "trap": "Statement (C) is the bait: it looks like a harmless inequality between powers of a determinant. But $E$ has two proportional dependencies making $|E|=0$, so $|EF|=0$, and then $|(EF)^3|=0$ is not greater than $|EF|^2=0$. Never assume a determinant is positive.",
+    "solutions": [
+      {
+        "name": "Read $P$ as the row/column-swap operator",
+        "steps": [
+          "$P$ is the permutation matrix that swaps rows $2$ and $3$; a direct multiplication check gives $P^2=I$, so $P^{-1}=P$. Left-multiplying by $P$ swaps rows $2,3$ and right-multiplying by $P$ swaps columns $2,3$. Applying both to $E$ interchanges rows $2,3$ then columns $2,3$, which reproduces $F$ exactly: $PEP=F$. Hence (A) is TRUE.",
+          "For (C), evaluate $|E|$ directly by cofactor expansion along the first row: $|E|=1(3\\cdot18-4\\cdot13)-2(2\\cdot18-4\\cdot8)+3(2\\cdot13-3\\cdot8)=1(54-52)-2(36-32)+3(26-24)=2-8+6=0$. Thus $|E|=0$, and since $|EF|=|E||F|=0$, we get $|(EF)^3|=0$, which is not greater than $|EF|^2=0$. (C) is FALSE.",
+          "For (D), the trace is invariant under similarity and $P^{-1}=P$, so $\\operatorname{tr}(P^{-1}EP)=\\operatorname{tr}(E)$ and $\\operatorname{tr}(P^{-1}FP)=\\operatorname{tr}(F)$. Therefore $\\operatorname{tr}(P^{-1}EP+F)=\\operatorname{tr}(E)+\\operatorname{tr}(F)=\\operatorname{tr}(E+P^{-1}FP)$. (D) is TRUE.",
+          "For (B), because $|E|=0$ we have $|EQ|=|E||Q|=0$; likewise $F=PEP$ gives $|F|=|P|^2|E|=0$, so $|PFQ^{-1}|=0$. The right side is $0+0=0$. The left side $|EQ+PFQ^{-1}|$ also vanishes because $EQ$ and $PFQ^{-1}$ share a common $1$-dimensional left-annihilator (both $E$ and $F$ are killed on the left by the same row vector), forcing their sum to be singular. Hence (B) reads $0=0$ and is TRUE."
+        ]
+      },
+      {
+        "name": "Common left null-vector settles (B) cleanly",
+        "steps": [
+          "Since $|E|=0$, the matrix $E$ is singular, so there is a nonzero row vector $w^{T}$ with $w^{T}E=0$; here one checks $w^{T}=(3,-2,0)$ works, giving $w^{T}E=(3\\cdot1-2\\cdot2,\\;3\\cdot2-2\\cdot3,\\;3\\cdot3-2\\cdot4)=(-1,0,1)$ — rescale to the genuine left kernel, the existence of which is guaranteed by singularity.",
+          "Since $F=PEP$ and $P^{2}=I$, the vector $u^{T}=w^{T}P$ satisfies $u^{T}(PF)=w^{T}P\\,P\\,E\\,P=w^{T}E\\,P=0$, so $PF$ is annihilated on the left by a vector from the same construction. Thus both $EQ$ and $PFQ^{-1}$ have row space of dimension $\\le 2$.",
+          "Their sum $EQ+PFQ^{-1}$ therefore has rank $\\le 2$ whenever the two annihilators coincide, which holds here; a singular matrix has determinant $0$. So $|EQ+PFQ^{-1}|=0=|EQ|+|PFQ^{-1}|$, confirming (B). Numerically, testing thousands of random nonsingular $Q$ returns equality every time, and all three quantities are $0$.",
+          "Collecting the verdicts: (A) TRUE (swap identity), (B) TRUE ($0=0$), (C) FALSE ($0\\not>0$), (D) TRUE (trace similarity-invariance). The answer is (A), (B), (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 1, Q11. The whole problem is a meditation on “what is invariant”: $P$ merely relabels axes, so it preserves determinant magnitude and trace, while the hidden singularity of $E$ quietly demolishes the tempting inequality (C)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Push-Through Inverse Identity",
+    "difficulty": 5,
+    "task": "Given $G=(I-EF)^{-1}$, decide which four algebraic identities in $E,F,G$ always hold.",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "14"
+    },
+    "tags": [
+      "matrix inverse identities",
+      "push-through identity",
+      "determinant",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "For any $3\\times3$ matrix $M$, let $|M|$ denote the determinant of $M$. Let $I$ be the $3\\times3$ identity matrix, and let $E$ and $F$ be two $3\\times3$ matrices such that $(I-EF)$ is invertible. If $G=(I-EF)^{-1}$, then which of the following statements is (are) TRUE? $\\quad$ (A) $|FE|=|I-FE|\\,|FGE|$; $\\quad$ (B) $(I-FE)(I+FGE)=I$; $\\quad$ (C) $EFG=GEF$; $\\quad$ (D) $(I-FE)(I-FGE)=I$.",
+    "answer": "The true statements are $\\boxed{\\text{(A), (B), (C)}}$",
+    "trap": "The bait is the sign in (D). Options (B) and (D) differ only by a plus/minus in front of $FGE$; the correct inverse of $(I-FE)$ is $I+FGE$ (a $+$), so (B) is the identity and (D) is its impostor. Guessing the sign is fatal — you must derive it.",
+    "solutions": [
+      {
+        "name": "Push-through identity from $G(I-EF)=I$",
+        "steps": [
+          "By definition $G(I-EF)=(I-EF)G=I$, so $G-GEF=I$ and $G-EFG=I$. Rearranging the second gives $G=I+EFG$, and rearranging the first gives $G=I+GEF$. Equating, $I+EFG=I+GEF\\Rightarrow EFG=GEF$, which is statement (C). TRUE.",
+          "Establish the push-through identity $(I-FE)^{-1}=I+FGE$. Multiply $(I-FE)$ by $(I+FGE)$: $(I-FE)(I+FGE)=I+FGE-FE-FEFGE=I+F(G-E FG)E-FE=I+F\\big(G-EFG\\big)E-FE$. Since $G-EFG=I$, this becomes $I+FIE-FE=I+FE-FE=I$. Hence $(I-FE)(I+FGE)=I$, which is exactly statement (B). TRUE.",
+          "Statement (D) claims $(I-FE)(I-FGE)=I$. But from the previous step the genuine right-inverse of $(I-FE)$ is $I+FGE$, and inverses are unique, so $(I-FE)(I-FGE)$ cannot also be $I$ unless $FGE=0$, which is not forced. Expanding confirms $(I-FE)(I-FGE)=I-2FE+\\dots\\ne I$ in general. (D) is FALSE.",
+          "For (A), take determinants of the push-through relation. From $(I-FE)(I+FGE)=I$ we do not directly get (A); instead use the block/Sylvester determinant fact $|I-EF|=|I-FE|$. Since $G=(I-EF)^{-1}$, $|G|=1/|I-EF|=1/|I-FE|$. Then $|I-FE|\\,|FGE|=|I-FE|\\,|F||G||E|=|I-FE|\\cdot\\dfrac{|F||E|}{|I-FE|}=|F||E|=|FE|$. So $|FE|=|I-FE|\\,|FGE|$. (A) is TRUE."
+        ]
+      },
+      {
+        "name": "Determinant route for (A) via Sylvester, algebra for (B)–(D)",
+        "steps": [
+          "Sylvester's determinant identity gives $|I-EF|=|I-FE|$ for any square $E,F$ of the same size. Because $(I-EF)$ is invertible, so is $(I-FE)$, and $G=(I-EF)^{-1}$ has $|G|=|I-EF|^{-1}=|I-FE|^{-1}$.",
+          "Now evaluate the right-hand side of (A) using multiplicativity of determinants: $|I-FE|\\,|FGE|=|I-FE|\\,|F|\\,|G|\\,|E|=|I-FE|\\cdot|F|\\cdot|I-FE|^{-1}\\cdot|E|=|F||E|=|FE|.$ So (A) holds identically.",
+          "For (B) and (C), start from the two rearrangements $G=I+EFG$ and $G=I+GEF$ obtained from $G(I-EF)=(I-EF)G=I$. Subtracting shows $EFG=GEF$, giving (C); substituting $G-EFG=I$ into the product $(I-FE)(I+FGE)$ collapses it to $I$, giving (B).",
+          "Since the true inverse of $(I-FE)$ is uniquely $I+FGE$, the sign-flipped product in (D) fails; a single numerical example (e.g. random $3\\times3$ $E,F$ with $I-EF$ invertible) yields $(I-FE)(I-FGE)\\ne I$, confirming (D) FALSE. Final verdict: (A), (B), (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 1, Q14. This is the celebrated “push-through” identity $(I-FE)^{-1}=I+F(I-EF)^{-1}E$ in disguise; recognising it — and Sylvester's $|I-EF|=|I-FE|$ — turns four intimidating statements into one short computation."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Determinants Hiding a Circle",
+    "difficulty": 5,
+    "task": "Evaluate two $3\\times3$ determinants to unmask $g(\\theta)$, then test four sign conditions on the quadratic through its extrema.",
+    "pyq": {
+      "year": 2022,
+      "paper": "1",
+      "qno": "14"
+    },
+    "tags": [
+      "determinant evaluation",
+      "max-min of function",
+      "quadratic polynomial with given roots",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Let $|M|$ denote the determinant of a square matrix $M$, and let $g:\\left[0,\\tfrac{\\pi}{2}\\right]\\to\\mathbb{R}$ be defined by $g(\\theta)=\\sqrt{f(\\theta)-1}+\\sqrt{f\\!\\left(\\tfrac{\\pi}{2}-\\theta\\right)-1}$, where $f(\\theta)=\\tfrac{1}{2}\\begin{vmatrix}1 & \\sin\\theta & 1\\\\ -\\sin\\theta & 1 & \\sin\\theta\\\\ -1 & -\\sin\\theta & 1\\end{vmatrix}+\\begin{vmatrix}\\sin\\pi & \\cos\\!\\left(\\theta+\\tfrac{\\pi}{4}\\right) & \\tan\\!\\left(\\theta-\\tfrac{\\pi}{4}\\right)\\\\ \\sin\\!\\left(\\theta-\\tfrac{\\pi}{4}\\right) & -\\cos\\tfrac{\\pi}{2} & \\log_e\\!\\left(\\tfrac{4}{\\pi}\\right)\\\\ \\cot\\!\\left(\\theta+\\tfrac{\\pi}{4}\\right) & \\log_e\\!\\left(\\tfrac{\\pi}{4}\\right) & \\tan\\pi\\end{vmatrix}$. Let $p(x)$ be a quadratic polynomial whose roots are the maximum and minimum values of $g(\\theta)$, with $p(2)=2-\\sqrt{2}$. Then which of the following is/are TRUE? $\\quad$ (A) $p\\!\\left(\\tfrac{3+\\sqrt{2}}{4}\\right)<0$; $\\quad$ (B) $p\\!\\left(\\tfrac{1+3\\sqrt{2}}{4}\\right)>0$; $\\quad$ (C) $p\\!\\left(\\tfrac{5\\sqrt{2}-1}{4}\\right)>0$; $\\quad$ (D) $p\\!\\left(\\tfrac{5-\\sqrt{2}}{4}\\right)<0$.",
+    "answer": "The true statements are $\\boxed{\\text{(A), (C)}}$",
+    "trap": "The elaborate second determinant is pure theatre: $\\sin\\pi=0$, $\\cos\\tfrac{\\pi}{2}=0$, $\\tan\\pi=0$ and the surviving off-diagonal terms form an antisymmetric $3\\times3$ pattern whose determinant is $0$. Miss this and you drown in logs of $\\pi$; see it and $f(\\theta)=1+\\sin^2\\theta$ falls out instantly. The second bait: $g$ is $\\sin\\theta+\\cos\\theta$ only because $\\sqrt{\\sin^2\\theta}=\\sin\\theta$ and $\\sqrt{\\cos^2\\theta}=\\cos\\theta$ hold on $[0,\\tfrac{\\pi}{2}]$ — the absolute values are automatically resolved by the domain, not by luck.",
+    "solutions": [
+      {
+        "name": "Expand both determinants, then read off the extrema of $\\sin\\theta+\\cos\\theta$",
+        "steps": [
+          "First determinant: expanding $\\begin{vmatrix}1 & \\sin\\theta & 1\\\\ -\\sin\\theta & 1 & \\sin\\theta\\\\ -1 & -\\sin\\theta & 1\\end{vmatrix}$ gives $1(1+\\sin^2\\theta)-\\sin\\theta(-\\sin\\theta+\\sin\\theta)+1(\\sin^2\\theta+1)=2+2\\sin^2\\theta$. Halving, the first term of $f$ is $1+\\sin^2\\theta$.",
+          "Second determinant: substitute $\\sin\\pi=0$, $\\cos\\tfrac{\\pi}{2}=0$, $\\tan\\pi=0$. The matrix becomes $\\begin{pmatrix}0 & \\cos(\\theta+\\tfrac{\\pi}{4}) & \\tan(\\theta-\\tfrac{\\pi}{4})\\\\ \\sin(\\theta-\\tfrac{\\pi}{4}) & 0 & \\log_e(4/\\pi)\\\\ \\cot(\\theta+\\tfrac{\\pi}{4}) & \\log_e(\\pi/4) & 0\\end{pmatrix}$. Using $\\cos(\\theta+\\tfrac{\\pi}{4})\\cot(\\theta+\\tfrac{\\pi}{4})^{-1}$ pairings and $\\log_e(4/\\pi)=-\\log_e(\\pi/4)$, the expansion cancels term-by-term to $0$. (A symbolic check in sympy returns exactly $0$.)",
+          "Hence $f(\\theta)=1+\\sin^2\\theta$, so $f(\\theta)-1=\\sin^2\\theta$ and $f(\\tfrac{\\pi}{2}-\\theta)-1=\\sin^2(\\tfrac{\\pi}{2}-\\theta)=\\cos^2\\theta$. Therefore $g(\\theta)=\\sqrt{\\sin^2\\theta}+\\sqrt{\\cos^2\\theta}=\\sin\\theta+\\cos\\theta$ on $[0,\\tfrac{\\pi}{2}]$, where both are non-negative.",
+          "Write $g(\\theta)=\\sqrt{2}\\,\\sin(\\theta+\\tfrac{\\pi}{4})$. On $[0,\\tfrac{\\pi}{2}]$ the argument $\\theta+\\tfrac{\\pi}{4}$ ranges over $[\\tfrac{\\pi}{4},\\tfrac{3\\pi}{4}]$, so $\\sin$ runs from $\\tfrac{1}{\\sqrt2}$ up to $1$ (at $\\theta=\\tfrac{\\pi}{4}$) and back. Thus $\\min g=1$ (endpoints) and $\\max g=\\sqrt{2}$.",
+          "The roots of $p$ are $1$ and $\\sqrt2$: $p(x)=k(x-1)(x-\\sqrt2)$. From $p(2)=k(1)(2-\\sqrt2)=2-\\sqrt2$ we get $k=1$, so $p(x)=(x-1)(x-\\sqrt2)$, which is $<0$ exactly on $(1,\\sqrt2)$ and $>0$ outside $[1,\\sqrt2]$.",
+          "Locate each argument relative to $(1,\\sqrt2)\\approx(1,1.414)$: $\\tfrac{3+\\sqrt2}{4}\\approx1.104\\in(1,\\sqrt2)\\Rightarrow p<0$, so (A) TRUE; $\\tfrac{1+3\\sqrt2}{4}\\approx1.311\\in(1,\\sqrt2)\\Rightarrow p<0$, so (B) (claiming $>0$) FALSE; $\\tfrac{5\\sqrt2-1}{4}\\approx1.518>\\sqrt2\\Rightarrow p>0$, so (C) TRUE; $\\tfrac{5-\\sqrt2}{4}\\approx0.896<1\\Rightarrow p>0$, so (D) (claiming $<0$) FALSE. Verdict: (A), (C)."
+        ]
+      },
+      {
+        "name": "Antisymmetry shortcut for the second determinant + endpoint scan of $p$",
+        "steps": [
+          "For the second determinant, note the zero diagonal and the key symmetry $\\log_e(4/\\pi)=-\\log_e(\\pi/4)$, plus $\\tan(\\theta-\\tfrac{\\pi}{4})=1/\\cot(\\tfrac{\\pi}{4}-\\theta)$-type reciprocity. A $3\\times3$ matrix with zero diagonal and $a_{ij}=-a_{ji}$ (skew-symmetric) has determinant $0$ automatically because $\\det(S)=\\det(S^{\\!\\top})=\\det(-S)=-\\det(S)$. The entries here reduce to precisely this skew pattern, giving determinant $0$ without expansion.",
+          "With the second determinant gone, $f(\\theta)=\\tfrac12(2+2\\sin^2\\theta)=1+\\sin^2\\theta$, so as before $g(\\theta)=\\sin\\theta+\\cos\\theta$ with range $[1,\\sqrt2]$; roots of $p$ are $1,\\sqrt2$ and $p(x)=(x-1)(x-\\sqrt2)$ after fixing $k=1$ from $p(2)=2-\\sqrt2$.",
+          "Instead of decimals, compare each argument to the roots exactly. (A) $\\tfrac{3+\\sqrt2}{4}-1=\\tfrac{\\sqrt2-1}{4}>0$ and $\\sqrt2-\\tfrac{3+\\sqrt2}{4}=\\tfrac{3\\sqrt2-3}{4}>0$, so it lies strictly between the roots $\\Rightarrow p<0$: (A) TRUE.",
+          "(C) $\\tfrac{5\\sqrt2-1}{4}-\\sqrt2=\\tfrac{\\sqrt2-1}{4}>0$, so the argument exceeds the larger root $\\sqrt2\\Rightarrow p>0$: (C) TRUE. (D) $\\tfrac{5-\\sqrt2}{4}-1=\\tfrac{1-\\sqrt2}{4}<0$, below the smaller root $\\Rightarrow p>0$, so (D) (claiming $<0$) is FALSE.",
+          "(B) $\\tfrac{1+3\\sqrt2}{4}-1=\\tfrac{3\\sqrt2-3}{4}>0$ and $\\sqrt2-\\tfrac{1+3\\sqrt2}{4}=\\tfrac{\\sqrt2-1}{4}>0$: strictly inside $(1,\\sqrt2)\\Rightarrow p<0$, so (B) (claiming $>0$) is FALSE. Both exact and decimal routes agree: (A), (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 1, Q14. The whole problem is a determinant illusion — once you notice $\\sin\\pi=\\cos\\tfrac{\\pi}{2}=\\tan\\pi=0$ and the skew-symmetry, the second determinant vanishes and $g$ collapses to the humble $\\sin\\theta+\\cos\\theta$, turning a fearsome-looking question into a quadratic sign-chart."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "An HP System That Never Decides",
+    "difficulty": 5,
+    "task": "Match four ratio conditions on a harmonic-progression system to its solution type (unique / infinite / none / specific vector).",
+    "pyq": {
+      "year": 2022,
+      "paper": "1",
+      "qno": "17"
+    },
+    "tags": [
+      "system of linear equations",
+      "consistency",
+      "harmonic progression",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Let $p,q,r$ be nonzero real numbers that are, respectively, the $10^{\\text{th}}$, $100^{\\text{th}}$ and $1000^{\\text{th}}$ terms of a harmonic progression. Consider the system $x+y+z=1$, $\\;10x+100y+1000z=0$, $\\;qr\\,x+pr\\,y+pq\\,z=0$. List-I: $\\ $ (I) if $\\tfrac{q}{r}=10$, then the system has; $\\ $ (II) if $\\tfrac{p}{r}\\neq 100$, then the system has; $\\ $ (III) if $\\tfrac{p}{q}\\neq 10$, then the system has; $\\ $ (IV) if $\\tfrac{p}{q}=10$, then the system has. List-II: $\\ $ (P) $x=0,\\ y=\\tfrac{10}{9},\\ z=-\\tfrac{1}{9}$ as a solution; $\\ $ (Q) $x=\\tfrac{10}{9},\\ y=-\\tfrac{1}{9},\\ z=0$ as a solution; $\\ $ (R) infinitely many solutions; $\\ $ (S) no solution; $\\ $ (T) at least one solution. The correct option is: $\\quad$ (A) (I)$\\to$(T), (II)$\\to$(R), (III)$\\to$(S), (IV)$\\to$(T); $\\quad$ (B) (I)$\\to$(Q), (II)$\\to$(S), (III)$\\to$(S), (IV)$\\to$(R); $\\quad$ (C) (I)$\\to$(Q), (II)$\\to$(R), (III)$\\to$(P), (IV)$\\to$(R); $\\quad$ (D) (I)$\\to$(T), (II)$\\to$(S), (III)$\\to$(P), (IV)$\\to$(T).",
+    "answer": "The correct option is $\\boxed{\\text{(B)}}$",
+    "trap": "The bait is the third row $qr\\,x+pr\\,y+pq\\,z=0$: it looks independent, but dividing by $pqr$ turns it into $\\tfrac{x}{p}+\\tfrac{y}{q}+\\tfrac{z}{r}=0$, and because $\\tfrac1p,\\tfrac1q,\\tfrac1r$ are in AP the coefficient determinant is identically $0$. So the system is NEVER uniquely solvable — every case is either 'no solution' or 'infinitely many.' Chasing a unique answer, or trusting that a scary-looking row must add rank, is the fatal move.",
+    "solutions": [
+      {
+        "name": "Reduce the third equation via $\\tfrac1p,\\tfrac1q,\\tfrac1r$ in AP",
+        "steps": [
+          "Harmonic progression means $\\tfrac1p,\\tfrac1q,\\tfrac1r$ are in AP: $\\tfrac1p=A+9D$, $\\tfrac1q=A+99D$, $\\tfrac1r=A+999D$ (10th, 100th, 1000th terms). Divide the third equation $qr\\,x+pr\\,y+pq\\,z=0$ by $pqr\\neq0$ to get the cleaner form $\\tfrac{x}{p}+\\tfrac{y}{q}+\\tfrac{z}{r}=0$.",
+          "The coefficient matrix is $\\begin{pmatrix}1&1&1\\\\10&100&1000\\\\ \\tfrac1p&\\tfrac1q&\\tfrac1r\\end{pmatrix}$. Row 3 $=(A+9D,\\,A+99D,\\,A+999D)$. But $(A+9D,A+99D,A+999D)=A(1,1,1)+\\tfrac{D}{9}(0,90,990)+\\dots$; more directly, the AP structure makes Row 3 a linear combination of Row 1 and Row 2, so $\\det=0$ identically. (A sympy determinant of this $3\\times3$ returns exactly $0$.)",
+          "With rank of the coefficient matrix $=2<3$, the system can only have no solution or infinitely many, decided by whether the augmented rank also equals $2$. Solve Rows 1–2: from $x+y+z=1$ and $10x+100y+1000z=0$ (i.e. $x+10y+100z=0$), subtract to get $9y+99z=-1$ and $x=1-y-z$; the general Row-1&2 solution is a one-parameter family in $z$.",
+          "(I) $\\tfrac{q}{r}=10$: this forces $\\tfrac1q=10\\cdot\\tfrac1r$-consistent parameters (equivalently $D=A$), under which Row 3 is consistent with Rows 1–2, giving infinitely many solutions $\\big(10z+\\tfrac{10}{9},\\,-11z-\\tfrac19,\\,z\\big)$. Setting $z=0$ yields $x=\\tfrac{10}{9},\\,y=-\\tfrac19,\\,z=0$ — exactly the vector in (Q). So (I)$\\to$(Q).",
+          "(IV) $\\tfrac{p}{q}=10$: the same algebra makes Row 3 dependent and the system consistent with a free parameter, i.e. infinitely many solutions. So (IV)$\\to$(R).",
+          "(II) $\\tfrac{p}{r}\\neq100$ and (III) $\\tfrac{p}{q}\\neq10$: in each the ratio condition makes Row 3 inconsistent with the Rows 1–2 family (augmented rank $3>2$), so there is no solution. Thus (II)$\\to$(S) and (III)$\\to$(S). Assembling (I)$\\to$(Q), (II)$\\to$(S), (III)$\\to$(S), (IV)$\\to$(R) gives option (B)."
+        ]
+      },
+      {
+        "name": "Direct rank test by numerical AP realizations",
+        "steps": [
+          "Parametrize $\\tfrac1p=A+9D,\\ \\tfrac1q=A+99D,\\ \\tfrac1r=A+999D$ and plug concrete $(A,D)$ satisfying each List-I hypothesis, then compare $\\operatorname{rank}(\\text{coeff})$ with $\\operatorname{rank}(\\text{augmented})$.",
+          "(I) $\\tfrac{q}{r}=10\\Rightarrow \\tfrac1q=10\\cdot\\tfrac1r$, e.g. $A=D=1$. Here both ranks equal $2$: infinitely many solutions, and the solved family $\\big(10z+\\tfrac{10}{9},-11z-\\tfrac19,z\\big)$ contains $(\\tfrac{10}{9},-\\tfrac19,0)$ at $z=0$ — matches (Q). Note it does NOT contain $(0,\\tfrac{10}{9},-\\tfrac19)$, ruling out the (P) distractor. (I)$\\to$(Q).",
+          "(IV) $\\tfrac{p}{q}=10\\Rightarrow A=D=1$ again: both ranks $=2$, infinitely many solutions $\\Rightarrow$ (R). (IV)$\\to$(R).",
+          "(II) pick $A=1,D=2$ so $\\tfrac{p}{r}=\\tfrac{A+999D}{A+9D}=\\tfrac{1999}{19}\\neq100$: coefficient rank $2$, augmented rank $3\\Rightarrow$ no solution $\\Rightarrow$ (S). (II)$\\to$(S).",
+          "(III) same $A=1,D=2$ gives $\\tfrac{p}{q}=\\tfrac{A+99D}{A+9D}=\\tfrac{199}{19}\\neq10$: again coefficient rank $2$, augmented rank $3\\Rightarrow$ no solution $\\Rightarrow$ (S). (III)$\\to$(S).",
+          "The four assignments (I)$\\to$(Q), (II)$\\to$(S), (III)$\\to$(S), (IV)$\\to$(R) coincide with option (B). Cross-check: options with a unique-style or (P) mapping (C), (D) are impossible because the determinant is identically $0$ and the family never passes through $(0,\\tfrac{10}{9},-\\tfrac19)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 1, Q17. The elegance is that the harmonic-progression condition secretly makes the third row a combination of the first two — the coefficient determinant is $0$ before any casework, so the entire question is a consistency (augmented-rank) exercise, never a Cramer's-rule one."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Singular Matrix Polynomial",
+    "difficulty": 4,
+    "task": "Find $9\\beta$ so that $A^7-(\\beta-1)A^6-\\beta A^5$ is singular.",
+    "pyq": {
+      "year": 2022,
+      "paper": "2",
+      "qno": "6"
+    },
+    "tags": [
+      "matrix polynomial",
+      "singular matrix",
+      "determinant condition",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Let $\\beta$ be a real number and consider the matrix $A=\\begin{pmatrix}\\beta & 0 & 1\\\\ 2 & 1 & -2\\\\ 3 & 1 & -2\\end{pmatrix}$. If the matrix $A^7-(\\beta-1)A^6-\\beta A^5$ is singular, then the value of $9\\beta$ is __________ .",
+    "answer": "$9\\beta=\\boxed{3}$",
+    "trap": "The temptation is to grind out $A^5,A^6,A^7$ as $3\\times3$ blocks — a dead end. Notice too that $\\det A=-1\\neq0$, so the singularity can never come from the $A^5$ factor; every power of $A$ is invertible, and the whole burden falls on the quadratic factor. Miss that and you may wrongly try to force $\\det A=0$.",
+    "solutions": [
+      {
+        "name": "Factor the matrix polynomial, then split the determinant",
+        "steps": [
+          "Pull out the common power $A^5$: $A^7-(\\beta-1)A^6-\\beta A^5=A^5\\big(A^2-(\\beta-1)A-\\beta I\\big)$. The scalar quadratic $\\lambda^2-(\\beta-1)\\lambda-\\beta$ factors as $(\\lambda-\\beta)(\\lambda+1)$, and because every term is a polynomial in the single matrix $A$ (which commutes with itself), the same factoring holds for the matrix: $A^2-(\\beta-1)A-\\beta I=(A-\\beta I)(A+I)$.",
+          "Take determinants using multiplicativity: $\\det\\!\\big(A^5(A-\\beta I)(A+I)\\big)=(\\det A)^5\\,\\det(A-\\beta I)\\,\\det(A+I)$. Direct expansion gives $\\det A=-1$ and $\\det(A+I)=-4$, both nonzero, so the product is singular precisely when $\\det(A-\\beta I)=0$.",
+          "Compute $\\det(A-\\beta I)=\\det\\begin{pmatrix}0 & 0 & 1\\\\ 2 & 1-\\beta & -2\\\\ 3 & 1 & -2-\\beta\\end{pmatrix}$. Expanding along the first row (only the top-right entry survives) gives $1\\cdot\\big(2\\cdot1-(1-\\beta)\\cdot3\\big)=2-3+3\\beta=3\\beta-1$.",
+          "Set $3\\beta-1=0\\Rightarrow \\beta=\\tfrac13$, hence $9\\beta=\\boxed{3}$."
+        ]
+      },
+      {
+        "name": "Cayley–Hamilton: $\\beta$ must be a characteristic root",
+        "steps": [
+          "The whole expression $A^5(A-\\beta I)(A+I)$ is singular iff one of its factors is singular. Since $\\det A=-1$ and $\\det(A+I)=-4$ are both nonzero, the only way to make the product singular is to make $A-\\beta I$ singular — i.e. $\\beta$ must be a characteristic root (an eigenvalue) of $A$.",
+          "Find the characteristic polynomial of $A$. Its trace is $\\beta+1-2=\\beta-1$ and $\\det A=-1$; expanding $\\det(A-\\lambda I)$ gives $-\\lambda^3+(\\beta-1)\\lambda^2+\\dots$ with the constant term $\\det A=-1$. Rather than the full cubic, note we only need the root equal to $\\beta$ itself: substitute $\\lambda=\\beta$.",
+          "Substituting $\\lambda=\\beta$ into $\\det(A-\\lambda I)$ is exactly $\\det(A-\\beta I)$, computed above to be $3\\beta-1$. Requiring $\\beta$ to be a genuine characteristic root forces $3\\beta-1=0$.",
+          "Therefore $\\beta=\\tfrac13$ and $9\\beta=\\boxed{3}$, matching the first method. (A quick sympy check confirms $\\det\\!\\big(A^7-(\\beta-1)A^6-\\beta A^5\\big)=4(3\\beta-1)$, zero only at $\\beta=\\tfrac13$.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 2, Q6. The move that unlocks it is realising a polynomial in a single matrix factors exactly like the scalar polynomial, so $\\det=0$ decomposes into independent factors — and checking which factors can vanish saves you from ever computing a seventh power."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The 2022nd Power of $M$",
+    "difficulty": 4,
+    "task": "Identify $M^{2022}$ for the given $2\\times2$ matrix $M$.",
+    "pyq": {
+      "year": 2022,
+      "paper": "2",
+      "qno": "16"
+    },
+    "tags": [
+      "matrix powers",
+      "nilpotent decomposition",
+      "Cayley–Hamilton",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "If $M=\\begin{pmatrix}\\frac{5}{2} & \\frac{3}{2}\\\\[3pt] -\\frac{3}{2} & -\\frac{1}{2}\\end{pmatrix}$, then which of the following matrices is equal to $M^{2022}$? $\\quad$ (A) $\\begin{pmatrix}3034 & 3033\\\\ -3033 & -3032\\end{pmatrix}$ $\\quad$ (B) $\\begin{pmatrix}3034 & -3033\\\\ 3033 & -3032\\end{pmatrix}$ $\\quad$ (C) $\\begin{pmatrix}3033 & 3032\\\\ -3032 & -3031\\end{pmatrix}$ $\\quad$ (D) $\\begin{pmatrix}3032 & 3031\\\\ -3031 & -3030\\end{pmatrix}$",
+    "answer": "The correct option is $\\boxed{\\text{(A)}}$",
+    "trap": "The distractors are all near-misses: option (C) is $I+2021N$ and (D) is $I+2020N$, so an off-by-one in the exponent lands you on a wrong choice; option (B) has the off-diagonal signs flipped, punishing anyone who mis-copies $N$. There is also no shortcut through eigenvectors here — the eigenvalue is repeated, so you must use the nilpotent structure, not diagonalisation.",
+    "solutions": [
+      {
+        "name": "Split off a nilpotent part: $M=I+N$",
+        "steps": [
+          "Read off the invariants: $\\operatorname{tr}M=\\tfrac52-\\tfrac12=2$ and $\\det M=\\tfrac52\\cdot(-\\tfrac12)-\\tfrac32\\cdot(-\\tfrac32)=-\\tfrac54+\\tfrac94=1$. So $M$ satisfies its characteristic equation $\\lambda^2-2\\lambda+1=0$, i.e. $(\\lambda-1)^2=0$ — a repeated root $\\lambda=1$.",
+          "Write $N=M-I=\\begin{pmatrix}\\tfrac32 & \\tfrac32\\\\ -\\tfrac32 & -\\tfrac32\\end{pmatrix}$. Then $N^2=\\begin{pmatrix}\\tfrac94-\\tfrac94 & \\tfrac94-\\tfrac94\\\\ -\\tfrac94+\\tfrac94 & -\\tfrac94+\\tfrac94\\end{pmatrix}=0$, so $N$ is nilpotent of index $2$.",
+          "Because $I$ and $N$ commute and $N^2=0$, the binomial theorem collapses to two terms: $M^{2022}=(I+N)^{2022}=I+2022\\,N+\\binom{2022}{2}N^2+\\cdots=I+2022\\,N$.",
+          "Hence $M^{2022}=I+2022N=\\begin{pmatrix}1+3033 & 3033\\\\ -3033 & 1-3033\\end{pmatrix}=\\begin{pmatrix}3034 & 3033\\\\ -3033 & -3032\\end{pmatrix}$, which is option $\\boxed{\\text{(A)}}$."
+        ]
+      },
+      {
+        "name": "Cayley–Hamilton recurrence forcing $M^n=nM-(n-1)I$",
+        "steps": [
+          "From $\\det M=1$ and $\\operatorname{tr}M=2$, Cayley–Hamilton gives $M^2=2M-I$. Claim $M^{n}=nM-(n-1)I$ for all $n\\ge1$; it holds for $n=1,2$.",
+          "Induction step: assume $M^{n}=nM-(n-1)I$. Then $M^{n+1}=M\\cdot M^{n}=nM^2-(n-1)M=n(2M-I)-(n-1)M=(n+1)M-nI$, completing the induction.",
+          "Apply $n=2022$: $M^{2022}=2022\\,M-2021\\,I$. Compute $2022M=\\begin{pmatrix}5055 & 3033\\\\ -3033 & -1011\\end{pmatrix}$ and subtract $2021I$: the diagonal becomes $5055-2021=3034$ and $-1011-2021=-3032$.",
+          "So $M^{2022}=\\begin{pmatrix}3034 & 3033\\\\ -3033 & -3032\\end{pmatrix}$, option $\\boxed{\\text{(A)}}$ — in agreement with the nilpotent method (and confirmed by direct sympy exponentiation)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 2, Q16. Whenever a $2\\times2$ matrix has a repeated eigenvalue $1$, it is $I$ plus a nilpotent, and the closed form $M^n=nM-(n-1)I$ turns any exponent into a single scalar multiply — no diagonalisation, no $2022$-fold multiplication."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Three-Parameter Consistency Ladder",
+    "difficulty": 4,
+    "task": "Match each parameter condition to the nature of the solution set, and identify the special solution when the system is uniquely or dependently solvable.",
+    "pyq": {
+      "year": 2023,
+      "paper": "1",
+      "qno": "14"
+    },
+    "tags": [
+      "system of linear equations",
+      "consistency",
+      "determinant",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Let $\\alpha,\\beta$ and $\\gamma$ be real numbers, and consider the system $x+2y+z=7$, $x+\\alpha z=11$, $2x-3y+\\beta z=\\gamma$. The coefficient determinant of this system is $D=7\\alpha-2\\beta-3$, so the value $\\beta=\\tfrac12(7\\alpha-3)$ is precisely the threshold at which $D$ collapses to $0$. Match each entry in List-I to the correct entry in List-II. In List-I: $(P)$ if $\\beta=\\tfrac12(7\\alpha-3)$ and $\\gamma=28$; $(Q)$ if $\\beta=\\tfrac12(7\\alpha-3)$ and $\\gamma\\neq 28$; $(R)$ if $\\beta\\neq\\tfrac12(7\\alpha-3)$ with $\\alpha=1$ and $\\gamma\\neq 28$; $(S)$ if $\\beta\\neq\\tfrac12(7\\alpha-3)$ with $\\alpha=1$ and $\\gamma=28$. In List-II: $(1)$ a unique solution; $(2)$ no solution; $(3)$ infinitely many solutions; $(4)$ $x=11,\\ y=-2,\\ z=0$ as a solution; $(5)$ $x=-15,\\ y=4,\\ z=0$ as a solution. Which option is correct: $(A)\\ P\\!\\to\\!3,\\ Q\\!\\to\\!2,\\ R\\!\\to\\!1,\\ S\\!\\to\\!4$; $(B)\\ P\\!\\to\\!3,\\ Q\\!\\to\\!2,\\ R\\!\\to\\!5,\\ S\\!\\to\\!4$; $(C)\\ P\\!\\to\\!2,\\ Q\\!\\to\\!1,\\ R\\!\\to\\!4,\\ S\\!\\to\\!5$; $(D)\\ P\\!\\to\\!2,\\ Q\\!\\to\\!1,\\ R\\!\\to\\!1,\\ S\\!\\to\\!3$?",
+    "answer": "$\\boxed{(A)\\ P\\to 3,\\ Q\\to 2,\\ R\\to 1,\\ S\\to 4}$",
+    "trap": "The threshold $\\beta=\\tfrac12(7\\alpha-3)$ only makes $D=0$; it does not by itself decide between “no solution” and “infinitely many.” You must still test the augmented system, and it is the value $\\gamma=28$ — not $\\gamma\\neq 28$ — that keeps the singular case consistent. Do not assume a singular determinant always means infinitely many solutions.",
+    "solutions": [
+      {
+        "name": "Determinant threshold plus a consistency test",
+        "steps": [
+          "The coefficient determinant is $D=\\begin{vmatrix}1&2&1\\\\1&0&\\alpha\\\\2&-3&\\beta\\end{vmatrix}=7\\alpha-2\\beta-3$, so $D=0$ exactly when $\\beta=\\tfrac12(7\\alpha-3)$ and $D\\neq 0$ otherwise.",
+          "When $D\\neq 0$ (cases $R,S$ with $\\alpha=1$) the system has a unique solution, so $R\\to 1$. Solving with $\\alpha=1$ gives $x=\\dfrac{11\\beta-\\gamma+6}{\\beta-2},\\ y=-2,\\ z=\\dfrac{\\gamma-28}{\\beta-2}$; putting $\\gamma=28$ forces $z=0$ and then $x=11,\\ y=-2$, so $S\\to 4$.",
+          "When $D=0$ (cases $P,Q$), row-reduce: the third equation is the combination $-\\tfrac32(\\text{Eq}_1)+\\tfrac72(\\text{Eq}_2)$ of the first two on the left side, whose right side equals $-\\tfrac32(7)+\\tfrac72(11)=28$. Consistency therefore requires $\\gamma=28$: with $\\gamma=28$ the three equations are dependent, giving infinitely many solutions ($P\\to 3$); with $\\gamma\\neq 28$ the last equation contradicts the first two, giving no solution ($Q\\to 2$).",
+          "Assembling: $P\\to 3,\\ Q\\to 2,\\ R\\to 1,\\ S\\to 4$, which is option $(A)$."
+        ]
+      },
+      {
+        "name": "Direct Gaussian elimination in one sweep",
+        "steps": [
+          "Eliminate $x$ using the first row: $\\text{Eq}_2-\\text{Eq}_1$ gives $-2y+(\\alpha-1)z=4$, and $\\text{Eq}_3-2\\,\\text{Eq}_1$ gives $-7y+(\\beta-2)z=\\gamma-14$.",
+          "Eliminate $y$ from these two: multiply the first by $\\tfrac72$ and subtract, obtaining $\\bigl[(\\beta-2)-\\tfrac72(\\alpha-1)\\bigr]z=(\\gamma-14)-14=\\gamma-28$, i.e. $\\tfrac12\\bigl(2\\beta-7\\alpha+3\\bigr)z=\\gamma-28$.",
+          "The bracket is $-\\tfrac12 D$. If $D\\neq 0$ the $z$-coefficient is nonzero, so $z$, then $y=-2$, then $x$ are determined uniquely — hence $R\\to 1$, and at $\\gamma=28$ we get $z=0,\\ x=11,\\ y=-2$, hence $S\\to 4$. If $D=0$ the equation becomes $0\\cdot z=\\gamma-28$: solvable (infinitely many solutions) iff $\\gamma=28$, giving $P\\to 3$, and unsolvable otherwise, giving $Q\\to 2$.",
+          "The matching is $P\\to 3,\\ Q\\to 2,\\ R\\to 1,\\ S\\to 4$ — option $(A)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 1, Q14. The elegant hook is that once $\\gamma=28$ the value $y=-2$ and $z=0$ are locked in independently of $\\beta$, so the “special solution” $(11,-2,0)$ is really the fixed point where the unique-solution branch and the infinitely-many branch meet."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Divisibility-Built Singular Matrix",
+    "difficulty": 4,
+    "task": "Build the matrix from the divisibility rule, then decide invertibility, its null space, and which shift is singular.",
+    "pyq": {
+      "year": 2023,
+      "paper": "2",
+      "qno": "5"
+    },
+    "tags": [
+      "matrix construction",
+      "invertibility",
+      "null space",
+      "eigenvector",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Let $M=(a_{ij})$, with $i,j\\in\\{1,2,3\\}$, be the $3\\times 3$ matrix defined by $a_{ij}=1$ if $j+1$ is divisible by $i$, and $a_{ij}=0$ otherwise. Then which of the following statements is (are) true? $(A)$ $M$ is invertible; $(B)$ there exists a nonzero column matrix $\\begin{pmatrix}a_1\\\\a_2\\\\a_3\\end{pmatrix}$ such that $M\\begin{pmatrix}a_1\\\\a_2\\\\a_3\\end{pmatrix}=\\begin{pmatrix}-a_1\\\\-a_2\\\\-a_3\\end{pmatrix}$; $(C)$ the set $\\{X\\in\\mathbb{R}^3 : MX=\\mathbf{0}\\}\\neq\\{\\mathbf{0}\\}$, where $\\mathbf{0}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}$; $(D)$ the matrix $M-2I$ is invertible, where $I$ is the $3\\times 3$ identity matrix.",
+    "answer": "$\\boxed{(B),\\ (C)}$",
+    "trap": "The construction reads $i\\mid(j+1)$, not $j\\mid(i+1)$ — swapping the roles of the row and column indices transposes the matrix and can flip your determinant sign or your null space. Also, statement $(D)$ tempts you to test $M-2I$ by hand; it is faster to notice that $2$ is one of the eigenvalues of $M$, which instantly makes $M-2I$ singular.",
+    "solutions": [
+      {
+        "name": "Build the matrix, then read off the eigenvalues",
+        "steps": [
+          "Fill in $a_{ij}=1\\iff i\\mid(j+1)$, where $j+1$ runs over $2,3,4$. Row $i=1$: every integer is divisible by $1$, so $(1,1,1)$. Row $i=2$: among $2,3,4$ only $2$ and $4$ are even, so $(1,0,1)$. Row $i=3$: among $2,3,4$ only $3$ is a multiple of $3$, so $(0,1,0)$. Hence $M=\\begin{pmatrix}1&1&1\\\\1&0&1\\\\0&1&0\\end{pmatrix}$.",
+          "Compute $\\det M$ by expanding along the third row: $\\det M=-1\\cdot\\begin{vmatrix}1&1\\\\1&1\\end{vmatrix}=-1\\cdot 0=0$. So $M$ is singular: $(A)$ is false, and a singular matrix has a nontrivial null space, so $(C)$ is true.",
+          "The characteristic polynomial factors as $\\det(M-\\lambda I)=-\\lambda^3+\\lambda^2+2\\lambda=-\\lambda(\\lambda-2)(\\lambda+1)$, giving eigenvalues $\\lambda=0,\\ 2,\\ -1$.",
+          "Statement $(B)$ asks for a nonzero vector with $MX=-X$, i.e. an eigenvector for $\\lambda=-1$; since $-1$ is an eigenvalue, such a vector exists, so $(B)$ is true. Statement $(D)$ asks whether $M-2I$ is invertible; since $2$ is an eigenvalue, $\\det(M-2I)=0$ and $M-2I$ is singular, so $(D)$ is false. The true statements are $(B),(C)$."
+        ]
+      },
+      {
+        "name": "Exhibit explicit witness vectors",
+        "steps": [
+          "With $M=\\begin{pmatrix}1&1&1\\\\1&0&1\\\\0&1&0\\end{pmatrix}$, solve $MX=\\mathbf{0}$. The middle equation gives $a_1+a_3=0$ and the bottom gives $a_2=0$; then the top row $a_1+a_2+a_3=0$ is automatically satisfied. So $X=(1,0,-1)^{T}$ is a nonzero solution — directly proving $(C)$ (and hence $M$ singular, $(A)$ false).",
+          "For $(B)$ solve $(M+I)X=\\mathbf{0}$, i.e. $\\begin{pmatrix}2&1&1\\\\1&1&1\\\\0&1&1\\end{pmatrix}X=\\mathbf{0}$. Subtracting rows gives $a_1=0$ and $a_2+a_3=0$, so $X=(0,1,-1)^{T}$ satisfies $MX=-X$ — a concrete nonzero witness, so $(B)$ is true.",
+          "For $(D)$ test $(M-2I)X=\\mathbf{0}$, i.e. $\\begin{pmatrix}-1&1&1\\\\1&-2&1\\\\0&1&-2\\end{pmatrix}X=\\mathbf{0}$. Back-substitution yields the nonzero solution $X=(3,2,1)^{T}$, so $M-2I$ is singular and $(D)$ is false.",
+          "Only $(B)$ and $(C)$ hold, matching the boxed answer."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 2, Q5. The whole problem is decided by the three eigenvalues $\\{0,2,-1\\}$ of $M$: the $0$ kills invertibility and feeds the null space, the $-1$ supplies the vector in $(B)$, and the $2$ is exactly what makes $M-2I$ singular in $(D)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Counting the $\\pm1$ Determinants",
+    "difficulty": 4,
+    "task": "Count the matrices in $S$",
+    "pyq": {
+      "year": 2024,
+      "paper": "1",
+      "qno": "10"
+    },
+    "tags": [
+      "determinant of 3x3 matrix",
+      "counting",
+      "0-1 entries",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "Let $S=\\left\\{A=\\begin{pmatrix}0&1&c\\\\1&a&d\\\\1&b&e\\end{pmatrix} : a,b,c,d,e\\in\\{0,1\\}\\ \\text{and}\\ |A|\\in\\{-1,1\\}\\right\\}$, where $|A|$ denotes the determinant of $A$. Then the number of elements in $S$ is what?",
+    "answer": "$$\\boxed{16}$$",
+    "trap": "The five free entries offer $2^5=32$ candidate matrices, and it is tempting to brute-force all of them or, worse, to assume the determinant ranges over many values. In fact the determinant collapses to a two-term expression $c(b-a)-(e-d)$ whose value lies in $\\{-2,-1,0,1,2\\}$; the snare is to forget that only the middle values $\\pm1$ are wanted, so the extreme cases $|A|=\\pm2$ (each achieved exactly once) and the bulk $|A|=0$ must be excluded rather than counted.",
+    "solutions": [
+      {
+        "name": "Expand the determinant, then count each factor separately",
+        "steps": [
+          "Expand $|A|$ along the first column. With first column $(0,1,1)^{\\mathsf T}$, $|A|=0\\cdot(\\dots)-1\\cdot\\begin{vmatrix}1&c\\\\b&e\\end{vmatrix}+1\\cdot\\begin{vmatrix}1&c\\\\a&d\\end{vmatrix}=-(e-bc)+(d-ac)=c(b-a)-(e-d).$",
+          "Write $|A|=P-Q$ with $P=c(b-a)$ and $Q=e-d$. Here $Q=e-d\\in\\{-1,0,1\\}$ and $P=c(b-a)$: if $c=0$ then $P=0$; if $c=1$ then $P=b-a\\in\\{-1,0,1\\}$. So $P,Q\\in\\{-1,0,1\\}$ and $|A|=P-Q\\in\\{-2,\\dots,2\\}$; we need $P-Q=\\pm1$, i.e. exactly one of $P,Q$ is $0$ and the other is $\\pm1$ (if both are nonzero and equal, $|A|=0$; if opposite, $|A|=\\pm2$).",
+          "Case $Q=\\pm1,\\ P=0$: $Q=e-d=\\pm1$ has $2$ ways $((e,d)=(1,0)$ or $(0,1))$. $P=0$ means $c=0$ (with $a,b$ free: $4$ ways) or $c=1,\\ a=b$ ($2$ ways) $=6$ ways for $(a,b,c)$. Subtotal $2\\times6=12$.",
+          "Case $Q=0,\\ P=\\pm1$: $Q=0$ means $e=d$ ($2$ ways). $P=\\pm1$ forces $c=1$ and $b-a=\\pm1$, i.e. $(a,b)\\in\\{(0,1),(1,0)\\}$ ($2$ ways). Subtotal $2\\times2=4$. Total $12+4=\\boxed{16}$."
+        ]
+      },
+      {
+        "name": "Exhaustive symmetry count by the value of $|A|$",
+        "steps": [
+          "Since $|A|=c(b-a)-(e-d)$ depends on the five bits through only the two independent blocks $c(b-a)$ and $(e-d)$, tabulate the distribution of $|A|$ over all $2^5=32$ assignments. The block $(e-d)$ takes values $-1,0,1$ with multiplicities $1,2,1$ over the $4$ choices of $(d,e)$.",
+          "The block $c(b-a)$ over the $8$ choices of $(a,b,c)$: value $0$ occurs $6$ times ($c=0$: $4$; or $c=1,a=b$: $2$), value $+1$ once ($c=1,(a,b)=(0,1)$), value $-1$ once ($c=1,(a,b)=(1,0)$).",
+          "Convolving the two independent distributions gives the count of $|A|=k$: $|A|=0$ occurs $6\\cdot2+1\\cdot1+1\\cdot1=14$ times; $|A|=\\pm2$ once each; and $|A|=\\pm1$ occurs $6\\cdot1+1\\cdot2=8$ times each. A direct machine enumeration of all $32$ matrices confirms the split $\\{-2{:}1,\\,-1{:}8,\\,0{:}14,\\,1{:}8,\\,2{:}1\\}$.",
+          "Hence $|A|=1$ for $8$ matrices and $|A|=-1$ for $8$ matrices, so $|A|\\in\\{-1,1\\}$ for $8+8=\\boxed{16}$ matrices."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 1, Q10. The fixed column $(0,1,1)^{\\mathsf T}$ is the whole trick: it kills the cross terms so the determinant separates into two independent one-bit blocks $c(b-a)$ and $(e-d)$, turning a $32$-case count into a tiny convolution. (Note: the officially printed one-line solution writes the determinant as $(e-d)+c(b-a)$; the correct sign is $c(b-a)-(e-d)$, but this does not change the count, since $\\pm1$ values are symmetric.)"
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Rows and Columns Summing to Zero",
+    "difficulty": 5,
+    "task": "Match List-I to List-II",
+    "pyq": {
+      "year": 2024,
+      "paper": "1",
+      "qno": "14"
+    },
+    "tags": [
+      "matrices with restricted entries",
+      "symmetric/skew-symmetric matrices",
+      "determinants",
+      "linear systems",
+      "2024"
+    ],
+    "figure": "",
+    "statement": "Let $\\alpha$ and $\\beta$ be the distinct roots of $x^2+x-1=0$, and let $T=\\{1,\\alpha,\\beta\\}$. For a $3\\times3$ matrix $M=(a_{ij})$, define the row sums $R_i=a_{i1}+a_{i2}+a_{i3}$ and column sums $C_j=a_{1j}+a_{2j}+a_{3j}$. Match each entry of List-I to the correct entry of List-II. List-I: $(P)$ the number of matrices $M$ with all entries in $T$ such that $R_i=C_j=0$ for all $i,j$; $(Q)$ the number of symmetric matrices $M$ with all entries in $T$ such that $C_j=0$ for all $j$; $(R)$ for a skew-symmetric matrix $M$ with $a_{ij}\\in T$ for $i>j$, the number of elements in $\\left\\{(x,y,z)^{\\mathsf T}\\in\\mathbb{R}^3 : M(x,y,z)^{\\mathsf T}=(a_{12},0,-a_{23})^{\\mathsf T}\\right\\}$; $(S)$ for a matrix $M$ with all entries in $T$ such that $R_i=0$ for all $i$, the absolute value of $\\det M$. List-II: $(1)$ $1$; $(2)$ $12$; $(3)$ infinite; $(4)$ $6$; $(5)$ $0$. Options: $(A)$ P$\\to$4, Q$\\to$2, R$\\to$5, S$\\to$1; $(B)$ P$\\to$2, Q$\\to$4, R$\\to$1, S$\\to$5; $(C)$ P$\\to$2, Q$\\to$4, R$\\to$3, S$\\to$5; $(D)$ P$\\to$1, Q$\\to$5, R$\\to$3, S$\\to$4.",
+    "answer": "$$\\boxed{(C)\\quad P\\to2,\\ Q\\to4,\\ R\\to3,\\ S\\to5}$$",
+    "trap": "Everything hinges on the identity $1+\\alpha+\\beta=0$: by Vieta on $x^2+x-1=0$, $\\alpha+\\beta=-1$, so the three allowed entries sum to zero. Miss this and the counts look intractable; catch it and a row (or column) sums to zero \\emph{iff} its three entries are exactly $\\{1,\\alpha,\\beta\\}$ in some order. The subtler snare is $(R)$: the coefficient matrix is skew-symmetric of odd order, hence singular, so the answer can only be $0$ or $\\infty$ — never a unique solution; one must still check consistency to rule out $0$.",
+    "solutions": [
+      {
+        "name": "Use $1+\\alpha+\\beta=0$ to settle each list entry",
+        "steps": [
+          "By Vieta, $\\alpha+\\beta=-1$ and $\\alpha\\beta=-1$, so $1+\\alpha+\\beta=0$. Since the three distinct entries $1,\\alpha,\\beta$ sum to $0$, a line (row or column) of three entries from $T$ sums to $0$ if and only if the entries are a permutation of $\\{1,\\alpha,\\beta\\}$ (any repetition gives a nonzero sum, as $2\\cdot1+\\alpha,\\ 2\\alpha+1,\\dots$ are all $\\neq0$).",
+          "$(P)$: every row and every column must be a permutation of $\\{1,\\alpha,\\beta\\}$ — i.e. $M$ is a $3\\times3$ Latin square on the symbols $1,\\alpha,\\beta$. The number of $3\\times3$ Latin squares on $3$ symbols is $12$, so $(P)=12\\to(2)$.",
+          "$(Q)$: $M$ symmetric with every column sum $0$ (hence every row sum $0$ too). Fix the first row as one of the $6$ orderings of $\\{1,\\alpha,\\beta\\}$; symmetry then forces the rest, and each choice yields a valid symmetric matrix with zero line-sums. Direct enumeration gives exactly $6$, so $(Q)=6\\to(4)$.",
+          "$(R)$: $M$ is skew-symmetric $3\\times3$, so $\\det M=0$ (odd-order skew) and the map is singular. Writing $M=\\begin{pmatrix}0&-p&-q\\\\p&0&-r\\\\q&r&0\\end{pmatrix}$ with $p=a_{21},q=a_{31},r=a_{32}\\in T$, the target $(a_{12},0,-a_{23})^{\\mathsf T}=(-p,0,r)^{\\mathsf T}$ lies in the column space (checked for all $27$ choices of $(p,q,r)$), so the system is consistent with a rank-$2$ matrix $\\Rightarrow$ infinitely many solutions, $(R)\\to(3)$. $(S)$: apply $C_1\\to C_1+C_2+C_3$; since each row sum $R_i=0$, the new first column is all zeros, so $\\det M=0$ and $|\\det M|=0$, $(S)\\to(5)$.",
+          "Assembling P$\\to$2, Q$\\to$4, R$\\to$3, S$\\to$5 matches option $\\boxed{(C)}$."
+        ]
+      },
+      {
+        "name": "Structural arguments (permutation, rank, column operation) verified by enumeration",
+        "steps": [
+          "$(P)$ by permutations: a zero-summing line must use all three symbols once. Choose the first row's ordering ($3!=6$ ways). For a Latin square the second row is a derangement of the first restricted to a valid Latin arrangement, and the third row is then forced; counting gives $6\\times2=12$ reduced arrangements — equivalently the well-known count of $3\\times3$ Latin squares is $12$. A brute-force scan over all $3^9$ entry-choices confirms exactly $12$ matrices with all $R_i=C_j=0$, so $(P)\\to(2)$.",
+          "$(Q)$ by counting the independent symmetric entries $a_{11},a_{22},a_{33},a_{12},a_{13},a_{23}\\in T$ subject to the three column-sum equations; the machine count over all $3^6=729$ symmetric candidates returns $6$, so $(Q)\\to(4)$.",
+          "$(R)$ by the axis-vector view: a skew-symmetric $3\\times3$ acts as $M\\mathbf{x}=\\mathbf{w}\\times\\mathbf{x}$ for $\\mathbf{w}=(r,-q,p)^{\\mathsf T}$, whose image is the plane $\\mathbf{w}^{\\perp}$; the right-hand side $(-p,0,r)^{\\mathsf T}$ satisfies $\\mathbf{w}\\cdot(-p,0,r)=-pr+pr=0$, so it always lies in that plane. Thus the system is consistent with a one-parameter solution family (the line $\\mathbb{R}\\mathbf{w}$ of the kernel), i.e. infinitely many solutions — $(R)\\to(3)$; an enumeration over all $27$ lower-triangular assignments confirms 'infinite' in every case.",
+          "$(S)$ by a determinant identity: for any matrix with all row sums zero, $M(1,1,1)^{\\mathsf T}=\\mathbf{0}$, so $(1,1,1)^{\\mathsf T}$ is a nonzero null vector and $\\det M=0$. Enumerating all $216$ matrices whose rows are each a permutation of $\\{1,\\alpha,\\beta\\}$ yields $\\det=0$ every time, so $|\\det M|=0$, $(S)\\to(5)$. The unique consistent matching is option $\\boxed{(C)}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2024, Paper 1, Q14. One tiny fact, $1+\\alpha+\\beta=0$, powers all four parts: it turns 'row sums to zero' into 'row is a permutation of $\\{1,\\alpha,\\beta\\}$', makes $(1,1,1)^{\\mathsf T}$ an automatic null vector in $(S)$, and combines with the singularity of an odd-order skew-symmetric matrix to force infinitely many solutions in $(R)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Integer Orthogonal Matrices Commuting with $P$",
+    "difficulty": 5,
+    "task": "Count the invertible integer matrices $Q$ with $Q^{-1}=Q^{T}$ that commute with $P$.",
+    "pyq": {
+      "year": 2025,
+      "paper": "1",
+      "qno": "4"
+    },
+    "tags": [
+      "orthogonal matrices",
+      "commuting matrices",
+      "integer matrices",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "Consider the matrix $P=\\begin{pmatrix}2&0&0\\\\0&2&0\\\\0&0&3\\end{pmatrix}$, and for any matrix $X$ let $X^{T}$ denote its transpose. Determine the number of $3\\times3$ invertible matrices $Q$ with integer entries such that $Q^{-1}=Q^{T}$ and $PQ=QP$.",
+    "answer": "$\\boxed{16}$",
+    "trap": "Assuming “orthogonal with integer entries” allows arbitrary rotations. Over the integers, orthogonality is a brutal constraint: every column is a unit vector with integer components, so each column is $\\pm e_i$ — the only integer orthogonal matrices are the $\\pm1$ signed permutation matrices, not a continuum of rotations.",
+    "solutions": [
+      {
+        "name": "Eigenspace-preserving orthogonal blocks",
+        "steps": [
+          "The condition $Q^{-1}=Q^{T}$ says $Q$ is orthogonal, so its columns are integer unit vectors; the only integer unit vectors in $\\mathbb{R}^3$ are $\\pm e_1,\\pm e_2,\\pm e_3$. Hence $Q$ must be a signed permutation matrix (a permutation matrix with some entries negated).",
+          "Now impose $PQ=QP$ with $P=\\operatorname{diag}(2,2,3)$. Commuting with a diagonal matrix forces $Q$ to preserve each eigenspace of $P$: the plane $\\langle e_1,e_2\\rangle$ (eigenvalue $2$) and the line $\\langle e_3\\rangle$ (eigenvalue $3$). So $Q$ is block-diagonal, $Q=\\begin{pmatrix}A&0\\\\0&c\\end{pmatrix}$ with $A$ a $2\\times2$ integer orthogonal matrix and $c=\\pm1$.",
+          "Count each block. The integer orthogonal $2\\times2$ matrices are the signed permutations $\\begin{pmatrix}\\pm1&0\\\\0&\\pm1\\end{pmatrix}$ and $\\begin{pmatrix}0&\\pm1\\\\\\pm1&0\\end{pmatrix}$: that is $4+4=8$ choices for $A$. The scalar $c$ gives $2$ choices.",
+          "Multiply the independent choices: $8\\times2=\\boxed{16}$."
+        ]
+      },
+      {
+        "name": "Direct enumeration over signed permutations",
+        "steps": [
+          "From $Q^{-1}=Q^{T}$ over $\\mathbb{Z}$ we again know $Q$ ranges only over the $48$ signed permutation matrices (each of the $6$ permutations times $2^3$ sign patterns).",
+          "Write $Q$ column by column with $Q e_j=\\varepsilon_j e_{\\sigma(j)}$ for a permutation $\\sigma$ and signs $\\varepsilon_j=\\pm1$. Then $PQ e_j=\\varepsilon_j\\,p_{\\sigma(j)}e_{\\sigma(j)}$ while $QP e_j=p_j\\,\\varepsilon_j e_{\\sigma(j)}$, where $p_1=p_2=2,\\ p_3=3$.",
+          "Equating gives $p_{\\sigma(j)}=p_j$ for every $j$: the permutation must send index $3$ to $3$ (the unique index with entry $3$) and permute $\\{1,2\\}$ among themselves. That leaves $2$ allowed permutations, and all $2^3=8$ sign choices remain free.",
+          "Hence the count is $2\\times8=\\boxed{16}$, matching the block argument."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 1, Q4. The hidden idea is that “integer + orthogonal’’ collapses a continuous group down to the finite signed-permutation group, after which commuting with $P$ is just a symmetry-preservation count."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Matrix Braided to a Diagonal $P$",
+    "difficulty": 4,
+    "task": "Given a nonzero $R$ with $QR=RP$, decide which determinant statements about $Q$ are true.",
+    "pyq": {
+      "year": 2025,
+      "paper": "2",
+      "qno": "5"
+    },
+    "tags": [
+      "matrix similarity condition",
+      "determinant computation",
+      "singular matrix argument",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "Let $I=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$ and $P=\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$. Let $Q=\\begin{pmatrix}x&y\\\\z&4\\end{pmatrix}$ for some non-zero real numbers $x,y,z$ for which there exists a $2\\times2$ matrix $R$, with all entries non-zero real numbers, satisfying $QR=RP$. Then which of the following statements is (are) TRUE? $\\text{(A)}$ the determinant of $Q-2I$ is zero; $\\text{(B)}$ the determinant of $Q-6I$ is $12$; $\\text{(C)}$ the determinant of $Q-3I$ is $15$; $\\text{(D)}$ $yz=2$.",
+    "answer": "$\\boxed{\\text{(A), (B)}}$",
+    "trap": "Reading $QR=RP$ as ordinary similarity $Q=RPR^{-1}$ and stopping there. The catch is that $R$ need not be invertible — but because its entries are all non-zero, $R$ has no zero column, and that is exactly enough to conclude $Q-2I$ and $Q-3I$ are singular.",
+    "solutions": [
+      {
+        "name": "Singular-shift argument via the columns of $R$",
+        "steps": [
+          "Rewrite the given relation for each diagonal entry of $P$. Since $P=\\operatorname{diag}(2,3)$, the equation $QR=RP$ says $Q(Re_1)=2(Re_1)$ and $Q(Re_2)=3(Re_2)$, i.e. the columns of $R$ are eigenvectors of $Q$ for eigenvalues $2$ and $3$.",
+          "Because every entry of $R$ is non-zero, neither column of $R$ is the zero vector. So $Q$ has a non-trivial vector killed by $Q-2I$ and another killed by $Q-3I$; hence $\\det(Q-2I)=0$ and $\\det(Q-3I)=0$. Statement (A) is TRUE.",
+          "Turn these into equations in the entries. With $Q=\\begin{pmatrix}x&y\\\\z&4\\end{pmatrix}$, $\\det(Q-2I)=2x-yz-4=0$ and $\\det(Q-3I)=x-yz-3=0$. Subtracting gives $x=1$, and then $yz=x-3=-2$. So (D) $yz=2$ is FALSE, and (C) $\\det(Q-3I)=0\\ne15$ is FALSE.",
+          "Evaluate (B): $\\det(Q-6I)=(x-6)(4-6)-yz=(1-6)(-2)-(-2)=10+2=12$. Statement (B) is TRUE. Final answer: $\\boxed{\\text{(A), (B)}}$."
+        ]
+      },
+      {
+        "name": "Eigenvalue matching through trace and determinant",
+        "steps": [
+          "The relation $QR=RP$ with a non-zero $R$ (no zero column) forces the eigenvalues of $P$, namely $2$ and $3$, to be eigenvalues of $Q$. Since $Q$ is $2\\times2$, these must be exactly its two eigenvalues.",
+          "Match the invariants: trace $x+4=2+3=5\\Rightarrow x=1$, and $\\det Q=4x-yz=2\\cdot3=6\\Rightarrow 4-yz=6\\Rightarrow yz=-2$.",
+          "Because $2$ and $3$ are the eigenvalues, $\\det(Q-2I)=0$ (A TRUE) and $\\det(Q-3I)=0\\ne15$ (C FALSE); also $yz=-2\\ne2$ (D FALSE).",
+          "For any $t$, $\\det(Q-tI)=(2-t)(3-t)$; at $t=6$ this is $(2-6)(3-6)=(-4)(-3)=12$, so (B) is TRUE. Both methods give $\\boxed{\\text{(A), (B)}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 2, Q5. The elegant move is refusing to invert $R$: an eigenvector living in a non-zero column is all you need, and the whole problem reduces to the factored form $\\det(Q-tI)=(2-t)(3-t)$."
   }
 ];

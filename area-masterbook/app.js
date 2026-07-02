@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['areaxaxis','areayaxis','betweencurves','intersection','symmetry','stdcurves','moduluspiece','variableparam','minimizearea','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['areaxaxis','areayaxis','betweencurves','intersection','symmetry','stdcurves','moduluspiece','variableparam','minimizearea','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     areaxaxis:       { glyph:'∫f dx',  blurb:'The area bounded by y=f(x), the x-axis and two ordinates — written as a definite integral, splitting at sign-change roots so signed pieces never cancel.' },
     areayaxis:       { glyph:'∫x dy',  blurb:'Area by horizontal strips, ∫x dy between y-limits — the right tool when the region is read more simply against the y-axis.' },
@@ -17,6 +17,7 @@
     variableparam:   { glyph:'A(t)',   blurb:'Area as a function of a moving boundary or a parameter — differentiating under the limit (Leibniz) and solving the resulting condition.' },
     minimizearea:    { glyph:'min A',  blurb:'Extremising an enclosed area under a constraint — choosing the right variable, and respecting feasibility and the endpoints.' },
     hybrid:          { glyph:'⊕',      blurb:'The capstones: area fused with between-curves, the standard conics, symmetry, a variable boundary and an optimisation into one multi-step problem.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

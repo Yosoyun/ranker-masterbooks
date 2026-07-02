@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['firstprinciples','nondiff','mvt','impparam','functionaleqdiff','smoothness','tangent','monotonic','derivlimits','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['firstprinciples','nondiff','mvt','impparam','functionaleqdiff','smoothness','tangent','monotonic','derivlimits','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     firstprinciples:  { glyph:'lim',    blurb:'The derivative from its definition — the difference quotient, left and right, before any rule is allowed.' },
     nondiff:          { glyph:'∠',      blurb:'Corners, cusps, vertical tangents and oscillation — every place the tangent refuses to exist, counted.' },
@@ -17,6 +17,7 @@
     monotonic:        { glyph:'↑↓',     blurb:'The sign of f′ rules increase, decrease and the extrema; whole inequalities fall out of monotonicity.' },
     derivlimits:      { glyph:'0/0',    blurb:'Limits the derivative settles — Taylor cancellation, L’Hôpital’s fine print, the quotient as a limit.' },
     hybrid:           { glyph:'⊕',      blurb:'The capstones: the Mean Value Theorem, implicit differentiation, functional equations and smoothness fused into one.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

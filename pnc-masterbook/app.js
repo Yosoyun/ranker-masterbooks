@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['fundamental','permutations','combinations','circular','distributions','inclusionexclusion','identities','geomcount','lattice','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['fundamental','permutations','combinations','circular','distributions','inclusionexclusion','identities','geomcount','lattice','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     fundamental:       { glyph:'×+',    blurb:'Every count is a chain of choices (multiply) or a split into cases (add). The whole subject grows from these two rules and one good bijection.' },
     permutations:      { glyph:'ₙPᵣ',   blurb:'Order matters: arrange, seat and string objects in a row — with repetition, with identical items, and with positions forbidden.' },
@@ -17,6 +17,7 @@
     geomcount:         { glyph:'△ₙ',    blurb:'Counting on a configuration of points and lines — the lines, triangles, diagonals, regions and intersection points that n points in general position create.' },
     lattice:           { glyph:'↗',     blurb:'Monotone up/right walks on a grid counted by a single binomial — paths forced through, or steered around, a chosen lattice point.' },
     hybrid:            { glyph:'⊕',     blurb:'The capstones: arrangements, selections, inclusion–exclusion and geometric counting fused into one count that resists every single tool.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

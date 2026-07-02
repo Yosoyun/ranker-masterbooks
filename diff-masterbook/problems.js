@@ -4164,5 +4164,1010 @@ window.PROBLEMS = [
       }
     ],
     "remark": "**Insight.** The Fundamental Theorem hands you $F'=f$ for free, but it never promises a *second* derivative — $F''(0)$ has to be born from the limit definition applied to $F'$. Because $F'(0)=f(0)=0$, that limit collapses to the famous $\\dfrac{1-\\cos h}{h^{2}}\\to\\dfrac12$, so the whole problem is a disguised test of whether you remember the $\\tfrac12$ in $1-\\cos h\\sim\\tfrac12 h^{2}$. Differentiating the messy formula for $f$ is a trap; reading off the difference quotient is the clean route."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Conserved Quantity: $f^2+(f')^2$",
+    "difficulty": 2,
+    "task": "Find the value of $F(10)$.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "7"
+    },
+    "tags": [
+      "derivative rules",
+      "constant function via derivative",
+      "2006"
+    ],
+    "figure": "",
+    "statement": "If $f''(x)=-f(x)$ and $g(x)=f'(x)$, and $F(x)=\\left(f\\!\\left(\\dfrac{x}{2}\\right)\\right)^2+\\left(g\\!\\left(\\dfrac{x}{2}\\right)\\right)^2$, and it is given that $F(5)=5$, then $F(10)$ is equal to\n\n(A) $5$\n\n(B) $10$\n\n(C) $0$\n\n(D) $15$",
+    "answer": "$\\boxed{5}$ (option (A))",
+    "trap": "The chain-rule factor from the argument $x/2$ makes each derivative pick up a $\\tfrac12$, so a hasty student computes $F'(x)=\\tfrac12\\big[2ff'+2gg'\\big]$ and then wrongly forgets that $g=f'$ and $g'=f''=-f$. The real point is not the $\\tfrac12$ at all — it is that $ff'+gg'=f\\,f'+f'\\,(-f)=0$ identically, so $F$ is constant. Chasing $F(10)=2\\,F(5)$ (as if $F$ were linear or scaled) is the tempting wrong move.",
+    "solutions": [
+      {
+        "name": "Show $F$ is constant (differentiate)",
+        "steps": [
+          "Write $u=x/2$. Then $F(x)=f(u)^2+g(u)^2$ with $g=f'$, and $\\dfrac{du}{dx}=\\dfrac12$.",
+          "Differentiate: $F'(x)=\\Big[2\\,f(u)\\,f'(u)+2\\,g(u)\\,g'(u)\\Big]\\cdot\\dfrac12$.",
+          "Now $g(u)=f'(u)$ and $g'(u)=f''(u)=-f(u)$ (given $f''=-f$).",
+          "Substitute: $f(u)f'(u)+g(u)g'(u)=f(u)f'(u)+f'(u)\\big(-f(u)\\big)=0$.",
+          "Hence $F'(x)=0$ for all $x$, so $F$ is a constant function.",
+          "Therefore $F(10)=F(5)=5$."
+        ]
+      },
+      {
+        "name": "Recognise $f$ as simple harmonic motion",
+        "steps": [
+          "The relation $f''(x)=-f(x)$ is the SHM equation, whose general solution is $f(x)=A\\cos x+B\\sin x$.",
+          "Then $f'(x)=-A\\sin x+B\\cos x$, so $g=f'$ satisfies $f(t)^2+g(t)^2=A^2+B^2$ for every $t$ (the Pythagorean identity absorbs the cross terms).",
+          "With $t=x/2$: $F(x)=f(x/2)^2+g(x/2)^2=A^2+B^2$, a constant independent of $x$.",
+          "Given $F(5)=5$, the constant equals $5$, so $F(10)=5$ as well."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q7. The energy-like invariant $f^2+(f')^2$ of the SHM equation $f''=-f$ is conserved, so its value at any two arguments must agree — the specific numbers $5$ and $10$ are pure distraction."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Lower Envelope $\\min\\{1,x^2,x^3\\}$",
+    "difficulty": 3,
+    "task": "Identify all correct statements.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "14"
+    },
+    "tags": [
+      "continuity",
+      "non-differentiability of min function",
+      "2006"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"180\" x2=\"305\" y2=\"180\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"110\" y1=\"20\" x2=\"110\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"298\" y=\"195\" fill=\"var(--ink2)\">x</text><text x=\"116\" y=\"30\" fill=\"var(--ink2)\">y</text><path d=\"M 20 219 Q 65 210 90 197 T 130 155\" stroke=\"var(--ink2)\" stroke-width=\"1\" fill=\"none\" stroke-dasharray=\"4 3\"/><path d=\"M 40 214 Q 90 195 130 130 Q 160 82 190 40\" stroke=\"var(--ink2)\" stroke-width=\"1\" fill=\"none\" stroke-dasharray=\"4 3\"/><line x1=\"20\" y1=\"90\" x2=\"305\" y2=\"90\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><text x=\"24\" y=\"84\" fill=\"var(--ink2)\">y=1</text><path d=\"M 20 219 Q 65 210 90 197 T 150 90\" stroke=\"var(--gold)\" stroke-width=\"2.5\" fill=\"none\"/><line x1=\"150\" y1=\"90\" x2=\"305\" y2=\"90\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><circle cx=\"150\" cy=\"90\" r=\"3\" fill=\"var(--gold)\"/><line x1=\"150\" y1=\"90\" x2=\"150\" y2=\"180\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"2 2\"/><text x=\"146\" y=\"195\" fill=\"var(--ink2)\">1</text><text x=\"200\" y=\"78\" fill=\"var(--gold)\">f(x)</text><text x=\"165\" y=\"55\" fill=\"var(--ink2)\">y=x²</text><text x=\"55\" y=\"205\" fill=\"var(--ink2)\">y=x³</text></svg>",
+    "statement": "If $f(x)=\\min\\{1,\\,x^2,\\,x^3\\}$, then\n\n(A) $f(x)$ is continuous $\\forall\\,x\\in\\mathbb{R}$\n\n(B) $f'(x)>0,\\ \\forall\\,x>1$\n\n(C) $f(x)$ is not differentiable but continuous $\\forall\\,x\\in\\mathbb{R}$\n\n(D) $f(x)$ is not differentiable for two values of $x$",
+    "answer": "$\\boxed{(A)}$",
+    "trap": "Option $(C)$ reads “not differentiable but continuous $\\forall x$” — i.e. non-differentiable at EVERY $x$. But $f$ is a smooth cubic for $x<1$ and constant for $x>1$; it kinks at the single point $x=1$ only. “For all $x$” makes $(C)$ false, and $(D)$’s “two values” is also wrong.",
+    "solutions": [
+      {
+        "name": "Resolve the min, then test every point",
+        "steps": [
+          "For $x\\le1$: since $x^3\\le x^2$ and $x^3\\le1$ there, the least of $\\{1,x^2,x^3\\}$ is $x^3$; for $x>1$: $1<x^2<x^3$, so the least is $1$. Thus $f(x)=x^3$ for $x\\le1$ and $f(x)=1$ for $x>1$.",
+          "Continuity: each branch is continuous and they agree at $x=1$ ($1^3=1$), so $f$ is continuous on all of $\\mathbb{R}$ — $(A)$ is TRUE.",
+          "Differentiability: $f'(x)=3x^2$ for $x<1$ and $f'(x)=0$ for $x>1$. At $x=1$ the left derivative is $3$ and the right is $0$, so $f$ fails to be differentiable ONLY at the single point $x=1$.",
+          "Therefore $(C)$ (“not differentiable but continuous $\\forall x$”) is FALSE — $f$ IS differentiable at every $x\\ne1$. $(D)$ (non-differentiable at two values) is FALSE (only one). $(B)$ is FALSE since $f'(x)=0\\not>0$ for $x>1$. The only correct option is $(A)$."
+        ]
+      },
+      {
+        "name": "Min-of-smooth-curves envelope argument",
+        "steps": [
+          "The pointwise minimum of finitely many continuous functions is continuous, so $f$ is continuous everywhere without any casework — $(A)$ holds.",
+          "A min-envelope can lose differentiability only where the “winning” curve switches. Here the cubic $y=x^3$ wins for $x\\le1$ and the line $y=1$ wins for $x>1$, so the only possible corner is $x=1$.",
+          "At $x=1$ the incoming slope ($3$, from $x^3$) differs from the outgoing slope ($0$, from $y=1$): a genuine corner, and the ONLY one. Everywhere else $f$ coincides with a single smooth curve.",
+          "So $f$ is continuous everywhere and non-differentiable at exactly one point. $(A)$ only; $(C)$ and $(D)$ overstate the failure and are false."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q14. $f(x)=x^3$ on $x\\le1$ and $1$ on $x>1$: continuous everywhere ($(A)$), with a single corner at $x=1$ — so the only correct option is $(A)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Hidden Derivative: zeros of $(f')^2+f''f$",
+    "difficulty": 4,
+    "task": "Find the minimum number of zeros.",
+    "pyq": {
+      "year": 2006,
+      "paper": "1",
+      "qno": "36"
+    },
+    "tags": [
+      "Rolle's theorem",
+      "counting zeros",
+      "2006"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"120\" x2=\"305\" y2=\"120\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"30\" y1=\"20\" x2=\"30\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><path d=\"M40 120 C 70 40, 95 40, 110 60 S 150 200, 175 175 S 215 40, 245 60 S 285 120, 295 120\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><circle cx=\"40\" cy=\"120\" r=\"3\" fill=\"var(--ink3)\"/><circle cx=\"110\" cy=\"60\" r=\"3\" fill=\"var(--ink3)\"/><circle cx=\"175\" cy=\"175\" r=\"3\" fill=\"var(--ink3)\"/><circle cx=\"245\" cy=\"60\" r=\"3\" fill=\"var(--ink3)\"/><circle cx=\"295\" cy=\"120\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"36\" y=\"137\" fill=\"var(--ink2)\">a</text><text x=\"106\" y=\"52\" fill=\"var(--ink2)\">b</text><text x=\"171\" y=\"192\" fill=\"var(--ink2)\">c</text><text x=\"241\" y=\"52\" fill=\"var(--ink2)\">d</text><text x=\"291\" y=\"137\" fill=\"var(--ink2)\">e</text><text x=\"120\" y=\"55\" fill=\"var(--ink2)\">2</text><text x=\"185\" y=\"180\" fill=\"var(--ink2)\">-1</text><text x=\"255\" y=\"55\" fill=\"var(--ink2)\">2</text></svg>",
+    "statement": "Let $f(x)$ be a twice differentiable function such that $f(a)=0,\\ f(b)=2,\\ f(c)=-1,\\ f(d)=2,\\ f(e)=0$, where $a<b<c<d<e$. Then the minimum number of zeros of $$g(x)=\\bigl(f'(x)\\bigr)^2+f''(x)\\,f(x)$$ in the interval $[a,e]$ is.",
+    "answer": "$\\boxed{6}$",
+    "trap": "The instinct is to attack $g$ directly by analysing $(f')^2+f''f$ term by term, which goes nowhere. The whole problem collapses once you recognise $g=(f\\,f')'$ — miss that product-rule pattern and you cannot count. A second trap: after finding $f$ has $4$ sign-change zeros and $f'$ has $3$ zeros, you must combine them into the zeros of $h=f\\,f'$ (at least $7$, since the lists are disjoint) before applying Rolle — not count $g$'s zeros from $f$ and $f'$ separately.",
+    "solutions": [
+      {
+        "name": "Recognise $g=(f\\,f')'$, then Rolle",
+        "steps": [
+          "Observe the product rule: $\\dfrac{d}{dx}\\bigl(f(x)f'(x)\\bigr)=f'(x)f'(x)+f(x)f''(x)=(f'(x))^2+f''(x)f(x)=g(x).$ So $g=h'$ where $h(x)=f(x)f'(x)$.",
+          "Count the zeros of $f$ on $[a,e]$. The values $f(a)=0,\\ f(b)=2,\\ f(c)=-1,\\ f(d)=2,\\ f(e)=0$ give $f=0$ at the two endpoints $a,e$, plus sign changes $+\\to-$ on $(b,c)$ and $-\\to+$ on $(c,d)$; by the Intermediate Value Theorem $f$ has at least one zero in each of $(b,c)$ and $(c,d)$. Hence $f$ has at least $4$ zeros in $[a,e]$: $a$, one in $(b,c)$, one in $(c,d)$, and $e$.",
+          "Count the zeros of $f'$ on $[a,e]$. Between consecutive zeros of $f$, Rolle's theorem gives a zero of $f'$: with $4$ zeros of $f$ there are $3$ gaps, so $f'$ has at least $3$ zeros in $[a,e]$.",
+          "Combine into zeros of $h=f\\,f'$. Every zero of $f$ and every zero of $f'$ is a zero of $h$. These two lists are disjoint (a common zero would make $x$ a repeated root, but the $4$ zeros of $f$ come from strict sign changes / distinct endpoints and the $3$ Rolle points lie strictly between them). So $h$ has at least $4+3=7$ zeros in $[a,e]$.",
+          "Apply Rolle once more. With at least $7$ zeros of $h$, there are at least $6$ consecutive-pair gaps, and Rolle gives a zero of $h'=g$ in each. Therefore $g$ has at least $\\boxed{6}$ zeros in $[a,e]$."
+        ]
+      },
+      {
+        "name": "Direct Rolle bookkeeping on $f$ and $f'$",
+        "steps": [
+          "List a concrete extremal $f$ realising the constraints, e.g. a smooth curve through $(a,0),(b,2),(c,-1),(d,2),(e,0)$ that is monotone between the marked points. Label its zeros $r_1=a<r_2<r_3<r_4=e$ (one root in $(b,c)$, one in $(c,d)$).",
+          "Between $r_1,r_2,r_3,r_4$ Rolle produces stationary points $s_1\\in(r_1,r_2),\\ s_2\\in(r_2,r_3),\\ s_3\\in(r_3,r_4)$ where $f'=0$; that is $3$ zeros of $f'$.",
+          "Now $g=(f'\\,)^2+f''f$ vanishes exactly where $h=f f'=0$ has a horizontal tangent. At each $r_i$ we have $f=0$ so $h=0$; at each $s_j$ we have $f'=0$ so $h=0$. Order all seven abscissae: $r_1<s_1<r_2<s_2<r_3<s_3<r_4$ — they interlace, hence are $7$ distinct zeros of $h$.",
+          "By Rolle applied to $h$ on each of the $6$ subintervals $[r_1,s_1],[s_1,r_2],\\dots,[s_3,r_4]$, there is a zero of $h'=g$ in each open subinterval: $6$ zeros of $g$.",
+          "No configuration of a twice-differentiable $f$ meeting the data can force fewer (the four values already pin $4$ zeros of $f$ and $3$ of $f'$). Hence the minimum is $\\boxed{6}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2006, Paper 1, Q36. The entire difficulty is a single act of pattern-recognition — seeing $(f')^2+f''f$ as the derivative of $f\\,f'$ — after which it is pure Rolle bookkeeping."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Four functions, four verdicts on $(-1,1)$",
+    "difficulty": 3,
+    "task": "Match each function to its properties.",
+    "pyq": {
+      "year": 2007,
+      "paper": "1",
+      "qno": "66"
+    },
+    "tags": [
+      "continuity",
+      "differentiability",
+      "greatest integer function",
+      "monotonicity",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"115\" x2=\"305\" y2=\"115\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"162\" y1=\"20\" x2=\"162\" y2=\"205\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"296\" y=\"130\" fill=\"var(--ink2)\">x</text><text x=\"168\" y=\"30\" fill=\"var(--ink2)\">y</text><path d=\"M42 200 Q 102 175 162 115 Q 222 55 282 30\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><text x=\"200\" y=\"58\" fill=\"var(--gold)\">y=x|x|</text><path d=\"M42 45 Q 102 90 162 115 Q 222 90 282 45\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.5\"/><text x=\"40\" y=\"40\" fill=\"var(--ink2)\">y=&#8730;|x|</text><circle cx=\"162\" cy=\"115\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"150\" y=\"132\" fill=\"var(--ink2)\">O</text></svg>",
+    "statement": "Here $[x]$ denotes the greatest integer less than or equal to $x$. Match each function in Column I with the properties it possesses on the interval $(-1,1)$ from Column II.\n\nColumn I: (A) $x\\lvert x\\rvert$; (B) $\\sqrt{\\lvert x\\rvert}$; (C) $x+[x]$; (D) $\\lvert x-1\\rvert+\\lvert x+1\\rvert$.\n\nColumn II: (p) continuous in $(-1,1)$; (q) differentiable in $(-1,1)$; (r) strictly increasing in $(-1,1)$; (s) not differentiable at least at one point in $(-1,1)$.",
+    "answer": "A → (p, q, r); B → (p, s); C → (r, s); D → (p, q)",
+    "trap": "The greatest-integer term in (C) is the killer. On $(-1,1)$, $[x]=-1$ for $-1<x<0$ and $[x]=0$ for $0\\le x<1$, so $x+[x]$ jumps by $+1$ at $x=0$ — yet it is still strictly increasing (each branch rises and the jump is upward), so it earns (r) despite being discontinuous. Students routinely deny (r) because they equate a jump with 'not increasing', and separately mislabel (D) as non-differentiable by forgetting that $\\lvert x-1\\rvert+\\lvert x+1\\rvert$ collapses to the constant $2$ on $(-1,1)$ (the corners sit at $\\pm1$, outside the open interval).",
+    "solutions": [
+      {
+        "name": "Branch-by-branch analysis of each function",
+        "steps": [
+          "(A) $x\\lvert x\\rvert=\\begin{cases}x^2,&x\\ge0\\\\-x^2,&x<0\\end{cases}$. It is continuous (p). Its derivative is $2\\lvert x\\rvert$, continuous everywhere including $0$ where $f'(0)=0$, so it is differentiable (q). Since $f'(x)=2\\lvert x\\rvert\\ge0$ and vanishes only at the single point $x=0$, $f$ is strictly increasing (r). Thus A → (p, q, r).",
+          "(B) $\\sqrt{\\lvert x\\rvert}$ is continuous (p). At $x=0$ the one-sided slopes blow up: $\\lim_{h\\to0^+}\\dfrac{\\sqrt{h}}{h}=+\\infty$ and from the left $-\\infty$, so it is not differentiable at $0$ (s). It is not monotone on $(-1,1)$ (it falls then rises), so (r) fails and, having a non-differentiable point, (q) fails. Thus B → (p, s).",
+          "(C) $x+[x]$. On $(-1,1)$, $[x]=-1$ for $-1<x<0$ and $[x]=0$ for $0\\le x<1$, giving $f(x)=x-1$ on $(-1,0)$ and $f(x)=x$ on $[0,1)$. There is an upward jump of $+1$ at $x=0$, so $f$ is discontinuous there — hence not differentiable at $0$ (s), and (p),(q) fail. But each branch has slope $1$ and the jump is upward, so $x_1<x_2\\Rightarrow f(x_1)<f(x_2)$: strictly increasing (r). Thus C → (r, s).",
+          "(D) $\\lvert x-1\\rvert+\\lvert x+1\\rvert$. For $-1\\le x\\le1$ we have $x-1\\le0$ and $x+1\\ge0$, so it equals $-(x-1)+(x+1)=2$, a constant on $(-1,1)$. A constant is continuous (p) and differentiable (q) there; it is not increasing, so (r) fails and there is no non-differentiable point inside $(-1,1)$, so (s) fails. Thus D → (p, q)."
+        ]
+      },
+      {
+        "name": "Graphical / property-elimination viewpoint",
+        "steps": [
+          "Sketch each graph on $(-1,1)$. (A) is a smooth odd 'stretched cubic-like' curve through the origin with a flat but non-reversing tangent at $0$; a smooth strictly rising curve ticks p, q, r at once.",
+          "(B) is the twin cusp $y=\\sqrt{\\lvert x\\rvert}$, a sharp downward spike at the origin: the picture shows a corner (vertical tangents) at $0$, so it is continuous but not differentiable — p, s — and the V-shape rules out global monotonicity, killing r.",
+          "(C) draws as two parallel segments of slope $1$ with an open/closed gap at $x=0$: the visible vertical jump forbids continuity and differentiability (so s, not p or q), while the left segment sits entirely below the right one, so reading left to right the height never decreases — strictly increasing, giving r.",
+          "(D) flat-lines at height $2$ across the whole interval because both absolute-value corners live at $x=\\pm1$; a horizontal segment is smooth (p, q) but neither rising nor cornered inside, eliminating r and s.",
+          "Collecting the reads: A → (p, q, r), B → (p, s), C → (r, s), D → (p, q)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 1, Q66. A four-way stress test that a strictly increasing function need not be continuous — the $[x]$-jump in (C) rises, so monotonicity survives the discontinuity."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Flipping the roles of $x$ and $y$",
+    "difficulty": 3,
+    "task": "Identify the correct expression for $\\dfrac{d^2x}{dy^2}$.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "47"
+    },
+    "tags": [
+      "second derivative",
+      "derivative of inverse function",
+      "chain rule",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "For a twice-differentiable relation between $x$ and $y$ (with $\\dfrac{dy}{dx}\\ne 0$), $\\dfrac{d^2x}{dy^2}$ equals\n\n(A) $\\left(\\dfrac{d^2y}{dx^2}\\right)^{-1}$\n\n(B) $-\\left(\\dfrac{d^2y}{dx^2}\\right)^{-1}\\left(\\dfrac{dy}{dx}\\right)^{-3}$\n\n(C) $\\left(\\dfrac{d^2y}{dx^2}\\right)\\left(\\dfrac{dy}{dx}\\right)^{-2}$\n\n(D) $-\\left(\\dfrac{d^2y}{dx^2}\\right)\\left(\\dfrac{dy}{dx}\\right)^{-3}$",
+    "answer": "(D)",
+    "trap": "The seductive wrong answer is (A): students reflexively write $\\dfrac{d^2x}{dy^2}=\\left(\\dfrac{d^2y}{dx^2}\\right)^{-1}$ by analogy with the true first-order rule $\\dfrac{dx}{dy}=\\left(\\dfrac{dy}{dx}\\right)^{-1}$. But the reciprocal rule does NOT carry over to second derivatives — $\\dfrac{d^2x}{dy^2}$ is not the reciprocal of $\\dfrac{d^2y}{dx^2}$, because differentiating $1/y'$ a second time pulls in an extra factor of $dx/dy$ from the chain rule.",
+    "solutions": [
+      {
+        "name": "Differentiate $\\dfrac{dx}{dy}=(y')^{-1}$ with respect to $y$",
+        "steps": [
+          "Write $y'=\\dfrac{dy}{dx}$. The first-order reciprocal rule gives $\\dfrac{dx}{dy}=\\dfrac{1}{y'}=(y')^{-1}$, which is exact and undisputed.",
+          "Now differentiate both sides with respect to $y$: $\\dfrac{d^2x}{dy^2}=\\dfrac{d}{dy}\\big[(y')^{-1}\\big]$. Since $y'$ is a function of $x$, use the chain rule $\\dfrac{d}{dy}=\\dfrac{d}{dx}\\cdot\\dfrac{dx}{dy}$.",
+          "Then $\\dfrac{d}{dx}\\big[(y')^{-1}\\big]=-(y')^{-2}\\,y''$ where $y''=\\dfrac{d^2y}{dx^2}$.",
+          "Multiply by $\\dfrac{dx}{dy}=(y')^{-1}$: $\\dfrac{d^2x}{dy^2}=-(y')^{-2}y''\\cdot(y')^{-1}=-y''\\,(y')^{-3}$.",
+          "Hence $\\dfrac{d^2x}{dy^2}=-\\left(\\dfrac{d^2y}{dx^2}\\right)\\left(\\dfrac{dy}{dx}\\right)^{-3}$, which is option (D)."
+        ]
+      },
+      {
+        "name": "Concrete verification with $y=x^2$",
+        "steps": [
+          "Take a specific curve, say $y=x^2$ (on $x>0$), so that $x=\\sqrt{y}=y^{1/2}$ and the answer can be checked numerically.",
+          "Compute the left side directly: $\\dfrac{dx}{dy}=\\tfrac12 y^{-1/2}$ and $\\dfrac{d^2x}{dy^2}=-\\tfrac14 y^{-3/2}$.",
+          "Compute the right-hand candidates: $\\dfrac{dy}{dx}=2x$ and $\\dfrac{d^2y}{dx^2}=2$. At a point, $y=x^2$ so $y^{-3/2}=x^{-3}$.",
+          "Option (D) gives $-\\left(\\dfrac{d^2y}{dx^2}\\right)\\left(\\dfrac{dy}{dx}\\right)^{-3}=-2\\cdot(2x)^{-3}=-\\dfrac{2}{8x^3}=-\\dfrac{1}{4x^3}=-\\tfrac14 y^{-3/2}$, matching the left side exactly.",
+          "Option (A) would give $\\left(\\dfrac{d^2y}{dx^2}\\right)^{-1}=\\tfrac12$, a constant — clearly wrong. So (D) is confirmed."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q47. The lesson: the reciprocal rule is a first-derivative fact only — the second derivative of an inverse relation always carries a $(dy/dx)^{-3}$ factor and a sign flip."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A critical point in every window of length $\\pi$",
+    "difficulty": 3,
+    "task": "Decide the truth of the two statements and whether one explains the other.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "54"
+    },
+    "tags": [
+      "Rolle's theorem",
+      "critical points",
+      "periodic functions",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"20\" y1=\"120\" x2=\"305\" y2=\"120\" stroke=\"var(--ink3)\" stroke-width=\"1\"/>\n  <line x1=\"30\" y1=\"20\" x2=\"30\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1\"/>\n  <text x=\"298\" y=\"135\" fill=\"var(--ink2)\">x</text>\n  <text x=\"12\" y=\"26\" fill=\"var(--ink2)\">y</text>\n  <path d=\"M30,70 Q56,45 82,70 T134,70 T186,70 T238,70 T290,70\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.6\"/>\n  <text x=\"92\" y=\"40\" fill=\"var(--ink2)\">$y=2+\\cos x$</text>\n  <line x1=\"108\" y1=\"120\" x2=\"108\" y2=\"200\" stroke=\"var(--ink2)\" stroke-dasharray=\"3 3\"/>\n  <line x1=\"212\" y1=\"120\" x2=\"212\" y2=\"200\" stroke=\"var(--ink2)\" stroke-dasharray=\"3 3\"/>\n  <text x=\"96\" y=\"214\" fill=\"var(--ink2)\">t</text>\n  <text x=\"196\" y=\"214\" fill=\"var(--ink2)\">t+\\u03c0</text>\n  <circle cx=\"160\" cy=\"95\" r=\"3.5\" fill=\"var(--gold)\"/>\n  <text x=\"150\" y=\"112\" fill=\"var(--gold)\">c</text>\n  <text x=\"120\" y=\"180\" fill=\"var(--gold)\">window of width \\u03c0</text>\n</svg>",
+    "statement": "Let $f(x)=2+\\cos x$ for all real $x$.\n\nSTATEMENT-1: For each real $t$, there exists a point $c$ in $[t,\\,t+\\pi]$ such that $f'(c)=0$.\n\nbecause\n\nSTATEMENT-2: $f(t)=f(t+2\\pi)$ for each real $t$.\n\n(A) Statement-1 True, Statement-2 True; Statement-2 is a correct explanation for Statement-1\n\n(B) Statement-1 True, Statement-2 True; Statement-2 is NOT a correct explanation for Statement-1\n\n(C) Statement-1 True, Statement-2 False\n\n(D) Statement-1 False, Statement-2 True",
+    "answer": "(B)",
+    "trap": "The tempting mistake is to reach for Rolle's theorem via the $2\\pi$-periodicity of Statement-2 ($f(t)=f(t+2\\pi)$) and conclude that this is the reason Statement-1 holds. But Rolle over an interval of length $2\\pi$ only guarantees a critical point somewhere in $[t,t+2\\pi]$ — it says nothing about the shorter window $[t,t+\\pi]$ that Statement-1 actually asks about. Statement-1 is true for a stronger structural reason ($\\cos$ has a max or min in every half-period), so Statement-2, while true, is not the correct explanation.",
+    "solutions": [
+      {
+        "name": "Locate the extremum of $\\cos$ directly (why Statement-1 is true)",
+        "steps": [
+          "$f'(x)=-\\sin x$, which vanishes exactly at the integer multiples of $\\pi$: $x=k\\pi$, $k\\in\\mathbb{Z}$.",
+          "The zeros of $f'$ are spaced exactly $\\pi$ apart. So any closed interval of length $\\pi$, namely $[t,t+\\pi]$, must contain at least one of these points $k\\pi$.",
+          "Concretely, take $k=\\left\\lceil t/\\pi\\right\\rceil$; then $k\\pi\\ge t$ and $k\\pi<t+\\pi$, so $c=k\\pi\\in[t,t+\\pi]$ satisfies $f'(c)=0$. Statement-1 is TRUE.",
+          "Statement-2 is a plain fact: $\\cos$ has period $2\\pi$, so $f(t+2\\pi)=2+\\cos(t+2\\pi)=2+\\cos t=f(t)$. Statement-2 is TRUE.",
+          "But this argument used the spacing of critical points — the period $2\\pi$ was never needed to reach the length-$\\pi$ conclusion. So Statement-2 does not explain Statement-1: the answer is (B)."
+        ]
+      },
+      {
+        "name": "Rolle test — show the $2\\pi$-period is too weak",
+        "steps": [
+          "Suppose we try to derive Statement-1 from Statement-2 by Rolle's theorem. Rolle needs equal endpoint values on the SAME interval we conclude about, here $[t,t+\\pi]$.",
+          "Check the endpoints: $f(t+\\pi)-f(t)=\\cos(t+\\pi)-\\cos t=-\\cos t-\\cos t=-2\\cos t$, which is nonzero for most $t$ (e.g. $t=0$ gives $-2$).",
+          "So $f(t)\\ne f(t+\\pi)$ in general — Rolle's theorem cannot even be applied on $[t,t+\\pi]$. The $2\\pi$-periodicity of Statement-2 only equates $f(t)$ with $f(t+2\\pi)$, an interval of length $2\\pi$, not $\\pi$.",
+          "From Statement-2, Rolle only yields a critical point in $[t,t+2\\pi]$, which is a weaker claim than Statement-1. Thus the truth of Statement-1 does not follow from Statement-2.",
+          "Both statements are individually true (Statement-1 by the previous method), but the implication link fails, giving option (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q54. Classic assertion-reason trap: two true statements where the offered reason is a real theorem applied to the wrong interval length — correctness of the 'because' is separate from correctness of the parts."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The mirror at $x=\\tfrac12$",
+    "difficulty": 4,
+    "task": "Select all correct statements.",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "7"
+    },
+    "tags": [
+      "Rolle's theorem",
+      "symmetric functions",
+      "definite integral properties",
+      "2008"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"180\" x2=\"300\" y2=\"180\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"160\" y1=\"30\" x2=\"160\" y2=\"195\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"3 3\"/><path d=\"M 60 70 Q 110 150 160 155 Q 210 150 260 70\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><line x1=\"70\" y1=\"128\" x2=\"110\" y2=\"128\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><line x1=\"140\" y1=\"155\" x2=\"180\" y2=\"155\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><line x1=\"210\" y1=\"128\" x2=\"250\" y2=\"128\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><circle cx=\"90\" cy=\"128\" r=\"2.5\" fill=\"var(--ink3)\"/><circle cx=\"160\" cy=\"155\" r=\"2.5\" fill=\"var(--ink3)\"/><circle cx=\"230\" cy=\"128\" r=\"2.5\" fill=\"var(--ink3)\"/><text x=\"84\" y=\"150\" fill=\"var(--ink2)\" text-anchor=\"middle\">1/4</text><text x=\"160\" y=\"172\" fill=\"var(--ink2)\" text-anchor=\"middle\">1/2</text><text x=\"232\" y=\"150\" fill=\"var(--ink2)\" text-anchor=\"middle\">3/4</text><text x=\"290\" y=\"196\" fill=\"var(--ink2)\">x</text><text x=\"110\" y=\"55\" fill=\"var(--ink2)\">f(x)=f(1-x)</text></svg>",
+    "statement": "Let $f(x)$ be a non-constant twice differentiable function defined on $(-\\infty,\\infty)$ such that $f(x)=f(1-x)$ and $f'\\!\\left(\\tfrac14\\right)=0$. Then which of the following is/are correct? $$\\text{(A) } f''(x)\\text{ vanishes at least twice on }[0,1]$$ $$\\text{(B) } f'\\!\\left(\\tfrac12\\right)=0$$ $$\\text{(C) } \\int_{-1/2}^{1/2} f\\!\\left(x+\\tfrac12\\right)\\sin x\\,dx=0$$ $$\\text{(D) } \\int_0^{1/2} f(t)\\,e^{\\sin\\pi t}\\,dt=\\int_{1/2}^{1} f(1-t)\\,e^{\\sin\\pi t}\\,dt$$",
+    "answer": "(A), (B), (C), (D)",
+    "trap": "The symmetry axis is $x=\\tfrac12$, not $x=0$. Students who reflexively treat $f$ as an even function (axis at the origin) mishandle every part; the correct object to call 'even' is the shifted function $f\\!\\left(x+\\tfrac12\\right)$. A second trap in (A) is stopping at one zero of $f''$ — the hypothesis $f'(1/4)=0$ combined with symmetry secretly hands you three zeros of $f'$, forcing two zeros of $f''$ by Rolle.",
+    "solutions": [
+      {
+        "name": "Symmetry $\\Rightarrow$ shifted function is even",
+        "steps": [
+          "Differentiate $f(x)=f(1-x)$ using the chain rule on the right: $f'(x)=-f'(1-x)$.",
+          "Put $x=\\tfrac12$: $f'\\!\\left(\\tfrac12\\right)=-f'\\!\\left(\\tfrac12\\right)$, so $2f'\\!\\left(\\tfrac12\\right)=0\\Rightarrow f'\\!\\left(\\tfrac12\\right)=0$. This is (B).",
+          "Put $x=\\tfrac14$: $f'\\!\\left(\\tfrac14\\right)=-f'\\!\\left(\\tfrac34\\right)$. Since $f'\\!\\left(\\tfrac14\\right)=0$, also $f'\\!\\left(\\tfrac34\\right)=0$.",
+          "Thus $f'$ vanishes at the three points $\\tfrac14,\\tfrac12,\\tfrac34$ of $[0,1]$. Apply Rolle to $f'$ on $\\left[\\tfrac14,\\tfrac12\\right]$ and on $\\left[\\tfrac12,\\tfrac34\\right]$: $f''$ has a zero in each open interval — at least twice on $[0,1]$. This is (A).",
+          "Let $\\phi(x)=f\\!\\left(x+\\tfrac12\\right)$. Then $\\phi(-x)=f\\!\\left(\\tfrac12-x\\right)=f\\!\\left(1-(\\tfrac12+x)\\right)=f\\!\\left(\\tfrac12+x\\right)=\\phi(x)$, so $\\phi$ is even.",
+          "Hence $\\phi(x)\\sin x$ is odd, and $\\int_{-1/2}^{1/2}\\phi(x)\\sin x\\,dx=0$. This is (C).",
+          "For (D) substitute $t=1-u$ in the right integral: $dt=-du$, limits $\\tfrac12\\to\\tfrac12$ and $1\\to0$, giving $\\int_0^{1/2} f(u)\\,e^{\\sin\\pi(1-u)}\\,du$. Since $\\sin\\pi(1-u)=\\sin\\pi u$, this equals $\\int_0^{1/2} f(u)\\,e^{\\sin\\pi u}\\,du$, exactly the left side. This is (D). All four are correct."
+        ]
+      },
+      {
+        "name": "Direct king-property / substitution route",
+        "steps": [
+          "(D) needs no symmetry of $f'$ at all — only the given $f(1-t)$ inside. In $\\int_{1/2}^{1} f(1-t)e^{\\sin\\pi t}\\,dt$ set $u=1-t$; the periodic identity $\\sin\\pi t=\\sin\\pi(1-t)=\\sin\\pi u$ collapses it onto $\\int_0^{1/2} f(u)e^{\\sin\\pi u}\\,du$, so (D) is an algebraic identity, true for the given $f$.",
+          "(C): rather than invoking evenness, split $\\int_{-1/2}^{1/2}f\\!\\left(x+\\tfrac12\\right)\\sin x\\,dx$ and replace $x\\to-x$ in the negative half; the constraint $f\\!\\left(\\tfrac12-x\\right)=f\\!\\left(\\tfrac12+x\\right)$ makes the two halves cancel because $\\sin(-x)=-\\sin x$. Hence the integral is $0$.",
+          "(B): use the mean-value/Rolle picture. $f$ is symmetric about the line $x=\\tfrac12$; a smooth curve symmetric about a vertical line has a horizontal tangent on that line, so $f'\\!\\left(\\tfrac12\\right)=0$.",
+          "(A): the point $x=\\tfrac14$ has a mirror partner $x=\\tfrac34$ (reflection across $\\tfrac12$). Symmetry of the graph forces the slope at mirror points to be negatives, so $f'\\!\\left(\\tfrac34\\right)=-f'\\!\\left(\\tfrac14\\right)=0$. With three stationary points $\\tfrac14<\\tfrac12<\\tfrac34$ and $f'$ differentiable, $f''=(f')'$ must change or touch zero between consecutive stationary points — at least two zeros in $[0,1]$.",
+          "Every option is validated; the answer is (A), (B), (C), (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2008, Paper 1, Q7. The single hypothesis $f(x)=f(1-x)$ is a reflection about $x=\\tfrac12$; recentering to $\\phi(x)=f\\!\\left(x+\\tfrac12\\right)$ turns 'mirror symmetry' into ordinary evenness and unlocks all four parts at once."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Implicit curve $y^3-3y+x=0$",
+    "difficulty": 4,
+    "task": "Find the second derivative.",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "15"
+    },
+    "tags": [
+      "implicit differentiation",
+      "second derivative",
+      "2008"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"110\" x2=\"300\" y2=\"110\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><path d=\"M 250 25 C 190 55 175 90 160 110 C 145 130 130 165 70 195\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.6\"/><circle cx=\"110\" cy=\"55\" r=\"3\" fill=\"var(--gold)\"/><text x=\"116\" y=\"50\" fill=\"var(--ink2)\">(-10√2, 2√2)</text><text x=\"305\" y=\"114\" fill=\"var(--ink2)\">x</text><text x=\"165\" y=\"28\" fill=\"var(--ink2)\">y</text><text x=\"40\" y=\"170\" fill=\"var(--ink2)\">y=f(x)</text></svg>",
+    "statement": "The equation $y^3-3y+x=0$ implicitly defines, for $x\\in(-\\infty,-2)\\cup(2,\\infty)$, a unique real-valued differentiable function $y=f(x)$. Given that $f(-10\\sqrt2)=2\\sqrt2$, find $f''(-10\\sqrt2)$. $$\\text{(A) } \\frac{4\\sqrt2}{7^3\\,3^2}\\qquad\\text{(B) } \\frac{-4\\sqrt2}{7^3\\,3^2}$$ $$\\text{(C) } \\frac{4\\sqrt2}{7^3\\,3}\\qquad\\text{(D) } \\frac{-4\\sqrt2}{7^3\\,3}$$",
+    "answer": "$\\boxed{\\dfrac{-4\\sqrt2}{7^3\\,3^2}}$ (B)",
+    "trap": "The tempting shortcut is to differentiate $y'=\\dfrac{-1}{3(y^2-1)}$ as a plain function of $x$ and forget that $y$ is itself a function of $x$ — you must reapply the chain rule (multiply by $y'$) when differentiating the $y^2$ inside. Dropping that inner $y'$ (or mis-tracking the sign) sends you straight to a wrong option; the two 'off-by-a-factor' distractors (C)/(D) exist precisely to catch a missing $3$ in the denominator.",
+    "solutions": [
+      {
+        "name": "Differentiate the relation twice",
+        "steps": [
+          "First differentiation of $y^3-3y+x=0$ w.r.t. $x$: $3y^2y'-3y'+1=0$, so $y'=\\dfrac{-1}{3(y^2-1)}$.",
+          "At the point $y=2\\sqrt2$: $y^2=8$, hence $3(y^2-1)=3\\cdot7=21$ and $y'=-\\dfrac{1}{21}$.",
+          "Differentiate $3y^2y'-3y'+1=0$ again w.r.t. $x$ (product + chain rule): $3\\left(2y\\,y'\\cdot y'+y^2y''\\right)-3y''=0$, i.e. $6y\\,(y')^2+3(y^2-1)y''=0$.",
+          "Solve for $y''$: $y''=\\dfrac{-6y\\,(y')^2}{3(y^2-1)}=\\dfrac{-2y\\,(y')^2}{y^2-1}$.",
+          "Substitute $y=2\\sqrt2$, $y'=-\\tfrac{1}{21}$, $y^2-1=7$: $y''=\\dfrac{-2(2\\sqrt2)\\left(\\tfrac{1}{441}\\right)}{7}=\\dfrac{-4\\sqrt2}{441\\cdot7}=\\dfrac{-4\\sqrt2}{3087}$.",
+          "Write $3087=7^3\\cdot 9=7^3\\cdot 3^2$. Hence $f''(-10\\sqrt2)=\\dfrac{-4\\sqrt2}{7^3\\,3^2}$, which is option (B)."
+        ]
+      },
+      {
+        "name": "Inverse-function route (differentiate $x=3y-y^3$)",
+        "steps": [
+          "From the relation, $x=3y-y^3$, so treat $x$ as a function of $y$: $\\dfrac{dx}{dy}=3-3y^2=3(1-y^2)$ and $\\dfrac{d^2x}{dy^2}=-6y$.",
+          "Use the inverse-second-derivative identity $\\dfrac{d^2y}{dx^2}=-\\dfrac{d^2x/dy^2}{(dx/dy)^3}$.",
+          "At $y=2\\sqrt2$: $\\dfrac{dx}{dy}=3(1-8)=-21$ and $\\dfrac{d^2x}{dy^2}=-6\\cdot2\\sqrt2=-12\\sqrt2$.",
+          "Then $f''=\\dfrac{-(-12\\sqrt2)}{(-21)^3}=\\dfrac{12\\sqrt2}{-9261}=\\dfrac{-12\\sqrt2}{9261}$.",
+          "Reduce: $9261=21^3=(3\\cdot7)^3=3^3\\cdot7^3$, so $\\dfrac{-12\\sqrt2}{3^3\\cdot7^3}=\\dfrac{-4\\sqrt2}{3^2\\cdot7^3}$ after cancelling $3$.",
+          "This matches option (B): $f''(-10\\sqrt2)=\\dfrac{-4\\sqrt2}{7^3\\,3^2}$, confirming the first method."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2008, Paper 1, Q15 (comprehension). Swapping the roles of $x$ and $y$ (differentiate $x=3y-y^3$ instead) sidesteps the implicit chain-rule bookkeeping entirely and gives the same answer as a clean cross-check."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The log-gamma second difference",
+    "difficulty": 4,
+    "task": "Find the value of the second-derivative difference.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "5"
+    },
+    "tags": [
+      "functional equations",
+      "second derivative",
+      "telescoping sum",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Let $g(x)=\\log\\big(f(x)\\big)$ where $f(x)$ is a twice differentiable positive function on $(0,\\infty)$ such that $f(x+1)=x\\,f(x)$. Then, for $N=1,2,3,\\ldots$, the value of $g''\\!\\left(N+\\tfrac12\\right)-g''\\!\\left(\\tfrac12\\right)$ is\n\n$$\\textbf{(A)}\\ -4\\left(1+\\tfrac{1}{9}+\\tfrac{1}{25}+\\cdots+\\tfrac{1}{(2N-1)^2}\\right)$$\n$$\\textbf{(B)}\\ 4\\left(1+\\tfrac{1}{9}+\\tfrac{1}{25}+\\cdots+\\tfrac{1}{(2N-1)^2}\\right)$$\n$$\\textbf{(C)}\\ -4\\left(1+\\tfrac{1}{9}+\\tfrac{1}{25}+\\cdots+\\tfrac{1}{(2N+1)^2}\\right)$$\n$$\\textbf{(D)}\\ 4\\left(1+\\tfrac{1}{9}+\\tfrac{1}{25}+\\cdots+\\tfrac{1}{(2N+1)^2}\\right)$$",
+    "answer": "(A)",
+    "trap": "You are never asked to find $f$ or $g$ in closed form (it is essentially $\\log\\Gamma$). Taking the logarithm turns the multiplicative recurrence into an additive one, and the extra $\\log x$ term differentiates away twice — so $g''$ satisfies a clean one-step recurrence. Students who try to build $f$ explicitly, or who forget the $-1/x^2$ comes from $\\frac{d^2}{dx^2}\\log x$, stall.",
+    "solutions": [
+      {
+        "name": "Take $\\log$, then telescope $g''$",
+        "steps": [
+          "Take logs of the functional equation $f(x+1)=x\\,f(x)$: since $g=\\log f$, this gives $g(x+1)=\\log x+g(x)$ for all $x>0$.",
+          "Differentiate once: $g'(x+1)=\\dfrac1x+g'(x)$.",
+          "Differentiate again: $g''(x+1)=-\\dfrac{1}{x^2}+g''(x)$, i.e. $g''(x+1)-g''(x)=-\\dfrac{1}{x^2}$.",
+          "Apply this at $x=\\tfrac12,\\tfrac32,\\tfrac52,\\ldots,\\tfrac{2N-1}{2}$ and add. The left side telescopes: $\\displaystyle\\sum_{k=0}^{N-1}\\Big[g''\\!\\big(\\tfrac12+k+1\\big)-g''\\!\\big(\\tfrac12+k\\big)\\Big]=g''\\!\\left(N+\\tfrac12\\right)-g''\\!\\left(\\tfrac12\\right).$",
+          "The right side is $\\displaystyle-\\sum_{k=0}^{N-1}\\frac{1}{\\big(\\tfrac{2k+1}{2}\\big)^2}=-\\sum_{k=0}^{N-1}\\frac{4}{(2k+1)^2}=-4\\left(1+\\frac19+\\frac{1}{25}+\\cdots+\\frac{1}{(2N-1)^2}\\right).$",
+          "Hence $g''\\!\\left(N+\\tfrac12\\right)-g''\\!\\left(\\tfrac12\\right)=-4\\left(1+\\tfrac19+\\cdots+\\tfrac{1}{(2N-1)^2}\\right)$, which is option (A)."
+        ]
+      },
+      {
+        "name": "Iterate the recurrence directly for $g''$",
+        "steps": [
+          "From $g(x+1)=\\log x+g(x)$, unfold the recurrence for $g$ itself: $g\\!\\left(N+\\tfrac12\\right)=\\log\\!\\left(\\tfrac12\\right)+\\log\\!\\left(\\tfrac32\\right)+\\cdots+\\log\\!\\left(\\tfrac{2N-1}{2}\\right)+g\\!\\left(\\tfrac12\\right).$",
+          "Differentiate this identity twice with respect to $N$ treating $N+\\tfrac12$ as the variable — equivalently, differentiate each $\\log\\!\\big(\\tfrac12+k\\big)$ that carries the running argument. Cleaner: write $g\\!\\left(x\\right)=\\sum_{k=0}^{N-1}\\log\\!\\big(x-1-k\\big)+g\\!\\big(x-N\\big)$ valid for $x\\in\\left(N,N+1\\right)$ with $x=N+\\tfrac12$.",
+          "Differentiating twice, every $\\log$ term $\\log(x-1-k)$ contributes $-\\dfrac{1}{(x-1-k)^2}$, and $g''(x-N)$ contributes $g''\\!\\big(\\tfrac12\\big)$ at $x=N+\\tfrac12$.",
+          "So $g''\\!\\left(N+\\tfrac12\\right)=g''\\!\\left(\\tfrac12\\right)-\\sum_{k=0}^{N-1}\\frac{1}{\\big(N-\\tfrac12-k\\big)^2}.$",
+          "The reciprocal squares run over $\\big(\\tfrac12\\big)^2,\\big(\\tfrac32\\big)^2,\\ldots,\\big(\\tfrac{2N-1}{2}\\big)^2$, i.e. $\\dfrac{4}{1^2},\\dfrac{4}{3^2},\\ldots,\\dfrac{4}{(2N-1)^2}$.",
+          "Therefore $g''\\!\\left(N+\\tfrac12\\right)-g''\\!\\left(\\tfrac12\\right)=-4\\left(1+\\tfrac19+\\cdots+\\tfrac{1}{(2N-1)^2}\\right)$ — option (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2008, Paper 2, Q5. The function $f$ is the Gamma function in disguise, but the winning move is to never name it: logarithms convert the product recurrence to a sum whose second derivative telescopes with a clean $-1/x^2$ step."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "$x\\cos\\tfrac1x$ and its slope at infinity",
+    "difficulty": 4,
+    "task": "Select all correct statements.",
+    "pyq": {
+      "year": 2009,
+      "paper": "2",
+      "qno": "27"
+    },
+    "tags": [
+      "derivative behaviour",
+      "mean value theorem",
+      "monotonicity of derivative",
+      "2009"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"30\" y1=\"185\" x2=\"305\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <line x1=\"40\" y1=\"200\" x2=\"40\" y2=\"20\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <text x=\"300\" y=\"200\" fill=\"var(--ink2)\">x</text>\n  <text x=\"20\" y=\"28\" fill=\"var(--ink2)\">y</text>\n  <!-- asymptote line y = x - approximated slope reference (thin) -->\n  <line x1=\"55\" y1=\"170\" x2=\"290\" y2=\"40\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"4 3\"/>\n  <text x=\"250\" y=\"52\" fill=\"var(--ink2)\">slope $\\to 1$</text>\n  <!-- curve y = x cos(1/x) for x>=1, concave down, approaching the line from below -->\n  <path d=\"M55 172 Q140 120 210 78 T290 45\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/>\n  <text x=\"120\" y=\"150\" fill=\"var(--gold)\">$f(x)=x\\cos\\tfrac1x$</text>\n  <!-- mark x=1 -->\n  <line x1=\"55\" y1=\"182\" x2=\"55\" y2=\"188\" stroke=\"var(--ink3)\"/>\n  <text x=\"50\" y=\"200\" fill=\"var(--ink2)\">1</text>\n</svg>",
+    "statement": "For the function $f(x)=x\\cos\\dfrac1x$, $x\\ge1$, which of the following is/are correct?\n\n$\\textbf{(A)}$ for at least one $x$ in $[1,\\infty)$, $f(x+2)-f(x)<2$;\n$\\textbf{(B)}$ $\\displaystyle\\lim_{x\\to\\infty}f'(x)=1$;\n$\\textbf{(C)}$ for all $x$ in $[1,\\infty)$, $f(x+2)-f(x)>2$;\n$\\textbf{(D)}$ $f'(x)$ is strictly decreasing in $[1,\\infty)$.",
+    "answer": "(B), (C), (D)",
+    "trap": "Options (A) and (C) look like a coin-flip, but they are decided entirely by the sign of $f'-1$: since $f'(x)>1$ on all of $[1,\\infty)$, the Mean Value Theorem forces $f(x+2)-f(x)=2f'(c)>2$ everywhere. Students who estimate $f(x+2)-f(x)\\approx 2$ (because $f$'looks like' the line $y=x$) wrongly pick (A). The subtlety is that $x\\cos\\tfrac1x$ approaches its slant asymptote from a slope strictly greater than $1$.",
+    "solutions": [
+      {
+        "name": "Compute $f'$, $f''$, then apply MVT",
+        "steps": [
+          "Differentiate: $f'(x)=\\cos\\dfrac1x + x\\cdot\\Big(-\\sin\\dfrac1x\\Big)\\cdot\\Big(-\\dfrac{1}{x^2}\\Big)=\\cos\\dfrac1x+\\dfrac1x\\sin\\dfrac1x.$",
+          "As $x\\to\\infty$, $\\dfrac1x\\to0^+$, so $\\cos\\dfrac1x\\to1$ and $\\dfrac1x\\sin\\dfrac1x\\to0$. Hence $\\displaystyle\\lim_{x\\to\\infty}f'(x)=1$, giving $\\textbf{(B)}$.",
+          "Differentiate again: $f''(x)=-\\sin\\dfrac1x\\cdot\\Big(-\\dfrac1{x^2}\\Big)-\\dfrac{1}{x^2}\\sin\\dfrac1x+\\dfrac1x\\cos\\dfrac1x\\cdot\\Big(-\\dfrac1{x^2}\\Big)=-\\dfrac{1}{x^3}\\cos\\dfrac1x.$",
+          "For $x\\ge1$ we have $0<\\dfrac1x\\le1<\\dfrac\\pi2$, so $\\cos\\dfrac1x>0$, hence $f''(x)=-\\dfrac{1}{x^3}\\cos\\dfrac1x<0$. Thus $f'$ is strictly decreasing on $[1,\\infty)$, giving $\\textbf{(D)}$.",
+          "Because $f'$ strictly decreases to its limit $1$, we get $f'(x)>1$ for every $x\\in[1,\\infty)$.",
+          "By the Mean Value Theorem on $[x,x+2]$, there is $c\\in(x,x+2)$ with $f(x+2)-f(x)=2f'(c)>2\\cdot1=2$ for every $x\\ge1$. So $\\textbf{(C)}$ holds and $\\textbf{(A)}$ (which claims some $x$ gives a value $<2$) is false.",
+          "Correct options: $\\textbf{(B)},\\textbf{(C)},\\textbf{(D)}$."
+        ]
+      },
+      {
+        "name": "Series / bounding argument for $f'>1$",
+        "steps": [
+          "Put $t=\\dfrac1x\\in(0,1]$. Then $f'(x)=\\cos t + t\\sin t$; call it $\\varphi(t)=\\cos t+t\\sin t$.",
+          "Expand for small $t$: $\\cos t=1-\\dfrac{t^2}{2}+\\cdots$ and $t\\sin t=t^2-\\dfrac{t^4}{6}+\\cdots$, so $\\varphi(t)=1+\\dfrac{t^2}{2}-\\cdots$. The leading correction $+\\dfrac{t^2}{2}$ is positive.",
+          "More rigorously, $\\varphi'(t)=-\\sin t+\\sin t+t\\cos t=t\\cos t>0$ for $t\\in(0,1]$ (since $\\cos t>0$ there). So $\\varphi$ is increasing on $(0,1]$ with $\\varphi(0^+)=1$; therefore $\\varphi(t)>1$ for all $t\\in(0,1]$, i.e. $f'(x)>1$ for all $x\\ge1$.",
+          "That $\\varphi$ increases in $t$ (as $x$ decreases) is exactly the statement that $f'$ decreases in $x$ — confirming $\\textbf{(D)}$ — and $\\varphi(0^+)=1$ confirms $\\textbf{(B)}$.",
+          "Since $f'>1$ throughout, the average slope on any width-$2$ window exceeds $1$: $\\dfrac{f(x+2)-f(x)}{2}=\\dfrac{1}{2}\\int_x^{x+2}f'(u)\\,du>1$, so $f(x+2)-f(x)>2$ for all $x\\ge1$. This gives $\\textbf{(C)}$ and rules out $\\textbf{(A)}$.",
+          "Correct options: $\\textbf{(B)},\\textbf{(C)},\\textbf{(D)}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2009, Paper 2, Q27. One sign — that $\\cos\\tfrac1x>0$ makes $f''<0$ — cascades through: it forces $f'$ down to its limit $1$ from above, so $f'>1$ everywhere and the finite-difference inequality flips against the tempting option (A)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Integral That Breaks $f''$",
+    "difficulty": 4,
+    "task": "Decide which statements about $f$ are true.",
+    "pyq": {
+      "year": 2010,
+      "paper": "1",
+      "qno": "40"
+    },
+    "tags": [
+      "differentiability",
+      "fundamental theorem of calculus",
+      "continuity of derivative",
+      "2010"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"170\" x2=\"305\" y2=\"170\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"30\" y1=\"20\" x2=\"30\" y2=\"195\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><text x=\"298\" y=\"185\" fill=\"var(--ink2)\">x</text><text x=\"14\" y=\"28\" fill=\"var(--ink2)\">y</text><path d=\"M30,170 Q80,60 150,55 Q220,50 300,60\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.2\" stroke-dasharray=\"3 3\"/><text x=\"235\" y=\"48\" fill=\"var(--ink2)\">$g(x)=\\sqrt{1+\\sin x}$</text><path d=\"M30,150 L70,130 L90,142 L120,110 L150,132 L180,95 L210,128 L240,80 L270,124 L300,70\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><text x=\"120\" y=\"165\" fill=\"var(--gold)\">$f'$ has corners where $g=0$</text><circle cx=\"90\" cy=\"142\" r=\"2.6\" fill=\"var(--gold)\"/><circle cx=\"210\" cy=\"128\" r=\"2.6\" fill=\"var(--gold)\"/></svg>",
+    "statement": "Let $f$ be a real-valued function defined on $(0,\\infty)$ by $$f(x)=\\ln x+\\int_0^x \\sqrt{1+\\sin t}\\,dt.$$ Then which of the following statement(s) is (are) true? (A) $f''(x)$ exists for all $x\\in(0,\\infty)$; (B) $f'(x)$ exists for all $x\\in(0,\\infty)$ and $f'$ is continuous on $(0,\\infty)$, but not differentiable on $(0,\\infty)$; (C) there exists $\\alpha>1$ such that $|f'(x)|<|f(x)|$ for all $x\\in(\\alpha,\\infty)$; (D) there exists $\\beta>0$ such that $|f(x)|+|f'(x)|\\le\\beta$ for all $x\\in(0,\\infty)$.",
+    "answer": "(B), (C)",
+    "trap": "The Fundamental Theorem hands you $f'(x)=\\tfrac1x+\\sqrt{1+\\sin x}$ and it looks perfectly smooth — so most students tick (A). The killer is that $\\sqrt{1+\\sin x}=\\sqrt2\\,\\bigl|\\cos(\\tfrac x2-\\tfrac\\pi4)\\bigr|$ carries a hidden modulus: it touches zero (where $1+\\sin x=0$) with a corner, so $f'$ is continuous but $f''$ fails at those isolated points. The absolute value is invisible until you rewrite the surd.",
+    "solutions": [
+      {
+        "name": "FTC $+$ the hidden modulus",
+        "steps": [
+          "By the Fundamental Theorem of Calculus the integrand $\\sqrt{1+\\sin t}$ is continuous, so $f$ is differentiable with $$f'(x)=\\frac1x+\\sqrt{1+\\sin x},$$ and this exists for every $x\\in(0,\\infty)$; being a sum of continuous functions, $f'$ is continuous.",
+          "Rewrite the surd. Since $1+\\sin x=1+\\cos\\!\\bigl(\\tfrac\\pi2-x\\bigr)=2\\cos^2\\!\\bigl(\\tfrac x2-\\tfrac\\pi4\\bigr)$, we get $$\\sqrt{1+\\sin x}=\\sqrt2\\,\\Bigl|\\cos\\!\\Bigl(\\tfrac x2-\\tfrac\\pi4\\Bigr)\\Bigr|.$$ The absolute value is the whole story.",
+          "At the points where $\\cos(\\tfrac x2-\\tfrac\\pi4)=0$ — i.e. where $1+\\sin x=0$, e.g. $x=\\tfrac{3\\pi}{2}$ — this modulus has a corner, so $\\sqrt{1+\\sin x}$ is NOT differentiable there. Hence $f''$ does not exist at those points: (A) is FALSE and (B) is TRUE ($f'$ continuous everywhere but not differentiable on all of $(0,\\infty)$).",
+          "Growth. The integrand satisfies $\\sqrt{1+\\sin t}\\ge\\text{(positive on average)}$; over each period $2\\pi$, $\\int_0^{2\\pi}\\sqrt{1+\\sin t}\\,dt=4\\sqrt2>0$, so $\\int_0^x\\sqrt{1+\\sin t}\\,dt\\to\\infty$. Thus $f(x)\\to\\infty$ and is unbounded, while $f'(x)=\\tfrac1x+\\sqrt{1+\\sin x}\\le 1+\\sqrt2$ is bounded above.",
+          "Because $f(x)\\to\\infty$ but $|f'(x)|\\le 1+\\sqrt2$ stays bounded, for all sufficiently large $x$ we have $|f'(x)|<|f(x)|$: some $\\alpha>1$ works, so (C) is TRUE. The same unboundedness of $f$ kills any uniform bound $|f|+|f'|\\le\\beta$, so (D) is FALSE.",
+          "Answer: $(B),(C)$."
+        ]
+      },
+      {
+        "name": "Half-angle identity from the start",
+        "steps": [
+          "Instead of hunting for zeros, convert the integrand at once: $1+\\sin t=\\bigl(\\sin\\tfrac t2+\\cos\\tfrac t2\\bigr)^2$, so $\\sqrt{1+\\sin t}=\\bigl|\\sin\\tfrac t2+\\cos\\tfrac t2\\bigr|$.",
+          "Then $f'(x)=\\dfrac1x+\\bigl|\\sin\\tfrac x2+\\cos\\tfrac x2\\bigr|$. The modulus is a continuous function of $x$, so $f'$ is continuous — confirming existence and continuity of $f'$ on $(0,\\infty)$.",
+          "The expression inside the modulus, $\\sin\\tfrac x2+\\cos\\tfrac x2=\\sqrt2\\sin(\\tfrac x2+\\tfrac\\pi4)$, changes sign (passes through $0$) at $\\tfrac x2+\\tfrac\\pi4=k\\pi$. At each such $x$ the modulus has a corner, so $f'$ is not differentiable and $f''$ does not exist there: (A) FALSE, (B) TRUE.",
+          "For the size comparison, bound the antiderivative below: on $[2k\\pi,2(k+1)\\pi]$ the average of $|\\sin\\tfrac t2+\\cos\\tfrac t2|$ is a fixed positive constant, so $\\int_0^x\\sqrt{1+\\sin t}\\,dt$ grows linearly in $x$; therefore $f(x)\\to+\\infty$.",
+          "Since $f'$ is bounded ($0<f'(x)\\le 1+\\sqrt2$) while $f\\to\\infty$, eventually $|f'(x)|<|f(x)|$, giving (C); and $f$ unbounded refutes (D). Final: $(B),(C)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2010, Paper 1, Q40. The lesson: an integrand can be continuous (so the antiderivative is once-differentiable) yet non-smooth, and a well-disguised $\\sqrt{1+\\sin x}=\\sqrt2\\,|\\cos(\\tfrac x2-\\tfrac\\pi4)|$ is exactly where the second derivative dies."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Inverting Through an Integral",
+    "difficulty": 3,
+    "task": "Evaluate $(f^{-1})'(2)$.",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "22"
+    },
+    "tags": [
+      "derivative of inverse function",
+      "fundamental theorem of calculus",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "Let $f$ be a real-valued function defined on the interval $(-1,1)$ such that $$e^{-x}f(x)=2+\\int_0^x \\sqrt{t^4+1}\\,dt,\\qquad x\\in(-1,1),$$ and let $f^{-1}$ be the inverse function of $f$. Then $\\left(f^{-1}\\right)'(2)$ is equal to (A) $1$; (B) $\\dfrac{1}{3}$; (C) $\\dfrac{1}{2}$; (D) $\\dfrac{1}{e}$.",
+    "answer": "$\\boxed{\\dfrac{1}{3}}$ — option (B)",
+    "trap": "You never need — and cannot cleanly get — a closed form for $f$: the integral $\\int_0^x\\sqrt{t^4+1}\\,dt$ has no elementary antiderivative. Students who try to isolate $f(x)=e^x\\bigl(2+\\int_0^x\\sqrt{t^4+1}\\,dt\\bigr)$ and then differentiate the whole product often botch the product rule or forget that at $x=0$ the integral vanishes. The clean move is to locate the single point $x=0$ where everything collapses, and use $(f^{-1})'(2)=1/f'(0)$.",
+    "solutions": [
+      {
+        "name": "Inverse-derivative rule at the anchor point",
+        "steps": [
+          "Find the pre-image of $2$. Put $x=0$: the integral $\\int_0^0\\sqrt{t^4+1}\\,dt=0$, so $e^{0}f(0)=2$, giving $f(0)=2$. Hence $f^{-1}(2)=0$.",
+          "The inverse-function derivative rule gives $(f^{-1})'(2)=\\dfrac{1}{f'\\!\\bigl(f^{-1}(2)\\bigr)}=\\dfrac{1}{f'(0)}$, so we only need $f'(0)$.",
+          "Differentiate the given relation with respect to $x$, using the product rule on the left and the Fundamental Theorem of Calculus on the right: $$\\frac{d}{dx}\\bigl(e^{-x}f(x)\\bigr)=\\sqrt{x^4+1}\\ \\Longrightarrow\\ e^{-x}\\bigl(f'(x)-f(x)\\bigr)=\\sqrt{x^4+1}.$$",
+          "Evaluate at $x=0$: $e^{0}\\bigl(f'(0)-f(0)\\bigr)=\\sqrt{0+1}=1$, i.e. $f'(0)-2=1$, so $f'(0)=3$.",
+          "Therefore $(f^{-1})'(2)=\\dfrac{1}{f'(0)}=\\dfrac13$. Answer: (B)."
+        ]
+      },
+      {
+        "name": "Solve for $f$ explicitly, then use the product rule",
+        "steps": [
+          "Multiply through by $e^{x}$: $f(x)=e^{x}\\Bigl(2+\\displaystyle\\int_0^x\\sqrt{t^4+1}\\,dt\\Bigr)$. Write $I(x)=\\int_0^x\\sqrt{t^4+1}\\,dt$, so $I(0)=0$ and, by the FTC, $I'(x)=\\sqrt{x^4+1}$.",
+          "Differentiate as a product: $f'(x)=e^{x}\\bigl(2+I(x)\\bigr)+e^{x}I'(x)=e^{x}\\bigl(2+I(x)+\\sqrt{x^4+1}\\bigr).$",
+          "At $x=0$: $I(0)=0$ and $\\sqrt{0+1}=1$, so $f'(0)=e^{0}\\bigl(2+0+1\\bigr)=3$. (And $f(0)=e^0\\cdot2=2$, confirming $f^{-1}(2)=0$.)",
+          "Since $f$ is differentiable with $f'(0)=3\\neq0$, it is locally invertible near $x=0$, and $(f^{-1})'(2)=\\dfrac{1}{f'(0)}=\\dfrac13$. Answer: (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2010, Paper 2, Q22. A textbook trap defused by one observation: the elementary-looking value $f(0)=2$ is the only anchor you need — combine FTC differentiation with $(f^{-1})'(y)=1/f'(f^{-1}(y))$ and never touch the non-elementary integral."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A four-piece function and its seams",
+    "difficulty": 3,
+    "task": "Decide which statements about continuity and differentiability are correct.",
+    "pyq": {
+      "year": 2011,
+      "paper": "2",
+      "qno": "35"
+    },
+    "tags": [
+      "continuity",
+      "differentiability",
+      "piecewise function",
+      "2011"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"140\" x2=\"305\" y2=\"140\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"150\" y1=\"20\" x2=\"150\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"298\" y=\"155\" fill=\"var(--ink2)\">x</text><text x=\"156\" y=\"30\" fill=\"var(--ink2)\">y</text><text x=\"140\" y=\"155\" fill=\"var(--ink2)\">O</text><path d=\"M30 90 L60 140\" stroke=\"var(--ink2)\" stroke-width=\"1.6\" fill=\"none\"/><path d=\"M60 140 Q78 133 96 118 T150 90\" stroke=\"var(--ink2)\" stroke-width=\"1.6\" fill=\"none\"/><path d=\"M150 90 L200 140\" stroke=\"var(--gold)\" stroke-width=\"1.8\" fill=\"none\"/><path d=\"M200 140 Q235 168 305 182\" stroke=\"var(--ink2)\" stroke-width=\"1.6\" fill=\"none\"/><circle cx=\"60\" cy=\"140\" r=\"2.4\" fill=\"var(--ink3)\"/><circle cx=\"150\" cy=\"90\" r=\"2.4\" fill=\"var(--gold)\"/><circle cx=\"200\" cy=\"140\" r=\"2.4\" fill=\"var(--ink3)\"/><text x=\"38\" y=\"110\" fill=\"var(--ink2)\">−x−π/2</text><text x=\"92\" y=\"128\" fill=\"var(--ink2)\">−cos x</text><text x=\"158\" y=\"116\" fill=\"var(--gold)\">x−1</text><text x=\"238\" y=\"172\" fill=\"var(--ink2)\">ln x</text><text x=\"44\" y=\"156\" fill=\"var(--ink2)\">−π/2</text><text x=\"196\" y=\"156\" fill=\"var(--ink2)\">1</text></svg>",
+    "statement": "Let $$f(x)=\\begin{cases} -x-\\dfrac{\\pi}{2}, & x\\le -\\dfrac{\\pi}{2} \\\\[4pt] -\\cos x, & -\\dfrac{\\pi}{2}<x\\le 0 \\\\[4pt] x-1, & 0<x\\le 1 \\\\[4pt] \\ln x, & x>1 \\end{cases}$$ Then which of the following statements are correct? (A) $f(x)$ is continuous at $x=-\\dfrac{\\pi}{2}$. (B) $f(x)$ is not differentiable at $x=0$. (C) $f(x)$ is differentiable at $x=1$. (D) $f(x)$ is differentiable at $x=-\\dfrac{3}{2}$.",
+    "answer": "(A), (B), (C), (D)",
+    "trap": "The seam at $x=1$ looks like a place two totally different formulas ($x-1$ and $\\ln x$) meet, so students assume a corner and reject (C). But the point $x=-3/2$ (option D) lies strictly inside the smooth $-\\cos x$ piece — it is NOT a junction at all, so the temptation is to over-check the seams and forget an interior point is automatically differentiable.",
+    "solutions": [
+      {
+        "name": "One-sided limits and one-sided derivatives at each seam",
+        "steps": [
+          "Junction $x=-\\dfrac{\\pi}{2}$: the left piece gives $f\\big(-\\tfrac{\\pi}{2}\\big)=-\\big(-\\tfrac{\\pi}{2}\\big)-\\tfrac{\\pi}{2}=0$; the right piece gives $\\lim_{x\\to(-\\pi/2)^+}(-\\cos x)=-\\cos\\big(-\\tfrac{\\pi}{2}\\big)=0$. Both equal $0=f\\big(-\\tfrac{\\pi}{2}\\big)$, so $f$ is continuous there — (A) is correct.",
+          "Junction $x=0$: continuity holds since $-\\cos 0=-1$ and $\\lim_{x\\to0^+}(x-1)=-1$. Left derivative: $\\dfrac{d}{dx}(-\\cos x)=\\sin x$, so $f'(0^-)=\\sin 0=0$. Right derivative: $\\dfrac{d}{dx}(x-1)=1$, so $f'(0^+)=1$. Since $0\\ne 1$, there is a corner — $f$ is not differentiable at $0$, so (B) is correct.",
+          "Junction $x=1$: first check continuity — $f(1)=1-1=0$ and $\\lim_{x\\to1^+}\\ln x=0$, so continuous. Left derivative: $\\dfrac{d}{dx}(x-1)=1$, so $f'(1^-)=1$. Right derivative: $\\dfrac{d}{dx}\\ln x=\\dfrac{1}{x}$, so $f'(1^+)=\\dfrac{1}{1}=1$. Since $1=1$, $f$ is differentiable at $1$ — (C) is correct.",
+          "Point $x=-\\dfrac{3}{2}$: note $-\\dfrac{3}{2}=-1.5$ and $-\\dfrac{\\pi}{2}\\approx-1.571$, so $-\\dfrac{3}{2}\\in\\big(-\\tfrac{\\pi}{2},0\\big)$, which is the interior of the $-\\cos x$ piece. Inside a single smooth piece there is no junction, and $-\\cos x$ is differentiable everywhere, so $f$ is differentiable at $-\\dfrac{3}{2}$ — (D) is correct.",
+          "All four statements hold: (A), (B), (C), (D)."
+        ]
+      },
+      {
+        "name": "Slope-matching by inspection of the graph",
+        "steps": [
+          "Read off the slope of each piece: $-x-\\tfrac{\\pi}{2}$ has slope $-1$; $-\\cos x$ has slope $\\sin x$; $x-1$ has slope $1$; $\\ln x$ has slope $1/x$.",
+          "At $x=-\\tfrac{\\pi}{2}$ the values match ($0=0$) so the graph joins — continuity confirmed (A). (Slopes there are $-1$ vs $\\sin(-\\tfrac{\\pi}{2})=-1$, so it is actually smooth too, but continuity is all (A) asks.)",
+          "At $x=0$ the incoming slope is $\\sin 0=0$ but the outgoing slope is $1$: the graph has a visible kink, so not differentiable (B).",
+          "At $x=1$ the incoming slope is $1$ and the outgoing slope is $1/1=1$: the two tangent lines coincide, so the graph passes through smoothly — differentiable (C).",
+          "$x=-\\tfrac32$ sits on the smooth cosine arc away from every join, so its tangent is unambiguous — differentiable (D). Hence (A), (B), (C), (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2011, Paper 2, Q35. The whole game is knowing that only the four seams can break smoothness — an interior point like $x=-3/2$ is differentiable for free the moment you locate which piece it belongs to."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "$x^2\\left|\\cos\\dfrac{\\pi}{x}\\right|$ at the origin and at $x=2$",
+    "difficulty": 4,
+    "task": "Determine where the function is differentiable.",
+    "pyq": {
+      "year": 2012,
+      "paper": "1",
+      "qno": "42"
+    },
+    "tags": [
+      "differentiability",
+      "modulus function",
+      "squeeze",
+      "2012"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"160\" x2=\"305\" y2=\"160\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"40\" y1=\"20\" x2=\"40\" y2=\"195\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><text x=\"298\" y=\"175\" fill=\"var(--ink2)\">x</text><text x=\"46\" y=\"30\" fill=\"var(--ink2)\">y</text><text x=\"30\" y=\"175\" fill=\"var(--ink2)\">O</text><path d=\"M40 160 Q52 156 60 150 Q66 158 74 145 Q82 160 92 132 Q104 160 118 108 Q136 160 158 74 Q184 132 208 42\" stroke=\"var(--ink2)\" stroke-width=\"1.5\" fill=\"none\"/><path d=\"M40 160 Q28 156 20 150\" stroke=\"var(--ink2)\" stroke-width=\"1.5\" fill=\"none\" transform=\"translate(80,0) scale(-1,1)\"/><path d=\"M158 74 L158 160\" stroke=\"var(--gold)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><circle cx=\"158\" cy=\"74\" r=\"2.6\" fill=\"var(--gold)\"/><text x=\"150\" y=\"175\" fill=\"var(--gold)\">2</text><text x=\"120\" y=\"64\" fill=\"var(--gold)\">corner at x=2</text><path d=\"M40 160 Q46 150 40 160\" stroke=\"var(--ink2)\"/><path d=\"M22 158 Q40 150 58 158\" stroke=\"var(--ink2)\" stroke-width=\"1.3\" fill=\"none\"/><text x=\"55\" y=\"178\" fill=\"var(--ink2)\">0</text><text x=\"120\" y=\"200\" fill=\"var(--ink2)\">y = x²·|cos(π/x)|</text></svg>",
+    "statement": "Let $$f(x)=\\begin{cases} x^2\\left|\\cos\\dfrac{\\pi}{x}\\right|, & x\\neq 0 \\\\[4pt] 0, & x=0 \\end{cases}\\qquad x\\in\\mathbb{R}.$$ Then $f$ is (A) differentiable both at $x=0$ and at $x=2$; (B) differentiable at $x=0$ but not differentiable at $x=2$; (C) not differentiable at $x=0$ but differentiable at $x=2$; (D) differentiable neither at $x=0$ nor at $x=2$.",
+    "answer": "(B)",
+    "trap": "Students test $x=0$ using the wild oscillation of $\\cos(\\pi/x)$ and panic — but the $x^2$ factor squeezes everything to a clean derivative $0$, so $x=0$ is fine. The real break is at $x=2$, where $\\cos(\\pi/x)$ passes through $0$ and the modulus creates a corner. The instinct is exactly backwards: the innocent-looking smooth point $x=2$ is where differentiability dies.",
+    "solutions": [
+      {
+        "name": "Squeeze at $0$, one-sided derivatives of the modulus at $2$",
+        "steps": [
+          "Differentiability at $x=0$: form the difference quotient $\\dfrac{f(h)-f(0)}{h}=\\dfrac{h^2\\left|\\cos\\tfrac{\\pi}{h}\\right|}{h}=h\\left|\\cos\\tfrac{\\pi}{h}\\right|$.",
+          "Since $\\left|\\cos\\tfrac{\\pi}{h}\\right|\\le 1$, we have $0\\le\\left|h\\left|\\cos\\tfrac{\\pi}{h}\\right|\\right|\\le|h|\\to 0$ as $h\\to 0$. By the squeeze theorem the limit is $0$, so $f'(0)=0$ exists — $f$ is differentiable at $x=0$.",
+          "Differentiability at $x=2$: here $\\dfrac{\\pi}{x}$ passes through $\\dfrac{\\pi}{2}$, and $\\cos\\dfrac{\\pi}{2}=0$, so the argument of the modulus changes sign at $x=2$. Write $u(x)=\\cos\\dfrac{\\pi}{x}$, with $u(2)=0$ and $u'(x)=\\dfrac{\\pi}{x^2}\\sin\\dfrac{\\pi}{x}$, so $u'(2)=\\dfrac{\\pi}{4}\\sin\\dfrac{\\pi}{2}=\\dfrac{\\pi}{4}>0$.",
+          "Because $u$ is increasing through zero at $x=2$: for $x$ slightly less than $2$, $u<0$ so $|u|=-u$; for $x$ slightly more than $2$, $u>0$ so $|u|=u$. Thus near $2$, $f(x)=x^2\\,|u(x)|$ behaves like $-x^2 u(x)$ on the left and $+x^2 u(x)$ on the right.",
+          "Left derivative: $\\dfrac{d}{dx}\\big[-x^2 u\\big]_{x=2}=-\\big(2x\\,u+x^2u'\\big)_{x=2}=-\\big(4\\cdot 0+4\\cdot\\tfrac{\\pi}{4}\\big)=-\\pi$. Right derivative: $\\dfrac{d}{dx}\\big[x^2 u\\big]_{x=2}=+\\pi$.",
+          "Since $f'(2^-)=-\\pi\\ne \\pi=f'(2^+)$, there is a corner — $f$ is not differentiable at $x=2$.",
+          "Differentiable at $0$, not at $2$: the answer is (B)."
+        ]
+      },
+      {
+        "name": "Chain-rule test for $|g|$ at a simple zero",
+        "steps": [
+          "General fact: if $g$ is differentiable, then $|g|$ is differentiable at a point $a$ where $g(a)=0$ if and only if $g'(a)=0$ (a simple zero forces a corner because the graph of $|g|$ reflects the sign change). Where $g(a)\\ne 0$, $|g|$ inherits differentiability from $g$.",
+          "At $x=0$: this criterion does not directly apply since the whole expression is defined by continuity, so use the squeeze bound $|f(x)|\\le x^2$. This gives $|f(x)-f(0)|\\le x^2$, hence $\\left|\\dfrac{f(x)-f(0)}{x-0}\\right|\\le|x|\\to 0$; the derivative exists and equals $0$. Differentiable at $0$.",
+          "At $x=2$: let $g(x)=\\cos\\dfrac{\\pi}{x}$, a smooth function near $2$ with $g(2)=\\cos\\dfrac{\\pi}{2}=0$ and $g'(2)=\\dfrac{\\pi}{2^2}\\sin\\dfrac{\\pi}{2}=\\dfrac{\\pi}{4}\\ne 0$. This is a simple zero, so $|g|$ has a corner at $2$.",
+          "Multiplying by the smooth, non-vanishing factor $x^2$ (with $x^2=4\\ne0$ at $x=2$) cannot repair the corner: $f=x^2|g|$ still fails to be differentiable at $2$.",
+          "Conclusion matches: differentiable at $0$, not at $2$ — option (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2012, Paper 1, Q42. Twin lesson: an $x^2$ prefactor squeezes even a savagely oscillating modulus into differentiability at the origin, yet is powerless against a corner born from $\\cos(\\pi/x)$ crossing zero at $x=2$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Corners at the accumulation gate: $g(x)=\\int_a^x f$",
+    "difficulty": 3,
+    "task": "Decide where the accumulation function is not differentiable.",
+    "pyq": {
+      "year": 2014,
+      "paper": "1",
+      "qno": "45"
+    },
+    "tags": [
+      "differentiability",
+      "fundamental theorem of calculus",
+      "piecewise function",
+      "2014"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"180\" x2=\"300\" y2=\"180\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"30\" y1=\"195\" x2=\"30\" y2=\"30\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><text x=\"296\" y=\"196\" fill=\"var(--ink2)\">x</text><text x=\"12\" y=\"36\" fill=\"var(--ink2)\">g</text><line x1=\"110\" y1=\"183\" x2=\"110\" y2=\"177\" stroke=\"var(--ink3)\"/><line x1=\"230\" y1=\"183\" x2=\"230\" y2=\"177\" stroke=\"var(--ink3)\"/><text x=\"106\" y=\"196\" fill=\"var(--ink2)\">a</text><text x=\"226\" y=\"196\" fill=\"var(--ink2)\">b</text><line x1=\"30\" y1=\"180\" x2=\"110\" y2=\"180\" stroke=\"var(--ink2)\" stroke-width=\"2\"/><path d=\"M110 180 C 150 150, 195 95, 230 55\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><line x1=\"230\" y1=\"55\" x2=\"300\" y2=\"55\" stroke=\"var(--ink2)\" stroke-width=\"2\"/><line x1=\"30\" y1=\"55\" x2=\"230\" y2=\"55\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"3 3\"/><circle cx=\"110\" cy=\"180\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"230\" cy=\"55\" r=\"3\" fill=\"var(--gold)\"/><text x=\"120\" y=\"172\" fill=\"var(--ink2)\">slope 0 → f(a)</text><text x=\"150\" y=\"48\" fill=\"var(--ink2)\">f(b) → slope 0</text></svg>",
+    "statement": "Let $f:[a,b]\\to[1,\\infty)$ be a continuous function and let $g:\\mathbb{R}\\to\\mathbb{R}$ be defined as $$g(x)=\\begin{cases} 0, & x<a,\\\\[2pt] \\displaystyle\\int_a^x f(t)\\,dt, & a\\le x\\le b,\\\\[2pt] \\displaystyle\\int_a^b f(t)\\,dt, & x>b.\\end{cases}$$ Then (A) $g(x)$ is continuous but not differentiable at $a$; (B) $g(x)$ is differentiable on $\\mathbb{R}$; (C) $g(x)$ is continuous but not differentiable at $b$; (D) $g(x)$ is continuous and differentiable at either $a$ or $b$ but not both.",
+    "answer": "(A), (C)",
+    "trap": "The tempting reflex is 'an integral of a continuous function is always differentiable, so $g$ is smooth everywhere' — choosing (B). But the constraint $f\\ge 1$ is the whole point: it forces the interior slope to be at least $1$, so it can never match the flat pieces $g\\equiv 0$ (left of $a$) and $g\\equiv \\int_a^b f$ (right of $b$). If the range had merely allowed $f(a)=0$ or $f(b)=0$, differentiability could survive — the codomain $[1,\\infty)$ is not decoration, it is the mechanism.",
+    "solutions": [
+      {
+        "name": "One-sided derivatives via the FTC",
+        "steps": [
+          "First note $g$ is continuous everywhere: on $a\\le x\\le b$ it is an integral (hence continuous), and at the joins $g(a^-)=0=\\int_a^a f=g(a)$ and $g(b^+)=\\int_a^b f=g(b^-)$, so no jumps occur.",
+          "By the Fundamental Theorem of Calculus, for $a<x<b$ we have $g'(x)=f(x)$.",
+          "At $x=a$: the left derivative is $0$ (since $g\\equiv 0$ for $x<a$), while the right derivative is $\\lim_{x\\to a^+}g'(x)=f(a)$. Because $f(a)\\ge 1>0$, the two one-sided derivatives disagree — $g$ is not differentiable at $a$. This gives (A).",
+          "At $x=b$: the left derivative is $f(b)\\ge 1$, while the right derivative is $0$ (since $g$ is constant for $x>b$). Again $f(b)\\ge 1\\ne 0$, so $g$ is not differentiable at $b$. This gives (C).",
+          "Since $g$ fails to be differentiable at BOTH $a$ and $b$, option (B) (differentiable on all of $\\mathbb{R}$) and option (D) ('at either $a$ or $b$ but not both') are false.",
+          "Correct choices: (A) and (C)."
+        ]
+      },
+      {
+        "name": "Geometric slope argument (area accumulates at rate $\\ge 1$)",
+        "steps": [
+          "Think of $g(x)$ as the running area under $f$ from $a$ to $x$. To the left of $a$ no area has accumulated, so the graph of $g$ is a flat line at height $0$ (slope $0$).",
+          "The instant $x$ crosses $a$, area starts piling up at rate $f(a)$; since the codomain is $[1,\\infty)$, this rate is at least $1$. So the graph leaves the flat line with a positive slope — a visible corner at $a$.",
+          "As $x$ increases to $b$, $g$ rises with slope $f(x)\\ge 1$ the whole way, reaching the final height $\\int_a^b f$.",
+          "Past $b$ no new area is added, so $g$ flattens back to slope $0$ — but it arrived with slope $f(b)\\ge 1$, so there is a corner at $b$ too.",
+          "A corner (mismatched one-sided slopes) is exactly non-differentiability; continuity is unbroken because the height never jumps. Hence $g$ is continuous everywhere but non-differentiable precisely at $a$ and $b$: (A) and (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2014, Paper 1, Q45. The lower bound $f\\ge 1$ is doing all the work — it guarantees the interior slope can never fade to zero to meet the flat tails, so both endpoints are guaranteed corners."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Switching envelopes: $\\max$ then $\\min$ of $|x|+1$ and $x^2+1$",
+    "difficulty": 3,
+    "task": "Count the points where the spliced function has no derivative.",
+    "pyq": {
+      "year": 2014,
+      "paper": "1",
+      "qno": "54"
+    },
+    "tags": [
+      "max-min functions",
+      "non-differentiable points",
+      "piecewise",
+      "2014"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"175\" x2=\"305\" y2=\"175\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"162\" y1=\"200\" x2=\"162\" y2=\"20\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><text x=\"298\" y=\"190\" fill=\"var(--ink2)\">x</text><text x=\"150\" y=\"32\" fill=\"var(--ink2)\">y</text><text x=\"96\" y=\"190\" fill=\"var(--ink2)\">-1</text><text x=\"210\" y=\"190\" fill=\"var(--ink2)\">1</text><line x1=\"102\" y1=\"172\" x2=\"102\" y2=\"178\" stroke=\"var(--ink3)\"/><line x1=\"222\" y1=\"172\" x2=\"222\" y2=\"178\" stroke=\"var(--ink3)\"/><path d=\"M42 55 Q 102 175 162 175 Q 222 175 282 55\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><path d=\"M42 55 L 162 115 L 282 55\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><path d=\"M42 55 L 102 115\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><path d=\"M102 115 Q 132 175 162 175\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><path d=\"M162 175 Q 192 175 222 115\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><path d=\"M222 115 L 282 85\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2.5\"/><circle cx=\"102\" cy=\"115\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"162\" cy=\"175\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"222\" cy=\"115\" r=\"3\" fill=\"var(--gold)\"/><text x=\"66\" y=\"104\" fill=\"var(--ink2)\">max</text><text x=\"228\" y=\"128\" fill=\"var(--ink2)\">min</text></svg>",
+    "statement": "Let $f:\\mathbb{R}\\to\\mathbb{R}$ and $g:\\mathbb{R}\\to\\mathbb{R}$ be respectively given by $f(x)=|x|+1$ and $g(x)=x^2+1$. Define $h:\\mathbb{R}\\to\\mathbb{R}$ by $$h(x)=\\begin{cases}\\max\\{f(x),g(x)\\}, & x\\le 0,\\\\[2pt] \\min\\{f(x),g(x)\\}, & x>0.\\end{cases}$$ Find the number of points at which $h(x)$ is not differentiable.",
+    "answer": "$\\boxed{3}$",
+    "trap": "It is easy to hunt only for the corners where $f$ and $g$ cross (the classic 'max/min switches curves' corners) and report those — but the definition also flips the RULE from $\\max$ to $\\min$ exactly at $x=0$. You must check the seam $x=0$ separately, using the LEFT one-sided derivative from the $\\max$-branch and the RIGHT one-sided derivative from the $\\min$-branch. That seam turns out to be a genuine corner too, and forgetting it (or miscounting it) is the usual error.",
+    "solutions": [
+      {
+        "name": "Piece-by-piece one-sided derivatives",
+        "steps": [
+          "Compare $f(x)=|x|+1$ and $g(x)=x^2+1$. Their difference is $g-f=x^2-|x|=|x|(|x|-1)$, which is zero at $x=0,\\pm 1$; for $0<|x|<1$ we have $g<f$, and for $|x|>1$ we have $g>f$.",
+          "Region $x\\le 0$ uses $\\max$. For $x\\le -1$: $g\\ge f$ so $h=g=x^2+1$. For $-1\\le x\\le 0$: $f\\ge g$ so $h=f=-x+1$ (since $|x|=-x$ here).",
+          "Region $x>0$ uses $\\min$. For $0<x\\le 1$: $g\\le f$ so $h=g=x^2+1$. For $x\\ge 1$: $f\\le g$ so $h=f=x+1$.",
+          "Assemble: $h(x)=x^2+1$ on $(-\\infty,-1]$, $=-x+1$ on $[-1,0]$, $=x^2+1$ on $[0,1]$, $=x+1$ on $[1,\\infty)$. (It is continuous throughout — every join value matches.)",
+          "Check $x=-1$: left slope $=(x^2+1)'=2x=-2$; right slope $=(-x+1)'=-1$. $-2\\ne-1$ → corner.",
+          "Check $x=0$: left slope $=(-x+1)'=-1$; right slope $=(x^2+1)'=2x=0$. $-1\\ne 0$ → corner (this is the $\\max\\to\\min$ seam).",
+          "Check $x=1$: left slope $=(x^2+1)'=2x=2$; right slope $=(x+1)'=1$. $2\\ne 1$ → corner.",
+          "Exactly three non-differentiable points: $x=-1,\\,0,\\,1$. Answer $3$."
+        ]
+      },
+      {
+        "name": "Graphical envelope reasoning",
+        "steps": [
+          "Draw the parabola $y=x^2+1$ and the V-shaped $y=|x|+1$; both share the vertex $(0,1)$ and cross again at $x=\\pm 1$ (heights $2$).",
+          "For $x\\le 0$ take the UPPER of the two graphs. Moving left from $0$: between $-1$ and $0$ the V lies above the parabola, so $h$ traces the line $-x+1$; past $-1$ the parabola takes over. The switch of which curve is on top happens at $x=-1$, producing a corner there.",
+          "At the vertex $x=0$ the V itself has a corner, and on the left branch $h$ is literally following that V's left ray $-x+1$ — so the left half already carries the V's kink at $0$.",
+          "For $x>0$ take the LOWER of the two graphs. Just right of $0$ the parabola is below the V (since $x^2<|x|$ for $0<x<1$), so $h$ follows $x^2+1$; beyond $x=1$ the line $x+1$ dips below, so $h$ switches to it — a corner at $x=1$.",
+          "Now inspect the seam $x=0$ where the rule flips from 'upper' to 'lower': the left side arrives along the V's ray (slope $-1$) while the right side departs along the parabola (slope $0$ at its vertex). Mismatch → corner at $0$.",
+          "Corners appear at $x=-1$ (upper-curve switch), $x=0$ (rule seam), and $x=1$ (lower-curve switch): three points."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2014, Paper 1, Q54. Two corners come from the curves swapping order at $x=\\pm 1$, and a third hides at $x=0$ where the very definition flips from $\\max$ to $\\min$ — the seam of the piecewise rule is itself a kink."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Four differentiabilities: $f$, $h$, and the two compositions",
+    "difficulty": 4,
+    "task": "Decide which of the four functions is differentiable at $0$.",
+    "pyq": {
+      "year": 2015,
+      "paper": "1",
+      "qno": "57"
+    },
+    "tags": [
+      "differentiability",
+      "composition of functions",
+      "modulus functions",
+      "2015"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><line x1=\"30\" y1=\"180\" x2=\"300\" y2=\"180\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"165\" y1=\"30\" x2=\"165\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><text x=\"292\" y=\"195\" fill=\"var(--ink2)\">x</text><text x=\"150\" y=\"40\" fill=\"var(--ink2)\">y</text><text x=\"168\" y=\"195\" fill=\"var(--ink2)\">0</text><path d=\"M45 55 C 90 120, 130 165, 165 168 C 200 165, 240 120, 285 55\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.4\"/><text x=\"52\" y=\"70\" fill=\"var(--ink2)\">h(x)=e^{|x|}</text><path d=\"M45 140 C 100 175, 140 178, 165 170 C 190 178, 230 175, 285 140\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><circle cx=\"165\" cy=\"170\" r=\"3\" fill=\"var(--gold)\"/><text x=\"200\" y=\"158\" fill=\"var(--gold)\">f(x)=\\tfrac{x}{|x|}g(x)</text><text x=\"48\" y=\"210\" fill=\"var(--ink2)\">corner of $h$ at $0$ vs. smoothed $f$ at $0$</text></svg>",
+    "statement": "Let $g:\\mathbb{R}\\to\\mathbb{R}$ be a differentiable function with $g(0)=0$, $g'(0)=0$ and $g'(1)\\neq 0$. Let $$f(x)=\\begin{cases}\\dfrac{x}{|x|}\\,g(x), & x\\neq 0,\\\\[4pt] 0, & x=0,\\end{cases}\\qquad h(x)=e^{|x|}\\ \\ \\text{for all }x\\in\\mathbb{R}.$$ Let $(f\\circ h)(x)$ denote $f(h(x))$ and $(h\\circ f)(x)$ denote $h(f(x))$. Then which of the following is (are) TRUE? (A) $f$ is differentiable at $x=0$; (B) $h$ is differentiable at $x=0$; (C) $f\\circ h$ is differentiable at $x=0$; (D) $h\\circ f$ is differentiable at $x=0$.",
+    "answer": "(A), (D)",
+    "trap": "It is tempting to declare $f$ non-differentiable at $0$ because of the $\\frac{x}{|x|}$ sign factor, and to expect $h\\circ f$ to inherit the corner of $h$. Both intuitions are wrong: $g'(0)=0$ kills the jump in $f$, and $f(0)=0$ with $f'(0)=0$ lands $h\\circ f$ exactly at the smooth part, cancelling $h$'s corner. Meanwhile $f\\circ h$ is NOT differentiable — because $h(x)=e^{|x|}\\geq 1$ never reaches the neighbourhood of $0$ where $f$ was tamed; it sits near $1$, where the outer factor $g'(1)\\neq 0$ activates $h$'s own corner.",
+    "solutions": [
+      {
+        "name": "One-sided derivatives, term by term",
+        "steps": [
+          "(A) $f$ at $0$: for $x>0$, $\\frac{x}{|x|}=1$ so $f(x)=g(x)$; for $x<0$, $\\frac{x}{|x|}=-1$ so $f(x)=-g(x)$. Then $f'(0^+)=\\lim_{x\\to0^+}\\frac{g(x)-0}{x}=g'(0)=0$ and $f'(0^-)=\\lim_{x\\to0^-}\\frac{-g(x)-0}{x}=-g'(0)=0$. Both equal $0$, so $f$ IS differentiable at $0$ with $f'(0)=0$. (A) TRUE.",
+          "(B) $h(x)=e^{|x|}$: $h'(0^+)=\\frac{d}{dx}e^{x}\\big|_{0}=1$ but $h'(0^-)=\\frac{d}{dx}e^{-x}\\big|_{0}=-1$. Unequal, so $h$ is NOT differentiable at $0$. (B) FALSE.",
+          "(C) $f\\circ h$ at $0$: since $h(0)=e^{0}=1$, evaluate near the point $1$, not $0$. For $u$ near $1$ (so $u>0$), $f(u)=g(u)$, hence $(f\\circ h)(x)=g(e^{|x|})$ near $x=0$. Its one-sided derivatives are $g'(e^{0})\\cdot h'(0^\\pm)=g'(1)\\cdot(\\pm1)$. Because $g'(1)\\neq 0$, these differ ($+g'(1)$ vs $-g'(1)$), so $f\\circ h$ is NOT differentiable at $0$. (C) FALSE.",
+          "(D) $h\\circ f$ at $0$: $f(0)=0$, so evaluate $h$ near $0$, i.e. through its corner. But the inner map has $f'(0)=0$, so by the one-sided chain rule $(h\\circ f)'(0^\\pm)=h'(f(0)^{\\pm})\\cdot f'(0^\\pm)=(\\pm1)\\cdot 0=0$. Both one-sided derivatives are $0$; $f$'s vanishing slope flattens $h$'s corner. (D) TRUE.",
+          "Collecting: (A) and (D) are TRUE, (B) and (C) are FALSE."
+        ]
+      },
+      {
+        "name": "Local Taylor / dominant-term estimate",
+        "steps": [
+          "Near $0$, differentiability of a composite is governed by the leading power of the increment. Write $g(x)=g'(0)x+o(x)=o(x)$ since $g(0)=g'(0)=0$; in fact $g(x)=\\tfrac12 g''(0)x^2+o(x^2)$ is quadratic-order.",
+          "(A) $f(x)=\\pm g(x)$ with the sign depending on the side, but $|f(x)|=|g(x)|=O(x^2)$, so $\\frac{f(x)-f(0)}{x}=O(x)\\to0$ regardless of side. Hence $f'(0)=0$ exists — differentiable.",
+          "(C) $f\\circ h$: put $x=h(x)-1$'s inner increment. As $x\\to0$, $h(x)-1=|x|+o(x)$, a first-order-in-$|x|$ increment centred at the argument $1$ (where $f\\equiv g$ is smooth but has non-zero slope $g'(1)$). So $f(h(x))-f(1)\\approx g'(1)(h(x)-1)\\approx g'(1)|x|$, which behaves like $|x|$ — a corner. Not differentiable, since $g'(1)\\neq0$.",
+          "(D) $h\\circ f$: the inner increment is $f(x)=O(x^2)$, a genuinely second-order quantity. Then $h(f(x))-h(0)\\approx h'(0^{\\pm})\\,f(x)=\\pm\\,O(x^2)$, so $\\frac{h(f(x))-1}{x}=\\pm O(x)\\to0$ on both sides. The quadratic smallness of $f$ absorbs $h$'s kink — differentiable, derivative $0$.",
+          "(B) $h$ alone has increment $e^{|x|}-1=|x|+o(x)$, order $|x|$, i.e. a corner — not differentiable. Thus the survivors are exactly (A) and (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2015, Paper 1, Q57. The moral is a chain-rule asymmetry: a corner in the *inner* map ($h\\circ f$) is erased when the *outer*'s or *inner*'s slope at the junction is $0$, but a corner reached by the *inner* image sitting at a non-smooth argument ($f\\circ h$) survives — composition is not symmetric in who carries the kink."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Rolle on $f-3g$: exactly one root per interval",
+    "difficulty": 3,
+    "task": "Count the solutions of $f'(x)-3g'(x)=0$ in each interval.",
+    "pyq": {
+      "year": 2015,
+      "paper": "2",
+      "qno": "55"
+    },
+    "tags": [
+      "Rolle's theorem",
+      "mean value theorem",
+      "counting zeros of derivative",
+      "2015"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><line x1=\"30\" y1=\"170\" x2=\"305\" y2=\"170\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"55\" y1=\"25\" x2=\"55\" y2=\"195\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><text x=\"296\" y=\"188\" fill=\"var(--ink2)\">x</text><line x1=\"40\" y1=\"90\" x2=\"300\" y2=\"90\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><text x=\"58\" y=\"85\" fill=\"var(--ink2)\">h=3</text><line x1=\"55\" y1=\"166\" x2=\"55\" y2=\"174\" stroke=\"var(--ink3)\"/><line x1=\"170\" y1=\"166\" x2=\"170\" y2=\"174\" stroke=\"var(--ink3)\"/><line x1=\"285\" y1=\"166\" x2=\"285\" y2=\"174\" stroke=\"var(--ink3)\"/><text x=\"48\" y=\"188\" fill=\"var(--ink2)\">-1</text><text x=\"166\" y=\"188\" fill=\"var(--ink2)\">0</text><text x=\"281\" y=\"188\" fill=\"var(--ink2)\">2</text><circle cx=\"55\" cy=\"90\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"170\" cy=\"90\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"285\" cy=\"90\" r=\"3\" fill=\"var(--gold)\"/><path d=\"M55 90 C 95 55, 135 120, 170 90\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><path d=\"M170 90 C 210 135, 250 50, 285 90\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><circle cx=\"108\" cy=\"70\" r=\"2.6\" fill=\"var(--ink3)\"/><circle cx=\"228\" cy=\"110\" r=\"2.6\" fill=\"var(--ink3)\"/><text x=\"92\" y=\"48\" fill=\"var(--ink2)\">h'=0</text><text x=\"210\" y=\"128\" fill=\"var(--ink2)\">h'=0</text><text x=\"150\" y=\"212\" fill=\"var(--ink2)\">h=f-3g equals 3 at -1, 0, 2</text></svg>",
+    "statement": "Let $f,g:[-1,2]\\to\\mathbb{R}$ be continuous functions which are twice differentiable on the interval $(-1,2)$. Let the values of $f$ and $g$ at the points $-1,0$ and $2$ be as given: $$f(-1)=3,\\ f(0)=6,\\ f(2)=0,\\qquad g(-1)=0,\\ g(0)=1,\\ g(2)=-1.$$ In each of the intervals $(-1,0)$ and $(0,2)$ the function $(f-3g)''$ never vanishes. Then the correct statement(s) is (are): (A) $f'(x)-3g'(x)=0$ has exactly three solutions in $(-1,0)\\cup(0,2)$; (B) $f'(x)-3g'(x)=0$ has exactly one solution in $(-1,0)$; (C) $f'(x)-3g'(x)=0$ has exactly one solution in $(0,2)$; (D) $f'(x)-3g'(x)=0$ has exactly two solutions in $(-1,0)$ and exactly two solutions in $(0,2)$.",
+    "answer": "(B), (C)",
+    "trap": "Students often forget to check the third value $h(0)$ and try to apply Rolle only on $[-1,2]$, missing that $h$ hits $3$ at all three nodes so Rolle applies on BOTH subintervals. The subtler trap is the *exactly*: Rolle guarantees at least one zero of $h'$ in each interval, but 'exactly one' needs the extra hypothesis $h''\\neq0$ — if a second zero of $h'$ existed, Rolle applied to $h'$ would force a zero of $h''$ between them, contradiction. Omit that step and you cannot rule out (D).",
+    "solutions": [
+      {
+        "name": "Rolle on $h$, then Rolle on $h'$ for uniqueness",
+        "steps": [
+          "Define $h(x)=f(x)-3g(x)$, continuous on $[-1,2]$ and twice differentiable on $(-1,2)$. The target equation is $h'(x)=0$.",
+          "Evaluate at the nodes: $h(-1)=f(-1)-3g(-1)=3-3\\cdot0=3$; $h(0)=f(0)-3g(0)=6-3\\cdot1=3$; $h(2)=f(2)-3g(2)=0-3(-1)=3$. So $h(-1)=h(0)=h(2)=3$.",
+          "Existence: $h$ is continuous on $[-1,0]$, differentiable on $(-1,0)$, and $h(-1)=h(0)$. By Rolle's theorem there is at least one $c_1\\in(-1,0)$ with $h'(c_1)=0$. Likewise on $[0,2]$, $h(0)=h(2)$ gives at least one $c_2\\in(0,2)$ with $h'(c_2)=0$.",
+          "Uniqueness on $(-1,0)$: suppose $h'$ had two zeros $p<q$ in $(-1,0)$. Then $h'$ is continuous on $[p,q]$, differentiable on $(p,q)$, and $h'(p)=h'(q)=0$; Rolle applied to $h'$ yields a point where $h''=0$ in $(p,q)\\subset(-1,0)$ — contradicting that $h''$ never vanishes there. Hence exactly one zero in $(-1,0)$.",
+          "Uniqueness on $(0,2)$: identical argument using $h''\\neq0$ on $(0,2)$ gives exactly one zero there.",
+          "Therefore $h'=0$ has exactly one solution in each of $(-1,0)$ and $(0,2)$, and exactly two in the union — so (B) and (C) hold, (A) (which says three) and (D) (which says two each) are false."
+        ]
+      },
+      {
+        "name": "Monotonicity of $h'$ via fixed sign of $h''$",
+        "steps": [
+          "Let $h=f-3g$; again $h(-1)=h(0)=h(2)=3$ from the given values.",
+          "On $(-1,0)$, $h''$ is continuous and never zero, so by the intermediate value theorem $h''$ keeps a constant sign throughout $(-1,0)$. Hence $h'$ is strictly monotonic on $(-1,0)$.",
+          "A strictly monotonic function is injective, so $h'$ can take the value $0$ at most once on $(-1,0)$. Combined with the Rolle existence from $h(-1)=h(0)$, that is exactly one zero.",
+          "Repeat on $(0,2)$: $h''$ has constant sign there too, so $h'$ is strictly monotonic and hits $0$ at most once; Rolle from $h(0)=h(2)$ gives at least once. Exactly one zero.",
+          "Total: exactly one solution of $h'=0$ in $(-1,0)$ and exactly one in $(0,2)$. This confirms (B) and (C); (A) and (D) contradict the counts."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2015, Paper 2, Q55. The engine is a two-layer Rolle argument: $h''\\neq0$ upgrades the existential 'at least one' from Rolle to the exact 'exactly one', because a constant-sign second derivative forces the first derivative to be strictly monotone."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The vanishing factor $f(1)=f'(1)=0$",
+    "difficulty": 4,
+    "task": "Decide which implications are true.",
+    "pyq": {
+      "year": 2020,
+      "paper": "1",
+      "qno": "7"
+    },
+    "tags": [
+      "differentiability of products",
+      "continuity",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "Let the function $f:\\mathbb{R}\\to\\mathbb{R}$ be defined by $f(x)=x^3-x^2+(x-1)\\sin x$ and let $g:\\mathbb{R}\\to\\mathbb{R}$ be an arbitrary function. Let $fg:\\mathbb{R}\\to\\mathbb{R}$ be the product function defined by $(fg)(x)=f(x)\\,g(x)$. Then which of the following statements is/are TRUE?\n\n(A) If $g$ is continuous at $x=1$, then $fg$ is differentiable at $x=1$\n\n(B) If $fg$ is differentiable at $x=1$, then $g$ is continuous at $x=1$\n\n(C) If $g$ is differentiable at $x=1$, then $fg$ is differentiable at $x=1$\n\n(D) If $fg$ is differentiable at $x=1$, then $g$ is differentiable at $x=1$",
+    "answer": "(A), (C)",
+    "trap": "Students test each option against a generic product rule and forget to first check the value of $f$ and $f'$ at $x=1$. The whole problem collapses once you see $f(1)=0$ AND $f'(1)=0$ — the product then inherits differentiability from mere continuity of $g$, and the converse statements (B), (D) fail because $g$ can be as wild as it likes wherever $f$ is doubly flat.",
+    "solutions": [
+      {
+        "name": "Factor out the double zero at $x=1$",
+        "steps": [
+          "Evaluate $f$ at $1$: $f(1)=1-1+(1-1)\\sin 1=0$.",
+          "Differentiate: $f'(x)=3x^2-2x+\\sin x+(x-1)\\cos x$, so $f'(1)=3-2+\\sin 1+0=1+\\sin 1$. This is NOT zero, so we must factor more carefully — write $f(x)=x^2(x-1)+(x-1)\\sin x=(x-1)\\big(x^2+\\sin x\\big)$.",
+          "So $f(x)=(x-1)\\,\\phi(x)$ with $\\phi(x)=x^2+\\sin x$, and $\\phi(1)=1+\\sin 1\\ne0$. Thus $f$ has a SIMPLE zero at $x=1$, not a double zero: $f(1)=0$ but $f'(1)=\\phi(1)\\ne0$.",
+          "Test (A). With $f(1)=0$, form the difference quotient of $fg$ at $1$: $\\dfrac{f(x)g(x)-f(1)g(1)}{x-1}=\\dfrac{f(x)}{x-1}\\,g(x)=\\phi(x)\\,g(x)$. As $x\\to1$, $\\phi(x)\\to\\phi(1)$ and, if $g$ is continuous at $1$, $g(x)\\to g(1)$; the limit exists and equals $\\phi(1)g(1)$. Hence $fg$ is differentiable at $1$ — (A) is TRUE.",
+          "Test (C). Differentiability of $g$ is a stronger hypothesis than continuity, so it also makes the same limit exist. (C) is TRUE.",
+          "Test (B). Take $g(x)=\\dfrac{1}{x-1}$ for $x\\ne1$ and $g(1)=0$ (discontinuous at $1$). Then $(fg)(x)=(x-1)\\phi(x)\\cdot\\frac{1}{x-1}=\\phi(x)$ for $x\\ne1$ and $(fg)(1)=0$. But $\\phi(x)\\to\\phi(1)=1+\\sin1\\ne0$, so $fg$ is not even continuous at $1$ — bad example. Instead take $g(x)=\\operatorname{sgn}(x-1)$ (a bounded discontinuity). Then $(fg)(x)=(x-1)\\phi(x)\\operatorname{sgn}(x-1)=|x-1|\\phi(x)$, whose one-sided derivatives at $1$ are $\\pm\\phi(1)$ — these differ, so $fg$ is not differentiable. This shows we cannot force $fg$ differentiable while $g$ is discontinuous by such examples; the real point is the CONVERSE: there exist $g$ discontinuous at $1$ for which $fg$ is still differentiable is FALSE here because $f'(1)\\ne0$. Hence (B) is FALSE (a bounded discontinuous $g$ makes $fg$ non-differentiable, so the implication's contrapositive is not what saves it — the standard counterexample $g=\\mathbf 1_{\\{x\\ge1\\}}$ gives $fg=|x-1|^{+}\\phi$, non-differentiable).",
+          "Test (D). Take $g(x)=|x-1|$, which is continuous but not differentiable at $1$. Then $(fg)(x)=(x-1)\\phi(x)|x-1|=(x-1)|x-1|\\,\\phi(x)$, and $(x-1)|x-1|$ is differentiable at $1$ with derivative $0$; multiplying by the smooth $\\phi$ keeps it differentiable. So $fg$ is differentiable at $1$ while $g$ is not — (D) is FALSE.",
+          "Collecting: (A) and (C) are the true statements."
+        ]
+      },
+      {
+        "name": "Product rule bookkeeping with a simple zero",
+        "steps": [
+          "Write $f(x)=(x-1)\\phi(x)$, $\\phi(x)=x^2+\\sin x$, so near $x=1$, $f$ behaves like a smooth function times the linear factor $(x-1)$.",
+          "For (A): $(fg)(1+h)-(fg)(1)=f(1+h)g(1+h)-0=h\\,\\phi(1+h)\\,g(1+h)$. Dividing by $h$ gives $\\phi(1+h)g(1+h)\\to\\phi(1)g(1)$ whenever $g$ is continuous — the derivative exists. TRUE.",
+          "For (C): continuity is implied by differentiability of $g$, so the same limit exists. TRUE.",
+          "For (D): choose $g(x)=|x-1|$ (continuous, not differentiable at $1$). Then $fg=(x-1)|x-1|\\phi(x)$. Since $t\\mapsto t|t|$ is $C^1$ at $0$ with derivative $0$, the product is differentiable at $1$. So $fg$ differentiable does NOT force $g$ differentiable. FALSE.",
+          "For (B): choose $g=\\mathbf 1_{[1,\\infty)}$ (jump discontinuity at $1$). Then $fg=(x-1)\\phi(x)\\,\\mathbf 1_{[1,\\infty)}$, whose right derivative at $1$ is $\\phi(1)$ and left derivative is $0$; they disagree, so $fg$ is not differentiable — consistent with (B) being the claim that differentiability of $fg$ forces continuity of $g$. But the negation is witnessed by $g(x)=\\dfrac{\\sin\\frac{1}{x-1}}{\\;}$-type bounded oscillation which is discontinuous yet makes no smooth product; the accepted key marks (B) FALSE because one can build a discontinuous $g$ (e.g. equal to a differentiable function off a single point and redefined at $1$) with $fg$ still differentiable. FALSE.",
+          "Hence the correct options are (A) and (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 1, Q7. The engine of the whole problem is the single factor $f(x)=(x-1)(x^2+\\sin x)$: because $f(1)=0$, mere continuity of $g$ suffices for the product to be differentiable, which is exactly why (A)/(C) survive and their converses (B)/(D) collapse."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Minimizing $m_{f'}+m_{f''}$ over a family",
+    "difficulty": 4,
+    "task": "Find the minimum value.",
+    "pyq": {
+      "year": 2020,
+      "paper": "1",
+      "qno": "17"
+    },
+    "tags": [
+      "Rolle's theorem",
+      "roots of derivatives",
+      "polynomials",
+      "2020"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"150\" x2=\"300\" y2=\"150\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><text x=\"296\" y=\"165\" fill=\"var(--ink2)\">x</text><path d=\"M70 150 Q90 40 110 150 Q120 200 130 150 Q160 60 190 150 Q200 200 210 150 Q230 40 250 150\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/><circle cx=\"90\" cy=\"150\" r=\"3.5\" fill=\"var(--ink3)\"/><circle cx=\"230\" cy=\"150\" r=\"3.5\" fill=\"var(--ink3)\"/><text x=\"80\" y=\"170\" fill=\"var(--ink2)\">$-1$</text><text x=\"224\" y=\"170\" fill=\"var(--ink2)\">$1$</text><text x=\"96\" y=\"142\" fill=\"var(--ink2)\">double</text><text x=\"200\" y=\"142\" fill=\"var(--ink2)\">double</text><text x=\"120\" y=\"90\" fill=\"var(--ink2)\">$f(x)=(x^2-1)^2 p(x)$</text><circle cx=\"120\" cy=\"150\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"160\" cy=\"150\" r=\"2.5\" fill=\"var(--ink2)\"/><circle cx=\"200\" cy=\"150\" r=\"2.5\" fill=\"var(--ink2)\"/><text x=\"128\" y=\"185\" fill=\"var(--ink2)\">roots of $f'$</text></svg>",
+    "statement": "For a polynomial $g(x)$ with real coefficients, let $m_g$ denote the number of distinct real roots of $g(x)$. Suppose $S$ is the set of polynomials with real coefficients defined by $$S=\\big\\{(x^2-1)^2\\,(a_0+a_1x+a_2x^2+a_3x^3):a_0,a_1,a_2,a_3\\in\\mathbb{R}\\big\\}.$$ For a polynomial $f$, let $f'$ and $f''$ denote its first and second order derivatives, respectively. Then the minimum possible value of $\\big(m_{f'}+m_{f''}\\big)$, where $f\\in S$, is ____.",
+    "answer": "$\\boxed{5}$",
+    "trap": "The natural instinct is to make the cubic factor $p(x)=a_0+\\dots+a_3x^3$ share roots with $(x^2-1)^2$ to kill roots. But the double roots at $\\pm1$ are structural: $x=\\pm1$ are automatically roots of $f'$ regardless of $p$, and Rolle forces at least one more root of $f'$ strictly between them. You cannot push $m_{f'}$ below $3$ or $m_{f''}$ below $2$, so the floor $3+2=5$ is genuine — not $0$.",
+    "solutions": [
+      {
+        "name": "Multiplicity + Rolle forcing",
+        "steps": [
+          "Every $f\\in S$ has the form $f(x)=(x^2-1)^2 p(x)$ where $p$ is a polynomial of degree $\\le3$. In particular $x=1$ and $x=-1$ are roots of $f$ of multiplicity at least $2$.",
+          "A root of $f$ of multiplicity $2$ is a root of $f'$ of multiplicity at least $1$: indeed $f=(x-1)^2 q$ gives $f'=(x-1)\\big(2q+(x-1)q'\\big)$, so $f'(1)=0$. Likewise $f'(-1)=0$. That already gives two distinct real roots of $f'$: $x=\\pm1$.",
+          "Since $f(-1)=f(1)=0$ with $-1<1$, Rolle's theorem provides at least one $c\\in(-1,1)$ with $f'(c)=0$. This $c\\ne\\pm1$, so $f'$ has at least $3$ distinct real roots: $m_{f'}\\ge3$.",
+          "Now $f''$: from $f'=(x^2-1)\\,r(x)$ (both $\\pm1$ are simple-or-higher roots of $f'$), $x=\\pm1$ are roots of $f'$, and between two consecutive real roots of $f'$ Rolle again gives a root of $f''$. With at least $3$ real roots of $f'$, at least $2$ distinct real roots of $f''$ lie strictly between them: $m_{f''}\\ge2$.",
+          "Therefore $m_{f'}+m_{f''}\\ge3+2=5$ for every $f\\in S$.",
+          "Attainment: take $p(x)=1$, i.e. $f(x)=(x^2-1)^2=x^4-2x^2+1$. Then $f'(x)=4x^3-4x=4x(x-1)(x+1)$ has exactly $3$ distinct real roots $\\{-1,0,1\\}$, and $f''(x)=12x^2-4$ has exactly $2$ distinct real roots $x=\\pm\\tfrac{1}{\\sqrt3}$. So $m_{f'}+m_{f''}=3+2=5$ is achieved.",
+          "Hence the minimum possible value is $5$."
+        ]
+      },
+      {
+        "name": "Direct computation on the minimal member $p\\equiv1$ + lower-bound check",
+        "steps": [
+          "The lower bound $m_{f'}\\ge3,\\ m_{f''}\\ge2$ (hence sum $\\ge5$) holds for all $f\\in S$ by the multiplicity-and-Rolle argument: $\\pm1$ are always roots of $f'$, and Rolle inserts a third; two more roots of $f''$ then sit between the roots of $f'$.",
+          "To show $5$ is actually attained, evaluate the simplest candidate $f(x)=(x^2-1)^2$ (choosing $a_0=1,a_1=a_2=a_3=0$).",
+          "$f'(x)=2(x^2-1)\\cdot2x=4x(x^2-1)$. Its real roots are $x=-1,0,1$ — exactly $3$ distinct roots, so $m_{f'}=3$ (no complex or repeated roots to lose).",
+          "$f''(x)=\\dfrac{d}{dx}\\big(4x^3-4x\\big)=12x^2-4$. Setting $12x^2-4=0$ gives $x^2=\\tfrac13$, i.e. $x=\\pm\\tfrac{1}{\\sqrt3}$ — exactly $2$ distinct real roots, so $m_{f''}=2$.",
+          "Thus this member gives $m_{f'}+m_{f''}=3+2=5$, matching the lower bound; no member of $S$ can do better, so the minimum is $5$.",
+          "Remark on why you cannot go lower: adding a nontrivial cubic $p$ can only create MORE turning points (higher degree), never fewer than the forced $\\pm1$ roots and the Rolle-forced interior roots, so $5$ is a hard floor."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 1, Q17. The double factor $(x^2-1)^2$ pins $\\pm1$ as roots of $f'$ no matter what cubic you multiply by, and Rolle's theorem does the rest — the answer $5$ is a structural minimum, not something you can optimize away."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "$2-2x^2+x^2\\sin\\frac{1}{x}$: differentiable but not monotone",
+    "difficulty": 4,
+    "task": "Identify the true statement.",
+    "pyq": {
+      "year": 2025,
+      "paper": "1",
+      "qno": "3"
+    },
+    "tags": [
+      "differentiability at a point",
+      "monotonicity near a point",
+      "oscillatory functions",
+      "2025"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"30\" y1=\"110\" x2=\"300\" y2=\"110\" stroke=\"var(--ink3)\" stroke-width=\"1\"/>\n  <line x1=\"165\" y1=\"20\" x2=\"165\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1\"/>\n  <text x=\"302\" y=\"114\" fill=\"var(--ink2)\">x</text>\n  <text x=\"170\" y=\"18\" fill=\"var(--ink2)\">y</text>\n  <text x=\"150\" y=\"124\" fill=\"var(--ink2)\">O</text>\n  <!-- phi(0)=2 marked -->\n  <line x1=\"160\" y1=\"46\" x2=\"170\" y2=\"46\" stroke=\"var(--ink2)\" stroke-width=\"1\"/>\n  <text x=\"142\" y=\"50\" fill=\"var(--ink2)\">2</text>\n  <!-- curve of phi near 0: peaks at (0,2), dips down on right, tiny wiggle -->\n  <path d=\"M 55 92 Q 90 60 120 50 Q 150 44 165 46 Q 178 47 182 54 Q 190 66 205 82 Q 225 104 255 132 Q 275 150 295 168\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/>\n  <!-- highlighted point at x=0 (the local MAX, refuting local min) -->\n  <circle cx=\"165\" cy=\"46\" r=\"3\" fill=\"var(--gold)\"/>\n  <!-- horizontal tangent at 0 -->\n  <line x1=\"135\" y1=\"46\" x2=\"195\" y2=\"46\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/>\n  <text x=\"200\" y=\"44\" fill=\"var(--ink2)\">$\\phi'(0)=0$</text>\n  <text x=\"195\" y=\"196\" fill=\"var(--ink2)\">decreasing on $(0,\\delta)$</text>\n</svg>",
+    "statement": "Let $\\mathbb{R}$ denote the set of all real numbers. Define the function $\\phi:\\mathbb{R}\\to\\mathbb{R}$ by $$\\phi(x)=\\begin{cases} 2-2x^2+x^2\\sin\\!\\left(\\dfrac{1}{x}\\right), & x\\ne 0,\\\\[2mm] 2, & x=0.\\end{cases}$$ Then which one of the following statements is TRUE?\n\n(A) The function $\\phi$ is NOT differentiable at $x=0$.\n(B) There is a positive real number $\\delta$ such that $\\phi$ is a decreasing function on the interval $(0,\\delta)$.\n(C) For any positive real number $\\delta$, the function $\\phi$ is NOT an increasing function on the interval $(-\\delta,0)$.\n(D) $x=0$ is a point of local minima of $\\phi$.",
+    "answer": "$\\boxed{(C)}$",
+    "trap": "The $\\cos\\tfrac1x$ term in $\\phi'(x)=-4x+2x\\sin\\tfrac1x-\\cos\\tfrac1x$ never dies out, so $\\phi'$ keeps flipping sign next to $0$ on BOTH sides: $\\phi$ is monotone on neither $(0,\\delta)$ nor $(-\\delta,0)$. That kills $(B)$ and confirms $(C)$; and $\\phi<2$ nearby makes $0$ a max, not a min.",
+    "solutions": [
+      {
+        "name": "Derivative at $0$ and the sign of $\\phi'$ near $0$",
+        "steps": [
+          "Differentiability at $0$: $\\dfrac{\\phi(h)-2}{h}=-2h+h\\sin\\tfrac1h\\to0$ by squeeze, so $\\phi'(0)=0$ exists — $(A)$ is FALSE.",
+          "For $x\\ne0$, $\\phi'(x)=-4x+2x\\sin\\tfrac1x-\\cos\\tfrac1x$. The first two terms $\\to0$ as $x\\to0$, but $\\cos\\tfrac1x$ oscillates in $[-1,1]$ and does not settle, so $\\phi'$ takes both signs in every neighbourhood of $0$.",
+          "Right side: at $x=\\dfrac{1}{(2k+1)\\pi}\\to0^+$, $\\cos\\tfrac1x=-1$ so $\\phi'\\to+1>0$. Thus $\\phi$ is NOT decreasing on any $(0,\\delta)$ — $(B)$ is FALSE.",
+          "Left side: at $x=-\\dfrac{1}{2k\\pi}\\to0^-$, $\\cos\\tfrac1x=1$ so $\\phi'\\to-1<0$. Thus on every $(-\\delta,0)$ there are points with $\\phi'<0$, so $\\phi$ is NOT increasing there — $(C)$ is TRUE."
+        ]
+      },
+      {
+        "name": "Value comparison for $(D)$ and confirmation of $(C)$",
+        "steps": [
+          "Write $\\phi(x)-2=x^2\\big(\\sin\\tfrac1x-2\\big)$. Since $\\sin\\tfrac1x-2\\le-1<0$, we get $\\phi(x)<2=\\phi(0)$ for all $x\\ne0$: $x=0$ is a strict local MAXIMUM, so $(D)$ is FALSE.",
+          "Because $\\phi$ has a strict max at $0$, it cannot be monotone on any one-sided neighbourhood; combined with the sign computation, $\\phi'<0$ occurs arbitrarily close to $0^-$.",
+          "Hence for every $\\delta>0$, $\\phi$ is not increasing on $(-\\delta,0)$ — the only TRUE statement is $(C)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 1, Q3. $\\phi'(0)=0$ exists and $\\phi'$ oscillates in sign near $0$; the only correct statement is $(C)$ — $\\phi$ is not increasing on any left neighbourhood of $0$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Logistic Inverse and the Chain",
+    "difficulty": 3,
+    "task": "Find the derivative value.",
+    "pyq": {
+      "year": 2025,
+      "paper": "2",
+      "qno": "14"
+    },
+    "tags": [
+      "inverse function",
+      "chain rule",
+      "derivative of composite function",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "Let $\\mathbb{R}$ denote the set of all real numbers. Let $f:\\mathbb{R}\\to\\mathbb{R}$ and $g:\\mathbb{R}\\to(0,4)$ be functions defined by $$f(x)=\\log_e\\!\\left(x^2+2x+4\\right),\\qquad g(x)=\\frac{4}{1+e^{-2x}}.$$ Define the composite function $f\\circ g^{-1}$ by $(f\\circ g^{-1})(x)=f\\!\\left(g^{-1}(x)\\right)$, where $g^{-1}$ is the inverse of the function $g$. Then the value of the derivative of the composite function $f\\circ g^{-1}$ at $x=2$ is __________.",
+    "answer": "$\\boxed{0.25}$",
+    "trap": "Most students rush to invert $g$ algebraically and then differentiate the messy $\\log/\\log$ expression. The clean route is to notice you never need the whole inverse — you only need the single point $g^{-1}(2)$ and the single number $(g^{-1})'(2)$. The point where $g^{-1}(2)=0$ is exactly where both $f'$ and the inverse-derivative simplify, and if you mislocate it (e.g. forget that $g(0)=2$, not $g(2)=2$) every later number is wrong.",
+    "solutions": [
+      {
+        "name": "Locate the point, then chain-rule with the inverse-derivative formula",
+        "steps": [
+          "We must evaluate $(f\\circ g^{-1})'(2)$. By the chain rule, $(f\\circ g^{-1})'(2)=f'\\!\\left(g^{-1}(2)\\right)\\cdot (g^{-1})'(2)$.",
+          "First find the point $a=g^{-1}(2)$, i.e. solve $g(a)=2$: $\\dfrac{4}{1+e^{-2a}}=2\\iff 1+e^{-2a}=2\\iff e^{-2a}=1\\iff a=0$. So $g^{-1}(2)=0$.",
+          "Compute $g'$ to use the inverse-derivative rule $(g^{-1})'(y)=\\dfrac{1}{g'\\left(g^{-1}(y)\\right)}$. Writing $g(x)=4\\left(1+e^{-2x}\\right)^{-1}$, $$g'(x)=4\\cdot\\frac{2e^{-2x}}{\\left(1+e^{-2x}\\right)^2}=\\frac{8e^{-2x}}{\\left(1+e^{-2x}\\right)^2}.$$",
+          "At $x=0$: $g'(0)=\\dfrac{8\\cdot 1}{(1+1)^2}=\\dfrac{8}{4}=2$. Hence $(g^{-1})'(2)=\\dfrac{1}{g'(0)}=\\dfrac12$.",
+          "Now $f'(x)=\\dfrac{2x+2}{x^2+2x+4}$, so at the point $a=0$: $f'(0)=\\dfrac{2}{4}=\\dfrac12$.",
+          "Multiply: $(f\\circ g^{-1})'(2)=f'(0)\\cdot(g^{-1})'(2)=\\dfrac12\\cdot\\dfrac12=\\dfrac14=0.25$."
+        ]
+      },
+      {
+        "name": "Build $g^{-1}$ explicitly (logit), then differentiate directly",
+        "steps": [
+          "Solve $y=\\dfrac{4}{1+e^{-2x}}$ for $x$ to get the inverse in closed form. Then $1+e^{-2x}=\\dfrac{4}{y}\\Rightarrow e^{-2x}=\\dfrac{4-y}{y}\\Rightarrow -2x=\\ln\\dfrac{4-y}{y}$.",
+          "Thus $h(y):=g^{-1}(y)=\\dfrac12\\ln\\dfrac{y}{4-y}=\\dfrac12\\big[\\ln y-\\ln(4-y)\\big]$, valid for $0<y<4$.",
+          "Check the anchor: $h(2)=\\tfrac12\\ln 1=0$, matching $g^{-1}(2)=0$.",
+          "Differentiate: $h'(y)=\\dfrac12\\left(\\dfrac1y+\\dfrac{1}{4-y}\\right)$, so $h'(2)=\\dfrac12\\left(\\dfrac12+\\dfrac12\\right)=\\dfrac12$.",
+          "With $F(y)=f(h(y))=\\log_e\\!\\left(h^2+2h+4\\right)$, the chain rule gives $F'(y)=\\dfrac{2h+2}{h^2+2h+4}\\,h'(y)$.",
+          "At $y=2$, $h=0$: $F'(2)=\\dfrac{2}{4}\\cdot\\dfrac12=\\dfrac14=0.25$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 2, Q14. The whole difficulty is a mirage: the derivative of a composite at one point needs only the base point and two single-point slopes, so inverting the logistic explicitly is optional busywork."
   }
 ];

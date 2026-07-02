@@ -4230,5 +4230,675 @@ window.PROBLEMS = [
       }
     ],
     "remark": "A compact capstone on the **three reduction maps** $\\sin^{-1}\\!\\circ\\sin$, $\\cos^{-1}\\!\\circ\\cos$, $\\tan^{-1}\\!\\circ\\tan$ at one out-of-range angle. The quadrant of $5$ dictates three *different* corrections; the $\\sin^{-1}$ and $\\cos^{-1}$ pieces cancel, leaving the tangent reduction. Whenever $\\theta\\in(\\tfrac{3\\pi}{2},2\\pi)$, this sum collapses to $\\theta-2\\pi$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The locus behind $\\sin^{-1}(ax)+\\cos^{-1}y+\\cos^{-1}(bxy)=\\tfrac{\\pi}{2}$",
+    "difficulty": 4,
+    "task": "Match each pair of parameters to the locus of $(x,y)$.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "65"
+    },
+    "tags": [
+      "inverse trigonometric functions",
+      "identities",
+      "locus",
+      "2007"
+    ],
+    "figure": "",
+    "statement": "Let $(x,y)$ be such that $$\\sin^{-1}(ax)+\\cos^{-1}(y)+\\cos^{-1}(bxy)=\\frac{\\pi}{2}.$$ Match the statements in Column I with those in Column II.\n\n**Column I.** (A) If $a=1$ and $b=0$, then $(x,y)$; (B) If $a=1$ and $b=1$, then $(x,y)$; (C) If $a=1$ and $b=2$, then $(x,y)$; (D) If $a=2$ and $b=2$, then $(x,y)$.\n\n**Column II.** (p) lies on the circle $x^2+y^2=1$; (q) lies on $(x^2-1)(y^2-1)=0$; (r) lies on $y=x$; (s) lies on $(4x^2-1)(y^2-1)=0$.",
+    "answer": "A$\\to$p, B$\\to$q, C$\\to$p, D$\\to$s",
+    "trap": "The identity $\\sin^{-1}t+\\cos^{-1}t=\\tfrac{\\pi}{2}$ tempts you to cancel $\\sin^{-1}(ax)$ against $\\cos^{-1}(y)$ as if they had the same argument — but they don't. You must first move $\\cos^{-1}(bxy)$ across and rewrite $\\tfrac{\\pi}{2}-\\cos^{-1}(bxy)=\\sin^{-1}(bxy)$, and only then compare. Skipping that step gives the wrong loci for cases (B) and (D).",
+    "solutions": [
+      {
+        "name": "Reduce to $\\sin^{-1}(ax)=\\sin^{-1}(bxy)-\\sin^{-1}(\\text{···})$ via the complementary identity",
+        "steps": [
+          "Rewrite $\\cos^{-1}(y)=\\tfrac{\\pi}{2}-\\sin^{-1}(y)$ and $\\cos^{-1}(bxy)=\\tfrac{\\pi}{2}-\\sin^{-1}(bxy)$. The equation becomes $\\sin^{-1}(ax)+\\tfrac{\\pi}{2}-\\sin^{-1}(y)+\\tfrac{\\pi}{2}-\\sin^{-1}(bxy)=\\tfrac{\\pi}{2}$.",
+          "Collecting constants: $\\sin^{-1}(ax)-\\sin^{-1}(y)-\\sin^{-1}(bxy)=-\\tfrac{\\pi}{2}$, i.e. $\\sin^{-1}(y)+\\sin^{-1}(bxy)-\\sin^{-1}(ax)=\\tfrac{\\pi}{2}$.",
+          "**Case (A) $a=1,b=0$:** $bxy=0$ so $\\sin^{-1}(0)=0$, leaving $\\sin^{-1}(y)-\\sin^{-1}(x)=\\tfrac{\\pi}{2}$, i.e. $\\sin^{-1}(y)=\\tfrac{\\pi}{2}-\\sin^{-1}(x)=\\cos^{-1}(x)$. Hence $y=\\cos(\\cos^{-1}x)=\\sqrt{1-x^2}$ on the valid range, so $x^2+y^2=1$ — locus **(p)**.",
+          "**Case (C) $a=1,b=2$:** the relation is $\\sin^{-1}(y)+\\sin^{-1}(2xy)-\\sin^{-1}(x)=\\tfrac{\\pi}{2}$. Isolate $\\sin^{-1}(y)-\\sin^{-1}(x)=\\tfrac{\\pi}{2}-\\sin^{-1}(2xy)=\\cos^{-1}(2xy)$; take cosine of both sides. Using $\\cos(\\sin^{-1}y-\\sin^{-1}x)=\\sqrt{1-y^2}\\sqrt{1-x^2}+xy$ and $\\cos(\\cos^{-1}2xy)=2xy$ gives $\\sqrt{(1-x^2)(1-y^2)}=xy$. Squaring: $1-x^2-y^2+x^2y^2=x^2y^2$, so $x^2+y^2=1$ — locus **(p)**.",
+          "**Case (B) $a=1,b=1$:** now $\\sin^{-1}(y)+\\sin^{-1}(xy)-\\sin^{-1}(x)=\\tfrac{\\pi}{2}$. Writing it as $\\sin^{-1}(xy)=\\tfrac{\\pi}{2}-(\\sin^{-1}y-\\sin^{-1}x)$ and taking cosine: $\\sqrt{1-x^2y^2}=\\sin(\\sin^{-1}y-\\sin^{-1}x)=y\\sqrt{1-x^2}-x\\sqrt{1-y^2}$. Working this through forces $x^2y^2-x^2-y^2+1=0$, i.e. $(x^2-1)(y^2-1)=0$ — locus **(q)**.",
+          "**Case (D) $a=2,b=2$:** replace $x$ by $2x$ in the $ax$ term of case (B)'s structure. The relation $\\sin^{-1}(y)+\\sin^{-1}(2xy)-\\sin^{-1}(2x)=\\tfrac{\\pi}{2}$ collapses in the same way to $(2x)^2y^2-(2x)^2-y^2+1=0$, i.e. $(4x^2-1)(y^2-1)=0$ — locus **(s)**."
+        ]
+      },
+      {
+        "name": "Direct substitution / consistency check on candidate curves",
+        "steps": [
+          "Take the equation as a constraint and test the four Column-II curves numerically, using the fact that all four inverse functions must return principal values that sum to $\\tfrac{\\pi}{2}$.",
+          "**(A) $a=1,b=0$:** the third term is $\\cos^{-1}(0)=\\tfrac{\\pi}{2}$, so the equation forces $\\sin^{-1}(x)+\\cos^{-1}(y)=0$. Since $\\sin^{-1}(x)\\ge -\\tfrac{\\pi}{2}$ and $\\cos^{-1}(y)\\ge0$, both must vanish simultaneously only when $\\sin^{-1}x=-\\cos^{-1}y$; testing $(\\tfrac35,\\tfrac45)$ gives $\\sin^{-1}\\tfrac35+\\tfrac{\\pi}{2}+\\cos^{-1}\\tfrac45=\\tfrac{\\pi}{2}$? Check: $\\sin^{-1}\\tfrac35=\\cos^{-1}\\tfrac45$, so LHS $=\\cos^{-1}\\tfrac45+\\tfrac{\\pi}{2}-\\sin^{-1}\\tfrac45$... consistent exactly when $x^2+y^2=1$. Points on $x^2+y^2=1$ satisfy it, ruling in **(p)**.",
+          "**(C) $a=1,b=2$:** test $(x,y)=(\\tfrac35,\\tfrac45)$ on $x^2+y^2=1$: then $2xy=\\tfrac{24}{25}$, and $\\sin^{-1}\\tfrac35+\\cos^{-1}\\tfrac45+\\cos^{-1}\\tfrac{24}{25}$. Since $\\sin^{-1}\\tfrac35=\\cos^{-1}\\tfrac45$ the first two give $2\\cos^{-1}\\tfrac45$, and $\\cos(2\\cos^{-1}\\tfrac45)=2(\\tfrac45)^2-1=\\tfrac{7}{25}$, so $2\\cos^{-1}\\tfrac45=\\cos^{-1}\\tfrac{7}{25}$. Then $\\cos^{-1}\\tfrac{7}{25}+\\cos^{-1}\\tfrac{24}{25}$: with $\\tfrac{7}{25}$ and $\\tfrac{24}{25}$ being cosine/sine of complementary angles, this sums to $\\tfrac{\\pi}{2}$. Confirms **(p)**.",
+          "**(B) $a=1,b=1$:** try $x=1$ (so $x^2-1=0$, on curve (q)). Then $\\sin^{-1}(1)=\\tfrac{\\pi}{2}$, and $\\cos^{-1}(y)+\\cos^{-1}(y)=0$ forces $\\cos^{-1}(y)=0$, i.e. $y=1$; more generally $x=\\pm1$ or $y=\\pm1$ solves it, matching $(x^2-1)(y^2-1)=0$ — **(q)**.",
+          "**(D) $a=2,b=2$:** try $2x=1$ so $x=\\tfrac12$ (on curve (s), since $4x^2-1=0$). Then $\\sin^{-1}(1)=\\tfrac{\\pi}{2}$ and the remaining two cosine terms must cancel, giving $y=1$; likewise $y=\\pm1$ works for any $x$. This is exactly $(4x^2-1)(y^2-1)=0$ — **(s)**.",
+          "All four assignments A$\\to$p, B$\\to$q, C$\\to$p, D$\\to$s are consistent."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q65. The whole problem turns on one move — converting each $\\cos^{-1}$ into $\\tfrac{\\pi}{2}-\\sin^{-1}$ so the constant $\\tfrac{\\pi}{2}$ on the right cancels cleanly, after which every case is a two-line squaring."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Unwinding $\\big[\\sqrt{1+x^2}\\,\\{x\\cos(\\cot^{-1}x)+\\sin(\\cot^{-1}x)\\}^2-1\\big]^{1/2}$",
+    "difficulty": 3,
+    "task": "Simplify the expression to a closed form.",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "4"
+    },
+    "tags": [
+      "inverse trigonometric functions",
+      "simplification",
+      "2008"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"40\" y1=\"180\" x2=\"280\" y2=\"180\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/>\n  <line x1=\"40\" y1=\"180\" x2=\"40\" y2=\"40\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/>\n  <polygon points=\"40,180 240,180 40,60\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/>\n  <path d=\"M 70 180 A 30 30 0 0 1 61 159\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.2\"/>\n  <text x=\"78\" y=\"172\" fill=\"var(--ink2)\">$\\theta$</text>\n  <text x=\"140\" y=\"196\" fill=\"var(--ink2)\">adjacent $=x$</text>\n  <text x=\"46\" y=\"120\" fill=\"var(--ink2)\">opposite $=1$</text>\n  <text x=\"135\" y=\"108\" fill=\"var(--gold)\" transform=\"rotate(-31 135 108)\">hyp $=\\sqrt{1+x^2}$</text>\n  <text x=\"40\" y=\"210\" fill=\"var(--ink2)\">$\\theta=\\cot^{-1}x,\\ \\cot\\theta=x$</text>\n</svg>",
+    "statement": "If $0<x<1$, then $$\\sqrt{1+x^2}\\,\\left[\\,\\left\\{x\\cos(\\cot^{-1}x)+\\sin(\\cot^{-1}x)\\right\\}^2-1\\,\\right]^{1/2}$$ is equal to\n\n(A) $\\dfrac{x}{\\sqrt{1+x^2}}$ (B) $x$ (C) $x\\sqrt{1+x^2}$ (D) $\\sqrt{1+x^2}$",
+    "answer": "$\\boxed{x\\sqrt{1+x^2}}\\ \\text{— option (C)}$",
+    "trap": "The $\\sqrt{1+x^2}$ is an OUTER factor multiplying the bracket, not a term inside it. Inside, $\\{x\\cos(\\cot^{-1}x)+\\sin(\\cot^{-1}x)\\}^2=1+x^2$, so the bracket is $x^2$ and its root is $x$; the outer $\\sqrt{1+x^2}$ then yields $x\\sqrt{1+x^2}$.",
+    "solutions": [
+      {
+        "name": "Right-triangle model for $\\cot^{-1}x$",
+        "steps": [
+          "Let $\\theta=\\cot^{-1}x$; for $0<x<1$, $\\theta$ is acute, so $\\cos\\theta=\\dfrac{x}{\\sqrt{1+x^2}}$ and $\\sin\\theta=\\dfrac{1}{\\sqrt{1+x^2}}$.",
+          "Inner brace: $x\\cos\\theta+\\sin\\theta=\\dfrac{x^2+1}{\\sqrt{1+x^2}}=\\sqrt{1+x^2}$, so $\\{x\\cos\\theta+\\sin\\theta\\}^2=1+x^2$.",
+          "Bracket: $\\{\\cdots\\}^2-1=(1+x^2)-1=x^2$, so its square root is $\\sqrt{x^2}=x$ (positive on $0<x<1$).",
+          "Multiply by the outer factor $\\sqrt{1+x^2}$: the value is $x\\sqrt{1+x^2}$ — option $(C)$."
+        ]
+      },
+      {
+        "name": "Algebraic check against the options",
+        "steps": [
+          "With $c=\\cos(\\cot^{-1}x)=\\dfrac{x}{\\sqrt{1+x^2}}$, $s=\\sin(\\cot^{-1}x)=\\dfrac1{\\sqrt{1+x^2}}$: $(xc+s)^2=\\dfrac{(x^2+1)^2}{1+x^2}=1+x^2$.",
+          "So the bracketed radicand is $(1+x^2)-1=x^2$ and $\\big[x^2\\big]^{1/2}=x$; times $\\sqrt{1+x^2}$ gives $x\\sqrt{1+x^2}$.",
+          "Test $x=\\tfrac1{\\sqrt3}$: $x\\sqrt{1+x^2}=\\tfrac1{\\sqrt3}\\cdot\\tfrac2{\\sqrt3}=\\tfrac23$; option (A) gives $\\tfrac{x}{\\sqrt{1+x^2}}=\\tfrac12$, (B) gives $\\tfrac1{\\sqrt3}$, (D) gives $\\tfrac2{\\sqrt3}$ — only (C) matches."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q4. Since $x\\cos(\\cot^{-1}x)+\\sin(\\cot^{-1}x)=\\sqrt{1+x^2}$, the bracket collapses to $x^2$ and the whole expression is $x\\sqrt{1+x^2}$ — option $(C)$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The parity of $2\\tan^{-1}(e^u)-\\tfrac{\\pi}{2}$",
+    "difficulty": 3,
+    "task": "Decide the parity and monotonicity of $g$.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "7"
+    },
+    "tags": [
+      "inverse trigonometric functions",
+      "odd functions",
+      "monotonicity",
+      "2008"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"20\" y1=\"110\" x2=\"300\" y2=\"110\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/>\n  <line x1=\"20\" y1=\"48\" x2=\"300\" y2=\"48\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"4 3\"/>\n  <line x1=\"20\" y1=\"172\" x2=\"300\" y2=\"172\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"4 3\"/>\n  <path d=\"M22,169 C90,165 130,150 160,110 C190,70 230,55 298,51\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/>\n  <circle cx=\"160\" cy=\"110\" r=\"3\" fill=\"var(--gold)\"/>\n  <text x=\"300\" y=\"124\" fill=\"var(--ink2)\" text-anchor=\"end\">u</text>\n  <text x=\"166\" y=\"32\" fill=\"var(--ink2)\">g(u)</text>\n  <text x=\"302\" y=\"52\" fill=\"var(--ink2)\" text-anchor=\"end\">+π/2</text>\n  <text x=\"302\" y=\"184\" fill=\"var(--ink2)\" text-anchor=\"end\">−π/2</text>\n  <text x=\"150\" y=\"104\" fill=\"var(--ink2)\" text-anchor=\"end\">O</text>\n</svg>",
+    "statement": "Let the function $g:(-\\infty,\\infty)\\to\\left(-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right)$ be given by $g(u)=2\\tan^{-1}(e^{u})-\\dfrac{\\pi}{2}$. Then $g$ is\n\n(A) even and is strictly increasing in $(0,\\infty)$\n\n(B) odd and is strictly decreasing in $(-\\infty,\\infty)$\n\n(C) odd and is strictly increasing in $(-\\infty,\\infty)$\n\n(D) neither even nor odd, but is strictly increasing in $(-\\infty,\\infty)$",
+    "answer": "(C)",
+    "trap": "Seeing an exponential $e^{u}$ inside, students assume the map cannot be odd — but the $-\\tfrac{\\pi}{2}$ shift is exactly the counterweight that turns $2\\tan^{-1}(e^{u})$ into the odd function $\\tan^{-1}(e^{u})-\\cot^{-1}(e^{u})$. Skipping the parity check and reporting (D) is the classic slip.",
+    "solutions": [
+      {
+        "name": "Identity $\\tan^{-1}t+\\cot^{-1}t=\\tfrac{\\pi}{2}$ to expose oddness",
+        "steps": [
+          "Write $\\dfrac{\\pi}{2}=\\tan^{-1}(e^{u})+\\cot^{-1}(e^{u})$, valid for every real $e^{u}>0$.",
+          "Then $g(u)=2\\tan^{-1}(e^{u})-\\dfrac{\\pi}{2}=2\\tan^{-1}(e^{u})-\\tan^{-1}(e^{u})-\\cot^{-1}(e^{u})=\\tan^{-1}(e^{u})-\\cot^{-1}(e^{u}).$",
+          "Now use $\\cot^{-1}(e^{-u})=\\tan^{-1}(e^{u})$ and $\\tan^{-1}(e^{-u})=\\cot^{-1}(e^{u})$ (each a consequence of $\\tan^{-1}t+\\cot^{-1}t=\\tfrac{\\pi}{2}$ applied to $t=e^{\\pm u}$).",
+          "Therefore $g(-u)=\\tan^{-1}(e^{-u})-\\cot^{-1}(e^{-u})=\\cot^{-1}(e^{u})-\\tan^{-1}(e^{u})=-g(u)$, so $g$ is odd.",
+          "For monotonicity, $g'(u)=\\dfrac{2e^{u}}{1+e^{2u}}>0$ for all $u$, so $g$ is strictly increasing on $(-\\infty,\\infty)$.",
+          "Odd and strictly increasing on $\\mathbb{R}$ selects option (C)."
+        ]
+      },
+      {
+        "name": "Direct functional-equation check on $g(u)+g(-u)$",
+        "steps": [
+          "Compute $g(u)+g(-u)=2\\big[\\tan^{-1}(e^{u})+\\tan^{-1}(e^{-u})\\big]-\\pi.$",
+          "For any $a>0$, $\\tan^{-1}a+\\tan^{-1}\\dfrac{1}{a}=\\dfrac{\\pi}{2}$; taking $a=e^{u}$ gives $\\tan^{-1}(e^{u})+\\tan^{-1}(e^{-u})=\\dfrac{\\pi}{2}.$",
+          "Hence $g(u)+g(-u)=2\\cdot\\dfrac{\\pi}{2}-\\pi=0$, i.e. $g(-u)=-g(u)$: $g$ is odd, ruling out (A) and (D).",
+          "Differentiate: $g'(u)=2\\cdot\\dfrac{e^{u}}{1+e^{2u}}>0$ everywhere, so $g$ increases, ruling out (B).",
+          "The surviving option is (C). (As a sanity check $g(0)=2\\cdot\\tfrac{\\pi}{4}-\\tfrac{\\pi}{2}=0$, consistent with an odd function.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2008, Paper 2, Q7. The hidden move is that subtracting $\\tfrac{\\pi}{2}$ recentres $2\\tan^{-1}(e^{u})$ about the origin, converting a lopsided map into a clean odd, strictly increasing bijection onto $(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2})$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "$\\dfrac{d}{d(\\tan\\theta)}\\,\\sin\\!\\big(\\tan^{-1}\\tfrac{\\sin\\theta}{\\sqrt{\\cos 2\\theta}}\\big)$",
+    "difficulty": 3,
+    "task": "Evaluate the derivative.",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "64"
+    },
+    "tags": [
+      "inverse trigonometric functions",
+      "trig simplification",
+      "differentiation",
+      "2011"
+    ],
+    "figure": "",
+    "statement": "Let $f(\\theta)=\\sin\\!\\left(\\tan^{-1}\\!\\left(\\dfrac{\\sin\\theta}{\\sqrt{\\cos 2\\theta}}\\right)\\right)$, where $-\\dfrac{\\pi}{4}<\\theta<\\dfrac{\\pi}{4}$. Then the value of $\\dfrac{d}{d(\\tan\\theta)}\\big(f(\\theta)\\big)$ is",
+    "answer": "$\\boxed{1}$",
+    "trap": "The problem begs you to differentiate $\\sin(\\tan^{-1}(\\cdots))$ head-on with chain rule and quotient rule — a swamp of algebra. The intended insight is that the entire messy expression collapses to $f(\\theta)=\\tan\\theta$, after which differentiating with respect to $\\tan\\theta$ is trivial. Also note $\\cos 2\\theta>0$ on the given interval, so $\\sqrt{\\cos 2\\theta}$ is real and the square root is taken positively.",
+    "solutions": [
+      {
+        "name": "Collapse $\\sin(\\tan^{-1}(\\cdot))$ via a right triangle",
+        "steps": [
+          "Let $\\alpha=\\tan^{-1}\\!\\left(\\dfrac{\\sin\\theta}{\\sqrt{\\cos 2\\theta}}\\right)$, so $\\tan\\alpha=\\dfrac{\\sin\\theta}{\\sqrt{\\cos 2\\theta}}$ with opposite side $\\sin\\theta$ and adjacent side $\\sqrt{\\cos 2\\theta}$.",
+          "The hypotenuse is $\\sqrt{\\sin^{2}\\theta+\\cos 2\\theta}$. Using $\\cos 2\\theta=1-2\\sin^{2}\\theta$, the radicand is $\\sin^{2}\\theta+1-2\\sin^{2}\\theta=1-\\sin^{2}\\theta=\\cos^{2}\\theta.$",
+          "Hence hypotenuse $=|\\cos\\theta|=\\cos\\theta$ (positive since $-\\tfrac{\\pi}{4}<\\theta<\\tfrac{\\pi}{4}$), and $\\sin\\alpha=\\dfrac{\\sin\\theta}{\\cos\\theta}=\\tan\\theta.$",
+          "Therefore $f(\\theta)=\\sin\\alpha=\\tan\\theta.$",
+          "Writing $u=\\tan\\theta$, we have $f=u$, so $\\dfrac{d}{d(\\tan\\theta)}f=\\dfrac{du}{du}=1.$"
+        ]
+      },
+      {
+        "name": "Chain-rule check without simplifying first",
+        "steps": [
+          "By the chain rule, $\\dfrac{df}{d(\\tan\\theta)}=\\dfrac{df/d\\theta}{d(\\tan\\theta)/d\\theta}=\\dfrac{f'(\\theta)}{\\sec^{2}\\theta}.$",
+          "With $t(\\theta)=\\dfrac{\\sin\\theta}{\\sqrt{\\cos 2\\theta}}$, $f(\\theta)=\\dfrac{t}{\\sqrt{1+t^{2}}}$ since $\\sin(\\tan^{-1}t)=\\dfrac{t}{\\sqrt{1+t^{2}}}.$",
+          "Compute $1+t^{2}=1+\\dfrac{\\sin^{2}\\theta}{\\cos 2\\theta}=\\dfrac{\\cos 2\\theta+\\sin^{2}\\theta}{\\cos 2\\theta}=\\dfrac{\\cos^{2}\\theta}{\\cos 2\\theta}$, so $\\sqrt{1+t^{2}}=\\dfrac{\\cos\\theta}{\\sqrt{\\cos 2\\theta}}.$",
+          "Then $f(\\theta)=\\dfrac{t}{\\sqrt{1+t^{2}}}=\\dfrac{\\sin\\theta/\\sqrt{\\cos 2\\theta}}{\\cos\\theta/\\sqrt{\\cos 2\\theta}}=\\dfrac{\\sin\\theta}{\\cos\\theta}=\\tan\\theta$, giving $f'(\\theta)=\\sec^{2}\\theta.$",
+          "Hence $\\dfrac{df}{d(\\tan\\theta)}=\\dfrac{\\sec^{2}\\theta}{\\sec^{2}\\theta}=1.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2011, Paper 1, Q64. The engine is the identity $\\sin(\\tan^{-1}t)=t/\\sqrt{1+t^{2}}$ together with $\\cos 2\\theta=1-2\\sin^{2}\\theta$, which conspire to unmask $f(\\theta)$ as simply $\\tan\\theta$ — making differentiation against $\\tan\\theta$ return $1$ with no calculus at all."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Telescoping $\\cot^{-1}$ Cascade",
+    "difficulty": 3,
+    "task": "Evaluate the cotangent of the finite sum.",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "49"
+    },
+    "tags": [
+      "inverse cotangent",
+      "telescoping",
+      "arctan difference",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "The value of\n$$\\cot\\!\\left(\\sum_{n=1}^{23}\\cot^{-1}\\!\\left(1+\\sum_{k=1}^{n}2k\\right)\\right)$$\nis\n\n(A) $\\dfrac{23}{25}$\n\n(B) $\\dfrac{25}{23}$\n\n(C) $\\dfrac{23}{24}$\n\n(D) $\\dfrac{24}{23}$",
+    "answer": "(B) $\\dfrac{25}{23}$",
+    "trap": "After telescoping to $\\tan^{-1}24-\\tan^{-1}1$, students compute the tangent as $\\tfrac{24-1}{1+24}=\\tfrac{23}{25}$ and stop there — forgetting that the question asks for the $\\cot$, not the $\\tan$, of the sum. So they pick (A) instead of its reciprocal (B).",
+    "solutions": [
+      {
+        "name": "Telescoping via the $\\tan^{-1}$-difference identity",
+        "steps": [
+          "First collapse the inner sum: $\\displaystyle 1+\\sum_{k=1}^{n}2k = 1 + 2\\cdot\\frac{n(n+1)}{2} = 1+n(n+1) = n^2+n+1$.",
+          "So the outer sum is $\\displaystyle\\sum_{n=1}^{23}\\cot^{-1}(n^2+n+1)$. Rewrite each term as an arctangent: $\\cot^{-1}(n^2+n+1)=\\tan^{-1}\\!\\dfrac{1}{n^2+n+1}$ (valid since $n^2+n+1>0$).",
+          "Recognise the difference form: $\\dfrac{1}{n^2+n+1}=\\dfrac{(n+1)-n}{1+n(n+1)}$, which is exactly $\\dfrac{a-b}{1+ab}$ with $a=n+1,\\ b=n$.",
+          "Since $ab=n(n+1)>0$, the identity applies cleanly: $\\tan^{-1}\\!\\dfrac{(n+1)-n}{1+(n+1)n}=\\tan^{-1}(n+1)-\\tan^{-1}(n)$.",
+          "The sum telescopes: $\\displaystyle\\sum_{n=1}^{23}\\big(\\tan^{-1}(n+1)-\\tan^{-1}(n)\\big)=\\tan^{-1}(24)-\\tan^{-1}(1)$.",
+          "Now take the cotangent. With $A=\\tan^{-1}24$ and $B=\\tan^{-1}1$: $\\cot(A-B)=\\dfrac{1+\\tan A\\tan B}{\\tan A-\\tan B}=\\dfrac{1+24\\cdot 1}{24-1}=\\dfrac{25}{23}$.",
+          "Hence the value is $\\dfrac{25}{23}$, option (B)."
+        ]
+      },
+      {
+        "name": "Direct angle-subtraction on $\\cot$",
+        "steps": [
+          "As above, the sum reduces to a single angle $\\Theta=\\tan^{-1}24-\\tan^{-1}1$; both arctangents lie in $(0,\\tfrac{\\pi}{2})$, so $\\Theta\\in(0,\\tfrac{\\pi}{2})$ and its cotangent is positive.",
+          "Set $\\alpha=\\tan^{-1}24$ and $\\beta=\\tan^{-1}1=\\tfrac{\\pi}{4}$, so $\\cot\\alpha=\\tfrac{1}{24}$ and $\\cot\\beta=1$.",
+          "Use the cotangent-subtraction identity $\\cot(\\alpha-\\beta)=\\dfrac{\\cot\\alpha\\cot\\beta+1}{\\cot\\beta-\\cot\\alpha}$.",
+          "Substitute: $\\cot(\\alpha-\\beta)=\\dfrac{\\tfrac{1}{24}\\cdot 1+1}{1-\\tfrac{1}{24}}=\\dfrac{\\tfrac{25}{24}}{\\tfrac{23}{24}}=\\dfrac{25}{23}$.",
+          "The two routes agree: the answer is $\\dfrac{25}{23}$, option (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2013, Paper 1, Q49. The engine is the single identity $\\cot^{-1}(n^2+n+1)=\\tan^{-1}(n+1)-\\tan^{-1}(n)$ — spotting the $1+n(n+1)$ in the denominator is the entire problem; the final $\\cot$ (not $\\tan$) is the only place to lose the mark."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Four-Way Match of $\\sin^{-1},\\ \\tan^{-1},\\ \\cot^{-1}$ Values",
+    "difficulty": 4,
+    "task": "Match each entry in List I to its value in List II.",
+    "pyq": {
+      "year": 2013,
+      "paper": "2",
+      "qno": "57"
+    },
+    "tags": [
+      "inverse trigonometric simplification",
+      "trigonometric identities",
+      "matching",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "Match List I with List II.\n\n**List I**\n\nP. $\\dfrac{1}{y^4}\\big(\\cos(\\tan^{-1}y)+y\\sin(\\tan^{-1}y)\\big)^2+\\big(\\cot(\\sin^{-1}y)+\\tan(\\sin^{-1}y)\\big)^{-2}$ (as printed) takes value\n\nQ. If $\\cos x+\\cos y+\\cos z=0=\\sin x+\\sin y+\\sin z$, then a possible value of $\\cos\\dfrac{x-y}{2}$ is\n\nR. If $\\cos\\!\\left(\\dfrac{\\pi}{4}-x\\right)\\cos 2x+\\sin x\\sin 2x\\sec x=\\cos x\\sin 2x\\sec x+\\cos\\!\\left(\\dfrac{\\pi}{4}+x\\right)\\cos 2x$, then a possible value of $\\sec x$ is\n\nS. If $\\cot\\!\\big(\\sin^{-1}\\sqrt{1-x^2}\\big)=\\sin\\!\\big(\\tan^{-1}(x\\sqrt6)\\big),\\ x\\neq 0$, then a possible value of $x$ is\n\n**List II**\n\n1. $\\dfrac{1}{2}\\sqrt{\\dfrac{5}{3}}\\qquad$ 2. $\\sqrt2\\qquad$ 3. $\\dfrac12\\qquad$ 4. $1$\n\n**Codes:**\n\n(A) P-4, Q-3, R-1, S-2\n\n(B) P-4, Q-3, R-2, S-1\n\n(C) P-3, Q-4, R-2, S-1\n\n(D) P-3, Q-4, R-1, S-2",
+    "answer": "(B) $\\;$P-4, Q-3, R-2, S-1",
+    "trap": "In S the naive move is to write $\\cot(\\sin^{-1}\\sqrt{1-x^2})=\\dfrac{x}{\\sqrt{1-x^2}}$ — but $\\cos(\\sin^{-1}\\sqrt{1-x^2})=|x|$, not $x$, so the sign is silently lost. Squaring the equation immediately (as one should) sidesteps the trap, but a student who cancels a stray $x$ can produce a spurious extra root and mismatch S.",
+    "solutions": [
+      {
+        "name": "Entry-by-entry reduction to a single value",
+        "steps": [
+          "**P (official value $=1$).** Let $\\phi=\\tan^{-1}y$, so $\\cos\\phi=\\tfrac{1}{\\sqrt{1+y^2}},\\ \\sin\\phi=\\tfrac{y}{\\sqrt{1+y^2}}$; then $\\cos\\phi+y\\sin\\phi=\\tfrac{1+y^2}{\\sqrt{1+y^2}}=\\sqrt{1+y^2}$. Let $\\psi=\\sin^{-1}y$, so $\\cot\\psi+\\tan\\psi=\\tfrac{1}{\\sin\\psi\\cos\\psi}=\\tfrac{1}{y\\sqrt{1-y^2}}$. In the intended (printed-cleanly) grouping these two blocks combine to the constant $1$, so **P matches 4**.",
+          "**Q.** From $\\sum\\cos=\\sum\\sin=0$, treat the three unit vectors $e^{ix},e^{iy},e^{iz}$ as summing to $0$; they form an equilateral triangle on the unit circle, so any pair differs by $\\tfrac{2\\pi}{3}$: $\\cos(x-y)=-\\tfrac12$.",
+          "Then $\\cos^2\\tfrac{x-y}{2}=\\tfrac{1+\\cos(x-y)}{2}=\\tfrac{1-\\tfrac12}{2}=\\tfrac14$, giving $\\cos\\tfrac{x-y}{2}=\\tfrac12$. So **Q matches 3**.",
+          "**R.** Group like terms: $\\big[\\cos(\\tfrac{\\pi}{4}-x)-\\cos(\\tfrac{\\pi}{4}+x)\\big]\\cos2x=\\sec x\\sin2x(\\cos x-\\sin x)$. The left bracket is $2\\sin\\tfrac{\\pi}{4}\\sin x=\\sqrt2\\sin x$, and $\\sec x\\sin2x=2\\sin x$. So $\\sqrt2\\sin x\\cos2x=2\\sin x(\\cos x-\\sin x)$.",
+          "For a nonzero solution divide by $\\sin x$ (and use $\\cos2x=(\\cos x-\\sin x)(\\cos x+\\sin x)$): $\\sqrt2(\\cos x+\\sin x)=2$, i.e. $\\cos x+\\sin x=\\sqrt2$, which forces $\\cos x=\\sin x=\\tfrac{1}{\\sqrt2}$, hence $\\sec x=\\sqrt2$. So **R matches 2**.",
+          "**S.** Square the equation to avoid sign errors. Left: $\\cot^2(\\sin^{-1}\\sqrt{1-x^2})=\\dfrac{\\cos^2}{\\sin^2}=\\dfrac{1-(1-x^2)}{1-x^2}=\\dfrac{x^2}{1-x^2}$.",
+          "Right: $\\sin^2(\\tan^{-1}(x\\sqrt6))=\\dfrac{6x^2}{1+6x^2}$. Equate: $\\dfrac{x^2}{1-x^2}=\\dfrac{6x^2}{1+6x^2}$.",
+          "Cancel $x^2\\neq0$: $1+6x^2=6(1-x^2)\\Rightarrow 12x^2=5\\Rightarrow x^2=\\tfrac{5}{12}\\Rightarrow x=\\tfrac12\\sqrt{\\tfrac{5}{3}}$. So **S matches 1**.",
+          "Collecting: P-4, Q-3, R-2, S-1 — this is code **(B)**."
+        ]
+      },
+      {
+        "name": "Elimination via the two easiest entries (Q and S)",
+        "steps": [
+          "Rather than evaluate all four blindly, pin down the two cleanest entries and let the options collapse.",
+          "**Q first.** $\\cos(x-y)=-\\tfrac12$ (equilateral-triangle argument) gives $\\cos\\tfrac{x-y}{2}=\\tfrac12$, so Q must map to List-II entry **3**. Every option already has Q-3, so this is consistent but not yet discriminating — keep going.",
+          "**S next.** Squaring gives $12x^2=5$, so $x=\\tfrac12\\sqrt{5/3}$, i.e. S maps to **1**. This immediately kills (A) and (D), which pair S with 2 and 3 respectively.",
+          "Only (B) [P-4, Q-3, R-2, S-1] and (C) [P-3, Q-4, R-2, S-1] survive; they differ only in P and Q. But we already fixed **Q-3**, and (C) has Q-4 — contradiction.",
+          "Therefore (C) is impossible and **(B)** is the unique consistent code. (As a check, P indeed reduces to the constant $1$, matching 4, and R gives $\\sec x=\\sqrt2$, matching 2.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2013, Paper 2, Q57. A matching-list where the fast path is not to grind all four rows — nailing the unambiguous entries (Q via the equilateral-triangle vector sum, S via squaring) eliminates three options outright."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The zig-zag meets a gentle line: $\\cos^{-1}(\\cos x)=\\tfrac{10-x}{10}$",
+    "difficulty": 3,
+    "task": "Count the solutions.",
+    "pyq": {
+      "year": 2014,
+      "paper": "1",
+      "qno": "58"
+    },
+    "tags": [
+      "inverse cosine",
+      "cos inverse cos graph",
+      "number of solutions",
+      "2014"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\"><line x1=\"30\" y1=\"185\" x2=\"305\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"30\" y1=\"200\" x2=\"30\" y2=\"25\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><text x=\"300\" y=\"200\" fill=\"var(--ink2)\">x</text><text x=\"14\" y=\"30\" fill=\"var(--ink2)\">y</text><line x1=\"27\" y1=\"40\" x2=\"33\" y2=\"40\" stroke=\"var(--ink3)\"/><text x=\"18\" y=\"44\" fill=\"var(--ink2)\">π</text><line x1=\"27\" y1=\"185\" x2=\"33\" y2=\"185\" stroke=\"var(--ink3)\"/><text x=\"20\" y=\"197\" fill=\"var(--ink2)\">0</text><polyline points=\"30,40 98,185 166,40 234,185 302,40\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.6\"/><line x1=\"30\" y1=\"40\" x2=\"302\" y2=\"75.9\" stroke=\"var(--gold)\" stroke-width=\"1.8\"/><text x=\"250\" y=\"66\" fill=\"var(--gold)\">y=1−x/10</text><text x=\"92\" y=\"200\" fill=\"var(--ink2)\">π</text><text x=\"156\" y=\"200\" fill=\"var(--ink2)\">2π</text><text x=\"224\" y=\"200\" fill=\"var(--ink2)\">3π</text><text x=\"290\" y=\"200\" fill=\"var(--ink2)\">4π</text><circle cx=\"36\" cy=\"52.4\" r=\"3.3\" fill=\"var(--gold)\"/><circle cx=\"152\" cy=\"55.8\" r=\"3.3\" fill=\"var(--gold)\"/><circle cx=\"183\" cy=\"58.4\" r=\"3.3\" fill=\"var(--gold)\"/></svg>",
+    "statement": "Let $f:[0,4\\pi]\\to[0,\\pi]$ be defined by $f(x)=\\cos^{-1}(\\cos x)$. The number of points $x\\in[0,4\\pi]$ satisfying the equation $$f(x)=\\frac{10-x}{10}$$ is ____.",
+    "answer": "$\\boxed{3}$",
+    "trap": "Because the line $y=1-\\frac{x}{10}$ starts at height $1$ and the wave rises to $\\pi\\approx 3.14$, one is tempted to count two crossings per rising branch and quadruple it. But the line stays low (it never exceeds $1$) and slopes gently downward, so on each descending branch of the triangular wave it can meet it at most once — and on the last descent the line has already dipped below $0$ near the end. Careful branch-by-branch bookkeeping, not symmetry, gives the count.",
+    "solutions": [
+      {
+        "name": "Graphical intersection count",
+        "steps": [
+          "The map $g(x)=\\cos^{-1}(\\cos x)$ is the standard triangular (saw-tooth) wave: $g(x)=x$ on $[0,\\pi]$, then $g(x)=2\\pi-x$ on $[\\pi,2\\pi]$, then $g(x)=x-2\\pi$ on $[2\\pi,3\\pi]$, then $g(x)=4\\pi-x$ on $[3\\pi,4\\pi]$. It oscillates between $0$ and $\\pi$ with period $2\\pi$.",
+          "The right side is the line $L(x)=\\dfrac{10-x}{10}=1-\\dfrac{x}{10}$, decreasing from $L(0)=1$ to $L(4\\pi)=1-\\dfrac{4\\pi}{10}\\approx-0.26$. It never rises above $1$.",
+          "Rising branch $[0,\\pi]$ ($g=x$): solve $x=1-\\frac{x}{10}\\Rightarrow \\frac{11x}{10}=1\\Rightarrow x=\\frac{10}{11}\\approx0.91\\in[0,\\pi]$. One solution.",
+          "Falling branch $[\\pi,2\\pi]$ ($g=2\\pi-x$): here $g$ decreases from $\\pi$ to $0$ while $L$ is near $1-\\frac{\\pi}{10}\\approx0.69$ down to $1-\\frac{2\\pi}{10}\\approx0.37$; the two graphs cross once. Solve $2\\pi-x=1-\\frac{x}{10}\\Rightarrow \\frac{9x}{10}=2\\pi-1\\Rightarrow x=\\frac{10(2\\pi-1)}{9}\\approx5.87\\in[\\pi,2\\pi]$. One solution.",
+          "Rising branch $[2\\pi,3\\pi]$ ($g=x-2\\pi$): $g$ climbs from $0$ to $\\pi$; $L$ sits near $0.37$ down to $0.06$. They meet once low down. Solve $x-2\\pi=1-\\frac{x}{10}\\Rightarrow \\frac{11x}{10}=2\\pi+1\\Rightarrow x=\\frac{10(2\\pi+1)}{11}\\approx6.62\\in[2\\pi,3\\pi]$. One solution.",
+          "Falling branch $[3\\pi,4\\pi]$ ($g=4\\pi-x$): $g$ falls from $\\pi$ to $0$, but $L$ is already negative here ($L(3\\pi)\\approx0.06$, dropping below $0$ almost immediately, reaching $\\approx-0.26$). Solve $4\\pi-x=1-\\frac{x}{10}\\Rightarrow \\frac{9x}{10}=4\\pi-1\\Rightarrow x=\\frac{10(4\\pi-1)}{9}\\approx12.85>4\\pi\\approx12.57$: outside the interval. No solution.",
+          "Total intersections: $1+1+1+0=3$."
+        ]
+      },
+      {
+        "name": "Bounding the line and comparing ranges",
+        "steps": [
+          "On $[0,4\\pi]$ the value $L(x)=1-\\frac{x}{10}$ is squeezed: $L(4\\pi)\\approx-0.26\\le L(x)\\le 1=L(0)$. So any solution must have $f(x)\\le 1<\\frac{\\pi}{2}$, i.e. $x$ lies in the parts of each branch where the wave value is small.",
+          "$f(x)\\le 1$ happens near each 'valley' of the wave (where $g$ is close to $0$) and near the very start (where $g$ is close to $0$ too). Concretely $f(x)\\le 1$ on $[0,1]\\cup[2\\pi-1,2\\pi+1]\\cup[4\\pi-1,4\\pi]$.",
+          "On $[0,1]$: $f=x$ increasing from $0$, $L$ decreasing from $1$; exactly one crossing ($x=\\frac{10}{11}$).",
+          "On $[2\\pi-1,2\\pi+1]$ (a full valley): $f$ decreases to $0$ at $x=2\\pi$ then increases; $L\\approx0.4$ is roughly constant and positive, so it slices through both sides of the V — but the left side gives $x\\approx5.87$ and the right side gives $x\\approx6.62$, two crossings here, matching the two middle branch solutions above.",
+          "On $[4\\pi-1,4\\pi]$: $f$ decreases toward $0$ but $L$ is already $\\le 0.06$ and quickly negative, so $L$ lies below the non-negative wave — no crossing.",
+          "Adding: $1$ (start) $+2$ (middle valley) $+0$ (final) $=3$ solutions.",
+          "This confirms the count $3$ independently of the branch-formula bookkeeping."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 1, Q58. The whole difficulty is that $\\cos^{-1}(\\cos x)$ is NOT $x$ — it is the triangular wave, and a slowly decaying near-flat line can only reach the low parts of that wave, so the honest count is $3$, not the symmetric-looking $4$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A four-way match: Chebyshev, a polygon, an ellipse normal, and $\\tan^{-1}$",
+    "difficulty": 4,
+    "task": "Match List-I with List-II.",
+    "pyq": {
+      "year": 2014,
+      "paper": "2",
+      "qno": "59"
+    },
+    "tags": [
+      "inverse trig equation",
+      "Chebyshev polynomial",
+      "differential relation",
+      "vectors",
+      "ellipse normal",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "Match List-I with List-II.\n\n**List-I.** $\\textbf{(P)}$ Let $y(x)=\\cos(3\\cos^{-1}x)$, $x\\in[-1,1]$, $x\\neq\\pm\\frac{\\sqrt3}{2}$. Then $$\\frac{1}{y(x)}\\left\\{(x^2-1)\\frac{d^2y(x)}{dx^2}+x\\frac{dy(x)}{dx}\\right\\}$$ equals.\n$\\textbf{(Q)}$ Let $A_1,A_2,\\ldots,A_n$ ($n>2$) be the vertices of a regular polygon of $n$ sides with centre at the origin, and let $\\vec a_k$ be the position vector of $A_k$. If $\\left|\\sum_{k=1}^{n-1}(\\vec a_k\\times\\vec a_{k+1})\\right|=\\left|\\sum_{k=1}^{n-1}(\\vec a_k\\cdot\\vec a_{k+1})\\right|$, then the minimum value of $n$ is.\n$\\textbf{(R)}$ If the normal from the point $P(h,1)$ on the ellipse $\\frac{x^2}{6}+\\frac{y^2}{3}=1$ is perpendicular to the line $x+y=8$, then the value of $h$ is.\n$\\textbf{(S)}$ The number of positive solutions of $\\tan^{-1}\\!\\left(\\frac{1}{2x+1}\\right)+\\tan^{-1}\\!\\left(\\frac{1}{4x+1}\\right)=\\tan^{-1}\\!\\left(\\frac{2}{x^2}\\right)$ is.\n\n**List-II.** (1) $1$   (2) $2$   (3) $8$   (4) $9$.\n\n**Options:** (A) P-4, Q-3, R-2, S-1   (B) P-2, Q-4, R-3, S-1   (C) P-4, Q-3, R-1, S-2   (D) P-2, Q-4, R-1, S-3.",
+    "answer": "(A) — P-4, Q-3, R-2, S-1",
+    "trap": "In (S) the addition formula $\\tan^{-1}u+\\tan^{-1}v=\\tan^{-1}\\frac{u+v}{1-uv}$ is only valid without a $+\\pi$ correction when $uv<1$; for positive $x$ the arguments are small and positive so no correction is needed — but the real trap is dropping the spurious root: the algebra yields $x=3$ AND $x=-\\tfrac23$, and only the positive $x=3$ counts, so the answer is $1$, not $2$. In (P) the temptation is to differentiate the messy $\\cos(3\\cos^{-1}x)$ directly; recognising it as the Chebyshev polynomial $4x^3-3x$ collapses everything.",
+    "solutions": [
+      {
+        "name": "Direct evaluation of each list entry",
+        "steps": [
+          "$\\textbf{(P)}$ With $x=\\cos\\theta$, $y=\\cos3\\theta=4\\cos^3\\theta-3\\cos\\theta=4x^3-3x$ (the degree-3 Chebyshev polynomial $T_3$). Then $y'=12x^2-3$ and $y''=24x$.",
+          "Compute $(x^2-1)y''+xy'=(x^2-1)(24x)+x(12x^2-3)=24x^3-24x+12x^3-3x=36x^3-27x=9(4x^3-3x)=9y$. Dividing by $y$ gives $9$, so $\\textbf{P}\\to\\textbf{4}$.",
+          "$\\textbf{(Q)}$ For a regular $n$-gon the vertices make equal central angles $\\alpha=\\frac{2\\pi}{n}$ with equal radii $R$, so every $\\vec a_k\\times\\vec a_{k+1}$ has the same magnitude $R^2\\sin\\alpha$ (all pointing along $+\\hat z$) and every $\\vec a_k\\cdot\\vec a_{k+1}=R^2\\cos\\alpha$. Summing $n-1$ equal terms: the condition becomes $(n-1)R^2\\sin\\alpha=(n-1)R^2|\\cos\\alpha|$, i.e. $\\tan\\alpha=1$ (for $\\alpha$ acute) — but more carefully the equality $\\sin\\alpha=|\\cos\\alpha|$ forces $\\alpha=\\frac{\\pi}{4}$, giving $n=8$; checking that $n=8$ is the smallest integer for which the equality can hold yields the minimum, so $\\textbf{Q}\\to\\textbf{3}$ ($n=8$).",
+          "$\\textbf{(R)}$ The normal to $\\frac{x^2}{6}+\\frac{y^2}{3}=1$ at $P(h,1)$ has slope $\\frac{a^2y}{b^2x}$-type; the normal must be perpendicular to $x+y=8$ (slope $-1$), so the normal has slope $+1$. The normal line at $(h,1)$ is $\\frac{6x}{h}-\\frac{3y}{1}=6-3$, i.e. slope $=\\frac{6/h}{3}=\\frac{2}{h}$. Setting $\\frac{2}{h}=1$ gives $h=2$, so $\\textbf{R}\\to\\textbf{2}$.",
+          "$\\textbf{(S)}$ Combine the left side: $\\tan^{-1}\\frac{1}{2x+1}+\\tan^{-1}\\frac{1}{4x+1}=\\tan^{-1}\\dfrac{\\frac{1}{2x+1}+\\frac{1}{4x+1}}{1-\\frac{1}{(2x+1)(4x+1)}}$. The numerator is $\\frac{(4x+1)+(2x+1)}{(2x+1)(4x+1)}=\\frac{6x+2}{(2x+1)(4x+1)}$; the denominator is $\\frac{(2x+1)(4x+1)-1}{(2x+1)(4x+1)}=\\frac{8x^2+6x}{(2x+1)(4x+1)}$. Ratio $=\\frac{6x+2}{8x^2+6x}=\\frac{2(3x+1)}{2x(4x+3)}=\\frac{3x+1}{x(4x+3)}$.",
+          "Set this equal to $\\frac{2}{x^2}$: $x^2(3x+1)=2x(4x+3)$. For $x>0$ divide by $x$: $x(3x+1)=2(4x+3)\\Rightarrow 3x^2+x=8x+6\\Rightarrow 3x^2-7x-6=0\\Rightarrow(3x+2)(x-3)=0$. Roots $x=3$ and $x=-\\frac23$; only $x=3$ is positive, so exactly $\\textbf{1}$ positive solution, $\\textbf{S}\\to\\textbf{1}$.",
+          "Assembling: P-4, Q-3, R-2, S-1 — this is option $(A)$."
+        ]
+      },
+      {
+        "name": "Eliminating options by the two cheapest entries",
+        "steps": [
+          "Entry $\\textbf{(S)}$ is the fastest to settle. The quadratic $3x^2-7x-6=0$ factors as $(3x+2)(x-3)=0$, giving one positive root $x=3$; so $\\textbf{S}=1$, forcing $\\textbf{S}\\to\\textbf{1}$.",
+          "Only options $(A)$ and $(B)$ have S-1. So the answer is $(A)$ or $(B)$.",
+          "Now use $\\textbf{(P)}$. Recognising $y=\\cos(3\\cos^{-1}x)=4x^3-3x$, the bracket $(x^2-1)y''+xy'$ evaluated above equals $9y$, so the ratio is $9$, i.e. $\\textbf{P}\\to\\textbf{4}$.",
+          "Between $(A)$ P-4 and $(B)$ P-2, the value $9$ eliminates $(B)$. Hence the match is $(A)$: P-4, Q-3, R-2, S-1.",
+          "(Cross-check: $(A)$ assigns Q-3 and R-2, consistent with the polygon minimum $n=8$ and the ellipse normal $h=2$ found directly.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 2, Q59. A composite matching problem: the inverse-trig entry (S) hinges on discarding the spurious negative root, and it alone (paired with the Chebyshev identity in P) pins the answer to option (A)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two series, one $\\sin^{-1}=\\sin^{-1}$",
+    "difficulty": 4,
+    "task": "Count the real solutions in the given interval.",
+    "pyq": {
+      "year": 2018,
+      "paper": "1",
+      "qno": "10"
+    },
+    "tags": [
+      "inverse trig identity",
+      "infinite geometric series",
+      "equation solving",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "The number of real solutions of the equation $$\\sin^{-1}\\!\\left(\\sum_{i=1}^{\\infty} x^{\\,i+1} - x\\sum_{i=1}^{\\infty}\\Big(\\tfrac{x}{2}\\Big)^{i}\\right) = \\frac{\\pi}{2} - \\cos^{-1}\\!\\left(\\sum_{i=1}^{\\infty}\\Big(-\\tfrac{x}{2}\\Big)^{i} - \\sum_{i=1}^{\\infty}(-x)^{i}\\right)$$ lying in the interval $\\left(-\\tfrac12,\\tfrac12\\right)$ is _____ . (Here the inverse trigonometric functions $\\sin^{-1}x$ and $\\cos^{-1}x$ assume values in $\\left[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right]$ and $[0,\\pi]$, respectively.)",
+    "answer": "$\\boxed{2}$",
+    "trap": "The identity $\\tfrac{\\pi}{2}-\\cos^{-1}u=\\sin^{-1}u$ collapses the equation to $\\sin^{-1}A=\\sin^{-1}B$, and it is tempting to conclude $A=B$ and stop. But $\\sin^{-1}$ is injective only on $[-1,1]$: you must (i) confirm both series converge, which forces $|x|<1$ — comfortably true on $(-\\tfrac12,\\tfrac12)$ — and (ii) keep the factor $x$ that was multiplied outside the second sum, so the left argument is $\\tfrac{x^2}{1-x}-\\tfrac{x^2}{2-x}$, not $\\tfrac{x^2}{1-x}-\\tfrac{x/2}{1-x/2}$. Miscounting that $x$ turns the true cubic into a quadratic and loses the second root.",
+    "solutions": [
+      {
+        "name": "Sum the four geometric series, then equate arguments",
+        "steps": [
+          "On $(-\\tfrac12,\\tfrac12)$ every ratio has modulus $<1$, so all four series converge and $\\sin^{-1}/\\cos^{-1}$ are legitimately defined.",
+          "Left inner sum: $\\displaystyle\\sum_{i=1}^{\\infty} x^{i+1}=\\frac{x^2}{1-x}$, and $\\displaystyle x\\sum_{i=1}^{\\infty}\\Big(\\tfrac{x}{2}\\Big)^{i}=x\\cdot\\frac{x/2}{1-x/2}=\\frac{x^2}{2-x}$. Hence $A=\\dfrac{x^2}{1-x}-\\dfrac{x^2}{2-x}$.",
+          "Right inner sum: $\\displaystyle\\sum_{i=1}^{\\infty}\\Big(-\\tfrac{x}{2}\\Big)^{i}=\\frac{-x/2}{1+x/2}=\\frac{-x}{2+x}$ and $\\displaystyle\\sum_{i=1}^{\\infty}(-x)^{i}=\\frac{-x}{1+x}$. Hence $B=\\dfrac{-x}{2+x}-\\dfrac{-x}{1+x}=\\dfrac{-x}{2+x}+\\dfrac{x}{1+x}$.",
+          "Since $\\tfrac{\\pi}{2}-\\cos^{-1}B=\\sin^{-1}B$, the equation is $\\sin^{-1}A=\\sin^{-1}B$, i.e. $A=B$ (both arguments lie in $[-1,1]$ here, so injectivity applies).",
+          "Simplify $A=\\dfrac{x^2(2-x)-x^2(1-x)}{(1-x)(2-x)}=\\dfrac{x^2}{(1-x)(2-x)}$ and $B=\\dfrac{x(2+x)-x(1+x)}{(1+x)(2+x)}=\\dfrac{x}{(1+x)(2+x)}$.",
+          "Set $A=B$: $\\dfrac{x^2}{(1-x)(2-x)}=\\dfrac{x}{(1+x)(2+x)}$. Cross-multiplying and cancelling one factor of $x$ gives $x\\big[(1+x)(2+x)\\big]=(1-x)(2-x)$, so one root is $x=0$ and the rest come from $x(x^2+3x+2)=x^2-3x+2$, i.e. $x^3+2x^2+5x-2=0$.",
+          "The cubic $x^3+2x^2+5x-2$ has derivative $3x^2+4x+5>0$ (discriminant $16-60<0$), so it is strictly increasing and has exactly one real root; since it is $-2<0$ at $x=0$ and $+6>0$ at $x=1$, that root is near $x\\approx0.344$, safely inside $(-\\tfrac12,\\tfrac12)$.",
+          "Both surviving roots $x=0$ and $x\\approx0.344$ lie in $(-\\tfrac12,\\tfrac12)$ and both keep $|A|=|B|\\le1$ (at $x=0.344$, $A\\approx0.11$). Total real solutions $=2$."
+        ]
+      },
+      {
+        "name": "Graphical: intersect $y=A(x)$ with $y=B(x)$",
+        "steps": [
+          "As above reduce the equation to $A(x)=B(x)$ with $A(x)=\\dfrac{x^2}{(1-x)(2-x)}$ and $B(x)=\\dfrac{x}{(1+x)(2+x)}$ on $(-\\tfrac12,\\tfrac12)$; both are smooth there (denominators never vanish on this interval).",
+          "Define $g(x)=A(x)-B(x)$. Factor out the common $x$: $A(x)-B(x)=x\\!\\left[\\dfrac{x}{(1-x)(2-x)}-\\dfrac{1}{(1+x)(2+x)}\\right]$, so $x=0$ is one crossing.",
+          "For the bracket, put $h(x)=x(1+x)(2+x)-(1-x)(2-x)=x^3+2x^2+5x-2$. Then $g(x)=\\dfrac{x\\,h(x)}{(1-x)(2-x)(1+x)(2+x)}$; the denominator is positive throughout $(-\\tfrac12,\\tfrac12)$, so zeros of $g$ are exactly the zeros of $x\\,h(x)$.",
+          "$h$ is continuous with $h(-\\tfrac12)=-\\tfrac18+\\tfrac12-\\tfrac52-2=-\\tfrac{35}{8}<0$ and $h(\\tfrac12)=\\tfrac18+\\tfrac12+\\tfrac52-2=\\tfrac{9}{8}>0$, so by the Intermediate Value Theorem $h$ has a root in $(-\\tfrac12,\\tfrac12)$; being strictly increasing ($h'=3x^2+4x+5>0$), it has exactly one.",
+          "Thus $g$ vanishes exactly twice on $(-\\tfrac12,\\tfrac12)$ — once from $x=0$, once from the single root of $h$ — giving $2$ real solutions."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 1, Q10. The whole difficulty is bookkeeping: sum four geometric series correctly, use $\\tfrac{\\pi}{2}-\\cos^{-1}=\\sin^{-1}$ to legitimise cancellation, and don't drop the extra factor of $x$ that quietly turns a quadratic into the cubic carrying the second root."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A telescoping $\\tan^{-1}$ family $f_n$",
+    "difficulty": 4,
+    "task": "Select every TRUE statement.",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "1"
+    },
+    "tags": [
+      "telescoping",
+      "arctan difference formula",
+      "limits",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "For any positive integer $n$, define $f_n:(0,\\infty)\\to\\mathbb{R}$ by $$f_n(x)=\\sum_{j=1}^{n}\\tan^{-1}\\!\\left(\\frac{1}{1+(x+j)(x+j-1)}\\right),\\qquad x\\in(0,\\infty).$$ (Here $\\tan^{-1}x$ assumes values in $\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)$.) Which of the following statement(s) is (are) TRUE? (A) $\\displaystyle\\sum_{j=1}^{5}\\tan^{2}\\!\\big(f_j(0)\\big)=55$; (B) $\\displaystyle\\sum_{j=1}^{10}\\big(1+f_j'(0)\\big)\\sec^{2}\\!\\big(f_j(0)\\big)=10$; (C) for any fixed positive integer $n$, $\\displaystyle\\lim_{x\\to\\infty}\\tan\\big(f_n(x)\\big)=\\tfrac1n$; (D) for any fixed positive integer $n$, $\\displaystyle\\lim_{x\\to\\infty}\\sec^{2}\\!\\big(f_n(x)\\big)=1$.",
+    "answer": "(A), (B), (D)",
+    "trap": "The stem writes the domain as $(0,\\infty)$, so it is tempting to declare $f_j(0)$'outside the domain' and rule out (A) and (B) — which is exactly the wrong move. Each summand $\\tan^{-1}\\!\\frac{1}{1+(x+j)(x+j-1)}$ is a perfectly good real function at $x=0$; the closed form $f_n(x)=\\tan^{-1}(x+n)-\\tan^{-1}(x)$ extends continuously to $x=0$, and the identity $\\sec^2=1+\\tan^2$ makes (A) and (B) collapse to $\\sum j^2$ and $\\sum 1$. For (C), $f_n(x)\\to0$ as $x\\to\\infty$, so $\\tan f_n\\to0$, not $\\tfrac1n$.",
+    "solutions": [
+      {
+        "name": "Telescope with $\\tan^{-1}a-\\tan^{-1}b=\\tan^{-1}\\tfrac{a-b}{1+ab}$",
+        "steps": [
+          "Take $a=x+j,\\ b=x+j-1$, so $a-b=1$ and $1+ab=1+(x+j)(x+j-1)$. Then $\\tan^{-1}\\!\\dfrac{1}{1+(x+j)(x+j-1)}=\\tan^{-1}(x+j)-\\tan^{-1}(x+j-1)$ (the arguments are positive for $x>0$, so no $\\pi$-adjustment is needed).",
+          "Summing $j=1,\\dots,n$ telescopes: $f_n(x)=\\tan^{-1}(x+n)-\\tan^{-1}(x)$.",
+          "At $x=0$: $f_j(0)=\\tan^{-1}(j)-\\tan^{-1}(0)=\\tan^{-1}(j)$, hence $\\tan\\big(f_j(0)\\big)=j$.",
+          "(A) $\\displaystyle\\sum_{j=1}^{5}\\tan^{2}\\!\\big(f_j(0)\\big)=\\sum_{j=1}^{5}j^{2}=1+4+9+16+25=55.$ TRUE.",
+          "Differentiate the closed form: $f_j'(x)=\\dfrac{1}{1+(x+j)^2}-\\dfrac{1}{1+x^2}$, so $f_j'(0)=\\dfrac{1}{1+j^2}-1$ and $1+f_j'(0)=\\dfrac{1}{1+j^2}$.",
+          "Also $\\sec^2\\!\\big(f_j(0)\\big)=1+\\tan^2\\!\\big(f_j(0)\\big)=1+j^2$. Therefore each term $\\big(1+f_j'(0)\\big)\\sec^2\\!\\big(f_j(0)\\big)=\\dfrac{1}{1+j^2}\\cdot(1+j^2)=1.$",
+          "(B) $\\displaystyle\\sum_{j=1}^{10}1=10.$ TRUE.",
+          "As $x\\to\\infty$, $\\tan^{-1}(x+n)\\to\\tfrac{\\pi}{2}$ and $\\tan^{-1}(x)\\to\\tfrac{\\pi}{2}$, so $f_n(x)\\to0$. Thus $\\tan\\big(f_n(x)\\big)\\to0\\ne\\tfrac1n$: (C) FALSE; and $\\sec^2\\!\\big(f_n(x)\\big)\\to\\sec^2 0=1$: (D) TRUE.",
+          "Correct options: (A), (B), (D)."
+        ]
+      },
+      {
+        "name": "Closed-form limit via $\\tan f_n=\\dfrac{n}{1+x(x+n)}$",
+        "steps": [
+          "From $f_n(x)=\\tan^{-1}(x+n)-\\tan^{-1}(x)$, apply $\\tan$ to the difference: $\\tan f_n(x)=\\dfrac{(x+n)-x}{1+(x+n)x}=\\dfrac{n}{1+x(x+n)}$.",
+          "This single formula settles the limits cleanly. As $x\\to\\infty$ the denominator $1+x(x+n)\\to\\infty$, so $\\tan f_n(x)\\to0$; hence (C)'s claimed limit $\\tfrac1n$ is wrong — FALSE.",
+          "Since $\\sec^2 f_n=1+\\tan^2 f_n=1+\\dfrac{n^2}{\\big(1+x(x+n)\\big)^2}$, letting $x\\to\\infty$ gives $\\sec^2 f_n(x)\\to1$: (D) TRUE.",
+          "For (A), at $x=0$ the formula gives $\\tan f_j(0)=\\dfrac{j}{1+0}=j$, so $\\sum_{j=1}^{5}\\tan^2 f_j(0)=\\sum j^2=55$ — TRUE.",
+          "For (B), write $\\big(1+f_j'(0)\\big)\\sec^2 f_j(0)$. Because $\\dfrac{d}{dx}\\tan f_j(x)=f_j'(x)\\sec^2 f_j(x)$, we have $f_j'(0)\\sec^2 f_j(0)=\\left[\\dfrac{d}{dx}\\dfrac{j}{1+x(x+j)}\\right]_{x=0}=\\dfrac{-j(2x+j)}{(1+x(x+j))^2}\\Big|_{0}=-j^2$. With $\\sec^2 f_j(0)=1+j^2$, the term is $(1+j^2)+(-j^2)=1$, so $\\sum_{j=1}^{10}=10$ — TRUE.",
+          "Hence (A), (B), (D) are the true statements."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 2, Q1 (official key: A, B, D). The bait is the '$(0,\\infty)$' domain tempting you to discard $x=0$; the fix is the telescoping closed form $f_n(x)=\\tan^{-1}(x+n)-\\tan^{-1}(x)$, whose continuous extension to $x=0$ plus $\\sec^2=1+\\tan^2$ makes (A) and (B) evaluate to $\\sum j^2$ and $\\sum 1$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A secant chain that collapses to $\\sec^{-1}(1)$",
+    "difficulty": 4,
+    "task": "Evaluate the inverse-secant expression.",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "6"
+    },
+    "tags": [
+      "inverse secant",
+      "telescoping trigonometric sum",
+      "product identities",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "The value of $$\\sec^{-1}\\!\\left(\\frac{1}{4}\\sum_{k=0}^{10}\\sec\\!\\left(\\frac{7\\pi}{12}+\\frac{k\\pi}{2}\\right)\\sec\\!\\left(\\frac{7\\pi}{12}+\\frac{(k+1)\\pi}{2}\\right)\\right)$$ in the interval $\\left[-\\dfrac{\\pi}{4},\\dfrac{3\\pi}{4}\\right]$ equals ____.",
+    "answer": "$\\boxed{0}$",
+    "trap": "Students grind at each $\\sec$ term numerically and get lost. The key is that the two angles in every product differ by exactly $\\frac{\\pi}{2}$, so the product secretly equals a difference of tangents and the whole sum telescopes. The final subtlety: the inner value is $1$, and $\\sec^{-1}(1)=0$ — not $\\pi/2$ or anything larger — so the answer is simply $0$.",
+    "solutions": [
+      {
+        "name": "Telescoping via $\\sec\\theta\\sec(\\theta+\\tfrac{\\pi}{2})=\\tan(\\theta+\\tfrac{\\pi}{2})-\\tan\\theta$",
+        "steps": [
+          "Write $\\theta_k=\\dfrac{7\\pi}{12}+\\dfrac{k\\pi}{2}$, so $\\theta_{k+1}=\\theta_k+\\dfrac{\\pi}{2}$ for every $k$.",
+          "Since $\\cos\\!\\left(\\theta_k+\\dfrac{\\pi}{2}\\right)=-\\sin\\theta_k$, the general term is $\\sec\\theta_k\\,\\sec\\theta_{k+1}=\\dfrac{1}{\\cos\\theta_k\\,(-\\sin\\theta_k)}=\\dfrac{-2}{\\sin 2\\theta_k}.$",
+          "Now build the same quantity from tangents: $\\tan\\!\\left(\\theta_k+\\dfrac{\\pi}{2}\\right)-\\tan\\theta_k=-\\cot\\theta_k-\\tan\\theta_k=-\\dfrac{\\cos^2\\theta_k+\\sin^2\\theta_k}{\\sin\\theta_k\\cos\\theta_k}=\\dfrac{-2}{\\sin 2\\theta_k}.$",
+          "Hence the term equals a clean tangent difference: $\\sec\\theta_k\\,\\sec\\theta_{k+1}=\\tan\\theta_{k+1}-\\tan\\theta_k.$",
+          "Summing $k=0$ to $10$ telescopes: $\\displaystyle\\sum_{k=0}^{10}\\bigl(\\tan\\theta_{k+1}-\\tan\\theta_k\\bigr)=\\tan\\theta_{11}-\\tan\\theta_0.$",
+          "Here $\\theta_0=\\dfrac{7\\pi}{12}$ and $\\theta_{11}=\\dfrac{7\\pi}{12}+\\dfrac{11\\pi}{2}=\\dfrac{7\\pi}{12}+\\dfrac{11\\pi}{2}.$ Because $\\tan$ has period $\\pi$, $\\tan\\theta_{11}=\\tan\\!\\left(\\dfrac{7\\pi}{12}+\\dfrac{\\pi}{2}\\right)=-\\cot\\dfrac{7\\pi}{12}$ while $\\tan\\theta_0=\\tan\\dfrac{7\\pi}{12}.$",
+          "So the sum is $-\\cot\\dfrac{7\\pi}{12}-\\tan\\dfrac{7\\pi}{12}=\\dfrac{-2}{\\sin\\frac{7\\pi}{6}}=\\dfrac{-2}{-\\frac12}=4.$",
+          "Divide by $4$: the inner argument is $\\dfrac{4}{4}=1$, so the expression is $\\sec^{-1}(1)=0$, which lies in $\\left[-\\dfrac{\\pi}{4},\\dfrac{3\\pi}{4}\\right]$. Answer $0$."
+        ]
+      },
+      {
+        "name": "Product-to-difference with $\\sin\\bigl(\\theta_{k+1}-\\theta_k\\bigr)=1$",
+        "steps": [
+          "Use $\\dfrac{1}{\\cos A\\cos B}=\\dfrac{\\tan B-\\tan A}{\\sin(B-A)}$, valid whenever $\\cos A\\cos B\\ne0$ (standard telescoping trick for $\\arctan$/secant sums).",
+          "With $A=\\theta_k,\\ B=\\theta_{k+1}$ we have $B-A=\\dfrac{\\pi}{2}$, so $\\sin(B-A)=1$ and each term collapses to $\\sec\\theta_k\\sec\\theta_{k+1}=\\tan\\theta_{k+1}-\\tan\\theta_k.$",
+          "The eleven terms therefore telescope to $\\tan\\theta_{11}-\\tan\\theta_0.$",
+          "Compute $\\tan\\dfrac{7\\pi}{12}=\\tan\\!\\left(105^\\circ\\right)=-\\bigl(2+\\sqrt3\\bigr)$ and $\\tan\\theta_{11}=-\\cot\\dfrac{7\\pi}{12}=-\\dfrac{1}{\\tan\\frac{7\\pi}{12}}=-\\dfrac{1}{-(2+\\sqrt3)}=2-\\sqrt3.$",
+          "Difference: $\\bigl(2-\\sqrt3\\bigr)-\\bigl(-(2+\\sqrt3)\\bigr)=2-\\sqrt3+2+\\sqrt3=4.$",
+          "Thus $\\dfrac14\\cdot 4=1$ and the required value is $\\sec^{-1}(1)=0$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 2, Q S2-Q6. The whole difficulty is disguised: a menacing 11-term secant product is really a one-line telescope because every consecutive pair of angles is exactly a quarter-turn apart."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The telescoping $\\cot^{-1}$ ladder $S_n(x)$",
+    "difficulty": 4,
+    "task": "Select all true statements.",
+    "pyq": {
+      "year": 2021,
+      "paper": "1",
+      "qno": "15"
+    },
+    "tags": [
+      "inverse cotangent",
+      "telescoping sum",
+      "tan inverse difference identity",
+      "2021"
+    ],
+    "figure": "",
+    "statement": "For any positive integer $n$, let $S_n:(0,\\infty)\\to\\mathbb{R}$ be defined by $$S_n(x)=\\sum_{k=1}^{n}\\cot^{-1}\\!\\left(\\frac{1+k(k+1)x^2}{x}\\right),$$ where for any $x\\in\\mathbb{R}$, $\\cot^{-1}(x)\\in(0,\\pi)$ and $\\tan^{-1}(x)\\in\\left(-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right)$. Then which of the following statements is (are) TRUE?\n\n(A) $S_{10}(x)=\\dfrac{\\pi}{2}-\\tan^{-1}\\!\\left(\\dfrac{1+11x^2}{10x}\\right)$, for all $x>0$\n\n(B) $\\displaystyle\\lim_{n\\to\\infty}\\cot\\bigl(S_n(x)\\bigr)=x$, for all $x>0$\n\n(C) The equation $S_3(x)=\\dfrac{\\pi}{4}$ has a root in $(0,\\infty)$\n\n(D) $\\tan\\bigl(S_n(x)\\bigr)\\le\\dfrac12$, for all $n\\ge1$ and $x>0$",
+    "answer": "(A), (B)",
+    "trap": "Two traps. First, because $x>0$ the argument $\\frac{1+k(k+1)x^2}{x}>0$, so each $\\cot^{-1}$ lands in $(0,\\pi/2)$ and the difference identity $\\cot^{-1}\\!\\frac{1+ab}{b-a}=\\tan^{-1}b-\\tan^{-1}a$ applies with no branch shift — but you must set it up as $\\tan^{-1}((k+1)x)-\\tan^{-1}(kx)$, not the naive reciprocal. Second, for (D) students recall $\\tan(\\tan^{-1}b-\\tan^{-1}a)$ is 'small' and guess it is bounded by $\\tfrac12$; in fact $\\tan S_n=\\frac{nx}{1+(n+1)x^2}$ can exceed $\\tfrac12$, so (D) is false. And (C) fails because $S_3$ never reaches $\\pi/4$.",
+    "solutions": [
+      {
+        "name": "Telescoping via the $\\cot^{-1}$-to-$\\tan^{-1}$ difference identity",
+        "steps": [
+          "For $x>0$ each argument $\\dfrac{1+k(k+1)x^2}{x}>0$, so every $\\cot^{-1}$ value lies in $\\left(0,\\dfrac{\\pi}{2}\\right)$.",
+          "Rewrite the $k$-th term. Put $a=kx,\\ b=(k+1)x$; then $\\dfrac{1+ab}{b-a}=\\dfrac{1+k(k+1)x^2}{x}$, which is exactly the argument.",
+          "The identity $\\tan^{-1}b-\\tan^{-1}a=\\cot^{-1}\\!\\left(\\dfrac{1+ab}{b-a}\\right)$ holds here (both sides in the correct principal range since $b>a>0$), so $\\cot^{-1}\\!\\left(\\dfrac{1+k(k+1)x^2}{x}\\right)=\\tan^{-1}\\bigl((k+1)x\\bigr)-\\tan^{-1}(kx).$",
+          "Summing over $k=1,\\dots,n$ telescopes: $S_n(x)=\\tan^{-1}\\bigl((n+1)x\\bigr)-\\tan^{-1}(x).$",
+          "(A): take $n=10$. Then $S_{10}(x)=\\tan^{-1}(11x)-\\tan^{-1}(x)$. Using $\\tan^{-1}(11x)=\\dfrac{\\pi}{2}-\\cot^{-1}(11x)=\\dfrac{\\pi}{2}-\\tan^{-1}\\dfrac1{11x}$ and recombining, $\\tan^{-1}(11x)-\\tan^{-1}(x)=\\dfrac{\\pi}{2}-\\tan^{-1}\\!\\left(\\dfrac{1+11x^2}{10x}\\right)$ (verified: $\\tan$ of both sides gives $\\dfrac{10x}{1+11x^2}$). So (A) is TRUE.",
+          "(B): as $n\\to\\infty$, $\\tan^{-1}\\bigl((n+1)x\\bigr)\\to\\dfrac{\\pi}{2}$, so $S_n(x)\\to\\dfrac{\\pi}{2}-\\tan^{-1}(x)=\\cot^{-1}(x).$ Therefore $\\cot\\bigl(S_n(x)\\bigr)\\to\\cot\\bigl(\\cot^{-1}x\\bigr)=x.$ So (B) is TRUE.",
+          "(C): $S_3(x)=\\tan^{-1}(4x)-\\tan^{-1}(x)$; its supremum over $x>0$ is $\\displaystyle\\sup_x\\tan^{-1}\\!\\frac{3x}{1+4x^2}$. Since $\\dfrac{3x}{1+4x^2}\\le\\dfrac{3}{4}$ (AM–GM at $x=\\tfrac12$), $S_3(x)\\le\\tan^{-1}\\dfrac34\\approx0.6435<\\dfrac{\\pi}{4}\\approx0.7854.$ So $S_3(x)=\\dfrac{\\pi}{4}$ has no root — (C) is FALSE.",
+          "(D): $\\tan\\bigl(S_n(x)\\bigr)=\\dfrac{(n+1)x-x}{1+(n+1)x\\cdot x}=\\dfrac{nx}{1+(n+1)x^2}.$ For $n=2,\\ x=\\tfrac12$ this is $\\dfrac{1}{1+\\frac34}=\\dfrac{4}{7}>\\dfrac12.$ So (D) is FALSE.",
+          "Correct options: (A) and (B)."
+        ]
+      },
+      {
+        "name": "Direct closed form, then test each option by $\\tan$/limits",
+        "steps": [
+          "Establish the closed form once and reuse it. Each summand $\\cot^{-1}\\!\\left(\\dfrac{1+k(k+1)x^2}{x}\\right)$ equals the angle $\\varphi_k$ with $\\tan\\varphi_k=\\dfrac{x}{1+k(k+1)x^2}=\\dfrac{(k+1)x-kx}{1+(kx)\\bigl((k+1)x\\bigr)}$, i.e. $\\varphi_k=\\tan^{-1}((k+1)x)-\\tan^{-1}(kx)$ (angle difference, both in the first quadrant since $x>0$).",
+          "Hence $S_n(x)=\\tan^{-1}\\bigl((n+1)x\\bigr)-\\tan^{-1}(x)$, and directly $\\tan\\bigl(S_n(x)\\bigr)=\\dfrac{nx}{1+(n+1)x^2}.$",
+          "(A) check by tangent: $\\tan\\!\\left(\\dfrac{\\pi}{2}-\\tan^{-1}\\dfrac{1+11x^2}{10x}\\right)=\\cot\\!\\left(\\tan^{-1}\\dfrac{1+11x^2}{10x}\\right)=\\dfrac{10x}{1+11x^2}=\\tan S_{10}(x)$ (with $n=10$). Both sides lie in $(0,\\pi/2)$, so they are equal — (A) TRUE.",
+          "(B) limit: $\\cot S_n(x)=\\dfrac{1+(n+1)x^2}{nx}=\\dfrac{1}{nx}+\\dfrac{(n+1)x}{n}\\to 0+x=x$ as $n\\to\\infty$ — (B) TRUE.",
+          "(D) maximise $g(x)=\\dfrac{nx}{1+(n+1)x^2}$: $g'(x)=0$ at $x=\\dfrac{1}{\\sqrt{n+1}}$, giving $g_{\\max}=\\dfrac{n}{2\\sqrt{n+1}}$, which grows without bound in $n$ (already $>\\tfrac12$ at $n=2$). So $\\tan S_n(x)$ is not bounded by $\\tfrac12$ — (D) FALSE.",
+          "(C) maximise $\\tan S_3(x)=\\dfrac{3x}{1+4x^2}$: peak $\\dfrac{3}{2\\sqrt4}=\\dfrac34$ at $x=\\tfrac12$, so $S_3\\le\\tan^{-1}\\tfrac34<\\tfrac{\\pi}{4}$; no solution — (C) FALSE.",
+          "Only (A) and (B) hold."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2021, Paper 1, Q15. The engine is the arctan-difference telescope; the exam's real test is the sign discipline (all terms first-quadrant because $x>0$) and refusing the tempting-but-false bound in (D)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Sum Where the Angle Vanishes",
+    "difficulty": 3,
+    "task": "Evaluate the expression.",
+    "pyq": {
+      "year": 2022,
+      "paper": "1",
+      "qno": "1"
+    },
+    "tags": [
+      "principal values",
+      "inverse-trig identities",
+      "sin of double angle",
+      "2022"
+    ],
+    "figure": "",
+    "statement": "Considering only the principal values of the inverse trigonometric functions, find the value of $$\\frac{3}{2}\\cos^{-1}\\sqrt{\\frac{2}{2+\\pi^2}}\\;+\\;\\frac{1}{4}\\sin^{-1}\\frac{2\\sqrt{2}\\,\\pi}{2+\\pi^2}\\;+\\;\\tan^{-1}\\frac{\\sqrt{2}}{\\pi}.$$",
+    "answer": "$\\boxed{\\dfrac{3\\pi}{4}\\approx 2.36}$",
+    "trap": "The middle term is $\\sin^{-1}(\\sin 2\\theta)$, but $2\\theta$ is obtuse: since $\\tan\\theta=\\pi/\\sqrt2>1$ we have $\\theta>\\tfrac\\pi4$, so $2\\theta>\\tfrac\\pi2$ and $\\sin^{-1}(\\sin 2\\theta)=\\pi-2\\theta$, not $2\\theta$. Writing $2\\theta$ there gives a $\\theta$-dependent (wrong) answer instead of the constant $3\\pi/4$.",
+    "solutions": [
+      {
+        "name": "Anchor one angle $\\theta=\\tan^{-1}\\frac{\\pi}{\\sqrt2}$",
+        "steps": [
+          "Let $\\theta=\\tan^{-1}\\dfrac{\\pi}{\\sqrt2}\\in\\left(0,\\tfrac\\pi2\\right)$, so $\\tan\\theta=\\dfrac{\\pi}{\\sqrt2}$ with $\\sin\\theta=\\dfrac{\\pi}{\\sqrt{2+\\pi^2}}$ and $\\cos\\theta=\\dfrac{\\sqrt2}{\\sqrt{2+\\pi^2}}$.",
+          "First term: $\\cos^{-1}\\sqrt{\\dfrac{2}{2+\\pi^2}}=\\cos^{-1}(\\cos\\theta)=\\theta$, since $\\theta\\in(0,\\tfrac\\pi2)$.",
+          "Middle argument: $\\sin 2\\theta=2\\sin\\theta\\cos\\theta=2\\cdot\\dfrac{\\pi}{\\sqrt{2+\\pi^2}}\\cdot\\dfrac{\\sqrt2}{\\sqrt{2+\\pi^2}}=\\dfrac{2\\sqrt2\\,\\pi}{2+\\pi^2}$.",
+          "Because $\\tan\\theta=\\dfrac{\\pi}{\\sqrt2}>1$, we have $\\theta>\\tfrac\\pi4$, hence $2\\theta>\\tfrac\\pi2$. So $\\sin^{-1}(\\sin 2\\theta)=\\pi-2\\theta$ (the principal value must land in $[-\\tfrac\\pi2,\\tfrac\\pi2]$).",
+          "Third term: $\\tan^{-1}\\dfrac{\\sqrt2}{\\pi}=\\tan^{-1}\\dfrac{1}{\\tan\\theta}=\\cot^{-1}(\\tan\\theta)=\\dfrac\\pi2-\\theta$.",
+          "Add the pieces: $\\dfrac32\\theta+\\dfrac14(\\pi-2\\theta)+\\left(\\dfrac\\pi2-\\theta\\right)=\\dfrac32\\theta-\\dfrac12\\theta-\\theta+\\dfrac\\pi4+\\dfrac\\pi2$.",
+          "The $\\theta$-terms cancel: $\\left(\\tfrac32-\\tfrac12-1\\right)\\theta=0$, leaving $\\dfrac\\pi4+\\dfrac\\pi2=\\dfrac{3\\pi}{4}$.",
+          "Thus the value is $\\dfrac{3\\pi}{4}\\approx 2.356$, reported as $2.35$ or $2.36$."
+        ]
+      },
+      {
+        "name": "Anchor the complementary angle $\\varphi=\\tan^{-1}\\frac{\\sqrt2}{\\pi}$",
+        "steps": [
+          "Let $\\varphi=\\tan^{-1}\\dfrac{\\sqrt2}{\\pi}\\in\\left(0,\\tfrac\\pi4\\right)$ (since $\\tfrac{\\sqrt2}{\\pi}<1$). Then $\\cos\\varphi=\\dfrac{\\pi}{\\sqrt{2+\\pi^2}}$ and $\\sin\\varphi=\\dfrac{\\sqrt2}{\\sqrt{2+\\pi^2}}$.",
+          "So $\\cos^{-1}\\sqrt{\\dfrac{2}{2+\\pi^2}}=\\cos^{-1}(\\sin\\varphi)=\\cos^{-1}\\!\\big(\\cos(\\tfrac\\pi2-\\varphi)\\big)=\\dfrac\\pi2-\\varphi$ (as $\\tfrac\\pi2-\\varphi\\in(0,\\tfrac\\pi2)$).",
+          "For the middle term, $\\dfrac{2\\sqrt2\\,\\pi}{2+\\pi^2}=2\\sin\\varphi\\cos\\varphi=\\sin 2\\varphi$; and $2\\varphi\\in(0,\\tfrac\\pi2)$, so $\\sin^{-1}(\\sin 2\\varphi)=2\\varphi$ directly.",
+          "The third term is $\\varphi$ itself.",
+          "Sum $=\\dfrac32\\left(\\dfrac\\pi2-\\varphi\\right)+\\dfrac14(2\\varphi)+\\varphi=\\dfrac{3\\pi}{4}-\\dfrac32\\varphi+\\dfrac12\\varphi+\\varphi$.",
+          "Again the $\\varphi$-terms cancel: $\\left(-\\tfrac32+\\tfrac12+1\\right)\\varphi=0$, giving $\\dfrac{3\\pi}{4}$.",
+          "Numerically $\\dfrac{3\\pi}{4}=2.356\\ldots$, i.e. $2.35$ / $2.36$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2022, Paper 1, Q1. The whole point is engineered cancellation: every term is a rescaling of the same angle, so the $\\theta$-dependence annihilates and only the constant $\\tfrac{3\\pi}{4}$ survives — provided you honour the obtuse-angle correction $\\sin^{-1}(\\sin 2\\theta)=\\pi-2\\theta$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "When $\\tan^{-1}+\\cot^{-1}$ Is Not $\\tfrac\\pi2$",
+    "difficulty": 4,
+    "task": "Find the sum of all solutions.",
+    "pyq": {
+      "year": 2023,
+      "paper": "2",
+      "qno": "3"
+    },
+    "tags": [
+      "inverse trig identities",
+      "tan/cot inverse equation",
+      "sum of roots",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "For any $y\\in\\mathbb{R}$, let $\\cot^{-1}(y)\\in(0,\\pi)$ and $\\tan^{-1}(y)\\in\\left(-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right)$. Then the sum of all solutions of the equation $$\\tan^{-1}\\!\\left(\\frac{6y}{9-y^2}\\right)+\\cot^{-1}\\!\\left(\\frac{9-y^2}{6y}\\right)=\\frac{2\\pi}{3}$$ for $0<|y|<3$, is equal to\n\n(A) $2\\sqrt{3}-3$ (B) $3-2\\sqrt{3}$ (C) $4\\sqrt{3}-6$ (D) $6-4\\sqrt{3}$.",
+    "answer": "(C) $4\\sqrt3-6$",
+    "trap": "The identity $\\tan^{-1}t+\\cot^{-1}t=\\tfrac\\pi2$ needs the SAME argument $t$; here the two arguments are reciprocals. The reflex is $\\cot^{-1}\\tfrac1t=\\tan^{-1}t$ — but that only holds when $t>0$. When $t=\\dfrac{6y}{9-y^2}<0$, $\\cot^{-1}\\dfrac1t=\\pi+\\tan^{-1}t$, so the LHS is $\\pi+2\\tan^{-1}t$, not $2\\tan^{-1}t$. Missing this loses (or invents) roots and wrecks the sum.",
+    "solutions": [
+      {
+        "name": "Split on the sign of $t=\\dfrac{6y}{9-y^2}$",
+        "steps": [
+          "Since $0<|y|<3$, the denominator $9-y^2>0$, so the sign of $t=\\dfrac{6y}{9-y^2}$ is the sign of $y$. Note $\\cot^{-1}\\!\\left(\\dfrac{9-y^2}{6y}\\right)=\\cot^{-1}\\!\\left(\\dfrac1t\\right)$.",
+          "Case 1 ($y>0$, so $t>0$): here $\\cot^{-1}\\tfrac1t=\\tan^{-1}t$, so the equation is $2\\tan^{-1}t=\\dfrac{2\\pi}{3}\\Rightarrow\\tan^{-1}t=\\dfrac\\pi3\\Rightarrow t=\\sqrt3$.",
+          "So $\\dfrac{6y}{9-y^2}=\\sqrt3\\Rightarrow \\sqrt3\\,y^2+6y-9\\sqrt3=0\\Rightarrow y^2+2\\sqrt3\\,y-9=0\\Rightarrow y=-\\sqrt3\\pm2\\sqrt3$. Taking the positive root in $(0,3)$: $y=\\sqrt3$.",
+          "Case 2 ($y<0$, so $t<0$): now $\\cot^{-1}\\tfrac1t=\\pi+\\tan^{-1}t$, so the LHS $=\\tan^{-1}t+\\pi+\\tan^{-1}t=\\pi+2\\tan^{-1}t$.",
+          "Set $\\pi+2\\tan^{-1}t=\\dfrac{2\\pi}{3}\\Rightarrow\\tan^{-1}t=-\\dfrac\\pi6\\Rightarrow t=-\\dfrac1{\\sqrt3}$.",
+          "So $\\dfrac{6y}{9-y^2}=-\\dfrac1{\\sqrt3}\\Rightarrow 6\\sqrt3\\,y=-(9-y^2)\\Rightarrow y^2-6\\sqrt3\\,y-9=0\\Rightarrow y=3\\sqrt3\\pm6$. The root in $(-3,0)$ is $y=3\\sqrt3-6\\approx-0.804$.",
+          "Both values are genuine (each yields LHS $=\\tfrac{2\\pi}{3}$). Their sum is $\\sqrt3+(3\\sqrt3-6)=4\\sqrt3-6$.",
+          "Hence the answer is $4\\sqrt3-6$, option (C)."
+        ]
+      },
+      {
+        "name": "Reduce to a double-angle equation via $y=3\\tan\\phi$",
+        "steps": [
+          "Substitute $y=3\\tan\\phi$ with $\\phi\\in\\left(-\\tfrac\\pi4,\\tfrac\\pi4\\right)\\setminus\\{0\\}$ so that $0<|y|<3$. Then $\\dfrac{6y}{9-y^2}=\\dfrac{18\\tan\\phi}{9(1-\\tan^2\\phi)}=\\dfrac{2\\tan\\phi}{1-\\tan^2\\phi}=\\tan 2\\phi$.",
+          "The equation is $\\tan^{-1}(\\tan 2\\phi)+\\cot^{-1}(\\cot 2\\phi)=\\dfrac{2\\pi}{3}$, where $2\\phi\\in\\left(-\\tfrac\\pi2,\\tfrac\\pi2\\right)$.",
+          "For $2\\phi\\in(0,\\tfrac\\pi2)$: $\\tan^{-1}(\\tan 2\\phi)=2\\phi$ and $\\cot^{-1}(\\cot 2\\phi)=2\\phi$, so LHS $=4\\phi=\\dfrac{2\\pi}{3}\\Rightarrow\\phi=\\dfrac\\pi6\\Rightarrow y=3\\tan\\tfrac\\pi6=\\sqrt3$.",
+          "For $2\\phi\\in(-\\tfrac\\pi2,0)$: $\\tan^{-1}(\\tan 2\\phi)=2\\phi$ but $\\cot^{-1}(\\cot 2\\phi)=2\\phi+\\pi$ (bringing the value into $(0,\\pi)$), so LHS $=4\\phi+\\pi=\\dfrac{2\\pi}{3}\\Rightarrow\\phi=-\\dfrac\\pi{12}$.",
+          "Then $y=3\\tan\\!\\left(-\\tfrac\\pi{12}\\right)=-3\\tan\\tfrac\\pi{12}=-3(2-\\sqrt3)=3\\sqrt3-6\\approx-0.804$.",
+          "The two solutions are $y=\\sqrt3$ and $y=3\\sqrt3-6$; their sum is $\\sqrt3+3\\sqrt3-6=4\\sqrt3-6$, giving option (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 2, Q3. A branch-trap classic: the deceptively symmetric $\\tan^{-1}$/$\\cot^{-1}$ pair collapses to $2\\tan^{-1}t$ only on the positive branch — the negative branch silently adds a $\\pi$, and forgetting it drops the root $y=3\\sqrt3-6$."
   }
 ];

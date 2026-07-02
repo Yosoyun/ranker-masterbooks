@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['standard','substitution','byparts','partialfractions','trigintegrals','irrational','specialdenoms','reduction','exactderiv','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { standard:'∫xⁿ', substitution:'∫f(g)g′', byparts:'∫u dv', partialfractions:'A/(x−a)', trigintegrals:'∫sinⁿ', irrational:'∫dx/√Q', specialdenoms:'1/(a+bcos)', reduction:'Iₙ', exactderiv:'eˣ(f+f′)', hybrid:'⊕' };
+const THEME_ORDER = ['standard','substitution','byparts','partialfractions','trigintegrals','irrational','specialdenoms','reduction','exactderiv','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { standard:'∫xⁿ', substitution:'∫f(g)g′', byparts:'∫u dv', partialfractions:'A/(x−a)', trigintegrals:'∫sinⁿ', irrational:'∫dx/√Q', specialdenoms:'1/(a+bcos)', reduction:'Iₙ', exactderiv:'eˣ(f+f′)', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   standard:'Standard forms revealed by splitting, completing the square, rewriting.',
   substitution:'The substitution that turns a tangle into a standard form.',
@@ -25,6 +25,7 @@ const BLURB = {
   reduction:'Reduction formulae — Iₙ in terms of Iₙ₋₂ by parts, run down to a base.',
   exactderiv:'Spotting an exact derivative — ∫eˣ(f+f′)dx=eˣf and the d(uv) patterns.',
   hybrid:'Substitution, parts, partial fractions & the exact-derivative trick, fused.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

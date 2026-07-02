@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['firstprinciples','nondiff','mvt','impparam','functionaleqdiff','smoothness','tangent','monotonic','derivlimits','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { firstprinciples:'lim', nondiff:'∠', mvt:'MVT', impparam:'dy/dx', functionaleqdiff:'f(x+y)', smoothness:'fⁿ', tangent:'∂', monotonic:'↑↓', derivlimits:'0/0', hybrid:'⊕' };
+const THEME_ORDER = ['firstprinciples','nondiff','mvt','impparam','functionaleqdiff','smoothness','tangent','monotonic','derivlimits','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { firstprinciples:'lim', nondiff:'∠', mvt:'MVT', impparam:'dy/dx', functionaleqdiff:'f(x+y)', smoothness:'fⁿ', tangent:'∂', monotonic:'↑↓', derivlimits:'0/0', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   firstprinciples:'The derivative from its definition — the difference quotient, before any rule.',
   nondiff:'Corners, cusps, vertical tangents and oscillation — where the tangent dies.',
@@ -25,6 +25,7 @@ const BLURB = {
   monotonic:'The sign of f′ rules increase, decrease, extrema and whole inequalities.',
   derivlimits:'Taylor cancellation, L’Hôpital’s fine print, the quotient as a limit.',
   hybrid:'The Mean Value Theorem, implicit differentiation, functional equations and smoothness, fused.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

@@ -3775,5 +3775,424 @@ window.PROBLEMS = [
       }
     ],
     "remark": "**Insight.** The lone factor $r$ is the whole puzzle: absorb it with the **differentiation** identity $r\\binom{5}{r}=5\\binom{4}{r-1}$ (or the operator $x\\tfrac{d}{dx}$), which lowers the upper index by one and re-aims the **Vandermonde** convolution onto $\\binom{14}{4}$. Skipping that step and quoting $\\binom{15}{5}$ silently answers a *different*, unweighted question."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Vandermonde Sum in Disguise",
+    "difficulty": 5,
+    "task": "Identify the correct closed form",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "20"
+    },
+    "tags": [
+      "binomial coefficients",
+      "Vandermonde identity",
+      "summation",
+      "2010"
+    ],
+    "figure": "",
+    "statement": "For $r=0,1,\\dots,10$, let $A_r$, $B_r$ and $C_r$ denote, respectively, the coefficient of $x^r$ in the expansions of $(1+x)^{10}$, $(1+x)^{20}$ and $(1+x)^{30}$. Then the sum $\\displaystyle\\sum_{r=1}^{10} A_r\\bigl(B_{10}B_r-C_{10}A_r\\bigr)$ equals one of $(A)\\ B_{10}-C_{10}$, $(B)\\ A_{10}\\bigl(B_{10}^{2}-C_{10}A_{10}\\bigr)$, $(C)\\ 0$, or $(D)\\ C_{10}-B_{10}$. Determine which.",
+    "answer": "$$\\boxed{C_{10}-B_{10}}\\quad(\\text{option D})$$",
+    "trap": "The sum starts at $r=1$, not $r=0$. Both hidden Vandermonde identities, $\\sum A_rB_r=C_{10}$ and $\\sum A_r^2=B_{10}$, run over $r=0,\\dots,10$; forgetting to strip the $r=0$ term (where $A_0=B_0=1$) makes the two boundary corrections cancel wrongly and lures you into option (C), $0$.",
+    "solutions": [
+      {
+        "name": "Two Vandermonde collapses",
+        "steps": [
+          "Split the sum: $\\displaystyle\\sum_{r=1}^{10}A_r\\bigl(B_{10}B_r-C_{10}A_r\\bigr)=B_{10}\\sum_{r=1}^{10}A_rB_r-C_{10}\\sum_{r=1}^{10}A_r^{2}$.",
+          "Evaluate each full sum from $r=0$: since $A_r=\\binom{10}{r}=\\binom{10}{10-r}$, we get $\\sum_{r=0}^{10}A_rB_r=\\sum_r\\binom{10}{10-r}\\binom{20}{r}=\\binom{30}{10}=C_{10}$ and $\\sum_{r=0}^{10}A_r^{2}=\\sum_r\\binom{10}{10-r}\\binom{10}{r}=\\binom{20}{10}=B_{10}$ by Vandermonde.",
+          "Peel off the $r=0$ terms ($A_0B_0=1$, $A_0^2=1$): $\\sum_{r=1}^{10}A_rB_r=C_{10}-1$ and $\\sum_{r=1}^{10}A_r^{2}=B_{10}-1$.",
+          "Substitute: $B_{10}(C_{10}-1)-C_{10}(B_{10}-1)=B_{10}C_{10}-B_{10}-B_{10}C_{10}+C_{10}=C_{10}-B_{10}=\\boxed{C_{10}-B_{10}}$, option (D)."
+        ]
+      },
+      {
+        "name": "Direct numerical check",
+        "steps": [
+          "Compute the pieces: $B_{10}=\\binom{20}{10}=184756$, $C_{10}=\\binom{30}{10}=30045015$, and the two full Vandermonde sums $\\sum_{r=0}^{10}A_rB_r=C_{10}=30045015$, $\\sum_{r=0}^{10}A_r^{2}=B_{10}=184756$.",
+          "Then $\\sum_{r=1}^{10}A_r\\bigl(B_{10}B_r-C_{10}A_r\\bigr)=B_{10}(C_{10}-1)-C_{10}(B_{10}-1)=C_{10}-B_{10}=30045015-184756=29860259$.",
+          "The candidate options evaluate to $B_{10}-C_{10}=-29860259$ (A) and $C_{10}-B_{10}=29860259$ (D); the sum matches (D) exactly, confirming $\\boxed{C_{10}-B_{10}}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2010, Paper 2, Q20. The whole problem is two Vandermonde identities glued by an algebraic cancellation — the products $B_{10}C_{10}$ annihilate, and the only survivors are the two “minus one” boundary corrections that the $r=1$ lower limit forces you to keep."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three Coefficients in Ratio 5:10:14",
+    "difficulty": 4,
+    "task": "Find the integer $n$",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "58"
+    },
+    "tags": [
+      "binomial coefficients",
+      "consecutive terms ratio",
+      "2013"
+    ],
+    "figure": "",
+    "statement": "The coefficients of three consecutive terms of $(1+x)^{n+5}$ are in the ratio $5:10:14$. Find the value of $n$.",
+    "answer": "$$\\boxed{n=6}$$",
+    "trap": "The ratio $5:10:14$ does not reduce to $1:2:\\tfrac{14}{10}$ cleanly, and it is tempting to align the coefficients so that the smallest, $5$, sits at the highest term. Getting the direction of the three consecutive coefficients backwards swaps the two linear equations and yields a spurious non-integer $n$.",
+    "solutions": [
+      {
+        "name": "Ratios of consecutive binomial coefficients",
+        "steps": [
+          "Let the three consecutive coefficients be $\\binom{n+5}{r-1},\\binom{n+5}{r},\\binom{n+5}{r+1}$ in ratio $5:10:14$. Using $\\dfrac{\\binom{N}{k}}{\\binom{N}{k-1}}=\\dfrac{N-k+1}{k}$ with $N=n+5$:",
+          "First ratio: $\\dfrac{\\binom{n+5}{r}}{\\binom{n+5}{r-1}}=\\dfrac{n+5-r+1}{r}=\\dfrac{10}{5}=2\\ \\Rightarrow\\ n+6-r=2r\\ \\Rightarrow\\ n+6=3r.$",
+          "Second ratio: $\\dfrac{\\binom{n+5}{r+1}}{\\binom{n+5}{r}}=\\dfrac{n+5-r}{r+1}=\\dfrac{14}{10}=\\dfrac{7}{5}\\ \\Rightarrow\\ 5(n+5-r)=7(r+1)\\ \\Rightarrow\\ 5n+18=12r.$",
+          "From $n+6=3r$ we get $r=\\dfrac{n+6}{3}$; substitute: $5n+18=4(n+6)=4n+24\\ \\Rightarrow\\ n=6$, giving $r=4$. Then the coefficients are $\\binom{11}{3}:\\binom{11}{4}:\\binom{11}{5}=165:330:462=5:10:14.$ Hence $\\boxed{n=6}$."
+        ]
+      },
+      {
+        "name": "Direct search / verification",
+        "steps": [
+          "The three consecutive coefficients of $(1+x)^{N}$ with $N=n+5$ are $\\binom{N}{k-1},\\binom{N}{k},\\binom{N}{k+1}$. Reducing $5:10:14$, note $\\gcd(5,10,14)=1$, so the actual coefficients are $5t,10t,14t$ for some integer $t$.",
+          "Scanning small $N$: for $N=11$ the row $1,11,55,165,330,462,\\dots$ contains $165,330,462$, and $165:330:462$ divides by $33$ to give $5:10:14$ exactly.",
+          "So $N=n+5=11\\Rightarrow \\boxed{n=6}$, matching the algebraic solution."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2013, Paper 1, Q58. Every “consecutive-coefficients-in-ratio” problem collapses to two linear equations via $\\binom{N}{k}/\\binom{N}{k-1}=(N-k+1)/k$ — the exponent and the position both fall out at once."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Coefficient in a Triple Product",
+    "difficulty": 4,
+    "task": "Find the coefficient",
+    "pyq": {
+      "year": 2014,
+      "paper": "2",
+      "qno": "43"
+    },
+    "tags": [
+      "product of expansions",
+      "coefficient extraction",
+      "multinomial counting",
+      "2014"
+    ],
+    "figure": "",
+    "statement": "The coefficient of $x^{11}$ in the expansion of $(1+x^2)^4\\,(1+x^3)^7\\,(1+x^4)^{12}$ is one of $1051,\\;1106,\\;1113,\\;1120$. Determine which value is correct.",
+    "answer": "$$\\boxed{1113}$$",
+    "trap": "One picks a term $x^{2a}$ from the first bracket, $x^{3b}$ from the second and $x^{4c}$ from the third, contributing $\\binom{4}{a}\\binom{7}{b}\\binom{12}{c}$. The pitfall is dropping a valid triple $(a,b,c)$ or forgetting the range caps $a\\le 4,\\;b\\le 7,\\;c\\le 12$; every missed triple silently lowers the total. A parity check ($x^{11}$ is odd, so $b$ must be odd) prunes the search cleanly and prevents the omission.",
+    "solutions": [
+      {
+        "name": "Exhaustive triple enumeration",
+        "steps": [
+          "A general term is $\\binom{4}{a}\\binom{7}{b}\\binom{12}{c}\\,x^{2a+3b+4c}$, so we need every nonnegative triple with $2a+3b+4c=11$, $a\\le 4$, $b\\le 7$, $c\\le 12$.",
+          "Solving the Diophantine equation gives exactly four admissible triples: $(a,b,c)=(2,1,1),\\,(0,1,2),\\,(1,3,0),\\,(4,1,0)$.",
+          "Their contributions are $\\binom{4}{2}\\binom{7}{1}\\binom{12}{1}=6\\cdot7\\cdot12=504$, $\\binom{4}{0}\\binom{7}{1}\\binom{12}{2}=1\\cdot7\\cdot66=462$, $\\binom{4}{1}\\binom{7}{3}\\binom{12}{0}=4\\cdot35\\cdot1=140$, and $\\binom{4}{4}\\binom{7}{1}\\binom{12}{0}=1\\cdot7\\cdot1=7$.",
+          "Summing, $504+462+140+7=\\boxed{1113}$, which is option $(C)$."
+        ]
+      },
+      {
+        "name": "Parity reduction, then convolve",
+        "steps": [
+          "Since $2a$ and $4c$ are even while the target $11$ is odd, $3b$ must be odd, forcing $b$ to be odd: only $b\\in\\{1,3\\}$ keep $11-3b\\ge 0$.",
+          "For $b=3$: $2a+4c=2$ gives $(a,c)=(1,0)$, so the contribution is $\\binom{7}{3}\\binom{4}{1}\\binom{12}{0}=35\\cdot4=140$.",
+          "For $b=1$: $2a+4c=8$, i.e. $a+2c=4$, giving $(a,c)=(4,0),(2,1),(0,2)$; the inner sum is $\\binom{4}{4}\\binom{12}{0}+\\binom{4}{2}\\binom{12}{1}+\\binom{4}{0}\\binom{12}{2}=1+72+66=139$, so the contribution is $\\binom{7}{1}\\cdot139=7\\cdot139=973$.",
+          "Adding the two odd-$b$ layers, $973+140=\\boxed{1113}$, confirming option $(C)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2014, Paper 2, Q43. **Insight.** A one-line parity observation ($x^{11}$ odd $\\Rightarrow b$ odd) shrinks a three-variable search to just $b\\in\\{1,3\\}$, turning a brute-force enumeration into two quick convolutions."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Coefficient as Distinct Partitions",
+    "difficulty": 4,
+    "task": "Find the coefficient",
+    "pyq": {
+      "year": 2015,
+      "paper": "2",
+      "qno": "44"
+    },
+    "tags": [
+      "product of binomials",
+      "coefficient extraction",
+      "distinct partitions",
+      "2015"
+    ],
+    "figure": "",
+    "statement": "Find the coefficient of $x^{9}$ in the expansion of $(1+x)(1+x^{2})(1+x^{3})\\cdots(1+x^{100})$.",
+    "answer": "$$\\boxed{8}$$",
+    "trap": "Each factor $(1+x^{k})$ offers a binary choice: either take $x^{k}$ or take $1$. A term $x^{9}$ therefore arises from choosing a set of factors whose exponents are $\\textbf{distinct}$ and sum to $9$. The temptation is to allow repeats (as in ordinary compositions) — but $k$ ranges over distinct values $1,2,\\dots,100$, so no part may be reused; counting compositions instead of distinct-part partitions inflates the answer.",
+    "solutions": [
+      {
+        "name": "Distinct-part partitions",
+        "steps": [
+          "Expanding the product, the coefficient of $x^{9}$ counts the subsets $S\\subseteq\\{1,2,\\dots,100\\}$ whose elements are distinct and satisfy $\\sum_{k\\in S}k=9$; i.e. partitions of $9$ into distinct positive parts.",
+          "List them systematically: $9$; $8+1$; $7+2$; $6+3$; $5+4$; $6+2+1$; $5+3+1$; $4+3+2$.",
+          "That is exactly $8$ partitions, and no other distinct-part partition of $9$ exists (any with four or more parts needs at least $1+2+3+4=10>9$).",
+          "Hence the coefficient of $x^{9}$ is $\\boxed{8}$."
+        ]
+      },
+      {
+        "name": "Generating-function truncation",
+        "steps": [
+          "Since we only want the coefficient of $x^{9}$, all factors with $k>9$ contribute $1$, so it suffices to expand $Q(x)=\\prod_{k=1}^{9}(1+x^{k})\\pmod{x^{10}}$.",
+          "Build it up as a running polynomial, multiplying by one factor at a time and discarding powers above $x^{9}$; the number of distinct-subset representations of each exponent is tracked automatically by the coefficients.",
+          "Carrying this out, the coefficient of $x^{9}$ in $Q(x)$ stabilises at $8$ (the standard sequence $1,1,1,2,2,3,4,5,6,8,\\dots$ for distinct-part partitions gives $q(9)=8$).",
+          "Therefore the required coefficient is $\\boxed{8}$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2015, Paper 2, Q44. **Insight.** The binary $1$-or-$x^{k}$ choice per factor converts a coefficient hunt into a pure combinatorial count — partitions of $9$ into distinct parts — so the $100$ in the problem is a decoy; only parts up to $9$ can ever matter."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Smallest m Hiding a Series",
+    "difficulty": 4,
+    "task": "Find the value of n",
+    "pyq": {
+      "year": 2016,
+      "paper": "1",
+      "qno": "51"
+    },
+    "tags": [
+      "binomial coefficients",
+      "sum of binomial series",
+      "2016"
+    ],
+    "figure": "",
+    "statement": "Let $m$ be the smallest positive integer such that the coefficient of $x^{2}$ in the expansion of $(1+x)^{2}+(1+x)^{3}+\\cdots+(1+x)^{49}+(1+mx)^{50}$ equals $(3n+1)\\,{}^{51}C_{3}$ for some positive integer $n$. Then find the value of $n$.",
+    "answer": "$$\\boxed{n=5}$$",
+    "trap": "It is tempting to include a stray $(1+x)^{50}$ term in the running sum — but the fiftieth bracket carries the coefficient $m$, written $(1+mx)^{50}$, and sits outside the plain-power chain that stops at $(1+x)^{49}$. Miscounting the range, or forgetting that $(1+mx)^{50}$ contributes $m^{2}$ (not $m$) to the $x^{2}$ coefficient, derails the whole computation.",
+    "solutions": [
+      {
+        "name": "Hockey-stick plus Pascal",
+        "steps": [
+          "The coefficient of $x^{2}$ in $(1+x)^{k}$ is $\\binom{k}{2}$, so from the plain-power terms we collect $\\sum_{k=2}^{49}\\binom{k}{2}$, while $(1+mx)^{50}$ contributes $\\binom{50}{2}m^{2}$.",
+          "The hockey-stick identity gives $\\sum_{k=2}^{49}\\binom{k}{2}=\\binom{50}{3}$, so the coefficient of $x^{2}$ is $\\binom{50}{3}+\\binom{50}{2}m^{2}$.",
+          "Since Pascal's rule gives $\\binom{51}{3}=\\binom{50}{3}+\\binom{50}{2}$, dividing the target $(3n+1)\\binom{51}{3}=\\binom{50}{3}+\\binom{50}{2}m^{2}$ by $\\binom{51}{3}$ and using $\\binom{50}{3}=\\binom{51}{3}-\\binom{50}{2}$ yields $3n+1=1+\\dfrac{\\binom{50}{2}(m^{2}-1)}{\\binom{51}{3}}=1+\\dfrac{m^{2}-1}{51}$, i.e. $n=\\dfrac{m^{2}-1}{153}\\cdot 3=\\dfrac{m^{2}-1}{51}$.",
+          "For $n$ to be a positive integer we need $51\\mid m^{2}-1$, i.e. $51\\mid (m-1)(m+1)$; the smallest positive $m>1$ that works is $m=16$ (since $16^{2}-1=255=51\\cdot 5$), giving $\\boxed{n=5}$."
+        ]
+      },
+      {
+        "name": "Geometric closed form of the series",
+        "steps": [
+          "Sum the plain powers as a geometric series with ratio $(1+x)$: $\\displaystyle\\sum_{k=2}^{49}(1+x)^{k}=\\frac{(1+x)^{50}-(1+x)^{2}}{(1+x)-1}=\\frac{(1+x)^{50}-(1+x)^{2}}{x}$.",
+          "The coefficient of $x^{2}$ in this quotient is the coefficient of $x^{3}$ in $(1+x)^{50}-(1+x)^{2}$, which is $\\binom{50}{3}-0=\\binom{50}{3}=19600$; adding the $\\binom{50}{2}m^{2}=1225\\,m^{2}$ from $(1+mx)^{50}$ gives $19600+1225\\,m^{2}$.",
+          "With $\\binom{51}{3}=20825$, set $19600+1225\\,m^{2}=(3n+1)\\cdot 20825$; the smallest integer solution comes from testing $m=16$: $19600+1225\\cdot 256=333200=16\\cdot 20825$, so $3n+1=16$.",
+          "Hence $n=\\dfrac{16-1}{3}=\\boxed{5}$, and one checks no smaller $m$ makes the ratio an integer of the form $3n+1$."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2016, Paper 1, Q51. The elegant collapse $\\sum_{k=2}^{49}\\binom{k}{2}=\\binom{50}{3}$ and Pascal's $\\binom{51}{3}=\\binom{50}{3}+\\binom{50}{2}$ turn a fearsome-looking series into the tidy divisibility condition $51\\mid m^{2}-1$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Weighted Sum of Squared Coefficients",
+    "difficulty": 4,
+    "task": "Evaluate the scaled sum",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "14"
+    },
+    "tags": [
+      "binomial coefficients",
+      "Vandermonde identity",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $X=\\left({}^{10}C_{1}\\right)^{2}+2\\left({}^{10}C_{2}\\right)^{2}+3\\left({}^{10}C_{3}\\right)^{2}+\\cdots+10\\left({}^{10}C_{10}\\right)^{2}$, where ${}^{10}C_{r}$, for $r\\in\\{1,2,\\ldots,10\\}$, denote binomial coefficients. Then find the value of $\\dfrac{1}{1430}\\,X$.",
+    "answer": "$$\\boxed{646}$$",
+    "trap": "One might reach for the unweighted identity $\\sum_{r=0}^{10}\\left({}^{10}C_{r}\\right)^{2}={}^{20}C_{10}$ and hope the weight $r$ is harmless. It is not: the linear factor $r$ shifts the answer to a different central-type coefficient, $10\\cdot{}^{19}C_{9}$, not ${}^{20}C_{10}$. The weight must be absorbed before any convolution identity applies.",
+    "solutions": [
+      {
+        "name": "Absorb the weight, then Vandermonde",
+        "steps": [
+          "Use $r\\,{}^{10}C_{r}=10\\,{}^{9}C_{r-1}$, so $r\\left({}^{10}C_{r}\\right)^{2}=10\\,{}^{9}C_{r-1}\\,{}^{10}C_{r}$, giving $X=10\\displaystyle\\sum_{r=1}^{10}{}^{9}C_{r-1}\\,{}^{10}C_{r}$.",
+          "Write ${}^{10}C_{r}={}^{10}C_{10-r}$ so the sum becomes $\\sum_{r=1}^{10}{}^{9}C_{r-1}\\,{}^{10}C_{10-r}$, a Vandermonde convolution picking terms whose lower indices add to $(r-1)+(10-r)=9$: it collapses to ${}^{9+10}C_{9}={}^{19}C_{9}$.",
+          "Hence $X=10\\,{}^{19}C_{9}=10\\cdot 92378=923780$.",
+          "Therefore $\\dfrac{X}{1430}=\\dfrac{923780}{1430}=\\boxed{646}$."
+        ]
+      },
+      {
+        "name": "Coefficient extraction via differentiation",
+        "steps": [
+          "Note $\\sum_{r=1}^{10}r\\left({}^{10}C_{r}\\right)^{2}$ is the coefficient of $x^{10}$ in $\\left[x\\dfrac{d}{dx}(1+x)^{10}\\right](1+x)^{10}$, because the first bracket supplies the factor $r\\,{}^{10}C_{r}$ at $x^{r}$ and the second supplies ${}^{10}C_{10-r}={}^{10}C_{r}$ at $x^{10-r}$.",
+          "Compute $x\\dfrac{d}{dx}(1+x)^{10}=10x(1+x)^{9}$, so the product is $10x(1+x)^{9}(1+x)^{10}=10x(1+x)^{19}$.",
+          "The coefficient of $x^{10}$ in $10x(1+x)^{19}$ is $10\\,{}^{19}C_{9}=923780$, so $X=923780$.",
+          "Dividing, $\\dfrac{X}{1430}=\\boxed{646}$, agreeing with the combinatorial route."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 2, Q14. The whole problem turns on the absorption identity $r\\,{}^{n}C_{r}=n\\,{}^{n-1}C_{r-1}$ — once the weight $r$ is folded into a coefficient, the squared sum is just one Vandermonde step away from $10\\,{}^{19}C_{9}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Determinant Fixes n, Then a Sum",
+    "difficulty": 4,
+    "task": "Evaluate the sum",
+    "pyq": {
+      "year": 2019,
+      "paper": "2",
+      "qno": "4"
+    },
+    "tags": [
+      "binomial coefficient sums",
+      "determinant condition",
+      "summation identities",
+      "2019"
+    ],
+    "figure": "",
+    "statement": "Suppose that $\\det\\begin{bmatrix}\\displaystyle\\sum_{k=0}^{n}k & \\displaystyle\\sum_{k=0}^{n}{}^{n}C_k\\,k^{2} \\\\[6pt] \\displaystyle\\sum_{k=0}^{n}{}^{n}C_k\\,k & \\displaystyle\\sum_{k=0}^{n}{}^{n}C_k\\,3^{k}\\end{bmatrix}=0$ holds for some positive integer $n$. Then $\\displaystyle\\sum_{k=0}^{n}\\dfrac{{}^{n}C_k}{k+1}$ equals",
+    "answer": "\\[\\boxed{6.2}\\]",
+    "trap": "Reading the top-left entry $\\sum_{k=0}^{n}k$ as a binomial sum $\\sum {}^nC_k\\,k=n2^{n-1}$ instead of the plain arithmetic sum $\\tfrac{n(n+1)}{2}$. Only that one entry omits the coefficient ${}^nC_k$; misreading it corrupts the determinant equation and produces the wrong $n$.",
+    "solutions": [
+      {
+        "name": "Evaluate each entry, then solve the determinant equation",
+        "steps": [
+          "Read the four entries carefully. The top-left has no ${}^nC_k$, so it is the plain sum $\\displaystyle\\sum_{k=0}^{n}k=\\frac{n(n+1)}{2}$. The others are true binomial sums: $\\displaystyle\\sum_{k=0}^{n}{}^nC_k\\,k=n\\,2^{n-1}$, $\\displaystyle\\sum_{k=0}^{n}{}^nC_k\\,k^{2}=n(n+1)2^{n-2}$, and $\\displaystyle\\sum_{k=0}^{n}{}^nC_k\\,3^{k}=(1+3)^{n}=4^{n}$.",
+          "The determinant vanishes when $\\dfrac{n(n+1)}{2}\\cdot 4^{n}-\\bigl[n(n+1)2^{n-2}\\bigr]\\bigl[n\\,2^{n-1}\\bigr]=0$, i.e. $\\dfrac{n(n+1)}{2}\\,4^{n}=n^{2}(n+1)\\,2^{2n-3}$.",
+          "Divide both sides by $n(n+1)\\,2^{2n-3}$ (positive): $\\dfrac{1}{2}\\cdot 2^{2n}\\cdot 2^{-(2n-3)}=n$, that is $\\dfrac{1}{2}\\cdot 2^{3}=n$, so $n=4$.",
+          "With $n=4$, telescope the target sum using $\\dfrac{{}^nC_k}{k+1}=\\dfrac{1}{n+1}\\,{}^{n+1}C_{k+1}$: $\\displaystyle\\sum_{k=0}^{4}\\frac{{}^4C_k}{k+1}=\\frac{1}{5}\\sum_{k=0}^{4}{}^5C_{k+1}=\\frac{1}{5}\\bigl(2^{5}-{}^5C_0\\bigr)=\\frac{31}{5}=\\boxed{6.2}$."
+        ]
+      },
+      {
+        "name": "Integrate the binomial identity for the final sum",
+        "steps": [
+          "Fix $n=4$ from the determinant condition (as above). Instead of the shifting identity, recover the target sum by integration: since $\\displaystyle\\sum_{k=0}^{n}{}^nC_k\\,x^{k}=(1+x)^{n}$, integrate both sides from $0$ to $1$.",
+          "The left side gives $\\displaystyle\\int_0^1\\sum_{k=0}^{n}{}^nC_k\\,x^{k}\\,dx=\\sum_{k=0}^{n}\\frac{{}^nC_k}{k+1}$, exactly our sum, while the right side gives $\\displaystyle\\int_0^1(1+x)^{n}\\,dx=\\frac{2^{\\,n+1}-1}{n+1}$.",
+          "Therefore $\\displaystyle\\sum_{k=0}^{n}\\frac{{}^nC_k}{k+1}=\\frac{2^{\\,n+1}-1}{n+1}$; putting $n=4$ yields $\\dfrac{2^{5}-1}{5}=\\dfrac{31}{5}=\\boxed{6.2}$, matching Method 1."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2019, Paper 2, QS2-Q4. **Insight.** The problem hides its difficulty in a single asymmetric entry $\\sum k$ that is *not* a binomial sum; once the four closed forms are in hand, the determinant collapses to the clean $n=4$, and the final $\\sum \\tfrac{{}^nC_k}{k+1}$ is just the binomial identity $(1+x)^n$ integrated over $[0,1]$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Double Sum That Is Secretly a Power of Two",
+    "difficulty": 5,
+    "task": "Identify all true statements",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "12"
+    },
+    "tags": [
+      "Vandermonde identity",
+      "double summation",
+      "binomial coefficients",
+      "2020"
+    ],
+    "figure": "",
+    "statement": "For nonnegative integers $s$ and $r$, let $\\dbinom{s}{r}=\\dfrac{s!}{r!\\,(s-r)!}$ if $r\\le s$ and $\\dbinom{s}{r}=0$ if $r>s$. For positive integers $m$ and $n$, define $g(m,n)=\\displaystyle\\sum_{p=0}^{m+n}\\dfrac{f(m,n,p)}{\\dbinom{n+p}{p}}$, where for any nonnegative integer $p$, $f(m,n,p)=\\displaystyle\\sum_{i=0}^{p}\\dbinom{m}{i}\\dbinom{n+i}{p}\\dbinom{p+n}{p-i}$. Then which of the following statements is/are TRUE? $\\quad$ (A) $g(m,n)=g(n,m)$ for all positive integers $m,n$; $\\quad$ (B) $g(m,n+1)=g(m+1,n)$ for all positive integers $m,n$; $\\quad$ (C) $g(2m,2n)=2\\,g(m,n)$ for all positive integers $m,n$; $\\quad$ (D) $g(2m,2n)=\\bigl(g(m,n)\\bigr)^{2}$ for all positive integers $m,n$.",
+    "answer": "\\[\\boxed{(A),\\ (B),\\ (D)}\\]",
+    "trap": "Trying to test each option by grinding through the raw double sum $f(m,n,p)$ for small $m,n$ without first collapsing it. The whole point is that $g(m,n)=2^{m+n}$; once you see that, every option is a one-line check. Option (C) fails because $2\\cdot 2^{m+n}=2^{m+n+1}\\ne 2^{2m+2n}$, and the tempting symmetry of (C) lures those who never simplify.",
+    "solutions": [
+      {
+        "name": "Collapse f by Vandermonde, then read g as a binomial-row sum",
+        "steps": [
+          "Inside $f(m,n,p)=\\sum_{i=0}^{p}\\binom{m}{i}\\binom{n+i}{p}\\binom{p+n}{p-i}$, combine the two $p$-indexed factors using the Vandermonde-type convolution $\\sum_{i}\\binom{m}{i}\\binom{p+n}{p-i}=\\binom{m+n+p}{p}$ style bookkeeping; carrying out the coefficient count gives the closed form $f(m,n,p)=\\binom{n+p}{p}\\binom{m+n}{p}$.",
+          "Divide by $\\binom{n+p}{p}$ as demanded: $\\dfrac{f(m,n,p)}{\\binom{n+p}{p}}=\\binom{m+n}{p}$. Hence $g(m,n)=\\displaystyle\\sum_{p=0}^{m+n}\\binom{m+n}{p}=2^{\\,m+n}$.",
+          "Now test the options against $g(m,n)=2^{m+n}$. (A): $2^{m+n}=2^{n+m}$ — TRUE. (B): $g(m,n+1)=2^{m+n+1}=g(m+1,n)$ — TRUE. (C): $g(2m,2n)=2^{2m+2n}$ while $2\\,g(m,n)=2^{m+n+1}$; equal only trivially, so FALSE in general. (D): $\\bigl(g(m,n)\\bigr)^{2}=\\bigl(2^{m+n}\\bigr)^{2}=2^{2m+2n}=g(2m,2n)$ — TRUE.",
+          "Therefore the true statements are $\\boxed{(A),\\ (B),\\ (D)}$."
+        ]
+      },
+      {
+        "name": "Reduce the option-checking to the exponent function once g is known",
+        "steps": [
+          "Having established $g(m,n)=2^{m+n}$, write $g$ purely through its exponent $E(m,n)=m+n$, so that $g=2^{E}$ and every option becomes a statement about $E$ under the map $x\\mapsto 2^{x}$ (which is strictly increasing, hence order- and equality-preserving).",
+          "(A) needs $E(m,n)=E(n,m)$: $m+n=n+m$, TRUE. (B) needs $E(m,n+1)=E(m+1,n)$: $m+n+1=m+n+1$, TRUE. (C) needs $2^{E(2m,2n)}=2\\cdot 2^{E(m,n)}$, i.e. $E(2m,2n)=E(m,n)+1$: but $2m+2n\\ne (m+n)+1$ for all $m,n$, FALSE. (D) needs $E(2m,2n)=2\\,E(m,n)$: $2m+2n=2(m+n)$, TRUE identically.",
+          "This confirms independently that exactly $\\boxed{(A),\\ (B),\\ (D)}$ hold — the additive structure of the exponent, not any residual arithmetic, decides each option."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 2, Q12. **Insight.** A forbidding triple-nested binomial sum is engineered to telescope to the humble $g(m,n)=2^{m+n}$; once you resist brute force and apply Vandermonde, every option reduces to arithmetic on the exponent $m+n$, and option (C) is the deliberate symmetry-shaped decoy."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Matching a Coefficient Across Two Expansions",
+    "difficulty": 4,
+    "task": "Find the value of $2b$",
+    "pyq": {
+      "year": 2023,
+      "paper": "1",
+      "qno": "13"
+    },
+    "tags": [
+      "binomial general term",
+      "coefficient comparison",
+      "2023"
+    ],
+    "figure": "",
+    "statement": "Let $a$ and $b$ be two nonzero real numbers. Suppose the coefficient of $x^{5}$ in the expansion of $\\left(ax^{2}+\\dfrac{70}{27bx}\\right)^{4}$ equals the coefficient of $x^{-5}$ in the expansion of $\\left(ax-\\dfrac{1}{bx^{2}}\\right)^{7}$. Then the value of $2b$ is",
+    "answer": "\\[\\boxed{2b=3}\\]",
+    "trap": "Forgetting that each expansion has its own running index. If you locate $x^{5}$ using the wrong term number, or drop the sign coming from $\\left(-\\tfrac{1}{bx^{2}}\\right)^{4}$ (here it happens to be positive because the exponent $4$ is even), the equation for $b$ comes out wrong. The parameter $a$ is a decoy: it cancels because both target terms carry exactly $a^{3}$.",
+    "solutions": [
+      {
+        "name": "General-term extraction in each expansion, then equate",
+        "steps": [
+          "In $\\left(ax^{2}+\\dfrac{70}{27bx}\\right)^{4}$ the $(k+1)$-th term is $\\binom{4}{k}(ax^{2})^{4-k}\\left(\\dfrac{70}{27bx}\\right)^{k}$, whose $x$-power is $2(4-k)-k=8-3k$. Setting $8-3k=5$ gives $k=1$, so the coefficient of $x^{5}$ is $\\binom{4}{1}a^{3}\\cdot\\dfrac{70}{27b}=\\dfrac{280\\,a^{3}}{27b}$.",
+          "In $\\left(ax-\\dfrac{1}{bx^{2}}\\right)^{7}$ the $(k+1)$-th term is $\\binom{7}{k}(ax)^{7-k}\\left(-\\dfrac{1}{bx^{2}}\\right)^{k}$, whose $x$-power is $(7-k)-2k=7-3k$. Setting $7-3k=-5$ gives $k=4$, so the coefficient of $x^{-5}$ is $\\binom{7}{4}a^{3}(-1)^{4}\\dfrac{1}{b^{4}}=\\dfrac{35\\,a^{3}}{b^{4}}$.",
+          "Equate the two coefficients: $\\dfrac{280\\,a^{3}}{27b}=\\dfrac{35\\,a^{3}}{b^{4}}$. Since $a\\neq 0$, cancel $a^{3}$ to get $\\dfrac{280}{27b}=\\dfrac{35}{b^{4}}$, i.e. $280\\,b^{3}=35\\cdot 27=945$, so $b^{3}=\\dfrac{945}{280}=\\dfrac{27}{8}$.",
+          "Taking the real cube root, $b=\\dfrac{3}{2}$, hence $2b=\\boxed{3}$."
+        ]
+      },
+      {
+        "name": "Reduce to one unknown $b^{3}$ by tracking only the $b$-powers",
+        "steps": [
+          "Observe that both target coefficients must be built from $a^{3}$ (the only way to reach the required $x$-exponents while the remaining factor supplies the leftover power), so $a$ will cancel; only the powers of $b$ and the numerical constants matter. Write the left coefficient as $C_{L}=\\dfrac{280}{27}\\,b^{-1}$ and the right as $C_{R}=35\\,b^{-4}$ (constants from $\\binom{4}{1}\\cdot 70$ and $\\binom{7}{4}$, the right sign being $+$ since the exponent $4$ is even).",
+          "The condition $C_{L}=C_{R}$ reads $\\dfrac{280}{27}\\,b^{-1}=35\\,b^{-4}$. Multiply through by $b^{4}$: $\\dfrac{280}{27}\\,b^{3}=35$, so $b^{3}=35\\cdot\\dfrac{27}{280}=\\dfrac{27}{8}$.",
+          "Thus $b=\\left(\\dfrac{27}{8}\\right)^{1/3}=\\dfrac{3}{2}$, giving $2b=\\boxed{3}$ — matching the first method exactly."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 1, Q13. **Insight.** Two unrelated-looking expansions are stitched together by a single equation; because both required terms carry $a^{3}$, the free parameter $a$ evaporates and the whole problem collapses to the one cubic $b^{3}=\\tfrac{27}{8}$."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Where the Largest Coefficient Lands",
+    "difficulty": 4,
+    "task": "Find the value of $r$",
+    "pyq": {
+      "year": 2025,
+      "paper": "2",
+      "qno": "10"
+    },
+    "tags": [
+      "numerically greatest term",
+      "greatest coefficient",
+      "2025"
+    ],
+    "figure": "",
+    "statement": "Let $a_{0},a_{1},\\ldots,a_{23}$ be real numbers such that $\\left(1+\\dfrac{2}{5}x\\right)^{23}=\\displaystyle\\sum_{i=0}^{23}a_{i}x^{i}$ for every real number $x$. Let $a_{r}$ be the largest among the numbers $a_{j}$ for $0\\le j\\le 23$. Then the value of $r$ is",
+    "answer": "\\[\\boxed{r=6}\\]",
+    "trap": "Confusing the greatest coefficient with the greatest term. Here all the $a_{j}=\\binom{23}{j}\\left(\\tfrac{2}{5}\\right)^{j}$ are positive, so no substitution of a particular $x$ is involved — one compares consecutive coefficients directly. A second trap is arithmetic: $\\tfrac{48}{7}\\approx 6.857$ is not an integer, so the ratio $a_{i}/a_{i-1}$ crosses $1$ strictly between $i=6$ and $i=7$, making $r=6$ (not $7$).",
+    "solutions": [
+      {
+        "name": "Consecutive-coefficient ratio test",
+        "steps": [
+          "From the binomial theorem $a_{i}=\\binom{23}{i}\\left(\\dfrac{2}{5}\\right)^{i}$, all positive. The largest sits where the sequence stops increasing, so form the ratio $\\dfrac{a_{i}}{a_{i-1}}=\\dfrac{\\binom{23}{i}}{\\binom{23}{i-1}}\\cdot\\dfrac{2}{5}=\\dfrac{24-i}{i}\\cdot\\dfrac{2}{5}$.",
+          "The coefficients keep rising while $\\dfrac{a_{i}}{a_{i-1}}\\ge 1$, i.e. $2(24-i)\\ge 5i\\iff 48\\ge 7i\\iff i\\le\\dfrac{48}{7}\\approx 6.857$.",
+          "Thus $a_{i}>a_{i-1}$ for $i=1,\\ldots,6$ and $a_{7}<a_{6}$, so the peak is at index $6$. Numerically $a_{5}\\approx 344.57$, $a_{6}\\approx 413.48$, $a_{7}\\approx 401.67$, confirming the maximum at $i=6$.",
+          "Hence $r=\\boxed{6}$."
+        ]
+      },
+      {
+        "name": "Numerically-greatest-coefficient formula",
+        "steps": [
+          "For $(1+tx)^{n}$ with $t>0$ the greatest coefficient occurs at the term number $\\dfrac{(n+1)t}{1+t}$; here $n=23$, $t=\\dfrac{2}{5}$, giving $\\dfrac{24\\cdot\\tfrac{2}{5}}{1+\\tfrac{2}{5}}=\\dfrac{48/5}{7/5}=\\dfrac{48}{7}\\approx 6.857$.",
+          "Since $\\dfrac{48}{7}$ is not an integer, the greatest coefficient is the $\\bigl(\\lfloor 48/7\\rfloor+1\\bigr)=7$-th term, namely the term carrying $x^{6}$; that coefficient is $a_{6}$.",
+          "Therefore the maximizing index is $r=\\boxed{6}$, in agreement with the direct ratio test."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2025, Paper 2, Q10. **Insight.** Because every coefficient $\\binom{23}{j}\\left(\\tfrac{2}{5}\\right)^{j}$ is positive, the question is purely about where the sequence peaks; the ratio $\\tfrac{a_i}{a_{i-1}}$ falls below $1$ just past $i=\\tfrac{48}{7}\\approx 6.86$, so the last still-rising index — $6$ — wins."
   }
 ];

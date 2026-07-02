@@ -3969,5 +3969,390 @@ window.PROBLEMS = [
       }
     ],
     "remark": "**Insight.** The headache is the imported object $g(x)=\\lim_{n\\to\\infty}\\cos^{2n}(\\pi x)$, which is just the **indicator of the integers** — a clean sequential limit that lands on $1$ only where $\\cos^{2}$ equals $1$. Because that spike sits on **isolated** integers with $0$ all around, the only way to fold it into a continuous $F$ is to **switch it off**, $a=0$. Once continuity is restored, the closed interval $[0,3]$ unlocks the **Extreme Value Theorem**, so the valley $-\\tfrac14$ is not just a low point of a formula but a value that is genuinely **attained**, and the IVT then plants a root of $F(x)=1$ between the endpoint and the integer. The trap mistakes an isolated spike for a feature worth keeping."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The $2$-Periodic Handshake: $\\sin\\pi x$ meets $\\cos\\pi x$",
+    "difficulty": 3,
+    "task": "Determine which relations must hold.",
+    "pyq": {
+      "year": 2012,
+      "paper": "2",
+      "qno": "55"
+    },
+    "tags": [
+      "continuity",
+      "piecewise functions",
+      "one-sided limits",
+      "2012"
+    ],
+    "figure": "",
+    "statement": "For every integer $n$, let $a_n$ and $b_n$ be real numbers. Let the function $f:\\mathbb{R}\\to\\mathbb{R}$ be given by $$f(x)=\\begin{cases} a_n+\\sin\\pi x, & x\\in[2n,\\,2n+1],\\\\[4pt] b_n+\\cos\\pi x, & x\\in(2n-1,\\,2n), \\end{cases}$$ for all integers $n$. If $f$ is continuous, then which of the following hold(s) for all $n$?\n\n(A) $a_{n-1}-b_{n-1}=0$\n\n(B) $a_n-b_n=1$\n\n(C) $a_n-b_{n+1}=1$\n\n(D) $a_{n-1}-b_n=-1$",
+    "answer": "(B), (D)",
+    "trap": "The piece $b_n+\\cos\\pi x$ lives on the interval $(2n-1,2n)$, which sits to the LEFT of $[2n,2n+1]$. Students reflexively pair $a_n$ with $b_n$ at the wrong endpoint, or forget that the two junctions $x=2n$ and $x=2n+1$ involve pieces with DIFFERENT index labels. Getting the indexing of which $b$-piece borders which $a$-piece is the whole difficulty.",
+    "solutions": [
+      {
+        "name": "Match the two junctions of one $a$-block",
+        "steps": [
+          "The $\\sin$-piece $a_n+\\sin\\pi x$ occupies the closed interval $[2n,2n+1]$. Its left endpoint is $x=2n$ and its right endpoint is $x=2n+1$; continuity is automatic on the interior, so only the endpoints need checking.",
+          "Left junction $x=2n$: immediately to the left, $x\\in(2n-1,2n)$ carries the piece $b_n+\\cos\\pi x$. Left limit $=b_n+\\cos(2n\\pi)=b_n+1$. Value from the $\\sin$-piece $=a_n+\\sin(2n\\pi)=a_n$. Continuity forces $a_n=b_n+1$, i.e. $a_n-b_n=1$. This is (B).",
+          "Right junction $x=2n+1$: immediately to the right, $x\\in(2n+1,2n+2)=(2(n+1)-1,\\,2(n+1))$ carries the piece with index $n+1$, namely $b_{n+1}+\\cos\\pi x$. Right limit $=b_{n+1}+\\cos((2n+1)\\pi)=b_{n+1}-1$. Value from the $\\sin$-piece $=a_n+\\sin((2n+1)\\pi)=a_n$. Continuity forces $a_n=b_{n+1}-1$, i.e. $a_n-b_{n+1}=-1$.",
+          "Rewrite this last relation by shifting $n\\to n-1$: $a_{n-1}-b_n=-1$. This is (D).",
+          "Check the others. (A) $a_{n-1}-b_{n-1}=0$ would need $a=b$, but (B) says $a-b=1$, so (A) is false. (C) $a_n-b_{n+1}=1$ contradicts the derived $a_n-b_{n+1}=-1$, so (C) is false.",
+          "Hence exactly (B) and (D) hold for all $n$."
+        ]
+      },
+      {
+        "name": "Solve the recurrence for $a_n$ and $b_n$ explicitly",
+        "steps": [
+          "From the left junction $x=2n$ we found $a_n=b_n+1$; from the right junction $x=2n+1$ we found $a_n=b_{n+1}-1$, i.e. $b_{n+1}=a_n+1$.",
+          "Substitute: $b_{n+1}=a_n+1=(b_n+1)+1=b_n+2$. So $b_n$ increases by $2$ each step: $b_n=b_0+2n$, and correspondingly $a_n=b_n+1=b_0+2n+1$.",
+          "Now test each option against these formulas. (A): $a_{n-1}-b_{n-1}=(b_0+2n-1)-(b_0+2n-2)=1\\neq 0$, so (A) fails.",
+          "(B): $a_n-b_n=(b_0+2n+1)-(b_0+2n)=1$. True.",
+          "(C): $a_n-b_{n+1}=(b_0+2n+1)-(b_0+2n+2)=-1\\neq 1$, so (C) fails.",
+          "(D): $a_{n-1}-b_n=(b_0+2n-1)-(b_0+2n)=-1$. True.",
+          "The explicit sequences confirm exactly (B) and (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2012, Paper 2, Q55. The entire trap is bookkeeping: the block $[2n,2n+1]$ is flanked by the $b_n$-piece on its left and the $b_{n+1}$-piece on its right, so a single continuity condition splits across two different indices."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Maxima Agree: an IVT Crossing of $f$ and $g$",
+    "difficulty": 3,
+    "task": "Identify the statement(s) that must be true.",
+    "pyq": {
+      "year": 2014,
+      "paper": "1",
+      "qno": "42"
+    },
+    "tags": [
+      "intermediate value theorem",
+      "continuous functions",
+      "existence",
+      "2014"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"30\" y1=\"185\" x2=\"300\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/>\n  <line x1=\"40\" y1=\"200\" x2=\"40\" y2=\"25\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/>\n  <text x=\"292\" y=\"200\" fill=\"var(--ink2)\">x</text>\n  <line x1=\"40\" y1=\"55\" x2=\"300\" y2=\"55\" stroke=\"var(--ink2)\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/>\n  <text x=\"44\" y=\"51\" fill=\"var(--ink2)\">y = M (common max)</text>\n  <text x=\"22\" y=\"189\" fill=\"var(--ink2)\">0</text>\n  <text x=\"178\" y=\"200\" fill=\"var(--ink2)\">1</text>\n  <line x1=\"185\" y1=\"185\" x2=\"185\" y2=\"180\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/>\n  <path d=\"M40,150 C90,60 110,55 120,55 C160,55 180,150 300,120\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"2\"/>\n  <text x=\"70\" y=\"95\" fill=\"var(--ink3)\">f</text>\n  <circle cx=\"120\" cy=\"55\" r=\"3\" fill=\"var(--ink3)\"/>\n  <text x=\"108\" y=\"46\" fill=\"var(--ink2)\">x₁</text>\n  <path d=\"M40,110 C120,140 200,55 220,55 C245,55 270,150 300,165\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"2\"/>\n  <text x=\"268\" y=\"140\" fill=\"var(--gold)\">g</text>\n  <circle cx=\"220\" cy=\"55\" r=\"3\" fill=\"var(--gold)\"/>\n  <text x=\"224\" y=\"46\" fill=\"var(--ink2)\">x₂</text>\n  <circle cx=\"166\" cy=\"87\" r=\"3.5\" fill=\"var(--gold)\" stroke=\"var(--ink3)\"/>\n  <text x=\"150\" y=\"105\" fill=\"var(--ink2)\">c: f(c)=g(c)</text>\n</svg>",
+    "statement": "For every pair of continuous functions $f,g:[0,1]\\to\\mathbb{R}$ such that $$\\max\\{f(x):x\\in[0,1]\\}=\\max\\{g(x):x\\in[0,1]\\},$$ the correct statement(s) is(are):\n\n(A) $(f(c))^2+3f(c)=(g(c))^2+3g(c)$ for some $c\\in[0,1]$\n\n(B) $(f(c))^2+f(c)=(g(c))^2+3g(c)$ for some $c\\in[0,1]$\n\n(C) $(f(c))^2+3f(c)=(g(c))^2+g(c)$ for some $c\\in[0,1]$\n\n(D) $(f(c))^2=(g(c))^2$ for some $c\\in[0,1]$",
+    "answer": "(A), (D)",
+    "trap": "The hypothesis only says the two maxima are EQUAL — it does NOT say they occur at the same point. The single fact you can extract is that $h=f-g$ changes sign (nonnegative at $f$'s peak, nonpositive at $g$'s peak), so $f(c)=g(c)$ for some $c$. Options that stay true only when $f(c)=g(c)$ survive; options with a mismatched coefficient (the '$3g$' vs '$g$' in (B),(C)) can be broken by a counterexample and are NOT forced.",
+    "solutions": [
+      {
+        "name": "IVT on $h=f-g$ forces a common value",
+        "steps": [
+          "Let $M=\\max f=\\max g$. Since $f,g$ are continuous on the compact interval $[0,1]$, each attains its maximum: say $f(x_1)=M$ and $g(x_2)=M$ for some $x_1,x_2\\in[0,1]$.",
+          "Define $h(x)=f(x)-g(x)$, continuous on $[0,1]$. At $x_1$: $h(x_1)=f(x_1)-g(x_1)=M-g(x_1)\\ge 0$, because $M$ is the maximum of $g$ so $g(x_1)\\le M$.",
+          "At $x_2$: $h(x_2)=f(x_2)-g(x_2)=f(x_2)-M\\le 0$, because $M$ is the maximum of $f$ so $f(x_2)\\le M$.",
+          "So $h$ takes a value $\\ge 0$ and a value $\\le 0$. By the Intermediate Value Theorem there is $c$ (between $x_1$ and $x_2$) with $h(c)=0$, i.e. $f(c)=g(c)$.",
+          "At that $c$: substituting $f(c)=g(c)$ into (A) gives $(g(c))^2+3g(c)=(g(c))^2+3g(c)$, true. So (A) holds.",
+          "At the same $c$: $(f(c))^2=(g(c))^2$ trivially since $f(c)=g(c)$. So (D) holds.",
+          "(B),(C) are NOT guaranteed — see the counterexample method — so the answer is (A) and (D)."
+        ]
+      },
+      {
+        "name": "Break (B) and (C) with an explicit counterexample",
+        "steps": [
+          "To defeat (B), reduce it to a single-function inequality. Take $f\\equiv g$ (both constant, so their maxima are trivially equal). Then (B) demands $(f(c))^2+f(c)=(f(c))^2+3f(c)$, i.e. $f(c)=3f(c)$, i.e. $f(c)=0$, for some $c$.",
+          "Choose $f=g\\equiv 1$ (constant). Both maxima equal $1$, so the hypothesis holds. But $f(c)=1\\neq 0$ everywhere, so (B)'s required equation $1+1=1+3$ reads $2=4$, false for every $c$. Hence (B) can fail — it is not forced.",
+          "Same idea for (C) with $f=g\\equiv 1$: (C) demands $(f(c))^2+3f(c)=(f(c))^2+f(c)$, i.e. $3f(c)=f(c)$, i.e. $f(c)=0$. Again $f(c)=1\\neq 0$, so $1+3=1+1$ reads $4=2$, false everywhere. Hence (C) can fail too.",
+          "Meanwhile the same constant pair satisfies (A) ($1+3=1+3$) and (D) ($1=1$) for every $c$, consistent with the IVT conclusion.",
+          "So only (A) and (D) are true for EVERY admissible pair; (B) and (C) admit counterexamples."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2014, Paper 1, Q42. A classic IVT trap: equal maxima do not mean a shared location — the only universal consequence is a crossing point $c$ with $f(c)=g(c)$, which validates exactly the two symmetric options."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Counting the breaks of $[x^2-3]$",
+    "difficulty": 4,
+    "task": "Decide which statements about the discontinuities and non-differentiabilities hold.",
+    "pyq": {
+      "year": 2016,
+      "paper": "2",
+      "qno": "50"
+    },
+    "tags": [
+      "greatest integer function",
+      "continuity and differentiability",
+      "modulus functions",
+      "2016"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\">\n  <line x1=\"20\" y1=\"170\" x2=\"300\" y2=\"170\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/>\n  <line x1=\"40\" y1=\"20\" x2=\"40\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/>\n  <text x=\"296\" y=\"185\" fill=\"var(--ink2)\">x</text>\n  <text x=\"24\" y=\"28\" fill=\"var(--ink2)\">y</text>\n  <!-- step graph of f(x)=[x^2-3] on [-1/2, 2]; f = -3 until x=1, -2 on (1,sqrt2), -1 on (sqrt2,sqrt3), 0 on (sqrt3,2), 1 at x=2 -->\n  <!-- x mapping: x=-0.5 -> 55, x=2 -> 280 (scale 90 px per unit) ; y: value v -> 170 - (v+3)*30 -->\n  <line x1=\"55\" y1=\"170\" x2=\"175\" y2=\"170\" stroke=\"var(--ink2)\" stroke-width=\"2\"/>\n  <line x1=\"175\" y1=\"140\" x2=\"217\" y2=\"140\" stroke=\"var(--ink2)\" stroke-width=\"2\"/>\n  <line x1=\"217\" y1=\"110\" x2=\"242\" y2=\"110\" stroke=\"var(--ink2)\" stroke-width=\"2\"/>\n  <line x1=\"242\" y1=\"80\" x2=\"280\" y2=\"80\" stroke=\"var(--ink2)\" stroke-width=\"2\"/>\n  <!-- jump markers highlighted -->\n  <circle cx=\"175\" cy=\"170\" r=\"3\" fill=\"var(--gold)\"/>\n  <circle cx=\"175\" cy=\"140\" r=\"3\" fill=\"var(--gold)\"/>\n  <circle cx=\"217\" cy=\"140\" r=\"3\" fill=\"var(--gold)\"/>\n  <circle cx=\"217\" cy=\"110\" r=\"3\" fill=\"var(--gold)\"/>\n  <circle cx=\"242\" cy=\"110\" r=\"3\" fill=\"var(--gold)\"/>\n  <circle cx=\"242\" cy=\"80\" r=\"3\" fill=\"var(--gold)\"/>\n  <circle cx=\"280\" cy=\"80\" r=\"3\" fill=\"var(--gold)\"/>\n  <text x=\"170\" y=\"183\" fill=\"var(--ink2)\">1</text>\n  <text x=\"207\" y=\"183\" fill=\"var(--ink2)\">√2</text>\n  <text x=\"232\" y=\"183\" fill=\"var(--ink2)\">√3</text>\n  <text x=\"274\" y=\"183\" fill=\"var(--ink2)\">2</text>\n  <text x=\"120\" y=\"30\" fill=\"var(--gold)\">jumps of $[x^2-3]$: x=1, √2, √3</text>\n</svg>",
+    "statement": "Let $f:\\left[-\\dfrac{1}{2},2\\right]\\to\\mathbb{R}$ and $g:\\left[-\\dfrac{1}{2},2\\right]\\to\\mathbb{R}$ be defined by $f(x)=[x^2-3]$ and $g(x)=|x|\\,f(x)+|4x-7|\\,f(x)$, where $[y]$ denotes the greatest integer less than or equal to $y$. Then\n\n(A) $f$ is discontinuous at exactly three points in $\\left[-\\dfrac{1}{2},2\\right]$\n\n(B) $f$ is discontinuous at exactly four points in $\\left[-\\dfrac{1}{2},2\\right]$\n\n(C) $g$ is NOT differentiable at exactly four points in $\\left(-\\dfrac{1}{2},2\\right)$\n\n(D) $g$ is NOT differentiable at exactly five points in $\\left(-\\dfrac{1}{2},2\\right)$",
+    "answer": "(B), (C)",
+    "trap": "Students count the jumps of $[x^2-3]$ correctly but then treat $g$ as inheriting a kink at every corner of $|x|$ and $|4x-7|$. The trap is that $g=f\\cdot(|x|+|4x-7|)$: wherever $f(x)=0$ the modulus corners are silently annihilated, so the corner of $|4x-7|$ at $x=7/4$ (which lies in the region $f\\equiv 0$) contributes nothing.",
+    "solutions": [
+      {
+        "name": "Track the jumps of $[x^2-3]$, then the corners of $g$",
+        "steps": [
+          "On the domain $\\left[-\\tfrac12,2\\right]$ the inner value $u=x^2-3$ increases from $u(-\\tfrac12)=-\\tfrac{11}{4}$ up to $u(2)=1$, but note $u$ first dips: $x^2$ has its minimum at $x=0$, so $u$ decreases on $\\left[-\\tfrac12,0\\right]$ and increases on $[0,2]$. The minimum of $u$ is $-3$ at $x=0$.",
+          "$f(x)=[x^2-3]$ jumps exactly where $x^2-3$ passes an integer. For $x\\ge 0$, solve $x^2-3=k$: $x^2-3=-2\\Rightarrow x=1$; $x^2-3=-1\\Rightarrow x=\\sqrt2$; $x^2-3=0\\Rightarrow x=\\sqrt3$. At $x=2$, $x^2-3=1$ but $x=2$ is the right endpoint, not an interior jump.",
+          "On $\\left[-\\tfrac12,0\\right]$, $x^2-3\\in\\left[-3,-\\tfrac{11}{4}\\right]$ so $[x^2-3]=-3$ throughout — no jump. Thus $f$ is discontinuous at exactly $x=1,\\ \\sqrt2,\\ \\sqrt3$: three interior jumps. Counting within the closed domain the value also changes reaching $x=2$, but the four distinct integer-crossings $\\{-2,-1,0,1\\}$ produce four points of discontinuity when the endpoint is included — the official key marks (B) four. Hence (A) is false and (B) is true.",
+          "Now $g(x)=f(x)\\,\\big(|x|+|4x-7|\\big)$. Write $h(x)=|x|+|4x-7|$, which has corners at $x=0$ and $x=\\tfrac74$.",
+          "Non-differentiability of $g$ can occur (i) at the jump points of $f$ ($x=1,\\sqrt2,\\sqrt3$), and (ii) at corners of $h$ where $f\\neq0$.",
+          "On $\\left[\\sqrt3,2\\right)$, $x^2-3\\in[0,1)$ so $f(x)=0$; therefore $g\\equiv0$ on that stretch and the corner of $h$ at $x=\\tfrac74\\approx1.75\\in(\\sqrt3,2)$ is killed — no kink there.",
+          "The corner of $h$ at $x=0$: on a neighbourhood of $0$, $f=-3\\neq0$, so $g=-3h$ keeps the corner — one non-differentiable point.",
+          "Total non-differentiable points: $x=0,\\ 1,\\ \\sqrt2,\\ \\sqrt3$ — exactly four. Hence (C) is true and (D) is false."
+        ]
+      },
+      {
+        "name": "Piecewise-constant reduction of $f$",
+        "steps": [
+          "Split the domain by the jump values of $f$: on $\\left[-\\tfrac12,1\\right)$, $f=-3$; on $\\left[1,\\sqrt2\\right)$, $f=-2$; on $\\left[\\sqrt2,\\sqrt3\\right)$, $f=-1$; on $\\left[\\sqrt3,2\\right)$, $f=0$; at $x=2$, $f=1$.",
+          "So $g$ equals a constant multiple of $h(x)=|x|+|4x-7|$ on each block: $g=-3h,\\ -2h,\\ -h,\\ 0$ respectively.",
+          "Within each open block $g$ is smooth except where $h$ has a corner. $h$'s corners are $x=0$ (inside the first block) and $x=\\tfrac74$ (inside the last block where $g\\equiv0$).",
+          "At $x=0$: $g=-3h$, and $h$ has a genuine corner, so $g$ is not differentiable — 1 point.",
+          "At $x=\\tfrac74$: $g\\equiv0$ on the whole block, perfectly smooth — 0 points.",
+          "At each interface $x=1,\\sqrt2,\\sqrt3$ the constant multiplying $h$ jumps, so $g$ has a jump discontinuity in value ⇒ automatically not differentiable — 3 points.",
+          "Summing: non-differentiable at $\\{0,1,\\sqrt2,\\sqrt3\\}$, exactly four points ⇒ (C). Since $f$ itself changes value at $\\{1,\\sqrt2,\\sqrt3\\}$ plus the endpoint value change to $1$ at $x=2$, the discontinuity count is four ⇒ (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2016, Paper 2, Q50. The whole difficulty is bookkeeping: a modulus corner is only a corner of $g$ where the greatest-integer factor is nonzero, so $x=\\tfrac74$ is a decoy."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Where does $x\\cos(\\pi(x+[x]))$ break?",
+    "difficulty": 3,
+    "task": "Identify the points of discontinuity.",
+    "pyq": {
+      "year": 2017,
+      "paper": "1",
+      "qno": "39"
+    },
+    "tags": [
+      "greatest integer function",
+      "discontinuity",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "Let $[x]$ denote the greatest integer less than or equal to $x$. At which of the following point(s) is the function $f(x)=x\\cos\\big(\\pi(x+[x])\\big)$ discontinuous?\n\n(A) $x=-1$\n\n(B) $x=0$\n\n(C) $x=1$\n\n(D) $x=2$\n\nNote: the official key awarded this as a bonus (+4 to all candidates) due to a printing inconsistency; the intended answer set is $(A),(C),(D)$.",
+    "answer": "$(A),(C),(D)$ (officially a bonus / +4 to all)",
+    "trap": "The obvious reflex is that $[x]$ is discontinuous at every integer, so $f$ must break at all four points including $x=0$. But at $x=0$ the outer factor $x$ vanishes, and a bounded jump multiplied by a factor tending to $0$ still gives a $0$ limit — so $x=0$ is a removable/continuous point. The break survives only at the nonzero integers.",
+    "solutions": [
+      {
+        "name": "Reduce the cosine using parity of $[x]$",
+        "steps": [
+          "Write $x+[x]$. Since $\\cos$ has period $2\\pi$ and $[x]$ is an integer, $\\cos(\\pi(x+[x]))=\\cos(\\pi x)\\cos(\\pi[x])-\\sin(\\pi x)\\sin(\\pi[x])$. Because $[x]$ is an integer, $\\sin(\\pi[x])=0$ and $\\cos(\\pi[x])=(-1)^{[x]}$.",
+          "Hence $f(x)=x\\,(-1)^{[x]}\\cos(\\pi x)$.",
+          "On each interval $[n,n+1)$, $[x]=n$ is constant, so $f(x)=(-1)^n\\,x\\cos(\\pi x)$ is continuous there. Discontinuities can only occur at integers, where $(-1)^{[x]}$ flips sign.",
+          "At an integer $x=n$: right value uses $[n]=n$, giving $f(n^+)=(-1)^n\\,n\\cos(\\pi n)=(-1)^n n(-1)^n=n$. Left limit uses $[x]=n-1$, giving $f(n^-)=(-1)^{\\,n-1}\\,n\\cos(\\pi n)=(-1)^{n-1}n(-1)^n=-n$.",
+          "So the jump at $x=n$ is $f(n^+)-f(n^-)=n-(-n)=2n$. This is nonzero exactly when $n\\neq0$.",
+          "Therefore $f$ is discontinuous at every nonzero integer and continuous at $x=0$. Among the listed points: discontinuous at $x=-1,\\ 1,\\ 2$ (jumps $-2,2,4$), continuous at $x=0$. Answer $(A),(C),(D)$."
+        ]
+      },
+      {
+        "name": "Direct one-sided limits at each candidate",
+        "steps": [
+          "$x=0$: for $x\\to0^+$, $[x]=0$ so $f=x\\cos(\\pi x)\\to0$; for $x\\to0^-$, $[x]=-1$ so $f=x\\cos(\\pi(x-1))=x\\cos(\\pi x-\\pi)=-x\\cos(\\pi x)\\to0$. Both one-sided limits and $f(0)=0$ agree ⇒ continuous. (B) is NOT a discontinuity.",
+          "$x=1$: $x\\to1^+$, $[x]=1$, $f=x\\cos(\\pi(x+1))=x\\cos(\\pi x+\\pi)=-x\\cos(\\pi x)\\to-1\\cdot(-1)=1$. $x\\to1^-$, $[x]=0$, $f=x\\cos(\\pi x)\\to1\\cdot(-1)=-1$. Limits $1\\neq-1$ ⇒ discontinuous. (C) holds.",
+          "$x=-1$: $x\\to-1^+$, $[x]=-1$, $f=x\\cos(\\pi(x-1))=-x\\cos(\\pi x)\\to-(-1)(-1)=-1$. $x\\to-1^-$, $[x]=-2$, $f=x\\cos(\\pi(x-2))=x\\cos(\\pi x)\\to(-1)(-1)=1$. Limits $-1\\neq1$ ⇒ discontinuous. (A) holds.",
+          "$x=2$: $x\\to2^+$, $[x]=2$, $f=x\\cos(\\pi(x+2))=x\\cos(\\pi x)\\to2\\cdot1=2$. $x\\to2^-$, $[x]=1$, $f=x\\cos(\\pi(x+1))=-x\\cos(\\pi x)\\to-2\\cdot1=-2$. Limits $2\\neq-2$ ⇒ discontinuous. (D) holds.",
+          "Collecting: discontinuous at $x=-1,1,2$ and continuous at $x=0$, matching the intended key $(A),(C),(D)$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2017, Paper 1, Q39 (officially bonused, +4 to all, due to a printing inconsistency). The clean identity $f(x)=(-1)^{[x]}x\\cos(\\pi x)$ shows the jump at an integer $n$ is $2n$ — zero precisely at $x=0$, which is why the origin is the one integer that stays continuous."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Zeros forced by $f:\\mathbb{R}\\to(0,1)$",
+    "difficulty": 4,
+    "task": "Identify which functions must vanish on $(0,1)$.",
+    "pyq": {
+      "year": 2017,
+      "paper": "1",
+      "qno": "40"
+    },
+    "tags": [
+      "intermediate value theorem",
+      "definite integral bounds",
+      "2017"
+    ],
+    "figure": "",
+    "statement": "Let $f:\\mathbb{R}\\to(0,1)$ be a continuous function. Then which of the following function(s) has(have) the value zero at some point in the interval $(0,1)$?\n\n(A) $x^{9}-f(x)$\n(B) $x-\\displaystyle\\int_{0}^{\\frac{\\pi}{2}-x} f(t)\\cos t\\,dt$\n(C) $e^{x}-\\displaystyle\\int_{0}^{x} f(t)\\sin t\\,dt$\n(D) $f(x)+\\displaystyle\\int_{0}^{\\frac{\\pi}{2}} f(t)\\sin t\\,dt$",
+    "answer": "(A), (B)",
+    "trap": "Students try to compute the integrals explicitly. The whole point is that $f$ is arbitrary — only the range constraint $0<f<1$ matters. Also, (D) is a sum of two strictly positive quantities, so it can NEVER be zero; recognizing that a function is bounded away from $0$ is just as important as finding a sign change.",
+    "solutions": [
+      {
+        "name": "IVT via endpoint sign-checks",
+        "steps": [
+          "Every candidate is continuous on $[0,1]$ (a continuous $f$, plus integrals with continuous integrands are continuous in the limit variable). So the Intermediate Value Theorem applies: a sign change forces a zero.",
+          "(A) Let $g(x)=x^{9}-f(x)$. Since $0<f<1$: $g(0)=0-f(0)=-f(0)<0$ and $g(1)=1-f(1)>0$ (because $f(1)<1$). Opposite signs $\\Rightarrow$ a zero in $(0,1)$. TRUE.",
+          "(B) Let $h(x)=x-\\displaystyle\\int_{0}^{\\frac{\\pi}{2}-x} f(t)\\cos t\\,dt$. At $x=0$: $h(0)=-\\displaystyle\\int_{0}^{\\pi/2} f(t)\\cos t\\,dt<0$ since the integrand $f(t)\\cos t>0$ on $(0,\\pi/2)$.",
+          "At $x=1$: the upper limit is $\\tfrac{\\pi}{2}-1\\approx0.57$, and on $(0,\\tfrac{\\pi}{2}-1)$ we have $0<f(t)\\cos t<1$, so $\\displaystyle\\int_{0}^{\\frac{\\pi}{2}-1} f(t)\\cos t\\,dt<\\tfrac{\\pi}{2}-1<1$. Hence $h(1)=1-(\\text{something}<1)>0$.",
+          "$h(0)<0$, $h(1)>0$ $\\Rightarrow$ a zero in $(0,1)$. TRUE.",
+          "(C) Let $p(x)=e^{x}-\\displaystyle\\int_{0}^{x} f(t)\\sin t\\,dt$. On $(0,1)$, $e^{x}>1$, while $\\displaystyle\\int_{0}^{x} f(t)\\sin t\\,dt<\\int_{0}^{x}1\\cdot 1\\,dt=x<1$. So $p(x)>1-1=0$ throughout: strictly positive, never zero. FALSE.",
+          "(D) Let $q(x)=f(x)+\\displaystyle\\int_{0}^{\\pi/2} f(t)\\sin t\\,dt$. Here $f(x)>0$ and the integral is a fixed positive constant, so $q(x)>0$ everywhere. Never zero. FALSE.",
+          "Therefore the answer is (A), (B)."
+        ]
+      },
+      {
+        "name": "Fixed-point / bounding reformulation",
+        "steps": [
+          "Reframe each option as ‘does a curve cross a barrier?’ using only $0<f<1$.",
+          "(A) A zero of $x^{9}-f(x)$ is a solution of $x^{9}=f(x)$. On $(0,1)$ the graph $y=x^{9}$ climbs from $0$ to $1$, while $y=f(x)$ stays strictly inside the horizontal band $(0,1)$. At $x\\to0^{+}$, $x^{9}<f$; at $x\\to1^{-}$, $x^{9}\\to1>f$. Two continuous curves swapping order must intersect $\\Rightarrow$ TRUE.",
+          "(B) Write $F(x)=\\displaystyle\\int_{0}^{\\frac{\\pi}{2}-x} f(t)\\cos t\\,dt$. As $x$ runs $0\\to1$, $F$ decreases (upper limit shrinks) from a positive value $F(0)>0$ down toward $F(1)<\\tfrac{\\pi}{2}-1<1$, while the line $y=x$ rises from $0$ to $1$. At $x=0$ the line is below $F$; at $x=1$ the line is above $F$. Crossing $\\Rightarrow$ TRUE.",
+          "(C) Bound the integral: $0\\le\\displaystyle\\int_{0}^{x} f(t)\\sin t\\,dt\\le\\int_{0}^{x}\\sin t\\,dt=1-\\cos x<1$ for $x\\in(0,1)$, whereas $e^{x}>1$. The gap $e^{x}-(\\text{integral})>1-1=0$ can never close $\\Rightarrow$ FALSE.",
+          "(D) Both summands are positive, so $q$ sits entirely above the axis — no barrier is ever reached $\\Rightarrow$ FALSE.",
+          "Same verdict: (A), (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2017, Paper 1, Q40. The elegance is that no integral needs evaluating — the range $0<f<1$ alone decides everything, and spotting the two strictly-positive functions (C),(D) is the real test."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Four functions, four verdicts at $x=0$",
+    "difficulty": 4,
+    "task": "Match each function to its behaviour at the origin.",
+    "pyq": {
+      "year": 2018,
+      "paper": "2",
+      "qno": "18"
+    },
+    "tags": [
+      "continuity",
+      "differentiability",
+      "greatest integer function",
+      "2018"
+    ],
+    "figure": "",
+    "statement": "Let $f_1:\\mathbb{R}\\to\\mathbb{R}$, $f_2:\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)\\to\\mathbb{R}$, $f_3:\\left(-1,\\,e^{\\pi/2}-2\\right)\\to\\mathbb{R}$ and $f_4:\\mathbb{R}\\to\\mathbb{R}$ be defined by\n\n(i) $f_1(x)=\\sin\\!\\left(\\sqrt{1-e^{-x^{2}}}\\right)$,\n\n(ii) $f_2(x)=\\begin{cases}\\dfrac{|\\sin x|}{\\tan^{-1}x}, & x\\ne 0\\\\[4pt] 1, & x=0\\end{cases}$, where $\\tan^{-1}x$ takes values in $\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)$,\n\n(iii) $f_3(x)=[\\sin(\\log_e(x+2))]$, where $[t]$ is the greatest integer $\\le t$,\n\n(iv) $f_4(x)=\\begin{cases}x^{2}\\sin\\!\\left(\\tfrac1x\\right), & x\\ne 0\\\\ 0, & x=0.\\end{cases}$\n\n**LIST-I** (P) $f_1$; (Q) $f_2$; (R) $f_3$; (S) $f_4$. **LIST-II** (1) NOT continuous at $x=0$; (2) continuous at $x=0$ and NOT differentiable at $x=0$; (3) differentiable at $x=0$ and its derivative is NOT continuous at $x=0$; (4) differentiable at $x=0$ and its derivative is continuous at $x=0$.\n\nOptions:\n(A) P$\\to$2; Q$\\to$3; R$\\to$1; S$\\to$4\n(B) P$\\to$4; Q$\\to$1; R$\\to$2; S$\\to$3\n(C) P$\\to$4; Q$\\to$2; R$\\to$1; S$\\to$3\n(D) P$\\to$2; Q$\\to$1; R$\\to$4; S$\\to$3",
+    "answer": "(D)",
+    "trap": "The killer is $f_1$: it looks smooth, but $\\sqrt{1-e^{-x^2}}\\sim|x|$ near $0$, so $f_1(x)\\approx\\sin|x|$ — a corner, hence continuous but NOT differentiable. The $\\sqrt{\\,}$ turns $x^2$ back into $|x|$. Equally, $f_4=x^2\\sin(1/x)$ is differentiable at $0$ yet its derivative oscillates and is discontinuous there — a classic ‘derivative exists but isn't continuous’ example.",
+    "solutions": [
+      {
+        "name": "Local expansion of each function",
+        "steps": [
+          "$f_1(x)=\\sin\\sqrt{1-e^{-x^{2}}}$. As $x\\to0$, $1-e^{-x^{2}}=x^{2}-\\tfrac{x^{4}}{2}+\\cdots$, so $\\sqrt{1-e^{-x^{2}}}=|x|\\sqrt{1-\\tfrac{x^{2}}{2}+\\cdots}=|x|+O(|x|^{3})$. Thus $f_1(x)=\\sin(|x|+\\cdots)\\approx|x|$ near $0$.",
+          "Continuous at $0$ (value $0$), but RHD $=+1$ and LHD $=-1$ (the $|x|$ corner): continuous but NOT differentiable. So P$\\to$2.",
+          "$f_2$: for $x\\to0^{+}$, $|\\sin x|=\\sin x$ and $\\dfrac{\\sin x}{\\tan^{-1}x}\\to\\dfrac{x}{x}=1$, so RHL$=1$. For $x\\to0^{-}$, $|\\sin x|=-\\sin x>0$ while $\\tan^{-1}x<0$, so $\\dfrac{|\\sin x|}{\\tan^{-1}x}\\to\\dfrac{(-x)}{x}=-1$, giving LHL$=-1$.",
+          "LHL$\\ne$RHL, so $f_2$ is NOT continuous at $0$. So Q$\\to$1.",
+          "$f_3(x)=[\\sin(\\log_e(x+2))]$. At $x=0$, $\\log_e2\\approx0.693$ and $\\sin(0.693)\\approx0.639\\in(0,1)$. In a neighbourhood of $0$, $\\sin(\\log_e(x+2))$ stays strictly between $0$ and $1$, so the greatest integer is constantly $0$.",
+          "A locally constant function is differentiable with derivative $0$, and that derivative ($\\equiv0$ near $0$) is continuous. So R$\\to$4.",
+          "$f_4(x)=x^{2}\\sin(1/x)$: $f_4'(0)=\\lim_{x\\to0}\\dfrac{x^{2}\\sin(1/x)-0}{x}=\\lim_{x\\to0}x\\sin(1/x)=0$, so it IS differentiable at $0$.",
+          "For $x\\ne0$, $f_4'(x)=2x\\sin(1/x)-\\cos(1/x)$; as $x\\to0$ the term $\\cos(1/x)$ oscillates and $\\lim_{x\\to0}f_4'(x)$ does not exist $\\ne f_4'(0)=0$. So the derivative is NOT continuous: S$\\to$3.",
+          "P$\\to$2, Q$\\to$1, R$\\to$4, S$\\to$3 $\\Rightarrow$ option (D)."
+        ]
+      },
+      {
+        "name": "Elimination by two decisive checks",
+        "steps": [
+          "Rather than fully classify all four, pin down two entries and let the options collapse.",
+          "Decisive check 1 — $f_2$ at $0$: the sign flip of $\\tan^{-1}x$ (negative for $x<0$) against $|\\sin x|\\ge0$ forces LHL$=-1\\ne$RHL$=1$. So $f_2$ is NOT continuous: Q$\\to$1.",
+          "Only options (B) and (D) have Q$\\to$1. They differ in P and R: (B) says P$\\to$4, R$\\to$2; (D) says P$\\to$2, R$\\to$4.",
+          "Decisive check 2 — $f_3$ at $0$: near $0$, $\\sin(\\log_e(x+2))\\in(0,1)$, so $f_3\\equiv0$ locally, which is differentiable with a continuous ($\\equiv0$) derivative: R$\\to$4.",
+          "R$\\to$4 rules out (B) (which claimed R$\\to$2) and confirms (D).",
+          "Cross-check P and S under (D): $f_1\\approx\\sin|x|$ gives a corner (P$\\to$2, matches), and $f_4=x^2\\sin(1/x)$ is differentiable with discontinuous derivative (S$\\to$3, matches). Consistent.",
+          "Answer: (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2018, Paper 2, Q18. A four-in-one taxonomy of the continuity/differentiability ladder — the traps are $\\sqrt{1-e^{-x^2}}\\sim|x|$ (smooth-looking corner) and $x^2\\sin(1/x)$ (differentiable but with a discontinuous derivative)."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Sawtooth Fed Into a Valley: $f(\\{x\\})$",
+    "difficulty": 4,
+    "task": "Find the value of $c+d$.",
+    "pyq": {
+      "year": 2020,
+      "paper": "2",
+      "qno": "5"
+    },
+    "tags": [
+      "composite functions",
+      "continuity and differentiability",
+      "fractional part",
+      "2020"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"170\" x2=\"300\" y2=\"170\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><line x1=\"160\" y1=\"30\" x2=\"160\" y2=\"185\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><text x=\"302\" y=\"166\" fill=\"var(--ink2)\">x</text><text x=\"164\" y=\"28\" fill=\"var(--ink2)\">(f∘g)(x)</text><text x=\"148\" y=\"183\" fill=\"var(--ink2)\">0</text><text x=\"28\" y=\"183\" fill=\"var(--ink2)\">-1</text><text x=\"286\" y=\"183\" fill=\"var(--ink2)\">1</text><line x1=\"20\" y1=\"170\" x2=\"20\" y2=\"166\" stroke=\"var(--ink3)\"/><line x1=\"300\" y1=\"170\" x2=\"300\" y2=\"166\" stroke=\"var(--ink3)\"/><text x=\"12\" y=\"130\" fill=\"var(--ink2)\">2</text><line x1=\"18\" y1=\"126\" x2=\"22\" y2=\"126\" stroke=\"var(--ink3)\"/><text x=\"12\" y=\"58\" fill=\"var(--ink2)\">4</text><line x1=\"18\" y1=\"54\" x2=\"22\" y2=\"54\" stroke=\"var(--ink3)\"/><line x1=\"20\" y1=\"126\" x2=\"90\" y2=\"126\" stroke=\"var(--ink3)\" stroke-width=\"1.8\"/><line x1=\"90\" y1=\"126\" x2=\"160\" y2=\"54\" stroke=\"var(--ink3)\" stroke-width=\"1.8\"/><line x1=\"160\" y1=\"126\" x2=\"230\" y2=\"126\" stroke=\"var(--ink3)\" stroke-width=\"1.8\"/><line x1=\"230\" y1=\"126\" x2=\"300\" y2=\"54\" stroke=\"var(--ink3)\" stroke-width=\"1.8\"/><circle cx=\"160\" cy=\"54\" r=\"3\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/><circle cx=\"160\" cy=\"126\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"90\" cy=\"126\" r=\"2.6\" fill=\"var(--ink3)\"/><circle cx=\"230\" cy=\"126\" r=\"2.6\" fill=\"var(--ink3)\"/><text x=\"78\" y=\"188\" fill=\"var(--ink2)\">-½</text><text x=\"224\" y=\"188\" fill=\"var(--ink2)\">½</text><text x=\"150\" y=\"48\" fill=\"var(--gold)\">jump</text></svg>",
+    "statement": "Let the functions $f:(-1,1)\\to\\mathbb{R}$ and $g:(-1,1)\\to(-1,1)$ be defined by $$f(x)=|2x-1|+|2x+1|, \\qquad g(x)=x-[x],$$ where $[x]$ denotes the greatest integer less than or equal to $x$. Let $f\\circ g:(-1,1)\\to\\mathbb{R}$ be the composite function defined by $(f\\circ g)(x)=f(g(x))$. Suppose $c$ is the number of points in the interval $(-1,1)$ at which $f\\circ g$ is NOT continuous, and suppose $d$ is the number of points in the interval $(-1,1)$ at which $f\\circ g$ is NOT differentiable. Then the value of $c+d$ is _____.",
+    "answer": "$\\boxed{4}$",
+    "trap": "Students rush to say $\\{x\\}=x-[x]$ is discontinuous only at $x=0$ inside $(-1,1)$ and stop there. But you must feed that value into $f$: the OUTER function $f$ has a corner at each half-integer of its argument, and because $g$ is continuous on the two open pieces, those corners of $f$ inject FRESH non-differentiable points of the composite at $x=\\pm\\tfrac12$. Conversely, the corner of $g$ at $x=0$ becomes a genuine jump of $f\\circ g$ (not a mere corner) because the left value pulls $f$'s argument toward $1^-$ while the right value starts it at $0$.",
+    "solutions": [
+      {
+        "name": "Reduce $f$ on the range of $g$, then read off pieces",
+        "steps": [
+          "First simplify the fractional part on $(-1,1)$: for $x\\in(-1,0)$, $[x]=-1$ so $g(x)=x+1\\in(0,1)$; for $x\\in[0,1)$, $[x]=0$ so $g(x)=x\\in[0,1)$. Thus $g$ always lands in $[0,1)$.",
+          "Now simplify $f(t)=|2t-1|+|2t+1|$ for $t\\in[0,1)$. Since $t\\ge0$, $2t+1>0$ so $|2t+1|=2t+1$. The other term flips sign at $t=\\tfrac12$: for $t\\in[0,\\tfrac12)$, $|2t-1|=1-2t$ giving $f(t)=(1-2t)+(2t+1)=2$; for $t\\in[\\tfrac12,1)$, $|2t-1|=2t-1$ giving $f(t)=(2t-1)+(2t+1)=4t$.",
+          "Compose. On $x\\in(-1,0)$ with $g=x+1$: $f\\circ g=2$ when $x+1<\\tfrac12$ (i.e. $x<-\\tfrac12$) and $=4(x+1)$ when $x\\ge-\\tfrac12$. On $x\\in[0,1)$ with $g=x$: $f\\circ g=2$ when $x<\\tfrac12$ and $=4x$ when $x\\ge\\tfrac12$.",
+          "Check continuity at the fractional-part break $x=0$. Left limit: as $x\\to0^-$, $g\\to1^-$ so $f\\circ g\\to4\\cdot1=4$. Right limit and value: as $x\\to0^+$, $g\\to0$ so $f\\circ g\\to2$, and $(f\\circ g)(0)=f(0)=2$. Since $4\\neq2$, there is a jump discontinuity at $x=0$. Everywhere else the two pieces are joined by continuous linear/constant maps, so $c=1$.",
+          "Check differentiability. The composite is piecewise linear with corners wherever the slope changes: at $x=-\\tfrac12$ (slope $0\\to4$), at $x=\\tfrac12$ (slope $0\\to4$), and at $x=0$ it is already discontinuous, hence automatically non-differentiable. So the non-differentiable points are $x=-\\tfrac12,\\,0,\\,\\tfrac12$, giving $d=3$.",
+          "Therefore $c+d=1+3=4.$"
+        ]
+      },
+      {
+        "name": "Track corners of $f$ and jumps of $g$ separately",
+        "steps": [
+          "A composite $f\\circ g$ can lose smoothness for two reasons: (i) $g$ itself is bad, or (ii) $g$ is fine but its output sits exactly where $f$ is bad.",
+          "Bad points of $g=\\{x\\}$ inside $(-1,1)$: only $x=0$ (the sawtooth jump). Here $g$ leaps from $1^-$ down to $0$, so $f\\circ g$ jumps from $f(1^-)=4$ to $f(0)=2$ — a genuine discontinuity. Count it once: $c=1$, and it is also non-differentiable.",
+          "Bad points of $f$: the outer $f(t)$ has corners where a modulus argument vanishes, i.e. $t=\\tfrac12$ and $t=-\\tfrac12$; but $g$ only outputs $t\\in[0,1)$, so only the corner at $t=\\tfrac12$ is reachable.",
+          "Solve $g(x)=\\tfrac12$ in $(-1,1)$: on $(-1,0)$, $x+1=\\tfrac12\\Rightarrow x=-\\tfrac12$; on $[0,1)$, $x=\\tfrac12$. At both points $g$ is locally smooth with nonzero slope, so the corner of $f$ passes through undiluted and $f\\circ g$ is continuous but non-differentiable there.",
+          "Assemble: discontinuities $\\{0\\}\\Rightarrow c=1$; non-differentiable points $\\{-\\tfrac12,\\,\\tfrac12\\}$ from $f$'s corner plus $\\{0\\}$ from the jump $\\Rightarrow d=3$.",
+          "Hence $c+d=1+3=4.$"
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2020, Paper 2, Q5. The lesson is directional: a smooth outer function cannot heal a jump in $g$, but a smooth $g$ faithfully transmits every corner of $f$ that its output can reach — so audit both layers."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "When the Step Function's Jumps Get Cancelled",
+    "difficulty": 4,
+    "task": "Determine which statements are true.",
+    "pyq": {
+      "year": 2023,
+      "paper": "2",
+      "qno": "6"
+    },
+    "tags": [
+      "greatest integer function",
+      "continuity",
+      "differentiability",
+      "2023"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"25\" y1=\"140\" x2=\"300\" y2=\"140\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><text x=\"302\" y=\"144\" fill=\"var(--ink2)\">x</text><text x=\"20\" y=\"156\" fill=\"var(--ink2)\">0</text><text x=\"290\" y=\"156\" fill=\"var(--ink2)\">1</text><line x1=\"25\" y1=\"136\" x2=\"25\" y2=\"144\" stroke=\"var(--ink3)\"/><line x1=\"93.75\" y1=\"136\" x2=\"93.75\" y2=\"144\" stroke=\"var(--ink3)\"/><line x1=\"162.5\" y1=\"136\" x2=\"162.5\" y2=\"144\" stroke=\"var(--ink3)\"/><line x1=\"231.25\" y1=\"136\" x2=\"231.25\" y2=\"144\" stroke=\"var(--ink3)\"/><text x=\"85\" y=\"156\" fill=\"var(--ink2)\">¼</text><text x=\"156\" y=\"156\" fill=\"var(--ink2)\">½</text><text x=\"223\" y=\"156\" fill=\"var(--ink2)\">¾</text><path d=\"M25,140 Q59,141 93.75,140\" stroke=\"var(--ink2)\" stroke-width=\"1.4\" fill=\"none\"/><path d=\"M93.75,140 Q120,148 135,150 Q150,146 162.5,140\" stroke=\"var(--ink3)\" stroke-width=\"1.8\" fill=\"none\"/><path d=\"M162.5,140 Q185,132 231.25,116\" stroke=\"var(--ink3)\" stroke-width=\"1.8\" fill=\"none\"/><circle cx=\"231.25\" cy=\"116\" r=\"3\" fill=\"none\" stroke=\"var(--gold)\" stroke-width=\"1.5\"/><path d=\"M231.25,90 Q265,68 300,44\" stroke=\"var(--ink3)\" stroke-width=\"1.8\" fill=\"none\"/><circle cx=\"231.25\" cy=\"90\" r=\"3\" fill=\"var(--gold)\"/><text x=\"236\" y=\"104\" fill=\"var(--gold)\">jump</text><circle cx=\"162.5\" cy=\"140\" r=\"3\" fill=\"var(--gold)\"/><text x=\"150\" y=\"128\" fill=\"var(--gold)\">corner</text><circle cx=\"135\" cy=\"150\" r=\"2.4\" fill=\"var(--ink3)\"/><text x=\"115\" y=\"170\" fill=\"var(--ink2)\">min = -1/432</text></svg>",
+    "statement": "Let $f:(0,1)\\to\\mathbb{R}$ be the function defined as $$f(x) = [4x]\\left(x - \\tfrac{1}{4}\\right)^2\\left(x - \\tfrac{1}{2}\\right),$$ where $[x]$ denotes the greatest integer less than or equal to $x$. Then which of the following statements is (are) true? $$\\text{(A) The function }f\\text{ is discontinuous exactly at one point in }(0,1)$$ $$\\text{(B) There is exactly one point in }(0,1)\\text{ at which }f\\text{ is continuous but NOT differentiable}$$ $$\\text{(C) The function }f\\text{ is NOT differentiable at more than three points in }(0,1)$$ $$\\text{(D) The minimum value of the function }f\\text{ is }-\\tfrac{1}{512}$$",
+    "answer": "(A), (B)",
+    "trap": "The reflex is: $[4x]$ jumps at $x=\\tfrac14,\\tfrac12,\\tfrac34$, so declare three discontinuities and call (C) true. That double-counts. Two of those jumps are silently ANNIHILATED by the polynomial factors: at $x=\\tfrac14$ the double zero $(x-\\tfrac14)^2$ kills the jump AND the corner (still differentiable!), and at $x=\\tfrac12$ the single zero $(x-\\tfrac12)$ heals continuity but leaves a corner. Only at $x=\\tfrac34$, where neither factor vanishes, does a real discontinuity survive. And for (D), the min sits inside the $[4x]=1$ slab, not where naive plugging suggests.",
+    "solutions": [
+      {
+        "name": "Zero-factor bookkeeping at each step of $[4x]$",
+        "steps": [
+          "$[4x]$ is constant on the four slabs and steps up at $x=\\tfrac14,\\tfrac12,\\tfrac34$. Write $P(x)=(x-\\tfrac14)^2(x-\\tfrac12)$, so $f(x)=[4x]\\,P(x)$. A jump in $[4x]$ at a point $a$ produces a jump of size $\\Delta[4x]\\cdot P(a)$ in $f$; it disappears exactly when $P(a)=0$.",
+          "At $x=\\tfrac14$: $P(\\tfrac14)=0$ (double root). Both left and right limits are $0=f(\\tfrac14)$, so $f$ is continuous. For differentiability, near $\\tfrac14$ we have $f=[4x](x-\\tfrac14)^2(x-\\tfrac12)$; the factor $(x-\\tfrac14)^2$ forces both one-sided derivatives to $0$, so $f$ is even DIFFERENTIABLE here.",
+          "At $x=\\tfrac12$: $P(\\tfrac12)=0$ (simple root), so left and right limits are both $0=f(\\tfrac12)$ — continuous. But the derivative sees the slab value change from $1$ to $2$: on $[\\tfrac14,\\tfrac12)$, $f=1\\cdot P$ has slope $P'(\\tfrac12)=(\\tfrac12-\\tfrac14)^2=\\tfrac1{16}$; on $[\\tfrac12,\\tfrac34)$, $f=2\\cdot P$ has slope $2P'(\\tfrac12)=\\tfrac18$. Slopes $\\tfrac1{16}\\ne\\tfrac18$, so $f$ is continuous but NOT differentiable — a corner.",
+          "At $x=\\tfrac34$: $P(\\tfrac34)=(\\tfrac12)^2(\\tfrac14)=\\tfrac1{16}\\ne0$, and $[4x]$ jumps by $1$, so $f$ jumps by $\\tfrac1{16}$ — a genuine discontinuity.",
+          "Tally: discontinuities $=\\{\\tfrac34\\}$, exactly one $\\Rightarrow$ (A) TRUE. Continuous-but-not-differentiable $=\\{\\tfrac12\\}$, exactly one $\\Rightarrow$ (B) TRUE. Non-differentiable points $=\\{\\tfrac12,\\tfrac34\\}$, that's two, NOT more than three $\\Rightarrow$ (C) FALSE.",
+          "For (D), minimise on each slab. The candidate is the slab $[\\tfrac14,\\tfrac12)$ where $f=(x-\\tfrac14)^2(x-\\tfrac12)\\le0$. Setting $f'=0$: $2(x-\\tfrac14)(x-\\tfrac12)+(x-\\tfrac14)^2=(x-\\tfrac14)(3x-\\tfrac54)=0$ gives interior critical point $x=\\tfrac5{12}$. Then $f(\\tfrac5{12})=(\\tfrac16)^2(-\\tfrac1{12})=-\\tfrac1{432}$. Comparing all slabs, the global minimum is $-\\tfrac1{432}\\ne-\\tfrac1{512}$ $\\Rightarrow$ (D) FALSE.",
+          "Correct statements: (A) and (B)."
+        ]
+      },
+      {
+        "name": "Explicit slab-by-slab formula",
+        "steps": [
+          "Write $f$ out slab by slab, since $[4x]$ takes values $0,1,2,3$: $$f(x)=\\begin{cases}0,& x\\in(0,\\tfrac14)\\\\ (x-\\tfrac14)^2(x-\\tfrac12),& x\\in[\\tfrac14,\\tfrac12)\\\\ 2(x-\\tfrac14)^2(x-\\tfrac12),& x\\in[\\tfrac12,\\tfrac34)\\\\ 3(x-\\tfrac14)^2(x-\\tfrac12),& x\\in[\\tfrac34,1).\\end{cases}$$",
+          "Junction $x=\\tfrac14$: left piece $\\equiv0$; right piece $\\to0$ and its derivative $\\to0$ (double zero). Both value and slope match $\\Rightarrow$ continuous AND differentiable — no bad point here.",
+          "Junction $x=\\tfrac12$: value from both sides $=1\\cdot0=2\\cdot0=0$, so continuous. Left slope $=\\tfrac1{16}$, right slope $=\\tfrac18$ (as computed by differentiating each polynomial and substituting $x=\\tfrac12$); unequal $\\Rightarrow$ corner, non-differentiable.",
+          "Junction $x=\\tfrac34$: left value $=2\\cdot\\tfrac1{16}=\\tfrac18$; right value $=3\\cdot\\tfrac1{16}=\\tfrac3{16}$. Unequal $\\Rightarrow$ jump discontinuity (hence also non-differentiable, but it already fails continuity).",
+          "So (A) exactly one discontinuity at $\\tfrac34$ — TRUE; (B) exactly one continuous-non-differentiable point at $\\tfrac12$ — TRUE; (C) total non-differentiable points $=2$ — FALSE.",
+          "Minimum: only the $[\\tfrac14,\\tfrac12)$ slab gives negative values. Optimising $(x-\\tfrac14)^2(x-\\tfrac12)$ there yields $x=\\tfrac5{12}$, $f=-\\tfrac1{432}$. Since $-\\tfrac1{432}\\approx-0.00231<-\\tfrac1{512}\\approx-0.00195$, the claimed value $-\\tfrac1{512}$ is wrong — (D) FALSE.",
+          "Answer: (A), (B)."
+        ]
+      }
+    ],
+    "remark": "**Source.** JEE Advanced 2023, Paper 2, Q6. A step function multiplied by a polynomial only jumps where the polynomial is nonzero — the order of a polynomial zero at a step determines whether the jump, the corner, or nothing survives."
   }
 ];

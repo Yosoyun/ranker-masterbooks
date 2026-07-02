@@ -11,8 +11,8 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['floor','frac','signum','modulus','invtrig','log','trig','indeterminate','squeeze','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
+const THEME_ORDER = ['floor','frac','signum','modulus','invtrig','log','trig','indeterminate','squeeze','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
 const GLYPH = { floor:'⌊x⌋', frac:'{x}', signum:'sgn', modulus:'|x|', invtrig:'tan⁻¹', log:'ln', trig:'sin', indeterminate:'1^∞', squeeze:'Σ', hybrid:'∞' };
 const BLURB = {
   floor:'Where the graph leaps, the limit hides.',
@@ -25,6 +25,7 @@ const BLURB = {
   indeterminate:'0^0, ∞−∞, ∞^0 — forms that hide their answer until forced.',
   squeeze:'When termwise intuition lies, only a global bound tells the truth.',
   hybrid:'Three or more worlds fused into a single pitiless limit.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

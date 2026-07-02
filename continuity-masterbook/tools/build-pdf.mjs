@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['pointcont','types','functionaleq','ivt','stepmod','sequential','parametric','evt','monotone','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { pointcont:'f(a)', types:'↯', functionaleq:'f(x+y)', ivt:'IVT', stepmod:'⌊x⌋', sequential:'g∘f', parametric:'a,b', evt:'max', monotone:'↗', hybrid:'⊕' };
+const THEME_ORDER = ['pointcont','types','functionaleq','ivt','stepmod','sequential','parametric','evt','monotone','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { pointcont:'f(a)', types:'↯', functionaleq:'f(x+y)', ivt:'IVT', stepmod:'⌊x⌋', sequential:'g∘f', parametric:'a,b', evt:'max', monotone:'↗', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   pointcont:'Continuity at a point: f is continuous at a iff lim f = f(a). Glue the pieces.',
   types:'Removable, jump, or essential — the two-sided limit decides.',

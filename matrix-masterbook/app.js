@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['matalgebra','specialmat','transpose','detprops','detspecial','adjinv','elemtrans','linsys','parammat','chareqn','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['matalgebra','specialmat','transpose','detprops','detspecial','adjinv','elemtrans','linsys','parammat','chareqn','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     matalgebra:  { glyph:'AB',    blurb:'Addition, scalar multiples and the matrix product; powers and polynomials in a matrix; when AB equals BA — and the many ways it does not.' },
     specialmat:  { glyph:'A²=A',  blurb:'Symmetric, skew-symmetric, diagonal, idempotent, nilpotent, involutory and orthogonal matrices, and what each forces on the determinant and inverse.' },
@@ -18,6 +18,7 @@
     parammat:    { glyph:'λ',     blurb:'Finding the parameter values that make a matrix singular or a system consistent, and solving matrix equations.' },
     chareqn:     { glyph:'A−λI',  blurb:'The characteristic equation det(A−λI)=0 of a matrix of order ≤3, trace and determinant as the sum and product of its roots, power sums through tr(Aⁿ), and the order-2 identity A²=(tr A)A−(det A)I that drives Aⁿ and the inverse — every tool derived from the determinant, never assumed.' },
     hybrid:      { glyph:'⊕',     blurb:'Capstones that fuse several in-syllabus ideas — structure, determinant, adjoint and a linear system — into one multi-step problem.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['conditional','telescope','multiangle','transform','substitution','heights','extrema','equations','geometry','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { conditional:'A+B+C', telescope:'Π', multiangle:'2A,3A', transform:'C↔P', substitution:'x=tanθ', heights:'∡h', extrema:'R', equations:'=', geometry:'△', hybrid:'⊕' };
+const THEME_ORDER = ['conditional','telescope','multiangle','transform','substitution','heights','extrema','equations','geometry','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { conditional:'A+B+C', telescope:'Π', multiangle:'2A,3A', transform:'C↔P', substitution:'x=tanθ', heights:'∡h', extrema:'R', equations:'=', geometry:'△', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   conditional:'Constrained angles turn symmetric sums into identities.',
   telescope:'Product-to-sum and adjacent differences leave only endpoints.',
@@ -25,6 +25,7 @@ const BLURB = {
   equations:'Periodicity and intervals separate true roots from impostors.',
   geometry:'Sine rule, cosine rule, area, R, r and s through angles.',
   hybrid:'Identities, multiple angles, transformations & triangles fused.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index

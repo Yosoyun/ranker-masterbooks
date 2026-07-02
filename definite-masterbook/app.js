@@ -4,8 +4,8 @@
 (function () {
   'use strict';
 
-  const THEME_ORDER = ['properties','kingrule','riemann','reduction','leibniz','estimation','periodicfloor','famous','improper','hybrid'];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  const THEME_ORDER = ['properties','kingrule','riemann','reduction','leibniz','estimation','periodicfloor','famous','improper','hybrid','pyq'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
   const THEME_META = {
     properties:    { glyph:'∫ₐᵇ',  blurb:'Symmetry, parity and periodicity settle an integral before you ever find an antiderivative.' },
     kingrule:      { glyph:'a↔b',  blurb:'Reflect the integral, add it to itself, and the half that resists evaluation simply cancels.' },
@@ -17,6 +17,7 @@
     famous:        { glyph:'lnsin',blurb:'The integrals everyone quotes — ln(sin x), ln(1+tan x) and x·f(sin x) — and the symmetry that cracks each.' },
     improper:      { glyph:'∞',    blurb:'Where the interval runs to infinity or the integrand blows up — convergence first, value second.' },
     hybrid:        { glyph:'⊕',    blurb:'The capstones: reflection, reduction, Leibniz and the limit of sums, fused.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

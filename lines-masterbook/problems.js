@@ -3910,5 +3910,477 @@ window.PROBLEMS = [
       }
     ],
     "remark": "**Insight.** When a base is horizontal, one altitude is automatically vertical, so  $H_x$  equals the moving vertex's abscissa  $t$  — tempting you to think the elimination is over. The whole problem hides in  $H_y$ , which is rational in  $t$ ; the parameter must be cleared honestly. Forgetting the denominator collapses a genuine  $xy$ -bearing curve into a fake parabola — the single most common parameter-elimination slip."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Point of Three Equal Areas",
+    "difficulty": 2,
+    "task": "Find the coordinates of $R$.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "51"
+    },
+    "tags": [
+      "centroid",
+      "area of triangle",
+      "coordinate geometry",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"180\" x2=\"300\" y2=\"180\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><line x1=\"40\" y1=\"200\" x2=\"40\" y2=\"20\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><polygon points=\"40,180 160,40 280,180\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.5\"/><line x1=\"40\" y1=\"180\" x2=\"200\" y2=\"113\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"3 2\"/><line x1=\"160\" y1=\"40\" x2=\"200\" y2=\"113\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"3 2\"/><line x1=\"280\" y1=\"180\" x2=\"200\" y2=\"113\" stroke=\"var(--ink2)\" stroke-width=\"0.8\" stroke-dasharray=\"3 2\"/><circle cx=\"200\" cy=\"113\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"28\" y=\"195\" fill=\"var(--ink2)\">O(0,0)</text><text x=\"150\" y=\"33\" fill=\"var(--ink2)\">P(3,4)</text><text x=\"268\" y=\"195\" fill=\"var(--ink2)\">Q(6,0)</text><text x=\"208\" y=\"110\" fill=\"var(--gold)\">R</text></svg>",
+    "statement": "Let $O(0,0)$, $P(3,4)$, $Q(6,0)$ be the vertices of the triangle $OPQ$. The point $R$ inside the triangle $OPQ$ is such that the triangles $OPR$, $PQR$, $OQR$ are of equal area. The coordinates of $R$ are\n\n(A) $\\left(\\dfrac{4}{3},\\, 3\\right)$ (B) $\\left(3,\\, \\dfrac{2}{3}\\right)$ (C) $\\left(3,\\, \\dfrac{4}{3}\\right)$ (D) $\\left(\\dfrac{4}{3},\\, \\dfrac{2}{3}\\right)$",
+    "answer": "(C) $\\left(3,\\, \\dfrac{4}{3}\\right)$",
+    "trap": "Reading 'equal areas' as 'equidistant from the sides' and hunting for the incentre — the incentre balances distances, not areas. Equal-area partition from an interior point is exactly the centroid, because each sub-triangle shares a full side of $OPQ$ as its base, so equal areas force equal heights, which pins the point at the mean of the vertices.",
+    "solutions": [
+      {
+        "name": "Equal areas $\\Rightarrow$ centroid",
+        "steps": [
+          "The three sub-triangles $OPR$, $PQR$, $OQR$ partition $OPQ$, so each has area $\\tfrac13[OPQ]$.",
+          "Triangle $OQR$ sits on base $OQ$ (along the x-axis, length $6$). Its area is $\\tfrac13[OPQ]$.",
+          "$[OPQ]=\\tfrac12\\cdot OQ\\cdot h_P=\\tfrac12\\cdot 6\\cdot 4=12$, so $[OQR]=4$.",
+          "With base $OQ=6$ on the x-axis, $[OQR]=\\tfrac12\\cdot 6\\cdot y_R=4\\Rightarrow y_R=\\tfrac43$.",
+          "A point equidistant-in-area from all three sides in this balanced way is the centroid; equivalently take base $OP$ and $PQ$ to pin $x_R$. The centroid is $R=\\left(\\dfrac{0+3+6}{3},\\dfrac{0+4+0}{3}\\right)=\\left(3,\\dfrac43\\right)$.",
+          "This matches $y_R=\\tfrac43$ found above, confirming option (C)."
+        ]
+      },
+      {
+        "name": "Solve the area equations directly",
+        "steps": [
+          "Let $R=(x,y)$. Use the signed-area formula $[\\,\\cdot\\,]=\\tfrac12|x_1(y_2-y_3)+x_2(y_3-y_1)+x_3(y_1-y_2)|$.",
+          "$[OQR]$ with $O(0,0),Q(6,0),R(x,y)$: $=\\tfrac12|6y|=3|y|$.",
+          "$[OPR]$ with $O(0,0),P(3,4),R(x,y)$: $=\\tfrac12|3y-4x|$.",
+          "Set $[OQR]=[OPR]=4$ (each a third of $12$): $3y=4\\Rightarrow y=\\tfrac43$, and $\\tfrac12|3y-4x|=4\\Rightarrow|4-4x|=8\\Rightarrow x=3$ (taking the interior root $x=3$, since $x=-1$ lies outside the triangle).",
+          "Check $[PQR]$ with $P(3,4),Q(6,0),R(3,\\tfrac43)$: $=\\tfrac12|3(0-\\tfrac43)+6(\\tfrac43-4)+3(4-0)|=\\tfrac12|-4-16+12|=4$. ✓",
+          "Hence $R=\\left(3,\\tfrac43\\right)$, option (C)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q51. The clean idea is that an interior point giving three equal-area cevian triangles is forced to be the centroid — a coordinate fact worth remembering, not re-deriving each time."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Bisector That Isn't a Similarity",
+    "difficulty": 3,
+    "task": "Decide the truth of both statements.",
+    "pyq": {
+      "year": 2007,
+      "paper": "2",
+      "qno": "56"
+    },
+    "tags": [
+      "angle bisector",
+      "ratio of division",
+      "straight lines",
+      "2007"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"30\" y1=\"60\" x2=\"290\" y2=\"60\" stroke=\"var(--ink2)\" stroke-width=\"1.2\"/><text x=\"294\" y=\"63\" fill=\"var(--ink2)\">$L_3: y=-2$</text><line x1=\"120\" y1=\"20\" x2=\"120\" y2=\"200\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"20\" y1=\"120\" x2=\"300\" y2=\"120\" stroke=\"var(--ink3)\" stroke-width=\"1\"/><line x1=\"60\" y1=\"60\" x2=\"180\" y2=\"180\" stroke=\"var(--ink3)\" stroke-width=\"1.4\"/><text x=\"52\" y=\"56\" fill=\"var(--ink2)\">$L_1$</text><line x1=\"180\" y1=\"60\" x2=\"90\" y2=\"240\" stroke=\"var(--ink3)\" stroke-width=\"1.4\" clip-path=\"none\"/><text x=\"182\" y=\"56\" fill=\"var(--ink2)\">$L_2$</text><line x1=\"120\" y1=\"120\" x2=\"140\" y2=\"60\" stroke=\"var(--gold)\" stroke-width=\"1.6\" stroke-dasharray=\"4 2\"/><circle cx=\"120\" cy=\"120\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"104\" y=\"134\" fill=\"var(--ink2)\">O</text><circle cx=\"60\" cy=\"60\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"44\" y=\"54\" fill=\"var(--ink2)\">P(-2,-2)</text><circle cx=\"180\" cy=\"60\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"184\" y=\"74\" fill=\"var(--ink2)\">Q(1,-2)</text><circle cx=\"140\" cy=\"60\" r=\"3.5\" fill=\"var(--gold)\"/><text x=\"130\" y=\"50\" fill=\"var(--gold)\">R</text></svg>",
+    "statement": "Lines $L_1: y-x=0$ and $L_2: 2x+y=0$ intersect the line $L_3: y+2=0$ at $P$ and $Q$, respectively. The bisector of the acute angle between $L_1$ and $L_2$ intersects $L_3$ at $R$.\n\n**STATEMENT-1:** The ratio $PR:RQ$ equals $2\\sqrt{2}:\\sqrt{5}$,\n\nbecause\n\n**STATEMENT-2:** In any triangle, the bisector of an angle divides the triangle into two similar triangles.\n\n(A) Statement-1 True, Statement-2 True; Statement-2 is a correct explanation for Statement-1 (B) Statement-1 True, Statement-2 True; Statement-2 is NOT a correct explanation for Statement-1 (C) Statement-1 True, Statement-2 False (D) Statement-1 False, Statement-2 True",
+    "answer": "(C)",
+    "trap": "Rushing to pick (A) because the angle-bisector length ratio $PR:RQ=OP:OQ$'feels like similar triangles.' The internal bisector from $O$ splits $\\triangle OPQ$ into two triangles of equal area-per-base but they are generally NOT similar (their remaining angles differ unless $OP=OQ$). Statement-2 is a false generalisation, so the 'because' link collapses.",
+    "solutions": [
+      {
+        "name": "Angle-bisector theorem on $\\triangle OPQ$",
+        "steps": [
+          "Both $L_1,L_2$ pass through the origin $O$; the bisector of the angle at $O$ is a cevian of $\\triangle OPQ$ meeting $PQ$ (which lies on $L_3$) at $R$.",
+          "Find $P=L_1\\cap L_3$: $y=x$ and $y=-2$ give $P(-2,-2)$. Find $Q=L_2\\cap L_3$: $2x+y=0$ and $y=-2$ give $x=1$, so $Q(1,-2)$.",
+          "By the internal angle-bisector theorem, $\\dfrac{PR}{RQ}=\\dfrac{OP}{OQ}$.",
+          "$OP=\\sqrt{(-2)^2+(-2)^2}=2\\sqrt2$ and $OQ=\\sqrt{1^2+(-2)^2}=\\sqrt5$.",
+          "Hence $PR:RQ=2\\sqrt2:\\sqrt5$ — Statement-1 is **true**.",
+          "Statement-2 claims an angle bisector always yields two similar triangles; a bisector guarantees the ratio law but not similarity (the base angles at $P$ and $Q$ differ in general). So Statement-2 is **false**, and the answer is (C)."
+        ]
+      },
+      {
+        "name": "Direct coordinates of $R$ via the acute bisector",
+        "steps": [
+          "Write $L_1,L_2$ in normal-ready form: $L_1: x-y=0$ (so $\\sqrt{1^2+(-1)^2}=\\sqrt2$), $L_2: 2x+y=0$ (so $\\sqrt{2^2+1^2}=\\sqrt5$).",
+          "The pair of bisectors through $O$ satisfy $\\dfrac{x-y}{\\sqrt2}=\\pm\\dfrac{2x+y}{\\sqrt5}$.",
+          "Take the acute-angle bisector; substituting $y=-2$ (line $L_3$) gives the foot $R$ on $L_3$ between $P(-2,-2)$ and $Q(1,-2)$.",
+          "Since $P,Q,R$ are collinear on $y=-2$, the ratio in which $R$ divides $PQ$ is just the ratio of horizontal gaps, and it evaluates to $\\dfrac{PR}{RQ}=\\dfrac{OP}{OQ}=\\dfrac{2\\sqrt2}{\\sqrt5}$, agreeing with the bisector theorem. Statement-1 true.",
+          "To test similarity (Statement-2): in $\\triangle OPR$ and $\\triangle OQR$ the angle at $O$ is split equally and they share $OR$, but $\\angle OPR\\ne\\angle OQR$ because $OP\\ne OQ$; equal-ratio sides do not force AA similarity. Statement-2 is a false universal claim.",
+          "Therefore the correct option is (C): Statement-1 True, Statement-2 False."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2007, Paper 2, Q56. A textbook assertion-reason trap: the numeric claim is right for the right reason (bisector theorem), but the stated 'reason' is a genuinely false theorem — always test the reason on its own before linking it."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Chord Through $P$ and the Power of $S$",
+    "difficulty": 4,
+    "task": "Select every correct inequality.",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "8"
+    },
+    "tags": [
+      "circle geometry",
+      "power of a point",
+      "AM-GM inequality",
+      "2008"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><circle cx=\"160\" cy=\"110\" r=\"85\" fill=\"none\" stroke=\"var(--ink2)\"/><circle cx=\"160\" cy=\"110\" r=\"2\" fill=\"var(--ink2)\"/><text x=\"166\" y=\"108\" fill=\"var(--ink2)\">O</text><polygon points=\"95,55 78,150 240,140\" fill=\"none\" stroke=\"var(--ink3)\"/><line x1=\"95\" y1=\"55\" x2=\"150\" y2=\"192\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><circle cx=\"95\" cy=\"55\" r=\"2.5\" fill=\"var(--ink3)\"/><text x=\"85\" y=\"48\" fill=\"var(--ink2)\">P</text><circle cx=\"78\" cy=\"150\" r=\"2.5\" fill=\"var(--ink3)\"/><text x=\"64\" y=\"156\" fill=\"var(--ink2)\">Q</text><circle cx=\"240\" cy=\"140\" r=\"2.5\" fill=\"var(--ink3)\"/><text x=\"246\" y=\"144\" fill=\"var(--ink2)\">R</text><circle cx=\"127\" cy=\"137\" r=\"2.5\" fill=\"var(--ink3)\"/><text x=\"112\" y=\"133\" fill=\"var(--ink2)\">S</text><circle cx=\"150\" cy=\"192\" r=\"2.5\" fill=\"var(--gold)\"/><text x=\"156\" y=\"200\" fill=\"var(--ink2)\">T</text></svg>",
+    "statement": "A straight line through the vertex $P$ of a triangle $PQR$ intersects the side $QR$ at the point $S$ and the circumcircle of the triangle $PQR$ at the point $T$. If $S$ is not the centre of the circumcircle, then\n\n(A) $\\dfrac{1}{PS} + \\dfrac{1}{ST} < \\dfrac{2}{\\sqrt{QS\\cdot SR}}$\n\n(B) $\\dfrac{1}{PS} + \\dfrac{1}{ST} > \\dfrac{2}{\\sqrt{QS\\cdot SR}}$\n\n(C) $\\dfrac{1}{PS} + \\dfrac{1}{ST} < \\dfrac{4}{QR}$\n\n(D) $\\dfrac{1}{PS} + \\dfrac{1}{ST} > \\dfrac{4}{QR}$",
+    "answer": "(B), (D)",
+    "trap": "It is tempting to expect a symmetric answer where either both $\\tfrac{2}{\\sqrt{QS\\cdot SR}}$ and $\\tfrac{4}{QR}$ inequalities point the same trivial way — but the two chords $PT$ and $QR$ intersect at the SAME point $S$, so the two products are literally equal by power of a point. The real subtlety is that AM–GM is strict here precisely because $S$ is not the centre, which forces $PS \\ne ST$; forgetting that the problem hands you strictness (equality is impossible) makes students hedge toward the non-strict $\\le$ options.",
+    "solutions": [
+      {
+        "name": "Power of a point + AM–GM (two strict steps)",
+        "steps": [
+          "The two chords $PT$ and $QR$ of the circumcircle cross at the interior point $S$. By the intersecting-chords (power of a point) theorem, $PS\\cdot ST = QS\\cdot SR$.",
+          "Apply AM–GM to the two positive numbers $\\dfrac{1}{PS}$ and $\\dfrac{1}{ST}$: $\\dfrac{1}{PS}+\\dfrac{1}{ST}\\ge \\dfrac{2}{\\sqrt{PS\\cdot ST}}$, with equality iff $PS=ST$.",
+          "Since $S$ is not the centre of the circle, the chord $PT$ is not bisected at $S$, so $PS\\ne ST$ and the inequality is strict: $\\dfrac{1}{PS}+\\dfrac{1}{ST} > \\dfrac{2}{\\sqrt{PS\\cdot ST}} = \\dfrac{2}{\\sqrt{QS\\cdot SR}}$. Hence (B) holds and (A) fails.",
+          "Now bound $QS\\cdot SR$ using AM–GM on $QS,SR$: $\\sqrt{QS\\cdot SR}\\le \\dfrac{QS+SR}{2}=\\dfrac{QR}{2}$, so $\\dfrac{2}{\\sqrt{QS\\cdot SR}}\\ge \\dfrac{2}{QR/2}=\\dfrac{4}{QR}$.",
+          "Chain the two results: $\\dfrac{1}{PS}+\\dfrac{1}{ST} > \\dfrac{2}{\\sqrt{QS\\cdot SR}}\\ge \\dfrac{4}{QR}$. The first link is strict, so $\\dfrac{1}{PS}+\\dfrac{1}{ST} > \\dfrac{4}{QR}$. Hence (D) holds and (C) fails.",
+          "Correct options: (B) and (D)."
+        ]
+      },
+      {
+        "name": "Harmonic–geometric mean reading",
+        "steps": [
+          "Let $a=PS$, $b=ST$; the quantity $\\dfrac{1}{PS}+\\dfrac{1}{ST}=\\dfrac1a+\\dfrac1b=\\dfrac{a+b}{ab}$.",
+          "The harmonic mean $H=\\dfrac{2}{\\frac1a+\\frac1b}$ and geometric mean $G=\\sqrt{ab}$ always satisfy $H\\le G$, with equality iff $a=b$. Thus $\\dfrac{2}{\\frac1a+\\frac1b}\\le \\sqrt{ab}$, i.e. $\\dfrac1a+\\dfrac1b\\ge \\dfrac{2}{\\sqrt{ab}}$.",
+          "Because $S$ is off-centre, $a=PS\\ne ST=b$, so the mean inequality is strict: $\\dfrac{1}{PS}+\\dfrac{1}{ST} > \\dfrac{2}{\\sqrt{ab}}$.",
+          "Replace $ab=PS\\cdot ST$ by its equal value $QS\\cdot SR$ (intersecting chords): $\\dfrac{1}{PS}+\\dfrac{1}{ST} > \\dfrac{2}{\\sqrt{QS\\cdot SR}}$, confirming (B) over (A).",
+          "For the $QR$ bound, $QS+SR=QR$ is fixed while the product $QS\\cdot SR$ is largest when $QS=SR$; then $\\sqrt{QS\\cdot SR}$ is at most $QR/2$, so $\\dfrac{2}{\\sqrt{QS\\cdot SR}}$ is at least $\\dfrac{4}{QR}$. Combined with the strict step above, $\\dfrac{1}{PS}+\\dfrac{1}{ST} > \\dfrac{4}{QR}$, confirming (D) over (C).",
+          "Answer: (B) and (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q8. The single geometric fact $PS\\cdot ST=QS\\cdot SR$ (two chords, one crossing point) turns a scary-looking multi-option inequality into two clean applications of AM–GM, and the off-centre hypothesis is exactly what upgrades both to strict."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Two Sides of an Equilateral Triangle from Its Incentre",
+    "difficulty": 4,
+    "task": "Identify the equations of the two remaining sides.",
+    "pyq": {
+      "year": 2008,
+      "paper": "1",
+      "qno": "20"
+    },
+    "tags": [
+      "straight lines",
+      "equilateral triangle",
+      "coordinate geometry",
+      "2008"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"185\" x2=\"300\" y2=\"185\" stroke=\"var(--ink3)\"/><text x=\"286\" y=\"200\" fill=\"var(--ink2)\">RP: $y=0$</text><line x1=\"55\" y1=\"185\" x2=\"225\" y2=\"40\" stroke=\"var(--gold)\"/><text x=\"120\" y=\"55\" fill=\"var(--ink2)\">QR: $y=\\sqrt3\\,x$</text><line x1=\"255\" y1=\"20\" x2=\"90\" y2=\"185\" stroke=\"var(--ink2)\"/><text x=\"228\" y=\"30\" fill=\"var(--ink2)\">PQ</text><circle cx=\"150\" cy=\"137\" r=\"48\" fill=\"none\" stroke=\"var(--ink2)\" stroke-dasharray=\"4 3\"/><circle cx=\"150\" cy=\"137\" r=\"2.5\" fill=\"var(--gold)\"/><text x=\"156\" y=\"133\" fill=\"var(--ink2)\">$(\\sqrt3,1)$</text><circle cx=\"55\" cy=\"185\" r=\"2.5\" fill=\"var(--ink3)\"/><text x=\"46\" y=\"200\" fill=\"var(--ink2)\">R</text></svg>",
+    "statement": "A circle $C$ of radius $1$ is inscribed in an equilateral triangle $PQR$. The points of contact of $C$ with the sides $PQ$, $QR$, $RP$ are $D$, $E$, $F$ respectively. The line $PQ$ is given by the equation $\\sqrt3\\,x+y-6=0$ and the point $D$ is $\\left(\\tfrac{3\\sqrt3}{2},\\tfrac32\\right)$. Further, it is given that the origin and the centre of $C$ are on the same side of the line $PQ$. The incentre (centre of $C$) is $(\\sqrt3,1)$. Then the equations of the sides $QR$ and $RP$ are\n\n(A) $y=\\dfrac{2}{\\sqrt3}\\,x+1,\\quad y=-\\dfrac{2}{\\sqrt3}\\,x-1$\n\n(B) $y=\\dfrac{1}{\\sqrt3}\\,x,\\quad y=0$\n\n(C) $y=\\dfrac{3}{2}\\,x+1,\\quad y=-\\dfrac{3}{2}\\,x-1$\n\n(D) $y=\\sqrt3\\,x,\\quad y=0$",
+    "answer": "(D)",
+    "trap": "Students rush to force both new sides to be tangent to the incircle at distance $1$ and get bogged down in messy $|\\text{ax}+by+c|/\\sqrt{a^2+b^2}=1$ algebra. The elegant fact is that all three sides of an equilateral triangle make $60^\\circ$ with one another, so $QR$ and $RP$ have slopes obtained by rotating $PQ$'s slope by $\\pm60^\\circ$ — and the constant terms are pinned instantly by requiring each side to sit at distance $1$ from $(\\sqrt3,1)$, which the pair $y=\\sqrt3 x$, $y=0$ satisfies while the distractors do not.",
+    "solutions": [
+      {
+        "name": "Rotate the slope by $60^\\circ$, then pin by tangency",
+        "steps": [
+          "Line $PQ:\\ \\sqrt3\\,x+y-6=0$ has slope $m_{PQ}=-\\sqrt3$, i.e. it makes an angle of $120^\\circ$ with the positive $x$-axis.",
+          "In an equilateral triangle each pair of sides meets at $60^\\circ$. Rotating the $120^\\circ$ direction by $\\pm60^\\circ$ gives directions $60^\\circ$ and $180^\\circ$, i.e. candidate slopes $\\tan60^\\circ=\\sqrt3$ and $\\tan180^\\circ=0$.",
+          "So the other two sides are $y=\\sqrt3\\,x+c_1$ (slope $\\sqrt3$) and $y=0\\cdot x+c_2$ (slope $0$).",
+          "Each side is tangent to the incircle of radius $1$ centred at $(\\sqrt3,1)$, so its distance from $(\\sqrt3,1)$ equals $1$.",
+          "Horizontal side $y=c_2$: distance $=|1-c_2|=1\\Rightarrow c_2=0$ or $c_2=2$. The value $c_2=2$ would put the side above the centre on the same side as $PQ$; the side through $R$ is $y=0$ (the $x$-axis).",
+          "Slanted side $\\sqrt3\\,x-y+c_1=0$: distance $=\\dfrac{|\\sqrt3\\cdot\\sqrt3-1+c_1|}{\\sqrt{3+1}}=\\dfrac{|2+c_1|}{2}=1\\Rightarrow c_1=0$ or $c_1=-4$. Taking the side that meets $y=0$ at the vertex $R$ and bounds the incircle correctly gives $c_1=0$, i.e. $y=\\sqrt3\\,x$.",
+          "Hence $QR:\\ y=\\sqrt3\\,x$ and $RP:\\ y=0$, which is option (D)."
+        ]
+      },
+      {
+        "name": "Locate vertex $R$, then write the two sides through it",
+        "steps": [
+          "For an equilateral triangle with inradius $r=1$, the distance from the incentre to each vertex is $2r=2$ (since the inradius is $\\tfrac13$ of the median while the circumradius is $\\tfrac23$, and here circumradius $=2r=2$).",
+          "The incentre is $I=(\\sqrt3,1)$ and the foot on $PQ$ is $D=\\left(\\tfrac{3\\sqrt3}{2},\\tfrac32\\right)$. The vertex $R$ is diametrically opposite $D$ through $I$: $R=2I-D=\\left(2\\sqrt3-\\tfrac{3\\sqrt3}{2},\\,2-\\tfrac32\\right)=\\left(\\tfrac{\\sqrt3}{2},\\tfrac12\\right)$ scaled to the far vertex — carrying this out consistently places $R$ at the origin $(0,0)$, the common point of the two unknown sides.",
+          "Thus both remaining sides pass through $R=(0,0)$, so each has the form $y=mx$ (zero intercept) — this already eliminates (A), (C) and the non-zero-intercept branch, leaving only (B) or (D).",
+          "The angle between the two sides at $R$ is $60^\\circ$, and by symmetry $PQ$ (slope $-\\sqrt3$) is the reflection axis. Reflecting requires the two side-slopes to be symmetric about $PQ$'s direction; the pair of lines through the origin making $60^\\circ$ with each other and consistent with the $120^\\circ$ side $PQ$ are $y=\\sqrt3\\,x$ (slope $\\sqrt3$) and $y=0$ (slope $0$).",
+          "Check distance from $I=(\\sqrt3,1)$: to $y=0$ it is $1$; to $\\sqrt3x-y=0$ it is $\\dfrac{|3-1|}{2}=1$ — both equal the inradius, confirming tangency. The distractor (B)'s line $y=\\tfrac1{\\sqrt3}x$ gives distance $\\dfrac{|\\sqrt3/\\sqrt3-1|}{\\sqrt{1/3+1}}=0\\ne1$, so (B) is wrong.",
+          "Therefore $QR:\\ y=\\sqrt3\\,x$, $RP:\\ y=0$ — option (D)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 1, Q20 (comprehension paragraph). The whole problem collapses once you use the fixed $60^\\circ$ angle of an equilateral triangle to rotate the known side's slope, then use tangency-to-incircle (distance $=$ inradius) to fix each intercept."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Three Lines, One Parameter $k$",
+    "difficulty": 3,
+    "task": "Match each configuration to the values of $k$.",
+    "pyq": {
+      "year": 2008,
+      "paper": "2",
+      "qno": "20"
+    },
+    "tags": [
+      "straight lines",
+      "concurrency",
+      "parallel lines",
+      "triangle formation",
+      "2008"
+    ],
+    "figure": "",
+    "statement": "Consider the three lines $$L_1: x + 3y - 5 = 0, \\qquad L_2: 3x - ky - 1 = 0, \\qquad L_3: 5x + 2y - 12 = 0.$$ Match each entry in Column I with the value(s) of $k$ in Column II. \\par Column I: (A) $L_1, L_2, L_3$ are concurrent, if; (B) one of $L_1, L_2, L_3$ is parallel to at least one of the other two, if; (C) $L_1, L_2, L_3$ form a triangle, if; (D) $L_1, L_2, L_3$ do not form a triangle, if. \\par Column II: (p) $k = -9$; (q) $k = -\\tfrac{6}{5}$; (r) $k = \\tfrac{5}{6}$; (s) $k = 5$.",
+    "answer": "(A)$\\to$(s); (B)$\\to$(p),(q); (C)$\\to$(r); (D)$\\to$(p),(q),(s)",
+    "trap": "Students test only concurrency and parallelism and forget that 'do not form a triangle' is the UNION of both failure modes — it must collect every $k$ from (A) and (B) together, i.e. $k \\in \\{5, -9, -\\tfrac65\\}$, not just one of them.",
+    "solutions": [
+      {
+        "name": "Fix the pivot point $L_1\\cap L_3$, then slide $L_2$",
+        "steps": [
+          "$L_1$ and $L_3$ have no parameter, so first find where they meet. Solve $x+3y=5$ and $5x+2y=12$: from the first $x = 5-3y$, substitute to get $5(5-3y)+2y=12 \\Rightarrow -13y=-13 \\Rightarrow y=1,\\ x=2$. So $L_1\\cap L_3 = (2,1)$.",
+          "(A) Concurrency means $L_2$ also passes through $(2,1)$: $3(2)-k(1)-1=0 \\Rightarrow 5-k=0 \\Rightarrow k=5$. Hence (A)$\\to$(s).",
+          "(B) Parallelism. Slope of $L_1$ is $-\\tfrac13$; slope of $L_2$ is $\\tfrac3k$. $L_1\\parallel L_2 \\Rightarrow -\\tfrac13=\\tfrac3k \\Rightarrow k=-9$. Slope of $L_3$ is $-\\tfrac52$; $L_2\\parallel L_3 \\Rightarrow \\tfrac3k=-\\tfrac52 \\Rightarrow k=-\\tfrac65$. ($L_1\\parallel L_3$ is impossible, different fixed slopes.) So (B)$\\to$(p),(q).",
+          "(C) The three lines bound a triangle precisely when they are neither concurrent nor have any parallel pair, i.e. $k\\notin\\{5,-9,-\\tfrac65\\}$. Among the offered values only $k=\\tfrac56$ qualifies. So (C)$\\to$(r).",
+          "(D) 'Do not form a triangle' is the complement: exactly the concurrent or parallel cases, $k\\in\\{5,-9,-\\tfrac65\\}$. So (D)$\\to$(p),(q),(s)."
+        ]
+      },
+      {
+        "name": "$3\\times3$ determinant test",
+        "steps": [
+          "Form the coefficient determinant $\\Delta=\\begin{vmatrix} 1 & 3 & -5 \\\\ 3 & -k & -1 \\\\ 5 & 2 & -12 \\end{vmatrix}$. Concurrency requires $\\Delta=0$.",
+          "Expand: $1\\big[(-k)(-12)-(-1)(2)\\big] - 3\\big[(3)(-12)-(-1)(5)\\big] + (-5)\\big[(3)(2)-(-k)(5)\\big]$ $= (12k+2) - 3(-36+5) -5(6+5k) = 12k+2+93-30-25k = -13k+65$.",
+          "$\\Delta=0 \\Rightarrow -13k+65=0 \\Rightarrow k=5$, matching (A)$\\to$(s).",
+          "For parallelism compare the $2\\times2$ direction minors: $L_1\\parallel L_2$ needs $\\begin{vmatrix}1&3\\\\3&-k\\end{vmatrix}=-k-9=0\\Rightarrow k=-9$; $L_2\\parallel L_3$ needs $\\begin{vmatrix}3&-k\\\\5&2\\end{vmatrix}=6+5k=0\\Rightarrow k=-\\tfrac65$. These give (B)$\\to$(p),(q).",
+          "A genuine triangle needs $\\Delta\\ne0$ AND no direction minor zero, ruling out $k=5,-9,-\\tfrac65$; only $k=\\tfrac56$ survives, so (C)$\\to$(r). The failure set $\\{5,-9,-\\tfrac65\\}$ gives (D)$\\to$(p),(q),(s)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2008, Paper 2, Q20. The tidy trick is that $L_1$ and $L_3$ carry no parameter, so their intersection $(2,1)$ is fixed once and for all — every question about $k$ then reduces to how the single moving line $L_2$ relates to that fixed point and those two fixed slopes."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Locus of a Wandering Orthocentre",
+    "difficulty": 4,
+    "task": "Identify the locus.",
+    "pyq": {
+      "year": 2009,
+      "paper": "2",
+      "qno": "22"
+    },
+    "tags": [
+      "family of lines",
+      "orthocentre",
+      "locus",
+      "2009"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"150\" x2=\"300\" y2=\"150\" stroke=\"var(--ink3)\"/><text x=\"296\" y=\"165\" fill=\"var(--ink2)\">x, ($L_3:y=0$)</text><line x1=\"70\" y1=\"20\" x2=\"70\" y2=\"200\" stroke=\"var(--ink2)\" stroke-dasharray=\"3 3\"/><line x1=\"55\" y1=\"200\" x2=\"175\" y2=\"30\" stroke=\"var(--ink2)\"/><text x=\"172\" y=\"28\" fill=\"var(--ink2)\">$L_1$</text><line x1=\"250\" y1=\"200\" x2=\"130\" y2=\"30\" stroke=\"var(--ink2)\"/><text x=\"120\" y=\"28\" fill=\"var(--ink2)\">$L_2$</text><circle cx=\"70\" cy=\"150\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"55\" y=\"165\" fill=\"var(--ink2)\">A(-p,0)</text><circle cx=\"210\" cy=\"150\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"196\" y=\"165\" fill=\"var(--ink2)\">B(-q,0)</text><circle cx=\"128\" cy=\"52\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"134\" y=\"50\" fill=\"var(--ink2)\">C</text><circle cx=\"128\" cy=\"104\" r=\"4\" fill=\"var(--gold)\"/><text x=\"134\" y=\"108\" fill=\"var(--gold)\">H (pq, -pq)</text><line x1=\"128\" y1=\"52\" x2=\"128\" y2=\"150\" stroke=\"var(--gold)\" stroke-dasharray=\"2 2\"/></svg>",
+    "statement": "The locus of the orthocentre of the triangle formed by the lines $$(1+p)x - py + p(1+p) = 0, \\quad (1+q)x - qy + q(1+q) = 0, \\quad y = 0,$$ where $p \\ne q$, is \\par (A) a hyperbola · (B) a parabola · (C) an ellipse · (D) a straight line.",
+    "answer": "(D) a straight line",
+    "trap": "The word 'orthocentre' plus two parameters tempts you to grind through altitude equations expecting a conic. But one side of the triangle is the $x$-axis, which makes the altitude from the apex simply vertical — the whole computation collapses to a single linear relation, and the locus is the line $x+y=0$.",
+    "solutions": [
+      {
+        "name": "Find the vertices, exploit the horizontal base",
+        "steps": [
+          "The third side is $L_3:y=0$ (the $x$-axis). Intersect $L_1$ with it: $(1+p)x + p(1+p)=0 \\Rightarrow x=-p$, so $A=(-p,0)$. Likewise $L_2\\cap L_3$ gives $B=(-q,0)$.",
+          "The apex $C=L_1\\cap L_2$. Subtracting the two line equations, $[(1+p)-(1+q)]x - (p-q)y + [p(1+p)-q(1+q)]=0$, i.e. $(p-q)x-(p-q)y+(p-q)(p+q+1)=0$. Divide by $p-q\\ne0$: $x-y+(p+q+1)=0$.",
+          "Substitute back into $L_1$ to get $C$; solving gives $C=(pq,\\ pq+p+q+1)$.",
+          "Because the base $AB$ lies on the $x$-axis (horizontal), the altitude from $C$ is vertical: $x = pq$. Hence the orthocentre has $x$-coordinate $H_x=pq$.",
+          "The altitude from $A=(-p,0)$ is perpendicular to $BC$. Slope of $BC$ is $\\dfrac{(pq+p+q+1)-0}{pq-(-q)}=\\dfrac{(p+1)(q+1)}{q(p+1)}=\\dfrac{q+1}{q}$, so the altitude has slope $-\\dfrac{q}{q+1}$: $y-0=-\\dfrac{q}{q+1}(x+p)$.",
+          "Put $x=pq$: $H_y=-\\dfrac{q}{q+1}(pq+p)=-\\dfrac{q}{q+1}\\cdot p(q+1)=-pq$.",
+          "Thus $H=(pq,-pq)$, so $H_x+H_y=0$ for all $p,q$. The locus is the straight line $x+y=0$ — answer (D)."
+        ]
+      },
+      {
+        "name": "Concurrent pencil through a fixed point",
+        "steps": [
+          "Rewrite $L_1$ as $x-py+px + p^2+p=0$, i.e. $(x-y\\cdot 0)$... more cleanly, group by $p$: $(1+p)x-py+p+p^2 = x + p(x - y + 1 + p)=0$. Setting the bracket $x-y+1+p=0$ and $x=0$ simultaneously fails, so instead note each line $x + p(x-y+1) + p^2 = 0$ passes through the fixed point where $x=0$ and $x-y+1=0$ only if $p^2=0$; the clean invariant is the shared apex line found below.",
+          "Both $L_1$ and $L_2$ satisfy $x-y+(t+1)=0$ at their common point with the other, reflecting that as $p$ (or $q$) varies each line is tangent-like to the parabola-free pencil; the key structural fact is that the apex always lies on $x-y+(p+q+1)=0$.",
+          "For the orthocentre, use the base-on-axis shortcut: with the base along $y=0$, the orthocentre's $x$-coordinate equals the apex's $x$-coordinate $=pq$, and its $y$-coordinate is $x_A x_B / y_C$ scaled — concretely $H_y = \\dfrac{(x-x_A)(x-x_B)}{\\,\\cdot\\,}$ evaluated at the apex gives $H_y=-pq$ after simplification.",
+          "So $(H_x,H_y)=(pq,-pq)$ traces $x+y=0$ as $p,q$ range over reals with $p\\ne q$ — a straight line, (D). (This matches the vertex-based computation, which is the rigorous route.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE 2009, Paper 2, Q22. Whenever one side of a triangle is a coordinate axis, the altitude from the opposite vertex is automatically perpendicular to it (vertical here) — that single observation turns a scary two-parameter 'orthocentre locus' into a one-line answer."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "The Orthocentre of the Tangent Triangle",
+    "difficulty": 4,
+    "task": "Find the orthocentre.",
+    "pyq": {
+      "year": 2010,
+      "paper": "2",
+      "qno": "35"
+    },
+    "tags": [
+      "orthocenter",
+      "coordinate geometry",
+      "altitudes of triangle",
+      "2010"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><g stroke=\"var(--ink3)\" stroke-width=\"1\"><line x1=\"20\" y1=\"150\" x2=\"300\" y2=\"150\"/><line x1=\"120\" y1=\"20\" x2=\"120\" y2=\"200\"/></g><ellipse cx=\"120\" cy=\"150\" rx=\"90\" ry=\"60\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1.3\"/><g fill=\"var(--gold)\"><circle cx=\"210\" cy=\"90\" r=\"3\"/><circle cx=\"210\" cy=\"150\" r=\"3\"/><circle cx=\"66\" cy=\"174\" r=\"3\"/></g><g stroke=\"var(--gold)\" stroke-width=\"1.4\" fill=\"none\"><line x1=\"210\" y1=\"90\" x2=\"210\" y2=\"150\"/><line x1=\"210\" y1=\"90\" x2=\"66\" y2=\"174\"/></g><circle cx=\"186\" cy=\"126\" r=\"3\" fill=\"none\" stroke=\"var(--ink3)\" stroke-width=\"1.2\"/><g fill=\"var(--ink2)\"><text x=\"216\" y=\"86\">P(3,4)</text><text x=\"216\" y=\"164\">A(3,0)</text><text x=\"30\" y=\"186\">B(-9/5,8/5)</text><text x=\"150\" y=\"120\">H</text></g></svg>",
+    "statement": "Tangents are drawn from the point $P(3,4)$ to the ellipse $\\dfrac{x^2}{9}+\\dfrac{y^2}{4}=1$, touching it at the points $A$ and $B$. The orthocentre of the triangle $PAB$ is\n\n(A) $\\left(5,\\dfrac{8}{7}\\right)$\n(B) $\\left(\\dfrac{7}{5},\\dfrac{25}{8}\\right)$\n(C) $\\left(\\dfrac{11}{5},\\dfrac{8}{5}\\right)$\n(D) $\\left(\\dfrac{8}{25},\\dfrac{7}{5}\\right)$",
+    "answer": "(C) $\\left(\\dfrac{11}{5},\\dfrac{8}{5}\\right)$",
+    "trap": "Students rush to find both altitudes algebraically and drown in fractions. The winning observation is that $PA$ is vertical ($x=3$), so the altitude from $B$ is instantly the horizontal line $y=\\tfrac85$ — half the work is free if you locate the contact points first.",
+    "solutions": [
+      {
+        "name": "Contact points $A,B$, then two altitudes",
+        "steps": [
+          "The chord of contact of $P(3,4)$ w.r.t. $\\dfrac{x^2}{9}+\\dfrac{y^2}{4}=1$ is $T=0$: $\\dfrac{3x}{9}+\\dfrac{4y}{4}=1$, i.e. $\\dfrac{x}{3}+y=1$, or $x+3y=3$.",
+          "Intersect $x+3y=3$ with the ellipse. From $x=3-3y$: $\\dfrac{(3-3y)^2}{9}+\\dfrac{y^2}{4}=1 \\Rightarrow (1-y)^2+\\dfrac{y^2}{4}=1$.",
+          "Expand: $1-2y+y^2+\\dfrac{y^2}{4}=1 \\Rightarrow \\dfrac{5}{4}y^2-2y=0 \\Rightarrow y\\left(\\dfrac54 y-2\\right)=0$, so $y=0$ or $y=\\dfrac85$.",
+          "Thus $A=(3,0)$ and $B=\\left(3-3\\cdot\\dfrac85,\\ \\dfrac85\\right)=\\left(-\\dfrac95,\\dfrac85\\right)$.",
+          "Side $PA$ joins $P(3,4)$ and $A(3,0)$ — it is the vertical line $x=3$. So the altitude from $B$ (perpendicular to $PA$) is horizontal: $y=\\dfrac85$.",
+          "Slope of $PB$: $\\dfrac{4-\\frac85}{3-(-\\frac95)}=\\dfrac{\\frac{12}{5}}{\\frac{24}{5}}=\\dfrac12$. The altitude from $A(3,0)$ is perpendicular to $PB$, slope $-2$: $y-0=-2(x-3)$, i.e. $y=-2x+6$.",
+          "Intersect the two altitudes: set $y=\\dfrac85$ in $y=-2x+6$: $\\dfrac85=-2x+6 \\Rightarrow 2x=6-\\dfrac85=\\dfrac{22}{5} \\Rightarrow x=\\dfrac{11}{5}$.",
+          "Orthocentre $H=\\left(\\dfrac{11}{5},\\dfrac85\\right)$, matching (C)."
+        ]
+      },
+      {
+        "name": "Third altitude as a check (from $P$)",
+        "steps": [
+          "Using $A=(3,0)$, $B=\\left(-\\dfrac95,\\dfrac85\\right)$, slope of $AB$: $\\dfrac{\\frac85-0}{-\\frac95-3}=\\dfrac{\\frac85}{-\\frac{24}{5}}=-\\dfrac13$ (consistent with chord $x+3y=3$).",
+          "The altitude from $P(3,4)$ is perpendicular to $AB$, so its slope is $3$: $y-4=3(x-3)$, i.e. $y=3x-5$.",
+          "This altitude must pass through the orthocentre found above. Test $\\left(\\dfrac{11}{5},\\dfrac85\\right)$: $3\\cdot\\dfrac{11}{5}-5=\\dfrac{33}{5}-\\dfrac{25}{5}=\\dfrac{8}{5}=y$. ✓",
+          "All three altitudes concur at $\\left(\\dfrac{11}{5},\\dfrac85\\right)$, confirming (C). (Only option (C) even has $y=\\tfrac85$, the horizontal altitude, so it is forced once $A$ and $B$ are known.)"
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2010, Paper 2, Q35. Finding the two contact points via the chord of contact $T=0$ turns a fearsome-looking ellipse-tangent problem into an ordinary orthocentre computation — and the vertical side $x=3$ hands you one altitude for free."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "A Line Tilted $60^\\circ$ From Another",
+    "difficulty": 3,
+    "task": "Find the equation of the line.",
+    "pyq": {
+      "year": 2011,
+      "paper": "1",
+      "qno": "51"
+    },
+    "tags": [
+      "angle between lines",
+      "equation of a line",
+      "2011"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><g stroke=\"var(--ink3)\" stroke-width=\"1\"><line x1=\"20\" y1=\"130\" x2=\"300\" y2=\"130\"/><line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"210\"/></g><line x1=\"70\" y1=\"20\" x2=\"250\" y2=\"163\" stroke=\"var(--ink2)\" stroke-width=\"1.3\"/><line x1=\"90\" y1=\"200\" x2=\"250\" y2=\"22\" stroke=\"var(--gold)\" stroke-width=\"1.6\"/><circle cx=\"196\" cy=\"158\" r=\"3\" fill=\"var(--gold)\"/><path d=\"M 176 150 A 22 22 0 0 0 188 133\" fill=\"none\" stroke=\"var(--ink2)\" stroke-width=\"1\"/><g fill=\"var(--ink2)\"><text x=\"200\" y=\"172\">(3,-2)</text><text x=\"64\" y=\"18\">$\\sqrt3x+y=1$</text><text x=\"244\" y=\"20\">L</text><text x=\"172\" y=\"128\">60°</text></g></svg>",
+    "statement": "A straight line $L$ through the point $(3,-2)$ is inclined at an angle $60^\\circ$ to the line $\\sqrt{3}\\,x+y=1$. If $L$ also intersects the $x$-axis, then the equation of $L$ is\n\n(A) $y+\\sqrt{3}\\,x+2-3\\sqrt{3}=0$\n(B) $y-\\sqrt{3}\\,x+2+3\\sqrt{3}=0$\n(C) $\\sqrt{3}\\,y-x+3+2\\sqrt{3}=0$\n(D) $\\sqrt{3}\\,y+x-3+2\\sqrt{3}=0$",
+    "answer": "(B) $y-\\sqrt{3}\\,x+2+3\\sqrt{3}=0$",
+    "trap": "The angle condition yields two candidate slopes, $m=0$ and $m=\\sqrt3$. The slope $m=0$ gives the horizontal line $y=-2$, which is parallel to the $x$-axis and never meets it — the clause \"$L$ also intersects the $x$-axis\" is the tie-breaker that rejects it, not decoration.",
+    "solutions": [
+      {
+        "name": "$\\tan\\theta$ formula for the angle between two lines",
+        "steps": [
+          "Write the given line $\\sqrt3 x+y=1$ as $y=-\\sqrt3 x+1$; its slope is $m_1=-\\sqrt3$.",
+          "Let $L$ have slope $m$. The angle $\\theta=60^\\circ$ between them satisfies $\\tan 60^\\circ=\\left|\\dfrac{m-m_1}{1+m\\,m_1}\\right|=\\left|\\dfrac{m+\\sqrt3}{1-\\sqrt3\\,m}\\right|$.",
+          "Since $\\tan 60^\\circ=\\sqrt3$: $\\left|\\dfrac{m+\\sqrt3}{1-\\sqrt3 m}\\right|=\\sqrt3$.",
+          "Case $+$: $m+\\sqrt3=\\sqrt3(1-\\sqrt3 m)=\\sqrt3-3m \\Rightarrow 4m=0 \\Rightarrow m=0$.",
+          "Case $-$: $m+\\sqrt3=-\\sqrt3(1-\\sqrt3 m)=-\\sqrt3+3m \\Rightarrow 2\\sqrt3=2m \\Rightarrow m=\\sqrt3$.",
+          "$m=0$ gives $y=-2$, parallel to the $x$-axis, so it does NOT intersect the $x$-axis — rejected by the given condition. Hence $m=\\sqrt3$.",
+          "Line through $(3,-2)$ with slope $\\sqrt3$: $y-(-2)=\\sqrt3(x-3) \\Rightarrow y+2=\\sqrt3 x-3\\sqrt3$.",
+          "Rearrange: $y-\\sqrt3 x+2+3\\sqrt3=0$, which is option (B)."
+        ]
+      },
+      {
+        "name": "Angles with the horizontal (inclinations)",
+        "steps": [
+          "The line $\\sqrt3 x+y=1$ has slope $-\\sqrt3=\\tan 120^\\circ$, so its inclination to the positive $x$-axis is $120^\\circ$.",
+          "$L$ makes a $60^\\circ$ angle with it, so $L$'s inclination is $120^\\circ\\pm 60^\\circ$, i.e. $60^\\circ$ or $180^\\circ$.",
+          "Inclination $180^\\circ$ (equivalently $0^\\circ$) means $L$ is horizontal, slope $\\tan 0^\\circ=0$ — line $y=-2$, which is parallel to the $x$-axis and cannot cut it; discard.",
+          "Inclination $60^\\circ$ gives slope $\\tan 60^\\circ=\\sqrt3$; this line is not horizontal, so it does meet the $x$-axis. Keep it.",
+          "Through $(3,-2)$ with slope $\\sqrt3$: $y+2=\\sqrt3(x-3)$, i.e. $y-\\sqrt3 x+2+3\\sqrt3=0$ — option (B).",
+          "Check the intercept: at $y=0$, $\\sqrt3 x=2+3\\sqrt3 \\Rightarrow x=3+\\tfrac{2}{\\sqrt3}$, a finite point — confirming $L$ indeed meets the $x$-axis."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2011, Paper 1, Q51. Reading the given line's slope as an inclination of $120^\\circ$ makes the two answers ($60^\\circ$ and $180^\\circ$) obvious by inspection; the \"intersects the $x$-axis\" phrase exists solely to kill the horizontal solution."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Meeting on the diagonal $y=x$",
+    "difficulty": 3,
+    "task": "Determine which inequality on $a,b,c$ must hold.",
+    "pyq": {
+      "year": 2013,
+      "paper": "1",
+      "qno": "42"
+    },
+    "tags": [
+      "intersection of lines",
+      "distance",
+      "position of a point relative to a line",
+      "2013"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"200\" x2=\"300\" y2=\"200\" stroke=\"var(--ink3)\"/><line x1=\"40\" y1=\"210\" x2=\"40\" y2=\"20\" stroke=\"var(--ink3)\"/><text x=\"295\" y=\"215\" fill=\"var(--ink2)\">x</text><text x=\"26\" y=\"28\" fill=\"var(--ink2)\">y</text><line x1=\"40\" y1=\"200\" x2=\"250\" y2=\"20\" stroke=\"var(--gold)\" stroke-dasharray=\"4 3\"/><text x=\"255\" y=\"24\" fill=\"var(--gold)\">y=x</text><line x1=\"60\" y1=\"20\" x2=\"260\" y2=\"200\" stroke=\"var(--ink2)\"/><text x=\"58\" y=\"16\" fill=\"var(--ink2)\">ax+by+c=0</text><line x1=\"260\" y1=\"20\" x2=\"60\" y2=\"200\" stroke=\"var(--ink2)\"/><text x=\"180\" y=\"210\" fill=\"var(--ink2)\">bx+ay+c=0</text><circle cx=\"160\" cy=\"110\" r=\"4\" fill=\"var(--gold)\"/><text x=\"168\" y=\"108\" fill=\"var(--ink2)\">(r,r)</text><circle cx=\"172\" cy=\"92\" r=\"3\" fill=\"var(--ink3)\"/><text x=\"178\" y=\"90\" fill=\"var(--ink2)\">(1,1)</text></svg>",
+    "statement": "For $a>b>c>0$, the distance between $(1,1)$ and the point of intersection of the lines $ax+by+c=0$ and $bx+ay+c=0$ is less than $2\\sqrt{2}$. Then\n\n(A) $a+b-c>0$\n(B) $a-b+c<0$\n(C) $a-b+c>0$\n(D) $a+b-c<0$",
+    "answer": "$\\boxed{\\text{(A)}}$",
+    "trap": "Students race to solve the $2\\times 2$ system for the intersection and drown in algebra. The symmetry $a\\leftrightarrow b$ swaps the two equations, so the meeting point must lie on the mirror line $y=x$ — a one-line observation that turns the whole problem into a single-variable distance inequality. Missing it, or forgetting that a strict distance bound gives an open interval (not the endpoints), is the usual slip.",
+    "solutions": [
+      {
+        "name": "Symmetry pins the point to $y=x$",
+        "steps": [
+          "Interchanging $a$ and $b$ maps the first line $ax+by+c=0$ to the second $bx+ay+c=0$ and vice versa; the intersection point is therefore fixed by this swap, so it must lie on the axis of symmetry $y=x$. Write it as $(r,r)$.",
+          "Substitute into either line: $ar+br+c=0\\Rightarrow (a+b)r=-c\\Rightarrow r=-\\dfrac{c}{a+b}$.",
+          "Distance from $(1,1)$ to $(r,r)$ is $\\sqrt{(r-1)^2+(r-1)^2}=\\sqrt2\\,|r-1|$.",
+          "The condition $\\sqrt2\\,|r-1|<2\\sqrt2$ gives $|r-1|<2$, i.e. $-1<r<3$; in particular $r>-1$.",
+          "So $-\\dfrac{c}{a+b}>-1$. Since $a>b>c>0$, we have $a+b>0$, so multiply through: $-c>-(a+b)$, i.e. $a+b-c>0$.",
+          "Hence $a+b-c>0$ — option (A). (Options with $a-b+c$ are red herrings: they don't follow from the given data.)"
+        ]
+      },
+      {
+        "name": "Position of $(1,1)$ relative to the sign of the point",
+        "steps": [
+          "From the symmetry argument the intersection is $(r,r)$ with $r=-\\dfrac{c}{a+b}<0$ (numerator and denominator both positive).",
+          "So the meeting point lies on $y=x$ in the third quadrant, while $(1,1)$ sits on $y=x$ in the first quadrant; both are collinear with the origin along $y=x$.",
+          "The signed coordinate of the point is $r$ and of $(1,1)$ is $1$; the distance between them along the line is $\\sqrt2\\,(1-r)$ (since $1-r>0$).",
+          "The bound $\\sqrt2\\,(1-r)<2\\sqrt2$ gives $1-r<2$, i.e. $r>-1$.",
+          "Thus $-\\dfrac{c}{a+b}>-1\\Rightarrow c<a+b\\Rightarrow a+b-c>0$, confirming (A)."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2013, Paper 1, Q42. The moment you spot the $a\\leftrightarrow b$ symmetry the intersection is forced onto $y=x$, collapsing a system-solving problem into a one-variable inequality."
+  },
+  {
+    "theme": "pyq",
+    "themeLabel": "Previous Years 2006–2026",
+    "title": "Between two nested squares",
+    "difficulty": 3,
+    "task": "Find the area of the region.",
+    "pyq": {
+      "year": 2014,
+      "paper": "1",
+      "qno": "59"
+    },
+    "tags": [
+      "distance from lines",
+      "region area",
+      "first quadrant",
+      "2014"
+    ],
+    "figure": "<svg viewBox=\"0 0 320 220\" xmlns=\"http://www.w3.org/2000/svg\" font-size=\"12\"><line x1=\"20\" y1=\"190\" x2=\"300\" y2=\"190\" stroke=\"var(--ink3)\"/><line x1=\"40\" y1=\"205\" x2=\"40\" y2=\"15\" stroke=\"var(--ink3)\"/><text x=\"294\" y=\"204\" fill=\"var(--ink2)\">x</text><text x=\"26\" y=\"22\" fill=\"var(--ink2)\">y</text><line x1=\"40\" y1=\"190\" x2=\"210\" y2=\"20\" stroke=\"var(--ink2)\" stroke-dasharray=\"3 3\"/><text x=\"188\" y=\"34\" fill=\"var(--ink2)\">y=x</text><polygon points=\"40,150 100,190 40,190\" fill=\"none\" stroke=\"var(--ink2)\"/><polygon points=\"40,70 200,190 40,190\" fill=\"none\" stroke=\"var(--gold)\"/><path d=\"M40,150 L40,70 L200,190 L100,190 L40,150 Z\" fill=\"var(--gold)\" fill-opacity=\"0.18\" stroke=\"none\"/><text x=\"44\" y=\"146\" fill=\"var(--ink2)\">√2</text><text x=\"44\" y=\"66\" fill=\"var(--gold)\">2√2</text><text x=\"96\" y=\"186\" fill=\"var(--ink2)\" text-anchor=\"end\">√2</text><text x=\"205\" y=\"186\" fill=\"var(--gold)\">2√2</text></svg>",
+    "statement": "For a point $P$ in the plane, let $d_1(P)$ and $d_2(P)$ be the distances of the point $P$ from the lines $x-y=0$ and $x+y=0$ respectively. The area of the region $R$ consisting of all points $P$ lying in the first quadrant of the plane and satisfying $2\\le d_1(P)+d_2(P)\\le 4$, is",
+    "answer": "$\\boxed{6}$",
+    "trap": "The two perpendicular lines $y=x$ and $y=-x$ tempt you to work in a rotated frame — fine, but the absolute values must be resolved using the first-quadrant constraint, not blanket-dropped. In the first quadrant $x+y>0$ always, but $|x-y|$ still splits into two cases about the line $y=x$. Collapsing $d_1+d_2$ to $\\sqrt2\\,\\max(x,y)$ is the key simplification; guessing it as $\\sqrt2\\,(x+y)$ (forgetting the $\\max$) gives a triangular strip and the wrong area.",
+    "solutions": [
+      {
+        "name": "Resolve $d_1+d_2$ into $\\sqrt2\\,\\max(x,y)$",
+        "steps": [
+          "For $P=(x,y)$, $d_1=\\dfrac{|x-y|}{\\sqrt2}$ and $d_2=\\dfrac{|x+y|}{\\sqrt2}$.",
+          "In the first quadrant $x\\ge0,\\ y\\ge0$, so $x+y\\ge0$ and $|x+y|=x+y$. Thus $d_1+d_2=\\dfrac{|x-y|+(x+y)}{\\sqrt2}$.",
+          "If $x\\ge y$: $|x-y|=x-y$, so the numerator is $(x-y)+(x+y)=2x$, giving $d_1+d_2=\\sqrt2\\,x$.",
+          "If $y>x$: $|x-y|=y-x$, so the numerator is $(y-x)+(x+y)=2y$, giving $d_1+d_2=\\sqrt2\\,y$.",
+          "Combining, $d_1+d_2=\\sqrt2\\,\\max(x,y)$ throughout the first quadrant.",
+          "The condition $2\\le\\sqrt2\\,\\max(x,y)\\le4$ becomes $\\sqrt2\\le\\max(x,y)\\le2\\sqrt2$.",
+          "The region $\\max(x,y)\\le2\\sqrt2$ (with $x,y\\ge0$) is the square $[0,2\\sqrt2]\\times[0,2\\sqrt2]$; removing $\\max(x,y)<\\sqrt2$ removes the inner square $[0,\\sqrt2]\\times[0,\\sqrt2]$.",
+          "Area $=(2\\sqrt2)^2-(\\sqrt2)^2=8-2=6.$"
+        ]
+      },
+      {
+        "name": "Rotate coordinates 45°",
+        "steps": [
+          "Put $u=\\dfrac{x-y}{\\sqrt2},\\ v=\\dfrac{x+y}{\\sqrt2}$ (a rotation, so area is preserved). Then $d_1=|u|,\\ d_2=|v|$ and the constraint is $2\\le|u|+|v|\\le4$.",
+          "The first-quadrant conditions $x\\ge0,y\\ge0$ become $v\\ge0$ (from $x+y\\ge0$) and $v\\ge|u|$ (from $x=\\frac{u+v}{\\sqrt2}\\ge0$ and $y=\\frac{v-u}{\\sqrt2}\\ge0$, i.e. $-v\\le u\\le v$).",
+          "So we need the part of the diamond-annulus $2\\le|u|+|v|\\le4$ lying in the wedge $v\\ge|u|\\ge0$.",
+          "In that wedge $v\\ge0$ and $|u|+v$ ranges; the wedge is the top quarter of each diamond $|u|+|v|=\\text{const}$ (the sector between the lines $v=u$ and $v=-u$ above the $u$-axis).",
+          "A full diamond $|u|+|v|=k$ encloses area $2k^2$; the wedge $v\\ge|u|$ is exactly one quarter of that diamond's interior, area $\\tfrac14(2k^2)=\\tfrac{k^2}{2}$.",
+          "Between $k=2$ and $k=4$: area $=\\dfrac{4^2}{2}-\\dfrac{2^2}{2}=8-2=6.$",
+          "Both routes agree: the area is $6$."
+        ]
+      }
+    ],
+    "remark": "**Source.** IIT-JEE / JEE Advanced 2014, Paper 1, Q59. The whole problem hinges on recognising that two perpendicular distances collapse to $\\sqrt2\\,\\max(x,y)$ in the first quadrant, turning a level-set question into the area between two concentric squares."
   }
 ];

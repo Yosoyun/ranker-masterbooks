@@ -11,9 +11,9 @@ const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || ['/Applications/Google C
 const src = readFileSync(ROOT + '/problems.js', 'utf8');
 const PROBLEMS = JSON.parse(src.slice(src.indexOf('['), src.lastIndexOf(']') + 1));
 
-const THEME_ORDER = ['areaxaxis','areayaxis','betweencurves','intersection','symmetry','stdcurves','moduluspiece','variableparam','minimizearea','hybrid'];
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-const GLYPH = { areaxaxis:'∫f dx', areayaxis:'∫x dy', betweencurves:'∫(f−g)', intersection:'f=g', symmetry:'↔', stdcurves:'y²=4ax', moduluspiece:'|f|,⌊x⌋', variableparam:'A(t)', minimizearea:'min A', hybrid:'⊕' };
+const THEME_ORDER = ['areaxaxis','areayaxis','betweencurves','intersection','symmetry','stdcurves','moduluspiece','variableparam','minimizearea','hybrid','pyq'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const GLYPH = { areaxaxis:'∫f dx', areayaxis:'∫x dy', betweencurves:'∫(f−g)', intersection:'f=g', symmetry:'↔', stdcurves:'y²=4ax', moduluspiece:'|f|,⌊x⌋', variableparam:'A(t)', minimizearea:'min A', hybrid:'⊕', pyq:'★' };
 const BLURB = {
   areaxaxis:'Area under y=f(x) and the x-axis — split at sign-change roots, ∫|f|.',
   areayaxis:'Area by horizontal strips — ∫x dy between y-limits.',
@@ -25,6 +25,7 @@ const BLURB = {
   variableparam:'Area as a function of a moving boundary or a parameter (Leibniz).',
   minimizearea:'Extremising an enclosed area under a constraint.',
   hybrid:'Between-curves, standard conics, symmetry, a moving boundary & optimisation, fused.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
 };
 
 // order + index
