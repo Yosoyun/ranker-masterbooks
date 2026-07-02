@@ -25,7 +25,7 @@ const BLURB = {
   approximation:'Small-x linearisation, Bernoulli, and the binomial inequalities as bounds.',
   vandermonde:'Vandermonde, hockey-stick and Pascal identities — counting two ways.',
   hybrid:'General term, roots-of-unity filters, calculus sums and number theory, fused.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

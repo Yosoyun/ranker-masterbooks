@@ -3778,7 +3778,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Vandermonde Sum in Disguise",
     "difficulty": 5,
     "task": "Identify the correct closed form",
@@ -3820,7 +3820,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three Coefficients in Ratio 5:10:14",
     "difficulty": 4,
     "task": "Find the integer $n$",
@@ -3861,7 +3861,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Coefficient in a Triple Product",
     "difficulty": 4,
     "task": "Find the coefficient",
@@ -3904,7 +3904,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Coefficient as Distinct Partitions",
     "difficulty": 4,
     "task": "Find the coefficient",
@@ -3947,7 +3947,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Smallest m Hiding a Series",
     "difficulty": 4,
     "task": "Find the value of n",
@@ -3989,7 +3989,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Weighted Sum of Squared Coefficients",
     "difficulty": 4,
     "task": "Evaluate the scaled sum",
@@ -4031,7 +4031,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Determinant Fixes n, Then a Sum",
     "difficulty": 4,
     "task": "Evaluate the sum",
@@ -4073,7 +4073,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Double Sum That Is Secretly a Power of Two",
     "difficulty": 5,
     "task": "Identify all true statements",
@@ -4115,7 +4115,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Matching a Coefficient Across Two Expansions",
     "difficulty": 4,
     "task": "Find the value of $2b$",
@@ -4156,7 +4156,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Where the Largest Coefficient Lands",
     "difficulty": 4,
     "task": "Find the value of $r$",

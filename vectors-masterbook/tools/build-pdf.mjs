@@ -25,7 +25,7 @@ const BLURB = {
   distances:'Distances point–line, point–plane, and between two skew lines.',
   loci:'Vector equations of loci and spheres from dot- and cross-products.',
   hybrid:'Dot, cross, triple product and 3D geometry, fused into one.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

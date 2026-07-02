@@ -26,7 +26,7 @@ const BLURB = {
   parammat:'Parameter values for singular/consistent; matrix equations AX=B.',
   chareqn:'The characteristic equation det(A−λI)=0; trace and det as root-sum and product; power sums tr(Aⁿ); the order-2 identity A²=(tr A)A−(det A)I for Aⁿ and A⁻¹.',
   hybrid:'Several in-syllabus ideas fused into one multi-step problem.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

@@ -25,7 +25,7 @@ const BLURB = {
   special:'Greatest integer, fractional part, signum & absolute value.',
   graphs:'Shifts, stretches, reflections, |·| transforms; reading a graph.',
   hybrid:'Relations, classification, composition, inverses & functional equations, fused.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

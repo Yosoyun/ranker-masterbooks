@@ -17,7 +17,7 @@
     locus:           { glyph:'P(h,k)',  blurb:'The locus of a point that moves under a stated linear condition — eliminate the parameter and name the line or curve it sweeps.' },
     translation:     { glyph:'(x−h)',  blurb:'Slide the origin to a new point — how a line\'s or curve\'s equation transforms, the shift that kills the first-degree terms (the centre), and the new coordinates of a point.' },
     hybrid:          { glyph:'⊕',       blurb:'The capstones: forms, distance, the family of lines, the pair of lines, the triangle centres and a locus fused into one problem that resists every single tool.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

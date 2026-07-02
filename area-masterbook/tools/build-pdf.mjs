@@ -25,7 +25,7 @@ const BLURB = {
   variableparam:'Area as a function of a moving boundary or a parameter (Leibniz).',
   minimizearea:'Extremising an enclosed area under a constraint.',
   hybrid:'Between-curves, standard conics, symmetry, a moving boundary & optimisation, fused.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

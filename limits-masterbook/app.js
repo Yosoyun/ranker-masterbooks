@@ -17,7 +17,7 @@
     indeterminate:{ glyph:'1^∞',  blurb:'0^0, ∞−∞, ∞^0 — the forms that hide their answer until you force them.' },
     squeeze:      { glyph:'Σ',    blurb:'When termwise intuition lies, only a global bound tells the truth.' },
     hybrid:       { glyph:'∞',    blurb:'The capstones: three or more worlds fused into a single pitiless limit.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

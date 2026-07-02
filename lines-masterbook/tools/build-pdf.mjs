@@ -25,7 +25,7 @@ const BLURB = {
   locus:'The locus of a point under a linear condition — eliminate the parameter.',
   translation:'Sliding the origin to a new point; killing the first-degree terms.',
   hybrid:'Forms, distance, the family & pair of lines, the centres & a locus, fused.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

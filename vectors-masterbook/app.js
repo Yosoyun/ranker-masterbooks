@@ -17,7 +17,7 @@
     distances:     { glyph:'⊥',      blurb:'Point to line, point to plane, and the shortest distance between two skew lines — the common perpendicular and the volume trick that finds it.' },
     loci:          { glyph:'|r−a|',  blurb:'A condition on a moving position vector traces a curve or a surface — the sphere, the plane, and the loci hidden inside dot- and cross-product equations.' },
     hybrid:        { glyph:'⊕',      blurb:'The capstones: dot, cross, triple product and 3D geometry fused into one problem that resists every single tool taken alone.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

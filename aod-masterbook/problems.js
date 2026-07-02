@@ -3968,7 +3968,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Extrema of $g(x)=\\int_0^x f$ for a broken $f$",
     "difficulty": 4,
     "task": "Identify all correct statements about $g$.",
@@ -4013,7 +4013,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The cubic pinned by four clues",
     "difficulty": 3,
     "task": "Decide which statements about the cubic are correct.",
@@ -4063,7 +4063,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Where the tangent to $y=e^x$ meets its chord",
     "difficulty": 3,
     "task": "Decide where the tangent crosses the chord.",
@@ -4110,7 +4110,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Roots of $ke^x=x$",
     "difficulty": 3,
     "task": "Find the set of $k>0$ giving two distinct roots.",
@@ -4155,7 +4155,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The $k$ that makes $ke^x=x$ tangent",
     "difficulty": 3,
     "task": "Find the positive $k$ giving a single root.",
@@ -4201,7 +4201,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Cusp Meets Cube: Counting Extrema",
     "difficulty": 2,
     "task": "Count the local maxima and minima.",
@@ -4245,7 +4245,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Symmetric Rational $\\dfrac{x^2-ax+1}{x^2+ax+1}$",
     "difficulty": 3,
     "task": "Identify the correct relation among the derivatives.",
@@ -4297,7 +4297,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Monotonicity of $\\dfrac{x^2-ax+1}{x^2+ax+1}$ on $(-1,1)$",
     "difficulty": 3,
     "task": "Decide monotonicity and the nature of $x=1$.",
@@ -4344,7 +4344,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Maximum on a hidden interval",
     "difficulty": 3,
     "task": "Find the maximum value.",
@@ -4390,7 +4390,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three functions, one summit",
     "difficulty": 3,
     "task": "Identify the correct relation among the three absolute maxima.",
@@ -4436,7 +4436,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The multiplicity gauntlet: where does $g=e^{f}$ peak?",
     "difficulty": 4,
     "task": "Count the local maxima.",
@@ -4485,7 +4485,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Trapping the root of $f(x)=1+2x+3x^2+4x^3$",
     "difficulty": 3,
     "task": "Locate the interval.",
@@ -4531,7 +4531,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "How many times does $x^2$ meet $x\\sin x+\\cos x$?",
     "difficulty": 3,
     "task": "Count the real roots.",
@@ -4578,7 +4578,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Where does $\\big(x\\sin\\pi x\\big)'$ vanish inside each unit cell?",
     "difficulty": 3,
     "task": "Locate the stationary point.",
@@ -4625,7 +4625,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Open Box of Maximum Volume",
     "difficulty": 4,
     "task": "Find the side lengths of the sheet.",
@@ -4671,7 +4671,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Extrema Hidden Inside a Nest of Moduli",
     "difficulty": 4,
     "task": "Identify all points of local extremum.",
@@ -4719,7 +4719,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The smallest $\\alpha$ that keeps $4\\alpha x^2+\\tfrac1x$ above $1$",
     "difficulty": 3,
     "task": "Find the least value of the parameter.",
@@ -4766,7 +4766,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A $0/0$ limit that pins down $f(2)=f''(2)$",
     "difficulty": 4,
     "task": "Select every correct statement.",
@@ -4817,7 +4817,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The critical points of $\\dfrac{\\sin\\pi x}{x^2}$",
     "difficulty": 5,
     "task": "Decide which statements about the extrema are correct.",
@@ -4870,7 +4870,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "$F(x)=\\displaystyle\\int_0^x (t-1)(t-2)(t-5)\\,dt$",
     "difficulty": 4,
     "task": "Decide which statements about $F$ are correct.",
@@ -4923,7 +4923,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A $50$th-degree polynomial's lone valley",
     "difficulty": 3,
     "task": "Compute the required combination.",
@@ -4971,7 +4971,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "How often can a convex curve meet $y=x$?",
     "difficulty": 4,
     "task": "Decide which statements are true.",

@@ -25,7 +25,7 @@ const BLURB = {
   famous:'ln(sin x), ln(1+tan x), x·f(sin x) — the famous integrals symmetry cracks.',
   improper:'Infinite range or a singularity — convergence first, value second.',
   hybrid:'Reflection, reduction, Leibniz and the limit of sums, fused.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

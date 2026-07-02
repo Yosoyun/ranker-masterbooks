@@ -17,7 +17,7 @@
     special:       { glyph:'⌊x⌋',    blurb:'The greatest-integer, fractional-part, signum and absolute-value functions — their identities, equations and the integer-vs-real case splits they hide.' },
     graphs:        { glyph:'y=f(x)', blurb:'Reading and building graphs — shifts, stretches, reflections and |·| transformations, and recovering a function from its graph or a mapping diagram.' },
     hybrid:        { glyph:'⊕',      blurb:'The capstones: relations, classification, composition, inverses, functional equations and the special functions fused into one problem that resists every single tool.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

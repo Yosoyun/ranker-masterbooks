@@ -3669,7 +3669,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Weighted Urns, Limiting White",
     "difficulty": 4,
     "task": "Evaluate $\\displaystyle\\lim_{n\\to\\infty}P(w)$.",
@@ -3710,7 +3710,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Bayes on the Last Urn",
     "difficulty": 4,
     "task": "Find $P(u_n\\mid w)$.",
@@ -3750,7 +3750,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "White From An Even-Numbered Urn",
     "difficulty": 4,
     "task": "Find the conditional probability",
@@ -3790,7 +3790,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Indian Couple At A Married Table",
     "difficulty": 4,
     "task": "Find the conditional probability",
@@ -3830,7 +3830,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Bayes Inequality for a Partition",
     "difficulty": 4,
     "task": "Judge the two statements",
@@ -3873,7 +3873,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Pairwise Independence Under Conditioning",
     "difficulty": 4,
     "task": "Simplify the conditional probability",
@@ -3916,7 +3916,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Random Binary System: Unique or Solvable",
     "difficulty": 4,
     "task": "Judge two statements",
@@ -3961,7 +3961,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "How Many Outcomes Make Two Events Independent",
     "difficulty": 3,
     "task": "Find the possible sizes of $B$",
@@ -4003,7 +4003,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Tossing a Die Until the First Six",
     "difficulty": 3,
     "task": "Find the probability that the first six appears on the third toss.",
@@ -4043,7 +4043,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "At Least Three Tosses for a Six",
     "difficulty": 3,
     "task": "Find the probability that at least three tosses are needed to get a six.",
@@ -4083,7 +4083,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Waiting Time That Forgets Its Past",
     "difficulty": 3,
     "task": "Evaluate the conditional probability",
@@ -4125,7 +4125,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three Cube-Root Vectors Summing to Zero",
     "difficulty": 4,
     "task": "Find the required probability",
@@ -4168,7 +4168,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Twice-Relayed Green Signal",
     "difficulty": 4,
     "task": "Find the reverse (posterior) probability",
@@ -4210,7 +4210,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Coin Decides the Transfer, Then a White Ball",
     "difficulty": 4,
     "task": "Find the total probability",
@@ -4252,7 +4252,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Which Coin Face Produced the White Ball",
     "difficulty": 4,
     "task": "Find $P(\\text{head}\\mid\\text{white})$",
@@ -4295,7 +4295,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Recovering Two Probabilities From Exactly-One and None",
     "difficulty": 4,
     "task": "Find all valid pairs $\\big(P(E),P(F)\\big)$",
@@ -4337,7 +4337,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Three-Engine Ship",
     "difficulty": 4,
     "task": "Decide which conditional-probability statements are correct.",
@@ -4382,7 +4382,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Fourth Die's Match",
     "difficulty": 3,
     "task": "Find the probability that the fourth die matches one of the first three.",
@@ -4422,7 +4422,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Decoding Independence From Two Conditionals",
     "difficulty": 3,
     "task": "Decide which statements about $X$ and $Y$ are correct",
@@ -4464,7 +4464,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "At Least One Solver Among Four",
     "difficulty": 3,
     "task": "Find the probability the problem is solved by at least one",
@@ -4505,7 +4505,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Only-One Data Fixes a Probability Ratio",
     "difficulty": 5,
     "task": "Find $\\dfrac{P(E_1)}{P(E_3)}$",
@@ -4548,7 +4548,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "One Ball From Each Box, All Same Colour",
     "difficulty": 3,
     "task": "Find the probability",
@@ -4588,7 +4588,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Parity Of A Sum Of Three Cards",
     "difficulty": 3,
     "task": "Find the probability that $x_1+x_2+x_3$ is odd.",
@@ -4630,7 +4630,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three Drawn Cards Forming An AP",
     "difficulty": 3,
     "task": "Find the probability that $x_1,x_2,x_3$ are in arithmetic progression.",
@@ -4673,7 +4673,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "How Many Tosses For Two Heads",
     "difficulty": 4,
     "task": "Find the least number of tosses",
@@ -4713,7 +4713,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Boxes, A Red Ball, Fixed Posterior",
     "difficulty": 4,
     "task": "Identify all admissible box compositions",
@@ -4754,7 +4754,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Two Plants and a Clean Computer",
     "difficulty": 4,
     "task": "Find $P(T_2\\mid \\text{not defective})$.",
@@ -4797,7 +4797,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Games, Who Leads on Points",
     "difficulty": 4,
     "task": "Find $P(X>Y)$ after two games.",
@@ -4839,7 +4839,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Probability the Two Scores Tie",
     "difficulty": 3,
     "task": "Find the probability that $T_1$ and $T_2$ finish with equal points.",
@@ -4880,7 +4880,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Conditional Data, Four Verdicts",
     "difficulty": 3,
     "task": "Decide which of the four statements are TRUE.",
@@ -4922,7 +4922,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Even Coordinate on a Lattice Triangle",
     "difficulty": 3,
     "task": "Find the probability that $z$ is even.",
@@ -4965,7 +4965,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three Bags and a Green Ball",
     "difficulty": 3,
     "task": "Decide which of the four statements about the green-ball draw are correct.",
@@ -5008,7 +5008,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Singular 0–1 Matrices with Seven Ones",
     "difficulty": 4,
     "task": "Compute the conditional probability $P(E_1\\mid E_2)$.",
@@ -5051,7 +5051,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Independent Events, Counting the Pairs",
     "difficulty": 5,
     "task": "Find the number of ordered pairs $(A,B)$.",
@@ -5094,7 +5094,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Biased Coins Force Equal Roots",
     "difficulty": 4,
     "task": "Find the probability that $x^2-\\alpha x+\\beta$ has real and equal roots.",
@@ -5136,7 +5136,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Missiles Needed to Destroy the Target",
     "difficulty": 4,
     "task": "Find the least number of missiles fired so that destruction is at least 95% certain.",
@@ -5180,7 +5180,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Perfect Square Before a Prime",
     "difficulty": 4,
     "task": "Given the stopping sum is a perfect square, find the probability it is odd, then report $14p$.",
@@ -5222,7 +5222,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Three-Stage Set Shuffle",
     "difficulty": 5,
     "task": "Find the conditional probability $p=P\\!\\left(S_1=\\{1,2\\}\\mid E_1=E_3\\right)$.",
@@ -5265,7 +5265,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Maximum of Three Draws, Rescaled",
     "difficulty": 3,
     "task": "Compute the value of $\\dfrac{625}{4}\\,p_1$.",
@@ -5307,7 +5307,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Multiple of 3 or 7 up to 2000",
     "difficulty": 3,
     "task": "Find $500p$, where $p$ is the probability of a multiple of 3 or 7.",
@@ -5349,7 +5349,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "At Most One Symptom Among Three",
     "difficulty": 3,
     "task": "Find the probability that a randomly chosen person has at most one symptom.",
@@ -5392,7 +5392,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Two-Die Scoring Duel",
     "difficulty": 4,
     "task": "Match each score-comparison probability in List-I to its value in List-II.",
@@ -5433,7 +5433,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four Boxes and a White Ball",
     "difficulty": 4,
     "task": "Find the conditional probability of a white ball given at least one green ball appears.",
@@ -5476,7 +5476,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Lattice Triangles of Integer Area",
     "difficulty": 5,
     "task": "Find the probability that $P,Q,R$ form a triangle of positive integer area.",
@@ -5521,7 +5521,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Coin That Stops on a Head",
     "difficulty": 4,
     "task": "Find the probability that the experiment stops with a head.",
@@ -5565,7 +5565,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Multiple of 20, Given Multiple of 5",
     "difficulty": 4,
     "task": "Find the value of $38p$.",
@@ -5609,7 +5609,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Expected Friends on a Grid of Dots",
     "difficulty": 3,
     "task": "Find the value of $7E(X)$.",
@@ -5653,7 +5653,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Friends on the Lattice Grid",
     "difficulty": 3,
     "task": "Find the value of $7p$.",
@@ -5696,7 +5696,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Quiz Guesser and Bayes",
     "difficulty": 4,
     "task": "Find $P(\\text{the student knows the answer})$.",
@@ -5738,7 +5738,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Distribution That Lies on a Line",
     "difficulty": 4,
     "task": "Find the value of $24\\sigma$",
@@ -5780,7 +5780,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "White, Green, Blue in Three Draws",
     "difficulty": 3,
     "task": "Find the total number of balls $N$",

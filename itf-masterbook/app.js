@@ -17,7 +17,7 @@
     calculus:    { glyph:'d/dx',  blurb:'Differentiate arctan(2x/(1−x²)) and the chain rule lies by a sign. The branch decides the derivative.' },
     advanced:    { glyph:'π',     blurb:"Machin's π, Gaussian-integer arctangents, three angles that sum to π — the competition canon." },
     hybrid:      { glyph:'⊕',     blurb:'The capstones: branch correction, telescoping, equations and calculus fused into one pitiless problem.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

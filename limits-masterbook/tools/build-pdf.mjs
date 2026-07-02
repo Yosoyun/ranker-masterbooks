@@ -25,7 +25,7 @@ const BLURB = {
   indeterminate:'0^0, ∞−∞, ∞^0 — forms that hide their answer until forced.',
   squeeze:'When termwise intuition lies, only a global bound tells the truth.',
   hybrid:'Three or more worlds fused into a single pitiless limit.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

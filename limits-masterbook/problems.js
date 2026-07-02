@@ -4317,7 +4317,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Sum of Two Powers as $x\\to 0^+$",
     "difficulty": 3,
     "task": "Evaluate the limit.",
@@ -4361,7 +4361,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Variable-Limit Integral over $x^2-\\tfrac{\\pi^2}{16}$",
     "difficulty": 3,
     "task": "Evaluate the limit.",
@@ -4407,7 +4407,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Matching the exponents of $|x-1|$",
     "difficulty": 3,
     "task": "Find the pair $(n,m)$.",
@@ -4454,7 +4454,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "$g\\cot x - g(0)\\csc x$ and the hidden $f''(0)$",
     "difficulty": 4,
     "task": "Decide which assertion-reason option holds.",
@@ -4502,7 +4502,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The vanishing $x^2$ coefficient",
     "difficulty": 4,
     "task": "Determine which conditions hold.",
@@ -4549,7 +4549,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "An integral divided by $x^3$",
     "difficulty": 3,
     "task": "Evaluate the limit.",
@@ -4594,7 +4594,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A $1^\\infty$ limit pinned by AM–GM",
     "difficulty": 4,
     "task": "Find all admissible values of $\\theta$.",
@@ -4644,7 +4644,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "An oblique asymptote hidden in a limit",
     "difficulty": 2,
     "task": "Find the constants $a$ and $b$.",
@@ -4690,7 +4690,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The vanishing quadratic: roots born from three radicals",
     "difficulty": 4,
     "task": "Find the two limiting roots.",
@@ -4737,7 +4737,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Sum That Becomes an Integral",
     "difficulty": 4,
     "task": "Find all values of $a$.",
@@ -4778,7 +4778,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Largest Admissible Integer",
     "difficulty": 4,
     "task": "Find the largest such nonnegative integer $a$.",
@@ -4827,7 +4827,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Tuning $\\alpha,\\beta$ so a $0/0$ limit equals $1$",
     "difficulty": 3,
     "task": "Find $6(\\alpha+\\beta)$.",
@@ -4873,7 +4873,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A giant product limit that becomes a Riemann integral",
     "difficulty": 5,
     "task": "Decide which statements about $f$ are correct.",
@@ -4926,7 +4926,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Riemann sums, one ratio $=54$",
     "difficulty": 4,
     "task": "Find all possible values of $a$.",
@@ -4973,7 +4973,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The order of vanishing of $(1-x)^{1/x}-e^{-1}$",
     "difficulty": 3,
     "task": "Find the value of $a$.",
@@ -5019,7 +5019,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A $0/0$ trigonometric limit at $x=\\pi/2$",
     "difficulty": 4,
     "task": "Evaluate the limit.",
@@ -5066,7 +5066,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A four-term Taylor race to $6\\beta$",
     "difficulty": 4,
     "task": "Find the value of $6\\beta$.",
@@ -5115,7 +5115,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A staircase $\\sqrt{n}$ squeezed against $2\\sqrt{x}$",
     "difficulty": 4,
     "task": "Evaluate the limit of the product.",
@@ -5166,7 +5166,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Killing the linear term: $\\tfrac{\\alpha}{2}\\!\\int\\!\\frac{dt}{1-t^2}+\\beta x\\cos x$",
     "difficulty": 3,
     "task": "Find $\\alpha+\\beta$.",

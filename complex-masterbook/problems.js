@@ -4225,7 +4225,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When $\\dfrac{w-\\bar w z}{1-z}$ turns real",
     "difficulty": 3,
     "task": "Identify the correct set of values of $z$.",
@@ -4271,7 +4271,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A walk across the Argand plane",
     "difficulty": 2,
     "task": "Locate the point $P$ in the Argand plane.",
@@ -4316,7 +4316,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The locus of $\\dfrac{z}{1-z^2}$ on the unit circle",
     "difficulty": 3,
     "task": "Identify the locus.",
@@ -4361,7 +4361,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "How many points in $A\\cap B\\cap C$?",
     "difficulty": 4,
     "task": "Count the common points.",
@@ -4409,7 +4409,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A sum that never moves off the diameter",
     "difficulty": 3,
     "task": "Choose the correct interval.",
@@ -4455,7 +4455,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "One point on the rim, one inside",
     "difficulty": 3,
     "task": "Pick the correct bounding interval.",
@@ -4500,7 +4500,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Particle's Walk in the Argand Plane",
     "difficulty": 3,
     "task": "Find the final position $z_2$.",
@@ -4547,7 +4547,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Sum of Odd-Power Imaginary Parts",
     "difficulty": 4,
     "task": "Evaluate the sum at $\\theta = 2^\\circ$.",
@@ -4600,7 +4600,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Point on the Segment $z_1z_2$",
     "difficulty": 3,
     "task": "Select every statement that must hold.",
@@ -4648,7 +4648,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four Loci, One Match — $|z-i|z||$, Ellipses & $w\\pm\\tfrac1w$",
     "difficulty": 4,
     "task": "Match each locus in Column I to every description it satisfies in Column II.",
@@ -4692,7 +4692,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "$\\dfrac{3}{\\omega^{a}}+\\dfrac{1}{\\omega^{b}}+\\dfrac{3}{\\omega^{c}}$ — Cube Roots Meet a Linear System",
     "difficulty": 3,
     "task": "Evaluate the given cube-root-of-unity expression.",
@@ -4738,7 +4738,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The $\\omega$-Fourier Trio",
     "difficulty": 4,
     "task": "Evaluate the constant ratio.",
@@ -4785,7 +4785,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Forbidden Value of $z^2+z+1$",
     "difficulty": 3,
     "task": "Find the value $a$ cannot take.",
@@ -4831,7 +4831,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Reflected Across the Circle: $\\alpha$ and $1/\\bar\\alpha$",
     "difficulty": 4,
     "task": "Find $|\\alpha|$.",
@@ -4878,7 +4878,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Shortest reach into a $60^\\circ$ sector",
     "difficulty": 4,
     "task": "Find the minimum distance.",
@@ -4923,7 +4923,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When $p(p(x))=0$ escapes both axes",
     "difficulty": 3,
     "task": "Identify the nature of the roots.",
@@ -4967,7 +4967,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Nine Nontrivial $10^{\\text{th}}$ Roots",
     "difficulty": 3,
     "task": "Match each List-I statement to its List-II value.",
@@ -5014,7 +5014,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Equal Chords on the Unit Circle",
     "difficulty": 2,
     "task": "Evaluate the ratio.",
@@ -5060,7 +5060,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A $2\\times2$ Matrix of Cube Roots",
     "difficulty": 4,
     "task": "Count the ordered pairs.",
@@ -5110,7 +5110,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Locus of $\\dfrac{1}{a+ibt}$",
     "difficulty": 4,
     "task": "Identify every curve the point lies on.",
@@ -5161,7 +5161,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Möbius map with a real anchor",
     "difficulty": 3,
     "task": "Find all possible values of $x$.",
@@ -5206,7 +5206,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four claims about the principal argument",
     "difficulty": 4,
     "task": "Identify all the FALSE statements.",
@@ -5251,7 +5251,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When does $sz+t\\bar z+r=0$ become a line?",
     "difficulty": 4,
     "task": "Decide which statements are true.",
@@ -5303,7 +5303,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Maximising $\\dfrac{1}{|z-1|}$ on the outside of a disk",
     "difficulty": 4,
     "task": "Find the principal argument.",
@@ -5355,7 +5355,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Smallest Norm of $a+b\\omega+c\\omega^2$",
     "difficulty": 4,
     "task": "Find the minimum value.",
@@ -5404,7 +5404,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Locus $|z^2+z+1|=1$",
     "difficulty": 4,
     "task": "Identify all true statements.",
@@ -5449,7 +5449,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The hyperbola hidden in $z^4-|z|^4=4iz^2$",
     "difficulty": 4,
     "task": "Find the minimum value.",
@@ -5496,7 +5496,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Chords never beat arcs: a walk of ten $e^{i\\theta_k}$",
     "difficulty": 4,
     "task": "Decide which statements are true.",
@@ -5544,7 +5544,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The $45^\\circ$ Arc That Became a Circle",
     "difficulty": 4,
     "task": "Identify the true statements about $\\alpha$ and $\\beta$.",
@@ -5593,7 +5593,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Real Fraction Pins Down $|z|$",
     "difficulty": 3,
     "task": "Find the value of $|z|^2$.",
@@ -5638,7 +5638,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Lone Integer in a Trigonometric Family",
     "difficulty": 4,
     "task": "Find the single positive integer in the set.",
@@ -5688,7 +5688,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Splitting $|z|^3+2z^2+4\\bar z-8=0$",
     "difficulty": 3,
     "task": "Match each List-I entry to List-II.",
@@ -5741,7 +5741,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Octagon's Greatest Product $PA_1\\cdots PA_8$",
     "difficulty": 4,
     "task": "Find the maximum value of the product.",
@@ -5789,7 +5789,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Derivative's Imaginary Root Fixes the Quartic",
     "difficulty": 3,
     "task": "Find the sum of the squared moduli of the roots.",
@@ -5838,7 +5838,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The $|z-z_1|=2|z-z_2|$ Apollonius Circle",
     "difficulty": 3,
     "task": "Identify the true statements about the locus.",
@@ -5882,7 +5882,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Argument of $\\sum_{n=1}^{2025}(-\\omega)^n$",
     "difficulty": 3,
     "task": "Find the value of the expression.",

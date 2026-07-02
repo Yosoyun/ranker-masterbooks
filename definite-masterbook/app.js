@@ -17,7 +17,7 @@
     famous:        { glyph:'lnsin',blurb:'The integrals everyone quotes — ln(sin x), ln(1+tan x) and x·f(sin x) — and the symmetry that cracks each.' },
     improper:      { glyph:'∞',    blurb:'Where the interval runs to infinity or the integrand blows up — convergence first, value second.' },
     hybrid:        { glyph:'⊕',    blurb:'The capstones: reflection, reduction, Leibniz and the limit of sums, fused.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

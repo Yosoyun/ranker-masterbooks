@@ -17,7 +17,7 @@
     monotonic:        { glyph:'↑↓',     blurb:'The sign of f′ rules increase, decrease and the extrema; whole inequalities fall out of monotonicity.' },
     derivlimits:      { glyph:'0/0',    blurb:'Limits the derivative settles — Taylor cancellation, L’Hôpital’s fine print, the quotient as a limit.' },
     hybrid:           { glyph:'⊕',      blurb:'The capstones: the Mean Value Theorem, implicit differentiation, functional equations and smoothness fused into one.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

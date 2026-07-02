@@ -25,7 +25,7 @@ const BLURB = {
   eccentricity:'Focus–directrix & eccentricity — focal distances, latus rectum.',
   locus:'Loci & parametric problems — midpoints, feet of perpendiculars, optima.',
   hybrid:'The four conics, the T/pole–polar machinery & the general equation, fused.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

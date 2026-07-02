@@ -25,7 +25,7 @@ const BLURB = {
   reduction:'Reduction formulae — Iₙ in terms of Iₙ₋₂ by parts, run down to a base.',
   exactderiv:'Spotting an exact derivative — ∫eˣ(f+f′)dx=eˣf and the d(uv) patterns.',
   hybrid:'Substitution, parts, partial fractions & the exact-derivative trick, fused.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

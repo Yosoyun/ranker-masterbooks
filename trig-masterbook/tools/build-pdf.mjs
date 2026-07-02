@@ -25,7 +25,7 @@ const BLURB = {
   equations:'Periodicity and intervals separate true roots from impostors.',
   geometry:'Sine rule, cosine rule, area, R, r and s through angles.',
   hybrid:'Identities, multiple angles, transformations & triangles fused.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

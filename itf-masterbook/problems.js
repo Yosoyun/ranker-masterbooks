@@ -4233,7 +4233,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The locus behind $\\sin^{-1}(ax)+\\cos^{-1}y+\\cos^{-1}(bxy)=\\tfrac{\\pi}{2}$",
     "difficulty": 4,
     "task": "Match each pair of parameters to the locus of $(x,y)$.",
@@ -4280,7 +4280,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Unwinding $\\big[\\sqrt{1+x^2}\\,\\{x\\cos(\\cot^{-1}x)+\\sin(\\cot^{-1}x)\\}^2-1\\big]^{1/2}$",
     "difficulty": 3,
     "task": "Simplify the expression to a closed form.",
@@ -4321,7 +4321,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The parity of $2\\tan^{-1}(e^u)-\\tfrac{\\pi}{2}$",
     "difficulty": 3,
     "task": "Decide the parity and monotonicity of $g$.",
@@ -4367,7 +4367,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "$\\dfrac{d}{d(\\tan\\theta)}\\,\\sin\\!\\big(\\tan^{-1}\\tfrac{\\sin\\theta}{\\sqrt{\\cos 2\\theta}}\\big)$",
     "difficulty": 3,
     "task": "Evaluate the derivative.",
@@ -4412,7 +4412,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Telescoping $\\cot^{-1}$ Cascade",
     "difficulty": 3,
     "task": "Evaluate the cotangent of the finite sum.",
@@ -4459,7 +4459,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Four-Way Match of $\\sin^{-1},\\ \\tan^{-1},\\ \\cot^{-1}$ Values",
     "difficulty": 4,
     "task": "Match each entry in List I to its value in List II.",
@@ -4508,7 +4508,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The zig-zag meets a gentle line: $\\cos^{-1}(\\cos x)=\\tfrac{10-x}{10}$",
     "difficulty": 3,
     "task": "Count the solutions.",
@@ -4557,7 +4557,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A four-way match: Chebyshev, a polygon, an ellipse normal, and $\\tan^{-1}$",
     "difficulty": 4,
     "task": "Match List-I with List-II.",
@@ -4606,7 +4606,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two series, one $\\sin^{-1}=\\sin^{-1}$",
     "difficulty": 4,
     "task": "Count the real solutions in the given interval.",
@@ -4654,7 +4654,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A telescoping $\\tan^{-1}$ family $f_n$",
     "difficulty": 4,
     "task": "Select every TRUE statement.",
@@ -4704,7 +4704,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A secant chain that collapses to $\\sec^{-1}(1)$",
     "difficulty": 4,
     "task": "Evaluate the inverse-secant expression.",
@@ -4753,7 +4753,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The telescoping $\\cot^{-1}$ ladder $S_n(x)$",
     "difficulty": 4,
     "task": "Select all true statements.",
@@ -4804,7 +4804,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Sum Where the Angle Vanishes",
     "difficulty": 3,
     "task": "Evaluate the expression.",
@@ -4854,7 +4854,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When $\\tan^{-1}+\\cot^{-1}$ Is Not $\\tfrac\\pi2$",
     "difficulty": 4,
     "task": "Find the sum of all solutions.",

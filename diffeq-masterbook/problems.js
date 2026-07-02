@@ -3739,7 +3739,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The tangent cut in ratio $3:1$",
     "difficulty": 3,
     "task": "Decide which statements about the curve are correct.",
@@ -3785,7 +3785,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A limit that hides a linear ODE",
     "difficulty": 3,
     "task": "Determine $f(x)$.",
@@ -3832,7 +3832,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Slope That Draws Circles",
     "difficulty": 2,
     "task": "Identify the family of curves.",
@@ -3877,7 +3877,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Statements, One $\\sec^{-1}$",
     "difficulty": 3,
     "task": "Judge both statements.",
@@ -3923,7 +3923,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The arc-length trap: $\\sqrt{1-(f')^2}=f$",
     "difficulty": 3,
     "task": "Decide the sign of $f(\\tfrac12)-\\tfrac12$ and $f(\\tfrac13)-\\tfrac13$.",
@@ -3970,7 +3970,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When $y'=y$ collapses to zero",
     "difficulty": 2,
     "task": "Evaluate $f(\\ln 5)$.",
@@ -4016,7 +4016,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The tangent whose $y$-intercept is $x^3$",
     "difficulty": 3,
     "task": "Find $f(-3)$.",
@@ -4065,7 +4065,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Differentiate the integral: $6\\!\\int_1^x f=3xf-x^3$",
     "difficulty": 3,
     "task": "Find $f(2)$.",
@@ -4114,7 +4114,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The vanishing endpoints of $g$",
     "difficulty": 4,
     "task": "Find the value of $y(2)$.",
@@ -4160,7 +4160,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "$y'-y\\tan x=2x\\sec x$",
     "difficulty": 3,
     "task": "Decide which options are correct.",
@@ -4213,7 +4213,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The slope that reads $\\dfrac{y}{x}+\\sec\\dfrac{y}{x}$",
     "difficulty": 3,
     "task": "Find the equation of the curve.",
@@ -4260,7 +4260,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A linear ODE whose odd half vanishes",
     "difficulty": 4,
     "task": "Evaluate the symmetric integral of the solution.",
@@ -4311,7 +4311,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A solution curve through $(1,3)$ and who it meets",
     "difficulty": 4,
     "task": "Determine which statements about the solution curve are true.",
@@ -4365,7 +4365,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Solved ODE Hidden Inside $f'=2-\\tfrac{f}{x}$",
     "difficulty": 4,
     "task": "Decide which statements are true.",
@@ -4416,7 +4416,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Broken Symmetry of $f(x)\\sin t - f(t)\\sin x$",
     "difficulty": 5,
     "task": "Decide which statements are true.",
@@ -4469,7 +4469,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Logistic Well: $y'=(2+5y)(5y-2)$",
     "difficulty": 3,
     "task": "Find the limit as $x\\to-\\infty$.",
@@ -4516,7 +4516,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The curve whose tangent-to-$y$-axis segment is always length $1$",
     "difficulty": 4,
     "task": "Identify every correct statement about the curve.",
@@ -4566,7 +4566,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "$f'(x)=\\dfrac{f(x)}{b^2+x^2}$ and the symmetry $f(x)f(-x)=1$",
     "difficulty": 3,
     "task": "Select every true statement about the solution $f$.",
@@ -4613,7 +4613,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The curve pinned at $y(1)=2$",
     "difficulty": 3,
     "task": "Find the value of $10\\,y(\\sqrt2)$.",
@@ -4662,7 +4662,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Transient dies, oscillation survives",
     "difficulty": 4,
     "task": "Decide which statements about the solution are true.",
@@ -4711,7 +4711,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three ODEs, one product: $y_1y_2y_3$",
     "difficulty": 4,
     "task": "Evaluate the limit.",
@@ -4754,7 +4754,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Homogeneous curve through $(1,0)$",
     "difficulty": 3,
     "task": "Evaluate the given expression.",

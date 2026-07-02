@@ -3783,7 +3783,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Area under an implicit cubic $y^3-3y+x=0$",
     "difficulty": 4,
     "task": "Identify the correct expression for the area.",
@@ -3828,7 +3828,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Area between $\\dfrac{1\\pm\\sin x}{\\cos x}$ and a half-angle substitution",
     "difficulty": 3,
     "task": "Choose the equivalent integral for the area.",
@@ -3869,7 +3869,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "One Region, Four Faces of $y=e^x$",
     "difficulty": 3,
     "task": "Select every correct expression for the area.",
@@ -3914,7 +3914,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Trapping the Area of a Cubic Between Bounds",
     "difficulty": 3,
     "task": "Locate the interval containing the area.",
@@ -3960,7 +3960,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Line That Splits a Parabolic Cap",
     "difficulty": 3,
     "task": "Find the value of $b$.",
@@ -4006,7 +4006,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Sine-plus-Cosine Meets Its Own Modulus",
     "difficulty": 3,
     "task": "Find the enclosed area.",
@@ -4053,7 +4053,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A root, a modulus, and a line that stops early",
     "difficulty": 4,
     "task": "Find the area of the region.",
@@ -4099,7 +4099,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Bisecting the lens between $y=x$ and $y=x^3$",
     "difficulty": 3,
     "task": "Determine which statements about $\\alpha$ are true.",
@@ -4143,7 +4143,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Between $x^2$ and the Hyperbola $xy=8$",
     "difficulty": 3,
     "task": "Find the area of the region.",
@@ -4188,7 +4188,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Curve That Sleeps Then Wakes: $e^{x-1}-e^{-|x-1|}$",
     "difficulty": 4,
     "task": "Find the area of the region.",
@@ -4235,7 +4235,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four constraints, one polygon: the area $\\tfrac{11}{32}$",
     "difficulty": 3,
     "task": "Find the area of the region.",
@@ -4283,7 +4283,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Area under $\\min\\{f,g\\}$: a parabola undercutting a tent",
     "difficulty": 3,
     "task": "Find the value of $9\\alpha$.",
@@ -4331,7 +4331,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Green Region and the Red: an $L_h$ that Balances",
     "difficulty": 4,
     "task": "Decide which balancing heights $h$ must exist.",
@@ -4382,7 +4382,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Sawtooth of Area 4: Recover the Peak",
     "difficulty": 3,
     "task": "Find the maximum value of $f$.",
@@ -4430,7 +4430,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A hyperbola, two lines, and a triangle of corners",
     "difficulty": 4,
     "task": "Find the area of the region.",

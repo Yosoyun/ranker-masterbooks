@@ -4521,7 +4521,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Triangle Hidden Inside a Discriminant",
     "difficulty": 3,
     "task": "Determine the bound on $\\lambda$.",
@@ -4566,7 +4566,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Quadratics That Feed Each Other",
     "difficulty": 4,
     "task": "Find $a+b+c+d$.",
@@ -4617,7 +4617,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two quadratics sharing a constant: recover $r$",
     "difficulty": 3,
     "task": "Find the value of $r$.",
@@ -4663,7 +4663,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A shared root forces real roots: $(p^2-q)(b^2-ac)\\ge 0$",
     "difficulty": 4,
     "task": "Decide the truth of the two statements and pick the option.",
@@ -4713,7 +4713,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Both roots pinned past $x=4$",
     "difficulty": 4,
     "task": "Find the smallest such $k$.",
@@ -4760,7 +4760,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The equation with roots $\\tfrac{\\alpha}{\\beta},\\tfrac{\\beta}{\\alpha}$",
     "difficulty": 3,
     "task": "Identify the quadratic equation.",
@@ -4807,7 +4807,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Counting the real roots of $x^4-4x^3+12x^2+x-1$",
     "difficulty": 3,
     "task": "Find the number of distinct real roots.",
@@ -4857,7 +4857,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Where $\\alpha x^2-x+\\alpha=0$ has close roots: $|x_1-x_2|<1$",
     "difficulty": 3,
     "task": "Identify which intervals lie inside $S$.",
@@ -4907,7 +4907,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Twin Quadratics with $\\sec\\theta$ and $\\tan\\theta$",
     "difficulty": 3,
     "task": "Find the value of $\\alpha_1+\\beta_2$.",
@@ -4952,7 +4952,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Golden Recurrence: $a_n=p\\alpha^n+q\\beta^n$",
     "difficulty": 3,
     "task": "Express $a_{12}$ in terms of earlier terms.",
@@ -4996,7 +4996,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Pinning $p$ and $q$ from a single term $a_4=28$",
     "difficulty": 3,
     "task": "Find the value of $p+2q$.",
@@ -5045,7 +5045,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Modulus Splits the Parabola",
     "difficulty": 3,
     "task": "Count the real roots.",
@@ -5093,7 +5093,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Log Substitution Hides a Biquadratic",
     "difficulty": 3,
     "task": "Find the product.",

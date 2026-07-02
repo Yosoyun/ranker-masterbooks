@@ -25,7 +25,7 @@ const BLURB = {
   monotonic:'The sign of f′ rules increase, decrease, extrema and whole inequalities.',
   derivlimits:'Taylor cancellation, L’Hôpital’s fine print, the quotient as a limit.',
   hybrid:'The Mean Value Theorem, implicit differentiation, functional equations and smoothness, fused.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

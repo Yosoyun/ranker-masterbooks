@@ -17,7 +17,7 @@
     evt:          { glyph:'max',    blurb:'On a closed interval a continuous function is bounded and reaches its peak. Open the interval and the guarantee dies.' },
     monotone:     { glyph:'↗',      blurb:'A monotone function can only jump, and only countably often; reverse a continuous bijection and continuity survives.' },
     hybrid:       { glyph:'⊕',      blurb:'The capstones: functional equations, the IVT and EVT, step functions and composites, fused into one resistant problem.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

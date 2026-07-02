@@ -25,7 +25,7 @@ const BLURB = {
   geomcount:'Lines, triangles, diagonals & regions from n points in general position.',
   lattice:'Monotone grid walks counted by C(m+n,n); through or around a point.',
   hybrid:'Arrangements, selections, inclusion–exclusion and geometric counting, fused.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

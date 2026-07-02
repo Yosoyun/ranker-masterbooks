@@ -25,7 +25,7 @@ const BLURB = {
   curvesketch:'Domain, asymptotes, monotonicity & concavity → a sketch; root counts.',
   optimization:'Applied optimisation — largest area, least material, shortest path.',
   hybrid:'Tangents, monotonicity, extrema, the MVT & curve shape, fused.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

@@ -25,7 +25,7 @@ const BLURB = {
   inequalities:'AM–GM, Cauchy–Schwarz and rearrangement, applied to sequences.',
   misc:'The greatest term, the integer part of a sum, and sharp estimates.',
   hybrid:'Progressions, telescoping, recurrences and convergence, fused.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

@@ -25,7 +25,7 @@ const BLURB = {
   triangles:'Equilateral conditions, similar triangles and centroids from one identity.',
   equations:'Polynomials over ℂ: conjugate roots, the fundamental theorem, factoring by ω.',
   hybrid:'Roots of unity, geometry, loci and De Moivre, fused.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

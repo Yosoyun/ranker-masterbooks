@@ -3788,7 +3788,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When does the tail overtake? $b_n>a_n$",
     "difficulty": 3,
     "task": "Find the least such natural number.",
@@ -3834,7 +3834,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Sum of the running sums: $\\sum V_r$",
     "difficulty": 3,
     "task": "Identify the correct closed form.",
@@ -3881,7 +3881,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Nature of $T_r$",
     "difficulty": 3,
     "task": "Decide what kind of number $T_r$ always is.",
@@ -3930,7 +3930,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Second Difference $Q_r$",
     "difficulty": 3,
     "task": "Identify the correct statement about the sequence $Q_r$.",
@@ -3977,7 +3977,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Geometric Mean That Never Moves",
     "difficulty": 3,
     "task": "Determine how the sequence of geometric means behaves.",
@@ -4024,7 +4024,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Arithmetic Means Marching Downhill",
     "difficulty": 3,
     "task": "Decide the monotonic behaviour of the arithmetic means.",
@@ -4068,7 +4068,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The harmonic means climb: $H_1<H_2<H_3<\\cdots$",
     "difficulty": 3,
     "task": "Identify the correct ordering of the harmonic-mean sequence.",
@@ -4111,7 +4111,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Partial sums of a GP: neither AP, GP, nor HP",
     "difficulty": 3,
     "task": "Decide the truth of both statements and pick the option.",
@@ -4156,7 +4156,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A hundred geometric series, one telescope",
     "difficulty": 5,
     "task": "Find the value of the expression.",
@@ -4206,7 +4206,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A recurrence in disguise, and the middle term",
     "difficulty": 4,
     "task": "Find the value of the mean.",
@@ -4254,7 +4254,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The recurrence hidden in $x^2-6x-2=0$",
     "difficulty": 3,
     "task": "Evaluate the ratio.",
@@ -4297,7 +4297,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Geometric Series of Reciprocal Roots",
     "difficulty": 3,
     "task": "Evaluate the infinite series.",
@@ -4340,7 +4340,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When $S_{5n}/S_n$ Forgets About $n$",
     "difficulty": 3,
     "task": "Find the second term.",
@@ -4386,7 +4386,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Splitting for the Perfect $\\text{AM-GM}$",
     "difficulty": 3,
     "task": "Find the minimum value.",
@@ -4430,7 +4430,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Self-Similar Radical Meets a Log",
     "difficulty": 3,
     "task": "Evaluate the expression.",
@@ -4476,7 +4476,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Sign Pattern $(-1)^{k(k+1)/2}$",
     "difficulty": 4,
     "task": "Find all values the sum can take.",
@@ -4521,7 +4521,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Missing Cards",
     "difficulty": 3,
     "task": "Find $k-20$.",
@@ -4566,7 +4566,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The right triangle whose sides are in A.P.",
     "difficulty": 2,
     "task": "Find the length of the smallest side.",
@@ -4611,7 +4611,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two APs, one union: $|X\\cup Y|$",
     "difficulty": 3,
     "task": "Find the number of elements in the union.",
@@ -4659,7 +4659,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Golden Recurrence: $a_n=\\dfrac{\\alpha^n-\\beta^n}{\\alpha-\\beta}$",
     "difficulty": 4,
     "task": "Decide which options are correct.",
@@ -4715,7 +4715,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three APs meet: $\\mathrm{AP}(1;3)\\cap\\mathrm{AP}(2;5)\\cap\\mathrm{AP}(3;7)$",
     "difficulty": 4,
     "task": "Find the value of $a+d$.",
@@ -4762,7 +4762,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A min and a max, wrapped in logs",
     "difficulty": 3,
     "task": "Find the value of $\\log_2(m^3)+\\log_3(M^2)$.",
@@ -4807,7 +4807,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Lone Seed $c$",
     "difficulty": 4,
     "task": "Count the admissible starting values.",
@@ -4859,7 +4859,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Circles Marching to a Limit",
     "difficulty": 4,
     "task": "Identify the correct relation.",
@@ -4909,7 +4909,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The exponential turns an AP into a GP",
     "difficulty": 4,
     "task": "Find the value of the partial sum.",

@@ -17,7 +17,7 @@
     curvesketch:   { glyph:'y=f(x)',blurb:'Assembling domain, asymptotes, monotonicity and concavity into a sketch — and reading off the number of real roots of an equation from it.' },
     optimization:  { glyph:'min S', blurb:'Applied optimisation — the largest area, the least material, the shortest path: translate the words into one variable and extremise.' },
     hybrid:        { glyph:'⊕',     blurb:'The capstones: tangents, monotonicity, extrema, the mean value theorem and curve shape fused into one problem that resists every single tool.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

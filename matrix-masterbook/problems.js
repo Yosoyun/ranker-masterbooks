@@ -4235,7 +4235,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Columns of a Solved System",
     "difficulty": 3,
     "task": "Evaluate the determinant $|U|$ of the matrix built from the solution columns.",
@@ -4276,7 +4276,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Sum of the Inverse Entries",
     "difficulty": 3,
     "task": "Find the sum of all nine entries of $U^{-1}$.",
@@ -4317,7 +4317,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Scalar From the Triangular Solve",
     "difficulty": 3,
     "task": "Evaluate the scalar",
@@ -4357,7 +4357,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Cyclic Planes: One Determinant, Four Fates",
     "difficulty": 4,
     "task": "Match each condition to its geometry",
@@ -4400,7 +4400,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Vanishing Coefficient Determinant",
     "difficulty": 4,
     "task": "Judge two statements",
@@ -4443,7 +4443,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Commuting Symmetric and Skew Blocks",
     "difficulty": 5,
     "task": "Match the columns",
@@ -4486,7 +4486,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Counting Symmetric 0–1 Matrices",
     "difficulty": 4,
     "task": "Count the matrices in the set",
@@ -4529,7 +4529,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Unique Solutions Among the Twelve",
     "difficulty": 4,
     "task": "Count matrices giving a unique solution",
@@ -4573,7 +4573,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Systems With Exactly Two Solutions",
     "difficulty": 4,
     "task": "Count the qualifying matrices, or argue that none exist.",
@@ -4615,7 +4615,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Symmetric Or Skew, Determinant Divisible By p",
     "difficulty": 5,
     "task": "Count the qualifying matrices in $T_p$ in closed form.",
@@ -4660,7 +4660,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Trace Off, Determinant Divisible",
     "difficulty": 5,
     "task": "Count the matrices with the prescribed divisibility of trace and determinant.",
@@ -4703,7 +4703,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Determinant Not Divisible by p",
     "difficulty": 4,
     "task": "Count the matrices whose determinant is not divisible by the prime.",
@@ -4746,7 +4746,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Determinant Woven from ω",
     "difficulty": 4,
     "task": "Count the distinct complex roots",
@@ -4788,7 +4788,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Skew, Commuting, Sign-Traced",
     "difficulty": 4,
     "task": "Simplify the matrix expression",
@@ -4831,7 +4831,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Row Vector in the Null Space",
     "difficulty": 3,
     "task": "Evaluate the linear combination",
@@ -4874,7 +4874,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Non-Singular Matrices Over $\\omega$",
     "difficulty": 4,
     "task": "Count the non-singular matrices in the family.",
@@ -4917,7 +4917,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Trace From Three Images",
     "difficulty": 3,
     "task": "Find the sum of the diagonal entries of $M$.",
@@ -4960,7 +4960,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Scaling Every Entry of a Determinant",
     "difficulty": 3,
     "task": "Find the determinant of the scaled matrix",
@@ -5002,7 +5002,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When the Transpose Pins Down the Matrix",
     "difficulty": 3,
     "task": "Identify the guaranteed eigen-relation",
@@ -5044,7 +5044,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Determinant Recovered From Its Adjugate",
     "difficulty": 3,
     "task": "Determine every possible value of $\\det P$.",
@@ -5086,7 +5086,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Which Matrix Statements Fail",
     "difficulty": 4,
     "task": "Identify every statement that is NOT correct.",
@@ -5129,7 +5129,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When The Root-Of-Unity Matrix Survives Squaring",
     "difficulty": 4,
     "task": "Find every order $n$ for which $P^{2}$ is not the zero matrix.",
@@ -5172,7 +5172,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Commuting Matrices Forced To Be Singular",
     "difficulty": 4,
     "task": "Decide which statements about $M^{2}+MN^{2}$ must hold.",
@@ -5215,7 +5215,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When Is a Symmetric Integer Matrix Invertible?",
     "difficulty": 3,
     "task": "Select every condition that forces the $2\\times 2$ symmetric integer matrix $M$ to be invertible.",
@@ -5259,7 +5259,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Which Combinations Stay Skew-Symmetric?",
     "difficulty": 4,
     "task": "Identify every expression that is skew-symmetric for all admissible $X,Y,Z$.",
@@ -5303,7 +5303,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Determinant Cubic in α",
     "difficulty": 4,
     "task": "Find all real $\\alpha$ satisfying the determinant equation.",
@@ -5344,7 +5344,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Reading Off α and k",
     "difficulty": 4,
     "task": "Use the two given data of $Q$ to pin $\\alpha,k$ and test each statement.",
@@ -5387,7 +5387,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Counting Real Roots Of A Determinant",
     "difficulty": 4,
     "task": "Evaluate the determinant as a function of $x$ and count the distinct real roots.",
@@ -5429,7 +5429,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A High Power Of A Unitriangular Matrix",
     "difficulty": 4,
     "task": "Compute the required entries of $P^{50}$ and evaluate the ratio.",
@@ -5471,7 +5471,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Two-by-Two That Turns",
     "difficulty": 3,
     "task": "Decide which statements are correct",
@@ -5512,7 +5512,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Which Cannot Be a Square",
     "difficulty": 4,
     "task": "Identify the matrices that are not squares",
@@ -5553,7 +5553,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Symmetric System With Infinitely Many Solutions",
     "difficulty": 4,
     "task": "Find the value of $1+\\alpha+\\alpha^2$ from the consistency condition.",
@@ -5595,7 +5595,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Counting Matrices By Trace Of $M^TM$",
     "difficulty": 4,
     "task": "Count the $3\\times3$ matrices meeting the trace condition.",
@@ -5639,7 +5639,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Extrema of a Trigonometric Determinant",
     "difficulty": 4,
     "task": "Determine which statements about $f$ and $f'$ are correct.",
@@ -5684,7 +5684,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Consistency for Every Right-Hand Side",
     "difficulty": 5,
     "task": "Decide which candidate systems are solvable for every $\\mathbf{b}\\in S$.",
@@ -5728,7 +5728,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Largest Determinant from a Sign Matrix",
     "difficulty": 4,
     "task": "Find the maximum possible value of $\\det P$.",
@@ -5770,7 +5770,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Trace and Determinant of a Trig Matrix",
     "difficulty": 4,
     "task": "Compute $\\alpha^*+\\beta^*$, the sum of the minima of $\\alpha(\\theta)$ and $\\beta(\\theta)$.",
@@ -5814,7 +5814,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Adjoint Pins Down Two Unknowns",
     "difficulty": 4,
     "task": "Identify all correct options",
@@ -5857,7 +5857,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Similarity That Preserves Determinant",
     "difficulty": 4,
     "task": "Identify all correct options",
@@ -5901,7 +5901,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Symmetrizing By Every Permutation",
     "difficulty": 4,
     "task": "Decide which of the four statements about $X$ are correct.",
@@ -5945,7 +5945,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When The Double Adjoint Inverts",
     "difficulty": 4,
     "task": "Determine which statements are always true under the given condition.",
@@ -5988,7 +5988,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Trace of a Cube Fixes the Determinant",
     "difficulty": 4,
     "task": "Find the determinant of $A$.",
@@ -6029,7 +6029,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Consistency Fixes a Determinant's Value",
     "difficulty": 4,
     "task": "Find the value of $|M|$.",
@@ -6069,7 +6069,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Permutation, a Twin, and a Trap",
     "difficulty": 4,
     "task": "Decide which four statements about the singular matrices $E,F$ and the swap-matrix $P$ are true.",
@@ -6113,7 +6113,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Push-Through Inverse Identity",
     "difficulty": 5,
     "task": "Given $G=(I-EF)^{-1}$, decide which four algebraic identities in $E,F,G$ always hold.",
@@ -6156,7 +6156,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Determinants Hiding a Circle",
     "difficulty": 5,
     "task": "Evaluate two $3\\times3$ determinants to unmask $g(\\theta)$, then test four sign conditions on the quadratic through its extrema.",
@@ -6202,7 +6202,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "An HP System That Never Decides",
     "difficulty": 5,
     "task": "Match four ratio conditions on a harmonic-progression system to its solution type (unique / infinite / none / specific vector).",
@@ -6249,7 +6249,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Singular Matrix Polynomial",
     "difficulty": 4,
     "task": "Find $9\\beta$ so that $A^7-(\\beta-1)A^6-\\beta A^5$ is singular.",
@@ -6292,7 +6292,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The 2022nd Power of $M$",
     "difficulty": 4,
     "task": "Identify $M^{2022}$ for the given $2\\times2$ matrix $M$.",
@@ -6335,7 +6335,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Three-Parameter Consistency Ladder",
     "difficulty": 4,
     "task": "Match each parameter condition to the nature of the solution set, and identify the special solution when the system is uniquely or dependently solvable.",
@@ -6378,7 +6378,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Divisibility-Built Singular Matrix",
     "difficulty": 4,
     "task": "Build the matrix from the divisibility rule, then decide invertibility, its null space, and which shift is singular.",
@@ -6422,7 +6422,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Counting the $\\pm1$ Determinants",
     "difficulty": 4,
     "task": "Count the matrices in $S$",
@@ -6465,7 +6465,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Rows and Columns Summing to Zero",
     "difficulty": 5,
     "task": "Match List-I to List-II",
@@ -6510,7 +6510,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Integer Orthogonal Matrices Commuting with $P$",
     "difficulty": 5,
     "task": "Count the invertible integer matrices $Q$ with $Q^{-1}=Q^{T}$ that commute with $P$.",
@@ -6553,7 +6553,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Matrix Braided to a Diagonal $P$",
     "difficulty": 4,
     "task": "Given a nonzero $R$ with $QR=RP$, decide which determinant statements about $Q$ are true.",

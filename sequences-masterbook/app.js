@@ -17,7 +17,7 @@
     inequalities:   { glyph:'≤',      blurb:'AM–GM, Cauchy–Schwarz and rearrangement on sequences — bound a sum, a product, or a term you cannot compute.' },
     misc:           { glyph:'⌊aₙ⌋',   blurb:'The greatest term, the integer part of a sum, and the estimate that pins a series between two values it never reaches.' },
     hybrid:         { glyph:'⊕',      blurb:'The capstones: progressions, telescoping, recurrences and convergence fused into one problem that resists every single tool.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

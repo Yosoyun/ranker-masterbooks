@@ -3813,7 +3813,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Parabola Tilted Along y = x",
     "difficulty": 4,
     "task": "Find the equation of the parabola",
@@ -3855,7 +3855,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Common Tangents to Two Parabolas",
     "difficulty": 4,
     "task": "Find all common tangents",
@@ -3897,7 +3897,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Confocal Hyperbola of an Ellipse",
     "difficulty": 4,
     "task": "Select the correct statements",
@@ -3941,7 +3941,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Squared Distances to a Square's Vertices",
     "difficulty": 3,
     "task": "Evaluate the ratio",
@@ -3984,7 +3984,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Parabola Inside the Square",
     "difficulty": 4,
     "task": "Find the area",
@@ -4029,7 +4029,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Confocal Hyperbola of an Ellipse",
     "difficulty": 4,
     "task": "Identify the equation of the confocal hyperbola.",
@@ -4073,7 +4073,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Tangents from a Point on the Director Circle",
     "difficulty": 3,
     "task": "Judge two statements about perpendicular tangents.",
@@ -4116,7 +4116,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Triangles on a Shared Chord",
     "difficulty": 3,
     "task": "Find the ratio of the two triangle areas.",
@@ -4158,7 +4158,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Incircle of a Right Trapezium",
     "difficulty": 3,
     "task": "Find the radius of the inscribed circle",
@@ -4201,7 +4201,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Is the Curve Symmetric About x = 1?",
     "difficulty": 3,
     "task": "Judge both statements and the explanation",
@@ -4244,7 +4244,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Common Tangents and Common Normals",
     "difficulty": 3,
     "task": "Match each configuration",
@@ -4289,7 +4289,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Factored Equation Splits Into Curves",
     "difficulty": 3,
     "task": "Identify the correct case",
@@ -4334,7 +4334,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "How a Parabola and Circle Meet",
     "difficulty": 3,
     "task": "Determine the nature of the intersection",
@@ -4377,7 +4377,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Parabolas Sharing a Latus Rectum",
     "difficulty": 4,
     "task": "Find every valid parabola",
@@ -4422,7 +4422,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Incircle of an Equilateral Triangle",
     "difficulty": 4,
     "task": "Find the equation of circle C",
@@ -4465,7 +4465,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Other Two Contact Points",
     "difficulty": 4,
     "task": "Identify points E and F",
@@ -4508,7 +4508,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Vertex, Focus and Latus Rectum",
     "difficulty": 4,
     "task": "Find the area of triangle $ABC$.",
@@ -4551,7 +4551,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Parallel Lines, One Circle",
     "difficulty": 3,
     "task": "Judge the two statements and pick the correct option.",
@@ -4593,7 +4593,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Circumcircle of the Tangent Pair",
     "difficulty": 3,
     "task": "Find the equation of the circumcircle of the triangle formed by an external point and the two points of tangency.",
@@ -4638,7 +4638,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Chord Meeting the Auxiliary Circle",
     "difficulty": 3,
     "task": "Find the area of a triangle formed by the origin and where an ellipse's axis-endpoint chord re-meets the auxiliary circle.",
@@ -4682,7 +4682,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Matching Four Loci to Their Conics",
     "difficulty": 4,
     "task": "Classify each of four loci — a tangency condition, two complex-plane distance relations, an eccentricity range, and a rational parametrisation — as the correct conic.",
@@ -4729,7 +4729,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Midpoint of Normal Chord Meets Latus Recta",
     "difficulty": 4,
     "task": "Trace the midpoint of the segment from a point to where the ellipse's normal cuts the x-axis, then find where that locus meets the latus recta.",
@@ -4776,7 +4776,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "An Ellipse Crossing a Hyperbola at Right Angles",
     "difficulty": 4,
     "task": "Identify which statements about the ellipse are correct.",
@@ -4820,7 +4820,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Parabola Traced by a Centroid",
     "difficulty": 4,
     "task": "Determine the correct features of the locus parabola.",
@@ -4864,7 +4864,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Circle Wedged Between Two Unit Circles",
     "difficulty": 4,
     "task": "Find the radius of the third circle.",
@@ -4909,7 +4909,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Chord Whose Circle Touches the Axis",
     "difficulty": 3,
     "task": "Determine the possible slopes of the chord.",
@@ -4955,7 +4955,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Tangent Shared by Circle and Hyperbola",
     "difficulty": 4,
     "task": "Find the common tangent with positive slope",
@@ -4999,7 +4999,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Tangent Through the Directrix Foot",
     "difficulty": 4,
     "task": "Find the eccentricity",
@@ -5043,7 +5043,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Circle on the Common Chord as Diameter",
     "difficulty": 3,
     "task": "Find the circle with AB as diameter",
@@ -5087,7 +5087,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Parallel Chords of a Circle",
     "difficulty": 4,
     "task": "Find the value of $[k]$.",
@@ -5130,7 +5130,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Tangent Touch Points on an Ellipse",
     "difficulty": 3,
     "task": "Find the coordinates of the touch points $A$ and $B$.",
@@ -5173,7 +5173,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Locus of a Divided Parabola Chord",
     "difficulty": 3,
     "task": "Identify the locus of the dividing point.",
@@ -5214,7 +5214,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Eccentricity from a Normal's X-Intercept",
     "difficulty": 4,
     "task": "Find the eccentricity of the hyperbola.",
@@ -5257,7 +5257,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Circle Touching the y-Axis",
     "difficulty": 3,
     "task": "Identify a fourth point on the circle.",
@@ -5297,7 +5297,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three Normals Through a Point",
     "difficulty": 4,
     "task": "Find all normals to the parabola through the given point.",
@@ -5338,7 +5338,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Points Inside the Minor Segment",
     "difficulty": 3,
     "task": "Count the points of $S$ lying inside the smaller part",
@@ -5381,7 +5381,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Midpoint Locus of a Chord of Contact",
     "difficulty": 4,
     "task": "Find the locus of the chord's midpoint",
@@ -5424,7 +5424,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Contact Points of Tangents of a Fixed Slope",
     "difficulty": 4,
     "task": "Find the points of contact on the hyperbola",
@@ -5467,7 +5467,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Ellipse Circumscribing a Rectangle",
     "difficulty": 3,
     "task": "Find the eccentricity of the outer ellipse $E_2$",
@@ -5510,7 +5510,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Common Chord Through the Focus",
     "difficulty": 4,
     "task": "Find the area of triangle $PQS$",
@@ -5553,7 +5553,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Tangent Perpendicular to Another",
     "difficulty": 3,
     "task": "Find a possible equation of the line $L$",
@@ -5596,7 +5596,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Common Tangent to Two Circles",
     "difficulty": 3,
     "task": "Identify a common tangent of the two circles",
@@ -5639,7 +5639,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Extremal Area of a Pole Triangle",
     "difficulty": 5,
     "task": "Evaluate $\\dfrac{8}{\\sqrt5}\\,\\Delta_1-8\\,\\Delta_2$",
@@ -5683,7 +5683,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Circles Kissing the x-Axis",
     "difficulty": 3,
     "task": "Identify all such circles",
@@ -5726,7 +5726,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Focal Chord Pinned to a Line",
     "difficulty": 4,
     "task": "Find the length of the focal chord",
@@ -5769,7 +5769,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Focal Chord's Angle at the Vertex",
     "difficulty": 4,
     "task": "Find $\\tan\\theta$",
@@ -5815,7 +5815,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Circle Orthogonal to Two Circles",
     "difficulty": 4,
     "task": "Find centre and radius",
@@ -5861,7 +5861,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Quadrilateral of Common Tangents",
     "difficulty": 4,
     "task": "Find the area of the quadrilateral $PQRS$",
@@ -5905,7 +5905,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Focal Chord and a Parallel Chord",
     "difficulty": 4,
     "task": "Find the value of the parameter $r$",
@@ -5949,7 +5949,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Tangent Meets Normal on a Parabola",
     "difficulty": 4,
     "task": "Find the ordinate of the meeting point",
@@ -5992,7 +5992,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Parabola Seen in a Mirror",
     "difficulty": 4,
     "task": "Find the distance between the two intersection points",
@@ -6035,7 +6035,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Latus-Rectum Normals Tangent to a Circle",
     "difficulty": 3,
     "task": "Find the value of $r^2$",
@@ -6079,7 +6079,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Right Angle at the Vertex",
     "difficulty": 4,
     "task": "Find the coordinates of $P$",
@@ -6122,7 +6122,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Parabolas Sharing the Ellipse's Foci",
     "difficulty": 4,
     "task": "Evaluate the slope expression",
@@ -6167,7 +6167,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "One Line Tangent to a Circle and Two Ellipses",
     "difficulty": 5,
     "task": "Select the correct eccentricity relations",
@@ -6213,7 +6213,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Touching Hyperbola and a Rolling Centroid",
     "difficulty": 5,
     "task": "Identify every correct derivative of the centroid coordinates.",
@@ -6256,7 +6256,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Tangent at the Circle-Parabola Meeting Point",
     "difficulty": 5,
     "task": "Decide which of the four statements about the configuration are true.",
@@ -6299,7 +6299,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Locus Woven From Two Tangents",
     "difficulty": 4,
     "task": "Find which points the locus of E passes through",
@@ -6342,7 +6342,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Closest Point on a Parabola to a Circle",
     "difficulty": 4,
     "task": "Decide which statements about P and Q are correct",
@@ -6386,7 +6386,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Orthocentre in an Ellipse–Parabola Cut",
     "difficulty": 4,
     "task": "Locate the orthocentre of triangle F₁MN",
@@ -6429,7 +6429,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Area Ratio: Triangle Against Quadrilateral",
     "difficulty": 4,
     "task": "Find the ratio of the two areas",
@@ -6472,7 +6472,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Tangent Slope That Fixes the Triangle",
     "difficulty": 4,
     "task": "Identify which triples cannot be sides",
@@ -6517,7 +6517,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Midpoint Forces the Chord",
     "difficulty": 4,
     "task": "Find the admissible $(p,h,k)$",
@@ -6561,7 +6561,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Circle Meeting the Axes Thrice",
     "difficulty": 4,
     "task": "Count the values of the parameter p",
@@ -6603,7 +6603,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Matching Conic, Tangent and Contact",
     "difficulty": 5,
     "task": "Choose the only self-consistent conic–tangent–contact triple",
@@ -6646,7 +6646,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Reading a Tangent Off the Table",
     "difficulty": 4,
     "task": "Identify the correct curve–tangent–contact combination.",
@@ -6689,7 +6689,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Which Row Owns This Tangent",
     "difficulty": 4,
     "task": "Identify the correct curve–tangent–contact combination.",
@@ -6732,7 +6732,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Poles of a Concurrent Pencil",
     "difficulty": 4,
     "task": "Identify the curve on which the three intersection-of-tangent points lie.",
@@ -6774,7 +6774,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Locus of a Tangent's Midpoint",
     "difficulty": 3,
     "task": "Find the curve traced by the midpoint of the tangent's intercept between the axes.",
@@ -6815,7 +6815,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Touching Circles on a Tangent Line",
     "difficulty": 5,
     "task": "Decide which statements are true",
@@ -6859,7 +6859,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Common Tangents Build an Ellipse",
     "difficulty": 5,
     "task": "Decide which statements are true",
@@ -6904,7 +6904,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Hyperbola From a 60° Vertex Angle",
     "difficulty": 4,
     "task": "Match each quantity of the hyperbola to its value",
@@ -6947,7 +6947,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Chord Whose Midpoint Is Fixed",
     "difficulty": 3,
     "task": "Determine the interval containing the slope m",
@@ -6989,7 +6989,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Cascade of Ellipses and Rectangles",
     "difficulty": 5,
     "task": "Decide which statements about the nested family are correct",
@@ -7033,7 +7033,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Circles and Their Shared Tangent",
     "difficulty": 4,
     "task": "Find the length of the segment AC",
@@ -7076,7 +7076,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three Circles, a Radical Axis",
     "difficulty": 5,
     "task": "Identify the only CORRECT List-I – List-II combination",
@@ -7119,7 +7119,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The One Mismatched Pairing",
     "difficulty": 5,
     "task": "Identify the only INCORRECT List-I – List-II combination",
@@ -7162,7 +7162,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Perpendicular Tangents at a Latus-Rectum End",
     "difficulty": 4,
     "task": "Find the eccentricity of the ellipse",
@@ -7206,7 +7206,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Circumcircle of the Centre and a Chord",
     "difficulty": 4,
     "task": "Find the radius r",
@@ -7250,7 +7250,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Tangent Through (1,0), Equal-Intercept Normal",
     "difficulty": 5,
     "task": "Decide which statements about $e$ and $\\Delta$ are true",
@@ -7293,7 +7293,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Circumcircle From an Orthocenter",
     "difficulty": 4,
     "task": "Find the circle through the triangle's vertices",
@@ -7336,7 +7336,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Product of Distances Hides a Conic",
     "difficulty": 4,
     "task": "Find the value of $\\lambda^2$.",
@@ -7378,7 +7378,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Perpendicular Bisector Hits the Other Branch",
     "difficulty": 5,
     "task": "Find $D$, the square of the distance between $R'$ and $S'$.",
@@ -7420,7 +7420,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Tangents From a Point on the Directrix",
     "difficulty": 4,
     "task": "Decide which statements about the tangent configuration are TRUE",
@@ -7464,7 +7464,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Largest Circle Inside a Parabolic Region",
     "difficulty": 4,
     "task": "Find the radius of the largest circle in the family",
@@ -7507,7 +7507,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Largest Circle Inside a Parabola",
     "difficulty": 4,
     "task": "Find the abscissa of the point of contact",
@@ -7550,7 +7550,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Farthest Apart Midpoints on an Ellipse",
     "difficulty": 3,
     "task": "Find the maximum distance between the two midpoints",
@@ -7594,7 +7594,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Circle Wedged in a Right Triangle",
     "difficulty": 4,
     "task": "Find the radius $r$",
@@ -7640,7 +7640,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Feet of Perpendiculars on Focal Rays",
     "difficulty": 5,
     "task": "Decide which statements are true",
@@ -7687,7 +7687,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Ellipse, Its Auxiliary Circle and a Triangle",
     "difficulty": 5,
     "task": "Match each angle in List-I to the correct area in List-II",
@@ -7735,7 +7735,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Focal Construction on the Hyperbola",
     "difficulty": 5,
     "task": "Find the greatest integer not exceeding the given expression",
@@ -7782,7 +7782,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Ring of Circles Around a Circle",
     "difficulty": 5,
     "task": "Decide which statements are true",
@@ -7829,7 +7829,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Normal to a Parabola and a Triangle of Area 120",
     "difficulty": 4,
     "task": "Determine the integer pair $(a,m)$",
@@ -7872,7 +7872,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Common Tangents to Ellipse and Parabola",
     "difficulty": 4,
     "task": "Decide which statements are true",
@@ -7920,7 +7920,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Midpoints of Common Tangents on the Radical Axis",
     "difficulty": 5,
     "task": "Find the value of $r^2$",
@@ -7963,7 +7963,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Tangents and a Fourth-Quadrant Touch",
     "difficulty": 4,
     "task": "Determine the coordinates of the external point S.",
@@ -8006,7 +8006,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Circle Kissing the Line y = 2x",
     "difficulty": 4,
     "task": "Match each List-I entry to its correct List-II value.",
@@ -8048,7 +8048,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Twin Tangents to $y^2=8x$",
     "difficulty": 4,
     "task": "Decide which of the four statements about the tangent triangle are true.",
@@ -8091,7 +8091,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Normal, a Chord and a Ratio",
     "difficulty": 5,
     "task": "Find the value of $24a$ from the given ratio of latus rectum to squared chord length.",
@@ -8134,7 +8134,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Pencil of Lines Traces a Hyperbola",
     "difficulty": 4,
     "task": "Find the value of $pq$",
@@ -8180,7 +8180,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Midpoints of Equal-Area Chords",
     "difficulty": 5,
     "task": "Decide which statements are true",
@@ -8227,7 +8227,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Ellipse Points From Auxiliary-Circle Angles",
     "difficulty": 4,
     "task": "Decide which statements are true",

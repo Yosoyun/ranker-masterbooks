@@ -25,7 +25,7 @@ const BLURB = {
   calculus:'Differentiate across a branch point and the chain rule lies by a sign.',
   advanced:'Machin’s π, Gaussian-integer arctangents, the competition canon.',
   hybrid:'Branch correction, telescoping, equations and calculus, fused.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

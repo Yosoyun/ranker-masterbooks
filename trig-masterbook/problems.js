@@ -4266,7 +4266,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Isosceles Triangle with a $120^\\circ$ Vertex",
     "difficulty": 3,
     "task": "Find the area of the triangle.",
@@ -4308,7 +4308,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Quadratic Inequality in $\\sin\\theta$",
     "difficulty": 3,
     "task": "Determine the set of $\\theta$ satisfying the inequality.",
@@ -4350,7 +4350,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Ordering Four tan–cot Powers",
     "difficulty": 4,
     "task": "Rank $t_1,t_2,t_3,t_4$ in decreasing order",
@@ -4391,7 +4391,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Bisector, Perpendicular, and the Cut Chord",
     "difficulty": 5,
     "task": "Decide which of the four statements are correct",
@@ -4433,7 +4433,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Simultaneous Trigonometric System",
     "difficulty": 3,
     "task": "Count the values of $\\theta$ in $[0,2\\pi]$ satisfying both equations.",
@@ -4475,7 +4475,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three Trigonometric Points",
     "difficulty": 4,
     "task": "Decide the mutual position of the three points $P,Q,R$.",
@@ -4517,7 +4517,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Weighted Fourth-Power Constraint",
     "difficulty": 4,
     "task": "Find tan²x and the eighth-power sum",
@@ -4559,7 +4559,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Moving Vertex Traces an Ellipse",
     "difficulty": 4,
     "task": "Fix the side relation and identify the locus",
@@ -4602,7 +4602,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Telescoping Cosecant Sum",
     "difficulty": 4,
     "task": "Find every $\\theta$ in the interval that satisfies the equation.",
@@ -4645,7 +4645,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Ambiguous Case Area Gap",
     "difficulty": 3,
     "task": "Find the absolute difference between the two possible triangle areas.",
@@ -4687,7 +4687,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Angles in AP: A Sine-Rule Collapse",
     "difficulty": 3,
     "task": "Evaluate the given expression.",
@@ -4730,7 +4730,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Polynomial Sides Meeting a $30^\\circ$ Angle",
     "difficulty": 4,
     "task": "Find all admissible value(s) of $x$.",
@@ -4772,7 +4772,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Equations, One Common Count",
     "difficulty": 4,
     "task": "Count the values of $\\theta$ satisfying both equations.",
@@ -4814,7 +4814,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Maximizing a Quadratic-Form Reciprocal",
     "difficulty": 3,
     "task": "Find the maximum value of the expression.",
@@ -4856,7 +4856,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "System Forcing $\\cos 3\\theta=\\sin 3\\theta$",
     "difficulty": 5,
     "task": "Count the admissible values of $\\theta$.",
@@ -4899,7 +4899,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Inradius of an Obtuse-Angled Triangle",
     "difficulty": 4,
     "task": "Compute $r^2$ for the incircle.",
@@ -4942,7 +4942,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Solution Sets That Coincide",
     "difficulty": 3,
     "task": "Decide the relationship between the sets $P$ and $Q$.",
@@ -4984,7 +4984,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Reciprocal-Sine Equation for $n$",
     "difficulty": 4,
     "task": "Find the integer $n>3$ satisfying the equation.",
@@ -5026,7 +5026,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Forbidden Quadrants for $\\varphi$",
     "difficulty": 5,
     "task": "Determine which of the four intervals $\\varphi$ cannot lie in.",
@@ -5069,7 +5069,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Half-Angle Ratio Disguised in $\\Delta$",
     "difficulty": 4,
     "task": "Evaluate the given ratio and match it to the correct expression in $\\Delta$.",
@@ -5111,7 +5111,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Incircle Contacts as Consecutive Evens",
     "difficulty": 4,
     "task": "Find the possible side lengths of the triangle.",
@@ -5154,7 +5154,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When $\\sin x+2\\sin 2x-\\sin 3x=3$",
     "difficulty": 4,
     "task": "Determine how many solutions the equation has.",
@@ -5196,7 +5196,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Hidden $120^\\circ$ Angle",
     "difficulty": 4,
     "task": "Find the ratio of the in-radius to the circum-radius of the triangle.",
@@ -5241,7 +5241,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Five Powers Collapse to One",
     "difficulty": 4,
     "task": "Count the distinct solutions of the equation in the interval $[0,2\\pi]$.",
@@ -5286,7 +5286,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Four-Part Matching Grid",
     "difficulty": 5,
     "task": "Match each entry in Column I with its value(s) in Column II.",
@@ -5332,7 +5332,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Sum of Roots of a Reciprocal Equation",
     "difficulty": 4,
     "task": "Find the sum of all distinct solutions in the punctured interval.",
@@ -5375,7 +5375,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The 5-6-7 Triangle in Disguise",
     "difficulty": 4,
     "task": "Decide which of the four statements about the triangle $XYZ$ are true.",
@@ -5422,7 +5422,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Cosecant Sum That Telescopes",
     "difficulty": 4,
     "task": "Evaluate the thirteen-term sum in closed form.",
@@ -5467,7 +5467,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Half-Angle Constraint on Two Angles",
     "difficulty": 4,
     "task": "Determine every relation between $\\tan\\frac{\\alpha}{2}$ and $\\tan\\frac{\\beta}{2}$ that must hold.",
@@ -5509,7 +5509,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Minimum of a Cosine Sum in a Triangle",
     "difficulty": 3,
     "task": "Find the minimum value of $\\cos(P+Q)+\\cos(Q+R)+\\cos(R+P)$ over all triangles $PQR$.",
@@ -5551,7 +5551,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Isosceles Triangle Hidden by Cosine Rule",
     "difficulty": 4,
     "task": "Decide which statements about the triangle are true.",
@@ -5595,7 +5595,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Roots with a Prescribed Sum",
     "difficulty": 4,
     "task": "Find the value of the ratio $\\dfrac{b}{a}$.",
@@ -5638,7 +5638,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Median, Altitude and Their Crossing Point",
     "difficulty": 5,
     "task": "Decide which of the four statements about the triangle are correct.",
@@ -5682,7 +5682,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Ratio of Sine Sums That Collapses",
     "difficulty": 5,
     "task": "Evaluate the ratio in closed form and test the four statements.",
@@ -5725,7 +5725,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Half-Angle Sum Forces a Right Angle",
     "difficulty": 4,
     "task": "Determine all correct statements.",
@@ -5769,7 +5769,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Where a Disguised Product Stays Non-negative",
     "difficulty": 4,
     "task": "Find the length of the interval on which $f\\ge 0$.",
@@ -5812,7 +5812,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Cotangent Ratio in a Triangle",
     "difficulty": 3,
     "task": "Evaluate the given ratio of cotangents from the side lengths.",
@@ -5855,7 +5855,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four Triangle Inequalities to Test",
     "difficulty": 5,
     "task": "Decide which of the four inequalities hold in every triangle.",
@@ -5898,7 +5898,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four Solution-Counts, One Match",
     "difficulty": 4,
     "task": "Match each equation-set in List-I to the number of elements it has, from List-II.",
@@ -5943,7 +5943,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Symmetric Sum Squared, Then Floored",
     "difficulty": 4,
     "task": "Evaluate the greatest integer not exceeding the square of the given symmetric combination of ratios.",
@@ -5988,7 +5988,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Quadrilateral's Hidden Secant",
     "difficulty": 4,
     "task": "Locate the interval(s) containing the value of the given product built from a quadrilateral's sides and an angle.",
@@ -6033,7 +6033,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Cosine Meets the Sawtooth Arctangent",
     "difficulty": 4,
     "task": "Count the real solutions of the equation on the three punctured intervals.",
@@ -6078,7 +6078,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "AP-Sided Obtuse Triangle Area",
     "difficulty": 5,
     "task": "Find the value of $(64a)^2$, where $a$ is the area of the triangle.",
@@ -6124,7 +6124,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Inradius Of The AP-Sided Triangle",
     "difficulty": 4,
     "task": "Find the inradius of the triangle $ABC$.",
@@ -6168,7 +6168,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Sub-Multiple Angle Collapse",
     "difficulty": 4,
     "task": "Evaluate the compound expression.",
@@ -6211,7 +6211,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Telescoping Cosecant Sum",
     "difficulty": 4,
     "task": "Evaluate the expression.",

@@ -17,7 +17,7 @@
     reduction:       { glyph:'Iₙ',        blurb:'Reduction formulae — express Iₙ in terms of Iₙ₋₁ or Iₙ₋₂ by parts, and run the recursion down to a base case.' },
     exactderiv:      { glyph:'eˣ(f+f′)',  blurb:'Recognising an exact derivative already present — ∫eˣ(f+f′)dx=eˣf, the d(f/g) and d(uv) patterns, and the integrand that is secretly a derivative.' },
     hybrid:          { glyph:'⊕',         blurb:'The capstones: substitution, parts, partial fractions, the special denominators and the exact-derivative trick fused into one integral that resists every single method.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

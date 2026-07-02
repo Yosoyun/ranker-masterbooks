@@ -3973,7 +3973,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Trapezoidal Sum, Maximum, And The MVT",
     "difficulty": 4,
     "task": "Determine $f'(c)$",
@@ -4016,7 +4016,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Match of Four Traps",
     "difficulty": 4,
     "task": "Match each entry in Column I with its value in Column II",
@@ -4062,7 +4062,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Home-Made Simpson Rule Meets a Sine",
     "difficulty": 3,
     "task": "Use the given approximate rule to evaluate $\\displaystyle\\int_0^{\\pi/2}\\sin x\\,dx$ and identify the matching option.",
@@ -4104,7 +4104,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When the Trapezoid Is Exact, the Curve Is a Line",
     "difficulty": 4,
     "task": "Find the maximum possible degree of the polynomial $f$.",
@@ -4148,7 +4148,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Ratio of Two Beta Integrals",
     "difficulty": 4,
     "task": "Evaluate the ratio.",
@@ -4192,7 +4192,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four Standard Forms to Match",
     "difficulty": 3,
     "task": "Match each integral in Column I with its value in Column II",
@@ -4238,7 +4238,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Riemann Sums Squeeze an Arctan Limit",
     "difficulty": 4,
     "task": "Select all correct statements",
@@ -4280,7 +4280,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Integrating a Derivative of an Implicit Odd Function",
     "difficulty": 4,
     "task": "Choose the correct value",
@@ -4322,7 +4322,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Symmetrized Dirichlet Integral",
     "difficulty": 5,
     "task": "Decide which of the four statements about $I_n$ are true.",
@@ -4363,7 +4363,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Rational Route to 22/7 minus Pi",
     "difficulty": 4,
     "task": "Evaluate the integral and identify all correct value(s).",
@@ -4404,7 +4404,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Triangular Wave Meets a Cosine",
     "difficulty": 5,
     "task": "Find the integer value",
@@ -4448,7 +4448,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "King's Rule After a Square Substitution",
     "difficulty": 4,
     "task": "Select the correct value",
@@ -4491,7 +4491,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Symmetric Weight and the Area",
     "difficulty": 4,
     "task": "Relate $R_1$ to $R_2$",
@@ -4534,7 +4534,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Trapping the Gaussian Area",
     "difficulty": 4,
     "task": "Select all valid bounds for $S$",
@@ -4577,7 +4577,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Log Term That Vanishes",
     "difficulty": 4,
     "task": "Evaluate the definite integral.",
@@ -4618,7 +4618,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Trapping an Integral by an Inequality",
     "difficulty": 4,
     "task": "Determine the interval in which the definite integral must lie.",
@@ -4659,7 +4659,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Symmetric Integral with Moving Limits",
     "difficulty": 4,
     "task": "Decide which statements about the integral-defined function are correct.",
@@ -4702,7 +4702,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Parts Past a Second Derivative",
     "difficulty": 3,
     "task": "Evaluate the definite integral.",
@@ -4744,7 +4744,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Rewriting a Cosecant Integral",
     "difficulty": 4,
     "task": "Identify which transformed integral equals the given cosecant integral.",
@@ -4786,7 +4786,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Beta Integral in Disguise",
     "difficulty": 4,
     "task": "Evaluate the limit-defined integral at $a=\\tfrac12$.",
@@ -4828,7 +4828,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Derivative of the Beta Integral",
     "difficulty": 4,
     "task": "Find the value of $g'(1/2)$",
@@ -4871,7 +4871,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Four-Way Integral Match",
     "difficulty": 4,
     "task": "Match List-I with List-II",
@@ -4915,7 +4915,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Area Hidden in a Variable-Limit Integral",
     "difficulty": 4,
     "task": "Find the value of $f(0)$.",
@@ -4959,7 +4959,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Floor That Silences Most of the Interval",
     "difficulty": 4,
     "task": "Find the value of $4I-1$.",
@@ -5002,7 +5002,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Bounding an Integral You Cannot Evaluate",
     "difficulty": 4,
     "task": "Select every pair $(m,M)$ with $m\\le\\int_{1/2}^{1}f\\le M$.",
@@ -5046,7 +5046,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When Periodicity Telescopes an Exponential Weight",
     "difficulty": 4,
     "task": "Select every pair $(a,L)$ that satisfies the equation.",
@@ -5088,7 +5088,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Tangent Polynomial in Perfect Derivative Disguise",
     "difficulty": 4,
     "task": "Decide which of the listed integral values are correct.",
@@ -5130,7 +5130,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Integral Clues, One System for f and its Slope",
     "difficulty": 5,
     "task": "Use the two given definite integrals to decide which relations hold.",
@@ -5172,7 +5172,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Roots of an Integral Equation",
     "difficulty": 4,
     "task": "Count the solutions in $[0,1]$.",
@@ -5216,7 +5216,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Cosine Over One Plus e-to-the-x",
     "difficulty": 3,
     "task": "Evaluate the definite integral.",
@@ -5261,7 +5261,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Disguised Derivative Under the Sign",
     "difficulty": 4,
     "task": "Evaluate the limit of the integral.",
@@ -5303,7 +5303,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Arcsine Branch Trap",
     "difficulty": 5,
     "task": "Differentiate the integral and evaluate at the endpoints.",
@@ -5347,7 +5347,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Product Under an $n$-th Root",
     "difficulty": 4,
     "task": "Find the value",
@@ -5390,7 +5390,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Fourth Root That Collapses",
     "difficulty": 4,
     "task": "Evaluate the integral",
@@ -5433,7 +5433,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Exponential That Cancels Itself",
     "difficulty": 4,
     "task": "Find the value of $27I^2$",
@@ -5475,7 +5475,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four Integrals You Never Solve",
     "difficulty": 4,
     "task": "Decide which of the four inequalities are TRUE",
@@ -5517,7 +5517,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Cosine That Erases the Integral",
     "difficulty": 4,
     "task": "Find the value of $f(0)$",
@@ -5559,7 +5559,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Continuous $f$ with a Vanishing Mean",
     "difficulty": 5,
     "task": "Select all correct statements",
@@ -5603,7 +5603,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Averaging $\\sin^2$ Over a Symmetric Window",
     "difficulty": 3,
     "task": "Find the numerical value",
@@ -5644,7 +5644,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Modulus Weight Folded About Its Centre",
     "difficulty": 4,
     "task": "Find the numerical value",
@@ -5687,7 +5687,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four Claims About Integral-Defined Functions",
     "difficulty": 5,
     "task": "Select the one true statement",
@@ -5730,7 +5730,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Bounding an Integral-Defined Function",
     "difficulty": 5,
     "task": "Select the correct statement",
@@ -5773,7 +5773,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Integrating a Nested Floor Function",
     "difficulty": 4,
     "task": "Find the value of $9I$",
@@ -5816,7 +5816,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Parameter Hidden Inside the Integral",
     "difficulty": 4,
     "task": "Decide which statements are TRUE",
@@ -5859,7 +5859,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Function Paired With Its Inverse",
     "difficulty": 4,
     "task": "Find the greatest integer of the sum",
@@ -5902,7 +5902,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Sum Disguised as a Limit",
     "difficulty": 4,
     "task": "Evaluate $\\displaystyle\\lim_{n\\to\\infty}f(n)$ for the given finite sum.",
@@ -5944,7 +5944,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Minimum of a Variable-Limit Integral",
     "difficulty": 4,
     "task": "Find the minimum value of $f(x)$ over $x\\in\\mathbb{R}$.",
@@ -5987,7 +5987,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Zig-Zag Wave and Its Running Area",
     "difficulty": 5,
     "task": "Find the value of $\\alpha+\\beta$",
@@ -6029,7 +6029,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Reflection That Kills the Integral",
     "difficulty": 4,
     "task": "Evaluate the given combination",
@@ -6070,7 +6070,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Semicircle Hidden Under the Root",
     "difficulty": 4,
     "task": "Evaluate the scaled integral",
@@ -6112,7 +6112,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "An Arctangent Tamed by x to 1 over x",
     "difficulty": 4,
     "task": "Evaluate the final expression",

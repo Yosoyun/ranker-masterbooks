@@ -17,7 +17,7 @@
     geometry:     { glyph:'ψ',       blurb:'A condition on the tangent, normal, subtangent or subnormal of a curve becomes a first-order differential equation; solve it to recover the curve itself.' },
     applications: { glyph:'dN/dt',   blurb:'Growth and decay, Newton’s law of cooling, mixing tanks and rates of change — the equation that models the world, and the initial condition that pins it.' },
     hybrid:       { glyph:'⊕',       blurb:'The capstones: formation, the separable and homogeneous reductions, the integrating factor and curve-geometry fused into one resistant first-order problem.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

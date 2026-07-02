@@ -17,7 +17,7 @@
     geomcount:         { glyph:'△ₙ',    blurb:'Counting on a configuration of points and lines — the lines, triangles, diagonals, regions and intersection points that n points in general position create.' },
     lattice:           { glyph:'↗',     blurb:'Monotone up/right walks on a grid counted by a single binomial — paths forced through, or steered around, a chosen lattice point.' },
     hybrid:            { glyph:'⊕',     blurb:'The capstones: arrangements, selections, inclusion–exclusion and geometric counting fused into one count that resists every single tool.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

@@ -3852,7 +3852,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Where $y=x$ meets $y=ke^{x}$",
     "difficulty": 2,
     "task": "Determine how many times the two curves meet.",
@@ -3897,7 +3897,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Sign of $\\dfrac{x^{2}-6x+5}{x^{2}-5x+6}$ on four windows",
     "difficulty": 3,
     "task": "Match each interval to every statement it satisfies.",
@@ -3944,7 +3944,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Cauchy's Equation with One Drop of Smoothness",
     "difficulty": 3,
     "task": "Select every correct statement.",
@@ -3990,7 +3990,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Four-Fold Composition of $x^2$ and $\\sin x$",
     "difficulty": 3,
     "task": "Choose the correct option.",
@@ -4036,7 +4036,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The involution that isn't invertible: $f(x)=\\dfrac{b-x}{1-bx}$",
     "difficulty": 4,
     "task": "Decide which statement is correct.",
@@ -4084,7 +4084,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two existence claims for $f(x)=(1-x)^2\\sin^2x+x^2$",
     "difficulty": 4,
     "task": "Judge the truth of statements P and Q.",
@@ -4137,7 +4137,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Function You Never See Directly",
     "difficulty": 4,
     "task": "Find all possible values of $f(1/3)$.",
@@ -4183,7 +4183,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "One Root, Many Disguises",
     "difficulty": 3,
     "task": "Identify every expression that equals $x$.",
@@ -4230,7 +4230,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The cube of $\\log(\\sec x+\\tan x)$",
     "difficulty": 3,
     "task": "Decide which properties the function has.",
@@ -4278,7 +4278,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four maps, four verdicts",
     "difficulty": 4,
     "task": "Match each function to its correct description.",
@@ -4326,7 +4326,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three nested sines, one squeezed range",
     "difficulty": 4,
     "task": "Decide which statements about the nested-sine functions are true.",
@@ -4378,7 +4378,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The inverse's slope and a hidden $f\\circ f$",
     "difficulty": 4,
     "task": "Determine which of the four statements about $g$ and $h$ are correct.",
@@ -4430,7 +4430,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The self-referential $f(x+y)=f(x)f'(y)+f'(x)f(y)$",
     "difficulty": 4,
     "task": "Find the value of $\\log_e(f(4))$.",
@@ -4477,7 +4477,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Domain & range of $\\log_e\\!\\frac{x}{x-1}$ and its $\\sin^{-1}$ shell",
     "difficulty": 4,
     "task": "Match each entry of List-I to the correct entry of List-II.",
@@ -4527,7 +4527,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Zeros of $\\sin(\\pi\\cos x)$ and its derivative",
     "difficulty": 4,
     "task": "Identify the only correct combination.",
@@ -4577,7 +4577,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Zeros of $\\cos(2\\pi\\sin x)$ and its derivative",
     "difficulty": 4,
     "task": "Identify the only correct combination.",
@@ -4626,7 +4626,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The $f(x{+}y)=f(x)+f(y)+f(x)f(y)$ trap",
     "difficulty": 4,
     "task": "Decide which statements are true.",
@@ -4675,7 +4675,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The reflection $f(x)+f(1-x)=1$",
     "difficulty": 3,
     "task": "Evaluate the given sum.",
@@ -4721,7 +4721,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The lone root hiding behind three positives",
     "difficulty": 3,
     "task": "Find the number of real solutions.",
@@ -4770,7 +4770,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Where $x^2\\sin\\!\\frac{\\pi}{x^2}$ Vanishes",
     "difficulty": 4,
     "task": "Decide which statement about the zeros is true.",
@@ -4819,7 +4819,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Cauchy Additive Meets Cauchy Exponential",
     "difficulty": 3,
     "task": "Evaluate the combined expression.",
@@ -4865,7 +4865,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Piecewise maps between $\\mathbb{N}$ and $\\mathbb{Z}$",
     "difficulty": 4,
     "task": "Decide which statements are true.",

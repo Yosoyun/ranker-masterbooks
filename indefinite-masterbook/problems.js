@@ -3702,7 +3702,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The disguised perfect square under $\\sqrt{2x^4-2x^2+1}$",
     "difficulty": 3,
     "task": "Evaluate the integral and pick the correct antiderivative.",
@@ -3748,7 +3748,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Does an antiderivative of $\\sin^2 x$ inherit its period?",
     "difficulty": 3,
     "task": "Decide the truth of both statements and pick the option.",
@@ -3795,7 +3795,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The $n$-fold composition $f\\circ f\\circ\\cdots\\circ f$",
     "difficulty": 4,
     "task": "Evaluate the integral.",
@@ -3846,7 +3846,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The difference $J-I$ of two exponential integrals",
     "difficulty": 3,
     "task": "Evaluate the difference of the two integrals.",
@@ -3896,7 +3896,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The $(\\sec x+\\tan x)$ Ladder",
     "difficulty": 4,
     "task": "Evaluate the integral and match the correct option.",

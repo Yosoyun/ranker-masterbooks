@@ -4004,7 +4004,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Plane Standing Perpendicular to Two",
     "difficulty": 3,
     "task": "Find",
@@ -4046,7 +4046,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Vector Confined to a Plane",
     "difficulty": 3,
     "task": "Find",
@@ -4088,7 +4088,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Fold Between Two Pencils",
     "difficulty": 4,
     "task": "Determine",
@@ -4130,7 +4130,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Counting the Flattening Parameters",
     "difficulty": 4,
     "task": "Count",
@@ -4172,7 +4172,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Hexagon Sides and Cross Products",
     "difficulty": 4,
     "task": "Judge each statement true or false and decide whether the second explains the first.",
@@ -4213,7 +4213,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Unit Vectors Summing to Zero",
     "difficulty": 3,
     "task": "Determine which relation among the three pairwise cross products must hold.",
@@ -4254,7 +4254,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Line That Was Never in the Planes",
     "difficulty": 3,
     "task": "Judge two statements about a line of intersection.",
@@ -4297,7 +4297,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Volume of the Tilted Unit Box",
     "difficulty": 3,
     "task": "Determine the volume of the parallelopiped.",
@@ -4340,7 +4340,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three Planes, One Verdict",
     "difficulty": 4,
     "task": "Decide whether each statement is true or false, and whether the second correctly explains the first.",
@@ -4383,7 +4383,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Farthest Point on a Vector Ellipse",
     "difficulty": 4,
     "task": "Find the maximum length $M$ of $\\overrightarrow{OP}$ and the unit vector $\\hat u$ along it at that instant.",
@@ -4426,7 +4426,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Common Perpendicular of Two Lines",
     "difficulty": 3,
     "task": "Determine",
@@ -4469,7 +4469,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Shortest Distance Between Two Skew Lines",
     "difficulty": 4,
     "task": "Compute",
@@ -4512,7 +4512,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Distance to the Plane Normal to Two Lines",
     "difficulty": 4,
     "task": "Find",
@@ -4555,7 +4555,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Making a Segment Parallel to a Plane",
     "difficulty": 3,
     "task": "Find",
@@ -4598,7 +4598,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four Unit Vectors, One Perfect Cross",
     "difficulty": 4,
     "task": "Decide which relation among the four unit vectors must hold.",
@@ -4641,7 +4641,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Equal Angles to the Axes",
     "difficulty": 3,
     "task": "Find the length of the segment $PQ$.",
@@ -4684,7 +4684,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Volume, Angle and Two Distractors",
     "difficulty": 4,
     "task": "Match",
@@ -4724,7 +4724,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Plane Braced Against Another Plane",
     "difficulty": 4,
     "task": "Find",
@@ -4765,7 +4765,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Classifying a Quadrilateral by Position Vectors",
     "difficulty": 3,
     "task": "Classify",
@@ -4808,7 +4808,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Scalar Triple Product on Orthonormal Vectors",
     "difficulty": 4,
     "task": "Evaluate",
@@ -4851,7 +4851,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Distance to the Twin-Line Plane",
     "difficulty": 4,
     "task": "Determine $|d|$.",
@@ -4894,7 +4894,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Foot of the Perpendicular from P",
     "difficulty": 3,
     "task": "Find the foot of the perpendicular.",
@@ -4936,7 +4936,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Rotating a Side to a Right Angle",
     "difficulty": 4,
     "task": "Find $\\cos\\alpha$, the cosine of the acute angle through which $AD$ is turned so that $AD'\\perp AB$.",
@@ -4978,7 +4978,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Four-Row Match Across 3D and Vectors",
     "difficulty": 5,
     "task": "Match each entry of Column I with all values in Column II it produces.",
@@ -5021,7 +5021,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Coplanar Vector With a Fixed Projection",
     "difficulty": 3,
     "task": "Identify the vector in the plane of $\\vec a$ and $\\vec b$ whose projection on $\\vec c$ equals $\\dfrac{1}{\\sqrt3}$.",
@@ -5063,7 +5063,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Coplanar And Perpendicular At Once",
     "difficulty": 3,
     "task": "Find every listed vector coplanar with the two given vectors and perpendicular to $\\hat i + \\hat j + \\hat k$.",
@@ -5105,7 +5105,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Recovering a Vector from Cross and Dot",
     "difficulty": 4,
     "task": "Find $\\vec{r}\\cdot\\vec{b}$.",
@@ -5143,7 +5143,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Foot and Piercing Point on One Line",
     "difficulty": 4,
     "task": "Find the length $PS$.",
@@ -5181,7 +5181,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three Unit Vectors Summing to Zero",
     "difficulty": 4,
     "task": "Evaluate the magnitude.",
@@ -5224,7 +5224,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Plane Through a Line at Fixed Distance",
     "difficulty": 4,
     "task": "Identify the correct plane.",
@@ -5267,7 +5267,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Cross-Product Equation Forces Parallelism",
     "difficulty": 4,
     "task": "Find",
@@ -5310,7 +5310,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Coplanar Lines and Their Planes",
     "difficulty": 4,
     "task": "Find",
@@ -5353,7 +5353,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Feet of Perpendiculars to a Plane",
     "difficulty": 4,
     "task": "Identify",
@@ -5396,7 +5396,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Parallelepiped from Parallelogram Diagonals",
     "difficulty": 4,
     "task": "Compute",
@@ -5439,7 +5439,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Points on the Common Perpendicular",
     "difficulty": 4,
     "task": "Find",
@@ -5482,7 +5482,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Counting Non-Coplanar Triples of Vertices",
     "difficulty": 4,
     "task": "Find",
@@ -5525,7 +5525,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When Two Skew-Looking Lines Turn Coplanar",
     "difficulty": 4,
     "task": "Find all values",
@@ -5568,7 +5568,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "How Volumes and Areas Rescale Under Combinations",
     "difficulty": 4,
     "task": "Match",
@@ -5611,7 +5611,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Plane Through Two Lines, Twice Perpendicular",
     "difficulty": 4,
     "task": "Find $a$, $b$, $c$, $d$ for the plane $ax+by+cz=d$.",
@@ -5651,7 +5651,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Right Angle Between Two Foot-of-Perpendicular Vectors",
     "difficulty": 4,
     "task": "Find all possible values of $\\lambda$.",
@@ -5691,7 +5691,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Vectors Forced Into a Coordinate Plane",
     "difficulty": 4,
     "task": "Select all correct statements.",
@@ -5735,7 +5735,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Cross Products Expanded in Their Own Basis",
     "difficulty": 4,
     "task": "Evaluate the given ratio.",
@@ -5781,7 +5781,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Triangle's Three Vector Laws",
     "difficulty": 4,
     "task": "Determine",
@@ -5825,7 +5825,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Pencil Plane Fixed by a Distance",
     "difficulty": 4,
     "task": "Determine",
@@ -5869,7 +5869,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Line Equidistant, Its Shadow's Locus",
     "difficulty": 5,
     "task": "Identify",
@@ -5914,7 +5914,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Re-reading a Vector in a New Basis",
     "difficulty": 4,
     "task": "Evaluate",
@@ -5959,7 +5959,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Pyramid in the First Octant",
     "difficulty": 4,
     "task": "Test each statement about the pyramid $OPQRS$.",
@@ -6002,7 +6002,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Image of a Point, Plane Through a Line",
     "difficulty": 4,
     "task": "Find the required plane.",
@@ -6045,7 +6045,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Cross Product Pinned to a Direction",
     "difficulty": 4,
     "task": "Decide which statements are correct.",
@@ -6091,7 +6091,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Plane Perpendicular to Two Planes",
     "difficulty": 3,
     "task": "Find the equation of the plane.",
@@ -6134,7 +6134,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Point Hidden Inside a Symmetric Condition",
     "difficulty": 4,
     "task": "Identify",
@@ -6177,7 +6177,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Cross Product of Two Side-Direction Unit Vectors",
     "difficulty": 3,
     "task": "Evaluate",
@@ -6220,7 +6220,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Planes and Their Line",
     "difficulty": 4,
     "task": "Decide which statements are true",
@@ -6263,7 +6263,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Symmetric Vector in an Orthonormal Frame",
     "difficulty": 4,
     "task": "Find the numerical value",
@@ -6305,7 +6305,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Reflected onto the Axis",
     "difficulty": 4,
     "task": "Find",
@@ -6348,7 +6348,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Triple Products Inside a Cube",
     "difficulty": 4,
     "task": "Evaluate",
@@ -6391,7 +6391,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Transversal Cutting Two Skew Lines",
     "difficulty": 4,
     "task": "Identify all",
@@ -6434,7 +6434,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three Rays Piercing One Plane",
     "difficulty": 4,
     "task": "Evaluate",
@@ -6476,7 +6476,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Transversal Meeting Three Skew Lines",
     "difficulty": 5,
     "task": "Decide, for each listed point on the middle line, whether a transversal exists.",
@@ -6517,7 +6517,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Minimising a Dot Product Under a Projection",
     "difficulty": 4,
     "task": "Use the projection condition, then minimise the given scalar over the free parameter.",
@@ -6559,7 +6559,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Bisector That Splits the Acute Angle",
     "difficulty": 4,
     "task": "Determine",
@@ -6602,7 +6602,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Triangle's Sides as Chained Vectors",
     "difficulty": 4,
     "task": "Find",
@@ -6645,7 +6645,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Plane From a Mirror Image",
     "difficulty": 4,
     "task": "Determine",
@@ -6688,7 +6688,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Projections Onto a Parallelogram",
     "difficulty": 4,
     "task": "Determine",
@@ -6731,7 +6731,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Plane of Consistency, Squared Distance",
     "difficulty": 4,
     "task": "Find the square of the distance from a point to the plane of consistency.",
@@ -6773,7 +6773,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Parallelepiped Volume Pins the Dot Product",
     "difficulty": 4,
     "task": "Use the given box volume to find the unknown dot product, then a magnitude.",
@@ -6815,7 +6815,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Cross Product Fixes the Scalar $\\lambda$",
     "difficulty": 4,
     "task": "Fix $\\lambda$, then test each statement about the vectors.",
@@ -6861,7 +6861,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Which Line Can Edge a Tetrahedron",
     "difficulty": 5,
     "task": "Decide which lines can be an edge of the tetrahedron.",
@@ -6906,7 +6906,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Reflection in a Parametric Plane",
     "difficulty": 4,
     "task": "Reflect the point in the plane and test the four linear relations among the image coordinates.",
@@ -6950,7 +6950,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Cross Product Hidden in a Matrix",
     "difficulty": 5,
     "task": "Recognise the skew-symmetric matrix as a cross product, then decide the four statements.",
@@ -6995,7 +6995,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Face and Body Diagonals of a Cube",
     "difficulty": 4,
     "task": "Find the maximum shortest distance between a face-diagonal line and a main-diagonal line.",
@@ -7037,7 +7037,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Equilateral Unit Vectors on a Sphere-Plane Circle",
     "difficulty": 5,
     "task": "Compute the scalar triple product volume of three symmetric unit vectors and evaluate the given expression.",
@@ -7081,7 +7081,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Plane That Runs From a Line",
     "difficulty": 5,
     "task": "Match each entry in List-I with the correct value in List-II.",
@@ -7123,7 +7123,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four Points and a Section Ratio",
     "difficulty": 4,
     "task": "Decide which one of the four statements about the points $P,Q,R,S$ is true.",
@@ -7165,7 +7165,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Loci That Become Parallel Planes",
     "difficulty": 5,
     "task": "Decide which of the four statements about the loci $S$ and $T$ are true.",
@@ -7208,7 +7208,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Coplanar Vectors Fix a Plane Constant",
     "difficulty": 3,
     "task": "Use the coplanarity condition to determine the constant $\\ell$.",
@@ -7251,7 +7251,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Intersecting Lines and Their Common Plane",
     "difficulty": 4,
     "task": "Match each List-I entry to List-II for two intersecting lines and their plane.",
@@ -7296,7 +7296,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Zig-Zag Path Through Two Planes",
     "difficulty": 4,
     "task": "Test four claims about the triangle traced by a line reflecting between two planes.",
@@ -7341,7 +7341,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Isolating a Coefficient by Projection",
     "difficulty": 3,
     "task": "Find the coefficient $\\gamma$ of $\\vec{p}\\times\\vec{q}$ in the decomposition of a given vector.",
@@ -7384,7 +7384,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Line, a Plane and a Right Triangle",
     "difficulty": 4,
     "task": "Decide which statements about the lengths, area and angle of a 3D configuration are true.",
@@ -7428,7 +7428,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Weighted Point Inside a Triangle",
     "difficulty": 4,
     "task": "Evaluate",
@@ -7471,7 +7471,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Vectors Locked in a Cross Loop",
     "difficulty": 5,
     "task": "Match",
@@ -7514,7 +7514,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Coplanar Cyclic Combinations of Three Vectors",
     "difficulty": 4,
     "task": "Find",

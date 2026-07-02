@@ -18,7 +18,7 @@
     parammat:    { glyph:'λ',     blurb:'Finding the parameter values that make a matrix singular or a system consistent, and solving matrix equations.' },
     chareqn:     { glyph:'A−λI',  blurb:'The characteristic equation det(A−λI)=0 of a matrix of order ≤3, trace and determinant as the sum and product of its roots, power sums through tr(Aⁿ), and the order-2 identity A²=(tr A)A−(det A)I that drives Aⁿ and the inverse — every tool derived from the determinant, never assumed.' },
     hybrid:      { glyph:'⊕',     blurb:'Capstones that fuse several in-syllabus ideas — structure, determinant, adjoint and a linear system — into one multi-step problem.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

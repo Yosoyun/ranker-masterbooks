@@ -17,7 +17,7 @@
     equations:    { glyph:'=',     blurb:'Periodicity, squaring traps, and interval counting separate the true roots from the impostors.' },
     geometry:     { glyph:'△',     blurb:'Law of sines and cosines, area, inradius, and circumradius computed through angles.' },
     hybrid:       { glyph:'⊕',     blurb:'The capstones: two or three earlier instruments fused into one unforgiving problem.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

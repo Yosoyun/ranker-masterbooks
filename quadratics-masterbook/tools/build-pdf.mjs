@@ -25,7 +25,7 @@ const BLURB = {
   parameter:'Sweep a parameter; watch the roots appear, vanish, change sign — count when.',
   inequalities:'Where is a quadratic positive, and when for every x? Sign and definiteness.',
   hybrid:'Vieta, location, parameters and disguises fused into one.',
-  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006-2026.',
+  pyq:'Official IIT-JEE / JEE Advanced past-year questions, 2006–2025.',
 };
 
 // order + index

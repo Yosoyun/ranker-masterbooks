@@ -17,7 +17,7 @@
     triangles:      { glyph:'⟁',      blurb:'Equilateral conditions, similar triangles and centroids, all from a single complex identity.' },
     equations:      { glyph:'P(z)',   blurb:'Polynomials over ℂ: conjugate roots, the fundamental theorem, and factoring through ω.' },
     hybrid:         { glyph:'⊕',      blurb:'The capstones: roots of unity, geometry, loci and De Moivre fused into one.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

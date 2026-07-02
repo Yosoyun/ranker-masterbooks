@@ -17,7 +17,7 @@
     eccentricity: { glyph:'e', blurb:'The focus–directrix definition and eccentricity that unify the conics — focal distances, the latus rectum, directrices, and the e that decides which curve you have.' },
     locus:        { glyph:'P(t)', blurb:'Loci and parametric problems — the curve traced by a point built from a moving point on a conic, midpoints of chords, feet of perpendiculars, and optimisation.' },
     hybrid:       { glyph:'⊕', blurb:'The capstones: the four conics, the tangent–pole–polar machinery and the general equation fused into one problem that resists every single tool.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

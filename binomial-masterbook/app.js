@@ -17,7 +17,7 @@
     approximation:  { glyph:'≈',     blurb:'When x is small, (1+x)ⁿ is almost linear; Bernoulli and the binomial inequalities turn the expansion into sharp bounds.' },
     vandermonde:    { glyph:'ΣCₖ',  blurb:'Vandermonde’s convolution, the hockey-stick, Pascal’s rule and the square sum ΣCₖ² — combinatorial identities proved by counting two ways.' },
     hybrid:         { glyph:'⊕',     blurb:'The capstones: the general term, roots-of-unity filters, calculus sums and number theory fused into one expansion.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

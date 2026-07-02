@@ -17,7 +17,7 @@
     variableparam:   { glyph:'A(t)',   blurb:'Area as a function of a moving boundary or a parameter — differentiating under the limit (Leibniz) and solving the resulting condition.' },
     minimizearea:    { glyph:'min A',  blurb:'Extremising an enclosed area under a constraint — choosing the right variable, and respecting feasibility and the endpoints.' },
     hybrid:          { glyph:'⊕',      blurb:'The capstones: area fused with between-curves, the standard conics, symmetry, a variable boundary and an optimisation into one multi-step problem.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

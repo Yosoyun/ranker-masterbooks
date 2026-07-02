@@ -17,7 +17,7 @@
     parameter:     { glyph:'k',      blurb:'Sweep a parameter and watch the roots appear, vanish or change sign — then count exactly when.' },
     inequalities:  { glyph:'>0',     blurb:'Where is a quadratic positive? When is it positive for every x? Sign, discriminant and definiteness.' },
     hybrid:        { glyph:'⊕',      blurb:'The capstones: Vieta, location, parameters and disguises fused into one.' },
-    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2026, transcribed from the papers and solved more than one way.' },
+    pyq:         { glyph:'★', blurb:'Every official IIT-JEE / JEE Advanced question in this chapter from 2006 to 2025, transcribed from the papers and solved more than one way.' },
   };
 
   // ---- state ----

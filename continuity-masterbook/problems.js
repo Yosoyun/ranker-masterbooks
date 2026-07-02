@@ -3972,7 +3972,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The $2$-Periodic Handshake: $\\sin\\pi x$ meets $\\cos\\pi x$",
     "difficulty": 3,
     "task": "Determine which relations must hold.",
@@ -4020,7 +4020,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Maxima Agree: an IVT Crossing of $f$ and $g$",
     "difficulty": 3,
     "task": "Identify the statement(s) that must be true.",
@@ -4067,7 +4067,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Counting the breaks of $[x^2-3]$",
     "difficulty": 4,
     "task": "Decide which statements about the discontinuities and non-differentiabilities hold.",
@@ -4117,7 +4117,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Where does $x\\cos(\\pi(x+[x]))$ break?",
     "difficulty": 3,
     "task": "Identify the points of discontinuity.",
@@ -4162,7 +4162,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Zeros forced by $f:\\mathbb{R}\\to(0,1)$",
     "difficulty": 4,
     "task": "Identify which functions must vanish on $(0,1)$.",
@@ -4210,7 +4210,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four functions, four verdicts at $x=0$",
     "difficulty": 4,
     "task": "Match each function to its behaviour at the origin.",
@@ -4261,7 +4261,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Sawtooth Fed Into a Valley: $f(\\{x\\})$",
     "difficulty": 4,
     "task": "Find the value of $c+d$.",
@@ -4308,7 +4308,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "When the Step Function's Jumps Get Cancelled",
     "difficulty": 4,
     "task": "Determine which statements are true.",

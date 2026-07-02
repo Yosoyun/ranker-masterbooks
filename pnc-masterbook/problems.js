@@ -3920,7 +3920,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Ordered pairs with a prescribed LCM",
     "difficulty": 3,
     "task": "Find the number of ordered pairs.",
@@ -3965,7 +3965,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Dictionary rank of COCHIN",
     "difficulty": 3,
     "task": "Find how many words precede it.",
@@ -4014,7 +4014,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Four Faces of $\\text{ENDEANOEL}$",
     "difficulty": 4,
     "task": "Match each count in Column I to its value in Column II.",
@@ -4059,7 +4059,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Seven Digits, Sum Ten, Alphabet $\\{1,2,3\\}$",
     "difficulty": 3,
     "task": "Find how many such seven-digit integers exist.",
@@ -4105,7 +4105,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Unordered Pairs of Disjoint Subsets of $\\{1,2,3,4\\}$",
     "difficulty": 3,
     "task": "Count the unordered pairs.",
@@ -4152,7 +4152,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "5 Coloured Balls to 3 Persons, Nobody Empty-Handed",
     "difficulty": 3,
     "task": "Count the distributions.",
@@ -4197,7 +4197,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Binary strings with no two zeros — the value of $b_6$",
     "difficulty": 3,
     "task": "Find the value of $b_6$.",
@@ -4245,7 +4245,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Which relation among $a_n,b_n,c_n$ is correct?",
     "difficulty": 3,
     "task": "Identify the correct statement.",
@@ -4293,7 +4293,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Blue Edges, Red Diagonals",
     "difficulty": 2,
     "task": "Find the value of $n$.",
@@ -4339,7 +4339,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Five Rising Integers Summing to $20$",
     "difficulty": 3,
     "task": "Find the number of such arrangements.",
@@ -4390,7 +4390,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Envelope That Was Already Sealed",
     "difficulty": 4,
     "task": "Count the valid placements.",
@@ -4435,7 +4435,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "All Five Together, or Exactly Four",
     "difficulty": 3,
     "task": "Compute the ratio $m/n$.",
@@ -4479,7 +4479,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Team and Its Captain",
     "difficulty": 2,
     "task": "Count the ways to pick the team and its captain.",
@@ -4525,7 +4525,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "One Letter Twice",
     "difficulty": 3,
     "task": "Evaluate the ratio $\\dfrac{y}{9x}$.",
@@ -4572,7 +4572,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Five-Digit Multiples of $4$ from $\\{1,2,3,4,5\\}$",
     "difficulty": 2,
     "task": "Count the numbers.",
@@ -4619,7 +4619,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "One-One from $X$ vs. Onto onto $X$",
     "difficulty": 3,
     "task": "Evaluate the expression.",
@@ -4664,7 +4664,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Hats Around the Round Table ($C_5$ colourings)",
     "difficulty": 3,
     "task": "Count the valid hat distributions.",
@@ -4719,7 +4719,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four Visits, No Two in a Row",
     "difficulty": 3,
     "task": "Count the possible visit schedules.",
@@ -4763,7 +4763,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Six Guests, Four Rooms — At Least One, At Most Two",
     "difficulty": 3,
     "task": "Count the valid room assignments.",
@@ -4807,7 +4807,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four-Digit Numbers Trapped in $[2022,\\,4482]$",
     "difficulty": 4,
     "task": "Count the four-digit integers.",
@@ -4852,7 +4852,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Ten Balls, Four Boxes, One Constraint Apiece",
     "difficulty": 4,
     "task": "Count the selections.",
@@ -4901,7 +4901,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three Teams, Two Forbidden Seats",
     "difficulty": 3,
     "task": "Count the ways to form the teams.",
@@ -4948,7 +4948,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Seven Digits, Two Twos",
     "difficulty": 4,
     "task": "Count the qualifying seven-digit numbers.",

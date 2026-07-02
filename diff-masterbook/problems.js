@@ -4167,7 +4167,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Conserved Quantity: $f^2+(f')^2$",
     "difficulty": 2,
     "task": "Find the value of $F(10)$.",
@@ -4211,7 +4211,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Lower Envelope $\\min\\{1,x^2,x^3\\}$",
     "difficulty": 3,
     "task": "Identify all correct statements.",
@@ -4253,7 +4253,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Hidden Derivative: zeros of $(f')^2+f''f$",
     "difficulty": 4,
     "task": "Find the minimum number of zeros.",
@@ -4297,7 +4297,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four functions, four verdicts on $(-1,1)$",
     "difficulty": 3,
     "task": "Match each function to its properties.",
@@ -4342,7 +4342,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Flipping the roles of $x$ and $y$",
     "difficulty": 3,
     "task": "Identify the correct expression for $\\dfrac{d^2x}{dy^2}$.",
@@ -4387,7 +4387,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A critical point in every window of length $\\pi$",
     "difficulty": 3,
     "task": "Decide the truth of the two statements and whether one explains the other.",
@@ -4432,7 +4432,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The mirror at $x=\\tfrac12$",
     "difficulty": 4,
     "task": "Select all correct statements.",
@@ -4479,7 +4479,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Implicit curve $y^3-3y+x=0$",
     "difficulty": 4,
     "task": "Find the second derivative.",
@@ -4525,7 +4525,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The log-gamma second difference",
     "difficulty": 4,
     "task": "Find the value of the second-derivative difference.",
@@ -4572,7 +4572,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "$x\\cos\\tfrac1x$ and its slope at infinity",
     "difficulty": 4,
     "task": "Select all correct statements.",
@@ -4620,7 +4620,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Integral That Breaks $f''$",
     "difficulty": 4,
     "task": "Decide which statements about $f$ are true.",
@@ -4666,7 +4666,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Inverting Through an Integral",
     "difficulty": 3,
     "task": "Evaluate $(f^{-1})'(2)$.",
@@ -4709,7 +4709,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A four-piece function and its seams",
     "difficulty": 3,
     "task": "Decide which statements about continuity and differentiability are correct.",
@@ -4754,7 +4754,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "$x^2\\left|\\cos\\dfrac{\\pi}{x}\\right|$ at the origin and at $x=2$",
     "difficulty": 4,
     "task": "Determine where the function is differentiable.",
@@ -4801,7 +4801,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Corners at the accumulation gate: $g(x)=\\int_a^x f$",
     "difficulty": 3,
     "task": "Decide where the accumulation function is not differentiable.",
@@ -4847,7 +4847,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Switching envelopes: $\\max$ then $\\min$ of $|x|+1$ and $x^2+1$",
     "difficulty": 3,
     "task": "Count the points where the spliced function has no derivative.",
@@ -4896,7 +4896,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Four differentiabilities: $f$, $h$, and the two compositions",
     "difficulty": 4,
     "task": "Decide which of the four functions is differentiable at $0$.",
@@ -4941,7 +4941,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Rolle on $f-3g$: exactly one root per interval",
     "difficulty": 3,
     "task": "Count the solutions of $f'(x)-3g'(x)=0$ in each interval.",
@@ -4987,7 +4987,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The vanishing factor $f(1)=f'(1)=0$",
     "difficulty": 4,
     "task": "Decide which implications are true.",
@@ -5035,7 +5035,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Minimizing $m_{f'}+m_{f''}$ over a family",
     "difficulty": 4,
     "task": "Find the minimum value.",
@@ -5083,7 +5083,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "$2-2x^2+x^2\\sin\\frac{1}{x}$: differentiable but not monotone",
     "difficulty": 4,
     "task": "Identify the true statement.",
@@ -5125,7 +5125,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Logistic Inverse and the Chain",
     "difficulty": 3,
     "task": "Find the derivative value.",

@@ -3913,7 +3913,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Point of Three Equal Areas",
     "difficulty": 2,
     "task": "Find the coordinates of $R$.",
@@ -3960,7 +3960,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Bisector That Isn't a Similarity",
     "difficulty": 3,
     "task": "Decide the truth of both statements.",
@@ -4007,7 +4007,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Chord Through $P$ and the Power of $S$",
     "difficulty": 4,
     "task": "Select every correct inequality.",
@@ -4054,7 +4054,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Two Sides of an Equilateral Triangle from Its Incentre",
     "difficulty": 4,
     "task": "Identify the equations of the two remaining sides.",
@@ -4102,7 +4102,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Three Lines, One Parameter $k$",
     "difficulty": 3,
     "task": "Match each configuration to the values of $k$.",
@@ -4148,7 +4148,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Locus of a Wandering Orthocentre",
     "difficulty": 4,
     "task": "Identify the locus.",
@@ -4194,7 +4194,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "The Orthocentre of the Tangent Triangle",
     "difficulty": 4,
     "task": "Find the orthocentre.",
@@ -4241,7 +4241,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "A Line Tilted $60^\\circ$ From Another",
     "difficulty": 3,
     "task": "Find the equation of the line.",
@@ -4289,7 +4289,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Meeting on the diagonal $y=x$",
     "difficulty": 3,
     "task": "Determine which inequality on $a,b,c$ must hold.",
@@ -4335,7 +4335,7 @@ window.PROBLEMS = [
   },
   {
     "theme": "pyq",
-    "themeLabel": "Previous Years 2006–2026",
+    "themeLabel": "Previous Years 2006–2025",
     "title": "Between two nested squares",
     "difficulty": 3,
     "task": "Find the area of the region.",
